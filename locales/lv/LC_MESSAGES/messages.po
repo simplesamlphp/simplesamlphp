@@ -53,12 +53,6 @@ msgstr "Metadatu ielādes kļūda"
 msgid "{admin:metaconv_title}"
 msgstr "Metadatu parsētājs"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Pilnvaras attiecībā uz servisu"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG fotogrāfija"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Kļūdas nav atrastas."
 
@@ -119,9 +113,6 @@ msgstr ""
 "Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
 "atšķiras no veiksmīga"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP metadati"
-
 msgid "{login:help_text}"
 msgstr ""
 "Bez lietotāja vārda un paroles Jūs nevarat autentificēties un nevarat "
@@ -130,9 +121,6 @@ msgstr ""
 
 msgid "{logout:default_link_text}"
 msgstr "Iet atpakaļ uz SimpleSAMLphp instalācijas lapu"
-
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation servisa piegādātājs (attālināts)"
 
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp kļūda"
@@ -150,17 +138,11 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Organizācijas vārds (DN)"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Saņemts nepareizs pieprasījums"
 
 msgid "{status:sessionsize}"
 msgstr "Sesijas izmērs: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Pasta adrese"
 
 msgid "{logout:title}"
 msgstr "Atslēdzies"
@@ -183,29 +165,14 @@ msgstr "Apturēts"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurācijas pārbaude"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Amats organizācijā"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Uzvārds"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Sūtīt ziņu"
 
 msgid "{status:logout}"
 msgstr "Atslēgties"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organizācijas nosaukums"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefons"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Pasts"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Veidojot SAML pieprasījumu radās kļūda."
@@ -215,9 +182,6 @@ msgstr "Neobligātie lauki"
 
 msgid "{logout:return}"
 msgstr "Atgriezties pie servisa"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Parādāmais vārds"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Jūs varat <a href=\"%METAURL%\">saņemt metadatu xml šajā URL</a>:"
@@ -229,9 +193,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Jūs varat izslēgt atkļūdošanas režīmu globālajā SimpleSAMLphp "
 "konfigurācijas failā <tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Pasta adrese"
 
 msgid "{disco:select}"
 msgstr "Izvēlēties"
@@ -248,9 +209,6 @@ msgstr "Atslēgšanās..."
 msgid "{login:error_wrongpassword}"
 msgstr "Nekorekts lietotāja vārds vai parole."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 servisa piegādātājs (attālināts)"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identitātes piegādātājs ir saņēmis autentifikācijas pieprasījumu no "
@@ -258,9 +216,6 @@ msgstr ""
 
 msgid "{logout:logout_all_question}"
 msgstr "Vai vēlaties atslēgties no visiem uzskaitītajiem servisiem?"
-
-msgid "{attributes:attribute_title}"
-msgstr "Amats"
 
 msgid "{errors:title_NOACCESS}"
 msgstr "Nav pieejas"
@@ -273,9 +228,6 @@ msgstr "Nav RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Stāvokļa informācija pazaudēta un nav iespējams atkārtot pieprasījumu"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Publisko autoritāšu piešķirtais identitātes numurs"
 
 msgid "{login:password}"
 msgstr "Parole"
@@ -303,23 +255,14 @@ msgstr "Atslēgšanās pieprasījuma apstrādes kļūda"
 msgid "{admin:metaover_errorentry}"
 msgstr "Kļūda šajā metadatu ierakstā"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Piederība"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadati nav atrasti"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Vārds"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktinformācija"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nezināma kļūda"
-
-msgid "{status:validfor}"
-msgstr "Sesija ir derīga %SECONDS% sekundes no šī brīža."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demonstrācijas piemērs"
@@ -355,29 +298,17 @@ msgstr ""
 "Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis "
 "nepazīstamu sertifikātu"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organizācijas mājas lapa"
-
 msgid "{logout:logging_out_from}"
 msgstr "Atslēgšanās no šiem servisiem:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Jūs esat sekmīgi atslēdzies no %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation servisa piegādātājs (hostēts)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Kļūdas ziņojums administratoriem ir nosūtīts."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Dzimšanas datums"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Apstrādājot atslēgšanās pieprasījumu, radās kļūda."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Pastāvīgs pseidonīma ID"
 
 msgid "{logout:success}"
 msgstr "Jūs esat sekmīgi atslēdzies un augstāk uzskaitītajiem servisiem."
@@ -387,12 +318,6 @@ msgstr "Brīdinājumi"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Autentifikāciju pārtraucis lietotājs"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Pamatdarba amats"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Pasta kods"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Kļūda komunicējot ar CAS serveri."
@@ -406,9 +331,6 @@ msgstr "SAML 2.0 SP metadati"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertētie metadati"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Vārds"
-
 msgid "{logout:completed}"
 msgstr "Pabeigts"
 
@@ -417,17 +339,8 @@ msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "
 "mainīta. Lūdzu nomainiet to, labojot failu."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizācijas vienība"
-
 msgid "{general:service_provider}"
 msgstr "Servisa piegādātājs"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefons"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domēns (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Kļūdains pieprasījums šai lapai. Iemesls: %REASON%"
@@ -447,22 +360,13 @@ msgstr "Ievadiet savu lietotāja vārdu un paroli"
 msgid "{errors:report_explain}"
 msgstr "Aprakstiet, ko Jūs darījāt, kad notika kļūda."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Priekšnieks"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nav SAML atbildes"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Niks"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "
 "atslēgšanās pieprasījumu vai atslēgšanās atbildi."
-
-msgid "{attributes:attribute_street}"
-msgstr "Iela"
 
 msgid "{login:organization}"
 msgstr "Organizācija"
@@ -501,9 +405,6 @@ msgstr "Izvēlēties organizāciju"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Sīkas (superfluous) opcijas konfigurācijas failā"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI nosaukums"
-
 msgid "{errors:report_email}"
 msgstr "E-pasta adrese:"
 
@@ -518,9 +419,6 @@ msgstr ""
 "Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "
 "kurp iet tālāk."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Juridiskais nosaukums"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp diagnostika"
 
@@ -528,9 +426,6 @@ msgid "{status:intro}"
 msgstr ""
 "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir "
 "pārtraukta, cik ilgi tā bijusi aktīva un visus ar to saistītos atribūtus."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Organizācijas domeins"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Lapa nav atrasta"
@@ -541,17 +436,11 @@ msgstr "Ziņas sūtīšana"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Kļūda no identitātes piegādātāja"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP metadati"
-
 msgid "{admin:metaover_intro}"
 msgstr "Lai aplūkotu SAML vienuma detaļas, klikšķiniet uz vienuma galvenes."
 
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Nederīgs sertifikāts"
-
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Organizācijas vienības vārds (DN)"
 
 msgid "{general:remember}"
 msgstr "Atcerēties"
@@ -559,20 +448,11 @@ msgstr "Atcerēties"
 msgid "{disco:selectidp}"
 msgstr "Izvēlieties identitātes piegādātāju"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Pasta kaste"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Priekšnieka vārds"
-
 msgid "{login:help_desk_email}"
 msgstr "Sūtīt e-pastu palīdzības dienestam"
 
 msgid "{login:help_desk_link}"
 msgstr "Palīdzības dienesta interneta lapa"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Lietotāja ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS kļūda"
@@ -593,12 +473,6 @@ msgstr "Atcerēties manu izvēli"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 servisa piegādātājs (hostēts)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Atrašanās vieta"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Apraksts, kā atšķirt cilvēku no robota"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -632,9 +506,6 @@ msgstr "Lapa nav atrasta"
 msgid "{logout:logged_out_text}"
 msgstr "Jūs esat izgājis no sistēmas."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 servisa piegādātājs (hostēts)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
 
@@ -643,9 +514,6 @@ msgstr "Ziņa"
 
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nepazīstams sertifikāts"
-
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fakss"
 
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP kļūda"
@@ -666,9 +534,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 identitātes piegādātājs (hostēts)"
-
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Vēlamā valoda"
 
@@ -683,15 +548,6 @@ msgstr "Nav atrasti neobligātie lauki"
 
 msgid "{logout:logout_only}"
 msgstr "Nē, tikai %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organizācijas nosaukums"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Personas pamata organizācijas vienības vārds (DN)"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Personas kods"
 
 msgid "{login:next}"
 msgstr "Tālāk"
@@ -712,14 +568,8 @@ msgstr "Norādītā lapa nav atrasta. Iemesls: %REASON% Saite: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Nav sertifikāta"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Paroles jaucējsumma (hash)"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atslēgšanās informācija zaudēta"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 identitātes piegādātājs (attālināts)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp nav pareizi nokonfigurēts."
@@ -729,12 +579,6 @@ msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"
 " lai izveidotu uzticamu federāciju."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Privātās informācijas elementi"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP demonstrācijas piemērs"
-
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikāti"
 
@@ -743,17 +587,11 @@ msgstr ""
 "Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis nederīgu "
 "vai nelasāmu sertifikātu"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organizācijas juridiskais nosaukums"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parsēt"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organizācijas reģistrācijas numurs"
 
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
@@ -1082,8 +920,8 @@ msgstr ""
 "SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Sesija ir derīga %SECONDS% sekundes no šī brīža."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
 
 msgid "Domain component (DC)"
 msgstr "Domēns (DC)"

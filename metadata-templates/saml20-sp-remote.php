@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SAML 2.0 remote SP metadata for SimpleSAMLphp.
  *

@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use ReflectionClass;
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 /**
  * Tests for the SQL store.
@@ -17,7 +20,10 @@ use \SimpleSAML\Store;
  */
 class SQLTest extends TestCase
 {
-    protected function setUp()
+    /**
+     * @return void
+     */
+    protected function setUp(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -26,24 +32,28 @@ class SQLTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
     }
 
+
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @covers \SimpleSAML\Store\SQL::__construct
      * @test
+     * @return void
      */
-    public function SQLInstance()
+    public function SQLInstance(): void
     {
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
+
 
     /**
      * @covers \SimpleSAML\Store\SQL::initTableVersionTable
      * @covers \SimpleSAML\Store\SQL::initKVTable
      * @test
+     * @return void
      */
-    public function kvstoreTableVersion()
+    public function kvstoreTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -53,11 +63,13 @@ class SQLTest extends TestCase
         $this->assertEquals(2, $version);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::getTableVersion
      * @test
+     * @return void
      */
-    public function newTableVersion()
+    public function newTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -67,12 +79,14 @@ class SQLTest extends TestCase
         $this->assertEquals(0, $version);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::setTableVersion
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @test
+     * @return void
      */
-    public function testSetTableVersion()
+    public function testSetTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -83,11 +97,13 @@ class SQLTest extends TestCase
         $this->assertEquals(2, $version);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::get
      * @test
+     * @return void
      */
-    public function testGetEmptyData()
+    public function testGetEmptyData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -97,13 +113,15 @@ class SQLTest extends TestCase
         $this->assertNull($value);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @test
+     * @return void
      */
-    public function testInsertData()
+    public function testInsertData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -114,13 +132,15 @@ class SQLTest extends TestCase
         $this->assertEquals('bar', $value);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @test
+     * @return void
      */
-    public function testOverwriteData()
+    public function testOverwriteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -132,14 +152,16 @@ class SQLTest extends TestCase
         $this->assertEquals('baz', $value);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @covers \SimpleSAML\Store\SQL::delete
      * @test
+     * @return void
      */
-    public function testDeleteData()
+    public function testDeleteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -151,14 +173,16 @@ class SQLTest extends TestCase
         $this->assertNull($value);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @covers \SimpleSAML\Store\SQL::delete
      * @test
+     * @return void
      */
-    public function testVeryLongKey()
+    public function testVeryLongKey(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -171,18 +195,30 @@ class SQLTest extends TestCase
         $this->assertNull($value);
     }
 
-    protected function tearDown()
+
+    /**
+     * @return void
+     */
+    protected function tearDown(): void
     {
         $config = Configuration::getInstance();
+
+        /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
 
-    protected function clearInstance($service, $className)
+
+    /**
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param class-string $className
+     * @return void
+     */
+    protected function clearInstance($service, string $className): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);

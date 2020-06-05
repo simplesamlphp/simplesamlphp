@@ -36,32 +36,14 @@ msgstr ""
 "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha "
 "isicelo"
 
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Ikheli leposi"
-
 msgid "{errors:title_SSOPARAMS}"
 msgstr "Asikho isicelo se-SAML esinikeziwe"
-
-msgid "{attributes:attribute_ou}"
-msgstr "Iyunithi yenhlangano"
-
-msgid "{status:header_wsfed}"
-msgstr "Isibonelo Sedemo ye-WS-Fed SP"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
 
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Inombolo yenhlangano"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Ucingo lwasekhaya"
-
 msgid "{errors:title_SLOSERVICEPARAMS}"
 msgstr "Awukho umlayezo we-SAML onikeziwe"
-
-msgid "{attributes:attribute_uid}"
-msgstr "I-ID yomsebenzisi"
 
 msgid "{login:error_nopassword}"
 msgstr ""
@@ -78,17 +60,11 @@ msgstr ""
 msgid "{status:authData_header}"
 msgstr "I-AuthData"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Inombolo yefeksi"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Kutholwe umlayezo ongalungile"
 
 msgid "{login:login_button}"
 msgstr "Ngena"
-
-msgid "{status:validfor}"
-msgstr "Iseshini yakho isebenza imizuzwana engu-%SECONDS% ukusuka manje."
 
 msgid "{status:header_shib}"
 msgstr "Idemo ye-Shibboleth"
@@ -98,9 +74,6 @@ msgstr "[Ukukhetha okuncanyelwayo]"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Ikheli leposi lasekhaya"
 
 msgid "{login:help_header}"
 msgstr "Siza! Angiyikhumbuli iphasiwedi yami."
@@ -113,9 +86,6 @@ msgstr "Iphutha lokulayisha imethadatha"
 
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
-
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Izingxenye zolwazi oluyimfihlo"
 
 msgid "{logout:hold}"
 msgstr "Imisiwe"
@@ -136,9 +106,6 @@ msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
 
 msgid "{login:help_desk_link}"
 msgstr "Ikhasi lasekhaya ledeski losizo"
-
-msgid "{attributes:attribute_cn}"
-msgstr "Igama elivamile"
 
 msgid "{errors:debuginfo_header}"
 msgstr "Ulwazi lokususwa kwephutha"
@@ -169,9 +136,6 @@ msgstr "Khumbula ukukhetha kwami"
 
 msgid "{general:remember}"
 msgstr "Khumbula"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Igama eliyinhloko lomuntu enhlanganweni yasekhaya"
 
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi"
@@ -204,9 +168,6 @@ msgstr "Kuqedile"
 msgid "{status:subject_header}"
 msgstr "Isihloko Se-SAML"
 
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Igama lesizinda senhlangano yasekhaya"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Ulwazi olumayelana nomsebenzi wokuphuma wamanje lulahlekile. Kufanele "
@@ -217,9 +178,6 @@ msgstr ""
 "leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga "
 "iphikelela, thinta umhlinzeki wakho wesevisi."
 
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Inombolo kamazisi yasendaweni"
-
 msgid "{status:subject_notset}"
 msgstr "akusethiwe"
 
@@ -229,14 +187,8 @@ msgstr "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi"
 msgid "{disco:selectidp}"
 msgstr "Khetha umhlinzeki wakho kamazisi"
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Igama elihloniphekile (I-DN) lenhlangano yasekhaya yomuntu"
-
 msgid "{errors:title_NOTSET}"
 msgstr "Iphasiwedi ayisethiwe"
-
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Indima"
 
 msgid "{login:user_pass_text}"
 msgstr ""
@@ -248,9 +200,6 @@ msgstr "Cha, ku-%SP% kuphela"
 
 msgid "{login:username}"
 msgstr "Igama lomsebenzisi"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Igama elihloniphekile (I-DN) Leyunithi Yenhlangano eyinhloko yomuntu"
 
 msgid "{errors:error_header}"
 msgstr "Iphutha le-SimpleSAMLphp"
@@ -281,23 +230,14 @@ msgstr ""
 "Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki "
 "Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Imobhayili"
-
 msgid "{login:remember_me}"
 msgstr "Ngikhumbule"
 
 msgid "{disco:previous_auth}"
 msgstr "Ngaphambilini ukhethe ukuqinisekisa kokuthi"
 
-msgid "{attributes:attribute_l}"
-msgstr "Indawo"
-
 msgid "{general:yes_continue}"
 msgstr "Yebo, qhubeka"
-
-msgid "{attributes:attribute_organisationname}"
-msgstr "Igama lenhlangano"
 
 msgid "{login:remember_username}"
 msgstr "Khumbula igama lami lomsebenzisi"
@@ -307,9 +247,6 @@ msgstr "Ayikho impendulo ye-SAML enikeziwe"
 
 msgid "{login:user_pass_header}"
 msgstr "Faka igama lakho lomsebenzisi nephasiwedi"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Isithombe se-JPEG"
 
 msgid "{logout:logging_out_from}"
 msgstr "Iyaphuma kumasevisi alandelayo:"
@@ -331,28 +268,16 @@ msgstr ""
 "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / "
 "ideski losizo:"
 
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Isibizo esingashintshi esiqondene nesevisi"
-
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr ""
 "Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL "
 "ibithi: %URL%"
-
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Usuku lokuzalwa"
 
 msgid "{logout:success}"
 msgstr "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Igama lomsebenzisi noma iphasiwedi engalungile."
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Indima eyinhloko"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Isibongo"
 
 msgid "{login:error_header}"
 msgstr "Iphutha"
@@ -368,9 +293,6 @@ msgstr ""
 "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho "
 "asaziwa"
 
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Inombolo kamazisi eyabelwe amagunya omphakathi"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-"
@@ -379,17 +301,11 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Umhlinzeki Wesevisi"
 
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Isidlaliso"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Isampula Ledemo Ye-SAML 2.0 SP"
-
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Igama elihloniphekile (I-DN) leyunithi yenhlangano yasekhaya yomuntu"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
@@ -399,9 +315,6 @@ msgstr ""
 msgid "{login:change_home_org_button}"
 msgstr "Khetha inhlangano yasekhaya"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Igama elisemthethweni lenhlangano"
-
 msgid "{status:logout}"
 msgstr "Phuma"
 
@@ -410,17 +323,8 @@ msgstr ""
 "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani "
 "elizenzakalelayo. Sicela uhlele ifayela lomiso."
 
-msgid "{attributes:attribute_givenname}"
-msgstr "Igama lokuzalwa"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Iphutha lomthombo wokuqinisekisa"
-
-msgid "{attributes:attribute_manager}"
-msgstr "Umphathi"
-
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Ilungelo eliphathelene nesevisi"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Okuhlukile okungasingathiwe"
@@ -430,12 +334,6 @@ msgstr "Amaphutha ombiko"
 
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma."
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Ikhodi yeposi"
-
-msgid "{attributes:attribute_street}"
-msgstr "Umgwaqo"
 
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Isitifiketi esingalungile"
@@ -463,17 +361,8 @@ msgstr ""
 " kube nokwenzeka ukuthola iseshini yakho kumalogi atholakalayo kumlawuli "
 "wesistimu:"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "Igama lesibonisi"
-
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Ikhasi lasekhaya lenhlangano"
-
 msgid "{login:change_home_org_title}"
 msgstr "Shintsha inhlangano yakho yasekhaya"
-
-msgid "{attributes:attribute_edupersonorcid}"
-msgstr "Isihlonzi se-ORCID"
 
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Isitifiketi esingaziwa"
@@ -486,12 +375,6 @@ msgstr "Asikho isitifiketi"
 
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Okuhlukile okungasingathiwe kulahliwe."
-
-msgid "{attributes:attribute_title}"
-msgstr "Isiqu"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Ingxenye yesizinda (I-DC)"
 
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Iphutha lokwakha isicelo"
@@ -507,12 +390,6 @@ msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
 
 msgid "{disco:selectidp_full}"
 msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Iphrofayela yokuqinisekisa umazisi"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Ubulungu beqembu"
 
 msgid "{logout:failedsps}"
 msgstr ""
@@ -533,9 +410,6 @@ msgstr "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Ulimi oluncanyelwayo"
 
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Isicelo esingalungile sesevisi yokuthola"
@@ -563,9 +437,6 @@ msgstr "Ungenile futhi kulawa masevisi:"
 
 msgid "{logout:logout_all_question}"
 msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
-
-msgid "{attributes:attribute_o}"
-msgstr "Igama lenhlangano"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Usuphume ngempumelelo kokuthi %SP%."
@@ -599,9 +470,6 @@ msgstr ""
 "uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi "
 "isiphetho asihloselwe ukufinyelelwa ngokuqondile."
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Indima enhlanganweni yasekhaya"
-
 msgid "{errors:title_MEMCACHEDOWN}"
 msgstr "Ayikwazi ukubuyisela idatha yeseshini"
 
@@ -632,14 +500,6 @@ msgstr "Uphume ngemvume"
 msgid "{errors:report_explain}"
 msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
 
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Inombolo yocingo"
-
-msgid "{attributes:attribute_edupersonuniqueid}"
-msgstr ""
-"I-ID yesibizo ephikelelayo, engakwazi ukwabelwa kabusha yomuntu "
-"yenhlangano yasekhaya"
-
 msgid "{logout:failed}"
 msgstr "Ukuphuma kuhlulekile"
 
@@ -661,29 +521,14 @@ msgstr ""
 "engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli "
 "wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Uheshi wephasiwedi yomsebenzisi"
-
 msgid "{errors:report_text}"
 msgstr ""
 "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi "
 "ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
 
-msgid "{attributes:attribute_mail}"
-msgstr "Imeyili"
-
 msgid "{logout:progress}"
 msgstr "Iyaphuma..."
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "I-URI Enelebula"
-
 msgid "{login:select_home_org}"
 msgstr "Khetha inhlangano yakho yasekhaya"
-
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Igama elisemthethweni"
-
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Ibhokisi lehhovisi leposi"
 

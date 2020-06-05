@@ -80,6 +80,7 @@ $attributemap = [
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.4'   => 'urn:mace:dir:attribute-def:eduOrgLegalName',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.5'   => 'urn:mace:dir:attribute-def:eduOrgSuperiorURI',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.6'   => 'urn:mace:dir:attribute-def:eduOrgWhitePagesURI',
+    'urn:oid:1.3.6.1.4.1.25178.1.0.2.3'  => 'urn:mace:terena.org:attribute-def:schacYearOfBirth',
     'urn:oid:1.3.6.1.4.1.25178.1.2.1'    => 'urn:mace:terena.org:attribute-def:schacMotherTongue',
     'urn:oid:1.3.6.1.4.1.25178.1.2.2'    => 'urn:mace:terena.org:attribute-def:schacGender',
     'urn:oid:1.3.6.1.4.1.25178.1.2.3'    => 'urn:mace:terena.org:attribute-def:schacDateOfBirth',

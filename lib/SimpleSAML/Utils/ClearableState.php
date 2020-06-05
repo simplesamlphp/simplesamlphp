@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -12,6 +14,7 @@ interface ClearableState
 {
     /**
      * Clear any cached internal state.
+     * @return void
      */
-    public static function clearInternalState();
+    public static function clearInternalState(): void;
 }

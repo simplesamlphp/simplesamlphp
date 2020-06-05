@@ -18,19 +18,22 @@ $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
 switch ($_SERVER['PATH_INFO']) {
     case '/new_idp.crt':
-        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+        /** @var array $certInfo */
+        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'new_');
         break;
     case '/idp.crt':
+        /** @var array $certInfo */
         $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
         break;
     case '/https.crt':
+        /** @var array $certInfo */
         $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
         break;
     default:
         throw new \SimpleSAML\Error\NotFound('Unknown certificate.');
 }
-
-header('Content-Disposition: attachment; filename='.substr($_SERVER['PATH_INFO'], 1));
+header('Content-Disposition: attachment; filename=' . substr($_SERVER['PATH_INFO'], 1));
 header('Content-Type: application/x-x509-ca-cert');
+
 echo $certInfo['PEM'];
 exit(0);

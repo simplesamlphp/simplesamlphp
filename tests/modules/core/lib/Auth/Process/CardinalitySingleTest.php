@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
-// Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
-if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUnit_Framework_TestCase', true)) {
-    class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase', true);
-}
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
  */
-class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
+class CardinalitySingleTest extends TestCase
 {
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
     private $http;
+
 
     /**
      * Helper function to run the filter with a given configuration.
@@ -21,27 +24,37 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
      * @param  array $request The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $this->http);
+
+        /** @var \SimpleSAML\Utils\HttpAdapter $http */
+        $http = $this->http;
+
+        $filter = new CardinalitySingle($config, null, $http);
         $filter->process($request);
         return $request;
     }
 
-    protected function setUp()
+
+    /**
+     * @return void
+     */
+    protected function setUp(): void
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
+        $this->http = $this->getMockBuilder(HttpAdapter::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
 
+
     /**
      * Test singleValued
+     * @return void
      */
-    public function testSingleValuedUnchanged()
+    public function testSingleValuedUnchanged(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName']
@@ -57,10 +70,12 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test first value extraction
+     * @return void
      */
-    public function testFirstValue()
+    public function testFirstValue(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -76,7 +91,11 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedData, $attributes, "Only first value should be returned");
     }
 
-    public function testFirstValueUnchanged()
+
+    /**
+     * @return void
+     */
+    public function testFirstValueUnchanged(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -92,10 +111,12 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test flattening
+     * @return void
      */
-    public function testFlatten()
+    public function testFlatten(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -112,7 +133,11 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedData, $attributes, "Flattened string should be returned");
     }
 
-    public function testFlattenUnchanged()
+
+    /**
+     * @return void
+     */
+    public function testFlattenUnchanged(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -129,10 +154,12 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test abort
+     * @return void
      */
-    public function testAbort()
+    public function testAbort(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName'],
@@ -143,6 +170,7 @@ class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
+        /** @psalm-suppress UndefinedMethod */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 

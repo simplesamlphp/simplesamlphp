@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * This file registers an autoloader for test classes used by SimpleSAMLphp modules unit tests.
  */
@@ -8,8 +11,9 @@
  * Module test classes have namespaces like SimpleSAML\Test\Module\<moduleName>\Auth\Process
  *
  * @param string $className Name of the class.
+ * @return void
  */
-function sspmodTestClassAutoloadPSR4($className)
+function sspmodTestClassAutoloadPSR4(string $className): void
 {
     $elements = explode('\\', $className);
     if ($elements[0] === '') {
@@ -31,8 +35,8 @@ function sspmodTestClassAutoloadPSR4($className)
 
     // this is a SimpleSAMLphp module test class following PSR-4
     $module = array_shift($elements);
-    $moduleTestDir = __DIR__ .'/modules/'.$module;
-    $file = $moduleTestDir .'/lib/'.implode('/', $elements).'.php';
+    $moduleTestDir = __DIR__  . '/modules/' . $module;
+    $file = $moduleTestDir . '/lib/' . implode('/', $elements) . '.php';
 
     if (file_exists($file)) {
         require_once($file);

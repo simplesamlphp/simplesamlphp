@@ -8,10 +8,14 @@ These guidelines briefly explain how to contribute to SimpleSAMLphp effectively 
 ## Team members
 Currently, the core team members are:
 
-* Jaime Pérez Crespo, *main developer and release manager*, UNINETT <jaime.perez@uninett.no>
-* Olav Morken, *main developer*, UNINETT <olav.morken@uninett.no>
+* Jaime Pérez Crespo, *maintainer and main developer*, UNINETT <jaime.perez@uninett.no>
+* Tim van Dijen, *main developer*
+* Thijs Kinkhorst, *main developer*
+
+Two other persons are listed here for historical reasons, even though they are no longer involved in the project:
+
 * Andreas Åkre Solberg, *architect and original developer*, UNINETT <andreas.solberg@uninett.no>
-* Hanne Moa, *developer*, UNINETT <hanne.moa@uninett.no>
+* Olav Morken, *architect and main developer*, UNINETT <olav.morken@uninett.no>
 
 We have been lucky enough to have so many people help us through the years. SimpleSAMLphp wouldn't have reached so far without them. We want to thank them from here, but unfortunately they are so many it is nearly impossible to mention all of them. [Here is a Github page that summarizes everyone's contributions](https://github.com/simplesamlphp/simplesamlphp/graphs/contributors?from=2007-09-09&to=2015-09-06&type=c).
 
@@ -31,7 +35,7 @@ New features are always welcome, provided they will be useful to someone apart f
 When submitting a pull request, please make sure to account for:
 
 ### Coding standards
-* Respect the coding standards. We try to comply with PHP's [PSR-2](http://www.php-fig.org/psr/psr-2/). Pay special attention to the rules below:
+* Respect the coding standards. We try to comply with PHP's [PSR-12](http://www.php-fig.org/psr/psr-12/). Pay special attention to the rules below:
     * Lines should not be longer than 80 characters.
     * Use **4 spaces** instead of tabs.
     * Keep the keywords in **lowercase**, including `true`, `false` and `null`.

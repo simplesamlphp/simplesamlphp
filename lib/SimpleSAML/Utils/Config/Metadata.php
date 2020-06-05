@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils\Config;
 
 use SAML2\Constants;
@@ -94,7 +96,7 @@ class Metadata
      *
      * otherwise it will just return the name as "givenName" in the resulting array.
      *
-     * @param array $contact The contact to parse and sanitize.
+     * @param array|null $contact The contact to parse and sanitize.
      *
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
@@ -102,30 +104,27 @@ class Metadata
      * @throws \InvalidArgumentException If $contact is neither an array nor null, or the contact does not conform to
      *     valid configuration rules for contacts.
      */
-    public static function getContact($contact)
+    public static function getContact(?array $contact): array
     {
-        if (!(is_array($contact) || is_null($contact))) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
-                 /**
-                  * @param string $t
-                  * @return string
-                  */
+                /**
+                 * @param string $t
+                 * @return string
+                 */
                 function ($t) {
-                    return '"'.$t.'"';
+                    return '"' . $t . '"';
                 },
                 self::$VALID_CONTACT_TYPES
             ));
-            throw new \InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
+            throw new \InvalidArgumentException('"contactType" is mandatory and must be one of ' . $types . ".");
         }
 
         // check attributes is an associative array
         if (isset($contact['attributes'])) {
-            if (empty($contact['attributes'])
+            if (
+                empty($contact['attributes'])
                 || !is_array($contact['attributes'])
                 || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
             ) {
@@ -154,24 +153,33 @@ class Metadata
         }
 
         // check givenName
-        if (isset($contact['givenName']) && (
-                empty($contact['givenName']) || !is_string($contact['givenName'])
+        if (
+            isset($contact['givenName'])
+            && (
+                empty($contact['givenName'])
+                || !is_string($contact['givenName'])
             )
         ) {
             throw new \InvalidArgumentException('"givenName" must be a string and cannot be empty.');
         }
 
         // check surName
-        if (isset($contact['surName']) && (
-                empty($contact['surName']) || !is_string($contact['surName'])
+        if (
+            isset($contact['surName'])
+            && (
+                empty($contact['surName'])
+                || !is_string($contact['surName'])
             )
         ) {
             throw new \InvalidArgumentException('"surName" must be a string and cannot be empty.');
         }
 
         // check company
-        if (isset($contact['company']) && (
-                empty($contact['company']) || !is_string($contact['company'])
+        if (
+            isset($contact['company'])
+            && (
+                empty($contact['company'])
+                || !is_string($contact['company'])
             )
         ) {
             throw new \InvalidArgumentException('"company" must be a string and cannot be empty.');
@@ -179,8 +187,12 @@ class Metadata
 
         // check emailAddress
         if (isset($contact['emailAddress'])) {
-            if (empty($contact['emailAddress']) ||
-                !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
+            if (
+                empty($contact['emailAddress'])
+                || !(
+                    is_string($contact['emailAddress'])
+                    || is_array($contact['emailAddress'])
+                )
             ) {
                 throw new \InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
             }
@@ -195,8 +207,12 @@ class Metadata
 
         // check telephoneNumber
         if (isset($contact['telephoneNumber'])) {
-            if (empty($contact['telephoneNumber']) ||
-                !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
+            if (
+                empty($contact['telephoneNumber'])
+                || !(
+                    is_string($contact['telephoneNumber'])
+                    || is_array($contact['telephoneNumber'])
+                )
             ) {
                 throw new \InvalidArgumentException(
                     '"telephoneNumber" must be a string or an array and cannot be empty.'
@@ -226,7 +242,7 @@ class Metadata
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getDefaultEndpoint(array $endpoints, array $bindings = null)
+    public static function getDefaultEndpoint(array $endpoints, array $bindings = null): ?array
     {
         $firstNotFalse = null;
         $firstAllowed = null;
@@ -280,7 +296,7 @@ class Metadata
      *
      * @return boolean True if the entity should be hidden, false otherwise.
      */
-    public static function isHiddenFromDiscovery(array $metadata)
+    public static function isHiddenFromDiscovery(array $metadata): bool
     {
         Logger::maskErrors(E_ALL);
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
@@ -296,13 +312,13 @@ class Metadata
      *
      * @return null|array
      */
-    public static function parseNameIdPolicy($nameIdPolicy)
+    public static function parseNameIdPolicy($nameIdPolicy): ?array
     {
         $policy = null;
 
         if (is_string($nameIdPolicy)) {
             // handle old configurations where 'NameIDPolicy' was used to specify just the format
-            $policy = ['Format' => $nameIdPolicy];
+            $policy = ['Format' => $nameIdPolicy, 'AllowCreate' => true];
         } elseif (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
             $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
@@ -316,7 +332,7 @@ class Metadata
             }
         } elseif ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = ['Format' => Constants::NAMEID_TRANSIENT];
+            $policy = ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
         }
 
         return $policy;

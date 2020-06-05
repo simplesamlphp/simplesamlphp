@@ -6,13 +6,77 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.18.0
+## Version 2.0.0
+
+  * Support for certificate fingerprints was removed
+  * Support for SAML 1.1 was removed
+  * Old-style PHP templates were removed
+  * Old-style dictionaries were removed
 
 Released TBD
 
-  * Replace custom Email class with the phpmailer library.
-  * Allow to log to STDERR in the logging.handler option.
+## Version 1.19.0
+
+Released TBD
+
+  * This version will be the last of the 1.x branch and will provide a migration path to our new
+    templating system, routing system, translation system and hooks.
+
+## Version 1.18.4
+
+Released 2020-01-24
+
+  * Resolved a security issue in email reports. See
+    [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
+  * Resolved a security issue with the logging system. See
+    [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
+  * Fixed SQL store index creation for PostgreSQL.
+  * Handle case where cookie 'domain' parameter was not set.
+  * Update versions of included JavaScript dependencies.
+
+## Version 1.18.3
+
+Released 2019-12-09
+
+  * Fixed an issue with several modules being enabled by default (#1257).
+  * Fixed an issue with metadata generation for trusted entities (#1247, #1251).
+
+### ldap
+  * Fixed an issue affecting the installation in case-insensitive file systems (#1253).
+
+## Version 1.18.2
+
+Released 2019-11-26
+
+  * Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
+
+ ## Version 1.18.1
+ 
+Released 2019-11-26
+ 
+   * Fixed an issue that prevented custom themes from working (#1240).
+   * Fixed an issue with translations in the discovery service (#1244).
+   * Fixed an issue with schema validation.
+
+## Version 1.18.0
+
+Released 2019-11-19
+
+  * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
+  * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
+  * Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
+  * Fixed an issue with old-style NameIDPolicy configurations that disallowed creating new NameIDs (#1230).
+  * Resolved a security issue that exposed host information to unauthenticated users. See
+    [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
+  * Replaced custom Email class with the phpmailer library.
+  * Allow logging to STDERR in the `logging.handler` option by setting it to `stderr`.
   * Allow use of stream wrappers (e.g. s3://) in paths.
+  * Improved 'update or insert' handling for different SQL drivers.
+  * The default algorithm within the TimeLimitedToken class has been bumped from SHA-1 to SHA-256
+    as announced by deprecation notice in 1.15-RC1.
+  * Most modules have been externalized. They will not be included in our future releases by default,
+    but will be easily installable using Composer. For now, they are still included in the package.
+  * Many minor fixes to code, css, documentation
 
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
@@ -20,13 +84,80 @@ Released TBD
     configuration option.
 
 ### saml
-  * Make the id of the generated signed metadata only change when metadata
-    content changes.
-  * New SP options `AssertionConsumerService` and `SingleLogoutServiceLocation`
-    that allow to override the default URL paths.
+  * Make the id of the generated signed metadata only change when metadata content changes.
+  * New SP metadata configuration options `AssertionConsumerService` and `SingleLogoutServiceLocation`
+    to allow overriding the default URL paths.
+  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
 
-### Interoperability
-  * The minimum PHP version required is now 5.6.
+## Version 1.17.8
+
+Released 2019-11-20
+
+  * Resolved a security issue that exposed host information to unauthenticated users. See
+    [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
+
+### consentAdmin
+
+  * Fixed an issue with CSS and Javascript not loading for the module in the new user
+    interface.
+
+## Version 1.17.7
+
+Released 2019-11-06
+
+  * Resolved a security issue that allows to bypass signature validation. See
+    [SSPSA 201911-01](https://simplesamlphp.org/security/201911-01).
+
+## Version 1.17.6
+
+Released 2019-08-29
+
+  * Fixed a regression with logout database initialization when using MySQL (#1177).
+  * Fixed an issue with logout when using iframes (#1191).
+  * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
+
+## Version 1.17.5
+
+Released 2019-08-02
+
+  * Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
+  * Fixed an issue with table indexes (#1089).
+  * Fixed an issue with table migrations on SQlite (#1169).
+  * Fixed an issue with generated eduPersonTargetedID lacking a format specified (#1135).
+  * Updated composer dependencies.
+
+## Version 1.17.4
+
+Released 2019-07-11
+
+  * Fix an issue introduced in 1.17.3 with `enable.http_post`.
+  
+## Version 1.17.3
+
+Released 2019-07-10
+
+  * Resolved a security issue that could lead to a reflected XSS.  See
+    [SSPSA 201907-01](https://simplesamlphp.org/security/201907-01).
+  * Add new options `session.cookie.samesite` and `language.cookie.samesite` that can be
+    used to set a specific value for the cookies' SameSite attribute. The default it not
+    to set it.
+  * Upgraded jQuery to version 3.4.
+  * HHVM is no longer supported.
+  * Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
+  * Fixed an issue when an error occurs during a passive authentication request.
+  * Handle duplicate insertions for SQL Server.
+  * Fix a bug in Short SSO Interval warning filter.
+  * Apply a workaround for SIGSEGVs during session creation with PHP-FPM 7.3.
+
+### adfs
+  * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
+
+### authlinkedin
+  * This module has been removed now that LinkedIn no longer supports OAuth1.
+    If you relied on this module, you may consider migrating to the
+    [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
+    A migration guide for LinkedIn authentication is included in their README.
 
 ## Version 1.17.2
 

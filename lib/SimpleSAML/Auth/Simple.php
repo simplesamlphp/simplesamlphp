@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Error;
-use \SimpleSAML\Module;
-use \SimpleSAML\Session;
-use \SimpleSAML\Utils;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Helper class for simple authentication applications.
@@ -23,7 +26,7 @@ class Simple
      */
     protected $authSource;
 
-    /** @var \SimpleSAML\Configuration|null */
+    /** @var \SimpleSAML\Configuration */
     protected $app_config;
 
     /** @var \SimpleSAML\Session */
@@ -37,15 +40,14 @@ class Simple
      * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
      * @param \SimpleSAML\Session|null $session Optional session to use.
      */
-    public function __construct($authSource, Configuration $config = null, Session $session = null)
+    public function __construct(string $authSource, Configuration $config = null, Session $session = null)
     {
-        assert(is_string($authSource));
-
         if ($config === null) {
             $config = Configuration::getInstance();
         }
         $this->authSource = $authSource;
-        $this->app_config = $config->getConfigItem('application', null);
+        /** @psalm-var \SimpleSAML\Configuration $this->app_config */
+        $this->app_config = $config->getConfigItem('application');
 
         if ($session === null) {
             $session = Session::getSessionFromRequest();
@@ -57,11 +59,11 @@ class Simple
     /**
      * Retrieve the implementing authentication source.
      *
-     * @return Source The authentication source.
+     * @return \SimpleSAML\Auth\Source The authentication source.
      *
-     * @throws AuthSourceError If the requested auth source is unknown.
+     * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
      */
-    public function getAuthSource()
+    public function getAuthSource(): Source
     {
         $as = Source::getById($this->authSource);
         if ($as === null) {
@@ -79,7 +81,7 @@ class Simple
      *
      * @return bool True if the user is authenticated, false if not.
      */
-    public function isAuthenticated()
+    public function isAuthenticated(): bool
     {
         return $this->session->isValid($this->authSource);
     }
@@ -99,7 +101,7 @@ class Simple
      * @param array $params Various options to the authentication request. See the documentation.
      * @return void
      */
-    public function requireAuth(array $params = [])
+    public function requireAuth(array $params = []): void
     {
         if ($this->session->isValid($this->authSource)) {
             // Already authenticated
@@ -125,7 +127,7 @@ class Simple
      * @param array $params Various options to the authentication request.
      * @return void
      */
-    public function login(array $params = [])
+    public function login(array $params = []): void
     {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
@@ -165,7 +167,7 @@ class Simple
 
         $as = $this->getAuthSource();
         $as->initLogin($returnTo, $errorURL, $params);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -185,9 +187,9 @@ class Simple
      * with parameters for the logout. If this parameter is null, we will return to the current page.
      * @return void
      */
-    public function logout($params = null)
+    public function logout($params = null): void
     {
-        assert(is_array($params) || is_string($params) || $params === null);
+        Assert::true(is_array($params) || is_string($params) || $params === null);
 
         if ($params === null) {
             $params = Utils\HTTP::getSelfURL();
@@ -199,11 +201,11 @@ class Simple
             ];
         }
 
-        assert(is_array($params));
-        assert(isset($params['ReturnTo']) || isset($params['ReturnCallback']));
+        Assert::isArray($params);
+        Assert::true(isset($params['ReturnTo']) || isset($params['ReturnCallback']));
 
         if (isset($params['ReturnStateParam']) || isset($params['ReturnStateStage'])) {
-            assert(isset($params['ReturnStateParam'], $params['ReturnStateStage']));
+            Assert::true(isset($params['ReturnStateParam'], $params['ReturnStateStage']));
         }
 
         if ($this->session->isValid($this->authSource)) {
@@ -234,18 +236,17 @@ class Simple
      * @param array $state The state after the logout.
      * @return void
      */
-    public static function logoutCompleted($state)
+    public static function logoutCompleted(array $state): void
     {
-        assert(is_array($state));
-        assert(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
+        Assert::true(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
             call_user_func($state['ReturnCallback'], $state);
-            assert(false);
+            Assert::true(false);
         } else {
             $params = [];
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {
-                assert(isset($state['ReturnStateParam'], $state['ReturnStateStage']));
+                Assert::true(isset($state['ReturnStateParam'], $state['ReturnStateStage']));
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
                 $params[$state['ReturnStateParam']] = $stateID;
             }
@@ -262,7 +263,7 @@ class Simple
      *
      * @return array The users attributes.
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         if (!$this->isAuthenticated()) {
             // Not authenticated
@@ -281,10 +282,8 @@ class Simple
      *
      * @return mixed|null The value of the parameter, or null if it isn't found or we are unauthenticated.
      */
-    public function getAuthData($name)
+    public function getAuthData(string $name)
     {
-        assert(is_string($name));
-
         if (!$this->isAuthenticated()) {
             return null;
         }
@@ -298,7 +297,7 @@ class Simple
      *
      * @return array|null All persistent authentication data, or null if we aren't authenticated.
      */
-    public function getAuthDataArray()
+    public function getAuthDataArray(): ?array
     {
         if (!$this->isAuthenticated()) {
             return null;
@@ -316,10 +315,8 @@ class Simple
      *
      * @return string A URL which is suitable for use in link-elements.
      */
-    public function getLoginURL($returnTo = null)
+    public function getLoginURL(?string $returnTo = null): string
     {
-        assert($returnTo === null || is_string($returnTo));
-
         if ($returnTo === null) {
             $returnTo = Utils\HTTP::getSelfURL();
         }
@@ -341,10 +338,8 @@ class Simple
      *
      * @return string A URL which is suitable for use in link-elements.
      */
-    public function getLogoutURL($returnTo = null)
+    public function getLogoutURL(?string $returnTo = null): string
     {
-        assert($returnTo === null || is_string($returnTo));
-
         if ($returnTo === null) {
             $returnTo = Utils\HTTP::getSelfURL();
         }
@@ -368,7 +363,7 @@ class Simple
      *
      * @return string The URL modified according to the precedence rules.
      */
-    protected function getProcessedURL($url = null)
+    protected function getProcessedURL(?string $url = null): string
     {
         if ($url === null) {
             $url = Utils\HTTP::getSelfURL();
@@ -377,27 +372,22 @@ class Simple
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST) ? : Utils\HTTP::getSelfHost();
         $port = parse_url($url, PHP_URL_PORT) ? : (
-            $scheme ? '' : trim(Utils\HTTP::getServerPort(), ':')
+            $scheme ? '' : ltrim(Utils\HTTP::getServerPort(), ':')
         );
         $scheme = $scheme ? : (Utils\HTTP::getServerHTTPS() ? 'https' : 'http');
         $path = parse_url($url, PHP_URL_PATH) ? : '/';
         $query = parse_url($url, PHP_URL_QUERY) ? : '';
         $fragment = parse_url($url, PHP_URL_FRAGMENT) ? : '';
 
-        $port = !empty($port) ? ':'.$port : '';
+        $port = !empty($port) ? ':' . $port : '';
         if (($scheme === 'http' && $port === ':80') || ($scheme === 'https' && $port === ':443')) {
             $port = '';
         }
 
-        if (is_null($this->app_config)) {
-            // nothing more we can do here
-            return $scheme.'://'.$host.$port.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
-        }
-
         $base = trim($this->app_config->getString(
             'baseURL',
-            $scheme.'://'.$host.$port
+            $scheme . '://' . $host . $port
         ), '/');
-        return $base.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
+        return $base . $path . ($query ? '?' . $query : '') . ($fragment ? '#' . $fragment : '');
     }
 }

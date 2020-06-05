@@ -18,59 +18,20 @@ msgstr ""
 msgid "{login:username}"
 msgstr "Geavahusnamma"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "URI mii čilge dihto vuoigatvuođa dihto ressurssaide"
-
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Rolla diehto organisašuvnnas, dehe dihto domenas."
-
-msgid "{attributes:attribute_sn}"
-msgstr "Goargu"
-
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organisašuvdna"
-
-msgid "{attributes:attribute_mail}"
-msgstr "Elektrovnnalaš poastačijuhus"
-
 msgid "{login:login_button}"
 msgstr "Mana sis"
 
 msgid "{login:error_wrongpassword}"
 msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
 
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Riegadannummir"
-
 msgid "{login:password}"
 msgstr "Beassansátni"
-
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Du doaibma organisašuvnnas"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Ovdanamma"
-
-msgid "{attributes:attribute_cn}"
-msgstr "Olles namma"
 
 msgid "{login:organization}"
 msgstr "Organisašuvdna"
 
 msgid "{errors:report_email}"
 msgstr "Elektrovnnalaš poastačijuhus"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Feide-namma"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Namahus"
-
-msgid "{attributes:attribute_mobile}"
-msgstr "Mátketelefovdna"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Vuosttašválljejuvvon giella dehe giellahápmi"
 
 msgid "Person's principal name at home organization"
 msgstr "Feide-namma"

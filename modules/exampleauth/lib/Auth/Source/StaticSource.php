@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Example authentication source.
@@ -17,8 +20,10 @@ class StaticSource extends \SimpleSAML\Auth\Source
 {
     /**
      * The attributes we return.
+     * @var array
      */
     private $attributes;
+
 
     /**
      * Constructor for this authentication source.
@@ -26,11 +31,8 @@ class StaticSource extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -38,8 +40,8 @@ class StaticSource extends \SimpleSAML\Auth\Source
         try {
             $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
         } catch (\Exception $e) {
-            throw new \Exception('Invalid attributes for authentication source '.
-                $this->authId.': '.$e->getMessage());
+            throw new \Exception('Invalid attributes for authentication source ' .
+                $this->authId . ': ' . $e->getMessage());
         }
     }
 
@@ -50,9 +52,8 @@ class StaticSource extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
         $state['Attributes'] = $this->attributes;
     }
 }

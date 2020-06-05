@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\IdP;
 
 use SimpleSAML\Auth;
@@ -9,6 +11,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Webmozart\Assert\Assert;
 
 /**
  * Class that handles iframe logout.
@@ -42,10 +45,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * @param string|null $assocId The SP we are logging out from.
      * @return void
      */
-    public function startLogout(array &$state, $assocId)
+    public function startLogout(array &$state, ?string $assocId): void
     {
-        assert(is_string($assocId) || $assocId === null);
-
         $associations = $this->idp->getAssociations();
 
         if (count($associations) === 0) {
@@ -88,16 +89,15 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * This function will never return.
      *
      * @param string $assocId The association that is terminated.
-     * @param string $relayState The RelayState from the start of the logout.
+     * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      * @return void
      */
-    public function onResponse($assocId, $relayState, Error\Exception $error = null)
+    public function onResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
     {
-        assert(is_string($assocId));
+        $this->idp->terminateAssociation($assocId);
 
         $config = Configuration::getInstance();
-        $this->idp->terminateAssociation($assocId);
 
         $t = new Template($config, 'IFrameLogoutHandler.twig');
         $t->data['assocId'] = var_export($assocId, true);
@@ -105,7 +105,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         if (!is_null($error)) {
             $t->data['errorMsg'] = $error->getMessage();
         }
-        $t->show();
-        exit(0);
+
+        $t->send();
     }
 }

@@ -1,7 +1,7 @@
 `saml:SP`
 =========
 
-This authentication source is used to authenticate against SAML 1 and SAML 2 IdPs.
+This authentication source is used to authenticate against SAML 2 IdPs.
 
 
 Metadata
@@ -9,11 +9,12 @@ Metadata
 
 The metadata for your SP will be available from the federation page on your SimpleSAMLphp installation.
 
-SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions.
-See the documentation for those extensions for more details:
+SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions
+and with entity attributes. See the documentation for those extensions for more details:
 
   * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
   * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
+  * [Attributes extension](./simplesamlphp-metadata-extensions-attributes)
 
 
 Parameters
@@ -125,6 +126,10 @@ Options
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
     documentation.
 
+`AssertionConsumerServiceIndex`
+:   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
+    Service Consumer URL.
+
 `attributes`
 :   List of attributes this SP requests from the IdP.
     This list will be added to the generated metadata.
@@ -217,13 +222,13 @@ Options
      When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
      interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
 
-:   Note that this option also exists in the IdP remote configuration. An
-    entry in the the IdP-remote metadata overrides this the option in the
-    SP configuration.
+:   Note that this option also exists in the IdP remote configuration. An entry
+    in the IdP-remote metadata overrides this the option in the SP
+    configuration.
 
 `discoURL`
 :   Set which IdP discovery service this SP should use.
-    If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used.
+    If this is unset, the IdP discovery service specified in the global option `idpdisco.url.saml20` in `config/config.php` will be used.
     If that one is also unset, the builtin default discovery service will be used.
 
 `encryption.blacklisted-algorithms`
@@ -352,9 +357,6 @@ Options
 :   The page the user should be redirected to after an IdP initiated SSO.
 
 :   *Note*: SAML 2 specific.
-    For SAML 1.1 SPs, you must specify the `TARGET` parameter in the authentication response.
-    How to set that parameter is depends on the IdP.
-    For SimpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
 
 `saml.SOAPClient.certificate`
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
@@ -364,14 +366,6 @@ Options
 
 `saml.SOAPClient.privatekey_pass`
 :   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
-
-`saml1.useartifact`
-:   Request that the IdP returns the result to the artifact binding.
-    The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
-
-:   This option can also be set in the `shib13-idp-remote` metadata, in which case the setting in `shib13-idp-remote` takes precedence.
-
-:   *Note*: SAML 1 specific.
 
 `saml20.hok.assertion`
 :   Enable support for the SAML 2.0 Holder-of-Key SSO profile.

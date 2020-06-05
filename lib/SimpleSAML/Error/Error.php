@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Configuration;
@@ -7,6 +9,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Webmozart\Assert\Assert;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
@@ -66,6 +69,7 @@ class Error extends Exception
      */
     protected $includeTemplate = null;
 
+
     /**
      * Constructor for this error.
      *
@@ -76,9 +80,9 @@ class Error extends Exception
      * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null  $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, \Exception $cause = null, $httpCode = null)
+    public function __construct($errorCode, \Exception $cause = null, ?int $httpCode = null)
     {
-        assert(is_string($errorCode) || is_array($errorCode));
+        Assert::true(is_string($errorCode) || is_array($errorCode));
 
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
@@ -97,15 +101,15 @@ class Error extends Exception
         $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
-            $msg = $this->errorCode.'(';
+            $msg = $this->errorCode . '(';
             foreach ($this->parameters as $k => $v) {
                 if ($k === 0) {
                     continue;
                 }
 
-                $msg .= var_export($k, true).' => '.var_export($v, true).', ';
+                $msg .= var_export($k, true) . ' => ' . var_export($v, true) . ', ';
             }
-            $msg = substr($msg, 0, -2).')';
+            $msg = substr($msg, 0, -2) . ')';
         } else {
             $msg = $this->errorCode;
         }
@@ -118,7 +122,7 @@ class Error extends Exception
      *
      * @return string  The error code.
      */
-    public function getErrorCode()
+    public function getErrorCode(): string
     {
         return $this->errorCode;
     }
@@ -129,7 +133,7 @@ class Error extends Exception
      *
      * @return array  The parameters.
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }
@@ -140,7 +144,7 @@ class Error extends Exception
      *
      * @return string  The error title tag.
      */
-    public function getDictTitle()
+    public function getDictTitle(): string
     {
         return $this->dictTitle;
     }
@@ -151,7 +155,7 @@ class Error extends Exception
      *
      * @return string  The error description tag.
      */
-    public function getDictDescr()
+    public function getDictDescr(): string
     {
         return $this->dictDescr;
     }
@@ -163,7 +167,7 @@ class Error extends Exception
      * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
      * @return void
      */
-    protected function setHTTPCode()
+    protected function setHTTPCode(): void
     {
         http_response_code($this->httpCode);
     }
@@ -174,14 +178,14 @@ class Error extends Exception
      *
      * @return array  The array with the error report data.
      */
-    protected function saveError()
+    protected function saveError(): array
     {
         $data = $this->format(true);
         $emsg = array_shift($data);
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        Logger::error('Error report with id '.$reportId.' generated.');
+        Logger::error('Error report with id ' . $reportId . ' generated.');
 
         $config = Configuration::getInstance();
         $session = Session::getSessionFromRequest();
@@ -217,10 +221,8 @@ class Error extends Exception
      * This method displays a standard SimpleSAMLphp error page and exits.
      * @return void
      */
-    public function show()
+    public function show(): void
     {
-        $this->setHTTPCode();
-
         // log the error message
         $this->logError();
 
@@ -239,12 +241,13 @@ class Error extends Exception
         $data['clipboard.js'] = true;
 
         // check if there is a valid technical contact email address
-        if ($config->getBoolean('errorreporting', true) &&
-            $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
+        if (
+            $config->getBoolean('errorreporting', true)
+            && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
             $baseurl = Utils\HTTP::getBaseURL();
-            $data['errorReportAddress'] = $baseurl.'errorreport.php';
+            $data['errorReportAddress'] = $baseurl . 'errorreport.php';
         }
 
         $data['email'] = '';
@@ -260,16 +263,15 @@ class Error extends Exception
 
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
-            assert(is_callable($show_function));
+            Assert::isCallable($show_function);
+            $this->setHTTPCode();
             call_user_func($show_function, $config, $data);
-            assert(false);
+            Assert::true(false);
         } else {
-            $t = new Template($config, 'error.php', 'errors');
-            $translator = $t->getTranslator();
+            $t = new Template($config, 'error.twig', 'errors');
+            $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
-            $t->data['dictTitleTranslated'] = $translator->t($t->data['dictTitle']);
-            $t->data['dictDescrTranslated'] = $translator->t($t->data['dictDescr'], $t->data['parameters']);
-            $t->show();
+            $t->send();
         }
 
         exit;

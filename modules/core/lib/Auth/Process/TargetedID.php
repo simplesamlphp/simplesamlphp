@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to generate the eduPersonTargetedID attribute.
@@ -39,6 +42,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The attribute we should generate the targeted id from, or NULL if we should use the
      * UserID.
+     *
+     * @var string|null
      */
     private $attribute = null;
 
@@ -56,11 +61,9 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -84,22 +87,21 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state  The current state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
+        Assert::keyExists($state, 'Attributes');
 
         if ($this->attribute === null) {
             if (!array_key_exists('UserID', $state)) {
-                throw new \Exception('core:TargetedID: Missing UserID for this user. Please'.
-                    ' check the \'userid.attribute\' option in the metadata against the'.
+                throw new \Exception('core:TargetedID: Missing UserID for this user. Please' .
+                    ' check the \'userid.attribute\' option in the metadata against the' .
                     ' attributes provided by the authentication source.');
             }
 
             $userID = $state['UserID'];
         } else {
             if (!array_key_exists($this->attribute, $state['Attributes'])) {
-                throw new \Exception('core:TargetedID: Missing attribute \''.$this->attribute.
+                throw new \Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
                     '\', which is needed to generate the targeted ID.');
             }
 
@@ -121,10 +123,10 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
             $dstID = '';
         }
 
-        $uidData = 'uidhashbase'.$secretSalt;
-        $uidData .= strlen($srcID).':'.$srcID;
-        $uidData .= strlen($dstID).':'.$dstID;
-        $uidData .= strlen($userID).':'.$userID;
+        $uidData = 'uidhashbase' . $secretSalt;
+        $uidData .= strlen($srcID) . ':' . $srcID;
+        $uidData .= strlen($dstID) . ':' . $dstID;
+        $uidData .= strlen($userID) . ':' . $userID;
         $uidData .= $secretSalt;
 
         $uid = hash('sha1', $uidData);
@@ -158,20 +160,18 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $metadata  The metadata of the entity.
      * @return string  The unique identifier for the entity.
      */
-    private static function getEntityId($metadata)
+    private static function getEntityId(array $metadata): string
     {
-        assert(is_array($metadata));
-
         $id = '';
 
         if (array_key_exists('metadata-set', $metadata)) {
             $set = $metadata['metadata-set'];
-            $id .= 'set'.strlen($set).':'.$set;
+            $id .= 'set' . strlen($set) . ':' . $set;
         }
 
         if (array_key_exists('entityid', $metadata)) {
             $entityid = $metadata['entityid'];
-            $id .= 'set'.strlen($entityid).':'.$entityid;
+            $id .= 'set' . strlen($entityid) . ':' . $entityid;
         }
 
         return $id;

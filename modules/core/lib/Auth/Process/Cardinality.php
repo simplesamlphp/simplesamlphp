@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Auth;
@@ -7,6 +9,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to ensure correct cardinality of attributes
@@ -25,6 +28,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
     /** @var \SimpleSAML\Utils\HttpAdapter */
     private $http;
 
+
     /**
      * Initialize this filter, parse configuration.
      *
@@ -33,10 +37,9 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      * @param \SimpleSAML\Utils\HttpAdapter $http  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct(&$config, $reserved, Utils\HttpAdapter $http = null)
+    public function __construct(array &$config, $reserved, Utils\HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $this->http = $http ? : new Utils\HttpAdapter();
 
@@ -47,7 +50,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             if (!is_string($attribute)) {
-                throw new Error\Exception('Invalid attribute name: '.var_export($attribute, true));
+                throw new Error\Exception('Invalid attribute name: ' . var_export($attribute, true));
             }
             $this->cardinality[$attribute] = ['warn' => false];
 
@@ -69,23 +72,26 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             /* sanity check the rules */
             if (!array_key_exists('min', $this->cardinality[$attribute])) {
                 $this->cardinality[$attribute]['min'] = 0;
-            } elseif (!is_int($this->cardinality[$attribute]['min']) ||
-                $this->cardinality[$attribute]['min'] < 0
+            } elseif (
+                !is_int($this->cardinality[$attribute]['min'])
+                || $this->cardinality[$attribute]['min'] < 0
             ) {
-                throw new Error\Exception('Minimum cardinality must be a positive integer: '.
+                throw new Error\Exception('Minimum cardinality must be a positive integer: ' .
                     var_export($attribute, true));
             }
-            if (array_key_exists('max', $this->cardinality[$attribute]) &&
-                !is_int($this->cardinality[$attribute]['max'])
+            if (
+                array_key_exists('max', $this->cardinality[$attribute])
+                && !is_int($this->cardinality[$attribute]['max'])
             ) {
-                throw new Error\Exception('Maximum cardinality must be a positive integer: '.
+                throw new Error\Exception('Maximum cardinality must be a positive integer: ' .
                     var_export($attribute, true));
             }
-            if (array_key_exists('min', $this->cardinality[$attribute]) &&
-                array_key_exists('max', $this->cardinality[$attribute]) &&
-                $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
+            if (
+                array_key_exists('min', $this->cardinality[$attribute])
+                && array_key_exists('max', $this->cardinality[$attribute])
+                && $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
             ) {
-                throw new Error\Exception('Minimum cardinality must be less than maximium: '.
+                throw new Error\Exception('Minimum cardinality must be less than maximium: ' .
                     var_export($attribute, true));
             }
 
@@ -97,23 +103,23 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Process this filter
      *
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists("Attributes", $request));
+        Assert::keyExists($request, 'Attributes');
 
         $entityid = false;
         if (array_key_exists('Source', $request) && array_key_exists('entityid', $request['Source'])) {
             $entityid = $request['Source']['entityid'];
         }
         if (in_array($entityid, $this->ignoreEntities, true)) {
-            Logger::debug('Cardinality: Ignoring assertions from '.$entityid);
+            Logger::debug('Cardinality: Ignoring assertions from ' . $entityid);
             return;
         }
 

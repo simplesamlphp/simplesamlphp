@@ -1,16 +1,16 @@
 #!/usr/bin/env php
 <?php
+
 /*
  * Interactive script to generate password hashes.
  *
  */
 
-
 // This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader
-require_once($baseDir.'/lib/_autoload.php');
+require_once($baseDir . '/lib/_autoload.php');
 
 
 echo "Enter password: ";
@@ -21,4 +21,4 @@ if (empty($password)) {
     exit(1);
 }
 
-echo "\n  ".SimpleSAML\Utils\Crypto::pwHash($password)."\n\n";
+echo "\n  " . SimpleSAML\Utils\Crypto::pwHash($password) . "\n\n";
