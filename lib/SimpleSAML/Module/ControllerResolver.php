@@ -102,6 +102,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
         try {
             $matcher = new UrlMatcher($this->routes, $ctxt);
             $this->params = $matcher->match($ctxt->getPathInfo());
+            $request->attributes->set('_routeparams', $this->params);
             list($class, $method) = explode('::', $this->params['_controller']);
             $this->container->register($class, $class)->setAutowired(true)->setPublic(true);
             $this->container->compile();
