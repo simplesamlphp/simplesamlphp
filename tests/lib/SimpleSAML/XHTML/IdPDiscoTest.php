@@ -43,7 +43,7 @@ class IdPDiscoTest extends TestCase
     /**
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $config = Configuration::loadFromArray($this->config);
 
@@ -55,7 +55,7 @@ class IdPDiscoTest extends TestCase
 
     /**
      */
-    public function testPreferredTranslation()
+    public function testPreferredTranslation(): void
     {
         $disco = new IdPDisco(['saml20-idp-remote'], 'unittest');
 
@@ -71,7 +71,7 @@ class IdPDiscoTest extends TestCase
 
     /**
      */
-    public function testIdPSortingOrder()
+    public function testIdPSortingOrder(): void
     {
         $disco = new IdPDisco(['saml20-idp-remote'], 'unittest');
 
