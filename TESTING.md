@@ -33,22 +33,20 @@ the ones prefixed with "test".
 
 You will usually make use of the `assert*()` methods provided by
 `PHPUnit\Framework\TestCase`, but you can also tell `phpunit` to expect
-an exception to be thrown using *phpdoc*. For example, if you want to
+an exception to be thrown using the `expectException()`-method. For example, if you want to
 ensure that the `SimpleSAML\Utils\HTTP::addURLParameters()` method
 throws an exception in a specific situation:
 
 ```php
   /**
     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-    *
-    * @expectedException \InvalidArgumentException
     */
   public function testAddURLParametersInvalidParameters() {
+      $this->expectException(ExpectedException::class);
 ```
 
-Refer to [the `phpunit 4.8` documentation](https://phpunit.de/manual/4.8/en/installation.html)
-for more information on how to write tests. We currently use the `phpunit 4.8`
-since it is the last version to support php 5.3.
+Refer to [the `phpunit 8.5` documentation](https://phpunit.readthedocs.io/en/8.5/)
+for more information on how to write tests.
 
 Once you have implemented your tests, you can run them locally. First,
 make sure the `config` directory is **not** in the root of your
@@ -59,7 +57,7 @@ you have `phpunit` installed and run:
 phpunit -c ./phpunit.xml
 ```
 
-If your default version of `phpunit` is more recent than 4.8, you can run
+If your default version of `phpunit` is more recent than 5.7, you can run
 the old version installed by composer
 
 ```sh

@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\XHTML;
+
+use Twig\Environment;
 
 /**
  * Interface that allows modules to run several hooks for templates.
@@ -17,7 +21,7 @@ interface TemplateControllerInterface
      *
      * @return void
      */
-    public function setUpTwig(\Twig\Environment &$twig);
+    public function setUpTwig(Environment &$twig): void;
 
 
     /**
@@ -29,5 +33,5 @@ interface TemplateControllerInterface
      *
      * @return void
      */
-    public function display(&$data);
+    public function display(array &$data): void;
 }

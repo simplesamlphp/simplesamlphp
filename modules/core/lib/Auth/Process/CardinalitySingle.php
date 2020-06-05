@@ -1,8 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to ensure correct cardinality of single-valued attributes
@@ -30,22 +36,22 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
     /** @var array Entities that should be ignored */
     private $ignoreEntities = [];
 
-    /** @var HTTPAdapter */
+    /** @var \SimpleSAML\Utils\HttpAdapter */
     private $http;
+
 
     /**
      * Initialize this filter, parse configuration.
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @param HTTPAdapter $http  HTTP utility service (handles redirects).
+     * @param \SimpleSAML\Utils\HttpAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct(&$config, $reserved, HttpAdapter $http = null)
+    public function __construct(array &$config, $reserved, Utils\HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        $this->http = $http ? : new HttpAdapter();
+        $this->http = $http ? : new Utils\HttpAdapter();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
@@ -79,16 +85,16 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists("Attributes", $request));
+        Assert::keyExists($request, 'Attributes');
 
-        if (array_key_exists('Source', $request) &&
-            array_key_exists('entityid', $request['Source']) &&
-            in_array($request['Source']['entityid'], $this->ignoreEntities, true)
+        if (
+            array_key_exists('Source', $request)
+            && array_key_exists('entityid', $request['Source'])
+            && in_array($request['Source']['entityid'], $this->ignoreEntities, true)
         ) {
-            \SimpleSAML\Logger::debug('CardinalitySingle: Ignoring assertions from '.$request['Source']['entityid']);
+            Logger::debug('CardinalitySingle: Ignoring assertions from ' . $request['Source']['entityid']);
             return;
         }
 
@@ -116,8 +122,8 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
 
         /* abort if we found a problematic attribute */
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
-            $id = \SimpleSAML\Auth\State::saveState($request, 'core:cardinality');
-            $url = \SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
+            $id = Auth\State::saveState($request, 'core:cardinality');
+            $url = Module::getModuleURL('core/cardinality_error.php');
             $this->http->redirectTrustedURL($url, ['StateId' => $id]);
             return;
         }

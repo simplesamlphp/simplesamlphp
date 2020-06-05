@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeMap;
 
 /**
  * Test for the core:AttributeMap filter.
@@ -16,15 +19,18 @@ class AttributeMapTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeMap($config, null);
+        $filter = new AttributeMap($config, null);
         $filter->process($request);
         return $request;
     }
 
 
-    public function testBasic()
+    /**
+     * @return void
+     */
+    public function testBasic(): void
     {
         $config = [
             'attribute1' => 'attribute2',
@@ -44,7 +50,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testDuplicate()
+
+    /**
+     * @return void
+     */
+    public function testDuplicate(): void
     {
         $config = [
             'attribute1' => 'attribute2',
@@ -66,7 +76,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testMultiple()
+
+    /**
+     * @return void
+     */
+    public function testMultiple(): void
     {
         $config = [
             'attribute1' => ['attribute2', 'attribute3'],
@@ -87,7 +101,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testMultipleDuplicate()
+
+    /**
+     * @return void
+     */
+    public function testMultipleDuplicate(): void
     {
         $config = [
             'attribute1' => ['attribute2', 'attribute3'],
@@ -110,7 +128,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testCircular()
+
+    /**
+     * @return void
+     */
+    public function testCircular(): void
     {
         $config = [
             'attribute1' => 'attribute1',
@@ -133,7 +155,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testMissingMap()
+
+    /**
+     * @return void
+     */
+    public function testMissingMap(): void
     {
         $config = [
             'attribute1' => 'attribute3',
@@ -155,7 +181,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testInvalidOriginalAttributeType()
+
+    /**
+     * @return void
+     */
+    public function testInvalidOriginalAttributeType(): void
     {
         $config = [
             10 => 'attribute2',
@@ -166,11 +196,15 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 
-    public function testInvalidMappedAttributeType()
+
+    /**
+     * @return void
+     */
+    public function testInvalidMappedAttributeType(): void
     {
         $config = [
             'attribute1' => 10,
@@ -181,11 +215,15 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 
-    public function testMissingMapFile()
+
+    /**
+     * @return void
+     */
+    public function testMissingMapFile(): void
     {
         $config = [
             'non_existant_mapfile',
@@ -196,11 +234,15 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 
-    public function testOverwrite()
+
+    /**
+     * @return void
+     */
+    public function testOverwrite(): void
     {
         $config = [
             'attribute1' => 'attribute2',
@@ -221,7 +263,11 @@ class AttributeMapTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testOverwriteReversed()
+
+    /**
+     * @return void
+     */
+    public function testOverwriteReversed(): void
     {
         $config = [
             'attribute1' => 'attribute2',

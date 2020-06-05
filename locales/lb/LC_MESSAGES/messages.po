@@ -24,12 +24,6 @@ msgstr "Benotzernumm"
 msgid "{errors:title_METADATA}"
 msgstr "Fehler beim Lueden vun den Meta Données"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Berechtegung"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Photo am JPEG Format"
-
 msgid "{errors:report_trackid}"
 msgstr ""
 "Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID "
@@ -75,40 +69,13 @@ msgstr ""
 " dir den Administrator vun dësem Service sid, dann stellt sëcher dass d "
 "Meta Données richteg angeriicht sin."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) of person's home organization"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adress"
-
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Gruppen Zougehéiregket"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Virnumm"
-
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organisatiounsnumm"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonsnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "D'Parameter fir den Disovery Service woren net korrekt par rapport zur "
 "Specifikatioun"
 
-msgid "{attributes:attribute_mail}"
-msgstr "E-mail"
-
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Beim Erstellen vun der SAML Unfro as en Fehler geschitt."
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Ugewisenen Numm"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Adress"
 
 msgid "{login:login_button}"
 msgstr "Login"
@@ -121,9 +88,6 @@ msgstr ""
 "Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, "
 "mais et gouf en Fehler wéi déi sollt bearbescht gin."
 
-msgid "{attributes:attribute_title}"
-msgstr "Zougehéiregkeet"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Keen Zougrëff"
 
@@ -134,9 +98,6 @@ msgstr ""
 
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "Den ReplayState Parameter fehlt"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Sozialversëcherungsnummer"
 
 msgid "{login:password}"
 msgstr "Passwuert"
@@ -155,32 +116,11 @@ msgstr "Konfiguratiounsfehler"
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Fehler beim Bearbeschten vun der Logout Unfro"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Zesummenschloss"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Familliennumm"
-
 msgid "{login:error_header}"
 msgstr "Fehler"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisatiouns Websait"
-
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Gebuertsdaag"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "En Fehler as geschit beim Bearbeschten vun der Logout Unfro"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistent anonym ID"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Haapt Zougehéiregkeet"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postleitzuel"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Fehler beim Kommunizeiren mam CAS Server"
@@ -188,25 +128,13 @@ msgstr "Fehler beim Kommunizeiren mam CAS Server"
 msgid "{general:no}"
 msgstr "Nee"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Allgeméngen Numm"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net "
 "geännertgin. W.e.g aennert daat an der Konfiguratioun."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisatiounseenheet"
-
 msgid "{general:service_provider}"
 msgstr "Service Provider"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Haustelefon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain Komponent"
 
 msgid "{general:no_cancel}"
 msgstr "Nee"
@@ -217,22 +145,13 @@ msgstr "Gid w.e.g Aeren Benotzernumm an d Passwuert an"
 msgid "{errors:report_explain}"
 msgstr "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Keng SAML Aentwert ungin"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Spëtznumm"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "
 "oder LogoutResponse unginn."
-
-msgid "{attributes:attribute_street}"
-msgstr "Strooss"
 
 msgid "{login:organization}"
 msgstr "Organisatioun"
@@ -250,9 +169,6 @@ msgstr ""
 "Der hud den Assertion Consumer Sercice Interface accédéiert mais keng "
 "SAML Authentication Aentwert unginn"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Beschrëfteten URI"
-
 msgid "{errors:report_email}"
 msgstr "E-mail Adress"
 
@@ -265,26 +181,11 @@ msgstr "Passwuert net angin"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
 
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Eendeiteg Heemorganisatiouns ID"
-
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongültegen Zertifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) of the person's home organizational unit"
-
 msgid "{general:remember}"
 msgstr "Zoustëmmung verhalen"
-
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postschléissfach"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Haaptnumm bei der Heemorganisatioun"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Benotzer ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS Fehler"
@@ -301,9 +202,6 @@ msgstr "Falsch Unfro fir den Discovery Service"
 msgid "{general:yes_continue}"
 msgstr "Jo"
 
-msgid "{attributes:attribute_l}"
-msgstr "Uertschaft"
-
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Et wor net méiglech eng Authenticatiounsaentwert ze erstellen"
 
@@ -312,9 +210,6 @@ msgstr "Fehler beim Erstellen vun der Unfro"
 
 msgid "{errors:report_submit}"
 msgstr "Fehlerbericht schécken"
-
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax Nummer"
 
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Fehler"
@@ -325,32 +220,14 @@ msgstr ""
 "SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun "
 "dësem Login Service an schéckt him den Fehlerbericht"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "GSM Nummer"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Lieblingssprooch"
-
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Dir hud keen gültegen Zertifikat"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organisatiounsnumm"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Identitéitsnummer"
 
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp schéint falsch konfiguréiert ze sin."
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Numm vun der Organisatioun"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisatiounsnummer"
 
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"

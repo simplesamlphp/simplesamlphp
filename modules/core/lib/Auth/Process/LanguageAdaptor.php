@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use SimpleSAML\Locale\Language;
+use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to set and get language settings from attributes.
@@ -13,16 +19,16 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
     /** @var string */
     private $langattr = 'preferredLanguage';
 
+
     /**
      * Initialize this filter.
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->langattr = $config['attributename'];
@@ -38,10 +44,9 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 
@@ -50,18 +55,18 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
             $attrlang = $attributes[$this->langattr][0];
         }
 
-        $lang = \SimpleSAML\Locale\Language::getLanguageCookie();
+        $lang = Language::getLanguageCookie();
 
         if (isset($attrlang)) {
-            \SimpleSAML\Logger::debug('LanguageAdaptor: Language in attribute was set ['.$attrlang.']');
+            Logger::debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
         }
         if (isset($lang)) {
-            \SimpleSAML\Logger::debug('LanguageAdaptor: Language in session   was set ['.$lang.']');
+            Logger::debug('LanguageAdaptor: Language in session was set [' . $lang . ']');
         }
 
         if (isset($attrlang) && !isset($lang)) {
             // Language set in attribute but not in cookie - update cookie
-            \SimpleSAML\Locale\Language::setLanguageCookie($attrlang);
+            Language::setLanguageCookie($attrlang);
         } elseif (!isset($attrlang) && isset($lang)) {
             // Language set in cookie, but not in attribute. Update attribute
             $request['Attributes'][$this->langattr] = [$lang];

@@ -1,19 +1,24 @@
 <?php
+
+declare(strict_types=1);
+
+namespace SimpleSAML\Test;
+
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use SimpleSAML\Configuration;
+
 /**
  * A test case that provides a certificate directory with public and private
  * keys.
  *
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test;
-
-use PHPUnit\Framework\TestCase;
-use \org\bovigo\vfs\vfsStream;
-
 class SigningTestCase extends TestCase
 {
     // openssl genrsa -out ca.key.pem 2048
+    /** @var string $ca_private_key */
     protected $ca_private_key = <<<'NOWDOC'
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpQIBAAKCAQEAtj5GuvnC5aCg8bhq2Yy4isp/uXtRRWKhbB5aYP7/1DwwwQ1Z
@@ -45,6 +50,7 @@ mHreqJFXp12lURaL+esz01oaH49ZUzVeZVGmVyOzoSDYEOq9K7L/j14=
 NOWDOC;
 
     // openssl req -key ca.key.pem -new -x509 -days 3650 -out ca.cert.pem
+    /** @var string $ca_certificate */
     private $ca_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDtjCCAp6gAwIBAgIJAII4rW68Q+IsMA0GCSqGSIb3DQEBCwUAMHAxCzAJBgNV
@@ -71,6 +77,7 @@ BdyrA5DmvSuL/Yfq03J9btXX4NnANQFVvfSbun7ts5F1qTkSe/vHCoke
 NOWDOC;
 
     // openssl genrsa -out good.key.pem 2048
+    /** @var string $good_private_key */
     protected $good_private_key = <<<'NOWDOC'
 -----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAqmNn4bt/jrMHgoWtwXLc2ok17BHh1O5ETbn9rK3KFjk3BXp5
@@ -110,6 +117,7 @@ NOWDOC;
     //      -days 3650 \
     //      -in good.csr.pem \
     //      -out good.cert.pem
+    /** @var string $good_certificate */
     protected $good_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDZTCCAk0CCQC+sxqJmyko6TANBgkqhkiG9w0BAQsFADBwMQswCQYDVQQGEwJB
@@ -134,15 +142,42 @@ hQc0xnrLQ255SjMn+nQtMkVSuKwAUqaAP1ByyiVbN1cBlHnMiJCjvBI58bSTdlVK
 -----END CERTIFICATE-----
 NOWDOC;
 
-    const ROOTDIRNAME = 'testdir';
-    const DEFAULTCERTDIR = 'certdir';
-    const CA_PRIVATE_KEY = 'ca.key.pem';
-    const CA_CERTIFICATE = 'ca.cert.pem';
-    const GOOD_PRIVATE_KEY = 'good.key.pem';
-    const GOOD_CERTIFICATE = 'good.cert.pem';
+    /** @var string */
+    protected $good_private_key_file;
+
+    /** @var string */
+    protected $good_certificate_file;
+
+    /** @var string */
+    protected $certdir;
+
+    /** @var \org\bovigo\vfs\vfsStreamDirectory */
+    protected $root;
+
+    /** @var string */
+    protected $root_directory;
+
+    /** @var string */
+    protected $ca_private_key_file;
+
+    /** @var string */
+    protected $ca_certificate_file;
+
+    /** @var \SimpleSAML\Configuration */
+    protected $config;
+
+    protected const ROOTDIRNAME = 'testdir';
+    protected const DEFAULTCERTDIR = 'certdir';
+    protected const CA_PRIVATE_KEY = 'ca.key.pem';
+    protected const CA_CERTIFICATE = 'ca.cert.pem';
+    protected const GOOD_PRIVATE_KEY = 'good.key.pem';
+    protected const GOOD_CERTIFICATE = 'good.cert.pem';
 
 
-    public function getCertDirContent()
+    /**
+     * @return array
+     */
+    public function getCertDirContent(): array
     {
         return [
             self::CA_PRIVATE_KEY => $this->ca_private_key,
@@ -153,7 +188,10 @@ NOWDOC;
     }
 
 
-    public function setUp()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
@@ -164,27 +202,36 @@ NOWDOC;
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
 
-        $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
-        $this->ca_private_key_file = $this->certdir.DIRECTORY_SEPARATOR.self::CA_PRIVATE_KEY;
-        $this->ca_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::CA_CERTIFICATE;
-        $this->good_private_key_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_PRIVATE_KEY;
-        $this->good_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_CERTIFICATE;
+        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
+        $this->ca_private_key_file = $this->certdir . DIRECTORY_SEPARATOR . self::CA_PRIVATE_KEY;
+        $this->ca_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::CA_CERTIFICATE;
+        $this->good_private_key_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_PRIVATE_KEY;
+        $this->good_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_CERTIFICATE;
 
-        $this->config = \SimpleSAML\Configuration::loadFromArray([
+        $this->config = Configuration::loadFromArray([
             'certdir' => $this->certdir,
         ], '[ARRAY]', 'simplesaml');
     }
 
 
-    public function tearDown()
+    /**
+     * @return void
+     */
+    public function tearDown(): void
     {
-        $this->clearInstance($this->config, '\SimpleSAML\Configuration', []);
+        $this->clearInstance($this->config, Configuration::class, []);
     }
 
 
-    protected function clearInstance($service, $className, $value = null)
+    /**
+     * @param \SimpleSAML\Configuration $service
+     * @param class-string $className
+     * @param mixed|null $value
+     * @return void
+     */
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, $value);

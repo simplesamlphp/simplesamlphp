@@ -19,7 +19,7 @@ msgid "{admin:metadata_saml20-idp}"
 msgstr "SAML 2.0 IdPメタデータ"
 
 msgid "{errors:descr_WRONGUSERPASS}"
-msgstr "ユーザー名が見つからなかったか、パスワードが間違っているかの何方かです。ユーザー名、パスワードを確認して試してください。"
+msgstr "ユーザー名またはパスワードが間違っています。ユーザー名、パスワードを確認して再度試してください。"
 
 msgid "{logout:failed}"
 msgstr "ログアウトに失敗しました"
@@ -43,30 +43,21 @@ msgid "{login:username}"
 msgstr "ユーザー名"
 
 msgid "{errors:title_METADATA}"
-msgstr "目らーデータの読み込み中にエラーが発生しました"
+msgstr "メタデータの読み込み中にエラーが発生しました"
 
 msgid "{admin:metaconv_title}"
 msgstr "メタデータパーサ"
-
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "サービスに関する資格"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG写真"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "エラーは見つかりませんでした。"
 
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amout of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
+"ログアウト操作に関する情報が失われました。ログアウトしようとしていたサービスに戻り、再度ログアウトを行ってください。"
+"このエラーは、ログアウト情報の期限切れが原因で発生する可能性があります。"
+"ログアウト情報は、通常は数時間の限られた時間だけ保存されます。"
+"このエラーは、通常のログアウト操作にかかるよりも長いため、構成に関する他のエラーの可能性もあります。"
+"問題が解決しない場合は、サービスプロバイダにお問い合わせください。"
 
 msgid "{disco:previous_auth}"
 msgstr "前回選択した認証: "
@@ -75,7 +66,7 @@ msgid "{admin:cfg_check_back}"
 msgstr "ファイルリストに戻る"
 
 msgid "{errors:report_trackid}"
-msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定する為に、トラッキング番号を報告してください。"
+msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定するために、トラッキング番号を報告してください。"
 
 msgid "{login:change_home_org_title}"
 msgstr "あなたの組織を変更してください"
@@ -87,7 +78,7 @@ msgid "{admin:metadata_metadata}"
 msgstr "メタデータ"
 
 msgid "{errors:report_text}"
-msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行う為に使用します。"
+msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行うために使用します。"
 
 msgid "{errors:report_header}"
 msgstr "エラーをレポート"
@@ -105,24 +96,18 @@ msgid "{errors:debuginfo_header}"
 msgstr "デバッグ情報"
 
 msgid "{admin:debug_sending_message_msg_text}"
-msgstr "お気づきの様にあなたはデバッグモードにいます。あなたは送信するメッセージの内容を見ることが出来ます。"
+msgstr "現在はデバッグモードです。あなたは送信するメッセージの内容を見ることが出来ます。"
 
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdPメタデータ"
-
 msgid "{login:help_text}"
 msgstr ""
-"お気の毒です! - "
-"ユーザー名とパスワードが無くてはサービスにアクセスする為にあなた自身を認証する事が出来ません。あなたの大学のヘルプデスクに相談すると、あなたの助けになってくれるでしょう。"
+"ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。"
+"組織のヘルプデスクに相談してください。"
 
 msgid "{logout:default_link_text}"
 msgstr "SimpleSAMLphpの設定ページに戻る"
-
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federationアイデンティティプロバイダ(リモート)"
 
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphpエラー"
@@ -136,17 +121,11 @@ msgstr "あなたがログインを行う時、LDAPというユーザーデー�
 msgid "{errors:descr_METADATA}"
 msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたがこのサービスの管理者であればメタデータ設定を正しくセットアップする必要があります。"
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "組織識別名"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "不正なリクエストを受信しました"
 
 msgid "{status:sessionsize}"
 msgstr "セッションサイズ: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "住所"
 
 msgid "{logout:title}"
 msgstr "ログアウト"
@@ -169,29 +148,14 @@ msgstr "保留"
 msgid "{admin:cfg_check_header}"
 msgstr "設定確認"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "組織内職種"
-
-msgid "{attributes:attribute_sn}"
-msgstr "姓"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "メッセージを送信"
 
 msgid "{status:logout}"
 msgstr "ログアウト"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "組織名"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "電話番号"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
-
-msgid "{attributes:attribute_mail}"
-msgstr "メールアドレス"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "SAMLリクエストの生成中にエラーが発生しました。"
@@ -202,9 +166,6 @@ msgstr "任意項目"
 msgid "{logout:return}"
 msgstr "サービスへ戻る"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "表示名"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "<a href=\"%METAURL%\">このURLでメタデータのXMLを取得できます</a>:"
 
@@ -213,9 +174,6 @@ msgstr "はい、全てのサービスからログアウトします"
 
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "住所"
 
 msgid "{disco:select}"
 msgstr "選択"
@@ -232,17 +190,11 @@ msgstr "ログアウト中…"
 msgid "{login:error_wrongpassword}"
 msgstr "ユーザー名かパスワードが間違っています。"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3サービスプロバイダ(リモート)"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "このアイデンティティプロバイダはサービスプロバイダからの認証リクエストを受け付けましたが、リクエストの処理中にエラーが発生しました。"
 
 msgid "{logout:logout_all_question}"
-msgstr "上記の全てのサービスからログアウトしますか?"
-
-msgid "{attributes:attribute_title}"
-msgstr "タイトル"
+msgstr "上記の全てのサービスからログアウトしますか？"
 
 msgid "{errors:title_NOACCESS}"
 msgstr "アクセスがありません"
@@ -256,17 +208,14 @@ msgstr "RelayStateがありません"
 msgid "{errors:descr_NOSTATE}"
 msgstr "状態情報を失い、リクエストを再開出来ません"
 
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "公開認証局によって割り当てられた識別番号"
-
 msgid "{login:password}"
 msgstr "パスワード"
 
 msgid "{errors:debuginfo_text}"
-msgstr "システム管理者やヘルプデスクは以下のデバッグ情報に興味を持つかもしれません:"
+msgstr "システム管理者やヘルプデスクは以下のデバッグ情報が役立つかもしれません:"
 
 msgid "{admin:cfg_check_missing}"
-msgstr "設定ファイルにオプションが在りません"
+msgstr "設定ファイルにオプションがありません"
 
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "未処理例外が投げられました。"
@@ -278,28 +227,19 @@ msgid "{errors:title_CONFIG}"
 msgstr "設定エラー"
 
 msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "ログアウト洋弓の処理中にエラーが発生しました"
+msgstr "ログアウト処理中にエラーが発生しました"
 
 msgid "{admin:metaover_errorentry}"
 msgstr "このメタデータエントリでのエラー"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "所属"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "メタデータが見つかりません"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "名"
 
 msgid "{login:contact_info}"
 msgstr "連絡先:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "未処理例外"
-
-msgid "{status:validfor}"
-msgstr "セッションは今から %SECONDS% 秒間有効です"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP デモ例"
@@ -311,7 +251,7 @@ msgid "{errors:title_USERABORTED}"
 msgstr "認証は中断されました"
 
 msgid "{logout:incapablesps}"
-msgstr "<i>ログアウトをサポートしていない</i>一つ以上のサービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+msgstr "<i>ログアウトをサポートしていない</i>サービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 
 msgid "{admin:metadata_xmlformat}"
 msgstr "SAML 2.0 用のメタデータXMLフォーマット:"
@@ -329,10 +269,7 @@ msgid "{admin:cfg_check_select_file}"
 msgstr "確認する設定ファイルを選択:"
 
 msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "認証に失敗しました: ブラウザから不明な証明書が送られました"
-
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "組織のホームページ"
+msgstr "認証に失敗しました: ブラウザから不正な証明書が送られました"
 
 msgid "{logout:logging_out_from}"
 msgstr "以下のサービスからログアウトしました:"
@@ -340,20 +277,11 @@ msgstr "以下のサービスからログアウトしました:"
 msgid "{logout:loggedoutfrom}"
 msgstr "あなたは %SP% からのログアウトに成功しました。"
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federationサービスプロバイダ(ホスト)"
-
 msgid "{errors:errorreport_text}"
 msgstr "このエラーは管理者に送信されました。"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "生年月日"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "ログアウト処理中にエラーが発生しました。"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "永続的匿名ID"
 
 msgid "{logout:success}"
 msgstr "上記の全てのサービスからログアウトしました。"
@@ -363,12 +291,6 @@ msgstr "お知らせ"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "認証はユーザーによって中断されました"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "主所属"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "郵便番号"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "CASサーバーとの通信中にエラーが発生しました。"
@@ -382,26 +304,14 @@ msgstr "SAML 2.0 SPメタデータ"
 msgid "{admin:metaconv_converted}"
 msgstr "変換されたメタデータ"
 
-msgid "{attributes:attribute_cn}"
-msgstr "一般名"
-
 msgid "{logout:completed}"
 msgstr "完了しました"
 
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 
-msgid "{attributes:attribute_ou}"
-msgstr "組織単位"
-
 msgid "{general:service_provider}"
 msgstr "サービスプロバイダ"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "電話番号"
-
-msgid "{attributes:attribute_dc}"
-msgstr "ドメイン名"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "ページのリクエスト中にエラーが発生しました。理由は: %REASON%"
@@ -419,24 +329,14 @@ msgid "{login:user_pass_header}"
 msgstr "ユーザー名とパスワードを入力してください"
 
 msgid "{errors:report_explain}"
-msgstr "何をした際にこのエラーが発生したかを説明してください..."
-
-msgid "{attributes:attribute_manager}"
-msgstr "管理者"
+msgstr "何をした際にこのエラーが発生したかを教えてください。"
 
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAMLレスポンスがありません"
 
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "ニックネーム"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
-"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequest や LogoutResponse"
-" が提供されませんでした。"
-
-msgid "{attributes:attribute_street}"
-msgstr "番地"
+"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
 
 msgid "{login:organization}"
 msgstr "組織"
@@ -471,14 +371,11 @@ msgstr "組織の選択"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "設定ファイルに不適切なオプションが在ります"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI"
-
 msgid "{errors:report_email}"
 msgstr "Eメールアドレス:"
 
 msgid "{errors:howto_header}"
-msgstr "ヘルプを得るには"
+msgstr "困ったときには"
 
 msgid "{errors:title_NOTSET}"
 msgstr "パスワードが設定されていません"
@@ -486,19 +383,12 @@ msgstr "パスワードが設定されていません"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "正式名称"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp 診断"
 
 msgid "{status:intro}"
 msgstr ""
-"こんにちは、ここは "
-"SimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "組織内ドメイン"
+"ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "ページが見つかりません"
@@ -509,17 +399,11 @@ msgstr "メッセージを送信中"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダからエラーを受信しました"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SPメタデータ"
-
 msgid "{admin:metaover_intro}"
-msgstr "SAML実体の詳細を確認する為には、SAML実体ヘッダをクリックして下さい。"
+msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "無効な証明書です"
-
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "組織単位識別名"
 
 msgid "{general:remember}"
 msgstr "記憶する"
@@ -527,20 +411,11 @@ msgstr "記憶する"
 msgid "{disco:selectidp}"
 msgstr "アイデンティティプロバイダを選択してください"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "オフィスボックスポスト"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "永続的利用者名"
-
 msgid "{login:help_desk_email}"
 msgstr "ヘルプデスクにメールする"
 
 msgid "{login:help_desk_link}"
 msgstr "ヘルプデスクページ"
-
-msgid "{attributes:attribute_uid}"
-msgstr "ユーザーID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CASエラー"
@@ -560,14 +435,8 @@ msgstr "選択を記憶する"
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0サービスプロバイダ(ホスト)"
 
-msgid "{attributes:attribute_l}"
-msgstr "地域"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "識別子保証プロファイル"
-
 msgid "{admin:metadata_simplesamlformat}"
-msgstr "SimpleSAMLphp のファイルフォーマット - 片側でも SimpleSAMLphpエンティティを使用する場合にこれを使用します:"
+msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 
 msgid "{disco:login_at}"
 msgstr "ログイン: "
@@ -596,35 +465,23 @@ msgstr "ページが見つかりません"
 msgid "{logout:logged_out_text}"
 msgstr "ログアウトしました。"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3サービスプロバイダ(ホスト)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "メッセージ"
 
 msgid "{errors:title_UNKNOWNCERT}"
-msgstr "不明な証明書です"
-
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax番号"
+msgstr "不正な証明書です"
 
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAPエラー"
 
 msgid "{logout:failedsps}"
-msgstr "一つ以上のサービスかたログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 
 msgid "{errors:descr_NOTFOUND}"
 msgstr "与えられたページは見つかりませんでした。URLは: %URL%"
 
 msgid "{errors:howto_text}"
-msgstr "このエラーは恐らく未知の問題かSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
-
-msgid "{attributes:attribute_mobile}"
-msgstr "携帯電話"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3アイデンティティプロバイダ(ホスト)"
+msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "言語"
@@ -641,15 +498,6 @@ msgstr "以下の任意項目は見つかりませんでした"
 msgid "{logout:logout_only}"
 msgstr "いいえ、%SP% のみログアウトします"
 
-msgid "{attributes:attribute_o}"
-msgstr "所属組織"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "主要組織単位識別名"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "支部ID"
-
 msgid "{login:next}"
 msgstr "次へ"
 
@@ -665,32 +513,17 @@ msgstr "与えられたページは見つかりませんでした。理由は: %
 msgid "{errors:title_NOCERT}"
 msgstr "証明書がありません"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "パスワードハッシュ"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "ログアウト情報を失いました"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3アイデンティティプロバイダ(リモート)"
-
 msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphpの設定にミスがある様です。"
+msgstr "SimpleSAMLphpの設定にミスがあるようです。"
 
 msgid "{admin:metadata_intro}"
-msgstr "ここは SimpleSAMLphp が生成したメタデータがあります。あなたは信頼するパートナーにこのメタデータを送信し信頼された連携を構築出来ます。"
-
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "個人情報要素"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP デモ例"
+msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
 
 msgid "{errors:descr_INVALIDCERT}"
-msgstr "認証失敗: あなたのブラウザは無効か読むことの出来ない証明書を送信しました。"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "組織の正式名称"
+msgstr "認証失敗: あなたのブラウザは無効か不正な証明書を送信しました。"
 
 msgid "{status:header_shib}"
 msgstr "Shibboleth デモ"
@@ -698,14 +531,11 @@ msgstr "Shibboleth デモ"
 msgid "{admin:metaconv_parse}"
 msgstr "パース"
 
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "組織番号"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 
 msgid "Superfluous options in config file"
-msgstr "設定ファイルに不適切なオプションが在ります"
+msgstr "設定ファイルに不適切なオプションがあります"
 
 msgid "Mobile"
 msgstr "携帯電話"
@@ -721,7 +551,7 @@ msgstr "あなたがログインを行う時、LDAPというユーザーデー�
 msgid ""
 "Optionally enter your email address, for the administrators to be able "
 "contact you for further questions about your issue:"
-msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行う為に使用します。"
+msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行うために使用します。"
 
 msgid "Display name"
 msgstr "表示名"
@@ -743,11 +573,10 @@ msgid ""
 "session is timed out, how long it lasts until it times out and all the "
 "attributes that are attached to your session."
 msgstr ""
-"こんにちは、ここは "
-"SimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
+"ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
 
 msgid "Explain what you did when this error occurred..."
-msgstr "何をした際にこのエラーが発生したかを説明してください..."
+msgstr "何をした際にこのエラーが発生したかを教えてください。"
 
 msgid "An unhandled exception was thrown."
 msgstr "未処理例外が投げられました。"
@@ -812,12 +641,12 @@ msgstr "CASエラー"
 msgid ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
-msgstr "システム管理者やヘルプデスクは以下のデバッグ情報に興味を持つかもしれません:"
+msgstr "システム管理者やヘルプデスクは以下のデバッグ情報が役立つかもしれません:"
 
 msgid ""
 "Either no user with the given username could be found, or the password "
 "you gave was wrong. Please check the username and try again."
-msgstr "ユーザー名が見つからなかったか、パスワードが間違っているかの何方かです。ユーザー名、パスワードを確認して試してください。"
+msgstr "ユーザー名またはパスワードが間違っています。ユーザー名、パスワードを確認して再度試してください。"
 
 msgid "Error"
 msgstr "エラー"
@@ -859,7 +688,7 @@ msgstr "主要組織単位識別名"
 msgid ""
 "To look at the details for an SAML entity, click on the SAML entity "
 "header."
-msgstr "SAML実体の詳細を確認する為には、SAML実体ヘッダをクリックして下さい。"
+msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 
 msgid "Enter your username and password"
 msgstr "ユーザー名とパスワードを入力してください"
@@ -880,10 +709,10 @@ msgid "SAML 2.0 Identity Provider (Remote)"
 msgstr "SAML 2.0アイデンティティプロバイダ(リモート)"
 
 msgid "Error processing the Logout Request"
-msgstr "ログアウト洋弓の処理中にエラーが発生しました"
+msgstr "ログアウト処理中にエラーが発生しました"
 
 msgid "Do you want to logout from all the services above?"
-msgstr "上記の全てのサービスからログアウトしますか?"
+msgstr "上記の全てのサービスからログアウトしますか？"
 
 msgid "Select"
 msgstr "選択"
@@ -910,7 +739,7 @@ msgid "Organization name"
 msgstr "所属組織"
 
 msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "認証に失敗しました: ブラウザから不明な証明書が送られました"
+msgstr "認証に失敗しました: ブラウザから不正な証明書が送られました"
 
 msgid ""
 "You are about to send a message. Hit the submit message button to "
@@ -957,14 +786,11 @@ msgid ""
 "the configuration. If the problem persists, contact your service "
 "provider."
 msgstr ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amout of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
+"ログアウト操作に関する情報が失われました。ログアウトしようとしていたサービスに戻り、再度ログアウトを行ってください。"
+"このエラーは、ログアウト情報の期限切れが原因で発生する可能性があります。"
+"ログアウト情報は、通常は数時間の限られた時間だけ保存されます。"
+"このエラーは、通常のログアウト操作にかかるよりも長いため、構成に関する他のエラーの可能性もあります。"
+"問題が解決しない場合は、サービスプロバイダにお問い合わせください。"
 
 msgid "Some error occurred"
 msgstr "幾つかのエラーが発生しました"
@@ -1006,11 +832,11 @@ msgid ""
 "This error probably is due to some unexpected behaviour or to "
 "misconfiguration of SimpleSAMLphp. Contact the administrator of this "
 "login service, and send them the error message above."
-msgstr "このエラーは恐らく未知の問題かSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
+msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "セッションは今から %SECONDS% 秒間有効です"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "セッションは今から %remaining% 秒間有効です"
 
 msgid "Domain component (DC)"
 msgstr "ドメイン名"
@@ -1039,7 +865,7 @@ msgid "Date of birth"
 msgstr "生年月日"
 
 msgid "Private information elements"
-msgstr "個人情報要素"
+msgstr "個人情報"
 
 msgid "You are also logged in on these services:"
 msgstr "あなたはまだこれらのサービスにログインしています:"
@@ -1140,7 +966,7 @@ msgid "Labeled URI"
 msgstr "URI"
 
 msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "SimpleSAMLphpの設定にミスがある様です。"
+msgstr "SimpleSAMLphpの設定にミスがあるようです。"
 
 msgid "Shib 1.3 Identity Provider (Hosted)"
 msgstr "Shib 1.3アイデンティティプロバイダ(ホスト)"
@@ -1181,7 +1007,7 @@ msgid ""
 "If you report this error, please also report this tracking number which "
 "makes it possible to locate your session in the logs available to the "
 "system administrator:"
-msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定する為に、トラッキング番号を報告してください。"
+msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定するために、トラッキング番号を報告してください。"
 
 msgid "XML metadata"
 msgstr "XMLメタデータ"
@@ -1197,7 +1023,7 @@ msgstr "電話番号"
 msgid ""
 "Unable to log out of one or more services. To ensure that all your "
 "sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "一つ以上のサービスかたログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+msgstr "ログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 
 msgid "Bad request to discovery service"
 msgstr "サービスディスカバリ中の不正なリクエスト"
@@ -1214,7 +1040,7 @@ msgstr "Shib 1.3 SPメタデータ"
 msgid ""
 "As you are in debug mode, you get to see the content of the message you "
 "are sending:"
-msgstr "お気づきの様にあなたはデバッグモードにいます。あなたは送信するメッセージの内容を見ることが出来ます。"
+msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定するために、トラッキング番号を報告してください。"
 
 msgid "Remember"
 msgstr "記憶する"
@@ -1232,7 +1058,7 @@ msgid "Authentication aborted"
 msgstr "認証は中断されました"
 
 msgid "Local identity number"
-msgstr "支部ID"
+msgstr "ローカル識別番号"
 
 msgid "Report errors"
 msgstr "エラーをレポート"
@@ -1252,7 +1078,7 @@ msgstr "パスワードハッシュ"
 msgid ""
 "In SimpleSAMLphp flat file format - use this if you are using a "
 "SimpleSAMLphp entity on the other side:"
-msgstr "SimpleSAMLphp のファイルフォーマット - 片側でも SimpleSAMLphpエンティティを使用する場合にこれを使用します:"
+msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 
 msgid "Yes, continue"
 msgstr "はい、続けます"
@@ -1266,7 +1092,7 @@ msgid ""
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
 msgid "Error loading metadata"
-msgstr "目らーデータの読み込み中にエラーが発生しました"
+msgstr "メタデータの読み込み中にエラーが発生しました"
 
 msgid "Select configuration file to check:"
 msgstr "確認する設定ファイルを選択:"
@@ -1289,15 +1115,14 @@ msgid ""
 msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
 
 msgid "How to get help"
-msgstr "ヘルプを得るには"
+msgstr "困ったときには"
 
 msgid ""
 "You accessed the SingleLogoutService interface, but did not provide a "
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
 msgstr ""
-"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequest や LogoutResponse"
-" が提供されませんでした。"
+"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphpエラー"
@@ -1306,13 +1131,13 @@ msgid ""
 "One or more of the services you are logged into <i>do not support "
 "logout</i>. To ensure that all your sessions are closed, you are "
 "encouraged to <i>close your webbrowser</i>."
-msgstr "<i>ログアウトをサポートしていない</i>一つ以上のサービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+msgstr "ここは SimpleSAMLphp が生成したメタデータがあります。あなたは信頼するパートナーにこのメタデータを送信し信頼された連携を構築出来ます。"
 
 msgid "Organization's legal name"
 msgstr "組織の正式名称"
 
 msgid "Options missing from config file"
-msgstr "設定ファイルにオプションが在りません"
+msgstr "設定ファイルにオプションがありません"
 
 msgid "The following optional fields was not found"
 msgstr "以下の任意項目は見つかりませんでした"
@@ -1347,7 +1172,7 @@ msgid "Contact information:"
 msgstr "連絡先:"
 
 msgid "Unknown certificate"
-msgstr "不明な証明書です"
+msgstr "不正な証明書です"
 
 msgid "Legal name"
 msgstr "正式名称"
@@ -1369,7 +1194,7 @@ msgid ""
 msgstr "あなたはログインページで何かを送信しましたが、何らかの理由でパスワードが送信されませんでした。再度試してみてください。"
 
 msgid "Fax number"
-msgstr "Fax番号"
+msgstr "FAX番号"
 
 msgid "Shibboleth demo"
 msgstr "Shibboleth デモ"
@@ -1388,8 +1213,8 @@ msgid ""
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr ""
-"お気の毒です! - "
-"ユーザー名とパスワードが無くてはサービスにアクセスする為にあなた自身を認証する事が出来ません。あなたの大学のヘルプデスクに相談すると、あなたの助けになってくれるでしょう。"
+"ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。"
+"組織のヘルプデスクに相談してください。"
 
 msgid "Metadata parser"
 msgstr "メタデータパーサ"
@@ -1437,7 +1262,7 @@ msgid ""
 "Here is the metadata that SimpleSAMLphp has generated for you. You may "
 "send this metadata document to trusted partners to setup a trusted "
 "federation."
-msgstr "ここは SimpleSAMLphp が生成したメタデータがあります。あなたは信頼するパートナーにこのメタデータを送信し信頼された連携を構築出来ます。"
+msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
 
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
@@ -1457,4 +1282,4 @@ msgid ""
 "is for testing and pre-production verification only. If someone sent you "
 "a link that pointed you here, and you are not <i>a tester</i> you "
 "probably got the wrong link, and should <b>not be here</b>."
-msgstr "あなたは今試験環境へアクセスしています。この認証設定は試験環境のテストと検証の為のものです。もし誰かがこのリンクをあなたに送り、あなたが<i>テスター</i>でないのであれば恐らく間違ったリンクであり、ここに<b>来てはいけない</b>でしょう。"
+msgstr "あなたは今テスト環境へアクセスしています。この認証設定は検証のためのものです。もし誰かがこのリンクをあなたに送り、あなたが<i>テスター</i>でないのであれば恐らく間違ったリンクであり、ここに<b>来てはいけない</b>でしょう。"

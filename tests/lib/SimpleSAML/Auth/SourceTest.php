@@ -1,43 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Auth;
 
-use SimpleSAML\Auth\SourceFactory;
+use ReflectionClass;
+use SimpleSAML\Auth;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\Test\Utils\TestAuthSource;
+use SimpleSAML\Test\Utils\TestAuthSourceFactory;
 
 /**
  * Tests for \SimpleSAML\Auth\Source
  */
-
 class SourceTest extends ClearStateTestCase
 {
-    public function testParseAuthSource()
+    /**
+     * @return void
+     */
+    public function testParseAuthSource(): void
     {
-        $class = new \ReflectionClass('\SimpleSAML\Auth\Source');
+        $class = new ReflectionClass(Auth\Source::class);
         $method = $class->getMethod('parseAuthSource');
         $method->setAccessible(true);
 
         // test direct instantiation of the auth source object
-        $authSource = $method->invokeArgs(null, ['test', ['SimpleSAML\Test\Auth\TestAuthSource']]);
-        $this->assertInstanceOf('SimpleSAML\Test\Auth\TestAuthSource', $authSource);
+        $authSource = $method->invokeArgs(null, ['test', [TestAuthSource::class]]);
+        $this->assertInstanceOf(TestAuthSource::class, $authSource);
 
         // test instantiation via an auth source factory
-        $authSource = $method->invokeArgs(null, ['test', ['SimpleSAML\Test\Auth\TestAuthSourceFactory']]);
-        $this->assertInstanceOf('SimpleSAML\Test\Auth\TestAuthSource', $authSource);
-    }
-}
-
-class TestAuthSource extends \SimpleSAML\Auth\Source
-{
-    public function authenticate(&$state)
-    {
-    }
-}
-
-class TestAuthSourceFactory implements SourceFactory
-{
-    public function create(array $info, array $config)
-    {
-        return new TestAuthSource($info, $config);
+        $authSource = $method->invokeArgs(null, ['test', [TestAuthSourceFactory::class]]);
+        $this->assertInstanceOf(TestAuthSource::class, $authSource);
     }
 }

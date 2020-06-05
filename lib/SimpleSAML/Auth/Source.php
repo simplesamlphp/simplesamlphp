@@ -1,6 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * This class defines a base class for authentication source.
@@ -31,12 +41,10 @@ abstract class Source
      * @param array $info Information about this authentication source.
      * @param array &$config Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
+        Assert::keyExists($info, 'AuthId');
 
-        assert(array_key_exists('AuthId', $info));
         $this->authId = $info['AuthId'];
     }
 
@@ -47,13 +55,11 @@ abstract class Source
      * @param string $type The type of the authentication source.
      *
      * @return Source[]  Array of \SimpleSAML\Auth\Source objects of the specified type.
-     * @throws Exception If the authentication source is invalid.
+     * @throws \Exception If the authentication source is invalid.
      */
-    public static function getSourcesOfType($type)
+    public static function getSourcesOfType(string $type): array
     {
-        assert(is_string($type));
-
-        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
+        $config = Configuration::getConfig('authsources.php');
 
         $ret = [];
 
@@ -79,7 +85,7 @@ abstract class Source
      *
      * @return string The ID of this authentication source.
      */
-    public function getAuthId()
+    public function getAuthId(): string
     {
         return $this->authId;
     }
@@ -100,7 +106,7 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    abstract public function authenticate(&$state);
+    abstract public function authenticate(array &$state): void;
 
 
     /**
@@ -112,13 +118,17 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public function reauthenticate(array &$state)
+    public function reauthenticate(array &$state): void
     {
-        assert(isset($state['ReturnCallback']));
+        Assert::notNull($state['ReturnCallback']);
 
         // the default implementation just copies over the previous authentication data
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
+        if ($data === null) {
+            throw new Error\NoState();
+        }
+
         foreach ($data as $k => $v) {
             $state[$k] = $v;
         }
@@ -135,18 +145,17 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public static function completeAuth(&$state)
+    public static function completeAuth(array &$state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('LoginCompletedHandler', $state));
+        Assert::keyExists($state, 'LoginCompletedHandler');
 
         State::deleteState($state);
 
         $func = $state['LoginCompletedHandler'];
-        assert(is_callable($func));
+        Assert::isCallable($func);
 
         call_user_func($func, $state);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -164,28 +173,22 @@ abstract class Source
      * information. Optional, will default to an empty array.
      * @return void
      */
-    public function initLogin($return, $errorURL = null, array $params = [])
+    public function initLogin($return, ?string $errorURL = null, array $params = []): void
     {
-        assert(is_string($return) || is_array($return));
-        assert(is_string($errorURL) || $errorURL === null);
+        Assert::True(is_string($return) || is_array($return));
 
         $state = array_merge($params, [
-            '\SimpleSAML\Auth\DefaultAuth.id' => $this->authId, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.id' => $this->authId,
-            '\SimpleSAML\Auth\DefaultAuth.Return' => $return, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.Return' => $return,
-            '\SimpleSAML\Auth\DefaultAuth.ErrorURL' => $errorURL, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.ErrorURL' => $errorURL,
             'LoginCompletedHandler' => [get_class(), 'loginCompleted'],
             'LogoutCallback' => [get_class(), 'logoutCallback'],
             'LogoutCallbackState' => [
-                '\SimpleSAML\Auth\DefaultAuth.logoutSource' => $this->authId, // TODO: remove in 2.0
                 '\SimpleSAML\Auth\Source.logoutSource' => $this->authId,
             ],
         ]);
 
         if (is_string($return)) {
-            $state['\SimpleSAML\Auth\DefaultAuth.ReturnURL'] = $return; // TODO: remove in 2.0
             $state['\SimpleSAML\Auth\Source.ReturnURL'] = $return;
         }
 
@@ -195,10 +198,10 @@ abstract class Source
 
         try {
             $this->authenticate($state);
-        } catch (\SimpleSAML\Error\Exception $e) {
+        } catch (Error\Exception $e) {
             State::throwException($state, $e);
         } catch (\Exception $e) {
-            $e = new \SimpleSAML\Error\UnserializableException($e);
+            $e = new Error\UnserializableException($e);
             State::throwException($state, $e);
         }
         self::loginCompleted($state);
@@ -213,28 +216,27 @@ abstract class Source
      * @param array $state The state after the login has completed.
      * @return void
      */
-    public static function loginCompleted($state)
+    public static function loginCompleted(array $state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('\SimpleSAML\Auth\Source.Return', $state));
-        assert(array_key_exists('\SimpleSAML\Auth\Source.id', $state));
-        assert(array_key_exists('Attributes', $state));
-        assert(!array_key_exists('LogoutState', $state) || is_array($state['LogoutState']));
+        Assert::keyExists($state, '\SimpleSAML\Auth\Source.Return');
+        Assert::keyExists($state, '\SimpleSAML\Auth\Source.id');
+        Assert::keyExists($state, 'Attributes');
+        Assert::true(!array_key_exists('LogoutState', $state) || is_array($state['LogoutState']));
 
         $return = $state['\SimpleSAML\Auth\Source.Return'];
 
         // save session state
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $authId = $state['\SimpleSAML\Auth\Source.id'];
         $session->doLogin($authId, State::getPersistentAuthData($state));
 
         if (is_string($return)) {
             // redirect...
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
+            Utils\HTTP::redirectTrustedURL($return);
         } else {
             call_user_func($return, $state);
         }
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -252,9 +254,8 @@ abstract class Source
      * @param array &$state Information about the current logout operation.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state): void
     {
-        assert(is_array($state));
         // default logout handler which doesn't do anything
     }
 
@@ -269,18 +270,17 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public static function completeLogout(&$state)
+    public static function completeLogout(array &$state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('LogoutCompletedHandler', $state));
+        Assert::keyExists($state, 'LogoutCompletedHandler');
 
         State::deleteState($state);
 
         $func = $state['LogoutCompletedHandler'];
-        assert(is_callable($func));
+        Assert::isCallable($func);
 
         call_user_func($func, $state);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -296,11 +296,8 @@ abstract class Source
      * @return \SimpleSAML\Auth\Source The parsed authentication source.
      * @throws \Exception If the authentication source is invalid.
      */
-    private static function parseAuthSource($authId, $config)
+    private static function parseAuthSource(string $authId, array $config): Source
     {
-        assert(is_string($authId));
-        assert(is_array($config));
-
         self::validateSource($config, $authId);
 
         $id = $config[0];
@@ -311,21 +308,22 @@ abstract class Source
 
         try {
             // Check whether or not there's a factory responsible for instantiating our Auth Source instance
-            $factoryClass = \SimpleSAML\Module::resolveClass(
+            $factoryClass = Module::resolveClass(
                 $id,
                 'Auth\Source\Factory',
                 '\SimpleSAML\Auth\SourceFactory'
             );
 
             /** @var SourceFactory $factory */
-            $factory = new $factoryClass;
+            $factory = new $factoryClass();
             $authSource = $factory->create($info, $config);
         } catch (\Exception $e) {
             // If not, instantiate the Auth Source here
-            $className = \SimpleSAML\Module::resolveClass($id, 'Auth\Source', '\SimpleSAML\Auth\Source');
+            $className = Module::resolveClass($id, 'Auth\Source', '\SimpleSAML\Auth\Source');
             $authSource = new $className($info, $config);
         }
 
+        /** @var \SimpleSAML\Auth\Source */
         return $authSource;
     }
 
@@ -348,20 +346,17 @@ abstract class Source
      *     source with the given identifier is found.
      * @throws \SimpleSAML\Error\Exception If no such authentication source is found or it is invalid.
      */
-    public static function getById($authId, $type = null)
+    public static function getById(string $authId, ?string $type = null): ?Source
     {
-        assert(is_string($authId));
-        assert($type === null || is_string($type));
-
         // for now - load and parse config file
-        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
+        $config = Configuration::getConfig('authsources.php');
 
         $authConfig = $config->getArray($authId, null);
         if ($authConfig === null) {
             if ($type !== null) {
-                throw new \SimpleSAML\Error\Exception(
-                    'No authentication source with id '.
-                    var_export($authId, true).' found.'
+                throw new Error\Exception(
+                    'No authentication source with id ' .
+                    var_export($authId, true) . ' found.'
                 );
             }
             return null;
@@ -374,10 +369,10 @@ abstract class Source
         }
 
         // the authentication source doesn't have the correct type
-        throw new \SimpleSAML\Error\Exception(
-            'Invalid type of authentication source '.
-            var_export($authId, true).'. Was '.var_export(get_class($ret), true).
-            ', should be '.var_export($type, true).'.'
+        throw new Error\Exception(
+            'Invalid type of authentication source ' .
+            var_export($authId, true) . '. Was ' . var_export(get_class($ret), true) .
+            ', should be ' . var_export($type, true) . '.'
         );
     }
 
@@ -388,17 +383,16 @@ abstract class Source
      * @param array $state State array for the logout operation.
      * @return void
      */
-    public static function logoutCallback($state)
+    public static function logoutCallback(array $state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('\SimpleSAML\Auth\Source.logoutSource', $state));
+        Assert::keyExists($state, '\SimpleSAML\Auth\Source.logoutSource');
 
         $source = $state['\SimpleSAML\Auth\Source.logoutSource'];
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
-            \SimpleSAML\Logger::warning(
-                'Received logout from an invalid authentication source '.
+            Logger::warning(
+                'Received logout from an invalid authentication source ' .
                 var_export($source, true)
             );
 
@@ -421,11 +415,8 @@ abstract class Source
      * @param array  $state The state array passed to the authenticate-function.
      * @return void
      */
-    protected function addLogoutCallback($assoc, $state)
+    protected function addLogoutCallback(string $assoc, array $state): void
     {
-        assert(is_string($assoc));
-        assert(is_array($state));
-
         if (!array_key_exists('LogoutCallback', $state)) {
             // the authentication requester doesn't have a logout callback
             return;
@@ -438,19 +429,19 @@ abstract class Source
             $callbackState = [];
         }
 
-        $id = strlen($this->authId).':'.$this->authId.$assoc;
+        $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
         $data = [
             'callback' => $callback,
             'state'    => $callbackState,
         ];
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $session->setData(
             '\SimpleSAML\Auth\Source.LogoutCallbacks',
             $id,
             $data,
-            \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END
+            Session::DATA_TIMEOUT_SESSION_END
         );
     }
 
@@ -466,13 +457,11 @@ abstract class Source
      * @param string $assoc The logout association which should be called.
      * @return void
      */
-    protected function callLogoutCallback($assoc)
+    protected function callLogoutCallback(string $assoc): void
     {
-        assert(is_string($assoc));
+        $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
-        $id = strlen($this->authId).':'.$this->authId.$assoc;
-
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
 
         $data = $session->getData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
         if ($data === null) {
@@ -482,9 +471,9 @@ abstract class Source
             return;
         }
 
-        assert(is_array($data));
-        assert(array_key_exists('callback', $data));
-        assert(array_key_exists('state', $data));
+        Assert::isArray($data);
+        Assert::keyExists($data, 'callback');
+        Assert::keyExists($data, 'state');
 
         $callback = $data['callback'];
         $callbackState = $data['state'];
@@ -499,9 +488,9 @@ abstract class Source
      *
      * @return array The id of all authentication sources.
      */
-    public static function getSources()
+    public static function getSources(): array
     {
-        $config = \SimpleSAML\Configuration::getOptionalConfig('authsources.php');
+        $config = Configuration::getOptionalConfig('authsources.php');
 
         return $config->getOptions();
     }
@@ -516,11 +505,11 @@ abstract class Source
      * @throws \Exception If the first element of $source is not an identifier for the auth source.
      * @return void
      */
-    protected static function validateSource($source, $id)
+    protected static function validateSource(array $source, string $id): void
     {
         if (!array_key_exists(0, $source) || !is_string($source[0])) {
             throw new \Exception(
-                'Invalid authentication source \''.$id.
+                'Invalid authentication source \'' . $id .
                 '\': First element must be a string which identifies the authentication source.'
             );
         }

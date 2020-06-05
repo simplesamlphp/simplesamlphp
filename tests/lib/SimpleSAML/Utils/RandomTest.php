@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
@@ -14,8 +16,9 @@ class RandomTest extends TestCase
      * Test for SimpleSAML\Utils\Random::generateID().
      *
      * @covers SimpleSAML\Utils\Random::generateID
+     * @return void
      */
-    public function testGenerateID()
+    public function testGenerateID(): void
     {
         // check that it always starts with an underscore
         $this->assertStringStartsWith('_', Random::generateID());

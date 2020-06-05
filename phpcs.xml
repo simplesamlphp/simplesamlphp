@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="SimpleSAMLphp ruleset">
+    <config name="ignore_warnings_on_exit" value="1"/>
+
+    <description>
+        By default it is less stringent about long lines than other coding standards
+    </description>
+
+    <file>bin</file>
+    <file>config-templates</file>
+    <file>lib</file>
+    <file>metadata-templates</file>
+    <file>modules</file>
+    <file>src</file>
+    <file>tests</file>
+    <file>www</file>
+    <exclude-pattern>modules/adfs/*</exclude-pattern>
+
+    <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
+    <rule ref="PSR12"/>
+
+    <!-- Lines can be a little bit longer before they break the build -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="130"/>
+        </properties>
+
+        <!-- Exclude files with long lines that we cannot immediately fix -->
+        <exclude-pattern>tests/lib/SimpleSAML/Metadata/MetaDataStorageSourceTest.php</exclude-pattern>
+        <exclude-pattern>tests/lib/SimpleSAML/Metadata/SAMLParserTest.php</exclude-pattern>
+    </rule>
+
+    <!-- Ignore files with side effects that we cannot fix -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>bin/*</exclude-pattern>
+        <exclude-pattern>lib/_autoload_modules.php</exclude-pattern>
+        <exclude-pattern>tests/_autoload_modules.php</exclude-pattern>
+        <exclude-pattern>www/_include.php</exclude-pattern>
+    </rule>
+</ruleset>
+

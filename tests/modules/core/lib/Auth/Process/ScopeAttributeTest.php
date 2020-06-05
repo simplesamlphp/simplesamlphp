@@ -1,32 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\ScopeAttribute;
 
 /**
  * Test for the core:ScopeAttribute filter.
  */
 class ScopeAttributeTest extends TestCase
 {
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, null);
+        $filter = new ScopeAttribute($config, null);
         $filter->process($request);
         return $request;
     }
 
-    /*
+
+    /**
      * Test the most basic functionality.
+     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -45,10 +50,12 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@example.com']);
     }
 
-    /*
+
+    /**
      * If target attribute already set, module must add, not overwrite.
+     * @return void
      */
-    public function testNoOverwrite()
+    public function testNoOverwrite(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -70,10 +77,12 @@ class ScopeAttributeTest extends TestCase
         );
     }
 
-    /*
+
+    /**
      * If same scope already set, module must do nothing, not duplicate value.
+     * @return void
      */
-    public function testNoDuplication()
+    public function testNoDuplication(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -93,10 +102,11 @@ class ScopeAttributeTest extends TestCase
     }
 
 
-    /*
+    /**
      * If source attribute not set, nothing happens
+     * @return void
      */
-    public function testNoSourceAttribute()
+    public function testNoSourceAttribute(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -114,10 +124,12 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
+
+    /**
      * If scope attribute not set, nothing happens
+     * @return void
      */
-    public function testNoScopeAttribute()
+    public function testNoScopeAttribute(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -135,10 +147,12 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
+
+    /**
      * When multiple @ signs in attribute, will use the first one.
+     * @return void
      */
-    public function testMultiAt()
+    public function testMultiAt(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -156,10 +170,12 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@doe@example.com']);
     }
 
-    /*
+
+    /**
      * When multiple values in source attribute, should render multiple targets.
+     * @return void
      */
-    public function testMultivaluedSource()
+    public function testMultivaluedSource(): void
     {
         $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
@@ -180,10 +196,12 @@ class ScopeAttributeTest extends TestCase
         );
     }
 
-    /*
+
+    /**
      * When the source attribute doesn't have a scope, the entire value is used.
+     * @return void
      */
-    public function testNoAt()
+    public function testNoAt(): void
     {
         $config = [
             'scopeAttribute' => 'schacHomeOrganization',
@@ -201,10 +219,12 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['student@example.org']);
     }
 
-    /*
+
+    /**
      * When the target attribute exists and onlyIfEmpty is set
+     * @return void
      */
-    public function testOnlyIfEmpty()
+    public function testOnlyIfEmpty(): void
     {
         $config = [
             'scopeAttribute' => 'schacHomeOrganization',

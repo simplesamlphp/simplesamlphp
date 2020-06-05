@@ -27,9 +27,6 @@ msgstr "brauseri edasi-tagasi nuppude kasutamisest"
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Ei suudetud leida olemi metaandmeid:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP näide - sisselogimine sinu Shib IdP kaudu"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Nõuanded selle probleemi lahendamiseks:"
 
@@ -70,11 +67,6 @@ msgstr ""
 
 msgid "{core:frontpage:optional}"
 msgstr "Vabatahtlik"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Hostitud Shibboleth 1.3 identiteedipakkuja metaandmed (automaatselt "
-"genereeritud) "
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentatsioon"
@@ -158,11 +150,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Metaandmeid ei leitud"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Hostitud Shibboleth 2.0 identiteedipakkuja metaandmed (automaatselt "
-"genereeritud) "
 
 msgid "{core:frontpage:required}"
 msgstr "Nõutav"

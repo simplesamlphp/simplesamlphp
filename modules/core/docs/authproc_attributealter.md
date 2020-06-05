@@ -31,12 +31,12 @@ Parameters
     This parameter is OPTIONAL, and if not set, `subject` is used as `target`.
 
 `%replace`
-:   Indicates that the whole value of the attribute should be replaced, instead of just the match.
-    This parameter is OPTIONAL.
+:   Indicates that the whole value of the attribute should be replaced if there is a match,
+    instead of just the match. If there's no match, the value will not be changed. This parameter is OPTIONAL.
 
 `%remove`
-:   Indicates that the whole value of the attribute should be removed completely. If no other values exist, the
-    attribute will be removed completely.
+:   Indicates that the whole value of the attribute should be removed completely if there is a match.
+    If no other values exist, the attribute will be removed completely.
     This parameter is OPTIONAL.
     
 Examples
@@ -44,88 +44,92 @@ Examples
 
 Change the domain on the `mail` attribute (when both the new and old domain are known):
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'mail',
         'pattern' => '/olddomain.com/',
         'replacement' => 'newdomain.com',
-    ),
+    ],
 
 Change the domain on the `mail` attribute (when new domain is known):
 
-	10 => array(
-		'class' => 'core:AttributeAlter',
-		'subject' => 'mail',
-		'pattern' => '/(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/',
-		'replacement' => 'newdomain.com',
-	),
+    10 => [
+        'class' => 'core:AttributeAlter',
+        'subject' => 'mail',
+        'pattern' => '/(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/',
+        'replacement' => 'newdomain.com',
+    ],
     
-Set the eduPersonPrimaryAffiliation based on users distinguishedName:
+Set the eduPersonPrimaryAffiliation based on users' distinguishedName:
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'dn',
         'pattern' => '/OU=Staff/',
         'replacement' => 'staff',
         'target' => 'eduPersonPrimaryAffiliation',
-    ),
+    ],
     
 Normalize the eduPersonPrimaryAffiliation:
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'eduPersonPrimaryAffiliation',
         'pattern' => '/Student in school/',
         'replacement' => 'student',
         '%replace',
-    ),
+    ],
     
-Get the domain of the email and put it in a separate attribute:
+Get the domain of the emailaddress and put it in a separate attribute:
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'mail',
         'pattern' => '/(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/',
         'target' => 'domain',
         '%replace',
-    ),
+    ],
 
-Defaulting an attribute to one value (Add it with the default before altering) unless another attribute meets a condition: 
+Defaulting an attribute to one value (add it with the default before altering)
+unless another attribute meets a condition:
 
-    10 => array ('class' => 'core:AttributeAdd',
-                 'myAttribute' => 'default-value'),
-    11 => array ('class' => 'core:AttributeAlter',
+    10 => [
+        'class' => 'core:AttributeAdd',
+        'myAttribute' => 'default-value'
+    ],
+    11 => [
+        'class' => 'core:AttributeAlter',
         'subject' => 'entitlement',
         'pattern' => '/faculty/',
         'target' => 'myAttribute',
         '%replace',
-       ),
+    ],
  
 Remove internal, private values from eduPersonEntitlement:
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'eduPersonEntitlement',
         'pattern' => '/ldap-admin/',
         '%remove',
-    ),
+    ],
 
 Set a value to be blank (which will be sent as an empty string):
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'cn',
         'pattern' => '/No name/',
         'replacement' => '',
         '%replace',
-    ),
+    ],
 
 Set a value to be NULL (which will be sent as a NULL value):
 
-    10 => array(
+    10 => [
         'class' => 'core:AttributeAlter',
         'subject' => 'telephone',
         'pattern' => '/NULL/',
         'replacement' => null,
         '%replace',
-    ),
+    ],

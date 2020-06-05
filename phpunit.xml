@@ -10,13 +10,13 @@
          bootstrap="./tests/bootstrap.php">
     <testsuites>
         <testsuite name="Unit tests">
-            <directory>./tests/</directory>
+            <directory>./vendor/simplesamlphp/simplesamlphp-test-framework/src</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./lib/</directory>
-            <directory suffix=".php">./modules/consent/lib/</directory>
             <directory suffix=".php">./modules/core/lib/</directory>
             <directory suffix=".php">./modules/saml/lib/</directory>
             <exclude>
@@ -28,7 +28,7 @@
     </filter>
     <logging>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-        <log type="coverage-html" target="build/coverage" title="PHP Coveralls" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-html" target="build/coverage" lowUpperBound="35" highLowerBound="70"/>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 </phpunit>

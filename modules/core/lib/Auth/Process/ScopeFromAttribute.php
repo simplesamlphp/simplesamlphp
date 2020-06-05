@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -41,15 +47,14 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        $cfg = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeFromAttribute');
+        $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
         $this->sourceAttribute = $cfg->getString('sourceAttribute');
-    } // end constructor
+    }
 
 
     /**
@@ -58,10 +63,9 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 
@@ -85,12 +89,12 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
             $attributes[$this->targetAttribute] = [];
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
-            \SimpleSAML\Logger::debug('ScopeFromAttribute: Inserted new attribute '.
-                $this->targetAttribute.', with scope '.$scope);
+            Logger::debug(
+                'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope
+            );
         } else {
-            \SimpleSAML\Logger::warning('ScopeFromAttribute: The configured source attribute '.
-                $this->sourceAttribute.' does not have a scope. Did not add attribute '.
-                    $this->targetAttribute.'.');
+            Logger::warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
+                . ' does not have a scope. Did not add attribute ' . $this->targetAttribute . '.');
         }
-    } // end process
+    }
 }

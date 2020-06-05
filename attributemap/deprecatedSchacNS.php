@@ -32,4 +32,5 @@ $attributemap = [
     SCHAC_NEW_NS.'schacUserPresenceID' => SCHAC_OLD_NS.'schacUserPresenceID',
     SCHAC_NEW_NS.'schacUserPrivateAttribute' => SCHAC_OLD_NS.'schacUserPrivateAttribute',
     SCHAC_NEW_NS.'schacUserStatus' => SCHAC_OLD_NS.'schacUserStatus',
+    SCHAC_NEW_NS.'schacYearOfBirth' => SCHAC_OLD_NS.'schacYearOfBirth',
 ];

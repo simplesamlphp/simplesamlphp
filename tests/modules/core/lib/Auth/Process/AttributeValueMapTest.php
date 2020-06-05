@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
 
@@ -10,7 +13,6 @@ use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
  */
 class AttributeValueMapTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -18,7 +20,7 @@ class AttributeValueMapTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
         $filter = new AttributeValueMap($config, null);
         $filter->process($request);
@@ -31,8 +33,9 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'sourceattribute' => 'memberOf',
@@ -62,8 +65,9 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     * @return void
      */
-    public function testNoDuplicates()
+    public function testNoDuplicates(): void
     {
         $config = [
             'sourceattribute' => 'memberOf',
@@ -94,8 +98,9 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     * @return void
      */
-    public function testReplace()
+    public function testReplace(): void
     {
         $config = [
             'sourceattribute' => 'memberOf',
@@ -127,8 +132,9 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     * @return void
      */
-    public function testKeep()
+    public function testKeep(): void
     {
         $config = [
             'sourceattribute' => 'memberOf',
@@ -160,8 +166,9 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     * @return void
      */
-    public function testUnknownFlag()
+    public function testUnknownFlag(): void
     {
         $config = [
             '%test',
@@ -190,11 +197,11 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
-     *
-     * @expectedException \Exception
+     * @return void
      */
-    public function testMissingSourceAttribute()
+    public function testMissingSourceAttribute(): void
     {
+        $this->expectException(Exception::class);
         $config = [
             'targetattribute' => 'affiliation',
             'values' => [
@@ -217,11 +224,11 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
-     *
-     * @expectedException \Exception
+     * @return void
      */
-    public function testMissingTargetAttribute()
+    public function testMissingTargetAttribute(): void
     {
+        $this->expectException(Exception::class);
         $config = [
             'sourceattribute' => 'memberOf',
             'values' => [

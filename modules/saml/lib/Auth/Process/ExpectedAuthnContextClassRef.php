@@ -1,6 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
+
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Attribute filter to validate AuthnContextClassRef values.
@@ -42,16 +51,15 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the mandatory 'accepted' configuration option is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
         if (empty($config['accepted'])) {
-            \SimpleSAML\Logger::error(
+            Logger::error(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
             );
-            throw new \SimpleSAML\Error\Exception(
+            throw new Error\Exception(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
             );
         }
@@ -64,10 +72,9 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $this->AuthnContextClassRef = $request['saml:sp:State']['saml:sp:AuthnContext'];
 
@@ -90,17 +97,17 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $request
      * @return void
      */
-    protected function unauthorized(&$request)
+    protected function unauthorized(array &$request): void
     {
-        \SimpleSAML\Logger::error(
-            'ExpectedAuthnContextClassRef: Invalid authentication context: '.$this->AuthnContextClassRef.
-            '. Accepted values are: '.var_export($this->accepted, true)
+        Logger::error(
+            'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .
+            '. Accepted values are: ' . var_export($this->accepted, true)
         );
 
-        $id = \SimpleSAML\Auth\State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
-        $url = \SimpleSAML\Module::getModuleURL(
+        $id = Auth\State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
+        $url = Module::getModuleURL(
             'saml/sp/wrong_authncontextclassref.php'
         );
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
+        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

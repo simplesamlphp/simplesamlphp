@@ -12,24 +12,67 @@
 
     {{ attributesHtml|raw }}
 
-    {% if nameidHtml -%}
-    <h2>{{ '{status:subject_header}'|trans }}</h2>
-    {{  nameidHtml|raw }}
-    {%- endif %}
+    {%- if nameid or authData %}
 
-    {% if authData -%}
-    <h2>{% trans %}AuthData{% endtrans %}</h2>
-    <details><summary>{% trans %}Click to view AuthData{% endtrans %}</summary>
-      <pre>{{ authData|json_encode|raw }}</pre>
-    </details>
-    {%- endif %}    
+    <h2>{% trans %}Technical information{% endtrans %}</h2>
+    {% endif %}
+    {%- if nameid %}
 
-    {% if logout -%}
-    <h2>{{ '{status:logout}'|trans }}</h2>
-    <p>{{ logout }}</p> 
-    {%- endif %}
+    <h3>{% trans %}SAML Subject{% endtrans %}</h3>
+      {%  set items = {'NameId' : nameid.value} %}
 
-    {% if logouturl -%}
-    <a href="{{ logouturl }}">{{ '{status:logout}'|trans }}</a>
+      {% if not nameid.value %}
+        {%  set items = items|merge({'NameID' : 'not set'|trans}) %}
+      {% endif %}
+
+      {% if nameid.Format %}
+        {% set items = items|merge({('Format'|trans) : nameid.Format}) %}
+      {% endif %}
+
+      {% if nameid.NameQualifier %}
+        {% set items = items|merge({'NameQualifier' : nameid.NameQualifier}) %}
+      {% endif %}
+
+      {% if nameid.SPNameQualifier %}
+        {% set items = items|merge({'SPNameQualifier' : nameid.SPNameQualifier}) %}
+      {% endif %}
+
+      {% if nameid.SPProvidedID %}
+        {% set items = items|merge({'SPProvidedID' : nameid.SPProvidedID}) %}
+      {%- endif %}
+
+    <table id="table_with_attributes"  class="attributes pure-table pure-table-striped pure-table-attributes"
+           summary="{% trans %}SAML Subject{% endtrans %}">
+      {%- for name, value in items %}
+
+      <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+        <td class="attrname">{{ name }}</td>
+        <td class="attrvalue">{{ value }}</td>
+      </tr>
+      {%- endfor %}
+
+    </table>
+    <br/>
+    {% endif %}
+
+    {% if authData %}
+    <h3>{% trans %}Authentication data{% endtrans %}</h3>
+    <div class="code-box hljs">
+      <div class="pure-button-group top-right-corner">
+        <a class="pure-button copy hljs" data-clipboard-target="#auth-data"
+           title="{% trans %}Copy to clipboard{% endtrans %}"><span class="fa fa-copy"></span></a>
+      </div>
+      <code id="auth-data" class="code-box-content json">
+        {{- authData|json_encode(constant("JSON_PRETTY_PRINT") b-or constant("JSON_UNESCAPED_SLASHES")) }}
+      </code>
+    </div>
+    <br/>
+    {% endif %}
+
+    {%- if logouturl %}
+
+    <div class="center">
+      <a class="pure-button pure-button-red" href="{{ logouturl }}">{{ '{status:logout}'|trans }}</a>
+    </div>
     {%- endif %}
 {% endblock %}

@@ -11,9 +11,12 @@
  * @abstract
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 abstract class SessionHandlerCookie extends SessionHandler
 {
@@ -52,7 +55,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The new session id.
      */
-    public function newSessionId()
+    public function newSessionId(): string
     {
         $this->session_id = self::createSessionID();
         Session::createSession($this->session_id);
@@ -66,7 +69,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
-    public function getCookieSessionId()
+    public function getCookieSessionId(): ?string
     {
         if ($this->session_id === null) {
             if ($this->hasSessionCookie()) {
@@ -75,7 +78,7 @@ abstract class SessionHandlerCookie extends SessionHandler
             }
 
             // check if we have a valid session id
-            if (!self::isValidSessionID($this->session_id)) {
+            if (!is_null($this->session_id) && !self::isValidSessionID($this->session_id)) {
                 // invalid, disregard this session
                 return null;
             }
@@ -90,7 +93,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The session cookie name.
      */
-    public function getSessionCookieName()
+    public function getSessionCookieName(): string
     {
         return $this->cookie_name;
     }
@@ -101,7 +104,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string A random session id.
      */
-    private static function createSessionID()
+    private static function createSessionID(): string
     {
         return bin2hex(openssl_random_pseudo_bytes(16));
     }
@@ -115,12 +118,8 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return boolean True if this session ID is valid, false otherwise.
      */
-    private static function isValidSessionID($session_id)
+    private static function isValidSessionID(string $session_id): bool
     {
-        if (!is_string($session_id)) {
-            return false;
-        }
-
         if (strlen($session_id) != 32) {
             return false;
         }
@@ -140,7 +139,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return boolean True if it was set, false otherwise.
      */
-    public function hasSessionCookie()
+    public function hasSessionCookie(): bool
     {
         return array_key_exists($this->cookie_name, $_COOKIE);
     }
@@ -156,17 +155,14 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void
     {
-        assert(is_string($sessionName));
-        assert(is_string($sessionID) || $sessionID === null);
-
         if ($cookieParams !== null) {
             $params = array_merge($this->getCookieParams(), $cookieParams);
         } else {
             $params = $this->getCookieParams();
         }
 
-        HTTP::setCookie($sessionName, $sessionID, $params, true);
+        Utils\HTTP::setCookie($sessionName, $sessionID, $params, true);
     }
 }

@@ -29,11 +29,6 @@ msgstr "Usando los botones atrás y adelante de su navegador web."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Fue imposible localizar los metadatos para la entidad:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr ""
-"Ejemplo de SP empleando Shibboleth 1.3 - Prueba a acceder empleando tu "
-"IdP Shibboleth"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Sugerencias para resolver este problema"
 
@@ -72,9 +67,6 @@ msgstr "Metadatos alojados del IdP SAML 2.0 (generados automáticamente)"
 
 msgid "{core:frontpage:optional}"
 msgstr "Opcional"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr "Metadatos alojados del SP Shibooleth 1.3 (generados automáticamente)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Documentaci&oacute;n"
@@ -140,7 +132,7 @@ msgstr "Borrar mis opciones de IdP en los servicios de descubrimiento de IdP"
 msgid "{core:frontpage:warnings_outdated}"
 msgstr ""
 "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por "
-"favor, actualice a la <a href=\"%LATEST_URL%\">&uacute;ltima "
+"favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima "
 "versi&oacute;n</a> lo antes posible."
 
 msgid "{core:frontpage:loggedin_as_admin}"
@@ -176,9 +168,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Metadatos no encontrados"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr "Metadatos alojados del IdP Shibooleth 1.3 (generados automáticamente)"
 
 msgid "{core:frontpage:required}"
 msgstr "Necesario"
@@ -352,10 +341,10 @@ msgstr "Usando los botones atrás y adelante de su navegador web."
 
 msgid ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"
-" href=\"%LATEST_URL%\">the latest version</a> as soon as possible."
+" href=\"https://simplesamlphp.org/download\">the latest version</a> as soon as possible."
 msgstr ""
 "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por "
-"favor, actualice a la <a href=\"%LATEST_URL%\">&uacute;ltima "
+"favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima "
 "versi&oacute;n</a> lo antes posible."
 
 msgid "Metadata not found"

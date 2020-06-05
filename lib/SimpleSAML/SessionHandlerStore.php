@@ -1,13 +1,16 @@
 <?php
 
-
 /**
  * Session storage in the data store.
  *
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
+
+use Webmozart\Assert\Assert;
 
 class SessionHandlerStore extends SessionHandlerCookie
 {
@@ -39,10 +42,8 @@ class SessionHandlerStore extends SessionHandlerCookie
      *
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
-    public function loadSession($sessionId = null)
+    public function loadSession(?string $sessionId): ?Session
     {
-        assert(is_string($sessionId) || $sessionId === null);
-
         if ($sessionId === null) {
             $sessionId = $this->getCookieSessionId();
             if ($sessionId === null) {
@@ -53,7 +54,7 @@ class SessionHandlerStore extends SessionHandlerCookie
 
         $session = $this->store->get('session', $sessionId);
         if ($session !== null) {
-            assert($session instanceof Session);
+            Assert::isInstanceOf($session, Session::class);
             return $session;
         }
 
@@ -67,8 +68,14 @@ class SessionHandlerStore extends SessionHandlerCookie
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    public function saveSession(Session $session)
+    public function saveSession(Session $session): void
     {
+        if ($session->isTransient()) {
+            // transient session, nothing to save
+            return;
+        }
+
+        /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
         $config = Configuration::getInstance();

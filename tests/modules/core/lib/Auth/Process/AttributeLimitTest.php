@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
  * Test for the core:AttributeLimit filter.
@@ -10,23 +15,32 @@ use PHPUnit\Framework\TestCase;
 class AttributeLimitTest extends TestCase
 {
     /**
+     * setUpBeforeClass a request that will be used for the following tests.
+     * note the above tests don't use self::$request for processFilter input.
+     */
+    protected static $request;
+
+
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, null);
+        $filter = new AttributeLimit($config, null);
         $filter->process($request);
         return $request;
     }
 
+
     /**
      * Test reading IdP Attributes.
+     * @return void
      */
-    public function testIdPAttrs()
+    public function testIdPAttrs(): void
     {
         $config = [
             'cn', 'mail'
@@ -68,10 +82,12 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Tests when no attributes are in metadata.
+     * @return void
      */
-    public function testNULLMetadataAttrs()
+    public function testNULLMetadataAttrs(): void
     {
         $config = [
             'cn', 'mail'
@@ -123,13 +139,11 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('mail', $attributes);
     }
 
-    /**
-     * setUpBeforeClass a request that will be used for the following tests.
-     * note the above tests don't use self::$request for processFilter input.
-     */
-    protected static $request;
 
-    public static function setUpBeforeClass()
+    /**
+     * @return void
+     */
+    public static function setUpBeforeClass(): void
     {
         self::$request = [
             'Attributes' => [
@@ -146,10 +160,12 @@ class AttributeLimitTest extends TestCase
         ];
     }
 
+
     /**
      * Test the most basic functionality.
+     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'cn', 'mail'
@@ -162,10 +178,12 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Test defaults with metadata available.
+     * @return void
      */
-    public function testDefaultWithMetadata()
+    public function testDefaultWithMetadata(): void
     {
         $config = [
             'default' => true,
@@ -178,10 +196,12 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Test defaults with attributes and metadata
+     * @return void
      */
-    public function testDefaultWithAttrs()
+    public function testDefaultWithAttrs(): void
     {
         $config = [
             'default' => true,
@@ -197,13 +217,14 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
     }
 
+
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
+     * @return void
      */
-    public function testInvalidConfig()
+    public function testInvalidConfig(): void
     {
+        $this->expectException(Exception::class);
         $config = [
             'invalidArg' => true,
         ];
@@ -211,13 +232,14 @@ class AttributeLimitTest extends TestCase
         self::processFilter($config, self::$request);
     }
 
+
     /**
      * Test for invalid attribute name
-     *
-     * @expectedException Exception
+     * @return void
      */
-    public function testInvalidAttributeName()
+    public function testInvalidAttributeName(): void
     {
+        $this->expectException(Exception::class);
         $config = [
             null
         ];
@@ -228,8 +250,9 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
+     * @return void
      */
-    public function testMatchAttributeValues()
+    public function testMatchAttributeValues(): void
     {
         $config = [
             'eduPersonAffiliation' => ['member']
@@ -266,7 +289,11 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
-    public function testBadOptionsNotTreatedAsValidValues()
+
+    /**
+     * @return void
+     */
+    public function testBadOptionsNotTreatedAsValidValues(): void
     {
         // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
         $config = [
@@ -278,11 +305,13 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
      * php and matched against an attribute value of '1'
+     * @return void
      */
-    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue()
+    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue(): void
     {
         $config = [
             'someAttribute' => ['ignoreCase' => true, 'someValue']
@@ -299,10 +328,12 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Test for attribute value matching ignore case
+     * @return void
      */
-    public function testMatchAttributeValuesIgnoreCase()
+    public function testMatchAttributeValuesIgnoreCase(): void
     {
         $config = [
             'eduPersonAffiliation' => ['ignoreCase' => true, 'meMber']
@@ -339,13 +370,15 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Test for attribute value matching
+     * @return void
      */
-    public function testMatchAttributeValuesRegex()
+    public function testMatchAttributeValuesRegex(): void
     {
         // SSP Logger requires a configuration to be set.
-        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $state = self::$request;
         $state['Attributes']['eduPersonEntitlement'] = [
             'urn:mace:example.terena.org:tcs:personal-user',
@@ -436,16 +469,17 @@ class AttributeLimitTest extends TestCase
         );
     }
 
+
     /**
      * Test for allowed attributes not an array.
      *
      * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
-     *
-     * @expectedException Exception
+     * @return void
      */
-    public function testMatchAttributeValuesNotArray()
+    public function testMatchAttributeValuesNotArray(): void
     {
+        $this->expectException(Exception::class);
         $config = [
         ];
 
@@ -468,10 +502,12 @@ class AttributeLimitTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test attributes not intersecting
+     * @return void
      */
-    public function testNoIntersection()
+    public function testNoIntersection(): void
     {
         $config = [
             'default' => true,

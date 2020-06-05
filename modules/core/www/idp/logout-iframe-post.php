@@ -51,6 +51,7 @@ if ($encryptNameId) {
 
 $bindings = [\SAML2\Constants::BINDING_HTTP_POST];
 
+/** @var array $dst */
 $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
 $binding = \SAML2\Binding::getBinding($dst['Binding']);
 $lr->setDestination($dst['Location']);

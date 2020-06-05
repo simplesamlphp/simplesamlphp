@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Stats\Output;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 /**
  * Statistics logger that writes to the default logging handler.
@@ -22,12 +27,12 @@ class Log extends \SimpleSAML\Stats\Output
      * @param \SimpleSAML\Configuration $config  The configuration for this output.
      * @throws \Exception
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         $logLevel = $config->getString('level', 'notice');
-        $this->logger = ['\SimpleSAML\Logger', $logLevel];
+        $this->logger = [Logger::class, $logLevel];
         if (!is_callable($this->logger)) {
-            throw new \Exception('Invalid log level: '.var_export($logLevel, true));
+            throw new \Exception('Invalid log level: ' . var_export($logLevel, true));
         }
     }
 
@@ -38,9 +43,9 @@ class Log extends \SimpleSAML\Stats\Output
      * @param array $data  The event
      * @return void
      */
-    public function emit(array $data)
+    public function emit(array $data): void
     {
         $str_data = json_encode($data);
-        call_user_func($this->logger, 'EVENT '.$str_data);
+        call_user_func($this->logger, 'EVENT ' . $str_data);
     }
 }
