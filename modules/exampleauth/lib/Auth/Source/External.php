@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Example external authentication source.
@@ -15,7 +18,7 @@ use SimpleSAML\Utils;
  *
  * To adapt this to your own web site, you should:
  * 1. Create your own module directory.
- * 2. Add a file "default-enable" to that directory.
+ * 2. Enable to module in the config by adding '<module-dir>' => true to the $config['module.enable'] array.
  * 3. Copy this file and modules/exampleauth/www/resume.php to their corresponding
  *    location in the new module.
  * 4. Replace all occurrences of "exampleauth" in this file and in resume.php with the name of your module.
@@ -32,7 +35,7 @@ class External extends \SimpleSAML\Auth\Source
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
+    public const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
 
 
     /**
@@ -41,11 +44,8 @@ class External extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -58,7 +58,7 @@ class External extends \SimpleSAML\Auth\Source
      *
      * @return array|null  The user's attributes, or NULL if the user isn't authenticated.
      */
-    private function getUser()
+    private function getUser(): ?array
     {
         /*
          * In this example we assume that the attributes are
@@ -104,10 +104,8 @@ class External extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
-
         $attributes = $this->getUser();
         if ($attributes !== null) {
             /*
@@ -177,7 +175,7 @@ class External extends \SimpleSAML\Auth\Source
         /*
          * The redirect function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -191,7 +189,7 @@ class External extends \SimpleSAML\Auth\Source
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume()
+    public static function resume(): void
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
@@ -257,7 +255,7 @@ class External extends \SimpleSAML\Auth\Source
         /*
          * The completeAuth-function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -268,10 +266,8 @@ class External extends \SimpleSAML\Auth\Source
      * @param array &$state  The logout state array.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state): void
     {
-        assert(is_array($state));
-
         if (!session_id()) {
             // session_start not called before. Do it here
             session_start();

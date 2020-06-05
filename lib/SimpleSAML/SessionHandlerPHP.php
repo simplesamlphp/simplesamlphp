@@ -9,10 +9,13 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 class SessionHandlerPHP extends SessionHandler
 {
@@ -78,7 +81,7 @@ class SessionHandlerPHP extends SessionHandler
 
         if (!headers_sent()) {
             if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-                /** @psalm-suppress InvalidArgument  This annotation may be removed in Psalm >=3.0.15 */
+                /** @psalm-suppress InvalidArgument */
                 session_set_cookie_params([
                     'lifetime' => $params['lifetime'],
                     'path' => $params['path'],
@@ -88,14 +91,10 @@ class SessionHandlerPHP extends SessionHandler
                     'samesite' => $params['samesite'],
                 ]);
             } else {
-                /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
-                if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
-                    $params['path'] .= '; SameSite=' . $params['samesite'];
-                }
                 session_set_cookie_params(
                     $params['lifetime'],
                     $params['path'],
-                    $params['domain'],
+                    $params['domain'] ?? '',
                     $params['secure'],
                     $params['httponly']
                 );
@@ -121,7 +120,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @return void
      */
-    public function restorePrevious()
+    public function restorePrevious(): void
     {
         if (empty($this->previous_session)) {
             return; // nothing to do here
@@ -160,22 +159,19 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @return string The new session id.
      */
-    public function newSessionId()
+    public function newSessionId(): string
     {
         // generate new (secure) session id
-        if (function_exists('session_create_id')) {
-            $sid_length = (int) ini_get('session.sid_length');
-            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        $sid_length = (int) ini_get('session.sid_length');
+        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
-            if (($sid_length * $sid_bits_per_char) < 128) {
-                Logger::warning("Unsafe defaults used for sessionId generation!");
-            }
-            /**
-             * This annotation may be removed as soon as we start using vimeo/psalm 3.x
-             * @psalm-suppress TooFewArguments
-             */
-            $sessionId = session_create_id();
-        } else {
+        if (($sid_length * $sid_bits_per_char) < 128) {
+            Logger::warning("Unsafe defaults used for sessionId generation!");
+        }
+        $sessionId = session_create_id();
+
+        if (!$sessionId) {
+            Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
         Session::createSession($sessionId);
@@ -189,7 +185,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @throws \SimpleSAML\Error\Exception If the cookie is marked as secure but we are not using HTTPS.
      */
-    public function getCookieSessionId()
+    public function getCookieSessionId(): ?string
     {
         if (!$this->hasSessionCookie()) {
             return null; // there's no session cookie, can't return ID
@@ -219,7 +215,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @return string The session cookie name.
      */
-    public function getSessionCookieName()
+    public function getSessionCookieName(): string
     {
         return $this->cookie_name;
     }
@@ -231,7 +227,7 @@ class SessionHandlerPHP extends SessionHandler
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    public function saveSession(\SimpleSAML\Session $session)
+    public function saveSession(Session $session): void
     {
         $_SESSION['SimpleSAMLphp_SESSION'] = serialize($session);
     }
@@ -247,10 +243,8 @@ class SessionHandlerPHP extends SessionHandler
      * @throws \SimpleSAML\Error\Exception If it wasn't possible to disable session cookies or we are trying to load a
      * PHP session with a specific identifier and it doesn't match with the current session identifier.
      */
-    public function loadSession($sessionId = null)
+    public function loadSession(string $sessionId = null): ?Session
     {
-        assert(is_string($sessionId) || $sessionId === null);
-
         if ($sessionId !== null) {
             if (session_id() === '' && !(version_compare(PHP_VERSION, '7.2', 'ge') && headers_sent())) {
                 // session not initiated with getCookieSessionId(), start session without setting cookie
@@ -273,7 +267,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         $session = $_SESSION['SimpleSAMLphp_SESSION'];
-        assert(is_string($session));
+        Assert::string($session);
 
         $session = unserialize($session);
 
@@ -288,7 +282,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @return boolean True if it was set, false otherwise.
      */
-    public function hasSessionCookie()
+    public function hasSessionCookie(): bool
     {
         return array_key_exists($this->cookie_name, $_COOKIE);
     }
@@ -305,7 +299,7 @@ class SessionHandlerPHP extends SessionHandler
      * @throws \SimpleSAML\Error\Exception If both 'session.phpsession.limitedpath' and 'session.cookie.path' options
      * are set at the same time in the configuration.
      */
-    public function getCookieParams()
+    public function getCookieParams(): array
     {
         $config = Configuration::getInstance();
 
@@ -324,6 +318,13 @@ class SessionHandlerPHP extends SessionHandler
 
         $ret['httponly'] = $config->getBoolean('session.phpsession.httponly', true);
 
+        if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+            // in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute
+            if ($ret['samesite'] !== null and !preg_match('/;\s+samesite/i', $ret['path'])) {
+                $ret['path'] .= '; SameSite=' . $ret['samesite'];
+            }
+        }
+
         return $ret;
     }
 
@@ -338,7 +339,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void
     {
         if ($cookieParams === null) {
             $cookieParams = session_get_cookie_params();
@@ -364,13 +365,13 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-            /** @psalm-suppress InvalidArgument  This annotation may be removed in Psalm >=3.0.15 */
+            /** @psalm-suppress InvalidArgument */
             session_set_cookie_params($cookieParams);
         } else {
             session_set_cookie_params(
                 $cookieParams['lifetime'],
                 $cookieParams['path'],
-                $cookieParams['domain'],
+                $cookieParams['domain'] ?? '',
                 $cookieParams['secure'],
                 $cookieParams['httponly']
             );

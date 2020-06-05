@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
+use Webmozart\Assert\Assert;
 
 /**
  * Attribute filter for renaming attributes.
@@ -34,11 +37,10 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \Exception If the configuration of the filter is wrong.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
         $mapFiles = [];
 
         foreach ($config as $origName => $newName) {
@@ -79,7 +81,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @throws \Exception If the filter could not load the requested attribute map file.
      * @return void
      */
-    private function loadMapFile($fileName)
+    private function loadMapFile(string $fileName): void
     {
         $config = Configuration::getInstance();
 
@@ -99,6 +101,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
             throw new \Exception('Could not find attribute map file: ' . $filePath);
         }
 
+        /** @psalm-var mixed|null $attributemap */
         $attributemap = null;
         include($filePath);
         if (!is_array($attributemap)) {
@@ -119,10 +122,9 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request.
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $mapped_attributes = [];
 

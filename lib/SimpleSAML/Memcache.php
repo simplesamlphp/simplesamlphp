@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
 use SimpleSAML\Utils;
@@ -26,17 +28,9 @@ class Memcache
     /**
      * Cache of the memcache servers we are using.
      *
-     * @var \Memcache[]|\Memcached[]|null
+     * @var \Memcached[]|null
      */
     private static $serverGroups = null;
-
-
-    /**
-     * The flavor of memcache PHP extension we are using.
-     *
-     * @var string
-     */
-    private static $extension = '';
 
 
     /**
@@ -46,7 +40,7 @@ class Memcache
      *
      * @return mixed The data stored with the given key, or null if no data matching the key was found.
      */
-    public static function get($key)
+    public static function get(string $key)
     {
         Logger::debug("loading key $key from memcache");
 
@@ -151,7 +145,7 @@ class Memcache
      * @param integer|null $expire The expiration timestamp of the data.
      * @return void
      */
-    public static function set($key, $value, $expire = null)
+    public static function set(string $key, $value, ?int $expire = null): void
     {
         Logger::debug("saving key $key to memcache");
         $savedInfo = [
@@ -167,11 +161,7 @@ class Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            if (self::$extension === \Memcached::class) {
-                $server->set($key, $savedInfoSerialized, $expire);
-            } else {
-                $server->set($key, $savedInfoSerialized, 0, $expire);
-            }
+            $server->set($key, $savedInfoSerialized, $expire);
         }
     }
 
@@ -182,9 +172,8 @@ class Memcache
      * @param string $key The key we should delete.
      * @return void
      */
-    public static function delete($key)
+    public static function delete(string $key): void
     {
-        assert(is_string($key));
         Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
@@ -212,13 +201,13 @@ class Memcache
      *    The timeout for contacting this server, in seconds.
      *    The default value is 3 seconds.
      *
-     * @param \Memcache|\Memcached $memcache The Memcache object we should add this server to.
+     * @param \Memcached $memcache The Memcache object we should add this server to.
      * @param array    $server An associative array with the configuration options for the server to add.
      * @return void
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */
-    private static function addMemcacheServer($memcache, $server)
+    private static function addMemcacheServer(\Memcached $memcache, array $server): void
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {
@@ -259,42 +248,8 @@ class Memcache
             }
         }
 
-        // check if the user has specified a weight for this server
-        if (array_key_exists('weight', $server)) {
-            // get the weight and validate it
-            $weight = (int) $server['weight'];
-            if ($weight <= 0) {
-                throw new \Exception(
-                    "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default weight of 1
-            $weight = 1;
-        }
-
-        // check if the user has specified a timeout for this server
-        if (array_key_exists('timeout', $server)) {
-            // get the timeout and validate it
-            $timeout = (int) $server['timeout'];
-            if ($timeout <= 0) {
-                throw new \Exception(
-                    "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default timeout of 3 seconds
-            $timeout = 3;
-        }
-
         // add this server to the Memcache object
-        if ($memcache instanceof \Memcached) {
-            $memcache->addServer($hostname, $port);
-        } else {
-            $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
-        }
+        $memcache->addServer($hostname, $port);
     }
 
 
@@ -303,30 +258,29 @@ class Memcache
      * creates a Memcache object from the servers in the group.
      *
      * @param array $group Array of servers which should be created as a group.
+     * @param string $index The index for this group. Specify if persistent connections are desired.
      *
-     * @return \Memcache|\Memcached A Memcache object of the servers in the group
+     * @return \Memcached A Memcache object of the servers in the group
      *
      * @throws \Exception If the servers configuration is invalid.
      */
-    private static function loadMemcacheServerGroup(array $group)
+    private static function loadMemcacheServerGroup(array $group, $index = null)
     {
-        if (class_exists(\Memcached::class)) {
-            $memcache = new \Memcached();
-            self::$extension = \Memcached::class;
-        } elseif (class_exists(\Memcache::class)) {
-            $memcache = new \Memcache();
-            self::$extension = \Memcache::class;
+        if (is_string($index)) {
+            $memcache = new \Memcached($index);
         } else {
-            throw new \Exception(
-                'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
-            );
+            $memcache = new \Memcached();
+        }
+        if (array_key_exists('options', $group)) {
+            $memcache->setOptions($group['options']);
+            unset($group['options']);
         }
 
-        if (self::$extension === \Memcache::class) {
-            Logger::warning(
-                "The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension."
-            );
+        $servers = $memcache->getServerList();
+        if (count($servers) === count($group) && !$memcache->isPristine()) {
+            return $memcache;
         }
+        $memcache->resetServerList();
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
@@ -351,7 +305,7 @@ class Memcache
             self::addMemcacheServer($memcache, $server);
         }
 
-        /** @var \Memcache|\Memcached */
+        /** @var \Memcached */
         return $memcache;
     }
 
@@ -360,11 +314,11 @@ class Memcache
      * This function gets a list of all configured memcache servers. This list is initialized based
      * on the content of 'memcache_store.servers' in the configuration.
      *
-     * @return \Memcache[]|\Memcached[] Array with Memcache objects.
+     * @return \Memcached[] Array with Memcache objects.
      *
      * @throws \Exception If the servers configuration is invalid.
      */
-    private static function getMemcacheServers()
+    private static function getMemcacheServers(): array
     {
         // check if we have loaded the servers already
         if (self::$serverGroups != null) {
@@ -382,15 +336,6 @@ class Memcache
 
         // iterate over all the groups in the 'memcache_store.servers' configuration option
         foreach ($groups as $index => $group) {
-            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
-            if (!is_int($index)) {
-                throw new \Exception(
-                    "Invalid index on element in the 'memcache_store.servers'" .
-                    ' configuration option. Perhaps you have forgotten to add an array(...)' .
-                    ' around one of the server groups? The invalid index was: ' . $index
-                );
-            }
-
             /*
              * Make sure that the group is an array. Each group is an array of servers. Each server is
              * an array of name => value pairs for that server.
@@ -403,8 +348,13 @@ class Memcache
                 );
             }
 
+            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
+            if (is_int($index)) {
+                $index = null;
+            }
+
             // parse and add this group to the server group list
-            self::$serverGroups[] = self::loadMemcacheServerGroup($group);
+            self::$serverGroups[] = self::loadMemcacheServerGroup($group, $index);
         }
 
         return self::$serverGroups;
@@ -419,15 +369,14 @@ class Memcache
      * set in the configuration, then we will use a default value of 0.
      * 0 means that the item will never expire.
      *
-     * @return integer The value which should be passed in the set(...) calls to the memcache objects.
+     * @return int The value which should be passed in the set(...) calls to the memcache objects.
      *
      * @throws \Exception If the option 'memcache_store.expires' has a negative value.
      */
-    private static function getExpireTime()
+    private static function getExpireTime(): int
     {
         // get the configuration instance
         $config = Configuration::getInstance();
-        assert($config instanceof Configuration);
 
         // get the expire-value from the configuration
         $expire = $config->getInteger('memcache_store.expires', 0);
@@ -460,18 +409,19 @@ class Memcache
      *
      * @throws \Exception If memcache server status couldn't be retrieved.
      */
-    public static function getStats()
+    public static function getStats(): array
     {
         $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
+            $stats = $sg->getStats();
             foreach ($stats as $server => $data) {
                 if ($data === false) {
                     throw new \Exception('Failed to get memcache server status.');
                 }
             }
 
+            /** @psalm-var array $stats */
             $stats = Utils\Arrays::transpose($stats);
 
             $ret = array_merge_recursive($ret, $stats);
@@ -487,12 +437,12 @@ class Memcache
      *
      * @return array An array with the extended stats output for each server group.
      */
-    public static function getRawStats()
+    public static function getRawStats(): array
     {
         $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
+            $stats = $sg->getStats();
             $ret[] = $stats;
         }
 

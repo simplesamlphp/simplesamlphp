@@ -6,7 +6,7 @@
  * @param \SimpleSAML\XHTML\Template &$template The template that we should alter in this hook.
  * @return void
  */
-function cron_hook_configpage(\SimpleSAML\XHTML\Template &$template)
+function cron_hook_configpage(\SimpleSAML\XHTML\Template &$template): void
 {
     $template->data['links']['cron'] = [
         'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),

@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Give a warning to the user if we receive multiple requests in a short time.
@@ -23,10 +26,8 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $state  The state of the response.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             /*
              * No timestamp from the previous SSO to this SP. This is the first

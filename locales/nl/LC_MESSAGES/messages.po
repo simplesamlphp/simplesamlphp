@@ -120,9 +120,6 @@ msgstr ""
 "De Identity Provider antwoordde met een fout. (De statuscode in de SAML "
 "Response was niet success)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en "
@@ -228,9 +225,6 @@ msgstr "Uitloggen..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Gebruikersnaam of wachtwoord niet bekend."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remote)"
 
 msgid "{login:remember_username}"
 msgstr "Onthoud gebruikersnaam"
@@ -478,9 +472,6 @@ msgstr "Bericht"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Foutmelding ontvangen van Identity Provider"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 
@@ -557,9 +548,6 @@ msgstr "Pagina niet gevonden"
 msgid "{logout:logged_out_text}"
 msgstr "U bent uitgelogd. Dank u voor het gebruiken van deze dienst."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download de X509-certificaten in PEM-formaat."
 
@@ -593,8 +581,8 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS IdP Metadata"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted)"
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Voorkeurstaal"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Je hebt geen geldig certificaat meegegeven"
@@ -631,9 +619,6 @@ msgstr "Geen certificaat"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout informatie is verloren gegaan"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remote)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp is niet goed geconfigureerd."

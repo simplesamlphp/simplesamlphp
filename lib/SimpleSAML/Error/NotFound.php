@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Exception which will show a 404 Not Found error page.
@@ -27,10 +30,8 @@ class NotFound extends Error
      *
      * @param string $reason  Optional description of why the given page could not be found.
      */
-    public function __construct($reason = null)
+    public function __construct(?string $reason = null)
     {
-        assert($reason === null || is_string($reason));
-
         $url = Utils\HTTP::getSelfURL();
 
         if ($reason === null) {
@@ -51,7 +52,7 @@ class NotFound extends Error
      *
      * @return string|null  The reason why the page could not be found.
      */
-    public function getReason()
+    public function getReason(): ?string
     {
         return $this->reason;
     }
@@ -63,9 +64,9 @@ class NotFound extends Error
      *
      * @param bool $anonymize Whether to anonymize the trace or not.
      *
-     * @return array
+     * @return string[]
      */
-    public function format($anonymize = false)
+    public function format(bool $anonymize = false): array
     {
         return [
             $this->getClass() . ': ' . $this->getMessage(),

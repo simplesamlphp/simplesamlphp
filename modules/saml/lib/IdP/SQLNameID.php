@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\IdP;
 
 use PDO;
+use PDOStatement;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
 use SimpleSAML\Database;
 use SimpleSAML\Configuration;
+use Webmozart\Assert\Assert;
 
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
@@ -15,9 +19,9 @@ use SimpleSAML\Configuration;
  */
 class SQLNameID
 {
-    const TABLE_VERSION = 1;
-    const DEFAULT_TABLE_PREFIX = '';
-    const TABLE_SUFFIX = '_saml_PersistentNameID';
+    public const TABLE_VERSION = 1;
+    public const DEFAULT_TABLE_PREFIX = '';
+    public const TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
     /**
@@ -26,7 +30,7 @@ class SQLNameID
      * @param array $config
      * @return \PDOStatement object
      */
-    private static function read($query, array $params = [], array $config = [])
+    private static function read(string $query, array $params = [], array $config = []): PDOStatement
     {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
@@ -46,7 +50,7 @@ class SQLNameID
      * @param array $config
      * @return int|false The number of rows affected by the query or false on error.
      */
-    private static function write($query, array $params = [], array $config = [])
+    private static function write(string $query, array $params = [], array $config = [])
     {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
@@ -67,7 +71,7 @@ class SQLNameID
      * @param array $config
      * @return string
      */
-    private static function tableName(array $config = [])
+    private static function tableName(array $config = []): string
     {
         $store = empty($config) ? self::getStore() : null;
         $prefix = $store === null ? self::DEFAULT_TABLE_PREFIX : $store->prefix;
@@ -102,7 +106,7 @@ class SQLNameID
      * @param array $config
      * @return \PDOStatement
      */
-    private static function createAndRead($query, array $params = [], array $config = [])
+    private static function createAndRead(string $query, array $params = [], array $config = []): PDOStatement
     {
         self::create($config);
         return self::read($query, $params, $config);
@@ -115,7 +119,7 @@ class SQLNameID
      * @param array $config
      * @return int|false The number of rows affected by the query or false on error.
      */
-    private static function createAndWrite($query, array $params = [], array $config = [])
+    private static function createAndWrite(string $query, array $params = [], array $config = [])
     {
         self::create($config);
         return self::write($query, $params, $config);
@@ -129,7 +133,7 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    private static function createTable($table, array $config = [])
+    private static function createTable(string $table, array $config = [])
     {
         $query = 'CREATE TABLE ' . $table . ' (
             _idp VARCHAR(256) NOT NULL,
@@ -151,7 +155,7 @@ class SQLNameID
      *
      * @return \SimpleSAML\Store\SQL  SQL datastore.
      */
-    private static function getStore()
+    private static function getStore(): Store\SQL
     {
         $store = Store::getInstance();
         if (!($store instanceof Store\SQL)) {
@@ -174,12 +178,13 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    public static function add($idpEntityId, $spEntityId, $user, $value, array $config = [])
-    {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
-        assert(is_string($value));
+    public static function add(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        string $value,
+        array $config = []
+    ): void {
 
         $params = [
             '_idp' => $idpEntityId,
@@ -203,12 +208,12 @@ class SQLNameID
      * @param array $config
      * @return string|null $value  The NameID value, or NULL of no NameID value was found.
      */
-    public static function get($idpEntityId, $spEntityId, $user, array $config = [])
-    {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
-
+    public static function get(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        array $config = []
+    ): ?string {
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
@@ -225,7 +230,7 @@ class SQLNameID
             return null;
         }
 
-        return $row['_value'];
+        return strval($row['_value']);
     }
 
 
@@ -238,12 +243,12 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    public static function delete($idpEntityId, $spEntityId, $user, array $config = [])
-    {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
-
+    public static function delete(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        array $config = []
+    ): void {
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
@@ -264,11 +269,8 @@ class SQLNameID
      * @param array $config
      * @return array  Array of userid => NameID.
      */
-    public static function getIdentities($idpEntityId, $spEntityId, array $config = [])
+    public static function getIdentities(string $idpEntityId, string $spEntityId, array $config = []): array
     {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
@@ -280,7 +282,9 @@ class SQLNameID
 
         $res = [];
         while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
-            $res[$row['_user']] = $row['_value'];
+            $user = strval($row['_user']);
+            $value = strval($row['_value']);
+            $res[$user] = $value;
         }
 
         return $res;

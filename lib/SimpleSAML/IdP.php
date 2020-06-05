@@ -1,13 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
-use SAML2\Constants as SAML2;
+use SAML2\Constants;
 use SimpleSAML\Auth;
+use SimpleSAML\IdP\IFrameLogoutHandler;
+use SimpleSAML\IdP\LogoutHandlerInterface;
+use SimpleSAML\IdP\TraditionalLogoutHandler;
 use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Error\NoPassive;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * IdP class.
@@ -57,6 +63,7 @@ class IdP
      */
     private $authSource;
 
+
     /**
      * Initialize an IdP.
      *
@@ -64,10 +71,8 @@ class IdP
      *
      * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
      */
-    private function __construct($id)
+    private function __construct(string $id)
     {
-        assert(is_string($id));
-
         $this->id = $id;
         $this->associationGroup = $id;
 
@@ -79,11 +84,6 @@ class IdP
                 throw new Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
-        } elseif (substr($id, 0, 6) === 'saml1:') {
-            if (!$globalConfig->getBoolean('enable.shib13-idp', false)) {
-                throw new Error\Exception('enable.shib13-idp disabled in config.php.');
-            }
-            $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
             if (!$globalConfig->getBoolean('enable.adfs-idp', false)) {
                 throw new Error\Exception('enable.adfs-idp disabled in config.php.');
@@ -115,7 +115,7 @@ class IdP
      *
      * @return string The ID of this IdP.
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -126,12 +126,10 @@ class IdP
      *
      * @param string $id The identifier of the IdP.
      *
-     * @return IdP The IdP.
+     * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getById($id)
+    public static function getById(string $id): IdP
     {
-        assert(is_string($id));
-
         if (isset(self::$idpCache[$id])) {
             return self::$idpCache[$id];
         }
@@ -147,11 +145,11 @@ class IdP
      *
      * @param array &$state The state array.
      *
-     * @return IdP The IdP.
+     * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getByState(array &$state)
+    public static function getByState(array &$state): IdP
     {
-        assert(isset($state['core:IdP']));
+        Assert::notNull($state['core:IdP']);
 
         return self::getById($state['core:IdP']);
     }
@@ -162,7 +160,7 @@ class IdP
      *
      * @return Configuration The configuration object.
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -175,10 +173,8 @@ class IdP
      *
      * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
      */
-    public function getSPName($assocId)
+    public function getSPName(string $assocId): ?array
     {
-        assert(is_string($assocId));
-
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -187,11 +183,7 @@ class IdP
             try {
                 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
             } catch (\Exception $e) {
-                try {
-                    $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
-                } catch (\Exception $e) {
-                    return null;
-                }
+                return null;
             }
         } else {
             if ($prefix === 'adfs') {
@@ -217,10 +209,10 @@ class IdP
      * @param array $association The SP association.
      * @return void
      */
-    public function addAssociation(array $association)
+    public function addAssociation(array $association): void
     {
-        assert(isset($association['id']));
-        assert(isset($association['Handler']));
+        Assert::notNull($association['id']);
+        Assert::notNull($association['Handler']);
 
         $association['core:IdP'] = $this->id;
 
@@ -234,7 +226,7 @@ class IdP
      *
      * @return array List of SP associations.
      */
-    public function getAssociations()
+    public function getAssociations(): array
     {
         $session = Session::getSessionFromRequest();
         return $session->getAssociations($this->associationGroup);
@@ -247,10 +239,8 @@ class IdP
      * @param string $assocId The association id.
      * @return void
      */
-    public function terminateAssociation($assocId)
+    public function terminateAssociation(string $assocId): void
     {
-        assert(is_string($assocId));
-
         $session = Session::getSessionFromRequest();
         $session->terminateAssociation($this->associationGroup, $assocId);
     }
@@ -261,7 +251,7 @@ class IdP
      *
      * @return boolean True if the user is authenticated, false otherwise.
      */
-    public function isAuthenticated()
+    public function isAuthenticated(): bool
     {
         return $this->authSource->isAuthenticated();
     }
@@ -273,9 +263,9 @@ class IdP
      * @param array $state The authentication request state array.
      * @return void
      */
-    public static function postAuthProc(array $state)
+    public static function postAuthProc(array $state): void
     {
-        assert(is_callable($state['Responder']));
+        Assert::isCallable($state['Responder']);
 
         if (isset($state['core:SP'])) {
             $session = Session::getSessionFromRequest();
@@ -288,7 +278,7 @@ class IdP
         }
 
         call_user_func($state['Responder'], $state);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -300,7 +290,7 @@ class IdP
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
      * @return void
      */
-    public static function postAuth(array $state)
+    public static function postAuth(array $state): void
     {
         $idp = IdP::getByState($state);
 
@@ -348,10 +338,10 @@ class IdP
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
      * @return void
      */
-    private function authenticate(array &$state)
+    private function authenticate(array &$state): void
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
-            throw new NoPassive(SAML2::STATUS_RESPONDER, 'Passive authentication not supported.');
+            throw new NoPassive(Constants::STATUS_RESPONDER, 'Passive authentication not supported.');
         }
 
         $this->authSource->login($state);
@@ -371,7 +361,7 @@ class IdP
      * @throws \Exception If there is no auth source defined for this IdP.
      * @return void
      */
-    private function reauthenticate(array &$state)
+    private function reauthenticate(array &$state): void
     {
         $sourceImpl = $this->authSource->getAuthSource();
         $sourceImpl->reauthenticate($state);
@@ -384,9 +374,9 @@ class IdP
      * @param array &$state The authentication request state.
      * @return void
      */
-    public function handleAuthenticationRequest(array &$state)
+    public function handleAuthenticationRequest(array &$state): void
     {
-        assert(isset($state['Responder']));
+        Assert::notNull($state['Responder']);
 
         $state['core:IdP'] = $this->id;
 
@@ -413,7 +403,7 @@ class IdP
         try {
             if ($needAuth) {
                 $this->authenticate($state);
-                assert(false);
+                Assert::true(false);
             } else {
                 $this->reauthenticate($state);
             }
@@ -430,19 +420,20 @@ class IdP
     /**
      * Find the logout handler of this IdP.
      *
-     * @return IdP\LogoutHandlerInterface The logout handler class.
+     * @return \SimpleSAML\IdP\LogoutHandlerInterface The logout handler class.
+     *
      * @throws \Exception If we cannot find a logout handler.
      */
-    public function getLogoutHandler()
+    public function getLogoutHandler(): LogoutHandlerInterface
     {
         // find the logout handler
         $logouttype = $this->getConfig()->getString('logouttype', 'traditional');
         switch ($logouttype) {
             case 'traditional':
-                $handler = '\SimpleSAML\IdP\TraditionalLogoutHandler';
+                $handler = TraditionalLogoutHandler::class;
                 break;
             case 'iframe':
-                $handler = '\SimpleSAML\IdP\IFrameLogoutHandler';
+                $handler = IFrameLogoutHandler::class;
                 break;
             default:
                 throw new Error\Exception('Unknown logout handler: ' . var_export($logouttype, true));
@@ -461,13 +452,13 @@ class IdP
      * @param array &$state The logout request state.
      * @return void
      */
-    public function finishLogout(array &$state)
+    public function finishLogout(array &$state): void
     {
-        assert(isset($state['Responder']));
+        Assert::notNull($state['Responder']);
 
         $idp = IdP::getByState($state);
         call_user_func($state['Responder'], $idp, $state);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -481,10 +472,10 @@ class IdP
      * association.
      * @return void
      */
-    public function handleLogoutRequest(array &$state, $assocId)
+    public function handleLogoutRequest(array &$state, ?string $assocId): void
     {
-        assert(isset($state['Responder']));
-        assert(is_string($assocId) || $assocId === null);
+        Assert::notNull($state['Responder']);
+        Assert::nullOrString($assocId);
 
         $state['core:IdP'] = $this->id;
         $state['core:TerminatedAssocId'] = $assocId;
@@ -505,7 +496,7 @@ class IdP
             $handler = $this->getLogoutHandler();
             $handler->startLogout($state, $assocId);
         }
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -519,13 +510,10 @@ class IdP
      * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
      * @return void
      */
-    public function handleLogoutResponse($assocId, $relayState, Error\Exception $error = null)
+    public function handleLogoutResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
     {
-        assert(is_string($assocId));
-        assert(is_string($relayState) || $relayState === null);
-
         $index = strpos($assocId, ':');
-        assert(is_int($index));
+        Assert::integer($index);
 
         $session = Session::getSessionFromRequest();
         $session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, $index + 1));
@@ -533,7 +521,7 @@ class IdP
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);
 
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -545,17 +533,15 @@ class IdP
      * @param string $url The URL the user should be returned to after logout.
      * @return void
      */
-    public function doLogoutRedirect($url)
+    public function doLogoutRedirect(string $url): void
     {
-        assert(is_string($url));
-
         $state = [
-            'Responder'       => ['\SimpleSAML\IdP', 'finishLogoutRedirect'],
+            'Responder'       => [IdP::class, 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
         ];
 
         $this->handleLogoutRequest($state, null);
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -568,11 +554,11 @@ class IdP
      * @param array    &$state The logout state from doLogoutRedirect().
      * @return void
      */
-    public static function finishLogoutRedirect(IdP $idp, array $state)
+    public static function finishLogoutRedirect(IdP $idp, array $state): void
     {
-        assert(isset($state['core:Logout:URL']));
+        Assert::notNull($state['core:Logout:URL']);
 
         Utils\HTTP::redirectTrustedURL($state['core:Logout:URL']);
-        assert(false);
+        Assert::true(false);
     }
 }

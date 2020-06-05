@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
+use Exception;
 use SimpleSAML\Error;
 
 /**
@@ -55,7 +58,7 @@ abstract class Store implements Utils\ClearableState
                 // datastore from module
                 try {
                     $className = Module::resolveClass($storeType, 'Store', '\SimpleSAML\Store');
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
                     throw new Error\CriticalConfigurationError(
@@ -80,7 +83,7 @@ abstract class Store implements Utils\ClearableState
      *
      * @return mixed|null The value.
      */
-    abstract public function get($type, $key);
+    abstract public function get(string $type, string $key);
 
 
     /**
@@ -90,8 +93,9 @@ abstract class Store implements Utils\ClearableState
      * @param string   $key The key.
      * @param mixed    $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
+     * @return void
      */
-    abstract public function set($type, $key, $value, $expire = null);
+    abstract public function set(string $type, string $key, $value, ?int $expire = null): void;
 
 
     /**
@@ -99,15 +103,16 @@ abstract class Store implements Utils\ClearableState
      *
      * @param string $type The data type.
      * @param string $key The key.
+     * @return void
      */
-    abstract public function delete($type, $key);
+    abstract public function delete(string $type, string $key): void;
 
 
     /**
      * Clear any SSP specific state, such as SSP environmental variables or cached internals.
      * @return void
      */
-    public static function clearInternalState()
+    public static function clearInternalState(): void
     {
         self::$instance = null;
     }

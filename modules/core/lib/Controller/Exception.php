@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Controller;
 
 use SimpleSAML\Auth;
@@ -11,6 +13,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the core module.
@@ -55,7 +58,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function cardinality(Request $request)
+    public function cardinality(Request $request): Response
     {
         $stateId = $request->get('StateId', false);
         if ($stateId === false) {
@@ -70,13 +73,12 @@ class Exception
             ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
         );
 
-        $t = new Template($this->config, 'core:cardinality_error.tpl.php');
+        $t = new Template($this->config, 'core:cardinality_error.twig');
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
         if (isset($state['Source']['auth'])) {
             $t->data['LogoutURL'] = Module::getModuleURL(
-                'core/authenticate.php',
-                ['as' => $state['Source']['auth']]
-            ) . "&logout";
+                'core/login/' . urlencode($state['Source']['auth'])
+            );
         }
 
         $t->setStatusCode(403);
@@ -91,15 +93,16 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function nocookie(Request $request)
+    public function nocookie(Request $request): Response
     {
         $retryURL = $request->get('retryURL', null);
         if ($retryURL !== null) {
             $retryURL = Utils\HTTP::checkURLAllowed(strval($retryURL));
         }
 
-        $t = new Template($this->config, 'core:no_cookie.tpl.php');
+        $t = new Template($this->config, 'core:no_cookie.twig');
         $t->data['retryURL'] = $retryURL;
+
         return $t;
     }
 
@@ -115,7 +118,7 @@ class Exception
      *
      * @throws \SimpleSAML\Error\BadRequest
      */
-    public function shortSsoInterval(Request $request)
+    public function shortSsoInterval(Request $request): Response
     {
         $stateId = $request->get('StateId', false);
         if ($stateId === false) {
@@ -131,11 +134,11 @@ class Exception
             Auth\ProcessingChain::resumeProcessing($state);
         }
 
-        $t = new Template($this->config, 'core:short_sso_interval.tpl.php');
-        $translator = $t->getTranslator();
+        $t = new Template($this->config, 'core:short_sso_interval.twig');
         $t->data['params'] = ['StateId' => $stateId];
         $t->data['trackId'] = $this->session->getTrackID();
         $t->data['autofocus'] = 'contbutton';
+
         return $t;
     }
 }

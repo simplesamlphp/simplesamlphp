@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 
@@ -20,7 +23,7 @@ class SQLTest extends TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -36,11 +39,11 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function SQLInstance()
+    public function SQLInstance(): void
     {
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
 
 
@@ -50,7 +53,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function kvstoreTableVersion()
+    public function kvstoreTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -66,7 +69,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function newTableVersion()
+    public function newTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -83,7 +86,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testSetTableVersion()
+    public function testSetTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -100,7 +103,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetEmptyData()
+    public function testGetEmptyData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -118,7 +121,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testInsertData()
+    public function testInsertData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -137,7 +140,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testOverwriteData()
+    public function testOverwriteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -158,7 +161,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testDeleteData()
+    public function testDeleteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -179,7 +182,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testVeryLongKey()
+    public function testVeryLongKey(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -196,25 +199,26 @@ class SQLTest extends TestCase
     /**
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $config = Configuration::getInstance();
+
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
 
 
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param string $className
+     * @param class-string $className
      * @return void
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance($service, string $className): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);

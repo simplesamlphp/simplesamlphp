@@ -6,6 +6,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 use DOMComment;
@@ -18,6 +20,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\XML\Errors;
+use Webmozart\Assert\Assert;
 
 class XML
 {
@@ -28,7 +31,6 @@ class XML
      * @param string $message The SAML document we want to check.
      * @param string $type The type of document. Can be one of:
      * - 'saml20'
-     * - 'saml11'
      * - 'saml-meta'
      *
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
@@ -40,10 +42,10 @@ class XML
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function checkSAMLMessage($message, $type)
+    public static function checkSAMLMessage(string $message, string $type): void
     {
-        $allowed_types = ['saml20', 'saml11', 'saml-meta'];
-        if (!(is_string($message) && in_array($type, $allowed_types, true))) {
+        $allowed_types = ['saml20', 'saml-meta'];
+        if (!in_array($type, $allowed_types, true)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -70,9 +72,6 @@ class XML
 
         $result = true;
         switch ($type) {
-            case 'saml11':
-                $result = self::isValid($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
-                break;
             case 'saml20':
                 $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
                 break;
@@ -102,9 +101,9 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function debugSAMLMessage($message, $type)
+    public static function debugSAMLMessage($message, string $type): void
     {
-        if (!(is_string($type) && (is_string($message) || $message instanceof DOMElement))) {
+        if (!(is_string($message) || $message instanceof DOMElement)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -142,7 +141,7 @@ class XML
                 Logger::debug('Encrypted message:');
                 break;
             default:
-                assert(false);
+                Assert::true(false);
         }
 
         $str = self::formatXMLString($message);
@@ -168,12 +167,8 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(DOMNode $root, $indentBase = '')
+    public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
-        if (!is_string($indentBase)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         // check what this element contains
         $fullText = ''; // all text in this element
         $textNodes = []; // text nodes which should be deleted
@@ -258,12 +253,8 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatXMLString($xml, $indentBase = '')
+    public static function formatXMLString(string $xml, string $indentBase = ''): string
     {
-        if (!is_string($xml) || !is_string($indentBase)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         try {
             $doc = DOMDocumentFactory::fromString($xml);
         } catch (\Exception $e) {
@@ -271,6 +262,7 @@ class XML
         }
 
         $root = $doc->firstChild;
+        Assert::notNull($root);
         self::formatDOMElement($root, $indentBase);
 
         return $doc->saveXML($root);
@@ -292,12 +284,8 @@ class XML
      * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
      *     $namespaceURI is not a string.
      */
-    public static function getDOMChildren(DOMNode $element, $localName, $namespaceURI)
+    public static function getDOMChildren(DOMNode $element, string $localName, string $namespaceURI): array
     {
-        if (!is_string($localName) || !is_string($namespaceURI)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         $ret = [];
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
@@ -328,7 +316,7 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getDOMText(DOMElement $element)
+    public static function getDOMText(DOMElement $element): string
     {
         $txt = '';
 
@@ -353,9 +341,7 @@ class XML
      * We also define the following shortcuts for namespaces:
      * - '@ds':      'http://www.w3.org/2000/09/xmldsig#'
      * - '@md':      'urn:oasis:names:tc:SAML:2.0:metadata'
-     * - '@saml1':   'urn:oasis:names:tc:SAML:1.0:assertion'
      * - '@saml1md': 'urn:oasis:names:tc:SAML:profiles:v1metadata'
-     * - '@saml1p':  'urn:oasis:names:tc:SAML:1.0:protocol'
      * - '@saml2':   'urn:oasis:names:tc:SAML:2.0:assertion'
      * - '@saml2p':  'urn:oasis:names:tc:SAML:2.0:protocol'
      *
@@ -369,9 +355,9 @@ class XML
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isDOMNodeOfType(DOMNode $element, $name, $nsURI)
+    public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
-        if (!is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
+        if (strlen($nsURI) === 0) {
             // most likely a comment-node
             return false;
         }
@@ -382,12 +368,8 @@ class XML
             $shortcuts = [
                 '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
                 '@md'      => 'urn:oasis:names:tc:SAML:2.0:metadata',
-                '@saml1'   => 'urn:oasis:names:tc:SAML:1.0:assertion',
-                '@saml1md' => 'urn:oasis:names:tc:SAML:profiles:v1metadata',
-                '@saml1p'  => 'urn:oasis:names:tc:SAML:1.0:protocol',
                 '@saml2'   => 'urn:oasis:names:tc:SAML:2.0:assertion',
-                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol',
-                '@shibmd'  => 'urn:mace:shibboleth:metadata:1.0',
+                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol'
             ];
 
             // check if it is a valid shortcut
@@ -423,9 +405,9 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isValid($xml, $schema)
+    public static function isValid($xml, string $schema)
     {
-        if (!(is_string($schema) && (is_string($xml) || $xml instanceof DOMDocument))) {
+        if (!is_string($xml) && ! ($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -443,12 +425,28 @@ class XML
             }
         }
 
-        if ($res) {
+        if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
+            libxml_set_external_entity_loader(
+                /**
+                 * @param string|null $public
+                 * @param string $system
+                 * @param array $context
+                 * @return string|null
+                 */
+                function (string $public = null, string $system, array $context) {
+                    if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
+                        return null;
+                    }
+                    return $system;
+                }
+            );
+
+            /** @psalm-suppress PossiblyUndefinedVariable */
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();

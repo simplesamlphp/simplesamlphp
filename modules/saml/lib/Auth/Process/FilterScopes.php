@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to remove attribute values which are not properly scoped.
@@ -30,10 +33,9 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config Configuration for this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (array_key_exists('attributes', $config) && !empty($config['attributes'])) {
             $this->scopedAttributes = $config['attributes'];
@@ -47,7 +49,7 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request the current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
         $src = $request['Source'];
         if (!count($this->scopedAttributes)) {

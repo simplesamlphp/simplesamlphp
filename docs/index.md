@@ -1,37 +1,27 @@
 SimpleSAMLphp Documentation
 ===========================
 
- * [Installing SimpleSAMLphp](simplesamlphp-install)
-    * [Upgrade notes for version 1.18](simplesamlphp-upgrade-notes-1.18)
-    * [Upgrade notes for version 1.17](simplesamlphp-upgrade-notes-1.17)
-    * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)
-    * [Upgrade notes for version 1.15](simplesamlphp-upgrade-notes-1.15)
-    * [Upgrade notes for version 1.14](simplesamlphp-upgrade-notes-1.14)
-    * [Upgrade notes for version 1.13](simplesamlphp-upgrade-notes-1.13)
-    * [Upgrade notes for version 1.12](simplesamlphp-upgrade-notes-1.12)
-    * [Upgrade notes for version 1.11](simplesamlphp-upgrade-notes-1.11)
-    * [Upgrade notes for version 1.10](simplesamlphp-upgrade-notes-1.10)
-    * [Upgrade notes for version 1.9](simplesamlphp-upgrade-notes-1.9)
-    * [Upgrade notes for version 1.8](simplesamlphp-upgrade-notes-1.8)
-    * [Upgrade notes for version 1.7](simplesamlphp-upgrade-notes-1.7)
-    * [Upgrade notes for version 1.6](simplesamlphp-upgrade-notes-1.6)
-    * [Upgrade notes for version 1.5](simplesamlphp-upgrade-notes-1.5)
-    * [Installation from the repository](simplesamlphp-install-repo)
-    * [Changelog](simplesamlphp-changelog)
- * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
+ * Installation and upgrading
+  * [Installing SimpleSAMLphp](simplesamlphp-install)
+  * [Upgrade notes](simplesamlphp-upgrade-notes)
+  * [Installation from the repository](simplesamlphp-install-repo)
+  * [Changelog](simplesamlphp-changelog)
+ * Using SimpleSAMLphp as a SAML Service Provider
+  * [Service Provider Quickstart](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)
   * [Holder-of-Key profile](simplesamlphp-hok-sp)
- * [Identity Provider QuickStart](simplesamlphp-idp)
+ * Using SimpleSAMLphp as a SAML Identity Provider
+  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
   * [Use case: Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
- * [Automated Metadata Management](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md)
+ * [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
  * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
  * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
  * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.
@@ -49,7 +39,7 @@ Documentation on specific SimpleSAMLphp modules:
  * [Consent module](./consent:consent)
  * [Installing and configuring the consentAdmin module](./consentAdmin:consentAdmin)
  * [Authorization](./authorize:authorize)
- * [autotest Module](./autotest:test)
+ * [autotest Module](https://github.com/simplesamlphp/simplesamlphp-module-autotest/blob/v1.0/README.md)
  * [Statistics](./statistics:statistics)
 
 Documentation for SimpleSAMLphp developers:

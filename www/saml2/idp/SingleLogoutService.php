@@ -10,6 +10,8 @@
 
 require_once('../../_include.php');
 
+use Webmozart\Assert\Assert;
+
 \SimpleSAML\Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -34,4 +36,4 @@ if (isset($_REQUEST['ReturnTo'])) {
         }
     }
 }
-assert(false);
+Assert::true(false);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 /**
@@ -25,7 +27,7 @@ class ExitTestException extends \Exception
     /**
      * @return array
      */
-    public function getTestResult()
+    public function getTestResult(): array
     {
         return $this->testResult;
     }

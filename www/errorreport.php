@@ -8,14 +8,18 @@ $config = \SimpleSAML\Configuration::getInstance();
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // the message has been sent. Show error report page
 
-    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.php', 'errors');
-    $t->show();
+    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.twig', 'errors');
+    $t->send();
     exit;
 }
 
 $reportId = $_REQUEST['reportId'];
 $email = $_REQUEST['email'];
 $text = $_REQUEST['text'];
+
+if (!preg_match('/^[0-9a-f]{8}$/', $reportId)) {
+    throw new \SimpleSAML\Error\Exception('Invalid reportID');
+}
 
 $data = null;
 try {

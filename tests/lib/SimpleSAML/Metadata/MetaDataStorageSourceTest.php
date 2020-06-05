@@ -1,23 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Metadata;
 
+use Exception;
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Metadata\MetaDataStorageSource;
 
 /**
  * Class MetaDataStorageSourceTest
  */
 
-class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
+class MetaDataStorageSourceTest extends TestCase
 {
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
      * @return void
      */
-    public function testBadXMLSource()
+    public function testBadXMLSource(): void
     {
-        $this->expectException(\Exception::class);
-        \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type" => "xml", "foo" => "baa"]);
+        $this->expectException(Exception::class);
+        MetaDataStorageSource::getSource(["type" => "xml", "foo" => "baa"]);
     }
 
 
@@ -25,14 +30,14 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
      * @return void
      */
-    public function testInvalidStaticXMLSource()
+    public function testInvalidStaticXMLSource(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $strTestXML = "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"https://saml.idp/entityid\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
 </EntityDescriptor>
 ";
-        \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
+        MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
     }
 
 
@@ -40,14 +45,14 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
      * @return void
      */
-    public function testStaticXMLSource()
+    public function testStaticXMLSource(): void
     {
         $testEntityId = "https://saml.idp/entityid";
         $strTestXML = self::generateIdpMetadataXml($testEntityId);
 
         // The primary test here is that - in contrast to the others above - this loads without error
         // As a secondary thing, check that the entity ID from the static source provided can be extracted
-        $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
+        $source = MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
         $idpSet = $source->getMetadataSet("saml20-idp-remote");
         $this->assertArrayHasKey(
             $testEntityId,
@@ -64,7 +69,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test loading multiple entities
      * @return void
      */
-    public function testLoadEntitiesStaticXMLSource()
+    public function testLoadEntitiesStaticXMLSource(): void
     {
         $c = [
             'key' => 'value'
@@ -80,7 +85,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
         $xml2
         </EntitiesDescriptor>
         ";
-        $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
+        $source = MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
         // search that is a single entity
         $entities = $source->getMetaDataForEntities([$entityId2], "saml20-idp-remote");
         $this->assertCount(1, $entities, 'Only 1 entity loaded');
@@ -100,7 +105,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * @param string $entityId
      * @return string
      */
-    public static function generateIdpMetadataXml($entityId)
+    public static function generateIdpMetadataXml(string $entityId): string
     {
         return "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$entityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">

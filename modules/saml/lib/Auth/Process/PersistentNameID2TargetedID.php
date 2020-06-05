@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.
@@ -35,10 +38,9 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -60,9 +62,8 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state The request state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
         if (!isset($state['saml:NameID'][Constants::NAMEID_PERSISTENT])) {
             Logger::warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'

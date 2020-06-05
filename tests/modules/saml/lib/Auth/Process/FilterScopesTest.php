@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\saml\Auth\Process\FilterScopes;
 
 /**
  * Test for the saml:FilterScopes filter.
@@ -19,9 +22,9 @@ class FilterScopesTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\saml\Auth\Process\FilterScopes($config, null);
+        $filter = new FilterScopes($config, null);
         $filter->process($request);
         return $request;
     }
@@ -31,7 +34,7 @@ class FilterScopesTest extends TestCase
      * Test valid scopes.
      * @return void
      */
-    public function testValidScopes()
+    public function testValidScopes(): void
     {
         // test declared scopes
         $config = [];
@@ -93,7 +96,7 @@ class FilterScopesTest extends TestCase
      * Test invalid scopes.
      * @return void
      */
-    public function testInvalidScopes()
+    public function testInvalidScopes(): void
     {
         // test scope not matching anything, empty attribute
         $config = [];

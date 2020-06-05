@@ -6,6 +6,8 @@
  * @package SimpleSAMLphp
  */
 
+use Webmozart\Assert\Assert;
+
 if (array_key_exists('RedirId', $_REQUEST)) {
     $postId = $_REQUEST['RedirId'];
     $session = \SimpleSAML\Session::getSessionFromRequest();
@@ -40,9 +42,9 @@ if ($postData === null) {
 
 $session->deleteData('core_postdatalink', $postId);
 
-assert(is_array($postData));
-assert(array_key_exists('url', $postData));
-assert(array_key_exists('post', $postData));
+Assert::isArray($postData);
+Assert::keyExists($postData, 'url');
+Assert::keyExists($postData, 'post');
 
 if (!\SimpleSAML\Utils\HTTP::isValidURL($postData['url'])) {
     throw new \SimpleSAML\Error\Exception('Invalid destination URL.');
@@ -52,5 +54,5 @@ $config = \SimpleSAML\Configuration::getInstance();
 $template = new \SimpleSAML\XHTML\Template($config, 'post.php');
 $template->data['destination'] = $postData['url'];
 $template->data['post'] = $postData['post'];
-$template->show();
+$template->send();
 exit(0);

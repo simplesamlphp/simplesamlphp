@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
@@ -13,20 +15,21 @@ use SimpleSAML\Error;
 
 class System
 {
-    const WINDOWS = 1;
-    const LINUX = 2;
-    const OSX = 3;
-    const HPUX = 4;
-    const UNIX = 5;
-    const BSD = 6;
-    const IRIX = 7;
-    const SUNOS = 8;
+    public const WINDOWS = 1;
+    public const LINUX = 2;
+    public const OSX = 3;
+    public const HPUX = 4;
+    public const UNIX = 5;
+    public const BSD = 6;
+    public const IRIX = 7;
+    public const SUNOS = 8;
 
 
     /**
      * This function returns the Operating System we are running on.
      *
-     * @return mixed A predefined constant identifying the OS we are running on. False if we are unable to determine it.
+     * @return int|false A predefined constant identifying the OS we are running on.
+     *                   False if we are unable to determine it.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
@@ -64,14 +67,15 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws Error\Exception If the temporary directory cannot be created or it exists and does not belong
-     * to the current user.
+     * @throws Error\Exception If the temporary directory cannot be created or it exists and cannot be written
+     * to by the current user.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     * @author Aaron St. Clair, ECRS AS <astclair@ecrs.com>
      */
-    public static function getTempDir()
+    public static function getTempDir(): string
     {
         $globalConfig = Configuration::getInstance();
 
@@ -83,6 +87,10 @@ class System
             DIRECTORY_SEPARATOR
         );
 
+        /**
+         * If the temporary directory does not exist then attempt to create it. If the temporary directory
+         * already exists then verify the current user can write to it. Otherwise, throw an error.
+         */
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
@@ -91,14 +99,12 @@ class System
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
-        } elseif (function_exists('posix_getuid')) {
-            // check that the owner of the temp directory is the current user
-            $stat = lstat($tempDir);
-            if ($stat['uid'] !== posix_getuid()) {
-                throw new Error\Exception(
-                    'Temporary directory "' . $tempDir . '" does not belong to the current user.'
-                );
-            }
+        } elseif (!is_writable($tempDir)) {
+            throw new Error\Exception(
+                'Temporary directory "' . $tempDir .
+                '" cannot be written to by the current user' .
+                (function_exists('posix_getuid') ? ' "' .  posix_getuid() . '"' : '')
+            );
         }
 
         return $tempDir;
@@ -121,7 +127,7 @@ class System
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function resolvePath($path, $base = null)
+    public static function resolvePath(string $path, string $base = null): string
     {
         if ($base === null) {
             $config = Configuration::getInstance();
@@ -179,6 +185,8 @@ class System
      * @param string $data The data we should write to the file.
      * @param int    $mode The permissions to apply to the file. Defaults to 0600.
      *
+     * @return void
+     *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
      * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      *     possible to write to the target file.
@@ -187,15 +195,9 @@ class System
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
-     *
-     * @return void
      */
-    public static function writeFile($filename, $data, $mode = 0600)
+    public static function writeFile(string $filename, string $data, int $mode = 0600): void
     {
-        if (!is_string($filename) || !is_string($data) || !is_numeric($mode)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         $tmpFile = self::getTempDir() . DIRECTORY_SEPARATOR . rand();
 
         $res = @file_put_contents($tmpFile, $data);
@@ -240,7 +242,7 @@ class System
      *
      * @return bool
      */
-    private static function pathContainsDriveLetter($path)
+    private static function pathContainsDriveLetter(string $path): bool
     {
         $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
         return substr($path, 1, 1) === ':'
@@ -252,7 +254,7 @@ class System
      * @param string $path
      * @return bool
      */
-    private static function pathContainsStreamWrapper($path)
+    private static function pathContainsStreamWrapper(string $path): bool
     {
         return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }

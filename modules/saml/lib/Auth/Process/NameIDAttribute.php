@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
@@ -35,19 +38,18 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (isset($config['attribute'])) {
-            $this->attribute = (string) $config['attribute'];
+            $this->attribute = strval($config['attribute']);
         } else {
             $this->attribute = 'nameid';
         }
 
         if (isset($config['format'])) {
-            $format = (string) $config['format'];
+            $format = strval($config['format']);
         } else {
             $format = '%I!%S!%V';
         }
@@ -64,10 +66,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the replacement is invalid.
      */
-    private static function parseFormat($format)
+    private static function parseFormat(string $format): array
     {
-        assert(is_string($format));
-
         $ret = [];
         $pos = 0;
         while (($next = strpos($format, '%', $pos)) !== false) {
@@ -108,27 +108,27 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state The request state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-        assert(isset($state['Source']['entityid']));
-        assert(isset($state['Destination']['entityid']));
+        Assert::keyExists($state['Source'], 'entityid');
+        Assert::keyExists($state['Destination'], 'entityid');
 
         if (!isset($state['saml:sp:NameID'])) {
             return;
         }
 
         $rep = $state['saml:sp:NameID'];
-        assert(!is_null($rep->getValue()));
-        $rep->{'%'} = '%';
-        if ($rep->getFormat() !== null) {
+        Assert::notNull($rep->getValue());
+
+        if ($rep->getFormat() === null) {
             $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
         }
-        if ($rep->getNameQualifier() !== null) {
-            $rep->setNameQualifier($state['Source']['entityid']);
+
+        if ($rep->getSPNameQualifier() === null) {
+            $rep->setSPNameQualifier($state['Source']['entityid']);
         }
-        if ($rep->getSPNameQualifier() !== null) {
-            $rep->setSPNameQualifier($state['Destination']['entityid']);
+        if ($rep->getNameQualifier() === null) {
+            $rep->setNameQualifier($state['Destination']['entityid']);
         }
 
         $value = '';
@@ -136,6 +136,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         foreach ($this->format as $element) {
             if ($isString) {
                 $value .= $element;
+            } elseif ($element === '%') {
+                $value .= '%';
             } else {
                 $value .= call_user_func([$rep, 'get' . $element]);
             }

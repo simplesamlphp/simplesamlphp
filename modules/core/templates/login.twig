@@ -14,7 +14,11 @@
             {% for id, config in sources -%}
                 <li class="pure-menu-item">
                     <a href="{{ moduleURL('core/login/' ~ id|url_encode) }}" class="pure-menu-link">
-                      {{ config.name|translateFromArray|default(id) }}
+                      {% if config.name is defined %}
+                        {{ config.name|translateFromArray }}
+                      {% else %}
+                        {{ id }}
+                      {% endif %}
                     </a>
                 </li>
             {% endfor -%}

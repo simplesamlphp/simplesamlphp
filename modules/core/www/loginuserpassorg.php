@@ -128,7 +128,7 @@ if ($organizations === null || !empty($organization)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.twig');
 $t->data['stateparams'] = ['AuthState' => $authStateId];
 $t->data['username'] = $username;
 $t->data['forceUsername'] = false;
@@ -163,5 +163,5 @@ if (isset($state['SPMetadata'])) {
     $t->data['SPMetadata'] = null;
 }
 
-$t->show();
+$t->send();
 exit();

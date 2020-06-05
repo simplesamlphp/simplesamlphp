@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * This file registers an autoloader for test classes used by SimpleSAMLphp modules unit tests.
  */
@@ -10,7 +13,7 @@
  * @param string $className Name of the class.
  * @return void
  */
-function sspmodTestClassAutoloadPSR4($className)
+function sspmodTestClassAutoloadPSR4(string $className): void
 {
     $elements = explode('\\', $className);
     if ($elements[0] === '') {

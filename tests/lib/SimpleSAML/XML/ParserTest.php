@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\XML;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Parser;
 
@@ -15,7 +18,7 @@ use SimpleSAML\XML\Parser;
  */
 class ParserTest extends TestCase
 {
-    const XMLDOC = <<< XML
+    private const XMLDOC = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
   <Value>Hello, World!</Value>
@@ -29,7 +32,7 @@ XML;
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->xml = new Parser(static::XMLDOC);
     }
@@ -41,7 +44,7 @@ XML;
      * @test
      * @return void
      */
-    public function getValue()
+    public function getValue(): void
     {
         $result = $this->xml->getValue('/Root/Value', true);
         $this->assertEquals(
@@ -57,7 +60,7 @@ XML;
      * @test
      * @return void
      */
-    public function getEmptyValue()
+    public function getEmptyValue(): void
     {
         $result = $this->xml->getValue('/Root/Foo', false);
         $this->assertEquals(
@@ -73,9 +76,9 @@ XML;
      * @test
      * @return void
      */
-    public function getValueException()
+    public function getValueException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->xml->getValue('/Root/Foo', true);
     }
 
@@ -86,7 +89,7 @@ XML;
      * @test
      * @return void
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): void
     {
         $result = $this->xml->getValueDefault('/Root/Other', 'Hello');
         $this->assertEquals(
@@ -102,7 +105,7 @@ XML;
      * @test
      * @return void
      */
-    public function getValueAlternatives()
+    public function getValueAlternatives(): void
     {
         $result = $this
             ->xml
@@ -125,7 +128,7 @@ XML;
      * @test
      * @return void
      */
-    public function getEmptyValueAlternatives()
+    public function getEmptyValueAlternatives(): void
     {
         $result = $this
             ->xml
@@ -148,9 +151,9 @@ XML;
      * @test
      * @return void
      */
-    public function getValueAlternativesException()
+    public function getValueAlternativesException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->xml->getValueAlternatives(
             [
                 '/Root/Foo',

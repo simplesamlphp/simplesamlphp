@@ -122,9 +122,6 @@ msgstr ""
 "greške(Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri "
 "uspešno obrađenog zahteva)."
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP metapodaci"
-
 msgid "{login:help_text}"
 msgstr ""
 "Šteta! - Bez ispravnog korisničkog imena i lozinke ne možete pristupiti "
@@ -222,9 +219,6 @@ msgstr "Odjava u toku..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Neispravno korisničko ime ili lozinka."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Davalac Servisa (udaljeni)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -461,9 +455,6 @@ msgstr "Šaljem poruku"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Davalac Identiteta je prijavio grešku"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP metapodaci"
-
 msgid "{admin:metaover_intro}"
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 
@@ -534,9 +525,6 @@ msgstr "Stranica nije pronađena"
 msgid "{logout:logged_out_text}"
 msgstr "Uspešno ste se odjavili."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Davalac Servisa (lokalni)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Preuzmite X509 sertifikate u PEM formatu."
 
@@ -564,8 +552,11 @@ msgstr ""
 " podešavanja SimpleSAMLphp-a. Kontaktirajte administratora ovog servisa i"
 " pošaljite mu poruku o grešci prikazanu iznad."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Davalac Identiteta(lokalni)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Broj mobilnog telefona"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Preferirani jezik"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Niste dostavili validan setifikat."
@@ -602,9 +593,6 @@ msgstr "Nema digitalnog sertifikata"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informacija o odjavljivanju je izgubljena"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Davalac Identiteta (udaljeni)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Izgleda da postoji greška u podešavanjima SimpleSAMLphp-a."

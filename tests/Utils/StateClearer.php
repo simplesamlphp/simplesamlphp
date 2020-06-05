@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 /**
@@ -34,7 +36,7 @@ class StateClearer
     /**
      * @return void
      */
-    public function backupGlobals()
+    public function backupGlobals(): void
     {
         // Backup any state that is needed as part of processing, so we can restore it later.
         // TODO: phpunit's backupGlobals = false, yet we are trying to do a similar thing here. Is that an issue?
@@ -44,6 +46,7 @@ class StateClearer
         $this->backups['$_GET'] = $_GET;
         $this->backups['$_POST'] = $_POST;
         $this->backups['$_SERVER'] = $_SERVER;
+        /** @psalm-var array|null $_SESSION */
         $this->backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : [];
         $this->backups['$_REQUEST'] = $_REQUEST;
     }
@@ -53,7 +56,7 @@ class StateClearer
      * Clear any global state.
      * @return void
      */
-    public function clearGlobals()
+    public function clearGlobals(): void
     {
         if (!empty($this->backups)) {
             $_COOKIE = $this->backups['$_COOKIE'];
@@ -74,7 +77,7 @@ class StateClearer
      * Clear any SSP specific state, such as SSP enviormental variables or cached internals.
      * @return void
      */
-    public function clearSSPState()
+    public function clearSSPState(): void
     {
         foreach ($this->clearableState as $var) {
             $var::clearInternalState();

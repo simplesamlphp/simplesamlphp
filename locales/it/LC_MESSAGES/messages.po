@@ -120,9 +120,6 @@ msgstr ""
 "L'Identity Provider ha risposto con un errore. (Il codice di stato nel "
 "messaggio SAML Response non indicava un successo)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Metadati Shib 1.3 IdP"
-
 msgid "{login:help_text}"
 msgstr ""
 "Senza il nome utente e la password, non è possibile effettuare "
@@ -222,9 +219,6 @@ msgstr "Disconnessione..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nome utente o password errati."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remoto)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -467,9 +461,6 @@ msgstr "Invio del messaggio"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "E' stato ricevuto un errore dall'Identity Provider"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Metadati Shib 1.3 SP"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Per visualizzare i dettagli di una entità SAML, cliccare sull'header SAML"
@@ -542,9 +533,6 @@ msgstr "Pagina non trovata"
 msgid "{logout:logged_out_text}"
 msgstr "Sei stato disconnesso"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Scarica i certificati X509 come file PEM-encoded"
 
@@ -572,8 +560,11 @@ msgstr ""
 " di questo servizio di login con una copia del messaggio di errore "
 "riportato qui sopra."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Cellulare"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Lingua preferita"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Non hai fornito un certificato valido."
@@ -608,9 +599,6 @@ msgstr "Nessun certificato"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informazioni di disconnessione smarrite."
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remoto)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Sembra che SimpleSAMLphp non sia configurato correttamente."

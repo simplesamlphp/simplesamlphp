@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\TestCase;
 use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
-class UserPassBaseTest extends \PHPUnit\Framework\TestCase
+class UserPassBaseTest extends TestCase
 {
     /**
      * @return void
      */
-    public function testAuthenticateECPCallsLoginAndSetsAttributes()
+    public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
         $state = [
             'saml:Binding' => Constants::BINDING_PAOS,
@@ -21,16 +24,12 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $username = $_SERVER['PHP_AUTH_USER'] = 'username';
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /**
-         * @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place
-         * @psalm-suppress UndefinedMethod
-         */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
@@ -45,7 +44,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPMissingUsername()
+    public function testAuthenticateECPMissingUsername(): void
     {
         $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
@@ -69,7 +68,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPMissingPassword()
+    public function testAuthenticateECPMissingPassword(): void
     {
         $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
@@ -85,7 +84,6 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $stub->authenticate($state);
     }
 
@@ -93,7 +91,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPCallsLoginWithForcedUsername()
+    public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {
         $state = [
             'saml:Binding' => Constants::BINDING_PAOS,
@@ -105,16 +103,12 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $_SERVER['PHP_AUTH_USER'] = 'username';
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /**
-         * @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place
-         * @psalm-suppress UndefinedMethod
-         */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)

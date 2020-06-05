@@ -83,4 +83,4 @@ $config = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($config, 'exampleauth:authenticate.twig');
 $t->data['badUserPass'] = $badUserPass;
 $t->data['returnTo'] = $returnTo;
-$t->show();
+$t->send();

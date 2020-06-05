@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\SP;
 
 use PDO;
@@ -8,6 +10,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * A directory over logout information.
@@ -23,7 +26,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function createLogoutTable(Store\SQL $store)
+    private static function createLogoutTable(Store\SQL $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
@@ -37,7 +40,7 @@ class LogoutStore
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
                     $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TYPE TIMESTAMP'
                     ];
                     break;
                 case 'sqlite':
@@ -198,7 +201,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function cleanLogoutStore(Store\SQL $store)
+    private static function cleanLogoutStore(Store\SQL $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -223,18 +226,12 @@ class LogoutStore
      */
     private static function addSessionSQL(
         Store\SQL $store,
-        $authId,
-        $nameId,
-        $sessionIndex,
-        $expire,
-        $sessionId
-    ) {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-        assert(is_string($sessionIndex));
-        assert(is_int($expire));
-        assert(is_string($sessionId));
-
+        string $authId,
+        string $nameId,
+        string $sessionIndex,
+        int $expire,
+        string $sessionId
+    ): void {
         self::createLogoutTable($store);
 
         if (rand(0, 1000) < 10) {
@@ -264,11 +261,8 @@ class LogoutStore
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsSQL(Store\SQL $store, $authId, $nameId)
+    private static function getSessionsSQL(Store\SQL $store, string $authId, string $nameId): array
     {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
         self::createLogoutTable($store);
 
         $params = [
@@ -288,6 +282,7 @@ class LogoutStore
             $res[$row['_sessionindex']] = $row['_sessionid'];
         }
 
+        /** @var array $res */
         return $res;
     }
 
@@ -301,18 +296,19 @@ class LogoutStore
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsStore(Store $store, $authId, $nameId, array $sessionIndexes)
-    {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
+    private static function getSessionsStore(
+        Store $store,
+        string $authId,
+        string $nameId,
+        array $sessionIndexes
+    ): array {
         $res = [];
         foreach ($sessionIndexes as $sessionIndex) {
             $sessionId = $store->get('saml.LogoutStore', $nameId . ':' . $sessionIndex);
             if ($sessionId === null) {
                 continue;
             }
-            assert(is_string($sessionId));
+            Assert::string($sessionId);
             $res[$sessionIndex] = $sessionId;
         }
 
@@ -335,12 +331,8 @@ class LogoutStore
      * @param int $expire
      * @return void
      */
-    public static function addSession($authId, $nameId, $sessionIndex, $expire)
+    public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
-        assert(is_string($authId));
-        assert(is_string($sessionIndex) || $sessionIndex === null);
-        assert(is_int($expire));
-
         $session = Session::getSessionFromRequest();
         if ($session->isTransient()) {
             // transient sessions are useless for this purpose, nothing to do
@@ -363,10 +355,6 @@ class LogoutStore
         }
 
         // serialize and anonymize the NameID
-        // TODO: remove this conditional statement
-        if (is_array($nameId)) {
-            $nameId = NameID::fromArray($nameId);
-        }
         $strNameId = serialize($nameId);
         $strNameId = sha1($strNameId);
 
@@ -394,10 +382,8 @@ class LogoutStore
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */
-    public static function logoutSessions($authId, $nameId, array $sessionIndexes)
+    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
-        assert(is_string($authId));
-
         $store = Store::getInstance();
         if ($store === false) {
             // We don't have a datastore
@@ -405,16 +391,12 @@ class LogoutStore
         }
 
         // serialize and anonymize the NameID
-        // TODO: remove this conditional statement
-        if (is_array($nameId)) {
-            $nameId = NameID::fromArray($nameId);
-        }
         $strNameId = serialize($nameId);
         $strNameId = sha1($strNameId);
 
         // Normalize SessionIndexes
         foreach ($sessionIndexes as &$sessionIndex) {
-            assert(is_string($sessionIndex));
+            Assert::string($sessionIndex);
             if (strlen($sessionIndex) > 50) {
                 $sessionIndex = sha1($sessionIndex);
             }
@@ -425,11 +407,11 @@ class LogoutStore
 
         if ($store instanceof Store\SQL) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
-        } elseif (empty($sessionIndexes)) {
-            // We cannot fetch all sessions without a SQL store
-            return false;
         } else {
-            /** @var array $sessions At this point the store cannot be false */
+            if (empty($sessionIndexes)) {
+                // We cannot fetch all sessions without a SQL store
+                return false;
+            }
             $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
         }
 

@@ -46,7 +46,6 @@ if ($idpEntityId === null) {
     throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
 }
 
-/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $spEntityId = $source->getEntityId();
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -109,6 +108,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     $nameId = $message->getNameId();
     $sessionIndexes = $message->getSessionIndexes();
 
+    /** @psalm-suppress PossiblyNullArgument  This will be fixed in saml2 5.0 */
     $numLoggedOut = \SimpleSAML\Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
     if ($numLoggedOut === false) {
         // This type of logout was unsupported. Use the old method
@@ -125,7 +125,6 @@ if ($message instanceof \SAML2\LogoutResponse) {
         \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
     }
 
-    /** @var array $dst */
     $dst = $idpMetadata->getEndpointPrioritizedByBinding(
         'SingleLogoutService',
         [
@@ -142,8 +141,9 @@ if ($message instanceof \SAML2\LogoutResponse) {
             $dst = $dst['Location'];
         }
         $binding->setDestination($dst);
+    } else {
+        $lr->setDestination($dst['Location']);
     }
-    $lr->setDestination($dst);
 
     $binding->send($lr);
 } else {

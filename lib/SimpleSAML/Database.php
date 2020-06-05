@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 
 /**
  * This file implements functions to read and write to a group of database servers.
@@ -55,7 +58,7 @@ class Database
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
-    public static function getInstance($altConfig = null)
+    public static function getInstance(Configuration $altConfig = null): Database
     {
         $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
@@ -76,7 +79,7 @@ class Database
      *
      * @param \SimpleSAML\Configuration $config Instance of the \SimpleSAML\Configuration class
      */
-    private function __construct($config)
+    private function __construct(Configuration $config)
     {
         $driverOptions = $config->getArray('database.driver_options', []);
         if ($config->getBoolean('database.persistent', true)) {
@@ -116,7 +119,7 @@ class Database
      *
      * @return string $instanceId
      */
-    private static function generateInstanceId($config)
+    private static function generateInstanceId(Configuration $config): string
     {
         $assembledConfig = [
             'master' => [
@@ -137,14 +140,14 @@ class Database
      * This function connects to a database.
      *
      * @param string $dsn Database connection string
-     * @param string $username SQL user
-     * @param string $password SQL password
+     * @param string|null $username SQL user
+     * @param string|null $password SQL password
      * @param array  $options PDO options
      *
      * @throws \Exception If an error happens while trying to connect to the database.
      * @return \PDO object
      */
-    private function connect($dsn, $username, $password, $options)
+    private function connect(string $dsn, string $username = null, string $password = null, array $options): PDO
     {
         try {
             $db = new PDO($dsn, $username, $password, $options);
@@ -163,7 +166,7 @@ class Database
      *
      * @return \PDO object
      */
-    private function getSlave()
+    private function getSlave(): PDO
     {
         if (count($this->dbSlaves) > 0) {
             $slaveId = rand(0, count($this->dbSlaves) - 1);
@@ -181,7 +184,7 @@ class Database
      *
      * @return string Table with configured prefix
      */
-    public function applyPrefix($table)
+    public function applyPrefix(string $table): string
     {
         return $this->tablePrefix . $table;
     }
@@ -197,12 +200,8 @@ class Database
      * @throws \Exception If an error happens while trying to execute the query.
      * @return \PDOStatement object
      */
-    private function query($db, $stmt, $params)
+    private function query(PDO $db, string $stmt, array $params): PDOStatement
     {
-        assert(is_object($db));
-        assert(is_string($stmt));
-        assert(is_array($params));
-
         try {
             $query = $db->prepare($stmt);
 
@@ -233,11 +232,8 @@ class Database
      * @throws \Exception If an error happens while trying to execute the query.
      * @return int The number of rows affected.
      */
-    private function exec($db, $stmt)
+    private function exec(PDO $db, string $stmt): int
     {
-        assert(is_object($db));
-        assert(is_string($stmt));
-
         try {
             return $db->exec($stmt);
         } catch (PDOException $e) {
@@ -255,16 +251,9 @@ class Database
      *
      * @return int|false The number of rows affected by the query or false on error.
      */
-    public function write($stmt, $params = [])
+    public function write(string $stmt, array $params = [])
     {
-        $db = $this->dbMaster;
-
-        if (is_array($params)) {
-            $obj = $this->query($db, $stmt, $params);
-            return ($obj === false) ? $obj : $obj->rowCount();
-        } else {
-            return $this->exec($db, $stmt);
-        }
+        return $this->query($this->dbMaster, $stmt, $params)->rowCount();
     }
 
 
@@ -276,7 +265,7 @@ class Database
      *
      * @return \PDOStatement object
      */
-    public function read($stmt, $params = [])
+    public function read(string $stmt, array $params = []): PDOStatement
     {
         $db = $this->getSlave();
 
@@ -289,7 +278,7 @@ class Database
      *
      * @return array The array with error information.
      */
-    public function getLastError()
+    public function getLastError(): array
     {
         return $this->lastError;
     }

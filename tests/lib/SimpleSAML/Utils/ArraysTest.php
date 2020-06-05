@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
@@ -14,7 +16,7 @@ class ArraysTest extends TestCase
      * Test the arrayize() function.
      * @return void
      */
-    public function testArrayize()
+    public function testArrayize(): void
     {
         // check with empty array as input
         $array = [];
@@ -42,12 +44,8 @@ class ArraysTest extends TestCase
      * Test the transpose() function.
      * @return void
      */
-    public function testTranspose()
+    public function testTranspose(): void
     {
-        // check not array
-        /** @psalm-suppress InvalidArgument   Can be removed as soon as the codebase is fully typehinted */
-        $this->assertFalse(Arrays::transpose('string'));
-
         // check bad arrays
         $this->assertFalse(
             Arrays::transpose(['1', '2', '3']),

@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
-use SimpleSAML\Configuration;
+use Webmozart\Assert\Assert;
 
 class HTTPTest extends ClearStateTestCase
 {
@@ -15,12 +19,17 @@ class HTTPTest extends ClearStateTestCase
      * @param string $url The URL to use as the current one.
      * @return void
      */
-    private function setupEnvFromURL($url)
+    private function setupEnvFromURL(string $url): void
     {
-        $addr = parse_url($url);
-        $_SERVER['HTTP_HOST'] = $addr['host'];
-        $_SERVER['SERVER_NAME'] = $addr['host'];
-        if ($addr['scheme'] === 'https') {
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT);
+        $path = parse_url($url, PHP_URL_PATH);
+        $query = parse_url($url, PHP_URL_QUERY);
+
+        $_SERVER['HTTP_HOST'] = $host;
+        $_SERVER['SERVER_NAME'] = $host;
+        if ($scheme === 'https') {
             $_SERVER['HTTPS'] = 'on';
             $default_port = '443';
         } else {
@@ -28,36 +37,10 @@ class HTTPTest extends ClearStateTestCase
             $default_port = '80';
         }
         $_SERVER['SERVER_PORT'] = $default_port;
-        if (isset($addr['port']) && strval($addr['port']) !== $default_port) {
-            $_SERVER['SERVER_PORT'] = strval($addr['port']);
+        if (isset($port) && strval($port) !== $default_port) {
+            $_SERVER['SERVER_PORT'] = strval($port);
         }
-        $_SERVER['REQUEST_URI'] = $addr['path'] . '?' . $addr['query'];
-    }
-
-
-    /**
-     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     * @return void
-     * @psalm-suppress InvalidArgument
-     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
-     */
-    public function testAddURLParametersInvalidURL()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        HTTP::addURLParameters([], []);
-    }
-
-
-    /**
-     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     * @return void
-     * @psalm-suppress InvalidArgument
-     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
-     */
-    public function testAddURLParametersInvalidParameters()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        HTTP::addURLParameters('string', 'string');
+        $_SERVER['REQUEST_URI'] = $path . '?' . $query;
     }
 
 
@@ -65,7 +48,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
      */
-    public function testAddURLParameters()
+    public function testAddURLParameters(): void
     {
         $url = 'http://example.com/';
         $params = [
@@ -93,7 +76,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
      * @return void
      */
-    public function testGuessBasePath()
+    public function testGuessBasePath(): void
     {
         $original = $_SERVER;
 
@@ -137,7 +120,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
      * @return void
      */
-    public function testGetSelfHost()
+    public function testGetSelfHost(): void
     {
         $original = $_SERVER;
 
@@ -157,7 +140,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
      * @return void
      */
-    public function testGetSelfHostWithPort()
+    public function testGetSelfHostWithPort(): void
     {
         $original = $_SERVER;
 
@@ -186,7 +169,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
      * @return void
      */
-    public function testGetSelfURLMethods()
+    public function testGetSelfURLMethods(): void
     {
         $original = $_SERVER;
 
@@ -313,7 +296,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
      * @return void
      */
-    public function testCheckURLAllowedWithoutRegex()
+    public function testCheckURLAllowedWithoutRegex(): void
     {
         $original = $_SERVER;
 
@@ -345,7 +328,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
      * @return void
      */
-    public function testCheckURLAllowedWithRegex()
+    public function testCheckURLAllowedWithRegex(): void
     {
         $original = $_SERVER;
 
@@ -379,7 +362,7 @@ class HTTPTest extends ClearStateTestCase
      * Test SimpleSAML\Utils\HTTP::getServerPort().
      * @return void
      */
-    public function testGetServerPort()
+    public function testGetServerPort(): void
     {
         $original = $_SERVER;
 
@@ -426,7 +409,7 @@ class HTTPTest extends ClearStateTestCase
      * subdomain of an evil domain.
      * @return void
      */
-    public function testCheckURLAllowedWithRegexWithoutDelimiters()
+    public function testCheckURLAllowedWithRegexWithoutDelimiters(): void
     {
         $original = $_SERVER;
 
@@ -437,7 +420,7 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER['REQUEST_URI'] = '/module.php';
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;
@@ -448,7 +431,7 @@ class HTTPTest extends ClearStateTestCase
      * @covers SimpleSAML\Utils\HTTP::getFirstPathElement()
      * @return void
      */
-    public function testGetFirstPathElement()
+    public function testGetFirstPathElement(): void
     {
         $original = $_SERVER;
         $_SERVER['SCRIPT_NAME'] = '/test/tmp.php';
@@ -457,13 +440,14 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookie()
+    public function testSetCookie(): void
     {
         $original = $_SERVER;
         Configuration::loadFromArray([
@@ -497,14 +481,14 @@ class HTTPTest extends ClearStateTestCase
         );
 
         $headers = xdebug_get_headers();
-        $this->assertContains('TestCookie=value%2520;', $headers[0]);
+        $this->assertStringContainsString('TestCookie=value%2520;', $headers[0]);
         $this->assertRegExp('/\b[Ee]xpires=[Tt]ue/', $headers[0]);
         $this->assertRegExp('/\b[Pp]ath=\/ourPath(;|$)/', $headers[0]);
         $this->assertRegExp('/\b[Dd]omain=example.com(;|$)/', $headers[0]);
         $this->assertRegExp('/\b[Ss]ecure(;|$)/', $headers[0]);
         $this->assertRegExp('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[0]);
 
-        $this->assertContains('RawCookie=value%20;', $headers[1]);
+        $this->assertStringContainsString('RawCookie=value%20;', $headers[1]);
         $this->assertRegExp('/\b[Ee]xpires=([Mm]on|[Tt]ue|[Ww]ed|[Tt]hu|[Ff]ri|[Ss]at|[Ss]un)/', $headers[1]);
         $this->assertRegExp('/\b[Pp]ath=\/ourPath(;|$)/', $headers[1]);
         $this->assertRegExp('/\b[Dd]omain=example.com(;|$)/', $headers[1]);
@@ -514,13 +498,14 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @return void
      */
-    public function testSetCookieInsecure()
+    public function testSetCookieInsecure(): void
     {
-        $this->expectException(\SimpleSAML\Error\CannotSetCookie::class);
+        $this->expectException(Error\CannotSetCookie::class);
 
         $original = $_SERVER;
         Configuration::loadFromArray([
@@ -534,13 +519,14 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookieSameSite()
+    public function testSetCookieSameSite(): void
     {
         HTTP::setCookie('SSNull', 'value', ['samesite' => null]);
         HTTP::setCookie('SSNone', 'value', ['samesite' => 'None']);

@@ -5,7 +5,7 @@ function updateStatus()
 {
     var nFailed = 0;
     var nProgress = 0;
-    for (sp in window.spStatus) {
+    for (var sp in window.spStatus) {
         switch (window.spStatus[sp]) {
             case 'failed':
                 nFailed += 1;

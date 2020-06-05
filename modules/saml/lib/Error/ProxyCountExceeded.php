@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+namespace SimpleSAML\Module\saml\Error;
+
+use SAML2\Constants;
+
 /**
  * A SAML error indicating that the maximum amount of proxies traversed has been reached.
  *
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Module\saml\Error;
-
-use SAML2\Constants;
-
 class ProxyCountExceeded extends \SimpleSAML\Module\saml\Error
 {
     /**
@@ -22,7 +23,7 @@ class ProxyCountExceeded extends \SimpleSAML\Module\saml\Error
      * @param string|null $message A short message explaining why this error happened.
      * @param \Exception|null $cause An exception that caused this error.
      */
-    public function __construct($responsible, $message = null, \Exception $cause = null)
+    public function __construct(string $responsible, string $message = null, \Exception $cause = null)
     {
         parent::__construct($responsible, Constants::STATUS_PROXY_COUNT_EXCEEDED, $message, $cause);
     }

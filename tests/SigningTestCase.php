@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 
 /**
@@ -163,18 +166,18 @@ NOWDOC;
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
-    const ROOTDIRNAME = 'testdir';
-    const DEFAULTCERTDIR = 'certdir';
-    const CA_PRIVATE_KEY = 'ca.key.pem';
-    const CA_CERTIFICATE = 'ca.cert.pem';
-    const GOOD_PRIVATE_KEY = 'good.key.pem';
-    const GOOD_CERTIFICATE = 'good.cert.pem';
+    protected const ROOTDIRNAME = 'testdir';
+    protected const DEFAULTCERTDIR = 'certdir';
+    protected const CA_PRIVATE_KEY = 'ca.key.pem';
+    protected const CA_CERTIFICATE = 'ca.cert.pem';
+    protected const GOOD_PRIVATE_KEY = 'good.key.pem';
+    protected const GOOD_CERTIFICATE = 'good.cert.pem';
 
 
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             self::CA_PRIVATE_KEY => $this->ca_private_key,
@@ -188,7 +191,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
@@ -205,7 +208,7 @@ NOWDOC;
         $this->good_private_key_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_PRIVATE_KEY;
         $this->good_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_CERTIFICATE;
 
-        $this->config = \SimpleSAML\Configuration::loadFromArray([
+        $this->config = Configuration::loadFromArray([
             'certdir' => $this->certdir,
         ], '[ARRAY]', 'simplesaml');
     }
@@ -214,21 +217,21 @@ NOWDOC;
     /**
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
-        $this->clearInstance($this->config, '\SimpleSAML\Configuration', []);
+        $this->clearInstance($this->config, Configuration::class, []);
     }
 
 
     /**
      * @param \SimpleSAML\Configuration $service
-     * @param string $className
+     * @param class-string $className
      * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, $value);

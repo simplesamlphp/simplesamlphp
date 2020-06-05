@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
 
 use SimpleSAML\Configuration;
@@ -7,6 +9,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Class for implementing authentication processing chains for IdPs.
@@ -24,20 +27,20 @@ class ProcessingChain
     /**
      * The list of remaining filters which should be applied to the state.
      */
-    const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
+    public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
 
     /**
      * The stage we use for completed requests.
      */
-    const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
+    public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
 
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
      * having completed processing of the state.
      */
-    const AUTHPARAM = 'AuthProcId';
+    public const AUTHPARAM = 'AuthProcId';
 
 
     /**
@@ -54,11 +57,8 @@ class ProcessingChain
      * @param array $spMetadata  The metadata for the SP.
      * @param string $mode
      */
-    public function __construct($idpMetadata, $spMetadata, $mode = 'idp')
+    public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
-        assert(is_array($idpMetadata));
-        assert(is_array($spMetadata));
-
         $this->filters = [];
 
         $config = Configuration::getInstance();
@@ -93,11 +93,8 @@ class ProcessingChain
      * @param array $src  Source filters. May be unsorted.
      * @return void
      */
-    private static function addFilters(&$target, $src)
+    private static function addFilters(array &$target, array $src): void
     {
-        assert(is_array($target));
-        assert(is_array($src));
-
         foreach ($src as $filter) {
             $fp = $filter->priority;
 
@@ -120,10 +117,8 @@ class ProcessingChain
      * @param array $filterSrc  Array with filter configuration.
      * @return array  Array of ProcessingFilter objects.
      */
-    private static function parseFilterList($filterSrc)
+    private static function parseFilterList(array $filterSrc): array
     {
-        assert(is_array($filterSrc));
-
         $parsedFilters = [];
 
         foreach ($filterSrc as $priority => $filter) {
@@ -151,10 +146,8 @@ class ProcessingChain
      *                           definition.)
      * @return \SimpleSAML\Auth\ProcessingFilter  The parsed filter.
      */
-    private static function parseFilter($config, $priority)
+    private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
-        assert(is_array($config));
-
         if (!array_key_exists('class', $config)) {
             throw new \Exception('Authentication processing filter without name given.');
         }
@@ -195,21 +188,14 @@ class ProcessingChain
      * @throws \SimpleSAML\Error\UnserializableException
      * @return void
      */
-    public function processState(&$state)
+    public function processState(array &$state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
-        assert(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
+        Assert::true(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
+        Assert::true(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
 
         $state[self::FILTERS_INDEX] = $this->filters;
 
         try {
-            // TODO: remove this in SSP 2.0
-            if (!array_key_exists('UserID', $state)) {
-                // No unique user ID present. Attempt to add one.
-                self::addUserID($state);
-            }
-
             while (count($state[self::FILTERS_INDEX]) > 0) {
                 $filter = array_shift($state[self::FILTERS_INDEX]);
                 $filter->process($state);
@@ -241,10 +227,8 @@ class ProcessingChain
      * @param array $state  The state we are processing.
      * @return void
      */
-    public static function resumeProcessing($state)
+    public static function resumeProcessing(array $state): void
     {
-        assert(is_array($state));
-
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
@@ -259,8 +243,8 @@ class ProcessingChain
 
         // Completed
 
-        assert(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
-        assert(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
+        Assert::true(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
+        Assert::true(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
 
 
         if (array_key_exists('ReturnURL', $state)) {
@@ -277,10 +261,10 @@ class ProcessingChain
             State::deleteState($state);
 
             $func = $state['ReturnCall'];
-            assert(is_callable($func));
+            Assert::isCallable($func);
 
             call_user_func($func, $state);
-            assert(false);
+            Assert::true(false);
         }
     }
 
@@ -296,35 +280,26 @@ class ProcessingChain
      * @param array &$state  The state we are processing.
      * @return void
      */
-    public function processStatePassive(&$state)
+    public function processStatePassive(array &$state): void
     {
-        assert(is_array($state));
         // Should not be set when calling this method
-        assert(!array_key_exists('ReturnURL', $state));
+        Assert::keyNotExists($state, 'ReturnURL');
 
         // Notify filters about passive request
         $state['isPassive'] = true;
 
         $state[self::FILTERS_INDEX] = $this->filters;
 
-        // TODO: remove this in SSP 2.0
-        if (!array_key_exists('UserID', $state)) {
-            // No unique user ID present. Attempt to add one.
-            self::addUserID($state);
-        }
-
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
                 $filter->process($state);
-            } catch (Error\NoPassive $e) {
-                // @deprecated will be removed in 2.0
-                // Ignore \SimpleSAML\Error\NoPassive exceptions
             } catch (Module\saml\Error\NoPassive $e) {
                 // Ignore \SimpleSAML\Module\saml\Error\NoPassive exceptions
             }
         }
     }
+
 
     /**
      * Retrieve a state which has finished processing.
@@ -333,57 +308,8 @@ class ProcessingChain
      * @see State::parseStateID()
      * @return array|null The state referenced by the $id parameter.
      */
-    public static function fetchProcessedState($id)
+    public static function fetchProcessedState(string $id): ?array
     {
-        assert(is_string($id));
-
         return State::loadState($id, self::COMPLETED_STAGE);
-    }
-
-
-    /**
-     * @deprecated This method will be removed in SSP 2.0.
-     * @param array &$state
-     * @return void
-     */
-    private static function addUserID(&$state)
-    {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
-
-        if (isset($state['Destination']['userid.attribute'])) {
-            $attributeName = $state['Destination']['userid.attribute'];
-            Logger::debug("The 'userid.attribute' option has been deprecated.");
-        } elseif (isset($state['Source']['userid.attribute'])) {
-            $attributeName = $state['Source']['userid.attribute'];
-            Logger::debug("The 'userid.attribute' option has been deprecated.");
-        } else {
-            // Default attribute
-            $attributeName = 'eduPersonPrincipalName';
-        }
-
-        if (!array_key_exists($attributeName, $state['Attributes'])) {
-            return;
-        }
-
-        $uid = $state['Attributes'][$attributeName];
-        if (count($uid) === 0) {
-            Logger::warning('Empty user id attribute [' . $attributeName . '].');
-            return;
-        }
-
-        if (count($uid) > 1) {
-            Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
-            return;
-        }
-
-        // TODO: the attribute value should be trimmed
-        $uid = $uid[0];
-
-        if (empty($uid)) {
-            Logger::warning('Empty value in attribute ' . $attributeName . ". on user. Cannot set UserID.");
-            return;
-        }
-        $state['UserID'] = $uid;
     }
 }

@@ -15,4 +15,4 @@ $session = Session::getSessionFromRequest();
 
 $controller = new Controller\Cron($config, $session);
 $response = $controller->info();
-$response->show();
+$response->send();

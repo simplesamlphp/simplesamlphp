@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
  */
-class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
+class CardinalitySingleTest extends TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
     private $http;
 
 
@@ -20,7 +24,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * @param  array $request The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
@@ -28,7 +32,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         /** @var \SimpleSAML\Utils\HttpAdapter $http */
         $http = $this->http;
 
-        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $http);
+        $filter = new CardinalitySingle($config, null, $http);
         $filter->process($request);
         return $request;
     }
@@ -37,7 +41,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder(HttpAdapter::class)
@@ -50,7 +54,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test singleValued
      * @return void
      */
-    public function testSingleValuedUnchanged()
+    public function testSingleValuedUnchanged(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName']
@@ -71,7 +75,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test first value extraction
      * @return void
      */
-    public function testFirstValue()
+    public function testFirstValue(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -91,7 +95,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testFirstValueUnchanged()
+    public function testFirstValueUnchanged(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -112,7 +116,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test flattening
      * @return void
      */
-    public function testFlatten()
+    public function testFlatten(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -133,7 +137,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testFlattenUnchanged()
+    public function testFlattenUnchanged(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -155,7 +159,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test abort
      * @return void
      */
-    public function testAbort()
+    public function testAbort(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName'],

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth;
 
 use SimpleSAML\Auth;
@@ -7,6 +9,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Helper class for username/password/organization authentication.
@@ -24,20 +27,17 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
     /**
      * The string used to identify our states.
      */
-    const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
-
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
-
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
 
     /**
      * The key of the OrgId field in the state, identifies which org was selected.
      */
-    const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
-
+    public const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
 
     /**
      * What way do we handle the organization as part of the username.
@@ -96,11 +96,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -140,9 +137,9 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param string $usernameOrgMethod  The method which should be used.
      * @return void
      */
-    protected function setUsernameOrgMethod($usernameOrgMethod)
+    protected function setUsernameOrgMethod(string $usernameOrgMethod): void
     {
-        assert(in_array($usernameOrgMethod, ['none', 'allow', 'force'], true));
+        Assert::oneOf($usernameOrgMethod, ['none', 'allow', 'force']);
 
         $this->usernameOrgMethod = $usernameOrgMethod;
     }
@@ -158,7 +155,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @return string  The method which should be used.
      */
-    public function getUsernameOrgMethod()
+    public function getUsernameOrgMethod(): string
     {
         return $this->usernameOrgMethod;
     }
@@ -168,7 +165,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Getter for the authsource config option remember.username.enabled
      * @return bool
      */
-    public function getRememberUsernameEnabled()
+    public function getRememberUsernameEnabled(): bool
     {
         return $this->rememberUsernameEnabled;
     }
@@ -178,7 +175,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Getter for the authsource config option remember.username.checked
      * @return bool
      */
-    public function getRememberUsernameChecked()
+    public function getRememberUsernameChecked(): bool
     {
         return $this->rememberUsernameChecked;
     }
@@ -188,7 +185,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Getter for the authsource config option remember.organization.enabled
      * @return bool
      */
-    public function getRememberOrganizationEnabled()
+    public function getRememberOrganizationEnabled(): bool
     {
         return $this->rememberOrganizationEnabled;
     }
@@ -198,7 +195,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Getter for the authsource config option remember.organization.checked
      * @return bool
      */
-    public function getRememberOrganizationChecked()
+    public function getRememberOrganizationChecked(): bool
     {
         return $this->rememberOrganizationChecked;
     }
@@ -213,10 +210,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
-
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
@@ -242,7 +237,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param string $organization  The id of the organization the user chose.
      * @return array  Associative array with the user's attributes.
      */
-    abstract protected function login($username, $password, $organization);
+    abstract protected function login(string $username, string $password, string $organization): array;
 
 
     /**
@@ -255,7 +250,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @return array  Associative array with the organizations.
      */
-    abstract protected function getOrganizations();
+    abstract protected function getOrganizations(): array;
 
 
     /**
@@ -271,19 +266,18 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param string $organization  The id of the organization the user chose.
      * @return void
      */
-    public static function handleLogin($authStateId, $username, $password, $organization)
-    {
-        assert(is_string($authStateId));
-        assert(is_string($username));
-        assert(is_string($password));
-        assert(is_string($organization));
-
+    public static function handleLogin(
+        string $authStateId,
+        string $username,
+        string $password,
+        string $organization
+    ): void {
         /* Retrieve the authentication state. */
         /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
-        assert(array_key_exists(self::AUTHID, $state));
+        Assert::keyExists($state, self::AUTHID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
@@ -336,16 +330,14 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @return array|null  Array of organizations. NULL if the user must enter the
      *         organization as part of the username.
      */
-    public static function listOrganizations($authStateId)
+    public static function listOrganizations(string $authStateId): ?array
     {
-        assert(is_string($authStateId));
-
         /* Retrieve the authentication state. */
         /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
-        assert(array_key_exists(self::AUTHID, $state));
+        Assert::keyExists($state, self::AUTHID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);

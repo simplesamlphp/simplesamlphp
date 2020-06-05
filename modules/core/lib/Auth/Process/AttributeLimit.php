@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * A filter for limiting which attributes are passed on.
@@ -34,11 +37,9 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {
@@ -68,7 +69,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request.
      * @return array|null  Array with attribute names, or NULL if no limit is placed.
      */
-    private static function getSPIdPAllowed(array &$request)
+    private static function getSPIdPAllowed(array &$request): ?array
     {
         if (array_key_exists('attributes', $request['Destination'])) {
             // SP Config
@@ -91,10 +92,9 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        assert::keyExists($request, 'Attributes');
 
         if ($this->isDefault) {
             $allowedAttributes = self::getSPIdPAllowed($request);
@@ -139,7 +139,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $allowedConfigValues The allowed values, and possibly configuration options.
      * @return array The filtered values
      */
-    private function filterAttributeValues(array $values, array $allowedConfigValues)
+    private function filterAttributeValues(array $values, array $allowedConfigValues): array
     {
         if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
             $matchedValues = [];

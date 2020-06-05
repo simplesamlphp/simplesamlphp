@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Utils\System;
 
 /**
@@ -12,9 +17,9 @@ use SimpleSAML\Utils\System;
  */
 class SystemTest extends TestCase
 {
-    const ROOTDIRNAME = 'testdir';
+    private const ROOTDIRNAME = 'testdir';
 
-    const DEFAULTTEMPDIR = 'tempdir';
+    private const DEFAULTTEMPDIR = 'tempdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected $root;
@@ -26,7 +31,7 @@ class SystemTest extends TestCase
     /**
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
@@ -44,11 +49,11 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetOSBasic()
+    public function testGetOSBasic(): void
     {
         $res = System::getOS();
 
-        $this->assertInternalType("int", $res);
+        $this->assertIsInt($res);
     }
 
 
@@ -57,7 +62,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathRemoveTrailingSlashes()
+    public function testResolvePathRemoveTrailingSlashes(): void
     {
         $base = "/base////";
         $path = "test";
@@ -74,7 +79,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathPreferAbsolutePathToBase()
+    public function testResolvePathPreferAbsolutePathToBase(): void
     {
         $base = "/base/";
         $path = "/test";
@@ -91,7 +96,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathCurDirPath()
+    public function testResolvePathCurDirPath(): void
     {
         $base = "/base/";
         $path = "/test/.";
@@ -108,7 +113,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathParentPath()
+    public function testResolvePathParentPath(): void
     {
         $base = "/base/";
         $path = "/test/child/..";
@@ -125,7 +130,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathAllowsStreamWrappers()
+    public function testResolvePathAllowsStreamWrappers(): void
     {
         $base = '/base/';
         $path = 'vfs://simplesaml';
@@ -142,7 +147,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathAllowsAwsS3StreamWrappers()
+    public function testResolvePathAllowsAwsS3StreamWrappers(): void
     {
         $base = '/base/';
         $path = 's3://bucket-name/key-name';
@@ -157,23 +162,9 @@ class SystemTest extends TestCase
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
-     * @deprecated Test becomes obsolete as soon as the codebase is fully type hinted
      * @return void
      */
-    public function testWriteFileInvalidArguments()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        /** @psalm-suppress NullArgument */
-        System::writeFile(null, null, null);
-    }
-
-
-    /**
-     * @covers \SimpleSAML\Utils\System::writeFile
-     * @test
-     * @return void
-     */
-    public function testWriteFileBasic()
+    public function testWriteFileBasic(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -184,7 +175,7 @@ class SystemTest extends TestCase
 
         $this->assertFileExists($filename);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -193,7 +184,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testWriteFileContents()
+    public function testWriteFileContents(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -208,7 +199,7 @@ class SystemTest extends TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -217,7 +208,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testWriteFileMode()
+    public function testWriteFileMode(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -232,7 +223,7 @@ class SystemTest extends TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -241,7 +232,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetTempDirBasic()
+    public function testGetTempDirBasic(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -252,7 +243,7 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -261,7 +252,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetTempDirNonExistant()
+    public function testGetTempDirNonExistant(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
         $config = $this->setConfigurationTempDir($tempdir);
@@ -272,33 +263,26 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
     /**
-     * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
      * @return void
      */
-    public function testGetTempDirBadOwner()
+    public function testGetTempDirBadPermissions(): void
     {
-        if (!function_exists('posix_getuid')) {
-            static::markTestSkipped('POSIX-functions not available;  skipping!');
-        }
-
-        $bad_uid = posix_getuid() + 1;
-
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        chown($tempdir, $bad_uid);
+        chmod($tempdir, 0440);
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         System::getTempDir();
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -306,7 +290,7 @@ class SystemTest extends TestCase
      * @param string $directory
      * @return \SimpleSAML\Configuration
      */
-    private function setConfigurationTempDir($directory)
+    private function setConfigurationTempDir(string $directory): Configuration
     {
         $config = Configuration::loadFromArray([
             'tempdir' => $directory,
@@ -318,12 +302,12 @@ class SystemTest extends TestCase
 
     /**
      * @param \SimpleSAML\Configuration $service
-     * @param string $className
+     * @param class-string $className
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className)
+    protected function clearInstance(Configuration $service, string $className): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);

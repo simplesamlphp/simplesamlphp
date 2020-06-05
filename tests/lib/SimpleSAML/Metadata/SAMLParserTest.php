@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Metadata;
 
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SAML2\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
 
@@ -16,13 +20,13 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
      * Test Registration Info is parsed
      * @return void
      */
-    public function testRegistrationInfo()
+    public function testRegistrationInfo(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -36,7 +40,7 @@ XML
         );
 
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -50,13 +54,13 @@ XML
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
      * @return void
      */
-    public function testRegistrationInfoInheritance()
+    public function testRegistrationInfoInheritance(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <Extensions>
@@ -80,7 +84,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         $this->assertArrayHasKey('subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -102,9 +106,9 @@ XML
      * Test AttributeConsumingService is parsed
      * @return void
      */
-    public function testAttributeConsumingServiceParsing()
+    public function testAttributeConsumingServiceParsing(): void
     {
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -127,7 +131,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
 
         /** @var array $metadata */
@@ -151,9 +155,9 @@ XML
     /**
      * @return \DOMDocument
      */
-    public function makeTestDocument()
+    public function makeTestDocument(): \DOMDocument
     {
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML(
             <<<XML
 <?xml version="1.0"?>
@@ -165,6 +169,7 @@ XML
 XML
         );
 
+        /** @psalm-var \DOMElement $entities_root */
         $entities_root = $doc->getElementsByTagName('EntitiesDescriptor')->item(0);
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -176,104 +181,10 @@ XML
 
 
     /**
-     * @param string $algo
-     * @param string $expected_fingerprint
-     * @return void
-     */
-    private function validateFingerprint($algo, $expected_fingerprint)
-    {
-        $doc = $this->makeTestDocument();
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);
-        foreach ($entities as $entity) {
-            $this->assertTrue(
-                $entity->validateFingerprint($expected_fingerprint, $algo)
-            );
-        }
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateFingerprintSHA1()
-    {
-        $this->validateFingerprint(
-            XMLSecurityDSig::SHA1,
-            'A7:FB:75:22:57:88:A1:B0:D0:29:0A:4B:D1:EA:0C:01:F8:98:44:A0'
-        );
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateFingerprintSHA256()
-    {
-        $this->validateFingerprint(
-            XMLSecurityDSig::SHA256,
-            '3E:04:6B:2C:13:B5:02:FB:FC:93:66:EE:6C:A3:D1:BB:B8:9E:D8:38:03' .
-            ':96:C5:C0:EC:95:D5:C9:F6:C1:D5:FC'
-        );
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateFingerprintSHA384()
-    {
-        $this->validateFingerprint(
-            XMLSecurityDSig::SHA384,
-            '38:87:CC:59:54:CF:ED:FC:71:B6:21:F3:8A:52:76:EF:30:C8:8C:A0:38' .
-            ':48:77:87:58:14:A0:B3:55:EF:48:9C:B4:B3:44:1F:B7:BB:FC:28:65' .
-            ':6E:93:83:52:C2:8E:A6'
-        );
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateFingerprintSHA512()
-    {
-        $this->validateFingerprint(
-            XMLSecurityDSig::SHA512,
-            '72:6C:51:01:A1:E9:76:D8:61:C4:B2:4F:AC:0B:64:7D:0D:4E:B7:DC:B3' .
-            ':4A:92:23:51:A6:DC:A5:A1:9A:A5:DD:43:F5:05:6A:B7:7D:83:1F:B6:' .
-            'CC:68:54:54:54:37:1B:EC:E1:22:5A:48:C6:BC:67:4B:A6:78:EE:E0:C6:8C:59'
-        );
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateFingerprintUnknownAlgorithmThrows()
-    {
-        $doc = $this->makeTestDocument();
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);
-        foreach ($entities as $entity) {
-            try {
-                $entity->validateFingerprint('unused', 'invalid_algorithm');
-            } catch (\UnexpectedValueException $e) {
-                $this->assertEquals(
-                    'Unsupported hashing function invalid_algorithm. Known options: [' .
-                    'http://www.w3.org/2000/09/xmldsig#sha1, ' .
-                    'http://www.w3.org/2001/04/xmlenc#sha256, ' .
-                    'http://www.w3.org/2001/04/xmldsig-more#sha384, ' .
-                    'http://www.w3.org/2001/04/xmlenc#sha512]',
-                    $e->getMessage()
-                );
-            }
-        }
-    }
-
-
-    /**
      * Test RoleDescriptor/Extensions is parsed
      * @return void
      */
-    public function testRoleDescriptorExtensions()
+    public function testRoleDescriptorExtensions(): void
     {
         $expected = [
             'scope' => [
@@ -306,7 +217,7 @@ XML
             'name' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
   <EntityDescriptor entityID="theEntityID">
@@ -338,7 +249,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // Various MDUI elements are accessible
         /** @var array $metadata */

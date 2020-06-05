@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Controller;
 
 use SimpleSAML\Auth;
@@ -13,6 +15,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
 /**
@@ -70,7 +73,7 @@ class Login
      *
      * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
      */
-    public function account($as)
+    public function account(string $as): Response
     {
         if (!array_key_exists($as, $this->sources)) {
             throw new Error\Exception('Invalid authentication source');
@@ -83,7 +86,7 @@ class Login
         }
 
         $attributes = $auth->getAttributes();
-        
+
         $session = Session::getSessionFromRequest();
 
         $t = new Template($this->config, 'auth_status.twig', 'attributes');
@@ -113,12 +116,12 @@ class Login
      * @param Request $request The request that lead to this login operation.
      * @param string|null $as The name of the authentication source to use, if any. Optional.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function login(Request $request, $as = null)
+    public function login(Request $request, string $as = null): Response
     {
         // delete admin
         if (isset($this->sources['admin'])) {
@@ -129,11 +132,30 @@ class Login
             $as = key($this->sources);
         }
 
+        $default = false;
+        if (array_key_exists('default', $this->sources) && is_array($this->sources['default'])) {
+            $default = $this->sources['default'];
+        }
+
         if ($as === null) { // no authentication source specified
-            $t = new Template($this->config, 'core:login.twig');
-            $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
-            $t->data['sources'] = $this->sources;
-            return $t;
+            if (!$default) {
+                $t = new Template($this->config, 'core:login.twig');
+                $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
+                $t->data['sources'] = $this->sources;
+                return $t;
+            }
+
+            // we have a default, use that one
+            $as = 'default';
+            foreach ($this->sources as $id => $source) {
+                if ($id === 'default') {
+                    continue;
+                }
+                if ($source === $this->sources['default']) {
+                    $as = $id;
+                    break;
+                }
+            }
         }
 
         // auth source defined, check if valid
@@ -180,10 +202,13 @@ class Login
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public function logout($as)
+    public function logout(string $as): Response
     {
         $auth = new Auth\Simple($as);
-        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]);
+        return new RunnableResponse(
+            [$auth, 'logout'],
+            [$this->config->getBasePath()]
+        );
     }
 
 
@@ -193,7 +218,7 @@ class Login
      * @param Request $request The request that lead to this login operation.
      * @return void
      */
-    public function cleardiscochoices(Request $request)
+    public function cleardiscochoices(Request $request): void
     {
         // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
         $cookiePath = $this->config->getBasePath();

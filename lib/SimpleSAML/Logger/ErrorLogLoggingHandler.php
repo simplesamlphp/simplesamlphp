@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Logger;
 
 use SimpleSAML\Configuration;
@@ -56,7 +58,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * @param string $format The format used for logs.
      * @return void
      */
-    public function setLogFormat($format)
+    public function setLogFormat(string $format): void
     {
         // we don't need the format here
     }
@@ -69,7 +71,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * @param string $string The formatted message to log.
      * @return void
      */
-    public function log($level, $string)
+    public function log(int $level, string $string): void
     {
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];

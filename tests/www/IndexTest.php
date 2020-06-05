@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Web;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\BuiltInServer;
+use SimpleSAML\TestUtils\BuiltInServer;
 
 /**
  * Simple test for the www/index.php script.
@@ -16,7 +18,7 @@ use SimpleSAML\Test\BuiltInServer;
 class IndexTest extends TestCase
 {
     /**
-     * @var \SimpleSAML\Test\BuiltInServer
+     * @var \SimpleSAML\TestUtils\BuiltInServer
      */
     protected $server;
 
@@ -40,7 +42,7 @@ class IndexTest extends TestCase
      * The setup method that is run before any tests in this class.
      * @return void
      */
-    protected function setup()
+    protected function setup(): void
     {
         $this->server = new BuiltInServer('configLoader');
         $this->server_addr = $this->server->start();
@@ -55,7 +57,7 @@ class IndexTest extends TestCase
      * @param array $config
      * @return void
      */
-    protected function updateConfig(array $config)
+    protected function updateConfig(array $config): void
     {
         @unlink($this->shared_file);
         $config = "<?php\n\$config = " . var_export($config, true) . ";\n";
@@ -67,7 +69,7 @@ class IndexTest extends TestCase
      * A simple test to make sure the index.php file redirects appropriately to the right URL.
      * @return void
      */
-    public function testRedirection()
+    public function testRedirection(): void
     {
         // test most basic redirection
         $this->updateConfig([
@@ -78,7 +80,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://example.org/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://example.org/simplesaml/module.php/core/login',
             $resp['headers']['Location']
         );
 
@@ -91,7 +93,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'https://example.org/module.php/core/frontpage_welcome.php',
+            'https://example.org/module.php/core/login',
             $resp['headers']['Location']
         );
 
@@ -104,7 +106,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://' . $this->server_addr . '/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://' . $this->server_addr . '/simplesaml/module.php/core/login',
             $resp['headers']['Location']
         );
     }
@@ -114,7 +116,7 @@ class IndexTest extends TestCase
      * The tear down method that is executed after all tests in this class.
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unlink($this->shared_file);
         $this->server->stop();

@@ -112,9 +112,6 @@ msgstr "Pokud jste v debug módu, můžete vidět obsah zprávy, kterou posílá
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Poskytovatel identity odpověděl chybou. (Stavový kód v SAML nebyl úspěšný)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Bez jména a hesla se nemůžete identifikovat. Zkuste "
@@ -211,9 +208,6 @@ msgstr "Odhlašuji..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nesprávné jméno nebo heslo."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remote - vzdálený)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -439,9 +433,6 @@ msgstr "Posílám zprávu"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Chyba přijatá od poskytovatele identity"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
 
@@ -510,9 +501,6 @@ msgstr "Stránka nenalezena."
 msgid "{logout:logged_out_text}"
 msgstr "Jste odhlášen. Děkujeme za použití této služby."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted - lokální)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Stáhněte certifikát X509 jako PEM-encoded soubor"
 
@@ -540,8 +528,11 @@ msgstr ""
 "konfiguraci. Kontaktujte administrátora této přihlašovací služby a "
 "zašlete mu tuto zprávu."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted - lokální)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobil"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Preferovaný jazyk"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nepředložil jste validní certifikát."
@@ -574,9 +565,6 @@ msgstr "Chybí certifikát"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Odhlašovací informace ztracena"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remote - vzdálený)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp je špatně nakonfigurovaný"
