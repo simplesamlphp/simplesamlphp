@@ -44,9 +44,6 @@ msgstr "State information lost"
 msgid "{login:username}"
 msgstr "Username"
 
-msgid "{login:processing}"
-msgstr "Processing..."
-
 msgid "Back"
 msgstr "Back"
 
@@ -90,9 +87,6 @@ msgstr "Unable to locate metadata for %ENTITYID%"
 
 msgid "{admin:metadata_metadata}"
 msgstr "Metadata"
-
-msgid "{errors:title_SSOPARAMS}"
-msgstr "No SAML request provided"
 
 msgid "{errors:report_text}"
 msgstr ""
@@ -199,9 +193,6 @@ msgstr ""
 "The parameters sent to the discovery service were not according to "
 "specifications."
 
-msgid "{errors:title_ARSPARAMS}"
-msgstr "No SAML message provided"
-
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "An error occurred when trying to create the SAML request."
 
@@ -210,9 +201,6 @@ msgstr "Optional fields"
 
 msgid "{logout:return}"
 msgstr "Return to service"
-
-msgid "{errors:title_MEMCACHEDOWN}"
-msgstr "Cannot retrieve session data"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
@@ -317,9 +305,6 @@ msgstr ""
 "One or more of the services you are logged into <i>do not support "
 "logout</i>. To ensure that all your sessions are closed, you are "
 "encouraged to <i>close your webbrowser</i>."
-
-msgid "{admin:metaconv_selectfile}"
-msgstr "or select a file:"
 
 msgid "{admin:metadata_xmlformat}"
 msgstr "In SAML 2.0 Metadata XML format:"
@@ -509,12 +494,6 @@ msgstr "Send e-mail to help desk"
 msgid "{login:help_desk_link}"
 msgstr "Help desk homepage"
 
-msgid "{errors:descr_ARSPARAMS}"
-msgstr ""
-"You accessed the Artifact Resolution Service interface, but did not "
-"provide a SAML ArtifactResolve message. Please note that this endpoint is"
-" not intended to be accessed directly."
-
 msgid "{login:remember_me}"
 msgstr "Remember me"
 
@@ -635,12 +614,6 @@ msgstr ""
 
 msgid "{disco:selectidp_full}"
 msgstr "Please select the identity provider where you want to authenticate:"
-
-msgid "{errors:descr_SSOPARAMS}"
-msgstr ""
-"You accessed the Single Sign On Service interface, but did not provide a "
-"SAML Authentication Request. Please note that this endpoint is not "
-"intended to be accessed directly."
 
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
