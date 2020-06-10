@@ -1552,7 +1552,7 @@ msgid "Organizational homepage"
 msgstr "Organisatie homepage"
 
 msgid "Processing..."
-msgstr "Bezig te verwerken..."
+msgstr "Verwerken..."
 
 msgid ""
 "You accessed the Assertion Consumer Service interface, but did not "
