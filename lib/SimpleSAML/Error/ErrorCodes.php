@@ -24,7 +24,7 @@ class ErrorCodes
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:title_ACSPARAMS}'),
-            'ARSPARAMS' => Translate::noop('{errors:title_ARSPARAMS}'),
+            'ARSPARAMS' => Translate::noop('No SAML message provided'),
             'AUTHSOURCEERROR' => Translate::noop('{errors:title_AUTHSOURCEERROR}'),
             'BADREQUEST' => Translate::noop('{errors:title_BADREQUEST}'),
             'CASERROR' => Translate::noop('{errors:title_CASERROR}'),
@@ -36,7 +36,7 @@ class ErrorCodes
             'LDAPERROR' => Translate::noop('{errors:title_LDAPERROR}'),
             'LOGOUTINFOLOST' => Translate::noop('{errors:title_LOGOUTINFOLOST}'),
             'LOGOUTREQUEST' => Translate::noop('{errors:title_LOGOUTREQUEST}'),
-            'MEMCACHEDOWN' => Translate::noop('{errors:title_MEMCACHEDOWN}'),
+            'MEMCACHEDOWN' => Translate::noop('Cannot retrieve session data'),
             'METADATA' => Translate::noop('{errors:title_METADATA}'),
             'METADATANOTFOUND' => Translate::noop('{errors:title_METADATANOTFOUND}'),
             'NOACCESS' => Translate::noop('{errors:title_NOACCESS}'),
@@ -51,7 +51,7 @@ class ErrorCodes
             'PROCESSAUTHNREQUEST' => Translate::noop('{errors:title_PROCESSAUTHNREQUEST}'),
             'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:title_RESPONSESTATUSNOSUCCESS}'),
             'SLOSERVICEPARAMS' => Translate::noop('{errors:title_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => Translate::noop('{errors:title_SSOPARAMS}'),
+            'SSOPARAMS' => Translate::noop('No SAML request provided'),
             'UNHANDLEDEXCEPTION' => Translate::noop('{errors:title_UNHANDLEDEXCEPTION}'),
             'UNKNOWNCERT' => Translate::noop('{errors:title_UNKNOWNCERT}'),
             'USERABORTED' => Translate::noop('{errors:title_USERABORTED}'),
@@ -82,7 +82,10 @@ class ErrorCodes
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:descr_ACSPARAMS}'),
-            'ARSPARAMS' => Translate::noop('{errors:descr_ARSPARAMS}'),
+            'ARSPARAMS' => Translate::noop(""
+                "You accessed the Artifact Resolution Service interface, but did not "
+                "provide a SAML ArtifactResolve message. Please note that this endpoint is"
+                " not intended to be accessed directly."),
             'AUTHSOURCEERROR' => Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
             'BADREQUEST' => Translate::noop('{errors:descr_BADREQUEST}'),
             'CASERROR' => Translate::noop('{errors:descr_CASERROR}'),
@@ -109,7 +112,10 @@ class ErrorCodes
             'PROCESSAUTHNREQUEST' => Translate::noop('{errors:descr_PROCESSAUTHNREQUEST}'),
             'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:descr_RESPONSESTATUSNOSUCCESS}'),
             'SLOSERVICEPARAMS' => Translate::noop('{errors:descr_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => Translate::noop('{errors:descr_SSOPARAMS}'),
+            'SSOPARAMS' => Translate::noop(""
+                "You accessed the Single Sign On Service interface, but did not provide a "
+                "SAML Authentication Request. Please note that this endpoint is not "
+                "intended to be accessed directly."),
             'UNHANDLEDEXCEPTION' => Translate::noop('{errors:descr_UNHANDLEDEXCEPTION}'),
             'UNKNOWNCERT' => Translate::noop('{errors:descr_UNKNOWNCERT}'),
             'USERABORTED' => Translate::noop('{errors:descr_USERABORTED}'),

@@ -44,9 +44,6 @@ msgstr "Toestandsinformatie verloren"
 msgid "{login:username}"
 msgstr "Gebruikersnaam"
 
-msgid "{login:processing}"
-msgstr "Bezig te verwerken..."
-
 msgid "Back"
 msgstr "Terug"
 
@@ -90,9 +87,6 @@ msgstr "Kan geen metadata vinden voor %ENTITYID%"
 
 msgid "{admin:metadata_metadata}"
 msgstr "Metadata"
-
-msgid "{errors:title_SSOPARAMS}"
-msgstr "Geen SAML request opgegeven"
 
 msgid "{errors:report_text}"
 msgstr ""
@@ -195,7 +189,7 @@ msgstr ""
 "De parameters die naar de discovery service zijn gestuurd, zijn niet "
 "correct volgens de specificatie."
 
-msgid "{errors:title_ARSPARAMS}"
+msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
 msgid "{errors:descr_CREATEREQUEST}"
@@ -206,9 +200,6 @@ msgstr "Optionele velden"
 
 msgid "{logout:return}"
 msgstr "Terug naar service"
-
-msgid "{errors:title_MEMCACHEDOWN}"
-msgstr "Kan sessie data niet ophalen"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -314,9 +305,6 @@ msgstr ""
 "Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning "
 "voor uitloggen</i>. Om er zeker van te zijn dat al je sessies zijn "
 "beëindigd, kun je het beste <i>je webbrowser afsluiten</i>."
-
-msgid "{admin:metaconv_selectfile}"
-msgstr "of kies een file:"
 
 msgid "{admin:metadata_xmlformat}"
 msgstr "In SAML 2.0 Metadata XML formaat:"
@@ -505,12 +493,6 @@ msgstr "Stuur een e-mail naar de helpdesk"
 msgid "{login:help_desk_link}"
 msgstr "Helpdesk homepage"
 
-msgid "{errors:descr_ARSPARAMS}"
-msgstr ""
-"Je hebt het Artifact Resolution Service interface aangeroepen, maar stuurde "
-"geen SAML ArtifactResolve bericht mee. Merk op dat dit 'endpoint' niet "
-"bedoeld is om direct benaderd te worden."
-
 msgid "{login:remember_me}"
 msgstr "Onthoud mij"
 
@@ -629,12 +611,6 @@ msgstr ""
 
 msgid "{disco:selectidp_full}"
 msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
-
-msgid "{errors:descr_SSOPARAMS}"
-msgstr ""
-"Je hebt het Single Sign On interface aangeroepen, maar stuurde geen SAML "
-"Authentication Request mee. Merk op dat dit 'endpoint' niet bedoeld is om"
-" direct benaderd te worden."
 
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr ""
