@@ -271,4 +271,99 @@ XML
         );
         $this->assertEquals($expected['name'], $metadata['name']);
     }
+
+    /**
+     * Test entity category hidden from discovery is parsed
+     * @return void
+     */
+    public function testHiddenFromDiscovery(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-category</saml:AttributeValue>
+        </saml:Attribute>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>http://refeds.org/category/hide-from-discovery</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+	$metadata = $entities['theEntityID']->getMetadata20IdP();
+	$this->assertArrayHasKey('hide.from.discovery', $metadata);
+        $this->assertTrue($metadata['hide.from.discovery']);
+    }
+
+    /**
+     * Test entity category hidden from discovery is not returned when not present
+     * @return void
+     */
+    public function testHiddenFromDiscoveryNotHidden(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za">
+        <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
+      </mdrpi:RegistrationInfo>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-category</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+	$metadata = $entities['theEntityID']->getMetadata20IdP();
+	$this->assertArrayNotHasKey('hide.from.discovery', $metadata);
+    }
+
+    /**
+     * Test entity category hidden from discovery is not returned when no mace dir entity categories present
+     * @return void
+     */
+    public function testHiddenFromDiscoveryNotHiddenNoMaceDirEC(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category-support" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-supported-category</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+	$metadata = $entities['theEntityID']->getMetadata20IdP();
+	$this->assertArrayNotHasKey('hide.from.discovery', $metadata);
+    }
+
 }
