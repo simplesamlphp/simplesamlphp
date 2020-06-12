@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This abstract class defines an interface for metadata storage sources.

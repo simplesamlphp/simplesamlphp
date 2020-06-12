@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for username/password/organization authentication.
@@ -22,7 +22,7 @@ use Webmozart\Assert\Assert;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
+abstract class UserPassOrgBase extends Auth\Source
 {
     /**
      * The string used to identify our states.

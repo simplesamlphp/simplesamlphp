@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Webmozart\Assert\Assert;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.

@@ -6,11 +6,11 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use PDO;
 use PDOStatement;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
 use SimpleSAML\Database;
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.

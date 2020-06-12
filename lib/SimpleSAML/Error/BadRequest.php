@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Exception which will show a 400 Bad Request error page.

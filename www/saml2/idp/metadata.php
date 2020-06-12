@@ -5,12 +5,12 @@ require_once('../../_include.php');
 use Symfony\Component\VarExporter\VarExporter;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\Auth as Auth;
 use SimpleSAML\Utils\Crypto as Crypto;
 use SimpleSAML\Utils\HTTP as HTTP;
 use SimpleSAML\Utils\Config\Metadata as Metadata;
-use Webmozart\Assert\Assert;
 
 // load SimpleSAMLphp configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();

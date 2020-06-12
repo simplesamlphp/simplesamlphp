@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -16,7 +17,6 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the admin module.

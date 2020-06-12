@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SAML2\XML\saml\AttributeValue;
+use Serializable;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * The Session class holds information about a user session, and everything attached to it.
@@ -27,7 +28,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class Session implements \Serializable, Utils\ClearableState
+class Session implements Serializable, Utils\ClearableState
 {
     /**
      * This is a timeout value for setData, which indicates that the data

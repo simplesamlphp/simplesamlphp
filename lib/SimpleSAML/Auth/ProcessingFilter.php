@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Base class for authentication processing filters.

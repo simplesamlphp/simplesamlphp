@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class NameIDAttribute extends ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
-use Webmozart\Assert\Assert;
 
 /**
  * A class to handle the menu in admin pages.

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Example authentication source - username & password.
@@ -18,7 +20,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
+class UserPass extends UserPassBase
 {
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<password>",
@@ -45,14 +47,14 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Validate and parse our configuration
         foreach ($config as $userpass => $attributes) {
             if (!is_string($userpass)) {
-                throw new \Exception(
+                throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
                 );
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
-                throw new \Exception(
+                throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass[0]
                 );
             }
@@ -61,8 +63,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
 
             try {
                 $attributes = Utils\Attributes::normalizeAttributesArray($attributes);
-            } catch (\Exception $e) {
-                throw new \Exception('Invalid attributes for user ' . $username .
+            } catch (Exception $e) {
+                throw new Exception('Invalid attributes for user ' . $username .
                     ' in authentication source ' . $this->authId . ': ' . $e->getMessage());
             }
             $this->users[$username . ':' . $password] = $attributes;

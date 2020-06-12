@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Assert\Assert;
 use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * A class for cryptography-related functions.

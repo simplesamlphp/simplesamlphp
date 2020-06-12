@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP

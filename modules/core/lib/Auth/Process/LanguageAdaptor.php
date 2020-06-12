@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to set and get language settings from attributes.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
+class LanguageAdaptor extends Auth\ProcessingFilter
 {
     /** @var string */
     private $langattr = 'preferredLanguage';
