@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Store;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
-use Webmozart\Assert\Assert;
 
 /**
  * A memcache based data store.

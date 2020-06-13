@@ -6,27 +6,33 @@
  * @package SimpleSAMLphp
  */
 
-use Webmozart\Assert\Assert;
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
 
 if (array_key_exists('RedirId', $_REQUEST)) {
     $postId = $_REQUEST['RedirId'];
-    $session = \SimpleSAML\Session::getSessionFromRequest();
+    $session = Session::getSessionFromRequest();
 } elseif (array_key_exists('RedirInfo', $_REQUEST)) {
     $encData = base64_decode($_REQUEST['RedirInfo']);
 
     if (empty($encData)) {
-        throw new \SimpleSAML\Error\BadRequest('Invalid RedirInfo data.');
+        throw new Error\BadRequest('Invalid RedirInfo data.');
     }
 
-    list($sessionId, $postId) = explode(':', \SimpleSAML\Utils\Crypto::aesDecrypt($encData));
+    list($sessionId, $postId) = explode(':', Utils\Crypto::aesDecrypt($encData));
 
     if (empty($sessionId) || empty($postId)) {
-        throw new \SimpleSAML\Error\BadRequest('Invalid session info data.');
+        throw new Error\BadRequest('Invalid session info data.');
     }
 
-    $session = \SimpleSAML\Session::getSession($sessionId);
+    $session = Session::getSession($sessionId);
 } else {
-    throw new \SimpleSAML\Error\BadRequest('Missing redirection info parameter.');
+    throw new Error\BadRequest('Missing redirection info parameter.');
 }
 
 if ($session === null) {
@@ -46,12 +52,12 @@ Assert::isArray($postData);
 Assert::keyExists($postData, 'url');
 Assert::keyExists($postData, 'post');
 
-if (!\SimpleSAML\Utils\HTTP::isValidURL($postData['url'])) {
-    throw new \SimpleSAML\Error\Exception('Invalid destination URL.');
+if (!Utils\HTTP::isValidURL($postData['url'])) {
+    throw new Error\Exception('Invalid destination URL.');
 }
 
-$config = \SimpleSAML\Configuration::getInstance();
-$template = new \SimpleSAML\XHTML\Template($config, 'post.php');
+$config = Configuration::getInstance();
+$template = new Template($config, 'post.php');
 $template->data['destination'] = $postData['url'];
 $template->data['post'] = $postData['post'];
 $template->send();

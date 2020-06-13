@@ -35,9 +35,9 @@ use SAML2\XML\mdui\Logo;
 use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.

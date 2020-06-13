@@ -8,6 +8,7 @@ use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -18,7 +19,6 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class SP extends \SimpleSAML\Auth\Source
 {

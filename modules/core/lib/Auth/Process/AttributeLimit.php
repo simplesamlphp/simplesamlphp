@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * A filter for limiting which attributes are passed on.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeLimit extends Auth\ProcessingFilter
 {
     /**
      * List of attributes which this filter will allow through.

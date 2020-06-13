@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Example authentication source.
@@ -16,7 +18,7 @@ use Webmozart\Assert\Assert;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class StaticSource extends \SimpleSAML\Auth\Source
+class StaticSource extends Auth\Source
 {
     /**
      * The attributes we return.
@@ -39,8 +41,8 @@ class StaticSource extends \SimpleSAML\Auth\Source
         // Parse attributes
         try {
             $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
-        } catch (\Exception $e) {
-            throw new \Exception('Invalid attributes for authentication source ' .
+        } catch (Exception $e) {
+            throw new Exception('Invalid attributes for authentication source ' .
                 $this->authId . ': ' . $e->getMessage());
         }
     }

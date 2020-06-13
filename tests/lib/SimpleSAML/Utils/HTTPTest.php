@@ -9,7 +9,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
-use Webmozart\Assert\Assert;
 
 class HTTPTest extends ClearStateTestCase
 {

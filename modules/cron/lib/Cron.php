@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\cron;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use Webmozart\Assert\Assert;
 
 /**
  * Handles interactions with SSP's cron system/hooks.
@@ -42,7 +43,7 @@ class Cron
     public function runTag(string $tag): array
     {
         if (!$this->isValidTag($tag)) {
-            throw new \Exception("Invalid cron tag '$tag''");
+            throw new Exception("Invalid cron tag '$tag''");
         }
 
         $summary = [];

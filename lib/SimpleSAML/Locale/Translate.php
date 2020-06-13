@@ -13,10 +13,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Gettext\BaseTranslator;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use Webmozart\Assert\Assert;
 
 class Translate
 {

@@ -44,6 +44,7 @@
         "ext-mbstring": "*",
         "gettext/gettext": "^4.6",
         "phpmailer/phpmailer": "^6.1",
+        "simplesamlphp/assert": "0.0.10",
         "simplesamlphp/saml2": "^4.1",
         "simplesamlphp/twig-configurable-i18n": "^2.1",
         "symfony/cache": "^4.0",
@@ -57,8 +58,7 @@
         "symfony/routing": "^4.0",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^4.0",
-        "twig/twig": "~2.0",
-        "webmozart/assert": "~1.7"
+        "twig/twig": "~2.0"
     },
     "require-dev": {
         "ext-curl": "*",

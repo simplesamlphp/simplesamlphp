@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Configuration of SimpleSAMLphp
