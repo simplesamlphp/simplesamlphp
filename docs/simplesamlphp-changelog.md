@@ -10,6 +10,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+  * Fixes Artifact Resolution due to incorrect use of Issuer objects (#1343).
+
 ### saml2 library
   * Fixed a bug in AuthnRequest.php that would raise an InvalidArgumentException when setting
   *   the AssertionConsumerServiceIndex on an saml:SP authsource. Thanks to Andrea @ Oracle for reporting this.
