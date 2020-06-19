@@ -415,6 +415,7 @@ class Federation
                 $error = $e->getMessage();
             }
 
+            $output = [];
             if ($entities !== null) {
                 // get all metadata for the entities
                 foreach ($entities as &$entity) {

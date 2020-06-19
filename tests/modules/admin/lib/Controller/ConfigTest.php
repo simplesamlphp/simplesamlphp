@@ -81,6 +81,7 @@ class ConfigTest extends TestCase
      */
     public function testDiagnostics(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/diagnostics';
         $request = Request::create(
             '/diagnostics',
             'GET'
@@ -99,6 +100,7 @@ class ConfigTest extends TestCase
      */
     public function testMain(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin';
         $request = Request::create(
             '/',
             'GET'
@@ -117,6 +119,7 @@ class ConfigTest extends TestCase
      */
     public function testPhpinfo(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/phpinfo';
         $request = Request::create(
             '/phpinfo',
             'GET'

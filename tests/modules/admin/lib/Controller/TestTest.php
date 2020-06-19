@@ -78,6 +78,7 @@ class TestTest extends TestCase
      */
     public function testMainWithoutAuthSource(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
             'GET'
@@ -97,6 +98,7 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceAndLogout(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
             'GET',
@@ -124,6 +126,7 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceAndException(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
             'GET',
@@ -150,6 +153,7 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceNotAuthenticated(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
             'GET',
@@ -182,6 +186,7 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceAuthenticated(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
             'GET'
