@@ -30,6 +30,24 @@ class Test
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
+    /**
+     * @var \SimpleSAML\Auth\Simple|string
+     * @psalm-var \SimpleSAML\Auth\Simple|class-string
+     */
+    protected $authSimple = Auth\Simple::class;
+
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
+    protected $authState = Auth\State::class;
+
     /** @var Menu */
     protected $menu;
 
@@ -52,28 +70,62 @@ class Test
 
 
     /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\Simple dependency.
+     *
+     * @param \SimpleSAML\Auth\Simple $authSimple
+     */
+    public function setAuthSimple(Auth\Simple $authSimple): void
+    {
+        $this->authSimple = $authSimple;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
+    }
+
+
+    /**
      * Display the list of available authsources.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
-     * @return \SimpleSAML\XHTML\Template
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
     public function main(Request $request, string $as = null)
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [
                 'sources' => Auth\Source::getSources(),
             ];
         } else {
-            $authsource = new Auth\Simple($as);
+            $simple = $this->authSimple;
+            $authsource = new $simple($as);
             if (!is_null($request->query->get('logout'))) {
-                $authsource->logout($this->config->getBasePath() . 'logout.php');
+                return new RunnableResponse([$authsource, 'logout'], [$this->config->getBasePath() . 'logout.php']);
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */
-                $state = Auth\State::loadExceptionState();
+                $state = $this->authState::loadExceptionState();
                 Assert::keyExists($state, Auth\State::EXCEPTION_DATA);
                 throw $state[Auth\State::EXCEPTION_DATA];
             }
@@ -84,7 +136,7 @@ class Test
                     'ErrorURL' => $url,
                     'ReturnTo' => $url,
                 ];
-                $authsource->login($params);
+                return new RunnableResponse([$authsource, 'login'], [$params]);
             }
 
             $attributes = $authsource->getAttributes();
