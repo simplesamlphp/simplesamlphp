@@ -67,7 +67,7 @@ if ($responseData !== null) {
 
 $artifactResponse = new \SAML2\ArtifactResponse();
 
-$issuer = new Issuer();
+$issuer = new \SAML2\XML\saml\Issuer();
 $issuer->setValue($idpEntityId);
 $artifactResponse->setIssuer($issuer);
 
