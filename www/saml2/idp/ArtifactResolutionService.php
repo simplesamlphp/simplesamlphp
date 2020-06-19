@@ -47,6 +47,10 @@ if (!($request instanceof \SAML2\ArtifactResolve)) {
 }
 
 $issuer = $request->getIssuer();
+if (!is_string($issuer)) {
+    $issuer = $issuer->getValue();
+}
+
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 $artifact = $request->getArtifact();
@@ -62,7 +66,11 @@ if ($responseData !== null) {
 }
 
 $artifactResponse = new \SAML2\ArtifactResponse();
-$artifactResponse->setIssuer($idpEntityId);
+
+$issuer = new \SAML2\XML\saml\Issuer();
+$issuer->setValue($idpEntityId);
+$artifactResponse->setIssuer($issuer);
+
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
 \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
