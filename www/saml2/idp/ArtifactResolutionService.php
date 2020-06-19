@@ -15,6 +15,7 @@ use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;
 use SAML2\DOMDocumentFactory;
 use SAML2\SOAP;
+use SAML2\XML\saml\Issuer;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
@@ -58,6 +59,10 @@ if (!($request instanceof ArtifactResolve)) {
 }
 
 $issuer = $request->getIssuer();
+if (!is_string($issuer)) {
+    $issuer = $issuer->getValue();
+}
+
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 $artifact = $request->getArtifact();
@@ -73,7 +78,10 @@ if ($responseData !== null) {
 }
 
 $artifactResponse = new ArtifactResponse();
-$artifactResponse->setIssuer($idpEntityId);
+$issuer = new Issuer();
+$issuer->setValue($idpEntityId);
+$artifactResponse->setIssuer($issuer);
+
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
 Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
