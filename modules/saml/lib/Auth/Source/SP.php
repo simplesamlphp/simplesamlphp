@@ -599,6 +599,11 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['saml:Extensions'])) {
             $ar->setExtensions($state['saml:Extensions']);
         }
+        
+        $providerName = $this->metadata->getString("ProviderName");
+        if ($providerName !== null) {
+          $ar->setProviderName($providerName);
+        }
 
         // save IdP entity ID as part of the state
         $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
