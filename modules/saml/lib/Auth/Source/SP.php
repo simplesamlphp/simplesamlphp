@@ -602,7 +602,7 @@ class SP extends \SimpleSAML\Auth\Source
         
         $providerName = $this->metadata->getString("ProviderName");
         if ($providerName !== null) {
-          $ar->setProviderName($providerName);
+            $ar->setProviderName($providerName);
         }
 
         // save IdP entity ID as part of the state
