@@ -600,7 +600,7 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setExtensions($state['saml:Extensions']);
         }
         
-        $providerName = $this->metadata->getString("ProviderName");
+        $providerName = $this->metadata->getString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
         }
