@@ -10,11 +10,15 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Fixes Artifact Resolution due to incorrect use of Issuer objects (#1343).
+  * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
+  * Fixed Cron-module for old-ui (#1248)
+  * Fixed some of the German translations (#1331). Thanks @htto!
+  * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
 
 ### saml2 library
-  * Fixed a bug in AuthnRequest.php that would raise an InvalidArgumentException when setting
-  *   the AssertionConsumerServiceIndex on an saml:SP authsource. Thanks to Andrea @ Oracle for reporting this.
+  * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
+      the AssertionConsumerServiceIndex as an integer on an saml:SP authsource.
+      Thanks to Andrea @ Oracle for reporting this.
 
 ## Version 1.18.7
 
