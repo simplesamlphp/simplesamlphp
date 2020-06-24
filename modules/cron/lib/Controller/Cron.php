@@ -133,7 +133,7 @@ class Cron
             try {
                 $mail->send();
             } catch (\PHPMailer\PHPMailer\Exception $e) {
-                Logger::warning("Unable to send cron report");
+                Logger::warning("Unable to send cron report; " . $e->getMessage());
             }
         }
 
