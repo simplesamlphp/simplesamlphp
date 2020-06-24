@@ -76,13 +76,25 @@ class Cron
         ];
 
         $urls = [];
-        foreach ($tags as $tag) {
-            $urls[] = [
-                'exec_href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key,
-                'href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key . '/xhtml',
-                'tag' => $tag,
-                'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
-            ];
+        if ($this->config->getBoolean('usenewui', false)) {
+            foreach ($tags as $tag) {
+                $urls[] = [
+                    'exec_href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key,
+                    'href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key . '/xhtml',
+                    'tag' => $tag,
+                    'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
+                ];
+            }
+        } else {
+            // cron.php?key=secret&tag=hourly&output=xhtml
+            foreach ($tags as $tag) {
+                $urls[] = [
+                    'exec_href' => Module::getModuleURL('cron/cron.php', ['key' => $key, 'tag' => $tag]),
+                    'href' => Module::getModuleURL('cron/cron.php', ['key' => $key, 'tag' => $tag, 'output' => 'xhtml']),
+                    'tag' => $tag,
+                    'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
+                ];
+            }
         }
 
         $t = new Template($this->config, 'cron:croninfo.tpl.php', 'cron:cron');
