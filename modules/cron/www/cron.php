@@ -4,6 +4,7 @@ namespace SimpleSAML\Module\cron;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Session;
+use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 $config = Configuration::getInstance();
@@ -16,4 +17,8 @@ $output = $request->get('output');
 
 $controller = new Controller\Cron($config, $session);
 $response = $controller->run($tag, $key, $output);
-$response->show();
+if ($response instanceof Template) {
+    $response->show();
+} else {
+    $response->send();
+}
