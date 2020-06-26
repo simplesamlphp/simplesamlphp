@@ -326,6 +326,11 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`ProviderName`
+:   Human readable name of the local SP sent with the authentication request.
+
+:   *Note*: SAML 2 specific.
+
 `ProtocolBinding`
 :   The binding that should be used for SAML2 authentication responses.
     This option controls the binding that is requested through the AuthnRequest message to the IdP.
