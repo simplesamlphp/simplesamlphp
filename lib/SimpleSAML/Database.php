@@ -95,7 +95,7 @@ class Database
             $driverOptions
         );
 
-        // TODO: deprecated racism: the "database.slave" terminology is preserved here for backwards compatibility.
+        // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
         if ($config->getArray('database.slaves', null) !== null) {
             Logger::warning(
                 'The "database.slaves" config option is deprecated. ' .
@@ -136,7 +136,7 @@ class Database
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', false),
             ],
-            // TODO: deprecated racism: the "database.slave" terminology is preserved here for backwards compatibility.
+            // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
             'secondaries' => $config->getArray('database.secondaries', $config->getArray('database.slaves', [])),
         ];
 
