@@ -68,7 +68,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $this->config = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -97,7 +97,7 @@ class DatabaseTest extends TestCase
             'database.password'   => 'notausersinvalidpassword',
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $this->config = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -121,7 +121,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
         $config2 = [
             'database.dsn'        => 'sqlite::memory:',
@@ -129,7 +129,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit2_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $config1 = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -179,22 +179,22 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::generateInstanceId
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
-     * @covers SimpleSAML\Database::getSlave
+     * @covers SimpleSAML\Database::getSecondary
      * @test
      * @return void
      */
-    public function slaves(): void
+    public function secondaries(): void
     {
         $ref = new ReflectionClass($this->db);
-        $dbMaster = $ref->getProperty('dbMaster');
-        $dbMaster->setAccessible(true);
-        $master = spl_object_hash($dbMaster->getValue($this->db));
+        $dbPrimary = $ref->getProperty('dbPrimary');
+        $dbPrimary->setAccessible(true);
+        $primary = spl_object_hash($dbPrimary->getValue($this->db));
 
-        $getSlave = $ref->getMethod('getSlave');
-        $getSlave->setAccessible(true);
-        $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
+        $getSecondary = $ref->getMethod('getSecondary');
+        $getSecondary->setAccessible(true);
+        $secondary = spl_object_hash($getSecondary->invokeArgs($this->db, []));
 
-        $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
+        $this->assertTrue(($primary == $secondary), "getSecondary should have returned the primary database object");
 
         $config = [
             'database.dsn'        => 'sqlite::memory:',
@@ -202,7 +202,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [
+            'database.secondaries'     => [
                 [
                     'dsn'      => 'sqlite::memory:',
                     'username' => null,
@@ -215,18 +215,18 @@ class DatabaseTest extends TestCase
         $msdb = Database::getInstance($sspConfiguration);
 
         $ref = new ReflectionClass($msdb);
-        $dbSlaves = $ref->getProperty('dbSlaves');
-        $dbSlaves->setAccessible(true);
-        $slaves = $dbSlaves->getValue($msdb);
+        $dbSecondaries = $ref->getProperty('dbSecondaries');
+        $dbSecondaries->setAccessible(true);
+        $secondaries = $dbSecondaries->getValue($msdb);
 
-        $getSlave = $ref->getMethod('getSlave');
-        $getSlave->setAccessible(true);
-        $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
+        $getSecondary = $ref->getMethod('getSecondary');
+        $getSecondary->setAccessible(true);
+        $gotSecondary = spl_object_hash($getSecondary->invokeArgs($msdb, []));
 
         $this->assertEquals(
-            spl_object_hash($slaves[0]),
-            $gotSlave,
-            "getSlave should have returned a slave database object"
+            spl_object_hash($secondaries[0]),
+            $gotSecondary,
+            "getSecondary should have returned a secondary database object"
         );
     }
 

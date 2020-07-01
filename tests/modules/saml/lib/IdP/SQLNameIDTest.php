@@ -83,12 +83,12 @@ class SQLNameIDTest extends TestCase
     public function testDatabase(): void
     {
         $config = [
-            'database.dsn'        => 'sqlite::memory:',
-            'database.username'   => null,
-            'database.password'   => null,
-            'database.prefix'     => 'phpunit_',
-            'database.persistent' => true,
-            'database.slaves'     => [
+            'database.dsn'         => 'sqlite::memory:',
+            'database.username'    => null,
+            'database.password'    => null,
+            'database.prefix'      => 'phpunit_',
+            'database.persistent'  => true,
+            'database.secondaries' => [
                 [
                     'dsn'      => 'sqlite::memory:',
                     'username' => null,
