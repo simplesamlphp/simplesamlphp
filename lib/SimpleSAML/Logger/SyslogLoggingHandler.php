@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
+use Psr\Log\LogLevel;
 use SimpleSAML\Configuration;
 use SimpleSAML\Utils;
 
@@ -19,6 +20,22 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
 
     /** @var string */
     protected $format = "%b %d %H:%M:%S";
+
+    /**
+     * This array contains the mappings from syslog log level to names.
+     *
+     * @var array
+     */
+    private static $levelNames = [
+        LogLevel::EMERGENCY => 0,
+        LogLevel::ALERT => 1,
+        LogLevel::CRITICAL => 2,
+        LogLevel::ERROR => 3,
+        LogLevel::WARNING => 4,
+        LogLevel::NOTICE => 5,
+        LogLevel::INFO => 6,
+        LogLevel::DEBUG => 7,
+    ];
 
 
     /**
@@ -55,11 +72,13 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
     /**
      * Log a message to syslog.
      *
-     * @param int $level The log level.
+     * @param string $level The log level.
      * @param string $string The formatted message to log.
      */
-    public function log(int $level, string $string): void
+    public function log(string $level, string $string): void
     {
+        $level = self::$levelNames[$level];
+
         // changing log level to supported levels if OS is Windows
         if ($this->isWindows) {
             if ($level <= 4) {

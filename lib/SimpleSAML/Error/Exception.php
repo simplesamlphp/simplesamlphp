@@ -195,9 +195,11 @@ class Exception extends \Exception
 
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
-     * @param int $level
+     *
+     * @param string $level
+     * @return void
      */
-    protected function logBacktrace(int $level = Logger::DEBUG): void
+    protected function logBacktrace(string $level = Logger::DEBUG): void
     {
         // Do nothing if backtraces have been disabled in config.
         $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => true]);
@@ -207,14 +209,7 @@ class Exception extends \Exception
 
         $backtrace = $this->formatBacktrace();
 
-        $callback = [Logger::class];
-        $functions = [
-            Logger::ERR     => 'error',
-            Logger::WARNING => 'warning',
-            Logger::INFO    => 'info',
-            Logger::DEBUG   => 'debug',
-        ];
-        $callback[] = $functions[$level];
+        $callback = [Logger::class, $level];
 
         foreach ($backtrace as $line) {
             call_user_func($callback, $line);
@@ -227,12 +222,13 @@ class Exception extends \Exception
      *
      * Override to allow errors extending this class to specify the log level themselves.
      *
-     * @param int $default_level The log level to use if this method was not overridden.
+     * @param string $default_level The log level to use if this method was not overridden.
+     * @return void
      */
-    public function log(int $default_level): void
+    public function log(string $default_level): void
     {
         $fn = [
-            Logger::ERR     => 'logError',
+            Logger::ERROR     => 'logError',
             Logger::WARNING => 'logWarning',
             Logger::INFO    => 'logInfo',
             Logger::DEBUG   => 'logDebug',
@@ -249,7 +245,7 @@ class Exception extends \Exception
     public function logError(): void
     {
         Logger::error($this->getClass() . ': ' . $this->getMessage());
-        $this->logBacktrace(Logger::ERR);
+        $this->logBacktrace(Logger::ERROR);
     }
 
 
