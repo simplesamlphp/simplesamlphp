@@ -19,6 +19,11 @@
             "email": "jaime.perez@uninett.no"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "7.0.33"
+        }
+    },
     "autoload": {
         "psr-4": {
             "SimpleSAML\\": "lib/SimpleSAML"
