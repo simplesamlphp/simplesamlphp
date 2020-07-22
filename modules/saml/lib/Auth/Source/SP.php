@@ -585,15 +585,17 @@ class SP extends \SimpleSAML\Auth\Source
         );
 
         $ar->setRequesterID($requesterID);
-        
+
         // If the downstream SP has set extensions then use them.
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
-        if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {                                                                        
+        if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
             $ar->setExtensions($state['saml:Extensions']);
         } else if ($this->metadata->getArray('saml:Extensions', null) !== null) {
             $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
+        } else if (isset($state['saml:Extensions'])) {
+            $ar->setExtensions($state['saml:Extensions']);
         }
-        
+
         $providerName = $this->metadata->getString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
