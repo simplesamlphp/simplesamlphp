@@ -14,7 +14,7 @@ require_once('../../_include.php');
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
-use SimpleSAML\Idp;
+use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
