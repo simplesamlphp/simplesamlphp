@@ -394,8 +394,8 @@ XML
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
-	$metadata = $entities['theEntityID']->getMetadata20IdP();
-	$this->assertArrayHasKey('hide.from.discovery', $metadata);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayHasKey('hide.from.discovery', $metadata);
         $this->assertTrue($metadata['hide.from.discovery']);
     }
 
@@ -427,8 +427,8 @@ XML
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
-	$metadata = $entities['theEntityID']->getMetadata20IdP();
-	$this->assertArrayNotHasKey('hide.from.discovery', $metadata);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
 
     /**
@@ -456,8 +456,7 @@ XML
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
-	$metadata = $entities['theEntityID']->getMetadata20IdP();
-	$this->assertArrayNotHasKey('hide.from.discovery', $metadata);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
-
 }
