@@ -128,7 +128,7 @@ jobs:
         - vendor/bin/phpcs
 
     ###################
-    #  Quality stage  #
+    #  Build stage    #
     ###################
 
     - stage: build
