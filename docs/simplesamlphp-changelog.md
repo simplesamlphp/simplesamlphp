@@ -17,6 +17,9 @@ Released TBD
   * Support for Symfony 3.x is now deprecated
   * Support for Twig 1.x is now deprecated
 
+### authx509
+  * Restore PHP 5.6 compatibility (v0.9.5)
+
 ### cron
   * Fixed old-ui (#1248)
 
@@ -26,6 +29,10 @@ Released TBD
 
 ### metarefresh
   * Add attributewhitelist to support e.g. R&S+Sirtfi (v0.9.5)
+  * Restore PHP 5.6 compatibility (v0.9.6)
+
+### negotiate ###
+  * Restore PHP 5.6 compatibility (v0.9.8)
 
 ### saml2 library
   * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
