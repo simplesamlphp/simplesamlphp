@@ -82,9 +82,9 @@ class ErrorCodes
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:descr_ACSPARAMS}'),
-            'ARSPARAMS' => Translate::noop("".
-                "You accessed the Artifact Resolution Service interface, but did not ".
-                "provide a SAML ArtifactResolve message. Please note that this endpoint is".
+            'ARSPARAMS' => Translate::noop("" .
+                "You accessed the Artifact Resolution Service interface, but did not " .
+                "provide a SAML ArtifactResolve message. Please note that this endpoint is" .
                 " not intended to be accessed directly."),
             'AUTHSOURCEERROR' => Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
             'BADREQUEST' => Translate::noop('{errors:descr_BADREQUEST}'),
@@ -112,9 +112,9 @@ class ErrorCodes
             'PROCESSAUTHNREQUEST' => Translate::noop('{errors:descr_PROCESSAUTHNREQUEST}'),
             'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:descr_RESPONSESTATUSNOSUCCESS}'),
             'SLOSERVICEPARAMS' => Translate::noop('{errors:descr_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => Translate::noop("".
-                "You accessed the Single Sign On Service interface, but did not provide a ".
-                "SAML Authentication Request. Please note that this endpoint is not ".
+            'SSOPARAMS' => Translate::noop("" .
+                "You accessed the Single Sign On Service interface, but did not provide a " .
+                "SAML Authentication Request. Please note that this endpoint is not " .
                 "intended to be accessed directly."),
             'UNHANDLEDEXCEPTION' => Translate::noop('{errors:descr_UNHANDLEDEXCEPTION}'),
             'UNKNOWNCERT' => Translate::noop('{errors:descr_UNKNOWNCERT}'),
