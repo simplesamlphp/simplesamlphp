@@ -13,6 +13,9 @@ Released TBD
   * This version will be the last of the 1.x branch and will provide a migration path to our new
     templating system, routing system, translation system and hooks.
   * SAML 1 / Shib 1.3 support is now marked deprecated and will be removed in SimpleSAMLphp 2.0.
+  * Raised minimum PHP version to 7.1
+  * Dropped support for Symfony 3.x and Twig 1.x
+  * Update the SAML2 library dependency to 4.1.8
 
 ## Version 1.18.4
 
