@@ -19,11 +19,6 @@
             "email": "jaime.perez@uninett.no"
         }
     ],
-    "config": {
-        "platform": {
-            "php": "7.0.33"
-        }
-    },
     "autoload": {
         "psr-4": {
             "SimpleSAML\\": "lib/SimpleSAML"
@@ -37,7 +32,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -49,8 +44,8 @@
         "ext-mbstring": "*",
         "gettext/gettext": "^4.6",
         "phpmailer/phpmailer": "^6.0",
-        "robrichards/xmlseclibs": "^3.0.4",
-        "simplesamlphp/saml2": "^3.4 || ^4.0",
+        "robrichards/xmlseclibs": "^3.1",
+        "simplesamlphp/saml2": "^4.1",
         "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^0.9",
@@ -80,17 +75,17 @@
         "simplesamlphp/simplesamlphp-module-statistics": "^0.9",
         "simplesamlphp/simplesamlphp-module-sqlauth": "^0.9",
         "simplesamlphp/twig-configurable-i18n": "^2.1",
-        "symfony/cache": "^3.4 || ^4.0",
-        "symfony/config": "^3.4 || ^4.0",
-        "symfony/console": "^3.4 || ^4.0",
-        "symfony/dependency-injection": "^3.4 || ^4.0",
-        "symfony/finder": "^3.4 || ^4.0",
-        "symfony/framework-bundle": "^3.4 || ^4.0",
-        "symfony/http-foundation": "^3.4 || ^4.0",
-        "symfony/http-kernel": "^3.4 || ^4.0",
-        "symfony/routing": "^3.4 || ^4.0",
-        "symfony/yaml": "^3.4 || ^4.0",
-        "twig/twig": "~1.0 || ~2.0",
+        "symfony/cache": "^4.0",
+        "symfony/config": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/finder": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/http-foundation": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/routing": "^4.0",
+        "symfony/yaml": "^4.0",
+        "twig/twig": "~2.0",
         "webmozart/assert": "~1.4",
         "whitehat101/apr1-md5": "~1.0"
     },
