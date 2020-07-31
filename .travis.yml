@@ -15,10 +15,10 @@ stages:
 ################
 
 php:
-  - 7.0
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 env:
   - COMMAND="composer install"
@@ -33,13 +33,13 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.0
+    - php: 7.3
       env: Psalm
-    - php: 7.0
+    - php: 7.3
       env: Security check (composer install)
-    - php: 7.0
+    - php: 7.3
       env: Security check (composer update)
-    - php: 7.0
+    - php: 7.3
       env: PHP Codesniffer
 
   include:
@@ -47,14 +47,6 @@ jobs:
     ##########################
     #  Pre-conditions stage  #
     ##########################
-
-    - stage: pre-conditions
-      php: 7.0
-      env: Syntax check PHP
-      before_script:
-        - composer install
-      script:
-        - vendor/bin/check-syntax-php.sh
 
     - stage: pre-conditions
       php: 7.1
@@ -74,6 +66,14 @@ jobs:
 
     - stage: pre-conditions
       php: 7.3
+      env: Syntax check PHP
+      before_script:
+        - composer install
+      script:
+        - vendor/bin/check-syntax-php.sh
+
+    - stage: pre-conditions
+      php: 7.4
       env: Syntax check PHP
       before_script:
         - composer install
@@ -126,6 +126,7 @@ jobs:
         - composer update
       script:
         - vendor/bin/psalm
+        - vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
 
     - stage: quality
       php: 7.3
@@ -136,7 +137,7 @@ jobs:
         - vendor/bin/phpcs
 
     ###################
-    #  Quality stage  #
+    #  Build stage    #
     ###################
 
     - stage: build
