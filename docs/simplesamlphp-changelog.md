@@ -13,7 +13,9 @@ Released TBD
   * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
   * Fixed some of the German translations (#1331). Thanks @htto!
   * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
-  * Harden against JS issues (npm audit fix)
+  * Harden against sevaral JS issues (npm update & npm audit fix)
+  * Support for Symfony 3.x is now deprecated
+  * Support for Twig 1.x is now deprecated
 
 ### cron
   * Fixed old-ui (#1248)
