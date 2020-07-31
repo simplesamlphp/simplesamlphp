@@ -6,6 +6,8 @@ namespace SimpleSAML\Auth;
 
 use SimpleSAML\Utils;
 
+error_reporting(E_ALL ^ E_DEPRECATED);
+
 /**
  * A class that generates and verifies time-limited tokens.
  *
