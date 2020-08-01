@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\Module\cron\Controller;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-//use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
