@@ -21,7 +21,7 @@ msgid "{cron:cron:ran_text}"
 msgstr "Cron gestart op"
 
 msgid "{cron:cron:cron_suggestion}"
-msgstr "Dit is een suggestie voor een contrab-bestand:"
+msgstr "Dit is een suggestie voor een crontab bestand:"
 
 msgid "{cron:cron:run_text}"
 msgstr "Start cron"
@@ -51,7 +51,7 @@ msgid "Cron report"
 msgstr "Cronmelding"
 
 msgid "Here is a suggestion for a crontab file:"
-msgstr "Dit is een suggestie voor een contrab bestand:"
+msgstr "Dit is een suggestie voor een crontab bestand:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Klik hier om de crontaken te starten:"

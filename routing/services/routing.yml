@@ -37,7 +37,7 @@ services:
         tags: ['routing.loader']
 
     routing.loader.service:
-        class: Symfony\Component\Routing\Loader\DependencyInjection\ServiceRouterLoader
+        class: Symfony\Component\Routing\Loader\ContainerLoader
         arguments:
             - '@service_container'
         tags: ['routing.loader']

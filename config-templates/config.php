@@ -430,19 +430,19 @@ $config = [
     'database.persistent' => false,
 
     /*
-     * Database slave configuration is optional as well. If you are only
+     * Database secondary configuration is optional as well. If you are only
      * running a single database server, leave this blank. If you have
-     * a master/slave configuration, you can define as many slave servers
-     * as you want here. Slaves will be picked at random to be queried from.
+     * a primary/secondary configuration, you can define as many secondary servers
+     * as you want here. Secondaries will be picked at random to be queried from.
      *
-     * Configuration options in the slave array are exactly the same as the
-     * options for the master (shown above) with the exception of the table
+     * Configuration options in the secondary array are exactly the same as the
+     * options for the primary (shown above) with the exception of the table
      * prefix and driver options.
      */
-    'database.slaves' => [
+    'database.secondaries' => [
         /*
         [
-            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'dsn' => 'mysql:host=mysecondary;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,

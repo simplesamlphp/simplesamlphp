@@ -2,17 +2,22 @@
 
 require_once('../../_include.php');
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error;
+use SimpleSAML\Idp;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata;
+use SimpleSAML\Utils;
 
-$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+$metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
+$idp = IdP::getById('saml2:' . $idpEntityId);
 
-\SimpleSAML\Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
+Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
 if (!isset($_GET['RelayState'])) {
-    throw new \SimpleSAML\Error\Error('NORELAYSTATE');
+    throw new Error\Error('NORELAYSTATE');
 }
 
-$idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
+$idp->doLogoutRedirect(Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
 Assert::true(false);

@@ -6,13 +6,13 @@ namespace SimpleSAML\Metadata;
 
 use SAML2\Constants;
 use SAML2\XML\saml\Issuer;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use SimpleSAML\Error\MetadataNotFound;
 use SimpleSAML\Utils\ClearableState;
-use Webmozart\Assert\Assert;
 
 /**
  * This file defines a class for metadata handling.
@@ -21,7 +21,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
+class MetaDataStorageHandler implements ClearableState
 {
     /**
      * This static variable contains a reference to the current

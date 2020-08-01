@@ -6,11 +6,11 @@ namespace SimpleSAML\Module\saml\SP;
 
 use PDO;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * A directory over logout information.

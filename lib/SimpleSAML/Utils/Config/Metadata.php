@@ -298,10 +298,10 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata): bool
     {
-        Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
-        Logger::popErrorMask();
-        return $hidden === true;
+        if (!isset($metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+            return false;
+        }
+        return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
     }
 
 

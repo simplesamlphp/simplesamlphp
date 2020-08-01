@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
@@ -13,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for accessing information about modules.
@@ -431,16 +431,6 @@ class Module
             $type = (empty($type)) ? '\\' : '\\' . $type . '\\';
 
             $className = 'SimpleSAML\\Module\\' . $tmp[0] . $type . $tmp[1];
-            if (!class_exists($className)) {
-                // check for the old-style class names
-                $type = str_replace('\\', '_', $type);
-                $oldClassName = 'sspmod_' . $tmp[0] . $type . $tmp[1];
-
-                if (!class_exists($oldClassName)) {
-                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$oldClassName'.");
-                }
-                $className = $oldClassName;
-            }
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {

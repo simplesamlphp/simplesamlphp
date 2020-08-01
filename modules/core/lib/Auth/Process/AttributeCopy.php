@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use Webmozart\Assert\Assert;
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 
 /**
  * Attribute filter for renaming attributes.
@@ -21,7 +23,7 @@ use Webmozart\Assert\Assert;
  *         ),
  *
  */
-class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeCopy extends Auth\ProcessingFilter
 {
     /**
      * Assosiative array with the mappings of attribute names.
@@ -42,11 +44,11 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
 
         foreach ($config as $source => $destination) {
             if (!is_string($source)) {
-                throw new \Exception('Invalid source attribute name: ' . var_export($source, true));
+                throw new Exception('Invalid source attribute name: ' . var_export($source, true));
             }
 
             if (!is_string($destination) && !is_array($destination)) {
-                throw new \Exception('Invalid destination attribute name: ' . var_export($destination, true));
+                throw new Exception('Invalid destination attribute name: ' . var_export($destination, true));
             }
 
             $this->map[$source] = $destination;

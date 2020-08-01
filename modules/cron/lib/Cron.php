@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\cron;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
@@ -41,7 +43,7 @@ class Cron
     public function runTag(string $tag): array
     {
         if (!$this->isValidTag($tag)) {
-            throw new \Exception("Invalid cron tag '$tag''");
+            throw new Exception("Invalid cron tag '$tag''");
         }
 
         $summary = [];
@@ -51,6 +53,7 @@ class Cron
         ];
 
         Module::callHooks('cron', $croninfo);
+        Assert::isArray($croninfo);
 
         foreach ($summary as $s) {
             Logger::debug('Cron - Summary: ' . $s);

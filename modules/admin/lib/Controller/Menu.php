@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
@@ -88,6 +89,7 @@ final class Menu
     {
         $template->data['menu'] = $this->options;
         Module::callHooks('adminmenu', $template);
+        Assert::isInstanceOf($template, Template::class);
         return $template;
     }
 }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use Predis\Client;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
-use Webmozart\Assert\Assert;
 
 /**
  * A data store using Redis to keep the data.

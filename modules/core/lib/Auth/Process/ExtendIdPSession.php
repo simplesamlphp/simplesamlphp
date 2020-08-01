@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Session;
 use SimpleSAML\SessionHandler;
-use Webmozart\Assert\Assert;
 
 /**
  * Extend IdP session and cookies.
  */
-class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
+class ExtendIdPSession extends Auth\ProcessingFilter
 {
     /**
      * @param array &$state

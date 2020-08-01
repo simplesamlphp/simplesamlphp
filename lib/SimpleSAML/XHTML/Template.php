@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
@@ -24,8 +25,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use Webmozart\Assert\Assert;
 
+/**
+ * The content-property is set upstream, but this is not recognized by Psalm
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class Template extends Response
 {
     /**
@@ -503,10 +507,12 @@ class Template extends Response
     /**
      * Send this template as a response.
      *
-     * @return Response This response.
+     * @return $this This response.
      * @throws \Exception if the template cannot be found.
+     *
+     * Note: No return type possible due to upstream limitations
      */
-    public function send(): Response
+    public function send()
     {
         $this->content = $this->getContents();
         return parent::send();

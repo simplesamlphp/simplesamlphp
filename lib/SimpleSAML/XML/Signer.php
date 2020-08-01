@@ -18,8 +18,8 @@ use DOMElement;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class Signer
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for handling metadata files stored in a database.
