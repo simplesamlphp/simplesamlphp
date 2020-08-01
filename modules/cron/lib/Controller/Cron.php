@@ -79,10 +79,11 @@ class Cron
     /**
      * Show cron info.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(): Template
+    public function info(Request $request): Template
     {
         $this->authUtils::requireAdmin();
 
