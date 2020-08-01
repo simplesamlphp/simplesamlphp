@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use Exception;
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to generate the eduPersonTargetedID attribute.
@@ -37,7 +39,7 @@ use Webmozart\Assert\Assert;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+class TargetedID extends Auth\ProcessingFilter
 {
     /**
      * The attribute we should generate the targeted id from, or NULL if we should use the
@@ -68,14 +70,14 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
             if (!is_string($this->attribute)) {
-                throw new \Exception('Invalid attribute name given to core:TargetedID filter.');
+                throw new Exception('Invalid attribute name given to core:TargetedID filter.');
             }
         }
 
         if (array_key_exists('nameId', $config)) {
             $this->generateNameId = $config['nameId'];
             if (!is_bool($this->generateNameId)) {
-                throw new \Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
+                throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
             }
         }
     }
@@ -93,7 +95,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         if ($this->attribute === null) {
             if (!array_key_exists('UserID', $state)) {
-                throw new \Exception('core:TargetedID: Missing UserID for this user. Please' .
+                throw new Exception('core:TargetedID: Missing UserID for this user. Please' .
                     ' check the \'userid.attribute\' option in the metadata against the' .
                     ' attributes provided by the authentication source.');
             }
@@ -101,7 +103,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
             $userID = $state['UserID'];
         } else {
             if (!array_key_exists($this->attribute, $state['Attributes'])) {
-                throw new \Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
+                throw new Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
                     '\', which is needed to generate the targeted ID.');
             }
 

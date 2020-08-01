@@ -142,10 +142,10 @@ this:
 
     'example-static' => [
       /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-      'exampleauth:Static',
+      'exampleauth:StaticSource',
     
       /* The following is configuration which is passed on to
-       * the exampleauth:Static authentication source. */
+       * the exampleauth:StaticSource authentication source. */
       'uid' => 'testuser',
       'eduPersonAffiliation' => ['member', 'employee'],
       'cn' => ['Test User'],

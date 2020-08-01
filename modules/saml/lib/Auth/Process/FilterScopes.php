@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to remove attribute values which are not properly scoped.
@@ -16,7 +17,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
+class FilterScopes extends ProcessingFilter
 {
     /**
      * @var array Stores any pre-configured scoped attributes which come from the filter configuration.

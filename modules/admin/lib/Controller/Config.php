@@ -29,6 +29,12 @@ class Config
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
     /** @var Menu */
     protected $menu;
 
@@ -51,15 +57,26 @@ class Config
 
 
     /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
      * Display basic diagnostic information on hostname, port and protocol.
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template
      */
     public function diagnostics(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
@@ -88,11 +105,13 @@ class Config
     /**
      * Display the main admin page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main(): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -125,11 +144,13 @@ class Config
     /**
      * Display the output of phpinfo().
      *
-     * @return RunnableResponse
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     *
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function phpinfo(): RunnableResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         return new RunnableResponse('phpinfo');
     }
@@ -396,7 +417,6 @@ class Config
                     }
                     curl_close($ch);
                 }
-
 
                 if ($latest && version_compare($this->config->getVersion(), ltrim($latest['tag_name'], 'v'), 'lt')) {
                     $warnings[] = [

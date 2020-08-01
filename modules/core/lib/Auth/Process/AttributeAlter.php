@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to modify attributes using regular expressions
@@ -15,7 +16,7 @@ use Webmozart\Assert\Assert;
  * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
-class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAlter extends Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?

@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 class SessionHandlerStore extends SessionHandlerCookie
 {

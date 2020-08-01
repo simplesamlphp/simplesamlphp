@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class that handles traditional logout.

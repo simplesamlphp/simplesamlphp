@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Class for creating exceptions from assertion failures.

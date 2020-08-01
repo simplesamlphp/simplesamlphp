@@ -126,6 +126,10 @@ Options
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
     documentation.
 
+`AssertionConsumerServiceIndex`
+:   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
+    Service Consumer URL.
+
 `attributes`
 :   List of attributes this SP requests from the IdP.
     This list will be added to the generated metadata.
@@ -323,6 +327,11 @@ Options
 
 `privatekey_pass`
 :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
+
+:   *Note*: SAML 2 specific.
+
+`ProviderName`
+:   Human readable name of the local SP sent with the authentication request.
 
 :   *Note*: SAML 2 specific.
 

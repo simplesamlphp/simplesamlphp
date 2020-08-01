@@ -11,19 +11,25 @@
 
 require_once('../../_include.php');
 
-use Webmozart\Assert\Assert;
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata;
+use SimpleSAML\Module;
 
-\SimpleSAML\Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
+Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
-$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+$metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
+$idp = IdP::getById('saml2:' . $idpEntityId);
 
 try {
-    \SimpleSAML\Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
-} catch (\Exception $e) {
+    Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
+} catch (Exception $e) {
     if ($e->getMessage() === "Unable to find the current binding.") {
-        throw new \SimpleSAML\Error\Error('SSOPARAMS', $e, 400);
+        throw new Error\Error('SSOPARAMS', $e, 400);
     } else {
         throw $e; // do not ignore other exceptions!
     }

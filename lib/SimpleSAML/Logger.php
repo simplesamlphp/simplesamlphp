@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger\ErrorLogLoggingHandler;
 use SimpleSAML\Logger\FileLoggingHandler;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 use SimpleSAML\Logger\StandardErrorLoggingHandler;
 use SimpleSAML\Logger\SyslogLoggingHandler;
-use Webmozart\Assert\Assert;
 
 /**
  * The main logger class for SimpleSAMLphp.

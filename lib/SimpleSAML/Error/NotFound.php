@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Exception which will show a 404 Not Found error page.

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use Webmozart\Assert\Assert;
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 
 /**
  * Filter to add attributes.
@@ -14,7 +16,7 @@ use Webmozart\Assert\Assert;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAdd extends Auth\ProcessingFilter
 {
     /**
      * Flag which indicates wheter this filter should append new values or replace old values.
@@ -46,7 +48,7 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
                 if ($values === '%replace') {
                     $this->replace = true;
                 } else {
-                    throw new \Exception('Unknown flag: ' . var_export($values, true));
+                    throw new Exception('Unknown flag: ' . var_export($values, true));
                 }
                 continue;
             }
@@ -56,7 +58,7 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
             }
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    throw new \Exception(
+                    throw new Exception(
                         'Invalid value for attribute ' . $name . ': ' . var_export($values, true)
                     );
                 }

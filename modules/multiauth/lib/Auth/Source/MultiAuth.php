@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -12,7 +13,6 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication source which let the user chooses among a list of
@@ -21,7 +21,7 @@ use Webmozart\Assert\Assert;
  * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package SimpleSAMLphp
  */
-class MultiAuth extends \SimpleSAML\Auth\Source
+class MultiAuth extends Auth\Source
 {
     /**
      * The key of the AuthId field in the state.

@@ -84,18 +84,6 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if the class we are
-     * asking for cannot be found.
-     * @return void
-     */
-    public function testResolveClassNotFound(): void
-    {
-        $this->expectException(Exception::class);
-        Module::resolveClass('core:Missing', '');
-    }
-
-
-    /**
-     * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if the class we are
      * asking for can be resolved, but does not extend a given class.
      * @return void
      */

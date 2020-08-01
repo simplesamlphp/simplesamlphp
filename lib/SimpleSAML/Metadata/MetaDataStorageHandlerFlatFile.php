@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
 /**
  * This file defines a flat file metadata source.
