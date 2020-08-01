@@ -19,6 +19,7 @@
             <directory suffix=".php">./lib/</directory>
             <directory suffix=".php">./modules/admin/lib/</directory>
             <directory suffix=".php">./modules/core/lib/</directory>
+            <directory suffix=".php">./modules/cron/lib/</directory>
             <directory suffix=".php">./modules/saml/lib/</directory>
             <exclude>
                 <directory>./vendor/</directory>
