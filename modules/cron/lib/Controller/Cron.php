@@ -42,7 +42,6 @@ class Cron
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Configuration              $moduleConfig The module-configuration to use by the controllers.
      * @param \SimpleSAML\Session                    $session The session to use by the controllers.
      *
      * @throws \Exception
