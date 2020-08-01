@@ -59,6 +59,7 @@ class Cron
             Logger::debug('Cron - Summary: ' . $s);
         }
 
+        /** @psalm-suppress NullableReturnStatement */
         return $croninfo;
     }
 
