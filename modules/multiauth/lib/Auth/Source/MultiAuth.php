@@ -113,12 +113,23 @@ class MultiAuth extends Auth\Source
                     $css_class = str_replace(":", "-", $authconfig[0]);
                 }
             }
+            
+            $class_ref = [];
+            if (array_key_exists('AuthnContextClassRef', $info)) {
+                $ref = $info['AuthnContextClassRef'];
+                if (is_string($ref)) {
+                    $class_ref = [$ref];
+                } else {
+                    $class_ref = $ref;
+                }
+            }
 
             $this->sources[] = [
                 'source' => $source,
                 'text' => $text,
                 'help' => $help,
                 'css_class' => $css_class,
+                'AuthnContextClassRef' => $class_ref,
             ];
         }
     }
@@ -158,6 +169,20 @@ class MultiAuth extends Auth\Source
         // Allows the user to specify the auth source to be used
         if (isset($_GET['source'])) {
             $params['source'] = $_GET['source'];
+        }
+        
+        if (!is_null($state['saml:RequestedAuthnContext']) && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])) {
+            $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
+            $new_sources = [];
+            foreach ($this->sources as $source) {
+                if (count(array_intersect($source['AuthnContextClassRef'], $refs)) >= 1) {
+                    $new_sources[] = $source;
+                }
+            }
+            $this->sources = $new_sources;
+            if (count($new_sources) === 1) {
+                $params['source'] = $new_sources[0]['source'];
+            }
         }
 
         Utils\HTTP::redirectTrustedURL($url, $params);
