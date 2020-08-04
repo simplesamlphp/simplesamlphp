@@ -79,7 +79,7 @@ compatible fashion so both cases should work.
 
 Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with optional keys: 'text', 'css-class', 'help', and 'ContextClassRef'.
+is another array with optional keys: 'text', 'css-class', 'help', and 'AuthnContextClassRef'.
 The text element is another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
@@ -91,7 +91,7 @@ replaced by dashes. So in the previous example, the css class used
 in the 'example-admin' authentication source would be
 'core-AdminPassword'. The help element is another array with localized
 strings for one or more languages. These texts will be shown in the
-selectsource.php view. The ContextClassRef is either a string or
+selectsource.php view. The AuthnContextClassRef is either a string or
 an array of strings containing [context class ref names](https://docs.oasis-open.org/security/saml/v2.0/saml-authn-context-2.0-os.pdf).
 If an SP sets AuthnContextClassRef the list of authsources will be
 filtered to only those containing context class refs that are part of the list set by the SP.
