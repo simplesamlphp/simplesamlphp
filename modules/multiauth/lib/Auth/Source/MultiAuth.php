@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
+use SAML2\Constants;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -12,6 +13,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use SimpleSAML\Module\saml\Error\NoAuthnContext;
 
 /**
  * Authentication source which let the user chooses among a list of
@@ -179,8 +181,10 @@ class MultiAuth extends Auth\Source
                     $new_sources[] = $source;
                 }
             }
-            $this->sources = $new_sources;
-            if (count($new_sources) === 1) {
+            $number_of_sources = count($new_sources); 
+            if ($number_of_sources === 0) {
+                throw new NoAuthnContext(Constants::STATUS_RESPONDER, 'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs));
+            } else if ($number_of_sources === 1) {
                 $params['source'] = $new_sources[0]['source'];
             }
         }
