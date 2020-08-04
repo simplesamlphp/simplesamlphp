@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Relatório do cron"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron rodou em"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Aqui está uma sugestão para um arquivo crontab:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Executar cron"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Clique aqui para executar as tarefas agendadas:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron é uma maneira de executar as coisas regularmente em sistemas UNIX."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Aqui estão os resultados para a execução da rotina do cron:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Página de resultados do Cron"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron é uma maneira de executar as coisas regularmente em sistemas UNIX."
 
