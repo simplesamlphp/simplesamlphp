@@ -8,7 +8,7 @@ $config['usenewui'] = true;
 $config = \SimpleSAML\Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
-$template = new \SimpleSAML\XHTML\Template($config, 'sandbox.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'sandbox.twig');
 $template->data['pagetitle'] = 'Sandbox';
 $template->data['sometext'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.' .
     ' Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.' .
