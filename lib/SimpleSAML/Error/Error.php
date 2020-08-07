@@ -10,6 +10,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Throwable;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
@@ -76,11 +77,11 @@ class Error extends Exception
      * The error can either be given as a string, or as an array. If it is an array, the first element in the array
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
-     * @param mixed     $errorCode One of the error codes defined in the errors dictionary.
-     * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
-     * @param int|null  $httpCode The HTTP response code to use. Optional.
+     * @param mixed      $errorCode One of the error codes defined in the errors dictionary.
+     * @param \Throwable $cause The exception which caused this fatal error (if any). Optional.
+     * @param int|null   $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, \Exception $cause = null, ?int $httpCode = null)
+    public function __construct($errorCode, Throwable $cause = null, ?int $httpCode = null)
     {
         Assert::true(is_string($errorCode) || is_array($errorCode));
 

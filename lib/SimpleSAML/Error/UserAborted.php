@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Throwable;
+
 /**
  * Exception indicating user aborting the authentication process.
  *
@@ -15,9 +17,9 @@ class UserAborted extends Error
     /**
      * Create the error
      *
-     * @param \Exception|null $cause  The exception that caused this error.
+     * @param \Throwable|null $cause  The exception that caused this error.
      */
-    public function __construct(\Exception $cause = null)
+    public function __construct(Throwable $cause = null)
     {
         parent::__construct('USERABORTED', $cause);
     }
