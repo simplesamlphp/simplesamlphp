@@ -204,18 +204,9 @@ class Exception extends \Exception
      */
     protected function logBacktrace($level = Logger::DEBUG)
     {
-        // see if debugging is enabled for backtraces
-        $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
-
-        if (
-            !(in_array('backtraces', $debug, true) // implicitly enabled
-            || (array_key_exists('backtraces', $debug)
-            && $debug['backtraces'] === true)
-            // explicitly set
-            // TODO: deprecate the old style and remove it in 2.0
-            || (array_key_exists(0, $debug)
-            && $debug[0] === true)) // old style 'debug' configuration option
-        ) {
+        // Do nothing if backtraces have been disabled in config.
+        $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => true]);
+        if (array_key_exists('backtraces', $debug) && $debug['backtraces'] === false) {
             return;
         }
 

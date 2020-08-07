@@ -237,9 +237,8 @@ $config = [
      * SAML messages will be logged, including plaintext versions of encrypted
      * messages.
      *
-     * - 'backtraces': this action controls the logging of error backtraces. If you
-     * want to log backtraces so that you can debug any possible errors happening in
-     * SimpleSAMLphp, enable this action (add it to the array or set it to true).
+     * - 'backtraces': this action controls the logging of error backtraces so you
+     * can debug any possible errors happening in SimpleSAMLphp.
      *
      * - 'validatexml': this action allows you to validate SAML documents against all
      * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
