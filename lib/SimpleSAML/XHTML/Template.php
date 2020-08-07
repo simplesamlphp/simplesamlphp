@@ -316,6 +316,7 @@ class Template extends Response
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $twig->addExtension(new \Twig\Extensions\DateExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
