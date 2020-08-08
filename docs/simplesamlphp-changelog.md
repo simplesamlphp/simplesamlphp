@@ -14,6 +14,7 @@ Released TBD
   * Fixed some of the German translations (#1331). Thanks @htto!
   * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
   * Harden against sevaral JS issues (npm update & npm audit fix)
+  * Fixed inconsistent configuration of backtraces logging
   * Support for Symfony 3.x is now deprecated
   * Support for Twig 1.x is now deprecated
 
