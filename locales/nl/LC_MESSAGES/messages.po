@@ -1097,7 +1097,7 @@ msgid "Return to service"
 msgstr "Terug naar service"
 
 msgid "Logout"
-msgstr "Logout"
+msgstr "Afmelden"
 
 msgid "State information lost, and no way to restart the request"
 msgstr ""
