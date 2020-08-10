@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml;
 
 use SAML2\Constants;
+use Throwable;
 
 /**
  * Class for representing a SAML 2 error.
@@ -44,14 +45,14 @@ class Error extends \SimpleSAML\Error\Exception
      * Can be NULL, in which case there is no second-level status code.
      * @param string|null $statusMessage  The status message.
      * Can be NULL, in which case there is no status message.
-     * @param \Exception|null $cause  The cause of this exception. Can be NULL.
+     * @param \Throwable|null $cause  The cause of this exception. Can be NULL.
      */
-    public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
-    {
-        assert(is_string($status));
-        assert($subStatus === null || is_string($subStatus));
-        assert($statusMessage === null || is_string($statusMessage));
-
+    public function __construct(
+        string $status,
+        string $subStatus = null,
+        string $statusMessage = null,
+        Throwable $cause = null
+    ) {
         $st = self::shortStatus($status);
         if ($subStatus !== null) {
             $st .= '/' . self::shortStatus($subStatus);
@@ -106,10 +107,10 @@ class Error extends \SimpleSAML\Error\Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param \Exception $exception  The original exception.
-     * @return \SimpleSAML\Module\saml\Error  The new exception.
+     * @param \Throwable $exception  The original exception.
+     * @return \SimpleSAML\Error\Exception  The new exception.
      */
-    public static function fromException(\Exception $exception)
+    public static function fromException(Throwable $exception): \SimpleSAML\Error\Exception
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged

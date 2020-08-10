@@ -59,12 +59,10 @@ class XML
         $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (
-            !(in_array('validatexml', $debug, true) // implicitly enabled
-            || (array_key_exists('validatexml', $debug)
-            && $debug['validatexml'] === true)
-            // explicitly enabled
-            // TODO: deprecate this option and remove it in 2.0
-            || $enabled) // old 'debug.validatexml' configuration option
+            !(
+                in_array('validatexml', $debug, true)
+                || (array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true))
+            )
         ) {
             // XML validation is disabled
             return;

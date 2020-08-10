@@ -17,12 +17,8 @@ function SimpleSAML_exception_handler($exception)
         $e = new \SimpleSAML\Error\Error('UNHANDLEDEXCEPTION', $exception);
         $e->show();
     } elseif (class_exists('Error') && $exception instanceof \Error) {
-        $code = $exception->getCode();
-        $errno = ($code > 0) ? $code : E_ERROR;
-        $errstr = $exception->getMessage();
-        $errfile = $exception->getFile();
-        $errline = $exception->getLine();
-        SimpleSAML_error_handler($errno, $errstr, $errfile, $errline);
+        $e = new \SimpleSAML\Error\Error('UNHANDLEDEXCEPTION', $exception);
+        $e->show();
     }
 }
 

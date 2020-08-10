@@ -7,6 +7,7 @@ namespace SimpleSAML\Error;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Throwable;
 
 /**
  * This exception represents a configuration error that we cannot recover from.
@@ -66,11 +67,11 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param \Exception $exception
+     * @param \Throwable $exception
      *
      * @return CriticalConfigurationError
      */
-    public static function fromException(\Exception $exception)
+    public static function fromException(Throwable $exception): Exception
     {
         $reason = null;
         $file = null;
