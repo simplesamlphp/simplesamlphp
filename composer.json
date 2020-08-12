@@ -45,7 +45,6 @@
         "gettext/gettext": "^4.8",
         "phpmailer/phpmailer": "^6.1",
         "robrichards/xmlseclibs": "^3.1",
-        "simplesamlphp/assert": "~0.0.12",
         "simplesamlphp/saml2": "^4.1",
         "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
