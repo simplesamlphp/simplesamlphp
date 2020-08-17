@@ -25,7 +25,7 @@ class TimeTest extends TestCase
         $this->assertEquals('2016-03-03T14:48:05Z', Time::generateTimestamp(1457016485));
 
         // test timestamp generation for current time
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', Time::generateTimestamp());
+        $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', Time::generateTimestamp());
     }
 
 

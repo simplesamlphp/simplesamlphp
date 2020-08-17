@@ -79,10 +79,10 @@ class EMailTest extends ClearStateTestCase
         $mail->setText('text-text-text-text-text-text-text');
         $mail->setData(['key-key-key-key-key-key-key' => 'value-value-value-value-value-value-value']);
         $result = $mail->generateBody($template);
-        $this->assertRegexp('/(subject-){6}/', $result);
-        $this->assertRegexp('/(text-){6}/', $result);
-        $this->assertRegexp('/(key-){6}/', $result);
-        $this->assertRegexp('/(value-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(subject-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(text-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(key-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(value-){6}/', $result);
     }
 
 
