@@ -1126,7 +1126,9 @@ class SAML2
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
-        $a->setValidAudiences([$spMetadata->getString('entityid')]);
+
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
 
