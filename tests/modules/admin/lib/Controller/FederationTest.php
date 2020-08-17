@@ -29,10 +29,10 @@ class FederationTest extends TestCase
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::FRAMEWORK . '/certificates/pem/selfsigned.example.org.key';
+    public const CERT_KEY = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::FRAMEWORK . '/certificates/pem/selfsigned.example.org.crt';
+    public const CERT_PUBLIC = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration */
     protected $config;

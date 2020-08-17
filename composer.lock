@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19df4d2194b433fde8a20f16a943bb9f",
+    "content-hash": "8e0a88ac04beefe71fb19f5717f3df56",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -4135,6 +4135,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -4972,21 +4973,22 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v0.1.9",
+            "version": "v0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "cc86116dd5fa1c16c08cd60665a1b2d89cdaae7a"
+                "reference": "196113dcc9137c71e63c1136eb59153190526042"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/cc86116dd5fa1c16c08cd60665a1b2d89cdaae7a",
-                "reference": "cc86116dd5fa1c16c08cd60665a1b2d89cdaae7a",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/196113dcc9137c71e63c1136eb59153190526042",
+                "reference": "196113dcc9137c71e63c1136eb59153190526042",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2",
                 "phpunit/phpunit": "^8.5|^9.0",
+                "robrichards/xmlseclibs": "^3.1.0",
                 "sensiolabs/security-checker": "^6.0",
                 "squizlabs/php_codesniffer": "^3.5",
                 "vimeo/psalm": "^3.11"
@@ -5021,7 +5023,7 @@
             "keywords": [
                 "test-framework"
             ],
-            "time": "2020-05-16T15:25:57+00:00"
+            "time": "2020-08-15T14:24:42+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
