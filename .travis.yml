@@ -16,7 +16,7 @@ stages:
 
 php:
   - 7.4
-  - nightly
+#  - nightly
 
 env:
   - COMMAND="composer install"
@@ -54,13 +54,13 @@ jobs:
       script:
         - vendor/bin/check-syntax-php.sh
 
-    - stage: pre-conditions
-      php: nightly
-      env: Syntax check PHP
-      before_script:
-        - composer install
-      script:
-        - vendor/bin/check-syntax-php.sh
+#    - stage: pre-conditions
+#      php: nightly
+#      env: Syntax check PHP
+#      before_script:
+#        - composer install
+#      script:
+#        - vendor/bin/check-syntax-php.sh
 
     - stage: pre-conditions
       env: Syntax check YAML / XML / JSON
