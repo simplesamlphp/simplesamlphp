@@ -16,6 +16,94 @@ Released TBD
   * Raised minimum PHP version to 7.1
   * Dropped support for Symfony 3.x and Twig 1.x
   * Update the SAML2 library dependency to 4.1.8
+  * Allow additional audiences to be specified (#1345)
+
+## Version 1.18.8
+
+Released TBD
+
+  * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
+  * Fixed some of the German translations (#1331). Thanks @htto!
+  * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
+  * Harden against sevaral JS issues (npm update & npm audit fix)
+  * Fixed inconsistent configuration of backtraces logging
+  * Support for Symfony 3.x is now deprecated
+  * Support for Twig 1.x is now deprecated
+
+### authx509
+  * Restore PHP 5.6 compatibility (v0.9.5)
+
+### cron
+  * Fixed old-ui (#1248)
+
+### ldap
+  * Moved array with binary attributes to authsource config (v0.9.9)
+    Instead of having to edit code, you can now set 'attributes.binary' in the authsource configuration.
+
+### metarefresh
+  * Add attributewhitelist to support e.g. R&S+Sirtfi (v0.9.5)
+  * Restore PHP 5.6 compatibility (v0.9.6)
+
+### negotiate ###
+  * Restore PHP 5.6 compatibility (v0.9.8)
+
+### saml2 library
+  * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
+      the AssertionConsumerServiceIndex as an integer on an saml:SP authsource.
+      Thanks to Andrea @ Oracle for reporting this.
+
+## Version 1.18.7
+
+Released 2020-05-12
+
+  * Fix spurious warnings when session_create_id() fails to create ID (#1291)
+  * Fix inconsistency in the way PATH_INFO is being used (#1227).
+  * Fix a potential security issue [CVE-2020-11022](https://nvd.nist.gov/vuln/detail/CVE-2020-11022) by updating jQuery. If any of your custom modules rely on jQuery,
+      make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
+  * Fix incorrect Polish translations (#1311).
+  * Fix a broken migration query in the LogoutStore (#1324).
+  * Fix an issue with the SameSite cookie parameter when running on PHP versions older than 7.3 (#1320).
+
+### adfs
+  * Fixed a broken link to one of the assets (v0.9.6).
+
+### ldap
+  * Handle binary attributes in a generic way (v0.9.5).
+
+### oauth
+  * Fix PHP 7.4 incompatibility (v0.9.2).
+
+### preprodwarning
+  * Fix Dutch translations (v0.9.2).
+
+### sanitycheck
+  * Fix broken HTML (v0.9.1).
+
+### saml
+  * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+
+### saml2 library
+  * fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
+  * fixed an issue parsing very large metadata files (v3.4.3).
+
+## Version 1.18.6
+
+Released 2020-04-17
+
+  * Fix source code disclosure on case-insensitive file systems. See
+    [SSPSA 202004-01](https://simplesamlphp.org/security/202004-01).
+  * Fix spurious error in logs when using a custom theme (#1312).
+  * Fix broken metadata converter (#1305).
+
+## Version 1.18.5
+
+Released 2020-03-19
+
+  * Make the URLs for the cron module work again (#1248).
+  * Email error reports now include metadata again (#1269).
+  * Fix exampleauth module when using the legacy UI (#1275).
+  * Fix authorize module when using custom reject message.
+  * Documentation improvements.
 
 ## Version 1.18.4
 
