@@ -533,7 +533,7 @@ class HTTPTest extends ClearStateTestCase
         HTTP::setCookie('SSStrict', 'value', ['samesite' => 'Strict']);
 
         $headers = xdebug_get_headers();
-        $this->assertNotMatchesRegularExpression('/\b[Ss]ame[Ss]ite=/', $headers[0]);
+        $this->assertDoesNotMatchRegularExpression('/\b[Ss]ame[Ss]ite=/', $headers[0]);
         $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=None(;|$)/', $headers[1]);
         $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[2]);
         $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[3]);

@@ -76,11 +76,11 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
         $headers = xdebug_get_headers();
         $this->assertStringContainsString('SimpleSAML=1;', $headers[0]);
-        $this->assertRegExp('/\b[Ee]xpires=([Mm]on|[Tt]ue|[Ww]ed|[Tt]hu|[Ff]ri|[Ss]at|[Ss]un)/', $headers[0]);
-        $this->assertRegExp('/\b[Pp]ath=\/ourPath(;|$)/', $headers[0]);
-        $this->assertRegExp('/\b[Dd]omain=example.com(;|$)/', $headers[0]);
-        $this->assertRegExp('/\b[Ss]ecure(;|$)/', $headers[0]);
-        $this->assertRegExp('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Ee]xpires=([Mm]on|[Tt]ue|[Ww]ed|[Tt]hu|[Ff]ri|[Ss]at|[Ss]un)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Pp]ath=\/ourPath(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Dd]omain=example.com(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Ss]ecure(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[0]);
     }
 
 
@@ -102,7 +102,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
         $headers = xdebug_get_headers();
         $this->assertStringContainsString('SimpleSAML=None;', $headers[0]);
-        $this->assertRegExp('/\b[Ss]ame[Ss]ite=None(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=None(;|$)/', $headers[0]);
     }
 
 
@@ -124,7 +124,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
         $headers = xdebug_get_headers();
         $this->assertStringContainsString('SimpleSAML=Lax;', $headers[0]);
-        $this->assertRegExp('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[0]);
     }
 
 
@@ -146,7 +146,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
         $headers = xdebug_get_headers();
         $this->assertStringContainsString('SimpleSAML=Strict;', $headers[0]);
-        $this->assertRegExp('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[0]);
+        $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[0]);
     }
 
 
