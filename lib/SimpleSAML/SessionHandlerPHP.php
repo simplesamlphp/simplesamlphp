@@ -77,6 +77,8 @@ class SessionHandlerPHP extends SessionHandler
         $params = $this->getCookieParams();
 
         if (!headers_sent()) {
+            session_name($this->cookie_name);
+
             /** @psalm-suppress InvalidArgument */
             session_set_cookie_params([
                 'lifetime' => $params['lifetime'],
