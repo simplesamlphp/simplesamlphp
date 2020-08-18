@@ -152,6 +152,9 @@ class MultiAuth extends Auth\Source
      */
     public function authenticate(array &$state): void
     {
+        $state[self::AUTHID] = $this->authId;
+        $state[self::SOURCESID] = $this->sources;
+
         if (!is_null($state['saml:RequestedAuthnContext']) && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])) {
             $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
             $new_sources = [];
@@ -160,17 +163,16 @@ class MultiAuth extends Auth\Source
                     $new_sources[] = $source;
                 }
             }
+            $state[self::SOURCESID] = $new_sources;
+            
             $number_of_sources = count($new_sources); 
             if ($number_of_sources === 0) {
                 throw new NoAuthnContext(Constants::STATUS_RESPONDER, 'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs));
             } else if ($number_of_sources === 1) {
-                $params['source'] = $new_sources[0]['source'];
+                MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
             }
         }
         
-        $state[self::AUTHID] = $this->authId;
-        $state[self::SOURCESID] = $this->sources;
-
         if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
             $state['multiauth:preselect'] = $this->preselect;
         }
