@@ -152,6 +152,22 @@ class MultiAuth extends Auth\Source
      */
     public function authenticate(array &$state): void
     {
+        if (!is_null($state['saml:RequestedAuthnContext']) && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])) {
+            $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
+            $new_sources = [];
+            foreach ($this->sources as $source) {
+                if (count(array_intersect($source['AuthnContextClassRef'], $refs)) >= 1) {
+                    $new_sources[] = $source;
+                }
+            }
+            $number_of_sources = count($new_sources); 
+            if ($number_of_sources === 0) {
+                throw new NoAuthnContext(Constants::STATUS_RESPONDER, 'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs));
+            } else if ($number_of_sources === 1) {
+                $params['source'] = $new_sources[0]['source'];
+            }
+        }
+        
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
@@ -171,22 +187,6 @@ class MultiAuth extends Auth\Source
         // Allows the user to specify the auth source to be used
         if (isset($_GET['source'])) {
             $params['source'] = $_GET['source'];
-        }
-        
-        if (!is_null($state['saml:RequestedAuthnContext']) && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])) {
-            $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
-            $new_sources = [];
-            foreach ($this->sources as $source) {
-                if (count(array_intersect($source['AuthnContextClassRef'], $refs)) >= 1) {
-                    $new_sources[] = $source;
-                }
-            }
-            $number_of_sources = count($new_sources); 
-            if ($number_of_sources === 0) {
-                throw new NoAuthnContext(Constants::STATUS_RESPONDER, 'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs));
-            } else if ($number_of_sources === 1) {
-                $params['source'] = $new_sources[0]['source'];
-            }
         }
 
         Utils\HTTP::redirectTrustedURL($url, $params);
