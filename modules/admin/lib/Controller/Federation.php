@@ -432,6 +432,13 @@ class Federation
                      */
                     unset($entityMetadata['entityDescriptor']);
 
+                    /**
+                     * Remove any expire from the metadata. This is not so useful
+                     * for manually converted metadata and frequently gives rise
+                     * to unexpected results when copy-pased statically.
+                     */
+                    unset($entityMetadata['expire']);
+
                     $text .= '$metadata[' . var_export($entityId, true) . '] = '
                         . var_export($entityMetadata, true) . ";\n";
                 }
