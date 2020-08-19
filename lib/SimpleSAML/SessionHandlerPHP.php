@@ -224,7 +224,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function loadSession(string $sessionId = null): ?Session
     {
-        if ($sessionId !== null) {
+        if ($sessionId !== session_id()) {
             throw new Error\Exception('Cannot load PHP session with a specific ID.');
         } elseif (session_id() === '') {
             $this->getCookieSessionId();
