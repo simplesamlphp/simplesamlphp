@@ -133,7 +133,7 @@ abstract class SessionHandler
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    private static function createSessionHandler()
+    private static function createSessionHandler(): void
     {
         $store = Store::getInstance();
         if ($store === false) {

@@ -73,11 +73,11 @@ class Config
         $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
         /** @var string|false $configDirEnv */
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
-        
+
         if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
-        
+
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(

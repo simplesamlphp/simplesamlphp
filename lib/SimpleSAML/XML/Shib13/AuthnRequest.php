@@ -32,7 +32,7 @@ class AuthnRequest
     {
         $this->relayState = $relayState;
     }
-    
+
 
     /**
      * @return string|null
@@ -41,7 +41,7 @@ class AuthnRequest
     {
         return $this->relayState;
     }
-    
+
 
     /**
      * @param string|null $issuer

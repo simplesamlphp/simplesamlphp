@@ -70,7 +70,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request.
      * @return array|null  Array with attribute names, or NULL if no limit is placed.
      */
-    private static function getSPIdPAllowed(array &$request)
+    private static function getSPIdPAllowed(array &$request): ?array
     {
         if (array_key_exists('attributes', $request['Destination'])) {
             // SP Config

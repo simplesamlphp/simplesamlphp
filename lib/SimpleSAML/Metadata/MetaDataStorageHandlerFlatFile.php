@@ -77,7 +77,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *     or null if we are unable to load metadata from the given file.
      * @throws \Exception If the metadata set cannot be loaded.
      */
-    private function load(string $set)
+    private function load(string $set): ?array
     {
         $metadatasetfile = $this->directory . $set . '.php';
 

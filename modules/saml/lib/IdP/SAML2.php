@@ -198,7 +198,7 @@ class SAML2
         string $AssertionConsumerServiceURL = null,
         string $ProtocolBinding = null,
         int $AssertionConsumerServiceIndex = null
-    ) {
+    ): ?array {
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
          * following priority:
@@ -950,7 +950,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
+    ): ?string {
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);

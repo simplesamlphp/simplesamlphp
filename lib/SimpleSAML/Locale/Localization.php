@@ -221,7 +221,7 @@ class Localization
      * Setup the translator
      * @return void
      */
-    private function setupTranslator()
+    private function setupTranslator(): void
     {
         $this->translator = new Translator();
         $this->translator->register();
@@ -240,7 +240,7 @@ class Localization
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
-    private function loadGettextGettextFromPO(string $domain = self::DEFAULT_DOMAIN, bool $catchException = true)
+    private function loadGettextGettextFromPO(string $domain = self::DEFAULT_DOMAIN, bool $catchException = true): void
     {
         try {
             $langPath = $this->getLangPath($domain);
@@ -286,7 +286,7 @@ class Localization
      * Set up L18N if configured or fallback to old system
      * @return void
      */
-    private function setupL10N()
+    private function setupL10N(): void
     {
         if ($this->i18nBackend === self::SSP_I18N_BACKEND) {
             Logger::debug("Localization: using old system");

@@ -404,7 +404,7 @@ class SAMLParser
         int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
-    ) {
+    ): array {
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
@@ -440,7 +440,7 @@ class SAMLParser
      * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
      *             limit is set for the element.
      */
-    private static function getExpireTime($element, int $maxExpireTime = null)
+    private static function getExpireTime($element, int $maxExpireTime = null): ?int
     {
         // validUntil may be null
         $expire = $element->getValidUntil();
@@ -501,7 +501,7 @@ class SAMLParser
      * @param array $roleDescriptor The parsed role descriptor.
      * @return void
      */
-    private function addExtensions(array &$metadata, array $roleDescriptor)
+    private function addExtensions(array &$metadata, array $roleDescriptor): void
     {
         assert(array_key_exists('scope', $roleDescriptor));
         assert(array_key_exists('tags', $roleDescriptor));
@@ -865,7 +865,7 @@ class SAMLParser
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseRoleDescriptorType(RoleDescriptor $element, int $expireTime = null)
+    private static function parseRoleDescriptorType(RoleDescriptor $element, int $expireTime = null): array
     {
         $ret = [];
 
@@ -940,7 +940,7 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processSPSSODescriptor(SPSSODescriptor $element, int $expireTime = null)
+    private function processSPSSODescriptor(SPSSODescriptor $element, int $expireTime = null): void
     {
         $sp = self::parseSSODescriptor($element, $expireTime);
 
@@ -975,7 +975,7 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processIDPSSODescriptor(IDPSSODescriptor $element, int $expireTime = null)
+    private function processIDPSSODescriptor(IDPSSODescriptor $element, int $expireTime = null): void
     {
         $idp = self::parseSSODescriptor($element, $expireTime);
 
@@ -1003,7 +1003,7 @@ class SAMLParser
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
         $expireTime
-    ) {
+    ): void {
         assert($expireTime === null || is_int($expireTime));
 
         $aad = self::parseRoleDescriptorType($element, $expireTime);
@@ -1187,7 +1187,7 @@ class SAMLParser
      * @param \SAML2\XML\md\Organization $element The Organization element.
      * @return void
      */
-    private function processOrganization(Organization $element)
+    private function processOrganization(Organization $element): void
     {
         $this->organizationName = $element->getOrganizationName();
         $this->organizationDisplayName = $element->getOrganizationDisplayName();
@@ -1201,7 +1201,7 @@ class SAMLParser
      * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
      * @return void
      */
-    private function processContactPerson(ContactPerson $element)
+    private function processContactPerson(ContactPerson $element): void
     {
         $contactPerson = [];
         if ($element->getContactType() !== '') {
@@ -1235,7 +1235,7 @@ class SAMLParser
      * @param array $sp The array with the SP's metadata.
      * @return void
      */
-    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp)
+    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
         $sp['name'] = $element->getServiceName();
         $sp['description'] = $element->getServiceDescription();
@@ -1342,7 +1342,7 @@ class SAMLParser
      *
      * @return array|null An associative array describing the key, or null if this is an unsupported key.
      */
-    private static function parseKeyDescriptor(KeyDescriptor $kd)
+    private static function parseKeyDescriptor(KeyDescriptor $kd): ?array
     {
         $r = [];
 

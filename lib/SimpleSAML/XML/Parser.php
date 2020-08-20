@@ -26,7 +26,7 @@ class Parser
         $this->simplexml->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
         $this->simplexml->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
     }
-    
+
 
     /**
      * @param \SimpleXMLElement $element
@@ -40,7 +40,7 @@ class Parser
         foreach ($namespaces as $prefix => $ns) {
             $element[(($prefix === '') ? 'xmlns' : 'xmlns:' . $prefix)] = $ns;
         }
-        
+
         /* Create a new parser with the xml document where the namespace definitions
          * are added.
          */
@@ -50,7 +50,7 @@ class Parser
         }
         return new Parser($xml);
     }
-    
+
 
     /**
      * @param string $xpath
@@ -67,7 +67,7 @@ class Parser
             return $defvalue;
         }
     }
-    
+
 
     /**
      * @param string $xpath
@@ -89,7 +89,7 @@ class Parser
         }
         return (string) $result[0];
     }
-    
+
 
     /**
      * @param array $xpath

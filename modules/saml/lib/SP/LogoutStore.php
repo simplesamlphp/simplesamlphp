@@ -25,7 +25,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function createLogoutTable(Store\SQL $store)
+    private static function createLogoutTable(Store\SQL $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
@@ -200,7 +200,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function cleanLogoutStore(Store\SQL $store)
+    private static function cleanLogoutStore(Store\SQL $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -230,7 +230,7 @@ class LogoutStore
         string $sessionIndex,
         int $expire,
         string $sessionId
-    ) {
+    ): void {
         self::createLogoutTable($store);
 
         if (rand(0, 1000) < 10) {

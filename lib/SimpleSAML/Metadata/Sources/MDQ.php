@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata\Sources;
 
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -79,7 +80,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         assert(is_array($config));
 
         if (!array_key_exists('server', $config)) {
-            throw new \Exception(__CLASS__ . ": the 'server' configuration option is not set.");
+            throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
         } else {
             $this->server = $config['server'];
         }
@@ -132,11 +133,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @return string  The full path to the cache file.
      */
-    private function getCacheFilename($set, $entityId)
+    private function getCacheFilename(string $set, string $entityId): string
     {
-        assert(is_string($set));
-        assert(is_string($entityId));
-
         if ($this->cacheDir === null) {
             throw new Error\ConfigurationError("Missing cache directory configuration.");
         }
@@ -156,7 +154,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *                     if the entity could not be found.
      * @throws \Exception If an error occurs while loading metadata from cache.
      */
-    private function getFromCache(string $set, string $entityId)
+    private function getFromCache(string $set, string $entityId): ?array
     {
         if (empty($this->cacheDir)) {
             return null;
@@ -167,7 +165,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             return null;
         }
         if (!is_readable($cachefilename)) {
-            throw new \Exception(__CLASS__ . ': could not read cache file for entity [' . $cachefilename . ']');
+            throw new Exception(__CLASS__ . ': could not read cache file for entity [' . $cachefilename . ']');
         }
         Logger::debug(__CLASS__ . ': reading cache [' . $entityId . '] => [' . $cachefilename . ']');
 
@@ -185,18 +183,18 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         if (empty($rawData)) {
             /** @var array $error */
             $error = error_get_last();
-            throw new \Exception(
+            throw new Exception(
                 __CLASS__ . ': error reading metadata from cache file "' . $cachefilename . '": ' . $error['message']
             );
         }
 
         $data = unserialize($rawData);
         if ($data === false) {
-            throw new \Exception(__CLASS__ . ': error unserializing cached data from file "' . $cachefilename . '".');
+            throw new Exception(__CLASS__ . ': error unserializing cached data from file "' . $cachefilename . '".');
         }
 
         if (!is_array($data)) {
-            throw new \Exception(__CLASS__ . ': Cached metadata from "' . $cachefilename . '" wasn\'t an array.');
+            throw new Exception(__CLASS__ . ': Cached metadata from "' . $cachefilename . '" wasn\'t an array.');
         }
 
         return $data;
@@ -213,7 +211,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If metadata cannot be written to cache.
      * @return void
      */
-    private function writeToCache(string $set, string $entityId, array $data)
+    private function writeToCache(string $set, string $entityId, array $data): void
     {
         if (empty($this->cacheDir)) {
             return;
@@ -237,7 +235,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-    private static function getParsedSet(SAMLParser $entity, string $set)
+    private static function getParsedSet(SAMLParser $entity, string $set): ?array
     {
         switch ($set) {
             case 'saml20-idp-remote':

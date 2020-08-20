@@ -73,7 +73,7 @@ class EMail
         return $address;
     }
 
-    
+
     /**
      * Set the data that should be embedded in the e-mail body
      *
@@ -231,8 +231,6 @@ class EMail
      */
     public static function initFromConfig(EMail $EMail)
     {
-        assert($EMail instanceof EMail);
-
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(
             $config->getString('mail.transport.method', 'mail'),

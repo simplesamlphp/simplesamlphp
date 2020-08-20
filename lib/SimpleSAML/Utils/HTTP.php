@@ -173,7 +173,7 @@ class HTTP
      * @author Mads Freek Petersen
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function redirect(string $url, array $parameters = [])
+    private static function redirect(string $url, array $parameters = []): void
     {
         if (empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');

@@ -94,7 +94,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ) {
+    ): void {
 
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -170,7 +170,7 @@ class Message
      * @throws \SimpleSAML\Error\Exception if there is not certificate in the metadata for the entity.
      * @throws \Exception if the signature validation fails with an exception.
      */
-    public static function checkSign(Configuration $srcMetadata, SignedElement $element)
+    public static function checkSign(Configuration $srcMetadata, SignedElement $element): bool
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
@@ -443,7 +443,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         Assertion &$assertion
-    ) {
+    ): void {
         if (!$assertion->hasEncryptedAttributes()) {
             return;
         }

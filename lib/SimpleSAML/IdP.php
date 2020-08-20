@@ -348,7 +348,7 @@ class IdP
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
      * @return void
      */
-    private function authenticate(array &$state)
+    private function authenticate(array &$state): void
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             throw new NoPassive(SAML2::STATUS_RESPONDER, 'Passive authentication not supported.');
@@ -371,7 +371,7 @@ class IdP
      * @throws \Exception If there is no auth source defined for this IdP.
      * @return void
      */
-    private function reauthenticate(array &$state)
+    private function reauthenticate(array &$state): void
     {
         $sourceImpl = $this->authSource->getAuthSource();
         $sourceImpl->reauthenticate($state);

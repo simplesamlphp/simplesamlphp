@@ -714,7 +714,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @throws \Exception If the handler is not a valid function or method.
      */
-    private function callLogoutHandlers(string $authority)
+    private function callLogoutHandlers(string $authority): void
     {
         assert(isset($this->authData[$authority]));
 
@@ -930,7 +930,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return void
      */
-    private function expireData()
+    private function expireData(): void
     {
         $ct = time();
 

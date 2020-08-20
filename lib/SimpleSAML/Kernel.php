@@ -104,7 +104,7 @@ class Kernel extends BaseKernel
      * @param LoaderInterface $loader
      * @return void
      */
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
@@ -114,11 +114,11 @@ class Kernel extends BaseKernel
             $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
         }
 
-        $container->loadFromExtension('framework', [
+        $c->loadFromExtension('framework', [
             'secret' => Configuration::getInstance()->getString('secretsalt'),
         ]);
 
-        $this->registerModuleControllers($container);
+        $this->registerModuleControllers($c);
     }
 
 
@@ -148,7 +148,7 @@ class Kernel extends BaseKernel
      * @param ContainerBuilder $container
      * @return void
      */
-    private function registerModuleControllers(ContainerBuilder $container)
+    private function registerModuleControllers(ContainerBuilder $container): void
     {
         try {
             $definition = new Definition();

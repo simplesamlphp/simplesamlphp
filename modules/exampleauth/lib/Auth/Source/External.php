@@ -60,7 +60,7 @@ class External extends \SimpleSAML\Auth\Source
      *
      * @return array|null  The user's attributes, or NULL if the user isn't authenticated.
      */
-    private function getUser()
+    private function getUser(): ?array
     {
         /*
          * In this example we assume that the attributes are

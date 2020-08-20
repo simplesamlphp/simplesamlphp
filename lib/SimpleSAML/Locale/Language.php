@@ -290,7 +290,7 @@ class Language
      * @return string|null The preferred language based on the Accept-Language HTTP header,
      * or null if none of the languages in the header is available.
      */
-    private function getHTTPLanguage()
+    private function getHTTPLanguage(): ?string
     {
         $languageScore = Utils\HTTP::getAcceptLanguage();
 

@@ -81,7 +81,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @throws \Exception If the filter could not load the requested attribute map file.
      * @return void
      */
-    private function loadMapFile(string $fileName)
+    private function loadMapFile(string $fileName): void
     {
         $config = Configuration::getInstance();
 

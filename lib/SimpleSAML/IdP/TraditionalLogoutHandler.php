@@ -45,7 +45,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param array &$state The logout state.
      * @return void
      */
-    private function logoutNextSP(array &$state)
+    private function logoutNextSP(array &$state): void
     {
         $association = array_pop($state['core:LogoutTraditional:Remaining']);
         if ($association === null) {

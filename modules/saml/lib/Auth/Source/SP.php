@@ -464,7 +464,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @return void
      * @deprecated will be removed in a future version
      */
-    private function startSSO1(Configuration $idpMetadata, array $state)
+    private function startSSO1(Configuration $idpMetadata, array $state): void
     {
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -502,7 +502,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array $state  The state array for the current authentication.
      * @return void
      */
-    private function startSSO2(Configuration $idpMetadata, array $state)
+    private function startSSO2(Configuration $idpMetadata, array $state): void
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
@@ -651,7 +651,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['saml:Extensions'])) {
             $ar->setExtensions($state['saml:Extensions']);
         }
-        
+
         $providerName = $this->metadata->getString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
@@ -747,7 +747,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array $state  The state array.
      * @return void
      */
-    private function startDisco(array $state)
+    private function startDisco(array $state): void
     {
         $id = Auth\State::saveState($state, 'saml:sp:sso');
 

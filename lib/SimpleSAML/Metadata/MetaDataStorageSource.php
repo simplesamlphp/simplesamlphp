@@ -185,7 +185,7 @@ abstract class MetaDataStorageSource
 
         foreach ($metadataSet as $index => $entry) {
             $cidrHints = [];
-            
+
             // support hint.cidr for idp discovery
             if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
                 $cidrHints = $entry['hint.cidr'];

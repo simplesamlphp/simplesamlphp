@@ -1095,10 +1095,8 @@ class Configuration implements Utils\ClearableState
      *
      * @throws \Exception If the default binding is missing for this endpoint type.
      */
-    private function getDefaultBinding($endpointType)
+    private function getDefaultBinding(string $endpointType): string
     {
-        assert(is_string($endpointType));
-
         $set = $this->getString('metadata-set');
         switch ($set . ':' . $endpointType) {
             case 'saml20-idp-remote:SingleSignOnService':

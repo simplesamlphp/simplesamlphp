@@ -319,7 +319,7 @@ class Translate
      *
      * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
      */
-    private function getStringNotTranslated(string $tag, bool $fallbacktag)
+    private function getStringNotTranslated(string $tag, bool $fallbacktag): string
     {
         if ($fallbacktag) {
             return 'not translated (' . $tag . ')';

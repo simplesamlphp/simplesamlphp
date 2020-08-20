@@ -83,7 +83,7 @@ class SQL extends Store
      * Initialize the table-version table.
      * @return void
      */
-    private function initTableVersionTable()
+    private function initTableVersionTable(): void
     {
         $this->tableVersions = [];
 
@@ -107,7 +107,7 @@ class SQL extends Store
      * Initialize key-value table.
      * @return void
      */
-    private function initKVTable()
+    private function initKVTable(): void
     {
         $current_version = $this->getTableVersion('kvstore');
 
@@ -288,7 +288,7 @@ class SQL extends Store
      * Clean the key-value table of expired entries.
      * @return void
      */
-    private function cleanKVStore()
+    private function cleanKVStore(): void
     {
         Logger::debug('store.sql: Cleaning key-value store.');
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Exception;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -157,11 +158,11 @@ class DefaultAuth
      * @return Source The authentication source.
      * @throws \Exception If the $id does not correspond with an authentication source.
      */
-    private static function getAuthSource($id)
+    private static function getAuthSource($id): Source
     {
         $as = Source::getById($id);
         if ($as === null) {
-            throw new \Exception('Invalid authentication source: ' . $id);
+            throw new Exception('Invalid authentication source: ' . $id);
         }
         return $as;
     }

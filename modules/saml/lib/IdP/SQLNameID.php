@@ -82,7 +82,7 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    private static function create(array $config = [])
+    private static function create(array $config = []): void
     {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
@@ -132,7 +132,7 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    private static function createTable(string $table, array $config = [])
+    private static function createTable(string $table, array $config = []): void
     {
         $query = 'CREATE TABLE ' . $table . ' (
             _idp VARCHAR(256) NOT NULL,
@@ -177,13 +177,13 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    public static function add($idpEntityId, $spEntityId, $user, $value, array $config = [])
-    {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
-        assert(is_string($value));
-
+    public static function add(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        string $value,
+        array $config = []
+    ): void {
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,

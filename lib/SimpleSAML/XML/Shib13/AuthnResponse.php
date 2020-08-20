@@ -229,12 +229,12 @@ class AuthnResponse
         return null;
     }
 
-    
+
     /**
      * @throws \Exception
      * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetaData($this->getIssuer(), 'shib13-idp-remote');
@@ -309,7 +309,7 @@ class AuthnResponse
         return $attributes;
     }
 
-    
+
     /**
      * @throws \Exception
      * @return string
@@ -369,13 +369,12 @@ class AuthnResponse
         }
 
         $id = Utils\Random::generateID();
-        
+
         $issueInstant = Utils\Time::generateTimestamp();
-        
+
         // 30 seconds timeskew back in time to allow differing clocks
         $notBefore = Utils\Time::generateTimestamp(time() - 30);
-        
-        
+
         $assertionExpire = Utils\Time::generateTimestamp(time() + 300); // 5 minutes
         $assertionid = Utils\Random::generateID();
 

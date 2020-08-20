@@ -441,7 +441,7 @@ class Template extends Response
      *
      * @return array|null The array containing information of all available languages.
      */
-    private function generateLanguageBar()
+    private function generateLanguageBar(): ?array
     {
         $languages = $this->translator->getLanguage()->getLanguageList();
         ksort($languages);
@@ -473,7 +473,7 @@ class Template extends Response
      * Set some default context
      * @return void
      */
-    private function twigDefaultContext()
+    private function twigDefaultContext(): void
     {
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {
@@ -586,7 +586,7 @@ class Template extends Response
      *
      * @throws \Exception If the template file couldn't be found.
      */
-    private function findTemplatePath(string $template, bool $throw_exception = true)
+    private function findTemplatePath(string $template, bool $throw_exception = true): ?string
     {
         $extensions = ['.tpl.php', '.php'];
 
@@ -757,7 +757,7 @@ class Template extends Response
      *
      * @return array
      */
-    private function getLanguageList()
+    private function getLanguageList(): array
     {
         return $this->translator->getLanguage()->getLanguageList();
     }
@@ -798,7 +798,7 @@ class Template extends Response
      * @param string $file
      * @return void
      */
-    private function includeAtTemplateBase(string $file)
+    private function includeAtTemplateBase(string $file): void
     {
         $data = $this->data;
 

@@ -161,7 +161,7 @@ class Validator
      * @return string|null  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
      *                 argument isn't an X509 certificate.
      */
-    private static function calculateX509Fingerprint(string $x509cert)
+    private static function calculateX509Fingerprint(string $x509cert): ?string
     {
         $lines = explode("\n", $x509cert);
 
@@ -203,7 +203,7 @@ class Validator
      * @throws \Exception
      * @return void
      */
-    private static function validateCertificateFingerprint(string $certificate, array $fingerprints)
+    private static function validateCertificateFingerprint(string $certificate, array $fingerprints): void
     {
         $certFingerprint = self::calculateX509Fingerprint($certificate);
         if ($certFingerprint === null) {

@@ -104,7 +104,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $attributes  The attributes of the user.
      * @return string|null  The realm of the user, or NULL if we are unable to determine the realm.
      */
-    private static function getRealm(array $attributes)
+    private static function getRealm(array $attributes): ?string
     {
         if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
             return null;

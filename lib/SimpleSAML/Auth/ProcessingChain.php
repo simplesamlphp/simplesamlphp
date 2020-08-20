@@ -95,7 +95,7 @@ class ProcessingChain
      * @param array $src  Source filters. May be unsorted.
      * @return void
      */
-    private static function addFilters(array &$target, array $src)
+    private static function addFilters(array &$target, array $src): void
     {
         foreach ($src as $filter) {
             $fp = $filter->priority;
@@ -341,7 +341,7 @@ class ProcessingChain
      * @param array &$state
      * @return void
      */
-    private static function addUserID(array &$state)
+    private static function addUserID(array &$state): void
     {
         assert(array_key_exists('Attributes', $state));
 
