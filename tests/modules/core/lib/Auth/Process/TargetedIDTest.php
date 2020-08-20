@@ -6,6 +6,8 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use SAML2\Constants;
+use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
 use SimpleSAML\Utils;
@@ -109,6 +111,12 @@ class TargetedIDTest extends TestCase
      */
     public function testNameIdGeneration()
     {
+        $nameid = new NameID();
+        $nameid->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameid->setNameQualifier('urn:example:src:id');
+        $nameid->setSPNameQualifier('joe');
+        $nameid->setValue('joe');
+
         $config = [
             'nameId' => true,
             'identifyingAttribute' => 'eduPersonPrincipalName',
@@ -117,7 +125,7 @@ class TargetedIDTest extends TestCase
         $request = array(
             'Attributes' => [
                 'eduPersonPrincipalName' => 'joe',
-                'eduPersonTargetedID' => '<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" NameQualifier="urn:example:src:id" SPNameQualifier="joe" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">joe</saml:NameID>'
+                'eduPersonTargetedID' => $nameid->toXML()->ownerDocument->saveXML(),
             ],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
@@ -133,10 +141,11 @@ class TargetedIDTest extends TestCase
         $attributes = $result['Attributes'];
 
         $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+
         $this->assertMatchesRegularExpression(
             '#^<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" NameQualifier="urn:example:src:id"' .
             ' SPNameQualifier="joe"' .
-            ' Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">3197ec15e3ff3851063bc5c91d35c1bd9ca2b903</saml:NameID>$#',
+            ' Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">[0-9a-f]{40}</saml:NameID>$#',
             strval($attributes['eduPersonTargetedID'][0])
         );
     }
