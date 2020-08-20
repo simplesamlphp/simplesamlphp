@@ -67,7 +67,7 @@ class TargetedID extends Auth\ProcessingFilter
         Assert::stringNotEmpty(
             $config['identifyingAttribute'],
             "TargetedID: 'identifyingAttribute' must be a non-empty string."
-        )
+        );
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
         if (!is_string($this->identifyingAttribute)) {
@@ -108,7 +108,7 @@ class TargetedID extends Auth\ProcessingFilter
             throw new Exception('core:TargetedID: Missing attribute \'' . $this->identifyingAttribute .
                 '\', which is needed to generate the targeted ID.');
         }
-        $userID = $state['Attributes'][$this->identifyingAttribute][0];
+        $userID = $state['Attributes'][$this->identifyingAttribute];
 
         if (array_key_exists('Source', $state)) {
             $srcID = self::getEntityId($state['Source']);
