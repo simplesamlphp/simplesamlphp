@@ -103,11 +103,12 @@ class TargetedID extends Auth\ProcessingFilter
     public function process(array &$state): void
     {
         Assert::keyExists($state, 'Attributes');
+        Assert::keyExists(
+            $state['Attributes'],
+            $this->identifyingAttribute,
+            'core:TargetedID: Missing attribute \'' . $this->identifyingAttribute . '\', which is needed to generate the targeted ID.'
+        );
 
-        if (!array_key_exists($this->identifyingAttribute, $state['Attributes'])) {
-            throw new Exception('core:TargetedID: Missing attribute \'' . $this->identifyingAttribute .
-                '\', which is needed to generate the targeted ID.');
-        }
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::stringNotEmpty($userID);
 
