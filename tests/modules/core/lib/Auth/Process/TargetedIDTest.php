@@ -154,11 +154,28 @@ class TargetedIDTest extends TestCase
      * Test the outcome to make sure the algorithm remains unchanged
      * @return void
      */
-    public function testAlgorithmRemainsSame()
+    public function testOutcome()
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
             'Attributes' => ['uid' => ['user2@example.org']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertEquals('c1ae2c2ef77b73f7c47b700e42617117b6ec4adc', $attributes['eduPersonTargetedID'][0]);
+    }
+
+
+    /**
+     * Test the outcome when multiple values are given
+     * @return void
+     */
+    public function testOutcomeMultipleValues()
+    {
+        $config = ['identifyingAttribute' => 'uid'];
+        $request = [
+            'Attributes' => ['uid' => ['user2@example.org', 'donald@duck.org']],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
