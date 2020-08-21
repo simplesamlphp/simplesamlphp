@@ -17,6 +17,8 @@ Released TBD
   * Dropped support for Symfony 3.x and Twig 1.x
   * Update the SAML2 library dependency to 4.1.8
   * Allow additional audiences to be specified (#1345)
+  * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in 
+    favour of the `identifyingAttribute`-setting.
 
 ## Version 1.18.8
 

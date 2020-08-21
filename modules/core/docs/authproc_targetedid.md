@@ -12,6 +12,11 @@ Parameters
 `attributename`
 :   The name of the attribute we should use for the unique user identifier.
     Optional, will use the attribute set by the `userid.attribute` metadata option by default.
+    *deprecated:* Please use `identifyingAttribute` instead.
+
+`identifyingAttribute`
+:   The name of the attribute we should use for the unique user identifier.
+    Optional, will use the attribute set by the `userid.attribute` metadata option by default.
 
 `nameId`
 :   Set this option to `TRUE` to generate the attribute as in SAML 2 NameID format.
@@ -35,7 +40,7 @@ A custom attribute:
     'authproc' => array(
         50 => array(
             'class' => 'core:TargetedID',
-            'attributename' => 'eduPersonPrincipalName'
+            'identifyingAttribute' => 'eduPersonPrincipalName'
         ),
     ),
 
