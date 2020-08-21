@@ -65,7 +65,7 @@ class TargetedIDTest extends TestCase
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
-            'Attributes' => ['uid' => 'user2@example.org'],
+            'Attributes' => ['uid' => ['user2@example.org']],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -84,8 +84,8 @@ class TargetedIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
             'Attributes' => [
-                'eduPersonTargetedID' => 'dummy',
-                'uid' => 'user2@example.org',
+                'eduPersonTargetedID' => ['dummy'],
+                'uid' => ['user2@example.org'],
             ],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
@@ -124,8 +124,8 @@ class TargetedIDTest extends TestCase
 
         $request = array(
             'Attributes' => [
-                'eduPersonPrincipalName' => 'joe',
-                'eduPersonTargetedID' => $nameid->toXML()->ownerDocument->saveXML(),
+                'eduPersonPrincipalName' => ['joe'],
+                'eduPersonTargetedID' => [$nameid->toXML()->ownerDocument->saveXML()],
             ],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
@@ -160,8 +160,8 @@ class TargetedIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
             'Attributes' => [
-                'eduPersonTargetedID' => 'dummy',
-                'uid' => 'user2@example.org',
+                'eduPersonTargetedID' => ['dummy'],
+                'uid' => ['user2@example.org'],
             ],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
@@ -193,7 +193,7 @@ class TargetedIDTest extends TestCase
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
-            'Attributes' => ['uid' => 'user2@example.org'],
+            'Attributes' => ['uid' => ['user2@example.org']],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
                 'entityid' => 'urn:example:src:id',
@@ -207,7 +207,7 @@ class TargetedIDTest extends TestCase
         $result = self::processFilter($config, $request);
         $tid1 = $result['Attributes']['eduPersonTargetedID'][0];
 
-        $request['Attributes']['uid'] = 'user3@example.org';
+        $request['Attributes']['uid'][0] = 'user3@example.org';
         $result = self::processFilter($config, $request);
         $tid2 = $result['Attributes']['eduPersonTargetedID'][0];
 
@@ -248,7 +248,7 @@ class TargetedIDTest extends TestCase
         ];
         $request = [
             'Attributes' => [
-                'displayName' => 'Jack Student',
+                'displayName' => ['Jack Student'],
             ],
         ];
         self::processFilter($config, $request);
@@ -267,7 +267,7 @@ class TargetedIDTest extends TestCase
         ];
         $request = [
             'Attributes' => [
-                'displayName' => 'Jack Student',
+                'displayName' => ['Jack Student'],
             ],
         ];
         self::processFilter($config, $request);
@@ -286,7 +286,7 @@ class TargetedIDTest extends TestCase
         ];
         $request = [
             'Attributes' => [
-                'displayName' => 'Jack Student',
+                'displayName' => ['Jack Student'],
             ],
         ];
         self::processFilter($config, $request);

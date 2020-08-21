@@ -108,7 +108,8 @@ class TargetedID extends Auth\ProcessingFilter
             throw new Exception('core:TargetedID: Missing attribute \'' . $this->identifyingAttribute .
                 '\', which is needed to generate the targeted ID.');
         }
-        $userID = $state['Attributes'][$this->identifyingAttribute];
+        $userID = $state['Attributes'][$this->identifyingAttribute][0];
+        Assert::stringNotEmpty($userID);
 
         if (array_key_exists('Source', $state)) {
             $srcID = self::getEntityId($state['Source']);
