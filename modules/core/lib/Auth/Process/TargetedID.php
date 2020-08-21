@@ -106,7 +106,10 @@ class TargetedID extends Auth\ProcessingFilter
         Assert::keyExists(
             $state['Attributes'],
             $this->identifyingAttribute,
-            'core:TargetedID: Missing attribute \'' . $this->identifyingAttribute . '\', which is needed to generate the targeted ID.'
+            sprintf(
+                "core:TargetedID: Missing attribute '%s', which is needed to generate the targeted ID.",
+                $this->identifyingAttribute
+            )
         );
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
