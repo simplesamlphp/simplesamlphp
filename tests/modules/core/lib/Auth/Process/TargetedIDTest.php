@@ -141,13 +141,29 @@ class TargetedIDTest extends TestCase
         $attributes = $result['Attributes'];
 
         $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
-
         $this->assertMatchesRegularExpression(
             '#^<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" NameQualifier="urn:example:src:id"' .
             ' SPNameQualifier="joe"' .
             ' Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">[0-9a-f]{40}</saml:NameID>$#',
             strval($attributes['eduPersonTargetedID'][0])
         );
+    }
+
+
+    /**
+     * Test the outcome to make sure the algorithm remains unchanged
+     * @return void
+     */
+    public function testAlgorithmRemainsSame()
+    {
+        $config = ['identifyingAttribute' => 'uid'];
+        $request = [
+            'Attributes' => ['uid' => ['user2@example.org']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertEquals('c1ae2c2ef77b73f7c47b700e42617117b6ec4adc', $attributes['eduPersonTargetedID'][0]);
     }
 
 
