@@ -592,10 +592,6 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setExtensions($state['saml:Extensions']);
         } else if ($this->metadata->getArray('saml:Extensions', null) !== null) {
             $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
-        } else if (isset($state['saml:Extensions'])) {
-            $ar->setExtensions($state['saml:Extensions']);
-        } else if ($this->metadata->getArray('saml:Extensions', null) !== null) {
-            $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
         }
 
         $providerName = $this->metadata->getString("ProviderName", null);
