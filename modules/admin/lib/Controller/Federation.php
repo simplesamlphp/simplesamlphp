@@ -61,9 +61,9 @@ class Federation
      * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
-     * @return void
+     * @return \SimpleSAML\XHTML\Template
      */
-    public function main(): void
+    public function main(): Template
     {
         Utils\Auth::requireAdmin();
 
