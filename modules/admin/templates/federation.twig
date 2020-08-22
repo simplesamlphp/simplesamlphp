@@ -116,16 +116,13 @@
           {{ entity.entityid|escape('html') }}
           {%- endif -%}
           </a>
-          {%- if entity.expire is defined %}
-            {%- if entity.expire < date().timestamp %}
-
-          <span class="entity-expired"> (expired {{ ((date().timestamp - entity.expire) / 3600) }} hours ago)</span>
-            {%- else %}
-              {%- set expiration = (entity.expire - date().timestamp) / 3600 %}
-
-          ({% trans %}expires in {{ expiration }} hours{% endtrans %})
-            {%- endif -%}
-          {%- endif -%}
+          {% if entity.expire is defined %}
+            {% if entity.expire < date().timestamp %}
+              <span class="entity-expired"> ({% trans %}expired{% endtrans %} {{ entity.expire | time_diff }})</span>
+            {% else %}
+              <span class="entity-expires"> ({% trans %}expires{% endtrans %} {{ entity.expire | time_diff }})</span>
+            {% endif %}
+          {% endif %}
         </li>
       {% endfor %}
       </ul>
@@ -141,7 +138,7 @@
       {%- endfor %}
 
     </ul>
-    <form action="{{ moduleURL('federation/show') }}" method="get" class="pure-form">
+    <form action="{{ moduleURL('admin/federation/show') }}" method="get" class="pure-form">
       <fieldset class="fancyfieldset">
         <legend>{% trans %}Look up metadata for entity:{% endtrans %}</legend>
         <select name="set">

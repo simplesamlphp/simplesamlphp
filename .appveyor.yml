@@ -6,8 +6,6 @@ clone_folder: C:\projects\simplesamlphp
 
 environment:
   matrix:
-    - PHP_VERSION: "7.2"
-    - PHP_VERSION: "7.3"
     - PHP_VERSION: "7.4"
 
 install:

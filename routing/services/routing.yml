@@ -53,7 +53,7 @@ services:
         class: Symfony\Component\Routing\Router
         arguments:
             - '@routing.loader'
-            - 'kernel:loadRoutes'
+            - 'kernel::loadRoutes'
             - { resource_type: 'service' }
             - '@?router.request_context'
 

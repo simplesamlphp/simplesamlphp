@@ -292,17 +292,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $metadataHandler = MetaDataStorageHandler::getMetadataHandler();
 
-        // First, look in saml20-idp-remote.
-        try {
-            return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
-        } catch (\Exception $e) {
-            // Metadata wasn't found
-            Logger::debug('getIdpMetadata: ' . $e->getMessage());
-        }
-
-        // Not found
-        throw new Error\Exception('Could not find the metadata of an IdP with entity ID ' .
-            var_export($entityId, true));
+        return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
     }
 
 

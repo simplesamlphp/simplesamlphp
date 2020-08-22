@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "cronレポート"
-
-msgid "{cron:cron:ran_text}"
-msgstr "cronが実行された時刻"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "crontabファイルの提案:"
-
-msgid "{cron:cron:run_text}"
-msgstr "cronを実行"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "クリックしてcronジョブを実行:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "cronはunixシステムで定期的に処理を実行します。"
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "cronジョブの実行結果:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "cron実行結果ページ"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "cronはunixシステムで定期的に処理を実行します。"
 

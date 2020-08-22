@@ -29,10 +29,10 @@ class FederationTest extends TestCase
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::FRAMEWORK . '/certificates/pem/selfsigned.example.org.key';
+    public const CERT_KEY = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::FRAMEWORK . '/certificates/pem/selfsigned.example.org.crt';
+    public const CERT_PUBLIC = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration */
     protected $config;
@@ -45,6 +45,9 @@ class FederationTest extends TestCase
 
     /** @var string */
     private $broken_metadata_xml = self::FRAMEWORK . '/metadata/xml/corrupted-metadata-selfsigned.xml';
+
+    /** @var string */
+    private $expired_metadata_xml = self::FRAMEWORK . '/metadata/xml/expired-metadata.xml';
 
     /** @var string */
     private $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
@@ -222,6 +225,25 @@ class FederationTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
+    }
+
+    /**
+     * @return void
+     */
+    public function testMetadataConverterSkipsExpires(): void
+    {
+        $request = Request::create(
+            '/federation/metadata-converter',
+            'POST',
+            ['xmldata' => file_get_contents($this->expired_metadata_xml)]
+        );
+
+        $c = new Controller\Federation($this->config);
+        $c->setAuthUtils($this->authUtils);
+        $response = $c->metadataConverter($request);
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertStringNotContainsString("'expire' =>", $response->data['output']['saml20-idp-remote']);
     }
 
 

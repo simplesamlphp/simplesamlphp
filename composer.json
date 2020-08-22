@@ -32,7 +32,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4 || ^8.0 ",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -64,7 +64,7 @@
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^0.1.9"
+        "simplesamlphp/simplesamlphp-test-framework": "^0.2.7"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",

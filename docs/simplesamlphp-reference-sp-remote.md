@@ -160,6 +160,9 @@ The following options can be set:
 
 :   (This option was previously named `AttributeNameFormat`.)
 
+`audience`
+:   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID. 
+
 `certData`
 :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
