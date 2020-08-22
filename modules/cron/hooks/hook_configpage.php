@@ -13,7 +13,7 @@ use SimpleSAML\XHTML\Template;
 function cron_hook_configpage(Template &$template): void
 {
     $template->data['links']['cron'] = [
-        'href' => Module::getModuleURL('cron/croninfo.php'),
+        'href' => Module::getModuleURL('cron/info'),
         'text' => Translate::noop('Cron module information page'),
     ];
     $template->getLocalization()->addModuleDomain('cron');

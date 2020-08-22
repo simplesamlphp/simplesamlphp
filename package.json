@@ -12,10 +12,10 @@
     "clipboard": "^2.0.6",
     "es6-shim": "^0.35.5",
     "font-awesome": "^4.7.0",
-    "highlight.js": "^9.18.3",
+    "highlight.js": "^10.1.2",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
-    "purecss": "^1.0.1",
+    "purecss": "^2.0.3",
     "reset-css": "^5.0.1",
     "selectize": "^0.12.6"
   },
@@ -27,7 +27,7 @@
     "expose-loader": "^0.7.5",
     "mini-css-extract-plugin": "^0.10.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^9.0.3",
     "style-loader": "^1.0.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"

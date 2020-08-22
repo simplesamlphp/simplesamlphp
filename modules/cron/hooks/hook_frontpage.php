@@ -14,7 +14,7 @@ function cron_hook_frontpage(array &$links): void
     Assert::keyExists($links, 'links');
 
     $links['config'][] = [
-        'href' => Module::getModuleURL('cron/croninfo.php'),
+        'href' => Module::getModuleURL('cron/info'),
         'text' => '{cron:cron:link_cron}',
     ];
 }
