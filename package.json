@@ -27,7 +27,7 @@
     "expose-loader": "^0.7.5",
     "mini-css-extract-plugin": "^0.10.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^9.0.3",
     "style-loader": "^1.0.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"

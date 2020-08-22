@@ -49,8 +49,15 @@ module.exports = environment => {
                         {
                             loader: 'sass-loader',
                             options: {
+<<<<<<< HEAD
                                 indentedSyntax: false,
                                 data: "$primaryBackground: " + primaryBackground + '; ' +
+=======
+                                sassOptions: {
+                                    indentedSyntax: false
+                                },
+                                additionalData: "$primaryBackground: " + primaryBackground + '; ' +
+>>>>>>> Upgrade sass-loader; Closes #1235
                                       "$transitionBackground: " + transitionBackground + "; " +
                                       "$secondaryBackground: " + secondaryBackground + ";"
                             }
