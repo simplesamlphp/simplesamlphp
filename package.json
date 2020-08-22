@@ -15,7 +15,7 @@
     "highlight.js": "^9.18.3",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
-    "purecss": "^1.0.1",
+    "purecss": "^2.0.3",
     "reset-css": "^5.0.1",
     "selectize": "^0.12.6"
   },
