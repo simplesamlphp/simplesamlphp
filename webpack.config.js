@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const buildDir = __dirname + '/www/assets/';
@@ -37,26 +37,25 @@ module.exports = environment => {
                 },
                 {
                     test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    url: false
-                                }
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: {
-                                    indentedSyntax: false,
-                                    data: "$primaryBackground: " + primaryBackground + '; ' +
-                                          "$transitionBackground: " + transitionBackground + "; " +
-                                          "$secondaryBackground: " + secondaryBackground + ";"
-                                }
+                    use: [
+                        'style-loader',
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false
                             }
-                        ]
-                    })
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                indentedSyntax: false,
+                                data: "$primaryBackground: " + primaryBackground + '; ' +
+                                      "$transitionBackground: " + transitionBackground + "; " +
+                                      "$secondaryBackground: " + secondaryBackground + ";"
+                            }
+                        }
+                    ]
                 },
                 {
                     // expose jquery for use outside webpack bundle
@@ -78,7 +77,7 @@ module.exports = environment => {
                 $: 'jquery',
                 jQuery: 'jquery'
             }),
-            new ExtractTextPlugin({
+            new MiniCssExtractPlugin({
                 filename: localConfig['css_filename'],
                 ignoreOrder: true
             }),
