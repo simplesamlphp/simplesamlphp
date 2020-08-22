@@ -344,8 +344,7 @@ class Simple
             $returnTo = Utils\HTTP::getSelfURL();
         }
 
-        $logout = Module::getModuleURL('core/as_logout.php', [
-            'AuthId'   => $this->authSource,
+        $logout = Module::getModuleURL('core/logout/' . $this->authSource, [
             'ReturnTo' => $returnTo,
         ]);
 
