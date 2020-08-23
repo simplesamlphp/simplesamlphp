@@ -9,10 +9,9 @@
         <input type="hidden" name="AuthState" value="{{ authstate|escape('html') }} ">
         <ul>
         {% for key, source in sources %}
-            {% set name = ('src-' ~ source.source64) %}
             {% set button = ('button-' ~ source.source) %}
 	    <li class="{{ source.css_class|escape('html') }} authsource">
-            <input type="submit" name="{{ name|escape('html') }}" id="{{ button|escape('html') }}" value="{{ source.text|escape('html') }}"{%- if source.source == preferred %} autofocus{% endif -%}>
+            <input type="submit" name="source" id="{{ button|escape('html') }}" value="{{ source.text|escape('html') }}"{%- if source.source == preferred %} autofocus{% endif -%}>
             {% if source.help %}
               <p>{{ source.help|escape('html') }}</p>
             {% endif %}

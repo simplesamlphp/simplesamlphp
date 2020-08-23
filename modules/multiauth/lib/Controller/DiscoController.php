@@ -115,14 +115,6 @@ class DiscoController
         }
 
         $source = $request->get('source', null);
-        if (is_null($source)) {
-            foreach ($request->query->all() as $k => $v) {
-                $k = explode('-', $k, 2);
-                if (count($k) === 2 && $k[0] === 'src') {
-                    $source = base64_decode($k[1]);
-                }
-            }
-        }
 
         if ($source !== null) {
             if ($as !== null) {
