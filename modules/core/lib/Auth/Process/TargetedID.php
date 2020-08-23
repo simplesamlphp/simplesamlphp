@@ -70,9 +70,6 @@ class TargetedID extends Auth\ProcessingFilter
         );
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
-        if (!is_string($this->identifyingAttribute)) {
-            throw new Exception('Invalid attribute name given to core:TargetedID filter.');
-        }
 
         if (array_key_exists('nameId', $config)) {
             $this->generateNameId = $config['nameId'];
