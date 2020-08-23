@@ -157,9 +157,13 @@ class DiscoController
             }
         }
 
+        $baseurl = explode("/", Utils\HTTP::getBaseURL());
+        $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
+        $path = implode("/", $elements);
+
+        $t->data['selfUrl'] ='/' . $path;
         $t->data['authstate'] = $authStateId;
         $t->data['sources'] = $sources;
-        $t->data['selfUrl'] = $_SERVER['PHP_SELF'];
 
         if ($as !== null) {
             $t->data['preferred'] = $as->getPreviousSource();
