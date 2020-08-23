@@ -224,8 +224,8 @@ class DiscoControllerTest extends TestCase
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help']],
-                        'source2' => ['source' => 'test', 'text' => ['en' => 'text']]
+                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['nl' => 'text']],
+                        'source2' => ['source' => 'test', 'text' => ['en' => 'text'], 'help' => ['nl' => 'help']]
                     ]
                 ];
             }
@@ -334,8 +334,8 @@ class DiscoControllerTest extends TestCase
                     ],
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help']],
-                        'source2' => ['source' => 'test', 'text' => ['en' => 'text']]
+                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                        'source2' => ['source' => 'test', 'text' => ['en' => 'text'], 'help' => ['en' => 'help']]
                     ]
                 ];
             }
