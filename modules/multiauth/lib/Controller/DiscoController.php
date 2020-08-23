@@ -153,7 +153,7 @@ class DiscoController
         $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
         $path = implode("/", $elements);
 
-        $t->data['selfUrl'] ='/' . $path;
+        $t->data['selfUrl'] = '/' . $path;
         $t->data['authstate'] = $authStateId;
         $t->data['sources'] = $sources;
 
