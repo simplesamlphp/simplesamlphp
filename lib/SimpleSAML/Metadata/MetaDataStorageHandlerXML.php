@@ -51,8 +51,6 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         }
 
 
-        $SP1x = [];
-        $IdP1x = [];
         $SP20 = [];
         $IdP20 = [];
         $AAD = [];
