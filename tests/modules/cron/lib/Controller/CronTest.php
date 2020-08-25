@@ -79,14 +79,10 @@ class CronTest extends TestCase
     public function testInfo(): void
     {
         $_SERVER['REQUEST_URI'] = '/module.php/cron/info';
-        $request = Request::create(
-            '/info',
-            'GET'
-        );
 
         $c = new Controller\Cron($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
-        $response = $c->info($request);
+        $response = $c->info();
 
         $this->assertTrue($response->isSuccessful());
     }
@@ -98,13 +94,9 @@ class CronTest extends TestCase
     public function testRun(): void
     {
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/secret';
-        $request = Request::create(
-            '/run/daily/secret',
-            'GET'
-        );
 
         $c = new Controller\Cron($this->config, $this->session);
-        $response = $c->run($request, 'daily', 'secret');
+        $response = $c->run('daily', 'secret');
 
         $this->assertTrue($response->isSuccessful());
     }
