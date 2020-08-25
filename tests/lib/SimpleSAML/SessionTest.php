@@ -19,6 +19,8 @@ class SessionTest extends ClearStateTestCase
      */
     public function setUp(): void
     {
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+
         $this->session = Session::getSessionFromRequest();
     }
 
