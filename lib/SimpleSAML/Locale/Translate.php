@@ -231,25 +231,6 @@ class Translate
 
 
     /**
-     * Return the string that should be used when no translation was found.
-     *
-     * @param string  $tag A name tag of the string that should be returned.
-     * @param boolean $fallbacktag If set to true and string was not found in any languages, return the tag itself. If
-     * false return null.
-     *
-     * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
-     */
-    private function getStringNotTranslated(string $tag, bool $fallbacktag): string
-    {
-        if ($fallbacktag) {
-            return 'not translated (' . $tag . ')';
-        } else {
-            return $tag;
-        }
-    }
-
-
-    /**
      * Include a translation inline instead of putting translations in dictionaries. This function is recommended to be
      * used ONLY for variable data, or when the translation is already provided by an external source, as a database
      * or in metadata.
