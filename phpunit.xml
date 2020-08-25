@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
-         bootstrap="./tests/bootstrap.php">
-    <testsuites>
-        <testsuite name="Unit tests">
-            <directory>./vendor/simplesamlphp/simplesamlphp-test-framework/src</directory>
-            <directory>./tests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./lib/</directory>
-            <directory suffix=".php">./modules/admin/lib/</directory>
-            <directory suffix=".php">./modules/core/lib/</directory>
-            <directory suffix=".php">./modules/cron/lib/</directory>
-            <directory suffix=".php">./modules/exampleauth/lib/</directory>
-            <directory suffix=".php">./modules/multiauth/lib/</directory>
-            <directory suffix=".php">./modules/saml/lib/</directory>
-            <exclude>
-                <directory>./vendor/</directory>
-                <directory>./tests/</directory>
-                <file>./lib/SimpleSAML/Utils/HttpAdapter.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-        <log type="coverage-html" target="build/coverage" lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-    </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" bootstrap="./tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./lib/</directory>
+      <directory suffix=".php">./modules/admin/lib/</directory>
+      <directory suffix=".php">./modules/core/lib/</directory>
+      <directory suffix=".php">./modules/cron/lib/</directory>
+      <directory suffix=".php">./modules/exampleauth/lib/</directory>
+      <directory suffix=".php">./modules/multiauth/lib/</directory>
+      <directory suffix=".php">./modules/saml/lib/</directory>
+    </include>
+    <exclude>
+      <directory>./vendor/</directory>
+      <directory>./tests/</directory>
+      <file>./lib/SimpleSAML/Utils/HttpAdapter.php</file>
+    </exclude>
+    <report>
+      <clover outputFile="build/logs/clover.xml"/>
+      <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
+      <text outputFile="php://stdout" showUncoveredFiles="true"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Unit tests">
+      <directory>./vendor/simplesamlphp/simplesamlphp-test-framework/src</directory>
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
 </phpunit>
