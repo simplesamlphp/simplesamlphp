@@ -58,15 +58,9 @@ if (!($request instanceof ArtifactResolve)) {
     throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
 
-$issuer = $request->getIssuer();
-if (!is_string($issuer)) {
-    $issuer = $issuer->getValue();
-}
-
+$issuer = $request->getIssuer()->getValue();
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
-
 $artifact = $request->getArtifact();
-
 $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
