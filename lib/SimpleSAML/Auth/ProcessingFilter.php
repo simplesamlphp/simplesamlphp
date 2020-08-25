@@ -47,7 +47,7 @@ abstract class ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(array &$config, $reserved)
+    public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
     {
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];

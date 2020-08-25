@@ -291,14 +291,12 @@ class LogoutStore
      * Retrieve all session IDs from a key-value store.
      *
      * @param \SimpleSAML\Store $store  The datastore.
-     * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
     private static function getSessionsStore(
         Store $store,
-        string $authId,
         string $nameId,
         array $sessionIndexes
     ): array {
@@ -412,7 +410,7 @@ class LogoutStore
                 // We cannot fetch all sessions without a SQL store
                 return false;
             }
-            $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
+            $sessions = self::getSessionsStore($store, $strNameId, $sessionIndexes);
         }
 
         if (empty($sessionIndexes)) {
