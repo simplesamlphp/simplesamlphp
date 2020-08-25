@@ -25,8 +25,13 @@ function SimpleSAML_exception_handler($exception)
 set_exception_handler('SimpleSAML_exception_handler');
 
 // log full backtrace on errors and warnings
-function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0, /** @scrutinizer ignore-unused */ $errcontext = null)
-{
+function SimpleSAML_error_handler(
+    $errno,
+    $errstr,
+    $errfile = null,
+    $errline = 0,
+    /** @scrutinizer ignore-unused */ $errcontext = null
+) {
     if (\SimpleSAML\Logger::isErrorMasked($errno)) {
         // masked error
         return false;

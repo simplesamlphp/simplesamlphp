@@ -404,7 +404,7 @@ class XML
      */
     public static function isValid($xml, string $schema)
     {
-        if (!is_string($xml) && ! ($xml instanceof DOMDocument)) {
+        if (!is_string($xml) && !($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
