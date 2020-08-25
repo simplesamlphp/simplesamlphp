@@ -45,7 +45,7 @@ class Auth
     public static function getAdminLogoutURL(?string $returnTo = null): string
     {
         $as = new Authentication\Simple('admin');
-        return $as->getLogoutURL($returnTo = null);
+        return $as->getLogoutURL($returnTo);
     }
 
 
