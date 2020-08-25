@@ -60,8 +60,8 @@ class PHP extends Auth\ProcessingFilter
          * @param array &$state
          */
         $function = /** @return void */ function (
-            array &$attributes,
-            array &$state
+            /** @scrutinizer ignore-unused */ array &$attributes,
+            /** @scrutinizer ignore-unused */ array &$state
         ) {
             eval($this->code);
         };

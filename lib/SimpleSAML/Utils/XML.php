@@ -436,7 +436,7 @@ class XML
                  * @param array $context
                  * @return string|null
                  */
-                function (string $public = null, string $system, array $context) {
+                function (string $public = null, string $system, /** @scrutinizer ignore-unused */ array $context) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

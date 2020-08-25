@@ -202,6 +202,7 @@ class System
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
+            /** @var array|null $error */
             $error = error_get_last();
             throw new Error\Exception(
                 'Error saving file "' . $tmpFile . '": ' .
@@ -212,8 +213,8 @@ class System
         if (self::getOS() !== self::WINDOWS) {
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
+                /** @var array|null $error */
                 $error = error_get_last();
-                //$error = (is_array($error) ? $error['message'] : 'no error available');
                 throw new Error\Exception(
                     'Error changing file mode of "' . $tmpFile . '": ' .
                     (is_array($error) ? $error['message'] : 'no error available')
@@ -223,6 +224,7 @@ class System
 
         if (!rename($tmpFile, $filename)) {
             unlink($tmpFile);
+            /** @var array|null $error */
             $error = error_get_last();
             throw new Error\Exception(
                 'Error moving "' . $tmpFile . '" to "' . $filename . '": ' .

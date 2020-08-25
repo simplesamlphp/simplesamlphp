@@ -151,7 +151,7 @@ class AttributeAlter extends Auth\ProcessingFilter
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
-                    if ($this->replacement !== false) {
+                    if (is_string($this->replacement)) {
                         $new_value = $this->replacement;
                     }
 
