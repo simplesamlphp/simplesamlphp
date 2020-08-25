@@ -77,14 +77,6 @@ class Configuration implements Utils\ClearableState
     private $filename = null;
 
     /**
-     * Temporary property that tells if the deprecated getBaseURL() method has been called or not.
-     *
-     * @var bool
-     */
-    private $deprecated_base_url_used = false;
-
-
-    /**
      * Initializes a configuration from the given array.
      *
      * @param array $config The configuration array.
