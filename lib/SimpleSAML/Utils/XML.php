@@ -56,7 +56,6 @@ class XML
 
         // see if debugging is enabled for XML validation
         $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
-        $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (
             !(
