@@ -296,7 +296,7 @@ class MetaDataStorageHandler implements ClearableState
      * This function looks up the metadata for the given entity id in the given set. It will throw an
      * exception if it is unable to locate the metadata.
      *
-     * @param string|null $index The entity id we are looking up. This parameter may be NULL, in which case we look up
+     * @param string|null $entityId The entity id we are looking up. This parameter may be NULL, in which case we look up
      * the current entity id based on the current hostname/path.
      * @param string $set The set of metadata we are looking up the entity id in.
      *
@@ -304,33 +304,33 @@ class MetaDataStorageHandler implements ClearableState
      * @throws \Exception If metadata for the specified entity is expired.
      * @throws \SimpleSAML\Error\MetadataNotFound If no metadata for the entity specified can be found.
      */
-    public function getMetaData(?string $index, string $set): array
+    public function getMetaData(?string $entityId, string $set): array
     {
-        if ($index === null) {
-            $index = $this->getMetaDataCurrentEntityID($set, 'metaindex');
+        if ($entityId === null) {
+            $entityId = $this->getMetaDataCurrentEntityID($set, 'metaindex');
         }
 
         foreach ($this->sources as $source) {
-            $metadata = $source->getMetaData($index, $set);
+            $metadata = $source->getMetaData($entityId, $set);
 
             if ($metadata !== null) {
                 if (array_key_exists('expire', $metadata)) {
                     if ($metadata['expire'] < time()) {
                         throw new \Exception(
-                            'Metadata for the entity [' . $index . '] expired ' .
+                            'Metadata for the entity [' . $entityId . '] expired ' .
                             (time() - $metadata['expire']) . ' seconds ago.'
                         );
                     }
                 }
 
-                $metadata['metadata-index'] = $index;
+                $metadata['metadata-index'] = $entityId;
                 $metadata['metadata-set'] = $set;
                 Assert::keyExists($metadata, 'entityid');
                 return $metadata;
             }
         }
 
-        throw new Error\MetadataNotFound($index);
+        throw new Error\MetadataNotFound($entityId);
     }
 
 
