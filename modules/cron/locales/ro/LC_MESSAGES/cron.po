@@ -16,32 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Raport <i>cron</i>"
-
-msgid "{cron:cron:ran_text}"
-msgstr "<i>Cron</i> a fost executat la"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Sugestie pentru un fișier <i>crontab</i>:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Executați <i>cron/<i>:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Apăsați aici pentru a executa sarcinile din <i>cron/<i>:"
-
-msgid "{cron:cron:cron_info}"
-msgstr ""
-"<i>Cron</i> este o modalitate folosită pe sisteme UNIX pentru a executa "
-"diferite sarcini în mod periodic."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Reezultatele executării sarcinilor din <i>cron</i>"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Pagina cu rezultatele <i>cron</i>"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr ""
 "<i>Cron</i> este o modalitate folosită pe sisteme UNIX pentru a executa "

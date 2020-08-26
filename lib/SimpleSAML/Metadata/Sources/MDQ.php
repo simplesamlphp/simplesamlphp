@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata\Sources;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This class implements SAML Metadata Query Protocol
@@ -235,7 +235,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * override this function if it doesn't implement the getMetadataSet function, or if the
      * implementation of getMetadataSet is slow.
      *
-     * @param string $index The entityId or metaindex we are looking up.
+     * @param string $entityId The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
@@ -243,13 +243,13 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If an error occurs while validating the signature or the metadata is in an
      *         incorrect set.
      */
-    public function getMetaData(string $index, string $set): ?array
+    public function getMetaData(string $entityId, string $set): ?array
     {
-        Logger::info(__CLASS__ . ': loading metadata entity [' . $index . '] from [' . $set . ']');
+        Logger::info(__CLASS__ . ': loading metadata entity [' . $entityId . '] from [' . $set . ']');
 
         // read from cache if possible
         try {
-            $data = $this->getFromCache($set, $index);
+            $data = $this->getFromCache($set, $entityId);
         } catch (\Exception $e) {
             Logger::error($e->getMessage());
             // proceed with fetching metadata even if the cache is broken
@@ -263,14 +263,14 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         if (isset($data)) {
             // metadata found in cache and not expired
-            Logger::debug(__CLASS__ . ': using cached metadata for: ' . $index . '.');
+            Logger::debug(__CLASS__ . ': using cached metadata for: ' . $entityId . '.');
             return $data;
         }
 
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
-        $mdq_url = $this->server . '/entities/' . urlencode($index);
+        $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
-        Logger::debug(__CLASS__ . ': downloading metadata for "' . $index . '" from [' . $mdq_url . ']');
+        Logger::debug(__CLASS__ . ': downloading metadata for "' . $entityId . '" from [' . $mdq_url . ']');
         try {
             $xmldata = Utils\HTTP::fetch($mdq_url);
         } catch (\Exception $e) {
@@ -280,7 +280,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         if (empty($xmldata)) {
             $error = error_get_last();
-            Logger::info('Unable to fetch metadata for "' . $index . '" from ' . $mdq_url . ': ' .
+            Logger::info('Unable to fetch metadata for "' . $entityId . '" from ' . $mdq_url . ': ' .
                 (is_array($error) ? $error['message'] : 'no error available'));
             return null;
         }
@@ -291,11 +291,11 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
-            throw new \Exception(__CLASS__ . ': no metadata for set "' . $set . '" available from "' . $index . '".');
+            throw new \Exception(__CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".');
         }
 
         try {
-            $this->writeToCache($set, $index, $data);
+            $this->writeToCache($set, $entityId, $data);
         } catch (\Exception $e) {
             // Proceed without writing to cache
             Logger::error('Error writing MDQ result to cache: ' . $e->getMessage());

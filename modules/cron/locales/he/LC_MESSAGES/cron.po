@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "דוח cron"
-
-msgid "{cron:cron:ran_text}"
-msgstr "cron רץ ב"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "הצעה לקובץ crontab:"
-
-msgid "{cron:cron:run_text}"
-msgstr "הרץ cron:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "לחץ כאן כדי להריץ את עבודות ה cron"
-
-msgid "{cron:cron:cron_info}"
-msgstr "cron הוא הדרך להריץ עבודות בזמנים קבועים במערכות unix."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "הנה התוצאה של הרצת תהליך ה cron:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "דף תוצאות cron"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "cron הוא הדרך להריץ עבודות בזמנים קבועים במערכות unix."
 

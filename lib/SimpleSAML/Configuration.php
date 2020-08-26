@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -75,14 +75,6 @@ class Configuration implements Utils\ClearableState
      * @var string|null
      */
     private $filename = null;
-
-    /**
-     * Temporary property that tells if the deprecated getBaseURL() method has been called or not.
-     *
-     * @var bool
-     */
-    private $deprecated_base_url_used = false;
-
 
     /**
      * Initializes a configuration from the given array.

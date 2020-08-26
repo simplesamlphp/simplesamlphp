@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+class PersistentNameID2TargetedID extends ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.
@@ -43,7 +44,7 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         if (isset($config['attribute'])) {
-            $this->attribute = (string) $config['attribute'];
+            $this->attribute = strval($config['attribute']);
         } else {
             $this->attribute = 'eduPersonTargetedID';
         }

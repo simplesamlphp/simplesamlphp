@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to create target attribute based on value(s) in source attribute
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeValueMap extends Auth\ProcessingFilter
 {
     /**
      * The name of the attribute we should assign values to (ie: the target attribute).

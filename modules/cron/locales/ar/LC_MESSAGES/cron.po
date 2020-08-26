@@ -16,30 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "تقرير كرون"
-
-msgid "{cron:cron:ran_text}"
-msgstr "كرون عمل علي"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "اقتراح لملف كرونتاب"
-
-msgid "{cron:cron:run_text}"
-msgstr "أبدا "
-
-msgid "{cron:cron:cron_execution}"
-msgstr " اضغط ليبدأ كرون بالعمل"
-
-msgid "{cron:cron:cron_info}"
-msgstr "  كرون هو وسيلة تشغيل متكرر علي يونيكس"
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "نتائج بحث كرون"
-
-msgid "{cron:cron:cron_header}"
-msgstr "صفحة نتيجة كرون"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "  كرون هو وسيلة تشغيل متكرر علي يونيكس"
 

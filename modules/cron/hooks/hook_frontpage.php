@@ -1,6 +1,7 @@
 <?php
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Module;
 
 /**
  * Hook to add the modinfo module to the frontpage.
@@ -13,7 +14,7 @@ function cron_hook_frontpage(array &$links): void
     Assert::keyExists($links, 'links');
 
     $links['config'][] = [
-        'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),
+        'href' => Module::getModuleURL('cron/info'),
         'text' => '{cron:cron:link_cron}',
     ];
 }

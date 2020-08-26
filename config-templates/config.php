@@ -237,9 +237,8 @@ $config = [
      * SAML messages will be logged, including plaintext versions of encrypted
      * messages.
      *
-     * - 'backtraces': this action controls the logging of error backtraces. If you
-     * want to log backtraces so that you can debug any possible errors happening in
-     * SimpleSAMLphp, enable this action (add it to the array or set it to true).
+     * - 'backtraces': this action controls the logging of error backtraces so you
+     * can debug any possible errors happening in SimpleSAMLphp.
      *
      * - 'validatexml': this action allows you to validate SAML documents against all
      * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
@@ -430,19 +429,19 @@ $config = [
     'database.persistent' => false,
 
     /*
-     * Database slave configuration is optional as well. If you are only
+     * Database secondary configuration is optional as well. If you are only
      * running a single database server, leave this blank. If you have
-     * a master/slave configuration, you can define as many slave servers
-     * as you want here. Slaves will be picked at random to be queried from.
+     * a primary/secondary configuration, you can define as many secondary servers
+     * as you want here. Secondaries will be picked at random to be queried from.
      *
-     * Configuration options in the slave array are exactly the same as the
-     * options for the master (shown above) with the exception of the table
+     * Configuration options in the secondary array are exactly the same as the
+     * options for the primary (shown above) with the exception of the table
      * prefix and driver options.
      */
-    'database.slaves' => [
+    'database.secondaries' => [
         /*
         [
-            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'dsn' => 'mysql:host=mysecondary;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,

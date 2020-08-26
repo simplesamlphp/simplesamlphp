@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class SessionHandlerPHP extends SessionHandler
 {
@@ -70,39 +70,24 @@ class SessionHandlerPHP extends SessionHandler
             session_write_close();
         }
 
-
         if (empty($this->cookie_name)) {
             $this->cookie_name = session_name();
-        } elseif (!headers_sent() || version_compare(PHP_VERSION, '7.2', '<')) {
-            session_name($this->cookie_name);
         }
 
         $params = $this->getCookieParams();
 
         if (!headers_sent()) {
-            if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-                /** @psalm-suppress InvalidArgument */
-                session_set_cookie_params([
-                    'lifetime' => $params['lifetime'],
-                    'path' => $params['path'],
-                    'domain' => $params['domain'],
-                    'secure' => $params['secure'],
-                    'httponly' => $params['httponly'],
-                    'samesite' => $params['samesite'],
-                ]);
-            } else {
-                /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
-                if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
-                    $params['path'] .= '; SameSite=' . $params['samesite'];
-                }
-                session_set_cookie_params(
-                    $params['lifetime'],
-                    $params['path'],
-                    $params['domain'] ?? '',
-                    $params['secure'],
-                    $params['httponly']
-                );
-            }
+            session_name($this->cookie_name);
+
+            /** @psalm-suppress InvalidArgument */
+            session_set_cookie_params([
+                'lifetime' => $params['lifetime'],
+                'path' => $params['path'],
+                'domain' => $params['domain'],
+                'secure' => $params['secure'],
+                'httponly' => $params['httponly'],
+                'samesite' => $params['samesite'],
+            ]);
         }
 
         $savepath = $config->getString('session.phpsession.savepath', null);
@@ -134,17 +119,7 @@ class SessionHandlerPHP extends SessionHandler
         session_write_close();
 
         session_name($this->previous_session['name']);
-        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-            session_set_cookie_params($this->previous_session['cookie_params']);
-        } else {
-            session_set_cookie_params(
-                $this->previous_session['cookie_params']['lifetime'],
-                $this->previous_session['cookie_params']['path'],
-                $this->previous_session['cookie_params']['domain'],
-                $this->previous_session['cookie_params']['secure'],
-                $this->previous_session['cookie_params']['httponly']
-            );
-        }
+        session_set_cookie_params($this->previous_session['cookie_params']);
         session_id($this->previous_session['id']);
         $this->previous_session = [];
         @session_start();
@@ -166,15 +141,16 @@ class SessionHandlerPHP extends SessionHandler
     public function newSessionId(): string
     {
         // generate new (secure) session id
-        if (function_exists('session_create_id')) {
-            $sid_length = (int) ini_get('session.sid_length');
-            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        $sid_length = (int) ini_get('session.sid_length');
+        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
-            if (($sid_length * $sid_bits_per_char) < 128) {
-                Logger::warning("Unsafe defaults used for sessionId generation!");
-            }
-            $sessionId = session_create_id();
-        } else {
+        if (($sid_length * $sid_bits_per_char) < 128) {
+            Logger::warning("Unsafe defaults used for sessionId generation!");
+        }
+        $sessionId = session_create_id();
+
+        if (!$sessionId) {
+            Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
         Session::createSession($sessionId);
@@ -194,7 +170,7 @@ class SessionHandlerPHP extends SessionHandler
             return null; // there's no session cookie, can't return ID
         }
 
-        if (version_compare(PHP_VERSION, '7.2', 'ge') && headers_sent()) {
+        if (headers_sent()) {
             // latest versions of PHP don't allow loading a session when output sent, get the ID from the cookie
             return $_COOKIE[$this->cookie_name];
         }
@@ -248,19 +224,8 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function loadSession(string $sessionId = null): ?Session
     {
-        if ($sessionId !== null) {
-            if (session_id() === '' && !(version_compare(PHP_VERSION, '7.2', 'ge') && headers_sent())) {
-                // session not initiated with getCookieSessionId(), start session without setting cookie
-                $ret = ini_set('session.use_cookies', '0');
-                if ($ret === false) {
-                    throw new Error\Exception('Disabling PHP option session.use_cookies failed.');
-                }
-
-                session_id($sessionId);
-                @session_start();
-            } elseif ($sessionId !== session_id()) {
-                throw new Error\Exception('Cannot load PHP session with a specific ID.');
-            }
+        if ($sessionId !== session_id()) {
+            throw new Error\Exception('Cannot load PHP session with a specific ID.');
         } elseif (session_id() === '') {
             $this->getCookieSessionId();
         }
@@ -360,18 +325,8 @@ class SessionHandlerPHP extends SessionHandler
             session_write_close();
         }
 
-        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-            /** @psalm-suppress InvalidArgument */
-            session_set_cookie_params($cookieParams);
-        } else {
-            session_set_cookie_params(
-                $cookieParams['lifetime'],
-                $cookieParams['path'],
-                $cookieParams['domain'] ?? '',
-                $cookieParams['secure'],
-                $cookieParams['httponly']
-            );
-        }
+        /** @psalm-suppress InvalidArgument */
+        session_set_cookie_params($cookieParams);
 
         session_id(strval($sessionID));
         @session_start();

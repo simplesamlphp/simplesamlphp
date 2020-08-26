@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class NameIDAttribute extends ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.
@@ -43,13 +44,13 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         if (isset($config['attribute'])) {
-            $this->attribute = (string) $config['attribute'];
+            $this->attribute = strval($config['attribute']);
         } else {
             $this->attribute = 'nameid';
         }
 
         if (isset($config['format'])) {
-            $format = (string) $config['format'];
+            $format = strval($config['format']);
         } else {
             $format = '%I!%S!%V';
         }
@@ -119,15 +120,16 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         $rep = $state['saml:sp:NameID'];
         Assert::notNull($rep->getValue());
-        $rep->{'%'} = '%';
-        if ($rep->getFormat() !== null) {
+
+        if ($rep->getFormat() === null) {
             $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
         }
-        if ($rep->getNameQualifier() !== null) {
-            $rep->setNameQualifier($state['Source']['entityid']);
+
+        if ($rep->getSPNameQualifier() === null) {
+            $rep->setSPNameQualifier($state['Source']['entityid']);
         }
-        if ($rep->getSPNameQualifier() !== null) {
-            $rep->setSPNameQualifier($state['Destination']['entityid']);
+        if ($rep->getNameQualifier() === null) {
+            $rep->setNameQualifier($state['Destination']['entityid']);
         }
 
         $value = '';
@@ -135,6 +137,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         foreach ($this->format as $element) {
             if ($isString) {
                 $value .= $element;
+            } elseif ($element === '%') {
+                $value .= '%';
             } else {
                 $value .= call_user_func([$rep, 'get' . $element]);
             }

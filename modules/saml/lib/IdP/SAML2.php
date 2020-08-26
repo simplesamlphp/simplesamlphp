@@ -25,6 +25,7 @@ use SAML2\XML\saml\Issuer;
 use SAML2\XML\saml\NameID;
 use SAML2\XML\saml\SubjectConfirmation;
 use SAML2\XML\saml\SubjectConfirmationData;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -34,7 +35,6 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -936,23 +936,8 @@ class SAML2
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
             if ($attribute === null) {
-                if (!isset($state['UserID'])) {
-                    Logger::error('Unable to generate NameID. Check the userid.attribute option.');
-                    return null;
-                }
-                $attributeValue = $state['UserID'];
-                $idpEntityId = $idpMetadata->getString('entityid');
-                $spEntityId = $spMetadata->getString('entityid');
-
-                $secretSalt = Utils\Config::getSecretSalt();
-
-                $uidData = 'uidhashbase' . $secretSalt;
-                $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
-                $uidData .= strlen($spEntityId) . ':' . $spEntityId;
-                $uidData .= strlen($attributeValue) . ':' . $attributeValue;
-                $uidData .= $secretSalt;
-
-                return hash('sha1', $uidData);
+                Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
+                return null;
             }
         }
 
@@ -1126,7 +1111,9 @@ class SAML2
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
-        $a->setValidAudiences([$spMetadata->getString('entityid')]);
+
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
 

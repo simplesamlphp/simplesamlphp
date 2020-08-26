@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for handling metadata files stored in a database.
@@ -58,7 +58,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    public function __construct(array $config)
+    public function __construct(/** @scrutinizer ignore-unused */ array $config)
     {
         $this->db = Database::getInstance();
     }

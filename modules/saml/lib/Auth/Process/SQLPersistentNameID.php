@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 
 /**
  * Authentication processing filter to generate a persistent NameID.
@@ -15,7 +16,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class SQLPersistentNameID extends BaseNameIDGenerator
 {
     /**
      * Which attribute contains the unique identifier of the user.

@@ -10,25 +10,37 @@
 
 require_once('../../_include.php');
 
-$config = \SimpleSAML\Configuration::getInstance();
+use Exception;
+use SAML2\ArtifactResolve;
+use SAML2\ArtifactResponse;
+use SAML2\DOMDocumentFactory;
+use SAML2\SOAP;
+use SAML2\XML\saml\Issuer;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Metadata;
+use SimpleSAML\Store;
+
+$config = Configuration::getInstance();
 if (!$config->getBoolean('enable.saml20-idp', false)) {
-    throw new \SimpleSAML\Error\Error('NOACCESS');
+    throw new Error\Error('NOACCESS');
 }
 
-$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+$metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
 if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
-    throw new \SimpleSAML\Error\Error('NOACCESS');
+    throw new Error\Error('NOACCESS');
 }
 
-$store = \SimpleSAML\Store::getInstance();
+$store = Store::getInstance();
 if ($store === false) {
     throw new Exception('Unable to send artifact without a datastore configured.');
 }
 
-$binding = new \SAML2\SOAP();
+$binding = new SOAP();
 try {
     $request = $binding->receive();
 } catch (Exception $e) {
@@ -37,33 +49,34 @@ try {
     // an specific exception when the binding is unknown, and we should capture that here. Also note that the exception
     // message here is bogus!
     if ($e->getMessage() === 'Invalid message received to AssertionConsumerService endpoint.') {
-        throw new \SimpleSAML\Error\Error('ARSPARAMS', $e, 400);
+        throw new Error\Error('ARSPARAMS', $e, 400);
     } else {
         throw $e; // do not ignore other exceptions!
     }
 }
-if (!($request instanceof \SAML2\ArtifactResolve)) {
+if (!($request instanceof ArtifactResolve)) {
     throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
 
-$issuer = $request->getIssuer();
+$issuer = $request->getIssuer()->getValue();
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
-
 $artifact = $request->getArtifact();
-
 $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
 if ($responseData !== null) {
-    $document = \SAML2\DOMDocumentFactory::fromString($responseData);
+    $document = DOMDocumentFactory::fromString($responseData);
     $responseXML = $document->firstChild;
 } else {
     $responseXML = null;
 }
 
-$artifactResponse = new \SAML2\ArtifactResponse();
-$artifactResponse->setIssuer($idpEntityId);
+$artifactResponse = new ArtifactResponse();
+$issuer = new Issuer();
+$issuer->setValue($idpEntityId);
+$artifactResponse->setIssuer($issuer);
+
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
-\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
+Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
 $binding->send($artifactResponse);

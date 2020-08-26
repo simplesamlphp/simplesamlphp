@@ -18,11 +18,11 @@ use SAML2\XML\ds\KeyInfo;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
 use SAML2\XML\saml\Issuer;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -120,43 +120,6 @@ class Message
         }
 
         self::addSign($srcMetadata, $dstMetadata, $message);
-    }
-
-
-    /**
-     * Find the certificate used to sign a message or assertion.
-     *
-     * An exception is thrown if we are unable to locate the certificate.
-     *
-     * @param array $certFingerprints The fingerprints we are looking for.
-     * @param array $certificates Array of certificates.
-     *
-     * @return string Certificate, in PEM-format.
-     *
-     * @throws \SimpleSAML\Error\Exception if we cannot find the certificate matching the fingerprint.
-     */
-    private static function findCertificate(array $certFingerprints, array $certificates): string
-    {
-        $candidates = [];
-
-        foreach ($certificates as $cert) {
-            $fp = strtolower(sha1(base64_decode($cert)));
-            if (!in_array($fp, $certFingerprints, true)) {
-                $candidates[] = $fp;
-                continue;
-            }
-
-            /* We have found a matching fingerprint. */
-            $pem = "-----BEGIN CERTIFICATE-----\n" .
-                chunk_split($cert, 64) .
-                "-----END CERTIFICATE-----\n";
-            return $pem;
-        }
-
-        $candidates = "'" . implode("', '", $candidates) . "'";
-        $fps = "'" . implode("', '", $certFingerprints) . "'";
-        throw new SSP_Error\Exception('Unable to find a certificate matching the configured ' .
-            'fingerprint. Candidates: ' . $candidates . '; certFingerprint: ' . $fps . '.');
     }
 
 

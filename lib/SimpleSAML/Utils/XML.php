@@ -16,11 +16,11 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 use SAML2\DOMDocumentFactory;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\XML\Errors;
-use Webmozart\Assert\Assert;
 
 class XML
 {
@@ -56,15 +56,12 @@ class XML
 
         // see if debugging is enabled for XML validation
         $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
-        $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (
-            !(in_array('validatexml', $debug, true) // implicitly enabled
-            || (array_key_exists('validatexml', $debug)
-            && $debug['validatexml'] === true)
-            // explicitly enabled
-            // TODO: deprecate this option and remove it in 2.0
-            || $enabled) // old 'debug.validatexml' configuration option
+            !(
+                in_array('validatexml', $debug, true)
+                || (array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true))
+            )
         ) {
             // XML validation is disabled
             return;
@@ -407,7 +404,7 @@ class XML
      */
     public static function isValid($xml, string $schema)
     {
-        if (!is_string($xml) && ! ($xml instanceof DOMDocument)) {
+        if (!is_string($xml) && !($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -438,7 +435,7 @@ class XML
                  * @param array $context
                  * @return string|null
                  */
-                function (string $public = null, string $system, array $context) {
+                function (string $public = null, string $system, /** @scrutinizer ignore-unused */ array $context) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

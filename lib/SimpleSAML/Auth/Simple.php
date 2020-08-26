@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for simple authentication applications.
@@ -344,8 +344,7 @@ class Simple
             $returnTo = Utils\HTTP::getSelfURL();
         }
 
-        $logout = Module::getModuleURL('core/as_logout.php', [
-            'AuthId'   => $this->authSource,
+        $logout = Module::getModuleURL('core/logout/' . $this->authSource, [
             'ReturnTo' => $returnTo,
         ]);
 

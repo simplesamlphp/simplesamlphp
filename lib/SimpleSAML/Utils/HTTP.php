@@ -1150,63 +1150,34 @@ class HTTP
             $expire = time() + intval($params['lifetime']);
         }
 
-        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-            /* use the new options array for PHP >= 7.3 */
-            if ($params['raw']) {
-                /** @psalm-suppress InvalidArgument */
-                $success = @setrawcookie(
-                    $name,
-                    $value,
-                    [
-                        'expires' => $expire,
-                        'path' => $params['path'],
-                        'domain' => $params['domain'],
-                        'secure' => $params['secure'],
-                        'httponly' => $params['httponly'],
-                        'samesite' => $params['samesite'],
-                    ]
-                );
-            } else {
-                /** @psalm-suppress InvalidArgument */
-                $success = @setcookie(
-                    $name,
-                    $value,
-                    [
-                        'expires' => $expire,
-                        'path' => $params['path'],
-                        'domain' => $params['domain'],
-                        'secure' => $params['secure'],
-                        'httponly' => $params['httponly'],
-                        'samesite' => $params['samesite'],
-                    ]
-                );
-            }
+        if ($params['raw']) {
+            /** @psalm-suppress InvalidArgument */
+            $success = @setrawcookie(
+                $name,
+                $value,
+                [
+                    'expires' => $expire,
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite'],
+                ]
+            );
         } else {
-            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
-            if ($params['samesite'] !== null && !preg_match('/;\s+samesite/i', $params['path'])) {
-                $params['path'] .= '; SameSite=' . $params['samesite'];
-            }
-            if ($params['raw']) {
-                $success = @setrawcookie(
-                    $name,
-                    $value,
-                    $expire,
-                    $params['path'],
-                    $params['domain'],
-                    $params['secure'],
-                    $params['httponly']
-                );
-            } else {
-                $success = @setcookie(
-                    $name,
-                    $value,
-                    $expire,
-                    $params['path'],
-                    $params['domain'],
-                    $params['secure'],
-                    $params['httponly']
-                );
-            }
+            /** @psalm-suppress InvalidArgument */
+            $success = @setcookie(
+                $name,
+                $value,
+                [
+                    'expires' => $expire,
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite'],
+                ]
+            );
         }
 
         if (!$success) {

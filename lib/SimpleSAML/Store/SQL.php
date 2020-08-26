@@ -6,10 +6,10 @@ namespace SimpleSAML\Store;
 
 use PDO;
 use PDOException;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Store;
-use Webmozart\Assert\Assert;
 
 /**
  * A data store using a RDBMS to keep the data.

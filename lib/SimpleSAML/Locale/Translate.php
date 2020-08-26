@@ -13,10 +13,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Gettext\BaseTranslator;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use Webmozart\Assert\Assert;
 
 class Translate
 {
@@ -227,25 +227,6 @@ class Translate
     public static function noop(string $tag): string
     {
         return $tag;
-    }
-
-
-    /**
-     * Return the string that should be used when no translation was found.
-     *
-     * @param string $tag A name tag of the string that should be returned.
-     * @param boolean $fallbacktag If set to true and string was not found in any languages, return the tag itself. If
-     * false return null.
-     *
-     * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
-     */
-    private function getStringNotTranslated(string $tag, bool $fallbacktag): string
-    {
-        if ($fallbacktag) {
-            return 'not translated (' . $tag . ')';
-        } else {
-            return $tag;
-        }
     }
 
 

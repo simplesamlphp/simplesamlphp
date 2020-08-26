@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\cron\Controller;
 
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
@@ -15,6 +16,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -35,6 +37,12 @@ class Cron
     /** @var \SimpleSAML\Session */
     protected $session;
 
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
 
     /**
      * Controller constructor.
@@ -42,7 +50,6 @@ class Cron
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Configuration              $moduleConfig The module-configuration to use by the controllers.
      * @param \SimpleSAML\Session                    $session The session to use by the controllers.
      *
      * @throws \Exception
@@ -58,6 +65,17 @@ class Cron
 
 
     /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
      * Show cron info.
      *
      * @return \SimpleSAML\XHTML\Template
@@ -65,10 +83,10 @@ class Cron
      */
     public function info(): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $key = $this->cronconfig->getValue('key', 'secret');
-        $tags = $this->cronconfig->getValue('allowed_tags');
+        $tags = $this->cronconfig->getValue('allowed_tags', []);
 
         $def = [
             'weekly' => "22 0 * * 0",
@@ -132,8 +150,8 @@ class Cron
             $mail->setData(['url' => $url, 'tag' => $croninfo['tag'], 'summary' => $croninfo['summary']]);
             try {
                 $mail->send();
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-                Logger::warning("Unable to send cron report");
+            } catch (PHPMailerException $e) {
+                Logger::warning("Unable to send cron report; " . $e->getMessage());
             }
         }
 

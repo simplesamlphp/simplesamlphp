@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\IdP\IFrameLogoutHandler;
 use SimpleSAML\IdP\LogoutHandlerInterface;
@@ -13,7 +14,6 @@ use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Error\NoPassive;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * IdP class.

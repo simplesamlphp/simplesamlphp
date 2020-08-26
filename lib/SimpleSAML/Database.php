@@ -7,12 +7,13 @@ namespace SimpleSAML;
 use PDO;
 use PDOException;
 use PDOStatement;
+use SimpleSAML\Logger;
 
 /**
  * This file implements functions to read and write to a group of database servers.
  *
- * This database class supports a single database, or a master/slave configuration with as many defined slaves as a
- * user would like.
+ * This database class supports a single database, or a primary/secondary configuration with as many defined secondaries
+ * as a user would like.
  *
  * The goal of this class is to provide a single mechanism to connect to a database that can be reused by any component
  * within SimpleSAMLphp including modules. When using this class, the global configuration should be passed here, but in
@@ -31,14 +32,14 @@ class Database
     private static $instance = [];
 
     /**
-     * PDO Object for the Master database server
+     * PDO Object for the Primary database server
      */
-    private $dbMaster;
+    private $dbPrimary;
 
     /**
-     * Array of PDO Objects for configured database slaves
+     * Array of PDO Objects for configured database secondaries
      */
-    private $dbSlaves = [];
+    private $dbSecondaries = [];
 
     /**
      * Prefix to apply to the tables
@@ -86,28 +87,34 @@ class Database
             $driverOptions = [PDO::ATTR_PERSISTENT => true];
         }
 
-        // connect to the master
-        $this->dbMaster = $this->connect(
+        // connect to the primary
+        $this->dbPrimary = $this->connect(
             $config->getString('database.dsn'),
             $config->getString('database.username', null),
             $config->getString('database.password', null),
             $driverOptions
         );
 
-        // connect to any configured slaves
-        $slaves = $config->getArray('database.slaves', []);
-        foreach ($slaves as $slave) {
+        // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
+        if ($config->getArray('database.slaves', null) !== null) {
+            Logger::warning(
+                'The "database.slaves" config option is deprecated. ' .
+                'Please update your configuration to use "database.secondaries".'
+            );
+        }
+        // connect to any configured secondaries, preserving legacy config option
+        $secondaries = $config->getArray('database.secondaries', $config->getArray('database.slaves', []));
+        foreach ($secondaries as $secondary) {
             array_push(
-                $this->dbSlaves,
+                $this->dbSecondaries,
                 $this->connect(
-                    $slave['dsn'],
-                    $slave['username'],
-                    $slave['password'],
+                    $secondary['dsn'],
+                    $secondary['username'],
+                    $secondary['password'],
                     $driverOptions
                 )
             );
         }
-
         $this->tablePrefix = $config->getString('database.prefix', '');
     }
 
@@ -122,14 +129,15 @@ class Database
     private static function generateInstanceId(Configuration $config): string
     {
         $assembledConfig = [
-            'master' => [
+            'primary' => [
                 'database.dsn'        => $config->getString('database.dsn'),
                 'database.username'   => $config->getString('database.username', null),
                 'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', false),
             ],
-            'slaves' => $config->getArray('database.slaves', []),
+            // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
+            'secondaries' => $config->getArray('database.secondaries', $config->getArray('database.slaves', [])),
         ];
 
         return sha1(serialize($assembledConfig));
@@ -161,18 +169,18 @@ class Database
 
 
     /**
-     * This function randomly selects a slave database server to query. In the event no slaves are configured, it will
-     * return the master.
+     * This function randomly selects a secondary database server to query. In the event no secondaries are configured,
+     * it will return the primary.
      *
      * @return \PDO object
      */
-    private function getSlave(): PDO
+    private function getSecondary(): PDO
     {
-        if (count($this->dbSlaves) > 0) {
-            $slaveId = rand(0, count($this->dbSlaves) - 1);
-            return $this->dbSlaves[$slaveId];
+        if (count($this->dbSecondaries) > 0) {
+            $secondaryId = rand(0, count($this->dbSecondaries) - 1);
+            return $this->dbSecondaries[$secondaryId];
         } else {
-            return $this->dbMaster;
+            return $this->dbPrimary;
         }
     }
 
@@ -244,7 +252,7 @@ class Database
 
 
     /**
-     * This executes queries directly on the master.
+     * This executes queries directly on the primary.
      *
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
@@ -253,12 +261,12 @@ class Database
      */
     public function write(string $stmt, array $params = [])
     {
-        return $this->query($this->dbMaster, $stmt, $params)->rowCount();
+        return $this->query($this->dbPrimary, $stmt, $params)->rowCount();
     }
 
 
     /**
-     * This executes queries on a database server that is determined by this::getSlave().
+     * This executes queries on a database server that is determined by this::getSecondary().
      *
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
@@ -267,7 +275,7 @@ class Database
      */
     public function read(string $stmt, array $params = []): PDOStatement
     {
-        $db = $this->getSlave();
+        $db = $this->getSecondary();
 
         return $this->query($db, $stmt, $params);
     }

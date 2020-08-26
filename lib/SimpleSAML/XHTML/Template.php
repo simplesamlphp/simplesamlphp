@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
@@ -24,8 +25,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use Webmozart\Assert\Assert;
 
+/**
+ * The content-property is set upstream, but this is not recognized by Psalm
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class Template extends Response
 {
     /**
@@ -292,6 +296,7 @@ class Template extends Response
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $twig->addExtension(new \Twig\Extensions\DateExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
@@ -503,10 +508,12 @@ class Template extends Response
     /**
      * Send this template as a response.
      *
-     * @return Response This response.
+     * @return $this This response.
      * @throws \Exception if the template cannot be found.
+     *
+     * Note: No return type possible due to upstream limitations
      */
-    public function send(): Response
+    public function send()
     {
         $this->content = $this->getContents();
         return parent::send();
@@ -524,76 +531,6 @@ class Template extends Response
     {
         $tmp = explode(':', $template, 2);
         return (count($tmp) === 2) ? [$tmp[0], $tmp[1]] : [null, $tmp[0]];
-    }
-
-
-    /**
-     * Find template path.
-     *
-     * This function locates the given template based on the template name. It will first search for the template in
-     * the current theme directory, and then the default theme.
-     *
-     * The template name may be on the form <module name>:<template path>, in which case it will search for the
-     * template file in the given module.
-     *
-     * @param string $template The relative path from the theme directory to the template file.
-     * @param bool $throw_exception
-     *
-     * @return string|null The absolute path to the template file.
-     *
-     * @throws \Exception If the template file couldn't be found.
-     */
-    private function findTemplatePath(string $template, bool $throw_exception = true): ?string
-    {
-        list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
-        $templateModule = ($templateModule !== null) ? $templateModule : 'default';
-
-        // first check the current theme
-        if ($this->theme['module'] !== null) {
-            // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
-
-            $filename = Module::getModuleDir($this->theme['module']) .
-                '/themes/' . $this->theme['name'] . '/' . $templateModule . '/' . $templateName;
-        } elseif ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<templateName>
-            $filename = Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<theme>/<templateName>
-            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
-            $filename = $base . $templateName;
-        }
-
-        $filename = $this->normalizeTemplateName($filename);
-
-        // not found in current theme
-        Logger::debug(
-            $_SERVER['PHP_SELF'] . ' - Template: Could not find template file [' . $template . '] at [' .
-            $filename . '] - now trying the base template'
-        );
-
-        // try default theme
-        if ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<templateName>
-            $filename = Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<templateName>
-            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
-            $filename = $base . '/' . $templateName;
-        }
-
-        $filename = $this->normalizeTemplateName($filename);
-
-        // not found in default template
-        if ($throw_exception) {
-            // log error and throw exception
-            $error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
-            Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
-
-            throw new \Exception($error);
-        } else {
-            // missing template expected, return NULL
-            return null;
-        }
     }
 
 

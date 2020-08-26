@@ -16,30 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Hlášení cronu"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron proběhl v"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Zde je návrh pro soubor crontab:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Spusit cron:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Klikněte zde pro spuštění úkolů z cronu:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron je způsob spouštění pravidelných úkolů na unixových systémech."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Zde je výsledek úkolů spuštěných z cronu:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Stránka výsledků cronu"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron je způsob spouštění pravidelných úkolů na unixových systémech."
 
