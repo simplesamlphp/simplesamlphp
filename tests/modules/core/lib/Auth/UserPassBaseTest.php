@@ -29,12 +29,12 @@ class UserPassBaseTest extends TestCase
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
             ->will($this->returnValue($attributes));
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
 
         $this->assertSame($attributes, $state['Attributes']);
@@ -56,11 +56,11 @@ class UserPassBaseTest extends TestCase
         unset($_SERVER['PHP_AUTH_USER']);
         $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
     }
 
@@ -84,6 +84,7 @@ class UserPassBaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
     }
 
@@ -108,12 +109,12 @@ class UserPassBaseTest extends TestCase
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)
             ->will($this->returnValue($attributes));
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->setForcedUsername($forcedUsername);
         $stub->authenticate($state);
     }
