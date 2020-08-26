@@ -1,6 +1,8 @@
 @import "../../node_modules/reset-css/sass/_reset.scss";
 @import "../../node_modules/purecss/build/pure.css";
-@import "../../node_modules/\@fortawesome/fontawesome-free/scss/fontawesome.scss";
+$fa-font-path: '../fonts/';
+@import "../../node_modules/\@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../node_modules/\@fortawesome/fontawesome-free/scss/solid";
 @import "../../node_modules/selectize/dist/css/selectize.css";
 @import "../../node_modules/highlight.js/styles/zenburn.css";
 
