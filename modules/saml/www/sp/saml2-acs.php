@@ -123,15 +123,11 @@ if ($state) {
     }
 } else {
     // this is an unsolicited response
+    $relaystate = $spMetadata->getString('RelayState', $response->getRelayState());
     $state = [
         'saml:sp:isUnsolicited' => true,
         'saml:sp:AuthId'        => $sourceId,
-        'saml:sp:RelayState'    => \SimpleSAML\Utils\HTTP::checkURLAllowed(
-            $spMetadata->getString(
-                'RelayState',
-                $response->getRelayState()
-            )
-        ),
+        'saml:sp:RelayState'    => $relaystate === null ? null : \SimpleSAML\Utils\HTTP::checkURLAllowed($relaystate),
     ];
 }
 

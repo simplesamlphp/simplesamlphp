@@ -17,6 +17,7 @@ Released TBD
   * Return a proper HTTP/405 code when incorrect method is used (#1400)
   * Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
   * Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
+  * Fix unsolicited response with no RelayState (#1473)
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
