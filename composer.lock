@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0ef028cd70ab83a3366c6e9d7e4548d",
+    "content-hash": "2f8dba2766095323f695b3e19d36e007",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -496,20 +496,20 @@
         },
         {
             "name": "simplesamlphp/composer-module-installer",
-            "version": "v1.1.6",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/composer-module-installer.git",
-                "reference": "b70414a2112fe49e97a7eddd747657bd8bc38ef0"
+                "reference": "45161b5406f3e9c82459d0f9a5a1dba064953cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/b70414a2112fe49e97a7eddd747657bd8bc38ef0",
-                "reference": "b70414a2112fe49e97a7eddd747657bd8bc38ef0",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/45161b5406f3e9c82459d0f9a5a1dba064953cfa",
+                "reference": "45161b5406f3e9c82459d0f9a5a1dba064953cfa",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0",
+                "composer-plugin-api": "^1.1|^2.0",
                 "simplesamlphp/simplesamlphp": "*"
             },
             "type": "composer-plugin",
@@ -522,8 +522,11 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
             "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
-            "time": "2017-04-24T07:12:50+00:00"
+            "time": "2020-08-25T19:04:33+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -1912,24 +1915,28 @@
         },
         {
             "name": "simplesamlphp/twig-configurable-i18n",
-            "version": "v2.2",
+            "version": "v2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/twig-configurable-i18n.git",
-                "reference": "b036c134157ce40ed66da2fc9d01f63e3b1d3abd"
+                "reference": "746f15796fbc76a37b847c5311d6a4e7030717f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/twig-configurable-i18n/zipball/b036c134157ce40ed66da2fc9d01f63e3b1d3abd",
-                "reference": "b036c134157ce40ed66da2fc9d01f63e3b1d3abd",
+                "url": "https://api.github.com/repos/simplesamlphp/twig-configurable-i18n/zipball/746f15796fbc76a37b847c5311d6a4e7030717f9",
+                "reference": "746f15796fbc76a37b847c5311d6a4e7030717f9",
                 "shasum": ""
             },
             "require": {
-                "twig/extensions": "^1.5"
+                "php": ">=7.1",
+                "twig/extensions": "@dev"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.36 || ~7.5",
-                "twig/twig": "^1.37 || ^2.7"
+                "phpunit/phpunit": "^7.5",
+                "sensiolabs/security-checker": "~6.0.3",
+                "simplesamlphp/simplesamlphp-test-framework": "~0.1.2",
+                "squizlabs/php_codesniffer": "^3.5",
+                "twig/twig": "^2.13"
             },
             "type": "project",
             "autoload": {
@@ -1956,7 +1963,7 @@
                 "translation",
                 "twig"
             ],
-            "time": "2019-07-09T08:35:44+00:00"
+            "time": "2020-08-26T15:02:50+00:00"
         },
         {
             "name": "symfony/cache",
@@ -4614,16 +4621,16 @@
         },
         {
             "name": "composer/package-versions-deprecated",
-            "version": "1.10.99.1",
+            "version": "1.11.99",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/package-versions-deprecated.git",
-                "reference": "68c9b502036e820c33445ff4d174327f6bb87486"
+                "reference": "c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/68c9b502036e820c33445ff4d174327f6bb87486",
-                "reference": "68c9b502036e820c33445ff4d174327f6bb87486",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855",
+                "reference": "c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855",
                 "shasum": ""
             },
             "require": {
@@ -4631,7 +4638,7 @@
                 "php": "^7 || ^8"
             },
             "replace": {
-                "ocramius/package-versions": "1.10.99"
+                "ocramius/package-versions": "1.11.99"
             },
             "require-dev": {
                 "composer/composer": "^1.9.3 || ^2.0@dev",
@@ -4679,7 +4686,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-13T12:55:41+00:00"
+            "time": "2020-08-25T05:50:16+00:00"
         },
         {
             "name": "composer/semver",
@@ -6787,16 +6794,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "3.14.1",
+            "version": "3.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "9822043ca46d6682b76097bfa97d7c450eef9e90"
+                "reference": "3538fe1955d47f6ee926c0769d71af6db08aa488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/9822043ca46d6682b76097bfa97d7c450eef9e90",
-                "reference": "9822043ca46d6682b76097bfa97d7c450eef9e90",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/3538fe1955d47f6ee926c0769d71af6db08aa488",
+                "reference": "3538fe1955d47f6ee926c0769d71af6db08aa488",
                 "shasum": ""
             },
             "require": {
@@ -6880,7 +6887,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2020-08-17T19:48:48+00:00"
+            "time": "2020-08-22T14:01:26+00:00"
         },
         {
             "name": "webmozart/glob",
