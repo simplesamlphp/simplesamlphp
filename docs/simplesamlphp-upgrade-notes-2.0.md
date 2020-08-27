@@ -17,6 +17,7 @@ Upgrade notes for SimpleSAMLphp 2.0
   + lib/SimpleSAMLphp\Utils\Arrays
   + lib/SimpleSAMLphp\Utils\Attributes
   + lib/SimpleSAMLphp\Utils\Auth
+  + lib/SimpleSAMLphp\Utils\Config
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 
