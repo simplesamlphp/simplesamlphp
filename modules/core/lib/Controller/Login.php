@@ -139,8 +139,9 @@ class Login
 
         if ($as === null) { // no authentication source specified
             if (!$default) {
+                $authUtils = new Utils\Auth();
                 $t = new Template($this->config, 'core:login.twig');
-                $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
+                $t->data['loginurl'] = $authUtils->getAdminLoginURL();
                 $t->data['sources'] = $this->sources;
                 return $t;
             }

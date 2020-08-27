@@ -10,7 +10,8 @@ if (!$config->getBoolean('enable.saml20-idp', false)) {
 
 // Check if valid local session exists..
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    \SimpleSAML\Utils\Auth::requireAdmin();
+    $authUtils = new \SimpleSAML\Utils\Auth();
+    $authUtils->requireAdmin();
 }
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');

@@ -16,6 +16,7 @@ Upgrade notes for SimpleSAMLphp 2.0
 - The following classes have been migrated to non-static:
   + lib/SimpleSAMLphp\Utils\Arrays
   + lib/SimpleSAMLphp\Utils\Attributes
+  + lib/SimpleSAMLphp\Utils\Auth
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 

@@ -9,9 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
-use SimpleSAML\Utils\Auth as Auth;
-use SimpleSAML\Utils\Crypto as Crypto;
-use SimpleSAML\Utils\HTTP as HTTP;
+use SimpleSAML\Utils;
 use SimpleSAML\Utils\Config\Metadata as Metadata;
 
 $config = Configuration::getInstance();
@@ -21,7 +19,8 @@ if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled
 
 // check if valid local session exists
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    Auth::requireAdmin();
+    $authUtils = new Utils\Auth();
+    $authUtils->requireAdmin();
 }
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -34,7 +33,7 @@ try {
     $availableCerts = [];
 
     $keys = [];
-    $certInfo = Crypto::loadPublicKey($idpmeta, false, 'new_');
+    $certInfo = Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
         $keys[] = [
@@ -48,7 +47,7 @@ try {
         $hasNewCert = false;
     }
 
-    $certInfo = Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = Utils\Crypto::loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
     $keys[] = [
         'type'            => 'X509Certificate',
@@ -58,7 +57,7 @@ try {
     ];
 
     if ($idpmeta->hasValue('https.certificate')) {
-        $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
+        $httpsCert = Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
         Assert::notNull($httpsCert['certData']);
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = [
@@ -117,7 +116,7 @@ try {
         // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = [
             'index'    => 0,
-            'Location' => HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
+            'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
             'Binding'  => Constants::BINDING_SOAP,
         ];
     }
@@ -127,7 +126,7 @@ try {
         array_unshift($metaArray['SingleSignOnService'], [
             'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
             'Binding'                => Constants::BINDING_HOK_SSO,
-            'Location'               => HTTP::getBaseURL() . 'saml2/idp/SSOService.php'
+            'Location'               => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php'
         ]);
     }
 
@@ -135,7 +134,7 @@ try {
         $metaArray['SingleSignOnService'][] = [
             'index' => 0,
             'Binding'  => Constants::BINDING_SOAP,
-            'Location' => HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+            'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
         ];
     }
 
@@ -238,7 +237,7 @@ try {
         $t->data['certdata'] = $certdata;
         $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
         $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-idp');
-        $t->data['metaurl'] = HTTP::getSelfURLNoQuery();
+        $t->data['metaurl'] = Utils\HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->send();

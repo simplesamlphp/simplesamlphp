@@ -79,7 +79,7 @@ class FederationTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public static function requireAdmin(): void
+            public function requireAdmin(): void
             {
                 // stub
             }

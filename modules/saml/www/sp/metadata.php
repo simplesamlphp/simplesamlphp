@@ -18,7 +18,8 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 
 $config = Configuration::getInstance();
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    Utils\Auth::requireAdmin();
+    $authUtils = new Utils\Auth();
+    $authUtils->requireAdmin();
 }
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = Auth\Source::getById($sourceId);
