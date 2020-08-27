@@ -425,7 +425,8 @@ class Federation
                 }
 
                 // transpose from $entities[entityid][type] to $output[type][entityid]
-                $output = Utils\Arrays::transpose($entities);
+                $arrayUtils = new Utils\Arrays();
+                $output = $arrayUtils->transpose($entities);
 
                 // merge all metadata of each type to a single string which should be added to the corresponding file
                 foreach ($output as $type => &$entities) {

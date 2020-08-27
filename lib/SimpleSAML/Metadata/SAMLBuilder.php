@@ -340,9 +340,11 @@ class SAMLBuilder
             return;
         }
 
-        $orgName = Utils\Arrays::arrayize($metadata['OrganizationName'], 'en');
-        $orgDisplayName = Utils\Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
-        $orgURL = Utils\Arrays::arrayize($metadata['OrganizationURL'], 'en');
+        $arrayUtils = new Utils\Arrays();
+
+        $orgName = $arrayUtils->arrayize($metadata['OrganizationName'], 'en');
+        $orgDisplayName = $arrayUtils->arrayize($metadata['OrganizationDisplayName'], 'en');
+        $orgURL = $arrayUtils->arrayize($metadata['OrganizationURL'], 'en');
 
         $this->addOrganization($orgName, $orgDisplayName, $orgURL);
     }

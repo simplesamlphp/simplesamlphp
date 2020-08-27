@@ -13,3 +13,16 @@ Upgrade notes for SimpleSAMLphp 2.0
 - If you're using the core:TargetedID authproc-filter, note that the `attributename` setting has been renamed to `identifyingAttribute`.
 - The default encryption algorithm is set from AES128_CBC to AES128_GCM. If you're upgrading from an existing implementation, you may want
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
+- The following classes have been migrated to non-static:
+  + lib/SimpleSAMLphp\Utils\Arrays
+
+  If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
+
+  // Old style
+  $x = \SimpleSAML\Utils\Arrays::arrayize($someVar)
+
+  becomes:
+
+  // New style
+  $arrayUtils = new \SimpleSAML\Utils\Arrays();
+  $x = $arrayUtils->arrayize($someVar);

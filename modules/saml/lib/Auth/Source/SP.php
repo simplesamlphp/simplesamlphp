@@ -456,11 +456,13 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
+        $arrayUtils = new Utils\Arrays();
+
         $accr = null;
         if ($idpMetadata->getString('AuthnContextClassRef', false)) {
-            $accr = Utils\Arrays::arrayize($idpMetadata->getString('AuthnContextClassRef'));
+            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
-            $accr = Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+            $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
 
         if ($accr !== null) {

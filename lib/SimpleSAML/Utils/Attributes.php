@@ -74,7 +74,8 @@ class Attributes
                 throw new \InvalidArgumentException('Invalid attribute name: "' . print_r($name, true) . '".');
             }
 
-            $values = Arrays::arrayize($values);
+            $arrayUtils = new Arrays();
+            $values = $arrayUtils->arrayize($values);
 
             foreach ($values as $value) {
                 if (!is_string($value)) {
