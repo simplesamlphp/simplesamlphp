@@ -327,7 +327,7 @@ class Crypto
      * @param mixed $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
-     * @throws \InvalidArgumentException If the input parameter is not a string.
+     * @throws \Exception If the algorithm is not known ti PHP.
      * @throws Error\Exception If the algorithm specified is not supported.
      *
      * @see hash_algos()
@@ -335,10 +335,7 @@ class Crypto
      */
     public function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
     {
-        if (!is_string($hash = password_hash($password, $algorithm))) {
-            throw new InvalidArgumentException('Error while hashing password.');
-        }
-        return $hash;
+        return password_hash($password, $algorithm);
     }
 
 

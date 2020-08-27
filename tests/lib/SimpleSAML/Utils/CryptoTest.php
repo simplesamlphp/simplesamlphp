@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
@@ -35,73 +36,8 @@ class CryptoTest extends TestCase
     /** @var \SimpleSAML\Utils\Crypto */
     protected $cryptoUtils;
 
-
-    /**
-     */
-    public function setUp(): void
-    {
-        $this->root = vfsStream::setup(
-            self::ROOTDIRNAME,
-            null,
-            [
-                self::DEFAULTCERTDIR => [],
-            ]
-        );
-        $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
-        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
-        $this->cryptoUtils = new Utils\Crypto();
-    }
-
-
-    /**
-     * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
-     * ciphertext.
-     *
-     */
-    public function testAesDecrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        $secret = 'SUPER_SECRET_SALT';
-        $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = <<<CIPHER
-uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
-CIPHER;
-
-        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
-        $this->assertEquals($plaintext, $decrypted);
-    }
-
-
-    /**
-     * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
-     *
-     */
-    public function testAesEncrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        $secret = 'SUPER_SECRET_SALT';
-        $original_plaintext = 'SUPER_SECRET_TEXT';
-
-        $ciphertext = $this->cryptoUtils->aesEncrypt($original_plaintext, $secret);
-        $decrypted_plaintext = $this->cryptoUtils->aesDecrypt($ciphertext, $secret);
-
-        $this->assertEquals($original_plaintext, $decrypted_plaintext);
-    }
-
-
-    /**
-     * Test that the pem2der() and der2pem() methods work correctly.
-     *
-     */
-    public function testFormatConversion(): void
-    {
-        $pem = <<<PHP
+    /** @var string */
+    protected $pem = <<<PHP
 -----BEGIN CERTIFICATE-----
 MIIF8zCCA9ugAwIBAgIJANSv0D4ZoP9iMA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
 VQQGEwJFWDEQMA4GA1UECAwHRXhhbXBsZTEQMA4GA1UEBwwHRXhhbXBsZTEQMA4G
@@ -137,7 +73,144 @@ pfajpJ9ZzdyLIo6dVjdQtl+S1rpFCx7ziVN8tCCX4fAVCqRqZJaG/UMLvguVqayb
 5iHKlJ6FlnuhcGCDsUCvG8qCw9FfoS0tuS4tKoQ5WHGQx3sKmr/D
 -----END CERTIFICATE-----
 PHP;
-        $this->assertEquals(trim($pem), trim($this->cryptoUtils->der2pem($this->cryptoUtils->pem2der($pem))));
+
+    /**
+     */
+    public function setUp(): void
+    {
+        $this->config = Configuration::loadFromArray(
+            [
+                'module.enable' => [],
+                'secretsalt' => 'SUPER_SECRET_SALT'
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+
+        $this->root = vfsStream::setup(
+            self::ROOTDIRNAME,
+            null,
+            [
+                self::DEFAULTCERTDIR => [],
+            ]
+        );
+        $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
+        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
+        $this->cryptoUtils = new Utils\Crypto();
+    }
+
+
+    /**
+     * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
+     * ciphertext.
+     *
+     */
+    public function testAesDecrypt(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $plaintext = 'SUPER_SECRET_TEXT';
+        $ciphertext = <<<CIPHER
+uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
+CIPHER;
+
+        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext));
+        $this->assertEquals($plaintext, $decrypted);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testAesDecryptWithSmallCipherTextThrowsException(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $secret = 'SUPER_SECRET_SALT';
+        $plaintext = 'SUPER_SECRET_TEXT';
+        // This is too small!
+        $ciphertext = 'AWcTN8tyO82hiSY=';
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Input parameter "$ciphertext" must be a string with more than 48 characters.');
+        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testAesDecryptWithWrongSecretThrowsException(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        // This is the wrong secret!
+        $secret = 'notsosecret';
+        $plaintext = 'SUPER_SECRET_TEXT';
+        $ciphertext = <<<CIPHER
+uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
+CIPHER;
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Failed to decrypt ciphertext.');
+        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
+    }
+
+
+    /**
+     * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
+     *
+     */
+    public function testAesEncrypt(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $original_plaintext = 'SUPER_SECRET_TEXT';
+
+        $ciphertext = $this->cryptoUtils->aesEncrypt($original_plaintext);
+        $decrypted_plaintext = $this->cryptoUtils->aesDecrypt($ciphertext);
+
+        $this->assertEquals($original_plaintext, $decrypted_plaintext);
+    }
+
+
+    /**
+     * Test that the pem2der() and der2pem() methods work correctly.
+     *
+     */
+    public function testFormatConversion(): void
+    {
+        $this->assertEquals(trim($this->pem), trim($this->cryptoUtils->der2pem($this->cryptoUtils->pem2der($this->pem))));
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testFormatConversionThrowsExceptionWhenNotPEMStart(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pem2der: input is not encoded in PEM format.');
+        $this->cryptoUtils->pem2der(substr($this->pem, 6));
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testFormatConversionThrowsExceptionWhenNotPEMEnd(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pem2der: input is not encoded in PEM format.');
+        $this->cryptoUtils->pem2der(substr($this->pem, 0, -20));
     }
 
 
