@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 
+/**
+ * @covers \SimpleSAML\Locale\Language
+ */
 class LanguageTest extends TestCase
 {
     /**

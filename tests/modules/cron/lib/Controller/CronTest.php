@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "cron" module.
  *
+ * @covers \SimpleSAML\Module\cron\Controller\Cron
  * @package SimpleSAML\Test
  */
 class CronTest extends TestCase

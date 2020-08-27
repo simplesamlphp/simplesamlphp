@@ -14,6 +14,8 @@ use SimpleSAML\Utils;
 
 /**
  * Test for the core:TargetedID filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\TargetedID
  */
 class TargetedIDTest extends TestCase
 {

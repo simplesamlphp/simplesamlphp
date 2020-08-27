@@ -17,13 +17,14 @@ use SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
+ *
+ * @covers \SimpleSAML\Utils\XML
  */
 class XMLTest extends TestCase
 {
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -40,7 +41,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -56,7 +56,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -73,7 +72,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -91,7 +89,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -109,7 +106,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      * @return void
      */
@@ -127,7 +123,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
      * @return void
      */
@@ -146,7 +141,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
      * @return void
      */
@@ -167,7 +161,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
      * @return void
      */
@@ -183,7 +176,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
      * @return void
      */
@@ -203,7 +195,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
      * @return void
      */
@@ -222,7 +213,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
      * @return void
      */
@@ -242,7 +232,6 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
      * @return void
      */
@@ -266,7 +255,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
      * @return void
      */
@@ -294,7 +282,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
      * @return void
      */
@@ -323,7 +310,6 @@ HEREDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
      * @return void
      */
@@ -348,7 +334,6 @@ HEREDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
      * @return void
      */
@@ -368,7 +353,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
      * @return void
      */
@@ -382,7 +366,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isValid
      * @test
      * @return void
      */
@@ -399,7 +382,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isValid
      * @return void
      */
     public function testIsValidMetadata(): void
@@ -415,7 +397,6 @@ NOWDOC;
     }
 
     /**
-     * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
      * @return void
      */
     public function testCheckSAMLMessageInvalidType(): void

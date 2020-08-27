@@ -14,6 +14,8 @@ use SimpleSAML\Utils\System;
 
 /**
  * Tests for SimpleSAML\Utils\System.
+ *
+ * @covers \SimpleSAML\Utils\Random
  */
 class SystemTest extends TestCase
 {
@@ -45,7 +47,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getOS
      * @test
      * @return void
      */
@@ -58,7 +59,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -75,7 +75,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -92,7 +91,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -109,7 +107,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -126,7 +123,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -143,7 +139,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
      * @return void
      */
@@ -160,7 +155,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      * @return void
      */
@@ -180,7 +174,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      * @return void
      */
@@ -204,7 +197,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      * @return void
      */
@@ -228,7 +220,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
      * @return void
      */
@@ -248,7 +239,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
      * @return void
      */
@@ -268,7 +258,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
      * @return void
      */

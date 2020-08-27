@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
 
 /**
  * Test for the core:AttributeValueMap filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeValueMap
  */
 class AttributeValueMapTest extends TestCase
 {
@@ -31,8 +33,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the most basic functionality.
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testBasic(): void
@@ -63,8 +63,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test basic functionality, remove duplicates
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testNoDuplicates(): void
@@ -96,8 +94,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %replace functionality.
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testReplace(): void
@@ -130,8 +126,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %keep functionality.
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testKeep(): void
@@ -164,8 +158,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test unknown flag Exception
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testUnknownFlag(): void
@@ -195,8 +187,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Source attribute
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testMissingSourceAttribute(): void
@@ -222,8 +212,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Target attribute
      *
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
-     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      * @return void
      */
     public function testMissingTargetAttribute(): void

@@ -10,6 +10,9 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 
+/**
+ * @covers \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth
+ */
 class MultiAuthTest extends ClearStateTestCase
 {
     /** @var Configuration */

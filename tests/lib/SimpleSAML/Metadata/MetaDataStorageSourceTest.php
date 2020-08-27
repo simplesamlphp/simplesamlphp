@@ -11,8 +11,9 @@ use SimpleSAML\Metadata\MetaDataStorageSource;
 
 /**
  * Class MetaDataStorageSourceTest
+ *
+ * @covers \SimpleSAML\Metadata\MetadataStorageSource
  */
-
 class MetaDataStorageSourceTest extends TestCase
 {
     /**

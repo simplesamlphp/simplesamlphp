@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Localization;
 
+/**
+ * @covers \SimpleSAML\Locale\Localization
+ */
 class LocalizationTest extends TestCase
 {
     /**

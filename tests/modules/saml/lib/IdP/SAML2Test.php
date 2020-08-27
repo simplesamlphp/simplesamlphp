@@ -9,6 +9,9 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Module\saml\IdP\SAML2
+ */
 class SAML2Test extends ClearStateTestCase
 {
     /**

@@ -14,6 +14,8 @@ use SimpleSAML\Store;
 /**
  * Test for the SQLNameID helper class.
  *
+ * @covers \SimpleSAML\Module\saml\IdP\SQLNameID
+ *
  * @author Pavel Brousek <brousek@ics.muni.cz>
  * @package SimpleSAMLphp
  */

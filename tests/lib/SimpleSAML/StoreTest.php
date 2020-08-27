@@ -16,13 +16,14 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was
  * distributed with this source code.
  *
+ * @covers \SimpleSAML\Store
+ *
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
 class StoreTest extends TestCase
 {
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */
@@ -38,7 +39,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */
@@ -54,7 +54,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */
@@ -71,7 +70,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */
@@ -90,7 +88,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */
@@ -109,7 +106,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
      * @return void
      */

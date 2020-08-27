@@ -8,6 +8,9 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Metadata\MetadataStorageHandler
+ */
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
     /**

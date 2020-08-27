@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
  * For now, this test extends ClearStateTestCase so that it doesn't interfere with other tests. Once every class has
  * been made PSR-7-aware, that won't be necessary any longer.
  *
+ * @covers \SimpleSAML\Module\core\Controller\Login
  * @package SimpleSAML\Test
  */
 class LoginTest extends ClearStateTestCase

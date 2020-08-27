@@ -12,6 +12,8 @@ use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Test for the core:Cardinality filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\Cardinality
  */
 class CardinalityTest extends TestCase
 {

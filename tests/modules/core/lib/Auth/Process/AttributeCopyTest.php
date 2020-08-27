@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeCopy;
 
 /**
  * Test for the core:AttributeCopy filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeCopy
  */
 class AttributeCopyTest extends TestCase
 {

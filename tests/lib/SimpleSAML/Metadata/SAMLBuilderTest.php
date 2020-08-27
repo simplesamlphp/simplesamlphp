@@ -9,8 +9,9 @@ use SimpleSAML\Metadata\SAMLBuilder;
 
 /**
  * Class SAMLBuilderTest
+ *
+ * @covers \SimpleSAML\Metadata\SAMLBuilder
  */
-
 class SAMLBuilderTest extends TestCase
 {
     /**

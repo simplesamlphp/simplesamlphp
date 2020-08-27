@@ -10,6 +10,9 @@ use SimpleSAML\Error;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
 
+/**
+ * @covers \SimpleSAML\Utils\HTTP
+ */
 class HTTPTest extends ClearStateTestCase
 {
     /**
@@ -427,7 +430,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @covers SimpleSAML\Utils\HTTP::getFirstPathElement()
      * @return void
      */
     public function testGetFirstPathElement(): void
@@ -441,7 +443,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
      * @return void
@@ -502,7 +503,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @return void
      */
     public function testSetCookieInsecure(): void
@@ -523,7 +523,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
      * @return void

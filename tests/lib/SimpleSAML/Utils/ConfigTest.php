@@ -10,6 +10,8 @@ use SimpleSAML\Utils\Config;
 
 /**
  * Tests for SimpleSAML\Utils\Config
+ *
+ * @covers \SimpleSAML\Utils\Config
  */
 class ConfigTest extends TestCase
 {

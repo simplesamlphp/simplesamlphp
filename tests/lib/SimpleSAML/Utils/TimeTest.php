@@ -11,12 +11,14 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils\Time;
 
+/**
+ * @covers \SimpleSAML\Utils\Time
+ */
 class TimeTest extends TestCase
 {
     /**
      * Test the SimpleSAML\Utils\Time::generateTimestamp() method.
      *
-     * @covers SimpleSAML\Utils\Time::generateTimestamp
      * @return void
      */
     public function testGenerateTimestamp(): void
@@ -32,7 +34,6 @@ class TimeTest extends TestCase
     /**
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
      *
-     * @covers SimpleSAML\Utils\Time::initTimezone
      * @return void
      */
     public function testInitTimezone(): void
@@ -77,7 +78,6 @@ class TimeTest extends TestCase
     /**
      * Test the SimpleSAML\Utils\Time::parseDuration() method.
      *
-     * @covers SimpleSAML\Utils\Time::parseDuration
      * @return void
      */
     public function testParseDuration(): void

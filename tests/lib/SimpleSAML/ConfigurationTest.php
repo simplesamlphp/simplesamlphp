@@ -12,6 +12,8 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Configuration
+ *
+ * @covers \SimpleSAML\Configuration
  */
 class ConfigurationTest extends ClearStateTestCase
 {

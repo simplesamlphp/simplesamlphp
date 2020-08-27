@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
+ * @covers \SimpleSAML\Module\admin\Controller\Federation
  * @package SimpleSAML\Test
  */
 class FederationTest extends TestCase

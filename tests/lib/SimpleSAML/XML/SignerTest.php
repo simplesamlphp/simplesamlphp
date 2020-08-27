@@ -16,6 +16,8 @@ use SimpleSAML\XML\Signer;
 
 /**
  * Tests for SimpleSAML\XML\Signer.
+ *
+ * @covers \SimpleSAML\XML\Signer
  */
 class SignerTest extends SigningTestCase
 {

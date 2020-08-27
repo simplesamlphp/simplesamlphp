@@ -9,6 +9,8 @@ use SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute;
 
 /**
  * Test for the core:ScopeFromAttribute filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute
  */
 class ScopeFromAttributeTest extends TestCase
 {

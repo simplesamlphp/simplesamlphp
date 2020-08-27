@@ -16,6 +16,7 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
+ * @covers \SimpleSAML\Store\Redis
  * @package simplesamlphp/simplesamlphp
  */
 class RedisTest extends TestCase
@@ -111,8 +112,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
-     * @covers \SimpleSAML\Store\Redis::__construct
      * @test
      * @return void
      */
@@ -134,8 +133,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
-     * @covers \SimpleSAML\Store\Redis::__construct
      * @test
      * @return void
      */
@@ -158,8 +155,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
      * @return void
      */
@@ -176,8 +171,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
      * @return void
      */
@@ -194,7 +187,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
      * @test
      * @return void
      */
@@ -207,8 +199,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
      * @return void
      */
@@ -227,9 +217,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
-     * @covers \SimpleSAML\Store\Redis::delete
      * @test
      * @return void
      */

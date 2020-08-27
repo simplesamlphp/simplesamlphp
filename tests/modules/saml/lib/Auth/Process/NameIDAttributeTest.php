@@ -13,6 +13,8 @@ use SAML2\Constants;
 /**
  * Test for the saml:NameIDAttribute filter.
  *
+ * @covers \SimpleSAML\Module\saml\Auth\Process\NameIDAttribute
+ *
  * @author Eugene Venter <eugene@catalyst.net.nz>
  * @package SimpleSAMLphp
  */

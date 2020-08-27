@@ -12,6 +12,8 @@ use SimpleSAML\Test\Utils\TestAuthSourceFactory;
 
 /**
  * Tests for \SimpleSAML\Auth\Source
+ *
+ * @covers \SimpleSAML\Auth\Source
  */
 class SourceTest extends ClearStateTestCase
 {

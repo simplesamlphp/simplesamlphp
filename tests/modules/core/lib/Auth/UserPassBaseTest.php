@@ -9,6 +9,9 @@ use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
+/**
+ * @covers \SimpleSAML\Module\core\Auth\UserPassBase
+ */
 class UserPassBaseTest extends TestCase
 {
     /**

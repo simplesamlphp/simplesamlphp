@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
 /**
  * Test for the SQLPermanentStorage class.
+ *
+ * @covers \SimpleSAML\Module\core\Storage\SQLPermanentStorage
  */
 class SQLPermanentStorageTest extends TestCase
 {

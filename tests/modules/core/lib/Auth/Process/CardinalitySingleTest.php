@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\CardinalitySingle
  */
 class CardinalitySingleTest extends TestCase
 {

@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 
+/**
+ * @covers \SimpleSAML\Module
+ */
 class ModuleTest extends TestCase
 {
     /**

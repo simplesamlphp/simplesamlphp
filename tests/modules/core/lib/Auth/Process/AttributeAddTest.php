@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeAdd;
 
 /**
  * Test for the core:AttributeAdd filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAdd
  */
 class AttributeAddTest extends TestCase
 {

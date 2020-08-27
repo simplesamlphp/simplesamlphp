@@ -21,10 +21,11 @@ use SimpleSAML\Database;
  * should be created for test cases to ensure that it will work
  * in an environment.
  *
+ * @covers \SimpleSAML\Database
+ *
  * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
-
 class DatabaseTest extends TestCase
 {
     /**
@@ -54,10 +55,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @return void
      */
     public function setUp(): void
@@ -81,10 +78,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
      * @return void
      */
@@ -106,10 +99,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
      * @return void
      */
@@ -175,11 +164,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
-     * @covers SimpleSAML\Database::getSecondary
      * @test
      * @return void
      */
@@ -232,7 +216,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::applyPrefix
      * @test
      * @return void
      */
@@ -247,10 +230,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::exec
-     * @covers SimpleSAML\Database::query
      * @test
      * @return void
      */
@@ -281,8 +260,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::query
      * @test
      * @return void
      */
@@ -297,8 +274,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::exec
      * @test
      * @return void
      */

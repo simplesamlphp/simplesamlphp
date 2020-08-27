@@ -9,6 +9,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeMap;
 
 /**
  * Test for the core:AttributeMap filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeMap
  */
 class AttributeMapTest extends TestCase
 {

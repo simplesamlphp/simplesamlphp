@@ -13,6 +13,8 @@ use SimpleSAML\Utils\Crypto;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
+ *
+ * @covers \SimpleSAML\Utils\Crypto
  */
 class CryptoTest extends TestCase
 {
@@ -51,7 +53,6 @@ class CryptoTest extends TestCase
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
      *
-     * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      * @return void
      */
     public function testAesDecrypt(): void
@@ -74,8 +75,6 @@ class CryptoTest extends TestCase
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
      *
-     * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
-     * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
      * @return void
      */
     public function testAesEncrypt(): void
@@ -100,8 +99,6 @@ class CryptoTest extends TestCase
     /**
      * Test that the pem2der() and der2pem() methods work correctly.
      *
-     * @covers \SimpleSAML\Utils\Crypto::der2pem
-     * @covers \SimpleSAML\Utils\Crypto::pem2der
      * @return void
      */
     public function testFormatConversion(): void
@@ -147,7 +144,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @return void
      */
     public function testGoodPwValid(): void
@@ -162,7 +158,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @return void
      */
     public function testBadPwInvalid(): void
@@ -178,7 +173,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::secureCompare
      * @return void
      */
     public function testSecureCompareEqual(): void
@@ -190,7 +184,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::secureCompare
      * @return void
      */
     public function testSecureCompareNotEqual(): void
@@ -202,7 +195,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyRequiredMetadataMissing(): void
@@ -216,7 +208,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyNotRequiredMetadataMissing(): void
@@ -231,7 +222,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyMissingFile(): void
@@ -244,7 +234,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyBasic(): void
@@ -264,7 +253,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyPassword(): void
@@ -291,7 +279,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
     public function testLoadPrivateKeyPrefix(): void
@@ -319,7 +306,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
     public function testLoadPublicKeyRequiredMetadataMissing(): void
@@ -333,7 +319,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
     public function testLoadPublicKeyNotRequiredMetadataMissing(): void
@@ -348,7 +333,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
     public function testLoadPublicKeyNotX509Certificate(): void
@@ -373,7 +357,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
     public function testLoadPublicKeyNotSigning(): void
@@ -398,7 +381,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
     public function testLoadPublicKeyBasic(): void
