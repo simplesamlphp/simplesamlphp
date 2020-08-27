@@ -18,6 +18,9 @@ Released TBD
   * Support for Symfony 3.x is now deprecated
   * Support for Twig 1.x is now deprecated
 
+### authcrypt
+  * The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
+
 ### authx509
   * Restore PHP 5.6 compatibility (v0.9.5)
 
@@ -34,6 +37,7 @@ Released TBD
 
 ### negotiate ###
   * Restore PHP 5.6 compatibility (v0.9.8)
+  * Fixed a link (v0.9.9)
 
 ### saml2 library
   * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
