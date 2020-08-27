@@ -42,10 +42,11 @@ class Federation
      */
     protected $authSource = Auth\Source::class;
 
-    /**
-     * @psalm-var \SimpleSAML\Utils\Auth
-     */
+    /** @var \SimpleSAML\Utils\Auth */
     protected $authUtils;
+
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
@@ -65,6 +66,7 @@ class Federation
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
         $this->authUtils = new Utils\Auth();
+        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -501,7 +503,7 @@ class Federation
         }
 
         /** @var array $certInfo  Second param ensures non-nullable return-value */
-        $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
+        $certInfo = $this->cryptoUtils->loadPublicKey($mdconfig, true, $prefix);
 
         $response = new Response($certInfo['PEM']);
         $disposition = $response->headers->makeDisposition(

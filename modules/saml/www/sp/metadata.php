@@ -124,7 +124,8 @@ foreach ($assertionsconsumerservices as $services) {
 $metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = [];
-$certInfo = Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
+$cryptoUtils = new Utils\Crypto();
+$certInfo = $cryptoUtils->loadPublicKey($spconfig, false, 'new_');
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $hasNewCert = true;
 
@@ -140,7 +141,7 @@ if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $hasNewCert = false;
 }
 
-$certInfo = Utils\Crypto::loadPublicKey($spconfig);
+$certInfo = $cryptoUtils->loadPublicKey($spconfig);
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $certData = $certInfo['certData'];
 

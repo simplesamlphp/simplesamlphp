@@ -18,6 +18,7 @@ Upgrade notes for SimpleSAMLphp 2.0
   + lib/SimpleSAMLphp\Utils\Attributes
   + lib/SimpleSAMLphp\Utils\Auth
   + lib/SimpleSAMLphp\Utils\Config
+  + lib/SimpleSAMLphp\Utils\Crypto
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 

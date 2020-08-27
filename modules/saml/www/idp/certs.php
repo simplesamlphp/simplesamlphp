@@ -16,19 +16,20 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
+$cryptoUtils = new \SimpleSAML\Utils\Crypto();
 
 switch ($_SERVER['PATH_INFO']) {
     case '/new_idp.crt':
         /** @var array $certInfo */
-        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($idpmeta, true, 'new_');
         break;
     case '/idp.crt':
         /** @var array $certInfo */
-        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
+        $certInfo = $cryptoUtils->loadPublicKey($idpmeta, true);
         break;
     case '/https.crt':
         /** @var array $certInfo */
-        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
+        $certInfo = $cryptoUtils->loadPublicKey($idpmeta, true, 'https.');
         break;
     default:
         throw new \SimpleSAML\Error\NotFound('Unknown certificate.');

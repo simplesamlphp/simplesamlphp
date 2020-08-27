@@ -30,10 +30,11 @@ try {
         $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
+    $cryptoUtils = new Utils\Crypto();
     $availableCerts = [];
-
     $keys = [];
-    $certInfo = Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+
+    $certInfo = $cryptoUtils->loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
         $keys[] = [
@@ -47,7 +48,7 @@ try {
         $hasNewCert = false;
     }
 
-    $certInfo = Utils\Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = $cryptoUtils->loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
     $keys[] = [
         'type'            => 'X509Certificate',
@@ -57,7 +58,7 @@ try {
     ];
 
     if ($idpmeta->hasValue('https.certificate')) {
-        $httpsCert = Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
+        $httpsCert = $cryptoUtils->loadPublicKey($idpmeta, true, 'https.');
         Assert::notNull($httpsCert['certData']);
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = [

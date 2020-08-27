@@ -771,9 +771,11 @@ class SAML2
             'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
         ];
 
+        $cryptoUtils = new Utils\Crypto();
+
         // add certificates
         $keys = [];
-        $certInfo = Utils\Crypto::loadPublicKey($config, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($config, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null) {
             $keys[] = [
@@ -787,7 +789,7 @@ class SAML2
         }
 
         /** @var array $certInfo */
-        $certInfo = Utils\Crypto::loadPublicKey($config, true);
+        $certInfo = $cryptoUtils->loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',
             'signing' => true,
@@ -798,7 +800,7 @@ class SAML2
 
         if ($config->hasValue('https.certificate')) {
             /** @var array $httpsCert */
-            $httpsCert = Utils\Crypto::loadPublicKey($config, true, 'https.');
+            $httpsCert = $cryptoUtils->loadPublicKey($config, true, 'https.');
             $keys[] = [
                 'type' => 'X509Certificate',
                 'signing' => true,

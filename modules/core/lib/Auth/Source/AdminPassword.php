@@ -8,6 +8,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\Utils;
 
 /**
  * Authentication source which verifies the password against
@@ -59,7 +60,8 @@ class AdminPassword extends UserPassBase
             throw new Error\Error('WRONGUSERPASS');
         }
 
-        if (!\SimpleSAML\Utils\Crypto::pwValid($adminPassword, $password)) {
+        $cryptoUtils = new Utils\Crypto();
+        if (!$cryptoUtils->pwValid($adminPassword, $password)) {
             throw new Error\Error('WRONGUSERPASS');
         }
         return ['user' => ['admin']];
