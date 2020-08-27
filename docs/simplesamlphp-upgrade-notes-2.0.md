@@ -15,6 +15,7 @@ Upgrade notes for SimpleSAMLphp 2.0
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
 - The following classes have been migrated to non-static:
   + lib/SimpleSAMLphp\Utils\Arrays
+  + lib/SimpleSAMLphp\Utils\Attributes
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 
