@@ -155,6 +155,10 @@ class MultiAuth extends Auth\Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
+        if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
+            $state['multiauth:preselect'] = $this->preselect;
+        }
+
         if (!is_null($state['saml:RequestedAuthnContext']) && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])) {
             $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
             $new_sources = [];
@@ -171,10 +175,6 @@ class MultiAuth extends Auth\Source
             } else if ($number_of_sources === 1) {
                 MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
             }
-        }
-
-        if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
-            $state['multiauth:preselect'] = $this->preselect;
         }
 
         // Save the $state array, so that we can restore if after a redirect
