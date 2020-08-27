@@ -115,7 +115,7 @@ class MultiAuth extends Auth\Source
                     $css_class = str_replace(":", "-", $authconfig[0]);
                 }
             }
-            
+
             $class_ref = [];
             if (array_key_exists('AuthnContextClassRef', $info)) {
                 $ref = $info['AuthnContextClassRef'];
@@ -164,15 +164,15 @@ class MultiAuth extends Auth\Source
                 }
             }
             $state[self::SOURCESID] = $new_sources;
-            
-            $number_of_sources = count($new_sources); 
+
+            $number_of_sources = count($new_sources);
             if ($number_of_sources === 0) {
                 throw new NoAuthnContext(Constants::STATUS_RESPONDER, 'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs));
             } else if ($number_of_sources === 1) {
                 MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
             }
         }
-        
+
         if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
             $state['multiauth:preselect'] = $this->preselect;
         }
