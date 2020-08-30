@@ -91,6 +91,7 @@
     "require-dev": {
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
+        "phpunit/phpunit": "^7.5",
         "simplesamlphp/simplesamlphp-test-framework": "^0.1.2",
         "vimeo/psalm": "~3.14"
     },
