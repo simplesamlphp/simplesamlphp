@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f8dba2766095323f695b3e19d36e007",
+    "content-hash": "a42dc519d55b47fe6c8bedf72fb06364",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1915,16 +1915,16 @@
         },
         {
             "name": "simplesamlphp/twig-configurable-i18n",
-            "version": "v2.3.3",
+            "version": "v2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/twig-configurable-i18n.git",
-                "reference": "746f15796fbc76a37b847c5311d6a4e7030717f9"
+                "reference": "e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/twig-configurable-i18n/zipball/746f15796fbc76a37b847c5311d6a4e7030717f9",
-                "reference": "746f15796fbc76a37b847c5311d6a4e7030717f9",
+                "url": "https://api.github.com/repos/simplesamlphp/twig-configurable-i18n/zipball/e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a",
+                "reference": "e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1963,7 @@
                 "translation",
                 "twig"
             ],
-            "time": "2020-08-26T15:02:50+00:00"
+            "time": "2020-08-27T12:51:10+00:00"
         },
         {
             "name": "symfony/cache",

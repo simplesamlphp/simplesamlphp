@@ -90,7 +90,7 @@
         "symfony/http-kernel": "^4.4 || ^5.0",
         "symfony/routing": "^4.4 || ^5.0",
         "symfony/yaml": "^4.4 || ^5.0",
-        "twig/twig": "~2.0"
+        "twig/twig": "^1.43 || ^2.0"
     },
     "require-dev": {
         "ext-curl": "*",
