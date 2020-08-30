@@ -392,6 +392,8 @@ NOWDOC;
 
         $res = XML::isValid($xml, 'unused');
         $this->assertIsString($res);
+
+        $expected = 'Failed to parse XML string for schema validation';
         $this->assertContains($expected, $res);
     }
 

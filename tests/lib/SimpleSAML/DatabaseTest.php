@@ -7,6 +7,7 @@ namespace SimpleSAML\Test;
 use Exception;
 use PDO;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 
