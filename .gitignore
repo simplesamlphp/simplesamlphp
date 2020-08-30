@@ -240,3 +240,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# PHPunit
+.phpunit.result.cache
