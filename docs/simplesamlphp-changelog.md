@@ -14,9 +14,10 @@ Released TBD
     templating system, routing system and translation system.
   * SAML 1 / Shib 1.3 support is now marked deprecated and will be removed in SimpleSAMLphp 2.0.
   * Raised minimum PHP version to 7.1
-  * Dropped support for Symfony 3.x and Twig 1.x
+  * Dropped support for Symfony 3.x
   * Update the SAML2 library dependency to 4.1.9
   * Allow additional audiences to be specified (#1345)
+  * Support saml:Extensions in saml:SP authsources (#1349)
   * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in 
     favour of the `identifyingAttribute`-setting.
 
