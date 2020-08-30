@@ -526,6 +526,7 @@ class Translate
 
         // we don't have a translation for the current language, load alternative priorities
         $sspcfg = Configuration::getInstance();
+        /** @psalm-var \SimpleSAML\Configuration $langcfg */
         $langcfg = $sspcfg->getConfigItem('language');
         $priorities = $langcfg->getArray('priorities', []);
 

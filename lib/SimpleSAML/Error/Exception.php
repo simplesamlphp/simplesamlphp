@@ -33,7 +33,7 @@ class Exception extends \Exception
     /**
      * The cause of this exception.
      *
-     * @var Exception|null
+     * @var \SimpleSAML\Error\Exception|null
      */
     private $cause = null;
 
@@ -68,7 +68,7 @@ class Exception extends \Exception
      *
      * @param \Throwable $e The exception.
      *
-     * @return Exception The new exception.
+     * @return \SimpleSAML\Error\Exception The new exception.
      */
     public static function fromException(Throwable $e): Exception
     {

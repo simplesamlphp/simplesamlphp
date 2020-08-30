@@ -247,9 +247,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             case 'shib13-sp-remote':
                 return $entity->getMetadata1xSP();
             case 'attributeauthority-remote':
-                $ret = $entity->getAttributeAuthorities();
-                return $ret[0];
-
+                return $entity->getAttributeAuthorities();
             default:
                 Logger::warning(__CLASS__ . ': unknown metadata set: \'' . $set . '\'.');
         }
