@@ -69,9 +69,9 @@ class CriticalConfigurationError extends ConfigurationError
     /**
      * @param \Throwable $exception
      *
-     * @return CriticalConfigurationError
+     * @return \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function fromException(Throwable $exception): Exception
+    public static function fromException(Throwable $exception): CriticalConfigurationError
     {
         $reason = null;
         $file = null;
