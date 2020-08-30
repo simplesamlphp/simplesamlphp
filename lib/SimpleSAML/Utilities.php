@@ -237,8 +237,6 @@ class Utilities
      */
     private static function doRedirect(string $url, array $parameters = []): void
     {
-        Assert::NotEmpty($url);
-
         if (!empty($parameters)) {
             $url = self::addURLparameter($url, $parameters);
         }
