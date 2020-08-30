@@ -18,7 +18,9 @@ Released TBD
   * Update the SAML2 library dependency to 4.1.9
   * Fix a bug where SSP wouldn't write to the tmp-directory if it didn't own it, but could write to it (#1314)
   * Fixed several bugs in saml:NameIDAttribute (#1245)
+  * Fix artifact resolution (#1343)
   * Allow additional audiences to be specified (#1345)
+  * Allow configurable ProviderName (#1348)
   * Support saml:Extensions in saml:SP authsources (#1349)
   * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in 
     favour of the `identifyingAttribute`-setting.
