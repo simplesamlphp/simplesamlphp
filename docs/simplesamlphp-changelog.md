@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.18.8
 
-Released TBD
+Released 2020-09-02
 
   * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
   * Fixed some of the German translations (#1331). Thanks @htto!
