@@ -22,12 +22,12 @@ Released TBD
   * Allow additional audiences to be specified (#1345)
   * Allow configurable ProviderName (#1348)
   * Support saml:Extensions in saml:SP authsources (#1349)
-  * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in 
+  * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in
     favour of the `identifyingAttribute`-setting.
 
 ## Version 1.18.8
 
-Released TBD
+Released 2020-09-02
 
   * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
   * Fixed some of the German translations (#1331). Thanks @htto!
@@ -36,6 +36,9 @@ Released TBD
   * Fixed inconsistent configuration of backtraces logging
   * Support for Symfony 3.x is now deprecated
   * Support for Twig 1.x is now deprecated
+
+### authcrypt
+  * The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
 
 ### authx509
   * Restore PHP 5.6 compatibility (v0.9.5)
@@ -53,6 +56,7 @@ Released TBD
 
 ### negotiate ###
   * Restore PHP 5.6 compatibility (v0.9.8)
+  * Fixed a link (v0.9.9)
 
 ### saml2 library
   * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
@@ -111,6 +115,7 @@ Released 2020-03-19
   * Fix exampleauth module when using the legacy UI (#1275).
   * Fix authorize module when using custom reject message.
   * Documentation improvements.
+  * Fix connection persistence for deployments that switched to memcached.
 
 ## Version 1.18.4
 
@@ -140,10 +145,10 @@ Released 2019-11-26
 
   * Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
 
- ## Version 1.18.1
- 
+## Version 1.18.1
+
 Released 2019-11-26
- 
+
    * Fixed an issue that prevented custom themes from working (#1240).
    * Fixed an issue with translations in the discovery service (#1244).
    * Fixed an issue with schema validation.
