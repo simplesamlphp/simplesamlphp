@@ -236,16 +236,27 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SimpleSAML\SAML2\XML\xenc\EncryptionMethod|null $encryptionMethod The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
      */
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
+        EncryptionMethod $encryptionMethod = null
     ): array {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            if ($encryptionMethod !== null) {
+                $algo = $encryptionMethod->getAlgorithm();
+            } else {
+                $algo = $srcMetadata->getString('sharedkey_algorithm', null);
+                if ($algo === null) {
+                    $algo = $dstMetadata->getString('sharedkey_algorithm');
+                }
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
             return [$key];
         }
@@ -324,7 +335,7 @@ class Message
         Configuration $dstMetadata,
         $assertion
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
+        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -340,7 +351,12 @@ class Message
         }
 
         try {
-            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
+            // @todo Enable this code for saml2v5 to automatically determine encryption algorithm
+            //$encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
+            //$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
+
+            $encryptionMethod = null;
+            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
         } catch (\Exception $e) {
             throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
