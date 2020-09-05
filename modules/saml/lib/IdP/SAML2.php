@@ -1294,7 +1294,12 @@ class SAML2
 
         $sharedKey = $spMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            $algo = $spMetadata->getString('sharedkey_algorithm', null);
+            if ($algo === null) {
+                $algo = $idpMetadata->getString('sharedkey_algorithm');
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
         } else {
             $keys = $spMetadata->getPublicKeys('encryption', true);
