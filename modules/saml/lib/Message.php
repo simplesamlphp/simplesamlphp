@@ -236,6 +236,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
+     * @psalm-suppress UndefinedDocblockClass  This can be removed after upgrading to saml2v5
      * @param \SimpleSAML\SAML2\XML\xenc\EncryptionMethod|null $encryptionMethod The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
