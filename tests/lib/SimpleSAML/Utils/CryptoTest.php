@@ -62,7 +62,7 @@ class CryptoTest extends TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
+        $m = new ReflectionMethod(Crypto::class, 'aesDecryptInternal');
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
@@ -84,8 +84,8 @@ class CryptoTest extends TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $e = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesEncryptInternal');
-        $d = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
+        $e = new ReflectionMethod(Crypto::class, 'aesEncryptInternal');
+        $d = new ReflectionMethod(Crypto::class, 'aesDecryptInternal');
         $e->setAccessible(true);
         $d->setAccessible(true);
 
