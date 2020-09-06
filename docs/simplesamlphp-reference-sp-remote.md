@@ -332,7 +332,7 @@ of the SP.
     If this option is not specified, public key encryption will be used instead.
 
 `sharedkey_algorithm`
-:   Algorithm which should be used for decryption. Possible values are:
+:   Algorithm which should be used for encryption. Possible values are:
 
     * http://www.w3.org/2001/04/xmlenc#aes128-cbc
     * http://www.w3.org/2001/04/xmlenc#aes192-cbc
