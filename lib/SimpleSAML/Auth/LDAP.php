@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Auth;
 
-\SimpleSAML\Logger::warning("The class \SimpleSAML\Auth\LDAP has been moved to the ldap module, please use \SimpleSAML\Module\saml\Auth\Ldap instead.");
+\SimpleSAML\Logger::warning("The class \SimpleSAML\Auth\LDAP has been moved to the ldap module, please use \SimpleSAML\Module\ldap\Auth\Ldap instead.");
 
 /**
  * @deprecated To be removed in 2.0
