@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Filter to set and get language settings from attributes.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class LanguageAdaptor extends Auth\ProcessingFilter

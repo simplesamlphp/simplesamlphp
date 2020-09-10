@@ -13,7 +13,6 @@ use SimpleSAML\Utils;
  * This exception can be thrown from within a module page handler. The user will then be shown a 404 Not Found error
  * page.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

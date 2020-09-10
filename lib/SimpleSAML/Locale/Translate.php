@@ -3,8 +3,6 @@
 /**
  * The translation-relevant bits from our original minimalistic XHTML PHP based template system.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 

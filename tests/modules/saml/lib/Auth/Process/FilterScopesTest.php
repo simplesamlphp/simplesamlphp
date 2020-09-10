@@ -12,7 +12,6 @@ use SimpleSAML\Module\saml\Auth\Process\FilterScopes;
  *
  * @covers \SimpleSAML\Module\saml\Auth\Process\FilterScopes
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class FilterScopesTest extends TestCase

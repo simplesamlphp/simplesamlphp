@@ -17,7 +17,6 @@ use SimpleSAML\Utils;
  * Authentication source which let the user chooses among a list of
  * other authentication sources
  *
- * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package SimpleSAMLphp
  */
 class MultiAuth extends Auth\Source

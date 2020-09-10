@@ -10,7 +10,6 @@ use SimpleSAML\Configuration;
  * This class implements a metadata source which loads metadata from XML files.
  * The XML files should be in the SAML 2.0 metadata format.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

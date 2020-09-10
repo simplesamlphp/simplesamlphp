@@ -5,7 +5,6 @@
  *
  * This file defines a session handler which uses the default php session handler for storage.
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

@@ -17,7 +17,6 @@ use SimpleSAML\Utils;
  *
  * An authentication source is any system which somehow authenticate the user.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

@@ -12,7 +12,6 @@ use SimpleSAML\Assert\Assert;
  * This exception can be thrown from within an module page handler. The user will then be
  * shown a 400 Bad Request error page.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

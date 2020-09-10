@@ -13,7 +13,6 @@ use SimpleSAML\Auth;
  *
  * This filter allows you to add attributes to the attribute set being processed.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class AttributeAdd extends Auth\ProcessingFilter

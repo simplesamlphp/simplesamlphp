@@ -9,7 +9,6 @@ use SimpleSAML\Configuration;
 /**
  * The interface that must be implemented by any log handler.
  *
- * @author Jaime Perez Crespo, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

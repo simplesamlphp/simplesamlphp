@@ -17,7 +17,6 @@ use SimpleSAML\Store;
  *
  * @covers \SimpleSAML\Store\SQL
  *
- * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
 class SQLTest extends TestCase

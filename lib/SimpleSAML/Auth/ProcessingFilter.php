@@ -20,7 +20,6 @@ use SimpleSAML\Assert\Assert;
  * information in it, it should have a name on the form 'module:filter:attributename', to avoid name
  * collisions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

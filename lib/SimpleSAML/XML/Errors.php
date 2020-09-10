@@ -6,7 +6,6 @@
  * In PHP versions which doesn't support accessing error information, this class
  * will hide that, and pretend that no errors were logged.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

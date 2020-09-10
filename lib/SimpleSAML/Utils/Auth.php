@@ -54,7 +54,6 @@ class Auth
      *
      * @return boolean True if the current user is an admin user, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isAdmin(): bool
     {
@@ -72,8 +71,6 @@ class Auth
      * @return void This function will only return if the user is admin.
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function requireAdmin(): void
     {

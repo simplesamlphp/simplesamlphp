@@ -6,7 +6,6 @@
  * \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth class and call the
  * delegateAuthentication method on it.
  *
- * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package SimpleSAMLphp
  */
 

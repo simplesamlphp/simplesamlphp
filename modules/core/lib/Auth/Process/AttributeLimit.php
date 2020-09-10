@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * A filter for limiting which attributes are passed on.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class AttributeLimit extends Auth\ProcessingFilter

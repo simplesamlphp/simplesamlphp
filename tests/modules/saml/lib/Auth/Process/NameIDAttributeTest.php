@@ -15,7 +15,6 @@ use SAML2\Constants;
  *
  * @covers \SimpleSAML\Module\saml\Auth\Process\NameIDAttribute
  *
- * @author Eugene Venter <eugene@catalyst.net.nz>
  * @package SimpleSAMLphp
  */
 class NameIDAttributeTest extends TestCase

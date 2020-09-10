@@ -19,7 +19,6 @@ use SimpleSAML\Utils\HTTP;
  * This helper class allows for implementations of username/password authentication by
  * implementing a single function: login($username, $password)
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 abstract class UserPassBase extends Auth\Source

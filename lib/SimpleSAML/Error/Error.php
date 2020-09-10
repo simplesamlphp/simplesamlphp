@@ -15,7 +15,6 @@ use Throwable;
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

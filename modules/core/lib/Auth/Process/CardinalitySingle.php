@@ -16,7 +16,6 @@ use SimpleSAML\Utils;
  * This filter implements a special case of the core:Cardinality filter, and
  * allows for optional corrections to be made when cardinality errors are encountered.
  *
- * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
 class CardinalitySingle extends Auth\ProcessingFilter

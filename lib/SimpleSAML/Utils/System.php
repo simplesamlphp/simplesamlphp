@@ -31,7 +31,6 @@ class System
      * @return int|false A predefined constant identifying the OS we are running on.
      *                   False if we are unable to determine it.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getOS()
     {
@@ -70,10 +69,6 @@ class System
      * @throws Error\Exception If the temporary directory cannot be created or it exists and cannot be written
      * to by the current user.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
-     * @author Aaron St. Clair, ECRS AS <astclair@ecrs.com>
      */
     public static function getTempDir(): string
     {
@@ -125,7 +120,6 @@ class System
      *
      * @return string An absolute path referring to $path.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function resolvePath(string $path, string $base = null): string
     {
@@ -191,10 +185,6 @@ class System
      * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      *     possible to write to the target file.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function writeFile(string $filename, string $data, int $mode = 0600): void
     {

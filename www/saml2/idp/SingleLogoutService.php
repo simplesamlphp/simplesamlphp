@@ -4,7 +4,6 @@
  * This SAML 2.0 endpoint can receive incoming LogoutRequests. It will also send LogoutResponses,
  * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

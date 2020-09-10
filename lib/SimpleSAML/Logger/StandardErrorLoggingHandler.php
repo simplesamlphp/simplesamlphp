@@ -9,7 +9,6 @@ use SimpleSAML\Configuration;
 /**
  * A logging handler that outputs all messages to standard error.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class StandardErrorLoggingHandler extends FileLoggingHandler

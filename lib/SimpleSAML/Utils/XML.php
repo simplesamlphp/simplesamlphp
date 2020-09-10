@@ -39,8 +39,6 @@ class XML
      *
      * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkSAMLMessage(string $message, string $type): void
     {
@@ -96,7 +94,6 @@ class XML
      *
      * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function debugSAMLMessage($message, string $type): void
     {
@@ -162,7 +159,6 @@ class XML
      *
      * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
@@ -248,7 +244,6 @@ class XML
      * @throws \InvalidArgumentException If the parameters are not strings.
      * @throws \DOMException If the input does not parse correctly as an XML string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatXMLString(string $xml, string $indentBase = ''): string
     {
@@ -311,7 +306,6 @@ class XML
      * @return string The text content of the element.
      * @throws \SimpleSAML\Error\Exception If the element contains a non-text child node.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDOMText(DOMElement $element): string
     {
@@ -349,8 +343,6 @@ class XML
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
@@ -400,7 +392,6 @@ class XML
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isValid($xml, string $schema)
     {

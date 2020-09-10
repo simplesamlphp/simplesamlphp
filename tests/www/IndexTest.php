@@ -12,7 +12,6 @@ use SimpleSAML\TestUtils\BuiltInServer;
  *
  * This test is intended mostly as a demonstration of how to test the public web interface in SimpleSAMLphp.
  *
- * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class IndexTest extends TestCase

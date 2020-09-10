@@ -36,7 +36,6 @@ use SimpleSAML\Utils;
  * elements of the state array. Note that internally this uses the request parameter name
  * defined in EXCEPTION_PARAM, which, for technical reasons, cannot contain a ".".
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -404,8 +403,6 @@ class State
      * @return array A hashed array with the ID and the URL (if any), in the 'id' and 'url' keys, respectively. If
      * there's no URL in the input parameter, NULL will be returned as the value for the 'url' key.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function parseStateID(string $stateId): array
     {

@@ -13,7 +13,6 @@ use SimpleSAML\Error;
  *
  * This filter can modify or replace attributes given a regular expression.
  *
- * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
 class AttributeAlter extends Auth\ProcessingFilter

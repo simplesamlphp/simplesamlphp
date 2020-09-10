@@ -13,7 +13,6 @@ use SimpleSAML\Utils\Attributes;
  * Tests for SimpleSAML\Utils\Attributes.
  *
  * @covers \SimpleSAML\Utils\Attributes
- * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  */
 class AttributesTest extends TestCase
 {

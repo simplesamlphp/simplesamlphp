@@ -18,7 +18,6 @@ use SimpleSAML\Utils;
  * submitting a response to a SP. Examples of additional steps can be additional authentication
  * checks, or attribute consent requirements.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

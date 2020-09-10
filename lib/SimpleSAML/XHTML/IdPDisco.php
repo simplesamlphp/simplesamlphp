@@ -18,9 +18,6 @@ use SimpleSAML\Utils;
  * Experimental support added for Extended IdP Metadata Discovery Protocol by Andreas 2008-08-28
  * More information: https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
  *
- * @author Jaime Pérez <jaime.perez@uninett.no>, UNINETT AS.
- * @author Olav Morken, UNINETT AS.
- * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

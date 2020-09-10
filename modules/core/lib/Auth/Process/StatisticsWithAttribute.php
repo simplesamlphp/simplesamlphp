@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Log a line in the STAT log with one attribute.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class StatisticsWithAttribute extends Auth\ProcessingFilter

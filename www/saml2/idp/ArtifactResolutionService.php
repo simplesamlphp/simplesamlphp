@@ -4,7 +4,6 @@
  * The ArtifactResolutionService receives the samlart from the sp.
  * And when the artifact is found, it sends a \SAML2\ArtifactResponse.
  *
- * @author Danny Bollaert, UGent AS. <danny.bollaert@ugent.be>
  * @package SimpleSAMLphp
  */
 

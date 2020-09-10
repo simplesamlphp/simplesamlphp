@@ -14,7 +14,6 @@ use SimpleSAML\XHTML\Template;
  * E-mailer class that can generate a formatted e-mail from array
  * input data.
  *
- * @author Jørn Åne de Jong, Uninett AS <jorn.dejong@uninett.no>
  * @package SimpleSAMLphp
  */
 

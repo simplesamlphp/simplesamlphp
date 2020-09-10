@@ -9,7 +9,6 @@ use SimpleSAML\Assert\Assert;
 /**
  * Class for creating exceptions from assertion failures.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

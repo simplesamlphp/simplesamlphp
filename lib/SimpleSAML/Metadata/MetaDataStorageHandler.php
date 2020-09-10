@@ -17,7 +17,6 @@ use SimpleSAML\Utils\ClearableState;
 /**
  * This file defines a class for metadata handling.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

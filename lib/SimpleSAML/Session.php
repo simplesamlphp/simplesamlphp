@@ -23,8 +23,6 @@ use SimpleSAML\Utils;
  * that is not serializable, make sure to convert it first to a representation that can be
  * serialized.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 

@@ -16,7 +16,6 @@ use SimpleSAML\XML\Errors;
  *
  * @covers \SimpleSAML\XML\Errors
  *
- * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
 class ErrorsTest extends TestCase

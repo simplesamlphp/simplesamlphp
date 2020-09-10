@@ -27,7 +27,6 @@ class HTTP
      * @throws Error\Exception If the current session is transient.
      * @return string  A URL which allows to securely post a form to $destination.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
@@ -56,7 +55,6 @@ class HTTP
      * @return string The current host name, including the port if needed. It will use localhost when unable to
      *     determine the current host.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     private static function getServerHost(): string
     {
@@ -86,7 +84,6 @@ class HTTP
      *
      * @return boolean True if the request was performed through HTTPS, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getServerHTTPS(): bool
     {
@@ -111,7 +108,6 @@ class HTTP
      * @return string The port number prepended by a colon, if it is different than the default port for the protocol
      *     (80 for HTTP, 443 for HTTPS), or an empty string otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getServerPort(): string
     {
@@ -169,9 +165,6 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Mads Freek Petersen
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function redirect(string $url, array $parameters = []): void
     {
@@ -246,8 +239,6 @@ class HTTP
      *
      * @return string A random identifier that can be used to retrieve the data from the current session.
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function savePOSTData(Session $session, string $destination, array $data): string
     {
@@ -275,8 +266,6 @@ class HTTP
      * @return string The URL with the new query parameters.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function addURLParameters(string $url, array $parameters): string
     {
@@ -310,7 +299,6 @@ class HTTP
      *     page telling about the missing cookie.
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function checkSessionCookie(?string $retryURL = null): void
     {
@@ -341,7 +329,6 @@ class HTTP
      * @throws \InvalidArgumentException If the URL is malformed.
      * @throws Error\Exception If the URL is not allowed by configuration.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkURLAllowed(string $url, array $trustedSites = null): string
     {
@@ -431,9 +418,6 @@ class HTTP
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws Error\Exception If the file or URL cannot be retrieved.
      *
-     * @author Andjelko Horvat
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Marco Ferrante, University of Genova <marco@csita.unige.it>
      */
     public static function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
@@ -520,7 +504,6 @@ class HTTP
      *
      * @return array An associative array with each language and the score for that language.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getAcceptLanguage(): array
     {
@@ -619,7 +602,6 @@ class HTTP
      * @return string The absolute base URL for the SimpleSAMLphp installation.
      * @throws \SimpleSAML\Error\CriticalConfigurationError If 'baseurlpath' has an invalid format.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getBaseURL(): string
     {
@@ -668,7 +650,6 @@ class HTTP
      *
      * @return string The first element of the URL path, with an optional, leading slash.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
     public static function getFirstPathElement(bool $leadingSlash = true): string
     {
@@ -688,8 +669,6 @@ class HTTP
      * @return string  A URL which can be accessed to post the data.
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getPOSTRedirectURL(string $destination, array $data): string
     {
@@ -717,7 +696,6 @@ class HTTP
      *
      * @return string The current host.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfHost(): string
     {
@@ -735,8 +713,6 @@ class HTTP
      * @return string The current host, followed by a colon and the port number, in case the port is not standard for
      * the protocol.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfHostWithNonStandardPort(): string
     {
@@ -757,8 +733,6 @@ class HTTP
      *
      * @return string The current host (with non-default ports included) plus the URL path.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfHostWithPath(): string
     {
@@ -780,9 +754,6 @@ class HTTP
      *
      * @return string The current URL, including query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURL(): string
     {
@@ -844,8 +815,6 @@ class HTTP
      *
      * @return string The current URL without path or query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfURLHost(): string
     {
@@ -864,8 +833,6 @@ class HTTP
      *
      * @return string The current URL, not including query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURLNoQuery(): string
     {
@@ -883,8 +850,6 @@ class HTTP
      *
      * @return boolean True if the HTTPS is used, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function isHTTPS(): bool
     {
@@ -901,8 +866,6 @@ class HTTP
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If $url is not a string or a valid URL.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function normalizeURL(string $url): string
     {
@@ -930,7 +893,6 @@ class HTTP
      * @return array The query string as an associative array.
      * @throws \InvalidArgumentException If $query_string is not a string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function parseQueryString(string $query_string): array
     {
@@ -973,7 +935,6 @@ class HTTP
      * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectTrustedURL(string $url, array $parameters = []): void
     {
@@ -1001,7 +962,6 @@ class HTTP
      * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectUntrustedURL(string $url, array $parameters = []): void
     {
@@ -1028,8 +988,6 @@ class HTTP
      * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
      *     are not strings.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function resolveURL(string $url, string $base = null): string
     {
@@ -1105,8 +1063,6 @@ class HTTP
      *
      * @return void
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
     {
@@ -1205,9 +1161,6 @@ class HTTP
      *
      * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function submitPOSTData(string $destination, array $data): void
     {

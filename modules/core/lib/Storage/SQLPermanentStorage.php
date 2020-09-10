@@ -13,7 +13,6 @@ use SimpleSAML\Configuration;
  * Generic SQL Store to store key value pairs. To be used in several other modules that needs
  * to store data permanently.
  *
- * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

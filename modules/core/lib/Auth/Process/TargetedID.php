@@ -28,7 +28,6 @@ use SimpleSAML\Utils;
  * ]
  * </code>
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class TargetedID extends Auth\ProcessingFilter

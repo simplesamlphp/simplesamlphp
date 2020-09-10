@@ -3,7 +3,6 @@
 /**
  * Glue to connect one or more translation/locale systems to the rest
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 

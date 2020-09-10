@@ -10,8 +10,6 @@ use SimpleSAML\Utils;
 /**
  * A logger that sends messages to syslog.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class SyslogLoggingHandler implements LoggingHandlerInterface

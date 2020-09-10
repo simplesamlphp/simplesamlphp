@@ -8,7 +8,6 @@
  * Instantiation of session handler objects should be done through
  * the class method getSessionHandler().
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

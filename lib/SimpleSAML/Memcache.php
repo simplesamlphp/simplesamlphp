@@ -19,7 +19,6 @@ use SimpleSAML\Utils;
  * have the same clock (as measured by the time()-function). Different clock
  * values will lead to incorrect behaviour.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

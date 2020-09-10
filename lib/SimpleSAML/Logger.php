@@ -15,9 +15,6 @@ use SimpleSAML\Logger\SyslogLoggingHandler;
 /**
  * The main logger class for SimpleSAMLphp.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class Logger

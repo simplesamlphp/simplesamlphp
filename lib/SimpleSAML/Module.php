@@ -18,9 +18,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
- * @author Boy Baukema, SURFnet.
- * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class Module

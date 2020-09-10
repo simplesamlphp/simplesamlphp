@@ -6,7 +6,6 @@
  * This file defines a base class for session handlers that need to store the session id in a cookie. It takes care of
  * storing and retrieving the session id.
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  * @abstract
  */

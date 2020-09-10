@@ -19,7 +19,6 @@ use SimpleSAML\Utils;
  * - login($username, $password, $organization)
  * - getOrganizations()
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 abstract class UserPassOrgBase extends Auth\Source

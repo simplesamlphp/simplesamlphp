@@ -11,7 +11,6 @@ use SimpleSAML\Auth;
 /**
  * Attribute filter for renaming attributes.
  *
- * @author Gyula Szabo MTA SZTAKI
  * @package SimpleSAMLphp
  *
  * You just follow the 'source' => 'destination' schema. In this example user's  * cn will be the user's displayName.

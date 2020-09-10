@@ -15,9 +15,6 @@ use SimpleSAML\Utils;
 /**
  * This class implements SAML Metadata Query Protocol
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
- * @author Olav Morken, UNINETT AS.
- * @author Tamas Frank, NIIFI
  * @package SimpleSAMLphp
  */
 

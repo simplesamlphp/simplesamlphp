@@ -11,8 +11,6 @@ use SimpleSAML\Utils;
 /**
  * A logging handler that dumps logs to files.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class FileLoggingHandler implements LoggingHandlerInterface

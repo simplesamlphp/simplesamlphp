@@ -9,7 +9,6 @@ use SimpleSAML\Locale\Translate;
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 

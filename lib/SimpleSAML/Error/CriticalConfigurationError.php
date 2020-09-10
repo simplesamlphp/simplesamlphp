@@ -24,7 +24,6 @@ use Throwable;
  * certain point and inform about the error in an ordered manner, without blank pages, logs out of place or even
  * segfaults.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 

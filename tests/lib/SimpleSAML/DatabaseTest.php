@@ -23,7 +23,6 @@ use SimpleSAML\Database;
  *
  * @covers \SimpleSAML\Database
  *
- * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
 class DatabaseTest extends TestCase

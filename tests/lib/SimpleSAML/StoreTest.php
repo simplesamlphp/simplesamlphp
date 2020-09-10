@@ -18,7 +18,6 @@ use SimpleSAML\Store;
  *
  * @covers \SimpleSAML\Store
  *
- * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
 class StoreTest extends TestCase

@@ -12,7 +12,6 @@ use SimpleSAML\Utils;
 /**
  * Configuration of SimpleSAMLphp
  *
- * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class Configuration implements Utils\ClearableState
