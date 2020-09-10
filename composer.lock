@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f880d12c02244d1e2f654d1e0f453ec",
+    "content-hash": "05afc5aeb795dae922a6db5584838098",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -425,34 +425,34 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v0.0.13",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "5429921b320ca4f9d1844225884ac52f649ea1e3"
+                "reference": "d3701d9a638dd4b66a010c422839db22e7808681"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/5429921b320ca4f9d1844225884ac52f649ea1e3",
-                "reference": "5429921b320ca4f9d1844225884ac52f649ea1e3",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/d3701d9a638dd4b66a010c422839db22e7808681",
+                "reference": "d3701d9a638dd4b66a010c422839db22e7808681",
                 "shasum": ""
             },
             "require": {
                 "ext-spl": "*",
-                "php": "^7.1 || ^8.0",
+                "php": "^7.4 || ^8.0",
                 "webmozart/assert": "^1.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5",
+                "phpunit/phpunit": "^9.0",
                 "sensiolabs/security-checker": "~6.0",
                 "simplesamlphp/simplesamlphp-test-framework": "^0.2.7",
                 "squizlabs/php_codesniffer": "~3.5",
-                "vimeo/psalm": "~3.13"
+                "vimeo/psalm": "~3.15"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v0.0.x-dev"
+                    "dev-master": "v0.1.x-dev"
                 }
             },
             "autoload": {
@@ -475,7 +475,7 @@
                 }
             ],
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
-            "time": "2020-08-17T20:40:49+00:00"
+            "time": "2020-09-10T19:35:42+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -5452,17 +5452,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "e39289ebbb6baa18674c1de0281968e0a243c2bf"
+                "reference": "0f0b3dd3c6c3d50a1c928744498463e0b932d7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/e39289ebbb6baa18674c1de0281968e0a243c2bf",
-                "reference": "e39289ebbb6baa18674c1de0281968e0a243c2bf",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/0f0b3dd3c6c3d50a1c928744498463e0b932d7f6",
+                "reference": "0f0b3dd3c6c3d50a1c928744498463e0b932d7f6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4",
-                "simplesamlphp/assert": "^0.0.13",
+                "simplesamlphp/assert": "^0.1.0",
                 "simplesamlphp/composer-module-installer": "^1.1.7"
             },
             "require-dev": {
@@ -5490,7 +5490,7 @@
                 "adfs",
                 "simplesamlphp"
             ],
-            "time": "2020-09-08T08:00:07+00:00"
+            "time": "2020-09-10T19:44:32+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
