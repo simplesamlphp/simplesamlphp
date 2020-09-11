@@ -43,6 +43,11 @@ class LogoutStore
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TYPE TIMESTAMP'
                     ];
                     break;
+                case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire DATETIME NOT NULL'
+                    ];
+                    break;
                 case 'sqlite':
                     /**
                      * Because SQLite does not support field alterations, the approach is to:
@@ -119,6 +124,11 @@ class LogoutStore
                     $update = [
                         'ALTER TABLE ' . $store->prefix .
                         '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
+                    break;
+               case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _authSource VARCHAR(255) NOT NULL'
+                    ];
                     break;
                 case 'sqlite':
                     /**
