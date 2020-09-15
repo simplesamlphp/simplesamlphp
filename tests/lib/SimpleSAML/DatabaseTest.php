@@ -54,7 +54,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -78,7 +77,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function connectionFailure(): void
     {
@@ -99,7 +97,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function instances(): void
     {
@@ -164,7 +161,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function secondaries(): void
     {
@@ -216,7 +212,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function prefix(): void
     {
@@ -230,7 +225,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function querying(): void
     {
@@ -260,7 +254,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function readFailure(): void
     {
@@ -274,7 +267,6 @@ class DatabaseTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function noSuchTable(): void
     {
@@ -284,7 +276,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {

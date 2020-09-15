@@ -31,7 +31,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -53,7 +52,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If scope already set, module must not overwrite.
-     * @return void
      */
     public function testNoOverwrite(): void
     {
@@ -75,7 +73,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If source attribute not set, nothing happens
-     * @return void
      */
     public function testNoSourceAttribute(): void
     {
@@ -116,7 +113,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * When the source attribute doesn't have a scope, a warning is emitted
-     * @return void
      */
     public function testNoAt(): void
     {

@@ -107,7 +107,6 @@ class NameIDAttribute extends ProcessingFilter
      * Convert NameID to attribute.
      *
      * @param array &$state The request state.
-     * @return void
      */
     public function process(array &$state): void
     {

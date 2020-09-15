@@ -16,7 +16,6 @@ class SAMLBuilderTest extends TestCase
 {
     /**
      * Test the requested attributes are valued correctly.
-     * @return void
      */
     public function testAttributes(): void
     {
@@ -96,7 +95,6 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the working of the isDefault config option
-     * @return void
      */
     public function testAttributeConsumingServiceDefault(): void
     {
@@ -152,7 +150,6 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the index option is used correctly.
-     * @return void
      */
     public function testAttributeConsumingServiceIndex(): void
     {
@@ -197,7 +194,6 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
-     * @return void
      */
     public function testProtocolSupportEnumeration(): void
     {

@@ -15,7 +15,6 @@ class TranslateTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Translate::noop().
-     * @return void
      */
     public function testNoop(): void
     {

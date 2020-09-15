@@ -29,7 +29,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -43,7 +42,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -52,7 +50,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testGetSessionHandler(): void
     {
@@ -65,7 +62,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookie(): void
     {
@@ -89,7 +85,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookieSameSiteNone(): void
     {
@@ -110,7 +105,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookieSameSiteLax(): void
     {
@@ -131,7 +125,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookieSameSiteStrict(): void
     {
@@ -152,7 +145,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testRestorePrevious(): void
     {
@@ -175,7 +167,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testNewSessionId(): void
     {

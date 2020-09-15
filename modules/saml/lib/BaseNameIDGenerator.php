@@ -85,7 +85,6 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      * Generate transient NameID.
      *
      * @param array &$state  The request state.
-     * @return void
      */
     public function process(array &$state): void
     {

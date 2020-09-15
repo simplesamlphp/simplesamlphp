@@ -487,7 +487,6 @@ class SAMLParser
      *
      * @param array &$metadata The metadata that should be updated.
      * @param array $roleDescriptor The parsed role descriptor.
-     * @return void
      */
     private function addExtensions(array &$metadata, array $roleDescriptor): void
     {
@@ -796,7 +795,6 @@ class SAMLParser
      * @param \SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                     $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
-     * @return void
      */
     private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
     {
@@ -831,7 +829,6 @@ class SAMLParser
      * @param \SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                      $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
-     * @return void
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
     {
@@ -856,7 +853,6 @@ class SAMLParser
      * @param \SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
      * @param int|NULL                                  $expireTime The unix timestamp for when this element should
      *     expire, or NULL if unknown.
-     * @return void
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
@@ -1035,7 +1031,6 @@ class SAMLParser
      * Parse and process a Organization element.
      *
      * @param \SAML2\XML\md\Organization $element The Organization element.
-     * @return void
      */
     private function processOrganization(Organization $element): void
     {
@@ -1049,7 +1044,6 @@ class SAMLParser
      * Parse and process a ContactPerson element.
      *
      * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
-     * @return void
      */
     private function processContactPerson(ContactPerson $element): void
     {
@@ -1083,7 +1077,6 @@ class SAMLParser
      *
      * @param \SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
      * @param array $sp The array with the SP's metadata.
-     * @return void
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {

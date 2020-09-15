@@ -108,7 +108,6 @@ class AttributeValueMap extends Auth\ProcessingFilter
      * Apply filter.
      *
      * @param array &$request The current request
-     * @return void
      */
     public function process(array &$request): void
     {

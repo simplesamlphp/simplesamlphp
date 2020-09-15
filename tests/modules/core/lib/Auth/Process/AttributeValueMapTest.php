@@ -33,7 +33,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the most basic functionality.
      *
-     * @return void
      */
     public function testBasic(): void
     {
@@ -63,7 +62,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test basic functionality, remove duplicates
      *
-     * @return void
      */
     public function testNoDuplicates(): void
     {
@@ -94,7 +92,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %replace functionality.
      *
-     * @return void
      */
     public function testReplace(): void
     {
@@ -126,7 +123,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %keep functionality.
      *
-     * @return void
      */
     public function testKeep(): void
     {
@@ -158,7 +154,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test unknown flag Exception
      *
-     * @return void
      */
     public function testUnknownFlag(): void
     {
@@ -187,7 +182,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Source attribute
      *
-     * @return void
      */
     public function testMissingSourceAttribute(): void
     {
@@ -212,7 +206,6 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Target attribute
      *
-     * @return void
      */
     public function testMissingTargetAttribute(): void
     {

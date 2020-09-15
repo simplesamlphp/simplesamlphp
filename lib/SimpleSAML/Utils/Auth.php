@@ -68,7 +68,6 @@ class Auth
      * This is a helper function for limiting a page to those with administrative access. It will redirect the user to
      * a login page if the current user doesn't have admin access.
      *
-     * @return void This function will only return if the user is admin.
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
      */

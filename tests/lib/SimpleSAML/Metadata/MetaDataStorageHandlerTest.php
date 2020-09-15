@@ -15,7 +15,6 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
     /**
      * Test that loading specific entities works, and that metadata source precedence is followed
-     * @return void
      */
     public function testLoadEntities(): void
     {

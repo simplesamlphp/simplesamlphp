@@ -15,7 +15,6 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 class UserPassBaseTest extends TestCase
 {
     /**
-     * @return void
      */
     public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
@@ -45,7 +44,6 @@ class UserPassBaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPMissingUsername(): void
     {
@@ -69,7 +67,6 @@ class UserPassBaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPMissingPassword(): void
     {
@@ -93,7 +90,6 @@ class UserPassBaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {

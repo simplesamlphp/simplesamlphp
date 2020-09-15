@@ -51,7 +51,6 @@ class StaticSource extends Auth\Source
      * Log in using static attributes.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {

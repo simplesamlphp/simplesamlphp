@@ -18,7 +18,6 @@ class SessionTest extends ClearStateTestCase
     protected $session;
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -28,7 +27,6 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
-     * @return void
      */
     public function testSetRememberMeExpireDefaults(): void
     {
@@ -42,7 +40,6 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
-     * @return void
      */
     public function testSetRememberMeExpireExplicit(): void
     {

@@ -18,7 +18,6 @@ class MetaDataStorageSourceTest extends TestCase
 {
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
-     * @return void
      */
     public function testBadXMLSource(): void
     {
@@ -29,7 +28,6 @@ class MetaDataStorageSourceTest extends TestCase
 
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
-     * @return void
      */
     public function testInvalidStaticXMLSource(): void
     {
@@ -44,7 +42,6 @@ class MetaDataStorageSourceTest extends TestCase
 
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
-     * @return void
      */
     public function testStaticXMLSource(): void
     {
@@ -68,7 +65,6 @@ class MetaDataStorageSourceTest extends TestCase
 
     /**
      * Test loading multiple entities
-     * @return void
      */
     public function testLoadEntitiesStaticXMLSource(): void
     {

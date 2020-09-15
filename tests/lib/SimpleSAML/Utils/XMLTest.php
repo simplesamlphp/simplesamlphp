@@ -26,7 +26,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeBasic(): void
     {
@@ -42,7 +41,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeMissingNamespace(): void
     {
@@ -57,7 +55,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeEmpty(): void
     {
@@ -73,7 +70,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeShortcut(): void
     {
@@ -90,7 +86,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectName(): void
     {
@@ -107,7 +102,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectNamespace(): void
     {
@@ -124,7 +118,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomTextBasic(): void
     {
@@ -142,7 +135,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomTextMulti(): void
     {
@@ -162,7 +154,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomTextIncorrectType(): void
     {
@@ -177,7 +168,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomChildrenBasic(): void
     {
@@ -196,7 +186,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomChildrenIncorrectType(): void
     {
@@ -214,7 +203,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetDomChildrenIncorrectName(): void
     {
@@ -233,7 +221,6 @@ class XMLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testFormatDomElementBasic(): void
     {
@@ -256,7 +243,6 @@ NOWDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testFormatDomElementNested(): void
     {
@@ -283,7 +269,6 @@ NOWDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testFormatDomElementIndentBase(): void
     {
@@ -311,7 +296,6 @@ HEREDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testFormatDomElementTextAndChild(): void
     {
@@ -335,7 +319,6 @@ HEREDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testFormatXmlStringBasic(): void
     {
@@ -354,7 +337,6 @@ NOWDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testFormatXmlStringMalformedXml(): void
     {
@@ -367,7 +349,6 @@ NOWDOC;
 
     /**
      * @test
-     * @return void
      */
     public function testIsValidMalformedXml(): void
     {
@@ -382,7 +363,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testIsValidMetadata(): void
     {
@@ -397,7 +377,6 @@ NOWDOC;
     }
 
     /**
-     * @return void
      */
     public function testCheckSAMLMessageInvalidType(): void
     {

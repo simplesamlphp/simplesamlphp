@@ -90,7 +90,6 @@ class AttributeLimit extends Auth\ProcessingFilter
      *
      * @param array &$request  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-     * @return void
      */
     public function process(array &$request): void
     {

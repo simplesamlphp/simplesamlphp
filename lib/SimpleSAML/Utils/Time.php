@@ -46,7 +46,6 @@ class Time
      * This function should be called before any calls to date().
      *
      *
-     * @return void
      * @throws \SimpleSAML\Error\Exception If the timezone set in the configuration is invalid.
      */
     public static function initTimezone(): void

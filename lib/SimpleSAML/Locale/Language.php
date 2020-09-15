@@ -199,7 +199,6 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
-     * @return void
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
@@ -404,7 +403,6 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
-     * @return void
      */
     public static function setLanguageCookie(string $language): void
     {

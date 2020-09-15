@@ -34,7 +34,6 @@ class ConfigTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -78,7 +77,6 @@ class ConfigTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testDiagnostics(): void
     {
@@ -97,7 +95,6 @@ class ConfigTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMain(): void
     {
@@ -116,7 +113,6 @@ class ConfigTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testPhpinfo(): void
     {

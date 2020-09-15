@@ -79,7 +79,6 @@ class Exception extends \Exception
      * Load the backtrace from the given exception.
      *
      * @param \Throwable $exception The exception we should fetch the backtrace from.
-     * @return void
      */
     protected function initBacktrace(Throwable $exception): void
     {
@@ -197,7 +196,6 @@ class Exception extends \Exception
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
      * @param int $level
-     * @return void
      */
     protected function logBacktrace(int $level = Logger::DEBUG): void
     {
@@ -230,7 +228,6 @@ class Exception extends \Exception
      * Override to allow errors extending this class to specify the log level themselves.
      *
      * @param int $default_level The log level to use if this method was not overridden.
-     * @return void
      */
     public function log(int $default_level): void
     {
@@ -248,7 +245,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level error.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logError(): void
     {
@@ -261,7 +257,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level warning.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logWarning(): void
     {
@@ -274,7 +269,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level info.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logInfo(): void
     {
@@ -287,7 +281,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level debug.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logDebug(): void
     {

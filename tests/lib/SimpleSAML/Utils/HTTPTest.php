@@ -19,7 +19,6 @@ class HTTPTest extends ClearStateTestCase
      * Set up the environment ($_SERVER) populating the typical variables from a given URL.
      *
      * @param string $url The URL to use as the current one.
-     * @return void
      */
     private function setupEnvFromURL(string $url): void
     {
@@ -48,7 +47,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     * @return void
      */
     public function testAddURLParameters(): void
     {
@@ -76,7 +74,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
-     * @return void
      */
     public function testGuessBasePath(): void
     {
@@ -120,7 +117,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
-     * @return void
      */
     public function testGetSelfHost(): void
     {
@@ -140,7 +136,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
-     * @return void
      */
     public function testGetSelfHostWithPort(): void
     {
@@ -169,7 +164,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
-     * @return void
      */
     public function testGetSelfURLMethods(): void
     {
@@ -296,7 +290,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
-     * @return void
      */
     public function testCheckURLAllowedWithoutRegex(): void
     {
@@ -328,7 +321,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
-     * @return void
      */
     public function testCheckURLAllowedWithRegex(): void
     {
@@ -362,7 +354,6 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getServerPort().
-     * @return void
      */
     public function testGetServerPort(): void
     {
@@ -409,7 +400,6 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with the regex as a
      * subdomain of an evil domain.
-     * @return void
      */
     public function testCheckURLAllowedWithRegexWithoutDelimiters(): void
     {
@@ -430,7 +420,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testGetFirstPathElement(): void
     {
@@ -445,7 +434,6 @@ class HTTPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookie(): void
     {
@@ -503,7 +491,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testSetCookieInsecure(): void
     {
@@ -525,7 +512,6 @@ class HTTPTest extends ClearStateTestCase
     /**
      * @runInSeparateProcess
      * @requires extension xdebug
-     * @return void
      */
     public function testSetCookieSameSite(): void
     {

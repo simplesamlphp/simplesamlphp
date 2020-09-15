@@ -37,7 +37,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\SignedElement $element The element we should add the data to.
-     * @return void
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -89,7 +88,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
-     * @return void
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
@@ -193,7 +191,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should check the signature on.
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
      */
@@ -378,7 +375,6 @@ class Message
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
      *
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
      */

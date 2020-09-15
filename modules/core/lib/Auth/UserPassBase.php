@@ -129,7 +129,6 @@ abstract class UserPassBase extends Auth\Source
      * Set forced username.
      *
      * @param string|null $forcedUsername  The forced username.
-     * @return void
      */
     public function setForcedUsername(?string $forcedUsername): void
     {
@@ -194,7 +193,6 @@ abstract class UserPassBase extends Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -281,7 +279,6 @@ abstract class UserPassBase extends Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
-     * @return void
      */
     public static function handleLogin(string $authStateId, string $username, string $password): void
     {

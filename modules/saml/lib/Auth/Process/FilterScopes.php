@@ -46,7 +46,6 @@ class FilterScopes extends ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
-     * @return void
      */
     public function process(array &$request): void
     {

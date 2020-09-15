@@ -19,7 +19,6 @@ class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
      * Initialize processing of the redirect test.
      *
      * @param array &$state  The state we should update.
-     * @return void
      */
     public function process(array &$state): void
     {

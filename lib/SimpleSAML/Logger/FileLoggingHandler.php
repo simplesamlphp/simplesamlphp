@@ -78,7 +78,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void
     {
@@ -91,7 +90,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
     public function log(int $level, string $string): void
     {

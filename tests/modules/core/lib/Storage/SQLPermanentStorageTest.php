@@ -20,7 +20,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -33,7 +32,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public static function tearDownAfterClass(): void
     {
@@ -43,7 +41,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testSet(): void
     {
@@ -58,7 +55,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testSetOverwrite(): void
     {
@@ -76,7 +72,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testNonexistentKey(): void
     {
@@ -91,7 +86,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testExpiration(): void
     {
@@ -113,7 +107,6 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testRemove(): void
     {

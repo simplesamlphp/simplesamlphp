@@ -16,7 +16,6 @@ class StateTest extends TestCase
 {
     /**
      * Test the getPersistentAuthData() function.
-     * @return void
      */
     public function testGetPersistentAuthData(): void
     {

@@ -237,7 +237,6 @@ class Translate
      * @param mixed  $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
-     * @return void
      */
     public function includeInlineTranslation(string $tag, $translation): void
     {
@@ -262,7 +261,6 @@ class Translate
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
-     * @return void
      */
     public function includeLanguageFile(string $file, Configuration $otherConfig = null): void
     {

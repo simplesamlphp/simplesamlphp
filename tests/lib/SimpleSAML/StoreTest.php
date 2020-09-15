@@ -24,7 +24,6 @@ class StoreTest extends TestCase
 {
     /**
      * @test
-     * @return void
      */
     public function defaultStore(): void
     {
@@ -39,7 +38,6 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function phpSessionStore(): void
     {
@@ -54,7 +52,6 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function memcacheStore(): void
     {
@@ -70,7 +67,6 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function sqlStore(): void
     {
@@ -88,7 +84,6 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function pathStore(): void
     {
@@ -106,7 +101,6 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function notFoundStoreException(): void
     {
@@ -122,7 +116,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -138,7 +131,6 @@ class StoreTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
      * @param class-string $className
-     * @return void
      */
     protected function clearInstance($service, string $className): void
     {

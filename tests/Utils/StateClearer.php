@@ -34,7 +34,6 @@ class StateClearer
 
 
     /**
-     * @return void
      */
     public function backupGlobals(): void
     {
@@ -54,7 +53,6 @@ class StateClearer
 
     /**
      * Clear any global state.
-     * @return void
      */
     public function clearGlobals(): void
     {
@@ -75,7 +73,6 @@ class StateClearer
 
     /**
      * Clear any SSP specific state, such as SSP enviormental variables or cached internals.
-     * @return void
      */
     public function clearSSPState(): void
     {

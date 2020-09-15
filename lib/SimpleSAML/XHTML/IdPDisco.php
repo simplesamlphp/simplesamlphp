@@ -172,7 +172,6 @@ class IdPDisco
      * discovery service type.
      *
      * @param string $message The message which should be logged.
-     * @return void
      */
     protected function log(string $message): void
     {
@@ -209,7 +208,6 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      * @param string $value The value of the cookie.
-     * @return void
      */
     protected function setCookie(string $name, string $value): void
     {
@@ -387,7 +385,6 @@ class IdPDisco
      * Save the current IdP choice to a cookie.
      *
      * @param string $idp The entityID of the IdP.
-     * @return void
      */
     protected function setPreviousIdP(string $idp): void
     {
@@ -508,7 +505,6 @@ class IdPDisco
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
      *
-     * @return void If there is no IdP targeted and this is not a passive request.
      */
     protected function start(): void
     {
@@ -544,7 +540,6 @@ class IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
-     * @return void
      */
     public function handleRequest(): void
     {

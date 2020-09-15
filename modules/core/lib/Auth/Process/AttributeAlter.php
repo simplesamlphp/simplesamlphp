@@ -101,7 +101,6 @@ class AttributeAlter extends Auth\ProcessingFilter
      *
      * @param array &$request The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
-     * @return void
      */
     public function process(array &$request): void
     {

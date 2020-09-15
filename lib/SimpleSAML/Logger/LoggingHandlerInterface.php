@@ -27,7 +27,6 @@ interface LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The message to log.
-     * @return void
      */
     public function log(int $level, string $string): void;
 
@@ -36,7 +35,6 @@ interface LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void;
 }

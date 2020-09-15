@@ -20,7 +20,6 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
 {
     /**
      * Test Registration Info is parsed
-     * @return void
      */
     public function testRegistrationInfo(): void
     {
@@ -54,7 +53,6 @@ XML
     /**
      * Test RegistrationInfo is inherited correctly from parent EntitiesDescriptor.
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
-     * @return void
      */
     public function testRegistrationInfoInheritance(): void
     {
@@ -106,7 +104,6 @@ XML
 
     /**
      * Test AttributeConsumingService is parsed
-     * @return void
      */
     public function testAttributeConsumingServiceParsing(): void
     {
@@ -184,7 +181,6 @@ XML
 
     /**
      * Test RoleDescriptor/Extensions is parsed
-     * @return void
      */
     public function testRoleDescriptorExtensions(): void
     {
@@ -276,7 +272,6 @@ XML
 
     /**
      * Test entity category hidden from discovery is parsed
-     * @return void
      */
     public function testHiddenFromDiscovery(): void
     {
@@ -309,7 +304,6 @@ XML
 
     /**
      * Test entity category hidden from discovery is not returned when not present
-     * @return void
      */
     public function testHiddenFromDiscoveryNotHidden(): void
     {
@@ -341,7 +335,6 @@ XML
 
     /**
      * Test entity category hidden from discovery is not returned when no mace dir entity categories present
-     * @return void
      */
     public function testHiddenFromDiscoveryNotHiddenNoMaceDirEC(): void
     {

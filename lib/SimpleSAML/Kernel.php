@@ -100,7 +100,6 @@ class Kernel extends BaseKernel
      *
      * @param ContainerBuilder $container
      * @param LoaderInterface $loader
-     * @return void
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
@@ -124,7 +123,6 @@ class Kernel extends BaseKernel
      * Import routes.
      *
      * @param RouteCollectionBuilder $routes
-     * @return void
      */
     protected function configureRoutes(RouteCollectionBuilder $routes): void
     {
@@ -140,7 +138,6 @@ class Kernel extends BaseKernel
 
     /**
      * @param ContainerBuilder $container
-     * @return void
      */
     private function registerModuleControllers(ContainerBuilder $container): void
     {

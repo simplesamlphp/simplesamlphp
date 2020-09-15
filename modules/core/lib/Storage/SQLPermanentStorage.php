@@ -75,7 +75,6 @@ class SQLPermanentStorage
      * @param string $key2
      * @param string $value
      * @param int|null $duration
-     * @return void
      */
     public function set(string $type, string $key1, string $key2, string $value, int $duration = null): void
     {

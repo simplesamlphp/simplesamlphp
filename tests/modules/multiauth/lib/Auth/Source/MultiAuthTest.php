@@ -23,7 +23,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -75,7 +74,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testSourcesMustBePresent(): void
     {
@@ -94,7 +92,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectMustBeValid(): void
     {
@@ -143,7 +140,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectIsOptional(): void
     {
@@ -199,7 +195,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectCanBeConfigured(): void
     {
@@ -218,7 +213,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testStatePreselectHasPriority(): void
     {

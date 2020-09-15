@@ -33,7 +33,6 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test valid scopes.
-     * @return void
      */
     public function testValidScopes(): void
     {
@@ -95,7 +94,6 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test invalid scopes.
-     * @return void
      */
     public function testInvalidScopes(): void
     {

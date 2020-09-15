@@ -47,7 +47,6 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
-     * @return void
      */
     public static function sendResponse(array $state): void
     {
@@ -125,7 +124,6 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
-     * @return void
      */
     public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state): void
     {
@@ -274,7 +272,6 @@ class SAML2
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
     public static function receiveAuthnRequest(IdP $idp): void
@@ -492,7 +489,6 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
-     * @return void
      */
     public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
     {
@@ -528,7 +524,6 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
-     * @return void
      */
     public static function sendLogoutResponse(IdP $idp, array $state): void
     {
@@ -588,7 +583,6 @@ class SAML2
      * Receive a logout message.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
     public static function receiveLogoutMessage(IdP $idp): void

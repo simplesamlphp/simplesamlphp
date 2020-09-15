@@ -55,7 +55,6 @@ class FederationTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -95,7 +94,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMain(): void
     {
@@ -180,7 +178,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMetadataConverterFileUpload(): void
     {
@@ -210,7 +207,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMetadataConverterData(): void
     {
@@ -229,7 +225,6 @@ class FederationTest extends TestCase
     }
 
     /**
-     * @return void
      */
     public function testMetadataConverterSkipsExpires(): void
     {
@@ -249,7 +244,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMetadataConverterInvalidMetadataShowsError(): void
     {
@@ -270,7 +264,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMetadataConverterEmptyInput(): void
     {
@@ -292,7 +285,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testDownloadCertSP(): void
     {
@@ -344,7 +336,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testDownloadCertFile(): void
     {
@@ -384,7 +375,6 @@ class FederationTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testShowRemoteEntity(): void
     {

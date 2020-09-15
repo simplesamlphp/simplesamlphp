@@ -47,7 +47,6 @@ class AuthnContextClassRef extends ProcessingFilter
      * Set the AuthnContextClassRef in the SAML 2 response.
      *
      * @param array &$state The state array for this request.
-     * @return void
      */
     public function process(array &$state): void
     {

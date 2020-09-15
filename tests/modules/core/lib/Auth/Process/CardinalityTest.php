@@ -43,7 +43,6 @@ class CardinalityTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -56,7 +55,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a minimum is set but no maximum
-     * @return void
      */
     public function testMinNoMax(): void
     {
@@ -77,7 +75,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a maximum is set but no minimum
-     * @return void
      */
     public function testMaxNoMin(): void
     {
@@ -98,7 +95,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test in bounds within a maximum an minimum
-     * @return void
      */
     public function testMaxMin(): void
     {
@@ -119,7 +115,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test maximum is out of bounds results in redirect
-     * @return void
      */
     public function testMaxOutOfBounds(): void
     {
@@ -142,7 +137,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test minimum is out of bounds results in redirect
-     * @return void
      */
     public function testMinOutOfBounds(): void
     {
@@ -165,7 +159,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test missing attribute results in redirect
-     * @return void
      */
     public function testMissingAttribute(): void
     {
@@ -191,7 +184,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid minimum values
-     * @return void
      */
     public function testMinInvalid(): void
     {
@@ -211,7 +203,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid minimum values
-     * @return void
      */
     public function testMinNegative(): void
     {
@@ -231,7 +222,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid maximum values
-     * @return void
      */
     public function testMaxInvalid(): void
     {
@@ -251,7 +241,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test maximum < minimum
-     * @return void
      */
     public function testMinGreaterThanMax(): void
     {
@@ -271,7 +260,6 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid attribute name
-     * @return void
      */
     public function testInvalidAttributeName(): void
     {

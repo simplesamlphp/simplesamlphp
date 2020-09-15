@@ -316,7 +316,6 @@ class State
      * This function deletes the given state to prevent the user from reusing it later.
      *
      * @param array &$state The state which should be deleted.
-     * @return void
      */
     public static function deleteState(array &$state): void
     {
@@ -339,7 +338,6 @@ class State
      * @param \SimpleSAML\Error\Exception $exception The exception.
      *
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
-     * @return void
      */
     public static function throwException(array $state, Error\Exception $exception): void
     {

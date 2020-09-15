@@ -78,7 +78,6 @@ class EMail
      * Set the data that should be embedded in the e-mail body
      *
      * @param array $data The data that should be embedded in the e-mail body
-     * @return void
      */
     public function setData(array $data): void
     {
@@ -104,7 +103,6 @@ class EMail
      * Set an introduction text for the e-mail
      *
      * @param string $text Introduction text
-     * @return void
      */
     public function setText(string $text): void
     {
@@ -116,7 +114,6 @@ class EMail
      * Add a Reply-To address to the mail
      *
      * @param string $address Reply-To e-mail address
-     * @return void
      */
     public function addReplyTo(string $address): void
     {
@@ -128,7 +125,6 @@ class EMail
      * Send the mail
      *
      * @param bool $plainTextOnly Do not send HTML payload
-     * @return void
      *
      * @throws \PHPMailer\PHPMailer\Exception
      */
@@ -154,7 +150,6 @@ class EMail
      * @param string $transportMethod the transport method
      * @param array $transportOptions options for the transport method
      *
-     * @return void
      *
      * @throws \InvalidArgumentException
      */

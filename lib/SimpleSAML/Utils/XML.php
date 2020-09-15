@@ -37,7 +37,6 @@ class XML
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
      *
-     * @return void
      *
      */
     public static function checkSAMLMessage(string $message, string $type): void
@@ -92,7 +91,6 @@ class XML
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
      *
-     * @return void
      *
      */
     public static function debugSAMLMessage($message, string $type): void
@@ -157,7 +155,6 @@ class XML
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
      *
-     * @return void
      *
      */
     public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void

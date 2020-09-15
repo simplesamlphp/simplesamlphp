@@ -32,7 +32,6 @@ class Errors
     /**
      * Append current XML errors to the current stack level.
      *
-     * @return void
      */
     private static function addErrors(): void
     {
@@ -50,7 +49,6 @@ class Errors
      * A call to this function will begin a new error logging context. Every call must have
      * a corresponding call to end().
      *
-     * @return void
      */
     public static function begin(): void
     {

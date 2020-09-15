@@ -14,7 +14,6 @@ use SimpleSAML\Locale\Localization;
 class LocalizationTest extends TestCase
 {
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -25,7 +24,6 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization().
-     * @return void
      */
     public function testLocalization(): void
     {
@@ -37,7 +35,6 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization::activateDomain().
-     * @return void
      */
     public function testAddDomain(): void
     {

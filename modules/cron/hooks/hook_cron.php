@@ -7,7 +7,6 @@ use SimpleSAML\Configuration;
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
- * @return void
  */
 function cron_hook_cron(array &$croninfo): void
 {

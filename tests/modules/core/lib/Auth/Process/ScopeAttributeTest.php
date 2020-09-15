@@ -31,7 +31,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -55,7 +54,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * If target attribute already set, module must add, not overwrite.
-     * @return void
      */
     public function testNoOverwrite(): void
     {
@@ -82,7 +80,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * If same scope already set, module must do nothing, not duplicate value.
-     * @return void
      */
     public function testNoDuplication(): void
     {
@@ -106,7 +103,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * If source attribute not set, nothing happens
-     * @return void
      */
     public function testNoSourceAttribute(): void
     {
@@ -129,7 +125,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * If scope attribute not set, nothing happens
-     * @return void
      */
     public function testNoScopeAttribute(): void
     {
@@ -152,7 +147,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * When multiple @ signs in attribute, will use the first one.
-     * @return void
      */
     public function testMultiAt(): void
     {
@@ -175,7 +169,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * When multiple values in source attribute, should render multiple targets.
-     * @return void
      */
     public function testMultivaluedSource(): void
     {
@@ -201,7 +194,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * When the source attribute doesn't have a scope, the entire value is used.
-     * @return void
      */
     public function testNoAt(): void
     {
@@ -224,7 +216,6 @@ class ScopeAttributeTest extends TestCase
 
     /**
      * When the target attribute exists and onlyIfEmpty is set
-     * @return void
      */
     public function testOnlyIfEmpty(): void
     {

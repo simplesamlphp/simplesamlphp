@@ -18,7 +18,6 @@ use SimpleSAML\Utils\EMail;
 class EMailTest extends ClearStateTestCase
 {
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -34,7 +33,6 @@ class EMailTest extends ClearStateTestCase
     /**
      * Test that an exception is thrown if using default configuration,
      * and no custom from address is specified.
-     * @return void
      */
     public function testMailFromDefaultConfigurationException(): void
     {
@@ -45,7 +43,6 @@ class EMailTest extends ClearStateTestCase
 
     /**
      * Test that an exception is thrown if using an invalid "From"-address
-     * @return void
      */
     public function testInvalidFromAddressException(): void
     {
@@ -56,7 +53,6 @@ class EMailTest extends ClearStateTestCase
 
     /**
      * Test that an exception is thrown if using an invalid "To"-address
-     * @return void
      */
     public function testInvalidToAddressException(): void
     {
@@ -69,7 +65,6 @@ class EMailTest extends ClearStateTestCase
      * Test that the data given is visible in the resulting mail
      * @dataProvider mailTemplates
      * @param string $template
-     * @return void
      */
     public function testMailContents($template): void
     {
@@ -99,7 +94,6 @@ class EMailTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testInvalidTransportConfiguration(): void
     {
@@ -121,7 +115,6 @@ class EMailTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testInvalidSMTPConfiguration(): void
     {
@@ -138,7 +131,6 @@ class EMailTest extends ClearStateTestCase
     /**
      * Test setting configuration.
      *
-     * @return void
      */
     public function testGetDefaultMailAddress(): void
     {

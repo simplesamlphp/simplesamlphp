@@ -17,7 +17,6 @@ class ConfigTest extends TestCase
 {
     /**
      * Test default config dir with not environment variable
-     * @return void
      */
     public function testDefaultConfigDir(): void
     {
@@ -31,7 +30,6 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
-     * @return void
      */
     public function testEnvVariableConfigDir(): void
     {
@@ -43,7 +41,6 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
-     * @return void
      */
     public function testEnvRedirectVariableConfigDir(): void
     {
@@ -56,7 +53,6 @@ class ConfigTest extends TestCase
 
     /**
      * Test which directory takes precedence
-     * @return void
      */
     public function testEnvRedirectPriorityVariableConfigDir(): void
     {
@@ -70,7 +66,6 @@ class ConfigTest extends TestCase
 
     /**
      * Test invalid dir specified by env var results in a thrown exception
-     * @return void
      */
     public function testInvalidEnvVariableConfigDirThrowsException(): void
     {

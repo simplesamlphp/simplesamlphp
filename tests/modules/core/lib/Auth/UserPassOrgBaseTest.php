@@ -13,7 +13,6 @@ use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 class UserPassOrgBaseTest extends TestCase
 {
     /**
-     * @return void
      */
     public function testRememberOrganizationEnabled(): void
     {

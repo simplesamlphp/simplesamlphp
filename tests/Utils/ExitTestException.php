@@ -15,7 +15,6 @@ class ExitTestException extends \Exception
 
     /**
      * @param array $testResult
-     * @return void
      */
     public function __construct(array $testResult)
     {

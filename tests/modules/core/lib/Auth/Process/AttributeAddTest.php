@@ -32,7 +32,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -51,7 +50,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @return void
      */
     public function testExistingNotModified(): void
     {
@@ -77,7 +75,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test single string as attribute value.
-     * @return void
      */
     public function testStringValue(): void
     {
@@ -96,7 +93,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test adding multiple attributes in one config.
-     * @return void
      */
     public function testAddMultiple(): void
     {
@@ -118,7 +114,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test behavior when appending attribute values.
-     * @return void
      */
     public function testAppend(): void
     {
@@ -138,7 +133,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test replacing attribute values.
-     * @return void
      */
     public function testReplace(): void
     {
@@ -159,7 +153,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong usage generates exceptions
-     * @return void
      */
     public function testWrongFlag(): void
     {
@@ -179,7 +172,6 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong attribute value
-     * @return void
      */
     public function testWrongAttributeValue(): void
     {

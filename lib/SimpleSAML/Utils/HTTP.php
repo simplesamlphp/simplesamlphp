@@ -161,7 +161,6 @@ class HTTP
      *     the name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just
      *     the name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
@@ -295,7 +294,6 @@ class HTTP
      *
      * @param string|null $retryURL The URL the user should access to retry the operation. Defaults to null.
      *
-     * @return void If there is a session cookie, nothing will be returned. Otherwise, the user will be redirected to a
      *     page telling about the missing cookie.
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
      *
@@ -932,7 +930,6 @@ class HTTP
      * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
      * name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
@@ -959,7 +956,6 @@ class HTTP
      * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
      * name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
@@ -1061,7 +1057,6 @@ class HTTP
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
-     * @return void
      *
      */
     public static function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
@@ -1159,7 +1154,6 @@ class HTTP
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      *
-     * @return void
      *
      */
     public static function submitPOSTData(string $destination, array $data): void

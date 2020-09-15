@@ -39,7 +39,6 @@ class IndexTest extends TestCase
 
     /**
      * The setup method that is run before any tests in this class.
-     * @return void
      */
     protected function setup(): void
     {
@@ -54,7 +53,6 @@ class IndexTest extends TestCase
 
     /**
      * @param array $config
-     * @return void
      */
     protected function updateConfig(array $config): void
     {
@@ -66,7 +64,6 @@ class IndexTest extends TestCase
 
     /**
      * A simple test to make sure the index.php file redirects appropriately to the right URL.
-     * @return void
      */
     public function testRedirection(): void
     {
@@ -113,7 +110,6 @@ class IndexTest extends TestCase
 
     /**
      * The tear down method that is executed after all tests in this class.
-     * @return void
      */
     protected function tearDown(): void
     {

@@ -19,7 +19,6 @@ class ClearStateTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -31,7 +30,6 @@ class ClearStateTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -40,7 +38,6 @@ class ClearStateTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     public static function tearDownAfterClass(): void
     {
@@ -50,7 +47,6 @@ class ClearStateTestCase extends TestCase
 
     /**
      * Clear any SSP global state to reduce spill over between tests.
-     * @return void
      */
     public static function clearState(): void
     {

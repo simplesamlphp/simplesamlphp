@@ -391,7 +391,6 @@ class MetaDataStorageHandler implements ClearableState
      * Clear any metadata cached.
      * Allows for metadata configuration to be changed and reloaded during a given request. Most useful
      * when running phpunit tests and needing to alter config.php and metadata sources between test cases
-     * @return void
      */
     public static function clearInternalState(): void
     {

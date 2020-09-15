@@ -57,7 +57,6 @@ class GenerateGroups extends Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

@@ -67,7 +67,6 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
      * Log line.
      *
      * @param array &$state  The current state.
-     * @return void
      */
     public function process(array &$state): void
     {

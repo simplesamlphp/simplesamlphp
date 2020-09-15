@@ -134,7 +134,6 @@ class MultiAuth extends Auth\Source
      * in the delegateAuthentication method.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -176,7 +175,6 @@ class MultiAuth extends Auth\Source
      *
      * @param string $authId Selected authentication source
      * @param array $state Information about the current authentication.
-     * @return void
      * @throws \Exception
      */
     public static function delegateAuthentication(string $authId, array $state): void
@@ -224,7 +222,6 @@ class MultiAuth extends Auth\Source
      * session and then call the logout method on it.
      *
      * @param array &$state Information about the current logout operation.
-     * @return void
      */
     public function logout(array &$state): void
     {
@@ -248,7 +245,6 @@ class MultiAuth extends Auth\Source
      * by storing its name in a cookie.
      *
      * @param string $source Name of the authentication source the user selected.
-     * @return void
      */
     public function setPreviousSource(string $source): void
     {

@@ -33,7 +33,6 @@ class CronTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -75,7 +74,6 @@ class CronTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testInfo(): void
     {
@@ -90,7 +88,6 @@ class CronTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testRun(): void
     {

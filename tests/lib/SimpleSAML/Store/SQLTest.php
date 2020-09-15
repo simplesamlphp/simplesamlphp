@@ -22,7 +22,6 @@ use SimpleSAML\Store;
 class SQLTest extends TestCase
 {
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -36,7 +35,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function SQLInstance(): void
     {
@@ -48,7 +46,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function kvstoreTableVersion(): void
     {
@@ -63,7 +60,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function newTableVersion(): void
     {
@@ -78,7 +74,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testSetTableVersion(): void
     {
@@ -94,7 +89,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testGetEmptyData(): void
     {
@@ -109,7 +103,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testInsertData(): void
     {
@@ -125,7 +118,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testOverwriteData(): void
     {
@@ -142,7 +134,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testDeleteData(): void
     {
@@ -159,7 +150,6 @@ class SQLTest extends TestCase
 
     /**
      * @test
-     * @return void
      */
     public function testVeryLongKey(): void
     {
@@ -176,7 +166,6 @@ class SQLTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -193,7 +182,6 @@ class SQLTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
      * @param class-string $className
-     * @return void
      */
     protected function clearInstance($service, string $className): void
     {

@@ -90,7 +90,6 @@ class ProcessingChain
      *
      * @param array &$target  Target filter list. This list must be sorted.
      * @param array $src  Source filters. May be unsorted.
-     * @return void
      */
     private static function addFilters(array &$target, array $src): void
     {
@@ -185,7 +184,6 @@ class ProcessingChain
      * @param array &$state  The state we are processing.
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\UnserializableException
-     * @return void
      */
     public function processState(array &$state): void
     {
@@ -224,7 +222,6 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
-     * @return void
      */
     public static function resumeProcessing(array $state): void
     {
@@ -277,7 +274,6 @@ class ProcessingChain
      * This function will only return if processing completes.
      *
      * @param array &$state  The state we are processing.
-     * @return void
      */
     public function processStatePassive(array &$state): void
     {

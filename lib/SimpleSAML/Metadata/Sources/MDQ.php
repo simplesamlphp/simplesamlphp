@@ -179,7 +179,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param array  $data The associative array with the metadata for this entity.
      *
      * @throws \Exception If metadata cannot be written to cache.
-     * @return void
      */
     private function writeToCache(string $set, string $entityId, array $data): void
     {

@@ -18,7 +18,6 @@ class SimpleTest extends ClearStateTestCase
 {
     /**
      * @test
-     * @return void
      */
     public function testGetProcessedURL(): void
     {

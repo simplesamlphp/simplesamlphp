@@ -21,7 +21,6 @@ use SimpleSAML\XML\Validator;
 class ValidatorTest extends SigningTestCase
 {
     /**
-     * @return void
      */
     public function testValidatorMissingSignature(): void
     {
@@ -34,7 +33,6 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
-     * @return void
      */
     public function testGetX509Certificate(): void
     {
@@ -63,7 +61,6 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
-     * @return void
      */
     public function testIsNodeValidatedSuccess(): void
     {
@@ -92,7 +89,6 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
-     * @return void
      */
     public function testIsNodeValidatedFailure(): void
     {

@@ -32,7 +32,6 @@ XML;
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -42,7 +41,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getValue(): void
     {
@@ -56,7 +54,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getEmptyValue(): void
     {
@@ -70,7 +67,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getValueException(): void
     {
@@ -81,7 +77,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getDefaultValue(): void
     {
@@ -95,7 +90,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getValueAlternatives(): void
     {
@@ -116,7 +110,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getEmptyValueAlternatives(): void
     {
@@ -137,7 +130,6 @@ XML;
 
     /**
      * @test
-     * @return void
      */
     public function getValueAlternativesException(): void
     {

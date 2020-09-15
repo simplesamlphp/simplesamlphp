@@ -33,7 +33,6 @@ class CryptoTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -53,7 +52,6 @@ class CryptoTest extends TestCase
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
      *
-     * @return void
      */
     public function testAesDecrypt(): void
     {
@@ -75,7 +73,6 @@ class CryptoTest extends TestCase
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
      *
-     * @return void
      */
     public function testAesEncrypt(): void
     {
@@ -99,7 +96,6 @@ class CryptoTest extends TestCase
     /**
      * Test that the pem2der() and der2pem() methods work correctly.
      *
-     * @return void
      */
     public function testFormatConversion(): void
     {
@@ -144,7 +140,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testGoodPwValid(): void
     {
@@ -158,7 +153,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testBadPwInvalid(): void
     {
@@ -173,7 +167,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testSecureCompareEqual(): void
     {
@@ -184,7 +177,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testSecureCompareNotEqual(): void
     {
@@ -195,7 +187,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyRequiredMetadataMissing(): void
     {
@@ -208,7 +199,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyNotRequiredMetadataMissing(): void
     {
@@ -222,7 +212,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyMissingFile(): void
     {
@@ -234,7 +223,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyBasic(): void
     {
@@ -253,7 +241,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyPassword(): void
     {
@@ -279,7 +266,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPrivateKeyPrefix(): void
     {
@@ -306,7 +292,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPublicKeyRequiredMetadataMissing(): void
     {
@@ -319,7 +304,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPublicKeyNotRequiredMetadataMissing(): void
     {
@@ -333,7 +317,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPublicKeyNotX509Certificate(): void
     {
@@ -357,7 +340,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPublicKeyNotSigning(): void
     {
@@ -381,7 +363,6 @@ PHP;
 
 
     /**
-     * @return void
      */
     public function testLoadPublicKeyBasic(): void
     {

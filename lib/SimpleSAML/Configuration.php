@@ -178,7 +178,6 @@ class Configuration implements Utils\ClearableState
      *
      * @param string $path The directory which contains the configuration files.
      * @param string $configSet The configuration set. Defaults to 'simplesaml'.
-     * @return void
      */
     public static function setConfigDir(string $path, string $configSet = 'simplesaml'): void
     {
@@ -195,7 +194,6 @@ class Configuration implements Utils\ClearableState
      * @param \SimpleSAML\Configuration $config  The configuration object to store
      * @param string $filename  The name of the configuration file.
      * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
-     * @return void
      * @throws \Exception
      */
     public static function setPreLoadedConfig(
@@ -1200,7 +1198,6 @@ class Configuration implements Utils\ClearableState
      * Allows for configuration files to be changed and reloaded during a given request. Most useful
      * when running phpunit tests and needing to alter config.php between test cases
      *
-     * @return void
      */
     public static function clearInternalState(): void
     {

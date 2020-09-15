@@ -179,7 +179,6 @@ class System
      * @param string $data The data we should write to the file.
      * @param int    $mode The permissions to apply to the file. Defaults to 0600.
      *
-     * @return void
      *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
      * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not

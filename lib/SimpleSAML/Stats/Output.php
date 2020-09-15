@@ -29,7 +29,6 @@ abstract class Output
      * Write a stats event.
      *
      * @param array $data The event.
-     * @return void
      */
     abstract public function emit(array $data): void;
 }

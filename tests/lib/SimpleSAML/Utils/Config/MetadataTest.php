@@ -20,7 +20,6 @@ class MetadataTest extends TestCase
 {
     /**
      * Test contact configuration parsing and sanitizing.
-     * @return void
      */
     public function testGetContact(): void
     {
@@ -228,7 +227,6 @@ class MetadataTest extends TestCase
 
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery().
-     * @return void
      */
     public function testIsHiddenFromDiscovery(): void
     {
@@ -269,7 +267,6 @@ class MetadataTest extends TestCase
 
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
-     * @return void
      */
     public function testParseNameIdPolicy(): void
     {

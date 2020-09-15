@@ -27,7 +27,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -61,7 +60,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the most basic functionality
-     * @return void
      */
     public function testBasic()
     {
@@ -79,7 +77,6 @@ class TargetedIDTest extends TestCase
     /**
      * Test with src and dst entityIds.
      * Make sure to overwrite any present eduPersonTargetedId
-     * @return void
      */
     public function testWithSrcDst()
     {
@@ -109,7 +106,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with nameId config option set.
-     * @return void
      */
     public function testNameIdGeneration()
     {
@@ -154,7 +150,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome to make sure the algorithm remains unchanged
-     * @return void
      */
     public function testOutcome()
     {
@@ -171,7 +166,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome when multiple values are given
-     * @return void
      */
     public function testOutcomeMultipleValues()
     {
@@ -188,7 +182,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is the same for subsequent invocations with same input.
-     * @return void
      */
     public function testIdIsPersistent()
     {
@@ -222,7 +215,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is different for two different usernames and two different sp's
-     * @return void
      */
     public function testIdIsUnique()
     {
@@ -258,7 +250,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test no userid set
-     * @return void
      */
     public function testNoUserID(): void
     {
@@ -273,7 +264,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with specified attribute not set
-     * @return void
      */
     public function testAttributeNotExists(): void
     {
@@ -292,7 +282,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with configuration error 1
-     * @return void
      */
     public function testConfigInvalidAttributeName(): void
     {
@@ -311,7 +300,6 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with configuration error 2
-     * @return void
      */
     public function testConfigInvalidNameId(): void
     {
