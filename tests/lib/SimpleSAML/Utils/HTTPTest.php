@@ -526,4 +526,46 @@ class HTTPTest extends ClearStateTestCase
         $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[2]);
         $this->assertMatchesRegularExpression('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[3]);
     }
+
+    /**
+     * Test detecting if user agent supports None
+     * @dataProvider detectSameSiteProvider
+     * @param null|string $userAgent The user agent. Null means not set, like with CLI
+     * @param bool $supportsNone None can be set as a SameSite flag
+     */
+    public function testDetectSameSiteNoneBehavior(?string $userAgent, bool $supportsNone): void
+    {
+        if ($userAgent) {
+            $_SERVER['HTTP_USER_AGENT'] = $userAgent;
+        }
+        $this->assertEquals($supportsNone, HTTP::canSetSameSiteNone(), $userAgent ?? 'No user agent set');
+    }
+
+    public function detectSameSiteProvider(): array
+    {
+        // @codingStandardsIgnoreStart
+        return [
+          [null, true],
+          ['some-new-browser', true],
+            //Browsers that can handle 'None'
+            // Chrome
+            ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36', true],
+            // Chome on windows
+            ['Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36', true],
+            // Chrome linux
+            ['Mozilla/5.0 (X11; HasCodingOs 1.0; Linux x64) AppleWebKit/637.36 (KHTML, like Gecko) Chrome/70.0.3112.101 Safari/637.36 HasBrowser/5.0', true],
+             // Safari iOS 13
+            ['Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.2 Mobile/15E148 Safari/604.1', true],
+            // Mac OS X with support
+            ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Safari/605.1.15', true],
+            // Browser without support
+            // Old Safari on mac
+            ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15', false],
+            // Old Safari on iOS 12
+            ['Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1', false],
+            // Chromium without support
+            ['Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/65.0.3325.181 Chrome/65.0.3325.181 Safari/537.36', false],
+        ];
+        // @codingStandardsIgnoreEnd
+    }
 }

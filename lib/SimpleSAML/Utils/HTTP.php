@@ -19,6 +19,43 @@ use SimpleSAML\XHTML\Template;
 class HTTP
 {
     /**
+     * Determine if the user agent can support cookies being sent with SameSite equal to "None".
+     * Browsers with out support may drop the cookie and or treat is a stricter setting
+     * Browsers with support may have additional requirements on setting it on non-secure websites.
+     *
+     * Based on the Azure teams experience rolling out support
+     * https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+     * @return bool true if user agent supports a None value for SameSite.
+     */
+    public static function canSetSameSiteNone(): bool
+    {
+        $useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
+        if (!$useragent) {
+            return true;
+        }
+        // All iOS 12 based browsers
+        if (strpos($useragent, "CPU iPhone OS 12") !== false || strpos($useragent, "iPad; CPU OS 12") !== false) {
+            return false;
+        }
+
+        // Safari Mac OS X 10.14
+        // - Safari on Mac OS X.
+        if (
+            strpos($useragent, "Macintosh; Intel Mac OS X 10_14") !== false &&
+            strpos($useragent, "Version/") !== false &&
+            strpos($useragent, "Safari") !== false
+        ) {
+            return false;
+        }
+
+        // Chrome 50-69 may have broken SameSite=None and don't require it to be set
+        if (strpos($useragent, "Chrome/5") !== false || strpos($useragent, "Chrome/6") !== false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
      *
      * @param string $destination The destination URL.
