@@ -585,6 +585,12 @@ class SimpleSAML_Session {
 
 		/* Delete data which expires on logout. */
 		$this->expireDataLogout();
+
+                /* Delete cookies on logout. */
+                $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+                $globalConfig = SimpleSAML_Configuration::getInstance();
+                $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), NULL);
+                $sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), NULL);
 	}
 
 
