@@ -233,7 +233,7 @@ class Template extends Response
             $templateName = substr($templateName, 0, $tplpos);
         }
 
-        if ($this->useNewUI || ($this->theme['module'] !== null)) {
+        if ($this->useNewUI) {
             return $templateName . '.twig';
         }
         return $templateName;
