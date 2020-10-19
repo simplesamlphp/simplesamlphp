@@ -17,6 +17,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
+use SimpleSAML\Message;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
