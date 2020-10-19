@@ -58,6 +58,7 @@ class PHP extends Auth\ProcessingFilter
          * @param array &$attributes
          * @param array &$state
          */
+        $function = function (
             /** @scrutinizer ignore-unused */ array &$attributes,
             /** @scrutinizer ignore-unused */ array &$state
         ) {
