@@ -54,6 +54,7 @@ class RedisTest extends TestCase
         $this->mocked_redis->method('del')
                            ->will($this->returnCallback([$this, 'delMocked']));
 
+        $nop = /** @return void */ function () {
             return;
         };
 
