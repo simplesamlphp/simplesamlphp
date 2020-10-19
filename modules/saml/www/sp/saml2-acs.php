@@ -12,6 +12,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
+use SimpleSAML\Message;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
