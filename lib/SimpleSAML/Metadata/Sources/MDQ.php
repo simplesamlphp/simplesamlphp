@@ -287,7 +287,9 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
-            throw new \Exception(__CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".');
+            throw new \Exception(
+                __CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".'
+            );
         }
 
         try {
