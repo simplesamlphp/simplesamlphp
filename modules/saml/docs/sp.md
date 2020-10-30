@@ -94,7 +94,7 @@ The following attributes are available:
 
 `saml:sp:NameID`
 :   The NameID the user was issued by the IdP.
-    This is an associative array with the various fields from the NameID.
+    This is a \SAML2\XML\saml\NameID object with the various fields from the NameID.
 
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
