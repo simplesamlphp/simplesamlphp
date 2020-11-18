@@ -25,6 +25,7 @@ env:
   - COMMAND="composer update"
 
 before_script:
+  - composer self-update --rollback
   - pecl install krb5
   - ${COMMAND}
 
