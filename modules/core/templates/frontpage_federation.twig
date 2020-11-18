@@ -46,9 +46,9 @@
             {% endif -%}</a>
 
             {%- if entity.expire is defined %}
-            {% if entity.expire > date().timestamp %}
-            <span class="entity-expired"> (expired {{ ((date().timestamp - entity.expire) / 3600) }} hours ago)</span>
-            {% else %} (expires in {{ ((entity.expire - date().timestamp) / 3600) }} hours){% endif -%}{% endif %}
+            {% if ((entity.expire - date().timestamp) < 0) %}
+            <span class="entity-expired"> (expired {{ ((date().timestamp - entity.expire) / 3600) | round(2) }} hours ago)</span>
+            {% else %} (expires in {{ ((entity.expire - date().timestamp) / 3600) | round(2) }} hours){% endif -%}{% endif %}
             </li>
         {% endfor %}
         </ul>
