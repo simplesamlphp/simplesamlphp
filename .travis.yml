@@ -54,6 +54,7 @@ jobs:
       php: 5.6
       env: Syntax check PHP
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/check-syntax-php.sh
@@ -62,6 +63,7 @@ jobs:
       php: 7.0
       env: Syntax check PHP
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/check-syntax-php.sh
@@ -70,6 +72,7 @@ jobs:
       php: 7.1
       env: Syntax check PHP
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/check-syntax-php.sh
@@ -78,6 +81,7 @@ jobs:
       php: 7.2
       env: Syntax check PHP
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/check-syntax-php.sh
@@ -86,6 +90,7 @@ jobs:
       php: 7.3
       env: Syntax check PHP
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/check-syntax-php.sh
@@ -93,6 +98,7 @@ jobs:
     - stage: pre-conditions
       env: Syntax check YAML / XML / JSON
       before_script:
+        - composer self-update --rollback
         - composer update
       script:
         - vendor/bin/check-syntax-yaml.sh
@@ -107,6 +113,7 @@ jobs:
     - stage: quality
       env: Security check (composer install)
       before_script:
+        - composer self-update --rollback
         - composer install
       script:
         - vendor/bin/security-checker security:check
@@ -114,6 +121,7 @@ jobs:
     - stage: quality
       env: Security check (composer update)
       before_script:
+        - composer self-update --rollback
         - composer update
       script:
         - vendor/bin/security-checker security:check
@@ -122,6 +130,7 @@ jobs:
       php: 7.2
       env: Codecov
       before_script:
+        - composer self-update --rollback
         - composer update
         - php vendor/bin/phpunit
       script:
@@ -135,6 +144,7 @@ jobs:
     - stage: quality
       env: Psalm
       before_script:
+        - composer self-update --rollback
         - composer update
       script:
         - vendor/bin/psalm
@@ -142,6 +152,7 @@ jobs:
     - stage: quality
       env: PHP Codesniffer
       before_script:
+        - composer self-update --rollback
         - composer update
       script:
         - vendor/bin/phpcs
