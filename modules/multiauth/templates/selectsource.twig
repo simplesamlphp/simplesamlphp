@@ -6,7 +6,7 @@
     <p>{{ '{multiauth:multiauth:select_source_text}'| trans }}</p>
 
     <form action="{{ selfUrl|escape('html') }}" method="get">
-        <input type="hidden" name="AuthState" value="{{ authstate|escape('html') }} ">
+        <input type="hidden" name="AuthState" value="{{ authstate|escape('html') }}">
         <ul>
         {% for key, source in sources %}
             {% set name = ('src-' ~ source.source64) %}
