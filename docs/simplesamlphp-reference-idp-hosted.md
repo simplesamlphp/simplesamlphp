@@ -402,6 +402,10 @@ See the documentation for those extensions for more details:
   * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
   * [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
 
+For other metadata extensions, you can use the `saml:Extensions` option:
+
+`saml:Extensions`
+:   An array of `\SAML2\XML\Chunk`s to include in the IdP metadata extensions, at the same level as `EntityAttributes`.
 
 Examples
 --------
@@ -432,3 +436,40 @@ These are some examples of IdP metadata
          */
         'auth' => 'example-userpass',
     ];
+
+### A custom metadata extension (eduGAIN republish request) ###
+
+```
+<?php
+
+$dom = \SAML2\DOMDocumentFactory::create();
+$republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
+$republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
+$republishRequest->appendChild($republishTarget);
+$ext = [new \SAML2\XML\Chunk($republishRequest)];
+
+$metadata['__DYNAMIC:1__'] = [
+    'host' => '__DEFAULT__',
+    'certificate' => 'example.org.crt',
+    'privatekey' => 'example.org.pem',
+    'auth' => 'example-userpass',
+
+    /*
+     * The custom metadata extensions.
+     */
+    'saml:Extensions' => $ext,
+];
+```
+
+this generates the following metadata:
+
+```
+<EntityDescriptor entityID="...">
+  <Extensions xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <eduidmd:RepublishRequest xmlns:eduidmd="http://eduid.cz/schema/metadata/1.0">
+      <eduidmd:RepublishTarget>http://edugain.org/</eduidmd:RepublishTarget>
+    </eduidmd:RepublishRequest>
+  </Extensions>
+  <!-- rest of metadata -->
+</EntityDescriptor>
+```
