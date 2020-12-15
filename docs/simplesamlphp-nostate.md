@@ -101,6 +101,17 @@ What those settings should be set to depends on the application. The simplest
 way to determine it may be to look for calls to `session_set_cookie_params` in
 the application, and look at what parameters it uses.
 
+#### Browsers with SameSite=Lax as default
+
+Some browsers, notably Chrome, will default the cookie SameSite attribute to "Lax" if it
+is not set. Specifically in the context of SAML this means that cookies will not be sent
+when a POST request is performed between websites, which is typical for the SAML WebSSO
+flow. The lack of cookies will cause SimpleSAMLphp's session to be lost when receiving an
+assertion via the HTTP-POST binding.
+
+To resolve this, you can set the `session.cookie.samesite` attribute in `config.php`
+to `None`.
+
 #### A generic problem saving sessions
 
 Sometimes the problem is caused by SimpleSAMLphp being unable to load and/or save
