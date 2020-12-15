@@ -124,9 +124,10 @@ class LogoutStore
                         'ALTER TABLE ' . $store->prefix .
                         '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
                     break;
-               case 'sqlsrv':
+                case 'sqlsrv':
                     $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _authSource VARCHAR(255) NOT NULL'
+                        'ALTER TABLE ' . $store->prefix .
+                        '_saml_LogoutStore ALTER COLUMN _authSource VARCHAR(255) NOT NULL'
                     ];
                     break;
                 case 'sqlite':
