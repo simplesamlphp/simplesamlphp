@@ -33,13 +33,13 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.3
+    - php: 7.4
       env: Psalm
-    - php: 7.3
+    - php: 7.4
       env: Security check (composer install)
-    - php: 7.3
+    - php: 7.4
       env: Security check (composer update)
-    - php: 7.3
+    - php: 7.4
       env: PHP Codesniffer
 
   include:
@@ -95,7 +95,7 @@ jobs:
     ###################
 
     - stage: quality
-      php: 7.3
+      php: 7.4
       env: Security check (composer install)
       before_script:
         - composer install
@@ -103,7 +103,7 @@ jobs:
         - vendor/bin/security-checker security:check
 
     - stage: quality
-      php: 7.3
+      php: 7.4
       env: Security check (composer update)
       before_script:
         - composer update
@@ -111,7 +111,7 @@ jobs:
         - vendor/bin/security-checker security:check
 
     - stage: quality
-      php: 7.3
+      php: 7.4
       env: Codecov
       before_script:
         - composer update
@@ -120,7 +120,7 @@ jobs:
         - bash <(curl -s https://codecov.io/bash)
 
     - stage: quality
-      php: 7.3
+      php: 7.4
       env: Psalm
       before_script:
         - composer update
@@ -129,7 +129,7 @@ jobs:
         - vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
 
     - stage: quality
-      php: 7.3
+      php: 7.4
       env: PHP Codesniffer
       before_script:
         - composer update
