@@ -36,12 +36,14 @@ authentication source:
                     'es' => 'Entrar usando un SP SAML',
                 ),
                 'css-class' => 'SAML',
+                'AuthnContextClassRef' => array('urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'),
             ),
             'example-admin' => array(
                 'text' => array(
                     'en' => 'Log in using the admin password',
                     'es' => 'Entrar usando la contraseña de administrador',
                 ),
+                'AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
             ),
         ),
     ),
@@ -77,7 +79,7 @@ compatible fashion so both cases should work.
 
 Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with two optional keys: 'text' and 'css-class'.
+is another array with optional keys: 'text', 'css-class', 'help', and 'AuthnContextClassRef'.
 The text element is another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
@@ -87,7 +89,14 @@ the &lt;li> element in the selectsource.php view. By default the
 authtype of the authsource is used as the css class with colons
 replaced by dashes. So in the previous example, the css class used
 in the 'example-admin' authentication source would be
-'core-AdminPassword'.
+'core-AdminPassword'. The help element is another array with localized
+strings for one or more languages. These texts will be shown in the
+selectsource.php view. The AuthnContextClassRef is either a string or
+an array of strings containing [context class ref names](https://docs.oasis-open.org/security/saml/v2.0/saml-authn-context-2.0-os.pdf).
+If an SP sets AuthnContextClassRef the list of authsources will be
+filtered to only those containing context class refs that are part of the list set by the SP.
+If a single authsource results from this filtering the user will be taken directly to the
+authentication page for that source, and will never be shown the multiauth select page.
 
 It is possible to add the parameter `source` to the calling URL, 
 when accessing a service, to allow the user to preselect the
