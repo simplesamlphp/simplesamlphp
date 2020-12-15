@@ -254,7 +254,7 @@ class Message
                 $algo = $srcMetadata->getString('sharedkey_algorithm', null);
                 if ($algo === null) {
                     // If no algorithm is supplied or configured, use a sane default as a last resort
-                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_CBC);
+                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
                 }
             }
 

@@ -1297,7 +1297,7 @@ class SAML2
             $algo = $spMetadata->getString('sharedkey_algorithm', null);
             if ($algo === null) {
                 // If no algorithm is configured, use a sane default
-                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_CBC);
+                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
             }
 
             $key = new XMLSecurityKey($algo);
