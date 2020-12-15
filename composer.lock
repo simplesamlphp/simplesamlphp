@@ -832,16 +832,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authx509",
-            "version": "v0.9.6",
+            "version": "v0.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-authX509.git",
-                "reference": "849c9290bc4d9bd354eb5bdae1a86f97a0e84f27"
+                "reference": "266043ef4ce0b7b37bc07de4f17d56359ee95d6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-authX509/zipball/849c9290bc4d9bd354eb5bdae1a86f97a0e84f27",
-                "reference": "849c9290bc4d9bd354eb5bdae1a86f97a0e84f27",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-authX509/zipball/266043ef4ce0b7b37bc07de4f17d56359ee95d6c",
+                "reference": "266043ef4ce0b7b37bc07de4f17d56359ee95d6c",
                 "shasum": ""
             },
             "require": {
@@ -881,7 +881,7 @@
                 "simplesamlphp",
                 "x509"
             ],
-            "time": "2020-12-10T12:02:30+00:00"
+            "time": "2020-12-15T20:10:38+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authyubikey",
