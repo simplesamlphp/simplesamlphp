@@ -116,7 +116,7 @@ jobs:
       env: Codecov
       before_script:
         - composer update
-        - php vendor/bin/phpunit
+        - XDEBUG_MODE=coverage php vendor/bin/phpunit
       script:
         - bash <(curl -s https://codecov.io/bash)
 
