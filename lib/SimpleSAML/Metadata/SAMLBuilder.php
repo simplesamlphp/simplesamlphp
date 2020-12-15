@@ -225,6 +225,12 @@ class SAMLBuilder
             );
         }
 
+        if ($metadata->hasValue('saml:Extensions')) {
+            $this->entityDescriptor->setExtensions(
+                array_merge($this->entityDescriptor->getExtensions(), $metadata->getArray('saml:Extensions'))
+            );
+        }
+
         if ($metadata->hasValue('RegistrationInfo')) {
             $ri = new RegistrationInfo();
             foreach ($metadata->getArray('RegistrationInfo') as $riName => $riValues) {
