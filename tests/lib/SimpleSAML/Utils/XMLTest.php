@@ -22,7 +22,7 @@ use SimpleSAML\Utils\XML;
  */
 class XMLTest extends TestCase
 {
-    private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+    private const FRAMEWORK = '../vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /**
      * @test
