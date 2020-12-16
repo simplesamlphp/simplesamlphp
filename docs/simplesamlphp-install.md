@@ -204,8 +204,12 @@ look like this:
             location ~ ^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
                 include          fastcgi_params;
                 fastcgi_pass     $fastcgi_pass;
-                fastcgi_param    SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                fastcgi_param    SCRIPT_NAME /simplesaml$phpfile;
+                fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
+
+                # Must be prepended with the baseurlpath
+                fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
+
+                fastcgi_param PATH_INFO $pathinfo if_not_empty;
             }
         }
     }
