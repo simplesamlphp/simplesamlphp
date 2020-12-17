@@ -195,7 +195,7 @@ jobs:
 
       - name: Psalm
         continue-on-error: true
-        uses: docker://vimeo/psalm-github-actions
+        run: php vendor/bin/psalm
 
       - name: Psalter
         continue-on-error: true
