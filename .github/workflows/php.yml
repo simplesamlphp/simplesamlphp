@@ -191,7 +191,7 @@ jobs:
 
       - name: PHP Code Sniffer
         continue-on-error: true
-        run: php vendor/bin/phpcs src/
+        run: php vendor/bin/phpcs
 
       - name: Psalm
         continue-on-error: true
