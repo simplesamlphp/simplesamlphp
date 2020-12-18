@@ -195,7 +195,7 @@ jobs:
 
       - name: Psalm
         continue-on-error: true
-        run: php vendor/bin/psalm
+        run: php vendor/bin/psalm --show-info=true
 
       - name: Psalter
         continue-on-error: true
