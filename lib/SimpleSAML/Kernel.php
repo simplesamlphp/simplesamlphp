@@ -47,13 +47,13 @@ class Kernel extends BaseKernel
     public function getCacheDir(): string
     {
         $configuration = Configuration::getInstance();
-        $cachePath = $configuration->getString('tempdir') . '/cache/' . $this->module;
+        $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $this->module;
 
         if (0 === strpos($cachePath, '/')) {
             return $cachePath;
         }
 
-        return $configuration->getBaseDir() . '/' . $cachePath;
+        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $cachePath;
     }
 
 
@@ -69,7 +69,7 @@ class Kernel extends BaseKernel
             return $loggingPath;
         }
 
-        return $configuration->getBaseDir() . '/' . $loggingPath;
+        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $loggingPath;
     }
 
 
