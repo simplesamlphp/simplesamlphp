@@ -238,6 +238,20 @@ class System
         }
     }
 
+
+    /**
+     * Check if the supplied path is an absolute path.
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    public static function isAbsolutePath(string $path): bool
+    {
+        return (0 === strpos($path, '/') || self::pathContainsDriveLetter($path));
+    }
+
+
     /**
      * Check if the supplied path contains a Windows-style drive letter.
      *
