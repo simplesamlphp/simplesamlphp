@@ -20,7 +20,7 @@ class HTTP
 {
     /**
      * Determine if the user agent can support cookies being sent with SameSite equal to "None".
-     * Browsers with out support may drop the cookie and or treat is a stricter setting
+     * Browsers without support may drop the cookie and or treat it as stricter setting
      * Browsers with support may have additional requirements on setting it on non-secure websites.
      *
      * Based on the Azure teams experience rolling out support and Chromium's advice
