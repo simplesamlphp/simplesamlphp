@@ -15,11 +15,11 @@ use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DOMText;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Errors;
 
 class XML

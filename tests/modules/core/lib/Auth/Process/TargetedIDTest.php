@@ -6,10 +6,10 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
-use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Utils;
 
 /**

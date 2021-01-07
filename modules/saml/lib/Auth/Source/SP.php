@@ -4,14 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Source;
 
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\Constants;
-use SAML2\Exception\Protocol\NoAvailableIDPException;
-use SAML2\Exception\Protocol\NoPassiveException;
-use SAML2\Exception\Protocol\NoSupportedIDPException;
-use SAML2\LogoutRequest;
-use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -20,12 +12,16 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 
-class SP extends \SimpleSAML\Auth\Source
+class SP extends Auth\Source
 {
     /**
      * The entity ID of this SP.
@@ -627,8 +623,8 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * This function does not return.
      *
-     * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\AuthnRequest  $ar  The authentication request.
+     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
+     * @param \SimpleSAML\SAML2\XML\samlp\AuthnRequest  $ar  The authentication request.
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
     {

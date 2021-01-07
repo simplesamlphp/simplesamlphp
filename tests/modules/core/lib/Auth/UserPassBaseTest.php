@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth;
 
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\SAML2\Constants;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\UserPassBase

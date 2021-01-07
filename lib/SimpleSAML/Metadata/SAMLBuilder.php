@@ -5,31 +5,30 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
-use SAML2\Constants;
-use SAML2\XML\md\AttributeAuthorityDescriptor;
-use SAML2\XML\md\AttributeConsumingService;
-use SAML2\XML\md\ContactPerson;
-use SAML2\XML\md\EndpointType;
-use SAML2\XML\md\EntityDescriptor;
-use SAML2\XML\md\IDPSSODescriptor;
-use SAML2\XML\md\IndexedEndpointType;
-use SAML2\XML\md\Organization;
-use SAML2\XML\md\RequestedAttribute;
-use SAML2\XML\md\RoleDescriptor;
-use SAML2\XML\md\SPSSODescriptor;
-use SAML2\XML\mdattr\EntityAttributes;
-use SAML2\XML\mdrpi\RegistrationInfo;
-use SAML2\XML\mdui\DiscoHints;
-use SAML2\XML\mdui\Keywords;
-use SAML2\XML\mdui\Logo;
-use SAML2\XML\mdui\UIInfo;
-use SAML2\XML\saml\Attribute;
-use SAML2\XML\saml\AttributeValue;
-use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
+use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
+use SimpleSAML\SAML2\XML\md\EndpointType;
+use SimpleSAML\SAML2\XML\md\EntityDescriptor;
+use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
+use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\SAML2\XML\md\RequestedAttribute;
+use SimpleSAML\SAML2\XML\md\RoleDescriptor;
+use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
+use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
+use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
+use SimpleSAML\SAML2\XML\mdui\DiscoHints;
+use SimpleSAML\SAML2\XML\mdui\Keywords;
+use SimpleSAML\SAML2\XML\mdui\Logo;
+use SimpleSAML\SAML2\XML\mdui\UIInfo;
+use SimpleSAML\SAML2\XML\saml\Attribute;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 
 /**
@@ -45,7 +44,7 @@ class SAMLBuilder
     /**
      * The EntityDescriptor we are building.
      *
-     * @var \SAML2\XML\md\EntityDescriptor
+     * @var \SimpleSAML\SAML2\XML\md\EntityDescriptor
      */
     private EntityDescriptor $entityDescriptor;
 
@@ -165,7 +164,8 @@ class SAMLBuilder
      * Add extensions to the metadata.
      *
      * @param \SimpleSAML\Configuration    $metadata The metadata to get extensions from.
-     * @param \SAML2\XML\md\RoleDescriptor $e Reference to the element where the Extensions element should be included.
+     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $e
+     *   Reference to the element where the Extensions element should be included.
      */
     private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
@@ -356,7 +356,7 @@ class SAMLBuilder
      * @param bool  $indexed Whether the endpoints should be indexed.
      *
      * @return array An array of endpoint objects,
-     *     either \SAML2\XML\md\EndpointType or \SAML2\XML\md\IndexedEndpointType.
+     *     either \SimpleSAML\SAML2\XML\md\EndpointType or \SimpleSAML\SAML2\XML\md\IndexedEndpointType.
      */
     private static function createEndpoints(array $endpoints, bool $indexed): array
     {
@@ -409,7 +409,7 @@ class SAMLBuilder
     /**
      * Add an AttributeConsumingService element to the metadata.
      *
-     * @param \SAML2\XML\md\SPSSODescriptor $spDesc The SPSSODescriptor element.
+     * @param \SimpleSAML\SAML2\XML\md\SPSSODescriptor $spDesc The SPSSODescriptor element.
      * @param \SimpleSAML\Configuration     $metadata The metadata.
      */
     private function addAttributeConsumingService(
@@ -677,7 +677,7 @@ class SAMLBuilder
     /**
      * Add a KeyDescriptor with an X509 certificate.
      *
-     * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
+     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param string                      $use The value of the 'use' attribute.
      * @param string                      $x509data The certificate data.
      * @param string|null                 $keyName The name of the key. Should be valid for usage in an ID attribute,
@@ -702,7 +702,7 @@ class SAMLBuilder
      *
      * Helper function for adding a certificate to the metadata.
      *
-     * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
+     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param \SimpleSAML\Configuration    $metadata The metadata of the entity.
      */
     private function addCertificate(RoleDescriptor $rd, Configuration $metadata): void

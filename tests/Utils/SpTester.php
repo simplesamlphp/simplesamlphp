@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use ReflectionObject;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\LogoutRequest;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
+use SimpleSAML\SAML2\Binding;
 
 /**
  * Wrap the SSP \SimpleSAML\Module\saml\Auth\Source\SP class
