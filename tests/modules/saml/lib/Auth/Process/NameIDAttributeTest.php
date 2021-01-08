@@ -44,11 +44,7 @@ class NameIDAttributeTest extends TestCase
         $idpId = 'eugeneIdP';
 
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID('eugene@oombaas', $idpId, $spId, Constants::NAMEID_PERSISTENT);
 
         $request = [
             'Source'     => [
@@ -74,11 +70,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID('eugene@oombaas', $idpId, $spId, Constants::NAMEID_PERSISTENT);
 
         $request = [
             'Source'     => [
@@ -104,11 +96,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID('eugene@oombaas', $idpId, $spId, Constants::NAMEID_PERSISTENT);
 
         $request = [
             'Source'     => [
@@ -133,8 +121,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
+        $nameId = new NameID('eugene@oombaas');
 
         $request = [
             'Source'     => [
@@ -187,11 +174,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID('eugene@oombaas', $idpId, $spId, Constants::NAMEID_PERSISTENT);
 
         $request = [
             'Source'     => [
@@ -216,8 +199,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
+        $nameId = new NameID('eugene@oombaas');
 
         $request = [
             'Source'     => [
