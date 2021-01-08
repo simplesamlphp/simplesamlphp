@@ -228,7 +228,7 @@ class MetadataTest extends TestCase
         // Test null or unset
         $nameIdPolicy = null;
         $this->assertEquals(
-            ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true],
+            ['AllowCreate' => true],
             Metadata::parseNameIdPolicy($nameIdPolicy)
         );
 

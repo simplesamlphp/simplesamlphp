@@ -286,7 +286,7 @@ class Metadata
             }
         } elseif ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
+            $policy = ['AllowCreate' => true];
         }
 
         return $policy;
