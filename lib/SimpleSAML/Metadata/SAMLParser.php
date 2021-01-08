@@ -10,11 +10,13 @@ use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants;
-use SimpleSAML\SAML2\SignedElementHelper;
+use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
+use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
+use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
+use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\md\EndpointType;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
@@ -23,7 +25,6 @@ use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
@@ -158,7 +159,7 @@ class SAMLParser
     /**
      * This is an array of elements that may be used to validate this element.
      *
-     * @var \SAML2\XML\SignedElementInterface[]
+     * @var \SimpleSAML\SAML2\XML\SignedElementInterface[]
      */
     private array $validators = [];
 
@@ -211,7 +212,7 @@ class SAMLParser
         $this->registrationInfo = $ext['RegistrationInfo'];
 
         // look over the RoleDescriptors
-        foreach ($entityElement->getRoleDescriptor() as $child) {
+        foreach ($entityElement->getRoleDescriptors() as $child) {
             if ($child instanceof SPSSODescriptor) {
                 $this->processSPSSODescriptor($child, $expireTime);
             } elseif ($child instanceof IDPSSODescriptor) {
@@ -226,10 +227,8 @@ class SAMLParser
             $this->processOrganization($organization);
         }
 
-        if ($entityElement->getContactPerson() !== []) {
-            foreach ($entityElement->getContactPerson() as $contact) {
-                $this->processContactPerson($contact);
-            }
+        foreach ($entityElement->getContactPersons() as $contact) {
+            $this->processContactPerson($contact);
         }
     }
 
@@ -399,7 +398,7 @@ class SAMLParser
      * @return SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
-        SignedElementHelper $element,
+        AbstractMetadataDocument $element,
         ?int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
@@ -419,7 +418,7 @@ class SAMLParser
         $validators[] = $element;
 
         $ret = [];
-        foreach ($element->getChildren() as $child) {
+        foreach (array_merge($element->getEntityDescriptors(), $element->getEntitiesDescriptors()) as $child) {
             $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
 
@@ -720,13 +719,13 @@ class SAMLParser
      * - 'expire': Timestamp for when this descriptor expires.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
      *
-     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $element The element we should extract metadata from.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor $element The element we should extract metadata from.
      * @param int|null $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseRoleDescriptorType(RoleDescriptor $element, ?int $expireTime): array
+    private static function parseRoleDescriptorType(AbstractRoleDescriptor $element, ?int $expireTime): array
     {
         $ret = [];
 
@@ -741,7 +740,7 @@ class SAMLParser
 
         // process KeyDescriptor elements
         $ret['keys'] = [];
-        foreach ($element->getKeyDescriptor() as $kd) {
+        foreach ($element->getKeyDescriptors() as $kd) {
             $key = self::parseKeyDescriptor($kd);
             if ($key !== null) {
                 $ret['keys'][] = $key;
@@ -768,25 +767,25 @@ class SAMLParser
      * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
      *
-     * @param \SimpleSAML\SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractSSODescriptor $element The element we should extract metadata from.
      * @param int|NULL                       $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseSSODescriptor(SSODescriptorType $element, ?int $expireTime): array
+    private static function parseSSODescriptor(AbstractSSODescriptor $element, ?int $expireTime): array
     {
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
         // find all SingleLogoutService elements
-        $sd['SingleLogoutService'] = self::extractEndpoints($element->getSingleLogoutService());
+        $sd['SingleLogoutService'] = self::extractEndpoints($element->getSingleLogoutServices());
 
         // find all ArtifactResolutionService elements
-        $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
+        $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionServices());
 
 
         // process NameIDFormat elements
-        $sd['nameIDFormats'] = $element->getNameIDFormat();
+        $sd['nameIDFormats'] = $element->getNameIDFormats();
 
         return $sd;
     }
@@ -818,8 +817,8 @@ class SAMLParser
         }
 
         // check WantAssertionsSigned
-        if ($element->wantAssertionsSigned() !== null) {
-            $sp['WantAssertionsSigned'] = $element->wantAssertionsSigned();
+        if ($element->getWantAssertionsSigned() !== null) {
+            $sp['WantAssertionsSigned'] = $element->getWantAssertionsSigned();
         }
 
         $this->spDescriptors[] = $sp;
@@ -838,7 +837,7 @@ class SAMLParser
         $idp = self::parseSSODescriptor($element, $expireTime);
 
         // find all SingleSignOnService elements
-        $idp['SingleSignOnService'] = self::extractEndpoints($element->getSingleSignOnService());
+        $idp['SingleSignOnService'] = self::extractEndpoints($element->getSingleSignOnServices());
 
         if ($element->wantAuthnRequestsSigned()) {
             $idp['WantAuthnRequestsSigned'] = true;
@@ -903,7 +902,11 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
-        foreach ($element->getExtensions() as $e) {
+        if ($element->getExtensions() === null) {
+            return $ret;
+        }
+
+        foreach ($element->getExtensions()->getList() as $e) {
             if ($e instanceof Scope) {
                 $ret['scope'][] = $e->getScope();
                 continue;
@@ -1111,11 +1114,11 @@ class SAMLParser
      * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
      * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
      *
-     * @param \SimpleSAML\SAML2\XML\md\EndpointType $element The element which should be parsed.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractEndpointType $element The element which should be parsed.
      *
      * @return array An associative array with the data we have extracted from the element.
      */
-    private static function parseGenericEndpoint(EndpointType $element): array
+    private static function parseGenericEndpoint(AbstractEndpointType $element): array
     {
         $ep = [];
 
