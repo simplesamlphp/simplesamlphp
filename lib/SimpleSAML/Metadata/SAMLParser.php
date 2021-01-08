@@ -23,7 +23,6 @@ use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
-use SimpleSAML\SAML2\XML\md\RoleDescriptor;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
@@ -687,7 +686,6 @@ class SAMLParser
         if (!empty($idp['keys'])) {
             $ret['keys'] = $idp['keys'];
         }
-
         // add extensions
         $this->addExtensions($ret, $idp);
 
@@ -939,7 +937,7 @@ class SAMLParser
                         if ($attr instanceof Attribute) {
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
-                            $attrValue = $attr->getAttributeValue();
+                            $attrValue = $attr->getAttributeValues();
 
                             if ($attrName === null || $attrValue === []) {
                                 continue;
@@ -955,7 +953,7 @@ class SAMLParser
 
                             $values = [];
                             foreach ($attrValue as $attrval) {
-                                $values[] = $attrval->getString();
+                                $values[] = $attrval->getValue();
                             }
 
                             $ret['EntityAttributes'][$name] = $values;
@@ -965,7 +963,7 @@ class SAMLParser
             }
 
             // UIInfo elements are only allowed at RoleDescriptor level extensions
-            if ($element instanceof RoleDescriptor) {
+            if ($element instanceof AbstractRoleDescriptor) {
                 if ($e instanceof UIInfo) {
                     $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
                     $ret['UIInfo']['Description'] = $e->getDescription();

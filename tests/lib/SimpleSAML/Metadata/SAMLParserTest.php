@@ -199,11 +199,13 @@ XML
                         'url' => 'https://localhost/logo',
                         'height' => 16,
                         'width' => 17,
+                        'lang' => 'nl',
                     ],
                     [
                         'url' => 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
                         'height' => 2,
                         'width' => 1,
+                        'lang' => 'nl',
                     ],
                 ],
             ],
@@ -229,8 +231,8 @@ XML
             <mdui:Description xml:lang="en">Description</mdui:Description>
             <mdui:PrivacyStatementURL xml:lang="en">https://localhost/privacypolicy</mdui:PrivacyStatementURL>
             <mdui:InformationURL xml:lang="en">https://localhost/information</mdui:InformationURL>
-            <mdui:Logo width="17" height="16">https://localhost/logo</mdui:Logo>
-            <mdui:Logo width="1" height="2">data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==</mdui:Logo>
+            <mdui:Logo width="17" height="16" xml:lang="nl">https://localhost/logo</mdui:Logo>
+            <mdui:Logo width="1" height="2" xml:lang="nl">data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==</mdui:Logo>
           </mdui:UIInfo>
           <mdui:DiscoHints>
             <mdui:IPHint>127.0.0.1</mdui:IPHint>
@@ -289,7 +291,9 @@ XML
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML
@@ -321,7 +325,9 @@ XML
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML
@@ -349,7 +355,9 @@ XML
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML
