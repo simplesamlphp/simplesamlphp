@@ -26,6 +26,7 @@ use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
 use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 use SimpleSAML\SAML2\XML\samlp\Response;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
+use SimpleSAML\SAML2\XML\samlp\IDPEntry;
 use SimpleSAML\SAML2\XML\samlp\IDPList;
 use SimpleSAML\SAML2\XML\samlp\Scoping;
 use SimpleSAML\SAML2\XML\samlp\StatusResponse;
@@ -604,6 +605,10 @@ class Message
                     Utils\Arrays::arrayize($IDPList)
                 )
             );
+
+            array_walk($IDPList, function(&$v, $k) {
+                $v = new IDPEntry($v);
+            });
 
             // ProxyCount
             $proxyCount = null;
