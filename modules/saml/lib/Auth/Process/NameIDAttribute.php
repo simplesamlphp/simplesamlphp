@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\saml\NameID;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
@@ -120,17 +121,11 @@ class NameIDAttribute extends ProcessingFilter
         $rep = $state['saml:sp:NameID'];
         Assert::notNull($rep->getValue());
 
-        if ($rep->getFormat() === null) {
-            $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
-        }
+        $format = $rep->getFormat() ?: Constants::NAMEID_UNSPECIFIED;
+        $spNameQualifier = $rep->getSPNameQualifier() ?: $state['Source']['entityid'];
+        $nameQualifier = $rep->getNameQualifier() ?: $state['Destination']['entityid'];
 
-        if ($rep->getSPNameQualifier() === null) {
-            $rep->setSPNameQualifier($state['Source']['entityid']);
-        }
-        if ($rep->getNameQualifier() === null) {
-            $rep->setNameQualifier($state['Destination']['entityid']);
-        }
-
+        $aggregate = new NameID($rep->getValue(), $nameQualifier, $spNameQualifier, $format);
         $value = '';
         $isString = true;
         foreach ($this->format as $element) {
@@ -139,7 +134,7 @@ class NameIDAttribute extends ProcessingFilter
             } elseif ($element === '%') {
                 $value .= '%';
             } else {
-                $value .= call_user_func([$rep, 'get' . $element]);
+                $value .= call_user_func([$aggregate, 'get' . $element]);
             }
             $isString = !$isString;
         }

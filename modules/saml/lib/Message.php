@@ -17,6 +17,7 @@ use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\Conditions;
 use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\Subject;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
@@ -573,7 +574,7 @@ class Message
         $subject = null;
         if (isset($state['saml:NameID'])) {
             $nameId = $state['saml:NameID'];
-            Assert::isInstanceOf(NameID::class, $nameId);
+            Assert::isInstanceOf($nameId, NameID::class);
             $subject = new Subject($nameId);
         }
 

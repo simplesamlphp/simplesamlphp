@@ -137,17 +137,18 @@ class TargetedID extends Auth\ProcessingFilter
         $uid = hash('sha1', $uidData);
 
         if ($this->generateNameId) {
-            // Convert the targeted ID to a SAML 2.0 name identifier element
-            $nameId = new NameID();
-            $nameId->setValue($uid);
-            $nameId->setFormat(Constants::NAMEID_PERSISTENT);
-
+            $nameQualifier = null;
             if (isset($state['Source']['entityid'])) {
-                $nameId->setNameQualifier($state['Source']['entityid']);
+                $nameQualifier = $state['Source']['entityid'];
             }
+
+            $spNameQualifier = null;
             if (isset($state['Destination']['entityid'])) {
-                $nameId->setSPNameQualifier($state['Destination']['entityid']);
+                $spNameQualifier = $state['Destination']['entityid'];
             }
+
+            // Convert the targeted ID to a SAML 2.0 name identifier element
+            $nameId = new NameID($uid, $nameQualifier, $spNameQualifier, Constants::NAMEID_PERSISTENT);
         } else {
             $nameId = $uid;
         }

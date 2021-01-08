@@ -10,6 +10,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\admin\Controller\Test as TestController;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -197,12 +198,13 @@ class TestTest extends TestCase
 
             public function getAttributes(): array
             {
-                $nameId = new NameID();
-                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
-                $nameId->setSPProvidedID('some:entity');
-                $nameId->setNameQualifier('some name qualifier');
-                $nameId->setSPNameQualifier('some SP name qualifier');
-                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+                $nameId = new NameID(
+                    '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
+                    'some name qualifier',
+                    'some SP name qualifier',
+                    Constants::NAMEID_TRANSIENT,
+                    'some:entity'
+                );
 
                 /** @psalm-suppress PossiblyNullPropertyFetch */
                 return [
@@ -241,12 +243,13 @@ class TestTest extends TestCase
 
             public function getAuthData(string $name)
             {
-                $nameId = new NameID();
-                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
-                $nameId->setSPProvidedID('some:entity');
-                $nameId->setNameQualifier('some name qualifier');
-                $nameId->setSPNameQualifier('some SP name qualifier');
-                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+                $nameId = new NameID(
+                    '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
+                    'some name qualifier',
+                    'some SP name qualifier',
+                    Constants::NAMEID_TRANSIENT,
+                    'some:entity'
+                );
 
                 return $nameId;
             }
