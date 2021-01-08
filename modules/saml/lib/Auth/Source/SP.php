@@ -426,9 +426,9 @@ class SP extends Auth\Source
             );
         }
 
-        $ar = Module\saml\Message::buildAuthnRequest($this->metadata, $idpMetadata);
-
-        $ar->setAssertionConsumerServiceURL(Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
+        $assertionConsumerServiceUrl = Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId);
+        $scoping = ($this->disable_scoping !== true && $idpMetadata->getBoolean('disable_scoping', false) !== true);
+        $ar = Module\saml\Message::buildAuthnRequest($this->metadata, $idpMetadata, $state, $assertionConsumerServiceUrl, $scoping);
 
         if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
@@ -589,28 +589,7 @@ class SP extends Auth\Source
             'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), true)
         );
 
-        // Select appropriate SSO endpoint
-        if ($ar->getProtocolBinding() === Constants::BINDING_HOK_SSO) {
-            /** @var array $dst */
-            $dst = $idpMetadata->getDefaultEndpoint(
-                'SingleSignOnService',
-                [
-                    Constants::BINDING_HOK_SSO
-                ]
-            );
-        } else {
-            /** @var array $dst */
-            $dst = $idpMetadata->getEndpointPrioritizedByBinding(
-                'SingleSignOnService',
-                [
-                    Constants::BINDING_HTTP_REDIRECT,
-                    Constants::BINDING_HTTP_POST,
-                ]
-            );
-        }
-        $ar->setDestination($dst['Location']);
-
-        $b = Binding::getBinding($dst['Binding']);
+        $b = Binding::getBinding($ar->getProtocolBinding());
 
         $this->sendSAML2AuthnRequest($b, $ar);
 

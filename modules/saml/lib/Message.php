@@ -7,18 +7,26 @@ namespace SimpleSAML\Module\saml;
 use Exception;
 use SimpleSAML\XMLSecurity\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\XML\saml\Assertion;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\saml\Conditions;
 use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\Subject;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
+use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 use SimpleSAML\SAML2\XML\samlp\Response;
+use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
+use SimpleSAML\SAML2\XML\samlp\IDPList;
+use SimpleSAML\SAML2\XML\samlp\Scoping;
 use SimpleSAML\SAML2\XML\samlp\StatusResponse;
 use SimpleSAML\SAML2\XML\SignedElementInterface;
 use SimpleSAML\Utils;
@@ -390,11 +398,7 @@ class Message
             }
         }
 
-        /**
-         * The annotation below is not working - See vimeo/psalm#1909
-         * @psalm-suppress InvalidThrow
-         * @var \Exception $lastException
-         */
+        /** @psalm-suppress InvalidThrow */
         throw $lastException;
     }
 
@@ -463,30 +467,86 @@ class Message
      *
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
+     * @param array $state The state array.
+     * @param string $assertionConsumerServiceUrl The url to be used as ACS endpoint
+     * @param bool $scopingEnabled Whether scoping is enabled or not
      * @return \SimpleSAML\SAML2\XML\samlp\AuthnRequest An authentication request object.
      */
     public static function buildAuthnRequest(
         Configuration $spMetadata,
-        Configuration $idpMetadata
+        Configuration $idpMetadata,
+        array $state,
+        string $assertionConsumerServiceUrl,
+        bool $scopingEnabled = true
     ): AuthnRequest {
-        $ar = new AuthnRequest();
+        // save IdP entity ID as part of the state
+        $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
+
+        $id = Auth\State::saveState($state, 'saml:sp:sso', true);
 
         // get the NameIDPolicy to apply. IdP metadata has precedence.
         $nameIdPolicy = null;
-        if ($idpMetadata->hasValue('NameIDPolicy')) {
+
+        if (isset($state['saml:NameIDPolicy'])) {
+            $nameIdPolicy = $state['saml:NameIDPolicy'] ?? null;
+        }  elseif ($idpMetadata->hasValue('NameIDPolicy')) {
             $nameIdPolicy = $idpMetadata->getValue('NameIDPolicy');
         } elseif ($spMetadata->hasValue('NameIDPolicy')) {
             $nameIdPolicy = $spMetadata->getValue('NameIDPolicy');
         }
 
-        $policy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
-        if ($policy !== null) {
-            // either we have a policy set, or we used the transient default
-            $ar->setNameIdPolicy($policy);
+        if ($nameIdPolicy !== null) {
+            $nameIdPolicy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
         }
 
-        $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
-        $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
+        // Determine RequestedAuthnContext
+        $accr = null;
+        $rac = null;
+
+        if ($idpMetadata->getString('AuthnContextClassRef', false)) {
+            $accr = $idpMetadata->getString('AuthnContextClassRef');
+
+            if ($accr !== null) {
+                $comp = $idpMetadata->getValueValidate('AuthnContextComparison', [
+                    Constants::COMPARISON_EXACT,
+                    Constants::COMPARISON_MINIMUM,
+                    Constants::COMPARISON_MAXIMUM,
+                    Constants::COMPARISON_BETTER,
+                ], Constants::COMPARISON_EXACT);
+            }
+        } elseif (isset($state['saml:AuthnContextClassRef'])) {
+            $accr = $state['saml:AuthnContextClassRef'];
+
+            if ($accr !== null) {
+                $comp = Constants::COMPARISON_EXACT; // SAML2INT
+
+                if (isset($state['saml:AuthnContextComparison'])
+                    && in_array($state['saml:AuthnContextComparison'], [
+                        Constants::COMPARISON_EXACT,
+                        Constants::COMPARISON_MINIMUM,
+                        Constants::COMPARISON_MAXIMUM,
+                        Constants::COMPARISON_BETTER,
+                    ], true)
+                ) {
+                    $comp = $state['saml:AuthnContextComparison'];
+                }
+            }
+        } elseif ($spMetadata->hasValue('AuthnContextClassRef')) {
+            $accr = $spMetadata->getString('AuthnContextClassRef');
+
+            if ($accr !== null) {
+                $comp = $spMetadata->getValueValidate('AuthnContextComparison', [
+                    Constants::COMPARISON_EXACT,
+                    Constants::COMPARISON_MINIMUM,
+                    Constants::COMPARISON_MAXIMUM,
+                    Constants::COMPARISON_BETTER,
+                ], Constants::COMPARISON_EXACT);
+            }
+        }
+
+        if ($accr !== null) {
+            $rac = new RequestedAuthnContext([new AuthnContextClassRef($accr)], $comp);
+        }
 
         $protbind = $spMetadata->getOptionalValueValidate('ProtocolBinding', [
             Constants::BINDING_HTTP_POST,
@@ -495,28 +555,134 @@ class Message
             Constants::BINDING_HTTP_REDIRECT,
         ], Constants::BINDING_HTTP_POST);
 
-        // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
-        $ar->setProtocolBinding($protbind);
-        $issuer = new Issuer();
-        $issuer->setValue($spMetadata->getString('entityid'));
-        $ar->setIssuer($issuer);
-        $ar->setAssertionConsumerServiceIndex(
-            $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
-        );
-        $ar->setAttributeConsumingServiceIndex(
-            $spMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null)
-        );
-
-        if ($spMetadata->hasValue('AuthnContextClassRef')) {
-            $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
-                Constants::COMPARISON_EXACT,
-                Constants::COMPARISON_MINIMUM,
-                Constants::COMPARISON_MAXIMUM,
-                Constants::COMPARISON_BETTER,
-            ], Constants::COMPARISON_EXACT);
-            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+        // Determine ForceAuthn
+        if (isset($state['ForceAuthn'])) {
+            $forceAuthn = boolval($state['ForceAuthn']);
+        } else {
+            $forceAuthn = $spMetadata->getBoolean('ForceAuthn', null);
         }
+
+        // Determine IsPassive
+        if (isset($state['isPassive'])) {
+            $isPassive = boolval($state['isPassive']);
+        } else {
+            $isPassive = $spMetadata->getBoolean('IsPassive', null);
+        }
+
+        // Determine NameID
+        $subject = null;
+        if (isset($state['saml:NameID'])) {
+            $nameId = $state['saml:NameID'];
+            Assert::isInstanceOf(NameID::class, $nameId);
+            $subject = new Subject($nameId);
+        }
+
+        // Determine AudienceRestriction
+        $audienceRestriction = [];
+        if (isset($state['saml:Audience'])) {
+            $audience = $state['saml:Audience'];
+            Assert::allStringNotEmpty($audience);
+            $audienceRestriction = [new AudienceRestriction($audience)];
+        }
+
+        // Determine Scoping
+        $scoping = null;
+
+        /* Only check for real info for Scoping element if we are going to send Scoping element */
+        if ($scopingEnabled === true) {
+            // IDPList
+            $IDPList = [];
+            if (isset($state['saml:IDPList'])) {
+                $IDPList = $state['saml:IDPList'];
+            }
+
+            $IDPList = array_unique(
+                array_merge(
+                    $spMetadata->getArray('IDPList', []),
+                    $idpMetadata->getArray('IDPList', []),
+                    Utils\Arrays::arrayize($IDPList)
+                )
+            );
+
+            // ProxyCount
+            $proxyCount = null;
+            if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
+                $proxyCount = $state['saml:ProxyCount'];
+            } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
+                $proxyCount = $idpMetadata->getInteger('ProxyCount', null);
+            } elseif ($spMetadata->getInteger('ProxyCount', null) !== null) {
+                $proxyCount = $spMetadata->getInteger('ProxyCount', null);
+            }
+
+            // RequesterID
+            $requesterID = [];
+            if (isset($state['saml:RequesterID'])) {
+                $requesterID = $state['saml:RequesterID'];
+            }
+
+            if (isset($state['core:SP'])) {
+                $requesterID[] = $state['core:SP'];
+            }
+
+            $scoping = new Scoping($proxyCount, empty($IDPList) ? null : new IDPList($IDPList), $requesterID);
+        } else {
+            Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), true));
+        }
+
+        // If the downstream SP has set extensions then use them.
+        // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
+        $extensions = null;
+        if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
+            $extensions = $state['saml:Extensions'];
+        } elseif ($spMetadata->getArray('saml:Extensions', null) !== null) {
+            $extensions = $spMetadata->getArray('saml:Extensions');
+        }
+
+        // Select appropriate SSO endpoint
+        if ($protbind === Constants::BINDING_HOK_SSO) {
+            /** @var array $dst */
+            $dst = $idpMetadata->getDefaultEndpoint(
+                'SingleSignOnService',
+                [
+                    Constants::BINDING_HOK_SSO
+                ]
+            );
+        } else {
+            /** @var array $dst */
+            $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+                'SingleSignOnService',
+                [
+                    Constants::BINDING_HTTP_REDIRECT,
+                    Constants::BINDING_HTTP_POST,
+                ]
+            );
+        }
+
+        // Build AuthnRequest
+        $ar = new AuthnRequest(
+            $rac,
+            $subject,
+            new NameIDPolicy(
+                $policy['Format'] ?? null,
+                $policy['SPNameQualifier'] ?? null,
+                $policy['AllowCreate'] ?? null
+            ),
+            new Conditions(null, null, [], $audienceRestriction, null, null),
+            $forceAuthn,
+            $isPassive,
+            $assertionConsumerServiceUrl,
+            $spMetadata->getInteger('AssertionConsumerServiceIndex', null),
+            $protbind,
+            $spMetadata->getInteger('AttributeConsumingServiceIndex', null),
+            $spMetadata->getString('ProviderName', null),
+            new Issuer($spMetadata->getString('entityid')),
+            $id,
+            null, // IssueInstant
+            $dst['Location'],
+            null, // Consent
+            $extensions,
+            $scoping
+        );
 
         self::addRedirectSign($spMetadata, $idpMetadata, $ar);
 

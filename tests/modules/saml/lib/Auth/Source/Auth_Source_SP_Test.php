@@ -11,11 +11,12 @@ use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\Module\saml\Error\NoSupportedIDP;
 use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
-use SimpleSAML\SAML2\Utils;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\ExitTestException;
 use SimpleSAML\Test\Utils\SpTester;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Utils as XMLUtils;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
@@ -128,16 +129,16 @@ class SPTest extends ClearStateTestCase
     {
         $ar = $this->createAuthnRequest();
 
-        $xml = $ar->toSignedXML();
+        $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],
             $q[0]->value
         );
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
         $this->assertEquals(
             'http://localhost/simplesaml/module.php/saml/sp/metadata.php/default-sp',
             $q[0]->textContent
@@ -162,16 +163,16 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals($state['saml:NameID']['Value'], $nameID->getValue());
         $this->assertEquals($state['saml:NameID']['Format'], $nameID->getFormat());
 
-        $xml = $ar->toSignedXML();
+        $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
         $this->assertEquals(
             $state['saml:NameID']['Format'],
             $q[0]->value
         );
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
         $this->assertEquals(
             $state['saml:NameID']['Value'],
             $q[0]->textContent
@@ -191,16 +192,16 @@ class SPTest extends ClearStateTestCase
 
         $ar = $this->createAuthnRequest($state);
 
-        /** @var array $a */
+        /** @var \SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext $a */
         $a = $ar->getRequestedAuthnContext();
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
-            $a['AuthnContextClassRef'][0]
+            $a->getRequestedAuthnContexts()[0]->getClassRef()
         );
 
-        $xml = $ar->toSignedXML();
+        $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
             $q[0]->textContent
@@ -226,10 +227,10 @@ class SPTest extends ClearStateTestCase
             $ar->getForceAuthn()
         );
 
-        $xml = $ar->toSignedXML();
+        $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
+        $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
         $this->assertEquals(
             $state['ForceAuthn'] ? 'true' : 'false',
             $q[0]->value
@@ -310,10 +311,10 @@ class SPTest extends ClearStateTestCase
             $r = $e->getTestResult();
             /** @var AuthnRequest $ar */
             $ar = $r['ar'];
-            $xml = $ar->toSignedXML();
+            $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
             /** @var \DOMAttr[] $q */
-            $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
             $this->assertEquals(
                 'https://saml.idp/sso/',
                 $q[0]->value
@@ -349,10 +350,10 @@ class SPTest extends ClearStateTestCase
             $r = $e->getTestResult();
             /** @var AuthnRequest $ar */
             $ar = $r['ar'];
-            $xml = $ar->toSignedXML();
+            $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 
             /** @var \DOMAttr[] $q */
-            $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $q = XMLUtils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
             $this->assertEquals(
                 'https://saml.idp/sso/',
                 $q[0]->value
