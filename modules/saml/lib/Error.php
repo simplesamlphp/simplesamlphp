@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\samlp\Status;
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
+use SimpleSAML\SAML2\XML\samlp\StatusMessage;
 use Throwable;
 
 /**
@@ -19,86 +22,46 @@ class Error extends \SimpleSAML\Error\Exception
     /**
      * The top-level status code.
      *
-     * @var string
+     * @var \SimpleSAML\SAML2\XML\samlp\Status
      */
     private string $status;
-
-    /**
-     * The second-level status code, or NULL if no second-level status code is defined.
-     *
-     * @var string|null
-     */
-    private ?string $subStatus;
-
-    /**
-     * The status message, or NULL if no status message is defined.
-     *
-     * @var string|null
-     */
-    private ?string $statusMessage;
 
 
     /**
      * Create a SAML 2 error.
      *
-     * @param string $status  The top-level status code.
-     * @param string|null $subStatus  The second-level status code.
-     * Can be NULL, in which case there is no second-level status code.
-     * @param string|null $statusMessage  The status message.
-     * Can be NULL, in which case there is no status message.
+     * @param \SimpleSAML\SAML2\XML\samlp\Status $status  The top-level status code.
      * @param \Throwable|null $cause  The cause of this exception. Can be NULL.
      */
     public function __construct(
-        string $status,
-        string $subStatus = null,
-        string $statusMessage = null,
+        Status $status,
         Throwable $cause = null
     ) {
-        $st = self::shortStatus($status);
-        if ($subStatus !== null) {
-            $st .= '/' . self::shortStatus($subStatus);
+        $st = self::shortStatus($status->getStatusCode());
+
+        $subCodes = $status->getSubCodes();
+        foreach ($subCodes as $subStatus) {
+            $st .= '/' . self::shortStatus($subStatus->getStatusCode());
         }
+
+        $statusMessage = $status->getStatusMessage();
         if ($statusMessage !== null) {
             $st .= ': ' . $statusMessage;
         }
         parent::__construct($st, 0, $cause);
 
         $this->status = $status;
-        $this->subStatus = $subStatus;
-        $this->statusMessage = $statusMessage;
     }
 
 
     /**
      * Get the top-level status code.
      *
-     * @return string  The top-level status code.
+     * @return \SimpleSAML\SAML2\XML\samlp\Status  The top-level status code.
      */
-    public function getStatus(): string
+    public function getStatus(): Status
     {
         return $this->status;
-    }
-
-
-    /**
-     * Get the second-level status code.
-     *
-     * @return string|null  The second-level status code or NULL if no second-level status code is present.
-     */
-    public function getSubStatus(): ?string
-    {
-        return $this->subStatus;
-    }
-
-
-    /**
-     * Get the status message.
-     *
-     * @return string|null  The status message or NULL if no status message is present.
-     */
-    public function getStatusMessage(): ?string
-    {
-        return $this->statusMessage;
     }
 
 
@@ -118,7 +81,7 @@ class Error extends \SimpleSAML\Error\Exception
             return $e;
         } else {
             $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
+                Constants::STATUS_RESPONDER,
                 null,
                 get_class($e) . ': ' . $e->getMessage(),
                 $e
@@ -171,16 +134,11 @@ class Error extends \SimpleSAML\Error\Exception
      * Remove the 'urn:oasis:names:tc:SAML:2.0:status:'-prefix of status codes
      * if it is present.
      *
-     * @param string $status  The status code.
+     * @param \SimpleSAML\SAML2\XML\samlp\StatusCode $statusCode  The status code.
      * @return string  A shorter version of the status code.
      */
-    private static function shortStatus(string $status): string
+    private static function shortStatus(StatusCode $statusCode): string
     {
-        $t = 'urn:oasis:names:tc:SAML:2.0:status:';
-        if (substr($status, 0, strlen($t)) === $t) {
-            return substr($status, strlen($t));
-        }
-
-        return $status;
+        return preg_replace('/^urn:oasis:names:tc:SAML:2.0:status:/', '', $statusCode->getValue());
     }
 }

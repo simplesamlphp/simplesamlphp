@@ -30,7 +30,7 @@ if (isset($_POST['cancel'])) {
     \SimpleSAML\Auth\State::throwException(
         $state,
         new \SimpleSAML\Module\saml\Error\NoAvailableIDP(
-            \SAML2\Constants::STATUS_RESPONDER,
+            \SimpleSAML\SAML2\Constants::STATUS_RESPONDER,
             'User refused to reauthenticate with any of the IdPs requested.'
         )
     );
