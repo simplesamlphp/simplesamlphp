@@ -103,7 +103,7 @@ class SPTest extends ClearStateTestCase
      * @param array $state The state array to use in the test. This is an array of the parameters described in section
      * 2 of https://simplesamlphp.org/docs/development/saml:sp
      *
-     * @return \SAML2\AuthnRequest The AuthnRequest generated.
+     * @return \SimpleSAML\SAML2\XML\samlp\AuthnRequest The AuthnRequest generated.
      */
     private function createAuthnRequest(array $state = []): AuthnRequest
     {
@@ -111,7 +111,7 @@ class SPTest extends ClearStateTestCase
         $config = [];
         $as = new SpTester($info, $config);
 
-        /** @var \SAML2\AuthnRequest $ar */
+        /** @var \SimpleSAML\SAML2\XML\samlp\AuthnRequest $ar */
         $ar = null;
         try {
             $as->startSSO2Test($this->getIdpMetadata(), $state);
@@ -161,7 +161,7 @@ class SPTest extends ClearStateTestCase
 
         $ar = $this->createAuthnRequest($state);
 
-        /** @var \SAML2\XML\saml\NameID $nameID */
+        /** @var \SimpleSAML\SAML2\XML\saml\NameID $nameID */
         $nameID = $ar->getSubject()->getIdentifier();
         $this->assertEquals($state['saml:NameID']->getValue(), $nameID->getValue());
         $this->assertEquals($state['saml:NameID']->getFormat(), $nameID->getFormat());
@@ -351,7 +351,7 @@ class SPTest extends ClearStateTestCase
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
-            /** @var AuthnRequest $ar */
+            /** @var \SimpleSAML\SAML2\XML\samlp\AuthnRequest $ar */
             $ar = $r['ar'];
             $xml = DOMDocumentFactory::fromString(strval($ar))->documentElement;
 

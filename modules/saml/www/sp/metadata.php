@@ -6,6 +6,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\Utils;
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {

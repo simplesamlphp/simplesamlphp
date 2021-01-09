@@ -7,18 +7,19 @@
  */
 
 use Exception;
-use SAML2\Binding;
-use SAML2\Constants;
-use SAML2\Exception\Protocol\UnsupportedBindingException;
-use SAML2\LogoutResponse;
-use SAML2\LogoutRequest;
-use SAML2\SOAP;
-use SAML2\XML\saml\Issuer;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\saml\EncryptedID;
+use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 use SimpleSAML\Utils;
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
@@ -88,7 +89,12 @@ if ($message instanceof LogoutResponse) {
     Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
     Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
-    if ($message->isNameIdEncrypted()) {
+    /** @psalm-var \SimpleSAML\SAML2\XML\saml\IdentifierInterface $nameId */
+    $nameId = $message->getIdentifier();
+    if ($nameId instanceof EncryptedID) {
+        /** @psalm-var \SimpleSAML\SAML2\XML\EncryptedElementInterface $encId */
+        $encId = $nameId;
+
         try {
             $keys = Module\saml\Message::getDecryptionKeys($idpMetadata, $spMetadata);
         } catch (Exception $e) {
@@ -100,7 +106,7 @@ if ($message instanceof LogoutResponse) {
         $lastException = null;
         foreach ($keys as $i => $key) {
             try {
-                $message->decryptNameId($key, $blacklist);
+                $nameId = $encId->decrypt($key, $blacklist);
                 Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 $lastException = null;
                 break;
@@ -114,10 +120,9 @@ if ($message instanceof LogoutResponse) {
         }
     }
 
-    $nameId = $message->getNameId();
     $sessionIndexes = $message->getSessionIndexes();
 
-    /** @psalm-suppress PossiblyNullArgument  This will be fixed in saml2 5.0 */
+    /** @psalm-var \SimpleSAML\SAML2\XML\saml\IdentifierInterface $nameId */
     $numLoggedOut = Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
     if ($numLoggedOut === false) {
         // This type of logout was unsupported. Use the old method
@@ -126,32 +131,11 @@ if ($message instanceof LogoutResponse) {
     }
 
     // Create and send response
-    $lr = Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata);
+    $lr = Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata, $binding, $message->getId());
     $lr->setRelayState($message->getRelayState());
-    $lr->setInResponseTo($message->getId());
 
     if ($numLoggedOut < count($sessionIndexes)) {
         Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
-    }
-
-    $dst = $idpMetadata->getEndpointPrioritizedByBinding(
-        'SingleLogoutService',
-        [
-            Constants::BINDING_HTTP_REDIRECT,
-            Constants::BINDING_HTTP_POST
-        ]
-    );
-
-    if (!($binding instanceof SOAP)) {
-        $binding = Binding::getBinding($dst['Binding']);
-        if (isset($dst['ResponseLocation'])) {
-            $dst = $dst['ResponseLocation'];
-        } else {
-            $dst = $dst['Location'];
-        }
-        $binding->setDestination($dst);
-    } else {
-        $lr->setDestination($dst['Location']);
     }
 
     $binding->send($lr);

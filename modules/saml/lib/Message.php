@@ -20,6 +20,7 @@ use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\Subject;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
+use SimpleSAML\SAML2\XML\samlp\AbstractStatusResponse;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
@@ -29,7 +30,6 @@ use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\IDPEntry;
 use SimpleSAML\SAML2\XML\samlp\IDPList;
 use SimpleSAML\SAML2\XML\samlp\Scoping;
-use SimpleSAML\SAML2\XML\samlp\StatusResponse;
 use SimpleSAML\SAML2\XML\SignedElementInterface;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\ds\KeyInfo;
@@ -453,11 +453,11 @@ class Message
     /**
      * Retrieve the status code of a response as a \SimpleSAML\Module\saml\Error.
      *
-     * @param \SimpleSAML\SAML2\XML\samlp\StatusResponse $response The response.
+     * @param \SimpleSAML\SAML2\XML\samlp\AbstractStatusResponse $response The response.
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
-    public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
+    public static function getResponseError(AbstractStatusResponse $response): \SimpleSAML\Module\saml\Error
     {
         $status = $response->getStatus();
         return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
@@ -726,17 +726,50 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\SAML2\Binding &$binding
+     * @param string $id
      * @return \SimpleSAML\SAML2\XML\samlp\LogoutResponse A logout response object.
      */
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
+        Binding &$binding,
+        string $inResponseTo
     ): LogoutResponse {
-        $lr = new LogoutResponse();
-        $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
-        $lr->setIssuer($issuer);
+        $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+            'SingleLogoutService',
+            [
+                Constants::BINDING_HTTP_REDIRECT,
+                Constants::BINDING_HTTP_POST
+            ]
+        );
+
+        $destination = null;
+        if (!($binding instanceof SOAP)) {
+            $binding = Binding::getBinding($dst['Binding']);
+            if (isset($dst['ResponseLocation'])) {
+                $dst = $dst['ResponseLocation'];
+            } else {
+                $dst = $dst['Location'];
+            }
+            $binding->setDestination($dst);
+        } else {
+            $destination = $dst['Location'];
+        }
+
+        $issuer = new Issuer($srcMetadata->getString('entityid'), null, null, Constants::NAMEID_ENTITY);
+
+        $lr = new LogoutResponse(
+            null, // Status
+            $issuer,
+            null, // ID
+            null, // IssueInstant
+            $inResponseTo,
+            $destination,
+            null, // Consent
+            null, // Extensions
+            null  // RelayState
+        );
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
