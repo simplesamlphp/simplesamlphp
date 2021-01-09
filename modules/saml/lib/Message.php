@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml;
 
 use Exception;
-use SimpleSAML\XMLSecurity\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\XML\saml\Assertion;
+use SimpleSAML\SAML2\XML\saml\AudienceRestriction;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\Conditions;
 use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
@@ -30,11 +32,15 @@ use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\IDPEntry;
 use SimpleSAML\SAML2\XML\samlp\IDPList;
 use SimpleSAML\SAML2\XML\samlp\Scoping;
+use SimpleSAML\SAML2\XML\samlp\Status;
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
 use SimpleSAML\SAML2\XML\SignedElementInterface;
 use SimpleSAML\Utils;
-use SimpleSAML\XML\ds\KeyInfo;
-use SimpleSAML\XML\ds\X509Certificate;
-use SimpleSAML\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\xenc\EncryptionMethod;
+use SimpleSAML\XMLSecurity\XMLSecurityKey;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -79,7 +85,7 @@ class Message
         }
         $privateKey->loadKey($keyArray['PEM'], false);
 
-        $element->setSignatureKey($privateKey);
+        $element->setSigningKey($privateKey);
 
         if ($certArray === null) {
             // we don't have a certificate to add
@@ -257,8 +263,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
-     * @param string|null $encryptionMethod
-     *   The EncryptionMethod from the assertion.
+     * @param \SimpleSAML\XMLSecurity\XML\xenc\EncryptionMethod|null $encryptionMethod The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
      */
@@ -376,11 +381,7 @@ class Message
         }
 
         try {
-            // @todo Enable this code for saml2v5 to automatically determine encryption algorithm
-            //$encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
-            //$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
-
-            $encryptionMethod = null;
+            $encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
         } catch (Exception $e) {
             throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
@@ -391,7 +392,7 @@ class Message
         $lastException = null;
         foreach ($keys as $i => $key) {
             try {
-                $ret = $assertion->getAssertion($key, $blacklist);
+                $ret = $assertion->decrypt($key, $blacklist);
                 Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 return $ret;
             } catch (Exception $e) {
@@ -410,7 +411,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
-     * @param \SimpleSAML\SAML2\XML\saml\Assertion|\SimpleSAML\SAML2\XML\EncryptedAssertion $assertion
+     * @param \SimpleSAML\SAML2\XML\saml\Assertion|\SimpleSAML\SAML2\XML\saml\EncryptedAssertion $assertion
      *   The assertion containing any possibly encrypted attributes.
      *
      *
@@ -459,8 +460,7 @@ class Message
      */
     public static function getResponseError(AbstractStatusResponse $response): \SimpleSAML\Module\saml\Error
     {
-        $status = $response->getStatus();
-        return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
+        return new \SimpleSAML\Module\saml\Error($response->getStatus());
     }
 
 
@@ -502,6 +502,7 @@ class Message
         }
 
         // Determine RequestedAuthnContext
+        $comp = Constants::COMPARISON_EXACT;
         $accr = null;
         $rac = null;
 
@@ -671,9 +672,9 @@ class Message
             $rac,
             $subject,
             new NameIDPolicy(
-                $policy['Format'] ?? null,
-                $policy['SPNameQualifier'] ?? null,
-                $policy['AllowCreate'] ?? null
+                $nameIdPolicy['Format'] ?? null,
+                $nameIdPolicy['SPNameQualifier'] ?? null,
+                $nameIdPolicy['AllowCreate'] ?? null
             ),
             new Conditions(null, null, [], $audienceRestriction, null, null),
             $forceAuthn,
@@ -709,11 +710,20 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata
     ): LogoutRequest {
-        $lr = new LogoutRequest();
-        $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
-        $lr->setIssuer($issuer);
+        $issuer = new Issuer($srcMetadata->getString('entityid'), null, null, Constants::NAMEID_ENTITY);
+
+        $lr = new LogoutRequest(
+            null, // Identifier
+            null, // notOnOrAfter
+            null, // reason
+            [], // sessionIndexes
+            $issuer,
+            null, // id
+            null, // issueInstant
+            null, // destination
+            null, // consent
+            null  // Extensions
+        );
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
@@ -736,7 +746,7 @@ class Message
         Binding &$binding,
         string $inResponseTo
     ): LogoutResponse {
-        $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+        $dst = $dstMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
                 Constants::BINDING_HTTP_REDIRECT,
@@ -760,7 +770,7 @@ class Message
         $issuer = new Issuer($srcMetadata->getString('entityid'), null, null, Constants::NAMEID_ENTITY);
 
         $lr = new LogoutResponse(
-            null, // Status
+            new Status(new StatusCode(Constants::STATUS_SUCCESS)), // Status
             $issuer,
             null, // ID
             null, // IssueInstant
@@ -852,7 +862,7 @@ class Message
         $assertion,
         bool $responseSigned
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
+        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);

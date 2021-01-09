@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants;
 
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.
@@ -70,7 +70,7 @@ class PersistentNameID2TargetedID extends ProcessingFilter
             );
             return;
         }
-        /** @var \SAML2\XML\saml\NameID $nameID */
+        /** @var \SimpleSAML\SAML2\XML\saml\NameID $nameID */
         $nameID = $state['saml:NameID'][Constants::NAMEID_PERSISTENT];
 
         $state['Attributes'][$this->attribute] = [(!$this->nameId) ? $nameID->getValue() : $nameID];

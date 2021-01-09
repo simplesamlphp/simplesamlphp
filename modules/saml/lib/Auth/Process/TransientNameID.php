@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\Utils;
 
 /**

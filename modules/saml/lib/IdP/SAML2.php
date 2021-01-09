@@ -28,6 +28,8 @@ use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
 use SimpleSAML\SAML2\XML\samlp\Response;
+use SimpleSAML\SAML2\XML\samlp\Status;
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -158,11 +160,7 @@ class SAML2
         $ar->setInResponseTo($requestId);
         $ar->setRelayState($relayState);
 
-        $status = [
-            'Code'    => $error->getStatus(),
-            'SubCode' => $error->getSubStatus(),
-            'Message' => $error->getStatusMessage(),
-        ];
+        $status = $error->getStatus();
         $ar->setStatus($status);
 
         $statsData = [
@@ -416,17 +414,8 @@ class SAML2
             $authnContext = $request->getRequestedAuthnContext();
 
             $nameIdPolicy = $request->getNameIdPolicy();
-            if (isset($nameIdPolicy['Format'])) {
-                $nameIDFormat = $nameIdPolicy['Format'];
-            } else {
-                $nameIDFormat = null;
-            }
-            if (isset($nameIdPolicy['AllowCreate'])) {
-                $allowCreate = $nameIdPolicy['AllowCreate'];
-            } else {
-                $allowCreate = false;
-            }
-
+            $nameIDFormat = $nameIdPolicy['Format'] ?? null;
+            $allowCreate = $nameIdPolicy['AllowCreate'] ?? false;
             $idpInit = false;
 
             Logger::info(
@@ -570,10 +559,11 @@ class SAML2
 
         if (isset($state['core:Failed']) && $state['core:Failed']) {
             $partial = true;
-            $lr->setStatus([
-                'Code'    => Constants::STATUS_SUCCESS,
-                'SubCode' => Constants::STATUS_PARTIAL_LOGOUT,
-            ]);
+            $lr->setStatus(
+                new Status(
+                    new StatusCode(Constants::STATUS_SUCCESS, [new StatusCode(Constants::STATUS_PARTIAL_LOGOUT)])
+                )
+            );
             Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, true));
         } else {
             $partial = false;
@@ -1055,7 +1045,7 @@ class SAML2
                             /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
-                        Assert::isInstanceOfAny($value, [\DOMNodeList::class, \SAML2\XML\saml\NameID::class]);
+                        Assert::isInstanceOfAny($value, [DOMNodeList::class, NameID::class]);
                         break;
                     default:
                         throw new Error\Exception('Invalid encoding for attribute ' .
@@ -1113,7 +1103,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array &$state The state array with information about the request.
      *
-     * @return \SAML2\Assertion  The assertion.
+     * @return \SimpleSAML\SAML2\XML\saml\Assertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
      */
@@ -1140,9 +1130,7 @@ class SAML2
             \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
-        $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $issuer = new Issuer($idpMetadata->getString('entityid'), null, null, Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
         $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
@@ -1284,10 +1272,7 @@ class SAML2
                 }
             }
 
-            $nameId = new NameID();
-            $nameId->setFormat($nameIdFormat);
-            $nameId->setValue($nameIdValue);
-            $nameId->setSPNameQualifier($spNameQualifier);
+            $nameId = new NameID($nameIdValue, null, $spNameQualifier, $nameIdFormat);
         }
 
         $state['saml:idp:NameID'] = $nameId;
@@ -1309,14 +1294,14 @@ class SAML2
     /**
      * Encrypt an assertion.
      *
-     * This function takes in a \SAML2\Assertion and encrypts it if encryption of
+     * This function takes in a \SimpleSAML\SAML2\XML\saml\Assertion and encrypts it if encryption of
      * assertions are enabled in the metadata.
      *
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
-     * @param \SAML2\Assertion $assertion The assertion we are encrypting.
+     * @param \SimpleSAML\SAML2\XML\saml\Assertion $assertion The assertion we are encrypting.
      *
-     * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
+     * @return \SimpleSAML\SAML2\XML\saml\Assertion|\SimpleSAML\SAML2\XML\saml\EncryptedAssertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
      */
@@ -1385,7 +1370,7 @@ class SAML2
      * @param array $association The SP association.
      * @param string|null $relayState An id that should be carried across the logout.
      *
-     * @return \SAML2\LogoutRequest The corresponding SAML2 logout request.
+     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest The corresponding SAML2 logout request.
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,
@@ -1423,7 +1408,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param string                    $consumerURL The Destination URL of the response.
      *
-     * @return \SAML2\Response The SAML2 Response corresponding to the given data.
+     * @return \SimpleSAML\SAML2\XML\samlp\Response The SAML2 Response corresponding to the given data.
      */
     private static function buildResponse(
         Configuration $idpMetadata,
@@ -1435,10 +1420,9 @@ class SAML2
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
+        $issuer = new Issuer($idpMetadata->getString('entityid'), null, null, Constants::NAMEID_ENTITY);
+
         $r = new Response();
-        $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
         $r->setIssuer($issuer);
         $r->setDestination($consumerURL);
 

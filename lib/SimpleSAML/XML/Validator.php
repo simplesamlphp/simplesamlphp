@@ -12,10 +12,10 @@ namespace SimpleSAML\XML;
 
 use DOMNode;
 use DOMDocument;
-use RobRichards\XMLSecLibs\XMLSecEnc;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
+use SimpleSAML\XMLSecurity\XMLSecEnc;
+use SimpleSAML\XMLSecurity\XMLSecurityDSig;
 
 class Validator
 {

@@ -11,6 +11,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
+use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
@@ -20,7 +21,6 @@ use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
@@ -34,8 +34,9 @@ use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XMLSecurity\ds\X509Certificate;
-use SimpleSAML\XMLSecurity\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XMLSecurityDSig;
 use SimpleSAML\XMLSecurity\XMLSecurityKey;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
@@ -294,7 +295,7 @@ class SAMLParser
     /**
      * This function parses a \SimpleSAML\SAML2\XML\md\EntityDescriptor object which represents a EntityDescriptor element.
      *
-     * @param \SAML2\XML\md\EntityDescriptor $entityElement A \SAML2\XML\md\EntityDescriptor object which represents a
+     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor $entityElement A \SimpleSAML\SAML2\XML\md\EntityDescriptor object which represents a
      *     EntityDescriptor element.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
@@ -389,7 +390,7 @@ class SAMLParser
 
     /**
      *
-     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element The element we should process.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $element The element we should process.
      * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
@@ -1041,11 +1042,11 @@ class SAMLParser
         if ($element->getSurName() !== null) {
             $contactPerson['surName'] = $element->getSurName();
         }
-        if ($element->getEmailAddress() !== []) {
-            $contactPerson['emailAddress'] = $element->getEmailAddress();
+        if ($element->getEmailAddresses() !== []) {
+            $contactPerson['emailAddress'] = $element->getEmailAddresses();
         }
-        if ($element->getTelephoneNumber() !== []) {
-            $contactPerson['telephoneNumber'] = $element->getTelephoneNumber();
+        if ($element->getTelephoneNumbers() !== []) {
+            $contactPerson['telephoneNumber'] = $element->getTelephoneNumbers();
         }
         if (!empty($contactPerson)) {
             $this->contacts[] = $contactPerson;
@@ -1061,13 +1062,13 @@ class SAMLParser
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
-        $sp['name'] = $element->getServiceName();
-        $sp['description'] = $element->getServiceDescription();
+        $sp['name'] = $element->getServiceNames();
+        $sp['description'] = $element->getServiceDescriptions();
 
         $format = null;
         $sp['attributes'] = [];
         $sp['attributes.required'] = [];
-        foreach ($element->getRequestedAttribute() as $child) {
+        foreach ($element->getRequestedAttributes() as $child) {
             $attrname = $child->getName();
             $sp['attributes'][] = $attrname;
 
@@ -1127,7 +1128,7 @@ class SAMLParser
             $ep['ResponseLocation'] = $element->getResponseLocation();
         }
 
-        if ($element instanceof IndexedEndpointType) {
+        if ($element instanceof AbstractIndexedEndpointType) {
             $ep['index'] = $element->getIndex();
 
             if ($element->getIsDefault() !== null) {
@@ -1183,7 +1184,6 @@ class SAMLParser
 
         $keyInfo = $kd->getKeyInfo();
 
-        /** @psalm-suppress PossiblyNullReference  This will be fixed in saml2 5.0 */
         foreach ($keyInfo->getInfo() as $i) {
             if ($i instanceof X509Data) {
                 foreach ($i->getData() as $d) {
@@ -1265,7 +1265,7 @@ class SAMLParser
             throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
-        return new EntityDescriptor($ed);
+        return EntityDescriptor::fromXML($ed);
     }
 
 

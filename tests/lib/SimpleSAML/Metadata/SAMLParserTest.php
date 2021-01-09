@@ -34,7 +34,10 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML
@@ -67,17 +70,26 @@ XML
     <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
   </Extensions>
   <EntityDescriptor entityID="theEntityID">
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+     <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+     <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+   </SPSSODescriptor>
   </EntityDescriptor>
   <EntitiesDescriptor>
     <EntityDescriptor entityID="subEntityId">
-      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+      </SPSSODescriptor>
     </EntityDescriptor>
     <EntityDescriptor entityID="subEntityIdOverride">
       <Extensions>
         <mdrpi:RegistrationInfo registrationAuthority="overrides-are-ignored"/>
       </Extensions>
-      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+      </SPSSODescriptor>
     </EntityDescriptor>
   </EntitiesDescriptor>
 </EntitiesDescriptor>
@@ -115,6 +127,8 @@ XML
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
       <AttributeConsumingService index="0">
         <ServiceName xml:lang="en">Example service</ServiceName>
         <ServiceDescription xml:lang="nl">Dit is een voorbeeld voor de unittest.</ServiceDescription>
@@ -136,8 +150,8 @@ XML
         /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20SP();
 
-        $this->assertEquals("Example service", $metadata['name']['en']);
-        $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
+        $this->assertEquals("Example service", $metadata['name'][0]->getValue());
+        $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description'][0]->getValue());
 
         $expected_a = [
             "urn:mace:dir:attribute-def:eduPersonPrincipalName",
@@ -162,7 +176,10 @@ XML
 <?xml version="1.0"?>
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
   <EntityDescriptor entityID="theEntityID">
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://ServiceProvider.com/SAML/SSO/Artifact" index="0" isDefault="true"/>
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML

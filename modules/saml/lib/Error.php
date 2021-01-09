@@ -8,7 +8,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\XML\samlp\Status;
 use SimpleSAML\SAML2\XML\samlp\StatusCode;
-use SimpleSAML\SAML2\XML\samlp\StatusMessage;
 use Throwable;
 
 /**
@@ -39,9 +38,8 @@ class Error extends \SimpleSAML\Error\Exception
     ) {
         $st = self::shortStatus($status->getStatusCode());
 
-        $subCodes = $status->getSubCodes();
-        foreach ($subCodes as $subStatus) {
-            $st .= '/' . self::shortStatus($subStatus->getStatusCode());
+        foreach ($status->getStatusCode()->getSubCodes() as $subStatus) {
+            $st .= '/' . self::shortStatus($subStatus);
         }
 
         $statusMessage = $status->getStatusMessage();
@@ -81,11 +79,12 @@ class Error extends \SimpleSAML\Error\Exception
             return $e;
         } else {
             $e = new self(
-                Constants::STATUS_RESPONDER,
-                null,
-                get_class($e) . ': ' . $e->getMessage(),
-                $e
-            );
+                new Status(
+                    new StatusCode(Constants::STATUS_RESPONDER),
+                    get_class($exception) . ': ' . $exception->getMessage()
+                ),
+                $exception
+            );            $e = new self(
         }
 
         return $e;
@@ -107,15 +106,16 @@ class Error extends \SimpleSAML\Error\Exception
     {
         $e = null;
 
-        switch ($this->status) {
+        switch ($this->status->getStatusCode()->getValue()) {
             case Constants::STATUS_RESPONDER:
-                switch ($this->subStatus) {
-                    case Constants::STATUS_NO_PASSIVE:
+                foreach ($this->status->getStatusCode()->getSubCodes() as $subCode) {
+                    if ($subCode->getValue() === Constants::STATUS_NO_PASSIVE) {
                         $e = new \SimpleSAML\Module\saml\Error\NoPassive(
                             Constants::STATUS_RESPONDER,
-                            $this->statusMessage
+                            $this->status->getStatusMessage()
                         );
                         break;
+                    }
                 }
                 break;
         }

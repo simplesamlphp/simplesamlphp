@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\samlp\Status;
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 
 /**
@@ -176,8 +178,9 @@ class SQLPersistentNameID extends BaseNameIDGenerator
                 'SQLPersistentNameID: Did not find persistent NameID for user, and not allowed to create new NameID.'
             );
             throw new \SimpleSAML\Module\saml\Error(
-                Constants::STATUS_RESPONDER,
-                Constants::STATUS_INVALID_NAMEID_POLICY
+                new Status(
+                    new StatusCode(Constants::STATUS_RESPONDER, [new StatusCode(Constants::STATUS_INVALID_NAMEID_POLICY)])
+                )
             );
         }
 

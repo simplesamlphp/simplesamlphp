@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml;
 
-use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\XML\saml\NameID;
 
 /**
  * Base filter for generating NameID values.
@@ -95,29 +95,30 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
             return;
         }
 
-        $nameId = new NameID();
-        $nameId->setValue($value);
-        $nameId->setFormat($this->format);
+        $nameQualifier = null;
+        $spNameQualifier = null;
 
         if ($this->nameQualifier === true) {
             if (isset($state['IdPMetadata']['entityid'])) {
-                $nameId->setNameQualifier($state['IdPMetadata']['entityid']);
+                $nameQualifier = $state['IdPMetadata']['entityid'];
             } else {
                 Logger::warning('No IdP entity ID, unable to set NameQualifier.');
             }
         } elseif (is_string($this->nameQualifier)) {
-            $nameId->setNameQualifier($this->nameQualifier);
+            $nameQualifier = $this->nameQualifier;
         }
 
         if ($this->spNameQualifier === true) {
             if (isset($state['SPMetadata']['entityid'])) {
-                $nameId->setSPNameQualifier($state['SPMetadata']['entityid']);
+                $spNameQualifier = $state['SPMetadata']['entityid'];
             } else {
                 Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
             }
         } elseif (is_string($this->spNameQualifier)) {
-            $nameId->setSPNameQualifier($this->spNameQualifier);
+            $spNameQualifier = $this->spNameQualifier;
         }
+
+        $nameId = new NameID($value, $nameQualifier, $spNameQualifier, $this->format);
 
         /** @psalm-suppress PossiblyNullArrayOffset */
         $state['saml:NameID'][$this->format] = $nameId;
