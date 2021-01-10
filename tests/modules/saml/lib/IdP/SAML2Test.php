@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use SimpleSAML\Configuration;
@@ -7,6 +9,9 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Module\saml\IdP\SAML2
+ */
 class SAML2Test extends ClearStateTestCase
 {
     /**
@@ -14,7 +19,7 @@ class SAML2Test extends ClearStateTestCase
      * @var array
      */
     private $defaultExpectedAuthState = [
-        'Responder' =>['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
+        'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
         '\SimpleSAML\Auth\State.exceptionFunc' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'],
         'saml:RelayState' => null,
         'saml:RequestId' => null,
@@ -28,12 +33,14 @@ class SAML2Test extends ClearStateTestCase
         'saml:NameIDFormat' => null,
         'saml:AllowCreate' => true,
         'saml:Extensions' => null,
-        'saml:RequestedAuthnContext' => null];
+        'saml:RequestedAuthnContext' => null
+    ];
+
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
      */
-    public function testIdPInitiatedLoginMinimumParams()
+    public function testIdPInitiatedLoginMinimumParams(): void
     {
         $state = $this->idpInitiatedHelper(['spentityid' => 'https://some-sp-entity-id']);
         $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
@@ -53,10 +60,11 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
      */
-    public function testIdPInitiatedLoginOptionalParams()
+    public function testIdPInitiatedLoginOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'spentityid' => 'https://some-sp-entity-id',
@@ -86,10 +94,11 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
      */
-    public function testIdPInitShibCompatyMinimumParams()
+    public function testIdPInitShibCompatyMinimumParams(): void
     {
         //https://wiki.shibboleth.net/confluence/display/IDP30/UnsolicitedSSOConfiguration
         // Shib uses the param providerId instead of spentityid
@@ -111,10 +120,11 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
      */
-    public function testIdPInitShibCompatOptionalParams()
+    public function testIdPInitShibCompatOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'providerId' => 'https://some-sp-entity-id',
@@ -141,16 +151,16 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Invoke IDP initiated login with the given query parameters.
      * Callers should validate the return state array or confirm appropriate exceptions are returned.
      *
      * @param array $queryParams
-     * @return string[] The state array used for handling the authentication request.
+     * @return array The state array used for handling the authentication request.
      */
-    private function idpInitiatedHelper(array $queryParams)
+    private function idpInitiatedHelper(array $queryParams): array
     {
-        /** @var $idpStub \PHPUnit_Framework_MockObject_MockObject|IdP */
         $idpStub = $this->getMockBuilder(IdP::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -184,17 +194,25 @@ EOT;
         // won't line up perfectly
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?'.http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?' . http_build_query($queryParams);
 
 
         $state = [];
+
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
-            ->with($this->callback(function ($arg) use (&$state) {
-                $state = $arg;
-                return true;
-            }));
+            ->with($this->callback(
+                /**
+                 * @param array $arg
+                 * @return bool
+                 */
+                function ($arg) use (&$state) {
+                    $state = $arg;
+                    return true;
+                }
+            ));
 
+        /** @psalm-suppress InvalidArgument */
         SAML2::receiveAuthnRequest($idpStub);
 
         return $state;

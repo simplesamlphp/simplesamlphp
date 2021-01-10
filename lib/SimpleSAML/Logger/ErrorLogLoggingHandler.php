@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 
 /**
  * A class for logging to the default php error log.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class ErrorLogLoggingHandler implements LoggingHandlerInterface
 {
     /**
      * This array contains the mappings from syslog log level to names.
+     *
+     * @var array
      */
     private static $levelNames = [
         Logger::EMERG   => 'EMERG',
@@ -41,7 +43,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param \SimpleSAML\Configuration $config The configuration object for this handler.
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
     }
@@ -52,7 +54,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param string $format The format used for logs.
      */
-    public function setLogFormat($format)
+    public function setLogFormat(string $format): void
     {
         // we don't need the format here
     }
@@ -64,7 +66,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * @param int $level The log level.
      * @param string $string The formatted message to log.
      */
-    public function log($level, $string)
+    public function log(int $level, string $string): void
     {
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];

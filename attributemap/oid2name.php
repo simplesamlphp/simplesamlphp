@@ -83,6 +83,7 @@ $attributemap = [
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.5'   => 'eduOrgSuperiorURI',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.6'   => 'eduOrgWhitePagesURI',
     'urn:oid:1.3.6.1.4.1.5923.1.5.1.1'   => 'isMemberOf',
+    'urn:oid:1.3.6.1.4.1.25178.1.0.2.3'  => 'schacYearOfBirth',
     'urn:oid:1.3.6.1.4.1.25178.1.2.1'    => 'schacMotherTongue',
     'urn:oid:1.3.6.1.4.1.25178.1.2.2'    => 'schacGender',
     'urn:oid:1.3.6.1.4.1.25178.1.2.3'    => 'schacDateOfBirth',

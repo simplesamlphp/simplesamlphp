@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
+
+use SimpleSAML\Locale\Translate;
 
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -16,42 +19,42 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    final public static function defaultGetAllErrorCodeTitles()
+    final public static function defaultGetAllErrorCodeTitles(): array
     {
         return [
-            'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ACSPARAMS}'),
-            'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ARSPARAMS}'),
-            'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:title_AUTHSOURCEERROR}'),
-            'BADREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:title_BADREQUEST}'),
-            'CASERROR' => \SimpleSAML\Locale\Translate::noop('{errors:title_CASERROR}'),
-            'CONFIG' => \SimpleSAML\Locale\Translate::noop('{errors:title_CONFIG}'),
-            'CREATEREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:title_CREATEREQUEST}'),
-            'DISCOPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_DISCOPARAMS}'),
-            'GENERATEAUTHNRESPONSE' => \SimpleSAML\Locale\Translate::noop('{errors:title_GENERATEAUTHNRESPONSE}'),
-            'INVALIDCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_INVALIDCERT}'),
-            'LDAPERROR' => \SimpleSAML\Locale\Translate::noop('{errors:title_LDAPERROR}'),
-            'LOGOUTINFOLOST' => \SimpleSAML\Locale\Translate::noop('{errors:title_LOGOUTINFOLOST}'),
-            'LOGOUTREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:title_LOGOUTREQUEST}'),
-            'MEMCACHEDOWN' => \SimpleSAML\Locale\Translate::noop('{errors:title_MEMCACHEDOWN}'),
-            'METADATA' => \SimpleSAML\Locale\Translate::noop('{errors:title_METADATA}'),
-            'METADATANOTFOUND' => \SimpleSAML\Locale\Translate::noop('{errors:title_METADATANOTFOUND}'),
-            'NOACCESS' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOACCESS}'),
-            'NOCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOCERT}'),
-            'NORELAYSTATE' => \SimpleSAML\Locale\Translate::noop('{errors:title_NORELAYSTATE}'),
-            'NOSTATE' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOSTATE}'),
-            'NOTFOUND' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOTFOUND}'),
-            'NOTFOUNDREASON' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOTFOUNDREASON}'),
-            'NOTSET' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOTSET}'),
-            'NOTVALIDCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_NOTVALIDCERT}'),
-            'PROCESSASSERTION' => \SimpleSAML\Locale\Translate::noop('{errors:title_PROCESSASSERTION}'),
-            'PROCESSAUTHNREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:title_PROCESSAUTHNREQUEST}'),
-            'RESPONSESTATUSNOSUCCESS' => \SimpleSAML\Locale\Translate::noop('{errors:title_RESPONSESTATUSNOSUCCESS}'),
-            'SLOSERVICEPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_SSOPARAMS}'),
-            'UNHANDLEDEXCEPTION' => \SimpleSAML\Locale\Translate::noop('{errors:title_UNHANDLEDEXCEPTION}'),
-            'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_UNKNOWNCERT}'),
-            'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:title_USERABORTED}'),
-            'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:title_WRONGUSERPASS}'),
+            'ACSPARAMS' => Translate::noop('{errors:title_ACSPARAMS}'),
+            'ARSPARAMS' => Translate::noop('No SAML message provided'),
+            'AUTHSOURCEERROR' => Translate::noop('{errors:title_AUTHSOURCEERROR}'),
+            'BADREQUEST' => Translate::noop('{errors:title_BADREQUEST}'),
+            'CASERROR' => Translate::noop('{errors:title_CASERROR}'),
+            'CONFIG' => Translate::noop('{errors:title_CONFIG}'),
+            'CREATEREQUEST' => Translate::noop('{errors:title_CREATEREQUEST}'),
+            'DISCOPARAMS' => Translate::noop('{errors:title_DISCOPARAMS}'),
+            'GENERATEAUTHNRESPONSE' => Translate::noop('{errors:title_GENERATEAUTHNRESPONSE}'),
+            'INVALIDCERT' => Translate::noop('{errors:title_INVALIDCERT}'),
+            'LDAPERROR' => Translate::noop('{errors:title_LDAPERROR}'),
+            'LOGOUTINFOLOST' => Translate::noop('{errors:title_LOGOUTINFOLOST}'),
+            'LOGOUTREQUEST' => Translate::noop('{errors:title_LOGOUTREQUEST}'),
+            'MEMCACHEDOWN' => Translate::noop('Cannot retrieve session data'),
+            'METADATA' => Translate::noop('{errors:title_METADATA}'),
+            'METADATANOTFOUND' => Translate::noop('{errors:title_METADATANOTFOUND}'),
+            'NOACCESS' => Translate::noop('{errors:title_NOACCESS}'),
+            'NOCERT' => Translate::noop('{errors:title_NOCERT}'),
+            'NORELAYSTATE' => Translate::noop('{errors:title_NORELAYSTATE}'),
+            'NOSTATE' => Translate::noop('{errors:title_NOSTATE}'),
+            'NOTFOUND' => Translate::noop('{errors:title_NOTFOUND}'),
+            'NOTFOUNDREASON' => Translate::noop('{errors:title_NOTFOUNDREASON}'),
+            'NOTSET' => Translate::noop('{errors:title_NOTSET}'),
+            'NOTVALIDCERT' => Translate::noop('{errors:title_NOTVALIDCERT}'),
+            'PROCESSASSERTION' => Translate::noop('{errors:title_PROCESSASSERTION}'),
+            'PROCESSAUTHNREQUEST' => Translate::noop('{errors:title_PROCESSAUTHNREQUEST}'),
+            'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:title_RESPONSESTATUSNOSUCCESS}'),
+            'SLOSERVICEPARAMS' => Translate::noop('{errors:title_SLOSERVICEPARAMS}'),
+            'SSOPARAMS' => Translate::noop('No SAML request provided'),
+            'UNHANDLEDEXCEPTION' => Translate::noop('{errors:title_UNHANDLEDEXCEPTION}'),
+            'UNKNOWNCERT' => Translate::noop('{errors:title_UNKNOWNCERT}'),
+            'USERABORTED' => Translate::noop('{errors:title_USERABORTED}'),
+            'WRONGUSERPASS' => Translate::noop('{errors:title_WRONGUSERPASS}'),
         ];
     }
 
@@ -63,7 +66,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    public static function getAllErrorCodeTitles()
+    public static function getAllErrorCodeTitles(): array
     {
         return self::defaultGetAllErrorCodeTitles();
     }
@@ -74,42 +77,48 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    final public static function defaultGetAllErrorCodeDescriptions()
+    final public static function defaultGetAllErrorCodeDescriptions(): array
     {
         return [
-            'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ACSPARAMS}'),
-            'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ARSPARAMS}'),
-            'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
-            'BADREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:descr_BADREQUEST}'),
-            'CASERROR' => \SimpleSAML\Locale\Translate::noop('{errors:descr_CASERROR}'),
-            'CONFIG' => \SimpleSAML\Locale\Translate::noop('{errors:descr_CONFIG}'),
-            'CREATEREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:descr_CREATEREQUEST}'),
-            'DISCOPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_DISCOPARAMS}'),
-            'GENERATEAUTHNRESPONSE' => \SimpleSAML\Locale\Translate::noop('{errors:descr_GENERATEAUTHNRESPONSE}'),
-            'INVALIDCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_INVALIDCERT}'),
-            'LDAPERROR' => \SimpleSAML\Locale\Translate::noop('{errors:descr_LDAPERROR}'),
-            'LOGOUTINFOLOST' => \SimpleSAML\Locale\Translate::noop('{errors:descr_LOGOUTINFOLOST}'),
-            'LOGOUTREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:descr_LOGOUTREQUEST}'),
-            'MEMCACHEDOWN' => \SimpleSAML\Locale\Translate::noop('{errors:descr_MEMCACHEDOWN}'),
-            'METADATA' => \SimpleSAML\Locale\Translate::noop('{errors:descr_METADATA}'),
-            'METADATANOTFOUND' => \SimpleSAML\Locale\Translate::noop('{errors:descr_METADATANOTFOUND}'),
-            'NOACCESS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOACCESS}'),
-            'NOCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOCERT}'),
-            'NORELAYSTATE' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NORELAYSTATE}'),
-            'NOSTATE' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOSTATE}'),
-            'NOTFOUND' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOTFOUND}'),
-            'NOTFOUNDREASON' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOTFOUNDREASON}'),
-            'NOTSET' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOTSET}'),
-            'NOTVALIDCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_NOTVALIDCERT}'),
-            'PROCESSASSERTION' => \SimpleSAML\Locale\Translate::noop('{errors:descr_PROCESSASSERTION}'),
-            'PROCESSAUTHNREQUEST' => \SimpleSAML\Locale\Translate::noop('{errors:descr_PROCESSAUTHNREQUEST}'),
-            'RESPONSESTATUSNOSUCCESS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_RESPONSESTATUSNOSUCCESS}'),
-            'SLOSERVICEPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_SSOPARAMS}'),
-            'UNHANDLEDEXCEPTION' => \SimpleSAML\Locale\Translate::noop('{errors:descr_UNHANDLEDEXCEPTION}'),
-            'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_UNKNOWNCERT}'),
-            'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:descr_USERABORTED}'),
-            'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_WRONGUSERPASS}'),
+            'ACSPARAMS' => Translate::noop('{errors:descr_ACSPARAMS}'),
+            'ARSPARAMS' => Translate::noop("" .
+                "You accessed the Artifact Resolution Service interface, but did not " .
+                "provide a SAML ArtifactResolve message. Please note that this endpoint is" .
+                " not intended to be accessed directly."),
+            'AUTHSOURCEERROR' => Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
+            'BADREQUEST' => Translate::noop('{errors:descr_BADREQUEST}'),
+            'CASERROR' => Translate::noop('{errors:descr_CASERROR}'),
+            'CONFIG' => Translate::noop('{errors:descr_CONFIG}'),
+            'CREATEREQUEST' => Translate::noop('{errors:descr_CREATEREQUEST}'),
+            'DISCOPARAMS' => Translate::noop('{errors:descr_DISCOPARAMS}'),
+            'GENERATEAUTHNRESPONSE' => Translate::noop('{errors:descr_GENERATEAUTHNRESPONSE}'),
+            'INVALIDCERT' => Translate::noop('{errors:descr_INVALIDCERT}'),
+            'LDAPERROR' => Translate::noop('{errors:descr_LDAPERROR}'),
+            'LOGOUTINFOLOST' => Translate::noop('{errors:descr_LOGOUTINFOLOST}'),
+            'LOGOUTREQUEST' => Translate::noop('{errors:descr_LOGOUTREQUEST}'),
+            'MEMCACHEDOWN' => Translate::noop('{errors:descr_MEMCACHEDOWN}'),
+            'METADATA' => Translate::noop('{errors:descr_METADATA}'),
+            'METADATANOTFOUND' => Translate::noop('{errors:descr_METADATANOTFOUND}'),
+            'NOACCESS' => Translate::noop('{errors:descr_NOACCESS}'),
+            'NOCERT' => Translate::noop('{errors:descr_NOCERT}'),
+            'NORELAYSTATE' => Translate::noop('{errors:descr_NORELAYSTATE}'),
+            'NOSTATE' => Translate::noop('{errors:descr_NOSTATE}'),
+            'NOTFOUND' => Translate::noop('{errors:descr_NOTFOUND}'),
+            'NOTFOUNDREASON' => Translate::noop('{errors:descr_NOTFOUNDREASON}'),
+            'NOTSET' => Translate::noop('{errors:descr_NOTSET}'),
+            'NOTVALIDCERT' => Translate::noop('{errors:descr_NOTVALIDCERT}'),
+            'PROCESSASSERTION' => Translate::noop('{errors:descr_PROCESSASSERTION}'),
+            'PROCESSAUTHNREQUEST' => Translate::noop('{errors:descr_PROCESSAUTHNREQUEST}'),
+            'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:descr_RESPONSESTATUSNOSUCCESS}'),
+            'SLOSERVICEPARAMS' => Translate::noop('{errors:descr_SLOSERVICEPARAMS}'),
+            'SSOPARAMS' => Translate::noop("" .
+                "You accessed the Single Sign On Service interface, but did not provide a " .
+                "SAML Authentication Request. Please note that this endpoint is not " .
+                "intended to be accessed directly."),
+            'UNHANDLEDEXCEPTION' => Translate::noop('{errors:descr_UNHANDLEDEXCEPTION}'),
+            'UNKNOWNCERT' => Translate::noop('{errors:descr_UNKNOWNCERT}'),
+            'USERABORTED' => Translate::noop('{errors:descr_USERABORTED}'),
+            'WRONGUSERPASS' => Translate::noop('{errors:descr_WRONGUSERPASS}'),
         ];
     }
 
@@ -120,7 +129,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    public static function getAllErrorCodeDescriptions()
+    public static function getAllErrorCodeDescriptions(): array
     {
         return self::defaultGetAllErrorCodeDescriptions();
     }
@@ -133,7 +142,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode maps.
      */
-    public static function getAllErrorCodeMessages()
+    public static function getAllErrorCodeMessages(): array
     {
         return [
             'title' => self::getAllErrorCodeTitles(),
@@ -149,7 +158,7 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeTitle($errorCode)
+    public static function getErrorCodeTitle(string $errorCode): string
     {
         $errorCodeTitles = self::getAllErrorCodeTitles();
         return $errorCodeTitles[$errorCode];
@@ -163,7 +172,7 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeDescription($errorCode)
+    public static function getErrorCodeDescription(string $errorCode): string
     {
         $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
         return $errorCodeDescriptions[$errorCode];
@@ -179,7 +188,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode strings.
      */
-    public static function getErrorCodeMessage($errorCode)
+    public static function getErrorCodeMessage(string $errorCode): array
     {
         return [
             'title' => self::getErrorCodeTitle($errorCode),

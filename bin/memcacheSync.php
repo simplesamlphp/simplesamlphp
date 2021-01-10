@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-
 // Check that the memcache library is enabled
 if (!class_exists('Memcache') && !class_exists('Memcached')) {
     echo "Error: the memcached (or memcache) PHP extension appears to be unavailable.\n";
@@ -22,7 +21,7 @@ if (!class_exists('Memcache') && !class_exists('Memcached')) {
 $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader
-require_once($baseDir.'/lib/_autoload.php');
+require_once($baseDir . '/lib/_autoload.php');
 
 // Initialize the configuration
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
@@ -39,21 +38,21 @@ $keys = [];
 foreach ($stats as $group) {
     foreach ($group as $server => $state) {
         if ($state === false) {
-            echo "WARNING: Server ".$server." is down.\n";
+            echo "WARNING: Server " . $server . " is down.\n";
             $warnServerDown++;
             continue;
         }
 
         $items = $state['curr_items'];
-        echo "Server ".$server." has ".$items." items.\n";
+        echo "Server " . $server . " has " . $items . " items.\n";
         $serverKeys = getServerKeys($server);
         $keys = array_merge($keys, $serverKeys);
     }
 }
 
-echo "Total number of keys: ".count($keys)."\n";
+echo "Total number of keys: " . count($keys) . "\n";
 $keys = array_unique($keys);
-echo "Total number of unique keys: ".count($keys)."\n";
+echo "Total number of unique keys: " . count($keys) . "\n";
 
 echo "Starting synchronization.\n" ;
 
@@ -70,19 +69,19 @@ foreach ($keys as $key) {
 
 
 echo "Synchronization done.\n";
-echo $sync." keys in sync.\n";
+echo $sync . " keys in sync.\n";
 if ($skipped > 0) {
-    echo $skipped." keys skipped.\n";
+    echo $skipped . " keys skipped.\n";
     echo "Keys are skipped because they are either expired, or are of a type unknown\n";
     echo "to SimpleSAMLphp.\n";
 }
 
 if ($warnServerDown > 0) {
-    echo "WARNING: ".$warnServerDown." server(s) down. Not all servers are synchronized.\n";
+    echo "WARNING: " . $warnServerDown . " server(s) down. Not all servers are synchronized.\n";
 }
 
 if ($warnBigSlab > 0) {
-    echo "WARNING: ".$warnBigSlab." slab(s) may have contained more keys than we were told about.\n";
+    echo "WARNING: " . $warnBigSlab . " slab(s) may have contained more keys than we were told about.\n";
 }
 
 /**
@@ -92,13 +91,13 @@ if ($warnBigSlab > 0) {
  *
  * @return array An array with all the keys available on the server.
  */
-function getServerKeys($server)
+function getServerKeys(string $server): array
 {
     $server = explode(':', $server);
     $host = $server[0];
     $port = (int) $server[1];
 
-    echo "Connecting to: ".$host.":".$port."\n";
+    echo "Connecting to: " . $host . ":" . $port . "\n";
     $socket = fsockopen($host, $port);
     echo "Connected. Finding keys.\n";
 
@@ -126,7 +125,7 @@ function getServerKeys($server)
     // Dump keys in slabs
     $keys = [];
     foreach ($slabs as $slab) {
-        if (fwrite($socket, "stats cachedump ".$slab." 1000000\r\n") === false) {
+        if (fwrite($socket, "stats cachedump " . $slab . " 1000000\r\n") === false) {
             echo "Error requesting cache dump from server.\n";
             exit(1);
         }
@@ -147,17 +146,17 @@ function getServerKeys($server)
             if (preg_match('/^ITEM (.*) \[\d+ b; \d+ s\]/', $line, $matches)) {
                 $keys[] = $matches[1];
             } else {
-                echo "Unknown result from cache dump: ".$line."\n";
+                echo "Unknown result from cache dump: " . $line . "\n";
             }
         }
         if ($resultSize > 1900000 || count($keys) >= 1000000) {
-            echo "WARNING: Slab ".$slab." on server ".$host.":".$port.
+            echo "WARNING: Slab " . $slab . " on server " . $host . ":" . $port .
                 " may have contained more keys than we were told about.\n";
             $GLOBALS['warnBigSlab'] += 1;
         }
     }
 
-    echo "Found ".count($keys)." key(s).\n";
+    echo "Found " . count($keys) . " key(s).\n";
     fclose($socket);
 
     return $keys;

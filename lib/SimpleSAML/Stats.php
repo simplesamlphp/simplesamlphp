@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
+
+use SimpleSAML\Assert\Assert;
 
 /**
  * Statistics handler class.
@@ -31,14 +35,14 @@ class Stats
     /**
      * Create an output from a configuration object.
      *
-     * @param \SimpleSAML\Configuration $config The configuration object.
+     * @param \SimpleSAML\Configuration $config The configuration.
      *
      * @return mixed A new instance of the configured class.
      */
-    private static function createOutput(\SimpleSAML\Configuration $config)
+    private static function createOutput(Configuration $config)
     {
         $cls = $config->getString('class');
-        $cls = \SimpleSAML\Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
+        $cls = Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
 
         $output = new $cls($config);
         return $output;
@@ -47,16 +51,16 @@ class Stats
 
     /**
      * Initialize the outputs.
+     *
      */
-    private static function initOutputs()
+    private static function initOutputs(): void
     {
-
-        $config = \SimpleSAML\Configuration::getInstance();
-        $outputCfgs = $config->getConfigList('statistics.out', []);
+        $config = Configuration::getInstance();
+        $outputCfgs = $config->getArray('statistics.out', []);
 
         self::$outputs = [];
         foreach ($outputCfgs as $cfg) {
-            self::$outputs[] = self::createOutput($cfg);
+            self::$outputs[] = self::createOutput(Configuration::loadFromArray($cfg));
         }
     }
 
@@ -67,14 +71,12 @@ class Stats
      * @param string $event The event.
      * @param array  $data Event data. Optional.
      *
-     * @return void|boolean False if output is not enabled, void otherwise.
      */
-    public static function log($event, array $data = [])
+    public static function log(string $event, array $data = [])
     {
-        assert(is_string($event));
-        assert(!isset($data['op']));
-        assert(!isset($data['time']));
-        assert(!isset($data['_id']));
+        Assert::keyNotExists($data, 'op');
+        Assert::keyNotExists($data, 'time');
+        Assert::keyNotExists($data, '_id');
 
         if (!self::$initialized) {
             self::initOutputs();
@@ -83,7 +85,7 @@ class Stats
 
         if (empty(self::$outputs)) {
             // not enabled
-            return;
+            return false;
         }
 
         $data['op'] = $event;

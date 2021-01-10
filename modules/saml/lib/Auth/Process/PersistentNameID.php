@@ -1,6 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
+
+use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
+use SimpleSAML\Utils;
 
 /**
  * Authentication processing filter to generate a persistent NameID.
@@ -8,7 +17,7 @@ namespace SimpleSAML\Module\saml\Auth\Process;
  * @package SimpleSAMLphp
  */
 
-class PersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class PersistentNameID extends BaseNameIDGenerator
 {
     /**
      * Which attribute contains the unique identifier of the user.
@@ -26,15 +35,14 @@ class PersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      *
      * @throws \SimpleSAML\Error\Exception If the required option 'attribute' is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
+        $this->format = Constants::NAMEID_PERSISTENT;
 
         if (!isset($config['attribute'])) {
-            throw new \SimpleSAML\Error\Exception("PersistentNameID: Missing required option 'attribute'.");
+            throw new Error\Exception("PersistentNameID: Missing required option 'attribute'.");
         }
         $this->attribute = $config['attribute'];
     }
@@ -46,30 +54,30 @@ class PersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $state The state array.
      * @return string|null The NameID value.
      */
-    protected function getValue(array &$state)
+    protected function getValue(array &$state): ?string
     {
         if (!isset($state['Destination']['entityid'])) {
-            \SimpleSAML\Logger::warning('No SP entity ID - not generating persistent NameID.');
+            Logger::warning('No SP entity ID - not generating persistent NameID.');
             return null;
         }
         $spEntityId = $state['Destination']['entityid'];
 
         if (!isset($state['Source']['entityid'])) {
-            \SimpleSAML\Logger::warning('No IdP entity ID - not generating persistent NameID.');
+            Logger::warning('No IdP entity ID - not generating persistent NameID.');
             return null;
         }
         $idpEntityId = $state['Source']['entityid'];
 
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
-            \SimpleSAML\Logger::warning(
-                'Missing attribute '.var_export($this->attribute, true).
+            Logger::warning(
+                'Missing attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
-            \SimpleSAML\Logger::warning(
-                'More than one value in attribute '.var_export($this->attribute, true).
+            Logger::warning(
+                'More than one value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
@@ -78,19 +86,19 @@ class PersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         $uid = $uid[0];
 
         if (empty($uid)) {
-            \SimpleSAML\Logger::warning(
-                'Empty value in attribute '.var_export($this->attribute, true).
+            Logger::warning(
+                'Empty value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
 
-        $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+        $secretSalt = Utils\Config::getSecretSalt();
 
-        $uidData = 'uidhashbase'.$secretSalt;
-        $uidData .= strlen($idpEntityId).':'.$idpEntityId;
-        $uidData .= strlen($spEntityId).':'.$spEntityId;
-        $uidData .= strlen($uid).':'.$uid;
+        $uidData = 'uidhashbase' . $secretSalt;
+        $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
+        $uidData .= strlen($spEntityId) . ':' . $spEntityId;
+        $uidData .= strlen($uid) . ':' . $uid;
         $uidData .= $secretSalt;
 
         return sha1($uidData);

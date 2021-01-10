@@ -6,9 +6,274 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.17.0
+## Version 2.0.0
+
+  * Support for certificate fingerprints was removed
+  * Support for SAML 1.1 was removed
+  * Old-style PHP templates were removed
+  * Old-style dictionaries were removed
 
 Released TBD
+
+## Version 1.19.0
+
+Released TBD
+
+  * This version will be the last of the 1.x branch and will provide a migration path to our new
+    templating system, routing system, translation system and hooks.
+
+## Version 1.18.8
+
+Released 2020-09-02
+
+  * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
+  * Fixed some of the German translations (#1331). Thanks @htto!
+  * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
+  * Harden against sevaral JS issues (npm update & npm audit fix)
+  * Fixed inconsistent configuration of backtraces logging
+  * Support for Symfony 3.x is now deprecated
+  * Support for Twig 1.x is now deprecated
+
+### authcrypt
+  * The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
+
+### authx509
+  * Restore PHP 5.6 compatibility (v0.9.5)
+
+### cron
+  * Fixed old-ui (#1248)
+
+### ldap
+  * Moved array with binary attributes to authsource config (v0.9.9)
+    Instead of having to edit code, you can now set 'attributes.binary' in the authsource configuration.
+
+### metarefresh
+  * Add attributewhitelist to support e.g. R&S+Sirtfi (v0.9.5)
+  * Restore PHP 5.6 compatibility (v0.9.6)
+
+### negotiate ###
+  * Restore PHP 5.6 compatibility (v0.9.8)
+  * Fixed a link (v0.9.9)
+
+### saml2 library
+  * Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
+      the AssertionConsumerServiceIndex as an integer on an saml:SP authsource.
+      Thanks to Andrea @ Oracle for reporting this.
+
+## Version 1.18.7
+
+Released 2020-05-12
+
+  * Fix spurious warnings when session_create_id() fails to create ID (#1291)
+  * Fix inconsistency in the way PATH_INFO is being used (#1227).
+  * Fix a potential security issue [CVE-2020-11022](https://nvd.nist.gov/vuln/detail/CVE-2020-11022) by updating jQuery. If any of your custom modules rely on jQuery,
+      make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
+  * Fix incorrect Polish translations (#1311).
+  * Fix a broken migration query in the LogoutStore (#1324).
+  * Fix an issue with the SameSite cookie parameter when running on PHP versions older than 7.3 (#1320).
+
+### adfs
+  * Fixed a broken link to one of the assets (v0.9.6).
+
+### ldap
+  * Handle binary attributes in a generic way (v0.9.5).
+
+### oauth
+  * Fix PHP 7.4 incompatibility (v0.9.2).
+
+### preprodwarning
+  * Fix Dutch translations (v0.9.2).
+
+### sanitycheck
+  * Fix broken HTML (v0.9.1).
+
+### saml
+  * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+
+### saml2 library
+  * fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
+  * fixed an issue parsing very large metadata files (v3.4.3).
+
+## Version 1.18.6
+
+Released 2020-04-17
+
+  * Fix source code disclosure on case-insensitive file systems. See
+    [SSPSA 202004-01](https://simplesamlphp.org/security/202004-01).
+  * Fix spurious error in logs when using a custom theme (#1312).
+  * Fix broken metadata converter (#1305).
+
+## Version 1.18.5
+
+Released 2020-03-19
+
+  * Make the URLs for the cron module work again (#1248).
+  * Email error reports now include metadata again (#1269).
+  * Fix exampleauth module when using the legacy UI (#1275).
+  * Fix authorize module when using custom reject message.
+  * Documentation improvements.
+  * Fix connection persistence for deployments that switched to memcached.
+
+## Version 1.18.4
+
+Released 2020-01-24
+
+  * Resolved a security issue in email reports. See
+    [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
+  * Resolved a security issue with the logging system. See
+    [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
+  * Fixed SQL store index creation for PostgreSQL.
+  * Handle case where cookie 'domain' parameter was not set.
+  * Update versions of included JavaScript dependencies.
+
+## Version 1.18.3
+
+Released 2019-12-09
+
+  * Fixed an issue with several modules being enabled by default (#1257).
+  * Fixed an issue with metadata generation for trusted entities (#1247, #1251).
+
+### ldap
+  * Fixed an issue affecting the installation in case-insensitive file systems (#1253).
+
+## Version 1.18.2
+
+Released 2019-11-26
+
+  * Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
+
+## Version 1.18.1
+
+Released 2019-11-26
+
+   * Fixed an issue that prevented custom themes from working (#1240).
+   * Fixed an issue with translations in the discovery service (#1244).
+   * Fixed an issue with schema validation.
+
+## Version 1.18.0
+
+Released 2019-11-19
+
+  * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
+  * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
+  * Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
+  * Fixed an issue with old-style NameIDPolicy configurations that disallowed creating new NameIDs (#1230).
+  * Resolved a security issue that exposed host information to unauthenticated users. See
+    [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
+  * Replaced custom Email class with the phpmailer library.
+  * Allow logging to STDERR in the `logging.handler` option by setting it to `stderr`.
+  * Allow use of stream wrappers (e.g. s3://) in paths.
+  * Improved 'update or insert' handling for different SQL drivers.
+  * The default algorithm within the TimeLimitedToken class has been bumped from SHA-1 to SHA-256
+    as announced by deprecation notice in 1.15-RC1.
+  * Most modules have been externalized. They will not be included in our future releases by default,
+    but will be easily installable using Composer. For now, they are still included in the package.
+  * Many minor fixes to code, css, documentation
+
+### metarefresh
+  * The algorithm to compute the fingerprint of the certificate that signed
+    metadata can be specified with the new `validateFingerprintAlgorithm`
+    configuration option.
+
+### saml
+  * Make the id of the generated signed metadata only change when metadata content changes.
+  * New SP metadata configuration options `AssertionConsumerService` and `SingleLogoutServiceLocation`
+    to allow overriding the default URL paths.
+  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
+
+## Version 1.17.8
+
+Released 2019-11-20
+
+  * Resolved a security issue that exposed host information to unauthenticated users. See
+    [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
+
+### consentAdmin
+
+  * Fixed an issue with CSS and Javascript not loading for the module in the new user
+    interface.
+
+## Version 1.17.7
+
+Released 2019-11-06
+
+  * Resolved a security issue that allows to bypass signature validation. See
+    [SSPSA 201911-01](https://simplesamlphp.org/security/201911-01).
+
+## Version 1.17.6
+
+Released 2019-08-29
+
+  * Fixed a regression with logout database initialization when using MySQL (#1177).
+  * Fixed an issue with logout when using iframes (#1191).
+  * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
+
+## Version 1.17.5
+
+Released 2019-08-02
+
+  * Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
+  * Fixed an issue with table indexes (#1089).
+  * Fixed an issue with table migrations on SQlite (#1169).
+  * Fixed an issue with generated eduPersonTargetedID lacking a format specified (#1135).
+  * Updated composer dependencies.
+
+## Version 1.17.4
+
+Released 2019-07-11
+
+  * Fix an issue introduced in 1.17.3 with `enable.http_post`.
+  
+## Version 1.17.3
+
+Released 2019-07-10
+
+  * Resolved a security issue that could lead to a reflected XSS.  See
+    [SSPSA 201907-01](https://simplesamlphp.org/security/201907-01).
+  * Add new options `session.cookie.samesite` and `language.cookie.samesite` that can be
+    used to set a specific value for the cookies' SameSite attribute. The default it not
+    to set it.
+  * Upgraded jQuery to version 3.4.
+  * HHVM is no longer supported.
+  * Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
+  * Fixed an issue when an error occurs during a passive authentication request.
+  * Handle duplicate insertions for SQL Server.
+  * Fix a bug in Short SSO Interval warning filter.
+  * Apply a workaround for SIGSEGVs during session creation with PHP-FPM 7.3.
+
+### adfs
+  * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
+
+### authlinkedin
+  * This module has been removed now that LinkedIn no longer supports OAuth1.
+    If you relied on this module, you may consider migrating to the
+    [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
+    A migration guide for LinkedIn authentication is included in their README.
+
+## Version 1.17.2
+
+Released 2019-04-02
+
+  * Fixed that generated metadata was missing some information
+    when PHP's zend.assertions option is set to < 1.
+  * Fixed that MDUI Keywords and Logo were not parsed from metadata.
+  * Fixed DiscoPower module tab display.
+  * Fixed use group name in Attribute Add Users Groups filter.
+  * Add metadatadir setting to the default config template.
+  * Fixed exception processing in loadExceptionState().
+  * Fixed preferredidp in built-in 'links'-style discovery.
+
+## Version 1.17.1
+
+Released 2019-03-07
+
+  * Fixed an issue with composer that made it impossible to install modules
+    if SimpleSAMLphp was installed itself with the provided package (tar.gz file).
+
+## Version 1.17.0
+
+Released 2019-03-07
 
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
@@ -74,6 +339,8 @@ Released TBD
   * Allow disabling the Scoping element in SP and remote IdP configuration with
     the `disable_scoping` option, for compatibility with ADFS which does not
     accept the element (#985).
+  * Receiving an eduPersonTargetedID in string form will no longer break
+    parsing of the assertion.
 
 ### sanitycheck
   * Translated into several languages.
@@ -374,8 +641,6 @@ Released 2017-11-20
   * We now send the eduPersonTargetedID attribute in the correct
     NameID XML form, instead of the incorrect simple string. We will also
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
-  * Receiving an eduPersonTargetedID in string form will no longer break
-    parsing of the assertion.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.

@@ -1,33 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Utils\Time;
 
+/**
+ * @covers \SimpleSAML\Utils\Time
+ */
 class TimeTest extends TestCase
 {
     /**
      * Test the SimpleSAML\Utils\Time::generateTimestamp() method.
      *
-     * @covers SimpleSAML\Utils\Time::generateTimestamp
      */
-    public function testGenerateTimestamp()
+    public function testGenerateTimestamp(): void
     {
         // make sure passed timestamps are used
         $this->assertEquals('2016-03-03T14:48:05Z', Time::generateTimestamp(1457016485));
 
         // test timestamp generation for current time
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', Time::generateTimestamp());
+        $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', Time::generateTimestamp());
     }
 
 
     /**
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
      *
-     * @covers SimpleSAML\Utils\Time::initTimezone
      */
-    public function testInitTimezone()
+    public function testInitTimezone(): void
     {
         $tz = 'UTC';
         $os = @date_default_timezone_get();
@@ -36,31 +43,31 @@ class TimeTest extends TestCase
         }
 
         // test guessing timezone from the OS
-        \SimpleSAML\Configuration::loadFromArray(['timezone' => null], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(['timezone' => null], '[ARRAY]', 'simplesaml');
         @Time::initTimezone();
         $this->assertEquals($os, @date_default_timezone_get());
 
         // clear initialization
-        $c = new \ReflectionProperty('\SimpleSAML\Utils\Time', 'tz_initialized');
+        $c = new ReflectionProperty('\SimpleSAML\Utils\Time', 'tz_initialized');
         $c->setAccessible(true);
         $c->setValue(false);
 
         // test unknown timezone
-        \SimpleSAML\Configuration::loadFromArray(['timezone' => 'INVALID'], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(['timezone' => 'INVALID'], '[ARRAY]', 'simplesaml');
         try {
             @Time::initTimezone();
             $this->fail('Failed to recognize an invalid timezone.');
-        } catch (\SimpleSAML\Error\Exception $e) {
+        } catch (Error\Exception $e) {
             $this->assertEquals('Invalid timezone set in the "timezone" option in config.php.', $e->getMessage());
         }
 
         // test a valid timezone
-        \SimpleSAML\Configuration::loadFromArray(['timezone' => $tz], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(['timezone' => $tz], '[ARRAY]', 'simplesaml');
         @Time::initTimezone();
         $this->assertEquals($tz, @date_default_timezone_get());
 
         // make sure initialization happens only once
-        \SimpleSAML\Configuration::loadFromArray(['timezone' => 'Europe/Madrid'], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(['timezone' => 'Europe/Madrid'], '[ARRAY]', 'simplesaml');
         @Time::initTimezone();
         $this->assertEquals($tz, @date_default_timezone_get());
     }
@@ -69,9 +76,8 @@ class TimeTest extends TestCase
     /**
      * Test the SimpleSAML\Utils\Time::parseDuration() method.
      *
-     * @covers SimpleSAML\Utils\Time::parseDuration
      */
-    public function testParseDuration()
+    public function testParseDuration(): void
     {
         // set up base date and time, and fixed durations from there
         $base = gmmktime(0, 0, 0, 1, 1, 2000);
@@ -133,35 +139,19 @@ class TimeTest extends TestCase
             "Failure testing for 1 minute over current time."
         );
 
-        // test invalid input parameters
-        try {
-            // invalid duration
-            Time::parseDuration(0);
-            $this->fail("Did not fail with invalid duration parameter.");
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Invalid input parameters', $e->getMessage());
-        }
-        try {
-            // invalid timestamp
-            Time::parseDuration('', []);
-            $this->fail("Did not fail with invalid timestamp parameter.");
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Invalid input parameters', $e->getMessage());
-        }
-
         // test invalid durations
         try {
             // invalid string
             Time::parseDuration('abcdefg');
             $this->fail("Did not fail with invalid ISO 8601 duration.");
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
         }
         try {
             // missing T delimiter
             Time::parseDuration('P1S');
             $this->fail("Did not fail with duration missing T delimiter.");
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
         }
     }

@@ -16,14 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"طريقة التحقق التي استخدمتها غير مقبولة لمقدم الخدمة, غالبا هي أقل من "
-"متطلبات مقدم الخدمة الذي قد يطلب تحققاأكثر تعقيدا"
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "طريقة التحقق المستخدمة غير صحيحة"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

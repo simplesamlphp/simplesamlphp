@@ -1,33 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute;
 
 /**
  * Test for the core:ScopeFromAttribute filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute
  */
 class ScopeFromAttributeTest extends TestCase
 {
-
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, null);
+        $filter = new ScopeFromAttribute($config, null);
         $filter->process($request);
         return $request;
     }
 
-    /*
+
+    /**
      * Test the most basic functionality.
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -44,10 +49,11 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($attributes['scope'], ['example.com']);
     }
 
-    /*
+
+    /**
      * If scope already set, module must not overwrite.
      */
-    public function testNoOverwrite()
+    public function testNoOverwrite(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -64,10 +70,11 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($attributes['scope'], ['example.edu']);
     }
 
-    /*
+
+    /**
      * If source attribute not set, nothing happens
      */
-    public function testNoSourceAttribute()
+    public function testNoSourceAttribute(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -83,10 +90,11 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
-     * When multiple @ signs in attribute, should use last one.
+
+    /**
+     * When multiple @ signs in attribute, should use first one.
      */
-    public function testMultiAt()
+    public function testMultiAt(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -99,13 +107,14 @@ class ScopeFromAttributeTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['scope'], ['example.com']);
+        $this->assertEquals($attributes['scope'], ['doe@example.com']);
     }
 
-    /*
+
+    /**
      * When the source attribute doesn't have a scope, a warning is emitted
      */
-    public function testNoAt()
+    public function testNoAt(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',

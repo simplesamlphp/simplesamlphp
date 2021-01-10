@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Zerbitzu honek ez du onartzen zure kautotze testuingurua. Ziurrenik "
-"ahulegia da edo ez da bi faktoredun kautotzea. "
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Kautotze testu inguru okerra"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

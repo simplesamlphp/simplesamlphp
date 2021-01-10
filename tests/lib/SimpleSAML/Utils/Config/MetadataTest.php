@@ -1,35 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils\Config;
 
+use DOMDocument;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use SAML2\Constants;
 use SimpleSAML\Utils\Config\Metadata;
+use TypeError;
 
 /**
  * Tests related to SAML metadata.
+ *
+ * @covers \SimpleSAML\Utils\Config
  */
 class MetadataTest extends TestCase
 {
-
     /**
      * Test contact configuration parsing and sanitizing.
      */
-    public function testGetContact()
+    public function testGetContact(): void
     {
-        // test invalid argument
-        try {
-            Metadata::getContact('string');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('Invalid input parameters', $e->getMessage());
-        }
-
         // test missing type
         $contact = [
             'name' => 'John Doe'
         ];
         try {
             Metadata::getContact($contact);
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('"contactType" is mandatory and must be one of ', $e->getMessage());
         }
 
@@ -39,7 +39,7 @@ class MetadataTest extends TestCase
         ];
         try {
             Metadata::getContact($contact);
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('"contactType" is mandatory and must be one of ', $e->getMessage());
         }
 
@@ -109,7 +109,7 @@ class MetadataTest extends TestCase
             $contact['givenName'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"givenName" must be a string and cannot be empty.', $e->getMessage());
             }
         }
@@ -123,7 +123,7 @@ class MetadataTest extends TestCase
             $contact['surName'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"surName" must be a string and cannot be empty.', $e->getMessage());
             }
         }
@@ -137,7 +137,7 @@ class MetadataTest extends TestCase
             $contact['company'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"company" must be a string and cannot be empty.', $e->getMessage());
             }
         }
@@ -151,7 +151,7 @@ class MetadataTest extends TestCase
             $contact['emailAddress'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"emailAddress" must be a string or an array and cannot be empty.',
                     $e->getMessage()
@@ -163,7 +163,7 @@ class MetadataTest extends TestCase
             $contact['emailAddress'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     'Email addresses must be a string and cannot be empty.',
                     $e->getMessage()
@@ -186,7 +186,7 @@ class MetadataTest extends TestCase
             $contact['telephoneNumber'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"telephoneNumber" must be a string or an array and cannot be empty.',
                     $e->getMessage()
@@ -198,7 +198,7 @@ class MetadataTest extends TestCase
             $contact['telephoneNumber'] = $type;
             try {
                 Metadata::getContact($contact);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 $this->assertEquals('Telephone numbers must be a string and cannot be empty.', $e->getMessage());
             }
         }
@@ -228,7 +228,7 @@ class MetadataTest extends TestCase
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery().
      */
-    public function testIsHiddenFromDiscovery()
+    public function testIsHiddenFromDiscovery(): void
     {
         // test for success
         $metadata = [
@@ -240,8 +240,17 @@ class MetadataTest extends TestCase
         ];
         $this->assertTrue(Metadata::isHiddenFromDiscovery($metadata));
 
+        // test for failure
+        $this->assertFalse(Metadata::isHiddenFromDiscovery([
+            'EntityAttributes' => [
+                Metadata::$ENTITY_CATEGORY => [],
+            ],
+        ]));
+
         // test for failures
-        $this->assertFalse(Metadata::isHiddenFromDiscovery(['foo']));
+        $this->expectException(TypeError::class);
+        Metadata::isHiddenFromDiscovery(['foo']);
+
         $this->assertFalse(Metadata::isHiddenFromDiscovery([
             'EntityAttributes' => 'bar',
         ]));
@@ -253,22 +262,20 @@ class MetadataTest extends TestCase
                 Metadata::$ENTITY_CATEGORY => '',
             ],
         ]));
-        $this->assertFalse(Metadata::isHiddenFromDiscovery([
-            'EntityAttributes' => [
-                Metadata::$ENTITY_CATEGORY => [],
-            ],
-        ]));
     }
 
-    
+
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
      */
-    public function testParseNameIdPolicy()
+    public function testParseNameIdPolicy(): void
     {
         // Test null or unset
         $nameIdPolicy = null;
-        $this->assertEquals(['Format' => \SAML2\Constants::NAMEID_TRANSIENT], Metadata::parseNameIdPolicy($nameIdPolicy));
+        $this->assertEquals(
+            ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true],
+            Metadata::parseNameIdPolicy($nameIdPolicy)
+        );
 
         // Test false
         $nameIdPolicy = false;
@@ -276,7 +283,10 @@ class MetadataTest extends TestCase
 
         // Test string
         $nameIdPolicy = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress';
-        $this->assertEquals(['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'], Metadata::parseNameIdPolicy($nameIdPolicy));
+        $this->assertEquals(
+            ['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress', 'AllowCreate' => true],
+            Metadata::parseNameIdPolicy($nameIdPolicy)
+        );
 
         // Test array
         $nameIdPolicy = [

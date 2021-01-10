@@ -53,12 +53,6 @@ msgstr "Fout bij het laden van metadata"
 msgid "{admin:metaconv_title}"
 msgstr "Metadata parser"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Recht"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG-foto"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Geen fouten gevonden."
 
@@ -126,9 +120,6 @@ msgstr ""
 "De Identity Provider antwoordde met een fout. (De statuscode in de SAML "
 "Response was niet success)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en "
@@ -136,9 +127,6 @@ msgstr ""
 
 msgid "{logout:default_link_text}"
 msgstr "Ga terug naar de SimpleSAMLphp installatiepagina"
-
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remote)"
 
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-fout"
@@ -157,17 +145,11 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) van de organisatie van de persoon"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Incorrecte request ontvangen"
 
 msgid "{status:sessionsize}"
 msgstr "Sessiegrootte: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adres"
 
 msgid "{logout:title}"
 msgstr "Uitgelogd"
@@ -196,31 +178,19 @@ msgstr "Vastgehouden"
 msgid "{admin:cfg_check_header}"
 msgstr "Configuratie-validatie"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Groep"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Achternaam"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Verstuur bericht"
 
 msgid "{status:logout}"
 msgstr "Logout"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organisatienaam"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefoonnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "De parameters die naar de discovery service zijn gestuurd, zijn niet "
 "correct volgens de specificatie."
 
-msgid "{attributes:attribute_mail}"
-msgstr "E-mail"
+msgid "No SAML message provided"
+msgstr "Geen SAML bericht opgegeven"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Er is een fout opgetreden bij het aanmaken van een SAML request."
@@ -230,9 +200,6 @@ msgstr "Optionele velden"
 
 msgid "{logout:return}"
 msgstr "Terug naar service"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Weergavenaam"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -246,9 +213,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "U kunt debug mode uitschakelen in de globale SimpleSAMLphp configuratie "
 "file <tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Werkadres"
 
 msgid "{disco:select}"
 msgstr "Kies"
@@ -265,9 +229,6 @@ msgstr "Uitloggen..."
 msgid "{login:error_wrongpassword}"
 msgstr "Gebruikersnaam of wachtwoord niet bekend."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remote)"
-
 msgid "{login:remember_username}"
 msgstr "Onthoud gebruikersnaam"
 
@@ -278,9 +239,6 @@ msgstr ""
 
 msgid "{logout:logout_all_question}"
 msgstr "Wil je uitloggen van alle bovenvermelde diensten?"
-
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
 
 msgid "{errors:title_NOACCESS}"
 msgstr "Geen toegang"
@@ -297,9 +255,6 @@ msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Informatie over de toestand is verloren, en het verzoek kan niet herstart"
 " worden"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Burgerservicenummer"
 
 msgid "{login:password}"
 msgstr "Wachtwoord"
@@ -327,23 +282,14 @@ msgstr "Fout bij het verwerken van een Logout Request"
 msgid "{admin:metaover_errorentry}"
 msgstr "Fout in metadata"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Affiliatie"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata niet gevonden"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Voornaam"
 
 msgid "{login:contact_info}"
 msgstr "Contactinformatie"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Onverwachte foutmelding"
-
-msgid "{status:validfor}"
-msgstr "Uw sessie is nog %SECONDS% seconden geldig vanaf dit moment."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo"
@@ -383,17 +329,11 @@ msgstr ""
 "Authenticatie niet gelukt: het certificaat dat uw browser stuurde is "
 "onbekend"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisatie homepage"
-
 msgid "{logout:logging_out_from}"
 msgstr "Uitloggen van de volgende diensten:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Je bent nu succesvol uitgelogd van %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Hosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Het foutmeldingsrapport is verstuurd naar de beheerders"
@@ -401,14 +341,8 @@ msgstr "Het foutmeldingsrapport is verstuurd naar de beheerders"
 msgid "{status:subject_header}"
 msgstr "SAML Subject"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Geboortedatum"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Er is een fout opgetreden tijdens het verwerken van een Logout Request."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistente anonieme ID"
 
 msgid "{logout:success}"
 msgstr "Je bent succesvol uitgelogd van de bovenvermelde services."
@@ -418,12 +352,6 @@ msgstr "Opmerkingen"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "De authenticatie is afgebroken door de gebruiker"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primaire relatie"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postcode"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Fout tijdens communicatie met de CAS server."
@@ -437,9 +365,6 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Geconverteerde metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Algemene naam"
-
 msgid "{logout:completed}"
 msgstr "Voltooid"
 
@@ -448,17 +373,8 @@ msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "
 "aangepast; pas de configuratie aan aub."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Afdeling"
-
 msgid "{general:service_provider}"
 msgstr "Service Provider"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Thuistelefoon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domeincomponent"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr ""
@@ -480,22 +396,13 @@ msgstr "Geef je gebruikersnaam en wachtwoord"
 msgid "{errors:report_explain}"
 msgstr "Leg uit wat je deed toen deze foutmelding optrad..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Geen SAML response gevonden"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Bijnaam"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"
 " LogoutRequest of LogoutResponse meegestuurd."
-
-msgid "{attributes:attribute_street}"
-msgstr "Straat"
 
 msgid "{login:organization}"
 msgstr "Organisatie"
@@ -536,9 +443,6 @@ msgstr "Kies je organisatie"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Teveel opties in de config file"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI"
-
 msgid "{errors:report_email}"
 msgstr "E-mailadres:"
 
@@ -553,9 +457,6 @@ msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "
 "om aan te geven wat de volgende bestemming is."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Officiële naam"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp controle"
 
@@ -564,9 +465,6 @@ msgstr ""
 "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw "
 "sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u "
 "kunt alle attributen bekijken die aanwezig zijn in deze sessie."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Unieke Organisatie ID"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Pagina niet gevonden"
@@ -577,17 +475,11 @@ msgstr "Bericht"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Foutmelding ontvangen van Identity Provider"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongeldig certificaat"
-
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) van de afdeling van de persoon"
 
 msgid "{general:remember}"
 msgstr "Bewaar toestemming"
@@ -595,23 +487,11 @@ msgstr "Bewaar toestemming"
 msgid "{disco:selectidp}"
 msgstr "Kies je Identity Provider"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postbus"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Persoons ID bij organisatie"
-
 msgid "{login:help_desk_email}"
 msgstr "Stuur een e-mail naar de helpdesk"
 
 msgid "{login:help_desk_link}"
 msgstr "Helpdesk homepage"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Groepslidmaatschap"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Gebruikers ID"
 
 msgid "{login:remember_me}"
 msgstr "Onthoud mij"
@@ -635,12 +515,6 @@ msgstr "Onthoud mijn keuze"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (Hosted)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Plaats"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identiteitsverzekeringsprofiel"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -677,9 +551,6 @@ msgstr "Pagina niet gevonden"
 msgid "{logout:logged_out_text}"
 msgstr "U bent uitgelogd. Dank u voor het gebruiken van deze dienst."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download de X509-certificaten in PEM-formaat."
 
@@ -691,9 +562,6 @@ msgstr "ADFS Identity Provider (Hosted)"
 
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Onbekend certificaat"
-
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faxnummer"
 
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Fout"
@@ -713,14 +581,8 @@ msgstr ""
 "door verkeerde configuratie van SimpleSAMLphp. Meld dit bij de beheerder "
 "van deze authenticatiedienst, en geef bovenstaande melding door."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiel"
-
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS IdP Metadata"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Voorkeurstaal"
@@ -738,17 +600,6 @@ msgstr "De volgende optionele velden konden niet worden gevonden"
 
 msgid "{logout:logout_only}"
 msgstr "Nee, alleen %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organisatie naam"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr ""
-"Distinguished name (DN) van de organisatie hoofdafdeling waartoe de "
-"persoon behoort"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Identiteitsnummer"
 
 msgid "{login:next}"
 msgstr "Volgende"
@@ -769,14 +620,8 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Geen certificaat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Password hash"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout informatie is verloren gegaan"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remote)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp is niet goed geconfigureerd."
@@ -786,12 +631,6 @@ msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "
 "kunt deze metadata uitwisselen met uw federatiepartners."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Privé informatie-elementen"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certificaten"
 
@@ -800,17 +639,11 @@ msgstr ""
 "Authenticatie niet gelukt: uw browser stuurde een certificaat dat "
 "ongeldig is of niet gelezen kon worden"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organisatie naam"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parse"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisatie nummer"
 
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
@@ -1113,17 +946,32 @@ msgstr ""
 "wijzen dat er een configuratie probleem is. Als het probleem zich blijft "
 "voordoen kun u contact opnemen met de Service Provider."
 
+msgid "No SAML request provided"
+msgstr "Geen SAML request opgegeven"
+
 msgid "Some error occurred"
 msgstr "Er is een fout opgetreden"
 
 msgid "Organization"
 msgstr "Organisatie"
 
+msgid ""
+"You accessed the Single Sign On Service interface, but did not provide a "
+"SAML Authentication Request. Please note that this endpoint is not "
+"intended to be accessed directly."
+msgstr ""
+"Je hebt het Single Sign On interface aangeroepen, maar stuurde geen SAML "
+"Authentication Request mee. Merk op dat dit 'endpoint' niet bedoeld is om"
+" direct benaderd te worden."
+
 msgid "No certificate"
 msgstr "Geen certificaat"
 
 msgid "Choose home organization"
 msgstr "Kies je organisatie"
+
+msgid "Cannot retrieve session data"
+msgstr "Kan sessie data niet ophalen"
 
 msgid "Persistent pseudonymous ID"
 msgstr "Persistente anonieme ID"
@@ -1159,8 +1007,8 @@ msgstr ""
 "van deze authenticatiedienst, en geef bovenstaande melding door."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Uw sessie is nog %SECONDS% seconden geldig vanaf dit moment."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
 
 msgid "Domain component (DC)"
 msgstr "Domeincomponent"
@@ -1170,6 +1018,9 @@ msgstr "Shib 1.3 Service Provider (Remote)"
 
 msgid "Password"
 msgstr "Wachtwoord"
+
+msgid "ORCID researcher identifiers"
+msgstr "ORCID onderzoeker identifiers"
 
 msgid "Nickname"
 msgstr "Bijnaam"
@@ -1192,6 +1043,10 @@ msgstr "Geboortedatum"
 
 msgid "Private information elements"
 msgstr "Privé informatie-elementen"
+
+msgid "Person's non-reassignable, persistent pseudonymous ID at home organization"
+msgstr "Niet opnieuw toekenbare, persistente pseudonieme ID bij organisatie "
+"van de persoon"
 
 msgid "You are also logged in on these services:"
 msgstr "Je bent ook ingelogd bij deze diensten:"
@@ -1227,7 +1082,7 @@ msgid "Return to service"
 msgstr "Terug naar service"
 
 msgid "Logout"
-msgstr "Logout"
+msgstr "Afmelden"
 
 msgid "State information lost, and no way to restart the request"
 msgstr ""
@@ -1272,6 +1127,13 @@ msgstr "JPEG-foto"
 
 msgid "Postal address"
 msgstr "Adres"
+
+msgid ""
+"Your session data cannot be retrieved right now due to technical "
+"difficulties. Please try again in a few minutes."
+msgstr ""
+"Je sessie data kan op dit moment niet opgehaald worden door technische "
+"problemen. Probeer het over een paar minuten nogmaals."
 
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Er is een fout opgetreden tijdens het verwerken van een Logout Request."
@@ -1505,6 +1367,9 @@ msgstr ""
 "voor uitloggen</i>. Om er zeker van te zijn dat al je sessies zijn "
 "beëindigd, kun je het beste <i>je webbrowser afsluiten</i>."
 
+msgid "or select a file:"
+msgstr "of kies een file:"
+
 msgid "Remember me"
 msgstr "Onthoud mij"
 
@@ -1640,6 +1505,15 @@ msgstr "Configuratie-validatie"
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Het antwoord van de Identity Provider is niet geaccepteerd."
 
+msgid ""
+"You accessed the Artifact Resolution Service interface, but did not "
+"provide a SAML ArtifactResolve message. Please note that this endpoint is"
+" not intended to be accessed directly."
+msgstr ""
+"Je hebt het Artifact Resolution Service interface aangeroepen, maar stuurde "
+"geen SAML ArtifactResolve bericht mee. Merk op dat dit 'endpoint' niet "
+"bedoeld is om direct benaderd te worden."
+
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr ""
 "De opgegeven pagina kon niet worden gevonden. De oorzaak is: %REASON%. De"
@@ -1662,6 +1536,9 @@ msgstr "[Voorkeurskeuze]"
 msgid "Organizational homepage"
 msgstr "Organisatie homepage"
 
+msgid "Processing..."
+msgstr "Verwerken..."
+
 msgid ""
 "You accessed the Assertion Consumer Service interface, but did not "
 "provide a SAML Authentication Response. Please note that this endpoint is"
@@ -1680,4 +1557,4 @@ msgstr ""
 "Je gaat nu een pre-productiesysteem gebruiken. Deze authenticatie is "
 "uitsluitend opgezet voor testen en pre-productie-verfificatie. Als iemand"
 " je een link hierheen stuurde, en je bent geen <i>tester</i>, dan is dit "
-"waarschijlijk een vergissing en zou je <b>niet hier moeten zijn</b>."
+"waarschijnlijk een vergissing en zou je <b>niet hier moeten zijn</b>."

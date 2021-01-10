@@ -110,7 +110,7 @@ In this setup, this file should contain a single entry:
 		],
 	];
 
-This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password is stored in the array index (`student:studentpass` for the `student`-user. The attributes for each user is configured in the array referenced by the index. For the student user, these are:
+This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password are stored in the array index (`student:studentpass` for the `student`-user). The attributes for each user are configured in the array referenced by the index. So for the student user, these are:
 
 	[
 		'uid' => ['student'],
@@ -120,10 +120,10 @@ This configuration creates two users - `student` and `employee`, with the passwo
 The attributes will be returned by the IdP when the user logs on.
 
 
-Creating a SSL self signed certificate
---------------------------------------
+Creating a self signed certificate
+----------------------------------
 
-Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate.
+The IdP needs a certificate to sign its SAML assertions with. Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate. The private key and certificate go into the directory defined in the certdir setting (defaults to `cert/`)
 
 This key and certificate can be used to sign SAML messages:
 

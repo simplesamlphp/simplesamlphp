@@ -1,6 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -18,8 +25,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * to add a virtual 'scope' attribute from the eduPersonPrincipalName
  * attribute.
  */
-
-class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeFromAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute where the scope is taken from
@@ -35,31 +41,31 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $targetAttribute;
 
+
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        $config = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeFromAttribute');
-        $this->targetAttribute = $config->getString('targetAttribute');
-        $this->sourceAttribute = $config->getString('sourceAttribute');
-    } // end constructor
+        $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
+        $this->targetAttribute = $cfg->getString('targetAttribute');
+        $this->sourceAttribute = $cfg->getString('sourceAttribute');
+    }
+
 
     /**
      * Apply this filter.
      *
      * @param array &$request  The current request
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 
@@ -74,21 +80,20 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         $sourceAttrVal = $attributes[$this->sourceAttribute][0];
 
-        /* the last position of an @ is usually the beginning of the
-         * scope string
-         */
-        $scopeIndex = strrpos($sourceAttrVal, '@');
+        /* Treat the first @ as usually the beginning of the scope
+         * string, as per eduPerson recommendation. */
+        $scopeIndex = strpos($sourceAttrVal, '@');
 
         if ($scopeIndex !== false) {
             $attributes[$this->targetAttribute] = [];
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
-            \SimpleSAML\Logger::debug('ScopeFromAttribute: Inserted new attribute '.
-                $this->targetAttribute.', with scope '.$scope);
+            Logger::debug(
+                'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope
+            );
         } else {
-            \SimpleSAML\Logger::warning('ScopeFromAttribute: The configured source attribute '.
-                $this->sourceAttribute.' does not have a scope. Did not add attribute '.
-                    $this->targetAttribute.'.');
+            Logger::warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
+                . ' does not have a scope. Did not add attribute ' . $this->targetAttribute . '.');
         }
-    } // end process
+    }
 }

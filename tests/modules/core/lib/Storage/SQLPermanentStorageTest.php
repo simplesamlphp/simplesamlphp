@@ -1,42 +1,62 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Storage;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
 /**
  * Test for the SQLPermanentStorage class.
+ *
+ * @covers \SimpleSAML\Module\core\Storage\SQLPermanentStorage
  */
 class SQLPermanentStorageTest extends TestCase
 {
+    /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage */
     private static $sql;
 
-    public static function setUpBeforeClass()
+
+    /**
+     */
+    public static function setUpBeforeClass(): void
     {
         // Create instance
-        $config = \SimpleSAML\Configuration::loadFromArray([
+        $config = Configuration::loadFromArray([
             'datadir' => sys_get_temp_dir(),
         ]);
-        self::$sql = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('test', $config);
+        self::$sql = new SQLPermanentStorage('test', $config);
     }
 
-    public static function tearDownAfterClass()
+
+    /**
+     */
+    public static function tearDownAfterClass(): void
     {
         self::$sql = null;
-        unlink(sys_get_temp_dir().'/sqllite/test.sqlite');
+        unlink(sys_get_temp_dir() . '/sqllite/test.sqlite');
     }
 
-    public function testSet()
+
+    /**
+     */
+    public function testSet(): void
     {
         // Set a new value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 2);
 
         // Test getCondition
+        /** @var array $result */
         $result = self::$sql->get();
         $this->assertEquals('testvalue', $result['value']);
     }
 
-    public function testSetOverwrite()
+
+    /**
+     */
+    public function testSetOverwrite(): void
     {
         // Overwrite existing value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 2);
@@ -45,22 +65,29 @@ class SQLPermanentStorageTest extends TestCase
         $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
         $this->assertEquals('testvaluemodified', $result);
 
+        /** @var array $result */
         $result = self::$sql->getList('testtype', 'testkey1', 'testkey2');
         $this->assertEquals('testvaluemodified', $result[0]['value']);
     }
 
-    public function testNonexistentKey()
+
+    /**
+     */
+    public function testNonexistentKey(): void
     {
-        // Test that getting some non-existing key will return null
+        // Test that getting some non-existing key will return null / empty array
         $result = self::$sql->getValue('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
         $this->assertNull($result);
         $result = self::$sql->getList('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
-        $this->assertNull($result);
+        $this->assertEmpty($result);
         $result = self::$sql->get('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
         $this->assertNull($result);
     }
 
-    public function testExpiration()
+
+    /**
+     */
+    public function testExpiration(): void
     {
         // Make sure the earlier created entry has expired now
         sleep(3);
@@ -78,7 +105,10 @@ class SQLPermanentStorageTest extends TestCase
         $this->assertEquals('testvalue_nonexpiring', $result);
     }
 
-    public function testRemove()
+
+    /**
+     */
+    public function testRemove(): void
     {
         // Now remove the nonexpiring entry and make sure it's gone
         self::$sql->remove('testtype', 'testkey1_nonexpiring', 'testkey2_nonexpiring');

@@ -1,18 +1,19 @@
 <?php
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+
 /**
  * Hook to add the metadata for hosted entities to the frontpage.
  *
  * @param array &$metadataHosted  The metadata links for hosted metadata on the frontpage.
  */
-
-function saml_hook_metadata_hosted(&$metadataHosted)
+function saml_hook_metadata_hosted(array &$metadataHosted)
 {
-    assert(is_array($metadataHosted));
-
-    $sources = \SimpleSAML\Auth\Source::getSourcesOfType('saml:SP');
+    $sources = Auth\Source::getSourcesOfType('saml:SP');
 
     foreach ($sources as $source) {
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $metadata = $source->getMetadata();
 
         $name = $metadata->getValue('name', null);
@@ -27,7 +28,7 @@ function saml_hook_metadata_hosted(&$metadataHosted)
             'entityid' => $source->getEntityId(),
             'metadata-index' => $source->getEntityId(),
             'metadata-set' => 'saml20-sp-hosted',
-            'metadata-url' => $source->getMetadataURL().'?output=xhtml',
+            'metadata-url' => $source->getMetadataURL() . '?output=xhtml',
             'name' => $name,
         ];
 

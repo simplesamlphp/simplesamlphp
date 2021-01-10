@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 
 /**
  * Add a scoped variant of an attribute.
@@ -8,7 +14,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @package SimpleSAMLphp
  */
 
-class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute we extract the scope from.
@@ -38,34 +44,34 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $onlyIfEmpty = false;
 
+
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        $config = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeAttribute');
+        $cfg = Configuration::loadFromArray($config, 'ScopeAttribute');
 
-        $this->scopeAttribute = $config->getString('scopeAttribute');
-        $this->sourceAttribute = $config->getString('sourceAttribute');
-        $this->targetAttribute = $config->getString('targetAttribute');
-        $this->onlyIfEmpty = $config->getBoolean('onlyIfEmpty', false);
+        $this->scopeAttribute = $cfg->getString('scopeAttribute');
+        $this->sourceAttribute = $cfg->getString('sourceAttribute');
+        $this->targetAttribute = $cfg->getString('targetAttribute');
+        $this->onlyIfEmpty = $cfg->getBoolean('onlyIfEmpty', false);
     }
+
 
     /**
      * Apply this filter to the request.
      *
      * @param array &$request  The current request
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 
@@ -92,7 +98,7 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             foreach ($attributes[$this->sourceAttribute] as $value) {
-                $value = $value.'@'.$scope;
+                $value = $value . '@' . $scope;
 
                 if (in_array($value, $attributes[$this->targetAttribute], true)) {
                     // Already present

@@ -1,60 +1,69 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
 
 /**
  * Filter to modify attributes using regular expressions
  *
  * This filter can modify or replace attributes given a regular expression.
  *
- * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
-
-class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAlter extends Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?
+     * @var bool
      */
     private $replace = false;
 
     /**
      * Should the value found be removed?
+     * @var bool
      */
     private $remove = false;
 
     /**
      * Pattern to search for.
+     * @var string
      */
     private $pattern = '';
 
     /**
      * String to replace the pattern found with.
+     * @var string|false
      */
     private $replacement = false;
 
     /**
      * Attribute to search in
+     * @var string
      */
     private $subject = '';
 
     /**
      * Attribute to place the result in.
+     * @var string
      */
     private $target = '';
+
 
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -65,7 +74,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 } elseif ($value === '%remove') {
                     $this->remove = true;
                 } else {
-                    throw new \SimpleSAML\Error\Exception('Unknown flag : '.var_export($value, true));
+                    throw new Error\Exception('Unknown flag : ' . var_export($value, true));
                 }
                 continue;
             } elseif ($name === 'pattern') {
@@ -84,6 +93,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply the filter to modify attributes.
      *
@@ -92,30 +102,30 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         // get attributes from request
         $attributes = &$request['Attributes'];
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {
-            throw new \SimpleSAML\Error\Exception("Not all params set in config.");
+            throw new Error\Exception("Not all params set in config.");
         }
 
         if (!$this->replace && !$this->remove && $this->replacement === false) {
-            throw new \SimpleSAML\Error\Exception("'replacement' must be set if neither '%replace' nor ".
-                "'%remove' are set.");
+            throw new Error\Exception(
+                "'replacement' must be set if neither '%replace' nor " . "'%remove' are set."
+            );
         }
 
         if (!$this->replace && $this->replacement === null) {
-            throw new \SimpleSAML\Error\Exception("'%replace' must be set if 'replacement' is null.");
+            throw new Error\Exception("'%replace' must be set if 'replacement' is null.");
         }
 
         if ($this->replace && $this->remove) {
-            throw new \SimpleSAML\Error\Exception("'%replace' and '%remove' cannot be used together.");
+            throw new Error\Exception("'%replace' and '%remove' cannot be used together.");
         }
 
         if (empty($this->target)) {
@@ -124,7 +134,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if ($this->subject !== $this->target && $this->remove) {
-            throw new \SimpleSAML\Error\Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
+            throw new Error\Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
         }
 
         if (!array_key_exists($this->subject, $attributes)) {
@@ -139,7 +149,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
-                    if ($this->replacement !== false) {
+                    if (is_string($this->replacement)) {
                         $new_value = $this->replacement;
                     }
 
@@ -173,6 +183,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                     $attributes[$this->subject]
                 );
             } else {
+                /** @psalm-suppress InvalidArgument */
                 $attributes[$this->target] = array_diff(
                     preg_replace(
                         $this->pattern,

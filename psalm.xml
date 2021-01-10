@@ -3,22 +3,33 @@
     name="SimpleSAMLphp"
     useDocblockTypes="true"
     totallyTyped="false"
+    hideExternalErrors="true"
+    allowStringToStandInForClass="true"
 >
     <projectFiles>
-        <directory name="lib/SimpleSAML/Utils" />
+        <directory name="config-templates" />
+        <directory name="lib/SimpleSAML" />
+        <directory name="metadata-templates" />
+        <directory name="modules" />
+        <directory name="tests" />
+
+        <!-- Ignore certain directories -->
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
+        <DeprecatedClass errorLevel="info" />
         <DeprecatedMethod errorLevel="info" />
 
         <MissingClosureReturnType errorLevel="info" />
         <MissingReturnType errorLevel="info" />
         <MissingPropertyType errorLevel="info" />
         <InvalidDocblock errorLevel="info" />
-        <MisplacedRequiredParam errorLevel="info" />
 
         <PropertyNotSetInConstructor errorLevel="info" />
         <MissingConstructor errorLevel="info" />
@@ -26,5 +37,59 @@
         <MissingParamType errorLevel="info" />
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
+
+        <!-- Ignore these errors until we are fully typehinted -->
+        <DocblockTypeContradiction errorLevel="suppress" />
+        <RedundantConditionGivenDocblockType errorLevel="suppress" />
+
+        <!-- Ignore UnresolvableInclude on CLI-scripts -->
+        <UnresolvableInclude>
+            <errorLevel type="suppress">
+                <file name="bin/*.php" />
+                <file name="lib/SimpleSAML/Module.php" />
+                <file name="lib/SimpleSAML/XHTML/Template.php" />
+                <file name="modules/*/bin/*.php" />
+                <file name="tests/bootstrap.php" />
+                <file name="tests/routers/configLoader.php" />
+            </errorLevel>
+        </UnresolvableInclude>
+
+        <!-- Ignore MissingFile on www-scripts - Remove when the last www-script is replaced by a controller -->
+        <MissingFile>
+            <errorLevel type="suppress">
+                <file name="www/*.php" />
+                <file name="modules/*/www/*.php" />
+            </errorLevel>
+        </MissingFile>
+
+        <!-- Suppress PossiblyUndefinedGlobalVariable on templates -->
+        <PossiblyUndefinedGlobalVariable>
+            <errorLevel type="suppress">
+                <directory name="config-templates" />
+                <directory name="metadata-templates" />
+                <directory name="modules/adfs/metadata-templates" />
+            </errorLevel>
+        </PossiblyUndefinedGlobalVariable>
+
+        <!-- Suppress PHPunit-issue -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+
+        <!-- Suppress PHPunit-issue -->
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </InternalMethod>
     </issueHandlers>
+
+    <stubs>
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
+    </stubs>
 </psalm>

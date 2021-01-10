@@ -1,5 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
+
+use SimpleSAML\Configuration;
 
 /**
  * Utility class for SimpleSAMLphp configuration management and manipulation.
@@ -16,15 +21,10 @@ class Config
      * @return string  The file path.
      * @throws \InvalidArgumentException If $path is not a string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getCertPath($path)
+    public static function getCertPath(string $path): string
     {
-        if (!is_string($path)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
         return System::resolvePath($path, $base);
     }
@@ -43,11 +43,10 @@ class Config
      * @return string The secret salt.
      * @throws \InvalidArgumentException If the secret salt hasn't been configured.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getSecretSalt()
+    public static function getSecretSalt(): string
     {
-        $secretSalt = \SimpleSAML\Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
             throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
         }
@@ -63,21 +62,20 @@ class Config
      *
      * @return string The path to the configuration directory.
      */
-    public static function getConfigDir()
+    public static function getConfigDir(): string
     {
-        $configDir = dirname(dirname(dirname(__DIR__))).'/config';
-        /** @var string|false $configDirEnv */
+        $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
-        
+
         if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
-        
+
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(
                     sprintf(
-                        'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a '.
+                        'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a ' .
                         'directory.  Given: "%s"',
                         $configDirEnv
                     )

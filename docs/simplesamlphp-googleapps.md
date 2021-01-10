@@ -35,7 +35,6 @@ In this example we will setup this server as an IdP for Google Apps for Educatio
 Edit `config.php`, and enable the SAML 2.0 IdP:
 
     'enable.saml20-idp' => true,
-    'enable.shib13-idp' => false,
 
 ## Setting up a signing certificate
 

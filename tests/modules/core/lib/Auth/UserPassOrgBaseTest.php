@@ -1,12 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
-class UserPassOrgBaseTest extends \PHPUnit_Framework_TestCase
+/**
+ * @covers \SimpleSAML\Module\core\Auth\UserPassOrgBase
+ */
+class UserPassOrgBaseTest extends TestCase
 {
-    public function testRememberOrganizationEnabled()
+    /**
+     */
+    public function testRememberOrganizationEnabled(): void
     {
         $config = [
             'ldap:LDAPMulti',
@@ -25,6 +33,7 @@ class UserPassOrgBaseTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $mockUserPassOrgBase */
         $mockUserPassOrgBase = $this->getMockBuilder(\SimpleSAML\Module\core\Auth\UserPassOrgBase::class)
             ->setConstructorArgs([['AuthId' => 'my-org'], &$config])
             ->setMethods([])

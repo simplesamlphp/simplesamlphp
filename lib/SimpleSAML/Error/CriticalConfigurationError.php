@@ -1,6 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
+use Throwable;
 
 /**
  * This exception represents a configuration error that we cannot recover from.
@@ -17,7 +24,6 @@ namespace SimpleSAML\Error;
  * certain point and inform about the error in an ordered manner, without blank pages, logs out of place or even
  * segfaults.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -30,7 +36,7 @@ class CriticalConfigurationError extends ConfigurationError
      */
     private static $minimum_config = [
         'logging.handler' => 'errorlog',
-        'logging.level'  => \SimpleSAML\Logger::DEBUG,
+        'logging.level'  => Logger::DEBUG,
         'errorreporting' => false,
         'debug'          => true,
     ];
@@ -43,14 +49,14 @@ class CriticalConfigurationError extends ConfigurationError
      * @param string|null $file The configuration file that originated this error.
      * @param array|null $config The configuration array that led to this problem.
      */
-    public function __construct($reason = null, $file = null, $config = null)
+    public function __construct(string $reason = null, string $file = null, array $config = null)
     {
         if ($config === null) {
             $config = self::$minimum_config;
-            $config['baseurlpath'] = \SimpleSAML\Utils\HTTP::guessBasePath();
+            $config['baseurlpath'] = Utils\HTTP::guessBasePath();
         }
 
-        \SimpleSAML\Configuration::loadFromArray(
+        Configuration::loadFromArray(
             $config,
             '',
             'simplesaml'
@@ -60,11 +66,11 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param ConfigurationError $exception
+     * @param \Throwable $exception
      *
-     * @return CriticalConfigurationError
+     * @return \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function fromException(\Exception $exception)
+    public static function fromException(Throwable $exception): CriticalConfigurationError
     {
         $reason = null;
         $file = null;

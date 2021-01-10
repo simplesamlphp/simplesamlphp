@@ -8,7 +8,6 @@
 
     <h2>{% trans %}Hosted entities{% endtrans %}</h2>
       {%- for key, set in entries.hosted %}
-        {%- set metadataset = attribute(set, 'metadata-set') %}
         {%- if not loop.first %}
 
         <br/>
@@ -17,13 +16,13 @@
           {%- block general %}
 
           <dl>
-            {%- if set.name %}
+            {%- if set.name is defined %}
 
               <dt>{{ set.name|translateFromArray }}</dt>
             {%- endif %}
 
             <dd>EntityID: <code>{{ set.entityid }}</code></dd>
-            {%- if set.deprecated %}
+            {%- if set.deprecated is defined and set.deprecated %}
 
               <dd><span class="entity-deprecated">Deprecated</span></dd>
             {%- endif %}
@@ -46,7 +45,7 @@
                 <a class="pure-button copy hljs" data-clipboard-target="#url-{{ key }}"
                    title="{% trans %}Copy to clipboard{% endtrans %}"><span class="fa fa-copy"></span></a>
                 <a class="pure-button hljs" href="{{ set.url }}">
-                  <span class="fa fa-external-link-square"></span>
+                  <span class="fa fa-external-link-square-alt"></span>
                 </a>
               </div>
               <code id="url-{{ key }}" class="code-box-content">{{ set.url }}</code>
@@ -71,9 +70,9 @@
                 {#- #}$metadata['{{ set.entityid }}'] = {{ set.metadata_array }};{# -#}
               </div>
             </dd>
-            <dt>{% trans %}Certificates{% endtrans %}</dt>
             {%- for cert in set.certificates %}
               {%- if loop.first %}
+              <dt>{% trans %}Certificates{% endtrans %}</dt>
 
               <ul>
               {%- endif %}
@@ -105,30 +104,25 @@
       <ul>
       {% for entityid, entity in set %}
 
-        <li><a href="{{ (metadata_url ~ '?entityid=' ~ entity.entityid ~ '&set=' ~ key) }}">
-          {%- if entity.name_translated %}
+        <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
+          {%- if entity.name_translated is defined -%}
 
           {{ entity.name_translated }}
-          {%- elseif entity.organizationdisplayname_translated %}
+          {%- elseif entity.organizationdisplayname_translated is defined -%}
 
           {{ entity.organizationdisplayname_translated }}
-          {%- else %}
+          {%- else -%}
 
           {{ entity.entityid|escape('html') }}
-          {% endif -%}
-
+          {%- endif -%}
           </a>
-          {%- if entity.expire %}
-            {%- if entity.expire < date().timestamp %}
-
-          <span class="entity-expired"> (expired {{ ((date().timestamp - entity.expire) / 3600) }} hours ago)</span>
-            {%- else %}
-              {%- set expiration = (entity.expire - date().timestamp) / 3600 %}
-
-          ({% trans %}expires in {{ expiration }} hours{% endtrans %})
-            {%- endif %}
-          {%- endif %}
-
+          {% if entity.expire is defined %}
+            {% if entity.expire < date().timestamp %}
+              <span class="entity-expired"> ({% trans %}expired{% endtrans %} {{ entity.expire | time_diff }})</span>
+            {% else %}
+              <span class="entity-expires"> ({% trans %}expires{% endtrans %} {{ entity.expire | time_diff }})</span>
+            {% endif %}
+          {% endif %}
         </li>
       {% endfor %}
       </ul>
@@ -144,7 +138,7 @@
       {%- endfor %}
 
     </ul>
-    <form action="{{ metadata_url }}" method="get" class="pure-form">
+    <form action="{{ moduleURL('admin/federation/show') }}" method="get" class="pure-form">
       <fieldset class="fancyfieldset">
         <legend>{% trans %}Look up metadata for entity:{% endtrans %}</legend>
         <select name="set">
@@ -156,7 +150,7 @@
           {%- endif %}
 
         </select>
-        <input type="text" name="entityid" placeholder="{% trans %}EntityID{% endtrans %}" />
+        <input type="text" name="entityid" placeholder="{% trans %}EntityID{% endtrans %}">
         <button class="pure-button pure-button-red" type="submit">{% trans %}Search{% endtrans %}</button>
       </fieldset>
     </form>

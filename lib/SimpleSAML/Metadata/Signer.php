@@ -1,14 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SAML2\DOMDocumentFactory;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 /**
  * This class implements a helper function for signing of metadata.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -20,25 +25,26 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
-     * @throws Exception If the key and certificate used to sign is unknown.
+     * @throws \Exception If the key and certificate used to sign is unknown.
      */
-    private static function findKeyCert($config, $entityMetadata, $type)
+    private static function findKeyCert(Configuration $config, array $entityMetadata, string $type): array
     {
         // first we look for metadata.privatekey and metadata.certificate in the metadata
-        if (array_key_exists('metadata.sign.privatekey', $entityMetadata)
+        if (
+            array_key_exists('metadata.sign.privatekey', $entityMetadata)
             || array_key_exists('metadata.sign.certificate', $entityMetadata)
         ) {
-            if (!array_key_exists('metadata.sign.privatekey', $entityMetadata)
+            if (
+                !array_key_exists('metadata.sign.privatekey', $entityMetadata)
                 || !array_key_exists('metadata.sign.certificate', $entityMetadata)
             ) {
                 throw new \Exception(
-                    'Missing either the "metadata.sign.privatekey" or the'.
-                    ' "metadata.sign.certificate" configuration option in the metadata for'.
-                    ' the '.$type.' "'.$entityMetadata['entityid'].'". If one of'.
+                    'Missing either the "metadata.sign.privatekey" or the' .
+                    ' "metadata.sign.certificate" configuration option in the metadata for' .
+                    ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". If one of' .
                     ' these options is specified, then the other must also be specified.'
                 );
             }
@@ -61,9 +67,9 @@ class Signer
         if ($privatekey !== null || $certificate !== null) {
             if ($privatekey === null || $certificate === null) {
                 throw new \Exception(
-                    'Missing either the "metadata.sign.privatekey" or the'.
-                    ' "metadata.sign.certificate" configuration option in the global'.
-                    ' configuration. If one of these options is specified, then the other'.
+                    'Missing either the "metadata.sign.privatekey" or the' .
+                    ' "metadata.sign.certificate" configuration option in the global' .
+                    ' configuration. If one of these options is specified, then the other' .
                     ' must also be specified.'
                 );
             }
@@ -78,16 +84,18 @@ class Signer
         }
 
         // as a last resort we attempt to use the privatekey and certificate option from the metadata
-        if (array_key_exists('privatekey', $entityMetadata)
+        if (
+            array_key_exists('privatekey', $entityMetadata)
             || array_key_exists('certificate', $entityMetadata)
         ) {
-            if (!array_key_exists('privatekey', $entityMetadata)
+            if (
+                !array_key_exists('privatekey', $entityMetadata)
                 || !array_key_exists('certificate', $entityMetadata)
             ) {
                 throw new \Exception(
-                    'Both the "privatekey" and the "certificate" option must'.
-                    ' be set in the metadata for the '.$type.' "'.
-                    $entityMetadata['entityid'].'" before it is possible to sign metadata'.
+                    'Both the "privatekey" and the "certificate" option must' .
+                    ' be set in the metadata for the ' . $type . ' "' .
+                    $entityMetadata['entityid'] . '" before it is possible to sign metadata' .
                     ' from this entity.'
                 );
             }
@@ -105,8 +113,8 @@ class Signer
         }
 
         throw new \Exception(
-            'Could not find what key & certificate should be used to sign the metadata'.
-            ' for the '.$type.' "'.$entityMetadata['entityid'].'".'
+            'Could not find what key & certificate should be used to sign the metadata' .
+            ' for the ' . $type . ' "' . $entityMetadata['entityid'] . '".'
         );
     }
 
@@ -116,20 +124,19 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return boolean True if metadata signing is enabled, false otherwise.
      * @throws \Exception If the value of the 'metadata.sign.enable' option is not a boolean.
      */
-    private static function isMetadataSigningEnabled($config, $entityMetadata, $type)
+    private static function isMetadataSigningEnabled(Configuration $config, array $entityMetadata, string $type): bool
     {
         // first check the metadata for the entity
         if (array_key_exists('metadata.sign.enable', $entityMetadata)) {
             if (!is_bool($entityMetadata['metadata.sign.enable'])) {
                 throw new \Exception(
-                    'Invalid value for the "metadata.sign.enable" configuration option for'.
-                    ' the '.$type.' "'.$entityMetadata['entityid'].'". This option'.
+                    'Invalid value for the "metadata.sign.enable" configuration option for' .
+                    ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". This option' .
                     ' should be a boolean.'
                 );
             }
@@ -137,9 +144,7 @@ class Signer
             return $entityMetadata['metadata.sign.enable'];
         }
 
-        $enabled = $config->getBoolean('metadata.sign.enable', false);
-
-        return $enabled;
+        return $config->getBoolean('metadata.sign.enable', false);
     }
 
 
@@ -158,14 +163,17 @@ class Signer
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    private static function getMetadataSigningAlgorithm($config, $entityMetadata, $type)
-    {
+    private static function getMetadataSigningAlgorithm(
+        Configuration $config,
+        array $entityMetadata,
+        string $type
+    ): array {
         // configure the algorithm to use
         if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
             if (!is_string($entityMetadata['metadata.sign.algorithm'])) {
-                throw new \SimpleSAML\Error\CriticalConfigurationError(
-                    "Invalid value for the 'metadata.sign.algorithm' configuration option for the ".$type.
-                    "'".$entityMetadata['entityid']."'. This option has restricted values"
+                throw new Error\CriticalConfigurationError(
+                    "Invalid value for the 'metadata.sign.algorithm' configuration option for the " . $type .
+                    "'" . $entityMetadata['entityid'] . "'. This option has restricted values"
                 );
             }
             $alg = $entityMetadata['metadata.sign.algorithm'];
@@ -181,7 +189,7 @@ class Signer
         ];
 
         if (!in_array($alg, $supported_algs, true)) {
-            throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
+            throw new Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
         }
 
         switch ($alg) {
@@ -215,9 +223,9 @@ class Signer
      * @return string The $metadataString with the signature embedded.
      * @throws \Exception If the certificate or private key cannot be loaded, or the metadata doesn't parse properly.
      */
-    public static function sign($metadataString, $entityMetadata, $type)
+    public static function sign(string $metadataString, array $entityMetadata, string $type): string
     {
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {
@@ -227,18 +235,18 @@ class Signer
         // find the key & certificate which should be used to sign the metadata
         $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-        $keyFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['privatekey']);
+        $keyFile = Utils\Config::getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
             throw new \Exception(
-                'Could not find private key file ['.$keyFile.'], which is needed to sign the metadata'
+                'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
             );
         }
         $keyData = file_get_contents($keyFile);
 
-        $certFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['certificate']);
+        $certFile = Utils\Config::getCertPath($keyCertFiles['certificate']);
         if (!file_exists($certFile)) {
             throw new \Exception(
-                'Could not find certificate file ['.$certFile.'], which is needed to sign the metadata'
+                'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'
             );
         }
         $certData = file_get_contents($certFile);
@@ -246,7 +254,7 @@ class Signer
 
         // convert the metadata to a DOM tree
         try {
-            $xml = \SAML2\DOMDocumentFactory::fromString($metadataString);
+            $xml = DOMDocumentFactory::fromString($metadataString);
         } catch (\Exception $e) {
             throw new \Exception('Error parsing self-generated metadata.');
         }
@@ -261,7 +269,9 @@ class Signer
         $objKey->loadKey($keyData, false);
 
         // get the EntityDescriptor node we should sign
+        /** @var \DOMElement $rootNode */
         $rootNode = $xml->firstChild;
+        $rootNode->setAttribute('ID', '_' . hash('sha256', $metadataString));
 
         // sign the metadata with our private key
         $objXMLSecDSig = new XMLSecurityDSig();
@@ -272,7 +282,7 @@ class Signer
             [$rootNode],
             $signature_cf['digest'],
             ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
-            ['id_name' => 'ID']
+            ['id_name' => 'ID', 'overwrite' => false]
         );
 
         $objXMLSecDSig->sign($objKey);

@@ -1,4 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
+namespace SimpleSAML\Test\XML;
+
+use Exception;
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\XML\Parser;
+
 /*
  * This file is part of the sgomezsimplesamlphp.
  *
@@ -6,16 +15,12 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @covers \SimpleSAML\XML\Parser
  */
-
-namespace SimpleSAML\Test\XML;
-
-use PHPUnit\Framework\TestCase;
-use SimpleSAML\XML\Parser;
-
 class ParserTest extends TestCase
 {
-    const XMLDOC = <<< XML
+    private const XMLDOC = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
   <Value>Hello, World!</Value>
@@ -25,17 +30,19 @@ XML;
     /** @var Parser */
     private $xml;
 
-    protected function setUp()
+
+    /**
+     */
+    protected function setUp(): void
     {
         $this->xml = new Parser(static::XMLDOC);
     }
 
+
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
      */
-    public function getValue()
+    public function getValue(): void
     {
         $result = $this->xml->getValue('/Root/Value', true);
         $this->assertEquals(
@@ -44,12 +51,11 @@ XML;
         );
     }
 
+
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
      */
-    public function getEmptyValue()
+    public function getEmptyValue(): void
     {
         $result = $this->xml->getValue('/Root/Foo', false);
         $this->assertEquals(
@@ -59,24 +65,20 @@ XML;
     }
 
 
-
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
-     * @expectedException \Exception
      * @test
      */
-    public function getValueException()
+    public function getValueException(): void
     {
+        $this->expectException(Exception::class);
         $this->xml->getValue('/Root/Foo', true);
     }
 
+
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueDefault
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
      */
-    public function getDefaultValue()
+    public function getDefaultValue(): void
     {
         $result = $this->xml->getValueDefault('/Root/Other', 'Hello');
         $this->assertEquals(
@@ -87,11 +89,9 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
      */
-    public function getValueAlternatives()
+    public function getValueAlternatives(): void
     {
         $result = $this
             ->xml
@@ -107,12 +107,11 @@ XML;
         );
     }
 
+
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
      */
-    public function getEmptyValueAlternatives()
+    public function getEmptyValueAlternatives(): void
     {
         $result = $this
             ->xml
@@ -128,20 +127,19 @@ XML;
         );
     }
 
+
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
-     * @expectedException \Exception
      * @test
      */
-    public function getValueAlternativesException()
+    public function getValueAlternativesException(): void
     {
-        $this
-            ->xml
-            ->getValueAlternatives([
+        $this->expectException(Exception::class);
+        $this->xml->getValueAlternatives(
+            [
                 '/Root/Foo',
                 '/Root/Bar'
-            ], true)
-        ;
+            ],
+            true
+        );
     }
 }

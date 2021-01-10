@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
+
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 
 /**
  * Log a line in the STAT log with one attribute.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
-class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class StatisticsWithAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute to log
@@ -31,26 +36,24 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
             if (!is_string($this->attribute)) {
-                throw new \Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
+                throw new Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
             }
         }
 
         if (array_key_exists('type', $config)) {
             $this->typeTag = $config['type'];
             if (!is_string($this->typeTag)) {
-                throw new \Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
+                throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
             }
         }
 
@@ -65,10 +68,9 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$state  The current state.
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
+        Assert::keyExists($state, 'Attributes');
 
         $logAttribute = 'NA';
         $isPassive = '';
@@ -81,7 +83,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
             $isPassive = 'passive-';
         }
 
-        if (array_key_exists($this->attribute, $state['Attributes'])) {
+        if (!is_null($this->attribute) && array_key_exists($this->attribute, $state['Attributes'])) {
             $logAttribute = $state['Attributes'][$this->attribute][0];
         }
 
@@ -90,11 +92,12 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            \SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '.$logAttribute);
+            Logger::stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
         }
 
-        \SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
+        Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
     }
+
 
     /**
      * @param string &$direction  Either 'Source' or 'Destination'.
@@ -102,7 +105,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @return string
      */
-    private function setIdentifier($direction, $state)
+    private function setIdentifier(string $direction, array $state): string
     {
         if (array_key_exists($direction, $state)) {
             if (isset($state[$direction]['core:statistics-id'])) {

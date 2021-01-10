@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Store;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use Predis\Client;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Store;
 
 /**
  * A data store using Redis to keep the data.
@@ -12,18 +17,21 @@ use \SimpleSAML\Store;
  */
 class Redis extends Store
 {
+    /** @var \Predis\Client */
     public $redis;
+
 
     /**
      * Initialize the Redis data store.
+     * @param \Predis\Client|null $redis
      */
-    public function __construct($redis = null)
+    public function __construct(Client $redis = null)
     {
-        assert($redis === null || is_subclass_of($redis, 'Predis\\Client'));
-
-        if (!class_exists('\Predis\Client')) {
-            throw new \SimpleSAML\Error\CriticalConfigurationError('predis/predis is not available.');
+        if (!class_exists(Client::class)) {
+            throw new Error\CriticalConfigurationError('predis/predis is not available.');
         }
+
+        Assert::nullOrIsInstanceOf($redis, \Predis\Client::class);
 
         if ($redis === null) {
             $config = Configuration::getInstance();
@@ -32,12 +40,14 @@ class Redis extends Store
             $port = $config->getInteger('store.redis.port', 6379);
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
             $password = $config->getString('store.redis.password', '');
+            $database = $config->getInteger('store.redis.database', 0);
 
-            $redis = new \Predis\Client(
+            $redis = new Client(
                 [
                     'scheme' => 'tcp',
                     'host' => $host,
                     'port' => $port,
+                    'database' => $database,
                 ] + (!empty($password) ? ['password' => $password] : []),
                 [
                     'prefix' => $prefix,
@@ -47,6 +57,7 @@ class Redis extends Store
 
         $this->redis = $redis;
     }
+
 
     /**
      * Deconstruct the Redis data store.
@@ -58,6 +69,7 @@ class Redis extends Store
         }
     }
 
+
     /**
      * Retrieve a value from the data store.
      *
@@ -66,11 +78,8 @@ class Redis extends Store
      *
      * @return mixed|null The value associated with that key, or null if there's no such key.
      */
-    public function get($type, $key)
+    public function get(string $type, string $key)
     {
-        assert(is_string($type));
-        assert(is_string($key));
-
         $result = $this->redis->get("{$type}.{$key}");
 
         if ($result === false || $result === null) {
@@ -80,6 +89,7 @@ class Redis extends Store
         return unserialize($result);
     }
 
+
     /**
      * Save a value in the data store.
      *
@@ -88,11 +98,9 @@ class Redis extends Store
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
      */
-    public function set($type, $key, $value, $expire = null)
+    public function set(string $type, string $key, $value, ?int $expire = null): void
     {
-        assert(is_string($type));
-        assert(is_string($key));
-        assert($expire === null || (is_int($expire) && $expire > 2592000));
+        Assert::nullOrGreaterThan($expire, 2592000);
 
         $serialized = serialize($value);
 
@@ -104,17 +112,15 @@ class Redis extends Store
         }
     }
 
+
     /**
      * Delete an entry from the data store.
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
      */
-    public function delete($type, $key)
+    public function delete(string $type, string $key): void
     {
-        assert(is_string($type));
-        assert(is_string($key));
-
         $this->redis->del("{$type}.{$key}");
     }
 }

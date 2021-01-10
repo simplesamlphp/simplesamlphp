@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
+
+use SimpleSAML\Assert\Assert;
 
 /**
  * Base class for authentication processing filters.
@@ -16,7 +20,6 @@ namespace SimpleSAML\Auth;
  * information in it, it should have a name on the form 'module:filter:attributename', to avoid name
  * collisions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -43,14 +46,12 @@ abstract class ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
     {
-        assert(is_array($config));
-
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             if (!is_int($this->priority)) {
-                throw new \Exception('Invalid priority: '.var_export($this->priority, true));
+                throw new \Exception('Invalid priority: ' . var_export($this->priority, true));
             }
             unset($config['%priority']);
         }
@@ -64,5 +65,5 @@ abstract class ProcessingFilter
      *
      * @param array &$request  The request we are currently processing.
      */
-    abstract public function process(&$request);
+    abstract public function process(array &$request): void;
 }

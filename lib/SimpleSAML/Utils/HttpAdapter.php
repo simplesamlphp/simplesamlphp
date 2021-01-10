@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -11,200 +13,281 @@ class HttpAdapter
 {
     /**
      * @see HTTP::getServerHTTPS()
+     * @return bool
      */
-    public function getServerHTTPS()
+    public function getServerHTTPS(): bool
     {
         return HTTP::getServerHTTPS();
     }
 
+
     /**
      * @see HTTP::getServerPort()
+     * @return string
      */
-    public function getServerPort()
+    public function getServerPort(): string
     {
         return HTTP::getServerPort();
     }
 
+
     /**
      * @see HTTP::addURLParameters()
+     *
+     * @param string $url
+     * @param array $parameters
+     * @return string
      */
-    public function addURLParameters($url, $parameters)
+    public function addURLParameters(string $url, array $parameters): string
     {
         return HTTP::addURLParameters($url, $parameters);
     }
 
+
     /**
      * @see HTTP::checkSessionCookie()
+     *
+     * @param string|null $retryURL
      */
-    public function checkSessionCookie($retryURL = null)
+    public function checkSessionCookie(string $retryURL = null): void
     {
         HTTP::checkSessionCookie($retryURL);
     }
 
+
     /**
      * @see HTTP::checkURLAllowed()
+     *
+     * @param string $url
+     * @param array|null $trustedSites
+     * @return string
      */
-    public function checkURLAllowed($url, array $trustedSites = null)
+    public function checkURLAllowed(string $url, array $trustedSites = null): string
     {
         return HTTP::checkURLAllowed($url, $trustedSites);
     }
 
+
     /**
      * @see HTTP::fetch()
+     *
+     * @param string $url
+     * @param array $context
+     * @param bool $getHeaders
+     * @return array|string
      */
-    public function fetch($url, $context = [], $getHeaders = false)
+    public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
         return HTTP::fetch($url, $context, $getHeaders);
     }
 
+
     /**
      * @see HTTP::getAcceptLanguage()
+     * @return array
      */
-    public function getAcceptLanguage()
+    public function getAcceptLanguage(): array
     {
         return HTTP::getAcceptLanguage();
     }
 
+
     /**
      * @see HTTP::guessBasePath()
+     * @return string
      */
-    public function guessBasePath()
+    public function guessBasePath(): string
     {
         return HTTP::guessBasePath();
     }
 
+
     /**
      * @see HTTP::getBaseURL()
+     * @return string
      */
-    public function getBaseURL()
+    public function getBaseURL(): string
     {
         return HTTP::getBaseURL();
     }
 
+
     /**
      * @see HTTP::getFirstPathElement()
+     *
+     * @param bool $trailingslash
+     * @return string
      */
-    public function getFirstPathElement($trailingslash = true)
+    public function getFirstPathElement(bool $trailingslash = true): string
     {
         return HTTP::getFirstPathElement($trailingslash);
     }
 
+
     /**
      * @see HTTP::getPOSTRedirectURL()
+     *
+     * @param string $destination
+     * @param array $data
+     * @return string
      */
-    public function getPOSTRedirectURL($destination, $data)
+    public function getPOSTRedirectURL(string $destination, array $data): string
     {
         return HTTP::getPOSTRedirectURL($destination, $data);
     }
 
+
     /**
      * @see HTTP::getSelfHost()
+     * @return string
      */
-    public function getSelfHost()
+    public function getSelfHost(): string
     {
         return HTTP::getSelfHost();
     }
 
+
     /**
      * @see HTTP::getSelfHostWithNonStandardPort()
+     * @return string
      */
-    public function getSelfHostWithNonStandardPort()
+    public function getSelfHostWithNonStandardPort(): string
     {
         return HTTP::getSelfHostWithNonStandardPort();
     }
 
+
     /**
      * @see HTTP::getSelfHostWithPath()
+     * @return string
      */
-    public function getSelfHostWithPath()
+    public function getSelfHostWithPath(): string
     {
         return HTTP::getSelfHostWithPath();
     }
 
+
     /**
      * @see HTTP::getSelfURL()
+     * @return string
      */
-    public function getSelfURL()
+    public function getSelfURL(): string
     {
         return HTTP::getSelfURL();
     }
 
+
     /**
      * @see HTTP::getSelfURLHost()
+     * @return string
      */
-    public function getSelfURLHost()
+    public function getSelfURLHost(): string
     {
         return HTTP::getSelfURLHost();
     }
 
+
     /**
      * @see HTTP::getSelfURLNoQuery()
+     * @return string
      */
-    public function getSelfURLNoQuery()
+    public function getSelfURLNoQuery(): string
     {
         return HTTP::getSelfURLNoQuery();
     }
 
+
     /**
      * @see HTTP::isHTTPS()
+     * @return bool
      */
-    public function isHTTPS()
+    public function isHTTPS(): bool
     {
         return HTTP::isHTTPS();
     }
 
+
     /**
      * @see HTTP::normalizeURL()
+     * @param string $url
+     * @return string
      */
-    public function normalizeURL($url)
+    public function normalizeURL(string $url): string
     {
         return HTTP::normalizeURL($url);
     }
 
+
     /**
      * @see HTTP::parseQueryString()
+     *
+     * @param string $query_string
+     * @return array
      */
-    public function parseQueryString($query_string)
+    public function parseQueryString(string $query_string): array
     {
         return HTTP::parseQueryString($query_string);
     }
 
+
     /**
      * @see HTTP::redirectTrustedURL()
+     *
+     * @param string $url
+     * @param array $parameters
      */
-    public function redirectTrustedURL($url, $parameters = [])
+    public function redirectTrustedURL(string $url, array $parameters = []): void
     {
         HTTP::redirectTrustedURL($url, $parameters);
     }
 
+
     /**
      * @see HTTP::redirectUntrustedURL()
+     *
+     * @param string $url
+     * @param array $parameters
      */
-    public function redirectUntrustedURL($url, $parameters = [])
+    public function redirectUntrustedURL(string $url, array $parameters = []): void
     {
         HTTP::redirectUntrustedURL($url, $parameters);
     }
 
+
     /**
      * @see HTTP::resolveURL()
+     *
+     * @param string $url
+     * @param string|null $base
+     * @return string
      */
-    public function resolveURL($url, $base = null)
+    public function resolveURL(string $url, string $base = null): string
     {
         return HTTP::resolveURL($url, $base);
     }
 
+
     /**
      * @see HTTP::setCookie()
+     *
+     * @param string $name
+     * @param string $value
+     * @param array|null $params
+     * @param bool $throw
      */
-    public function setCookie($name, $value, $params = null, $throw = true)
+    public function setCookie(string $name, string $value, array $params = null, bool $throw = true): void
     {
         HTTP::setCookie($name, $value, $params, $throw);
     }
 
+
     /**
      * @see HTTP::submitPOSTData()
+     *
+     * @param string $destination
+     * @param array $data
      */
-    public function submitPOSTData($destination, $data)
+    public function submitPOSTData(string $destination, array $data): void
     {
         HTTP::submitPOSTData($destination, $data);
     }

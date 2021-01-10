@@ -16,30 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Cron atskaite"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron darbojies"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Ieteikums crontab failam:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Palaist cron:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Klikšķiniet te, lai palaistu cron darbus:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron paredzēts regulāru darbu iestatīšanai unix sistēmās."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Te ir cron darba rezultāts:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cron rezultātu lapa"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron paredzēts regulāru darbu iestatīšanai unix sistēmās."
 

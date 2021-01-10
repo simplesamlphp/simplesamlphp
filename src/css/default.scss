@@ -1,6 +1,8 @@
 @import "../../node_modules/reset-css/sass/_reset.scss";
 @import "../../node_modules/purecss/build/pure.css";
-@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+$fa-font-path: '../fonts/';
+@import "../../node_modules/\@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../node_modules/\@fortawesome/fontawesome-free/scss/solid";
 @import "../../node_modules/selectize/dist/css/selectize.css";
 @import "../../node_modules/highlight.js/styles/zenburn.css";
 
@@ -51,6 +53,10 @@ body {
 .v-center { /*specify a height to center vertically*/
   display: table-cell;
   vertical-align: middle;
+}
+
+i {
+  font-style: italic;
 }
 
 h1 {
@@ -115,6 +121,9 @@ pre, code, kbd, samp, tt {
   //background-color: rgba(0, 0, 0, .1);
   padding: 0 .2rem;
 }
+.xmldata {
+  font-family: monospace;
+}
 
 /************************************************************
  * BUTTONS
@@ -129,8 +138,15 @@ pre, code, kbd, samp, tt {
   margin-right: 4px;
 }
 
-.pure-button-red,
-a.pure-button-red {
+.pure-button {
+  &:hover, &:focus {
+    background-color: #555;
+    padding: .5em 1em;
+    color: #fff;
+  }
+}
+
+.pure-button-red {
   background-color: rgb(219, 1, 0);
   color: #fff;
   &:hover, &:focus {
@@ -181,6 +197,10 @@ a.pure-button-red {
   margin: 0;
   line-height: unset;
   border: 1px solid #E6E6E6;
+}
+
+.pure-button-group.two-elements form {
+  display: inline;
 }
 
 .pure-button-group.two-elements .pure-button:first-child {
@@ -399,7 +419,8 @@ HEADER
 }
 
 .language-menu {
-  font-family: FontAwesome, sans-serif;
+  font-family: "Font Awesome 5 Free", sans-serif;
+  font-weight: 400;
   min-width: 10rem;
 }
 
@@ -465,10 +486,10 @@ CONTENT
   padding: 0.5em 1em;
   display: inline-block;
   min-height: 1em;
-  max-height: 20em;
   width: 100%;
   height: 100%;
   white-space: pre-wrap;
+  font-family: monospace;
   &::selection {
     color: black;
     background: $lighYellow;
@@ -639,7 +660,8 @@ div .item {
 IMAGES
 ************************************************************ */
 .fa {
-  font-family: FontAwesome !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 400;
 }
 
 span.fa, i.fa {
@@ -830,13 +852,16 @@ div.preferredidp {
     padding: .25em;
     display: block;
     color: black;
+    background-color: #f4f4f4;
+    border-top: solid 1px #bbb;
     &:focus, &:hover {
       background-color: #555;
       color: white;
     }
     &:after {
       content: "\f078";
-      font-family: FontAwesome;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 400;
     }
   }
 
@@ -856,4 +881,8 @@ div.preferredidp {
       }
     }
   }
+}
+
+.hidden {
+  display: none;
 }

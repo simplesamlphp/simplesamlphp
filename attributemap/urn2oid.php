@@ -185,4 +185,5 @@ $attributemap = [
     'urn:mace:terena.org:attribute-def:schacUserPresenceID'       => 'urn:oid:1.3.6.1.4.1.25178.1.2.12',
     'urn:mace:terena.org:attribute-def:schacUserPrivateAttribute' => 'urn:oid:1.3.6.1.4.1.25178.1.2.18',
     'urn:mace:terena.org:attribute-def:schacUserStatus'           => 'urn:oid:1.3.6.1.4.1.25178.1.2.19',
+    'urn:mace:terena.org:attribute-def:schacYearOfBirth'          => 'urn:oid:1.3.6.1.4.1.25178.1.0.2.3',
 ];

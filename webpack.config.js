@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const buildDir = __dirname + '/www/assets/';
@@ -18,6 +18,7 @@ module.exports = environment => {
     return {
         entry: {
             bundle: './src/js/bundle',
+            logout: './src/js/logout/main',
             stylesheet: './src/js/style'
         },
         output: {
@@ -36,28 +37,27 @@ module.exports = environment => {
                 },
                 {
                     test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    url: false,
-                                    sourceMap: true
-                                }
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: {
-                                    indentedSyntax: false,
-                                    sourceMap: true,
-                                    data: "$primaryBackground: " + primaryBackground + '; ' +
-                                          "$transitionBackground: " + transitionBackground + "; " +
-                                          "$secondaryBackground: " + secondaryBackground + ";"
-                                }
+                    use: [
+                        'style-loader',
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false
                             }
-                        ]
-                    })
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    indentedSyntax: false
+                                },
+                                additionalData: "$primaryBackground: " + primaryBackground + '; ' +
+                                      "$transitionBackground: " + transitionBackground + "; " +
+                                      "$secondaryBackground: " + secondaryBackground + ";"
+                            }
+                        }
+                    ]
                 },
                 {
                     // expose jquery for use outside webpack bundle
@@ -79,17 +79,19 @@ module.exports = environment => {
                 $: 'jquery',
                 jQuery: 'jquery'
             }),
-            new ExtractTextPlugin({
+            new MiniCssExtractPlugin({
                 filename: localConfig['css_filename'],
                 ignoreOrder: true
             }),
-            new CopyWebpackPlugin([
-                {
-                    from: path.resolve(__dirname + '/node_modules/font-awesome/fonts/*'),
-                    to: 'fonts/',
-                    flatten: true
-                }
-            ])
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: path.resolve(__dirname + '/node_modules/\@fortawesome/fontawesome-free/webfonts/*'),
+                        to: 'fonts/',
+                        flatten: true
+                    }
+                ]
+            })
         ]
     }
 };

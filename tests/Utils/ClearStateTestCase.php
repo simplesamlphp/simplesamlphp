@@ -1,8 +1,8 @@
 <?php
 
-namespace SimpleSAML\Test\Utils;
+declare(strict_types=1);
 
-include(dirname(__FILE__).'/StateClearer.php');
+namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,10 @@ class ClearStateTestCase extends TestCase
      */
     protected static $stateClearer;
 
-    public static function setUpBeforeClass()
+
+    /**
+     */
+    public static function setUpBeforeClass(): void
     {
         if (!self::$stateClearer) {
             self::$stateClearer = new StateClearer();
@@ -26,12 +29,17 @@ class ClearStateTestCase extends TestCase
     }
 
 
-    protected function setUp()
+    /**
+     */
+    protected function setUp(): void
     {
         self::clearState();
     }
 
-    public static function tearDownAfterClass()
+
+    /**
+     */
+    public static function tearDownAfterClass(): void
     {
         self::clearState();
     }
@@ -40,7 +48,7 @@ class ClearStateTestCase extends TestCase
     /**
      * Clear any SSP global state to reduce spill over between tests.
      */
-    public static function clearState()
+    public static function clearState(): void
     {
         self::$stateClearer->clearGlobals();
         self::$stateClearer->clearSSPState();

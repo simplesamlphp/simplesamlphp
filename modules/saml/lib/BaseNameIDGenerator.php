@@ -1,13 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml;
+
+use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Logger;
 
 /**
  * Base filter for generating NameID values.
  *
  * @package SimpleSAMLphp
  */
-
 abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -37,11 +42,11 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The format of this NameID.
      *
-     * This property must be initialized the subclass.
+     * This property must be set by the subclass.
      *
-     * @var string
+     * @var string|null
      */
-    protected $format;
+    protected $format = null;
 
 
     /**
@@ -50,10 +55,9 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (isset($config['NameQualifier'])) {
             $this->nameQualifier = $config['NameQualifier'];
@@ -74,7 +78,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @return string|null  The NameID value.
      */
-    abstract protected function getValue(array &$state);
+    abstract protected function getValue(array &$state): ?string;
 
 
     /**
@@ -82,24 +86,24 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$state  The request state.
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-        assert(is_string($this->format));
+        Assert::string($this->format);
 
         $value = $this->getValue($state);
         if ($value === null) {
             return;
         }
 
-        $nameId = new \SAML2\XML\saml\NameID();
+        $nameId = new NameID();
         $nameId->setValue($value);
+        $nameId->setFormat($this->format);
 
         if ($this->nameQualifier === true) {
             if (isset($state['IdPMetadata']['entityid'])) {
                 $nameId->setNameQualifier($state['IdPMetadata']['entityid']);
             } else {
-                \SimpleSAML\Logger::warning('No IdP entity ID, unable to set NameQualifier.');
+                Logger::warning('No IdP entity ID, unable to set NameQualifier.');
             }
         } elseif (is_string($this->nameQualifier)) {
             $nameId->setNameQualifier($this->nameQualifier);
@@ -109,12 +113,13 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
             if (isset($state['SPMetadata']['entityid'])) {
                 $nameId->setSPNameQualifier($state['SPMetadata']['entityid']);
             } else {
-                \SimpleSAML\Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
+                Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
             }
         } elseif (is_string($this->spNameQualifier)) {
             $nameId->setSPNameQualifier($this->spNameQualifier);
         }
 
+        /** @psalm-suppress PossiblyNullArrayOffset */
         $state['saml:NameID'][$this->format] = $nameId;
     }
 }

@@ -1,16 +1,2 @@
-
 {% set pagetitle = '{logout:progress}'|trans %}
-{% extends "base.twig" %}
-
-{% block content %}
-    {# pretty arbitrary height, but should have enough safety margins for most cases #}
-    {% set iframeHeight = (25 + (SPs|length * 4)) %}
-
-    <iframe style="width:100%; height: {{ iframeHeight }}em; border:0;" src="logout-iframe.php?type=embed&id={{ auth_state|escape('url') }}"></iframe>
-
-    {% for assocId, sp in SPs %}
-    {% if attribute(sp, 'core:Logout-IFrame:State') == 'inprogress' %}
-    <iframe style="width:0; height:0; border:0;" src="{{ attribute(sp, 'core:Logout-IFrame:URL')|escape('html') }}</iframe>
-    {% endif %}
-    {% endfor %}
-{% endblock %}
+{% extends "@core/logout-iframe.twig" %}

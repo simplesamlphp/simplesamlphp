@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata;
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Database;
+use SimpleSAML\Error;
 
 /**
  * Class for handling metadata files stored in a database.
@@ -38,12 +44,6 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         'saml20-idp-hosted',
         'saml20-idp-remote',
         'saml20-sp-remote',
-        'shib13-idp-hosted',
-        'shib13-idp-remote',
-        'shib13-sp-hosted',
-        'shib13-sp-remote',
-        'wsfed-idp-remote',
-        'wsfed-sp-hosted'
     ];
 
 
@@ -58,11 +58,9 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    public function __construct($config)
+    public function __construct(/** @scrutinizer ignore-unused */ array $config)
     {
-        assert(is_array($config));
-
-        $this->db = \SimpleSAML\Database::getInstance();
+        $this->db = Database::getInstance();
     }
 
 
@@ -72,16 +70,14 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param string $set The set of metadata we are loading.
      *
-     * @return array $metadata Associative array with the metadata, or NULL if we are unable to load metadata from the
-     *     given file.
+     * @return array|null $metadata Associative array with the metadata, or NULL if we are unable to load
+     *     metadata from the given file.
      *
-     * @throws Exception If a database error occurs.
+     * @throws \Exception If a database error occurs.
      * @throws \SimpleSAML\Error\Exception If the metadata can be retrieved from the database, but cannot be decoded.
      */
-    private function load($set)
+    private function load(string $set): ?array
     {
-        assert(is_string($set));
-
         $tableName = $this->getTableName($set);
 
         if (!in_array($set, $this->supportedSets, true)) {
@@ -95,7 +91,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             while ($d = $stmt->fetch()) {
                 $data = json_decode($d['entity_data'], true);
                 if ($data === null) {
-                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                    throw new Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
                     $data['entityid'] = $d['entity_id'];
@@ -105,7 +101,9 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
             return $metadata;
         } else {
-            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+            throw new \Exception(
+                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
+            );
         }
     }
 
@@ -117,10 +115,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return array $metadata An associative array with all the metadata for the given set.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
-        assert(is_string($set));
-
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
         }
@@ -131,16 +127,13 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
-            if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
-                $entry['entityid'] = $this->generateDynamicHostedEntityID($set);
-            } else {
-                $entry['entityid'] = $entityId;
-            }
+            $entry = $this->updateEntityID($set, $entityId, $entry);
         }
 
         $this->cachedMetadata[$set] = $metadataSet;
         return $metadataSet;
     }
+
 
     /**
      * Retrieve a metadata entry.
@@ -148,69 +141,69 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $entityId The entityId we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData($entityId, $set)
+    public function getMetaData(string $entityId, string $set): ?array
     {
-        assert(is_string($entityId));
-        assert(is_string($set));
-
-        $tableName = $this->getTableName($set);
-
+        // validate the metadata set is valid
         if (!in_array($set, $this->supportedSets, true)) {
             return null;
         }
 
-        $stmt = $this->db->read(
-            "SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId",
-            ['entityId' => $entityId]
-        );
-        if ($stmt->execute()) {
-            $rowCount = 0;
-            $data = null;
+        // support caching
+        if (isset($this->cachedMetadata[$entityId][$set])) {
+            return $this->cachedMetadata[$entityId][$set];
+        }
 
-            while ($d = $stmt->fetch()) {
-                if (++$rowCount > 1) {
-                    \SimpleSAML\Logger::warning("Duplicate match for $entityId in set $set");
-                    break;
-                }
-                $data = json_decode($d['entity_data'], true);
-                if ($data === null) {
-                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
-                }
-                if (!array_key_exists('entityid', $data)) {
-                    $data['entityid'] = $d['entity_id'];
-                }
+        $tableName = $this->getTableName($set);
+
+        // according to the docs, it looks like *-idp-hosted metadata are the types
+        // that allow the __DYNAMIC:*__ entity id.  with the current table design
+        // we need to lookup the specific metadata entry but also we need to lookup
+        // any dynamic entries to see if the dynamic hosted entity id matches
+        if (substr($set, -10) == 'idp-hosted') {
+            $stmt = $this->db->read(
+                "SELECT entity_id, entity_data FROM {$tableName} "
+                . "WHERE (entity_id LIKE :dynamicId OR entity_id = :entityId)",
+                ['dynamicId' => '__DYNAMIC%', 'entityId' => $entityId]
+            );
+        } else {
+            // other metadata types should be able to match on entity id
+            $stmt = $this->db->read(
+                "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
+                ['entityId' => $entityId]
+            );
+        }
+
+        // throw pdo exception upon execution failure
+        if (!$stmt->execute()) {
+            throw new \Exception(
+                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
+            );
+        }
+
+        // load the metadata into an array
+        $metadataSet = [];
+        while ($d = $stmt->fetch()) {
+            $data = json_decode($d['entity_data'], true);
+            if (json_last_error() != JSON_ERROR_NONE) {
+                throw new \SimpleSAML\Error\Exception(
+                    "Cannot decode metadata for entity '${d['entity_id']}'"
+                );
             }
-            return $data;
-        } else {
-            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+
+            // update the entity id to either the key (if not dynamic or generate the dynamic hosted url)
+            $metadataSet[$d['entity_id']] = $this->updateEntityID($set, $entityId, $data);
         }
-    }
 
-    private function generateDynamicHostedEntityID($set)
-    {
-        assert(is_string($set));
-
-        // get the configuration
-        $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
-
-        if ($set === 'saml20-idp-hosted') {
-            return $baseurl.'saml2/idp/metadata.php';
-        } elseif ($set === 'saml20-sp-hosted') {
-            return $baseurl.'saml2/sp/metadata.php';
-        } elseif ($set === 'shib13-idp-hosted') {
-            return $baseurl.'shib13/idp/metadata.php';
-        } elseif ($set === 'shib13-sp-hosted') {
-            return $baseurl.'shib13/sp/metadata.php';
-        } elseif ($set === 'wsfed-sp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
-        } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
-        } else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+        $indexLookup = $this->lookupIndexFromEntityId($entityId, $metadataSet);
+        if (isset($indexLookup) && array_key_exists($indexLookup, $metadataSet)) {
+            $this->cachedMetadata[$indexLookup][$set] = $metadataSet[$indexLookup];
+            return $this->cachedMetadata[$indexLookup][$set];
         }
+
+        return null;
     }
 
 
@@ -223,12 +216,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return bool True/False if entry was successfully added
      */
-    public function addEntry($index, $set, $entityData)
+    public function addEntry(string $index, string $set, array $entityData): bool
     {
-        assert(is_string($index));
-        assert(is_string($set));
-        assert(is_array($entityData));
-
         if (!in_array($set, $this->supportedSets, true)) {
             return false;
         }
@@ -273,11 +262,9 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return string Replaced table name
      */
-    private function getTableName($table)
+    private function getTableName(string $table): string
     {
-        assert(is_string($table));
-
-        return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix.$table));
+        return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix . $table));
     }
 
 
@@ -293,7 +280,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         foreach ($this->supportedSets as $set) {
             $tableName = $this->getTableName($set);
             $rows = $this->db->write(
-                "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data ".
+                "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data " .
                 "TEXT NOT NULL)"
             );
             if ($rows === false) {

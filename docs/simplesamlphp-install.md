@@ -27,7 +27,7 @@ Prerequisites
 -------------
 
  * A web server capable of executing PHP scripts.
- * PHP version >= 5.5.0.
+ * PHP version >= 7.2.0.
  * Support for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
@@ -60,6 +60,10 @@ Go to the directory where you want to install SimpleSAMLphp and extract the arch
 
 ## Upgrading from a previous version of SimpleSAMLphp
 
+Before starting the upgrade, review the relevant
+[upgrade notes](simplesamlphp-upgrade-notes) for any relevant
+changes.
+
 Extract the new version:
 
 ```
@@ -76,6 +80,9 @@ keep reading for other alternatives):
     cp -rv ../simplesamlphp/config config
     cp -rv ../simplesamlphp/metadata metadata
 ```
+
+If you have installed any [third-party modules](https://simplesamlphp.org/modules) or [customised the theme](simplesamlphp-theming.md), 
+you should check whether your third-party modules need upgrading and then copy or replace those directories too.
 
 Replace the old version with the new version:
 
@@ -103,7 +110,10 @@ startup indicating how and what you need to update. You should look through the 
 directory after the upgrade to see whether recommended defaults have been changed.
 
 
-### Alternative location for configuration files
+Configuration
+-------------
+
+### Location of configuration files
 
 By default, SimpleSAMLphp looks for its configuration in the `config` directory in the root of its own directory. This
 has some drawbacks, like making it harder to update SimpleSAMLphp or to install it as a composer dependency, or to 
@@ -130,7 +140,7 @@ one possible configuration.
 Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 
-```apacheconfig
+```
     <VirtualHost *>
             ServerName service.example.com
             DocumentRoot /var/www/service.example.com
@@ -140,15 +150,7 @@ look like this:
             Alias /simplesaml /var/simplesamlphp/www
 
             <Directory /var/simplesamlphp/www>
-                <IfModule !mod_authz_core.c>
-                # For Apache 2.2:
-                Order allow,deny
-                Allow from all
-                </IfModule>
-                <IfModule mod_authz_core.c>
-                # For Apache 2.4:
                 Require all granted
-                </IfModule>
             </Directory>
     </VirtualHost>
 ```
@@ -158,10 +160,10 @@ Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls ma
 them are accessible through the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias 
 whatever you want, but the name must be specified in the `baseurlpath` configuration option in the `config.php` file of 
 SimpleSAMLphp as described in
-[the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php").
+[the section called “SimpleSAMLphp configuration: config.php”](#section_6 "SimpleSAMLphp configuration: config.php").
 Here is an example of how this configuration may look like in `config.php`:
 
-```php
+```
 $config = [
     [...]
     'baseurlpath' => 'simplesaml/',
@@ -179,7 +181,7 @@ directory too, use the `metadatadir` configuration option to specify the locatio
 
 This is just the basic configuration to get things working. For a checklist
 further completing your documentation, please see
-[Maintenance and configuration: Apache](simplesamlphp-maintenance.md#apache-configuration).
+[Maintenance and configuration: Apache](simplesamlphp-maintenance#section_5).
 
 
 Configuring Nginx
@@ -203,20 +205,21 @@ look like this:
 
         ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
         ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
-        ssl_protocols          TLSv1.1 TLSv1.2;
-        ssl_ciphers            HIGH:!aNULL:!MD5;
+        ssl_protocols          TLSv1.3 TLSv1.2;
+        ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
 
         location ^~ /simplesaml {
             alias /var/simplesamlphp/www;
 
-            location ~ \.php(/|$) {
-                root             /var/simplesamlphp/www;
-                fastcgi_pass     127.0.0.1:9000;
-                fastcgi_index    index.php;
-                fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-                fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-                fastcgi_param    PATH_INFO $fastcgi_path_info;
+            location ~ ^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
                 include          fastcgi_params;
+                fastcgi_pass     $fastcgi_pass;
+                fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
+
+                # Must be prepended with the baseurlpath
+                fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
+
+                fastcgi_param PATH_INFO $pathinfo if_not_empty;
             }
         }
     }
@@ -230,7 +233,7 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set the `baseurlpath` configuration option. Make it point to the canonical URL of your deployment, where
    SimpleSAMLphp can be reached:
    
-   ```php
+   ```
        'baseurlpath' => 'https://your.canonical.host.name/simplesaml/',
    ```
 
@@ -242,10 +245,10 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
    interface.
    
-   Hashed passwords can also be used here. See the [`authcrypt`](../modules/authcrypt/docs/authcrypt.md) documentation
+   Hashed passwords can also be used here. See the [`authcrypt`](./authcrypt:authcrypt) documentation
    for more information.
 
-   ```php
+   ```
        'auth.adminpassword' => 'setnewpasswordhere',
    ```
 
@@ -259,7 +262,7 @@ There are a few steps that you should complete in the main configuration file, `
 
    Here is an example of the configuration option:
 
-   ```php
+   ```
        'secretsalt' => 'randombytesinsertedhere',
    ```
 
@@ -276,7 +279,7 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set technical contact information. This information will be available in the generated metadata. The e-mail address
    will also be used for receiving error reports sent automatically by SimpleSAMLphp. Here is an example:
 
-   ```php
+   ```
        'technicalcontact_name' => 'John Smith',
        'technicalcontact_email' => 'john.smith@example.com',
    ```
@@ -284,13 +287,13 @@ There are a few steps that you should complete in the main configuration file, `
 -  If you use SimpleSAMLphp in a country where English is not widespread, you may want to change the default language
    from English to something else:
 
-   ```php
+   ```
        'language.default' => 'no',
    ```
 
 -  Set your timezone
 
-   ```php
+   ```
        'timezone' => 'Europe/Oslo',
    ```
 
@@ -302,11 +305,12 @@ Configuring PHP
 
 ### Sending e-mails from PHP
 
-Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to technical admin. If
+Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to the technical admin. If
 you want to make use of this functionality, you should make sure your PHP installation is configured to be able to
-send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs
-from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
+send e-mails.
 
+By default SimpleSAMLphp uses the PHP `mail()` function, which you can configure via `php.ini`.
+For more advanced configuration, including using a remote SMTP server, see the `mail.*` options in `config.php`.
 
 Enabling and disabling modules
 ------------------------------
@@ -314,7 +318,7 @@ Enabling and disabling modules
 If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you 
 can do that in the configuration:
 
-```php
+```
     'module.enable' => [
          'exampleauth' => true, // Setting to TRUE enables.
          'saml' => false, // Setting to FALSE disables.
@@ -366,6 +370,15 @@ At the bottom of the installation page there are some green lights. SimpleSAMLph
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 
+## Building assets
+
+Run the following commands to build the default theme.
+
+```
+npm install
+npm run build
+```
+
 ## Next steps
 
 You have now successfully installed SimpleSAMLphp, and the next steps depend on whether you want to setup a Service
@@ -381,7 +394,7 @@ in a separate document.
    + [Remote SP reference](simplesamlphp-reference-sp-remote)
    + [Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
    + [Advanced Topics](simplesamlphp-idp-more)
- - [Automated Metadata Management](simplesamlphp-automated_metadata)
+ - [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
  - [Maintenance and configuration](simplesamlphp-maintenance)
 
 
@@ -413,7 +426,7 @@ The SimpleSAMLphp package contains one folder named `simplesamlphp-x.y.z` (where
 this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named 
 `www`. **Only this folder should be exposed on the web**. The recommended configuration is to put the whole 
 `simplesamlphp` folder outside the web root, and then link to the `www` folder by using the `Alias` directive, as 
-described in [the section called “Configuring Apache”](#sect.apacheconfig "Configuring Apache"). This is not the only
+described in [the section called “Configuring Apache”](#section_4 "Configuring Apache"). This is not the only
 possible way, though.
 
 As an example, let's see how you can install SimpleSAMLphp in your home directory on a shared hosting server.
@@ -436,8 +449,8 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
 3. Next, you need to set the `baseurlpath` configuration option with the URL pointing to the `simplesaml` link you 
 just created in your `public_html` directory. For example, if your home directory is reachable in
 `https://host.example/~myaccount/`, set the base URL path accordingly:
- 
-   ```php
+
+   ```
        'baseurlpath' => 'https://host.example/~myaccount/simplesaml/', 
    ```
 
@@ -467,13 +480,13 @@ Now, we need to make a few configuration changes. First, let's edit `~/public_ht
 
 Change the two lines from:
 
-```php
+```
     require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 ```
 
 to something like:
 
-```php
+```
     require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
 ```
 

@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml;
+
+use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use Throwable;
 
 /**
  * Class for representing a SAML 2 error.
@@ -40,20 +46,20 @@ class Error extends \SimpleSAML\Error\Exception
      * Can be NULL, in which case there is no second-level status code.
      * @param string|null $statusMessage  The status message.
      * Can be NULL, in which case there is no status message.
-     * @param \Exception|null $cause  The cause of this exception. Can be NULL.
+     * @param \Throwable|null $cause  The cause of this exception. Can be NULL.
      */
-    public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
-    {
-        assert(is_string($status));
-        assert($subStatus === null || is_string($subStatus));
-        assert($statusMessage === null || is_string($statusMessage));
-
+    public function __construct(
+        string $status,
+        string $subStatus = null,
+        string $statusMessage = null,
+        Throwable $cause = null
+    ) {
         $st = self::shortStatus($status);
         if ($subStatus !== null) {
-            $st .= '/'.self::shortStatus($subStatus);
+            $st .= '/' . self::shortStatus($subStatus);
         }
         if ($statusMessage !== null) {
-            $st .= ': '.$statusMessage;
+            $st .= ': ' . $statusMessage;
         }
         parent::__construct($st, 0, $cause);
 
@@ -68,7 +74,7 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @return string  The top-level status code.
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -79,7 +85,7 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @return string|null  The second-level status code or NULL if no second-level status code is present.
      */
-    public function getSubStatus()
+    public function getSubStatus(): ?string
     {
         return $this->subStatus;
     }
@@ -90,7 +96,7 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @return string|null  The status message or NULL if no status message is present.
      */
-    public function getStatusMessage()
+    public function getStatusMessage(): ?string
     {
         return $this->statusMessage;
     }
@@ -102,36 +108,19 @@ class Error extends \SimpleSAML\Error\Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param \Exception $exception  The original exception.
-     * @return \SimpleSAML\Module\saml\Error  The new exception.
+     * @param \Throwable $exception  The original exception.
+     * @return \SimpleSAML\Error\Exception  The new exception.
      */
-    public static function fromException(\Exception $exception)
+    public static function fromException(Throwable $exception): \SimpleSAML\Error\Exception
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged
             return $exception;
-
-        // TODO: remove this branch in 2.0
-        } elseif ($exception instanceof \SimpleSAML\Error\NoPassive) {
-            $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_NO_PASSIVE,
-                $exception->getMessage(),
-                $exception
-            );
-        // TODO: remove this branch in 2.0
-        } elseif ($exception instanceof \SimpleSAML\Error\ProxyCountExceeded) {
-            $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
-                $exception->getMessage(),
-                $exception
-            );
         } else {
             $e = new self(
                 \SAML2\Constants::STATUS_RESPONDER,
                 null,
-                get_class($exception).': '.$exception->getMessage(),
+                get_class($exception) . ': ' . $exception->getMessage(),
                 $exception
             );
         }
@@ -151,16 +140,16 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @return \SimpleSAML\Error\Exception  An exception representing this error.
      */
-    public function toException()
+    public function toException(): \SimpleSAML\Error\Exception
     {
         $e = null;
 
         switch ($this->status) {
-            case \SAML2\Constants::STATUS_RESPONDER:
+            case Constants::STATUS_RESPONDER:
                 switch ($this->subStatus) {
-                    case \SAML2\Constants::STATUS_NO_PASSIVE:
+                    case Constants::STATUS_NO_PASSIVE:
                         $e = new \SimpleSAML\Module\saml\Error\NoPassive(
-                            \SAML2\Constants::STATUS_RESPONDER,
+                            Constants::STATUS_RESPONDER,
                             $this->statusMessage
                         );
                         break;
@@ -185,10 +174,8 @@ class Error extends \SimpleSAML\Error\Exception
      * @param string $status  The status code.
      * @return string  A shorter version of the status code.
      */
-    private static function shortStatus($status)
+    private static function shortStatus(string $status): string
     {
-        assert(is_string($status));
-
         $t = 'urn:oasis:names:tc:SAML:2.0:status:';
         if (substr($status, 0, strlen($t)) === $t) {
             return substr($status, strlen($t));

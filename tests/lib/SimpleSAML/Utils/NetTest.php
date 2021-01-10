@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
@@ -7,15 +9,16 @@ use SimpleSAML\Utils\Net;
 
 /**
  * Tests for SimpleSAML\Utils\Test.
+ *
+ * @covers \SimpleSAML\Utils\Net
  */
 class NetTest extends TestCase
 {
     /**
      * Test the function that checks for IPs belonging to a CIDR.
      *
-     * @covers SimpleSAML\Utils\Net::ipCIDRcheck
      */
-    public function testIpCIDRcheck()
+    public function testIpCIDRcheck(): void
     {
         // check CIDR w/o mask
         $this->assertFalse(Net::ipCIDRcheck('127.0.0.0', '127.0.0.1'));
@@ -48,9 +51,8 @@ class NetTest extends TestCase
     /**
      * Test IPv6 support in SimpleSAML\Utils\Net::ipCIDRcheck.
      *
-     * @covers SimpleSAML\Utils\Net::ipCIDRcheck
      */
-    public function testIpv6CIDRcheck()
+    public function testIpv6CIDRcheck(): void
     {
         // check CIDR w/o mask
         $this->assertFalse(Net::ipCIDRcheck('2001:0DB8::', '2001:0DB8::1'));

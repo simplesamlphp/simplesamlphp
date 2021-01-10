@@ -38,12 +38,6 @@ msgstr "Gebruikersnaam"
 msgid "{errors:title_METADATA}"
 msgstr "Fout met die laai van die metadata"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Reg mbt. die diens"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG Foto"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Die inligting vir die huidige uiteken sessie is verlore. Jy moet "
@@ -122,14 +116,8 @@ msgstr ""
 "administrateur is van dié diens moet jy verseker dat jou metadata "
 "konfigurasie korrek is."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Kenmerkende naam (DN) van die person se tuisorganisasie"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Foutiewe versoek ontvang"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Posadres"
 
 msgid "{logout:title}"
 msgstr "Afgemeld"
@@ -143,25 +131,10 @@ msgstr "Kies jou tuisorganisasie"
 msgid "{logout:hold}"
 msgstr "Hou die verbinding"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Affiliasie by Tuis organisasie"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Van"
-
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organisasie naam"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefoon nommer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die gestuurde parameters na die ontdekkings diens was not volgens die "
 "korrekte spesifikasies nie."
-
-msgid "{attributes:attribute_mail}"
-msgstr "E-pos"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Daar was 'n fout met die skepping van die SAML versoek."
@@ -169,14 +142,8 @@ msgstr "Daar was 'n fout met die skepping van die SAML versoek."
 msgid "{logout:return}"
 msgstr "Terug na diens"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "Vertoon naam"
-
 msgid "{logout:logout_all}"
 msgstr "Ja, alle dienste"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Tuis posadres"
 
 msgid "{disco:select}"
 msgstr "Kies"
@@ -205,9 +172,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Wil jy van alle bogenoemde dienste afmeld?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Geen toegang"
 
@@ -223,9 +187,6 @@ msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Toestandsinformasie verlore en daar is geen manier om die versoek weer te"
 " stuur nie"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Identiteitsnommer"
 
 msgid "{login:password}"
 msgstr "Wagwoord"
@@ -247,14 +208,8 @@ msgstr "Instellings fout"
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Fout met die verwerking van die Afmeldings Versoek"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Affiliasie"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nie gevind nie"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Voornaam"
 
 msgid "{login:contact_info}"
 msgstr "Kontak detail:"
@@ -279,9 +234,6 @@ msgstr ""
 "Verifikasie het misluk: die sertifikaat wat jou webblaaier gestuur het is"
 " onbekend"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisasie tuisblad"
-
 msgid "{logout:logging_out_from}"
 msgstr "Afmelding van die volgende dienste:"
 
@@ -291,14 +243,8 @@ msgstr "Jy is suksesvol afgemeld van %SP% af."
 msgid "{errors:errorreport_text}"
 msgstr "Die foutmeldings verslag is gestuur na die administrateurs."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Geboorte datum"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Daar was 'n probleem tydens die verwerking van die Afmelding  Versoek"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Aanhoudende anonieme ID"
 
 msgid "{logout:success}"
 msgstr "Jy het suksesvol afgemeld."
@@ -306,20 +252,11 @@ msgstr "Jy het suksesvol afgemeld."
 msgid "{errors:descr_USERABORTED}"
 msgstr "Die verifikasie is gestop deur die gebruiker"
 
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primêre affiliasie"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Poskode"
-
 msgid "{errors:descr_CASERROR}"
 msgstr "Fout tydens kommunikasie met die CAS bediener."
 
 msgid "{general:no}"
 msgstr "Nee"
-
-msgid "{attributes:attribute_cn}"
-msgstr "Algemene naam"
 
 msgid "{logout:completed}"
 msgstr "Voltooid"
@@ -329,17 +266,8 @@ msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "
 "nie. Redigeer asb die konfigurasie leër."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisasie eenheid"
-
 msgid "{general:service_provider}"
 msgstr "Diens Verskaffer"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Tuistelefoon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domein komponent (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Daar is 'n fout in die versoek na die bladsy. Die rede is: %REASON%"
@@ -359,22 +287,13 @@ msgstr "Voer jou gebruikersnaam en wagwoord in"
 msgid "{errors:report_explain}"
 msgstr "Verduidelik wat jy gedoen het toe jy die probleem ervaar..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Bestuurder"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Geen SAML versoek gevind nie"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Bynaam"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'),"
 " maar het geen SAML LogoutRequest of LogoutResponse gestuur nie."
-
-msgid "{attributes:attribute_street}"
-msgstr "Straat"
 
 msgid "{login:organization}"
 msgstr "Organisasie"
@@ -401,9 +320,6 @@ msgstr "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%"
 msgid "{login:change_home_org_button}"
 msgstr "Kies tuisorganisasie"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI"
-
 msgid "{errors:report_email}"
 msgstr "Epos adres:"
 
@@ -418,12 +334,6 @@ msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "
 "parameter wat aandui waarheen om volgende te gaan nie."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Wettige naam"
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Tuis Organisasie domein naam"
-
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Bladsy nie gevind nie"
 
@@ -433,32 +343,17 @@ msgstr "Foutmelding ontvang vanaf die Identiteits Verskaffer"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongeldige sertifikaat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Kenmerkende naam (DN) van die persoon se organisatoriese afdeling"
-
 msgid "{general:remember}"
 msgstr "Onthou"
 
 msgid "{disco:selectidp}"
 msgstr "Kies jou identiteits verskaffer"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Posbus"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Persoonlike ID by tuis organisasie"
-
 msgid "{login:help_desk_email}"
 msgstr "Stuur e-pos aan hulplyn"
 
 msgid "{login:help_desk_link}"
 msgstr "Hulplyn-tuisblad"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Groeplidmaatskap"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Gebruikers ID"
 
 msgid "{login:remember_me}"
 msgstr "Onthou my"
@@ -479,12 +374,6 @@ msgstr "Ja, voortgaan"
 
 msgid "{disco:remember}"
 msgstr "Onthou my keuse"
-
-msgid "{attributes:attribute_l}"
-msgstr "Ligging"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identiteitsversekerings profiel"
 
 msgid "{disco:login_at}"
 msgstr "Meld aan by"
@@ -513,9 +402,6 @@ msgstr "Jy is afgemeld."
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Onbekende sertifikaat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faksnommer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Fout"
 
@@ -534,26 +420,11 @@ msgstr ""
 "instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die"
 " aanmeld diens en stuur die bostaande fout boodskap aan."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Selfoon"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Taal voorkeur"
-
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Jy het nie 'n geldige sertifikaat gestuur nie."
 
 msgid "{logout:logout_only}"
 msgstr "Nee, net %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organisasie naam"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Kenmerkende naam (DN) van die persoon se primêre organisatoriese afdeling"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Identiteitsnommer"
 
 msgid "{login:next}"
 msgstr "Volgende"
@@ -574,28 +445,16 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Geen sertifikaat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Gebruikerswagwoord"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Afmelding informasie verlore"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp is nie korrek ingestel nie"
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private informasie elemente"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "
 "sertifikaat gestuur"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Wettige naam"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisasie nommer"
 
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
