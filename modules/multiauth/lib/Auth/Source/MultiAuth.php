@@ -10,6 +10,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -187,7 +188,7 @@ class MultiAuth extends Auth\Source
         /* Redirect to the select source page. We include the identifier of the
          * saved state array as a parameter to the login form
          */
-        $url = Module::getModuleURL('multiauth/selectsource.php');
+        $url = Module::getModuleURL('multiauth/discovery');
         $params = ['AuthState' => $id];
 
         // Allows the user to specify the auth source to be used
@@ -212,9 +213,10 @@ class MultiAuth extends Auth\Source
      *
      * @param string $authId Selected authentication source
      * @param array $state Information about the current authentication.
+     * @return \SimpleSAML\HTTP\RunnableResponse
      * @throws \Exception
      */
-    public static function delegateAuthentication(string $authId, array $state): void
+    public static function delegateAuthentication(string $authId, array $state): RunnableResponse
     {
         $as = Auth\Source::getById($authId);
         $valid_sources = array_map(
@@ -240,6 +242,17 @@ class MultiAuth extends Auth\Source
             Session::DATA_TIMEOUT_SESSION_END
         );
 
+        return new RunnableResponse([self::class, 'doAuthentication'], [$as, $state]);
+    }
+
+
+    /**
+     * @param \SimpleSAML\Auth\Source $as
+     * @param array $state
+     * @return void
+     */
+    public static function doAuthentication(Auth\Source $as, array $state): void
+    {
         try {
             $as->authenticate($state);
         } catch (Error\Exception $e) {
