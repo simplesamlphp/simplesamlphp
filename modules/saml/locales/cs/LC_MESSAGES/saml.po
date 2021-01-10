@@ -16,14 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Váš autentizační kontext není touto službou akceptován. Pravděpodobné "
-"příliš snadné nebo nedvoufaktorové."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Špatný autentizační kontext"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

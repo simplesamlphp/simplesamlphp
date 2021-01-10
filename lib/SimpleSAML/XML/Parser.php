@@ -3,7 +3,6 @@
 /**
  * This file will help doing XPath queries in SAML 2 XML documents.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

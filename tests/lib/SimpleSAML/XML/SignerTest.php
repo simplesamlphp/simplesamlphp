@@ -16,6 +16,8 @@ use SimpleSAML\XML\Signer;
 
 /**
  * Tests for SimpleSAML\XML\Signer.
+ *
+ * @covers \SimpleSAML\XML\Signer
  */
 class SignerTest extends SigningTestCase
 {
@@ -65,7 +67,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testSignerBasic(): void
     {
@@ -76,7 +77,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testSignBasic(): void
     {
@@ -117,7 +117,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testSignWithCertificate(): void
     {
@@ -145,7 +144,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testSignWithMultiCertificate(): void
     {
@@ -178,7 +176,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function testSignMissingPrivateKey(): void
     {
@@ -202,7 +199,6 @@ NOWDOC;
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed|null $value
-     * @return void
      */
     protected function clearInstance(Configuration $service, string $className, $value = null): void
     {

@@ -17,7 +17,6 @@ use SimpleSAML\Utils\ClearableState;
 /**
  * This file defines a class for metadata handling.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -296,8 +295,8 @@ class MetaDataStorageHandler implements ClearableState
      * This function looks up the metadata for the given entity id in the given set. It will throw an
      * exception if it is unable to locate the metadata.
      *
-     * @param string|null $entityId The entity id we are looking up. This parameter may be NULL, in which case we look up
-     * the current entity id based on the current hostname/path.
+     * @param string|null $entityId The entity id we are looking up. This parameter may be NULL,
+     * in which case we look up the current entity id based on the current hostname/path.
      * @param string $set The set of metadata we are looking up the entity id in.
      *
      * @return array The metadata array describing the specified entity.
@@ -392,7 +391,6 @@ class MetaDataStorageHandler implements ClearableState
      * Clear any metadata cached.
      * Allows for metadata configuration to be changed and reloaded during a given request. Most useful
      * when running phpunit tests and needing to alter config.php and metadata sources between test cases
-     * @return void
      */
     public static function clearInternalState(): void
     {

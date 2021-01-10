@@ -37,7 +37,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\SignedElement $element The element we should add the data to.
-     * @return void
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -89,7 +88,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
-     * @return void
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
@@ -193,7 +191,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should check the signature on.
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
      */
@@ -239,16 +236,29 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
+     * @psalm-suppress UndefinedDocblockClass  This can be removed after upgrading to saml2v5
+     * @param \SimpleSAML\SAML2\XML\xenc\EncryptionMethod|null $encryptionMethod The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
      */
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
+        $encryptionMethod = null
     ): array {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            if ($encryptionMethod !== null) {
+                $algo = $encryptionMethod->getAlgorithm();
+            } else {
+                $algo = $srcMetadata->getString('sharedkey_algorithm', null);
+                if ($algo === null) {
+                    // If no algorithm is supplied or configured, use a sane default as a last resort
+                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                }
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
             return [$key];
         }
@@ -327,7 +337,7 @@ class Message
         Configuration $dstMetadata,
         $assertion
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
+        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -343,7 +353,12 @@ class Message
         }
 
         try {
-            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
+            // @todo Enable this code for saml2v5 to automatically determine encryption algorithm
+            //$encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
+            //$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
+
+            $encryptionMethod = null;
+            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
         } catch (\Exception $e) {
             throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
@@ -378,7 +393,6 @@ class Message
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
      *
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
      */

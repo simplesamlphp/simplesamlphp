@@ -20,10 +20,6 @@ class Net
      *
      * @return boolean True if the IP address belongs to the specified CIDR, false otherwise.
      *
-     * @author Andreas Åkre Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Brook Schofield, GÉANT
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function ipCIDRcheck(string $cidr, string $ip = null): bool
     {

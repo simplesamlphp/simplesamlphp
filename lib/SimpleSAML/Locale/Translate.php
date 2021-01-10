@@ -3,8 +3,6 @@
 /**
  * The translation-relevant bits from our original minimalistic XHTML PHP based template system.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -238,7 +236,6 @@ class Translate
      * @param string $tag The tag that has a translation
      * @param mixed $translation The translation array
      *
-     * @return void
      * @throws \Exception If $translation is neither a string nor an array.
      */
     public function includeInlineTranslation(string $tag, $translation): void
@@ -264,7 +261,6 @@ class Translate
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
-     * @return void
      */
     public function includeLanguageFile(string $file, Configuration $otherConfig = null): void
     {

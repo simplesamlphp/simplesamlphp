@@ -9,6 +9,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeMap;
 
 /**
  * Test for the core:AttributeMap filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeMap
  */
 class AttributeMapTest extends TestCase
 {
@@ -28,7 +30,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testBasic(): void
     {
@@ -52,7 +53,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testDuplicate(): void
     {
@@ -78,7 +78,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMultiple(): void
     {
@@ -103,7 +102,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMultipleDuplicate(): void
     {
@@ -130,7 +128,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testCircular(): void
     {
@@ -157,7 +154,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMissingMap(): void
     {
@@ -183,7 +179,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testInvalidOriginalAttributeType(): void
     {
@@ -202,7 +197,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testInvalidMappedAttributeType(): void
     {
@@ -221,7 +215,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMissingMapFile(): void
     {
@@ -240,7 +233,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testOverwrite(): void
     {
@@ -265,7 +257,6 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testOverwriteReversed(): void
     {

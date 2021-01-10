@@ -11,7 +11,6 @@ declare(strict_types=1);
  * Module test classes have namespaces like SimpleSAML\Test\Module\<moduleName>\Auth\Process
  *
  * @param string $className Name of the class.
- * @return void
  */
 function sspmodTestClassAutoloadPSR4(string $className): void
 {

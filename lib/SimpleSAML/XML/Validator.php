@@ -3,7 +3,6 @@
 /**
  * This class implements helper functions for XML validation.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

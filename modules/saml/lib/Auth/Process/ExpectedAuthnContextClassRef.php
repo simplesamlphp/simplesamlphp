@@ -71,7 +71,6 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
     /**
      *
      * @param array &$request The current request
-     * @return void
      */
     public function process(array &$request): void
     {
@@ -96,7 +95,6 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
      * permission logic.
      *
      * @param array $request
-     * @return void
      */
     protected function unauthorized(array &$request): void
     {

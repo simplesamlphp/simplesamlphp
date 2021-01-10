@@ -99,7 +99,6 @@ class Simple
      * method for a description.
      *
      * @param array $params Various options to the authentication request. See the documentation.
-     * @return void
      */
     public function requireAuth(array $params = []): void
     {
@@ -125,7 +124,6 @@ class Simple
      * Please note: this function never returns.
      *
      * @param array $params Various options to the authentication request.
-     * @return void
      */
     public function login(array $params = []): void
     {
@@ -185,7 +183,6 @@ class Simple
      *
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
      * with parameters for the logout. If this parameter is null, we will return to the current page.
-     * @return void
      */
     public function logout($params = null): void
     {
@@ -234,7 +231,6 @@ class Simple
      * This function never returns.
      *
      * @param array $state The state after the logout.
-     * @return void
      */
     public static function logoutCompleted(array $state): void
     {

@@ -3,17 +3,24 @@
 require_once('../../_include.php');
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Idp;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
+use SimpleSAML\Module;
 use SimpleSAML\Utils;
+
+Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
+
+$config = Configuration::getInstance();
+if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+    throw new Error\Error('NOACCESS', null, 403);
+}
 
 $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = IdP::getById('saml2:' . $idpEntityId);
-
-Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
 if (!isset($_GET['RelayState'])) {
     throw new Error\Error('NORELAYSTATE');

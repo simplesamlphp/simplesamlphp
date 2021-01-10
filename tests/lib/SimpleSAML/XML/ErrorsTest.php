@@ -14,17 +14,14 @@ use SimpleSAML\XML\Errors;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @author Sergio Gómez <sergio@uco.es>
+ * @covers \SimpleSAML\XML\Errors
+ *
  * @package simplesamlphp/simplesamlphp
  */
 class ErrorsTest extends TestCase
 {
     /**
-     * @covers \SimpleSAML\XML\Errors::begin
-     * @covers \SimpleSAML\XML\Errors::addErrors
-     * @covers \SimpleSAML\XML\Errors::end
      * @test
-     * @return void
      */
     public function loggingErrors(): void
     {
@@ -42,10 +39,7 @@ class ErrorsTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\XML\Errors::formatError
-     * @covers \SimpleSAML\XML\Errors::formatErrors
      * @test
-     * @return void
      */
     public function formatErrors(): void
     {

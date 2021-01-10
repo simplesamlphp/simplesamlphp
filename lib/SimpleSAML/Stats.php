@@ -52,7 +52,6 @@ class Stats
     /**
      * Initialize the outputs.
      *
-     * @return void
      */
     private static function initOutputs(): void
     {
@@ -72,7 +71,6 @@ class Stats
      * @param string $event The event.
      * @param array  $data Event data. Optional.
      *
-     * @return void|boolean False if output is not enabled, void otherwise.
      */
     public static function log(string $event, array $data = [])
     {

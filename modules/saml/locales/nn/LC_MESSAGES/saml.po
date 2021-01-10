@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Du prøver å logga inn med ein innloggingsmetode som ikkje er støtta i "
-"tenesta. Truleg er autentiseringsnivåiet for lågt, eller tenesta krav "
-"tofaktor-innlogging."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Feil innloggingsmetode"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

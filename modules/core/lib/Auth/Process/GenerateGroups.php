@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class GenerateGroups extends Auth\ProcessingFilter
@@ -58,7 +57,6 @@ class GenerateGroups extends Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

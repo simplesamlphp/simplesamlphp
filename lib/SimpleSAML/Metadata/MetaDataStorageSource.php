@@ -16,8 +16,6 @@ use SimpleSAML\Utils;
  * A metadata storage source can be loaded by passing the configuration of it
  * to the getSource static function.
  *
- * @author Olav Morken, UNINETT AS.
- * @author Andreas Aakre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

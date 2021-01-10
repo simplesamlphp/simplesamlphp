@@ -54,7 +54,6 @@ final class Menu
      * @param string $id The identifier of this option.
      * @param string $url The URL this option points to.
      * @param string $name The name of the option for display purposes.
-     * @return void
      */
     public function addOption(string $id, string $url, string $name): void
     {

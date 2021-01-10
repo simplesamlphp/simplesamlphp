@@ -3,7 +3,6 @@
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -405,7 +404,6 @@ class Template extends Response
      *
      * @param string $module The module where we need to search for templates.
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
-     * @return void
      */
     public function addTemplatesFromModule(string $module): void
     {
@@ -452,7 +450,6 @@ class Template extends Response
 
     /**
      * Set some default context
-     * @return void
      */
     private function twigDefaultContext(): void
     {

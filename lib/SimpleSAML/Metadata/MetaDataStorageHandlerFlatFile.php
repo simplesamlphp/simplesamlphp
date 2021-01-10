@@ -12,7 +12,6 @@ use SimpleSAML\Configuration;
  * Instantiation of session handler objects should be done through
  * the class method getMetadataHandler().
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

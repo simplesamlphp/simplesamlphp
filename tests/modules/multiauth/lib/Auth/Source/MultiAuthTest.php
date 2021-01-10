@@ -10,6 +10,9 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 
+/**
+ * @covers \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth
+ */
 class MultiAuthTest extends ClearStateTestCase
 {
     /** @var Configuration */
@@ -20,7 +23,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -72,7 +74,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testSourcesMustBePresent(): void
     {
@@ -91,7 +92,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectMustBeValid(): void
     {
@@ -140,7 +140,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectIsOptional(): void
     {
@@ -196,7 +195,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testPreselectCanBeConfigured(): void
     {
@@ -215,7 +213,6 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     public function testStatePreselectHasPriority(): void
     {

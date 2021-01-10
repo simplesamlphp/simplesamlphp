@@ -216,7 +216,6 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param Request $request The request that lead to this login operation.
-     * @return void
      */
     public function cleardiscochoices(Request $request): void
     {

@@ -20,7 +20,6 @@ use SimpleSAML\Assert\Assert;
  * information in it, it should have a name on the form 'module:filter:attributename', to avoid name
  * collisions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -65,7 +64,6 @@ abstract class ProcessingFilter
      * When a filter returns from this function, it is assumed to have completed its task.
      *
      * @param array &$request  The request we are currently processing.
-     * @return void
      */
     abstract public function process(array &$request): void;
 }

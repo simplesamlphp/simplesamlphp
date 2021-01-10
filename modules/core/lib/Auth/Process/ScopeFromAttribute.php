@@ -62,7 +62,6 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      * Apply this filter.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

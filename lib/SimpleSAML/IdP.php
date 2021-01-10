@@ -207,7 +207,6 @@ class IdP
      * Add an SP association.
      *
      * @param array $association The SP association.
-     * @return void
      */
     public function addAssociation(array $association): void
     {
@@ -237,7 +236,6 @@ class IdP
      * Remove an SP association.
      *
      * @param string $assocId The association id.
-     * @return void
      */
     public function terminateAssociation(string $assocId): void
     {
@@ -261,7 +259,6 @@ class IdP
      * Called after authproc has run.
      *
      * @param array $state The authentication request state array.
-     * @return void
      */
     public static function postAuthProc(array $state): void
     {
@@ -288,7 +285,6 @@ class IdP
      * @param array $state The authentication request state array.
      *
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
-     * @return void
      */
     public static function postAuth(array $state): void
     {
@@ -336,7 +332,6 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
-     * @return void
      */
     private function authenticate(array &$state): void
     {
@@ -359,7 +354,6 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws \Exception If there is no auth source defined for this IdP.
-     * @return void
      */
     private function reauthenticate(array &$state): void
     {
@@ -372,7 +366,6 @@ class IdP
      * Process authentication requests.
      *
      * @param array &$state The authentication request state.
-     * @return void
      */
     public function handleAuthenticationRequest(array &$state): void
     {
@@ -450,7 +443,6 @@ class IdP
      * This function will never return.
      *
      * @param array &$state The logout request state.
-     * @return void
      */
     public function finishLogout(array &$state): void
     {
@@ -470,7 +462,6 @@ class IdP
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
-     * @return void
      */
     public function handleLogoutRequest(array &$state, ?string $assocId): void
     {
@@ -508,7 +499,6 @@ class IdP
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
-     * @return void
      */
     public function handleLogoutResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
     {
@@ -531,7 +521,6 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
-     * @return void
      */
     public function doLogoutRedirect(string $url): void
     {
@@ -552,7 +541,6 @@ class IdP
      *
      * @param IdP      $idp Deprecated. Will be removed.
      * @param array    &$state The logout state from doLogoutRedirect().
-     * @return void
      */
     public static function finishLogoutRedirect(IdP $idp, array $state): void
     {

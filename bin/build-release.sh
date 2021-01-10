@@ -41,7 +41,7 @@ if [ ! -x "$TARGET/composer.phar" ]; then
 fi
 
 # Set the version in composer.json
-php "$TARGET/composer.phar" config version "$VERSION" -d "$TARGET"
+php "$TARGET/composer.phar" config version "v$VERSION" -d "$TARGET"
 
 # Install dependencies (without vcs history or dev tools)
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
@@ -58,11 +58,11 @@ cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"
 rm -rf "$TARGET/node_modules"
 rm "$TARGET/www/assets/js/stylesheet.js"*
-rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
 rm "$TARGET/.php_cs.dist"
 rm "$TARGET/.travis.yml"
+rm "$TARGET/codecov.yml"
 rm "$TARGET/psalm.xml"
 rm "$TARGET"/{,modules}/.gitignore
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep

@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeCopy;
 
 /**
  * Test for the core:AttributeCopy filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeCopy
  */
 class AttributeCopyTest extends TestCase
 {
@@ -30,7 +32,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -50,7 +51,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testArray(): void
     {
@@ -72,7 +72,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @return void
      */
     public function testExistingNotModified(): void
     {
@@ -99,7 +98,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test copying multiple attributes
-     * @return void
      */
     public function testCopyMultiple(): void
     {
@@ -121,7 +119,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test behaviour when target attribute exists (should be replaced).
-     * @return void
      */
     public function testCopyClash(): void
     {
@@ -142,7 +139,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute name
-     * @return void
      */
     public function testWrongAttributeName(): void
     {
@@ -161,7 +157,6 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute value
-     * @return void
      */
     public function testWrongAttributeValue(): void
     {

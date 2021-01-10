@@ -15,9 +15,6 @@ use SimpleSAML\Utils;
 /**
  * This class implements SAML Metadata Query Protocol
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
- * @author Olav Morken, UNINETT AS.
- * @author Tamas Frank, NIIFI
  * @package SimpleSAMLphp
  */
 
@@ -182,7 +179,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param array  $data The associative array with the metadata for this entity.
      *
      * @throws \Exception If metadata cannot be written to cache.
-     * @return void
      */
     private function writeToCache(string $set, string $entityId, array $data): void
     {
@@ -291,7 +287,9 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
-            throw new \Exception(__CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".');
+            throw new \Exception(
+                __CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".'
+            );
         }
 
         try {

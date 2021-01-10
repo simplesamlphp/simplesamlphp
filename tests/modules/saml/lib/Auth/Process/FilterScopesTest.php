@@ -10,7 +10,8 @@ use SimpleSAML\Module\saml\Auth\Process\FilterScopes;
 /**
  * Test for the saml:FilterScopes filter.
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
+ * @covers \SimpleSAML\Module\saml\Auth\Process\FilterScopes
+ *
  * @package SimpleSAMLphp
  */
 class FilterScopesTest extends TestCase
@@ -32,7 +33,6 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test valid scopes.
-     * @return void
      */
     public function testValidScopes(): void
     {
@@ -94,7 +94,6 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test invalid scopes.
-     * @return void
      */
     public function testInvalidScopes(): void
     {

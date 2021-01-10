@@ -16,15 +16,14 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was
  * distributed with this source code.
  *
- * @author Sergio Gómez <sergio@uco.es>
+ * @covers \SimpleSAML\Store
+ *
  * @package simplesamlphp/simplesamlphp
  */
 class StoreTest extends TestCase
 {
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function defaultStore(): void
     {
@@ -38,9 +37,7 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function phpSessionStore(): void
     {
@@ -54,9 +51,7 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function memcacheStore(): void
     {
@@ -71,9 +66,7 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function sqlStore(): void
     {
@@ -90,9 +83,7 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function pathStore(): void
     {
@@ -109,9 +100,7 @@ class StoreTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
      * @test
-     * @return void
      */
     public function notFoundStoreException(): void
     {
@@ -127,7 +116,6 @@ class StoreTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -143,7 +131,6 @@ class StoreTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
      * @param class-string $className
-     * @return void
      */
     protected function clearInstance($service, string $className): void
     {

@@ -38,7 +38,6 @@ class RouterDebugCommand extends Command
 
 
     /**
-     * @return void
      */
     protected function configure(): void
     {

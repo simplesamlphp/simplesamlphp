@@ -21,10 +21,10 @@ use SimpleSAML\Database;
  * should be created for test cases to ensure that it will work
  * in an environment.
  *
- * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
+ * @covers \SimpleSAML\Database
+ *
  * @package SimpleSAMLphp
  */
-
 class DatabaseTest extends TestCase
 {
     /**
@@ -54,11 +54,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
-     * @return void
      */
     public function setUp(): void
     {
@@ -81,12 +76,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
-     * @return void
      */
     public function connectionFailure(): void
     {
@@ -106,12 +96,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
-     * @return void
      */
     public function instances(): void
     {
@@ -175,13 +160,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
-     * @covers SimpleSAML\Database::getSecondary
      * @test
-     * @return void
      */
     public function secondaries(): void
     {
@@ -232,9 +211,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::applyPrefix
      * @test
-     * @return void
      */
     public function prefix(): void
     {
@@ -247,12 +224,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::exec
-     * @covers SimpleSAML\Database::query
      * @test
-     * @return void
      */
     public function querying(): void
     {
@@ -281,10 +253,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::query
      * @test
-     * @return void
      */
     public function readFailure(): void
     {
@@ -297,10 +266,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::exec
      * @test
-     * @return void
      */
     public function noSuchTable(): void
     {
@@ -310,7 +276,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {

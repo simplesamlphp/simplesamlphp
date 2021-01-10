@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Log a line in the STAT log with one attribute.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class StatisticsWithAttribute extends Auth\ProcessingFilter
@@ -68,7 +67,6 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
      * Log line.
      *
      * @param array &$state  The current state.
-     * @return void
      */
     public function process(array &$state): void
     {

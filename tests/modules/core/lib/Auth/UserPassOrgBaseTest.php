@@ -7,10 +7,12 @@ namespace SimpleSAML\Test\Module\core\Auth;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
+/**
+ * @covers \SimpleSAML\Module\core\Auth\UserPassOrgBase
+ */
 class UserPassOrgBaseTest extends TestCase
 {
     /**
-     * @return void
      */
     public function testRememberOrganizationEnabled(): void
     {

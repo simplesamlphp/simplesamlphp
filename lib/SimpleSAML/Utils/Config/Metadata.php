@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
  *
  * @package SimpleSAMLphp
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  */
 class Metadata
 {
@@ -240,7 +239,6 @@ class Metadata
      *
      * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDefaultEndpoint(array $endpoints, array $bindings = null): ?array
     {

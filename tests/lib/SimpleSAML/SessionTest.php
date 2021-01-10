@@ -9,13 +9,15 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Session;
 use SimpleSAML\Configuration;
 
+/**
+ * @covers \SimpleSAML\Session
+ */
 class SessionTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Session */
     protected $session;
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -25,7 +27,6 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
-     * @return void
      */
     public function testSetRememberMeExpireDefaults(): void
     {
@@ -39,7 +40,6 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
-     * @return void
      */
     public function testSetRememberMeExpireExplicit(): void
     {

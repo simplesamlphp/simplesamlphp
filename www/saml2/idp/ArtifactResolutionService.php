@@ -4,7 +4,6 @@
  * The ArtifactResolutionService receives the samlart from the sp.
  * And when the artifact is found, it sends a \SAML2\ArtifactResponse.
  *
- * @author Danny Bollaert, UGent AS. <danny.bollaert@ugent.be>
  * @package SimpleSAMLphp
  */
 
@@ -23,8 +22,8 @@ use SimpleSAML\Metadata;
 use SimpleSAML\Store;
 
 $config = Configuration::getInstance();
-if (!$config->getBoolean('enable.saml20-idp', false)) {
-    throw new Error\Error('NOACCESS');
+if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+    throw new Error\Error('NOACCESS', null, 403);
 }
 
 $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();

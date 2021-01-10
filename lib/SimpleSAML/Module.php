@@ -18,9 +18,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
- * @author Boy Baukema, SURFnet.
- * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class Module
@@ -511,7 +508,6 @@ class Module
      *
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */

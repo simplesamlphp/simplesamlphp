@@ -21,9 +21,6 @@ class Random
      *
      * @return string A ID_LENGTH-bytes long string with a random, hex-encoded string.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function generateID(): string
     {

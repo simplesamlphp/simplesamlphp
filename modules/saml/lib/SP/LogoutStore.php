@@ -24,7 +24,6 @@ class LogoutStore
      * Create logout table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
      */
     private static function createLogoutTable(Store\SQL $store): void
     {
@@ -41,6 +40,11 @@ class LogoutStore
                     // This does not affect the NOT NULL constraint
                     $update = [
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TYPE TIMESTAMP'
+                    ];
+                    break;
+                case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire DATETIME NOT NULL'
                     ];
                     break;
                 case 'sqlite':
@@ -119,6 +123,12 @@ class LogoutStore
                     $update = [
                         'ALTER TABLE ' . $store->prefix .
                         '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
+                    break;
+                case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix .
+                        '_saml_LogoutStore ALTER COLUMN _authSource VARCHAR(255) NOT NULL'
+                    ];
                     break;
                 case 'sqlite':
                     /**
@@ -199,7 +209,6 @@ class LogoutStore
      * Clean the logout table of expired entries.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
      */
     private static function cleanLogoutStore(Store\SQL $store): void
     {
@@ -222,7 +231,6 @@ class LogoutStore
      * @param string $sessionIndex  The SessionIndex of the user.
      * @param int $expire
      * @param string $sessionId
-     * @return void
      */
     private static function addSessionSQL(
         Store\SQL $store,
@@ -327,7 +335,6 @@ class LogoutStore
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
      * @param int $expire
-     * @return void
      */
     public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {

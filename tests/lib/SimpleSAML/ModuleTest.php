@@ -9,11 +9,13 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 
+/**
+ * @covers \SimpleSAML\Module
+ */
 class ModuleTest extends TestCase
 {
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
-     * @return void
      */
     public function testIsModuleEnabled(): void
     {
@@ -24,7 +26,6 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleDir().
-     * @return void
      */
     public function testGetModuleDir(): void
     {
@@ -38,7 +39,6 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleURL().
-     * @return void
      */
     public function testGetModuleURL(): void
     {
@@ -61,7 +61,6 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModules().
-     * @return void
      */
     public function testGetModules(): void
     {
@@ -73,7 +72,6 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if we are not asking
      * for a class inside a module (that is, there is no colon separating the name of the module and the name of the
      * class).
-     * @return void
      */
     public function testResolveClassNoModule(): void
     {
@@ -85,7 +83,6 @@ class ModuleTest extends TestCase
     /**
      * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if the class we are
      * asking for can be resolved, but does not extend a given class.
-     * @return void
      */
     public function testResolveClassNotSubclass(): void
     {
@@ -96,7 +93,6 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
-     * @return void
      */
     public function testResolveClass(): void
     {

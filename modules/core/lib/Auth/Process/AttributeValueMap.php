@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Filter to create target attribute based on value(s) in source attribute
  *
- * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
 class AttributeValueMap extends Auth\ProcessingFilter
@@ -109,7 +108,6 @@ class AttributeValueMap extends Auth\ProcessingFilter
      * Apply filter.
      *
      * @param array &$request The current request
-     * @return void
      */
     public function process(array &$request): void
     {

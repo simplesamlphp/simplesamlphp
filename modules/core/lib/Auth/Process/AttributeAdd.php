@@ -13,7 +13,6 @@ use SimpleSAML\Auth;
  *
  * This filter allows you to add attributes to the attribute set being processed.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class AttributeAdd extends Auth\ProcessingFilter
@@ -75,7 +74,6 @@ class AttributeAdd extends Auth\ProcessingFilter
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

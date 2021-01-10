@@ -28,7 +28,6 @@ use SimpleSAML\Utils;
  * ]
  * </code>
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class TargetedID extends Auth\ProcessingFilter
@@ -95,7 +94,6 @@ class TargetedID extends Auth\ProcessingFilter
      * Apply filter to add the targeted ID.
      *
      * @param array &$state  The current state.
-     * @return void
      */
     public function process(array &$state): void
     {

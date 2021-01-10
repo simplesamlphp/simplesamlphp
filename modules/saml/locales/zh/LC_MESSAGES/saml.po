@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr "此服务不接受您的验证上下文。可能因为验证太弱或非双因素验证。"
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "错误的验证上下文"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

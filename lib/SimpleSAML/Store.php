@@ -93,7 +93,6 @@ abstract class Store implements Utils\ClearableState
      * @param string   $key The key.
      * @param mixed    $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
-     * @return void
      */
     abstract public function set(string $type, string $key, $value, ?int $expire = null): void;
 
@@ -103,14 +102,12 @@ abstract class Store implements Utils\ClearableState
      *
      * @param string $type The data type.
      * @param string $key The key.
-     * @return void
      */
     abstract public function delete(string $type, string $key): void;
 
 
     /**
      * Clear any SSP specific state, such as SSP environmental variables or cached internals.
-     * @return void
      */
     public static function clearInternalState(): void
     {

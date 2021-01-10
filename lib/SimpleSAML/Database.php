@@ -20,7 +20,6 @@ use SimpleSAML\Logger;
  * the case of a module that has a good reason to use a different database, such as sqlauth, an alternative config file
  * can be provided.
  *
- * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
 

@@ -438,7 +438,6 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
-     * @return void
      */
     private function startSSO2(Configuration $idpMetadata, array $state): void
     {
@@ -586,14 +585,19 @@ class SP extends \SimpleSAML\Auth\Source
 
         $ar->setRequesterID($requesterID);
 
-        if (isset($state['saml:Extensions'])) {
+        // If the downstream SP has set extensions then use them.
+        // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
+        if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
             $ar->setExtensions($state['saml:Extensions']);
+        } elseif ($this->metadata->getArray('saml:Extensions', null) !== null) {
+            $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
         }
-        
+
         $providerName = $this->metadata->getString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
         }
+
 
         // save IdP entity ID as part of the state
         $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
@@ -642,7 +646,6 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array &$state  The state array.
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\AuthnRequest  $ar  The authentication request.
-     * @return void
      */
     public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar): void
     {
@@ -656,7 +659,6 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
-     * @return void
      */
     public function startSSO(string $idp, array $state): void
     {
@@ -678,7 +680,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Start an IdP discovery service operation.
      *
      * @param array $state  The state array.
-     * @return void
      */
     private function startDisco(array $state): void
     {
@@ -716,7 +717,6 @@ class SP extends \SimpleSAML\Auth\Source
      * This function saves the information about the login, and redirects to the IdP.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -773,7 +773,6 @@ class SP extends \SimpleSAML\Auth\Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function reauthenticate(array &$state): void
     {
@@ -860,7 +859,6 @@ class SP extends \SimpleSAML\Auth\Source
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
-     * @return void
      * @throws \SimpleSAML\Module\saml\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state): void
@@ -892,7 +890,6 @@ class SP extends \SimpleSAML\Auth\Source
      * This method will never return.
      *
      * @param array $state The state array.
-     * @return void
      */
     public static function reauthLogout(array $state): void
     {
@@ -913,7 +910,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Complete login operation after re-authenticating the user on another IdP.
      *
      * @param array $state  The authentication state.
-     * @return void
      */
     public static function reauthPostLogin(array $state): void
     {
@@ -937,7 +933,6 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
-     * @return void
      */
     public static function reauthPostLogout(IdP $idp, array $state): void
     {
@@ -962,7 +957,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Start a SAML 2 logout operation.
      *
      * @param array $state  The logout state.
-     * @return void
      */
     public function startSLO2(array &$state): void
     {
@@ -1017,7 +1011,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Start logout operation.
      *
      * @param array $state  The logout state.
-     * @return void
      */
     public function logout(array &$state): void
     {
@@ -1041,7 +1034,6 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array $state  The authentication state.
      * @param string $idp  The entity id of the IdP.
      * @param array $attributes  The attributes.
-     * @return void
      */
     public function handleResponse(array $state, string $idp, array $attributes): void
     {
@@ -1085,7 +1077,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Handle a logout request from an IdP.
      *
      * @param string $idpEntityId  The entity ID of the IdP.
-     * @return void
      */
     public function handleLogout(string $idpEntityId): void
     {
@@ -1107,7 +1098,6 @@ class SP extends \SimpleSAML\Auth\Source
      * the session. The function will check if the URL is allowed, so there is no need to
      * manually check the URL on beforehand. Please refer to the 'trusted.url.domains'
      * configuration directive for more information about allowing (or disallowing) URLs.
-     * @return void
      */
     public static function handleUnsolicitedAuth(string $authId, array $state, string $redirectTo): void
     {
@@ -1122,7 +1112,6 @@ class SP extends \SimpleSAML\Auth\Source
      * Called when we have completed the procssing chain.
      *
      * @param array $authProcState  The processing chain state.
-     * @return void
      */
     public static function onProcessingCompleted(array $authProcState): void
     {

@@ -15,7 +15,6 @@ class ReduceSpillOverTest extends ClearStateTestCase
 {
     /**
      * Set some global state
-     * @return void
      */
     public function testSetState(): void
     {
@@ -28,7 +27,6 @@ class ReduceSpillOverTest extends ClearStateTestCase
 
     /**
      * Confirm global state removed prior to next test
-     * @return void
      * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testStateRemoved(): void

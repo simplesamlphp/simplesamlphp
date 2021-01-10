@@ -9,12 +9,13 @@ use SimpleSAML\Auth;
 
 /**
  * Tests for \SimpleSAML\Auth\State
+ *
+ * @covers \SimpleSAML\Auth\State
  */
 class StateTest extends TestCase
 {
     /**
      * Test the getPersistentAuthData() function.
-     * @return void
      */
     public function testGetPersistentAuthData(): void
     {

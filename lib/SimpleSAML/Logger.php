@@ -15,9 +15,6 @@ use SimpleSAML\Logger\SyslogLoggingHandler;
 /**
  * The main logger class for SimpleSAMLphp.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class Logger
@@ -161,7 +158,6 @@ class Logger
      * Log an emergency message.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function emergency(string $string): void
     {
@@ -173,7 +169,6 @@ class Logger
      * Log a critical message.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function critical(string $string): void
     {
@@ -185,7 +180,6 @@ class Logger
      * Log an alert.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function alert(string $string): void
     {
@@ -197,7 +191,6 @@ class Logger
      * Log an error.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function error(string $string): void
     {
@@ -209,7 +202,6 @@ class Logger
      * Log a warning.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function warning(string $string): void
     {
@@ -221,7 +213,6 @@ class Logger
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function notice(string $string): void
     {
@@ -233,7 +224,6 @@ class Logger
      * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function info(string $string): void
     {
@@ -246,7 +236,6 @@ class Logger
      * system.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function debug(string $string): void
     {
@@ -258,7 +247,6 @@ class Logger
      * Statistics.
      *
      * @param string $string The message to log.
-     * @return void
      */
     public static function stats(string $string): void
     {
@@ -270,7 +258,6 @@ class Logger
      * Set the logger to capture logs.
      *
      * @param boolean $val Whether to capture logs or not. Defaults to TRUE.
-     * @return void
      */
     public static function setCaptureLog(bool $val = true): void
     {
@@ -292,7 +279,6 @@ class Logger
      * Set the track identifier to use in all logs.
      *
      * @param string $trackId The track identifier to use during this session.
-     * @return void
      */
     public static function setTrackId(string $trackId): void
     {
@@ -304,7 +290,6 @@ class Logger
     /**
      * Flush any pending log messages to the logging handler.
      *
-     * @return void
      */
     public static function flush(): void
     {
@@ -321,7 +306,6 @@ class Logger
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
-     * @return void
      */
     public static function shutdown(): void
     {
@@ -358,7 +342,6 @@ class Logger
      * Every call to this function must be followed by a call to popErrorMask().
      *
      * @param int $mask The log levels that should be masked.
-     * @return void
      */
     public static function maskErrors(int $mask): void
     {
@@ -376,7 +359,6 @@ class Logger
      *
      * This function restores the previous error mask.
      *
-     * @return void
      */
     public static function popErrorMask(): void
     {
@@ -392,7 +374,6 @@ class Logger
      * @param int     $level The log level corresponding to this message.
      * @param string  $message The message itself to log.
      * @param boolean $stats Whether this is a stats message or a regular one.
-     * @return void
      */
     private static function defer(int $level, string $message, bool $stats): void
     {
@@ -409,7 +390,6 @@ class Logger
 
     /**
      * @param string|null $handler
-     * @return void
      * @throws \Exception
      */
     private static function createLoggingHandler(?string $handler = null): void
@@ -468,7 +448,6 @@ class Logger
      * @param int $level
      * @param string $string
      * @param bool $statsLog
-     * @return void
      */
     private static function log(int $level, string $string, bool $statsLog = false): void
     {

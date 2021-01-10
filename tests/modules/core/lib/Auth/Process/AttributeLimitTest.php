@@ -11,6 +11,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
  * Test for the core:AttributeLimit filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeLimit
  */
 class AttributeLimitTest extends TestCase
 {
@@ -38,7 +40,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test reading IdP Attributes.
-     * @return void
      */
     public function testIdPAttrs(): void
     {
@@ -85,7 +86,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Tests when no attributes are in metadata.
-     * @return void
      */
     public function testNULLMetadataAttrs(): void
     {
@@ -141,7 +141,6 @@ class AttributeLimitTest extends TestCase
 
 
     /**
-     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -163,7 +162,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -181,7 +179,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test defaults with metadata available.
-     * @return void
      */
     public function testDefaultWithMetadata(): void
     {
@@ -199,7 +196,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test defaults with attributes and metadata
-     * @return void
      */
     public function testDefaultWithAttrs(): void
     {
@@ -220,7 +216,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testInvalidConfig(): void
     {
@@ -235,7 +230,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for invalid attribute name
-     * @return void
      */
     public function testInvalidAttributeName(): void
     {
@@ -250,7 +244,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
-     * @return void
      */
     public function testMatchAttributeValues(): void
     {
@@ -291,7 +284,6 @@ class AttributeLimitTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testBadOptionsNotTreatedAsValidValues(): void
     {
@@ -309,7 +301,6 @@ class AttributeLimitTest extends TestCase
     /**
      * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
      * php and matched against an attribute value of '1'
-     * @return void
      */
     public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue(): void
     {
@@ -331,7 +322,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching ignore case
-     * @return void
      */
     public function testMatchAttributeValuesIgnoreCase(): void
     {
@@ -373,7 +363,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
-     * @return void
      */
     public function testMatchAttributeValuesRegex(): void
     {
@@ -475,7 +464,6 @@ class AttributeLimitTest extends TestCase
      *
      * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
-     * @return void
      */
     public function testMatchAttributeValuesNotArray(): void
     {
@@ -505,7 +493,6 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test attributes not intersecting
-     * @return void
      */
     public function testNoIntersection(): void
     {

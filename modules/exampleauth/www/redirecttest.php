@@ -3,7 +3,6 @@
 /**
  * Request handler for redirect filter test.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

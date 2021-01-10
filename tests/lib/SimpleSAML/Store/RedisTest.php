@@ -16,6 +16,7 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
+ * @covers \SimpleSAML\Store\Redis
  * @package simplesamlphp/simplesamlphp
  */
 class RedisTest extends TestCase
@@ -31,7 +32,6 @@ class RedisTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -79,7 +79,6 @@ class RedisTest extends TestCase
     /**
      * @param string $key
      * @param mixed $value
-     * @return void
      */
     public function setMocked(string $key, $value): void
     {
@@ -91,7 +90,6 @@ class RedisTest extends TestCase
      * @param string $key
      * @param int $expire
      * @param mixed $value
-     * @return void
      */
     public function setexMocked(string $key, int $expire, $value): void
     {
@@ -102,7 +100,6 @@ class RedisTest extends TestCase
 
     /**
      * @param string $key
-     * @return void
      */
     public function delMocked(string $key): void
     {
@@ -111,10 +108,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
-     * @covers \SimpleSAML\Store\Redis::__construct
      * @test
-     * @return void
      */
     public function testRedisInstance(): void
     {
@@ -134,10 +128,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store::getInstance
-     * @covers \SimpleSAML\Store\Redis::__construct
      * @test
-     * @return void
      */
     public function testRedisInstanceWithPassword(): void
     {
@@ -158,10 +149,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
-     * @return void
      */
     public function testInsertData(): void
     {
@@ -176,10 +164,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
-     * @return void
      */
     public function testInsertExpiringData(): void
     {
@@ -194,9 +179,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
      * @test
-     * @return void
      */
     public function testGetEmptyData(): void
     {
@@ -207,10 +190,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
      * @test
-     * @return void
      */
     public function testOverwriteData(): void
     {
@@ -227,11 +207,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Store\Redis::get
-     * @covers \SimpleSAML\Store\Redis::set
-     * @covers \SimpleSAML\Store\Redis::delete
      * @test
-     * @return void
      */
     public function testDeleteData(): void
     {
@@ -246,7 +222,6 @@ class RedisTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
      * @param class-string $className
-     * @return void
      */
     protected function clearInstance($service, string $className): void
     {

@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "cron" module.
  *
+ * @covers \SimpleSAML\Module\cron\Controller\Cron
  * @package SimpleSAML\Test
  */
 class CronTest extends TestCase
@@ -32,7 +33,6 @@ class CronTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -74,7 +74,6 @@ class CronTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testInfo(): void
     {
@@ -89,7 +88,6 @@ class CronTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testRun(): void
     {
