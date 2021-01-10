@@ -3,7 +3,6 @@
 /**
  * This class implements helper functions for XML validation.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -15,8 +14,8 @@ use DOMNode;
 use DOMDocument;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 class Validator
 {

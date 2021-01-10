@@ -8,13 +8,15 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 
+/**
+ * @covers \SimpleSAML\Locale\Language
+ */
 class LanguageTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Language::getDefaultLanguage().
-     * @return void
      */
-    public function testGetDefaultLanguage()
+    public function testGetDefaultLanguage(): void
     {
         // test default
         $c = Configuration::loadFromArray([]);
@@ -33,9 +35,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageCookie().
-     * @return void
      */
-    public function testGetLanguageCookie()
+    public function testGetLanguageCookie(): void
     {
         // test it works when no cookie is set
         Configuration::loadFromArray([], '', 'simplesaml');
@@ -58,9 +59,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @return void
      */
-    public function testGetLanguageListNoConfig()
+    public function testGetLanguageListNoConfig(): void
     {
         // test default
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -72,9 +72,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @return void
      */
-    public function testGetLanguageListCorrectConfig()
+    public function testGetLanguageListCorrectConfig(): void
     {
         // test langs from from language_names
         $c = Configuration::loadFromArray([
@@ -92,9 +91,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @return void
      */
-    public function testGetLanguageListIncorrectConfig()
+    public function testGetLanguageListIncorrectConfig(): void
     {
         // test non-existent langs
         $c = Configuration::loadFromArray([
@@ -108,9 +106,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageParameterName().
-     * @return void
      */
-    public function testGetLanguageParameterName()
+    public function testGetLanguageParameterName(): void
     {
         // test for default configuration
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -128,9 +125,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::isLanguageRTL().
-     * @return void
      */
-    public function testIsLanguageRTL()
+    public function testIsLanguageRTL(): void
     {
         // test defaults
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -159,9 +155,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::setLanguage().
-     * @return void
      */
-    public function testSetLanguage()
+    public function testSetLanguage(): void
     {
         // test with valid configuration, no cookies set
         $c = Configuration::loadFromArray([

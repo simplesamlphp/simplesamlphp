@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -15,7 +17,6 @@ use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Metadata\Signer;
 use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
-use SimpleSAML\Module\saml\IdP\SAML1 as SAML1_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -36,7 +37,19 @@ class Federation
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
-    /** @var MetaDataStorageHandler */
+    /**
+     * @var \SimpleSAML\Auth\Source|string
+     * @psalm-var \SimpleSAML\Auth\Source|class-string
+     */
+    protected $authSource = Auth\Source::class;
+
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
+    /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected $mdHandler;
 
     /** @var Menu */
@@ -57,15 +70,49 @@ class Federation
 
 
     /**
+     * Inject the \SimpleSAML\Auth\Source dependency.
+     *
+     * @param \SimpleSAML\Auth\Source $authSource
+     */
+    public function setAuthSource(Auth\Source $authSource): void
+    {
+        $this->authSource = $authSource;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Metadata\MetadataStorageHandler dependency.
+     *
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler $mdHandler
+     */
+    public function setMetadataStorageHandler(MetadataStorageHandler $mdHandler): void
+    {
+        $this->mdHandler = $mdHandler;
+    }
+
+
+    /**
      * Display the federation page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main(): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -146,6 +193,8 @@ class Federation
         ];
 
         Module::callHooks('federationpage', $t);
+        Assert::isInstanceOf($t, Template::class);
+
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
@@ -168,7 +217,7 @@ class Federation
                 $saml2entities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml/2/idp/metadata/' . $idp['auth']);
+                        $idp['url'] = Module::getModuleURL('saml2/idp/metadata/' . $idp['auth']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
@@ -285,7 +334,7 @@ class Federation
         $entities = [];
 
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
-        foreach (Auth\Source::getSourcesOfType('saml:SP') as $source) {
+        foreach ($this->authSource::getSourcesOfType('saml:SP') as $source) {
             $metadata = $source->getHostedMetadata();
             if (isset($metadata['keys'])) {
                 $certificates = $metadata['keys'];
@@ -341,52 +390,69 @@ class Federation
     /**
      * Metadata converter
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template
      */
     public function metadataConverter(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
         if ($xmlfile = $request->files->get('xmlfile')) {
             $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
             $xmldata = trim($xmldata);
         }
 
+        $error = null;
         if (!empty($xmldata)) {
             Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
-            $entities = SAMLParser::parseDescriptorsString($xmldata);
 
-            // get all metadata for the entities
-            foreach ($entities as &$entity) {
-                $entity = [
-                    'saml20-sp-remote'  => $entity->getMetadata20SP(),
-                    'saml20-idp-remote' => $entity->getMetadata20IdP(),
-                ];
+            $entities = null;
+            try {
+                $entities = SAMLParser::parseDescriptorsString($xmldata);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
             }
 
-            // transpose from $entities[entityid][type] to $output[type][entityid]
-            $output = Utils\Arrays::transpose($entities);
-
-            // merge all metadata of each type to a single string which should be added to the corresponding file
-            foreach ($output as $type => &$entities) {
-                $text = '';
-                foreach ($entities as $entityId => $entityMetadata) {
-                    if ($entityMetadata === null) {
-                        continue;
-                    }
-
-                    /**
-                     * remove the entityDescriptor element because it is unused,
-                     * and only makes the output harder to read
-                     */
-                    unset($entityMetadata['entityDescriptor']);
-
-                    $text .= '$metadata[' . var_export($entityId, true) . '] = '
-                        . VarExporter::export($entityMetadata) . ";\n";
+            $output = [];
+            if ($entities !== null) {
+                // get all metadata for the entities
+                foreach ($entities as &$entity) {
+                    $entity = [
+                        'saml20-sp-remote'  => $entity->getMetadata20SP(),
+                        'saml20-idp-remote' => $entity->getMetadata20IdP(),
+                    ];
                 }
-                $entities = $text;
+
+                // transpose from $entities[entityid][type] to $output[type][entityid]
+                $output = Utils\Arrays::transpose($entities);
+
+                // merge all metadata of each type to a single string which should be added to the corresponding file
+                foreach ($output as $type => &$entities) {
+                    $text = '';
+                    foreach ($entities as $entityId => $entityMetadata) {
+                        if ($entityMetadata === null) {
+                            continue;
+                        }
+
+                        /**
+                         * remove the entityDescriptor element because it is unused,
+                         * and only makes the output harder to read
+                         */
+                        unset($entityMetadata['entityDescriptor']);
+
+                        /**
+                         * Remove any expire from the metadata. This is not so useful
+                         * for manually converted metadata and frequently gives rise
+                         * to unexpected results when copy-pased statically.
+                         */
+                        unset($entityMetadata['expire']);
+
+                        $text .= '$metadata[' . var_export($entityId, true) . '] = '
+                            . VarExporter::export($entityMetadata) . ";\n";
+                    }
+                    $entities = $text;
+                }
             }
         } else {
             $xmldata = '';
@@ -398,6 +464,7 @@ class Federation
             'logouturl' => Utils\Auth::getAdminLogoutURL(),
             'xmldata' => $xmldata,
             'output' => $output,
+            'error' => $error,
         ];
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
@@ -408,16 +475,16 @@ class Federation
     /**
      * Download a certificate for a given entity.
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return Response PEM-encoded certificate.
+     * @return \Symfony\Component\HttpFoundation\Response PEM-encoded certificate.
      */
     public function downloadCert(Request $request): Response
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $set = $request->get('set');
-        $prefix = $request->get('prefix');
+        $prefix = $request->get('prefix', '');
 
         if ($set === 'saml20-sp-hosted') {
             $sourceID = $request->get('source');
@@ -425,7 +492,7 @@ class Federation
              * The second argument ensures non-nullable return-value
              * @var \SimpleSAML\Module\saml\Auth\Source\SP $source
              */
-            $source = \SimpleSAML\Auth\Source::getById($sourceID, Module\saml\Auth\Source\SP::class);
+            $source = $this->authSource::getById($sourceID, Module\saml\Auth\Source\SP::class);
             $mdconfig = $source->getMetadata();
         } else {
             $entityID = $request->get('entity');
@@ -451,13 +518,13 @@ class Federation
     /**
      * Show remote entity metadata
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return Response
+     * @return \SimpleSAML\XHTML\Template
      */
-    public function showRemoteEntity(Request $request): Response
+    public function showRemoteEntity(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $entityId = $request->get('entityid');
         $set = $request->get('set');

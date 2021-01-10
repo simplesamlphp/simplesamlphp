@@ -19,6 +19,51 @@ use SimpleSAML\XHTML\Template;
 class HTTP
 {
     /**
+     * Determine if the user agent can support cookies being sent with SameSite equal to "None".
+     * Browsers without support may drop the cookie and or treat it as stricter setting
+     * Browsers with support may have additional requirements on setting it on non-secure websites.
+     *
+     * Based on the Azure teams experience rolling out support and Chromium's advice
+     * https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+     * https://www.chromium.org/updates/same-site/incompatible-clients
+     * @return bool true if user agent supports a None value for SameSite.
+     */
+    public static function canSetSameSiteNone(): bool
+    {
+        $useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
+        if (!$useragent) {
+            return true;
+        }
+        // All iOS 12 based browsers have no support
+        if (strpos($useragent, "CPU iPhone OS 12") !== false || strpos($useragent, "iPad; CPU OS 12") !== false) {
+            return false;
+        }
+
+        // Safari Mac OS X 10.14 has no support
+        // - Safari on Mac OS X.
+        if (strpos($useragent, "Macintosh; Intel Mac OS X 10_14") !== false) {
+            // regular safari
+            if (strpos($useragent, "Version/") !== false && strpos($useragent, "Safari") !== false) {
+                return false;
+            } elseif (preg_match('|AppleWebKit/[\.\d]+ \(KHTML, like Gecko\)$|', $useragent)) {
+                return false;
+            }
+        }
+
+        // Chrome based UCBrowser may have support (>= 12.13.2) even though its chrome version is old
+        $matches = [];
+        if (preg_match('|UCBrowser/(\d+\.\d+\.\d+)[\.\d]*|', $useragent, $matches)) {
+            return version_compare($matches[1], '12.13.2', '>=');
+        }
+
+        // Chrome 50-69 may have broken SameSite=None and don't require it to be set
+        if (strpos($useragent, "Chrome/5") !== false || strpos($useragent, "Chrome/6") !== false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
      *
      * @param string $destination The destination URL.
@@ -27,7 +72,6 @@ class HTTP
      * @throws Error\Exception If the current session is transient.
      * @return string  A URL which allows to securely post a form to $destination.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
@@ -56,7 +100,6 @@ class HTTP
      * @return string The current host name, including the port if needed. It will use localhost when unable to
      *     determine the current host.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     private static function getServerHost(): string
     {
@@ -86,7 +129,6 @@ class HTTP
      *
      * @return boolean True if the request was performed through HTTPS, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getServerHTTPS(): bool
     {
@@ -111,7 +153,6 @@ class HTTP
      * @return string The port number prepended by a colon, if it is different than the default port for the protocol
      *     (80 for HTTP, 443 for HTTPS), or an empty string otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getServerPort(): string
     {
@@ -165,13 +206,9 @@ class HTTP
      *     the name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just
      *     the name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Mads Freek Petersen
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function redirect(string $url, array $parameters = []): void
     {
@@ -246,8 +283,6 @@ class HTTP
      *
      * @return string A random identifier that can be used to retrieve the data from the current session.
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     private static function savePOSTData(Session $session, string $destination, array $data): string
     {
@@ -275,8 +310,6 @@ class HTTP
      * @return string The URL with the new query parameters.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function addURLParameters(string $url, array $parameters): string
     {
@@ -306,11 +339,9 @@ class HTTP
      *
      * @param string|null $retryURL The URL the user should access to retry the operation. Defaults to null.
      *
-     * @return void If there is a session cookie, nothing will be returned. Otherwise, the user will be redirected to a
      *     page telling about the missing cookie.
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function checkSessionCookie(?string $retryURL = null): void
     {
@@ -341,7 +372,6 @@ class HTTP
      * @throws \InvalidArgumentException If the URL is malformed.
      * @throws Error\Exception If the URL is not allowed by configuration.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkURLAllowed(string $url, array $trustedSites = null): string
     {
@@ -431,9 +461,6 @@ class HTTP
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws Error\Exception If the file or URL cannot be retrieved.
      *
-     * @author Andjelko Horvat
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Marco Ferrante, University of Genova <marco@csita.unige.it>
      */
     public static function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
@@ -520,7 +547,6 @@ class HTTP
      *
      * @return array An associative array with each language and the score for that language.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getAcceptLanguage(): array
     {
@@ -619,7 +645,6 @@ class HTTP
      * @return string The absolute base URL for the SimpleSAMLphp installation.
      * @throws \SimpleSAML\Error\CriticalConfigurationError If 'baseurlpath' has an invalid format.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getBaseURL(): string
     {
@@ -668,7 +693,6 @@ class HTTP
      *
      * @return string The first element of the URL path, with an optional, leading slash.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
     public static function getFirstPathElement(bool $leadingSlash = true): string
     {
@@ -688,8 +712,6 @@ class HTTP
      * @return string  A URL which can be accessed to post the data.
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getPOSTRedirectURL(string $destination, array $data): string
     {
@@ -717,7 +739,6 @@ class HTTP
      *
      * @return string The current host.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfHost(): string
     {
@@ -735,8 +756,6 @@ class HTTP
      * @return string The current host, followed by a colon and the port number, in case the port is not standard for
      * the protocol.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfHostWithNonStandardPort(): string
     {
@@ -757,8 +776,6 @@ class HTTP
      *
      * @return string The current host (with non-default ports included) plus the URL path.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfHostWithPath(): string
     {
@@ -780,9 +797,6 @@ class HTTP
      *
      * @return string The current URL, including query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURL(): string
     {
@@ -844,8 +858,6 @@ class HTTP
      *
      * @return string The current URL without path or query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfURLHost(): string
     {
@@ -864,8 +876,6 @@ class HTTP
      *
      * @return string The current URL, not including query parameters.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURLNoQuery(): string
     {
@@ -883,8 +893,6 @@ class HTTP
      *
      * @return boolean True if the HTTPS is used, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function isHTTPS(): bool
     {
@@ -901,8 +909,6 @@ class HTTP
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If $url is not a string or a valid URL.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function normalizeURL(string $url): string
     {
@@ -930,7 +936,6 @@ class HTTP
      * @return array The query string as an associative array.
      * @throws \InvalidArgumentException If $query_string is not a string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function parseQueryString(string $query_string): array
     {
@@ -970,10 +975,8 @@ class HTTP
      * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
      * name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectTrustedURL(string $url, array $parameters = []): void
     {
@@ -998,10 +1001,8 @@ class HTTP
      * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
      * name, without a value.
      *
-     * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectUntrustedURL(string $url, array $parameters = []): void
     {
@@ -1028,8 +1029,6 @@ class HTTP
      * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
      *     are not strings.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function resolveURL(string $url, string $base = null): string
     {
@@ -1103,10 +1102,7 @@ class HTTP
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
-     * @return void
      *
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
     {
@@ -1150,63 +1146,34 @@ class HTTP
             $expire = time() + intval($params['lifetime']);
         }
 
-        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
-            /* use the new options array for PHP >= 7.3 */
-            if ($params['raw']) {
-                /** @psalm-suppress InvalidArgument */
-                $success = @setrawcookie(
-                    $name,
-                    $value,
-                    [
-                        'expires' => $expire,
-                        'path' => $params['path'],
-                        'domain' => $params['domain'],
-                        'secure' => $params['secure'],
-                        'httponly' => $params['httponly'],
-                        'samesite' => $params['samesite'],
-                    ]
-                );
-            } else {
-                /** @psalm-suppress InvalidArgument */
-                $success = @setcookie(
-                    $name,
-                    $value,
-                    [
-                        'expires' => $expire,
-                        'path' => $params['path'],
-                        'domain' => $params['domain'],
-                        'secure' => $params['secure'],
-                        'httponly' => $params['httponly'],
-                        'samesite' => $params['samesite'],
-                    ]
-                );
-            }
+        if ($params['raw']) {
+            /** @psalm-suppress InvalidArgument */
+            $success = @setrawcookie(
+                $name,
+                $value,
+                [
+                    'expires' => $expire,
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite'],
+                ]
+            );
         } else {
-            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
-            if ($params['samesite'] !== null && !preg_match('/;\s+samesite/i', $params['path'])) {
-                $params['path'] .= '; SameSite=' . $params['samesite'];
-            }
-            if ($params['raw']) {
-                $success = @setrawcookie(
-                    $name,
-                    $value,
-                    $expire,
-                    $params['path'],
-                    $params['domain'],
-                    $params['secure'],
-                    $params['httponly']
-                );
-            } else {
-                $success = @setcookie(
-                    $name,
-                    $value,
-                    $expire,
-                    $params['path'],
-                    $params['domain'],
-                    $params['secure'],
-                    $params['httponly']
-                );
-            }
+            /** @psalm-suppress InvalidArgument */
+            $success = @setcookie(
+                $name,
+                $value,
+                [
+                    'expires' => $expire,
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite'],
+                ]
+            );
         }
 
         if (!$success) {
@@ -1232,11 +1199,7 @@ class HTTP
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Andjelko Horvat
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function submitPOSTData(string $destination, array $data): void
     {

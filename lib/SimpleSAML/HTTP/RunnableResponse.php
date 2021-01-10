@@ -63,9 +63,11 @@ class RunnableResponse extends Response
     /**
      * "Send" this response by actually running the callable.
      *
-     * @return self
+     * @return $this
+     *
+     * Note: No return-type possible due to upstream limitations
      */
-    public function send(): object
+    public function sendContent()
     {
         return call_user_func_array($this->callable, $this->arguments);
     }

@@ -4,7 +4,6 @@
  * This file will handle the case of a user with an existing session that's not valid for a specific Service Provider,
  * since the authenticating IdP is not in the list of IdPs allowed by the SP.
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  *
  * @package SimpleSAMLphp
  */

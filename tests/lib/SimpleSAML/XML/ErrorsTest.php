@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
+use LibXMLError;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Errors;
 
@@ -13,19 +14,16 @@ use SimpleSAML\XML\Errors;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @author Sergio Gómez <sergio@uco.es>
+ * @covers \SimpleSAML\XML\Errors
+ *
  * @package simplesamlphp/simplesamlphp
  */
 class ErrorsTest extends TestCase
 {
     /**
-     * @covers \SimpleSAML\XML\Errors::begin
-     * @covers \SimpleSAML\XML\Errors::addErrors
-     * @covers \SimpleSAML\XML\Errors::end
      * @test
-     * @return void
      */
-    public function loggingErrors()
+    public function loggingErrors(): void
     {
         Errors::begin();
         $xmlstr = "<Test>Test</test>";
@@ -41,14 +39,11 @@ class ErrorsTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\XML\Errors::formatError
-     * @covers \SimpleSAML\XML\Errors::formatErrors
      * @test
-     * @return void
      */
-    public function formatErrors()
+    public function formatErrors(): void
     {
-        $error = new \LibXMLError();
+        $error = new LibXMLError();
         $error->level = 3;
         $error->code = 76;
         $error->line = 1;

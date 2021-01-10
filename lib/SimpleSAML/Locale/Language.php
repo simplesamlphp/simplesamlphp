@@ -3,8 +3,6 @@
 /**
  * Choosing the language to localize to for our minimalistic XHTML PHP based template system.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -12,10 +10,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class Language
 {
@@ -201,7 +199,6 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
-     * @return void
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
@@ -406,7 +403,6 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
-     * @return void
      */
     public static function setLanguageCookie(string $language): void
     {
@@ -421,7 +417,7 @@ class Language
         $name = $config->getString('language.cookie.name', 'language');
         $params = [
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
-            'domain'   => ($config->getString('language.cookie.domain', null)),
+            'domain'   => ($config->getString('language.cookie.domain', '')),
             'path'     => ($config->getString('language.cookie.path', '/')),
             'secure'   => ($config->getBoolean('language.cookie.secure', false)),
             'httponly' => ($config->getBoolean('language.cookie.httponly', false)),

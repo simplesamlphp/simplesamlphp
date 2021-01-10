@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
+use ReflectionClass;
 use SimpleSAML\Auth\Simple;
 use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
  * For now, this test extends ClearStateTestCase so that it doesn't interfere with other tests. Once every class has
  * been made PSR-7-aware, that won't be necessary any longer.
  *
+ * @covers \SimpleSAML\Module\core\Controller\Login
  * @package SimpleSAML\Test
  */
 class LoginTest extends ClearStateTestCase
@@ -38,7 +40,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -69,9 +70,8 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that authentication is started immediately if we hit the login endpoint and there's only one non-admin
      * source configured.
-     * @return void
      */
-    public function testAutomaticLoginWhenOnlyOneSource()
+    public function testAutomaticLoginWhenOnlyOneSource(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -85,10 +85,8 @@ class LoginTest extends ClearStateTestCase
         $response = $c->login($request);
 
         $this->assertInstanceOf(RunnableResponse::class, $response);
-        list($object, $method) = $response->getCallable();
+        $this->assertIsCallable($response->getCallable());
 
-        $this->assertInstanceOf(Simple::class, $object);
-        $this->assertEquals('login', $method);
         $arguments = $response->getArguments();
         $this->assertArrayHasKey('ErrorURL', $arguments[0]);
         $this->assertArrayHasKey('ReturnTo', $arguments[0]);
@@ -97,9 +95,8 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that the user can choose what auth source to use when there are multiple defined (admin excluded).
-     * @return void
      */
-    public function testMultipleAuthSources()
+    public function testMultipleAuthSources(): void
     {
         $_SERVER['REQUEST_URI'] = '/';
         $asConfig = Configuration::loadFromArray(
@@ -133,9 +130,8 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that specifying an invalid auth source while trying to login raises an exception.
-     * @return void
      */
-    public function testLoginWithInvalidAuthSource()
+    public function testLoginWithInvalidAuthSource(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -151,16 +147,15 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that we get redirected to /account/authsource when accessing the login endpoint while being already
      * authenticated.
-     * @return void
      */
-    public function testLoginWhenAlreadyAuthenticated()
+    public function testLoginWhenAlreadyAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
 
         $session = Session::getSessionFromRequest();
         $session->setConfiguration($this->config);
-        $class = new \ReflectionClass($session);
+        $class = new ReflectionClass($session);
 
         $authData = $class->getProperty('authData');
         $authData->setAccessible(true);
@@ -190,20 +185,20 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that triggering the logout controller actually proceeds to log out from the specified source.
-     * @return void
      */
-    public function testLogout()
+    public function testLogout(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
+
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
+
         $c = new Controller\Login($this->config, $session, $factory);
         $response = $c->logout('example-userpass');
+
         $this->assertInstanceOf(RunnableResponse::class, $response);
-        list($object, $method) = $response->getCallable();
-        $this->assertInstanceOf(Simple::class, $object);
-        $this->assertEquals('logout', $method);
+        $this->assertIsCallable($response->getCallable());
         $this->assertEquals('/simplesaml/', $response->getArguments()[0]);
     }
 
@@ -211,9 +206,8 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that accessing the "account" endpoint without being authenticated gets you redirected to the "login"
      * endpoint.
-     * @return void
      */
-    public function testNotAuthenticated()
+    public function testNotAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -232,14 +226,13 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that we are presented with a regular page if we are authenticated and try to access the "account" endpoint.
-     * @return void
      */
-    public function testAuthenticated()
+    public function testAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
         $session = Session::getSessionFromRequest();
-        $class = new \ReflectionClass($session);
+        $class = new ReflectionClass($session);
         $authData = $class->getProperty('authData');
         $authData->setAccessible(true);
         $authData->setValue($session, [

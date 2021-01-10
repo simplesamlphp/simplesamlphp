@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
@@ -13,14 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
- * @author Boy Baukema, SURFnet.
- * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class Module
@@ -259,7 +256,7 @@ class Module
             throw new Error\NotFound('The URL wasn\'t found in the module.');
         }
 
-        if (substr($path, -4) === '.php') {
+        if (mb_strtolower(substr($path, -4), 'UTF-8') === '.php') {
             // PHP file - attempt to run it
 
             /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with $_SERVER['PATH_INFO']. Check for that
@@ -431,16 +428,6 @@ class Module
             $type = (empty($type)) ? '\\' : '\\' . $type . '\\';
 
             $className = 'SimpleSAML\\Module\\' . $tmp[0] . $type . $tmp[1];
-            if (!class_exists($className)) {
-                // check for the old-style class names
-                $type = str_replace('\\', '_', $type);
-                $oldClassName = 'sspmod_' . $tmp[0] . $type . $tmp[1];
-
-                if (!class_exists($oldClassName)) {
-                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$oldClassName'.");
-                }
-                $className = $oldClassName;
-            }
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
@@ -521,7 +508,6 @@ class Module
      *
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */

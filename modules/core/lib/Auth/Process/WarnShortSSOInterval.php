@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Give a warning to the user if we receive multiple requests in a short time.
  *
  * @package SimpleSAMLphp
  */
-class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
+class WarnShortSSOInterval extends Auth\ProcessingFilter
 {
     /**
      * Process a authentication response.
@@ -24,7 +24,6 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
      * If it is to short a while since, we will show a warning to the user.
      *
      * @param array $state  The state of the response.
-     * @return void
      */
     public function process(array &$state): void
     {

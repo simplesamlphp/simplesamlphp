@@ -8,13 +8,15 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Metadata\MetadataStorageHandler
+ */
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
     /**
      * Test that loading specific entities works, and that metadata source precedence is followed
-     * @return void
      */
-    public function testLoadEntities()
+    public function testLoadEntities(): void
     {
         $c = [
             'metadata.sources' => [

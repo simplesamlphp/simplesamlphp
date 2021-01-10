@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Attribute filter to validate AuthnContextClassRef values.
@@ -27,7 +28,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
+class ExpectedAuthnContextClassRef extends ProcessingFilter
 {
     /**
      * Array of accepted AuthnContextClassRef
@@ -70,7 +71,6 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
     /**
      *
      * @param array &$request The current request
-     * @return void
      */
     public function process(array &$request): void
     {
@@ -95,7 +95,6 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * permission logic.
      *
      * @param array $request
-     * @return void
      */
     protected function unauthorized(array &$request): void
     {

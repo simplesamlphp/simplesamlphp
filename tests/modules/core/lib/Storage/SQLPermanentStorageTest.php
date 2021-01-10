@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Storage;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
 /**
  * Test for the SQLPermanentStorage class.
+ *
+ * @covers \SimpleSAML\Module\core\Storage\SQLPermanentStorage
  */
 class SQLPermanentStorageTest extends TestCase
 {
@@ -16,20 +20,18 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
     public static function setUpBeforeClass(): void
     {
         // Create instance
-        $config = \SimpleSAML\Configuration::loadFromArray([
+        $config = Configuration::loadFromArray([
             'datadir' => sys_get_temp_dir(),
         ]);
-        self::$sql = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('test', $config);
+        self::$sql = new SQLPermanentStorage('test', $config);
     }
 
 
     /**
-     * @return void
      */
     public static function tearDownAfterClass(): void
     {
@@ -39,9 +41,8 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
-    public function testSet()
+    public function testSet(): void
     {
         // Set a new value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 2);
@@ -54,9 +55,8 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
-    public function testSetOverwrite()
+    public function testSetOverwrite(): void
     {
         // Overwrite existing value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 2);
@@ -72,9 +72,8 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
-    public function testNonexistentKey()
+    public function testNonexistentKey(): void
     {
         // Test that getting some non-existing key will return null / empty array
         $result = self::$sql->getValue('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
@@ -87,9 +86,8 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
-    public function testExpiration()
+    public function testExpiration(): void
     {
         // Make sure the earlier created entry has expired now
         sleep(3);
@@ -109,9 +107,8 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
-     * @return void
      */
-    public function testRemove()
+    public function testRemove(): void
     {
         // Now remove the nonexpiring entry and make sure it's gone
         self::$sql->remove('testtype', 'testkey1_nonexpiring', 'testkey2_nonexpiring');

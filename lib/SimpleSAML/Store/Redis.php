@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use Predis\Client;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
-use Webmozart\Assert\Assert;
 
 /**
  * A data store using Redis to keep the data.
@@ -97,7 +97,6 @@ class Redis extends Store
      * @param string $key The key to insert.
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
-     * @return void
      */
     public function set(string $type, string $key, $value, ?int $expire = null): void
     {
@@ -119,7 +118,6 @@ class Redis extends Store
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
-     * @return void
      */
     public function delete(string $type, string $key): void
     {

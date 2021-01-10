@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
 /**
  * This file defines a flat file metadata source.
  * Instantiation of session handler objects should be done through
  * the class method getMetadataHandler().
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 

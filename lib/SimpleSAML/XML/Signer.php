@@ -5,7 +5,6 @@
  *
  * This is a helper class for signing XML documents.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -18,8 +17,8 @@ use DOMElement;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class Signer
 {
@@ -97,7 +96,6 @@ class Signer
      * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
-     * @return void
      */
     public function loadPrivateKeyArray(array $privatekey): void
     {
@@ -123,7 +121,6 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
     public function loadPrivateKey(string $file, ?string $pass, bool $full_path = false): void
     {
@@ -157,7 +154,6 @@ class Signer
      *
      * @param array $publickey The public key.
      * @throws \Exception
-     * @return void
      */
     public function loadPublicKeyArray(array $publickey): void
     {
@@ -182,7 +178,6 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
     public function loadCertificate(string $file, bool $full_path = false): void
     {
@@ -208,7 +203,6 @@ class Signer
      * Set the attribute name for the ID value.
      *
      * @param string $idAttrName  The name of the attribute which contains the id.
-     * @return void
      */
     public function setIDAttribute(string $idAttrName): void
     {
@@ -226,7 +220,6 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
     public function addCertificate(string $file, bool $full_path = false): void
     {
@@ -260,7 +253,6 @@ class Signer
      *  The element we should insert the signature element before. Defaults to NULL,
      *  in which case the signature will be appended to the element spesified in $insertInto.
      * @throws \Exception
-     * @return void
      */
     public function sign(DOMElement $node, DOMElement $insertInto, $insertBefore = null): void
     {

@@ -10,9 +10,6 @@ use SimpleSAML\Logger;
 /**
  * A class for logging to the default php error log.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class ErrorLogLoggingHandler implements LoggingHandlerInterface
@@ -56,7 +53,6 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void
     {
@@ -69,7 +65,6 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
     public function log(int $level, string $string): void
     {

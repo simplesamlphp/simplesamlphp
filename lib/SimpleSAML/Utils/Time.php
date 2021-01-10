@@ -30,7 +30,6 @@ class Time
      * @param int $instant The time the timestamp should represent. Defaults to current time.
      *
      * @return string The timestamp.
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function generateTimestamp(int $instant = null): string
     {
@@ -46,9 +45,7 @@ class Time
      *
      * This function should be called before any calls to date().
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      *
-     * @return void
      * @throws \SimpleSAML\Error\Exception If the timezone set in the configuration is invalid.
      */
     public static function initTimezone(): void

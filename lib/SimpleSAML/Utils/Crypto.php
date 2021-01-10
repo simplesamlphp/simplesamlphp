@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Assert\Assert;
+use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * A class for cryptography-related functions.
@@ -33,7 +34,7 @@ class Crypto
         /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
         }
@@ -76,8 +77,6 @@ class Crypto
      * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesDecrypt(string $ciphertext): string
     {
@@ -136,8 +135,6 @@ class Crypto
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesEncrypt(string $data): string
     {
@@ -185,8 +182,6 @@ class Crypto
      * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function loadPrivateKey(
         Configuration $metadata,
@@ -247,9 +242,6 @@ class Crypto
      * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
      *     it.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Lasse Birnbaum Jensen
      */
     public static function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {
@@ -300,11 +292,11 @@ class Crypto
         $last  = count($lines) - 1;
 
         if (strpos($lines[0], $begin) !== 0) {
-            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+            throw new InvalidArgumentException("pem2der: input is not encoded in PEM format.");
         }
         unset($lines[0]);
         if (strpos($lines[$last], $end) !== 0) {
-            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+            throw new InvalidArgumentException("pem2der: input is not encoded in PEM format.");
         }
         unset($lines[$last]);
 
@@ -316,6 +308,7 @@ class Crypto
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.
+     * @param mixed $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
      * @throws \InvalidArgumentException If the input parameter is not a string.
@@ -323,13 +316,11 @@ class Crypto
      *
      * @see hash_algos()
      *
-     * @author Dyonisius Visser, TERENA <visser@terena.org>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function pwHash(string $password): string
+    public static function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
     {
-        if (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
-            throw new \InvalidArgumentException('Error while hashing password.');
+        if (!is_string($hash = password_hash($password, $algorithm))) {
+            throw new InvalidArgumentException('Error while hashing password.');
         }
         return $hash;
     }
@@ -362,7 +353,6 @@ class Crypto
      * @throws \InvalidArgumentException If the input parameters are not strings.
      * @throws Error\Exception If the algorithm specified is not supported.
      *
-     * @author Dyonisius Visser, TERENA <visser@terena.org>
      */
     public static function pwValid(string $hash, string $password): bool
     {

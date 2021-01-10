@@ -6,11 +6,11 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use PDO;
 use PDOStatement;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
 use SimpleSAML\Database;
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
@@ -19,9 +19,9 @@ use Webmozart\Assert\Assert;
  */
 class SQLNameID
 {
-    const TABLE_VERSION = 1;
-    const DEFAULT_TABLE_PREFIX = '';
-    const TABLE_SUFFIX = '_saml_PersistentNameID';
+    public const TABLE_VERSION = 1;
+    public const DEFAULT_TABLE_PREFIX = '';
+    public const TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
     /**
@@ -81,7 +81,6 @@ class SQLNameID
 
     /**
      * @param array $config
-     * @return void
      */
     private static function create(array $config = [])
     {
@@ -131,7 +130,6 @@ class SQLNameID
      *
      * @param string $table  The table name.
      * @param array $config
-     * @return void
      */
     private static function createTable(string $table, array $config = [])
     {
@@ -176,7 +174,6 @@ class SQLNameID
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
      * @param array $config
-     * @return void
      */
     public static function add(
         string $idpEntityId,
@@ -241,7 +238,6 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param array $config
-     * @return void
      */
     public static function delete(
         string $idpEntityId,
@@ -282,7 +278,9 @@ class SQLNameID
 
         $res = [];
         while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
-            $res[$row['_user']] = $row['_value'];
+            $user = strval($row['_user']);
+            $value = strval($row['_value']);
+            $res[$user] = $value;
         }
 
         return $res;

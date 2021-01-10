@@ -25,6 +25,7 @@ use SAML2\XML\saml\Issuer;
 use SAML2\XML\saml\NameID;
 use SAML2\XML\saml\SubjectConfirmation;
 use SAML2\XML\saml\SubjectConfirmationData;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -34,7 +35,6 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -47,7 +47,6 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
-     * @return void
      */
     public static function sendResponse(array $state): void
     {
@@ -125,7 +124,6 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
-     * @return void
      */
     public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state): void
     {
@@ -294,7 +292,6 @@ class SAML2
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
     public static function receiveAuthnRequest(IdP $idp): void
@@ -515,7 +512,6 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
-     * @return void
      */
     public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
     {
@@ -551,7 +547,6 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
-     * @return void
      */
     public static function sendLogoutResponse(IdP $idp, array $state): void
     {
@@ -611,7 +606,6 @@ class SAML2
      * Receive a logout message.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
     public static function receiveLogoutMessage(IdP $idp): void
@@ -959,23 +953,8 @@ class SAML2
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
             if ($attribute === null) {
-                if (!isset($state['UserID'])) {
-                    Logger::error('Unable to generate NameID. Check the userid.attribute option.');
-                    return null;
-                }
-                $attributeValue = $state['UserID'];
-                $idpEntityId = $idpMetadata->getString('entityid');
-                $spEntityId = $spMetadata->getString('entityid');
-
-                $secretSalt = Utils\Config::getSecretSalt();
-
-                $uidData = 'uidhashbase' . $secretSalt;
-                $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
-                $uidData .= strlen($spEntityId) . ':' . $spEntityId;
-                $uidData .= strlen($attributeValue) . ':' . $attributeValue;
-                $uidData .= $secretSalt;
-
-                return hash('sha1', $uidData);
+                Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
+                return null;
             }
         }
 
@@ -1149,7 +1128,9 @@ class SAML2
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
-        $a->setValidAudiences([$spMetadata->getString('entityid')]);
+
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
 
@@ -1336,7 +1317,13 @@ class SAML2
 
         $sharedKey = $spMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            $algo = $spMetadata->getString('sharedkey_algorithm', null);
+            if ($algo === null) {
+                // If no algorithm is configured, use a sane default
+                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
         } else {
             $keys = $spMetadata->getPublicKeys('encryption', true);

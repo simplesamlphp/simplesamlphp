@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Croni raport"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron töötas"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Siin on crontab faili soovitus:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Käivita croni töö:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Klõpsa siia croni töö käivitamiseks:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron võimaldab Unix süsteemides regulaarselt ülesandeid täita."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Siin on croni töö täitmise tulemus:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Croni tulemuste lehekülg"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron võimaldab Unix süsteemides regulaarselt ülesandeid täita."
 

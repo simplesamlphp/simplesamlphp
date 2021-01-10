@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Base class for authentication processing filters.
@@ -20,7 +20,6 @@ use Webmozart\Assert\Assert;
  * information in it, it should have a name on the form 'module:filter:attributename', to avoid name
  * collisions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -47,7 +46,7 @@ abstract class ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(array &$config, $reserved)
+    public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
     {
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
@@ -65,7 +64,6 @@ abstract class ProcessingFilter
      * When a filter returns from this function, it is assumed to have completed its task.
      *
      * @param array &$request  The request we are currently processing.
-     * @return void
      */
     abstract public function process(array &$request): void;
 }

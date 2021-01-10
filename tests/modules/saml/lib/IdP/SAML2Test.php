@@ -9,6 +9,9 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Module\saml\IdP\SAML2
+ */
 class SAML2Test extends ClearStateTestCase
 {
     /**
@@ -36,9 +39,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
-     * @return void
      */
-    public function testIdPInitiatedLoginMinimumParams()
+    public function testIdPInitiatedLoginMinimumParams(): void
     {
         $state = $this->idpInitiatedHelper(['spentityid' => 'https://some-sp-entity-id']);
         $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
@@ -61,9 +63,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
-     * @return void
      */
-    public function testIdPInitiatedLoginOptionalParams()
+    public function testIdPInitiatedLoginOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'spentityid' => 'https://some-sp-entity-id',
@@ -96,9 +97,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
-    public function testIdPInitShibCompatyMinimumParams()
+    public function testIdPInitShibCompatyMinimumParams(): void
     {
         //https://wiki.shibboleth.net/confluence/display/IDP30/UnsolicitedSSOConfiguration
         // Shib uses the param providerId instead of spentityid
@@ -123,9 +123,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
-    public function testIdPInitShibCompatOptionalParams()
+    public function testIdPInitShibCompatOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'providerId' => 'https://some-sp-entity-id',

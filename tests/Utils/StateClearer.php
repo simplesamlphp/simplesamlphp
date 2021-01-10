@@ -34,9 +34,8 @@ class StateClearer
 
 
     /**
-     * @return void
      */
-    public function backupGlobals()
+    public function backupGlobals(): void
     {
         // Backup any state that is needed as part of processing, so we can restore it later.
         // TODO: phpunit's backupGlobals = false, yet we are trying to do a similar thing here. Is that an issue?
@@ -54,9 +53,8 @@ class StateClearer
 
     /**
      * Clear any global state.
-     * @return void
      */
-    public function clearGlobals()
+    public function clearGlobals(): void
     {
         if (!empty($this->backups)) {
             $_COOKIE = $this->backups['$_COOKIE'];
@@ -75,9 +73,8 @@ class StateClearer
 
     /**
      * Clear any SSP specific state, such as SSP enviormental variables or cached internals.
-     * @return void
      */
-    public function clearSSPState()
+    public function clearSSPState(): void
     {
         foreach ($this->clearableState as $var) {
             $var::clearInternalState();

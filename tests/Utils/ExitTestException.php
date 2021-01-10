@@ -15,7 +15,6 @@ class ExitTestException extends \Exception
 
     /**
      * @param array $testResult
-     * @return void
      */
     public function __construct(array $testResult)
     {
@@ -27,7 +26,7 @@ class ExitTestException extends \Exception
     /**
      * @return array
      */
-    public function getTestResult()
+    public function getTestResult(): array
     {
         return $this->testResult;
     }

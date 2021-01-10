@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Exception which will show a 400 Bad Request error page.
@@ -12,7 +12,6 @@ use Webmozart\Assert\Assert;
  * This exception can be thrown from within an module page handler. The user will then be
  * shown a 400 Bad Request error page.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

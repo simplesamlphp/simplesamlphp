@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Exception which will show a 404 Not Found error page.
@@ -13,7 +13,6 @@ use Webmozart\Assert\Assert;
  * This exception can be thrown from within a module page handler. The user will then be shown a 404 Not Found error
  * page.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

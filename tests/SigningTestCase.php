@@ -166,18 +166,18 @@ NOWDOC;
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
-    const ROOTDIRNAME = 'testdir';
-    const DEFAULTCERTDIR = 'certdir';
-    const CA_PRIVATE_KEY = 'ca.key.pem';
-    const CA_CERTIFICATE = 'ca.cert.pem';
-    const GOOD_PRIVATE_KEY = 'good.key.pem';
-    const GOOD_CERTIFICATE = 'good.cert.pem';
+    protected const ROOTDIRNAME = 'testdir';
+    protected const DEFAULTCERTDIR = 'certdir';
+    protected const CA_PRIVATE_KEY = 'ca.key.pem';
+    protected const CA_CERTIFICATE = 'ca.cert.pem';
+    protected const GOOD_PRIVATE_KEY = 'good.key.pem';
+    protected const GOOD_CERTIFICATE = 'good.cert.pem';
 
 
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             self::CA_PRIVATE_KEY => $this->ca_private_key,
@@ -189,7 +189,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -215,7 +214,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {
@@ -227,9 +225,8 @@ NOWDOC;
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed|null $value
-     * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

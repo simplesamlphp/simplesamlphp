@@ -6,11 +6,11 @@ namespace SimpleSAML\Module\saml\SP;
 
 use PDO;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * A directory over logout information.
@@ -24,7 +24,6 @@ class LogoutStore
      * Create logout table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
      */
     private static function createLogoutTable(Store\SQL $store): void
     {
@@ -40,7 +39,12 @@ class LogoutStore
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
                     $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TYPE TIMESTAMP'
+                    ];
+                    break;
+                case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire DATETIME NOT NULL'
                     ];
                     break;
                 case 'sqlite':
@@ -119,6 +123,12 @@ class LogoutStore
                     $update = [
                         'ALTER TABLE ' . $store->prefix .
                         '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
+                    break;
+                case 'sqlsrv':
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix .
+                        '_saml_LogoutStore ALTER COLUMN _authSource VARCHAR(255) NOT NULL'
+                    ];
                     break;
                 case 'sqlite':
                     /**
@@ -199,7 +209,6 @@ class LogoutStore
      * Clean the logout table of expired entries.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
      */
     private static function cleanLogoutStore(Store\SQL $store): void
     {
@@ -222,7 +231,6 @@ class LogoutStore
      * @param string $sessionIndex  The SessionIndex of the user.
      * @param int $expire
      * @param string $sessionId
-     * @return void
      */
     private static function addSessionSQL(
         Store\SQL $store,
@@ -291,14 +299,12 @@ class LogoutStore
      * Retrieve all session IDs from a key-value store.
      *
      * @param \SimpleSAML\Store $store  The datastore.
-     * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
     private static function getSessionsStore(
         Store $store,
-        string $authId,
         string $nameId,
         array $sessionIndexes
     ): array {
@@ -329,7 +335,6 @@ class LogoutStore
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
      * @param int $expire
-     * @return void
      */
     public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
@@ -412,7 +417,7 @@ class LogoutStore
                 // We cannot fetch all sessions without a SQL store
                 return false;
             }
-            $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
+            $sessions = self::getSessionsStore($store, $strNameId, $sessionIndexes);
         }
 
         if (empty($sessionIndexes)) {

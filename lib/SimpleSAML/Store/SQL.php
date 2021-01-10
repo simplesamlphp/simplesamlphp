@@ -6,10 +6,10 @@ namespace SimpleSAML\Store;
 
 use PDO;
 use PDOException;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Store;
-use Webmozart\Assert\Assert;
 
 /**
  * A data store using a RDBMS to keep the data.
@@ -79,7 +79,6 @@ class SQL extends Store
 
     /**
      * Initialize the table-version table.
-     * @return void
      */
     private function initTableVersionTable(): void
     {
@@ -103,7 +102,6 @@ class SQL extends Store
 
     /**
      * Initialize key-value table.
-     * @return void
      */
     private function initKVTable(): void
     {
@@ -200,7 +198,6 @@ class SQL extends Store
      *
      * @param string $name Table name.
      * @param int $version Table version.
-     * @return void
      */
     public function setTableVersion(string $name, int $version): void
     {
@@ -221,7 +218,6 @@ class SQL extends Store
      * @param string $table The table we should update.
      * @param string[] $keys The key columns.
      * @param array $data Associative array with columns.
-     * @return void
      */
     public function insertOrUpdate(string $table, array $keys, array $data): void
     {
@@ -277,7 +273,6 @@ class SQL extends Store
 
     /**
      * Clean the key-value table of expired entries.
-     * @return void
      */
     private function cleanKVStore(): void
     {
@@ -341,7 +336,6 @@ class SQL extends Store
      * @param string $key The key to insert.
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
-     * @return void
      */
     public function set(string $type, string $key, $value, ?int $expire = null): void
     {
@@ -378,7 +372,6 @@ class SQL extends Store
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
-     * @return void
      */
     public function delete(string $type, string $key): void
     {

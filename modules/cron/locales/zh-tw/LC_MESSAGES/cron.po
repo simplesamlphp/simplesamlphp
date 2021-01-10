@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "排程報告"
-
-msgid "{cron:cron:ran_text}"
-msgstr "排程任務執行於"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "這是建議的 crontab 檔案："
-
-msgid "{cron:cron:run_text}"
-msgstr "執行排程："
-
-msgid "{cron:cron:cron_execution}"
-msgstr "點此執行排程任務："
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron 在 Unix 系統中，可用來執行例行性任務。"
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "這是排程工作執行結果："
-
-msgid "{cron:cron:cron_header}"
-msgstr "排程結果頁面"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron 在 Unix 系統中，可用來執行例行性任務。"
 

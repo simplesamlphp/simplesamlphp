@@ -8,10 +8,12 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Localization;
 
+/**
+ * @covers \SimpleSAML\Locale\Localization
+ */
 class LocalizationTest extends TestCase
 {
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -22,9 +24,8 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization().
-     * @return void
      */
-    public function testLocalization()
+    public function testLocalization(): void
     {
         $c = Configuration::loadFromArray([]);
         $l = new Localization($c);
@@ -34,9 +35,8 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization::activateDomain().
-     * @return void
      */
-    public function testAddDomain()
+    public function testAddDomain(): void
     {
         $c = Configuration::loadFromArray([]);
         $l = new Localization($c);

@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
+class GenerateGroups extends Auth\ProcessingFilter
 {
     /**
      * The attributes we should generate groups from.
@@ -43,7 +44,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
             // Validate configuration
             foreach ($config as $attributeName) {
                 if (!is_string($attributeName)) {
-                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
+                    throw new Exception('Invalid attribute name for core:GenerateGroups filter: ' .
                         var_export($attributeName, true));
                 }
             }
@@ -56,7 +57,6 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

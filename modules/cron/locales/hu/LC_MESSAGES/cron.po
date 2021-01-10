@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Cron jelentés."
-
-msgid "{cron:cron:ran_text}"
-msgstr "A cron ekkor futott le:"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Javaslat crontab file-ra."
-
-msgid "{cron:cron:run_text}"
-msgstr "Cron futás:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Kattintson a cron futtatásához."
-
-msgid "{cron:cron:cron_info}"
-msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "A cron lefutásának eredményei:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cron futási eredmények"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
 

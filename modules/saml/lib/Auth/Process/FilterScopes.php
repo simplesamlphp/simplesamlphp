@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to remove attribute values which are not properly scoped.
  *
- * @author Adam Lantos, NIIF / Hungarnet
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
-class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
+class FilterScopes extends ProcessingFilter
 {
     /**
      * @var array Stores any pre-configured scoped attributes which come from the filter configuration.
@@ -47,7 +46,6 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
-     * @return void
      */
     public function process(array &$request): void
     {

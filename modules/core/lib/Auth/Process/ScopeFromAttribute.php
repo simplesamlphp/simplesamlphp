@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -24,7 +25,7 @@ use Webmozart\Assert\Assert;
  * to add a virtual 'scope' attribute from the eduPersonPrincipalName
  * attribute.
  */
-class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeFromAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute where the scope is taken from
@@ -61,7 +62,6 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * Apply this filter.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {
@@ -80,10 +80,9 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         $sourceAttrVal = $attributes[$this->sourceAttribute][0];
 
-        /* the last position of an @ is usually the beginning of the
-         * scope string
-         */
-        $scopeIndex = strrpos($sourceAttrVal, '@');
+        /* Treat the first @ as usually the beginning of the scope
+         * string, as per eduPerson recommendation. */
+        $scopeIndex = strpos($sourceAttrVal, '@');
 
         if ($scopeIndex !== false) {
             $attributes[$this->targetAttribute] = [];

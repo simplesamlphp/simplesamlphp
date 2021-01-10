@@ -6,7 +6,6 @@
  * In PHP versions which doesn't support accessing error information, this class
  * will hide that, and pretend that no errors were logged.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -15,7 +14,7 @@ declare(strict_types=1);
 namespace SimpleSAML\XML;
 
 use LibXMLError;
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 class Errors
 {
@@ -33,7 +32,6 @@ class Errors
     /**
      * Append current XML errors to the current stack level.
      *
-     * @return void
      */
     private static function addErrors(): void
     {
@@ -51,7 +49,6 @@ class Errors
      * A call to this function will begin a new error logging context. Every call must have
      * a corresponding call to end().
      *
-     * @return void
      */
     public static function begin(): void
     {

@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
 
 /**
  * Test for the core:AttributeAlter filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAlter
  */
 class AttributeAlterTest extends TestCase
 {
@@ -18,9 +22,9 @@ class AttributeAlterTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeAlter($config, null);
+        $filter = new AttributeAlter($config, null);
         $filter->process($request);
         return $request;
     }
@@ -28,9 +32,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'subject' => 'test',
@@ -53,9 +56,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
-    public function testWithTarget()
+    public function testWithTarget(): void
     {
         $config = [
             'subject' => 'test',
@@ -81,9 +83,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Module is a no op if subject attribute is not present.
-     * @return void
      */
-    public function testNomatch()
+    public function testNomatch(): void
     {
         $config = [
             'subject' => 'test',
@@ -110,9 +111,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
-     * @return void
      */
-    public function testReplaceMatch()
+    public function testReplaceMatch(): void
     {
         $config = [
             'subject' => 'source',
@@ -133,9 +133,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
-     * @return void
      */
-    public function testReplaceMatchWithTarget()
+    public function testReplaceMatchWithTarget(): void
     {
         $config = [
             'subject' => 'source',
@@ -158,9 +157,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute values.
-     * @return void
      */
-    public function testReplaceNoMatch()
+    public function testReplaceNoMatch(): void
     {
         $config = [
             'subject' => 'test',
@@ -185,9 +183,8 @@ class AttributeAlterTest extends TestCase
      * Test removing attribute values.
      * Note that removing a value does not renumber the attributes array.
      * Also ensure unrelated attributes are not touched.
-     * @return void
      */
-    public function testRemoveMatch()
+    public function testRemoveMatch(): void
     {
         $config = [
             'subject' => 'eduPersonAffiliation',
@@ -209,9 +206,8 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test removing attribute values, resulting in an empty attribute.
-     * @return void
      */
-    public function testRemoveMatchAll()
+    public function testRemoveMatchAll(): void
     {
         $config = [
             'subject' => 'eduPersonAffiliation',
@@ -232,11 +228,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testWrongConfig()
+    public function testWrongConfig(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
@@ -253,11 +248,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testIncompleteConfig()
+    public function testIncompleteConfig(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
         ];
@@ -272,11 +266,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testIncompleteConfig2()
+    public function testIncompleteConfig2(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -293,11 +286,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testIncompleteConfig3()
+    public function testIncompleteConfig3(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -316,11 +308,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testIncompleteConfig4()
+    public function testIncompleteConfig4(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -339,11 +330,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
-    public function testIncompleteConfig5()
+    public function testIncompleteConfig5(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',

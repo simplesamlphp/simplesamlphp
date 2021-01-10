@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\HTTP;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for username/password authentication.
@@ -19,20 +19,19 @@ use Webmozart\Assert\Assert;
  * This helper class allows for implementations of username/password authentication by
  * implementing a single function: login($username, $password)
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class UserPassBase extends \SimpleSAML\Auth\Source
+abstract class UserPassBase extends Auth\Source
 {
     /**
      * The string used to identify our states.
      */
-    const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
 
     /**
      * Username we should force.
@@ -130,7 +129,6 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * Set forced username.
      *
      * @param string|null $forcedUsername  The forced username.
-     * @return void
      */
     public function setForcedUsername(?string $forcedUsername): void
     {
@@ -195,7 +193,6 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -282,7 +279,6 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
-     * @return void
      */
     public static function handleLogin(string $authStateId, string $username, string $password): void
     {

@@ -3,7 +3,6 @@
 /**
  * Glue to connect one or more translation/locale systems to the rest
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -30,21 +29,21 @@ class Localization
      *
      * @var string
      */
-    const DEFAULT_DOMAIN = 'messages';
+    public const DEFAULT_DOMAIN = 'messages';
 
     /**
      * Old internationalization backend included in SimpleSAMLphp.
      *
      * @var string
      */
-    const SSP_I18N_BACKEND = 'SimpleSAMLphp';
+    public const SSP_I18N_BACKEND = 'SimpleSAMLphp';
 
     /**
      * An internationalization backend implemented purely in PHP.
      *
      * @var string
      */
-    const GETTEXT_I18N_BACKEND = 'gettext/gettext';
+    public const GETTEXT_I18N_BACKEND = 'gettext/gettext';
 
     /**
      * The default locale directory
@@ -141,7 +140,6 @@ class Localization
      *
      * @param string $module Module name
      * @param string $localeDir Absolute path if the module is housed elsewhere
-     * @return void
      */
     public function addModuleDomain(string $module, string $localeDir = null): void
     {
@@ -158,7 +156,6 @@ class Localization
      *
      * @param string $localeDir Location of translations
      * @param string $domain Domain at location
-     * @return void
      */
     public function addDomain(string $localeDir, string $domain): void
     {
@@ -217,7 +214,6 @@ class Localization
 
     /**
      * Setup the translator
-     * @return void
      */
     private function setupTranslator(): void
     {
@@ -234,7 +230,6 @@ class Localization
      *
      * @param string $domain Name of domain
      * @param boolean $catchException Whether to catch an exception on error or return early
-     * @return void
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
@@ -284,7 +279,6 @@ class Localization
 
     /**
      * Set up L18N if configured or fallback to old system
-     * @return void
      */
     private function setupL10N(): void
     {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for handling metadata files in serialized format.
@@ -22,7 +22,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @var string
      */
-    const EXTENSION = '.serialized';
+    public const EXTENSION = '.serialized';
 
 
     /**
@@ -258,7 +258,6 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param string $entityId The entityId of the metadata entry.
      * @param string $set The metadata set this metadata entry belongs to.
-     * @return void
      */
     public function deleteMetadata(string $entityId, string $set): void
     {

@@ -7,6 +7,7 @@ namespace SimpleSAML\Error;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Throwable;
 
 /**
  * This exception represents a configuration error that we cannot recover from.
@@ -23,7 +24,6 @@ use SimpleSAML\Utils;
  * certain point and inform about the error in an ordered manner, without blank pages, logs out of place or even
  * segfaults.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -66,11 +66,11 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param \Exception $exception
+     * @param \Throwable $exception
      *
-     * @return \SimpleSAML\Error\Exception
+     * @return \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function fromException(\Exception $exception): Exception
+    public static function fromException(Throwable $exception): CriticalConfigurationError
     {
         $reason = null;
         $file = null;

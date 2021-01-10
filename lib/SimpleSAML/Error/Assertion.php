@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use Webmozart\Assert\Assert;
+use SimpleSAML\Assert\Assert;
 
 /**
  * Class for creating exceptions from assertion failures.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -55,7 +54,6 @@ class Assertion extends Exception
      *
      * This function will register this assertion handler. If will not enable assertions if they are
      * disabled.
-     * @return void
      */
     public static function installHandler(): void
     {
@@ -73,7 +71,6 @@ class Assertion extends Exception
      * @param string $file  The file assert was called from.
      * @param int $line  The line assert was called from.
      * @param mixed $message  The expression which was passed to the assert-function.
-     * @return void
      */
     public static function onAssertion(string $file, int $line, $message): void
     {

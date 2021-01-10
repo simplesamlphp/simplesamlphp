@@ -16,11 +16,11 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 use SAML2\DOMDocumentFactory;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\XML\Errors;
-use Webmozart\Assert\Assert;
 
 class XML
 {
@@ -37,10 +37,7 @@ class XML
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkSAMLMessage(string $message, string $type): void
     {
@@ -56,15 +53,12 @@ class XML
 
         // see if debugging is enabled for XML validation
         $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
-        $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (
-            !(in_array('validatexml', $debug, true) // implicitly enabled
-            || (array_key_exists('validatexml', $debug)
-            && $debug['validatexml'] === true)
-            // explicitly enabled
-            // TODO: deprecate this option and remove it in 2.0
-            || $enabled) // old 'debug.validatexml' configuration option
+            !(
+                in_array('validatexml', $debug, true)
+                || (array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true))
+            )
         ) {
             // XML validation is disabled
             return;
@@ -97,9 +91,7 @@ class XML
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function debugSAMLMessage($message, string $type): void
     {
@@ -163,9 +155,7 @@ class XML
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
@@ -251,7 +241,6 @@ class XML
      * @throws \InvalidArgumentException If the parameters are not strings.
      * @throws \DOMException If the input does not parse correctly as an XML string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatXMLString(string $xml, string $indentBase = ''): string
     {
@@ -314,7 +303,6 @@ class XML
      * @return string The text content of the element.
      * @throws \SimpleSAML\Error\Exception If the element contains a non-text child node.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDOMText(DOMElement $element): string
     {
@@ -352,8 +340,6 @@ class XML
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
@@ -403,11 +389,10 @@ class XML
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isValid($xml, string $schema)
     {
-        if (!is_string($xml) && ! ($xml instanceof DOMDocument)) {
+        if (!is_string($xml) && !($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -438,7 +423,7 @@ class XML
                  * @param array $context
                  * @return string|null
                  */
-                function (string $public = null, string $system, array $context) {
+                function (string $public = null, string $system, /** @scrutinizer ignore-unused */ array $context) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

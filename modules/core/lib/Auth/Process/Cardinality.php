@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to ensure correct cardinality of attributes
  *
- * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
+class Cardinality extends Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
     private $cardinality = [];
@@ -108,7 +107,6 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

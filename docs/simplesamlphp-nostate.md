@@ -34,7 +34,7 @@ There are several ways that this can happen, but most of them have to do
 with session storage. Here we will outline some generic alternatives, and
 possible solutions.
 
-#### The domain name changed during authentication
+### The domain name changed during authentication
 
 The domain name the IdP sends the response to is configured in the metadata of
 the IdP. This means that it may not match up with the domain name the user
@@ -66,7 +66,7 @@ application uses the same domain when it sets the cookie. How that is done
 depends on your application. (See the section about mismatch between
 application PHP session settings and SimpleSAMLphp session settings.)
 
-#### Hopping between http and https
+### Hopping between http and https
 
 If a cookie is set during a HTTPS session, it is not available when the same
 URL is later accessed over http. If your site is available over both http and
@@ -74,7 +74,7 @@ https, check that you're using https consistently throughout the configuration.
 The best and most secure is to make your complete site available on https only,
 and redirect any http requests to https.
 
-#### Mismatch between PHP session settings for the application and SimpleSAMLphp
+### Mismatch between PHP session settings for the application and SimpleSAMLphp
 
 If both the application you are trying to add SAML 2.0 support to and
 SimpleSAMLphp uses PHP session for session storage, and they don't agree on all
@@ -101,7 +101,19 @@ What those settings should be set to depends on the application. The simplest
 way to determine it may be to look for calls to `session_set_cookie_params` in
 the application, and look at what parameters it uses.
 
-#### A generic problem saving sessions
+### Browsers with SameSite=Lax as default
+
+Some browsers, notably Chrome, will default the cookie SameSite attribute to "Lax" if it
+is not set. Specifically in the context of SAML this means that cookies will not be sent
+when a POST request is performed between websites, which is typical for the SAML WebSSO
+flow. The lack of cookies will cause SimpleSAMLphp's session to be lost when receiving an
+assertion via the HTTP-POST binding.
+
+To resolve this, you can set the `session.cookie.samesite` attribute in `config.php`
+to `None`. Starting with SimpleSAMLphp 1.19, the config template contains a way to
+set this dynamically based on the user's browser support for this attribute.
+
+### A generic problem saving sessions
 
 Sometimes the problem is caused by SimpleSAMLphp being unable to load and/or save
 sessions. This can be caused by the session settings being incorrect, or by a

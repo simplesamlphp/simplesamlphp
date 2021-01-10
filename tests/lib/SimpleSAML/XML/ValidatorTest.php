@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\XML;
 
 use DOMDocument;
 use DOMElement;
+use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\SigningTestCase;
@@ -14,26 +15,26 @@ use SimpleSAML\XML\Validator;
 
 /**
  * Tests for SimpleSAML\XML\Validator.
+ *
+ * @covers \SimpleSAML\XML\Validator
  */
 class ValidatorTest extends SigningTestCase
 {
     /**
-     * @return void
      */
-    public function testValidatorMissingSignature()
+    public function testValidatorMissingSignature(): void
     {
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new Validator($doc);
     }
 
 
     /**
-     * @return void
      */
-    public function testGetX509Certificate()
+    public function testGetX509Certificate(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -41,7 +42,7 @@ class ValidatorTest extends SigningTestCase
         /** @psalm-var DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
-        $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -60,9 +61,8 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
-     * @return void
      */
-    public function testIsNodeValidatedSuccess()
+    public function testIsNodeValidatedSuccess(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -70,7 +70,7 @@ class ValidatorTest extends SigningTestCase
         /** @psalm-var DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
-        $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -89,9 +89,8 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
-     * @return void
      */
-    public function testIsNodeValidatedFailure()
+    public function testIsNodeValidatedFailure(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><parent><node1>value1</node1><node2>value2</node2></parent>');
@@ -102,7 +101,7 @@ class ValidatorTest extends SigningTestCase
         /** @psalm-var DOMElement $node2 */
         $node2 = $doc->getElementsByTagName('node2')->item(0);
 
-        $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);

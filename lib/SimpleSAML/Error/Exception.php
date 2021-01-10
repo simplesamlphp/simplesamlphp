@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
+use Throwable;
 
 /**
  * Base class for SimpleSAMLphp Exceptions
  *
  * This class tries to make sure that every exception is serializable.
  *
- * @author Thomas Graff <thomas.graff@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -45,9 +45,9 @@ class Exception extends \Exception
      *
      * @param string         $message Exception message
      * @param int            $code Error code
-     * @param \Exception|null $cause The cause of this exception.
+     * @param \Throwable|null $cause The cause of this exception.
      */
-    public function __construct(string $message, int $code = 0, \Exception $cause = null)
+    public function __construct(string $message, int $code = 0, Throwable $cause = null)
     {
         parent::__construct($message, $code);
 
@@ -62,11 +62,11 @@ class Exception extends \Exception
     /**
      * Convert any exception into a \SimpleSAML\Error\Exception.
      *
-     * @param \Exception $e The exception.
+     * @param \Throwable $e The exception.
      *
      * @return \SimpleSAML\Error\Exception The new exception.
      */
-    public static function fromException(\Exception $e): Exception
+    public static function fromException(Throwable $e): Exception
     {
         if ($e instanceof Exception) {
             return $e;
@@ -78,10 +78,9 @@ class Exception extends \Exception
     /**
      * Load the backtrace from the given exception.
      *
-     * @param \Exception $exception The exception we should fetch the backtrace from.
-     * @return void
+     * @param \Throwable $exception The exception we should fetch the backtrace from.
      */
-    protected function initBacktrace(\Exception $exception): void
+    protected function initBacktrace(Throwable $exception): void
     {
         $this->backtrace = [];
 
@@ -121,9 +120,9 @@ class Exception extends \Exception
     /**
      * Retrieve the cause of this exception.
      *
-     * @return \SimpleSAML\Error\Exception|null The cause of this exception.
+     * @return \Throwable|null The cause of this exception.
      */
-    public function getCause(): ?Exception
+    public function getCause(): ?Throwable
     {
         return $this->cause;
     }
@@ -197,22 +196,12 @@ class Exception extends \Exception
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
      * @param int $level
-     * @return void
      */
     protected function logBacktrace(int $level = Logger::DEBUG): void
     {
-        // see if debugging is enabled for backtraces
-        $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
-
-        if (
-            !(in_array('backtraces', $debug, true) // implicitly enabled
-            || (array_key_exists('backtraces', $debug)
-            && $debug['backtraces'] === true)
-            // explicitly set
-            // TODO: deprecate the old style and remove it in 2.0
-            || (array_key_exists(0, $debug)
-            && $debug[0] === true)) // old style 'debug' configuration option
-        ) {
+        // Do nothing if backtraces have been disabled in config.
+        $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => true]);
+        if (array_key_exists('backtraces', $debug) && $debug['backtraces'] === false) {
             return;
         }
 
@@ -239,7 +228,6 @@ class Exception extends \Exception
      * Override to allow errors extending this class to specify the log level themselves.
      *
      * @param int $default_level The log level to use if this method was not overridden.
-     * @return void
      */
     public function log(int $default_level): void
     {
@@ -257,7 +245,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level error.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logError(): void
     {
@@ -270,7 +257,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level warning.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logWarning(): void
     {
@@ -283,7 +269,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level info.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logInfo(): void
     {
@@ -296,7 +281,6 @@ class Exception extends \Exception
      * Print the exception to the log with log level debug.
      *
      * This function will write this exception to the log, including a full backtrace.
-     * @return void
      */
     public function logDebug(): void
     {

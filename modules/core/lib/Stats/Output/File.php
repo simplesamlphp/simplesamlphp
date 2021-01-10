@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Stats\Output;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Statistics logger that writes to a set of log files
@@ -56,7 +56,6 @@ class File extends \SimpleSAML\Stats\Output
      * Open a log file.
      *
      * @param string $date  The date for the log file.
-     * @return void
      */
     private function openLog(string $date): void
     {
@@ -83,7 +82,6 @@ class File extends \SimpleSAML\Stats\Output
      * Write a stats event.
      *
      * @param array $data  The event.
-     * @return void
      */
     public function emit(array $data): void
     {

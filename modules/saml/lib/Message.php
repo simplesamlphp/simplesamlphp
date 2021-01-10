@@ -18,11 +18,11 @@ use SAML2\XML\ds\KeyInfo;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
 use SAML2\XML\saml\Issuer;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -37,7 +37,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\SignedElement $element The element we should add the data to.
-     * @return void
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -89,7 +88,6 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
-     * @return void
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
@@ -120,43 +118,6 @@ class Message
         }
 
         self::addSign($srcMetadata, $dstMetadata, $message);
-    }
-
-
-    /**
-     * Find the certificate used to sign a message or assertion.
-     *
-     * An exception is thrown if we are unable to locate the certificate.
-     *
-     * @param array $certFingerprints The fingerprints we are looking for.
-     * @param array $certificates Array of certificates.
-     *
-     * @return string Certificate, in PEM-format.
-     *
-     * @throws \SimpleSAML\Error\Exception if we cannot find the certificate matching the fingerprint.
-     */
-    private static function findCertificate(array $certFingerprints, array $certificates): string
-    {
-        $candidates = [];
-
-        foreach ($certificates as $cert) {
-            $fp = strtolower(sha1(base64_decode($cert)));
-            if (!in_array($fp, $certFingerprints, true)) {
-                $candidates[] = $fp;
-                continue;
-            }
-
-            /* We have found a matching fingerprint. */
-            $pem = "-----BEGIN CERTIFICATE-----\n" .
-                chunk_split($cert, 64) .
-                "-----END CERTIFICATE-----\n";
-            return $pem;
-        }
-
-        $candidates = "'" . implode("', '", $candidates) . "'";
-        $fps = "'" . implode("', '", $certFingerprints) . "'";
-        throw new SSP_Error\Exception('Unable to find a certificate matching the configured ' .
-            'fingerprint. Candidates: ' . $candidates . '; certFingerprint: ' . $fps . '.');
     }
 
 
@@ -277,16 +238,29 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
+     * @psalm-suppress UndefinedDocblockClass  This can be removed after upgrading to saml2v5
+     * @param \SimpleSAML\SAML2\XML\xenc\EncryptionMethod|null $encryptionMethod The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
      */
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
+        $encryptionMethod = null
     ): array {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            if ($encryptionMethod !== null) {
+                $algo = $encryptionMethod->getAlgorithm();
+            } else {
+                $algo = $srcMetadata->getString('sharedkey_algorithm', null);
+                if ($algo === null) {
+                    // If no algorithm is supplied or configured, use a sane default as a last resort
+                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                }
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
             return [$key];
         }
@@ -365,7 +339,7 @@ class Message
         Configuration $dstMetadata,
         $assertion
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
+        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -381,7 +355,12 @@ class Message
         }
 
         try {
-            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
+            // @todo Enable this code for saml2v5 to automatically determine encryption algorithm
+            //$encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
+            //$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
+
+            $encryptionMethod = null;
+            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
         } catch (\Exception $e) {
             throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
@@ -416,7 +395,6 @@ class Message
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
      *
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
      */

@@ -6,7 +6,6 @@
  * This file defines a base class for session handlers that need to store the session id in a cookie. It takes care of
  * storing and retrieving the session id.
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  * @abstract
  */
@@ -15,8 +14,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 abstract class SessionHandlerCookie extends SessionHandler
 {
@@ -151,7 +150,6 @@ abstract class SessionHandlerCookie extends SessionHandler
      * @param string $sessionName The name of the session.
      * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
-     * @return void
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */

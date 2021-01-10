@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
@@ -16,7 +17,6 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the core module.
@@ -86,7 +86,7 @@ class Login
         }
 
         $attributes = $auth->getAttributes();
-        
+
         $session = Session::getSessionFromRequest();
 
         $t = new Template($this->config, 'auth_status.twig', 'attributes');
@@ -132,11 +132,30 @@ class Login
             $as = key($this->sources);
         }
 
+        $default = false;
+        if (array_key_exists('default', $this->sources) && is_array($this->sources['default'])) {
+            $default = $this->sources['default'];
+        }
+
         if ($as === null) { // no authentication source specified
-            $t = new Template($this->config, 'core:login.twig');
-            $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
-            $t->data['sources'] = $this->sources;
-            return $t;
+            if (!$default) {
+                $t = new Template($this->config, 'core:login.twig');
+                $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
+                $t->data['sources'] = $this->sources;
+                return $t;
+            }
+
+            // we have a default, use that one
+            $as = 'default';
+            foreach ($this->sources as $id => $source) {
+                if ($id === 'default') {
+                    continue;
+                }
+                if ($source === $this->sources['default']) {
+                    $as = $id;
+                    break;
+                }
+            }
         }
 
         // auth source defined, check if valid
@@ -197,7 +216,6 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param Request $request The request that lead to this login operation.
-     * @return void
      */
     public function cleardiscochoices(Request $request): void
     {

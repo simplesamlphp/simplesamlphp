@@ -16,6 +16,8 @@ use SimpleSAML\XML\Signer;
 
 /**
  * Tests for SimpleSAML\XML\Signer.
+ *
+ * @covers \SimpleSAML\XML\Signer
  */
 class SignerTest extends SigningTestCase
 {
@@ -48,17 +50,13 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 -----END CERTIFICATE-----
 NOWDOC;
 
-    const ROOTDIRNAME = 'testdir';
-
-    const DEFAULTCERTDIR = 'certdir';
-
-    const OTHER_CERTIFICATE = 'other_certificate.pem';
+    private const OTHER_CERTIFICATE = 'other_certificate.pem';
 
 
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             self::GOOD_PRIVATE_KEY => $this->good_private_key,
@@ -69,9 +67,8 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
-    public function testSignerBasic()
+    public function testSignerBasic(): void
     {
         $res = new Signer([]);
 
@@ -80,9 +77,8 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
-    public function testSignBasic()
+    public function testSignBasic(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -108,7 +104,7 @@ NOWDOC;
      * @param string $certificate
      * @return string
      */
-    private static function getCertificateValue($certificate)
+    private static function getCertificateValue(string $certificate): string
     {
         $replacements = [
             "-----BEGIN CERTIFICATE-----",
@@ -121,9 +117,8 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
-    public function testSignWithCertificate()
+    public function testSignWithCertificate(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -149,9 +144,8 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
-    public function testSignWithMultiCertificate()
+    public function testSignWithMultiCertificate(): void
     {
         $this->other_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::OTHER_CERTIFICATE;
 
@@ -182,9 +176,8 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
-    public function testSignMissingPrivateKey()
+    public function testSignMissingPrivateKey(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -206,9 +199,8 @@ NOWDOC;
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed|null $value
-     * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

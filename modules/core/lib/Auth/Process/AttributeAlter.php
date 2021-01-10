@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to modify attributes using regular expressions
  *
  * This filter can modify or replace attributes given a regular expression.
  *
- * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
-class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAlter extends Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?
@@ -101,7 +101,6 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
-     * @return void
      */
     public function process(array &$request): void
     {
@@ -150,7 +149,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
-                    if ($this->replacement !== false) {
+                    if (is_string($this->replacement)) {
                         $new_value = $this->replacement;
                     }
 

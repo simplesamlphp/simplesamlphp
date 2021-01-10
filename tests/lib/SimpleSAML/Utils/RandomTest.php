@@ -9,16 +9,16 @@ use SimpleSAML\Utils\Random;
 
 /**
  * Tests for SimpleSAML\Utils\Random.
+ *
+ * @covers \SimpleSAML\Utils\Random
  */
 class RandomTest extends TestCase
 {
     /**
      * Test for SimpleSAML\Utils\Random::generateID().
      *
-     * @covers SimpleSAML\Utils\Random::generateID
-     * @return void
      */
-    public function testGenerateID()
+    public function testGenerateID(): void
     {
         // check that it always starts with an underscore
         $this->assertStringStartsWith('_', Random::generateID());

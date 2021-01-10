@@ -4,29 +4,29 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to create target attribute based on value(s) in source attribute
  *
- * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeValueMap extends Auth\ProcessingFilter
 {
     /**
      * The name of the attribute we should assign values to (ie: the target attribute).
      * @var string
      */
-    private $targetattribute;
+    private $targetattribute = '';
 
     /**
      * The name of the attribute we should create values from.
      * @var string
      */
-    private $sourceattribute;
+    private $sourceattribute = '';
 
     /**
      * The required $sourceattribute values and target affiliations.
@@ -92,10 +92,10 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         // now validate it
-        if (!is_string($this->sourceattribute)) {
+        if (empty($this->sourceattribute)) {
             throw new Error\Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
         }
-        if (!is_string($this->targetattribute)) {
+        if (empty($this->targetattribute)) {
             throw new Error\Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
         }
         if (!is_array($this->values)) {
@@ -108,7 +108,6 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter.
      *
      * @param array &$request The current request
-     * @return void
      */
     public function process(array &$request): void
     {

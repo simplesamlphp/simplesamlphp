@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class that handles traditional logout.
@@ -44,7 +44,6 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * This function never returns.
      *
      * @param array &$state The logout state.
-     * @return void
      */
     private function logoutNextSP(array &$state): void
     {
@@ -81,7 +80,6 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @param array  &$state The logout state.
      * @param string $assocId The association that started the logout.
-     * @return void
      */
     public function startLogout(array &$state, string $assocId): void
     {
@@ -99,7 +97,6 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
      */

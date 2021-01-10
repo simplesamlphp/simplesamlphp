@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for implementing authentication processing chains for IdPs.
@@ -18,7 +18,6 @@ use Webmozart\Assert\Assert;
  * submitting a response to a SP. Examples of additional steps can be additional authentication
  * checks, or attribute consent requirements.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -27,20 +26,20 @@ class ProcessingChain
     /**
      * The list of remaining filters which should be applied to the state.
      */
-    const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
+    public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
 
     /**
      * The stage we use for completed requests.
      */
-    const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
+    public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
 
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
      * having completed processing of the state.
      */
-    const AUTHPARAM = 'AuthProcId';
+    public const AUTHPARAM = 'AuthProcId';
 
 
     /**
@@ -91,7 +90,6 @@ class ProcessingChain
      *
      * @param array &$target  Target filter list. This list must be sorted.
      * @param array $src  Source filters. May be unsorted.
-     * @return void
      */
     private static function addFilters(array &$target, array $src): void
     {
@@ -186,7 +184,6 @@ class ProcessingChain
      * @param array &$state  The state we are processing.
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\UnserializableException
-     * @return void
      */
     public function processState(array &$state): void
     {
@@ -225,7 +222,6 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
-     * @return void
      */
     public static function resumeProcessing(array $state): void
     {
@@ -278,7 +274,6 @@ class ProcessingChain
      * This function will only return if processing completes.
      *
      * @param array &$state  The state we are processing.
-     * @return void
      */
     public function processStatePassive(array &$state): void
     {

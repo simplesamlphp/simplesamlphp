@@ -21,7 +21,6 @@ class Config
      * @return string  The file path.
      * @throws \InvalidArgumentException If $path is not a string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getCertPath(string $path): string
     {
@@ -44,7 +43,6 @@ class Config
      * @return string The secret salt.
      * @throws \InvalidArgumentException If the secret salt hasn't been configured.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSecretSalt(): string
     {

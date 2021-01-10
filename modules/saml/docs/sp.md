@@ -94,7 +94,7 @@ The following attributes are available:
 
 `saml:sp:NameID`
 :   The NameID the user was issued by the IdP.
-    This is an associative array with the various fields from the NameID.
+    This is a \SAML2\XML\saml\NameID object with the various fields from the NameID.
 
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
@@ -125,6 +125,10 @@ Options
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
     documentation.
+
+`AssertionConsumerServiceIndex`
+:   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
+    Service Consumer URL.
 
 `attributes`
 :   List of attributes this SP requests from the IdP.
@@ -323,6 +327,11 @@ Options
 
 `privatekey_pass`
 :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
+
+:   *Note*: SAML 2 specific.
+
+`ProviderName`
+:   Human readable name of the local SP sent with the authentication request.
 
 :   *Note*: SAML 2 specific.
 

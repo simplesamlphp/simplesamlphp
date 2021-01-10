@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create a NameID from an attribute.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class AttributeNameID extends BaseNameIDGenerator
 {
     /**
      * The attribute we should use as the NameID.
