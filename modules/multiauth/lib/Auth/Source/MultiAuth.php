@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
+use SAML2\Constants;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -13,12 +14,12 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use SimpleSAML\Module\saml\Error\NoAuthnContext;
 
 /**
  * Authentication source which let the user chooses among a list of
  * other authentication sources
  *
- * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package SimpleSAMLphp
  */
 class MultiAuth extends Auth\Source
@@ -115,11 +116,22 @@ class MultiAuth extends Auth\Source
                 }
             }
 
+            $class_ref = [];
+            if (array_key_exists('AuthnContextClassRef', $info)) {
+                $ref = $info['AuthnContextClassRef'];
+                if (is_string($ref)) {
+                    $class_ref = [$ref];
+                } else {
+                    $class_ref = $ref;
+                }
+            }
+
             $this->sources[] = [
                 'source' => $source,
                 'text' => $text,
                 'help' => $help,
                 'css_class' => $css_class,
+                'AuthnContextClassRef' => $class_ref,
             ];
         }
     }
@@ -136,7 +148,6 @@ class MultiAuth extends Auth\Source
      * in the delegateAuthentication method.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -145,6 +156,30 @@ class MultiAuth extends Auth\Source
 
         if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
             $state['multiauth:preselect'] = $this->preselect;
+        }
+
+        if (
+            !is_null($state['saml:RequestedAuthnContext'])
+            && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])
+        ) {
+            $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
+            $new_sources = [];
+            foreach ($this->sources as $source) {
+                if (count(array_intersect($source['AuthnContextClassRef'], $refs)) >= 1) {
+                    $new_sources[] = $source;
+                }
+            }
+            $state[self::SOURCESID] = $new_sources;
+
+            $number_of_sources = count($new_sources);
+            if ($number_of_sources === 0) {
+                throw new NoAuthnContext(
+                    Constants::STATUS_RESPONDER,
+                    'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs)
+                );
+            } else if ($number_of_sources === 1) {
+                MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
+            }
         }
 
         // Save the $state array, so that we can restore if after a redirect
@@ -237,7 +272,6 @@ class MultiAuth extends Auth\Source
      * session and then call the logout method on it.
      *
      * @param array &$state Information about the current logout operation.
-     * @return void
      */
     public function logout(array &$state): void
     {
@@ -261,7 +295,6 @@ class MultiAuth extends Auth\Source
      * by storing its name in a cookie.
      *
      * @param string $source Name of the authentication source the user selected.
-     * @return void
      */
     public function setPreviousSource(string $source): void
     {

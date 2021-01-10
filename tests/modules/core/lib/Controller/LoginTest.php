@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
  * For now, this test extends ClearStateTestCase so that it doesn't interfere with other tests. Once every class has
  * been made PSR-7-aware, that won't be necessary any longer.
  *
+ * @covers \SimpleSAML\Module\core\Controller\Login
  * @package SimpleSAML\Test
  */
 class LoginTest extends ClearStateTestCase
@@ -39,7 +40,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -70,7 +70,6 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that authentication is started immediately if we hit the login endpoint and there's only one non-admin
      * source configured.
-     * @return void
      */
     public function testAutomaticLoginWhenOnlyOneSource(): void
     {
@@ -96,7 +95,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that the user can choose what auth source to use when there are multiple defined (admin excluded).
-     * @return void
      */
     public function testMultipleAuthSources(): void
     {
@@ -132,7 +130,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that specifying an invalid auth source while trying to login raises an exception.
-     * @return void
      */
     public function testLoginWithInvalidAuthSource(): void
     {
@@ -150,7 +147,6 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that we get redirected to /account/authsource when accessing the login endpoint while being already
      * authenticated.
-     * @return void
      */
     public function testLoginWhenAlreadyAuthenticated(): void
     {
@@ -189,7 +185,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that triggering the logout controller actually proceeds to log out from the specified source.
-     * @return void
      */
     public function testLogout(): void
     {
@@ -211,7 +206,6 @@ class LoginTest extends ClearStateTestCase
     /**
      * Test that accessing the "account" endpoint without being authenticated gets you redirected to the "login"
      * endpoint.
-     * @return void
      */
     public function testNotAuthenticated(): void
     {
@@ -232,7 +226,6 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that we are presented with a regular page if we are authenticated and try to access the "account" endpoint.
-     * @return void
      */
     public function testAuthenticated(): void
     {

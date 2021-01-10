@@ -17,15 +17,15 @@ use SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
+ *
+ * @covers \SimpleSAML\Utils\XML
  */
 class XMLTest extends TestCase
 {
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeBasic(): void
     {
@@ -40,9 +40,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeMissingNamespace(): void
     {
@@ -56,9 +54,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeEmpty(): void
     {
@@ -73,9 +69,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeShortcut(): void
     {
@@ -91,9 +85,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectName(): void
     {
@@ -109,9 +101,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
-     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectNamespace(): void
     {
@@ -127,9 +117,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
-     * @return void
      */
     public function testGetDomTextBasic(): void
     {
@@ -146,9 +134,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
-     * @return void
      */
     public function testGetDomTextMulti(): void
     {
@@ -167,9 +153,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
-     * @return void
      */
     public function testGetDomTextIncorrectType(): void
     {
@@ -183,9 +167,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
-     * @return void
      */
     public function testGetDomChildrenBasic(): void
     {
@@ -203,9 +185,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
-     * @return void
      */
     public function testGetDomChildrenIncorrectType(): void
     {
@@ -222,9 +202,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
-     * @return void
      */
     public function testGetDomChildrenIncorrectName(): void
     {
@@ -242,9 +220,7 @@ class XMLTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
-     * @return void
      */
     public function testFormatDomElementBasic(): void
     {
@@ -266,9 +242,7 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
-     * @return void
      */
     public function testFormatDomElementNested(): void
     {
@@ -294,9 +268,7 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
-     * @return void
      */
     public function testFormatDomElementIndentBase(): void
     {
@@ -323,9 +295,7 @@ HEREDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
-     * @return void
      */
     public function testFormatDomElementTextAndChild(): void
     {
@@ -348,9 +318,7 @@ HEREDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
-     * @return void
      */
     public function testFormatXmlStringBasic(): void
     {
@@ -368,9 +336,7 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
-     * @return void
      */
     public function testFormatXmlStringMalformedXml(): void
     {
@@ -382,9 +348,7 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isValid
      * @test
-     * @return void
      */
     public function testIsValidMalformedXml(): void
     {
@@ -399,8 +363,6 @@ NOWDOC;
 
 
     /**
-     * @covers \SimpleSAML\Utils\XML::isValid
-     * @return void
      */
     public function testIsValidMetadata(): void
     {
@@ -415,8 +377,6 @@ NOWDOC;
     }
 
     /**
-     * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
-     * @return void
      */
     public function testCheckSAMLMessageInvalidType(): void
     {

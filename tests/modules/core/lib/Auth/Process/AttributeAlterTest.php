@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
 
 /**
  * Test for the core:AttributeAlter filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAlter
  */
 class AttributeAlterTest extends TestCase
 {
@@ -30,7 +32,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -55,7 +56,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testWithTarget(): void
     {
@@ -83,7 +83,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Module is a no op if subject attribute is not present.
-     * @return void
      */
     public function testNomatch(): void
     {
@@ -112,7 +111,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
-     * @return void
      */
     public function testReplaceMatch(): void
     {
@@ -135,7 +133,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
-     * @return void
      */
     public function testReplaceMatchWithTarget(): void
     {
@@ -160,7 +157,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute values.
-     * @return void
      */
     public function testReplaceNoMatch(): void
     {
@@ -187,7 +183,6 @@ class AttributeAlterTest extends TestCase
      * Test removing attribute values.
      * Note that removing a value does not renumber the attributes array.
      * Also ensure unrelated attributes are not touched.
-     * @return void
      */
     public function testRemoveMatch(): void
     {
@@ -211,7 +206,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test removing attribute values, resulting in an empty attribute.
-     * @return void
      */
     public function testRemoveMatchAll(): void
     {
@@ -234,7 +228,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testWrongConfig(): void
     {
@@ -255,7 +248,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testIncompleteConfig(): void
     {
@@ -274,7 +266,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testIncompleteConfig2(): void
     {
@@ -295,7 +286,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testIncompleteConfig3(): void
     {
@@ -318,7 +308,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testIncompleteConfig4(): void
     {
@@ -341,7 +330,6 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     * @return void
      */
     public function testIncompleteConfig5(): void
     {

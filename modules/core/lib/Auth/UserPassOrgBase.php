@@ -19,7 +19,6 @@ use SimpleSAML\Utils;
  * - login($username, $password, $organization)
  * - getOrganizations()
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 abstract class UserPassOrgBase extends Auth\Source
@@ -135,7 +134,6 @@ abstract class UserPassOrgBase extends Auth\Source
      * If unconfigured, the default is 'none'.
      *
      * @param string $usernameOrgMethod  The method which should be used.
-     * @return void
      */
     protected function setUsernameOrgMethod(string $usernameOrgMethod): void
     {
@@ -208,7 +206,6 @@ abstract class UserPassOrgBase extends Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -264,7 +261,6 @@ abstract class UserPassOrgBase extends Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @param string $organization  The id of the organization the user chose.
-     * @return void
      */
     public static function handleLogin(
         string $authStateId,

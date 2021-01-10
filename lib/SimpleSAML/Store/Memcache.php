@@ -53,7 +53,6 @@ class Memcache extends Store
      * @param string $key The key.
      * @param mixed $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or NULL if it never expires.
-     * @return void
      */
     public function set(string $type, string $key, $value, ?int $expire = null): void
     {
@@ -72,7 +71,6 @@ class Memcache extends Store
      *
      * @param string $type The data type.
      * @param string $key The key.
-     * @return void
      */
     public function delete(string $type, string $key): void
     {

@@ -13,7 +13,6 @@ use SimpleSAML\Module;
 /**
  * Attribute filter for renaming attributes.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class AttributeMap extends Auth\ProcessingFilter
@@ -81,7 +80,6 @@ class AttributeMap extends Auth\ProcessingFilter
      * of the SimpleSAMLphp installation, or in the root of a module.
      *
      * @throws \Exception If the filter could not load the requested attribute map file.
-     * @return void
      */
     private function loadMapFile(string $fileName): void
     {
@@ -122,7 +120,6 @@ class AttributeMap extends Auth\ProcessingFilter
      * Apply filter to rename attributes.
      *
      * @param array &$request The current request.
-     * @return void
      */
     public function process(array &$request): void
     {

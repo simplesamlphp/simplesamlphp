@@ -10,7 +10,6 @@ use Throwable;
 /**
  * A SAML error indicating that the maximum amount of proxies traversed has been reached.
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class ProxyCountExceeded extends \SimpleSAML\Module\saml\Error

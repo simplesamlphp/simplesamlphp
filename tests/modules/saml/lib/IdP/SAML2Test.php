@@ -9,6 +9,9 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Module\saml\IdP\SAML2
+ */
 class SAML2Test extends ClearStateTestCase
 {
     /**
@@ -36,7 +39,6 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
-     * @return void
      */
     public function testIdPInitiatedLoginMinimumParams(): void
     {
@@ -61,7 +63,6 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
-     * @return void
      */
     public function testIdPInitiatedLoginOptionalParams(): void
     {
@@ -96,7 +97,6 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
     public function testIdPInitShibCompatyMinimumParams(): void
     {
@@ -123,7 +123,6 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
     public function testIdPInitShibCompatOptionalParams(): void
     {

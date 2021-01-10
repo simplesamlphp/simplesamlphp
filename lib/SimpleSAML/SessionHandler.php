@@ -8,7 +8,6 @@
  * Instantiation of session handler objects should be done through
  * the class method getSessionHandler().
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -85,7 +84,6 @@ abstract class SessionHandler
      * Save the session.
      *
      * @param \SimpleSAML\Session $session The session object we should save.
-     * @return void
      */
     abstract public function saveSession(Session $session): void;
 
@@ -116,7 +114,6 @@ abstract class SessionHandler
      * @param string $sessionName The name of the session.
      * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
-     * @return void
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
@@ -131,7 +128,6 @@ abstract class SessionHandler
      * session handler is selected, then we will fall back to the default
      * PHP session handler.
      *
-     * @return void
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
@@ -159,7 +155,7 @@ abstract class SessionHandler
         return [
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
             'path'     => $config->getString('session.cookie.path', '/'),
-            'domain'   => strval($config->getString('session.cookie.domain', null)),
+            'domain'   => $config->getString('session.cookie.domain', null),
             'secure'   => $config->getBoolean('session.cookie.secure', false),
             'samesite' => $config->getString('session.cookie.samesite', null),
             'httponly' => true,

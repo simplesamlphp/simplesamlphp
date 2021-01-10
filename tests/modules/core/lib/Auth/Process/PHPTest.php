@@ -11,6 +11,8 @@ use SimpleSAML\Module\core\Auth\Process\PHP;
 
 /**
  * Test for the core:PHP filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\PHP
  */
 class PHPTest extends TestCase
 {
@@ -32,7 +34,6 @@ class PHPTest extends TestCase
 
     /**
      * Test the configuration of the filter.
-     * @return void
      */
     public function testInvalidConfiguration(): void
     {
@@ -47,7 +48,6 @@ class PHPTest extends TestCase
 
     /**
      * Check that defining the code works as expected.
-     * @return void
      */
     public function testCodeDefined(): void
     {
@@ -69,7 +69,6 @@ class PHPTest extends TestCase
 
     /**
      * Check that the incoming attributes are also available after processing
-     * @return void
      */
     public function testPreserveIncomingAttributes(): void
     {
@@ -100,7 +99,6 @@ class PHPTest extends TestCase
     /**
      * Check that throwing an Exception inside the PHP code of the
      * filter (a documented use case) works.
-     * @return void
      */
     public function testThrowExceptionFromFilter(): void
     {
@@ -126,7 +124,6 @@ class PHPTest extends TestCase
 
     /**
      * Check that the entire state can be adjusted.
-     * @return void
      */
     public function testStateCanBeModified(): void
     {

@@ -17,7 +17,6 @@ use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Metadata\Signer;
 use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
-use SimpleSAML\Module\saml\IdP\SAML1 as SAML1_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;

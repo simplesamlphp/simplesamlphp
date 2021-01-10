@@ -9,10 +9,12 @@ use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
+/**
+ * @covers \SimpleSAML\Module\core\Auth\UserPassBase
+ */
 class UserPassBaseTest extends TestCase
 {
     /**
-     * @return void
      */
     public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
@@ -29,12 +31,12 @@ class UserPassBaseTest extends TestCase
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
             ->will($this->returnValue($attributes));
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
 
         $this->assertSame($attributes, $state['Attributes']);
@@ -42,7 +44,6 @@ class UserPassBaseTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPMissingUsername(): void
     {
@@ -56,17 +57,16 @@ class UserPassBaseTest extends TestCase
         unset($_SERVER['PHP_AUTH_USER']);
         $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
     }
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPMissingPassword(): void
     {
@@ -84,12 +84,12 @@ class UserPassBaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
     }
 
 
     /**
-     * @return void
      */
     public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {
@@ -108,12 +108,12 @@ class UserPassBaseTest extends TestCase
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)
             ->will($this->returnValue($attributes));
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->setForcedUsername($forcedUsername);
         $stub->authenticate($state);
     }

@@ -15,7 +15,6 @@ use SimpleSAML\Utils;
  * This class is an example authentication source which will always return a user with
  * a static set of attributes.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class StaticSource extends Auth\Source
@@ -52,7 +51,6 @@ class StaticSource extends Auth\Source
      * Log in using static attributes.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {

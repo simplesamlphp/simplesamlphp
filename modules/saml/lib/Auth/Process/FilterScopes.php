@@ -12,8 +12,6 @@ use SimpleSAML\Utils;
 /**
  * Filter to remove attribute values which are not properly scoped.
  *
- * @author Adam Lantos, NIIF / Hungarnet
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -48,7 +46,6 @@ class FilterScopes extends ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
-     * @return void
      */
     public function process(array &$request): void
     {

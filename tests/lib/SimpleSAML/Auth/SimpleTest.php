@@ -12,12 +12,12 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 /**
  * Tests for \SimpleSAML\Auth\Simple
  *
+ * @covers \SimpleSAML\Auth\Simple
  */
 class SimpleTest extends ClearStateTestCase
 {
     /**
      * @test
-     * @return void
      */
     public function testGetProcessedURL(): void
     {

@@ -66,7 +66,6 @@ class SessionHandlerStore extends SessionHandlerCookie
      * Save a session to the data store.
      *
      * @param \SimpleSAML\Session $session The session object we should save.
-     * @return void
      */
     public function saveSession(Session $session): void
     {

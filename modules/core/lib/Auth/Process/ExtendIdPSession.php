@@ -17,7 +17,6 @@ class ExtendIdPSession extends Auth\ProcessingFilter
 {
     /**
      * @param array &$state
-     * @return void
      */
     public function process(array &$state): void
     {

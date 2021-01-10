@@ -61,7 +61,6 @@ class PersistentNameID2TargetedID extends ProcessingFilter
      * Store a NameID to attribute.
      *
      * @param array &$state The request state.
-     * @return void
      */
     public function process(array &$state): void
     {

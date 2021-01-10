@@ -189,7 +189,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -215,7 +214,6 @@ NOWDOC;
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {
@@ -227,7 +225,6 @@ NOWDOC;
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed|null $value
-     * @return void
      */
     protected function clearInstance(Configuration $service, string $className, $value = null): void
     {

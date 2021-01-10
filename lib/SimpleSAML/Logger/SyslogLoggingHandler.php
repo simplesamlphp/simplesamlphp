@@ -10,8 +10,6 @@ use SimpleSAML\Utils;
 /**
  * A logger that sends messages to syslog.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class SyslogLoggingHandler implements LoggingHandlerInterface
@@ -47,7 +45,6 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void
     {
@@ -60,7 +57,6 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
     public function log(int $level, string $string): void
     {

@@ -15,7 +15,6 @@ use Throwable;
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -166,7 +165,6 @@ class Error extends Exception
      * Set the HTTP return code for this error.
      *
      * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
-     * @return void
      */
     protected function setHTTPCode(): void
     {
@@ -220,7 +218,6 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
-     * @return void
      */
     public function show(): void
     {

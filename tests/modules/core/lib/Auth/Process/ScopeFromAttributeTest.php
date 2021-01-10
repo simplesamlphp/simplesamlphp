@@ -9,6 +9,8 @@ use SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute;
 
 /**
  * Test for the core:ScopeFromAttribute filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute
  */
 class ScopeFromAttributeTest extends TestCase
 {
@@ -29,7 +31,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
     public function testBasic(): void
     {
@@ -51,7 +52,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If scope already set, module must not overwrite.
-     * @return void
      */
     public function testNoOverwrite(): void
     {
@@ -73,7 +73,6 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If source attribute not set, nothing happens
-     * @return void
      */
     public function testNoSourceAttribute(): void
     {
@@ -93,8 +92,7 @@ class ScopeFromAttributeTest extends TestCase
 
 
     /**
-     * When multiple @ signs in attribute, should use last one.
-     * @return void
+     * When multiple @ signs in attribute, should use first one.
      */
     public function testMultiAt(): void
     {
@@ -109,13 +107,12 @@ class ScopeFromAttributeTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['scope'], ['example.com']);
+        $this->assertEquals($attributes['scope'], ['doe@example.com']);
     }
 
 
     /**
      * When the source attribute doesn't have a scope, a warning is emitted
-     * @return void
      */
     public function testNoAt(): void
     {

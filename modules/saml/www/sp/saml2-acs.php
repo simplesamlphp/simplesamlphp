@@ -69,7 +69,7 @@ $issuer = $issuer->getValue();
 
 $session = Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
-/** @psalm-var string $issuer */
+
 if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $issuer) {
     /* OK, it looks like this message has the same issuer
      * and ID as the SP session we already have active. We
@@ -126,15 +126,11 @@ if ($state) {
     }
 } else {
     // this is an unsolicited response
+    $relaystate = $spMetadata->getString('RelayState', $response->getRelayState());
     $state = [
         'saml:sp:isUnsolicited' => true,
         'saml:sp:AuthId'        => $sourceId,
-        'saml:sp:RelayState'    => Utils\HTTP::checkURLAllowed(
-            $spMetadata->getString(
-                'RelayState',
-                $response->getRelayState()
-            )
-        ),
+        'saml:sp:RelayState'    => $relaystate === null ? null : Utils\HTTP::checkURLAllowed($relaystate),
     ];
 }
 

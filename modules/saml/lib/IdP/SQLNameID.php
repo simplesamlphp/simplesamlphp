@@ -81,7 +81,6 @@ class SQLNameID
 
     /**
      * @param array $config
-     * @return void
      */
     private static function create(array $config = [])
     {
@@ -131,7 +130,6 @@ class SQLNameID
      *
      * @param string $table  The table name.
      * @param array $config
-     * @return void
      */
     private static function createTable(string $table, array $config = [])
     {
@@ -176,7 +174,6 @@ class SQLNameID
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
      * @param array $config
-     * @return void
      */
     public static function add(
         string $idpEntityId,
@@ -241,7 +238,6 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param array $config
-     * @return void
      */
     public static function delete(
         string $idpEntityId,

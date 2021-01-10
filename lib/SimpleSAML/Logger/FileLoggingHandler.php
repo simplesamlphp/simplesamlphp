@@ -11,8 +11,6 @@ use SimpleSAML\Utils;
 /**
  * A logging handler that dumps logs to files.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class FileLoggingHandler implements LoggingHandlerInterface
@@ -80,7 +78,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void
     {
@@ -93,7 +90,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
     public function log(int $level, string $string): void
     {

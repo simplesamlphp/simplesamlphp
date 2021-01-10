@@ -13,7 +13,8 @@ use SAML2\Constants;
 /**
  * Test for the saml:NameIDAttribute filter.
  *
- * @author Eugene Venter <eugene@catalyst.net.nz>
+ * @covers \SimpleSAML\Module\saml\Auth\Process\NameIDAttribute
+ *
  * @package SimpleSAMLphp
  */
 class NameIDAttributeTest extends TestCase
@@ -35,7 +36,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test minimal configuration.
-     * @return void
      */
     public function testMinimalConfig(): void
     {
@@ -66,7 +66,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name.
-     * @return void
      */
     public function testCustomAttributeName(): void
     {
@@ -98,7 +97,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom format.
-     * @return void
      */
     public function testFormat(): void
     {
@@ -128,7 +126,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test invalid format throws an exception.
-     * @return void
      */
     public function testInvalidFormatThrowsException(): void
     {
@@ -158,7 +155,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test invalid request silently continues, leaving the state untouched
-     * @return void
      */
     public function testInvalidRequestLeavesStateUntouched(): void
     {
@@ -183,7 +179,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name with format.
-     * @return void
      */
     public function testCustomAttributeNameAndFormat(): void
     {
@@ -215,7 +210,6 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
-     * @return void
      */
     public function testOverrideNameID(): void
     {

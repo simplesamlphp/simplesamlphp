@@ -7,7 +7,6 @@ namespace SimpleSAML\Error;
 /**
  * Exception to indicate that we cannot set a cookie.
  *
- * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 

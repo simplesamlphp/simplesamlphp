@@ -102,7 +102,6 @@ class External extends Auth\Source
      * Log in using an external authentication helper.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -185,7 +184,6 @@ class External extends Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
@@ -264,7 +262,6 @@ class External extends Auth\Source
      * by logging out of a SP that supports single logout.
      *
      * @param array &$state  The logout state array.
-     * @return void
      */
     public function logout(array &$state): void
     {

@@ -17,7 +17,6 @@ use SimpleSAML\Utils;
  *
  * An authentication source is any system which somehow authenticate the user.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -104,7 +103,6 @@ abstract class Source
      * information about the user, and call completeAuth with the state array.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     abstract public function authenticate(array &$state): void;
 
@@ -116,7 +114,6 @@ abstract class Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     public function reauthenticate(array &$state): void
     {
@@ -143,7 +140,6 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     public static function completeAuth(array &$state): void
     {
@@ -171,7 +167,6 @@ abstract class Source
      * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
-     * @return void
      */
     public function initLogin($return, ?string $errorURL = null, array $params = []): void
     {
@@ -214,7 +209,6 @@ abstract class Source
      * This method never returns.
      *
      * @param array $state The state after the login has completed.
-     * @return void
      */
     public static function loginCompleted(array $state): void
     {
@@ -252,7 +246,6 @@ abstract class Source
      * showing the user a page, or redirecting, this function should return.
      *
      * @param array &$state Information about the current logout operation.
-     * @return void
      */
     public function logout(array &$state): void
     {
@@ -268,7 +261,6 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
-     * @return void
      */
     public static function completeLogout(array &$state): void
     {
@@ -381,7 +373,6 @@ abstract class Source
      * Called when the authentication source receives an external logout request.
      *
      * @param array $state State array for the logout operation.
-     * @return void
      */
     public static function logoutCallback(array $state): void
     {
@@ -413,7 +404,6 @@ abstract class Source
      *
      * @param string $assoc The identifier for this logout association.
      * @param array  $state The state array passed to the authenticate-function.
-     * @return void
      */
     protected function addLogoutCallback(string $assoc, array $state): void
     {
@@ -455,7 +445,6 @@ abstract class Source
      * This function always returns.
      *
      * @param string $assoc The logout association which should be called.
-     * @return void
      */
     protected function callLogoutCallback(string $assoc): void
     {
@@ -503,7 +492,6 @@ abstract class Source
      * @param string $id The auth source identifier.
      *
      * @throws \Exception If the first element of $source is not an identifier for the auth source.
-     * @return void
      */
     protected static function validateSource(array $source, string $id): void
     {

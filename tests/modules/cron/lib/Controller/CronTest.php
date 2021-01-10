@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "cron" module.
  *
+ * @covers \SimpleSAML\Module\cron\Controller\Cron
  * @package SimpleSAML\Test
  */
 class CronTest extends TestCase
@@ -32,7 +33,6 @@ class CronTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -74,37 +74,27 @@ class CronTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testInfo(): void
     {
         $_SERVER['REQUEST_URI'] = '/module.php/cron/info';
-        $request = Request::create(
-            '/info',
-            'GET'
-        );
 
         $c = new Controller\Cron($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
-        $response = $c->info($request);
+        $response = $c->info();
 
         $this->assertTrue($response->isSuccessful());
     }
 
 
     /**
-     * @return void
      */
     public function testRun(): void
     {
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/secret';
-        $request = Request::create(
-            '/run/daily/secret',
-            'GET'
-        );
 
         $c = new Controller\Cron($this->config, $this->session);
-        $response = $c->run($request, 'daily', 'secret');
+        $response = $c->run('daily', 'secret');
 
         $this->assertTrue($response->isSuccessful());
     }

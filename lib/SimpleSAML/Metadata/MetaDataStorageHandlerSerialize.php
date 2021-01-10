@@ -258,7 +258,6 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param string $entityId The entityId of the metadata entry.
      * @param string $set The metadata set this metadata entry belongs to.
-     * @return void
      */
     public function deleteMetadata(string $entityId, string $set): void
     {

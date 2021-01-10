@@ -48,7 +48,6 @@ class HttpAdapter
      * @see HTTP::checkSessionCookie()
      *
      * @param string|null $retryURL
-     * @return void
      */
     public function checkSessionCookie(string $retryURL = null): void
     {
@@ -236,7 +235,6 @@ class HttpAdapter
      *
      * @param string $url
      * @param array $parameters
-     * @return void
      */
     public function redirectTrustedURL(string $url, array $parameters = []): void
     {
@@ -249,7 +247,6 @@ class HttpAdapter
      *
      * @param string $url
      * @param array $parameters
-     * @return void
      */
     public function redirectUntrustedURL(string $url, array $parameters = []): void
     {
@@ -277,7 +274,6 @@ class HttpAdapter
      * @param string $value
      * @param array|null $params
      * @param bool $throw
-     * @return void
      */
     public function setCookie(string $name, string $value, array $params = null, bool $throw = true): void
     {
@@ -290,7 +286,6 @@ class HttpAdapter
      *
      * @param string $destination
      * @param array $data
-     * @return void
      */
     public function submitPOSTData(string $destination, array $data): void
     {

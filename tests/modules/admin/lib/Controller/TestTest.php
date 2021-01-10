@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
+ * @covers \SimpleSAML\Module\admin\Controller\Test
  * @package SimpleSAML\Test
  */
 class TestTest extends TestCase
@@ -36,7 +37,6 @@ class TestTest extends TestCase
 
     /**
      * Set up for each test.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -74,7 +74,6 @@ class TestTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMainWithoutAuthSource(): void
     {
@@ -94,7 +93,6 @@ class TestTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMainWithAuthSourceAndLogout(): void
     {
@@ -122,7 +120,6 @@ class TestTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMainWithAuthSourceAndException(): void
     {
@@ -149,7 +146,6 @@ class TestTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMainWithAuthSourceNotAuthenticated(): void
     {
@@ -182,7 +178,6 @@ class TestTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testMainWithAuthSourceAuthenticated(): void
     {

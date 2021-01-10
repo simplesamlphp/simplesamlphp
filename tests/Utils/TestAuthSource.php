@@ -10,7 +10,6 @@ class TestAuthSource extends Source
 {
     /**
      * @param array &$state
-     * @return void
      */
     public function authenticate(array &$state): void
     {

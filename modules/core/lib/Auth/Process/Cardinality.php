@@ -14,7 +14,6 @@ use SimpleSAML\Utils;
 /**
  * Filter to ensure correct cardinality of attributes
  *
- * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
 class Cardinality extends Auth\ProcessingFilter
@@ -108,7 +107,6 @@ class Cardinality extends Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

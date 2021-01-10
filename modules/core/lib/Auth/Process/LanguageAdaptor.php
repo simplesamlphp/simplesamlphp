@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * Filter to set and get language settings from attributes.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class LanguageAdaptor extends Auth\ProcessingFilter
@@ -43,7 +42,6 @@ class LanguageAdaptor extends Auth\ProcessingFilter
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

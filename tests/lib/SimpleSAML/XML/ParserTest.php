@@ -15,6 +15,8 @@ use SimpleSAML\XML\Parser;
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @covers \SimpleSAML\XML\Parser
  */
 class ParserTest extends TestCase
 {
@@ -30,7 +32,6 @@ XML;
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -39,10 +40,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getValue(): void
     {
@@ -55,10 +53,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getEmptyValue(): void
     {
@@ -71,10 +66,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValue
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getValueException(): void
     {
@@ -84,10 +76,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueDefault
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getDefaultValue(): void
     {
@@ -100,10 +89,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getValueAlternatives(): void
     {
@@ -123,10 +109,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getEmptyValueAlternatives(): void
     {
@@ -146,10 +129,7 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Parser::getValueAlternatives
-     * @covers \SimpleSAML\XML\Parser::__construct
      * @test
-     * @return void
      */
     public function getValueAlternativesException(): void
     {

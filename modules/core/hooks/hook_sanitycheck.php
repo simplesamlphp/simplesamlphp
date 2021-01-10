@@ -10,7 +10,6 @@ use SimpleSAML\Module;
  * Hook to do sanitycheck
  *
  * @param array &$hookinfo  hookinfo
- * @return void
  */
 function core_hook_sanitycheck(array &$hookinfo): void
 {

@@ -77,8 +77,6 @@ class Crypto
      * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesDecrypt(string $ciphertext): string
     {
@@ -137,8 +135,6 @@ class Crypto
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesEncrypt(string $data): string
     {
@@ -186,8 +182,6 @@ class Crypto
      * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function loadPrivateKey(
         Configuration $metadata,
@@ -248,9 +242,6 @@ class Crypto
      * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
      *     it.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Lasse Birnbaum Jensen
      */
     public static function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {
@@ -325,8 +316,6 @@ class Crypto
      *
      * @see hash_algos()
      *
-     * @author Dyonisius Visser, TERENA <visser@terena.org>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
     {
@@ -364,7 +353,6 @@ class Crypto
      * @throws \InvalidArgumentException If the input parameters are not strings.
      * @throws Error\Exception If the algorithm specified is not supported.
      *
-     * @author Dyonisius Visser, TERENA <visser@terena.org>
      */
     public static function pwValid(string $hash, string $password): bool
     {

@@ -16,8 +16,6 @@ use SimpleSAML\Utils;
  * A metadata storage source can be loaded by passing the configuration of it
  * to the getSource static function.
  *
- * @author Olav Morken, UNINETT AS.
- * @author Andreas Aakre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -176,7 +174,7 @@ abstract class MetaDataStorageSource
 
         foreach ($metadataSet as $index => $entry) {
             $cidrHints = [];
-            
+
             // support hint.cidr for idp discovery
             if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
                 $cidrHints = $entry['hint.cidr'];
@@ -220,17 +218,17 @@ abstract class MetaDataStorageSource
      * override this function if it doesn't implement the getMetadataSet function, or if the
      * implementation of getMetadataSet is slow.
      *
-     * @param string $index The entityId or metaindex we are looking up.
+     * @param string $entityId The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData(string $index, string $set): ?array
+    public function getMetaData(string $entityId, string $set): ?array
     {
         $metadataSet = $this->getMetadataSet($set);
 
-        $indexLookup = $this->lookupIndexFromEntityId($index, $metadataSet);
+        $indexLookup = $this->lookupIndexFromEntityId($entityId, $metadataSet);
         if (isset($indexLookup) && array_key_exists($indexLookup, $metadataSet)) {
             return $metadataSet[$indexLookup];
         }

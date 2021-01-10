@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
 /**
  * A filter for limiting which attributes are passed on.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class AttributeLimit extends Auth\ProcessingFilter
@@ -91,7 +90,6 @@ class AttributeLimit extends Auth\ProcessingFilter
      *
      * @param array &$request  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-     * @return void
      */
     public function process(array &$request): void
     {

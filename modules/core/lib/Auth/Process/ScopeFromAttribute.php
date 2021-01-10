@@ -62,7 +62,6 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      * Apply this filter.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {
@@ -81,10 +80,9 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
 
         $sourceAttrVal = $attributes[$this->sourceAttribute][0];
 
-        /* the last position of an @ is usually the beginning of the
-         * scope string
-         */
-        $scopeIndex = strrpos($sourceAttrVal, '@');
+        /* Treat the first @ as usually the beginning of the scope
+         * string, as per eduPerson recommendation. */
+        $scopeIndex = strpos($sourceAttrVal, '@');
 
         if ($scopeIndex !== false) {
             $attributes[$this->targetAttribute] = [];

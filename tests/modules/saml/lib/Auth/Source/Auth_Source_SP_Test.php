@@ -19,6 +19,8 @@ use SimpleSAML\Test\Utils\SpTester;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
+ *
+ * @covers \SimpleSAML\Module\saml\Auth\Source\SP
  */
 class SPTest extends ClearStateTestCase
 {
@@ -49,7 +51,6 @@ class SPTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -122,7 +123,6 @@ class SPTest extends ClearStateTestCase
     /**
      * Test generating an AuthnRequest
      * @test
-     * @return void
      */
     public function testAuthnRequest(): void
     {
@@ -148,7 +148,6 @@ class SPTest extends ClearStateTestCase
     /**
      * Test setting a Subject
      * @test
-     * @return void
      */
     public function testNameID(): void
     {
@@ -183,7 +182,6 @@ class SPTest extends ClearStateTestCase
     /**
      * Test setting an AuthnConextClassRef
      * @test
-     * @return void
      */
     public function testAuthnContextClassRef(): void
     {
@@ -213,7 +211,6 @@ class SPTest extends ClearStateTestCase
     /**
      * Test setting ForcedAuthn
      * @test
-     * @return void
      */
     public function testForcedAuthn(): void
     {
@@ -242,7 +239,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test specifying an IDPList where no metadata found for those idps is an error
-     * @return void
      */
     public function testIdpListWithNoMatchingMetadata(): void
     {
@@ -260,7 +256,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test specifying an IDPList where the list does not overlap with the Idp specified in SP config is an error
-     * @return void
      */
     public function testIdpListWithExplicitIdpNotMatch(): void
     {
@@ -288,7 +283,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList overlaps with the IDP specified in SP config results in AuthnRequest
-     * @return void
      */
     public function testIdpListWithExplicitIdpMatch(): void
     {
@@ -330,7 +324,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList with a single valid idp and no SP config idp results in AuthnRequest to that idp
-     * @return void
      */
     public function testIdpListWithSingleMatch(): void
     {
@@ -370,7 +363,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
-     * @return void
      */
     public function testIdpListWithMultipleMatch(): void
     {

@@ -20,7 +20,6 @@ class SpTester extends SP
     /**
      * @param array $info
      * @param array $config
-     * @return void
      */
     public function __construct(array $info, array $config)
     {
@@ -29,7 +28,6 @@ class SpTester extends SP
 
 
     /**
-     * @return void
      */
     public function startSSO2Test(Configuration $idpMetadata, array $state): void
     {
@@ -42,7 +40,6 @@ class SpTester extends SP
 
     /**
      * override the method that sends the request to avoid sending anything
-     * @return void
      */
     public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar): void
     {

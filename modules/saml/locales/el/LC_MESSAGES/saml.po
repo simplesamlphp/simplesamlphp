@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Η μέθοδος ταυτοποίησής σας δεν είναι αποδεκτή σε αυτή την υπηρεσία. "
-"Πιθανώς είναι πολύ αδύναμη, π.χ. δεν χρησιμοποιήθηκε επαλήθευση δύο "
-"βημάτων."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Εσφαλμένη μέθοδος ταυτοποίησης"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

@@ -10,6 +10,8 @@ use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\CardinalitySingle
  */
 class CardinalitySingleTest extends TestCase
 {
@@ -39,7 +41,6 @@ class CardinalitySingleTest extends TestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -52,7 +53,6 @@ class CardinalitySingleTest extends TestCase
 
     /**
      * Test singleValued
-     * @return void
      */
     public function testSingleValuedUnchanged(): void
     {
@@ -73,7 +73,6 @@ class CardinalitySingleTest extends TestCase
 
     /**
      * Test first value extraction
-     * @return void
      */
     public function testFirstValue(): void
     {
@@ -93,7 +92,6 @@ class CardinalitySingleTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testFirstValueUnchanged(): void
     {
@@ -114,7 +112,6 @@ class CardinalitySingleTest extends TestCase
 
     /**
      * Test flattening
-     * @return void
      */
     public function testFlatten(): void
     {
@@ -135,7 +132,6 @@ class CardinalitySingleTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function testFlattenUnchanged(): void
     {
@@ -157,7 +153,6 @@ class CardinalitySingleTest extends TestCase
 
     /**
      * Test abort
-     * @return void
      */
     public function testAbort(): void
     {

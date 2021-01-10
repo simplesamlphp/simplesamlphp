@@ -16,7 +16,6 @@ use SimpleSAML\Utils;
  * This class is an example authentication source which stores all username/passwords in an array,
  * and authenticates users against this array.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

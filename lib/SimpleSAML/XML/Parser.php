@@ -3,7 +3,6 @@
 /**
  * This file will help doing XPath queries in SAML 2 XML documents.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -78,7 +77,9 @@ class Parser
      */
     public function getValue(string $xpath, bool $required = false): ?string
     {
+        /** @var array|null $result */
         $result = $this->simplexml->xpath($xpath);
+
         if (!is_array($result) || empty($result)) {
             if ($required) {
                 throw new \Exception(
@@ -88,7 +89,7 @@ class Parser
                 return null;
             }
         }
-        return (string) $result[0];
+        return strval($result[0]);
     }
 
 
@@ -106,6 +107,7 @@ class Parser
                 return $seek;
             }
         }
+
         if ($required) {
             throw new \Exception(
                 'Could not get value from XML document using multiple alternative XPath expressions.'

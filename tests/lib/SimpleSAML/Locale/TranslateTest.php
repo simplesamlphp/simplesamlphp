@@ -8,11 +8,13 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
 
+/**
+ * @covers \SimpleSAML\Locale\Translate
+ */
 class TranslateTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Translate::noop().
-     * @return void
      */
     public function testNoop(): void
     {

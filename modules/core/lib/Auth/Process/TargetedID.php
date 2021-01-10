@@ -28,7 +28,6 @@ use SimpleSAML\Utils;
  * ]
  * </code>
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class TargetedID extends Auth\ProcessingFilter
@@ -70,9 +69,6 @@ class TargetedID extends Auth\ProcessingFilter
         );
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
-        if (!is_string($this->identifyingAttribute)) {
-            throw new Exception('Invalid attribute name given to core:TargetedID filter.');
-        }
 
         if (array_key_exists('nameId', $config)) {
             $this->generateNameId = $config['nameId'];
@@ -98,7 +94,6 @@ class TargetedID extends Auth\ProcessingFilter
      * Apply filter to add the targeted ID.
      *
      * @param array &$state  The current state.
-     * @return void
      */
     public function process(array &$state): void
     {

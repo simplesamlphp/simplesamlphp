@@ -7,7 +7,6 @@ namespace SimpleSAML\Error;
 /**
  * This exception represents a configuration error.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 

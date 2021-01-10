@@ -47,7 +47,6 @@ class PHP extends Auth\ProcessingFilter
      * Apply the PHP code to the attributes.
      *
      * @param array &$request The current request
-     * @return void
      *
      * @scrutinizer ignore-unused
      */
@@ -59,9 +58,9 @@ class PHP extends Auth\ProcessingFilter
          * @param array &$attributes
          * @param array &$state
          */
-        $function = /** @return void */ function (
-            array &$attributes,
-            array &$state
+        $function = function (
+            /** @scrutinizer ignore-unused */ array &$attributes,
+            /** @scrutinizer ignore-unused */ array &$state
         ) {
             eval($this->code);
         };

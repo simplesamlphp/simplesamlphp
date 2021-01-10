@@ -10,7 +10,6 @@ use Throwable;
 /**
  * A SAML error indicating that none of the requested Authentication Contexts can be used.
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class NoAuthnContext extends \SimpleSAML\Module\saml\Error

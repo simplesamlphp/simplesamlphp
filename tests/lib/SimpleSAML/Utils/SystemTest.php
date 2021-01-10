@@ -14,6 +14,8 @@ use SimpleSAML\Utils\System;
 
 /**
  * Tests for SimpleSAML\Utils\System.
+ *
+ * @covers \SimpleSAML\Utils\Random
  */
 class SystemTest extends TestCase
 {
@@ -29,7 +31,6 @@ class SystemTest extends TestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -45,9 +46,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getOS
      * @test
-     * @return void
      */
     public function testGetOSBasic(): void
     {
@@ -58,9 +57,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathRemoveTrailingSlashes(): void
     {
@@ -75,9 +72,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathPreferAbsolutePathToBase(): void
     {
@@ -92,9 +87,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathCurDirPath(): void
     {
@@ -109,9 +102,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathParentPath(): void
     {
@@ -126,9 +117,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathAllowsStreamWrappers(): void
     {
@@ -143,9 +132,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
-     * @return void
      */
     public function testResolvePathAllowsAwsS3StreamWrappers(): void
     {
@@ -160,9 +147,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
-     * @return void
      */
     public function testWriteFileBasic(): void
     {
@@ -180,9 +165,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
-     * @return void
      */
     public function testWriteFileContents(): void
     {
@@ -204,9 +187,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::writeFile
      * @test
-     * @return void
      */
     public function testWriteFileMode(): void
     {
@@ -228,9 +209,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
-     * @return void
      */
     public function testGetTempDirBasic(): void
     {
@@ -248,9 +227,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
-     * @return void
      */
     public function testGetTempDirNonExistant(): void
     {
@@ -268,9 +245,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
-     * @return void
      */
     public function testGetTempDirBadPermissions(): void
     {
@@ -303,7 +278,6 @@ class SystemTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
-     * @return void
      */
     protected function clearInstance(Configuration $service, string $className): void
     {
