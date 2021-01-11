@@ -429,6 +429,10 @@ class Crypto
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
+        if (!is_null(password_get_info($password)['algo'])) {
+            throw new Error\Exception("Cannot use a hash value for authentication.");
+        }
+
         if (password_verify($password, $hash)) {
             return true;
         }

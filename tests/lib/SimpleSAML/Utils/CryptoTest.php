@@ -237,6 +237,18 @@ PHP;
         $this->assertFalse($res);
     }
 
+    /**
+     * Check that hash cannot be used to authenticate ith.
+     */
+    public function testHashAsPwInvalid(): void
+    {
+        $pw = "password";
+
+        $hash = Crypto::pwHash($pw);
+        $this->expectException(Error\Exception::class);
+        $res = Crypto::pwValid($hash, $hash);
+    }
+
 
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
