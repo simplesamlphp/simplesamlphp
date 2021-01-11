@@ -26,6 +26,7 @@ Released TBD
     favour of the `identifyingAttribute`-setting.
   * Filter multiauth authentication sources from SP using AuthnContextClassRef (#1362)
   * Allow easy enabling of SameSite = 'None' (#1382)
+  * Do not accept the hashed admin password for authentication (#1418)
 
 ## Version 1.18.8
 
