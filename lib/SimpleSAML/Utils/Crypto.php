@@ -429,7 +429,9 @@ class Crypto
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        if (!is_null(password_get_info($password)['algo'])) {
+        // Prior to PHP 7.4 password_get_info() would set the algo to 0 instead of NULL when it's not detected
+        $info = password_get_info($password);
+        if ($info['algo'] !== null && $info['algo'] !== 0) {
             throw new Error\Exception("Cannot use a hash value for authentication.");
         }
 
