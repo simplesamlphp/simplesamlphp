@@ -174,7 +174,7 @@ PHP;
 
         $hash = Crypto::pwHash($pw);
         $this->expectException(Error\Exception::class);
-        $res = Crypto::pwValid($hash, $hash);
+        Crypto::pwValid($hash, $hash);
     }
 
 
