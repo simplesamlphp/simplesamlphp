@@ -22,7 +22,7 @@ use SimpleSAML\Utils\XML;
  */
 class XMLTest extends TestCase
 {
-    private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+    private const FRAMEWORK = 'vendor/simplesamlphp/saml2/tests/resources/xml';
 
     /**
      * @test
@@ -367,7 +367,7 @@ NOWDOC;
     public function testIsValidMetadata(): void
     {
         $schema = 'saml-schema-metadata-2.0.xsd';
-        $xml = file_get_contents(self::FRAMEWORK . '/metadata/xml/valid-metadata-selfsigned.xml');
+        $xml = file_get_contents(self::FRAMEWORK . '/metadata/valid-metadata-selfsigned.xml');
 
         $dom = new DOMDocument('1.0');
         $dom->loadXML($xml, LIBXML_NONET);
