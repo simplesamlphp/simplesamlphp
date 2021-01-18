@@ -200,7 +200,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a Twig template
+     * Test that a valid requests results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth1(): void
@@ -256,7 +256,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a Twig template
+     * Test that a valid requests results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth1WithPreviousSource(): void
