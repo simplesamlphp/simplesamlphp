@@ -60,6 +60,7 @@ rm -rf "$TARGET/node_modules"
 rm "$TARGET/www/assets/js/stylesheet.js"*
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
+rm -r "$TARGET/.github"
 rm "$TARGET/.php_cs.dist"
 rm "$TARGET/codecov.yml"
 rm "$TARGET/psalm.xml"
