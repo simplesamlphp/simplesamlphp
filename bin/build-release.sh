@@ -61,7 +61,6 @@ rm "$TARGET/www/assets/js/stylesheet.js"*
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
 rm "$TARGET/.php_cs.dist"
-rm "$TARGET/.travis.yml"
 rm "$TARGET/codecov.yml"
 rm "$TARGET/psalm.xml"
 rm "$TARGET"/{,modules}/.gitignore

@@ -65,7 +65,6 @@ the old version installed by composer
 ./vendor/bin/phpunit -c ./phpunit.xml
 ```
 
-All the tests are run by our *continuous integration* platform,
-[travis](https://travis-ci.org/simplesamlphp/simplesamlphp). If you are
-submitting a pull request, Travis will run your tests and notify whether
-your code builds or not according to them.
+All the tests are run by our *continuous integration* platform using GitHub
+Actions. If you are submitting a pull request, GitHub Actions will run your
+tests and notify whether your code builds or not according to them.
