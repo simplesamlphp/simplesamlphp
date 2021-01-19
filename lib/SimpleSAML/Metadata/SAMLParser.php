@@ -148,11 +148,6 @@ class SAMLParser
     private $registrationInfo;
 
     /**
-     * @var array
-     */
-    private $tags;
-
-    /**
      * This is an array of elements that may be used to validate this element.
      *
      * @var \SAML2\SignedElementHelper[]
@@ -198,7 +193,6 @@ class SAMLParser
         // process Extensions element, if it exists
         $ext = self::processExtensions($entityElement, $parentExtensions);
         $this->scopes = $ext['scope'];
-        $this->tags = $ext['tags'];
         $this->entityAttributes = $ext['EntityAttributes'];
         $this->registrationInfo = $ext['RegistrationInfo'];
 
@@ -491,18 +485,11 @@ class SAMLParser
     private function addExtensions(array &$metadata, array $roleDescriptor): void
     {
         Assert::keyExists($roleDescriptor, 'scope');
-        Assert::keyExists($roleDescriptor, 'tags');
 
         $scopes = array_merge($this->scopes, array_diff($roleDescriptor['scope'], $this->scopes));
         if (!empty($scopes)) {
             $metadata['scope'] = $scopes;
         }
-
-        $tags = array_merge($this->tags, array_diff($roleDescriptor['tags'], $this->tags));
-        if (!empty($tags)) {
-            $metadata['tags'] = $tags;
-        }
-
 
         if (!empty($this->registrationInfo)) {
             $metadata['RegistrationInfo'] = $this->registrationInfo;
@@ -746,7 +733,6 @@ class SAMLParser
 
         $ext = self::processExtensions($element);
         $ret['scope'] = $ext['scope'];
-        $ret['tags'] = $ext['tags'];
         $ret['EntityAttributes'] = $ext['EntityAttributes'];
         $ret['UIInfo'] = $ext['UIInfo'];
         $ret['DiscoHints'] = $ext['DiscoHints'];
@@ -885,7 +871,6 @@ class SAMLParser
     {
         $ret = [
             'scope'            => [],
-            'tags'             => [],
             'EntityAttributes' => [],
             'RegistrationInfo' => [],
             'UIInfo'           => [],
@@ -998,28 +983,6 @@ class SAMLParser
                     $ret['DiscoHints']['IPHint'] = $e->getIPHint();
                     $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
                     $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
-                }
-            }
-
-            if (!($e instanceof Chunk)) {
-                continue;
-            }
-
-            if ($e->getLocalName() === 'Attribute' && $e->getNamespaceURI() === Constants::NS_SAML) {
-                $attribute = $e->getXML();
-
-                $name = $attribute->getAttribute('Name');
-                $values = array_map(
-                    '\SimpleSAML\Utils\XML::getDOMText',
-                    Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
-                );
-
-                if ($name === 'tags') {
-                    foreach ($values as $tagname) {
-                        if (!empty($tagname)) {
-                            $ret['tags'][] = $tagname;
-                        }
-                    }
                 }
             }
         }

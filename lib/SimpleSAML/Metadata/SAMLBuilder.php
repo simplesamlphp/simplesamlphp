@@ -167,15 +167,6 @@ class SAMLBuilder
      */
     private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
-        if ($metadata->hasValue('tags')) {
-            $a = new Attribute();
-            $a->setName('tags');
-            foreach ($metadata->getArray('tags') as $tag) {
-                $a->addAttributeValue(new AttributeValue($tag));
-            }
-            $e->setExtensions(array_merge($e->getExtensions(), [$a]));
-        }
-
         if ($metadata->hasValue('hint.cidr')) {
             $a = new Attribute();
             $a->setName('hint.cidr');
