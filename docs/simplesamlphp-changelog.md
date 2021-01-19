@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.0
 
-Released TBD
+Released 2021-01-21
 
   * This version will be the last of the 1.x branch and will provide a migration path to our new
     templating system, routing system and translation system.
