@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use PDO;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
@@ -23,13 +22,14 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 {
     /**
      * The PDO object
+     * @var \SimpleSAML\Database
      */
-    private PDO $db;
+    private Database $db;
 
     /**
      * Prefix to apply to the metadata table
      */
-    private string $tablePrefix;
+    private string $tablePrefix = '';
 
     /**
      * This is an associative array which stores the different metadata sets we have loaded.

@@ -324,6 +324,7 @@ class Translate
 
         $lang = null;
         include($phpFile);
+        /** @psalm-var array|null $lang */
         if (isset($lang)) {
             return $lang;
         }

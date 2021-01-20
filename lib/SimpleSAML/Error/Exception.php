@@ -34,7 +34,7 @@ class Exception extends \Exception
      *
      * @var \SimpleSAML\Error\Exception|null
      */
-    private ?Error\Exception $cause = null;
+    private ?Exception $cause = null;
 
 
     /**

@@ -31,7 +31,7 @@ class Configuration implements Utils\ClearableState
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
-     * @var array<string \SimpleSAML\Configuration>
+     * @var array<string, \SimpleSAML\Configuration>
      */
     private static array $instance = [];
 

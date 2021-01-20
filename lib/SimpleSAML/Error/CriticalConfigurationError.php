@@ -32,7 +32,7 @@ class CriticalConfigurationError extends ConfigurationError
     /**
      * This is the bare minimum configuration that we can use.
      *
-     * @var array<string, string>
+     * @var array
      */
     private static array $minimum_config = [
         'logging.handler' => 'errorlog',

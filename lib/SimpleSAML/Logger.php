@@ -47,7 +47,7 @@ class Logger
     /**
      * Array with messages logged before the logging handler was initialized.
      *
-     * @var string[]
+     * @var array
      */
     private static array $earlyLog = [];
 

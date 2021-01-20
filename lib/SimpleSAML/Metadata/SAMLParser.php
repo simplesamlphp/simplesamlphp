@@ -77,7 +77,7 @@ class SAMLParser
      *   Each assertion consumer service is stored as an associative array with the
      *   elements that parseGenericEndpoint returns.
      *
-     * @var \SAML2\XML\md\SPSSODescriptor[]
+     * @var array
      */
     private array $spDescriptors;
 
@@ -87,14 +87,14 @@ class SAMLParser
      * - 'SingleSignOnService': Array with the IdP's single sign on service endpoints. Each endpoint is stored
      *   as an associative array with the elements that parseGenericEndpoint returns.
      *
-     * @var \SAML2\XML\md\IDPSSODescriptor[]
+     * @var array
      */
     private array $idpDescriptors;
 
     /**
      * List of attribute authorities we have found.
      *
-     * @var \SAML2\XML\md\AttributeAuthorityDescriptor[]
+     * @var array
      */
     private array $attributeAuthorityDescriptors = [];
 
@@ -127,7 +127,7 @@ class SAMLParser
     /**
      * This is an array of the Contact Persons of this entity.
      *
-     * @var \SAML2\XML\md\ContactPerson[]
+     * @var array
      */
     private array $contacts = [];
 

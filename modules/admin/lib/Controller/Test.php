@@ -161,6 +161,7 @@ class Test
         Assert::isInstanceOf($t, Template::class);
 
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        /** @var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 

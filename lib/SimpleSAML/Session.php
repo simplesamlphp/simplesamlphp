@@ -7,7 +7,9 @@ namespace SimpleSAML;
 use SAML2\XML\saml\AttributeValue;
 use Serializable;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
 /**
@@ -39,7 +41,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * This is an associative array indexed with the session id.
      *
-     * @var array<string, \SimpleSAML\Session>
+     * @var array
      */
     private static array $sessions = [];
 
@@ -50,12 +52,12 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var \SimpleSAML\Session|null
      */
-    private static ?Session $instance = null;
+    private static ?Session $instance;
 
     /**
      * The global configuration.
      *
-     * @var \SimpleSAML\Configuration
+     * @var \SimpleSAML\Configuration|null
      */
     private static ?Configuration $config;
 
@@ -256,7 +258,8 @@ class Session implements Serializable, Utils\ClearableState
     public static function getSessionFromRequest(): Session
     {
         // check if we already have initialized the session
-        if (isset(self::$instance)) {
+        /** @psalm-suppress RedundantCondition */
+        if (self::$instance !== null) {
             return self::$instance;
         }
 
@@ -292,6 +295,8 @@ class Session implements Serializable, Utils\ClearableState
          * error message). This means we don't need to create a new session again, we can use the one that's loaded now
          * instead.
          */
+
+        /** @psalm-suppress TypeDoesNotContainType */
         if (self::$instance !== null) {
             return self::$instance;
         }
@@ -413,7 +418,8 @@ class Session implements Serializable, Utils\ClearableState
      */
     public static function useTransientSession(): void
     {
-        if (isset(self::$instance)) {
+        /** @psalm-suppress RedundantCondition */
+        if (self::$instance !== null) {
             // we already have a session, don't bother with a transient session
             return;
         }

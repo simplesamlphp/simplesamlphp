@@ -21,9 +21,9 @@ class SessionHandlerPHP extends SessionHandler
     /**
      * This variable contains the session cookie name.
      *
-     * @var string|null
+     * @var string
      */
-    protected ?string $cookie_name = null;
+    protected string $cookie_name;
 
     /**
      * An associative array containing the details of a session existing previously to creating or loading one with this
@@ -48,7 +48,7 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', ini_get('session.name') ?? 'PHPSESSID');
 
         if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {

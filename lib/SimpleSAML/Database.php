@@ -50,7 +50,7 @@ class Database
     /**
      * Array with information on the last error occurred.
      */
-    private array $lastError;
+    private array $lastError = [];
 
 
     /**

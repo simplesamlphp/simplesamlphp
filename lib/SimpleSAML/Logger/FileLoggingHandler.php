@@ -39,8 +39,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
         Logger::DEBUG   => 'DEBUG',
     ];
 
-    /** @var string|null */
-    protected ?string $processname = null;
+    /** @var string */
+    protected string $processname;
 
     /** @var string */
     protected string $format = "%b %d %H:%M:%S";

@@ -285,11 +285,7 @@ class SystemTest extends TestCase
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        if ($service instanceof Configuration) {
-            $reflectedInstance->setValue($service, []);
-        } else {
-            $reflectedInstance->setValue($service, null);
-        }
+        $reflectedInstance->setValue($service, []);
         $reflectedInstance->setAccessible(false);
     }
 }
