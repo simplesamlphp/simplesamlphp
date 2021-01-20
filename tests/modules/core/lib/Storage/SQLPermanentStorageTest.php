@@ -15,8 +15,8 @@ use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
  */
 class SQLPermanentStorageTest extends TestCase
 {
-    /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage|null */
-    private static ?SQLPermanentStorage $sql;
+    /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage */
+    private static SQLPermanentStorage $sql;
 
 
     /**
@@ -35,7 +35,6 @@ class SQLPermanentStorageTest extends TestCase
      */
     public static function tearDownAfterClass(): void
     {
-        self::$sql = null;
         unlink(sys_get_temp_dir() . '/sqllite/test.sqlite');
     }
 

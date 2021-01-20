@@ -55,10 +55,6 @@ class AttributeMap extends Auth\ProcessingFilter
                 continue;
             }
 
-            if (!is_string($origName)) {
-                throw new Exception('Invalid attribute name: ' . var_export($origName, true));
-            }
-
             if (!is_string($newName) && !is_array($newName)) {
                 throw new Exception('Invalid attribute name: ' . var_export($newName, true));
             }

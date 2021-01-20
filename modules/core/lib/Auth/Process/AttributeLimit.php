@@ -50,14 +50,12 @@ class AttributeLimit extends Auth\ProcessingFilter
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
-            } elseif (is_string($index)) {
+            } else { // Can only be string since PHP only allows string|int for array keys
                 if (!is_array($value)) {
                     throw new Error\Exception('AttributeLimit: Values for ' .
                         var_export($index, true) . ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
-            } else {
-                throw new Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, true));
             }
         }
     }
