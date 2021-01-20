@@ -27,8 +27,8 @@ class ParserTest extends TestCase
 </Root>
 XML;
 
-    /** @var Parser */
-    private $xml;
+    /** @var \SimpleSAML\XML\Parser */
+    private Parser $xml;
 
 
     /**

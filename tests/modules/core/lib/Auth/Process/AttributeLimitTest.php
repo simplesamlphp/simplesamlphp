@@ -20,7 +20,7 @@ class AttributeLimitTest extends TestCase
      * setUpBeforeClass a request that will be used for the following tests.
      * note the above tests don't use self::$request for processFilter input.
      */
-    protected static $request;
+    protected static array $request;
 
 
     /**

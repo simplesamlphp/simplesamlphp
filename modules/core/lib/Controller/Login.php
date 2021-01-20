@@ -28,16 +28,16 @@ use Symfony\Component\HttpFoundation\Response;
 class Login
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Auth\AuthenticationFactory */
-    protected $factory;
+    protected AuthenticationFactory $factory;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
     /** @var array */
-    protected $sources;
+    protected array $sources;
 
 
     /**

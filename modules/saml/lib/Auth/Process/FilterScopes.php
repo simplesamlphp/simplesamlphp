@@ -18,9 +18,9 @@ use SimpleSAML\Utils;
 class FilterScopes extends ProcessingFilter
 {
     /**
-     * @var array Stores any pre-configured scoped attributes which come from the filter configuration.
+     * @var string[]  Stores any pre-configured scoped attributes which come from the filter configuration.
      */
-    private $scopedAttributes = [
+    private array $scopedAttributes = [
         'eduPersonScopedAffiliation',
         'eduPersonPrincipalName'
     ];

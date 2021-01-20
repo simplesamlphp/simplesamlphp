@@ -39,9 +39,9 @@ class Session implements Serializable, Utils\ClearableState
      *
      * This is an associative array indexed with the session id.
      *
-     * @var array
+     * @var array<string, \SimpleSAML\Session>
      */
-    private static $sessions = [];
+    private static array $sessions = [];
 
     /**
      * This variable holds the instance of the session - Singleton approach.
@@ -50,28 +50,28 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var \SimpleSAML\Session|null
      */
-    private static $instance = null;
+    private static ?Session $instance = null;
 
     /**
      * The global configuration.
      *
      * @var \SimpleSAML\Configuration
      */
-    private static $config;
+    private static ?Configuration $config;
 
     /**
      * The session ID of this session.
      *
      * @var string|null
      */
-    private $sessionId;
+    private ?string $sessionId;
 
     /**
      * Transient session flag.
      *
      * @var boolean|false
      */
-    private $transient = false;
+    private bool $transient = false;
 
     /**
      * The track id is a new random unique identifier that is generated for each session.
@@ -80,12 +80,12 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string
      */
-    private $trackid;
+    private string $trackid;
 
     /**
      * @var integer|null
      */
-    private $rememberMeExpire = null;
+    private ?int $rememberMeExpire = null;
 
     /**
      * Marks a session as modified, and therefore needs to be saved before destroying
@@ -93,14 +93,14 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var bool
      */
-    private $dirty = false;
+    private bool $dirty = false;
 
     /**
      * Tells the session object that the save callback has been registered and there's no need to register it again.
      *
      * @var bool
      */
-    private $callback_registered = false;
+    private bool $callback_registered = false;
 
     /**
      * This is an array of objects which will expire automatically after a set time. It is used
@@ -112,7 +112,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $dataStore = [];
+    private array $dataStore = [];
 
     /**
      * The list of IdP-SP associations.
@@ -122,7 +122,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $associations = [];
+    private array $associations = [];
 
     /**
      * The authentication token.
@@ -131,7 +131,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string|null
      */
-    private $authToken;
+    private ?string $authToken;
 
     /**
      * Authentication data.
@@ -140,7 +140,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array  Associative array of associative arrays.
      */
-    private $authData = [];
+    private array $authData = [];
 
 
     /**

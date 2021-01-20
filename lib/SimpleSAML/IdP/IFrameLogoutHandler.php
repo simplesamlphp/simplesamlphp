@@ -26,7 +26,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      *
      * @var \SimpleSAML\IdP
      */
-    private $idp;
+    private IDP $idp;
+
 
     /**
      * LogoutIFrame constructor.
@@ -37,6 +38,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     {
         $this->idp = $idp;
     }
+
 
     /**
      * Start the logout operation.

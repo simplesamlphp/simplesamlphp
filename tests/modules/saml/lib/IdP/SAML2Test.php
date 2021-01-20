@@ -18,7 +18,7 @@ class SAML2Test extends ClearStateTestCase
      * Default values for the state array expected to be generated at the start of logins
      * @var array
      */
-    private $defaultExpectedAuthState = [
+    private array $defaultExpectedAuthState = [
         'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
         '\SimpleSAML\Auth\State.exceptionFunc' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'],
         'saml:RelayState' => null,

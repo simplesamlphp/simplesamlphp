@@ -32,14 +32,14 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $sourceAttribute;
+    private string $sourceAttribute;
 
     /**
      * The name of the attribute which includes the scope
      *
      * @var string
      */
-    private $targetAttribute;
+    private string $targetAttribute;
 
 
     /**

@@ -34,7 +34,7 @@ use Symfony\Component\VarExporter\VarExporter;
 class Federation
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * @var \SimpleSAML\Auth\Source|string
@@ -49,10 +49,10 @@ class Federation
     protected $authUtils = Utils\Auth::class;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
-    protected $mdHandler;
+    protected MetadataStorageHandler $mdHandler;
 
-    /** @var Menu */
-    protected $menu;
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Controller\Menu $menu;
 
 
     /**

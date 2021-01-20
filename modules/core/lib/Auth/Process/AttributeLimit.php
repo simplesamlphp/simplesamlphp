@@ -20,14 +20,14 @@ class AttributeLimit extends Auth\ProcessingFilter
      * List of attributes which this filter will allow through.
      * @var array
      */
-    private $allowedAttributes = [];
+    private array $allowedAttributes = [];
 
     /**
      * Whether the 'attributes' option in the metadata takes precedence.
      *
      * @var bool
      */
-    private $isDefault = false;
+    private bool $isDefault = false;
 
 
     /**

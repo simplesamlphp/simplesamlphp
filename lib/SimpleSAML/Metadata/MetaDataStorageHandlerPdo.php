@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use PDO;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
@@ -23,22 +24,23 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
     /**
      * The PDO object
      */
-    private $db;
+    private PDO $db;
 
     /**
      * Prefix to apply to the metadata table
      */
-    private $tablePrefix;
+    private string $tablePrefix;
 
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      */
-    private $cachedMetadata = [];
+    private array $cachedMetadata = [];
 
     /**
      * All the metadata sets supported by this MetaDataStorageHandler
+     * @var string[]
      */
-    public $supportedSets = [
+    public array $supportedSets = [
         'adfs-idp-hosted',
         'adfs-sp-remote',
         'saml20-idp-hosted',

@@ -25,18 +25,18 @@ class Module
     /**
      * Index pages: file names to attempt when accessing directories.
      *
-     * @var array
+     * @var string[]
      */
-    public static $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
+    public static array $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
 
     /**
      * MIME Types
      *
      * The key is the file extension and the value the corresponding MIME type.
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $mimeTypes = [
+    public static array $mimeTypes = [
         'bmp'   => 'image/x-ms-bmp',
         'css'   => 'text/css',
         'gif'   => 'image/gif',
@@ -62,16 +62,16 @@ class Module
     /**
      * A list containing the modules currently installed.
      *
-     * @var array
+     * @var string[]
      */
-    public static $modules = [];
+    public static array $modules = [];
 
     /**
      * A list containing the modules that are enabled by default, unless specifically disabled
      *
-     * @var array
+     * @var array<string, bool>
      */
-    public static $core_modules = [
+    public static array $core_modules = [
         'core' => true,
         'saml' => true
     ];
@@ -81,7 +81,7 @@ class Module
      *
      * @var array
      */
-    public static $module_info = [];
+    public static array $module_info = [];
 
 
     /**

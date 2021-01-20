@@ -36,56 +36,56 @@ class Template extends Response
      *
      * @var array
      */
-    public $data = [];
+    public array $data = [];
 
     /**
      * A translator instance configured to work with this template.
      *
      * @var \SimpleSAML\Locale\Translate
      */
-    private $translator;
+    private Translate $translator;
 
     /**
      * The localization backend
      *
      * @var \SimpleSAML\Locale\Localization
      */
-    private $localization;
+    private Localization $localization;
 
     /**
      * The configuration to use in this template.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The file to load in this template.
      *
      * @var string
      */
-    private $template = 'default.php';
+    private string $template = 'default.php';
 
     /**
      * The twig environment.
      *
      * @var \Twig\Environment
      */
-    private $twig;
+    private \Twig\Environment $twig;
 
     /**
      * The template name.
      *
      * @var string
      */
-    private $twig_template;
+    private string $twig_template;
 
     /**
      * Current module, if any.
      *
      * @var string
      */
-    private $module;
+    private string $module;
 
     /**
      * A template controller, if any.
@@ -96,7 +96,7 @@ class Template extends Response
      *
      * @var \SimpleSAML\XHTML\TemplateControllerInterface|null
      */
-    private $controller = null;
+    private ?TemplateControllerInterface $controller = null;
 
     /**
      * Whether we are using a non-default theme or not.
@@ -107,7 +107,7 @@ class Template extends Response
      *
      * @var array
      */
-    private $theme = ['module' => null, 'name' => 'default'];
+    private array $theme = ['module' => null, 'name' => 'default'];
 
 
     /**

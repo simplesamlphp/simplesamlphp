@@ -24,7 +24,7 @@ abstract class SessionHandler
      *
      * @var \SimpleSAML\SessionHandler
      */
-    protected static $sessionHandler;
+    protected static SessionHandler $sessionHandler;
 
 
     /**

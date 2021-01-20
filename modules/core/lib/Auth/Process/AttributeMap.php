@@ -21,13 +21,13 @@ class AttributeMap extends Auth\ProcessingFilter
      * Associative array with the mappings of attribute names.
      * @var array
      */
-    private $map = [];
+    private array $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
      * @var bool
      */
-    private $duplicate = false;
+    private bool $duplicate = false;
 
 
     /**

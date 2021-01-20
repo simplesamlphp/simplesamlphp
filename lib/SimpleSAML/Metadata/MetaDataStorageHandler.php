@@ -27,18 +27,18 @@ class MetaDataStorageHandler implements ClearableState
      * instance of the metadata handler. This variable will be null if
      * we haven't instantiated a metadata handler yet.
      *
-     * @var MetaDataStorageHandler|null
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler|null
      */
-    private static $metadataHandler = null;
+    private static ?MetadataStorageHandler $metadataHandler = null;
 
 
     /**
      * This is a list of all the metadata sources we have in our metadata
      * chain. When we need metadata, we will look through this chain from start to end.
      *
-     * @var MetaDataStorageSource[]
+     * @var \SimpleSAML\Metadata\MetaDataStorageSource[]
      */
-    private $sources;
+    private array $sources;
 
 
     /**

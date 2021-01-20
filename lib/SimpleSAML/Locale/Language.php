@@ -19,50 +19,51 @@ class Language
 {
     /**
      * This is the default language map. It is used to map languages codes from the user agent to other language codes.
+     * @var array<string, string>
      */
-    private static $defaultLanguageMap = ['nb' => 'no'];
+    private static array $defaultLanguageMap = ['nb' => 'no'];
 
     /**
      * The configuration to use.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * An array holding a list of languages available.
      *
-     * @var array
+     * @var string[]
      */
-    private $availableLanguages;
+    private array $availableLanguages;
 
     /**
      * The language currently in use.
      *
      * @var null|string
      */
-    private $language = null;
+    private ?string $language = null;
 
     /**
      * The language to use by default.
      *
      * @var string
      */
-    private $defaultLanguage;
+    private string $defaultLanguage;
 
     /**
      * An array holding a list of languages that are written from right to left.
      *
-     * @var array
+     * @var string[]
      */
-    private $rtlLanguages;
+    private array $rtlLanguages;
 
     /**
      * HTTP GET language parameter name.
      *
      * @var string
      */
-    private $languageParameterName;
+    private string $languageParameterName;
 
     /**
      * A custom function to use in order to determine the language in use.
@@ -77,9 +78,9 @@ class Language
      * with some charming SimpleSAML-specific variants...
      * that must remain before 2.0 due to backwards compatibility
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $language_names = [
+    public static array $language_names = [
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
@@ -128,9 +129,9 @@ class Language
     /**
      * A mapping of SSP languages to locales
      *
-     * @var array
+     * @var array<string, string>
      */
-    private $languagePosixMapping = [
+    private array $languagePosixMapping = [
         'no' => 'nb_NO',
         'nn' => 'nn_NO',
     ];

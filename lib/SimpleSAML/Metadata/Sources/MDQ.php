@@ -25,14 +25,14 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @var string
      */
-    private $server;
+    private string $server;
 
     /**
      * The cache directory, or null if no cache directory is configured.
      *
      * @var string|null
      */
-    private $cacheDir;
+    private ?string $cacheDir;
 
 
     /**
@@ -40,7 +40,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @var integer
      */
-    private $cacheLength;
+    private int $cacheLength;
 
 
     /**

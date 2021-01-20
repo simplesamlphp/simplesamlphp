@@ -37,14 +37,14 @@ class TargetedID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $identifyingAttribute;
+    private string $identifyingAttribute;
 
     /**
      * Whether the attribute should be generated as a NameID value, or as a simple string.
      *
      * @var boolean
      */
-    private $generateNameId = false;
+    private bool $generateNameId = false;
 
     /**
      * @var \SimpleSAML\Utils\Config|string

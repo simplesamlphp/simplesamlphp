@@ -13,9 +13,9 @@ class ClearStateTestCase extends TestCase
 {
     /**
      * Used for managing and clearing state
-     * @var StateClearer
+     * @var \SimpleSAML\Test\Utils\StateClearer
      */
-    protected static $stateClearer;
+    protected static StateClearer $stateClearer;
 
 
     /**

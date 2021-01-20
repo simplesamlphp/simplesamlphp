@@ -27,7 +27,7 @@ class Config
     public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * @var \SimpleSAML\Utils\Auth|string
@@ -35,11 +35,11 @@ class Config
      */
     protected $authUtils = Utils\Auth::class;
 
-    /** @var Menu */
-    protected $menu;
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Controller\Menu $menu;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

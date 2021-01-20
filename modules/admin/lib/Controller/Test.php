@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 class Test
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * @var \SimpleSAML\Utils\Auth|string
@@ -48,11 +48,11 @@ class Test
      */
     protected $authState = Auth\State::class;
 
-    /** @var Menu */
-    protected $menu;
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Controller\Menu $menu;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

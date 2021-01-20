@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
@@ -24,9 +25,9 @@ class SystemTest extends TestCase
     private const DEFAULTTEMPDIR = 'tempdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
-    protected $root;
+    protected VfsStreamDirectory $root;
 
-    /** @var string */
+    /** @var string string */
     protected $root_directory;
 
 

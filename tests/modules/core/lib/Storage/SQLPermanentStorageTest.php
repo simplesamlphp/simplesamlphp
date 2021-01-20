@@ -16,7 +16,7 @@ use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 class SQLPermanentStorageTest extends TestCase
 {
     /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage */
-    private static $sql;
+    private static SQLPermanentStorage $sql;
 
 
     /**

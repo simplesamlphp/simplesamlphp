@@ -22,7 +22,7 @@ class AttributeNameID extends BaseNameIDGenerator
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
 
     /**

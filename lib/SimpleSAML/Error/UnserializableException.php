@@ -27,7 +27,7 @@ class UnserializableException extends Exception
      *
      * @var string
      */
-    private $class;
+    private string $class;
 
 
     /**

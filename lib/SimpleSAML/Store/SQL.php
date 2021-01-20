@@ -23,28 +23,28 @@ class SQL extends Store
      *
      * @var \PDO
      */
-    public $pdo;
+    public PDO $pdo;
 
     /**
      * Our database driver.
      *
      * @var string
      */
-    public $driver;
+    public string $driver;
 
     /**
      * The prefix we should use for our tables.
      *
      * @var string
      */
-    public $prefix;
+    public string $prefix;
 
     /**
      * Associative array of table versions.
      *
      * @var array
      */
-    private $tableVersions;
+    private array $tableVersions;
 
 
     /**

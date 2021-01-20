@@ -24,7 +24,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @var \SimpleSAML\IdP
      */
-    private $idp;
+    private IDP $idp;
 
 
     /**

@@ -21,7 +21,7 @@ class AttributeAdd extends Auth\ProcessingFilter
      * Flag which indicates wheter this filter should append new values or replace old values.
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
     /**
      * Attributes which should be added/appended.
@@ -29,7 +29,7 @@ class AttributeAdd extends Auth\ProcessingFilter
      * Associative array of arrays.
      * @var array
      */
-    private $attributes = [];
+    private array $attributes = [];
 
 
     /**

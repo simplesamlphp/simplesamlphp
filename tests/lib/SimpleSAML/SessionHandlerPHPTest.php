@@ -15,7 +15,7 @@ use SimpleSAML\Configuration;
 class SessionHandlerPHPTest extends ClearStateTestCase
 {
     /** @var array */
-    protected $sessionConfig = [
+    protected array $sessionConfig = [
         'session.cookie.name' => 'SimpleSAMLSessionID',
         'session.cookie.lifetime' => 100,
         'session.cookie.path' => '/ourPath',
@@ -25,7 +25,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     ];
 
     /** @var array */
-    protected $original;
+    protected array $original;
 
 
     /**

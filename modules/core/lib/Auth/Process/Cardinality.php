@@ -19,13 +19,13 @@ use SimpleSAML\Utils;
 class Cardinality extends Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
-    private $cardinality = [];
+    private array $cardinality = [];
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = [];
+    private array $ignoreEntities = [];
 
     /** @var \SimpleSAML\Utils\HttpAdapter */
-    private $http;
+    private Utils\HttpAdapter $http;
 
 
     /**

@@ -25,13 +25,13 @@ use SimpleSAML\Test\Utils\SpTester;
 class SPTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Configuration|null $idpMetadata */
-    private $idpMetadata = null;
+    private ?Configuration $idpMetadata = null;
 
     /** @var array $idpConfigArray */
-    private $idpConfigArray;
+    private array $idpConfigArray;
 
     /** @var \SimpleSAML\Configuration */
-    private $config;
+    private Configuration $config;
 
 
     /**

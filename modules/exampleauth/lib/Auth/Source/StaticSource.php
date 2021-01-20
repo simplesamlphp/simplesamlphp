@@ -23,7 +23,7 @@ class StaticSource extends Auth\Source
      * The attributes we return.
      * @var array
      */
-    private $attributes;
+    private array $attributes;
 
 
     /**

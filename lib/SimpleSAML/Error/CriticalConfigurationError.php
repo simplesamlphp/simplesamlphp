@@ -32,9 +32,9 @@ class CriticalConfigurationError extends ConfigurationError
     /**
      * This is the bare minimum configuration that we can use.
      *
-     * @var array
+     * @var array<string, string>
      */
-    private static $minimum_config = [
+    private static array $minimum_config = [
         'logging.handler' => 'errorlog',
         'logging.level'  => Logger::DEBUG,
         'errorreporting' => false,

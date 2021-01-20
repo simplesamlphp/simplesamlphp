@@ -15,11 +15,11 @@ use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
  */
 class MultiAuthTest extends ClearStateTestCase
 {
-    /** @var Configuration */
-    private $config;
+    /** @var \SimpleSAML\Configuration */
+    private Configuration $config;
 
-    /** @var Configuration */
-    private $sourceConfig;
+    /** @var \SimpleSAML\Configuration */
+    private Configuration $sourceConfig;
 
 
     /**

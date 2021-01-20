@@ -23,7 +23,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var string
      */
-    private $directory = '/';
+    private string $directory = '/';
 
 
     /**
@@ -31,7 +31,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var array
      */
-    private $cachedMetadata = [];
+    private array $cachedMetadata = [];
 
 
     /**

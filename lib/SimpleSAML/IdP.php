@@ -7,6 +7,7 @@ namespace SimpleSAML;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\IdP\IFrameLogoutHandler;
 use SimpleSAML\IdP\LogoutHandlerInterface;
 use SimpleSAML\IdP\TraditionalLogoutHandler;
@@ -30,14 +31,14 @@ class IdP
      *
      * @var array
      */
-    private static $idpCache = [];
+    private static array $idpCache = [];
 
     /**
      * The identifier for this IdP.
      *
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * The "association group" for this IdP.
@@ -47,21 +48,21 @@ class IdP
      *
      * @var string
      */
-    private $associationGroup;
+    private string $associationGroup;
 
     /**
      * The configuration for this IdP.
      *
-     * @var Configuration
+     * @var \SimpleSAML\Configuration
      */
-    private $config;
+    private Configuration $config;
 
     /**
      * Our authsource.
      *
-     * @var Auth\Simple
+     * @var \SimpleSAML\Auth\Simple
      */
-    private $authSource;
+    private Auth\Simple $authSource;
 
 
     /**

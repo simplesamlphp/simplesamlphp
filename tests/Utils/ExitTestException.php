@@ -10,7 +10,7 @@ namespace SimpleSAML\Test\Utils;
 class ExitTestException extends \Exception
 {
     /** @var array */
-    private $testResult;
+    private array $testResult;
 
 
     /**

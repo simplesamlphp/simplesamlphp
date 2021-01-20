@@ -21,7 +21,7 @@ class PHP extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $code;
+    private string $code;
 
 
     /**

@@ -41,7 +41,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var string|null
      */
-    private $forcedUsername;
+    private ?string $forcedUsername;
 
     /**
      * Links to pages from login page.
@@ -49,7 +49,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var array
      */
-    protected $loginLinks = [];
+    protected array $loginLinks = [];
 
     /**
      * Storage for authsource config option remember.username.enabled
@@ -58,7 +58,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameEnabled = false;
+    protected bool $rememberUsernameEnabled = false;
 
     /**
      * Storage for authsource config option remember.username.checked
@@ -67,7 +67,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameChecked = false;
+    protected bool $rememberUsernameChecked = false;
 
     /**
      * Storage for general config option session.rememberme.enable.
@@ -78,7 +78,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberMeEnabled = false;
+    protected bool $rememberMeEnabled = false;
 
     /**
      * Storage for general config option session.rememberme.checked.
@@ -87,7 +87,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberMeChecked = false;
+    protected bool $rememberMeChecked = false;
 
 
     /**

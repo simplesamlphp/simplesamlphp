@@ -27,28 +27,30 @@ class Database
 {
     /**
      * This variable holds the instance of the session - Singleton approach.
+     * @var \SimpleSAML\Database[]
      */
-    private static $instance = [];
+    private static array $instance = [];
 
     /**
      * PDO Object for the Primary database server
      */
-    private $dbPrimary;
+    private PDO $dbPrimary;
 
     /**
      * Array of PDO Objects for configured database secondaries
+     * @var \PDO[]
      */
-    private $dbSecondaries = [];
+    private array $dbSecondaries = [];
 
     /**
      * Prefix to apply to the tables
      */
-    private $tablePrefix;
+    private string $tablePrefix;
 
     /**
      * Array with information on the last error occurred.
      */
-    private $lastError;
+    private array $lastError;
 
 
     /**

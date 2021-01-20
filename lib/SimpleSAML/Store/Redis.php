@@ -18,7 +18,7 @@ use SimpleSAML\Store;
 class Redis extends Store
 {
     /** @var \Predis\Client */
-    public $redis;
+    public Client $redis;
 
 
     /**

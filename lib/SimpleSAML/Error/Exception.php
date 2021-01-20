@@ -27,14 +27,14 @@ class Exception extends \Exception
      *
      * @var array<int, string>
      */
-    private $backtrace = [];
+    private array $backtrace = [];
 
     /**
      * The cause of this exception.
      *
      * @var \SimpleSAML\Error\Exception|null
      */
-    private $cause = null;
+    private ?Error\Exception $cause = null;
 
 
     /**

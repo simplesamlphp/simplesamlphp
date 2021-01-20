@@ -47,7 +47,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @var string
      */
-    private $usernameOrgMethod;
+    private string $usernameOrgMethod;
 
     /**
      * Storage for authsource config option remember.username.enabled
@@ -56,7 +56,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameEnabled = false;
+    protected bool $rememberUsernameEnabled = false;
 
     /**
      * Storage for authsource config option remember.username.checked
@@ -65,7 +65,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameChecked = false;
+    protected bool $rememberUsernameChecked = false;
 
     /**
      * Storage for authsource config option remember.organization.enabled
@@ -74,7 +74,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberOrganizationEnabled = false;
+    protected bool $rememberOrganizationEnabled = false;
 
     /**
      * Storage for authsource config option remember.organization.checked
@@ -83,7 +83,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @var bool
      */
-    protected $rememberOrganizationChecked = false;
+    protected bool $rememberOrganizationChecked = false;
 
 
     /**

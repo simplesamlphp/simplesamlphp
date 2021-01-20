@@ -17,7 +17,7 @@ use SimpleSAML\XHTML\Template;
 final class Menu
 {
     /** @var array */
-    private $options;
+    private array $options;
 
 
     /**

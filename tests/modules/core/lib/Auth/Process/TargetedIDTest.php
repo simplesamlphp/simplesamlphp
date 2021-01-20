@@ -20,10 +20,10 @@ use SimpleSAML\Utils;
 class TargetedIDTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Config */
-    protected static $configUtils;
+    protected static Utils\Config $configUtils;
 
     /**
      * Set up for each test.

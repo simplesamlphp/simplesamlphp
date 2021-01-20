@@ -22,13 +22,13 @@ use Symfony\Component\HttpFoundation\Response;
 class ConfigTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

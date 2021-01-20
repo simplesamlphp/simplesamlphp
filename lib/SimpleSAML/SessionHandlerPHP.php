@@ -23,7 +23,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var string
      */
-    protected $cookie_name;
+    protected string $cookie_name;
 
     /**
      * An associative array containing the details of a session existing previously to creating or loading one with this
@@ -35,7 +35,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var array
      */
-    private $previous_session = [];
+    private array $previous_session = [];
 
 
     /**

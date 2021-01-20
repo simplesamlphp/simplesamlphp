@@ -20,7 +20,7 @@ class Memcache extends Store
      *
      * @var string
      */
-    private $prefix;
+    private string $prefix;
 
 
     /**

@@ -27,7 +27,7 @@ class UserPass extends UserPassBase
      *
      * @var array
      */
-    private $users;
+    private array $users;
 
 
     /**

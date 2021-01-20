@@ -21,12 +21,12 @@ class Errors
     /**
      * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
      */
-    private static $errorStack = [];
+    private static array $errorStack = [];
 
     /**
      * @var bool This is the xml error state we had before we began logging.
      */
-    private static $xmlErrorState;
+    private static bool $xmlErrorState;
 
 
     /**

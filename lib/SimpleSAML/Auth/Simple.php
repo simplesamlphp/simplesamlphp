@@ -24,13 +24,13 @@ class Simple
      *
      * @var string
      */
-    protected $authSource;
+    protected string $authSource;
 
     /** @var \SimpleSAML\Configuration */
-    protected $app_config;
+    protected Configuration $app_config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

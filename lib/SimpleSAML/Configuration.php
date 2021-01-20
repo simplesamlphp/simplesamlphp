@@ -31,9 +31,9 @@ class Configuration implements Utils\ClearableState
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
-     * @var array
+     * @var array<string \SimpleSAML\Configuration>
      */
-    private static $instance = [];
+    private static array $instance = [];
 
     /**
      * Configuration directories.
@@ -41,9 +41,9 @@ class Configuration implements Utils\ClearableState
      * This associative array contains the mappings from configuration sets to
      * configuration directories.
      *
-     * @var array
+     * @var array<string, string>
      */
-    private static $configDirs = [];
+    private static array $configDirs = [];
 
     /**
      * Cache of loaded configuration files.
@@ -52,28 +52,28 @@ class Configuration implements Utils\ClearableState
      *
      * @var array
      */
-    private static $loadedConfigs = [];
+    private static array $loadedConfigs = [];
 
     /**
      * The configuration array.
      *
      * @var array
      */
-    private $configuration;
+    private array $configuration;
 
     /**
      * The location which will be given when an error occurs.
      *
      * @var string
      */
-    private $location;
+    private string $location;
 
     /**
      * The file this configuration was loaded from.
      *
      * @var string|null
      */
-    private $filename = null;
+    private ?string $filename = null;
 
     /**
      * Initializes a configuration from the given array.

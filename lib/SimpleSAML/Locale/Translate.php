@@ -23,35 +23,35 @@ class Translate
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * Associative array of languages.
      *
      * @var array
      */
-    private $langtext = [];
+    private array $langtext = [];
 
     /**
      * Associative array of dictionaries.
      *
      * @var array
      */
-    private $dictionaries = [];
+    private array $dictionaries = [];
 
     /**
      * The default dictionary.
      *
      * @var string|null
      */
-    private $defaultDictionary = null;
+    private ?string $defaultDictionary = null;
 
     /**
      * The language object we'll use internally.
      *
      * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Language $language;
 
 
     /**

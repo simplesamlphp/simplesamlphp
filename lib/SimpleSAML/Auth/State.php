@@ -101,7 +101,7 @@ class State
     /**
      * State timeout.
      */
-    private static $stateTimeout = null;
+    private static ?int $stateTimeout = null;
 
 
     /**

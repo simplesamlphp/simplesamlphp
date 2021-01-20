@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use SimpleSAML\Configuration;
@@ -23,13 +24,13 @@ class CryptoTest extends TestCase
     private const DEFAULTCERTDIR = 'certdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
-    protected $root;
+    protected VfsStreamDirectory $root;
 
     /** @var string */
-    protected $root_directory;
+    protected string $root_directory;
 
     /** @var string */
-    protected $certdir;
+    protected string $certdir;
 
 
     /**

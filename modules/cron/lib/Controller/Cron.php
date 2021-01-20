@@ -29,13 +29,13 @@ use Symfony\Component\HttpFoundation\Response;
 class Cron
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Configuration */
-    protected $cronconfig;
+    protected Configuration $cronconfig;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
     /**
      * @var \SimpleSAML\Utils\Auth|string

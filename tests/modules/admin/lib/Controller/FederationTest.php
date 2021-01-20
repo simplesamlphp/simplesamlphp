@@ -42,22 +42,22 @@ class FederationTest extends TestCase
     public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var string */
-    private $metadata_xml = self::LIBRARY . '/xml/metadata/valid-metadata-selfsigned.xml';
+    private string $metadata_xml = self::LIBRARY . '/xml/metadata/valid-metadata-selfsigned.xml';
 
     /** @var string */
-    private $broken_metadata_xml = self::LIBRARY . '/xml/metadata/corrupted-metadata-selfsigned.xml';
+    private string $broken_metadata_xml = self::LIBRARY . '/xml/metadata/corrupted-metadata-selfsigned.xml';
 
     /** @var string */
-    private $expired_metadata_xml = self::LIBRARY . '/xml/metadata/expired-metadata.xml';
+    private string $expired_metadata_xml = self::LIBRARY . '/xml/metadata/expired-metadata.xml';
 
     /** @var string */
-    private $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
+    private string $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
 
     /**
      * Set up for each test.

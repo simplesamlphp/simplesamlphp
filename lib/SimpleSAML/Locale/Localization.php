@@ -22,7 +22,7 @@ class Localization
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The default gettext domain.
@@ -50,35 +50,35 @@ class Localization
      *
      * @var string
      */
-    private $localeDir;
+    private string $localeDir;
 
     /**
      * Where specific domains are stored
      *
      * @var array
      */
-    private $localeDomainMap = [];
+    private array $localeDomainMap = [];
 
     /**
      * Pointer to currently active translator
      *
      * @var \Gettext\Translator
      */
-    private $translator;
+    private Translator $translator;
 
     /**
      * Pointer to current Language
      *
-     * @var Language
+     * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Locale $language;
 
     /**
      * Language code representing the current Language
      *
      * @var string
      */
-    private $langcode;
+    private string $langcode;
 
 
     /**
@@ -86,7 +86,7 @@ class Localization
      *
      * @var string
      */
-    public $i18nBackend;
+    public string $i18nBackend;
 
 
     /**

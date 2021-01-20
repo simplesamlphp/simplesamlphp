@@ -13,7 +13,6 @@ use Twig\Environment;
  */
 interface TemplateControllerInterface
 {
-
     /**
      * Implement to modify the twig environment after its initialization (e.g. add filters or extensions).
      *

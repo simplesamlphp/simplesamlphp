@@ -20,13 +20,13 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @var null|string
      */
-    protected $logFile = null;
+    protected ?string $logFile = null;
 
     /**
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
      * SimpleSAML\Logger\ErrorLogLoggingHandler.
      *
-     * @var array
+     * @var array<int, string>
      */
     private static $levelNames = [
         Logger::EMERG   => 'EMERGENCY',
@@ -40,10 +40,10 @@ class FileLoggingHandler implements LoggingHandlerInterface
     ];
 
     /** @var string|null */
-    protected $processname = null;
+    protected ?string $processname = null;
 
     /** @var string */
-    protected $format = "%b %d %H:%M:%S";
+    protected string $format = "%b %d %H:%M:%S";
 
 
     /**

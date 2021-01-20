@@ -15,7 +15,7 @@ use SimpleSAML\Configuration;
 class SessionTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
     /**
      */

@@ -24,7 +24,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @var string|null
      */
-    private $session_id = null;
+    private ?string $session_id = null;
 
 
     /**
@@ -32,7 +32,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @var string
      */
-    protected $cookie_name;
+    protected string $cookie_name;
 
 
     /**
