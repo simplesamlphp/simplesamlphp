@@ -71,7 +71,7 @@ class Localization
      *
      * @var \SimpleSAML\Locale\Language
      */
-    private Locale $language;
+    private Language $language;
 
     /**
      * Language code representing the current Language

@@ -21,9 +21,9 @@ class SessionHandlerPHP extends SessionHandler
     /**
      * This variable contains the session cookie name.
      *
-     * @var string
+     * @var string|null
      */
-    protected string $cookie_name;
+    protected ?string $cookie_name = null;
 
     /**
      * An associative array containing the details of a session existing previously to creating or loading one with this

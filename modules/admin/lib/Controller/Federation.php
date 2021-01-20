@@ -52,7 +52,7 @@ class Federation
     protected MetadataStorageHandler $mdHandler;
 
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
-    protected Controller\Menu $menu;
+    protected Menu $menu;
 
 
     /**

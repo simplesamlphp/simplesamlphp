@@ -41,7 +41,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @var string|null
      */
-    private ?string $forcedUsername;
+    private ?string $forcedUsername = null;
 
     /**
      * Links to pages from login page.

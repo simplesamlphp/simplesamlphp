@@ -83,9 +83,9 @@ class Template extends Response
     /**
      * Current module, if any.
      *
-     * @var string
+     * @var string|null
      */
-    private string $module;
+    private ?string $module = null;
 
     /**
      * A template controller, if any.

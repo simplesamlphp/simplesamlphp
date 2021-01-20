@@ -28,7 +28,7 @@ abstract class Source
      *
      * @var string
      */
-    protected string $authId;
+    protected string $authId = '';
 
 
     /**

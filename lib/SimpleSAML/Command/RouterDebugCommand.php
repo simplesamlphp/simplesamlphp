@@ -17,7 +17,7 @@ class RouterDebugCommand extends Command
     /**
      * @var string
      */
-    protected static string $defaultName = 'debug:router';
+    protected static $defaultName = 'debug:router';
 
     /**
      * @var \Symfony\Component\Routing\RouterInterface

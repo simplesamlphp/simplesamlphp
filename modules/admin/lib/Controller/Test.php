@@ -49,7 +49,7 @@ class Test
     protected $authState = Auth\State::class;
 
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
-    protected Controller\Menu $menu;
+    protected Menu $menu;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;

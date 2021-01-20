@@ -10,7 +10,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Module\admin\Controller;
+use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -83,7 +83,7 @@ class TestTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\Test($this->config, $this->session);
+        $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $response = $c->main($request);
 
@@ -103,7 +103,7 @@ class TestTest extends TestCase
             ['logout' => 'notnull']
         );
 
-        $c = new Controller\Test($this->config, $this->session);
+        $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $c->setAuthSimple(new class ('admin') extends Auth\Simple {
             public function logout($params = null): void
@@ -130,7 +130,7 @@ class TestTest extends TestCase
             [Auth\State::EXCEPTION_PARAM => 'someException']
         );
 
-        $c = new Controller\Test($this->config, $this->session);
+        $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadExceptionState(?string $id = null): ?array
@@ -156,7 +156,7 @@ class TestTest extends TestCase
             ['as' => 'admin']
         );
 
-        $c = new Controller\Test($this->config, $this->session);
+        $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $c->setAuthSimple(new class ('admin') extends Auth\Simple {
             public function isAuthenticated(): bool
@@ -187,7 +187,7 @@ class TestTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\Test($this->config, $this->session);
+        $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $c->setAuthSimple(new class ('admin') extends Auth\Simple {
             public function isAuthenticated(): bool

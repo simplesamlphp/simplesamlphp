@@ -38,7 +38,7 @@ class MetaDataStorageHandler implements ClearableState
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageSource[]
      */
-    private array $sources;
+    private array $sources = [];
 
 
     /**

@@ -21,7 +21,7 @@ abstract class Store implements Utils\ClearableState
      *
      * @var \SimpleSAML\Store|false|null
      */
-    private static $instance;
+    private static $instance = null;
 
 
     /**

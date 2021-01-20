@@ -64,7 +64,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string|null
      */
-    private ?string $sessionId;
+    private ?string $sessionId = null;
 
     /**
      * Transient session flag.
@@ -131,7 +131,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string|null
      */
-    private ?string $authToken;
+    private ?string $authToken = null;
 
     /**
      * Authentication data.
@@ -1151,6 +1151,6 @@ class Session implements Serializable, Utils\ClearableState
     {
         self::$config = null;
         self::$instance = null;
-        self::$sessions = null;
+        self::$sessions = [];
     }
 }

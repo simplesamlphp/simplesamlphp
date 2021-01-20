@@ -31,7 +31,7 @@ class Redis extends Store
             throw new Error\CriticalConfigurationError('predis/predis is not available.');
         }
 
-        Assert::nullOrIsInstanceOf($redis, \Predis\Client::class);
+        Assert::nullOrIsInstanceOf($redis, Client::class);
 
         if ($redis === null) {
             $config = Configuration::getInstance();
