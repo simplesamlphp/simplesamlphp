@@ -137,6 +137,7 @@ class Config
 
         Module::callHooks('configpage', $t);
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        /** @psalm-var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 

@@ -195,6 +195,7 @@ class Federation
         Assert::isInstanceOf($t, Template::class);
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
+        /** @psalm-var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 
