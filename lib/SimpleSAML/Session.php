@@ -52,7 +52,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var \SimpleSAML\Session|null
      */
-    private static ?Session $instance;
+    private static ?Session $instance = null;
 
     /**
      * The global configuration.
