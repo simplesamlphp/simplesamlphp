@@ -118,8 +118,9 @@ class Test
                 'sources' => Auth\Source::getSources(),
             ];
         } else {
-            $simple = $this->authSimple;
-            $authsource = new $simple($as);
+            /** @psalm-suppress UndefinedClass */
+            $authsource = new $this->authSimple($as);
+
             if (!is_null($request->query->get('logout'))) {
                 return new RunnableResponse([$authsource, 'logout'], [$this->config->getBasePath() . 'logout.php']);
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
