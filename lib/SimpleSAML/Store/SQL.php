@@ -313,9 +313,6 @@ class SQL extends Store
         }
 
         $value = $row['_value'];
-//        if (is_resource($value)) {
-//            $value = stream_get_contents($value);
-//        }
 
         Assert::string($value);
 
