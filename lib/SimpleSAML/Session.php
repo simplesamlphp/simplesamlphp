@@ -781,7 +781,7 @@ class Session implements Serializable, Utils\ClearableState
     public function updateSessionCookies(array $params = []): void
     {
         $sessionHandler = SessionHandler::getSessionHandler();
-        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
+        $params = array_merge($sessionHandler->getCookieParams(), $params);
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
