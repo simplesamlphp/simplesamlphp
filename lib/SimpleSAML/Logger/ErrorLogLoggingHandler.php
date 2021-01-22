@@ -17,9 +17,9 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
     /**
      * This array contains the mappings from syslog log level to names.
      *
-     * @var array
+     * @var array<int, string>
      */
-    private static $levelNames = [
+    private static array $levelNames = [
         Logger::EMERG   => 'EMERG',
         Logger::ALERT   => 'ALERT',
         Logger::CRIT    => 'CRIT',
@@ -35,7 +35,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @var string
      */
-    private $processname;
+    private string $processname;
 
 
     /**

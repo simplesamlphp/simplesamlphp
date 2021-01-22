@@ -19,22 +19,22 @@ class IndexTest extends TestCase
     /**
      * @var \SimpleSAML\TestUtils\BuiltInServer
      */
-    protected $server;
+    protected BuiltInServer $server;
 
     /**
      * @var string
      */
-    protected $server_addr;
+    protected string $server_addr;
 
     /**
      * @var int
      */
-    protected $server_pid;
+    protected int $server_pid;
 
     /**
      * @var string
      */
-    protected $shared_file;
+    protected string $shared_file;
 
 
     /**

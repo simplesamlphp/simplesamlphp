@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -45,7 +46,7 @@ class ProcessingChain
     /**
      * All authentication processing filters, in the order they should be applied.
      */
-    private $filters;
+    private array $filters = [];
 
 
     /**
@@ -58,8 +59,6 @@ class ProcessingChain
      */
     public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
-        $this->filters = [];
-
         $config = Configuration::getInstance();
         $configauthproc = $config->getArray('authproc.' . $mode, null);
 
@@ -125,7 +124,7 @@ class ProcessingChain
             }
 
             if (!is_array($filter)) {
-                throw new \Exception('Invalid authentication processing filter configuration: ' .
+                throw new Exception('Invalid authentication processing filter configuration: ' .
                     'One of the filters wasn\'t a string or an array.');
             }
 
@@ -147,7 +146,7 @@ class ProcessingChain
     private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
         if (!array_key_exists('class', $config)) {
-            throw new \Exception('Authentication processing filter without name given.');
+            throw new Exception('Authentication processing filter without name given.');
         }
 
         $className = Module::resolveClass(
@@ -200,7 +199,7 @@ class ProcessingChain
         } catch (Error\Exception $e) {
             // No need to convert the exception
             throw $e;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             /*
              * To be consistent with the exception we return after an redirect,
              * we convert this exception before returning it.
@@ -231,7 +230,7 @@ class ProcessingChain
                 $filter->process($state);
             } catch (Error\Exception $e) {
                 State::throwException($state, $e);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $e = new Error\UnserializableException($e);
                 State::throwException($state, $e);
             }

@@ -48,12 +48,12 @@ class MultiAuth extends Auth\Source
      * Array of sources we let the user chooses among.
      * @var array
      */
-    private $sources;
+    private array $sources;
 
     /**
      * @var string|null preselect source in filter module configuration
      */
-    private $preselect;
+    private ?string $preselect;
 
 
     /**

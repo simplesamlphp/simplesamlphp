@@ -46,7 +46,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @var string|null
      */
-    protected $format = null;
+    protected ?string $format = null;
 
 
     /**

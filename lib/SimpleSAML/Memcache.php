@@ -27,9 +27,9 @@ class Memcache
     /**
      * Cache of the memcache servers we are using.
      *
-     * @var \Memcached[]|null
+     * @var \Memcached[]
      */
-    private static $serverGroups = null;
+    private static array $serverGroups = [];
 
 
     /**
@@ -317,7 +317,7 @@ class Memcache
     private static function getMemcacheServers(): array
     {
         // check if we have loaded the servers already
-        if (self::$serverGroups != null) {
+        if (!empty(self::$serverGroups)) {
             return self::$serverGroups;
         }
 

@@ -27,42 +27,42 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string
      */
-    private $entityId;
+    private string $entityId;
 
     /**
      * The metadata of this SP.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $metadata;
+    private Configuration $metadata;
 
     /**
      * The IdP the user is allowed to log into.
      *
      * @var string|null  The IdP the user can log into, or null if the user can log into all IdPs.
      */
-    private $idp;
+    private ?string $idp;
 
     /**
      * URL to discovery service.
      *
      * @var string|null
      */
-    private $discoURL;
+    private ?string $discoURL;
 
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
      * @var bool
      */
-    private $disable_scoping;
+    private bool $disable_scoping;
 
     /**
      * A list of supported protocols.
      *
      * @var string[]
      */
-    private $protocols = [];
+    private array $protocols = [];
 
 
     /**

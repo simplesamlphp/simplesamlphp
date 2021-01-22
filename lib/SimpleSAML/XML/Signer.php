@@ -25,23 +25,23 @@ class Signer
     /**
      * @var string The name of the ID attribute.
      */
-    private $idAttrName = '';
+    private string $idAttrName = '';
 
     /**
-     * @var XMLSecurityKey|false  The private key (as an XMLSecurityKey).
+     * @var \RobRichards\XMLSecLibs\XMLSecurityKey|false  The private key (as an XMLSecurityKey).
      */
     private $privateKey = false;
 
     /**
      * @var string The certificate (as text).
      */
-    private $certificate = '';
+    private string $certificate = '';
 
 
     /**
      * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates = [];
+    private array $extraCertificates = [];
 
 
     /**

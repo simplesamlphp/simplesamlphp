@@ -19,7 +19,7 @@ class File extends \SimpleSAML\Stats\Output
      * The log directory.
      * @var string
      */
-    private $logDir;
+    private string $logDir;
 
     /**
      * The file handle for the current file.
@@ -31,7 +31,7 @@ class File extends \SimpleSAML\Stats\Output
      * The current file date.
      * @var string|null
      */
-    private $fileDate = null;
+    private ?string $fileDate = null;
 
 
     /**

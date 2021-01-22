@@ -26,7 +26,7 @@ class Kernel extends BaseKernel
     public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     /** @var string */
-    private $module;
+    private string $module;
 
 
     /**

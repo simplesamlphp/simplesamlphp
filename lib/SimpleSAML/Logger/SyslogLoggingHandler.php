@@ -15,10 +15,10 @@ use SimpleSAML\Utils;
 class SyslogLoggingHandler implements LoggingHandlerInterface
 {
     /** @var bool */
-    private $isWindows = false;
+    private bool $isWindows = false;
 
     /** @var string */
-    protected $format = "%b %d %H:%M:%S";
+    protected string $format = "%b %d %H:%M:%S";
 
 
     /**
