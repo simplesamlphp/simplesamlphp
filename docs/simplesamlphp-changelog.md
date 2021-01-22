@@ -6,6 +6,13 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.1
+
+Released TBD
+
+### negotiate
+  * Fix a bug that was breaking the module when using the old UI
+
 ## Version 1.19.0
 
 Released 2021-01-21
