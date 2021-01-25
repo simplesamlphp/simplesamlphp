@@ -13,6 +13,9 @@ Released TBD
 ### negotiate
   * Fix a bug that was breaking the module when using the old UI
 
+### statistics
+  * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+
 ## Version 1.19.0
 
 Released 2021-01-21
