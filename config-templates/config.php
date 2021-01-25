@@ -470,7 +470,7 @@ $config = [
      ***********/
 
     /*
-     * Configuration to override module enabling/disabling.
+     * Configuration for enabling/disabling modules. By default the 'core' and 'saml' modules are enabled.
      *
      * Example:
      *
