@@ -10,6 +10,9 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+### memcacheMonitor
+  * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+
 ### negotiate
   * Fix a bug that was breaking the module when using the old UI
 
