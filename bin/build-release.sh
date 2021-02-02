@@ -40,6 +40,9 @@ if [ ! -x "$TARGET/composer.phar" ]; then
     curl -sS https://getcomposer.org/installer | php -- --install-dir=$TARGET
 fi
 
+# Downgrade composer to v1 to remain compatible with composer <1.8.5 (Debian 10)
+php "$TARGET/composer.phar" self-update --1
+
 # Set the version in composer.json
 php "$TARGET/composer.phar" config version "v$VERSION" -d "$TARGET"
 
@@ -63,6 +66,7 @@ rm "$TARGET/.gitattributes"
 rm -r "$TARGET/.github"
 rm "$TARGET/.php_cs.dist"
 rm "$TARGET/codecov.yml"
+rm "$TARGET/phpcs.xml"
 rm "$TARGET/psalm.xml"
 rm "$TARGET"/{,modules}/.gitignore
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
