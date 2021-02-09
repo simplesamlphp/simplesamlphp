@@ -201,9 +201,11 @@ try {
 
     $technicalContactEmail = $config->getString('technicalcontact_email', false);
     if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-        $techcontact['emailAddress'] = $technicalContactEmail;
-        $techcontact['name'] = $config->getString('technicalcontact_name', null);
-        $techcontact['contactType'] = 'technical';
+        $techcontact = [
+            'emailAddress' => $technicalContactEmail,
+            'name' => $config->getString('technicalcontact_name', null),
+            'contactType' => 'technical',
+        ];
         $metaArray['contacts'][] = Metadata::getContact($techcontact);
     }
 

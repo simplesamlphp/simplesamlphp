@@ -12,6 +12,7 @@
         <directory name="metadata-templates" />
         <directory name="modules" />
         <directory name="tests" />
+        <directory name="www" />
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
