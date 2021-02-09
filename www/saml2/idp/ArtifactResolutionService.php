@@ -47,10 +47,8 @@ if (!($request instanceof \SAML2\ArtifactResolve)) {
 }
 
 $issuer = $request->getIssuer();
-if (!is_string($issuer)) {
-    $issuer = $issuer->getValue();
-}
-
+\Webmozart\Assert\Assert::notNull($issuer);
+$issuer = $issuer->getValue();
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 $artifact = $request->getArtifact();
@@ -60,7 +58,7 @@ $store->delete('artifact', $artifact);
 
 if ($responseData !== null) {
     $document = \SAML2\DOMDocumentFactory::fromString($responseData);
-    $responseXML = $document->firstChild;
+    $responseXML = $document->documentElement;
 } else {
     $responseXML = null;
 }
