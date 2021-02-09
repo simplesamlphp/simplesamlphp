@@ -10,6 +10,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+  * Fixed a bug in the Artifact Resolution Service (#1428)
+  * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
+  * Updated npm dependencies up to February 1, 2021
+
 ### memcacheMonitor
   * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 
