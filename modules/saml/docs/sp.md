@@ -418,12 +418,12 @@ Options
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SingleLogoutServiceBinding`
-:	List of SingleLogoutService bindings the IdP will claim support for.
+:	List of SingleLogoutService bindings the SP will claim support for (can be empty).
 :	Possible values:
 
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-	* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+    * `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
 
 `SingleLogoutServiceLocation`
 :   The Single Logout Service URL published in the generated metadata.
