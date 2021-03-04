@@ -264,7 +264,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add signature options
-        if ($this->metadata->hasValue('WantAssertiosnsSigned')) {
+        if ($this->metadata->hasValue('WantAssertionsSigned')) {
             $metadata['saml20.sign.assertion'] = $this->metadata->getBoolean('WantAssertionsSigned');
         }
         if ($this->metadata->hasValue('redirect.sign')) {
