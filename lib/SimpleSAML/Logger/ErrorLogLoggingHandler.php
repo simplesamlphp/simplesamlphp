@@ -48,7 +48,8 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      */
     public function __construct(Configuration $config)
     {
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
     }
 
 

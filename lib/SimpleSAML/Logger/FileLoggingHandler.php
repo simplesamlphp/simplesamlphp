@@ -57,7 +57,9 @@ class FileLoggingHandler implements LoggingHandlerInterface
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getString('logging.logfile', 'simplesamlphp.log');
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {
