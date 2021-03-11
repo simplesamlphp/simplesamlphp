@@ -25,10 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DiscoControllerTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

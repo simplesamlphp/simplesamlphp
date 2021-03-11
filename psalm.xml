@@ -12,6 +12,7 @@
         <directory name="metadata-templates" />
         <directory name="modules" />
         <directory name="tests" />
+        <directory name="www" />
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
@@ -84,6 +85,13 @@
                 <directory name="tests" />
             </errorLevel>
         </InternalMethod>
+
+        <!-- Suppress Psalm-issue - We should be able to fix this with the static return-type in PHP 8.0 -->
+        <UnsafeInstantiation>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnsafeInstantiation>
     </issueHandlers>
 
     <stubs>

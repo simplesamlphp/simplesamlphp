@@ -34,14 +34,14 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
      * Array of accepted AuthnContextClassRef
      * @var array
      */
-    private $accepted;
+    private array $accepted;
 
 
     /**
      * AuthnContextClassRef of the assertion
      * @var string|null
      */
-    private $AuthnContextClassRef = null;
+    private ?string $AuthnContextClassRef = null;
 
 
     /**

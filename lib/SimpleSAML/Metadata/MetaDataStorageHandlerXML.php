@@ -20,7 +20,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @var array
      */
-    private $metadata;
+    private array $metadata;
 
 
     /**

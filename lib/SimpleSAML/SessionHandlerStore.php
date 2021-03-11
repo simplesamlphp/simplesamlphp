@@ -19,7 +19,7 @@ class SessionHandlerStore extends SessionHandlerCookie
      *
      * @var \SimpleSAML\Store
      */
-    private $store;
+    private Store $store;
 
 
     /**

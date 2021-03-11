@@ -22,7 +22,7 @@ class PersistentNameID2TargetedID extends ProcessingFilter
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
 
     /**
@@ -30,7 +30,7 @@ class PersistentNameID2TargetedID extends ProcessingFilter
      *
      * @var bool
      */
-    private $nameId;
+    private bool $nameId;
 
 
     /**

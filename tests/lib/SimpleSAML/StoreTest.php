@@ -137,7 +137,11 @@ class StoreTest extends TestCase
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, null);
+        if ($service instanceof Configuration) {
+            $reflectedInstance->setValue($service, []);
+        } else {
+            $reflectedInstance->setValue($service, null);
+        }
         $reflectedInstance->setAccessible(false);
     }
 }

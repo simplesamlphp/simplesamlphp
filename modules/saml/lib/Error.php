@@ -21,21 +21,21 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @var string
      */
-    private $status;
+    private string $status;
 
     /**
      * The second-level status code, or NULL if no second-level status code is defined.
      *
      * @var string|null
      */
-    private $subStatus;
+    private ?string $subStatus;
 
     /**
      * The status message, or NULL if no status message is defined.
      *
      * @var string|null
      */
-    private $statusMessage;
+    private ?string $statusMessage;
 
 
     /**

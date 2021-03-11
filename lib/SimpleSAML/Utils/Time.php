@@ -21,7 +21,7 @@ class Time
      *
      * @var bool
      */
-    private static $tz_initialized = false;
+    private static bool $tz_initialized = false;
 
 
     /**

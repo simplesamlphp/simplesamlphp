@@ -19,7 +19,7 @@ use SimpleSAML\Configuration;
 class SQLPermanentStorage
 {
     /** @var \PDO */
-    private $db;
+    private PDO $db;
 
 
     /**
