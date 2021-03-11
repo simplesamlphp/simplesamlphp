@@ -247,9 +247,9 @@ CIPHER;
     {
         $pw = "password";
 
-        $hash = Crypto::pwHash($pw);
+        $hash = $this->cryptoUtils->pwHash($pw);
         $this->expectException(Error\Exception::class);
-        Crypto::pwValid($hash, $hash);
+        $this->cryptoUtils->pwValid($hash, $hash);
     }
 
 
