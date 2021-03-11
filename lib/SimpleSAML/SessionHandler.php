@@ -22,9 +22,9 @@ abstract class SessionHandler
      * instance of the session handler. This variable will be NULL if
      * we haven't instantiated a session handler yet.
      *
-     * @var \SimpleSAML\SessionHandler
+     * @var \SimpleSAML\SessionHandler|null
      */
-    protected static $sessionHandler;
+    protected static ?SessionHandler $sessionHandler = null;
 
 
     /**
@@ -155,7 +155,7 @@ abstract class SessionHandler
         return [
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
             'path'     => $config->getString('session.cookie.path', '/'),
-            'domain'   => $config->getString('session.cookie.domain', ''),
+            'domain'   => $config->getString('session.cookie.domain', null),
             'secure'   => $config->getBoolean('session.cookie.secure', false),
             'samesite' => $config->getString('session.cookie.samesite', null),
             'httponly' => true,

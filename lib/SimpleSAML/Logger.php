@@ -23,34 +23,34 @@ class Logger extends LogLevel
     /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface
      */
-    private static $loggingHandler;
+    private static LoggingHandlerInterface $loggingHandler;
 
     /**
      * @var bool
      */
-    private static $initializing = false;
+    private static bool $initializing = false;
 
     /**
      * @var integer|null
      */
-    private static $logLevel = null;
+    private static ?int $logLevel = null;
 
     /**
      * @var boolean
      */
-    private static $captureLog = false;
+    private static bool $captureLog = false;
 
     /**
-     * @var array
+     * @var string[]
      */
-    private static $capturedLog = [];
+    private static array $capturedLog = [];
 
     /**
      * Array with messages logged before the logging handler was initialized.
      *
      * @var array
      */
-    private static $earlyLog = [];
+    private static array $earlyLog = [];
 
     /**
      * List of log levels.
@@ -59,7 +59,7 @@ class Logger extends LogLevel
      *
      * @var array
      */
-    private static $logLevelStack = [];
+    private static array $logLevelStack = [];
 
     /**
      * The current mask of log levels disabled.
@@ -68,7 +68,7 @@ class Logger extends LogLevel
      *
      * @var int
      */
-    private static $logMask = 0;
+    private static int $logMask = 0;
 
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
@@ -84,7 +84,7 @@ class Logger extends LogLevel
      *
      * @var string
      */
-    private static $trackid = self::NO_TRACKID;
+    private static string $trackid = self::NO_TRACKID;
 
     /**
      * This variable holds the format used to log any message. Its use varies depending on the log handler used (for
@@ -114,21 +114,21 @@ class Logger extends LogLevel
      *
      * @var string The format of the log line.
      */
-    private static $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
+    private static string $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
 
     /**
      * This variable tells if we have a shutdown function registered or not.
      *
      * @var bool
      */
-    private static $shutdownRegistered = false;
+    private static bool $shutdownRegistered = false;
 
     /**
      * This variable tells if we are shutting down.
      *
      * @var bool
      */
-    private static $shuttingDown = false;
+    private static bool $shuttingDown = false;
 
 
     /**

@@ -20,17 +20,17 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
      * The attribute to log
      * @var string|null
      */
-    private $attribute = null;
+    private ?string $attribute = null;
 
     /**
      * @var string
      */
-    private $typeTag = 'saml20-idp-SSO';
+    private string $typeTag = 'saml20-idp-SSO';
 
     /**
      * @var bool
      */
-    private $skipPassive = false;
+    private bool $skipPassive = false;
 
 
     /**

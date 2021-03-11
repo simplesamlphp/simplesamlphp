@@ -17,7 +17,7 @@ use SimpleSAML\Logger;
 class LanguageAdaptor extends Auth\ProcessingFilter
 {
     /** @var string */
-    private $langattr = 'preferredLanguage';
+    private string $langattr = 'preferredLanguage';
 
 
     /**

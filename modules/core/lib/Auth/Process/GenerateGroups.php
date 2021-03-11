@@ -20,7 +20,7 @@ class GenerateGroups extends Auth\ProcessingFilter
      * The attributes we should generate groups from.
      * @var array
      */
-    private $generateGroupsFrom;
+    private array $generateGroupsFrom;
 
 
     /**

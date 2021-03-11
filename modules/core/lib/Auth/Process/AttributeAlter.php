@@ -21,19 +21,19 @@ class AttributeAlter extends Auth\ProcessingFilter
      * Should the pattern found be replaced?
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
     /**
      * Should the value found be removed?
      * @var bool
      */
-    private $remove = false;
+    private bool $remove = false;
 
     /**
      * Pattern to search for.
      * @var string
      */
-    private $pattern = '';
+    private string $pattern = '';
 
     /**
      * String to replace the pattern found with.
@@ -45,13 +45,13 @@ class AttributeAlter extends Auth\ProcessingFilter
      * Attribute to search in
      * @var string
      */
-    private $subject = '';
+    private string $subject = '';
 
     /**
      * Attribute to place the result in.
      * @var string
      */
-    private $target = '';
+    private string $target = '';
 
 
     /**

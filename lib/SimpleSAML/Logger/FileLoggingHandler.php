@@ -21,13 +21,13 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @var null|string
      */
-    protected $logFile = null;
+    protected ?string $logFile = null;
 
     /**
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
      * SimpleSAML\Logger\ErrorLogLoggingHandler.
      *
-     * @var array
+     * @var array<int, string>
      */
     private static $levelNames = [
         LogLevel::EMERGENCY,
@@ -40,11 +40,11 @@ class FileLoggingHandler implements LoggingHandlerInterface
         LogLevel::DEBUG,
     ];
 
-    /** @var string|null */
-    protected $processname = null;
+    /** @var string */
+    protected string $processname;
 
     /** @var string */
-    protected $format = "%b %d %H:%M:%S";
+    protected string $format = "%b %d %H:%M:%S";
 
 
     /**
@@ -56,7 +56,9 @@ class FileLoggingHandler implements LoggingHandlerInterface
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getString('logging.logfile', 'simplesamlphp.log');
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {

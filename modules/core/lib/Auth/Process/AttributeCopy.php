@@ -28,7 +28,7 @@ class AttributeCopy extends Auth\ProcessingFilter
      * Assosiative array with the mappings of attribute names.
      * @var array
      */
-    private $map = [];
+    private array $map = [];
 
 
     /**

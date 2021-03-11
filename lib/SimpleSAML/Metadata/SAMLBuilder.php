@@ -46,7 +46,7 @@ class SAMLBuilder
      *
      * @var \SAML2\XML\md\EntityDescriptor
      */
-    private $entityDescriptor;
+    private EntityDescriptor $entityDescriptor;
 
 
     /**
@@ -54,7 +54,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxCache = null;
+    private ?int $maxCache = null;
 
 
     /**
@@ -62,7 +62,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxDuration = null;
+    private ?int $maxDuration = null;
 
 
     /**

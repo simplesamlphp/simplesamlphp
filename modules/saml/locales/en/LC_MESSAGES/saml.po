@@ -15,24 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:proxy:invalid_idp_description}"
-msgstr ""
-"You already have a valid session with an identity provider "
-"(<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to"
-" log out from your existing session and log in again with another "
-"identity provider?"
-
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Your authentication context is not accepted at this service. Probably too"
-" weak or not two-factor."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Wrong authentication context"
-
-msgid "{saml:proxy:invalid_idp}"
-msgstr "Invalid Identity Provider"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

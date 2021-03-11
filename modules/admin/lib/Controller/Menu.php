@@ -17,7 +17,7 @@ use SimpleSAML\XHTML\Template;
 final class Menu
 {
     /** @var array */
-    private $options;
+    private array $options;
 
 
     /**
@@ -88,7 +88,10 @@ final class Menu
     {
         $template->data['menu'] = $this->options;
         Module::callHooks('adminmenu', $template);
+
         Assert::isInstanceOf($template, Template::class);
+
+        /** @psalm-var \SimpleSAML\XHTML\Template $template */
         return $template;
     }
 }

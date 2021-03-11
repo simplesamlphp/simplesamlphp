@@ -27,7 +27,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\": ["tests", "tests/lib/SimpleSAML"]
+            "SimpleSAML\\Test\\": ["tests", "tests/lib/SimpleSAML"],
+            "SimpleSAML\\Test\\Module\\admin\\": ["tests/lib/SimpleSAML/modules/admin/lib"],
+            "SimpleSAML\\Test\\Module\\core\\": ["tests/lib/SimpleSAML/modules/core/lib"],
+            "SimpleSAML\\Test\\Module\\cron\\": ["tests/lib/SimpleSAML/modules/cron/lib"],
+            "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/lib/SimpleSAML/modules/exampleauth/lib"],
+            "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/lib/SimpleSAML/modules/multiauth/lib"],
+            "SimpleSAML\\Test\\Module\\saml\\": ["tests/lib/SimpleSAML/modules/saml/lib"]
         },
         "files": ["tests/_autoload_modules.php"]
     },
@@ -64,7 +70,8 @@
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^0.2.7"
+        "simplesamlphp/simplesamlphp-test-framework": "^1.0.5",
+        "simplesamlphp/xml-security": "^0.0.10"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
