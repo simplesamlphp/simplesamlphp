@@ -20,13 +20,13 @@ use SimpleSAML\XHTML\Template;
 class EMail
 {
     /** @var array Dictionary with multivalues */
-    private $data = [];
+    private array $data = [];
 
     /** @var string Introduction text */
-    private $text = '';
+    private string $text = '';
 
-    /** @var PHPMailer The mailer instance */
-    private $mail;
+    /** @var \PHPMailer\PHPMailer\PHPMailer The mailer instance */
+    private PHPMailer $mail;
 
 
     /**

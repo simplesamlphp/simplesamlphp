@@ -19,7 +19,7 @@ use SimpleSAML\Configuration;
 class SQLPermanentStorage
 {
     /** @var \PDO */
-    private $db;
+    private PDO $db;
 
 
     /**
@@ -48,6 +48,7 @@ class SQLPermanentStorage
 
         $dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
         if ($this->db = new PDO($dbfile)) {
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {
                 $this->db->exec('

@@ -356,6 +356,9 @@ class Crypto
      */
     public static function pwValid(string $hash, string $password): bool
     {
+        if (!is_null(password_get_info($password)['algo'])) {
+            throw new Error\Exception("Cannot use a hash value for authentication.");
+        }
         if (password_verify($password, $hash)) {
             return true;
         }

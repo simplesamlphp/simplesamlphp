@@ -21,15 +21,15 @@ class Stats
      *
      * @var boolean
      */
-    private static $initialized = false;
+    private static bool $initialized = false;
 
 
     /**
      * The statistics output callbacks.
      *
-     * @var array
+     * @var \SimpleSAML\Stats\Output[]
      */
-    private static $outputs = null;
+    private static array $outputs = [];
 
 
     /**

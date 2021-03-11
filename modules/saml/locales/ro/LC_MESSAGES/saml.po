@@ -16,15 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Contextul de autentificare folosit nu este acceptat pentru acest "
-"serviciu. Probabil contextul de autentificare este prea slab/simplu sau "
-"nu este de tipul cu 2 factori de autentificare."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Context de autentificare greșit"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

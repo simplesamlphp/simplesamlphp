@@ -22,11 +22,11 @@ use SimpleSAML\XML\Signer;
 class SignerTest extends SigningTestCase
 {
     /** @var string */
-    private $other_certificate_file;
+    private string $other_certificate_file;
 
     // openssl req -new -x509 -key good.key.pem -out public2.pem -days 3650
     /** @var string */
-    private $other_certificate = <<<'NOWDOC'
+    private string $other_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDazCCAlOgAwIBAgIUGPKUWW1GN07xxAsGENQ+rZPyABAwDQYJKoZIhvcNAQEL
 BQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM

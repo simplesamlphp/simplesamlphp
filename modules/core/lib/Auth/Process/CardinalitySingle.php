@@ -21,22 +21,22 @@ use SimpleSAML\Utils;
 class CardinalitySingle extends Auth\ProcessingFilter
 {
     /** @var array Attributes that should be single-valued or we generate an error */
-    private $singleValued = [];
+    private array $singleValued = [];
 
     /** @var array Attributes for which the first value should be taken */
-    private $firstValue = [];
+    private array $firstValue = [];
 
     /** @var array Attributes that can be flattened to a single value */
-    private $flatten = [];
+    private array $flatten = [];
 
     /** @var string Separator for flattened value */
-    private $flattenWith = ';';
+    private string $flattenWith = ';';
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = [];
+    private array $ignoreEntities = [];
 
     /** @var \SimpleSAML\Utils\HttpAdapter */
-    private $http;
+    private Utils\HttpAdapter $http;
 
 
     /**

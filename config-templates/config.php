@@ -470,7 +470,7 @@ $config = [
      ***********/
 
     /*
-     * Configuration to override module enabling/disabling.
+     * Configuration for enabling/disabling modules. By default the 'core' and 'saml' modules are enabled.
      *
      * Example:
      *
@@ -564,7 +564,7 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => null,
+    'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
 
     /*
      * Options to override the default settings for php sessions.
@@ -751,7 +751,7 @@ $config = [
          * ],
          *
          * establishing that if a translation for the "no" language code is
-         * not available, we look for translations in "nb" (Norwegian Bokmål),
+         * not available, we look for translations in "nb",
          * and so on, in that order.
          */
         'priorities' => [
@@ -792,7 +792,7 @@ $config = [
     'language.cookie.secure' => false,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-    'language.cookie.samesite' => null,
+    'language.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
@@ -971,7 +971,7 @@ $config = [
             'type'          => 'saml20-idp-SSO',
         ],
 
-        /* When called without parameters, it will fallback to filter attributes ‹the old way›
+        /* When called without parameters, it will fallback to filter attributes 'the old way'
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
          */
         50 => 'core:AttributeLimit',

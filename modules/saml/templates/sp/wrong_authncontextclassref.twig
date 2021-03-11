@@ -2,6 +2,6 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h2>{{ '{saml:wrong_authncontextclassref:header}'|trans|escape('html') }}</h2>
-    <p>{{ '{saml:wrong_authncontextclassref:description}'|trans|escape('html') }}</p>
+    <h2>{{ 'Wrong authentication context'|trans }}</h2>
+    <p>{{ 'Your authentication context is not accepted at this service. Probably too weak or not two-factor.'|trans }}</p>
 {% endblock %}

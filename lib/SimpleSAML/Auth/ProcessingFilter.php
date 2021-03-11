@@ -32,9 +32,9 @@ abstract class ProcessingFilter
      * The priority can be any integer. The default for most filters is 50. Filters may however
      * specify their own default, if they typically should be amongst the first or the last filters.
      *
-     * The prioroty can also be overridden by the user by specifying the '%priority' option.
+     * The priority can also be overridden by the user by specifying the '%priority' option.
      */
-    public $priority = 50;
+    public int $priority = 50;
 
 
     /**

@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"See teenus ei aktsepteeri sinu autentimiskonteksti. Tõenäoliselt on see "
-"liiga nõrk või pole kaheastmeline."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Vale autentimiskontekst"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

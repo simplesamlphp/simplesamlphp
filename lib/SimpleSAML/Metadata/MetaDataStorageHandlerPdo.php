@@ -22,23 +22,25 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 {
     /**
      * The PDO object
+     * @var \SimpleSAML\Database
      */
-    private $db;
+    private Database $db;
 
     /**
      * Prefix to apply to the metadata table
      */
-    private $tablePrefix;
+    private string $tablePrefix = '';
 
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      */
-    private $cachedMetadata = [];
+    private array $cachedMetadata = [];
 
     /**
      * All the metadata sets supported by this MetaDataStorageHandler
+     * @var string[]
      */
-    public $supportedSets = [
+    public array $supportedSets = [
         'adfs-idp-hosted',
         'adfs-sp-remote',
         'saml20-idp-hosted',

@@ -7,7 +7,9 @@ namespace SimpleSAML;
 use SAML2\XML\saml\AttributeValue;
 use Serializable;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
 /**
@@ -41,7 +43,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private static $sessions = [];
+    private static array $sessions = [];
 
     /**
      * This variable holds the instance of the session - Singleton approach.
@@ -50,28 +52,28 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var \SimpleSAML\Session|null
      */
-    private static $instance = null;
+    private static ?Session $instance = null;
 
     /**
      * The global configuration.
      *
-     * @var \SimpleSAML\Configuration
+     * @var \SimpleSAML\Configuration|null
      */
-    private static $config;
+    private static ?Configuration $config;
 
     /**
      * The session ID of this session.
      *
      * @var string|null
      */
-    private $sessionId;
+    private ?string $sessionId = null;
 
     /**
      * Transient session flag.
      *
      * @var boolean|false
      */
-    private $transient = false;
+    private bool $transient = false;
 
     /**
      * The track id is a new random unique identifier that is generated for each session.
@@ -80,12 +82,12 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string
      */
-    private $trackid;
+    private string $trackid;
 
     /**
      * @var integer|null
      */
-    private $rememberMeExpire = null;
+    private ?int $rememberMeExpire = null;
 
     /**
      * Marks a session as modified, and therefore needs to be saved before destroying
@@ -93,14 +95,14 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var bool
      */
-    private $dirty = false;
+    private bool $dirty = false;
 
     /**
      * Tells the session object that the save callback has been registered and there's no need to register it again.
      *
      * @var bool
      */
-    private $callback_registered = false;
+    private bool $callback_registered = false;
 
     /**
      * This is an array of objects which will expire automatically after a set time. It is used
@@ -112,7 +114,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $dataStore = [];
+    private array $dataStore = [];
 
     /**
      * The list of IdP-SP associations.
@@ -122,7 +124,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $associations = [];
+    private array $associations = [];
 
     /**
      * The authentication token.
@@ -131,7 +133,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var string|null
      */
-    private $authToken;
+    private ?string $authToken = null;
 
     /**
      * Authentication data.
@@ -140,7 +142,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * @var array  Associative array of associative arrays.
      */
-    private $authData = [];
+    private array $authData = [];
 
 
     /**
@@ -256,7 +258,8 @@ class Session implements Serializable, Utils\ClearableState
     public static function getSessionFromRequest(): Session
     {
         // check if we already have initialized the session
-        if (isset(self::$instance)) {
+        /** @psalm-suppress RedundantCondition */
+        if (self::$instance !== null) {
             return self::$instance;
         }
 
@@ -292,6 +295,8 @@ class Session implements Serializable, Utils\ClearableState
          * error message). This means we don't need to create a new session again, we can use the one that's loaded now
          * instead.
          */
+
+        /** @psalm-suppress TypeDoesNotContainType */
         if (self::$instance !== null) {
             return self::$instance;
         }
@@ -413,7 +418,8 @@ class Session implements Serializable, Utils\ClearableState
      */
     public static function useTransientSession(): void
     {
-        if (isset(self::$instance)) {
+        /** @psalm-suppress RedundantCondition */
+        if (self::$instance !== null) {
             // we already have a session, don't bother with a transient session
             return;
         }
@@ -775,7 +781,7 @@ class Session implements Serializable, Utils\ClearableState
     public function updateSessionCookies(array $params = []): void
     {
         $sessionHandler = SessionHandler::getSessionHandler();
-        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
+        $params = array_merge($sessionHandler->getCookieParams(), $params);
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
@@ -1151,6 +1157,6 @@ class Session implements Serializable, Utils\ClearableState
     {
         self::$config = null;
         self::$instance = null;
-        self::$sessions = null;
+        self::$sessions = [];
     }
 }

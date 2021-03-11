@@ -28,42 +28,42 @@ class IdPDisco
      *
      * @var \SimpleSAML\Configuration
      */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * The identifier of this discovery service.
      *
      * @var string
      */
-    protected $instance;
+    protected string $instance;
 
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
-    protected $metadata;
+    protected MetadataStorageHandler $metadata;
 
     /**
      * The users session.
      *
      * @var \SimpleSAML\Session
      */
-    protected $session;
+    protected Session $session;
 
     /**
      * The metadata sets we find allowed entities in, in prioritized order.
      *
      * @var array
      */
-    protected $metadataSets;
+    protected array $metadataSets;
 
     /**
      * The entity id of the SP which accesses this IdP discovery service.
      *
      * @var string
      */
-    protected $spEntityId;
+    protected string $spEntityId;
 
     /**
      * HTTP parameter from the request, indicating whether the discovery service
@@ -71,14 +71,14 @@ class IdPDisco
      *
      * @var boolean
      */
-    protected $isPassive;
+    protected bool $isPassive;
 
     /**
      * The SP request to set the IdPentityID...
      *
      * @var string|null
      */
-    protected $setIdPentityID = null;
+    protected ?string $setIdPentityID = null;
 
     /**
      * The name of the query parameter which should contain the users choice of IdP.
@@ -86,7 +86,7 @@ class IdPDisco
      *
      * @var string
      */
-    protected $returnIdParam;
+    protected string $returnIdParam;
 
     /**
      * The list of scoped idp's. The intersection between the metadata idpList
@@ -95,14 +95,14 @@ class IdPDisco
      *
      * @var array
      */
-    protected $scopedIDPList = [];
+    protected array $scopedIDPList = [];
 
     /**
      * The URL the user should be redirected to after choosing an IdP.
      *
      * @var string
      */
-    protected $returnURL;
+    protected string $returnURL;
 
 
     /**

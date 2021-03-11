@@ -21,7 +21,7 @@ class NotFound extends Error
     /**
      * Reason why the given page could not be found.
      */
-    private $reason;
+    private ?string $reason;
 
 
     /**

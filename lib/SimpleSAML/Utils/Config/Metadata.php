@@ -20,7 +20,7 @@ class Metadata
      *
      * @var string
      */
-    public static $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
+    public static string $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
 
 
     /**
@@ -28,7 +28,7 @@ class Metadata
      *
      * @var string
      */
-    public static $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
+    public static string $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
 
 
     /**
@@ -38,10 +38,10 @@ class Metadata
      * it is required to allow additons to the main contact person element for trust
      * frameworks.
      *
-     * @var array The valid configuration options for a contact configuration array.
+     * @var string[] The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = [
+    public static array $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -53,10 +53,10 @@ class Metadata
 
 
     /**
-     * @var array The valid types of contact for a contact configuration array.
+     * @var string[] The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = [
+    public static array $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',

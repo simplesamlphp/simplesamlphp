@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"A mód, ahogyan azonosított téged a személyazonosság szolgáltatód, nem "
-"elfogadott ennél a szolgáltatásnál. Valószínűleg túl gyenge, vagy nem "
-"kétfaktoros."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Elutasított azonosítási mód"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

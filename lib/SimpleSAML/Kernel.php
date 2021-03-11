@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Utils\System;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
@@ -25,7 +26,7 @@ class Kernel extends BaseKernel
     public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     /** @var string */
-    private $module;
+    private string $module;
 
 
     /**
@@ -47,13 +48,13 @@ class Kernel extends BaseKernel
     public function getCacheDir(): string
     {
         $configuration = Configuration::getInstance();
-        $cachePath = $configuration->getString('tempdir') . '/cache/' . $this->module;
+        $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $this->module;
 
-        if (0 === strpos($cachePath, '/')) {
+        if (System::isAbsolutePath($cachePath)) {
             return $cachePath;
         }
 
-        return $configuration->getBaseDir() . '/' . $cachePath;
+        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $cachePath;
     }
 
 
@@ -65,11 +66,11 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $loggingPath = $configuration->getString('loggingdir');
 
-        if (0 === strpos($loggingPath, '/')) {
+        if (System::isAbsolutePath($loggingPath)) {
             return $loggingPath;
         }
 
-        return $configuration->getBaseDir() . '/' . $loggingPath;
+        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $loggingPath;
     }
 
 

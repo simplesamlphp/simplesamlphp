@@ -13,14 +13,44 @@ See the upgrade notes for specific information about upgrading.
   * Old-style PHP templates were removed
   * Old-style dictionaries were removed
 
+## Version 1.19.1
+
 Released TBD
+
+  * Fixed a bug in the Artifact Resolution Service (#1428)
+  * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
+  * Updated npm dependencies up to February 1, 2021
+
+### memcacheMonitor
+  * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+
+### negotiate
+  * Fix a bug that was breaking the module when using the old UI
+
+### statistics
+  * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 
 ## Version 1.19.0
 
-Released TBD
+Released 2021-01-21
 
   * This version will be the last of the 1.x branch and will provide a migration path to our new
-    templating system, routing system, translation system and hooks.
+    templating system, routing system and translation system.
+  * SAML 1 / Shib 1.3 support is now marked deprecated and will be removed in SimpleSAMLphp 2.0.
+  * Raised minimum PHP version to 7.1
+  * Dropped support for Symfony 3.x
+  * Update the SAML2 library dependency to 4.1.9
+  * Fix a bug where SSP wouldn't write to the tmp-directory if it didn't own it, but could write to it (#1314)
+  * Fixed several bugs in saml:NameIDAttribute (#1245)
+  * Fix artifact resolution (#1343)
+  * Allow additional audiences to be specified (#1345)
+  * Allow configurable ProviderName (#1348)
+  * Support saml:Extensions in saml:SP authsources (#1349)
+  * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in
+    favour of the `identifyingAttribute`-setting.
+  * Filter multiauth authentication sources from SP using AuthnContextClassRef (#1362)
+  * Allow easy enabling of SameSite = 'None' (#1382)
+  * Do not accept the hashed admin password for authentication (#1418)
 
 ## Version 1.18.8
 

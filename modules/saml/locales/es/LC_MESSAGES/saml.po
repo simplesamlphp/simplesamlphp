@@ -15,23 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:proxy:invalid_idp_description}"
-msgstr ""
-"Ya existe una sesión válida con un proveedor de identidad "
-"(<em>%IDP%</em>) que <em>%SP%</em> no acepta. ¿Desea cerrar su sesión "
-"actual e iniciar una nueva con otro proveedor de identidad?"
-
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Este servicio no acepta el contexto de su autenticación. Probablemente es"
-" demasiado débil o no está usando un segundo factor de autenticación."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Contexto de autenticación incorrecto"
-
-msgid "{saml:proxy:invalid_idp}"
-msgstr "Proveedor de Identidad inválido"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

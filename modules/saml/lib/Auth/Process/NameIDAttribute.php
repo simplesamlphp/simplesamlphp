@@ -22,7 +22,7 @@ class NameIDAttribute extends ProcessingFilter
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
 
     /**
@@ -30,7 +30,7 @@ class NameIDAttribute extends ProcessingFilter
      *
      * @var array
      */
-    private $format;
+    private array $format;
 
 
     /**

@@ -24,15 +24,5 @@ msgstr ""
 "(<em>%IDP%</em>) ya sa amohelweng ke<em>%SP%</em>. Na o ka lakatsa ho "
 "tswa sesheneng ya hao e teng mme o kene ka mofani wa boitsebiso e mong?"
 
-msgid "{saml:proxy:invalid_idp_description}"
-msgstr ""
-"O se ntse o na le seshene e sebetsang ho mofani wa boitsebiso "
-"(<em>%IDP%</em>) ya sa amohelweng ke<em>%SP%</em>. Na o ka lakatsa ho "
-"tswa sesheneng ya hao e teng mme o kene ka mofani wa boitsebiso e mong?"
-
 msgid "Invalid Identity Provider"
 msgstr "Mofani wa Boitsebiso ha Nepahala"
-
-msgid "{saml:proxy:invalid_idp}"
-msgstr "Mofani wa Boitsebiso ha Nepahala"
-

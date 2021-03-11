@@ -19,7 +19,7 @@ class Cron
      * The configuration for the Cron module
      * @var \SimpleSAML\Configuration
      */
-    private $cronconfig;
+    private Configuration $cronconfig;
 
 
     /*
