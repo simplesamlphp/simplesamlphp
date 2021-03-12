@@ -212,7 +212,10 @@ class Message
             }
         }
 
-        if ($enabled === null) {
+        // If not specifically set to false, the signature must be checked to conform to SAML2INT
+        if (($message->isMessageConstructedWithSignature() === true) && ($enabled !== false)) {
+            $enabled = true;
+        } elseif ($enabled === null) {
             $enabled = $srcMetadata->getBoolean('redirect.validate', null);
             if ($enabled === null) {
                 $enabled = $dstMetadata->getBoolean('redirect.validate', false);
@@ -221,9 +224,7 @@ class Message
 
         if (!$enabled) {
             return;
-        }
-
-        if (!self::checkSign($srcMetadata, $message)) {
+        } elseif (!self::checkSign($srcMetadata, $message)) {
             throw new SSP_Error\Exception(
                 'Validation of received messages enabled, but no signature found on message.'
             );
