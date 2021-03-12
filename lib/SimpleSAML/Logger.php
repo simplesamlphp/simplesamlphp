@@ -22,7 +22,7 @@ class Logger
     /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
-    private static LoggingHandlerInterface $loggingHandler = null;
+    private static ?LoggingHandlerInterface $loggingHandler = null;
 
     /**
      * @var bool
