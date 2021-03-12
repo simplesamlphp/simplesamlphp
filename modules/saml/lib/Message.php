@@ -213,7 +213,7 @@ class Message
         }
 
         // If not specifically set to false, the signature must be checked to conform to SAML2INT
-        if (($message->isMessageConstructedWithSignature() === true) && ($enabled !== false)) {
+        if (isset($_REQUEST['Signature']) && ($enabled !== false)) {
             $enabled = true;
         } elseif ($enabled === null) {
             $enabled = $srcMetadata->getBoolean('redirect.validate', null);
