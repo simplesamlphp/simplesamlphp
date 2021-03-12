@@ -7,13 +7,12 @@ namespace SimpleSAML\Test\Utils;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 
-class ArrayLogger
-    implements LoggingHandlerInterface
+class ArrayLogger implements LoggingHandlerInterface
 {
     /**
      * @var array List of log entries by level
      */
-    public $logs = [];
+    public array $logs = [];
 
     public function __construct(Configuration $config)
     {

@@ -16,7 +16,11 @@ class LoggerTest extends TestCase
      */
     protected $originalLogger;
 
-    protected function setLoggingHandler($handler)
+
+    /**
+     * @param string $handler
+     */
+    protected function setLoggingHandler(string $handler): void
     {
         $this->originalLogger = Logger::getLoggingHandler();
         $config = [
@@ -29,6 +33,9 @@ class LoggerTest extends TestCase
         Logger::setLoggingHandler(null);
     }
 
+
+    /**
+     */
     protected function tearDown(): void
     {
         if (isset($this->originalLogger)) {
@@ -40,7 +47,10 @@ class LoggerTest extends TestCase
         }
     }
 
-    public function testCreateLoggingHandlerHonorsCustomHandler()
+
+    /**
+     */
+    public function testCreateLoggingHandlerHonorsCustomHandler(): void
     {
         $this->setLoggingHandler(ArrayLogger::class);
 
@@ -51,7 +61,10 @@ class LoggerTest extends TestCase
         self::assertInstanceOf(ArrayLogger::class, $logger);
     }
 
-    public function testCaptureLog()
+
+    /**
+     */
+    public function testCaptureLog(): void
     {
         $this->setLoggingHandler(ArrayLogger::class);
 
@@ -68,7 +81,10 @@ class LoggerTest extends TestCase
         self::assertRegExp("/^[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z\ {$payload}$/", $log[0]);
     }
 
-    public function testExceptionThrownOnInvalidLoggingHandler()
+
+    /**
+     */
+    public function testExceptionThrownOnInvalidLoggingHandler(): void
     {
         $this->setLoggingHandler('nohandler');
 
@@ -78,7 +94,11 @@ class LoggerTest extends TestCase
         Logger::critical('should throw exception');
     }
 
-    public function provideLogLevels()
+
+    /**
+     * @return array
+     */
+    public function provideLogLevels(): array
     {
         return [
            ['emergency', Logger::EMERG],
@@ -91,10 +111,14 @@ class LoggerTest extends TestCase
            ['debug', Logger::DEBUG],
         ];
     }
+
+
     /**
+     * @param string $method
+     * @param int $level
      * @dataProvider provideLogLevels
      */
-    public function testLevelMethods($method, $level)
+    public function testLevelMethods(string $method, int $level): void
     {
         $this->setLoggingHandler(ArrayLogger::class);
 

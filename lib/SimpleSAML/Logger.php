@@ -23,9 +23,9 @@ use Webmozart\Assert\Assert;
 class Logger
 {
     /**
-     * @var \SimpleSAML\Logger\LoggingHandlerInterface
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
-    private static $loggingHandler;
+    private static $loggingHandler = null;
 
     /**
      * @var bool
@@ -291,9 +291,9 @@ class Logger
     /**
      * Clears the captured log.
      */
-    public static function clearCapturedLog()
+    public static function clearCapturedLog(): void
     {
-        return self::$capturedLog = [];
+        self::$capturedLog = [];
     }
 
 
@@ -409,7 +409,7 @@ class Logger
     /**
      * Sets the current logging handler
      *
-     * @param LoggingHandlerInterface $loggingHandler The logging handler to set
+     * @param LoggingHandlerInterface|null $loggingHandler The logging handler to set
      */
     public static function setLoggingHandler(?LoggingHandlerInterface $loggingHandler): void
     {
