@@ -87,7 +87,8 @@ class HTTP
         $session_id = $session->getSessionId();
 
         // encrypt the session ID and the random ID
-        $info = base64_encode(Crypto::aesEncrypt($session_id . ':' . $id));
+        $cryptoUtils = new Crypto();
+        $info = base64_encode($cryptoUtils->aesEncrypt($session_id . ':' . $id));
 
         $url = Module::getModuleURL('core/postredirect.php', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);

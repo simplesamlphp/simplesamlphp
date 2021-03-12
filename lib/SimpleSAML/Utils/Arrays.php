@@ -21,7 +21,7 @@ class Arrays
      *     array.
      *
      */
-    public static function arrayize($data, $index = 0): array
+    public function arrayize($data, $index = 0): array
     {
         return (is_array($data)) ? $data : [$index => $data];
     }
@@ -35,7 +35,7 @@ class Arrays
      * @return array|false The transposed array, or false if $array is not a valid two-dimensional array.
      *
      */
-    public static function transpose(array $array)
+    public function transpose(array $array)
     {
         $ret = [];
         foreach ($array as $k1 => $a2) {

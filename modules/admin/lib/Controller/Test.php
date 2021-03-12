@@ -31,10 +31,9 @@ class Test
     protected Configuration $config;
 
     /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     * @var \SimpleSAML\Utils\Auth
      */
-    protected $authUtils = Utils\Auth::class;
+    protected $authUtils;
 
     /**
      * @var \SimpleSAML\Auth\Simple|string
@@ -66,6 +65,7 @@ class Test
         $this->config = $config;
         $this->session = $session;
         $this->menu = new Menu();
+        $this->authUtils = new Utils\Auth();
     }
 
 
@@ -111,7 +111,7 @@ class Test
      */
     public function main(Request $request, string $as = null)
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [
@@ -161,8 +161,7 @@ class Test
         Module::callHooks('configpage', $t);
         Assert::isInstanceOf($t, Template::class);
 
-        $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
-        /** @var \SimpleSAML\XHTML\Template $t */
+        $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 

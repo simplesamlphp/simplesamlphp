@@ -33,7 +33,7 @@ class TargetedIDTest extends TestCase
         parent::setUp();
 
         self::$configUtils = new class () extends Utils\Config {
-            public static function getSecretSalt(): string
+            public function getSecretSalt(): string
             {
                 // stub
                 return 'secretsalt';

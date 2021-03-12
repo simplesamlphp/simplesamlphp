@@ -29,17 +29,18 @@ class Crypto
      *
      * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
      */
-    private static function aesDecryptInternal(string $ciphertext, string $secret): string
+    private function aesDecryptInternal(string $ciphertext, string $secret): string
     {
+        if (!extension_loaded('openssl')) {
+            throw new Error\Exception("The openssl PHP module is not loaded.");
+        }
+
         /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
             throw new InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
-        }
-        if (!function_exists("openssl_decrypt")) {
-            throw new Error\Exception("The openssl PHP module is not loaded.");
         }
 
         // derive encryption and authentication keys from the secret
@@ -50,7 +51,7 @@ class Crypto
         $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
 
         // authenticate the ciphertext
-        if (self::secureCompare(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
+        if ($this->secureCompare(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
             $plaintext = openssl_decrypt(
                 $msg,
                 'AES-256-CBC',
@@ -72,15 +73,22 @@ class Crypto
      * Decrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
      * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
+     * @param string $secret The secret to use to decrypt the data.
+     *                       If not provided, the secret salt from the configuration will be used
      *
      * @return string The decrypted data.
      * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
      */
-    public static function aesDecrypt(string $ciphertext): string
+    public function aesDecrypt(string $ciphertext, string $secret = null): string
     {
-        return self::aesDecryptInternal($ciphertext, Config::getSecretSalt());
+        if ($secret === null) {
+            $configUtils = new Config();
+            $secret = $configUtils->getSecretSalt();
+        }
+
+        return $this->aesDecryptInternal($ciphertext, $secret);
     }
 
 
@@ -96,9 +104,9 @@ class Crypto
      *
      * @see \SimpleSAML\Utils\Crypto::aesEncrypt()
      */
-    private static function aesEncryptInternal(string $data, string $secret): string
+    private function aesEncryptInternal(string $data, string $secret): string
     {
-        if (!function_exists("openssl_encrypt")) {
+        if (!extension_loaded('openssl')) {
             throw new Error\Exception('The openssl PHP module is not loaded.');
         }
 
@@ -130,15 +138,22 @@ class Crypto
      * Encrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
      * @param string $data The data to encrypt.
+     * @param string $secret The secret to use to decrypt the data.
+     *                       If not provided, the secret salt from the configuration will be used
      *
      * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
      */
-    public static function aesEncrypt(string $data): string
+    public function aesEncrypt(string $data, string $secret = null): string
     {
-        return self::aesEncryptInternal($data, Config::getSecretSalt());
+        if ($secret === null) {
+            $configUtils = new Config();
+            $secret = $configUtils->getSecretSalt();
+        }
+
+        return $this->aesEncryptInternal($data, $secret);
     }
 
 
@@ -150,7 +165,7 @@ class Crypto
      * @return string The same data encoded in PEM format.
      * @see RFC7648 for known types and PEM format specifics.
      */
-    public static function der2pem(string $der, string $type = 'CERTIFICATE'): string
+    public function der2pem(string $der, string $type = 'CERTIFICATE'): string
     {
         return "-----BEGIN " . $type . "-----\n" .
             chunk_split(base64_encode($der), 64, "\n") .
@@ -183,7 +198,7 @@ class Crypto
      *     it.
      *
      */
-    public static function loadPrivateKey(
+    public function loadPrivateKey(
         Configuration $metadata,
         bool $required = false,
         string $prefix = '',
@@ -200,7 +215,8 @@ class Crypto
         }
 
         if (!$full_path) {
-            $file = Config::getCertPath($file);
+            $configUtils = new Config();
+            $file = $configUtils->getCertPath($file);
         }
 
         $data = @file_get_contents($file);
@@ -243,7 +259,7 @@ class Crypto
      *     it.
      *
      */
-    public static function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
+    public function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {
         $keys = $metadata->getPublicKeys(null, false, $prefix);
         if (!empty($keys)) {
@@ -283,7 +299,7 @@ class Crypto
      * @throws \InvalidArgumentException If $pem is not encoded in PEM format.
      * @see RFC7648 for PEM format specifics.
      */
-    public static function pem2der(string $pem): string
+    public function pem2der(string $pem): string
     {
         $pem   = trim($pem);
         $begin = "-----BEGIN ";
@@ -311,18 +327,15 @@ class Crypto
      * @param mixed $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
-     * @throws \InvalidArgumentException If the input parameter is not a string.
+     * @throws \Exception If the algorithm is not known ti PHP.
      * @throws Error\Exception If the algorithm specified is not supported.
      *
      * @see hash_algos()
      *
      */
-    public static function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
+    public function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
     {
-        if (!is_string($hash = password_hash($password, $algorithm))) {
-            throw new InvalidArgumentException('Error while hashing password.');
-        }
-        return $hash;
+        return password_hash($password, $algorithm);
     }
 
 
@@ -337,7 +350,7 @@ class Crypto
      *
      * @return bool True if both strings are equal, false otherwise.
      */
-    public static function secureCompare(string $known, string $user): bool
+    public function secureCompare(string $known, string $user): bool
     {
         return hash_equals($known, $user);
     }
@@ -354,7 +367,7 @@ class Crypto
      * @throws Error\Exception If the algorithm specified is not supported.
      *
      */
-    public static function pwValid(string $hash, string $password): bool
+    public function pwValid(string $hash, string $password): bool
     {
         if (!is_null(password_get_info($password)['algo'])) {
             throw new Error\Exception("Cannot use a hash value for authentication.");

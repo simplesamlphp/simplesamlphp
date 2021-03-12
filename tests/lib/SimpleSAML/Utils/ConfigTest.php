@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Utils\Config;
+use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\Config
@@ -15,6 +15,22 @@ use SimpleSAML\Utils\Config;
  */
 class ConfigTest extends TestCase
 {
+    /** @var \SimpleSAML\Utils\Config */
+    protected $configUtils;
+
+
+    /**
+     * Set up for each test.
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->configUtils = new Utils\Config();
+    }
+
+
     /**
      * Test default config dir with not environment variable
      */
@@ -22,7 +38,7 @@ class ConfigTest extends TestCase
     {
         // clear env var
         putenv('SIMPLESAMLPHP_CONFIG_DIR');
-        $configDir = Config::getConfigDir();
+        $configDir = $this->configUtils->getConfigDir();
 
         $this->assertEquals($configDir, dirname(dirname(dirname(dirname(__DIR__)))) . '/config');
     }
@@ -34,7 +50,7 @@ class ConfigTest extends TestCase
     public function testEnvVariableConfigDir(): void
     {
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
-        $configDir = Config::getConfigDir();
+        $configDir = $this->configUtils->getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
     }
@@ -45,7 +61,7 @@ class ConfigTest extends TestCase
     public function testEnvRedirectVariableConfigDir(): void
     {
         putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
-        $configDir = Config::getConfigDir();
+        $configDir = $this->configUtils->getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
     }
@@ -58,7 +74,7 @@ class ConfigTest extends TestCase
     {
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . dirname(__DIR__));
         putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
-        $configDir = Config::getConfigDir();
+        $configDir = $this->configUtils->getConfigDir();
 
         $this->assertEquals($configDir, dirname(__DIR__));
     }
@@ -79,6 +95,6 @@ class ConfigTest extends TestCase
             'Given: "' . $invalidDir . '"'
         );
 
-        Config::getConfigDir();
+        $this->configUtils->getConfigDir();
     }
 }

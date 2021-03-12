@@ -18,7 +18,8 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 
 $config = Configuration::getInstance();
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    Utils\Auth::requireAdmin();
+    $authUtils = new Utils\Auth();
+    $authUtils->requireAdmin();
 }
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = Auth\Source::getById($sourceId);
@@ -123,7 +124,8 @@ foreach ($assertionsconsumerservices as $services) {
 $metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = [];
-$certInfo = Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
+$cryptoUtils = new Utils\Crypto();
+$certInfo = $cryptoUtils->loadPublicKey($spconfig, false, 'new_');
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $hasNewCert = true;
 
@@ -139,7 +141,7 @@ if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $hasNewCert = false;
 }
 
-$certInfo = Utils\Crypto::loadPublicKey($spconfig);
+$certInfo = $cryptoUtils->loadPublicKey($spconfig);
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $certData = $certInfo['certData'];
 

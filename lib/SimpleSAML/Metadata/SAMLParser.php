@@ -1298,9 +1298,11 @@ class SAMLParser
      */
     public function validateSignature(array $certificates): bool
     {
+        $configUtils = new Utils\Config();
+
         foreach ($certificates as $cert) {
             Assert::string($cert);
-            $certFile = Utils\Config::getCertPath($cert);
+            $certFile = $configUtils->getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new \Exception(
                     'Could not find certificate file [' . $certFile . '], which is needed to validate signature'

@@ -31,6 +31,9 @@ class Redirection
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
+
 
     /**
      * Controller constructor.
@@ -48,6 +51,7 @@ class Redirection
     ) {
         $this->config = $config;
         $this->session = $session;
+        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -72,7 +76,7 @@ class Redirection
                 throw new Error\BadRequest('Invalid RedirInfo data.');
             }
 
-            list($sessionId, $postId) = explode(':', Utils\Crypto::aesDecrypt($encData));
+            list($sessionId, $postId) = explode(':', $this->cryptoUtils->aesDecrypt($encData));
 
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');

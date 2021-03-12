@@ -42,11 +42,11 @@ class Federation
      */
     protected $authSource = Auth\Source::class;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
-     */
-    protected $authUtils = Utils\Auth::class;
+    /** @var \SimpleSAML\Utils\Auth */
+    protected $authUtils;
+
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
@@ -65,6 +65,8 @@ class Federation
         $this->config = $config;
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->authUtils = new Utils\Auth();
+        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -111,7 +113,7 @@ class Federation
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -188,7 +190,7 @@ class Federation
                 'adfs-idp-remote' => Translate::noop('ADFS IdP metadata'),
                 'adfs-idp-hosted' => Translate::noop('ADFS IdP metadata'),
             ],
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
         ];
 
         Module::callHooks('federationpage', $t);
@@ -396,7 +398,7 @@ class Federation
      */
     public function metadataConverter(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
         if ($xmlfile = $request->files->get('xmlfile')) {
             $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
@@ -425,7 +427,8 @@ class Federation
                 }
 
                 // transpose from $entities[entityid][type] to $output[type][entityid]
-                $output = Utils\Arrays::transpose($entities);
+                $arrayUtils = new Utils\Arrays();
+                $output = $arrayUtils->transpose($entities);
 
                 // merge all metadata of each type to a single string which should be added to the corresponding file
                 foreach ($output as $type => &$entities) {
@@ -461,7 +464,7 @@ class Federation
 
         $t = new Template($this->config, 'admin:metadata_converter.twig');
         $t->data = [
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
             'xmldata' => $xmldata,
             'output' => $output,
             'error' => $error,
@@ -481,7 +484,7 @@ class Federation
      */
     public function downloadCert(Request $request): Response
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $set = $request->get('set');
         $prefix = $request->get('prefix', '');
@@ -500,7 +503,7 @@ class Federation
         }
 
         /** @var array $certInfo  Second param ensures non-nullable return-value */
-        $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
+        $certInfo = $this->cryptoUtils->loadPublicKey($mdconfig, true, $prefix);
 
         $response = new Response($certInfo['PEM']);
         $disposition = $response->headers->makeDisposition(
@@ -524,7 +527,7 @@ class Federation
      */
     public function showRemoteEntity(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $entityId = $request->get('entityid');
         $set = $request->get('set');

@@ -368,7 +368,8 @@ class Session implements Serializable, Utils\ClearableState
                     Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
-                if (!Utils\Crypto::secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
+                $cryptoUtils = new Utils\Crypto();
+                if (!$cryptoUtils->secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
                     Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }
