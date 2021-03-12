@@ -14,3 +14,20 @@ Upgrade notes for SimpleSAMLphp 2.0
 - The default encryption algorithm is set from AES128_CBC to AES128_GCM. If you're upgrading from an existing implementation, you may want
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
 - In compliancy with SAML2INT, AuthnRequests that are signed will have their signature validated unless specifically disabled by setting `validate.authnrequest` to `false`.  If unset, or set to true, signatures will be validated and requests not passing validation will be refused.
+- The following classes have been migrated to non-static:
+  + lib/SimpleSAMLphp\Utils\Arrays
+  + lib/SimpleSAMLphp\Utils\Attributes
+  + lib/SimpleSAMLphp\Utils\Auth
+  + lib/SimpleSAMLphp\Utils\Config
+  + lib/SimpleSAMLphp\Utils\Crypto
+
+  If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
+
+  // Old style
+  $x = \SimpleSAML\Utils\Arrays::arrayize($someVar)
+
+  becomes:
+
+  // New style
+  $arrayUtils = new \SimpleSAML\Utils\Arrays();
+  $x = $arrayUtils->arrayize($someVar);

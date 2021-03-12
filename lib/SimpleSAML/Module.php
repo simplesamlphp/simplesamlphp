@@ -496,7 +496,7 @@ class Module
                 continue;
             }
 
-            if (!preg_match('/hook_(\w+)\.php/', $file, $matches)) {
+            if (!preg_match('/^hook_(\w+)\.php$/', $file, $matches)) {
                 continue;
             }
             $hook_name = $matches[1];

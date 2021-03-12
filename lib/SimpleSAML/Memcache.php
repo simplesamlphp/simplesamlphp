@@ -417,8 +417,9 @@ class Memcache
                 }
             }
 
+            $arrayUtils = new Utils\Arrays();
             /** @psalm-var array $stats */
-            $stats = Utils\Arrays::transpose($stats);
+            $stats = $arrayUtils->transpose($stats);
 
             $ret = array_merge_recursive($ret, $stats);
         }

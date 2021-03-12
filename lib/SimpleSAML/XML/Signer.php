@@ -125,7 +125,8 @@ class Signer
     public function loadPrivateKey(string $file, ?string $pass, bool $full_path = false): void
     {
         if (!$full_path) {
-            $keyFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $keyFile = $configUtils->getCertPath($file);
         } else {
             $keyFile = $file;
         }
@@ -182,7 +183,8 @@ class Signer
     public function loadCertificate(string $file, bool $full_path = false): void
     {
         if (!$full_path) {
-            $certFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $certFile = $configUtils->getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -224,7 +226,8 @@ class Signer
     public function addCertificate(string $file, bool $full_path = false): void
     {
         if (!$full_path) {
-            $certFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $certFile = $configUtils->getCertPath($file);
         } else {
             $certFile = $file;
         }
