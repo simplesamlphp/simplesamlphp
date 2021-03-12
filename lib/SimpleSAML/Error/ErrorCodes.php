@@ -12,7 +12,6 @@ use SimpleSAML\Locale\Translate;
  * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class ErrorCodes
 {
     /**
@@ -161,8 +160,12 @@ class ErrorCodes
      */
     public static function getErrorCodeTitle($errorCode)
     {
-        $errorCodeTitles = self::getAllErrorCodeTitles();
-        return $errorCodeTitles[$errorCode];
+        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
+            $errorCodeTitles = self::getAllErrorCodeTitles();
+            return $errorCodeTitles[$errorCode];
+        } else {
+            return Translate::addTagPrefix($errorCode, 'title_');
+        }
     }
 
 
@@ -175,8 +178,12 @@ class ErrorCodes
      */
     public static function getErrorCodeDescription($errorCode)
     {
-        $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
-        return $errorCodeDescriptions[$errorCode];
+        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
+            $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
+            return $errorCodeDescriptions[$errorCode];
+        } else {
+            return Translate::addTagPrefix($errorCode, 'descr_');
+        }
     }
 
 
