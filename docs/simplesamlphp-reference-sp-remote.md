@@ -300,6 +300,9 @@ The following options can be set:
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
+:   Note: if unset or `true`. this setting will enforce a valid signature.
+    Set to `false` to bypass (= SAML2INT incompliant)
+
 `validate.logout`
 :   Whether we require signatures on logout messages sent from this SP.
 
