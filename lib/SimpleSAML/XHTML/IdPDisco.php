@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP
@@ -18,9 +18,6 @@ use Webmozart\Assert\Assert;
  * Experimental support added for Extended IdP Metadata Discovery Protocol by Andreas 2008-08-28
  * More information: https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
  *
- * @author Jaime Pérez <jaime.perez@uninett.no>, UNINETT AS.
- * @author Olav Morken, UNINETT AS.
- * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -31,42 +28,42 @@ class IdPDisco
      *
      * @var \SimpleSAML\Configuration
      */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * The identifier of this discovery service.
      *
      * @var string
      */
-    protected $instance;
+    protected string $instance;
 
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
-    protected $metadata;
+    protected MetadataStorageHandler $metadata;
 
     /**
      * The users session.
      *
      * @var \SimpleSAML\Session
      */
-    protected $session;
+    protected Session $session;
 
     /**
      * The metadata sets we find allowed entities in, in prioritized order.
      *
      * @var array
      */
-    protected $metadataSets;
+    protected array $metadataSets;
 
     /**
      * The entity id of the SP which accesses this IdP discovery service.
      *
      * @var string
      */
-    protected $spEntityId;
+    protected string $spEntityId;
 
     /**
      * HTTP parameter from the request, indicating whether the discovery service
@@ -74,14 +71,14 @@ class IdPDisco
      *
      * @var boolean
      */
-    protected $isPassive;
+    protected bool $isPassive;
 
     /**
      * The SP request to set the IdPentityID...
      *
      * @var string|null
      */
-    protected $setIdPentityID = null;
+    protected ?string $setIdPentityID = null;
 
     /**
      * The name of the query parameter which should contain the users choice of IdP.
@@ -89,7 +86,7 @@ class IdPDisco
      *
      * @var string
      */
-    protected $returnIdParam;
+    protected string $returnIdParam;
 
     /**
      * The list of scoped idp's. The intersection between the metadata idpList
@@ -98,14 +95,14 @@ class IdPDisco
      *
      * @var array
      */
-    protected $scopedIDPList = [];
+    protected array $scopedIDPList = [];
 
     /**
      * The URL the user should be redirected to after choosing an IdP.
      *
      * @var string
      */
-    protected $returnURL;
+    protected string $returnURL;
 
 
     /**
@@ -175,7 +172,6 @@ class IdPDisco
      * discovery service type.
      *
      * @param string $message The message which should be logged.
-     * @return void
      */
     protected function log(string $message): void
     {
@@ -212,7 +208,6 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      * @param string $value The value of the cookie.
-     * @return void
      */
     protected function setCookie(string $name, string $value): void
     {
@@ -390,7 +385,6 @@ class IdPDisco
      * Save the current IdP choice to a cookie.
      *
      * @param string $idp The entityID of the IdP.
-     * @return void
      */
     protected function setPreviousIdP(string $idp): void
     {
@@ -511,7 +505,6 @@ class IdPDisco
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
      *
-     * @return void If there is no IdP targeted and this is not a passive request.
      */
     protected function start(): void
     {
@@ -547,7 +540,6 @@ class IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
-     * @return void
      */
     public function handleRequest(): void
     {

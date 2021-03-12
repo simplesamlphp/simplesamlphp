@@ -4,27 +4,30 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Metadata;
 
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SAML2\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
 
 /**
  * Test SAML parsing
+ *
+ * @covers \SimpleSAML\Metadata\SAMLParser
  */
 class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
 {
     /**
      * Test Registration Info is parsed
-     * @return void
      */
-    public function testRegistrationInfo()
+    public function testRegistrationInfo(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -38,7 +41,7 @@ XML
         );
 
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -50,15 +53,14 @@ XML
     /**
      * Test RegistrationInfo is inherited correctly from parent EntitiesDescriptor.
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
-     * @return void
      */
-    public function testRegistrationInfoInheritance()
+    public function testRegistrationInfoInheritance(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <Extensions>
@@ -82,7 +84,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         $this->assertArrayHasKey('subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -102,11 +104,10 @@ XML
 
     /**
      * Test AttributeConsumingService is parsed
-     * @return void
      */
-    public function testAttributeConsumingServiceParsing()
+    public function testAttributeConsumingServiceParsing(): void
     {
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -129,7 +130,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
 
         /** @var array $metadata */
@@ -153,9 +154,9 @@ XML
     /**
      * @return \DOMDocument
      */
-    public function makeTestDocument()
+    public function makeTestDocument(): \DOMDocument
     {
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML(
             <<<XML
 <?xml version="1.0"?>
@@ -180,9 +181,8 @@ XML
 
     /**
      * Test RoleDescriptor/Extensions is parsed
-     * @return void
      */
-    public function testRoleDescriptorExtensions()
+    public function testRoleDescriptorExtensions(): void
     {
         $expected = [
             'scope' => [
@@ -215,7 +215,7 @@ XML
             'name' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
   <EntityDescriptor entityID="theEntityID">
@@ -247,7 +247,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // Various MDUI elements are accessible
         /** @var array $metadata */
@@ -268,5 +268,96 @@ XML
             'mdui:DiscoHints elements not reflected in parsed metadata'
         );
         $this->assertEquals($expected['name'], $metadata['name']);
+    }
+
+    /**
+     * Test entity category hidden from discovery is parsed
+     */
+    public function testHiddenFromDiscovery(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-category</saml:AttributeValue>
+        </saml:Attribute>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>http://refeds.org/category/hide-from-discovery</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayHasKey('hide.from.discovery', $metadata);
+        $this->assertTrue($metadata['hide.from.discovery']);
+    }
+
+    /**
+     * Test entity category hidden from discovery is not returned when not present
+     */
+    public function testHiddenFromDiscoveryNotHidden(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za">
+        <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
+      </mdrpi:RegistrationInfo>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-category</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
+    }
+
+    /**
+     * Test entity category hidden from discovery is not returned when no mace dir entity categories present
+     */
+    public function testHiddenFromDiscoveryNotHiddenNoMaceDirEC(): void
+    {
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://macedir.org/entity-category-support" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>https://example.org/some-supported-category</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
 }

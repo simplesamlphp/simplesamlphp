@@ -200,9 +200,6 @@ msgstr "Προαιρετικά πεδία"
 msgid "{logout:return}"
 msgstr "Επιστροφή στην υπηρεσία"
 
-msgid "{errors:title_MEMCACHEDOWN}"
-msgstr "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "Διεύθυνση <a href=\"%METAURL%\">λήψης</a> μεταδεδομένων:"
 
@@ -304,9 +301,6 @@ msgstr ""
 "υποστηρίζουν αποσύνδεση. Για το κλείσιμο όλων των συνεδριών σας "
 "(sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web"
 " browser)."
-
-msgid "{admin:metaconv_selectfile}"
-msgstr "ή επιλέξτε αρχείο"
 
 msgid "{admin:metadata_xmlformat}"
 msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"

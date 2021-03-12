@@ -110,7 +110,10 @@ startup indicating how and what you need to update. You should look through the 
 directory after the upgrade to see whether recommended defaults have been changed.
 
 
-### Alternative location for configuration files
+Configuration
+-------------
+
+### Location of configuration files
 
 By default, SimpleSAMLphp looks for its configuration in the `config` directory in the root of its own directory. This
 has some drawbacks, like making it harder to update SimpleSAMLphp or to install it as a composer dependency, or to 

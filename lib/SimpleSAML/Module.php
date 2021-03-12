@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
@@ -13,14 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
- * @author Boy Baukema, SURFnet.
- * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class Module
@@ -28,18 +25,18 @@ class Module
     /**
      * Index pages: file names to attempt when accessing directories.
      *
-     * @var array
+     * @var string[]
      */
-    public static $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
+    public static array $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
 
     /**
      * MIME Types
      *
      * The key is the file extension and the value the corresponding MIME type.
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $mimeTypes = [
+    public static array $mimeTypes = [
         'bmp'   => 'image/x-ms-bmp',
         'css'   => 'text/css',
         'gif'   => 'image/gif',
@@ -65,16 +62,16 @@ class Module
     /**
      * A list containing the modules currently installed.
      *
-     * @var array
+     * @var string[]
      */
-    public static $modules = [];
+    public static array $modules = [];
 
     /**
      * A list containing the modules that are enabled by default, unless specifically disabled
      *
-     * @var array
+     * @var array<string, bool>
      */
-    public static $core_modules = [
+    public static array $core_modules = [
         'core' => true,
         'saml' => true
     ];
@@ -84,7 +81,7 @@ class Module
      *
      * @var array
      */
-    public static $module_info = [];
+    public static array $module_info = [];
 
 
     /**
@@ -259,7 +256,7 @@ class Module
             throw new Error\NotFound('The URL wasn\'t found in the module.');
         }
 
-        if (substr($path, -4) === '.php') {
+        if (mb_strtolower(substr($path, -4), 'UTF-8') === '.php') {
             // PHP file - attempt to run it
 
             /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with $_SERVER['PATH_INFO']. Check for that
@@ -425,22 +422,18 @@ class Module
             if (!class_exists($className)) {
                 throw new \Exception("Could not resolve '$id': no class named '$className'.");
             }
+        } elseif (!in_array($tmp[0], self::getModules())) {
+            // Module not installed
+            throw new \Exception('No module named \'' . $tmp[0]. '\' has been installed.');
+        } elseif (!self::isModuleEnabled($tmp[0])) {
+            // Module installed, but not enabled
+            throw new \Exception('The module \'' . $tmp[0]. '\' is not enabled.');
         } else {
             // should be a module
             // make sure empty types are handled correctly
             $type = (empty($type)) ? '\\' : '\\' . $type . '\\';
 
             $className = 'SimpleSAML\\Module\\' . $tmp[0] . $type . $tmp[1];
-            if (!class_exists($className)) {
-                // check for the old-style class names
-                $type = str_replace('\\', '_', $type);
-                $oldClassName = 'sspmod_' . $tmp[0] . $type . $tmp[1];
-
-                if (!class_exists($oldClassName)) {
-                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$oldClassName'.");
-                }
-                $className = $oldClassName;
-            }
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
@@ -521,7 +514,6 @@ class Module
      *
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
-     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */

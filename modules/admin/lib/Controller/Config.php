@@ -22,18 +22,24 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Config
 {
-    const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
+    public const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 
-    const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
+    public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
-    /** @var Menu */
-    protected $menu;
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Menu $menu;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -51,15 +57,26 @@ class Config
 
 
     /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
      * Display basic diagnostic information on hostname, port and protocol.
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template
      */
     public function diagnostics(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
@@ -88,11 +105,13 @@ class Config
     /**
      * Display the main admin page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main(): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -118,6 +137,7 @@ class Config
 
         Module::callHooks('configpage', $t);
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        /** @psalm-var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 
@@ -125,11 +145,13 @@ class Config
     /**
      * Display the output of phpinfo().
      *
-     * @return RunnableResponse
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     *
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function phpinfo(): RunnableResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         return new RunnableResponse('phpinfo');
     }
@@ -156,11 +178,11 @@ class Config
                 'descr' => [
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
-                        '%minimum%' => '7.2',
+                        '%minimum%' => '7.4',
                         '%current%' => explode('-', phpversion())[0]
                     ]
                 ],
-                'enabled' => version_compare(phpversion(), '7.2', '>=')
+                'enabled' => version_compare(phpversion(), '7.4', '>=')
             ]
         ];
         $store = $this->config->getString('store.type', '');
@@ -396,7 +418,6 @@ class Config
                     }
                     curl_close($ch);
                 }
-
 
                 if ($latest && version_compare($this->config->getVersion(), ltrim($latest['tag_name'], 'v'), 'lt')) {
                     $warnings[] = [

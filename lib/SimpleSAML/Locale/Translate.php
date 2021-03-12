@@ -3,8 +3,6 @@
 /**
  * The translation-relevant bits from our original minimalistic XHTML PHP based template system.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -13,10 +11,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Gettext\BaseTranslator;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use Webmozart\Assert\Assert;
 
 class Translate
 {
@@ -25,35 +23,35 @@ class Translate
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * Associative array of languages.
      *
      * @var array
      */
-    private $langtext = [];
+    private array $langtext = [];
 
     /**
      * Associative array of dictionaries.
      *
      * @var array
      */
-    private $dictionaries = [];
+    private array $dictionaries = [];
 
     /**
      * The default dictionary.
      *
      * @var string|null
      */
-    private $defaultDictionary = null;
+    private ?string $defaultDictionary = null;
 
     /**
      * The language object we'll use internally.
      *
      * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Language $language;
 
 
     /**
@@ -231,25 +229,6 @@ class Translate
 
 
     /**
-     * Return the string that should be used when no translation was found.
-     *
-     * @param string  $tag A name tag of the string that should be returned.
-     * @param boolean $fallbacktag If set to true and string was not found in any languages, return the tag itself. If
-     * false return null.
-     *
-     * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
-     */
-    private function getStringNotTranslated(string $tag, bool $fallbacktag): string
-    {
-        if ($fallbacktag) {
-            return 'not translated (' . $tag . ')';
-        } else {
-            return $tag;
-        }
-    }
-
-
-    /**
      * Include a translation inline instead of putting translations in dictionaries. This function is recommended to be
      * used ONLY for variable data, or when the translation is already provided by an external source, as a database
      * or in metadata.
@@ -258,7 +237,6 @@ class Translate
      * @param mixed  $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
-     * @return void
      */
     public function includeInlineTranslation(string $tag, $translation): void
     {
@@ -283,7 +261,6 @@ class Translate
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
-     * @return void
      */
     public function includeLanguageFile(string $file, Configuration $otherConfig = null): void
     {
@@ -347,6 +324,7 @@ class Translate
 
         $lang = null;
         include($phpFile);
+        /** @psalm-var array|null $lang */
         if (isset($lang)) {
             return $lang;
         }

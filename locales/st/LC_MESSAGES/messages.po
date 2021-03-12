@@ -108,12 +108,6 @@ msgstr ""
 msgid "{login:contact_info}"
 msgstr "Tlhahisoleseding ya boikopanyo:"
 
-msgid "{errors:descr_ARSPARAMS}"
-msgstr ""
-"O fihletse kopano ya Tshebeletso ya Tlhakiso ya Athifekte, empa ha o a "
-"fana ka molaetsa wa SAML ArtifactResolve. Ka kopo lemoha hore ntlha ena "
-"ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso"
@@ -188,12 +182,6 @@ msgstr "Tlaleha diphoso"
 
 msgid "Select"
 msgstr "Kgetha"
-
-msgid "{errors:descr_SSOPARAMS}"
-msgstr ""
-"O fihletse tshebeletsano ya Tshaeno ya Hang, empa ha o a fan aka Kopo ya "
-"Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa"
-" ho fihlellwa ka kotloloho."
 
 msgid "Format"
 msgstr "Fomata"
@@ -585,9 +573,6 @@ msgstr "Phoso ho thehweng ha kopo"
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso."
 
-msgid "{errors:title_SSOPARAMS}"
-msgstr "Ha ho kopo ya SAML e fanweng"
-
 msgid ""
 "You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
 "wrong you may choose another one."
@@ -757,9 +742,6 @@ msgstr ""
 
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho"
-
-msgid "{login:processing}"
-msgstr "E a sebetsa..."
 
 msgid "Send e-mail to help desk"
 msgstr "Romela imeile ho ba deske ya thuso"
@@ -1026,9 +1008,6 @@ msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Phoso ho sebetseng Kopo ya Ho Tswa"
 
-msgid "{errors:title_ARSPARAMS}"
-msgstr "Ha ho molaetsa wa SAML o fanweng"
-
 #, python-format
 msgid "Your session is valid for %SECONDS% seconds from now."
 msgstr ""
@@ -1109,9 +1088,6 @@ msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Tlhahisoleeding ya porofensi e lahlehile, mmeha ho tsela ya ho qala kopo "
 "botjha"
-
-msgid "{errors:title_MEMCACHEDOWN}"
-msgstr "Ha e a kgona ho fumana datha ya seshene"
 
 msgid "Username"
 msgstr "Lebitso la mosebedisi"

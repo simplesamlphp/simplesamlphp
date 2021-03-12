@@ -9,15 +9,15 @@ use SimpleSAML\Metadata\SAMLBuilder;
 
 /**
  * Class SAMLBuilderTest
+ *
+ * @covers \SimpleSAML\Metadata\SAMLBuilder
  */
-
 class SAMLBuilderTest extends TestCase
 {
     /**
      * Test the requested attributes are valued correctly.
-     * @return void
      */
-    public function testAttributes()
+    public function testAttributes(): void
     {
         $entityId = 'https://entity.example.com/id';
 
@@ -95,9 +95,8 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the working of the isDefault config option
-     * @return void
      */
-    public function testAttributeConsumingServiceDefault()
+    public function testAttributeConsumingServiceDefault(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
@@ -151,9 +150,8 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the index option is used correctly.
-     * @return void
      */
-    public function testAttributeConsumingServiceIndex()
+    public function testAttributeConsumingServiceIndex(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
@@ -196,9 +194,8 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
-     * @return void
      */
-    public function testProtocolSupportEnumeration()
+    public function testProtocolSupportEnumeration(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'attributeauthority-remote';
@@ -222,7 +219,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">/',
             $entityDescriptorXml
         );
@@ -238,7 +235,7 @@ class SAMLBuilderTest extends TestCase
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
 
         $protocols = implode(' ', $metadata['protocols']);
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="' . $protocols . '">/',
             $entityDescriptorXml
         );

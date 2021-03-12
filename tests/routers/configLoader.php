@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use SimpleSAML\Configuration;
+
 /*
  * This "router" (a script that's executed for every request received by PHP's built-in web server) will look
  * for a file in the system's temporary directory, with the PID of the current process as its name, and the
@@ -31,11 +33,11 @@ declare(strict_types=1);
 include_once(sys_get_temp_dir() . '/' . getmypid() . '.lock');
 
 // load SimpleSAMLphp's autoloader
-require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
 
 // initialize configuration
 if (isset($config)) {
-    \SimpleSAML\Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
+    Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
 }
 
 // let the script proceed

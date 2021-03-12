@@ -237,9 +237,8 @@ $config = [
      * SAML messages will be logged, including plaintext versions of encrypted
      * messages.
      *
-     * - 'backtraces': this action controls the logging of error backtraces. If you
-     * want to log backtraces so that you can debug any possible errors happening in
-     * SimpleSAMLphp, enable this action (add it to the array or set it to true).
+     * - 'backtraces': this action controls the logging of error backtraces so you
+     * can debug any possible errors happening in SimpleSAMLphp.
      *
      * - 'validatexml': this action allows you to validate SAML documents against all
      * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
@@ -430,19 +429,19 @@ $config = [
     'database.persistent' => false,
 
     /*
-     * Database slave configuration is optional as well. If you are only
+     * Database secondary configuration is optional as well. If you are only
      * running a single database server, leave this blank. If you have
-     * a master/slave configuration, you can define as many slave servers
-     * as you want here. Slaves will be picked at random to be queried from.
+     * a primary/secondary configuration, you can define as many secondary servers
+     * as you want here. Secondaries will be picked at random to be queried from.
      *
-     * Configuration options in the slave array are exactly the same as the
-     * options for the master (shown above) with the exception of the table
+     * Configuration options in the secondary array are exactly the same as the
+     * options for the primary (shown above) with the exception of the table
      * prefix and driver options.
      */
-    'database.slaves' => [
+    'database.secondaries' => [
         /*
         [
-            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'dsn' => 'mysql:host=mysecondary;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,
@@ -471,7 +470,7 @@ $config = [
      ***********/
 
     /*
-     * Configuration to override module enabling/disabling.
+     * Configuration for enabling/disabling modules. By default the 'core' and 'saml' modules are enabled.
      *
      * Example:
      *
@@ -565,7 +564,7 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => null,
+    'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
 
     /*
      * Options to override the default settings for php sessions.
@@ -627,6 +626,9 @@ $config = [
      *  - 'port': This is the port number of the memcache server. If this
      *    option isn't set, then we will use the 'memcache.default_port'
      *    ini setting. This is 11211 by default.
+     *
+     * When using the "memcache" extension, the following options are also
+     * supported:
      *  - 'weight': This sets the weight of this server in this server
      *    group. http://php.net/manual/en/function.Memcache-addServer.php
      *    contains more information about the weight option.
@@ -657,6 +659,35 @@ $config = [
      * 'memcache_store.servers' => [
      *     [
      *         ['hostname' => 'localhost'],
+     *     ],
+     * ],
+     *
+     * Additionally, when using the "memcached" extension, unique keys must
+     * be provided for each group of servers if persistent connections are
+     * desired. Each server group can also have an "options" indexed array
+     * with the options desired for the given group:
+     *
+     * 'memcache_store.servers' => [
+     *     'memcache_group_1' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *         ],
+     *         ['hostname' => '127.0.0.1', 'port' => 11211],
+     *         ['hostname' => '127.0.0.2', 'port' => 11211],
+     *     ],
+     *
+     *     'memcache_group_2' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *         ],
+     *         ['hostname' => '127.0.0.3', 'port' => 11211],
+     *         ['hostname' => '127.0.0.4', 'port' => 11211],
      *     ],
      * ],
      *
@@ -720,7 +751,7 @@ $config = [
          * ],
          *
          * establishing that if a translation for the "no" language code is
-         * not available, we look for translations in "nb" (Norwegian Bokmål),
+         * not available, we look for translations in "nb",
          * and so on, in that order.
          */
         'priorities' => [
@@ -761,7 +792,7 @@ $config = [
     'language.cookie.secure' => false,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-    'language.cookie.samesite' => null,
+    'language.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
@@ -940,7 +971,7 @@ $config = [
             'type'          => 'saml20-idp-SSO',
         ],
 
-        /* When called without parameters, it will fallback to filter attributes ‹the old way›
+        /* When called without parameters, it will fallback to filter attributes 'the old way'
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
          */
         50 => 'core:AttributeLimit',

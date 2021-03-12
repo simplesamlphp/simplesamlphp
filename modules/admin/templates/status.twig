@@ -56,7 +56,8 @@
     {% endif %}
 
     {% if authData %}
-    <h3>{% trans %}Authentication data{% endtrans %}</h3>
+    <details>
+    <summary>{% trans %}Authentication data{% endtrans %}</summary>
     <div class="code-box hljs">
       <div class="pure-button-group top-right-corner">
         <a class="pure-button copy hljs" data-clipboard-target="#auth-data"
@@ -66,6 +67,7 @@
         {{- authData|json_encode(constant("JSON_PRETTY_PRINT") b-or constant("JSON_UNESCAPED_SLASHES")) }}
       </code>
     </div>
+    </details>
     <br/>
     {% endif %}
 

@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -16,7 +17,6 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the admin module.
@@ -28,13 +28,31 @@ use Webmozart\Assert\Assert;
 class Test
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
-    /** @var Menu */
-    protected $menu;
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
+    /**
+     * @var \SimpleSAML\Auth\Simple|string
+     * @psalm-var \SimpleSAML\Auth\Simple|class-string
+     */
+    protected $authSimple = Auth\Simple::class;
+
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
+    protected $authState = Auth\State::class;
+
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Menu $menu;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -52,28 +70,63 @@ class Test
 
 
     /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\Simple dependency.
+     *
+     * @param \SimpleSAML\Auth\Simple $authSimple
+     */
+    public function setAuthSimple(Auth\Simple $authSimple): void
+    {
+        $this->authSimple = $authSimple;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
+    }
+
+
+    /**
      * Display the list of available authsources.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
-     * @return \SimpleSAML\XHTML\Template
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
     public function main(Request $request, string $as = null)
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [
                 'sources' => Auth\Source::getSources(),
             ];
         } else {
-            $authsource = new Auth\Simple($as);
+            /** @psalm-suppress UndefinedClass */
+            $authsource = new $this->authSimple($as);
+
             if (!is_null($request->query->get('logout'))) {
-                $authsource->logout($this->config->getBasePath() . 'logout.php');
+                return new RunnableResponse([$authsource, 'logout'], [$this->config->getBasePath() . 'logout.php']);
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */
-                $state = Auth\State::loadExceptionState();
+                $state = $this->authState::loadExceptionState();
                 Assert::keyExists($state, Auth\State::EXCEPTION_DATA);
                 throw $state[Auth\State::EXCEPTION_DATA];
             }
@@ -84,14 +137,12 @@ class Test
                     'ErrorURL' => $url,
                     'ReturnTo' => $url,
                 ];
-                $authsource->login($params);
+                return new RunnableResponse([$authsource, 'login'], [$params]);
             }
 
             $attributes = $authsource->getAttributes();
             $authData = $authsource->getAuthDataArray();
-            $nameId = !is_null($authsource->getAuthData('saml:sp:NameID'))
-                ? $authsource->getAuthData('saml:sp:NameID')
-                : false;
+            $nameId = $authsource->getAuthData('saml:sp:NameID') ?? false;
 
             $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
@@ -108,7 +159,10 @@ class Test
         }
 
         Module::callHooks('configpage', $t);
+        Assert::isInstanceOf($t, Template::class);
+
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        /** @var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 
@@ -126,8 +180,9 @@ class Test
             "NameId" => [$nameId->getValue()],
         ];
         if ($nameId->getFormat() !== null) {
-            /** @var string $format */
-            $format = $translator->t('{status:subject_format}');
+            $format = $translator->getPreferredTranslation(
+                $translator->getTag('{status:subject_format}') ?? ['en' => 'Format']
+            );
             $list[$format] = [$nameId->getFormat()];
         }
         if ($nameId->getNameQualifier() !== null) {
@@ -196,7 +251,7 @@ class Test
                             . '" /></td></tr>';
                     } elseif (is_a($value[0], 'DOMNodeList')) {
                         // try to see if we have a NameID here
-                        /** @var \DOMNodeList $value [0] */
+                        /** @var \DOMNodeList $value[0] */
                         $n = $value[0]->length;
                         for ($idx = 0; $idx < $n; $idx++) {
                             $elem = $value[0]->item($idx);
@@ -272,8 +327,9 @@ class Test
             'NameID' => [$nameID->getValue()],
         ];
         if ($nameID->getFormat() !== null) {
-            /** @var string $format */
-            $format = $t->t('{status:subject_format}');
+            $format = $t->getPreferredTranslation(
+                $t->getTag('{status:subject_format}') ?? ['en' => 'Format']
+            );
             $eptid[$format] = [$nameID->getFormat()];
         }
         if ($nameID->getNameQualifier() !== null) {

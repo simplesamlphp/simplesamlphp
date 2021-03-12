@@ -41,7 +41,6 @@ class Log extends \SimpleSAML\Stats\Output
      * Write a stats event.
      *
      * @param array $data  The event
-     * @return void
      */
     public function emit(array $data): void
     {

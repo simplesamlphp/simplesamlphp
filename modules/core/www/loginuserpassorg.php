@@ -5,7 +5,6 @@
  * into the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password/organization authentication.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

@@ -20,8 +20,6 @@ class Arrays
      * @return array An array with one element containing $data, with key $index, or $data itself if it's already an
      *     array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function arrayize($data, $index = 0): array
     {
@@ -36,7 +34,6 @@ class Arrays
      *
      * @return array|false The transposed array, or false if $array is not a valid two-dimensional array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
     public static function transpose(array $array)
     {

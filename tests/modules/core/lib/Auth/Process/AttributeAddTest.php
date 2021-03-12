@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeAdd;
 
 /**
  * Test for the core:AttributeAdd filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAdd
  */
 class AttributeAddTest extends TestCase
 {
@@ -18,9 +22,9 @@ class AttributeAddTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeAdd($config, null);
+        $filter = new AttributeAdd($config, null);
         $filter->process($request);
         return $request;
     }
@@ -28,9 +32,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'test' => ['value1', 'value2'],
@@ -47,9 +50,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @return void
      */
-    public function testExistingNotModified()
+    public function testExistingNotModified(): void
     {
         $config = [
             'test' => ['value1', 'value2'],
@@ -73,9 +75,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test single string as attribute value.
-     * @return void
      */
-    public function testStringValue()
+    public function testStringValue(): void
     {
         $config = [
             'test' => 'value',
@@ -92,9 +93,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test adding multiple attributes in one config.
-     * @return void
      */
-    public function testAddMultiple()
+    public function testAddMultiple(): void
     {
         $config = [
             'test1' => ['value1'],
@@ -114,9 +114,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test behavior when appending attribute values.
-     * @return void
      */
-    public function testAppend()
+    public function testAppend(): void
     {
         $config = [
             'test' => ['value2'],
@@ -134,9 +133,8 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test replacing attribute values.
-     * @return void
      */
-    public function testReplace()
+    public function testReplace(): void
     {
         $config = [
             '%replace',
@@ -155,11 +153,10 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong usage generates exceptions
-     * @return void
      */
-    public function testWrongFlag()
+    public function testWrongFlag(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             '%nonsense',
             'test' => ['value2'],
@@ -175,11 +172,10 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong attribute value
-     * @return void
      */
-    public function testWrongAttributeValue()
+    public function testWrongAttributeValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             '%replace',
             'test' => [true],

@@ -5,8 +5,6 @@ declare(strict_types=1);
 /**
  * This file registers an autoloader for SimpleSAMLphp modules.
  *
- * @author Boy Baukema, SURFnet
- * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT
  * @package SimpleSAMLphp
  */
 

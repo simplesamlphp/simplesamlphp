@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "cron报告"
-
-msgid "{cron:cron:ran_text}"
-msgstr "cron运行于"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "以下是一些关于crontab文件的建议"
-
-msgid "{cron:cron:run_text}"
-msgstr "运行cron"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "点击这里运行cron任务"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron是一种在UNIX系统上定时运行任务的工具"
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "这里是cron任务处理结果"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cron结果页面"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron是一种在UNIX系统上定时运行任务的工具"
 

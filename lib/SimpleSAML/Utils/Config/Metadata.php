@@ -12,7 +12,6 @@ use SimpleSAML\Logger;
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
  *
  * @package SimpleSAMLphp
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  */
 class Metadata
 {
@@ -21,7 +20,7 @@ class Metadata
      *
      * @var string
      */
-    public static $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
+    public static string $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
 
 
     /**
@@ -29,7 +28,7 @@ class Metadata
      *
      * @var string
      */
-    public static $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
+    public static string $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
 
 
     /**
@@ -39,10 +38,10 @@ class Metadata
      * it is required to allow additons to the main contact person element for trust
      * frameworks.
      *
-     * @var array The valid configuration options for a contact configuration array.
+     * @var string[] The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = [
+    public static array $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -54,10 +53,10 @@ class Metadata
 
 
     /**
-     * @var array The valid types of contact for a contact configuration array.
+     * @var string[] The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = [
+    public static array $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
@@ -240,7 +239,6 @@ class Metadata
      *
      * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDefaultEndpoint(array $endpoints, array $bindings = null): ?array
     {
@@ -298,10 +296,10 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata): bool
     {
-        Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
-        Logger::popErrorMask();
-        return $hidden === true;
+        if (!isset($metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+            return false;
+        }
+        return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
     }
 
 

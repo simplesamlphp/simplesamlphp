@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use Exception;
+use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\Utils\TestCase;
 use SimpleSAML\Utils\EMail;
 
 /**
  * A base SSP test case that tests some simple e-mail related calls
+ *
+ * @covers \SimpleSAML\Utils\EMail
  */
 class EMailTest extends ClearStateTestCase
 {
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -30,33 +33,30 @@ class EMailTest extends ClearStateTestCase
     /**
      * Test that an exception is thrown if using default configuration,
      * and no custom from address is specified.
-     * @return void
      */
-    public function testMailFromDefaultConfigurationException()
+    public function testMailFromDefaultConfigurationException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', null, 'phpunit@simplesamlphp.org');
     }
 
 
     /**
      * Test that an exception is thrown if using an invalid "From"-address
-     * @return void
      */
-    public function testInvalidFromAddressException()
+    public function testInvalidFromAddressException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', "phpunit@simplesamlphp.org\nLorem Ipsum", 'phpunit@simplesamlphp.org');
     }
 
 
     /**
      * Test that an exception is thrown if using an invalid "To"-address
-     * @return void
      */
-    public function testInvalidToAddressException()
+    public function testInvalidToAddressException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', 'phpunit@simplesamlphp.org', "phpunit@simplesamlphp.org\nLorem Ipsum");
     }
 
@@ -65,9 +65,8 @@ class EMailTest extends ClearStateTestCase
      * Test that the data given is visible in the resulting mail
      * @dataProvider mailTemplates
      * @param string $template
-     * @return void
      */
-    public function testMailContents($template)
+    public function testMailContents($template): void
     {
         $mail = new EMail(
             'subject-subject-subject-subject-subject-subject-subject',
@@ -77,10 +76,10 @@ class EMailTest extends ClearStateTestCase
         $mail->setText('text-text-text-text-text-text-text');
         $mail->setData(['key-key-key-key-key-key-key' => 'value-value-value-value-value-value-value']);
         $result = $mail->generateBody($template);
-        $this->assertRegexp('/(subject-){6}/', $result);
-        $this->assertRegexp('/(text-){6}/', $result);
-        $this->assertRegexp('/(key-){6}/', $result);
-        $this->assertRegexp('/(value-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(subject-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(text-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(key-){6}/', $result);
+        $this->assertMatchesRegularExpression('/(value-){6}/', $result);
     }
 
 
@@ -88,16 +87,15 @@ class EMailTest extends ClearStateTestCase
      * All templates that should be tested in #testMailContents($template)
      * @return array
      */
-    public static function mailTemplates()
+    public static function mailTemplates(): array
     {
         return [['mailtxt.twig'], ['mailhtml.twig']];
     }
 
 
     /**
-     * @return void
      */
-    public function testInvalidTransportConfiguration()
+    public function testInvalidTransportConfiguration(): void
     {
         // preserve the original configuration
         $originalTestConfiguration = Configuration::getInstance()->toArray();
@@ -108,7 +106,7 @@ class EMailTest extends ClearStateTestCase
         ]), '[ARRAY]', 'simplesaml');
 
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
 
         // reset the configuration
@@ -117,9 +115,8 @@ class EMailTest extends ClearStateTestCase
 
 
     /**
-     * @return void
      */
-    public function testInvalidSMTPConfiguration()
+    public function testInvalidSMTPConfiguration(): void
     {
         // setup a new email
         $email = new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
@@ -127,16 +124,15 @@ class EMailTest extends ClearStateTestCase
         // set the transport option to smtp but don't set any transport options (invalid state)
         // NOTE: this is the same method that the constructor calls, so this should be logically equivalent
         // to setting it via the configuration file.
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $email->setTransportMethod('smtp');
     }
 
     /**
      * Test setting configuration.
      *
-     * @return void
      */
-    public function testGetDefaultMailAddress()
+    public function testGetDefaultMailAddress(): void
     {
         Configuration::loadFromArray([
             'technicalcontact_email' => 'gamaarna@example.org',

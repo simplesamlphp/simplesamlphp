@@ -26,7 +26,6 @@ All these parameters override the equivalent option from the configuration.
 `saml:AuthnContextClassRef`
 :   The AuthnContextClassRef that will be sent in the login request.
 
-:   *Note*: SAML 2 specific.
 
 `saml:AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
@@ -38,12 +37,10 @@ All these parameters override the equivalent option from the configuration.
     * `SAML2\Constants::COMPARISON_MINIMUM`
     * `SAML2\Constants::COMPARISON_MAXIMUM`
     
-:   *Note*: SAML 2 specific.
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
 
-:   *Note*: SAML 2 specific.
 
 `saml:idp`
 :   The entity ID of the IdP we should send an authentication request to.
@@ -51,18 +48,15 @@ All these parameters override the equivalent option from the configuration.
 `isPassive`
 :   Send a passive authentication request.
 
-:   *Note*: SAML 2 specific.
 
 `saml:Extensions`
 :   The samlp:Extensions that will be sent in the login request.
 
-:   *Note*: SAML 2 specific.
 
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
     This must be a \SAML2\XML\saml\NameID object.
 
-:   *Note*: SAML 2 specific.
 
 `saml:NameIDPolicy`
 :   The format of the NameID we request from the IdP: an array in the form of
@@ -73,13 +67,11 @@ All these parameters override the equivalent option from the configuration.
 :   For compatibility purposes, `null` is equivalent to transient and a format
     can be defined as a string instead of an array. These variants are deprecated.
 
-:   *Note*: SAML 2 specific.
 
 `saml:Audience`
 :   Add a Conditions element to the SAML AuthnRequest containing an
     AudienceRestriction with one or more audiences.
 
-:   *Note*: SAML 2 specific.
 
 
 Authentication data
@@ -94,7 +86,7 @@ The following attributes are available:
 
 `saml:sp:NameID`
 :   The NameID the user was issued by the IdP.
-    This is an associative array with the various fields from the NameID.
+    This is a \SAML2\XML\saml\NameID object with the various fields from the NameID.
 
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
@@ -119,12 +111,15 @@ Options
 
 :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
 
-:   *Note*: SAML 2 specific.
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
     documentation.
+
+`AssertionConsumerServiceIndex`
+:   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
+    Service Consumer URL.
 
 `attributes`
 :   List of attributes this SP requests from the IdP.
@@ -157,7 +152,6 @@ Options
 :   The SP can request authentication with a specific authentication context class.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
 
-:   *Note*: SAML 2 specific.
 
 `AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
@@ -169,7 +163,6 @@ Options
     * `SAML2\Constants::COMPARISON_MINIMUM`
     * `SAML2\Constants::COMPARISON_MAXIMUM`
     
-:   *Note*: SAML 2 specific.
 
 `authproc`
 :   Processing filters that should be run after SP authentication.
@@ -232,7 +225,6 @@ Options
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
-:   *Note*: SAML 2 specific.
 
 `entityID`
 :   The entity ID this SP should use.
@@ -243,7 +235,6 @@ Options
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
 
-:   *Note*: SAML 2 specific.
 
 `idp`
 :   The entity ID this SP should connect to.
@@ -253,7 +244,6 @@ Options
 `IsPassive`
 :   IsPassive allows you to enable passive authentication by default for this SP.
 
-:   *Note*: SAML 2 specific.
 
 `name`
 :   The name of this SP.
@@ -274,7 +264,6 @@ Options
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
-:   *Note*: SAML 2 specific.
 
 `NameIDPolicy`
 :   The format of the NameID we request from the idp: an array in the form of
@@ -285,7 +274,6 @@ Options
 :   For compatibility purposes, `null` is equivalent to transient and a format
     can be defined as a string instead of an array. These variants are deprecated.
 
-:   *Note*: SAML 2 specific.
 
 `OrganizationName`
 :   The name of the organization responsible for this SP.
@@ -319,31 +307,30 @@ Options
 `privatekey`
 :   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
 
-:   *Note*: SAML 2 specific.
 
 `privatekey_pass`
 :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
 
-:   *Note*: SAML 2 specific.
+
+`ProviderName`
+:   Human readable name of the local SP sent with the authentication request.
+
 
 `ProtocolBinding`
 :   The binding that should be used for SAML2 authentication responses.
     This option controls the binding that is requested through the AuthnRequest message to the IdP.
     By default the HTTP-Post binding is used.
 
-:   *Note*: SAML 2 specific.
 
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
     If set, the `AuthnRequestsSigned` attribute of the `SPSSODescriptor` element in SAML 2.0 metadata will contain its value. This
     option takes precedence over the `sign.authnrequest` option in any metadata generated for this SP.
 
-:   *Note*: SAML 2 specific.
 
 `redirect.validate`
 :   Whether logout requests and logout responses received by this SP should be validated. The default is `FALSE`.
 
-:   *Note*: SAML 2 specific.
 
 `RegistrationInfo`
 :   Allows to specify information about the registrar of this SP. Please refer to the
@@ -352,7 +339,6 @@ Options
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
 
-:   *Note*: SAML 2 specific.
 
 `saml.SOAPClient.certificate`
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
@@ -375,7 +361,6 @@ Options
     any value in the IdP-remote metadata overrides the one configured
     in the SP configuration.
 
-:   *Note*: SAML 2 specific.
 
 `sign.logout`
 :   Whether to sign logout messages sent from this SP.
@@ -384,7 +369,6 @@ Options
     any value in the IdP-remote metadata overrides the one configured
     in the SP configuration.
 
-:   *Note*: SAML 2 specific.
 
 `signature.algorithm`
 :   The algorithm to use when signing any message generated by this service provider. Defaults to RSA-SHA256.
@@ -398,12 +382,12 @@ Options
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SingleLogoutServiceBinding`
-:	List of SingleLogoutService bindings the IdP will claim support for.
+:	List of SingleLogoutService bindings the SP will claim support for (can be empty).
 :	Possible values:
 
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-	* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+    * `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
 
 `SingleLogoutServiceLocation`
 :   The Single Logout Service URL published in the generated metadata.
@@ -425,7 +409,6 @@ Options
     any value in the IdP-remote metadata overrides the one configured
     in the IdP metadata.
 
-:   *Note*: SAML 2 specific.
 
 `WantAssertionsSigned`
 :   Whether assertions received by this SP must be signed. The default value is `FALSE`.

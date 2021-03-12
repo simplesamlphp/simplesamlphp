@@ -35,9 +35,9 @@ use SAML2\XML\mdui\Logo;
 use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.
@@ -58,7 +58,7 @@ class SAMLParser
      *
      * @var string[]
      */
-    private static $SAML20Protocols = [
+    private static array $SAML20Protocols = [
         Constants::NS_SAMLP,
     ];
 
@@ -67,7 +67,7 @@ class SAMLParser
      *
      * @var string
      */
-    private $entityId;
+    private string $entityId;
 
     /**
      * This is an array with the processed SPSSODescriptor elements we have found in this
@@ -77,9 +77,9 @@ class SAMLParser
      *   Each assertion consumer service is stored as an associative array with the
      *   elements that parseGenericEndpoint returns.
      *
-     * @var array[]
+     * @var array
      */
-    private $spDescriptors;
+    private array $spDescriptors;
 
     /**
      * This is an array with the processed IDPSSODescriptor elements we have found.
@@ -87,84 +87,84 @@ class SAMLParser
      * - 'SingleSignOnService': Array with the IdP's single sign on service endpoints. Each endpoint is stored
      *   as an associative array with the elements that parseGenericEndpoint returns.
      *
-     * @var array[]
+     * @var array
      */
-    private $idpDescriptors;
+    private array $idpDescriptors;
 
     /**
      * List of attribute authorities we have found.
      *
      * @var array
      */
-    private $attributeAuthorityDescriptors = [];
+    private array $attributeAuthorityDescriptors = [];
 
     /**
      * This is an associative array with the organization name for this entity. The key of
      * the associative array is the language code, while the value is a string with the
      * organization name.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationName = [];
+    private array $organizationName = [];
 
     /**
      * This is an associative array with the organization display name for this entity. The key of
      * the associative array is the language code, while the value is a string with the
      * organization display name.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationDisplayName = [];
+    private array $organizationDisplayName = [];
 
     /**
      * This is an associative array with the organization URI for this entity. The key of
      * the associative array is the language code, while the value is the URI.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationURL = [];
+    private array $organizationURL = [];
 
     /**
      * This is an array of the Contact Persons of this entity.
      *
-     * @var array[]
+     * @var array
      */
-    private $contacts = [];
+    private array $contacts = [];
 
     /**
      * @var array
      */
-    private $scopes;
+    private array $scopes;
 
     /**
      * @var array
      */
-    private $entityAttributes;
+    private array $entityAttributes;
 
     /**
      * An associative array of attributes from the RegistrationInfo element.
      * @var array
      */
-    private $registrationInfo;
+    private array $registrationInfo;
 
     /**
      * @var array
      */
-    private $tags;
+    private array $tags;
 
     /**
      * This is an array of elements that may be used to validate this element.
      *
      * @var \SAML2\SignedElementHelper[]
      */
-    private $validators = [];
+    private array $validators = [];
 
     /**
      * The original EntityDescriptor element for this entity, as a base64 encoded string.
      *
      * @var string
      */
-    private $entityDescriptor;
+    private string $entityDescriptor;
 
 
     /**
@@ -487,7 +487,6 @@ class SAMLParser
      *
      * @param array &$metadata The metadata that should be updated.
      * @param array $roleDescriptor The parsed role descriptor.
-     * @return void
      */
     private function addExtensions(array &$metadata, array $roleDescriptor): void
     {
@@ -796,7 +795,6 @@ class SAMLParser
      * @param \SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                     $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
-     * @return void
      */
     private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
     {
@@ -831,7 +829,6 @@ class SAMLParser
      * @param \SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                      $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
-     * @return void
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
     {
@@ -856,7 +853,6 @@ class SAMLParser
      * @param \SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
      * @param int|NULL                                  $expireTime The unix timestamp for when this element should
      *     expire, or NULL if unknown.
-     * @return void
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
@@ -1035,7 +1031,6 @@ class SAMLParser
      * Parse and process a Organization element.
      *
      * @param \SAML2\XML\md\Organization $element The Organization element.
-     * @return void
      */
     private function processOrganization(Organization $element): void
     {
@@ -1049,7 +1044,6 @@ class SAMLParser
      * Parse and process a ContactPerson element.
      *
      * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
-     * @return void
      */
     private function processContactPerson(ContactPerson $element): void
     {
@@ -1083,7 +1077,6 @@ class SAMLParser
      *
      * @param \SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
      * @param array $sp The array with the SP's metadata.
-     * @return void
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {

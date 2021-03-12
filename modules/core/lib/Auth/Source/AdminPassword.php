@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Webmozart\Assert\Assert;
+use SimpleSAML\Module\core\Auth\UserPassBase;
 
 /**
  * Authentication source which verifies the password against
@@ -15,7 +16,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
+class AdminPassword extends UserPassBase
 {
     /**
      * Constructor for this authentication source.

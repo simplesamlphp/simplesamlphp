@@ -13,14 +13,13 @@ use SimpleSAML\Configuration;
  * Generic SQL Store to store key value pairs. To be used in several other modules that needs
  * to store data permanently.
  *
- * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
 class SQLPermanentStorage
 {
     /** @var \PDO */
-    private $db;
+    private PDO $db;
 
 
     /**
@@ -49,6 +48,7 @@ class SQLPermanentStorage
 
         $dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
         if ($this->db = new PDO($dbfile)) {
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {
                 $this->db->exec('
@@ -76,7 +76,6 @@ class SQLPermanentStorage
      * @param string $key2
      * @param string $value
      * @param int|null $duration
-     * @return void
      */
     public function set(string $type, string $key1, string $key2, string $value, int $duration = null): void
     {

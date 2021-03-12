@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Cron rapport"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron løb på"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Her er et forslag til en crontab fil:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Run cron:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Klik her for at køre cron job:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron er en måde at køre tingene regelmæssigt på UNIX-systemer."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Her er resultatet for opgaven udførelse:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cron resultat side"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron er en måde at køre tingene regelmæssigt på UNIX-systemer."
 

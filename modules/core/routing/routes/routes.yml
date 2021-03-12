@@ -22,3 +22,15 @@ core-warning-shortssointerval:
 core-post-redirect:
     path:       /postredirect
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Redirection:postredirect' }
+core-legacy-welcome:
+    path:       /frontpage_welcome.php
+    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /admin/, permanent: true }
+core-legacy-config:
+    path:       /frontpage_config.php
+    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /admin/, permanent: true }
+core-legacy-auth:
+    path:       /frontpage_auth.php
+    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /admin/test, permanent: true }
+core-legacy-federation:
+    path:       /frontpage_federation.php
+    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /admin/federation, permanent: true }

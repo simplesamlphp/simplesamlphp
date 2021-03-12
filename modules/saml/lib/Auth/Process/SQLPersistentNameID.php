@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 
 /**
  * Authentication processing filter to generate a persistent NameID.
@@ -15,42 +16,42 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class SQLPersistentNameID extends BaseNameIDGenerator
 {
     /**
      * Which attribute contains the unique identifier of the user.
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
     /**
      * Whether we should create a persistent NameID if not explicitly requested (as saml:PersistentNameID does).
      *
      * @var boolean
      */
-    private $allowUnspecified = false;
+    private bool $allowUnspecified = false;
 
     /**
      * Whether we should create a persistent NameID if a different format is requested.
      *
      * @var boolean
      */
-    private $allowDifferent = false;
+    private bool $allowDifferent = false;
 
     /**
      * Whether we should ignore allowCreate in the NameID policy
      *
      * @var boolean
      */
-    private $alwaysCreate = false;
+    private bool $alwaysCreate = false;
 
     /**
      * Database store configuration.
      *
      * @var array
      */
-    private $storeConfig = [];
+    private array $storeConfig = [];
 
 
     /**

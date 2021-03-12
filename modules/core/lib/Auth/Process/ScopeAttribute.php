@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use Webmozart\Assert\Assert;
 
 /**
  * Add a scoped variant of an attribute.
@@ -13,35 +14,35 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute we extract the scope from.
      *
      * @var string
      */
-    private $scopeAttribute;
+    private string $scopeAttribute;
 
     /**
      * The attribute we want to add scope to.
      *
      * @var string
      */
-    private $sourceAttribute;
+    private string $sourceAttribute;
 
     /**
      * The attribute we want to add the scoped attributes to.
      *
      * @var string
      */
-    private $targetAttribute;
+    private string $targetAttribute;
 
     /**
      * Only modify targetAttribute if it doesn't already exist.
      *
      * @var bool
      */
-    private $onlyIfEmpty = false;
+    private bool $onlyIfEmpty = false;
 
 
     /**
@@ -67,7 +68,6 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * Apply this filter to the request.
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

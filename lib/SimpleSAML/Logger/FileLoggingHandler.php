@@ -11,8 +11,6 @@ use SimpleSAML\Utils;
 /**
  * A logging handler that dumps logs to files.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 class FileLoggingHandler implements LoggingHandlerInterface
@@ -22,13 +20,13 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @var null|string
      */
-    protected $logFile = null;
+    protected ?string $logFile = null;
 
     /**
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
      * SimpleSAML\Logger\ErrorLogLoggingHandler.
      *
-     * @var array
+     * @var array<int, string>
      */
     private static $levelNames = [
         Logger::EMERG   => 'EMERGENCY',
@@ -41,11 +39,11 @@ class FileLoggingHandler implements LoggingHandlerInterface
         Logger::DEBUG   => 'DEBUG',
     ];
 
-    /** @var string|null */
-    protected $processname = null;
+    /** @var string */
+    protected string $processname;
 
     /** @var string */
-    protected $format = "%b %d %H:%M:%S";
+    protected string $format = "%b %d %H:%M:%S";
 
 
     /**
@@ -57,7 +55,9 @@ class FileLoggingHandler implements LoggingHandlerInterface
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getString('logging.logfile', 'simplesamlphp.log');
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {
@@ -80,7 +80,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
     public function setLogFormat(string $format): void
     {
@@ -93,7 +92,6 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
     public function log(int $level, string $string): void
     {

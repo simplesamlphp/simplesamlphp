@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Error;
 use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;
 use SAML2\XML\saml\NameID;
 use SAML2\Constants;
@@ -12,7 +13,8 @@ use SAML2\Constants;
 /**
  * Test for the saml:NameIDAttribute filter.
  *
- * @author Eugene Venter <eugene@catalyst.net.nz>
+ * @covers \SimpleSAML\Module\saml\Auth\Process\NameIDAttribute
+ *
  * @package SimpleSAMLphp
  */
 class NameIDAttributeTest extends TestCase
@@ -34,9 +36,8 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test minimal configuration.
-     * @return void
      */
-    public function testMinimalConfig()
+    public function testMinimalConfig(): void
     {
         $config = [];
         $spId = 'eugeneSP';
@@ -59,15 +60,14 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
     }
 
 
     /**
      * Test custom attribute name.
-     * @return void
      */
-    public function testCustomAttributeName()
+    public function testCustomAttributeName(): void
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName];
@@ -91,17 +91,16 @@ class NameIDAttributeTest extends TestCase
         ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
 
 
     /**
      * Test custom format.
-     * @return void
      */
-    public function testFormat()
+    public function testFormat(): void
     {
-        $config = ['format' => '%V'];
+        $config = ['format' => '%V!%%'];
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
@@ -121,15 +120,67 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$nameId->getValue()}!%", $result['Attributes']['nameid'][0]);
+    }
+
+
+    /**
+     * Test invalid format throws an exception.
+     */
+    public function testInvalidFormatThrowsException(): void
+    {
+        $config = ['format' => '%X'];
+        $spId = 'eugeneSP';
+        $idpId = 'eugeneIdP';
+
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+
+        $request = [
+            'Source'     => [
+                'entityid' => $spId,
+            ],
+            'Destination' => [
+                'entityid' => $idpId,
+            ],
+            'saml:sp:NameID' => $nameId,
+        ];
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('NameIDAttribute: Invalid replacement: "%X"');
+
+        $this->processFilter($config, $request);
+    }
+
+
+    /**
+     * Test invalid request silently continues, leaving the state untouched
+     */
+    public function testInvalidRequestLeavesStateUntouched(): void
+    {
+        $config = ['format' => '%V!%F'];
+        $spId = 'eugeneSP';
+        $idpId = 'eugeneIdP';
+
+        $request = [
+            'Source'     => [
+                'entityid' => $spId,
+            ],
+            'Destination' => [
+                'entityid' => $idpId,
+            ],
+        ];
+
+        $pre = $request;
+        $this->processFilter($config, $request);
+        $this->assertEquals($pre, $request);
     }
 
 
     /**
      * Test custom attribute name with format.
-     * @return void
      */
-    public function testCustomAttributeNameAndFormat()
+    public function testCustomAttributeNameAndFormat(): void
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName, 'format' => '%V'];
@@ -154,5 +205,32 @@ class NameIDAttributeTest extends TestCase
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
         $this->assertEquals("{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
+    }
+
+
+    /**
+     * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
+     */
+    public function testOverrideNameID(): void
+    {
+        $spId = 'eugeneSP';
+        $idpId = 'eugeneIdP';
+
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+
+        $request = [
+            'Source'     => [
+                'entityid' => $spId,
+            ],
+            'Destination' => [
+                'entityid' => $idpId,
+            ],
+            'saml:sp:NameID' => $nameId,
+        ];
+        $this->processFilter(array(), $request);
+        $this->assertEquals("{$nameId->getFormat()}", Constants::NAMEID_UNSPECIFIED);
+        $this->assertEquals("{$nameId->getNameQualifier()}", $idpId);
+        $this->assertEquals("{$nameId->getSPNameQualifier()}", $spId);
     }
 }

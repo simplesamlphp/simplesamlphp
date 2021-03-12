@@ -10,14 +10,15 @@ use SimpleSAML\Utils\Config;
 
 /**
  * Tests for SimpleSAML\Utils\Config
+ *
+ * @covers \SimpleSAML\Utils\Config
  */
 class ConfigTest extends TestCase
 {
     /**
      * Test default config dir with not environment variable
-     * @return void
      */
-    public function testDefaultConfigDir()
+    public function testDefaultConfigDir(): void
     {
         // clear env var
         putenv('SIMPLESAMLPHP_CONFIG_DIR');
@@ -29,9 +30,8 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
-     * @return void
      */
-    public function testEnvVariableConfigDir()
+    public function testEnvVariableConfigDir(): void
     {
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
         $configDir = Config::getConfigDir();
@@ -41,9 +41,8 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
-     * @return void
      */
-    public function testEnvRedirectVariableConfigDir()
+    public function testEnvRedirectVariableConfigDir(): void
     {
         putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
         $configDir = Config::getConfigDir();
@@ -54,9 +53,8 @@ class ConfigTest extends TestCase
 
     /**
      * Test which directory takes precedence
-     * @return void
      */
-    public function testEnvRedirectPriorityVariableConfigDir()
+    public function testEnvRedirectPriorityVariableConfigDir(): void
     {
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . dirname(__DIR__));
         putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
@@ -68,9 +66,8 @@ class ConfigTest extends TestCase
 
     /**
      * Test invalid dir specified by env var results in a thrown exception
-     * @return void
      */
-    public function testInvalidEnvVariableConfigDirThrowsException()
+    public function testInvalidEnvVariableConfigDirThrowsException(): void
     {
         // I used a random hash to ensure this test directory is always invalid
         $invalidDir = __DIR__ . '/e9826ad19cbc4f5bf20c0913ffcd2ce6';

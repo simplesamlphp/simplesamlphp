@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This file implements functions to read and write to a group of memcache
@@ -20,7 +19,6 @@ use Webmozart\Assert\Assert;
  * have the same clock (as measured by the time()-function). Different clock
  * values will lead to incorrect behaviour.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -29,9 +27,9 @@ class Memcache
     /**
      * Cache of the memcache servers we are using.
      *
-     * @var \Memcached[]|null
+     * @var \Memcached[]
      */
-    private static $serverGroups = null;
+    private static array $serverGroups = [];
 
 
     /**
@@ -144,7 +142,6 @@ class Memcache
      * @param string       $key The key of the data.
      * @param mixed        $value The value of the data.
      * @param integer|null $expire The expiration timestamp of the data.
-     * @return void
      */
     public static function set(string $key, $value, ?int $expire = null): void
     {
@@ -171,7 +168,6 @@ class Memcache
      * Delete a key-value pair from the memcache servers.
      *
      * @param string $key The key we should delete.
-     * @return void
      */
     public static function delete(string $key): void
     {
@@ -204,7 +200,6 @@ class Memcache
      *
      * @param \Memcached $memcache The Memcache object we should add this server to.
      * @param array    $server An associative array with the configuration options for the server to add.
-     * @return void
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */
@@ -249,36 +244,6 @@ class Memcache
             }
         }
 
-        // check if the user has specified a weight for this server
-        if (array_key_exists('weight', $server)) {
-            // get the weight and validate it
-            $weight = (int) $server['weight'];
-            if ($weight <= 0) {
-                throw new \Exception(
-                    "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default weight of 1
-            $weight = 1;
-        }
-
-        // check if the user has specified a timeout for this server
-        if (array_key_exists('timeout', $server)) {
-            // get the timeout and validate it
-            $timeout = (int) $server['timeout'];
-            if ($timeout <= 0) {
-                throw new \Exception(
-                    "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default timeout of 3 seconds
-            $timeout = 3;
-        }
-
         // add this server to the Memcache object
         $memcache->addServer($hostname, $port);
     }
@@ -289,14 +254,29 @@ class Memcache
      * creates a Memcache object from the servers in the group.
      *
      * @param array $group Array of servers which should be created as a group.
+     * @param string $index The index for this group. Specify if persistent connections are desired.
      *
      * @return \Memcached A Memcache object of the servers in the group
      *
      * @throws \Exception If the servers configuration is invalid.
      */
-    private static function loadMemcacheServerGroup(array $group)
+    private static function loadMemcacheServerGroup(array $group, $index = null)
     {
-        $memcache = new \Memcached();
+        if (is_string($index)) {
+            $memcache = new \Memcached($index);
+        } else {
+            $memcache = new \Memcached();
+        }
+        if (array_key_exists('options', $group)) {
+            $memcache->setOptions($group['options']);
+            unset($group['options']);
+        }
+
+        $servers = $memcache->getServerList();
+        if (count($servers) === count($group) && !$memcache->isPristine()) {
+            return $memcache;
+        }
+        $memcache->resetServerList();
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
@@ -337,7 +317,7 @@ class Memcache
     private static function getMemcacheServers(): array
     {
         // check if we have loaded the servers already
-        if (self::$serverGroups != null) {
+        if (!empty(self::$serverGroups)) {
             return self::$serverGroups;
         }
 
@@ -352,15 +332,6 @@ class Memcache
 
         // iterate over all the groups in the 'memcache_store.servers' configuration option
         foreach ($groups as $index => $group) {
-            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
-            if (!is_int($index)) {
-                throw new \Exception(
-                    "Invalid index on element in the 'memcache_store.servers'" .
-                    ' configuration option. Perhaps you have forgotten to add an array(...)' .
-                    ' around one of the server groups? The invalid index was: ' . $index
-                );
-            }
-
             /*
              * Make sure that the group is an array. Each group is an array of servers. Each server is
              * an array of name => value pairs for that server.
@@ -373,8 +344,13 @@ class Memcache
                 );
             }
 
+            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
+            if (is_int($index)) {
+                $index = null;
+            }
+
             // parse and add this group to the server group list
-            self::$serverGroups[] = self::loadMemcacheServerGroup($group);
+            self::$serverGroups[] = self::loadMemcacheServerGroup($group, $index);
         }
 
         return self::$serverGroups;

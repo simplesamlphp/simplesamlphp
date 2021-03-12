@@ -7,7 +7,6 @@ namespace SimpleSAML\Error;
 /**
  * This exception represents a configuration error.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -18,14 +17,14 @@ class ConfigurationError extends Error
      *
      * @var null|string
      */
-    protected $reason;
+    protected ?string $reason;
 
     /**
      * The configuration file that caused this exception.
      *
      * @var null|string
      */
-    protected $config_file;
+    protected ?string $config_file;
 
 
     /**

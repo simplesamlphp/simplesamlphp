@@ -3,7 +3,6 @@
 /**
  * This class implements helper functions for XML validation.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -15,8 +14,8 @@ use DOMNode;
 use DOMDocument;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 class Validator
 {
@@ -24,12 +23,12 @@ class Validator
      * @var string|null This variable contains the X509 certificate the XML document
      *             was signed with, or NULL if it wasn't signed with an X509 certificate.
      */
-    private $x509Certificate = null;
+    private ?string $x509Certificate = null;
 
     /**
      * @var array|null This variable contains the nodes which are signed.
      */
-    private $validNodes = null;
+    private ?array $validNodes = null;
 
 
     /**

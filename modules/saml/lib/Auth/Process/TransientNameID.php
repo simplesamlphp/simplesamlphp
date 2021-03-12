@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to generate a transient NameID.
@@ -14,7 +15,7 @@ use Webmozart\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class TransientNameID extends BaseNameIDGenerator
 {
     /**
      * Initialize this filter, parse configuration

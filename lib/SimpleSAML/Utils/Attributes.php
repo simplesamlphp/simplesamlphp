@@ -9,7 +9,6 @@ use SimpleSAML\Error;
 /**
  * Attribute-related utility methods.
  *
- * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAML
  */
 
@@ -66,8 +65,6 @@ class Attributes
      * @throws \InvalidArgumentException If input is not an array, array keys are not strings or attribute values are
      *     not strings.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function normalizeAttributesArray(array $attributes): array
     {

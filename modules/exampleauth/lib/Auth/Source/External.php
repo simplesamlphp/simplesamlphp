@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Example external authentication source.
@@ -30,12 +30,12 @@ use Webmozart\Assert\Assert;
  *
  * @package SimpleSAMLphp
  */
-class External extends \SimpleSAML\Auth\Source
+class External extends Auth\Source
 {
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
+    public const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
 
 
     /**
@@ -102,7 +102,6 @@ class External extends \SimpleSAML\Auth\Source
      * Log in using an external authentication helper.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -185,7 +184,6 @@ class External extends \SimpleSAML\Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
@@ -264,7 +262,6 @@ class External extends \SimpleSAML\Auth\Source
      * by logging out of a SP that supports single logout.
      *
      * @param array &$state  The logout state array.
-     * @return void
      */
     public function logout(array &$state): void
     {

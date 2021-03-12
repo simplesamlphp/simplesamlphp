@@ -3,6 +3,12 @@ Installing SimpleSAMLphp from the repository
 
 These are some notes about running SimpleSAMLphp from the repository.
 
+Prerequisites
+-------------
+
+ * NodeJS version >= 10.0.
+
+
 Installing from git
 -------------------
 

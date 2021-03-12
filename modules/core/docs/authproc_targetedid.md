@@ -13,6 +13,8 @@ Parameters
 :   The name of the attribute we should use for the unique user identifier.
     Optional, will use the attribute set by the `userid.attribute` metadata option by default.
 
+    Note: only the first value of the specified attribute is being used for the generation of the identifier.
+
 `nameId`
 :   Set this option to `TRUE` to generate the attribute as in SAML 2 NameID format.
     This can be used to generate an Internet2 compatible `eduPersonTargetedID` attribute.

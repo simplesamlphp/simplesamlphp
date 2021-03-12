@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Webmozart\Assert\Assert;
+use Throwable;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -25,49 +25,49 @@ class Error extends Exception
      *
      * @var string
      */
-    private $errorCode;
+    private string $errorCode;
 
     /**
      * The http code.
      *
      * @var integer
      */
-    protected $httpCode = 500;
+    protected int $httpCode = 500;
 
     /**
      * The error title tag in dictionary.
      *
      * @var string
      */
-    private $dictTitle;
+    private string $dictTitle;
 
     /**
      * The error description tag in dictionary.
      *
      * @var string
      */
-    private $dictDescr;
+    private string $dictDescr;
 
     /**
      * The name of module that threw the error.
      *
      * @var string|null
      */
-    private $module = null;
+    private ?string $module = null;
 
     /**
      * The parameters for the error.
      *
      * @var array
      */
-    private $parameters;
+    private array $parameters;
 
     /**
      * Name of custom include template for the error.
      *
      * @var string|null
      */
-    protected $includeTemplate = null;
+    protected ?string $includeTemplate = null;
 
 
     /**
@@ -76,11 +76,11 @@ class Error extends Exception
      * The error can either be given as a string, or as an array. If it is an array, the first element in the array
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
-     * @param mixed     $errorCode One of the error codes defined in the errors dictionary.
-     * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
-     * @param int|null  $httpCode The HTTP response code to use. Optional.
+     * @param mixed      $errorCode One of the error codes defined in the errors dictionary.
+     * @param \Throwable $cause The exception which caused this fatal error (if any). Optional.
+     * @param int|null   $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, \Exception $cause = null, ?int $httpCode = null)
+    public function __construct($errorCode, Throwable $cause = null, ?int $httpCode = null)
     {
         Assert::true(is_string($errorCode) || is_array($errorCode));
 
@@ -165,7 +165,6 @@ class Error extends Exception
      * Set the HTTP return code for this error.
      *
      * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
-     * @return void
      */
     protected function setHTTPCode(): void
     {
@@ -219,12 +218,9 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
-     * @return void
      */
     public function show(): void
     {
-        $this->setHTTPCode();
-
         // log the error message
         $this->logError();
 
@@ -266,10 +262,12 @@ class Error extends Exception
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
             Assert::isCallable($show_function);
+            $this->setHTTPCode();
             call_user_func($show_function, $config, $data);
             Assert::true(false);
         } else {
             $t = new Template($config, 'error.twig', 'errors');
+            $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
             $t->send();
         }

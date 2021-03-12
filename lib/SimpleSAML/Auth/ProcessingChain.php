@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for implementing authentication processing chains for IdPs.
@@ -18,7 +19,6 @@ use Webmozart\Assert\Assert;
  * submitting a response to a SP. Examples of additional steps can be additional authentication
  * checks, or attribute consent requirements.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -27,26 +27,26 @@ class ProcessingChain
     /**
      * The list of remaining filters which should be applied to the state.
      */
-    const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
+    public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
 
     /**
      * The stage we use for completed requests.
      */
-    const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
+    public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
 
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
      * having completed processing of the state.
      */
-    const AUTHPARAM = 'AuthProcId';
+    public const AUTHPARAM = 'AuthProcId';
 
 
     /**
      * All authentication processing filters, in the order they should be applied.
      */
-    private $filters;
+    private array $filters = [];
 
 
     /**
@@ -59,8 +59,6 @@ class ProcessingChain
      */
     public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
-        $this->filters = [];
-
         $config = Configuration::getInstance();
         $configauthproc = $config->getArray('authproc.' . $mode, null);
 
@@ -91,7 +89,6 @@ class ProcessingChain
      *
      * @param array &$target  Target filter list. This list must be sorted.
      * @param array $src  Source filters. May be unsorted.
-     * @return void
      */
     private static function addFilters(array &$target, array $src): void
     {
@@ -127,7 +124,7 @@ class ProcessingChain
             }
 
             if (!is_array($filter)) {
-                throw new \Exception('Invalid authentication processing filter configuration: ' .
+                throw new Exception('Invalid authentication processing filter configuration: ' .
                     'One of the filters wasn\'t a string or an array.');
             }
 
@@ -149,7 +146,7 @@ class ProcessingChain
     private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
         if (!array_key_exists('class', $config)) {
-            throw new \Exception('Authentication processing filter without name given.');
+            throw new Exception('Authentication processing filter without name given.');
         }
 
         $className = Module::resolveClass(
@@ -186,7 +183,6 @@ class ProcessingChain
      * @param array &$state  The state we are processing.
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\UnserializableException
-     * @return void
      */
     public function processState(array &$state): void
     {
@@ -203,7 +199,7 @@ class ProcessingChain
         } catch (Error\Exception $e) {
             // No need to convert the exception
             throw $e;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             /*
              * To be consistent with the exception we return after an redirect,
              * we convert this exception before returning it.
@@ -225,7 +221,6 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
-     * @return void
      */
     public static function resumeProcessing(array $state): void
     {
@@ -235,7 +230,7 @@ class ProcessingChain
                 $filter->process($state);
             } catch (Error\Exception $e) {
                 State::throwException($state, $e);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $e = new Error\UnserializableException($e);
                 State::throwException($state, $e);
             }
@@ -278,7 +273,6 @@ class ProcessingChain
      * This function will only return if processing completes.
      *
      * @param array &$state  The state we are processing.
-     * @return void
      */
     public function processStatePassive(array &$state): void
     {

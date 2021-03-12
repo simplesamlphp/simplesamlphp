@@ -25,11 +25,11 @@ use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
@@ -46,7 +46,7 @@ class SAMLBuilder
      *
      * @var \SAML2\XML\md\EntityDescriptor
      */
-    private $entityDescriptor;
+    private EntityDescriptor $entityDescriptor;
 
 
     /**
@@ -54,7 +54,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxCache = null;
+    private ?int $maxCache = null;
 
 
     /**
@@ -62,7 +62,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxDuration = null;
+    private ?int $maxDuration = null;
 
 
     /**
@@ -72,7 +72,6 @@ class SAMLBuilder
      * @param int|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
      * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
      * to null.
-     * @return void
      */
     public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
     {
@@ -86,7 +85,6 @@ class SAMLBuilder
 
     /**
      * @param array $metadata
-     * @return void
      */
     private function setExpiration(array $metadata): void
     {
@@ -143,7 +141,6 @@ class SAMLBuilder
      * Add a SecurityTokenServiceType for ADFS metadata.
      *
      * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
-     * @return void
      */
     public function addSecurityTokenServiceType(array $metadata): void
     {
@@ -153,10 +150,6 @@ class SAMLBuilder
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
         $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
 
-        /**
-         * @psalm-var \SAML2\XML\md\RoleDescriptor $e
-         * @psalm-suppress UndefinedClass
-         */
         $e = new SecurityTokenServiceType();
         $e->setLocation($defaultEndpoint['Location']);
 
@@ -171,7 +164,6 @@ class SAMLBuilder
      *
      * @param \SimpleSAML\Configuration    $metadata The metadata to get extensions from.
      * @param \SAML2\XML\md\RoleDescriptor $e Reference to the element where the Extensions element should be included.
-     * @return void
      */
     private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
@@ -319,7 +311,6 @@ class SAMLBuilder
      * @param array $orgName An array with the localized OrganizationName.
      * @param array $orgDisplayName An array with the localized OrganizationDisplayName.
      * @param array $orgURL An array with the localized OrganizationURL.
-     * @return void
      */
     public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL): void
     {
@@ -337,7 +328,6 @@ class SAMLBuilder
      * Add an Organization element based on metadata array.
      *
      * @param array $metadata The metadata we should extract the organization information from.
-     * @return void
      */
     public function addOrganizationInfo(array $metadata): void
     {
@@ -420,7 +410,6 @@ class SAMLBuilder
      *
      * @param \SAML2\XML\md\SPSSODescriptor $spDesc The SPSSODescriptor element.
      * @param \SimpleSAML\Configuration     $metadata The metadata.
-     * @return void
      */
     private function addAttributeConsumingService(
         SPSSODescriptor $spDesc,
@@ -476,7 +465,6 @@ class SAMLBuilder
      *
      * @param string $set The metadata set this metadata comes from.
      * @param array  $metadata The metadata.
-     * @return void
      */
     public function addMetadata(string $set, array $metadata): void
     {
@@ -503,7 +491,6 @@ class SAMLBuilder
      *
      * @param array $metadata The metadata.
      * @param string[] $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
-     * @return void
      */
     public function addMetadataSP20(array $metadata, array $protocols = [Constants::NS_SAMLP]): void
     {
@@ -558,7 +545,6 @@ class SAMLBuilder
      * Add metadata of a SAML 2.0 identity provider.
      *
      * @param array $metadata The metadata.
-     * @return void
      */
     public function addMetadataIdP20(array $metadata): void
     {
@@ -608,7 +594,6 @@ class SAMLBuilder
      *
      * @param array $metadata The AttributeAuthorityDescriptor, in the format returned by
      * \SimpleSAML\Metadata\SAMLParser.
-     * @return void
      */
     public function addAttributeAuthority(array $metadata): void
     {
@@ -645,7 +630,6 @@ class SAMLBuilder
      * @param string $type The type of contact. Deprecated.
      * @param array  $details The details about the contact.
      *
-     * @return void
      * @todo Change the signature to remove $type.
      * @todo Remove the capability to pass a name and parse it inside the method.
      */
@@ -703,7 +687,6 @@ class SAMLBuilder
      * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param string                      $use The value of the 'use' attribute.
      * @param string                      $x509data The certificate data.
-     * @return void
      */
     private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data): void
     {
@@ -722,7 +705,6 @@ class SAMLBuilder
      *
      * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param \SimpleSAML\Configuration    $metadata The metadata of the entity.
-     * @return void
      */
     private function addCertificate(RoleDescriptor $rd, Configuration $metadata): void
     {

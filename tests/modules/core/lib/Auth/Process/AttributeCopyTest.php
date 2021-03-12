@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeCopy;
 
 /**
  * Test for the core:AttributeCopy filter.
+ *
+ * @covers \SimpleSAML\Module\core\Auth\Process\AttributeCopy
  */
 class AttributeCopyTest extends TestCase
 {
@@ -18,9 +22,9 @@ class AttributeCopyTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeCopy($config, null);
+        $filter = new AttributeCopy($config, null);
         $filter->process($request);
         return $request;
     }
@@ -28,9 +32,8 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'test' => 'testnew',
@@ -48,9 +51,8 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @return void
      */
-    public function testArray()
+    public function testArray(): void
     {
         $config = [
             'test' => ['new1', 'new2'],
@@ -70,9 +72,8 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @return void
      */
-    public function testExistingNotModified()
+    public function testExistingNotModified(): void
     {
         $config = [
             'test' => 'testnew',
@@ -97,9 +98,8 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test copying multiple attributes
-     * @return void
      */
-    public function testCopyMultiple()
+    public function testCopyMultiple(): void
     {
         $config = [
             'test1' => 'new1',
@@ -119,9 +119,8 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test behaviour when target attribute exists (should be replaced).
-     * @return void
      */
-    public function testCopyClash()
+    public function testCopyClash(): void
     {
         $config = [
             'test' => 'new1',
@@ -140,11 +139,10 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute name
-     * @return void
      */
-    public function testWrongAttributeName()
+    public function testWrongAttributeName(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             ['value2'],
         ];
@@ -159,11 +157,10 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute value
-     * @return void
      */
-    public function testWrongAttributeValue()
+    public function testWrongAttributeValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'test' => 100,
         ];

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -14,7 +15,6 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the core module.
@@ -26,10 +26,10 @@ use Webmozart\Assert\Assert;
 class Redirection
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**

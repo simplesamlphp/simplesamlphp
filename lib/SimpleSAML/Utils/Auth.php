@@ -17,7 +17,7 @@ use SimpleSAML\Session;
 class Auth
 {
     /**
-     * Retrieve a admin login URL.
+     * Retrieve an admin login URL.
      *
      * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
@@ -35,7 +35,7 @@ class Auth
 
 
     /**
-     * Retrieve a admin logout URL.
+     * Retrieve an admin logout URL.
      *
      * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
@@ -45,7 +45,7 @@ class Auth
     public static function getAdminLogoutURL(?string $returnTo = null): string
     {
         $as = new Authentication\Simple('admin');
-        return $as->getLogoutURL($returnTo = null);
+        return $as->getLogoutURL($returnTo);
     }
 
 
@@ -54,7 +54,6 @@ class Auth
      *
      * @return boolean True if the current user is an admin user, false otherwise.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function isAdmin(): bool
     {
@@ -69,11 +68,8 @@ class Auth
      * This is a helper function for limiting a page to those with administrative access. It will redirect the user to
      * a login page if the current user doesn't have admin access.
      *
-     * @return void This function will only return if the user is admin.
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function requireAdmin(): void
     {

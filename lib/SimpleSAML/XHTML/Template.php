@@ -3,7 +3,6 @@
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -11,6 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
@@ -24,8 +24,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use Webmozart\Assert\Assert;
 
+/**
+ * The content-property is set upstream, but this is not recognized by Psalm
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class Template extends Response
 {
     /**
@@ -33,56 +36,56 @@ class Template extends Response
      *
      * @var array
      */
-    public $data = [];
+    public array $data = [];
 
     /**
      * A translator instance configured to work with this template.
      *
      * @var \SimpleSAML\Locale\Translate
      */
-    private $translator;
+    private Translate $translator;
 
     /**
      * The localization backend
      *
      * @var \SimpleSAML\Locale\Localization
      */
-    private $localization;
+    private Localization $localization;
 
     /**
      * The configuration to use in this template.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The file to load in this template.
      *
      * @var string
      */
-    private $template = 'default.php';
+    private string $template = 'default.php';
 
     /**
      * The twig environment.
      *
      * @var \Twig\Environment
      */
-    private $twig;
+    private \Twig\Environment $twig;
 
     /**
      * The template name.
      *
      * @var string
      */
-    private $twig_template;
+    private string $twig_template;
 
     /**
      * Current module, if any.
      *
-     * @var string
+     * @var string|null
      */
-    private $module;
+    private ?string $module = null;
 
     /**
      * A template controller, if any.
@@ -93,7 +96,7 @@ class Template extends Response
      *
      * @var \SimpleSAML\XHTML\TemplateControllerInterface|null
      */
-    private $controller = null;
+    private ?TemplateControllerInterface $controller = null;
 
     /**
      * Whether we are using a non-default theme or not.
@@ -104,7 +107,7 @@ class Template extends Response
      *
      * @var array
      */
-    private $theme = ['module' => null, 'name' => 'default'];
+    private array $theme = ['module' => null, 'name' => 'default'];
 
 
     /**
@@ -228,14 +231,15 @@ class Template extends Response
         $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
         if ($this->module && $this->module != 'core') {
-            $templateDirs[] = [$this->module => TemplateLoader::getModuleTemplateDir($this->module)];
+            $modDir = TemplateLoader::getModuleTemplateDir($this->module);
+            $templateDirs[] = [$this->module => $modDir];
+            $templateDirs[] = ['__parent__' => $modDir];
         }
         if ($this->theme['module']) {
             try {
                 $templateDirs[] = [
                     $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
                 ];
-                $templateDirs[] = ['__parent__' => TemplateLoader::getModuleTemplateDir($this->module)];
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
@@ -291,6 +295,7 @@ class Template extends Response
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $twig->addExtension(new \Twig\Extensions\DateExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
@@ -399,7 +404,6 @@ class Template extends Response
      *
      * @param string $module The module where we need to search for templates.
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
-     * @return void
      */
     public function addTemplatesFromModule(string $module): void
     {
@@ -446,7 +450,6 @@ class Template extends Response
 
     /**
      * Set some default context
-     * @return void
      */
     private function twigDefaultContext(): void
     {
@@ -502,10 +505,12 @@ class Template extends Response
     /**
      * Send this template as a response.
      *
-     * @return Response This response.
+     * @return $this This response.
      * @throws \Exception if the template cannot be found.
+     *
+     * Note: No return type possible due to upstream limitations
      */
-    public function send(): Response
+    public function send()
     {
         $this->content = $this->getContents();
         return parent::send();
@@ -523,76 +528,6 @@ class Template extends Response
     {
         $tmp = explode(':', $template, 2);
         return (count($tmp) === 2) ? [$tmp[0], $tmp[1]] : [null, $tmp[0]];
-    }
-
-
-    /**
-     * Find template path.
-     *
-     * This function locates the given template based on the template name. It will first search for the template in
-     * the current theme directory, and then the default theme.
-     *
-     * The template name may be on the form <module name>:<template path>, in which case it will search for the
-     * template file in the given module.
-     *
-     * @param string $template The relative path from the theme directory to the template file.
-     * @param bool $throw_exception
-     *
-     * @return string|null The absolute path to the template file.
-     *
-     * @throws \Exception If the template file couldn't be found.
-     */
-    private function findTemplatePath(string $template, bool $throw_exception = true): ?string
-    {
-        list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
-        $templateModule = ($templateModule !== null) ? $templateModule : 'default';
-
-        // first check the current theme
-        if ($this->theme['module'] !== null) {
-            // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
-
-            $filename = Module::getModuleDir($this->theme['module']) .
-                '/themes/' . $this->theme['name'] . '/' . $templateModule . '/' . $templateName;
-        } elseif ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<templateName>
-            $filename = Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<theme>/<templateName>
-            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
-            $filename = $base . $templateName;
-        }
-
-        $filename = $this->normalizeTemplateName($filename);
-
-        // not found in current theme
-        Logger::debug(
-            $_SERVER['PHP_SELF'] . ' - Template: Could not find template file [' . $template . '] at [' .
-            $filename . '] - now trying the base template'
-        );
-
-        // try default theme
-        if ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<templateName>
-            $filename = Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<templateName>
-            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
-            $filename = $base . '/' . $templateName;
-        }
-
-        $filename = $this->normalizeTemplateName($filename);
-
-        // not found in default template
-        if ($throw_exception) {
-            // log error and throw exception
-            $error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
-            Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
-
-            throw new \Exception($error);
-        } else {
-            // missing template expected, return NULL
-            return null;
-        }
     }
 
 

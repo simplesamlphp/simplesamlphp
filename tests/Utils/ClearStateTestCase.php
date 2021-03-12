@@ -13,17 +13,16 @@ class ClearStateTestCase extends TestCase
 {
     /**
      * Used for managing and clearing state
-     * @var StateClearer
+     * @var \SimpleSAML\Test\Utils\StateClearer|null
      */
-    protected static $stateClearer;
+    protected static ?StateClearer $stateClearer = null;
 
 
     /**
-     * @return void
      */
     public static function setUpBeforeClass(): void
     {
-        if (!self::$stateClearer) {
+        if (self::$stateClearer === null) {
             self::$stateClearer = new StateClearer();
             self::$stateClearer->backupGlobals();
         }
@@ -31,7 +30,6 @@ class ClearStateTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     protected function setUp(): void
     {
@@ -40,7 +38,6 @@ class ClearStateTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     public static function tearDownAfterClass(): void
     {
@@ -50,9 +47,8 @@ class ClearStateTestCase extends TestCase
 
     /**
      * Clear any SSP global state to reduce spill over between tests.
-     * @return void
      */
-    public static function clearState()
+    public static function clearState(): void
     {
         self::$stateClearer->clearGlobals();
         self::$stateClearer->clearSSPState();

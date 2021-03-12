@@ -3,8 +3,6 @@
 /**
  * Choosing the language to localize to for our minimalistic XHTML PHP based template system.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -12,59 +10,60 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 class Language
 {
     /**
      * This is the default language map. It is used to map languages codes from the user agent to other language codes.
+     * @var array<string, string>
      */
-    private static $defaultLanguageMap = ['nb' => 'no'];
+    private static array $defaultLanguageMap = ['nb' => 'no'];
 
     /**
      * The configuration to use.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * An array holding a list of languages available.
      *
-     * @var array
+     * @var string[]
      */
-    private $availableLanguages;
+    private array $availableLanguages;
 
     /**
      * The language currently in use.
      *
      * @var null|string
      */
-    private $language = null;
+    private ?string $language = null;
 
     /**
      * The language to use by default.
      *
      * @var string
      */
-    private $defaultLanguage;
+    private string $defaultLanguage;
 
     /**
      * An array holding a list of languages that are written from right to left.
      *
-     * @var array
+     * @var string[]
      */
-    private $rtlLanguages;
+    private array $rtlLanguages;
 
     /**
      * HTTP GET language parameter name.
      *
      * @var string
      */
-    private $languageParameterName;
+    private string $languageParameterName;
 
     /**
      * A custom function to use in order to determine the language in use.
@@ -79,9 +78,9 @@ class Language
      * with some charming SimpleSAML-specific variants...
      * that must remain before 2.0 due to backwards compatibility
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $language_names = [
+    public static array $language_names = [
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
@@ -130,9 +129,9 @@ class Language
     /**
      * A mapping of SSP languages to locales
      *
-     * @var array
+     * @var array<string, string>
      */
-    private $languagePosixMapping = [
+    private array $languagePosixMapping = [
         'no' => 'nb_NO',
         'nn' => 'nn_NO',
     ];
@@ -201,7 +200,6 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
-     * @return void
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
@@ -406,7 +404,6 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
-     * @return void
      */
     public static function setLanguageCookie(string $language): void
     {
@@ -421,7 +418,7 @@ class Language
         $name = $config->getString('language.cookie.name', 'language');
         $params = [
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
-            'domain'   => ($config->getString('language.cookie.domain', null)),
+            'domain'   => ($config->getString('language.cookie.domain', '')),
             'path'     => ($config->getString('language.cookie.path', '/')),
             'secure'   => ($config->getBoolean('language.cookie.secure', false)),
             'httponly' => ($config->getBoolean('language.cookie.httponly', false)),

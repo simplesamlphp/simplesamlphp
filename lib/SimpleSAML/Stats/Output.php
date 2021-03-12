@@ -19,7 +19,7 @@ abstract class Output
      *
      * @param \SimpleSAML\Configuration $config The configuration for this output.
      */
-    public function __construct(Configuration $config)
+    public function __construct(/** @scrutinizer ignore-unused */ Configuration $config)
     {
         // do nothing by default
     }
@@ -29,7 +29,6 @@ abstract class Output
      * Write a stats event.
      *
      * @param array $data The event.
-     * @return void
      */
     abstract public function emit(array $data): void;
 }

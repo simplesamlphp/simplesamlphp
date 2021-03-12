@@ -4,30 +4,30 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use Webmozart\Assert\Assert;
 
 /**
  * A filter for limiting which attributes are passed on.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeLimit extends Auth\ProcessingFilter
 {
     /**
      * List of attributes which this filter will allow through.
      * @var array
      */
-    private $allowedAttributes = [];
+    private array $allowedAttributes = [];
 
     /**
      * Whether the 'attributes' option in the metadata takes precedence.
      *
      * @var bool
      */
-    private $isDefault = false;
+    private bool $isDefault = false;
 
 
     /**
@@ -50,14 +50,12 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
-            } elseif (is_string($index)) {
+            } else { // Can only be string since PHP only allows string|int for array keys
                 if (!is_array($value)) {
                     throw new Error\Exception('AttributeLimit: Values for ' .
                         var_export($index, true) . ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
-            } else {
-                throw new Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, true));
             }
         }
     }
@@ -90,7 +88,6 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-     * @return void
      */
     public function process(array &$request): void
     {

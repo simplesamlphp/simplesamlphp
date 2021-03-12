@@ -14,7 +14,6 @@ use SimpleSAML\Utils;
 /**
  * This class implements a helper function for signing of metadata.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Helper class for username/password/organization authentication.
@@ -19,28 +19,24 @@ use Webmozart\Assert\Assert;
  * - login($username, $password, $organization)
  * - getOrganizations()
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
+abstract class UserPassOrgBase extends Auth\Source
 {
     /**
      * The string used to identify our states.
      */
-    const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
-
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
-
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
 
     /**
      * The key of the OrgId field in the state, identifies which org was selected.
      */
-    const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
-
+    public const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
 
     /**
      * What way do we handle the organization as part of the username.
@@ -51,7 +47,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @var string
      */
-    private $usernameOrgMethod;
+    private string $usernameOrgMethod;
 
     /**
      * Storage for authsource config option remember.username.enabled
@@ -60,7 +56,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameEnabled = false;
+    protected bool $rememberUsernameEnabled = false;
 
     /**
      * Storage for authsource config option remember.username.checked
@@ -69,7 +65,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @var bool
      */
-    protected $rememberUsernameChecked = false;
+    protected bool $rememberUsernameChecked = false;
 
     /**
      * Storage for authsource config option remember.organization.enabled
@@ -78,7 +74,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @var bool
      */
-    protected $rememberOrganizationEnabled = false;
+    protected bool $rememberOrganizationEnabled = false;
 
     /**
      * Storage for authsource config option remember.organization.checked
@@ -87,7 +83,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *
      * @var bool
      */
-    protected $rememberOrganizationChecked = false;
+    protected bool $rememberOrganizationChecked = false;
 
 
     /**
@@ -138,7 +134,6 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * If unconfigured, the default is 'none'.
      *
      * @param string $usernameOrgMethod  The method which should be used.
-     * @return void
      */
     protected function setUsernameOrgMethod(string $usernameOrgMethod): void
     {
@@ -211,7 +206,6 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
     public function authenticate(array &$state): void
     {
@@ -267,7 +261,6 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @param string $organization  The id of the organization the user chose.
-     * @return void
      */
     public static function handleLogin(
         string $authStateId,

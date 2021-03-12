@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * Filter to ensure correct cardinality of single-valued attributes
@@ -16,28 +16,27 @@ use Webmozart\Assert\Assert;
  * This filter implements a special case of the core:Cardinality filter, and
  * allows for optional corrections to be made when cardinality errors are encountered.
  *
- * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
+class CardinalitySingle extends Auth\ProcessingFilter
 {
     /** @var array Attributes that should be single-valued or we generate an error */
-    private $singleValued = [];
+    private array $singleValued = [];
 
     /** @var array Attributes for which the first value should be taken */
-    private $firstValue = [];
+    private array $firstValue = [];
 
     /** @var array Attributes that can be flattened to a single value */
-    private $flatten = [];
+    private array $flatten = [];
 
     /** @var string Separator for flattened value */
-    private $flattenWith = ';';
+    private string $flattenWith = ';';
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = [];
+    private array $ignoreEntities = [];
 
     /** @var \SimpleSAML\Utils\HttpAdapter */
-    private $http;
+    private Utils\HttpAdapter $http;
 
 
     /**
@@ -83,7 +82,6 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$request  The current request
-     * @return void
      */
     public function process(array &$request): void
     {

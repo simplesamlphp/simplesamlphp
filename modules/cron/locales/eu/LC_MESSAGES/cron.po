@@ -15,30 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Cronen txostena"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron noiz exekutatua"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Hona hemen crontab fitxategi baten iradokizuna: "
-
-msgid "{cron:cron:run_text}"
-msgstr "Cron exekutatu:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Klikatu hemen cron zereginak exekutatzeko:"
-
-msgid "{cron:cron:cron_info}"
-msgstr "Cron UNIX sitemetan aldizkako zereginak exekutatzeko modu bat da.  "
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Hona hemen cronen exekuzioan zereginen emaitzak: "
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cronen emaitza orria"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron UNIX sitemetan aldizkako zereginak exekutatzeko modu bat da.  "
 

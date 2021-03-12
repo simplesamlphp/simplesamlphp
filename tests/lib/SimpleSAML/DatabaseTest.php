@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
+use Exception;
+use PDO;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -19,10 +21,10 @@ use SimpleSAML\Database;
  * should be created for test cases to ensure that it will work
  * in an environment.
  *
- * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
+ * @covers \SimpleSAML\Database
+ *
  * @package SimpleSAMLphp
  */
-
 class DatabaseTest extends TestCase
 {
     /**
@@ -44,7 +46,7 @@ class DatabaseTest extends TestCase
      */
     protected static function getMethod($getMethod)
     {
-        $class = new \ReflectionClass(Database::class);
+        $class = new ReflectionClass(Database::class);
         $method = $class->getMethod($getMethod);
         $method->setAccessible(true);
         return $method;
@@ -52,11 +54,6 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
-     * @return void
      */
     public function setUp(): void
     {
@@ -66,7 +63,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $this->config = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -79,23 +76,18 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
-     * @return void
      */
-    public function connectionFailure()
+    public function connectionFailure(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'database.dsn'        => 'mysql:host=localhost;dbname=saml',
             'database.username'   => 'notauser',
             'database.password'   => 'notausersinvalidpassword',
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $this->config = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -104,14 +96,9 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
      * @test
-     * @return void
      */
-    public function instances()
+    public function instances(): void
     {
         $config = [
             'database.dsn'        => 'sqlite::memory:',
@@ -119,7 +106,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
         $config2 = [
             'database.dsn'        => 'sqlite::memory:',
@@ -127,7 +114,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit2_',
             'database.persistent' => true,
-            'database.slaves'     => [],
+            'database.secondaries'     => [],
         ];
 
         $config1 = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
@@ -173,26 +160,20 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::getInstance
-     * @covers SimpleSAML\Database::generateInstanceId
-     * @covers SimpleSAML\Database::__construct
-     * @covers SimpleSAML\Database::connect
-     * @covers SimpleSAML\Database::getSlave
      * @test
-     * @return void
      */
-    public function slaves()
+    public function secondaries(): void
     {
         $ref = new ReflectionClass($this->db);
-        $dbMaster = $ref->getProperty('dbMaster');
-        $dbMaster->setAccessible(true);
-        $master = spl_object_hash($dbMaster->getValue($this->db));
+        $dbPrimary = $ref->getProperty('dbPrimary');
+        $dbPrimary->setAccessible(true);
+        $primary = spl_object_hash($dbPrimary->getValue($this->db));
 
-        $getSlave = $ref->getMethod('getSlave');
-        $getSlave->setAccessible(true);
-        $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
+        $getSecondary = $ref->getMethod('getSecondary');
+        $getSecondary->setAccessible(true);
+        $secondary = spl_object_hash($getSecondary->invokeArgs($this->db, []));
 
-        $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
+        $this->assertTrue(($primary == $secondary), "getSecondary should have returned the primary database object");
 
         $config = [
             'database.dsn'        => 'sqlite::memory:',
@@ -200,7 +181,7 @@ class DatabaseTest extends TestCase
             'database.password'   => null,
             'database.prefix'     => 'phpunit_',
             'database.persistent' => true,
-            'database.slaves'     => [
+            'database.secondaries'     => [
                 [
                     'dsn'      => 'sqlite::memory:',
                     'username' => null,
@@ -213,28 +194,26 @@ class DatabaseTest extends TestCase
         $msdb = Database::getInstance($sspConfiguration);
 
         $ref = new ReflectionClass($msdb);
-        $dbSlaves = $ref->getProperty('dbSlaves');
-        $dbSlaves->setAccessible(true);
-        $slaves = $dbSlaves->getValue($msdb);
+        $dbSecondaries = $ref->getProperty('dbSecondaries');
+        $dbSecondaries->setAccessible(true);
+        $secondaries = $dbSecondaries->getValue($msdb);
 
-        $getSlave = $ref->getMethod('getSlave');
-        $getSlave->setAccessible(true);
-        $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
+        $getSecondary = $ref->getMethod('getSecondary');
+        $getSecondary->setAccessible(true);
+        $gotSecondary = spl_object_hash($getSecondary->invokeArgs($msdb, []));
 
         $this->assertEquals(
-            spl_object_hash($slaves[0]),
-            $gotSlave,
-            "getSlave should have returned a slave database object"
+            spl_object_hash($secondaries[0]),
+            $gotSecondary,
+            "getSecondary should have returned a secondary database object"
         );
     }
 
 
     /**
-     * @covers SimpleSAML\Database::applyPrefix
      * @test
-     * @return void
      */
-    public function prefix()
+    public function prefix(): void
     {
         $prefix = $this->config->getString('database.prefix');
         $table = "saml20_idp_hosted";
@@ -245,14 +224,9 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::exec
-     * @covers SimpleSAML\Database::query
      * @test
-     * @return void
      */
-    public function querying()
+    public function querying(): void
     {
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
@@ -268,7 +242,7 @@ class DatabaseTest extends TestCase
         $ssp_value = md5(strval(rand(0, 10000)));
         $stmt = $this->db->write(
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
-            ['ssp_key' => [$ssp_key, \PDO::PARAM_INT], 'ssp_value' => $ssp_value]
+            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value]
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 
@@ -279,14 +253,11 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::read
-     * @covers SimpleSAML\Database::query
      * @test
-     * @return void
      */
-    public function readFailure()
+    public function readFailure(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
 
@@ -295,20 +266,16 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @covers SimpleSAML\Database::write
-     * @covers SimpleSAML\Database::exec
      * @test
-     * @return void
      */
-    public function noSuchTable()
+    public function noSuchTable(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->db->write("DROP TABLE phpunit_nonexistent");
     }
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {

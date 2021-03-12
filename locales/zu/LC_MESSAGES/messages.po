@@ -36,7 +36,7 @@ msgstr ""
 "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha "
 "isicelo"
 
-msgid "{errors:title_SSOPARAMS}"
+msgid "No SAML request provided"
 msgstr "Asikho isicelo se-SAML esinikeziwe"
 
 msgid "{errors:descr_CASERROR}"
@@ -210,7 +210,10 @@ msgstr "Cha, khansela"
 msgid "{status:header_diagnostics}"
 msgstr "Ukuhlonzwa Kwe-SimpleSAMLphp"
 
-msgid "{errors:descr_SSOPARAMS}"
+msgid ""
+"You accessed the Single Sign On Service interface, but did not provide a "
+"SAML Authentication Request. Please note that this endpoint is not "
+"intended to be accessed directly."
 msgstr ""
 "Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange "
 "uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi "
@@ -402,9 +405,6 @@ msgstr ""
 "Ukhethe okuthi <b>%HOMEORG%</b> njengenhlangano yakho yasekhaya. Uma "
 "lokhu kungalungile ungase ukhethe enye."
 
-msgid "{login:processing}"
-msgstr "Iyacubungula..."
-
 msgid "{logout:default_link_text}"
 msgstr "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
 
@@ -464,13 +464,16 @@ msgstr ""
 "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma "
 "yisiphi isitifiketi"
 
-msgid "{errors:descr_ARSPARAMS}"
+msgid ""
+"You accessed the Artifact Resolution Service interface, but did not "
+"provide a SAML ArtifactResolve message. Please note that this endpoint is"
+" not intended to be accessed directly."
 msgstr ""
 "Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange "
 "uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi "
 "isiphetho asihloselwe ukufinyelelwa ngokuqondile."
 
-msgid "{errors:title_MEMCACHEDOWN}"
+msgid "Cannot retrieve session data"
 msgstr "Ayikwazi ukubuyisela idatha yeseshini"
 
 msgid "{status:some_error_occurred}"
@@ -479,7 +482,7 @@ msgstr "Kuvele iphutha elithile"
 msgid "{errors:errorreport_text}"
 msgstr "Umbiko wephutha uthunyelwe kubalawuli."
 
-msgid "{errors:title_ARSPARAMS}"
+msgid "No SAML message provided"
 msgstr "Awukho umlayezo we-SAML onikeziwe"
 
 msgid "{login:help_desk_email}"
