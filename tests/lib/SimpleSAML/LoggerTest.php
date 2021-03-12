@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
@@ -88,8 +89,10 @@ class LoggerTest extends TestCase
     {
         $this->setLoggingHandler('nohandler');
 
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Invalid value for the 'logging.handler' configuration option. Unknown handler 'nohandler'.");
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage(
+            "Invalid value for the 'logging.handler' configuration option. Unknown handler 'nohandler'."
+        );
 
         Logger::critical('should throw exception');
     }
