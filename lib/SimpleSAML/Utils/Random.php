@@ -22,7 +22,7 @@ class Random
      * @return string A ID_LENGTH-bytes long string with a random, hex-encoded string.
      *
      */
-    public static function generateID(): string
+    public function generateID(): string
     {
         return '_' . bin2hex(openssl_random_pseudo_bytes((int) ((self::ID_LENGTH - 1) / 2)));
     }

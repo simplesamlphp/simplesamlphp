@@ -39,6 +39,7 @@ class TransientNameID extends BaseNameIDGenerator
      */
     protected function getValue(array &$state): ?string
     {
-        return Utils\Random::generateID();
+        $randomUtils = new Utils\Random();
+        return $randomUtils->generateID();
     }
 }

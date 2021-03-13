@@ -1139,7 +1139,8 @@ class SAML2
         $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
-        $a->setSessionIndex(Utils\Random::generateID());
+        $randomUtils = new Utils\Random();
+        $a->setSessionIndex($randomUtils->generateID());
 
         $sc = new SubjectConfirmation();
         $scd = new SubjectConfirmationData();
@@ -1235,7 +1236,7 @@ class SAML2
 
             if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
                 // generate a random id
-                $nameIdValue = Utils\Random::generateID();
+                $nameIdValue = $randomUtils->generateID();
             } else {
                 /* this code will end up generating either a fixed assigned id (via nameid.attribute)
                    or random id if not assigned/configured */
@@ -1243,7 +1244,7 @@ class SAML2
                 if ($nameIdValue === null) {
                     Logger::warning('Falling back to transient NameID.');
                     $nameIdFormat = Constants::NAMEID_TRANSIENT;
-                    $nameIdValue = Utils\Random::generateID();
+                    $nameIdValue = $randomUtils->generateID();
                 }
             }
 

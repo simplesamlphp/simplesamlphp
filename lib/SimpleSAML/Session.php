@@ -650,7 +650,8 @@ class Session implements Serializable, Utils\ClearableState
 
         $this->authData[$authority] = $data;
 
-        $this->authToken = Utils\Random::generateID();
+        $randomUtils = new Utils\Random();
+        $this->authToken = $randomUtils->generateID();
         $sessionHandler = SessionHandler::getSessionHandler();
 
         if (

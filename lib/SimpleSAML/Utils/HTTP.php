@@ -288,7 +288,8 @@ class HTTP
     private function savePOSTData(Session $session, string $destination, array $data): string
     {
         // generate a random ID to avoid replay attacks
-        $id = Random::generateID();
+        $randomUtils = new Random();
+        $id = $randomUtils->generateID();
         $postData = [
             'post' => $data,
             'url'  => $destination,

@@ -156,7 +156,8 @@ class State
     public static function getStateId(array &$state, bool $rawId = false): string
     {
         if (!array_key_exists(self::ID, $state)) {
-            $state[self::ID] = Utils\Random::generateID();
+            $randomUtils = new Utils\Random();
+            $state[self::ID] = $randomUtils->generateID();
         }
 
         $id = $state[self::ID];
