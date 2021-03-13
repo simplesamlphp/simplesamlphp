@@ -33,7 +33,8 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
         $processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
 
         // Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems
-        if (Utils\System::getOS() === Utils\System::WINDOWS) {
+        $sysUtils = new Utils\System();
+        if ($sysUtils->getOS() === $sysUtils::WINDOWS) {
             $this->isWindows = true;
             $facility = LOG_USER;
         }

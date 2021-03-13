@@ -1087,7 +1087,8 @@ class HTTP
             $tail = '';
         }
 
-        $dir = System::resolvePath($dir, $baseDir);
+        $sysUtils = new System();
+        $dir = $sysUtils->resolvePath($dir, $baseDir);
 
         return $baseHost . $dir . $tail;
     }

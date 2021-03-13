@@ -50,7 +50,8 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $this->module;
 
-        if (System::isAbsolutePath($cachePath)) {
+        $sysUtils = new System();
+        if ($sysUtils->isAbsolutePath($cachePath)) {
             return $cachePath;
         }
 
@@ -66,7 +67,8 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $loggingPath = $configuration->getString('loggingdir');
 
-        if (System::isAbsolutePath($loggingPath)) {
+        $sysUtils = new System();
+        if ($sysUtils->isAbsolutePath($loggingPath)) {
             return $loggingPath;
         }
 

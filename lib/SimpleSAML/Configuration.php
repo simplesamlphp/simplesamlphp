@@ -466,7 +466,8 @@ class Configuration implements Utils\ClearableState
             return null;
         }
 
-        return Utils\System::resolvePath($path, $this->getBaseDir());
+        $sysUtils = new Utils\System();
+        return $sysUtils->resolvePath($path, $this->getBaseDir());
     }
 
 

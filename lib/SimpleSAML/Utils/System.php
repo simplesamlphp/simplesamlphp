@@ -32,7 +32,7 @@ class System
      *                   False if we are unable to determine it.
      *
      */
-    public static function getOS()
+    public function getOS()
     {
         if (stristr(PHP_OS, 'LINUX')) {
             return self::LINUX;
@@ -70,7 +70,7 @@ class System
      * to by the current user.
      *
      */
-    public static function getTempDir(): string
+    public function getTempDir(): string
     {
         $globalConfig = Configuration::getInstance();
 
@@ -121,7 +121,7 @@ class System
      * @return string An absolute path referring to $path.
      *
      */
-    public static function resolvePath(string $path, string $base = null): string
+    public function resolvePath(string $path, string $base = null): string
     {
         if ($base === null) {
             $config = Configuration::getInstance();
@@ -140,14 +140,14 @@ class System
         if (substr($path, 0, 1) === '/') {
             // absolute path. */
             $ret = '/';
-        } elseif (static::pathContainsDriveLetter($path)) {
+        } elseif ($this->pathContainsDriveLetter($path)) {
             $ret = '';
         } else {
             // path relative to base
             $ret = $base;
         }
 
-        if (static::pathContainsStreamWrapper($path)) {
+        if ($this->pathContainsStreamWrapper($path)) {
             $ret = $path;
         } else {
             $path = explode('/', $path);
@@ -185,7 +185,7 @@ class System
      *     possible to write to the target file.
      *
      */
-    public static function writeFile(string $filename, string $data, int $mode = 0600): void
+    public function writeFile(string $filename, string $data, int $mode = 0600): void
     {
         $tmpFile = self::getTempDir() . DIRECTORY_SEPARATOR . rand();
 
@@ -234,7 +234,7 @@ class System
      *
      * @return bool
      */
-    public static function isAbsolutePath(string $path): bool
+    public function isAbsolutePath(string $path): bool
     {
         return (0 === strpos($path, '/') || self::pathContainsDriveLetter($path));
     }
@@ -247,7 +247,7 @@ class System
      *
      * @return bool
      */
-    private static function pathContainsDriveLetter(string $path): bool
+    private function pathContainsDriveLetter(string $path): bool
     {
         $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
         return substr($path, 1, 1) === ':'
@@ -259,7 +259,7 @@ class System
      * @param string $path
      * @return bool
      */
-    private static function pathContainsStreamWrapper(string $path): bool
+    private function pathContainsStreamWrapper(string $path): bool
     {
         return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }
