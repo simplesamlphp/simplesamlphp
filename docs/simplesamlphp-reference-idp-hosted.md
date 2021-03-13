@@ -360,8 +360,8 @@ The following SAML 2.0 options are available:
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
-:    Note: if unset or `true`. this setting will enforce a valid signature.
-    Set to `false` to bypass (= SAML2INT incompliant)
+:   Note: SimpleSAMLphp will always try to validate signatures unless this setting is
+    specifically set to `false` (this will break SAML2INT compliancy)
 
 `validate.logout`
 :   Whether we require signatures on logout messages sent to this IdP.
