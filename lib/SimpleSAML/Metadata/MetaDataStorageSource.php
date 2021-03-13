@@ -194,8 +194,9 @@ abstract class MetaDataStorageSource
                 continue;
             }
 
+            $netUtils = new Utils\Net();
             foreach ($cidrHints as $hint_entry) {
-                if (Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
+                if ($netUtils->ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
