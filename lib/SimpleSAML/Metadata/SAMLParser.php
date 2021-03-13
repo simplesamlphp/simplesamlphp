@@ -237,7 +237,8 @@ class SAMLParser
     public static function parseFile(string $file): SAMLParser
     {
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
@@ -316,7 +317,8 @@ class SAMLParser
         }
 
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Utils;
 
 /**
  * @covers \SimpleSAML\Utils\HTTP
@@ -50,25 +50,27 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testAddURLParameters(): void
     {
+        $httpUtils = new Utils\HTTP();
+
         $url = 'http://example.com/';
         $params = [
             'foo' => 'bar',
             'bar' => 'foo',
         ];
-        $this->assertEquals($url . '?foo=bar&bar=foo', HTTP::addURLParameters($url, $params));
+        $this->assertEquals($url . '?foo=bar&bar=foo', $httpUtils->addURLParameters($url, $params));
 
         $url = 'http://example.com/?';
         $params = [
             'foo' => 'bar',
             'bar' => 'foo',
         ];
-        $this->assertEquals($url . 'foo=bar&bar=foo', HTTP::addURLParameters($url, $params));
+        $this->assertEquals($url . 'foo=bar&bar=foo', $httpUtils->addURLParameters($url, $params));
 
         $url = 'http://example.com/?foo=bar';
         $params = [
             'bar' => 'foo',
         ];
-        $this->assertEquals($url . '&bar=foo', HTTP::addURLParameters($url, $params));
+        $this->assertEquals($url . '&bar=foo', $httpUtils->addURLParameters($url, $params));
     }
 
 
@@ -78,38 +80,39 @@ class HTTPTest extends ClearStateTestCase
     public function testGuessBasePath(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/simplesaml/', HTTP::guessBasePath());
+        $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php/some/path/to/other/script.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/simplesaml/', HTTP::guessBasePath());
+        $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/', HTTP::guessBasePath());
+        $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php/some/path/to/other/script.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/', HTTP::guessBasePath());
+        $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/some/path/', HTTP::guessBasePath());
+        $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php/some/path/to/other/script.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
-        $this->assertEquals('/some/path/', HTTP::guessBasePath());
+        $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/dir/in/www/script.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/some/dir/in/www/script.php';
-        $this->assertEquals('/', HTTP::guessBasePath());
+        $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/some/dir/in/www/script.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/some/dir/in/www/script.php';
-        $this->assertEquals('/simplesaml/', HTTP::guessBasePath());
+        $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER = $original;
     }
@@ -121,14 +124,15 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfHost(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         Configuration::loadFromArray([
             'baseurlpath' => '',
         ], '[ARRAY]', 'simplesaml');
         $_SERVER['SERVER_PORT'] = '80';
-        $this->assertEquals('localhost', HTTP::getSelfHost());
+        $this->assertEquals('localhost', $httpUtils->getSelfHost());
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals('localhost', HTTP::getSelfHost());
+        $this->assertEquals('localhost', $httpUtils->getSelfHost());
 
         $_SERVER = $original;
     }
@@ -140,6 +144,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfHostWithPort(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         Configuration::loadFromArray([
             'baseurlpath' => '',
@@ -147,16 +152,16 @@ class HTTPTest extends ClearStateTestCase
 
         // standard port for HTTP
         $_SERVER['SERVER_PORT'] = '80';
-        $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
+        $this->assertEquals('localhost', $httpUtils->getSelfHostWithNonStandardPort());
 
         // non-standard port
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals('localhost:3030', HTTP::getSelfHostWithNonStandardPort());
+        $this->assertEquals('localhost:3030', $httpUtils->getSelfHostWithNonStandardPort());
 
         // standard port for HTTPS
         $_SERVER['HTTPS'] = 'on';
         $_SERVER['SERVER_PORT'] = '443';
-        $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
+        $this->assertEquals('localhost', $httpUtils->getSelfHostWithNonStandardPort());
 
         $_SERVER = $original;
     }
@@ -168,6 +173,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfURLMethods(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         /*
          * Test a URL pointing to a script that's not part of the public interface. This allows us to test calls to
@@ -179,11 +185,11 @@ class HTTPTest extends ClearStateTestCase
         $url = 'https://example.com/app/script.php/some/path?foo=bar';
         $this->setupEnvFromURL($url);
         $_SERVER['SCRIPT_FILENAME'] = '/var/www/app/script.php';
-        $this->assertEquals($url, HTTP::getSelfURL());
-        $this->assertEquals('https://example.com', HTTP::getSelfURLHost());
-        $this->assertEquals('https://example.com/app/script.php/some/path', HTTP::getSelfURLNoQuery());
-        $this->assertTrue(HTTP::isHTTPS());
-        $this->assertEquals('https://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals($url, $httpUtils->getSelfURL());
+        $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
+        $this->assertEquals('https://example.com/app/script.php/some/path', $httpUtils->getSelfURLNoQuery());
+        $this->assertTrue($httpUtils->isHTTPS());
+        $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a request URI that doesn't match the current script
         $cfg = Configuration::loadFromArray([
@@ -192,12 +198,12 @@ class HTTPTest extends ClearStateTestCase
         $baseDir = $cfg->getBaseDir();
         $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'www/module.php';
         $this->setupEnvFromURL('http://www.example.com/protected/resource.asp?foo=bar');
-        $this->assertEquals('http://www.example.com/protected/resource.asp?foo=bar', HTTP::getSelfURL());
-        $this->assertEquals('http://www.example.com', HTTP::getSelfURLHost());
-        $this->assertEquals('http://www.example.com/protected/resource.asp', HTTP::getSelfURLNoQuery());
-        $this->assertFalse(HTTP::isHTTPS());
-        $this->assertEquals('example.org', HTTP::getSelfHostWithNonStandardPort());
-        $this->assertEquals('http://www.example.com', HTTP::getSelfURLHost());
+        $this->assertEquals('http://www.example.com/protected/resource.asp?foo=bar', $httpUtils->getSelfURL());
+        $this->assertEquals('http://www.example.com', $httpUtils->getSelfURLHost());
+        $this->assertEquals('http://www.example.com/protected/resource.asp', $httpUtils->getSelfURLNoQuery());
+        $this->assertFalse($httpUtils->isHTTPS());
+        $this->assertEquals('example.org', $httpUtils->getSelfHostWithNonStandardPort());
+        $this->assertEquals('http://www.example.com', $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a full URL in the configuration
         Configuration::loadFromArray([
@@ -206,12 +212,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://www.example.org/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('https://example.com', HTTP::getSelfURLHost());
-        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', HTTP::getSelfURLNoQuery());
-        $this->assertTrue(HTTP::isHTTPS());
-        $this->assertEquals('https://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
+        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertTrue($httpUtils->isHTTPS());
+        $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a full URL *without* a trailing slash in the configuration
         Configuration::loadFromArray([
@@ -219,12 +225,12 @@ class HTTPTest extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('https://example.com', HTTP::getSelfURLHost());
-        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', HTTP::getSelfURLNoQuery());
-        $this->assertTrue(HTTP::isHTTPS());
-        $this->assertEquals('https://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
+        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertTrue($httpUtils->isHTTPS());
+        $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a full URL *without* a path in the configuration
         Configuration::loadFromArray([
@@ -232,12 +238,12 @@ class HTTPTest extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
         $this->assertEquals(
             'https://example.com/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('https://example.com', HTTP::getSelfURLHost());
-        $this->assertEquals('https://example.com/module.php/module/file.php', HTTP::getSelfURLNoQuery());
-        $this->assertTrue(HTTP::isHTTPS());
-        $this->assertEquals('https://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
+        $this->assertEquals('https://example.com/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertTrue($httpUtils->isHTTPS());
+        $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration
         Configuration::loadFromArray([
@@ -246,12 +252,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://www.example.org/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'http://www.example.org/simplesaml/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('http://www.example.org', HTTP::getSelfURLHost());
-        $this->assertEquals('http://www.example.org/simplesaml/module.php/module/file.php', HTTP::getSelfURLNoQuery());
-        $this->assertFalse(HTTP::isHTTPS());
-        $this->assertEquals('http://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals('http://www.example.org', $httpUtils->getSelfURLHost());
+        $this->assertEquals('http://www.example.org/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertFalse($httpUtils->isHTTPS());
+        $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration and a non standard port
         Configuration::loadFromArray([
@@ -260,12 +266,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('http://example.org:8080', HTTP::getSelfURLHost());
-        $this->assertEquals('http://example.org:8080/simplesaml/module.php/module/file.php', HTTP::getSelfURLNoQuery());
-        $this->assertFalse(HTTP::isHTTPS());
-        $this->assertEquals('http://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertEquals('http://example.org:8080', $httpUtils->getSelfURLHost());
+        $this->assertEquals('http://example.org:8080/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertFalse($httpUtils->isHTTPS());
+        $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration, a non standard port and HTTPS
         Configuration::loadFromArray([
@@ -274,15 +280,15 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
-            HTTP::getSelfURL()
+            $httpUtils->getSelfURL()
         );
-        $this->assertEquals('https://example.org:8080', HTTP::getSelfURLHost());
+        $this->assertEquals('https://example.org:8080', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'https://example.org:8080/simplesaml/module.php/module/file.php',
-            HTTP::getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery()
         );
-        $this->assertTrue(HTTP::isHTTPS());
-        $this->assertEquals('https://' . HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
+        $this->assertTrue($httpUtils->isHTTPS());
+        $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
         $_SERVER = $original;
     }
@@ -308,12 +314,14 @@ class HTTPTest extends ClearStateTestCase
             'https://app.example.com/',
             'http://app.example.com/',
         ];
+
+        $httpUtils = new Utils\HTTP();
         foreach ($allowed as $url) {
-            $this->assertEquals(HTTP::checkURLAllowed($url), $url);
+            $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
 
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        HTTP::checkURLAllowed('https://evil.com');
+        $httpUtils->checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
     }
@@ -341,12 +349,14 @@ class HTTPTest extends ClearStateTestCase
             'https://app2.example.com/',
             'http://app2.example.com/',
         ];
+
+        $httpUtils = new Utils\HTTP();
         foreach ($allowed as $url) {
-            $this->assertEquals(HTTP::checkURLAllowed($url), $url);
+            $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
 
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        HTTP::checkURLAllowed('https://evil.com');
+        $httpUtils->checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
     }
@@ -358,40 +368,41 @@ class HTTPTest extends ClearStateTestCase
     public function testGetServerPort(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         // Test HTTP + non-standard port
         $_SERVER['HTTPS'] = 'off';
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals(HTTP::getServerPort(), ':3030');
+        $this->assertEquals($httpUtils->getServerPort(), ':3030');
 
         // Test HTTP + standard port
         $_SERVER['SERVER_PORT'] = '80';
-        $this->assertEquals(HTTP::getServerPort(), '');
+        $this->assertEquals($httpUtils->getServerPort(), '');
 
         // Test HTTP + standard integer port
         $_SERVER['SERVER_PORT'] = 80;
-        $this->assertEquals(HTTP::getServerPort(), '');
+        $this->assertEquals($httpUtils->getServerPort(), '');
 
         // Test HTTP + without port
         unset($_SERVER['SERVER_PORT']);
-        $this->assertEquals(HTTP::getServerPort(), '');
+        $this->assertEquals($httpUtils->getServerPort(), '');
 
         // Test HTTPS + non-standard port
         $_SERVER['HTTPS'] = 'on';
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals(HTTP::getServerPort(), ':3030');
+        $this->assertEquals($httpUtils->getServerPort(), ':3030');
 
         // Test HTTPS + non-standard integer port
         $_SERVER['SERVER_PORT'] = 3030;
-        $this->assertEquals(HTTP::getServerPort(), ':3030');
+        $this->assertEquals($httpUtils->getServerPort(), ':3030');
 
         // Test HTTPS + standard port
         $_SERVER['SERVER_PORT'] = '443';
-        $this->assertEquals(HTTP::getServerPort(), '');
+        $this->assertEquals($httpUtils->getServerPort(), '');
 
         // Test HTTPS + without port
         unset($_SERVER['SERVER_PORT']);
-        $this->assertEquals(HTTP::getServerPort(), '');
+        $this->assertEquals($httpUtils->getServerPort(), '');
 
         $_SERVER = $original;
     }
@@ -404,6 +415,7 @@ class HTTPTest extends ClearStateTestCase
     public function testCheckURLAllowedWithRegexWithoutDelimiters(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
 
         Configuration::loadFromArray([
             'trusted.url.domains' => ['app\.example\.com'],
@@ -413,7 +425,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER['REQUEST_URI'] = '/module.php';
 
         $this->expectException(Error\Exception::class);
-        HTTP::checkURLAllowed('https://app.example.com.evil.com');
+        $httpUtils->checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;
     }
@@ -424,9 +436,11 @@ class HTTPTest extends ClearStateTestCase
     public function testGetFirstPathElement(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
         $_SERVER['SCRIPT_NAME'] = '/test/tmp.php';
-        $this->assertEquals(HTTP::getFirstPathElement(), '/test');
-        $this->assertEquals(HTTP::getFirstPathElement(false), 'test');
+        $this->assertEquals($httpUtils->getFirstPathElement(), '/test');
+        $this->assertEquals($httpUtils->getFirstPathElement(false), 'test');
         $_SERVER = $original;
     }
 
@@ -438,13 +452,15 @@ class HTTPTest extends ClearStateTestCase
     public function testSetCookie(): void
     {
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
         Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
         $url = 'https://example.com/a?b=c';
         $this->setupEnvFromURL($url);
 
-        HTTP::setCookie(
+        $httpUtils->setCookie(
             'TestCookie',
             'value%20',
             [
@@ -455,7 +471,7 @@ class HTTPTest extends ClearStateTestCase
                 'httponly' => true
             ]
         );
-        HTTP::setCookie(
+        $httpUtils->setCookie(
             'RawCookie',
             'value%20',
             [
@@ -497,13 +513,15 @@ class HTTPTest extends ClearStateTestCase
         $this->expectException(Error\CannotSetCookie::class);
 
         $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
         Configuration::loadFromArray([
             'baseurlpath' => 'http://example.com/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
         $url = 'http://example.com/a?b=c';
         $this->setupEnvFromURL($url);
 
-        HTTP::setCookie('testCookie', 'value', ['secure' => true], true);
+        $httpUtils->setCookie('testCookie', 'value', ['secure' => true], true);
 
         $_SERVER = $original;
     }
@@ -515,10 +533,11 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testSetCookieSameSite(): void
     {
-        HTTP::setCookie('SSNull', 'value', ['samesite' => null]);
-        HTTP::setCookie('SSNone', 'value', ['samesite' => 'None']);
-        HTTP::setCookie('SSLax', 'value', ['samesite' => 'Lax']);
-        HTTP::setCookie('SSStrict', 'value', ['samesite' => 'Strict']);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie('SSNull', 'value', ['samesite' => null]);
+        $httpUtils->setCookie('SSNone', 'value', ['samesite' => 'None']);
+        $httpUtils->setCookie('SSLax', 'value', ['samesite' => 'Lax']);
+        $httpUtils->setCookie('SSStrict', 'value', ['samesite' => 'Strict']);
 
         $headers = xdebug_get_headers();
         $this->assertDoesNotMatchRegularExpression('/\b[Ss]ame[Ss]ite=/', $headers[0]);
@@ -538,7 +557,8 @@ class HTTPTest extends ClearStateTestCase
         if ($userAgent) {
             $_SERVER['HTTP_USER_AGENT'] = $userAgent;
         }
-        $this->assertEquals($supportsNone, HTTP::canSetSameSiteNone(), $userAgent ?? 'No user agent set');
+        $httpUtils = new Utils\HTTP();
+        $this->assertEquals($supportsNone, $httpUtils->canSetSameSiteNone(), $userAgent ?? 'No user agent set');
     }
 
     public function detectSameSiteProvider(): array

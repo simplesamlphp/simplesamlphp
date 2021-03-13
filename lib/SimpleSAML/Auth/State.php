@@ -269,6 +269,7 @@ class State
         $session = Session::getSessionFromRequest();
         $state = $session->getData('\SimpleSAML\Auth\State', $sid['id']);
 
+        $httpUtils = new Utils\HTTP();
         if ($state === null) {
             // Could not find saved data
             if ($allowMissing) {
@@ -279,7 +280,7 @@ class State
                 throw new Error\NoState();
             }
 
-            Utils\HTTP::redirectUntrustedURL($sid['url']);
+            $httpUtils->redirectUntrustedURL($sid['url']);
         }
 
         $state = unserialize($state);
@@ -303,7 +304,7 @@ class State
                 throw new \Exception($msg);
             }
 
-            Utils\HTTP::redirectUntrustedURL($sid['url']);
+            $httpUtils->redirectUntrustedURL($sid['url']);
         }
 
         return $state;
@@ -341,13 +342,14 @@ class State
      */
     public static function throwException(array $state, Error\Exception $exception): void
     {
+        $httpUtils = new Utils\HTTP();
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
             // Save the exception
             $state[self::EXCEPTION_DATA] = $exception;
             $id = self::saveState($state, self::EXCEPTION_STAGE);
 
             // Redirect to the exception handler
-            Utils\HTTP::redirectTrustedURL(
+            $httpUtils->redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
                 [self::EXCEPTION_PARAM => $id]
             );

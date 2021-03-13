@@ -290,7 +290,8 @@ class Language
      */
     private function getHTTPLanguage(): ?string
     {
-        $languageScore = Utils\HTTP::getAcceptLanguage();
+        $httpUtils = new Utils\HTTP();
+        $languageScore = $httpUtils->getAcceptLanguage();
 
         // for now we only use the default language map. We may use a configurable language map in the future
         $languageMap = self::$defaultLanguageMap;
@@ -425,6 +426,7 @@ class Language
             'samesite' => ($config->getString('language.cookie.samesite', null)),
         ];
 
-        Utils\HTTP::setCookie($name, $language, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($name, $language, $params, false);
     }
 }

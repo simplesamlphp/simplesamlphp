@@ -149,7 +149,8 @@ class DiscoController
             }
         }
 
-        $baseurl = explode("/", Utils\HTTP::getBaseURL());
+        $httpUtils = new Utils\HTTP();
+        $baseurl = explode("/", $httpUtils->getBaseURL());
         $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
         $path = implode("/", $elements);
 

@@ -26,8 +26,9 @@ class Auth
      */
     public function getAdminLoginURL(?string $returnTo = null): string
     {
+        $httpUtils = new HTTP();
         if ($returnTo === null) {
-            $returnTo = HTTP::getSelfURL();
+            $returnTo = $httpUtils->getSelfURL();
         }
 
         return Module::getModuleURL('core/login-admin.php', ['ReturnTo' => $returnTo]);

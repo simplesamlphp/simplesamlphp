@@ -220,6 +220,8 @@ class Login
      */
     public function cleardiscochoices(Request $request): void
     {
+        $httpUtils = new Utils\HTTP();
+
         // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
         $cookiePath = $this->config->getBasePath();
 
@@ -230,19 +232,19 @@ class Login
                 continue;
             }
 
-            Utils\HTTP::setCookie($cookieName, null, ['path' => $cookiePath, 'httponly' => false], false);
+            $httpUtils->setCookie($cookieName, null, ['path' => $cookiePath, 'httponly' => false], false);
         }
 
         // Find where we should go now.
         $returnTo = $request->get('ReturnTo', false);
         if ($returnTo !== false) {
-            $returnTo = Utils\HTTP::checkURLAllowed($returnTo);
+            $returnTo = $httpUtils->checkURLAllowed($returnTo);
         } else {
             // Return to the front page if no other destination is given. This is the same as the base cookie path.
             $returnTo = $cookiePath;
         }
 
         // Redirect to destination.
-        Utils\HTTP::redirectTrustedURL($returnTo);
+        $httpUtils->redirectTrustedURL($returnTo);
     }
 }

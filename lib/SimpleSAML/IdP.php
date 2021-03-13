@@ -547,7 +547,8 @@ class IdP
     {
         Assert::notNull($state['core:Logout:URL']);
 
-        Utils\HTTP::redirectTrustedURL($state['core:Logout:URL']);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
         Assert::true(false);
     }
 }

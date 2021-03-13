@@ -178,7 +178,8 @@ class SessionHandlerPHP extends SessionHandler
 
         $session_cookie_params = session_get_cookie_params();
 
-        if ($session_cookie_params['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($session_cookie_params['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\Exception('Session start with secure cookie not allowed on http.');
         }
 
@@ -302,7 +303,8 @@ class SessionHandlerPHP extends SessionHandler
             $cookieParams = session_get_cookie_params();
         }
 
-        if ($cookieParams['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($cookieParams['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\CannotSetCookie(
                 'Setting secure cookie on plain HTTP is not allowed.',
                 Error\CannotSetCookie::SECURE_COOKIE

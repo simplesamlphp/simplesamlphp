@@ -28,7 +28,7 @@ class HTTP
      * https://www.chromium.org/updates/same-site/incompatible-clients
      * @return bool true if user agent supports a None value for SameSite.
      */
-    public static function canSetSameSiteNone(): bool
+    public function canSetSameSiteNone(): bool
     {
         $useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
         if (!$useragent) {
@@ -73,7 +73,7 @@ class HTTP
      * @return string  A URL which allows to securely post a form to $destination.
      *
      */
-    private static function getSecurePOSTRedirectURL(string $destination, array $data): string
+    private function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
         $session = Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
@@ -102,7 +102,7 @@ class HTTP
      *     determine the current host.
      *
      */
-    private static function getServerHost(): string
+    private function getServerHost(): string
     {
         if (array_key_exists('HTTP_HOST', $_SERVER)) {
             $current = $_SERVER['HTTP_HOST'];
@@ -131,7 +131,7 @@ class HTTP
      * @return boolean True if the request was performed through HTTPS, false otherwise.
      *
      */
-    public static function getServerHTTPS(): bool
+    public function getServerHTTPS(): bool
     {
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
@@ -155,7 +155,7 @@ class HTTP
      *     (80 for HTTP, 443 for HTTPS), or an empty string otherwise.
      *
      */
-    public static function getServerPort(): string
+    public function getServerPort(): string
     {
         $default_port = self::getServerHTTPS() ? '443' : '80';
         $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
@@ -177,7 +177,7 @@ class HTTP
      *
      * @return boolean True if the given URL is valid, false otherwise.
      */
-    public static function isValidURL(string $url): bool
+    public function isValidURL(string $url): bool
     {
         $url = filter_var($url, FILTER_VALIDATE_URL);
         if ($url === false) {
@@ -211,7 +211,7 @@ class HTTP
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
      */
-    private static function redirect(string $url, array $parameters = []): void
+    private function redirect(string $url, array $parameters = []): void
     {
         if (empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -285,7 +285,7 @@ class HTTP
      * @return string A random identifier that can be used to retrieve the data from the current session.
      *
      */
-    private static function savePOSTData(Session $session, string $destination, array $data): string
+    private function savePOSTData(Session $session, string $destination, array $data): string
     {
         // generate a random ID to avoid replay attacks
         $id = Random::generateID();
@@ -312,7 +312,7 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public static function addURLParameters(string $url, array $parameters): string
+    public function addURLParameters(string $url, array $parameters): string
     {
         $queryStart = strpos($url, '?');
         if ($queryStart === false) {
@@ -344,7 +344,7 @@ class HTTP
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
      *
      */
-    public static function checkSessionCookie(?string $retryURL = null): void
+    public function checkSessionCookie(?string $retryURL = null): void
     {
         $session = Session::getSessionFromRequest();
         if ($session->hasSessionCookie()) {
@@ -374,7 +374,7 @@ class HTTP
      * @throws Error\Exception If the URL is not allowed by configuration.
      *
      */
-    public static function checkURLAllowed(string $url, array $trustedSites = null): string
+    public function checkURLAllowed(string $url, array $trustedSites = null): string
     {
         if (empty($url)) {
             return '';
@@ -463,7 +463,7 @@ class HTTP
      * @throws Error\Exception If the file or URL cannot be retrieved.
      *
      */
-    public static function fetch(string $url, array $context = [], bool $getHeaders = false)
+    public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
         $config = Configuration::getInstance();
 
@@ -549,7 +549,7 @@ class HTTP
      * @return array An associative array with each language and the score for that language.
      *
      */
-    public static function getAcceptLanguage(): array
+    public function getAcceptLanguage(): array
     {
         if (!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
             // no Accept-Language header, return an empty set
@@ -613,7 +613,7 @@ class HTTP
      *
      * @return string The guessed base path that should correspond to the root installation of SimpleSAMLphp.
      */
-    public static function guessBasePath(): string
+    public function guessBasePath(): string
     {
         if (!array_key_exists('REQUEST_URI', $_SERVER) || !array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
             return '/';
@@ -647,7 +647,7 @@ class HTTP
      * @throws \SimpleSAML\Error\CriticalConfigurationError If 'baseurlpath' has an invalid format.
      *
      */
-    public static function getBaseURL(): string
+    public function getBaseURL(): string
     {
         $globalConfig = Configuration::getInstance();
         $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
@@ -695,7 +695,7 @@ class HTTP
      * @return string The first element of the URL path, with an optional, leading slash.
      *
      */
-    public static function getFirstPathElement(bool $leadingSlash = true): string
+    public function getFirstPathElement(bool $leadingSlash = true): string
     {
         if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
             return ($leadingSlash ? '/' : '') . $matches[1];
@@ -714,7 +714,7 @@ class HTTP
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      *
      */
-    public static function getPOSTRedirectURL(string $destination, array $data): string
+    public function getPOSTRedirectURL(string $destination, array $data): string
     {
         $config = Configuration::getInstance();
         $allowed = $config->getBoolean('enable.http_post', false);
@@ -741,7 +741,7 @@ class HTTP
      * @return string The current host.
      *
      */
-    public static function getSelfHost(): string
+    public function getSelfHost(): string
     {
         $decomposed = explode(':', self::getSelfHostWithNonStandardPort());
         return array_shift($decomposed);
@@ -758,7 +758,7 @@ class HTTP
      * the protocol.
      *
      */
-    public static function getSelfHostWithNonStandardPort(): string
+    public function getSelfHostWithNonStandardPort(): string
     {
         $url = self::getBaseURL();
 
@@ -778,7 +778,7 @@ class HTTP
      * @return string The current host (with non-default ports included) plus the URL path.
      *
      */
-    public static function getSelfHostWithPath(): string
+    public function getSelfHostWithPath(): string
     {
         $baseurl = explode("/", self::getBaseURL());
         $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
@@ -799,7 +799,7 @@ class HTTP
      * @return string The current URL, including query parameters.
      *
      */
-    public static function getSelfURL(): string
+    public function getSelfURL(): string
     {
         $cfg = Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
@@ -860,7 +860,7 @@ class HTTP
      * @return string The current URL without path or query parameters.
      *
      */
-    public static function getSelfURLHost(): string
+    public function getSelfURLHost(): string
     {
         $url = self::getSelfURL();
 
@@ -878,7 +878,7 @@ class HTTP
      * @return string The current URL, not including query parameters.
      *
      */
-    public static function getSelfURLNoQuery(): string
+    public function getSelfURLNoQuery(): string
     {
         $url = self::getSelfURL();
         $pos = strpos($url, '?');
@@ -895,7 +895,7 @@ class HTTP
      * @return boolean True if the HTTPS is used, false otherwise.
      *
      */
-    public static function isHTTPS(): bool
+    public function isHTTPS(): bool
     {
         return strpos(self::getSelfURL(), 'https://') === 0;
     }
@@ -911,7 +911,7 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or a valid URL.
      *
      */
-    public static function normalizeURL(string $url): string
+    public function normalizeURL(string $url): string
     {
         $url = self::resolveURL($url, self::getSelfURL());
 
@@ -938,7 +938,7 @@ class HTTP
      * @throws \InvalidArgumentException If $query_string is not a string.
      *
      */
-    public static function parseQueryString(string $query_string): array
+    public function parseQueryString(string $query_string): array
     {
         $res = [];
         if (empty($query_string)) {
@@ -979,7 +979,7 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public static function redirectTrustedURL(string $url, array $parameters = []): void
+    public function redirectTrustedURL(string $url, array $parameters = []): void
     {
         $url = self::normalizeURL($url);
         self::redirect($url, $parameters);
@@ -1005,7 +1005,7 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public static function redirectUntrustedURL(string $url, array $parameters = []): void
+    public function redirectUntrustedURL(string $url, array $parameters = []): void
     {
         $url = self::checkURLAllowed($url);
         self::redirect($url, $parameters);
@@ -1031,7 +1031,7 @@ class HTTP
      *     are not strings.
      *
      */
-    public static function resolveURL(string $url, string $base = null): string
+    public function resolveURL(string $url, string $base = null): string
     {
         if ($base === null) {
             $base = self::getBaseURL();
@@ -1105,7 +1105,7 @@ class HTTP
      *
      *
      */
-    public static function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
+    public function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
     {
         $default_params = [
             'lifetime' => 0,
@@ -1202,7 +1202,7 @@ class HTTP
      *
      *
      */
-    public static function submitPOSTData(string $destination, array $data): void
+    public function submitPOSTData(string $destination, array $data): void
     {
         if (!self::isValidURL($destination)) {
             throw new Error\Exception('Invalid destination URL.');

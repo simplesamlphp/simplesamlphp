@@ -437,7 +437,8 @@ class Configuration implements Utils\ClearableState
              * with the configuration. Use a guessed base path instead of the one provided.
              */
             $c = $this->toArray();
-            $c['baseurlpath'] = Utils\HTTP::guessBasePath();
+            $httpUtils = new Utils\HTTP();
+            $c['baseurlpath'] = $httpUtils->guessBasePath();
             throw new Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "' .
                 $this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .

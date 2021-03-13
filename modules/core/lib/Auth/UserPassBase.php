@@ -11,7 +11,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Utils;
 
 /**
  * Helper class for username/password authentication.
@@ -246,7 +246,8 @@ abstract class UserPassBase extends Auth\Source
          */
         $url = Module::getModuleURL('core/loginuserpass.php');
         $params = ['AuthState' => $id];
-        HTTP::redirectTrustedURL($url, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed.
         assert::true(false);

@@ -29,10 +29,11 @@ class Config
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth
-     */
+    /** @var \SimpleSAML\Utils\Auth */
     protected $authUtils;
+
+    /** @var \SimpleSAML\Utils\HTTP */
+    protected $httpUtils;
 
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
@@ -53,6 +54,7 @@ class Config
         $this->session = $session;
         $this->menu = new Menu();
         $this->authUtils = new Utils\Auth();
+        $this->httpUtils = new Utils\HTTP();
     }
 
 
@@ -86,14 +88,14 @@ class Config
                 'HTTP_HOST' => [$request->getHost()],
                 'HTTPS' => $request->isSecure() ? ['on'] : [],
                 'SERVER_PROTOCOL' => [$request->getProtocolVersion()],
-                'getBaseURL()' => [Utils\HTTP::getBaseURL()],
-                'getSelfHost()' => [Utils\HTTP::getSelfHost()],
-                'getSelfHostWithNonStandardPort()' => [Utils\HTTP::getSelfHostWithNonStandardPort()],
-                'getSelfURLHost()' => [Utils\HTTP::getSelfURLHost()],
-                'getSelfURLNoQuery()' => [Utils\HTTP::getSelfURLNoQuery()],
-                'getSelfHostWithPath()' => [Utils\HTTP::getSelfHostWithPath()],
-                'getFirstPathElement()' => [Utils\HTTP::getFirstPathElement()],
-                'getSelfURL()' => [Utils\HTTP::getSelfURL()],
+                'getBaseURL()' => [$this->httpUtils->getBaseURL()],
+                'getSelfHost()' => [$this->httpUtils->getSelfHost()],
+                'getSelfHostWithNonStandardPort()' => [$this->httpUtils->getSelfHostWithNonStandardPort()],
+                'getSelfURLHost()' => [$this->httpUtils->getSelfURLHost()],
+                'getSelfURLNoQuery()' => [$this->httpUtils->getSelfURLNoQuery()],
+                'getSelfHostWithPath()' => [$this->httpUtils->getSelfHostWithPath()],
+                'getFirstPathElement()' => [$this->httpUtils->getFirstPathElement()],
+                'getSelfURL()' => [$this->httpUtils->getSelfURL()],
             ],
         ];
 
@@ -359,7 +361,7 @@ class Config
         $warnings = [];
 
         // make sure we're using HTTPS
-        if (!Utils\HTTP::isHTTPS()) {
+        if (!$this->httpUtils->isHTTPS()) {
             $warnings[] = Translate::noop(
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
                 'for testing purposes, but in a production environment you should use HTTPS. <a ' .
