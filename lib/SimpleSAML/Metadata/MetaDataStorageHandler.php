@@ -147,6 +147,7 @@ class MetaDataStorageHandler implements ClearableState
     public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
     {
         $result = [];
+        $timeUtils = new Utils\Time();
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
@@ -157,7 +158,7 @@ class MetaDataStorageHandler implements ClearableState
                         unset($srcList[$key]);
                         Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            Utils\Time::generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . "."
                         );
                     }
                 }
@@ -269,15 +270,16 @@ class MetaDataStorageHandler implements ClearableState
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         $result = [];
+        $timeUtils = new Utils\Time();
         foreach ($this->sources as $source) {
             $srcList = $source->getMetaDataForEntities($entityIds, $set);
             foreach ($srcList as $key => $le) {
                 if (array_key_exists('expire', $le)) {
                     if ($le['expire'] < time()) {
                         unset($srcList[$key]);
-                        \SimpleSAML\Logger::warning(
+                        Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            \SimpleSAML\Utils\Time::generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . "."
                         );
                         continue;
                     }
