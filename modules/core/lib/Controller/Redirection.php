@@ -103,7 +103,8 @@ class Redirection
         Assert::keyExists($postData, 'url');
         Assert::keyExists($postData, 'post');
 
-        if (!Utils\HTTP::isValidURL($postData['url'])) {
+        $httpUtils = new Utils\HTTP();
+        if (!$httpUtils->isValidURL($postData['url'])) {
             throw new Error\Exception('Invalid destination URL.');
         }
 

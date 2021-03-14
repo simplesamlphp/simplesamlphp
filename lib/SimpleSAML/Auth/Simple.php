@@ -133,18 +133,19 @@ class Simple
             $keepPost = true;
         }
 
+        $httpUtils = new Utils\HTTP();
         if (array_key_exists('ReturnTo', $params)) {
             $returnTo = (string) $params['ReturnTo'];
         } else {
             if (array_key_exists('ReturnCallback', $params)) {
                 $returnTo = (array) $params['ReturnCallback'];
             } else {
-                $returnTo = Utils\HTTP::getSelfURL();
+                $returnTo = $httpUtils->getSelfURL();
             }
         }
 
         if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            $returnTo = Utils\HTTP::getPOSTRedirectURL($returnTo, $_POST);
+            $returnTo = $httpUtils->getPOSTRedirectURL($returnTo, $_POST);
         }
 
         if (array_key_exists('ErrorURL', $params)) {
@@ -189,7 +190,8 @@ class Simple
         Assert::true(is_array($params) || is_string($params) || $params === null);
 
         if ($params === null) {
-            $params = Utils\HTTP::getSelfURL();
+            $httpUtils = new Utils\HTTP();
+            $params = $httpUtils->getSelfURL();
         }
 
         if (is_string($params)) {
@@ -246,7 +248,8 @@ class Simple
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
                 $params[$state['ReturnStateParam']] = $stateID;
             }
-            Utils\HTTP::redirectTrustedURL($state['ReturnTo'], $params);
+            $httpUtils = new Utils\HTTP();
+            $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
         }
     }
 
@@ -314,7 +317,8 @@ class Simple
     public function getLoginURL(?string $returnTo = null): string
     {
         if ($returnTo === null) {
-            $returnTo = Utils\HTTP::getSelfURL();
+            $httpUtils = new Utils\HTTP();
+            $returnTo = $httpUtils->getSelfURL();
         }
 
         $login = Module::getModuleURL('core/as_login.php', [
@@ -337,7 +341,8 @@ class Simple
     public function getLogoutURL(?string $returnTo = null): string
     {
         if ($returnTo === null) {
-            $returnTo = Utils\HTTP::getSelfURL();
+            $httpUtils = new Utils\HTTP();
+            $returnTo = $httpUtils->getSelfURL();
         }
 
         $logout = Module::getModuleURL('core/logout/' . $this->authSource, [
@@ -360,16 +365,17 @@ class Simple
      */
     protected function getProcessedURL(?string $url = null): string
     {
+        $httpUtils = new Utils\HTTP();
         if ($url === null) {
-            $url = Utils\HTTP::getSelfURL();
+            $url = $httpUtils->getSelfURL();
         }
 
         $scheme = parse_url($url, PHP_URL_SCHEME);
-        $host = parse_url($url, PHP_URL_HOST) ? : Utils\HTTP::getSelfHost();
+        $host = parse_url($url, PHP_URL_HOST) ? : $httpUtils->getSelfHost();
         $port = parse_url($url, PHP_URL_PORT) ? : (
-            $scheme ? '' : ltrim(Utils\HTTP::getServerPort(), ':')
+            $scheme ? '' : ltrim($httpUtils->getServerPort(), ':')
         );
-        $scheme = $scheme ? : (Utils\HTTP::getServerHTTPS() ? 'https' : 'http');
+        $scheme = $scheme ? : ($httpUtils->getServerHTTPS() ? 'https' : 'http');
         $path = parse_url($url, PHP_URL_PATH) ? : '/';
         $query = parse_url($url, PHP_URL_QUERY) ? : '';
         $fragment = parse_url($url, PHP_URL_FRAGMENT) ? : '';

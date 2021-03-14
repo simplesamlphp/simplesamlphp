@@ -226,8 +226,9 @@ class Federation
                         $saml2entities[] = $idp;
                     }
                 } else {
+                    $httpUtils = new Utils\HTTP();
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
-                    $saml2entities['saml20-idp']['url'] = Utils\HTTP::getBaseURL() . 'saml2/idp/metadata.php';
+                    $saml2entities['saml20-idp']['url'] = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
                     $saml2entities['saml20-idp']['metadata_array'] = SAML2_IdP::getHostedMetadata(
                         $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
                     );
@@ -407,7 +408,8 @@ class Federation
 
         $error = null;
         if (!empty($xmldata)) {
-            Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
+            $xmlUtils = new Utils\XML();
+            $xmlUtils->checkSAMLMessage($xmldata, 'saml-meta');
 
             $entities = null;
             try {

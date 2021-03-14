@@ -26,7 +26,8 @@ class Config
     {
         $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
-        return System::resolvePath($path, $base);
+        $sysUtils = new System();
+        return $sysUtils->resolvePath($path, $base);
     }
 
 

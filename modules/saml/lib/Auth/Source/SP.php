@@ -711,7 +711,8 @@ class SP extends \SimpleSAML\Auth\Source
             $params['isPassive'] = 'true';
         }
 
-        Utils\HTTP::redirectTrustedURL($discoURL, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -883,7 +884,9 @@ class SP extends \SimpleSAML\Auth\Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = Auth\State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = Module::getModuleURL('saml/proxy/invalid_session.php');
-        Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
         Assert::true(false);
     }
 
@@ -1108,7 +1111,8 @@ class SP extends \SimpleSAML\Auth\Source
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
-        Utils\HTTP::redirectUntrustedURL($redirectTo);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectUntrustedURL($redirectTo);
     }
 
 

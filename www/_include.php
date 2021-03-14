@@ -64,7 +64,8 @@ try {
 }
 
 // set the timezone
-\SimpleSAML\Utils\Time::initTimezone();
+$timeUtils = new \SimpleSAML\Utils\Time();
+$timeUtils->initTimezone();
 
 // set the SAML2 container
 $container = new \SimpleSAML\Compat\SspContainer();

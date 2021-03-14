@@ -144,7 +144,8 @@ class IdPDisco
         if (!array_key_exists('return', $_GET)) {
             throw new \Exception('Missing parameter: return');
         } else {
-            $this->returnURL = Utils\HTTP::checkURLAllowed($_GET['return']);
+            $httpUtils = new Utils\HTTP();
+            $this->returnURL = $httpUtils->checkURLAllowed($_GET['return']);
         }
 
         $this->isPassive = false;
@@ -221,7 +222,8 @@ class IdPDisco
             'httponly' => false,
         ];
 
-        Utils\HTTP::setCookie($prefixedName, $value, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($prefixedName, $value, $params, false);
     }
 
 
@@ -508,12 +510,13 @@ class IdPDisco
      */
     protected function start(): void
     {
+        $httpUtils = new Utils\HTTP();
         $idp = $this->getTargetIdP();
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-                Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
+                $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
@@ -525,13 +528,13 @@ class IdPDisco
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
                     . $this->returnIdParam . ')'
                 );
-                Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
+                $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
-            Utils\HTTP::redirectTrustedURL($this->returnURL);
+            $httpUtils->redirectTrustedURL($this->returnURL);
         }
     }
 
@@ -556,13 +559,14 @@ class IdPDisco
         }
 
         $idpintersection = array_values($idpintersection);
+        $httpUtils = new Utils\HTTP();
 
         if (sizeof($idpintersection) == 1) {
             $this->log(
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
                 $this->returnIdParam . ')'
             );
-            Utils\HTTP::redirectTrustedURL(
+            $httpUtils->redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $idpintersection[0]]
             );
@@ -611,7 +615,7 @@ class IdPDisco
             }
             if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
-                $newlist[$entityid]['iconurl'] = Utils\HTTP::resolveURL($data['icon']);
+                $newlist[$entityid]['iconurl'] = $httpUtils->resolveURL($data['icon']);
             }
         }
         usort(
@@ -631,7 +635,7 @@ class IdPDisco
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
-        $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
+        $t->data['urlpattern'] = htmlspecialchars($httpUtils->getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->send();
     }

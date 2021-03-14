@@ -267,8 +267,9 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
         Logger::debug(__CLASS__ . ': downloading metadata for "' . $entityId . '" from [' . $mdq_url . ']');
+        $httpUtils = new Utils\HTTP();
         try {
-            $xmldata = Utils\HTTP::fetch($mdq_url);
+            $xmldata = $httpUtils->fetch($mdq_url);
         } catch (\Exception $e) {
             // Avoid propagating the exception, make sure we can handle the error later
             $xmldata = false;

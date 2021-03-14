@@ -66,7 +66,9 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
         } else {
             $params['expire'] = time() - 300;
         }
-        \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
+
+        $httpUtils = new \SimpleSAML\Utils\HTTP();
+        $httpUtils->setCookie($source->getAuthId() . '-username', $username, $params, false);
     }
 
     if ($source->isRememberMeEnabled()) {

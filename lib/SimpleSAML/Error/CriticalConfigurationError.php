@@ -53,7 +53,8 @@ class CriticalConfigurationError extends ConfigurationError
     {
         if ($config === null) {
             $config = self::$minimum_config;
-            $config['baseurlpath'] = Utils\HTTP::guessBasePath();
+            $httpUtils = new Utils\HTTP();
+            $config['baseurlpath'] = $httpUtils->guessBasePath();
         }
 
         Configuration::loadFromArray(

@@ -199,12 +199,13 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
+        $httpUtils = new Utils\HTTP();
         $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
             'trackId'        => $session->getTrackID(),
-            'url'            => Utils\HTTP::getSelfURLNoQuery(),
+            'url'            => $httpUtils->getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
         ];
@@ -244,7 +245,8 @@ class Error extends Exception
             && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
-            $baseurl = Utils\HTTP::getBaseURL();
+            $httpUtils = new Utils\HTTP();
+            $baseurl = $httpUtils->getBaseURL();
             $data['errorReportAddress'] = $baseurl . 'errorreport.php';
         }
 

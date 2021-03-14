@@ -72,7 +72,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
         }
 
-        Utils\Time::initTimezone();
+        $timeUtils = new Utils\Time();
+        $timeUtils->initTimezone();
     }
 
 

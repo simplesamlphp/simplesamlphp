@@ -144,13 +144,14 @@ class Test
             $authData = $authsource->getAuthDataArray();
             $nameId = $authsource->getAuthData('saml:sp:NameID') ?? false;
 
+            $httpUtils = new Utils\HTTP();
             $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
                 'attributes' => $attributes,
                 'attributesHtml' => $this->getAttributesHTML($t, $attributes, ''),
                 'authData' => $authData,
                 'nameid' => $nameId,
-                'logouturl' => Utils\HTTP::getSelfURLNoQuery() . '?as=' . urlencode($as) . '&logout',
+                'logouturl' => $httpUtils->getSelfURLNoQuery() . '?as=' . urlencode($as) . '&logout',
             ];
 
             if ($nameId !== false) {

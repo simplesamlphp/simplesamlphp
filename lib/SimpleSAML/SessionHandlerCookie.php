@@ -161,6 +161,7 @@ abstract class SessionHandlerCookie extends SessionHandler
             $params = $this->getCookieParams();
         }
 
-        Utils\HTTP::setCookie($sessionName, $sessionID, $params, true);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($sessionName, $sessionID, $params, true);
     }
 }

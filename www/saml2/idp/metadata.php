@@ -23,6 +23,7 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
     $authUtils->requireAdmin();
 }
 
+$httpUtils = new Utils\HTTP();
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 try {
@@ -117,7 +118,7 @@ try {
         // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = [
             'index'    => 0,
-            'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
+            'Location' => $httpUtils->getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
             'Binding'  => Constants::BINDING_SOAP,
         ];
     }
@@ -127,7 +128,7 @@ try {
         array_unshift($metaArray['SingleSignOnService'], [
             'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
             'Binding'                => Constants::BINDING_HOK_SSO,
-            'Location'               => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php'
+            'Location'               => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php'
         ]);
     }
 
@@ -135,7 +136,7 @@ try {
         $metaArray['SingleSignOnService'][] = [
             'index' => 0,
             'Binding'  => Constants::BINDING_SOAP,
-            'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+            'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
         ];
     }
 
@@ -238,7 +239,7 @@ try {
         $t->data['certdata'] = $certdata;
         $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
         $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-idp');
-        $t->data['metaurl'] = Utils\HTTP::getSelfURLNoQuery();
+        $t->data['metaurl'] = $httpUtils->getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->send();

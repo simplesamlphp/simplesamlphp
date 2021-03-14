@@ -12,7 +12,6 @@
     </include>
     <exclude>
       <directory>./tests</directory>
-      <file>./lib/SimpleSAML/Utils/HttpAdapter.php</file>
     </exclude>
     <report>
       <clover outputFile="build/logs/clover.xml"/>

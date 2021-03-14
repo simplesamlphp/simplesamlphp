@@ -19,6 +19,13 @@ Upgrade notes for SimpleSAMLphp 2.0
   + lib/SimpleSAMLphp\Utils\Auth
   + lib/SimpleSAMLphp\Utils\Config
   + lib/SimpleSAMLphp\Utils\Crypto
+  + lib/SimpleSAMLphp\Utils\EMail
+  + lib/SimpleSAMLphp\Utils\HTTP
+  + lib/SimpleSAMLphp\Utils\Net
+  + lib/SimpleSAMLphp\Utils\Random
+  + lib/SimpleSAMLphp\Utils\System
+  + lib/SimpleSAMLphp\Utils\Time
+  + lib/SimpleSAMLphp\Utils\XML
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 

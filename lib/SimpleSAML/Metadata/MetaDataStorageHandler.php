@@ -108,7 +108,8 @@ class MetaDataStorageHandler implements ClearableState
         // get the configuration
         $config = Configuration::getInstance();
 
-        $baseurl = Utils\HTTP::getSelfURLHost() . $config->getBasePath();
+        $httpUtils = new Utils\HTTP();
+        $baseurl = $httpUtils->getSelfURLHost() . $config->getBasePath();
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
@@ -146,6 +147,7 @@ class MetaDataStorageHandler implements ClearableState
     public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
     {
         $result = [];
+        $timeUtils = new Utils\Time();
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
@@ -156,7 +158,7 @@ class MetaDataStorageHandler implements ClearableState
                         unset($srcList[$key]);
                         Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            Utils\Time::generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . "."
                         );
                     }
                 }
@@ -199,7 +201,8 @@ class MetaDataStorageHandler implements ClearableState
     public function getMetaDataCurrentEntityID(string $set, string $type = 'entityid'): string
     {
         // first we look for the hostname/path combination
-        $currenthostwithpath = Utils\HTTP::getSelfHostWithPath(); // sp.example.org/university
+        $httpUtils = new Utils\HTTP();
+        $currenthostwithpath = $httpUtils->getSelfHostWithPath(); // sp.example.org/university
 
         foreach ($this->sources as $source) {
             $index = $source->getEntityIdFromHostPath($currenthostwithpath, $set, $type);
@@ -209,7 +212,7 @@ class MetaDataStorageHandler implements ClearableState
         }
 
         // then we look for the hostname
-        $currenthost = Utils\HTTP::getSelfHost(); // sp.example.org
+        $currenthost = $httpUtils->getSelfHost(); // sp.example.org
 
         foreach ($this->sources as $source) {
             $index = $source->getEntityIdFromHostPath($currenthost, $set, $type);
@@ -267,15 +270,16 @@ class MetaDataStorageHandler implements ClearableState
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         $result = [];
+        $timeUtils = new Utils\Time();
         foreach ($this->sources as $source) {
             $srcList = $source->getMetaDataForEntities($entityIds, $set);
             foreach ($srcList as $key => $le) {
                 if (array_key_exists('expire', $le)) {
                     if ($le['expire'] < time()) {
                         unset($srcList[$key]);
-                        \SimpleSAML\Logger::warning(
+                        Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            \SimpleSAML\Utils\Time::generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . "."
                         );
                         continue;
                     }

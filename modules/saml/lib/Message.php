@@ -578,7 +578,8 @@ class Message
         }
 
         // validate Response-element destination
-        $currentURL = Utils\HTTP::getSelfURLNoQuery();
+        $httpUtils = new \SimpleSAML\Utils\HTTP();
+        $currentURL = $httpUtils->getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
             throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
@@ -639,7 +640,8 @@ class Message
             }
         } // at least one valid signature found
 
-        $currentURL = Utils\HTTP::getSelfURLNoQuery();
+        $httpUtils = new Utils\HTTP();
+        $currentURL = $httpUtils->getSelfURLNoQuery();
 
         // check various properties of the assertion
         $config = Configuration::getInstance();
@@ -710,7 +712,7 @@ class Message
             $scd = $sc->getSubjectConfirmationData();
             if ($method === Constants::CM_HOK) {
                 // check HoK Assertion
-                if (Utils\HTTP::isHTTPS() === false) {
+                if ($httpUtils->isHTTPS() === false) {
                     $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
                     continue;
                 }

@@ -58,4 +58,5 @@ if ($config->getBoolean('errorreporting', true)) {
 }
 
 // redirect the user back to this page to clear the POST request
-\SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
+$httpUtils = new \SimpleSAML\Utils\HTTP();
+$httpUtils->redirectTrustedURL($httpUtils->getSelfURLNoQuery());

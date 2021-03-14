@@ -248,7 +248,8 @@ class ProcessingChain
              * in $state['ReturnURL'].
              */
             $id = State::saveState($state, self::COMPLETED_STAGE);
-            Utils\HTTP::redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
+            $httpUtils = new Utils\HTTP();
+            $httpUtils->redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
         } else {
             /* Pass the state to the function defined in $state['ReturnCall']. */
 

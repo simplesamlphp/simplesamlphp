@@ -139,7 +139,8 @@ class Cron
             exit;
         }
 
-        $url = Utils\HTTP::getSelfURL();
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getSelfURL();
         $time = date(DATE_RFC822);
 
         $croninfo = $cron->runTag($tag);
