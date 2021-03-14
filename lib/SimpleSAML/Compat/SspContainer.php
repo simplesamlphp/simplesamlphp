@@ -8,10 +8,7 @@ use Psr\Log\LoggerInterface;
 use SAML2\Compat\AbstractContainer;
 use SAML2\XML\saml\CustomIdentifierInterface;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Utils\HTTP;
-use SimpleSAML\Utils\Random;
-use SimpleSAML\Utils\System;
-use SimpleSAML\Utils\XML;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\AbstractXMLElement;
 
 class SspContainer extends AbstractContainer
@@ -48,7 +45,8 @@ class SspContainer extends AbstractContainer
      */
     public function generateId(): string
     {
-        return Random::generateID();
+        $randomUtils = new Utils\Random();
+        return $randomUtils->generateID();
     }
 
 
@@ -59,7 +57,8 @@ class SspContainer extends AbstractContainer
      */
     public function debugMessage($message, string $type): void
     {
-        XML::debugSAMLMessage($message, $type);
+        $xmlUtils = new Utils\XML();
+        $xmlUtils->debugSAMLMessage($message, $type);
     }
 
 
@@ -70,7 +69,8 @@ class SspContainer extends AbstractContainer
      */
     public function redirect(string $url, array $data = []): void
     {
-        HTTP::redirectTrustedURL($url, $data);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, $data);
     }
 
 
@@ -81,7 +81,8 @@ class SspContainer extends AbstractContainer
      */
     public function postRedirect(string $url, array $data = []): void
     {
-        HTTP::submitPOSTData($url, $data);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->submitPOSTData($url, $data);
     }
 
 
@@ -104,10 +105,12 @@ class SspContainer extends AbstractContainer
      */
     public function writeFile(string $filename, string $data, int $mode = null): void
     {
+        $sysUtils = new Utils\System();
+
         if ($mode === null) {
             $mode = 0600;
         }
-        System::writeFile($filename, $data, $mode);
+        $sysUtils->writeFile($filename, $data, $mode);
     }
 
 
