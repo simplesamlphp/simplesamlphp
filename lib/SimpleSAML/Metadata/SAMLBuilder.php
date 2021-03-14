@@ -130,7 +130,8 @@ class SAMLBuilder
     {
         $xml = $this->getEntityDescriptor();
         if ($formatted) {
-            Utils\XML::formatDOMElement($xml);
+            $xmlUtils = new Utils\XML();
+            $xmlUtils->formatDOMElement($xml);
         }
 
         return $xml->ownerDocument->saveXML();

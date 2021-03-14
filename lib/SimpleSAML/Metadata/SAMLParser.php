@@ -370,9 +370,10 @@ class SAMLParser
             throw new \Exception('Document was empty.');
         }
 
-        if (Utils\XML::isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntityDescriptor($element));
-        } elseif (Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
+        } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntitiesDescriptor($element));
         } else {
             throw new \Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
@@ -1011,9 +1012,10 @@ class SAMLParser
                 $attribute = $e->getXML();
 
                 $name = $attribute->getAttribute('Name');
+                $xmlUtils = new Utils\XML();
                 $values = array_map(
-                    '\SimpleSAML\Utils\XML::getDOMText',
-                    Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+                    [$xmlUtils, 'getDOMText'],
+                    $xmlUtils->getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
                 if ($name === 'tags') {
@@ -1281,7 +1283,8 @@ class SAMLParser
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
-        if (Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
             throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 

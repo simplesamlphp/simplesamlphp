@@ -408,7 +408,8 @@ class Federation
 
         $error = null;
         if (!empty($xmldata)) {
-            Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
+            $xmlUtils = new Utils\XML();
+            $xmlUtils->checkSAMLMessage($xmldata, 'saml-meta');
 
             $entities = null;
             try {
