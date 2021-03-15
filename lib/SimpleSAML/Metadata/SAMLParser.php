@@ -344,7 +344,7 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
+     * @return \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument[] An associative array of SAMLParser instances. The key of the array will
      *     be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
@@ -379,9 +379,9 @@ class SAMLParser
 
         $xmlUtils = new Utils\XML();
         if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntityDescriptor($element));
+            return self::processDescriptorsElement(EntityDescriptor::fromXML($element));
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntitiesDescriptor($element));
+            return self::processDescriptorsElement(EntitiesDescriptor::fromXML($element));
         } else {
             throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }
@@ -391,35 +391,20 @@ class SAMLParser
     /**
      *
      * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $element The element we should process.
-     * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
-     * @param array                 $validators The parent-elements that may be signed.
-     * @param array                 $parentExtensions An optional array of extensions from the parent element.
-     *
-     * @return SAMLParser[] Array of SAMLParser instances.
+     * @return \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument[] Array of AbstractMetadataDocumentsSAMLParser instances.
      */
     private static function processDescriptorsElement(
-        AbstractMetadataDocument $element,
-        ?int $maxExpireTime = null,
-        array $validators = [],
-        array $parentExtensions = []
+        AbstractMetadataDocument $element
     ): array {
         if ($element instanceof EntityDescriptor) {
-            $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
-            $ret = [$ret->getEntityId() => $ret];
-            /** @var SAMLParser[] $ret */
-            return $ret;
+            return [$element->getEntityId() => $element];
         }
 
         Assert::isInstanceOf($element, EntitiesDescriptor::class);
 
-        $extensions = self::processExtensions($element, $parentExtensions);
-        $expTime = self::getExpireTime($element, $maxExpireTime);
-
-        $validators[] = $element;
-
         $ret = [];
         foreach (array_merge($element->getEntityDescriptors(), $element->getEntitiesDescriptors()) as $child) {
-            $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
+            $ret += self::processDescriptorsElement($child);
         }
 
         return $ret;
@@ -463,30 +448,62 @@ class SAMLParser
 
 
     /**
+     * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $entity
      * @return array
      */
-    private function getMetadataCommon(): array
+    private function getMetadataCommon(AbstractMetadataDocument $entity): array
     {
         $ret = [];
-        $ret['entityid'] = $this->entityId;
-        $ret['entityDescriptor'] = $this->entityDescriptor;
+        $ret['entityid'] = $entity->getEntityId();
 
         // add organizational metadata
-        if (!empty($this->organizationName)) {
-            $ret['description'] = $this->organizationName;
-            $ret['OrganizationName'] = $this->organizationName;
-        }
-        if (!empty($this->organizationDisplayName)) {
-            $ret['name'] = $this->organizationDisplayName;
-            $ret['OrganizationDisplayName'] = $this->organizationDisplayName;
-        }
-        if (!empty($this->organizationURL)) {
-            $ret['url'] = $this->organizationURL;
-            $ret['OrganizationURL'] = $this->organizationURL;
+        $organization = $entity->getOrganization();
+        if ($organization !== null) {
+            $organizationName = $organization->getOrganizationName();
+            $organizationDisplayName = $organization->getOrganizationDisplayName();
+            $organizationUrl = $organization->getOrganizationUrl();
+
+            if (!empty($organizationName)) {
+                $value = array_map(
+                    function($obj) {
+                        return $obj->toArray();
+                    },
+                    $organizationName
+                );
+//                $ret['description'] = $value;
+                $ret['OrganizationName'] = $value;
+            }
+
+            if (!empty($organizationDisplayName)) {
+                $value = array_map(
+                    function($obj) {
+                        return $obj->toArray();
+                    },
+                    $organizationDisplayName
+                );
+//                $ret['name'] = $value;
+                $ret['OrganizationDisplayName'] = $value;
+            }
+
+            if (!empty($organizationURL)) {
+                $value = array_map(
+                    function($obj) {
+                        return $obj->toArray();
+                    },
+                    $organizationURL
+                );
+//                $ret['url'] = $value;
+                $ret['OrganizationURL'] = $value;
+            }
         }
 
         //add contact metadata
-        $ret['contacts'] = $this->contacts;
+        $contacts = $entity->getContactPerson();
+        if (!empty($contacts)) {
+            foreach ($contacts as $contact) {
+                $ret['contacts'][] = $contact->toArray();
+            }
+        }
 
         return $ret;
     }
@@ -545,9 +562,9 @@ class SAMLParser
      * @return array|null An associative array with metadata or NULL if we are unable to
      *   generate metadata for a SAML 2.x SP.
      */
-    public function getMetadata20SP(): ?array
+    public function getMetadata20SP(AbstractMetadataDocument $entity): ?array
     {
-        $ret = $this->getMetadataCommon();
+        $ret = $this->getMetadataCommon($entity);
         $ret['metadata-set'] = 'saml20-sp-remote';
 
         // find SP information which supports the SAML 2.0 protocol
@@ -928,7 +945,7 @@ class SAMLParser
                             . "' with '{$e->getRegistrationAuthority()}'"
                         );
                     } else {
-                        $ret['RegistrationInfo']['registrationAuthority'] = $e->getRegistrationAuthority();
+                        $ret['RegistrationInfo'] = $e->toXML();
                     }
                 }
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
@@ -966,6 +983,8 @@ class SAMLParser
             // UIInfo elements are only allowed at RoleDescriptor level extensions
             if ($element instanceof AbstractRoleDescriptor) {
                 if ($e instanceof UIInfo) {
+                    $ret['UIInfo'] = $e->toXML();
+/*
                     $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
                     $ret['UIInfo']['Description'] = $e->getDescription();
                     $ret['UIInfo']['InformationURL'] = $e->getInformationURL();
@@ -993,15 +1012,40 @@ class SAMLParser
                         }
                         $ret['UIInfo']['Logo'][] = $logo;
                     }
+*/
                 }
             }
 
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof IDPSSODescriptor) {
                 if ($e instanceof DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
-                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
-                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
+                      $ret['DiscoHints'] = $e->toArray();
+//                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
+//                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
+//                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
+                }
+            }
+
+            if (!($e instanceof Chunk)) {
+                continue;
+            }
+
+            if ($e instanceof Attribute) {
+                $attribute = $e->toXML();
+
+                $name = $attribute->getAttribute('Name');
+                $xmlUtils = new Utils\XML();
+                $values = array_map(
+                    [$xmlUtils, 'getDOMText'],
+                    $xmlUtils->getDOMChildren($attribute, 'AttributeValue', '@saml2')
+                );
+
+                if ($name === 'tags') {
+                    foreach ($values as $tagname) {
+                        if (!empty($tagname)) {
+                            $ret['tags'][] = $tagname;
+                        }
+                    }
                 }
             }
         }
@@ -1029,6 +1073,8 @@ class SAMLParser
      */
     private function processContactPerson(ContactPerson $element): void
     {
+        $this->contacts[] = $element->toArray();
+/*
         $contactPerson = [];
         if ($element->getContactType() !== '') {
             $contactPerson['contactType'] = $element->getContactType();
@@ -1051,6 +1097,7 @@ class SAMLParser
         if (!empty($contactPerson)) {
             $this->contacts[] = $contactPerson;
         }
+*/
     }
 
 

@@ -10,9 +10,10 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\SAML2\Constants;
-use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
+//use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
+use SimpleSAML\SAML2\XML\md\AssertionConsumerService;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
@@ -20,6 +21,8 @@ use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RequestedAttribute;
+use SimpleSAML\SAML2\XML\md\SingleLogoutService;
+use SimpleSAML\SAML2\XML\md\SingleSignOnService;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
@@ -49,7 +52,14 @@ class SAMLBuilder
      *
      * @var \SimpleSAML\SAML2\XML\md\EntityDescriptor
      */
-    private EntityDescriptor $entityDescriptor;
+//    private EntityDescriptor $entityDescriptor;
+
+    /**
+     * The entityId for the EntityDescriptor we're building
+     *
+     * @var string
+     */
+    private string $entityId;
 
 
     /**
@@ -81,14 +91,15 @@ class SAMLBuilder
         $this->maxCache = $maxCache;
         $this->maxDuration = $maxDuration;
 
-        $this->entityDescriptor = new EntityDescriptor();
-        $this->entityDescriptor->setEntityID($entityId);
+        $this->entityId = $entityId;
+
+//        $this->entityDescriptor = new EntityDescriptor();
+//        $this->entityDescriptor->setEntityID($entityId);
     }
 
 
     /**
      * @param array $metadata
-     */
     private function setExpiration(array $metadata): void
     {
         if (array_key_exists('expire', $metadata)) {
@@ -104,6 +115,7 @@ class SAMLBuilder
             $this->entityDescriptor->setValidUntil(time() + $this->maxDuration);
         }
     }
+     */
 
 
     /**
@@ -223,7 +235,8 @@ class SAMLBuilder
         }
 
         if ($metadata->hasValue('RegistrationInfo')) {
-            $ri = new RegistrationInfo();
+/*
+          $ri = new RegistrationInfo();
             foreach ($metadata->getArray('RegistrationInfo') as $riName => $riValues) {
                 switch ($riName) {
                     case 'authority':
@@ -240,9 +253,13 @@ class SAMLBuilder
             $this->entityDescriptor->setExtensions(
                 array_merge($this->entityDescriptor->getExtensions(), [$ri])
             );
+*/
+            $ri = RegistrationInfo::fromArray($metadata->getArray('RegistrationInfo'));
+            $e->setExtensions(array_merge($e->getExtensions(), [$ri]));
         }
 
         if ($metadata->hasValue('UIInfo')) {
+/*
             $ui = new UIInfo();
             foreach ($metadata->getArray('UIInfo') as $uiName => $uiValues) {
                 switch ($uiName) {
@@ -272,10 +289,13 @@ class SAMLBuilder
                         break;
                 }
             }
+*/
+            $ui = UIInfo::fromArray($metadata->getArray('UIInfo'));
             $e->setExtensions(array_merge($e->getExtensions(), [$ui]));
         }
 
         if ($metadata->hasValue('DiscoHints')) {
+/*
             $IPHints = $DomainHints = $GeolocationHints = [];
             foreach ($metadata->getArray('DiscoHints') as $dhName => $dhValues) {
                 switch ($dhName) {
@@ -291,6 +311,8 @@ class SAMLBuilder
                 }
             }
             $dh = new DiscoHints([], $IPHints, $DomainHints, $GeolocationHints);
+*/
+            $dh = DiscoHints::fromArray($metadata->getArray('DiscoHints'));
             $e->setExtensions(array_merge($e->getExtensions(), [$dh]));
         }
     }
@@ -346,13 +368,14 @@ class SAMLBuilder
      * @return array An array of endpoint objects,
      *     either \SimpleSAML\SAML2\XML\md\AbstractEndpointType or \SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType.
      */
-    private static function createEndpoints(array $endpoints, bool $indexed): array
+//    private static function createEndpoints(array $endpoints, bool $indexed): array
+    private static function createEndpoints(array $endpoints, string $type): array
     {
         $ret = [];
-
         foreach ($endpoints as &$ep) {
-            if ($indexed) {
-                $t = new IndexedEndpointType();
+            if ($type instanceof AbstractIndexedEndpointType) {
+//            if ($indexed) {
+//                $t = new IndexedEndpointType();
                 if (!isset($ep['index'])) {
                     // Find the maximum index
                     $maxIndex = -1;
@@ -369,11 +392,40 @@ class SAMLBuilder
                     $ep['index'] = $maxIndex + 1;
                 }
 
-                $t->setIndex($ep['index']);
-            } else {
-                $t = new EndpointType();
-            }
+                $attributes = [];
+                if (isset($ep['hoksso:ProtocolBinding'])) {
+                    $doc = DOMDocumentFactory::create();
+                    $elt = $doc->createElement("placeholder");
+                    $elt->setAttributeNS(
+                        Constants::NS_HOK,
+                        'hoksso:ProtocolBinding',
+                        Constants::BINDING_HTTP_REDIRECT
+                    );
 
+                    $attributes[] = $elt->getAttributeNode('hoksso:ProtocolBinding');
+                }
+
+                $t = new $type($ep['index'], $ep['Binding'], $ep['Location'], null, isset($ep['ResponseLocation']) ? $ep['ResponseLocation'] : null, isset($ep['hoksso:ProtocolBinding']) ? $attributes : []);
+
+//                $t->setIndex($ep['index']);
+            } else {
+//                $t = new EndpointType();
+                $attributes = [];
+                if (isset($ep['hoksso:ProtocolBinding'])) {
+                    $doc = DOMDocumentFactory::create();
+                    $elt = $doc->createElement("placeholder");
+                    $elt->setAttributeNS(
+                        Constants::NS_HOK,
+                        'hoksso:ProtocolBinding',
+                        Constants::BINDING_HTTP_REDIRECT
+                    );
+
+                    $attributes[] = $elt->getAttributeNode('hoksso:ProtocolBinding');
+                }
+
+                $t = new $type($ep['Binding'], $ep['Location'], isset($ep['ResponseLocation']) ? $ep['ResponseLocation'] : null, isset($ep['hoksso:ProtocolBinding']) ? $attributes : []);
+            }
+/*
             $t->setBinding($ep['Binding']);
             $t->setLocation($ep['Location']);
             if (isset($ep['ResponseLocation'])) {
@@ -386,6 +438,7 @@ class SAMLBuilder
                     Constants::BINDING_HTTP_REDIRECT
                 );
             }
+*/
 
             $ret[] = $t;
         }
@@ -460,7 +513,7 @@ class SAMLBuilder
      */
     public function addMetadata(string $set, array $metadata): void
     {
-        $this->setExpiration($metadata);
+//        $this->setExpiration($metadata);
 
         switch ($set) {
             case 'saml20-sp-remote':
@@ -508,7 +561,7 @@ class SAMLBuilder
 
         $this->addCertificate($e, $metadata);
 
-        $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
+        $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), SingleLogoutService::class));
 
         $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
@@ -519,17 +572,18 @@ class SAMLBuilder
                 'Location' => $acs,
             ];
         }
-        $e->setAssertionConsumerService(self::createEndpoints($endpoints, true));
+        $e->setAssertionConsumerService(self::createEndpoints($endpoints, AssertionConsumerService::class));
 
         $this->addAttributeConsumingService($e, $metadata);
 
         $this->entityDescriptor->addRoleDescriptor($e);
-
-        foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
+/*
+        foreach ($metadata->getArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
         }
+*/
     }
 
 
@@ -544,7 +598,7 @@ class SAMLBuilder
         Assert::notNull($metadata['metadata-set']);
 
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
-
+/*
         $e = new IDPSSODescriptor();
         $e->setProtocolSupportEnumeration(array_merge($e->getProtocolSupportEnumeration(), [Constants::NS_SAMLP]));
 
@@ -578,6 +632,76 @@ class SAMLBuilder
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
         }
+
+        return;
+*/
+        if (array_key_exists('expire', $metadata)) {
+            if ($metadata['expire'] - time() < $this->maxDuration) {
+                $this->maxDuration = $metadata['expire'] - time();
+            }
+        }
+
+        $wantAuthnRequestsSigned = null;
+        if ($metadata->hasValue('sign.authnrequest')) {
+            $wantAuthnRequestsSigned = $metadata->getBoolean('sign.authnrequest');
+        } elseif ($metadata->hasValue('redirect.sign')) {
+            $wantAuthnRequestsSigned = $metadata->getBoolean('redirect.sign');
+        }
+
+        $artifactResolutionService = [];
+        if ($metadata->hasValue('ArtifactResolutionService')) {
+            $artifactResolutionService = self::createEndpoints(
+                $metadata->getEndpoints('ArtifactResolutionService'),
+                true
+            );
+        }
+
+        new EntityDescriptor(
+            // EntityID
+            $metadata->getString('entityid'),
+            // ID
+            null,
+            // ValidUntil
+            ($this->maxDuration !== null) ? (time() + $this->maxDuration) : null,
+            // CacheDuration
+            ($this->maxCache !== null) ? ('PT' . $this->maxCache . 'S') : null,
+            // Extensions
+//            $extensions,
+            null,
+            // RoleDescriptors
+            [
+                new IDPSSODescriptor(
+                    self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), SingleSignOnService::class),
+                    [Constants::NS_SAMLP],
+                    $wantAuthnRequestsSigned,
+                    [],
+                    [],
+                    [],
+                    [],
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    [],
+                    null,
+                    [],
+                    $artifactResolutionService,
+                    self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), SingleLogoutService::class),
+                    [],
+                    $metadata->getArrayizeString('NameIDFormat', [])
+                )
+            ],
+            // AffiliationDescriptor
+            null,
+            // Organization
+//            new Organization(),
+            null,
+            // Contacts
+            [],
+            // AdditionalMetadataLocation
+            []
+        );
     }
 
 
@@ -620,11 +744,14 @@ class SAMLBuilder
      *
      * @param array  $details The details about the contact.
      */
-    public function addContact(array $details): void
+    public function addContact(string $type, array $details): ContactPerson
     {
         Assert::notNull($details['contactType']);
         Assert::oneOf($details['contactType'], ContactPerson::CONTACT_TYPES);
 
+        $details['type'] = $type;
+        return ContactPerson::fromArray($details);
+/*
         $e = new ContactPerson();
         $e->setContactType($type);
 
@@ -663,6 +790,7 @@ class SAMLBuilder
         }
 
         $this->entityDescriptor->addContactPerson($e);
+*/
     }
 
 
