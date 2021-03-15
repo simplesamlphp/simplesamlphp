@@ -355,13 +355,15 @@ The following SAML 2.0 options are available:
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent to this IdP.
+    Set it to:
+
+    true: authnrequest must be signed (and signature will be validated)
+    null: authnrequest may be signed, if it is, signature will be validated
+    false: authnrequest signature is never checked
 
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
-
-:   Note: SimpleSAMLphp will always try to validate signatures unless this setting is
-    specifically set to `false` (this will break SAML2INT compliancy)
 
 `validate.logout`
 :   Whether we require signatures on logout messages sent to this IdP.
