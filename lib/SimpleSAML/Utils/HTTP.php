@@ -76,7 +76,7 @@ class HTTP
     private function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
         $session = Session::getSessionFromRequest();
-        $id = self::savePOSTData($session, $destination, $data);
+        $id = $this->savePOSTData($session, $destination, $data);
 
         if ($session->isTransient()) {
             // this is a transient session, it is pointless to continue
@@ -157,7 +157,7 @@ class HTTP
      */
     public function getServerPort(): string
     {
-        $default_port = self::getServerHTTPS() ? '443' : '80';
+        $default_port = $this->getServerHTTPS() ? '443' : '80';
         $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
 
         // Take care of edge-case where SERVER_PORT is an integer
@@ -217,12 +217,12 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        if (!self::isValidURL($url)) {
+        if (!$this->isValidURL($url)) {
             throw new Error\Exception('Invalid destination URL.');
         }
 
         if (!empty($parameters)) {
-            $url = self::addURLParameters($url, $parameters);
+            $url = $this->addURLParameters($url, $parameters);
         }
 
         /* Set the HTTP result code. This is either 303 See Other or
@@ -324,7 +324,7 @@ class HTTP
             if ($oldQuery === false) {
                 $oldQuery = [];
             } else {
-                $oldQuery = self::parseQueryString($oldQuery);
+                $oldQuery = $this->parseQueryString($oldQuery);
             }
             $url = substr($url, 0, $queryStart + 1);
         }
@@ -356,9 +356,9 @@ class HTTP
 
         $url = Module::getModuleURL('core/no_cookie.php');
         if ($retryURL !== null) {
-            $url = self::addURLParameters($url, ['retryURL' => $retryURL]);
+            $url = $this->addURLParameters($url, ['retryURL' => $retryURL]);
         }
-        self::redirectTrustedURL($url);
+        $this->redirectTrustedURL($url);
     }
 
 
@@ -380,9 +380,9 @@ class HTTP
         if (empty($url)) {
             return '';
         }
-        $url = self::normalizeURL($url);
+        $url = $this->normalizeURL($url);
 
-        if (!self::isValidURL($url)) {
+        if (!$this->isValidURL($url)) {
             throw new Error\Exception('Invalid URL: ' . $url);
         }
 
@@ -417,7 +417,7 @@ class HTTP
                 $hostname = $hostname . ':' . $components['port'];
             }
 
-            $self_host = self::getSelfHostWithNonStandardPort();
+            $self_host = $this->getSelfHostWithNonStandardPort();
 
             $trustedRegex = Configuration::getInstance()->getValue('trusted.url.regex', false);
 
@@ -663,11 +663,11 @@ class HTTP
         ) {
             // get server values
             $protocol = 'http';
-            $protocol .= (self::getServerHTTPS()) ? 's' : '';
+            $protocol .= ($this->getServerHTTPS()) ? 's' : '';
             $protocol .= '://';
 
-            $hostname = self::getServerHost();
-            $port = self::getServerPort();
+            $hostname =$this->getServerHost();
+            $port = $this->getServerPort();
             $path = $globalConfig->getBasePath();
 
             return $protocol . $hostname . $port . $path;
@@ -677,7 +677,7 @@ class HTTP
              * with the configuration. Use a guessed base path instead of the one provided.
              */
             $c = $globalConfig->toArray();
-            $c['baseurlpath'] = self::guessBasePath();
+            $c['baseurlpath'] = $this->guessBasePath();
             throw new Error\CriticalConfigurationError(
                 'Invalid value for \'baseurlpath\' in config.php. Valid format is in the form: ' .
                 '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. It must end with a \'/\'.',
@@ -720,13 +720,13 @@ class HTTP
         $config = Configuration::getInstance();
         $allowed = $config->getBoolean('enable.http_post', false);
 
-        if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+        if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
-            $url = self::getSecurePOSTRedirectURL($destination, $data);
+            $url = $this->getSecurePOSTRedirectURL($destination, $data);
         } else {
             // post the data directly
             $session = Session::getSessionFromRequest();
-            $id = self::savePOSTData($session, $destination, $data);
+            $id = $this->savePOSTData($session, $destination, $data);
             $url = Module::getModuleURL('core/postredirect.php', ['RedirId' => $id]);
         }
 
@@ -744,7 +744,7 @@ class HTTP
      */
     public function getSelfHost(): string
     {
-        $decomposed = explode(':', self::getSelfHostWithNonStandardPort());
+        $decomposed = explode(':', $this->getSelfHostWithNonStandardPort());
         return array_shift($decomposed);
     }
 
@@ -761,7 +761,7 @@ class HTTP
      */
     public function getSelfHostWithNonStandardPort(): string
     {
-        $url = self::getBaseURL();
+        $url = $this->getBaseURL();
 
         /** @var int $colon getBaseURL() will allways return a valid URL */
         $colon = strpos($url, '://');
@@ -781,10 +781,10 @@ class HTTP
      */
     public function getSelfHostWithPath(): string
     {
-        $baseurl = explode("/", self::getBaseURL());
+        $baseurl = explode("/", $this->getBaseURL());
         $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
         $path = implode("/", $elements);
-        return self::getSelfHostWithNonStandardPort() . "/" . $path;
+        return $this->getSelfHostWithNonStandardPort() . "/" . $path;
     }
 
 
@@ -843,14 +843,14 @@ class HTTP
                 $port = !empty($port) ? ':' . $port : '';
             } else {
                 // no base URL specified for app, just use the current URL
-                $protocol = self::getServerHTTPS() ? 'https' : 'http';
-                $hostname = self::getServerHost();
-                $port = self::getServerPort();
+                $protocol = $this->getServerHTTPS() ? 'https' : 'http';
+                $hostname = $this->getServerHost();
+                $port = $this->getServerPort();
             }
             return $protocol . '://' . $hostname . $port . $_SERVER['REQUEST_URI'];
         }
 
-        return self::getBaseURL() . $url_path . substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
+        return $this->getBaseURL() . $url_path . substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
     }
 
 
@@ -863,7 +863,7 @@ class HTTP
      */
     public function getSelfURLHost(): string
     {
-        $url = self::getSelfURL();
+        $url = $this->getSelfURL();
 
         /** @var int $colon getBaseURL() will allways return a valid URL */
         $colon = strpos($url, '://');
@@ -881,7 +881,7 @@ class HTTP
      */
     public function getSelfURLNoQuery(): string
     {
-        $url = self::getSelfURL();
+        $url = $this->getSelfURL();
         $pos = strpos($url, '?');
         if (!$pos) {
             return $url;
@@ -898,7 +898,7 @@ class HTTP
      */
     public function isHTTPS(): bool
     {
-        return strpos(self::getSelfURL(), 'https://') === 0;
+        return strpos($this->getSelfURL(), 'https://') === 0;
     }
 
 
@@ -914,7 +914,7 @@ class HTTP
      */
     public function normalizeURL(string $url): string
     {
-        $url = self::resolveURL($url, self::getSelfURL());
+        $url = $this->resolveURL($url, $this->getSelfURL());
 
         // verify that the URL is to a http or https site
         if (!preg_match('@^https?://@i', $url)) {
@@ -982,8 +982,8 @@ class HTTP
      */
     public function redirectTrustedURL(string $url, array $parameters = []): void
     {
-        $url = self::normalizeURL($url);
-        self::redirect($url, $parameters);
+        $url = $this->normalizeURL($url);
+        $this->redirect($url, $parameters);
     }
 
 
@@ -1008,8 +1008,8 @@ class HTTP
      */
     public function redirectUntrustedURL(string $url, array $parameters = []): void
     {
-        $url = self::checkURLAllowed($url);
-        self::redirect($url, $parameters);
+        $url = $this->checkURLAllowed($url);
+        $this->redirect($url, $parameters);
     }
 
 
@@ -1035,7 +1035,7 @@ class HTTP
     public function resolveURL(string $url, string $base = null): string
     {
         if ($base === null) {
-            $base = self::getBaseURL();
+            $base = $this->getBaseURL();
         }
 
         if (!preg_match('/^((((\w+:)\/\/[^\/]+)(\/[^?#]*))(?:\?[^#]*)?)(?:#.*)?/', $base, $baseParsed)) {
@@ -1127,7 +1127,7 @@ class HTTP
         }
 
         // Do not set secure cookie if not on HTTPS
-        if ($params['secure'] && !self::isHTTPS()) {
+        if ($params['secure'] && !$this->isHTTPS()) {
             if ($throw) {
                 throw new Error\CannotSetCookie(
                     'Setting secure cookie on plain HTTP is not allowed.',
@@ -1206,16 +1206,16 @@ class HTTP
      */
     public function submitPOSTData(string $destination, array $data): void
     {
-        if (!self::isValidURL($destination)) {
+        if (!$this->isValidURL($destination)) {
             throw new Error\Exception('Invalid destination URL.');
         }
 
         $config = Configuration::getInstance();
         $allowed = $config->getBoolean('enable.http_post', false);
 
-        if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+        if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
-            self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
+            $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
         }
 
         $p = new Template($config, 'post.twig');

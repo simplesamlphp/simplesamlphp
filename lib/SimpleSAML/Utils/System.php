@@ -187,7 +187,7 @@ class System
      */
     public function writeFile(string $filename, string $data, int $mode = 0600): void
     {
-        $tmpFile = self::getTempDir() . DIRECTORY_SEPARATOR . rand();
+        $tmpFile = $this->getTempDir() . DIRECTORY_SEPARATOR . rand();
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
@@ -199,7 +199,7 @@ class System
             );
         }
 
-        if (self::getOS() !== self::WINDOWS) {
+        if ($this->getOS() !== self::WINDOWS) {
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
                 /** @var array|null $error */
@@ -236,7 +236,7 @@ class System
      */
     public function isAbsolutePath(string $path): bool
     {
-        return (0 === strpos($path, '/') || self::pathContainsDriveLetter($path));
+        return (0 === strpos($path, '/') || $this->pathContainsDriveLetter($path));
     }
 
 

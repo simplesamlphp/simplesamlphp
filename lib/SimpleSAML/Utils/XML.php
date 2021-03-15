@@ -67,10 +67,10 @@ class XML
         $result = true;
         switch ($type) {
             case 'saml20':
-                $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-protocol-2.0.xsd');
                 break;
             case 'saml-meta':
-                $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
         if (is_string($result)) {
             Logger::warning($result);
@@ -136,7 +136,7 @@ class XML
                 Assert::true(false);
         }
 
-        $str = self::formatXMLString($message);
+        $str = $this->formatXMLString($message);
         foreach (explode("\n", $str) as $line) {
             Logger::debug($line);
         }
@@ -219,7 +219,7 @@ class XML
 
             // format child elements
             if ($node instanceof \DOMElement) {
-                self::formatDOMElement($node, $childIndentation);
+                $this->formatDOMElement($node, $childIndentation);
             }
         }
 
@@ -252,7 +252,7 @@ class XML
 
         $root = $doc->firstChild;
         Assert::notNull($root);
-        self::formatDOMElement($root, $indentBase);
+        $this->formatDOMElement($root, $indentBase);
 
         return $doc->saveXML($root);
     }
@@ -286,7 +286,7 @@ class XML
                 continue;
             }
 
-            if (self::isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
+            if ($this->isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
                 $ret[] = $child;
             }
         }
