@@ -13,6 +13,7 @@ Upgrade notes for SimpleSAMLphp 2.0
 - If you're using the core:TargetedID authproc-filter, note that the `attributename` setting has been renamed to `identifyingAttribute`.
 - The default encryption algorithm is set from AES128_CBC to AES128_GCM. If you're upgrading from an existing implementation, you may want
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
+- In compliancy with SAML2INT, AuthnRequests that are signed will have their signature validated unless specifically disabled by setting `validate.authnrequest` to `false`.  If unset, or set to true, signatures will be validated and requests not passing validation will be refused.
 - The following classes have been migrated to non-static:
   + lib/SimpleSAMLphp\Utils\Arrays
   + lib/SimpleSAMLphp\Utils\Attributes

@@ -296,6 +296,11 @@ The following options can be set:
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent from this SP.
+    Set it to:
+
+    true: authnrequest must be signed (and signature will be validated)
+    null: authnrequest may be signed, if it is, signature will be validated
+    false: authnrequest signature is never checked
 
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
