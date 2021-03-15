@@ -92,8 +92,8 @@ class SspContainer extends AbstractContainer
      */
     public function getTempDir(): string
     {
-        /** @psalm-suppress UndefinedClass */
-        return System::getTempDir();
+        $sysUtils = new Utils\System();
+        return $sysUtils->getTempDir();
     }
 
 
