@@ -129,7 +129,7 @@ class PairwiseID extends Auth\ProcessingFilter
 
         // Calculate hash
         $salt = $this->configUtils::getSecretSalt();
-        $hash = hash('sha256', $salt . '|' . $userID . '|' . $idp_entityid . '|' . $sp_entityid, false);
+        $hash = hash('sha256', $salt . '|' . $userID . '|' . $sp_entityid, false);
 
         $value = strtolower($hash . '@' . $this->scope);
         $state['Attributes'][Constants::ATTR_PAIRWISE_ID] = [$value];

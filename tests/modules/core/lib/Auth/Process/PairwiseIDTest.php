@@ -75,7 +75,7 @@ class PairwiseIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
         $this->assertEquals(
-            'b9c0de5a9852b51761797af957c4b383f8e2c7586b881444af760387272b0a6b@ex-ample.org',
+            '53d4f7fe57fb597ada481e81e0f15048bc610774cbb5614ea38f08ea918ba199@ex-ample.org',
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
         );
     }
@@ -96,7 +96,28 @@ class PairwiseIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
         $this->assertEquals(
-            'b9c0de5a9852b51761797af957c4b383f8e2c7586b881444af760387272b0a6b@ex-ample.org',
+            '53d4f7fe57fb597ada481e81e0f15048bc610774cbb5614ea38f08ea918ba199@ex-ample.org',
+            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+        );
+    }
+
+
+    /**
+     * Test the proxied request with multiple hops
+     */
+    public function testProxiedRequestMultipleHops()
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2']],
+            'IdPMetadata' => ['entityid' => 'urn:idp'],
+            'saml:RequesterID' => [0 => 'urn:sp', 1 => 'urn:some:sp', 2 => 'urn:some:other:sp'],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertEquals(
+            '53d4f7fe57fb597ada481e81e0f15048bc610774cbb5614ea38f08ea918ba199@ex-ample.org',
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
         );
     }
