@@ -79,7 +79,7 @@ class LoggerTest extends TestCase
 
         $log = Logger::getCapturedLog();
         self::assertCount(1, $log);
-        self::assertRegExp("/^[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z\ {$payload}$/", $log[0]);
+        self::assertMatchesRegularExpression("/^[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z\ {$payload}$/", $log[0]);
     }
 
 
@@ -128,6 +128,6 @@ class LoggerTest extends TestCase
         Logger::{$method}($payload = "test {$method}");
 
         $logger = Logger::getLoggingHandler();
-        self::assertRegExp("/\[CL[0-9a-f]{8}\]\ {$payload}$/", $logger->logs[$level][0]);
+        self::assertMatchesRegularExpression("/\[CL[0-9a-f]{8}\]\ {$payload}$/", $logger->logs[$level][0]);
     }
 }
