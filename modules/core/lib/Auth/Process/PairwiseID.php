@@ -40,14 +40,14 @@ class PairwiseID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    public const $subject_regex = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i';
+    public const SUBJECT_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i';
 
     /**
      * The regular expression to match the scope
      *
      * @var string
      */
-    public const $scope_regex = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+    public const SCOPE_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
 
     /**
      * The attribute we should generate the pairwise id from.
@@ -85,7 +85,7 @@ class PairwiseID extends Auth\ProcessingFilter
         Assert::stringNotEmpty($config['identifyingAttribute']);
         Assert::regex(
             $config['scope'],
-            self::$scope_regex,
+            self::SCOPE_REGEX,
             'PairwiseID: \'scope\' contains illegal characters.'
         );
 
@@ -114,7 +114,7 @@ class PairwiseID extends Auth\ProcessingFilter
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::regex(
             $userID,
-            self::$subject_regex,
+            self::SUBJECT_REGEX,
             'PairwiseID: \'identifyingAttribute\' contains illegal characters.'
         );
 
