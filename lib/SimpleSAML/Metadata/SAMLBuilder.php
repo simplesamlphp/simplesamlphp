@@ -749,7 +749,7 @@ class SAMLBuilder
         Assert::notNull($details['contactType']);
         Assert::oneOf($details['contactType'], ContactPerson::CONTACT_TYPES);
 
-        $details['type'] = $type;
+        $details['ContactType'] = $type;
         return ContactPerson::fromArray($details);
 /*
         $e = new ContactPerson();
