@@ -76,9 +76,9 @@
         "ext-curl": "*",
         "ext-pdo_sqlite": "*",
         "mikey179/vfsstream": "~1.6",
-        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc6",
-        "simplesamlphp/simplesamlphp-test-framework": "^1.1.5",
-        "simplesamlphp/xml-security": "^0.4.1"
+        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc9",
+        "simplesamlphp/simplesamlphp-test-framework": "^1.1.7",
+        "simplesamlphp/xml-security": "^0.4.3"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
