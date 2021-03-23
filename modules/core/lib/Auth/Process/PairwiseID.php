@@ -36,6 +36,20 @@ use SimpleSAML\Utils;
 class PairwiseID extends Auth\ProcessingFilter
 {
     /**
+     * The regular expression to match the identifier
+     *
+     * @var string
+     */
+    public const $subject_regex = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i';
+
+    /**
+     * The regular expression to match the scope
+     *
+     * @var string
+     */
+    public const $scope_regex = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+
+    /**
      * The attribute we should generate the pairwise id from.
      *
      * @var string
@@ -71,7 +85,7 @@ class PairwiseID extends Auth\ProcessingFilter
         Assert::stringNotEmpty($config['identifyingAttribute']);
         Assert::regex(
             $config['scope'],
-            '/^[a-zA-Z0-9.-]+$/i',
+            self::$scope_regex,
             'PairwiseID: \'scope\' contains illegal characters.'
         );
 
@@ -100,7 +114,7 @@ class PairwiseID extends Auth\ProcessingFilter
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::regex(
             $userID,
-            '/^[a-zA-Z0-9=-]+$/i',
+            self::$subject_regex,
             'PairwiseID: \'identifyingAttribute\' contains illegal characters.'
         );
 
