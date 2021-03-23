@@ -118,8 +118,6 @@ class PairwiseID extends Auth\ProcessingFilter
             'PairwiseID: \'identifyingAttribute\' contains illegal characters.'
         );
 
-        $idp_entityid = $state['IdPMetadata']['entityid'];
-
         if (!empty($state['saml:RequesterID'])) {
             // Proxied request - use actual SP entity ID
             $sp_entityid = $state['saml:RequesterID'][0];
