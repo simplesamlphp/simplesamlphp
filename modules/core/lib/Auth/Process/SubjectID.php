@@ -45,21 +45,21 @@ class SubjectID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    public const SCOPE_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+    public const SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/i';
 
     /**
      * The regular expression to match the specifications
      *
      * @var string
      */
-    public const SPEC_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+    public const SPEC_PATTERN = '/^[a-z0-9][a-z0-9=-]{0,126}@[a-z0-9][a-z0-9.-]{0,126}$/i';
 
     /**
      * The regular expression to match worrisome identifiers that need to raise a warning
      *
      * @var string
      */
-    public const WARN_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{3,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{3,126}$/i';
+    public const WARN_PATTERN = '/^[a-z0-9][a-z0-9=-]{3,126}@[a-z0-9][a-z0-9.-]{3,126}$/i';
 
     /**
      * The attribute we should generate the subject id from.
