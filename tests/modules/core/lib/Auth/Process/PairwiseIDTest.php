@@ -26,6 +26,9 @@ class PairwiseIDTest extends TestCase
     /** @var \SimpleSAML\Utils\Config */
     protected static Utils\Config $configUtils;
 
+    /** @var string */
+    private const PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+
 
     /**
      * Set up for each test.
@@ -75,7 +78,7 @@ class PairwiseIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
-            '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i',
+            self::PATTERN,
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
@@ -100,7 +103,7 @@ class PairwiseIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
-            '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i',
+            self::PATTERN,
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
@@ -125,7 +128,7 @@ class PairwiseIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
-            '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i',
+            self::PATTERN,
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
