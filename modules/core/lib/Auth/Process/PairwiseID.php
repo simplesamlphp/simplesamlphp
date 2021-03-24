@@ -41,10 +41,23 @@ class PairwiseID extends SubjectID
     public const NAME = 'PairwiseID';
 
     /**
-     * @var \SimpleSAML\Utils\Config|string
-     * @psalm-var \SimpleSAML\Utils\Config|class-string
+     * @var \SimpleSAML\Utils\Config
      */
-    protected $configUtils = Utils\Config::class;
+    protected $configUtils;
+
+
+    /**
+     * Initialize this filter.
+     *
+     * @param array &$config  Configuration information about this filter.
+     * @param mixed $reserved  For future use.
+     */
+    public function __construct(array &$config, $reserved)
+    {
+        parent::__construct($config, $reserved);
+
+        $this->configUtils = new Utils\Config();
+    }
 
 
     /**
