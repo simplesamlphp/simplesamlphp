@@ -137,7 +137,7 @@ class SubjectID extends Auth\ProcessingFilter
         );
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
-        Assert::notEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
+        Assert::stringNotEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
 
         return $userID;
     }
