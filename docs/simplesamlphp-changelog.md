@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+  * Added authproc-filters for generating the subject-id and pairwise-id (#1435)
   * Restore support for custom error messages (#1326)
   * Fixed a bug in the Artifact Resolution Service (#1428)
   * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
