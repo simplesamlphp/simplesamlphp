@@ -23,9 +23,6 @@ class SubjectIDTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var string */
-    private const PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
-
 
     /**
      * Helper function to run the filter with a given configuration.
@@ -55,7 +52,7 @@ class SubjectIDTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
         $this->assertMatchesRegularExpression(
-            self::PATTERN,
+            SubjectID::SPEC_PATTERN,
             $attributes[Constants::ATTR_SUBJECT_ID][0]
         );
         $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);

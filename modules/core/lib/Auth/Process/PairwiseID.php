@@ -33,31 +33,12 @@ use SimpleSAML\Utils;
  *
  * @package SimpleSAMLphp
  */
-class PairwiseID extends Auth\ProcessingFilter
+class PairwiseID extends SubjectID
 {
     /**
-     * The regular expression to match the scope
-     *
-     * @var string
+     * The name for this class
      */
-    public const SCOPE_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
-
-    /** @var string */
-    public const WARN_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{3,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{3,126}$/i';
-
-    /**
-     * The attribute we should generate the pairwise id from.
-     *
-     * @var string
-     */
-    private string $identifyingAttribute;
-
-    /**
-     * The scope to use for this attribute.
-     *
-     * @var string
-     */
-    private string $scope;
+    public const NAME = 'PairwiseID';
 
     /**
      * @var \SimpleSAML\Utils\Config|string
@@ -67,48 +48,13 @@ class PairwiseID extends Auth\ProcessingFilter
 
 
     /**
-     * Initialize this filter.
-     *
-     * @param array &$config  Configuration information about this filter.
-     * @param mixed $reserved  For future use.
-     */
-    public function __construct(array &$config, $reserved)
-    {
-        parent::__construct($config, $reserved);
-
-        Assert::keyExists($config, 'identifyingAttribute', "Missing mandatory 'identifyingAttribute' config setting.");
-        Assert::keyExists($config, 'scope', "Missing mandatory 'scope' config setting.");
-        Assert::stringNotEmpty($config['identifyingAttribute']);
-        Assert::regex(
-            $config['scope'],
-            self::SCOPE_REGEX,
-            'PairwiseID: \'scope\' contains illegal characters.'
-        );
-
-        $this->identifyingAttribute = $config['identifyingAttribute'];
-        $this->scope = $config['scope'];
-    }
-
-
-    /**
      * Apply filter to add the Pairwise ID.
      *
      * @param array &$state  The current state.
      */
     public function process(array &$state): void
     {
-        Assert::keyExists($state, 'Attributes');
-        Assert::keyExists(
-            $state['Attributes'],
-            $this->identifyingAttribute,
-            sprintf(
-                "core:PairwiseID: Missing attribute '%s', which is needed to generate the Pairwise ID.",
-                $this->identifyingAttribute
-            )
-        );
-
-        $userID = $state['Attributes'][$this->identifyingAttribute][0];
-        Assert::notEmpty($userID, 'SubjectID: \'identifyingAttribute\' cannot be an empty string.');
+        $userID = $this->getIdentifyingAttribute($state);
 
         if (!empty($state['saml:RequesterID'])) {
             // Proxied request - use actual SP entity ID
@@ -122,9 +68,7 @@ class PairwiseID extends Auth\ProcessingFilter
         $hash = hash('sha256', $salt . '|' . $userID . '|' . $sp_entityid, false);
 
         $value = strtolower($hash . '@' . $this->scope);
-        if (preg_match($pattern, $value) === 0) {
-            Logger::warning("Generated SubjectID '$value' can hardly be considered globally unique.");
-        }
+        $this->validateGeneratedIdentifier($value);
 
         $state['Attributes'][Constants::ATTR_PAIRWISE_ID] = [$value];
     }

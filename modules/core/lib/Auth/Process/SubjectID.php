@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
 use SAML2\Constants;
+//use SAML2\Exception\ProtocolViolationException
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -35,13 +36,29 @@ use SimpleSAML\Auth;
 class SubjectID extends Auth\ProcessingFilter
 {
     /**
+     * The name for this class
+     */
+    public const NAME = 'SubjectID';
+
+    /**
      * The regular expression to match the scope
      *
      * @var string
      */
-    public const SCOPE_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+    public const SCOPE_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
 
-    /** @var string */
+    /**
+     * The regular expression to match the specifications
+     *
+     * @var string
+     */
+    public const SPEC_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
+
+    /**
+     * The regular expression to match worrisome identifiers that need to raise a warning
+     *
+     * @var string
+     */
     public const WARN_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{3,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{3,126}$/i';
 
     /**
@@ -49,14 +66,15 @@ class SubjectID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private string $identifyingAttribute;
+    protected string $identifyingAttribute;
 
     /**
      * The scope to use for this attribute.
      *
      * @var string
      */
-    private string $scope;
+    protected string $scope;
+
 
     /**
      * Initialize this filter.
@@ -73,8 +91,9 @@ class SubjectID extends Auth\ProcessingFilter
         Assert::stringNotEmpty($config['identifyingAttribute']);
         Assert::regex(
             $config['scope'],
-            self::SCOPE_REGEX,
-            'SubjectID: \'scope\' contains illegal characters.'
+            self::SCOPE_PATTERN,
+            'core:' . static::NAME . ': \'scope\' contains illegal characters.'
+//            ProtocolViolationException::class
         );
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
@@ -89,25 +108,60 @@ class SubjectID extends Auth\ProcessingFilter
      */
     public function process(array &$state): void
     {
+        $userID = $this->getIdentifyingAttribute($state);
+
+        $value = strtolower($userID . '@' . $this->scope);
+        $this->validateGeneratedIdentifier($value);
+
+        $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
+    }
+
+
+    /**
+     * Retrieve the identifying attribute from the state and test it for erroneous conditions
+     *
+     * @param array $state
+     * @return string
+     * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
+     */
+    protected function getIdentifyingAttribute(array $state): string
+    {
         Assert::keyExists($state, 'Attributes');
         Assert::keyExists(
             $state['Attributes'],
             $this->identifyingAttribute,
             sprintf(
-                "core:SubjectID: Missing attribute '%s', which is needed to generate the subject ID.",
+                "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
                 $this->identifyingAttribute
             )
         );
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
-        Assert::notEmpty($userID, 'SubjectID: \'identifyingAttribute\' cannot be an empty string.');
+        Assert::notEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
 
-        $value = strtolower($userID . '@' . $this->scope);
+        return $userID;
+    }
 
-        if (preg_match($pattern, $value) === 0) {
-            Logger::warning("Generated SubjectID '$value' can hardly be considered globally unique.");
+
+    /**
+     * Test the generated identifier to ensure compliancy with the specifications.
+     * Log a warning when the generated value is considered to be weak
+     *
+     * @param string $value
+     * @return void
+     * @throws \SimpleSAML\Assert\AssertionFailedException if the post-conditions are not met
+     */
+    protected function validateGeneratedIdentifier(string $value): void
+    {
+        Assert::regex(
+            $value,
+            self::SPEC_PATTERN,
+            'core:' . static::NAME . ': Generated ID \'' . $value . '\' contains illegal characters.'
+//            ProtocolViolationException::class
+        );
+
+        if (preg_match(self::WARN_PATTERN, $value) === 0) {
+            Logger::warning('core:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.');
         }
-
-        $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
     }
 }
