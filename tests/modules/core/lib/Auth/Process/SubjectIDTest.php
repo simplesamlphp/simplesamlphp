@@ -64,7 +64,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test the most basic functionality
      */
-    public function testBasic(): voidd
+    public function testBasic(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
