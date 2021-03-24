@@ -64,7 +64,7 @@ class PairwiseID extends SubjectID
         }
 
         // Calculate hash
-        $salt = $this->configUtils::getSecretSalt();
+        $salt = $this->configUtils->getSecretSalt();
         $hash = hash('sha256', $salt . '|' . $userID . '|' . $sp_entityid, false);
 
         $value = strtolower($hash . '@' . $this->scope);
