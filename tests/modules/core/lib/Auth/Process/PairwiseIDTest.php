@@ -68,7 +68,6 @@ class PairwiseIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
             'Attributes' => ['uid' => ['u=se-r2']],
-            'IdPMetadata' => ['entityid' => 'urn:idp'],
             'core:SP' => 'urn:sp',
         ];
         $result = self::processFilter($config, $request);
@@ -93,7 +92,6 @@ class PairwiseIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
             'Attributes' => ['uid' => ['u=se-r2']],
-            'IdPMetadata' => ['entityid' => 'urn:idp'],
             'saml:RequesterID' => [0 => 'urn:sp'],
         ];
         $result = self::processFilter($config, $request);
@@ -118,7 +116,6 @@ class PairwiseIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
             'Attributes' => ['uid' => ['u=se-r2']],
-            'IdPMetadata' => ['entityid' => 'urn:idp'],
             'saml:RequesterID' => [0 => 'urn:sp', 1 => 'urn:some:sp', 2 => 'urn:some:other:sp'],
         ];
         $result = self::processFilter($config, $request);
@@ -143,7 +140,6 @@ class PairwiseIDTest extends TestCase
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex%ample.org'];
         $request = [
             'Attributes' => ['uid' => ['user2']],
-            'IdPMetadata' => ['entityid' => 'urn:idp'],
             'core:SP' => 'urn:sp',
         ];
 
