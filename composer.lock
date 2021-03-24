@@ -686,16 +686,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authorize",
-            "version": "v0.9.2",
+            "version": "v0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-authorize.git",
-                "reference": "c2607a5252ee1256b50ce7795e35513b116998d4"
+                "reference": "0593bfcb84fca9d9133f415246ab8ca51b412c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-authorize/zipball/c2607a5252ee1256b50ce7795e35513b116998d4",
-                "reference": "c2607a5252ee1256b50ce7795e35513b116998d4",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-authorize/zipball/0593bfcb84fca9d9133f415246ab8ca51b412c92",
+                "reference": "0593bfcb84fca9d9133f415246ab8ca51b412c92",
                 "shasum": ""
             },
             "require": {
@@ -714,7 +714,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -727,7 +727,7 @@
                 "authorize",
                 "simplesamlphp"
             ],
-            "time": "2020-02-25T15:16:57+00:00"
+            "time": "2021-03-24T10:37:17+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authtwitter",

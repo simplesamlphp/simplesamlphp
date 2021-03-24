@@ -16,6 +16,9 @@ Released TBD
   * Updated npm dependencies up to February 1, 2021
   * Fixed a bug where it was impossible to set WantAssertionsSigned=true on SP-metadata (#1433)
 
+### authorize
+  * Fix a bug in the Twig-template that causes an exception in Twig strict vars mode
+
 ### memcacheMonitor
   * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 
