@@ -278,6 +278,7 @@ class SAML2
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
+        $httpUtils = new Utils\HTTP();
 
         $supportedBindings = [Constants::BINDING_HTTP_POST];
         if ($idpMetadata->getBoolean('saml20.sendartifact', false)) {
@@ -300,7 +301,7 @@ class SAML2
                      * Less than five seconds has passed since we were
                      * here the last time. Cookies are probably disabled.
                      */
-                    Utils\HTTP::checkSessionCookie(Utils\HTTP::getSelfURL());
+                    $httpUtils->checkSessionCookie($httpUtils->getSelfURL());
                 }
             }
 
@@ -449,8 +450,8 @@ class SAML2
         */
         $sessionLostParams['cookieTime'] = time();
 
-        $sessionLostURL = Utils\HTTP::addURLParameters(
-            Utils\HTTP::getSelfURLNoQuery(),
+        $sessionLostURL = $httpUtils->addURLParameters(
+            $httpUtils->getSelfURLNoQuery(),
             $sessionLostParams
         );
 
@@ -771,9 +772,12 @@ class SAML2
             'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
         ];
 
+        $cryptoUtils = new Utils\Crypto();
+        $httpUtils = new Utils\HTTP();
+
         // add certificates
         $keys = [];
-        $certInfo = Utils\Crypto::loadPublicKey($config, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($config, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null) {
             $keys[] = [
@@ -787,7 +791,7 @@ class SAML2
         }
 
         /** @var array $certInfo */
-        $certInfo = Utils\Crypto::loadPublicKey($config, true);
+        $certInfo = $cryptoUtils->loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',
             'signing' => true,
@@ -798,7 +802,7 @@ class SAML2
 
         if ($config->hasValue('https.certificate')) {
             /** @var array $httpsCert */
-            $httpsCert = Utils\Crypto::loadPublicKey($config, true, 'https.');
+            $httpsCert = $cryptoUtils->loadPublicKey($config, true, 'https.');
             $keys[] = [
                 'type' => 'X509Certificate',
                 'signing' => true,
@@ -814,7 +818,7 @@ class SAML2
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
+                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
             ];
         }
 
@@ -825,7 +829,7 @@ class SAML2
                 [
                     'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     'Binding' => Constants::BINDING_HOK_SSO,
-                    'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+                    'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
                 ]
             );
         }
@@ -835,7 +839,7 @@ class SAML2
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
             ];
         }
 
@@ -1087,6 +1091,7 @@ class SAML2
         Assert::notNull($state['Attributes']);
         Assert::notNull($state['saml:ConsumerURL']);
 
+        $httpUtils = new Utils\HTTP();
         $now = time();
 
         $signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', null);
@@ -1119,7 +1124,7 @@ class SAML2
 
         if (isset($state['saml:AuthnContextClassRef'])) {
             $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
-        } elseif (Utils\HTTP::isHTTPS()) {
+        } elseif ($httpUtils->isHTTPS()) {
             $a->setAuthnContextClassRef(Constants::AC_PASSWORD_PROTECTED_TRANSPORT);
         } else {
             $a->setAuthnContextClassRef(Constants::AC_PASSWORD);
@@ -1134,7 +1139,8 @@ class SAML2
         $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
-        $a->setSessionIndex(Utils\Random::generateID());
+        $randomUtils = new Utils\Random();
+        $a->setSessionIndex($randomUtils->generateID());
 
         $sc = new SubjectConfirmation();
         $scd = new SubjectConfirmationData();
@@ -1155,7 +1161,8 @@ class SAML2
         if ($hokAssertion) {
             // Holder-of-Key
             $sc->setMethod(Constants::CM_HOK);
-            if (Utils\HTTP::isHTTPS()) {
+
+            if ($httpUtils->isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
                     // extract certificate data (if this is a certificate)
                     $clientCert = $_SERVER['SSL_CLIENT_CERT'];
@@ -1229,7 +1236,7 @@ class SAML2
 
             if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
                 // generate a random id
-                $nameIdValue = Utils\Random::generateID();
+                $nameIdValue = $randomUtils->generateID();
             } else {
                 /* this code will end up generating either a fixed assigned id (via nameid.attribute)
                    or random id if not assigned/configured */
@@ -1237,7 +1244,7 @@ class SAML2
                 if ($nameIdValue === null) {
                     Logger::warning('Falling back to transient NameID.');
                     $nameIdFormat = Constants::NAMEID_TRANSIENT;
-                    $nameIdValue = Utils\Random::generateID();
+                    $nameIdValue = $randomUtils->generateID();
                 }
             }
 

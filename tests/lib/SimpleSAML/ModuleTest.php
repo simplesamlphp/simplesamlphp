@@ -112,4 +112,26 @@ class ModuleTest extends TestCase
             '\SimpleSAML\Auth\ProcessingFilter'
         ));
     }
+
+    /**
+     * Test for SimpleSAML\Module::getModuleHooks(). It covers happy path.
+     */
+    public function testGetModuleHooks(): void
+    {
+        $hooks = Module::getModuleHooks('saml');
+        $this->assertArrayHasKey('metadata_hosted', $hooks);
+        $this->assertEquals('saml_hook_metadata_hosted', $hooks['metadata_hosted']['func']);
+        $expectedFile = dirname(__DIR__, 3) . '/modules/saml/hooks/hook_metadata_hosted.php';
+        $this->assertEquals($expectedFile, $hooks['metadata_hosted']['file']);
+    }
+
+    /**
+     * Test for SimpleSAML\Module::getModuleHooks(). It covers invalid hook names
+     */
+    public function testGetModuleHooksIgnoresInvalidHooks(): void
+    {
+        $hooks = Module::getModuleHooks('../tests/modules/unittest');
+        $this->assertArrayHasKey('valid', $hooks, 'hooks=' . var_export($hooks, true));
+        $this->assertCount(1, $hooks, "Invalid hooks should be ignored");
+    }
 }

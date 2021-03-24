@@ -3,5 +3,6 @@
 require_once('_include.php');
 
 $config = \SimpleSAML\Configuration::getInstance();
+$httpUtils = new \SimpleSAML\Utils\HTTP();
 
-\SimpleSAML\Utils\HTTP::redirectTrustedURL(SimpleSAML\Module::getModuleURL('core/login'));
+$httpUtils->redirectTrustedURL(SimpleSAML\Module::getModuleURL('core/login'));

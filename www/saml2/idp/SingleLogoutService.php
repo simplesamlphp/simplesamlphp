@@ -26,12 +26,13 @@ if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled
     throw new Error\Error('NOACCESS', null, 403);
 }
 
+$httpUtils = new Utils\HTTP();
 $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = IdP::getById('saml2:' . $idpEntityId);
 
 if (isset($_REQUEST['ReturnTo'])) {
-    $idp->doLogoutRedirect(Utils\HTTP::checkURLAllowed((string) $_REQUEST['ReturnTo']));
+    $idp->doLogoutRedirect($httpUtils->checkURLAllowed((string) $_REQUEST['ReturnTo']));
 } else {
     try {
         Module\saml\IdP\SAML2::receiveLogoutMessage($idp);

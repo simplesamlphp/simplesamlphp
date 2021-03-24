@@ -205,8 +205,10 @@ class SP extends \SimpleSAML\Auth\Source
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
 
+        $cryptoUtils = new Utils\Crypto();
+
         // add certificate(s)
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $hasNewCert = true;
@@ -228,7 +230,7 @@ class SP extends \SimpleSAML\Auth\Source
             ];
         }
 
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata);
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata);
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $metadata['keys'][] = [
                 'type' => 'X509Certificate',
@@ -456,11 +458,13 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
+        $arrayUtils = new Utils\Arrays();
+
         $accr = null;
         if ($idpMetadata->getString('AuthnContextClassRef', false)) {
-            $accr = Utils\Arrays::arrayize($idpMetadata->getString('AuthnContextClassRef'));
+            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
-            $accr = Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+            $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
 
         if ($accr !== null) {
@@ -707,7 +711,8 @@ class SP extends \SimpleSAML\Auth\Source
             $params['isPassive'] = 'true';
         }
 
-        Utils\HTTP::redirectTrustedURL($discoURL, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -879,7 +884,9 @@ class SP extends \SimpleSAML\Auth\Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = Auth\State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = Module::getModuleURL('saml/proxy/invalid_session.php');
-        Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
         Assert::true(false);
     }
 
@@ -1104,7 +1111,8 @@ class SP extends \SimpleSAML\Auth\Source
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
-        Utils\HTTP::redirectUntrustedURL($redirectTo);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectUntrustedURL($redirectTo);
     }
 
 

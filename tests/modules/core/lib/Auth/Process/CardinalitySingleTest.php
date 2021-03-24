@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Utils;
 use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
@@ -15,8 +15,8 @@ use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
  */
 class CardinalitySingleTest extends TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
-    private object $http;
+    /** @var \SimpleSAML\Utils\HTTP|\PHPUnit\Framework\MockObject\MockObject */
+    private object $httpUtils;
 
 
     /**
@@ -31,10 +31,10 @@ class CardinalitySingleTest extends TestCase
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        /** @var \SimpleSAML\Utils\HttpAdapter $http */
-        $http = $this->http;
+        /** @var \SimpleSAML\Utils\HTTP $httpUtils */
+        $httpUtils = $this->httpUtils;
 
-        $filter = new CardinalitySingle($config, null, $http);
+        $filter = new CardinalitySingle($config, null, $httpUtils);
         $filter->process($request);
         return $request;
     }
@@ -45,7 +45,7 @@ class CardinalitySingleTest extends TestCase
     protected function setUp(): void
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder(HttpAdapter::class)
+        $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
@@ -166,7 +166,7 @@ class CardinalitySingleTest extends TestCase
         ];
 
         /** @psalm-suppress UndefinedMethod */
-        $this->http->expects($this->once())
+        $this->httpUtils->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);

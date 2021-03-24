@@ -433,7 +433,8 @@ class Template extends Response
                 $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
                 $url = false;
                 if (!$current) {
-                    $url = htmlspecialchars(Utils\HTTP::addURLParameters(
+                    $httpUtils = new Utils\HTTP();
+                    $url = htmlspecialchars($httpUtils->addURLParameters(
                         '',
                         [$parameterName => $lang]
                     ));

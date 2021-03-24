@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Utils\XML;
+use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
@@ -29,11 +29,13 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeBasic(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $name = 'name';
         $namespace_uri = 'ns';
         $element = new DOMElement($name, 'value', $namespace_uri);
 
-        $res = XML::isDOMNodeOfType($element, $name, $namespace_uri);
+        $res = $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
 
         $this->assertTrue($res);
     }
@@ -44,12 +46,14 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeMissingNamespace(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $this->expectException(InvalidArgumentException::class);
         $name = 'name';
         $namespace_uri = '@missing';
         $element = new DOMElement($name, 'value', $namespace_uri);
 
-        XML::isDOMNodeOfType($element, $name, $namespace_uri);
+        $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
     }
 
 
@@ -58,11 +62,13 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeEmpty(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $name = 'name';
         $namespace_uri = '';
         $element = new DOMElement($name);
 
-        $res = XML::isDOMNodeOfType($element, $name, $namespace_uri);
+        $res = $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
 
         $this->assertFalse($res);
     }
@@ -73,12 +79,14 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeShortcut(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $name = 'name';
         $namespace_uri = 'urn:oasis:names:tc:SAML:2.0:metadata';
         $short_namespace_uri = '@md';
         $element = new DOMElement($name, 'value', $namespace_uri);
 
-        $res = XML::isDOMNodeOfType($element, $name, $short_namespace_uri);
+        $res = $xmlUtils->isDOMNodeOfType($element, $name, $short_namespace_uri);
 
         $this->assertTrue($res);
     }
@@ -89,12 +97,14 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeIncorrectName(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $name = 'name';
         $bad_name = 'bad name';
         $namespace_uri = 'ns';
         $element = new DOMElement($name, 'value', $namespace_uri);
 
-        $res = XML::isDOMNodeOfType($element, $bad_name, $namespace_uri);
+        $res = $xmlUtils->isDOMNodeOfType($element, $bad_name, $namespace_uri);
 
         $this->assertFalse($res);
     }
@@ -105,12 +115,14 @@ class XMLTest extends TestCase
      */
     public function testIsDomNodeOfTypeIncorrectNamespace(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $name = 'name';
         $namespace_uri = 'ns';
         $bad_namespace_uri = 'bad name';
         $element = new DOMElement($name, 'value', $namespace_uri);
 
-        $res = XML::isDOMNodeOfType($element, $name, $bad_namespace_uri);
+        $res = $xmlUtils->isDOMNodeOfType($element, $name, $bad_namespace_uri);
 
         $this->assertFalse($res);
     }
@@ -121,12 +133,14 @@ class XMLTest extends TestCase
      */
     public function testFormatDomElementBasic(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $dom = new DOMDocument();
         $root = new DOMElement('root');
         $dom->appendChild($root);
         $root->appendChild(new \DOMText('text'));
 
-        XML::formatDOMElement($root);
+        $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
         $expected = <<<'NOWDOC'
 <?xml version="1.0"?>
@@ -143,6 +157,8 @@ NOWDOC;
      */
     public function testFormatDomElementNested(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $dom = new DOMDocument();
         $root = new DOMElement('root');
         $nested = new DOMElement('nested');
@@ -150,7 +166,7 @@ NOWDOC;
         $root->appendChild($nested);
         $nested->appendChild(new DOMText('text'));
 
-        XML::formatDOMElement($root);
+        $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
         $expected = <<<'NOWDOC'
 <?xml version="1.0"?>
@@ -169,6 +185,8 @@ NOWDOC;
      */
     public function testFormatDomElementIndentBase(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $indent_base = 'base';
         $dom = new DOMDocument();
         $root = new DOMElement('root');
@@ -177,7 +195,7 @@ NOWDOC;
         $root->appendChild($nested);
         $nested->appendChild(new DOMText('text'));
 
-        XML::formatDOMElement($root, $indent_base);
+        $xmlUtils->formatDOMElement($root, $indent_base);
         $res = $dom->saveXML();
         $expected = <<<HEREDOC
 <?xml version="1.0"?>
@@ -196,13 +214,15 @@ HEREDOC;
      */
     public function testFormatDomElementTextAndChild(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $dom = new DOMDocument();
         $root = new DOMElement('root');
         $dom->appendChild($root);
         $root->appendChild(new DOMText('text'));
         $root->appendChild(new DOMElement('child'));
 
-        XML::formatDOMElement($root);
+        $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
         $expected = <<<HEREDOC
 <?xml version="1.0"?>
@@ -219,9 +239,11 @@ HEREDOC;
      */
     public function testFormatXmlStringBasic(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $xml = '<root><nested>text</nested></root>';
 
-        $res = XML::formatXMLString($xml);
+        $res = $xmlUtils->formatXMLString($xml);
         $expected = <<<'NOWDOC'
 <root>
   <nested>text</nested>
@@ -237,10 +259,12 @@ NOWDOC;
      */
     public function testFormatXmlStringMalformedXml(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $this->expectException(DOMException::class);
         $xml = '<root><nested>text';
 
-        XML::formatXMLString($xml);
+        $xmlUtils->formatXMLString($xml);
     }
 
 
@@ -249,9 +273,11 @@ NOWDOC;
      */
     public function testIsValidMalformedXml(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $xml = '<root><nested>text';
 
-        $res = XML::isValid($xml, 'unused');
+        $res = $xmlUtils->isValid($xml, 'unused');
         $this->assertIsString($res);
 
         $expected = 'Failed to parse XML string for schema validation';
@@ -263,13 +289,15 @@ NOWDOC;
      */
     public function testIsValidMetadata(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $schema = 'saml-schema-metadata-2.0.xsd';
         $xml = file_get_contents(self::FRAMEWORK . '/metadata/valid-metadata-selfsigned.xml');
 
         $dom = new DOMDocument('1.0');
         $dom->loadXML($xml, LIBXML_NONET);
 
-        $res = XML::isValid($dom, $schema);
+        $res = $xmlUtils->isValid($dom, $schema);
         $this->assertTrue($res === true);
     }
 
@@ -277,7 +305,9 @@ NOWDOC;
      */
     public function testCheckSAMLMessageInvalidType(): void
     {
+        $xmlUtils = new Utils\XML();
+
         $this->expectException(InvalidArgumentException::class);
-        XML::checkSAMLMessage('<test></test>', 'blub');
+        $xmlUtils->checkSAMLMessage('<test></test>', 'blub');
     }
 }

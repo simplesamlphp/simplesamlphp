@@ -13,7 +13,8 @@ if (!isset($_REQUEST['ReturnTo'])) {
     die('Missing ReturnTo parameter.');
 }
 
-$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
+$httpUtils = new \SimpleSAML\Utils\HTTP();
+$returnTo = $httpUtils->checkURLAllowed($_REQUEST['ReturnTo']);
 
 /**
  * The following piece of code would never be found in a real authentication page. Its
@@ -74,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['mail'] = $user['mail'];
         $_SESSION['type'] = $user['type'];
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
+        $httpUtils->redirectTrustedURL($returnTo);
     }
 }
 

@@ -29,11 +29,11 @@ class Config
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
-     */
-    protected $authUtils = Utils\Auth::class;
+    /** @var \SimpleSAML\Utils\Auth */
+    protected $authUtils;
+
+    /** @var \SimpleSAML\Utils\HTTP */
+    protected $httpUtils;
 
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
@@ -53,6 +53,8 @@ class Config
         $this->config = $config;
         $this->session = $session;
         $this->menu = new Menu();
+        $this->authUtils = new Utils\Auth();
+        $this->httpUtils = new Utils\HTTP();
     }
 
 
@@ -76,24 +78,24 @@ class Config
      */
     public function diagnostics(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
             'remaining' => $this->session->getAuthData('admin', 'Expire') - time(),
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
             'items' => [
                 'HTTP_HOST' => [$request->getHost()],
                 'HTTPS' => $request->isSecure() ? ['on'] : [],
                 'SERVER_PROTOCOL' => [$request->getProtocolVersion()],
-                'getBaseURL()' => [Utils\HTTP::getBaseURL()],
-                'getSelfHost()' => [Utils\HTTP::getSelfHost()],
-                'getSelfHostWithNonStandardPort()' => [Utils\HTTP::getSelfHostWithNonStandardPort()],
-                'getSelfURLHost()' => [Utils\HTTP::getSelfURLHost()],
-                'getSelfURLNoQuery()' => [Utils\HTTP::getSelfURLNoQuery()],
-                'getSelfHostWithPath()' => [Utils\HTTP::getSelfHostWithPath()],
-                'getFirstPathElement()' => [Utils\HTTP::getFirstPathElement()],
-                'getSelfURL()' => [Utils\HTTP::getSelfURL()],
+                'getBaseURL()' => [$this->httpUtils->getBaseURL()],
+                'getSelfHost()' => [$this->httpUtils->getSelfHost()],
+                'getSelfHostWithNonStandardPort()' => [$this->httpUtils->getSelfHostWithNonStandardPort()],
+                'getSelfURLHost()' => [$this->httpUtils->getSelfURLHost()],
+                'getSelfURLNoQuery()' => [$this->httpUtils->getSelfURLNoQuery()],
+                'getSelfHostWithPath()' => [$this->httpUtils->getSelfHostWithPath()],
+                'getFirstPathElement()' => [$this->httpUtils->getFirstPathElement()],
+                'getSelfURL()' => [$this->httpUtils->getSelfURL()],
             ],
         ];
 
@@ -111,7 +113,7 @@ class Config
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -132,12 +134,11 @@ class Config
                 'saml20idp' => $this->config->getBoolean('enable.saml20-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
         ];
 
         Module::callHooks('configpage', $t);
-        $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
-        /** @psalm-var \SimpleSAML\XHTML\Template $t */
+        $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -151,7 +152,7 @@ class Config
      */
     public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         return new RunnableResponse('phpinfo');
     }
@@ -360,7 +361,7 @@ class Config
         $warnings = [];
 
         // make sure we're using HTTPS
-        if (!Utils\HTTP::isHTTPS()) {
+        if (!$this->httpUtils->isHTTPS()) {
             $warnings[] = Translate::noop(
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
                 'for testing purposes, but in a production environment you should use HTTPS. <a ' .

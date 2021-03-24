@@ -196,7 +196,8 @@ class MultiAuth extends Auth\Source
             $params['source'] = $_GET['source'];
         }
 
-        Utils\HTTP::redirectTrustedURL($url, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed
         Assert::true(false);
@@ -309,7 +310,8 @@ class MultiAuth extends Auth\Source
             'httponly' => false,
         ];
 
-        Utils\HTTP::setCookie($cookieName, $source, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($cookieName, $source, $params, false);
     }
 
 

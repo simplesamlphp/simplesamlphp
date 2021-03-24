@@ -461,9 +461,10 @@ class Module
     {
         Assert::notSame($resource[0], '/');
 
-        $url = Utils\HTTP::getBaseURL() . 'module.php/' . $resource;
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getBaseURL() . 'module.php/' . $resource;
         if (!empty($parameters)) {
-            $url = Utils\HTTP::addURLParameters($url, $parameters);
+            $url = $httpUtils->addURLParameters($url, $parameters);
         }
         return $url;
     }
@@ -496,7 +497,7 @@ class Module
                 continue;
             }
 
-            if (!preg_match('/hook_(\w+)\.php/', $file, $matches)) {
+            if (!preg_match('/^hook_(\w+)\.php$/', $file, $matches)) {
                 continue;
             }
             $hook_name = $matches[1];

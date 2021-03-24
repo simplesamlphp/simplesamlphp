@@ -2,4 +2,5 @@
 
 require_once('../_include.php');
 
-\SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Module::getModuleURL('admin/'));
+$httpUtils = new \SimpleSAML\Utils\HTTP();
+$httpUtils->redirectTrustedURL(\SimpleSAML\Module::getModuleURL('admin/'));

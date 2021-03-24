@@ -97,7 +97,8 @@ class Exception
     {
         $retryURL = $request->get('retryURL', null);
         if ($retryURL !== null) {
-            $retryURL = Utils\HTTP::checkURLAllowed(strval($retryURL));
+            $httpUtils = new Utils\HTTP();
+            $retryURL = $httpUtils->checkURLAllowed(strval($retryURL));
         }
 
         $t = new Template($this->config, 'core:no_cookie.twig');

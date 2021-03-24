@@ -45,10 +45,10 @@ class EMail
     {
         $this->mail = new PHPMailer(true);
         $this->mail->Subject = $subject;
-        $this->mail->setFrom($from ?: static::getDefaultMailAddress());
-        $this->mail->addAddress($to ?: static::getDefaultMailAddress());
+        $this->mail->setFrom($from ?: $this->getDefaultMailAddress());
+        $this->mail->addAddress($to ?: $this->getDefaultMailAddress());
 
-        static::initFromConfig($this);
+        $this->initFromConfig($this);
     }
 
 
@@ -62,7 +62,7 @@ class EMail
      *
      * @return string Default mail address
      */
-    public static function getDefaultMailAddress(): string
+    public function getDefaultMailAddress(): string
     {
         $config = Configuration::getInstance();
         $address = $config->getString('technicalcontact_email', 'na@example.org');
@@ -224,7 +224,7 @@ class EMail
      * @return EMail
      * @throws \Exception
      */
-    public static function initFromConfig(EMail $EMail): EMail
+    public function initFromConfig(EMail $EMail): EMail
     {
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(

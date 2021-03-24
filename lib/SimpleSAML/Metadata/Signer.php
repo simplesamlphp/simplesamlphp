@@ -226,6 +226,7 @@ class Signer
     public static function sign(string $metadataString, array $entityMetadata, string $type): string
     {
         $config = Configuration::getInstance();
+        $configUtils = new Utils\Config();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {
@@ -235,7 +236,7 @@ class Signer
         // find the key & certificate which should be used to sign the metadata
         $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-        $keyFile = Utils\Config::getCertPath($keyCertFiles['privatekey']);
+        $keyFile = $configUtils->getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
             throw new \Exception(
                 'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
@@ -243,7 +244,7 @@ class Signer
         }
         $keyData = file_get_contents($keyFile);
 
-        $certFile = Utils\Config::getCertPath($keyCertFiles['certificate']);
+        $certFile = $configUtils->getCertPath($keyCertFiles['certificate']);
         if (!file_exists($certFile)) {
             throw new \Exception(
                 'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'

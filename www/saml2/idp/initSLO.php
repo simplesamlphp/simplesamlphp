@@ -26,5 +26,6 @@ if (!isset($_GET['RelayState'])) {
     throw new Error\Error('NORELAYSTATE');
 }
 
-$idp->doLogoutRedirect(Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
+$httpUtils = new Utils\HTTP();
+$idp->doLogoutRedirect($httpUtils->checkURLAllowed((string) $_GET['RelayState']));
 Assert::true(false);

@@ -194,8 +194,9 @@ abstract class MetaDataStorageSource
                 continue;
             }
 
+            $netUtils = new Utils\Net();
             foreach ($cidrHints as $hint_entry) {
-                if (Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
+                if ($netUtils->ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
@@ -288,7 +289,8 @@ abstract class MetaDataStorageSource
     protected function lookupIndexFromEntityId(string $entityId, array $metadataSet)
     {
         // check for hostname
-        $currentHost = Utils\HTTP::getSelfHost(); // sp.example.org
+        $httpUtils = new Utils\HTTP();
+        $currentHost = $httpUtils->getSelfHost(); // sp.example.org
 
         foreach ($metadataSet as $index => $entry) {
             // explicit index match
@@ -315,14 +317,15 @@ abstract class MetaDataStorageSource
     private function getDynamicHostedUrl(string $set): string
     {
         // get the configuration
-        $baseUrl = Utils\HTTP::getBaseURL();
+        $httpUtils = new Utils\HTTP();
+        $baseUrl = $httpUtils->getBaseURL();
 
         if ($set === 'saml20-idp-hosted') {
             return $baseUrl . 'saml2/idp/metadata.php';
         } elseif ($set === 'saml20-sp-hosted') {
             return $baseUrl . 'saml2/sp/metadata.php';
         } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:' . Utils\HTTP::getSelfHost() . ':idp';
+            return 'urn:federation:' . $httpUtils->getSelfHost() . ':idp';
         } else {
             throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
         }

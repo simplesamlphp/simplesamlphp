@@ -231,7 +231,8 @@ class SAMLParser
     public static function parseFile(string $file): SAMLParser
     {
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
@@ -310,7 +311,8 @@ class SAMLParser
         }
 
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
@@ -362,9 +364,10 @@ class SAMLParser
             throw new \Exception('Document was empty.');
         }
 
-        if (Utils\XML::isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntityDescriptor($element));
-        } elseif (Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
+        } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntitiesDescriptor($element));
         } else {
             throw new \Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
@@ -1242,7 +1245,8 @@ class SAMLParser
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
-        if (Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
             throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
@@ -1261,9 +1265,11 @@ class SAMLParser
      */
     public function validateSignature(array $certificates): bool
     {
+        $configUtils = new Utils\Config();
+
         foreach ($certificates as $cert) {
             Assert::string($cert);
-            $certFile = Utils\Config::getCertPath($cert);
+            $certFile = $configUtils->getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new \Exception(
                     'Could not find certificate file [' . $certFile . '], which is needed to validate signature'

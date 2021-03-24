@@ -368,7 +368,8 @@ class Session implements Serializable, Utils\ClearableState
                     Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
-                if (!Utils\Crypto::secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
+                $cryptoUtils = new Utils\Crypto();
+                if (!$cryptoUtils->secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
                     Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }
@@ -649,7 +650,8 @@ class Session implements Serializable, Utils\ClearableState
 
         $this->authData[$authority] = $data;
 
-        $this->authToken = Utils\Random::generateID();
+        $randomUtils = new Utils\Random();
+        $this->authToken = $randomUtils->generateID();
         $sessionHandler = SessionHandler::getSessionHandler();
 
         if (
@@ -660,8 +662,9 @@ class Session implements Serializable, Utils\ClearableState
         ) {
             $this->setRememberMeExpire();
         } else {
+            $httpUtils = new Utils\HTTP();
             try {
-                Utils\HTTP::setCookie(
+                $httpUtils->setCookie(
                     self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                     $this->authToken,
                     $sessionHandler->getCookieParams()
@@ -790,7 +793,8 @@ class Session implements Serializable, Utils\ClearableState
         $params = array_merge($sessionHandler->getCookieParams(), $params);
 
         if ($this->authToken !== null) {
-            Utils\HTTP::setCookie(
+            $httpUtils = new Utils\HTTP();
+            $httpUtils->setCookie(
                 self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params
