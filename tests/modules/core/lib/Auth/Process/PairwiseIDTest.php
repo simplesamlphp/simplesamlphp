@@ -149,6 +149,10 @@ class PairwiseIDTest extends TestCase
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertMatchesRegularExpression(
+            '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i',
+            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+        );
         $this->assertEquals(
             '53d4f7fe57fb597ada481e81e0f15048bc610774cbb5614ea38f08ea918ba199@ex-ample.org',
             $attributes[Constants::ATTR_PAIRWISE_ID][0]
