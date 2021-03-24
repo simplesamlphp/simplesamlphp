@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\Process\PairwiseID;
 use SimpleSAML\Utils;
 
@@ -26,6 +27,9 @@ class PairwiseIDTest extends TestCase
     /** @var \SimpleSAML\Utils\Config */
     protected static Utils\Config $configUtils;
 
+    /** @var \SimpleSAML\Logger */
+    protected static Logger $logger;
+
 
     /**
      * Set up for each test.
@@ -39,6 +43,14 @@ class PairwiseIDTest extends TestCase
             {
                 // stub
                 return 'secretsalt';
+            }
+        };
+
+        self::$logger = new class () extends Logger {
+            public static function warning(string $string): void
+            {
+                // stub
+                throw new RuntimeException($string);
             }
         };
     }
@@ -55,6 +67,7 @@ class PairwiseIDTest extends TestCase
     {
         $filter = new PairwiseID($config, null);
         $filter->setConfigUtils(self::$configUtils);
+        $filter->setLogger(self::$logger);
         $filter->process($request);
         return $request;
     }
@@ -280,5 +293,25 @@ class PairwiseIDTest extends TestCase
             '/@example.edu$/i',
             $value2
         );
+    }
+
+
+    /**
+     * Test that weak identifiers log a warning
+     */
+    public function testWeakIdentifierLogsWarning()
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
+        $request = [
+            'Attributes' => ['uid' => ['a']],
+            'core:SP' => 'urn:sp',
+        ];
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage(
+            'core:PairwiseID: Generated ID \'c5b54935db5e291a6b94688921fa77ced8ce425ce8c61a448bd4997f494dbebe@b\' can hardly be considered globally unique.'
+        );
+
+        self::processFilter($config, $request);
     }
 }

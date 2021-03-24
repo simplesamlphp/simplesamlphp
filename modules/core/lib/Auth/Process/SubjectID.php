@@ -10,6 +10,7 @@ use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 
 /**
  * Filter to generate the subject ID attribute.
@@ -74,6 +75,12 @@ class SubjectID extends Auth\ProcessingFilter
      * @var string
      */
     protected string $scope;
+
+    /**
+     * @var \SimpleSAML\Logger|string
+     * @psalm-var \SimpleSAML\Logger|class-string
+     */
+    protected $logger = Logger::class;
 
 
     /**
@@ -161,7 +168,18 @@ class SubjectID extends Auth\ProcessingFilter
         );
 
         if (preg_match(self::WARN_PATTERN, $value) === 0) {
-            Logger::warning('core:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.');
+            $this->logger::warning('core:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.');
         }
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Logger dependency.
+     *
+     * @param \SimpleSAML\Logger $logger
+     */
+    public function setLogger(Logger $logger): void
+    {
+        $this->logger = $logger;
     }
 }

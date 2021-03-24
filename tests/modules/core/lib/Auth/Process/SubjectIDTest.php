@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\Process\SubjectID;
 use SimpleSAML\Utils;
 
@@ -23,6 +24,26 @@ class SubjectIDTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected static Logger $logger;
+
+
+    /**
+     * Set up for each test.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        self::$logger = new class () extends Logger {
+            public static function warning(string $string): void
+            {
+                // stub
+                throw new RuntimeException($string);
+            }
+        };
+    }
+
 
     /**
      * Helper function to run the filter with a given configuration.
@@ -34,6 +55,7 @@ class SubjectIDTest extends TestCase
     private static function processFilter(array $config, array $request): array
     {
         $filter = new SubjectID($config, null);
+        $filter->setLogger(self::$logger);
         $filter->process($request);
         return $request;
     }
@@ -153,5 +175,22 @@ class SubjectIDTest extends TestCase
             '/@example.edu$/i',
             $value2
         );
+    }
+
+
+    /**
+     * Test that weak identifiers log a warning
+     */
+    public function testWeakIdentifierLogsWarning()
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
+        $request = [
+            'Attributes' => ['uid' => ['a']],
+        ];
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('core:SubjectID: Generated ID \'a@b\' can hardly be considered globally unique.');
+
+        self::processFilter($config, $request);
     }
 }
