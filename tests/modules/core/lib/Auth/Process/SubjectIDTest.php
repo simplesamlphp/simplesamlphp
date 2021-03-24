@@ -64,7 +64,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test the most basic functionality
      */
-    public function testBasic()
+    public function testBasic(): voidd
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
@@ -84,7 +84,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test that illegal characters in userID throws an exception.
      */
-    public function testUserIDIllegalCharacterThrowsException()
+    public function testUserIDIllegalCharacterThrowsException(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -99,7 +99,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test that illegal characters in scope throws an exception.
      */
-    public function testScopeIllegalCharacterThrowsException()
+    public function testScopeIllegalCharacterThrowsException(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex%ample.org'];
         $request = [
@@ -114,7 +114,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test that generated ID's for different users, but the same SP's are NOT equal
      */
-    public function testUniqueIdentifierPerUserSameSP()
+    public function testUniqueIdentifierPerUserSameSP(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -143,7 +143,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test that generated ID's for the same user and same SP, but with a different scope are NOT equal
      */
-    public function testUniqueIdentifierDifferentScopes()
+    public function testUniqueIdentifierDifferentScopes(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -181,7 +181,7 @@ class SubjectIDTest extends TestCase
     /**
      * Test that weak identifiers log a warning
      */
-    public function testWeakIdentifierLogsWarning()
+    public function testWeakIdentifierLogsWarning(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
         $request = [

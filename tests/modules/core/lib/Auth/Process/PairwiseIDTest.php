@@ -76,7 +76,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test the most basic functionality
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
@@ -100,7 +100,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test the most basic functionality on proxied request
      */
-    public function testBasicProxiedRequest()
+    public function testBasicProxiedRequest(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
@@ -124,7 +124,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test the proxied request with multiple hops
      */
-    public function testProxiedRequestMultipleHops()
+    public function testProxiedRequestMultipleHops(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
         $request = [
@@ -148,7 +148,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that illegal characters in scope throws an exception.
      */
-    public function testScopeIllegalCharacterThrowsException()
+    public function testScopeIllegalCharacterThrowsException(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex%ample.org'];
         $request = [
@@ -164,7 +164,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that generated ID's for the same user, but different SP's are NOT equal
      */
-    public function testUniqueIdentifierPerSPSameUser()
+    public function testUniqueIdentifierPerSPSameUser(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -194,7 +194,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that generated ID's for different users, but the same SP's are NOT equal
      */
-    public function testUniqueIdentifierPerUserSameSP()
+    public function testUniqueIdentifierPerUserSameSP(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -224,7 +224,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that generated ID's for the same user and same SP, but with a different salt are NOT equal
      */
-    public function testUniqueIdentifierDifferentSalts()
+    public function testUniqueIdentifierDifferentSalts(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -260,7 +260,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that generated ID's for the same user and same SP, but with a different scope are NOT equal
      */
-    public function testUniqueIdentifierDifferentScopes()
+    public function testUniqueIdentifierDifferentScopes(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
         $request = [
@@ -299,7 +299,7 @@ class PairwiseIDTest extends TestCase
     /**
      * Test that weak identifiers log a warning
      */
-    public function testWeakIdentifierLogsWarning()
+    public function testWeakIdentifierLogsWarning(): void
     {
         $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
         $request = [
