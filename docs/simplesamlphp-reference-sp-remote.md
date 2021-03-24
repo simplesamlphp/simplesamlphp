@@ -98,14 +98,6 @@ The following options can be set:
 
 :   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
 
-`userid.attribute`
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if SimpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    SP-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
     This option is required - without it you will not be able to send

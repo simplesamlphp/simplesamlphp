@@ -138,14 +138,6 @@ Common options
     A scope can either be a domain name or a regular expression
     matching a number of domains.
 
-`userid.attribute`
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if SimpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    SP-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
 
 SAML 2.0 options
 ----------------
