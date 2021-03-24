@@ -36,13 +36,6 @@ use SimpleSAML\Utils;
 class PairwiseID extends Auth\ProcessingFilter
 {
     /**
-     * The regular expression to match the identifier
-     *
-     * @var string
-     */
-    public const SUBJECT_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i';
-
-    /**
      * The regular expression to match the scope
      *
      * @var string
@@ -112,11 +105,7 @@ class PairwiseID extends Auth\ProcessingFilter
         );
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
-        Assert::regex(
-            $userID,
-            self::SUBJECT_REGEX,
-            'PairwiseID: \'identifyingAttribute\' contains illegal characters.'
-        );
+        Assert::notEmpty($userID, 'SubjectID: \'identifyingAttribute\' cannot be an empty string.');
 
         if (!empty($state['saml:RequesterID'])) {
             // Proxied request - use actual SP entity ID

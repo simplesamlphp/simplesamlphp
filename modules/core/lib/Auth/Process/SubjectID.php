@@ -35,13 +35,6 @@ use SimpleSAML\Auth;
 class SubjectID extends Auth\ProcessingFilter
 {
     /**
-     * The regular expression to match the identifier
-     *
-     * @var string
-     */
-    public const SUBJECT_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{0,126}$/i';
-
-    /**
      * The regular expression to match the scope
      *
      * @var string
@@ -104,11 +97,7 @@ class SubjectID extends Auth\ProcessingFilter
         );
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
-        Assert::regex(
-            $userID,
-            self::SUBJECT_REGEX,
-            'SubjectID: \'identifyingAttribute\' contains illegal characters.'
-        );
+        Assert::notEmpty($userID, 'SubjectID: \'identifyingAttribute\' cannot be an empty string.');
 
         $value = strtolower($userID . '@' . $this->scope);
         $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
