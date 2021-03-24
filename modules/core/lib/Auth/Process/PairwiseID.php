@@ -42,6 +42,9 @@ class PairwiseID extends Auth\ProcessingFilter
      */
     public const SCOPE_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
 
+    /** @var string */
+    public const WARN_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{3,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{3,126}$/i';
+
     /**
      * The attribute we should generate the pairwise id from.
      *
@@ -119,6 +122,10 @@ class PairwiseID extends Auth\ProcessingFilter
         $hash = hash('sha256', $salt . '|' . $userID . '|' . $sp_entityid, false);
 
         $value = strtolower($hash . '@' . $this->scope);
+        if (preg_match($pattern, $value) === 0) {
+            Logger::warning("Generated SubjectID '$value' can hardly be considered globally unique.");
+        }
+
         $state['Attributes'][Constants::ATTR_PAIRWISE_ID] = [$value];
     }
 

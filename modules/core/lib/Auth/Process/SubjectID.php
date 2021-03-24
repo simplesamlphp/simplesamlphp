@@ -41,6 +41,9 @@ class SubjectID extends Auth\ProcessingFilter
      */
     public const SCOPE_REGEX = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{0,126}$/i';
 
+    /** @var string */
+    public const WARN_PATTERN = '/^[a-zA-Z0-9]{1}[a-zA-Z0-9=-]{3,126}@[a-zA-Z0-9]{1}[a-zA-Z0-9.-]{3,126}$/i';
+
     /**
      * The attribute we should generate the subject id from.
      *
@@ -100,6 +103,11 @@ class SubjectID extends Auth\ProcessingFilter
         Assert::notEmpty($userID, 'SubjectID: \'identifyingAttribute\' cannot be an empty string.');
 
         $value = strtolower($userID . '@' . $this->scope);
+
+        if (preg_match($pattern, $value) === 0) {
+            Logger::warning("Generated SubjectID '$value' can hardly be considered globally unique.");
+        }
+
         $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
     }
 }
