@@ -262,6 +262,7 @@ if ($expire !== null) {
 $state['saml:sp:prevAuth'] = [
     'id'     => $response->getId(),
     'issuer' => $issuer,
+    'inResponseTo' => $response->getInResponseTo(),
 ];
 if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['\SimpleSAML\Auth\Source.ReturnURL'];
