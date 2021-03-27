@@ -16,6 +16,7 @@ Released TBD
   * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
   * Updated npm dependencies up to February 1, 2021
   * Fixed a bug where it was impossible to set WantAssertionsSigned=true on SP-metadata (#1433)
+  * Make inResponseTo available in state array (#1447)
 
 ### authorize
   * Fix a bug in the Twig-template that causes an exception in Twig strict vars mode
