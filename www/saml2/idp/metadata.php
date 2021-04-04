@@ -242,7 +242,7 @@ try {
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->show();
     } else {
-        header('Content-Type: application/xml');
+        header('Content-Type: application/samlmetadata+xml');
 
         echo $metaxml;
         exit(0);
