@@ -16,10 +16,6 @@ class SspContainer extends AbstractContainer
     /** @var \Psr\Log\LoggerInterface */
     protected LoggerInterface $logger;
 
-    /** @var array */
-    protected array $registry = [];
-
-
     /**
      * Create a new SimpleSAMLphp compatible container.
      */
