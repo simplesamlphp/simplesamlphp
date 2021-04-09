@@ -211,7 +211,7 @@ look like this:
         location ^~ /simplesaml {
             alias /var/simplesamlphp/www;
 
-            location ~ ^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
+            location ~^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
                 include          fastcgi_params;
                 fastcgi_pass     $fastcgi_pass;
                 fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
