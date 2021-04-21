@@ -257,6 +257,11 @@ div.caution {
 th.rowtitle {
     text-align: left;
 }
+.youareadmin {
+    border: 1px solid #aaa;
+    margin-left: 1em;
+    padding: 5px;
+}
 .enablebox table {
     border: 1px solid #eee;
     margin-left: 1em;
