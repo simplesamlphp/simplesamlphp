@@ -1849,16 +1849,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-sqlauth",
-            "version": "v0.9.1",
+            "version": "v0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-sqlauth.git",
-                "reference": "31bce8763ad97f4b4473e4ad4a5a96ddc136ef6b"
+                "reference": "a53475236787630d7872ca97445f7e75f2609257"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-sqlauth/zipball/31bce8763ad97f4b4473e4ad4a5a96ddc136ef6b",
-                "reference": "31bce8763ad97f4b4473e4ad4a5a96ddc136ef6b",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-sqlauth/zipball/a53475236787630d7872ca97445f7e75f2609257",
+                "reference": "a53475236787630d7872ca97445f7e75f2609257",
                 "shasum": ""
             },
             "require": {
@@ -1868,7 +1868,7 @@
             "require-dev": {
                 "phpunit/phpunit": "~5.7",
                 "simplesamlphp/simplesamlphp": "^1.17",
-                "webmozart/assert": "^1.4"
+                "webmozart/assert": "^1.4 <1.7"
             },
             "type": "simplesamlphp-module",
             "autoload": {
@@ -1878,7 +1878,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -1891,7 +1891,7 @@
                 "simplesamlphp",
                 "sqlauth"
             ],
-            "time": "2019-12-03T09:07:09+00:00"
+            "time": "2021-04-23T08:14:10+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-statistics",

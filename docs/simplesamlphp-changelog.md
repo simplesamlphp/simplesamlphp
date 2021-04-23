@@ -30,6 +30,9 @@ Released TBD
 ### statistics
   * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 
+### sqlauth
+  * Fix a security bug where in rare cases the database user credentials would be printed in exception messages
+
 ## Version 1.19.0
 
 Released 2021-01-21
