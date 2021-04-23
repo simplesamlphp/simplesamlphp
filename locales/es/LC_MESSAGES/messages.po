@@ -72,7 +72,7 @@ msgstr "Volver al listado de archivos"
 
 msgid "{errors:report_trackid}"
 msgstr ""
-"Por favor, si informa de este error, mantenga el <emph>tracking ID</emph>"
+"Por favor, si informa de este error, mantenga el <em>tracking ID</em>"
 " que permite encontrar su sesi&oacute;n en los registros de que dispone "
 "el administrador del sistema:"
 
@@ -1215,7 +1215,7 @@ msgid ""
 "makes it possible to locate your session in the logs available to the "
 "system administrator:"
 msgstr ""
-"Por favor, si informa de este error, mantenga el <emph>tracking ID</emph>"
+"Por favor, si informa de este error, mantenga el <em>tracking ID</em>"
 " que permite encontrar su sesi&oacute;n en los registros de que dispone "
 "el administrador del sistema:"
 
