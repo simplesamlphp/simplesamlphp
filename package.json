@@ -14,11 +14,11 @@
     "build": "webpack -p"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
-    "clipboard": "^2.0.6",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "clipboard": "^2.0.8",
     "es6-shim": "^0.35.6",
-    "highlight.js": "^10.5.0",
-    "jquery": "^3.5.1",
+    "highlight.js": "^10.7.2",
+    "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
     "minimum-node-version": "^3.0.0",
     "purecss": "^2.0.5",
@@ -26,7 +26,7 @@
     "selectize": "^0.12.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.13.16",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^3.6.0",
