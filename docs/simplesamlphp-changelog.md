@@ -18,6 +18,9 @@ Released TBD
   * Fixed a bug where it was impossible to set WantAssertionsSigned=true on SP-metadata (#1433)
   * Make inResponseTo available in state array (#1447)
 
+### admin
+  * Fixed a bug in the metadata-coverter where the coverted metadata would contain newline-characters
+
 ### authorize
   * Fix a bug in the Twig-template that causes an exception in Twig strict vars mode
 
