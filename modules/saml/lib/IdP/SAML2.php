@@ -1068,7 +1068,7 @@ class SAML2
         }
 
         // default
-        return Constants::NAMEFORMAT_BASIC;
+        return Constants::NAMEFORMAT_URI;
     }
 
 

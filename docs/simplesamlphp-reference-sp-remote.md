@@ -131,7 +131,7 @@ The following options can be set:
     2.  IdP Hosted Metadata
 
 :   The default value is:
-    `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
+    `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
 
 :   Some examples of values specified in the SAML 2.0 Core
     Specification:
@@ -139,7 +139,7 @@ The following options can be set:
 :   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-        in Shibboleth 2.0)
+        in Shibboleth 2.0, mandatory as per SAML2INT)
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
         default in Sun Access Manager)
@@ -149,8 +149,6 @@ The following options can be set:
 :   Note that this option also exists in the IdP-hosted metadata. This
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
-
-:   (This option was previously named `AttributeNameFormat`.)
 
 `audience`
 :   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID. 

@@ -180,7 +180,7 @@ The following SAML 2.0 options are available:
     2.  IdP Hosted Metadata
 
 :   The default value is:
-    `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
+    `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
 
 :   Some examples of values specified in the SAML 2.0 Core
     Specification:
@@ -188,7 +188,7 @@ The following SAML 2.0 options are available:
 :   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-        in Shibboleth 2.0)
+        in Shibboleth 2.0, mandatory as per SAML2INT)
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
         default in Sun Access Manager)
@@ -198,8 +198,6 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
-
-:   (This option was previously named `AttributeNameFormat`.)
 
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
