@@ -12,6 +12,8 @@ See the upgrade notes for specific information about upgrading.
   * Support for SAML 1.1 was removed
   * Old-style PHP templates were removed
   * Old-style dictionaries were removed
+  * The default value for attrname-format was changed to 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri'
+    to comply with SAML2INT
 
 ## Version 1.19.1
 
