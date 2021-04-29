@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.1
 
-Released TBD
+Released 2021-04-29
 
   * Added authproc-filters for generating the subject-id and pairwise-id (#1435)
   * Restore support for custom error messages (#1326)
