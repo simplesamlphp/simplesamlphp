@@ -6,6 +6,13 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.2
+
+Released TBD
+
+### sqlauth
+  * Fixed a bug that rendered the module useless due to missing use-statements.
+
 ## Version 1.19.1
 
 Released 2021-04-29
