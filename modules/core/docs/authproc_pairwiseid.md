@@ -7,6 +7,10 @@ http://docs.oasis-open.org/security/saml-subject-id-attr/v1.0/saml-subject-id-at
 This filter will take an attribute and a scope as input and transforms this into a anonymized and scoped
 identifier that is globally unique for a given user & service provider combination.
 
+Note:
+Since the subject-id is specified as single-value attribute, only the first value of `identifyingAttribute`
+ and `scopeAttribute` are considered.
+
 Examples
 --------
 

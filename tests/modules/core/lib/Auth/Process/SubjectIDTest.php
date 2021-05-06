@@ -82,6 +82,26 @@ class SubjectIDTest extends TestCase
 
 
     /**
+     * Test the most basic functionality, but with a scoped scope-attribute
+     */
+    public function testScopedScope(): void
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['u=se-r2@ex-ample.org']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertRegExp(
+            SubjectID::SPEC_PATTERN,
+            $attributes[Constants::ATTR_SUBJECT_ID][0]
+        );
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+    }
+
+
+    /**
      * Test the most basic functionality using old-style scope-setting
      */
     public function testBasicOldScopeConfig(): void
