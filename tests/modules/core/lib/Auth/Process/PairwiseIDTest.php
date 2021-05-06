@@ -98,6 +98,30 @@ class PairwiseIDTest extends TestCase
 
 
     /**
+     * Test the most basic functionality
+     */
+    public function testBasicOldScopeConfig(): void
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2']],
+            'core:SP' => 'urn:sp',
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertRegExp(
+            PairwiseID::SPEC_PATTERN,
+            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+        );
+        $this->assertEquals(
+            '53d4f7fe57fb597ada481e81e0f15048bc610774cbb5614ea38f08ea918ba199@ex-ample.org',
+            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+        );
+    }
+
+
+    /**
      * Test the most basic functionality on proxied request
      */
     public function testBasicProxiedRequest(): void

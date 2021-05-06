@@ -82,6 +82,26 @@ class SubjectIDTest extends TestCase
 
 
     /**
+     * Test the most basic functionality using old-style scope-setting
+     */
+    public function testBasicOldScopeConfig(): void
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertRegExp(
+            SubjectID::SPEC_PATTERN,
+            $attributes[Constants::ATTR_SUBJECT_ID][0]
+        );
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+    }
+
+
+    /**
      * Test that illegal characters in userID throws an exception.
      */
     public function testUserIDIllegalCharacterThrowsException(): void
