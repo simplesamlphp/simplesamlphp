@@ -354,7 +354,7 @@ class Config
             $matrix[] = [
                 'required' => 'required',
                 'descr' => Translate::noop('Matching key-pair for signing assertions'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
             ];
 
             $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
@@ -363,7 +363,7 @@ class Config
                 $matrix[] = [
                     'required' => 'required',
                     'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
-                    'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                    'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
                 ];
             }
         }
@@ -374,7 +374,7 @@ class Config
             $matrix[] = [
                 'required' => 'required',
                 'descr' => Translate::noop('Matching key-pair for signing metadata'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
             ];
 
         }
@@ -485,7 +485,7 @@ class Config
      * @param string|null $password
      * @return bool
      */
-    private function matchingKeyPair(string $publicKey, string $privateKey, ?string $password) : bool {
+    private function matchingKeyPair(string $publicKey, string $privateKey, ?string $password = null) : bool {
         return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
     }
 }
