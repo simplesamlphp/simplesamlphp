@@ -20,6 +20,9 @@ use SimpleSAML\Utils;
  * This is generated from the attribute configured in 'identifyingAttribute' in the
  * authproc-configuration.
  *
+ * NOTE: since the subject-id is specified as single-value attribute, only the first value of `identifyingAttribute`
+ *       and `scopeAttribute` are considered.
+ *
  * Example - generate from attribute:
  * <code>
  * 'authproc' => [
