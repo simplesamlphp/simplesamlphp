@@ -104,16 +104,16 @@ class SubjectID extends Auth\ProcessingFilter
         Assert::false(array_key_exists('scope', $config) && array_key_exists('scopeAttribute', $config), "Please use either one of 'scope' or 'scopeAttribute' config setting, not both.");
         Assert::stringNotEmpty($config['identifyingAttribute']);
 
-        if (isset($config['scope'])) {
+        if (isset($config['scopeAttribute'])) {
+            Assert::stringNotEmpty($config['scopeAttribute']);
+            $this->scopeAttribute = $config['scopeAttribute'];
+        } else { // Old style scope
             Assert::regex(
                 $config['scope'],
                 self::SCOPE_PATTERN,
                 'core:' . static::NAME . ': \'scope\' contains illegal characters.'
             );
             $this->scope = $config['scope'];
-        } else {
-            Assert::stringNotEmpty($config['scopeAttribute']);
-            $this->scopeAttribute = $config['scopeAttribute'];
         }
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
@@ -172,30 +172,31 @@ class SubjectID extends Auth\ProcessingFilter
      */
     protected function getScopeAttribute(array $state): string
     {
-        if ($this->scope !== null) {
-            return $this->scope;
+        if ($this->scopeAttribute !== null) {
+
+            Assert::keyExists($state, 'Attributes');
+            Assert::keyExists(
+                $state['Attributes'],
+                $this->scopeAttribute,
+                sprintf(
+                    "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                    $this->scopeAttribute
+                )
+            );
+
+            $scope = $state['Attributes'][$this->scopeAttribute][0];
+            Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
+            Assert::regex(
+                $scope,
+                self::SCOPE_PATTERN,
+                'core:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.'
+//                ProtocolViolationException::class
+            );
+
+            return $scope;
         }
 
-        Assert::keyExists($state, 'Attributes');
-        Assert::keyExists(
-            $state['Attributes'],
-            $this->scopeAttribute,
-            sprintf(
-                "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
-                $this->scopeAttribute
-            )
-        );
-
-        $scope = $state['Attributes'][$this->scopeAttribute][0];
-        Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
-        Assert::regex(
-            $scope,
-            self::SCOPE_PATTERN,
-            'core:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.'
-//            ProtocolViolationException::class
-        );
-
-        return $scope;
+        return $this->scope;
     }
 
 
