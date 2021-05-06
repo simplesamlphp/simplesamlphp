@@ -12,6 +12,8 @@ See the upgrade notes for specific information about upgrading.
   * Support for SAML 1.1 was removed
   * Old-style PHP templates were removed
   * Old-style dictionaries were removed
+  * core:PairwiseID and core:SubjectID authprocs no longer support the 'scope' config-setting.
+    Use 'scopeAttribute' instead to identify the attribute holding the scope.
 
 ## Version 1.19.1
 

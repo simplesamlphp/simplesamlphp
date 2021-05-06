@@ -14,6 +14,6 @@ Examples
         50 => [
             'class' => 'core:PairwiseID',
             'identifyingAttribute' => 'uid',
-            'scope' => 'example.org',
+            'scopeAttribute' => 'scope',
         ],
     ],

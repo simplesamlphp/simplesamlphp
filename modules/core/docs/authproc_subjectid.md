@@ -17,6 +17,6 @@ Examples
         50 => [
             'class' => 'core:SubjectID',
             'identifyingAttribute' => 'uid',
-            'scope' => 'example.org',
+            'scopeAttribute' => 'scope',
         ],
     ],
