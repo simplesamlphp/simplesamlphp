@@ -10,6 +10,10 @@ Note:
 -----
 If privacy is of your concern, you may want to use the PairwiseID-filter instead.
 
+Note:
+Since the subject-id is specified as single-value attribute, only the first value of `identifyingAttribute`
+ and `scopeAttribute` are considered.
+
 Examples
 --------
 

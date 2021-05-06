@@ -21,6 +21,9 @@ use SimpleSAML\Logger;
  * This is generated from the attribute configured in 'identifyingAttribute' in the
  * authproc-configuration.
  *
+ * NOTE: since the subject-id is specified as single-value attribute, only the first value of `identifyingAttribute`
+ *       and `scopeAttribute` are considered.
+ *
  * Example - generate from attribute:
  * <code>
  * 'authproc' => [
@@ -167,6 +170,13 @@ class SubjectID extends Auth\ProcessingFilter
 
         $scope = $state['Attributes'][$this->scopeAttribute][0];
         Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
+
+        // If the value is scoped, extract the scope from it
+        if (strpos($scope, '@') !== false) {
+            $scope = explode('@', $scope, 2);
+            $scope = $scope[1];
+        }
+
         Assert::regex(
             $scope,
             self::SCOPE_PATTERN,
