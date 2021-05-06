@@ -26,7 +26,7 @@ use SimpleSAML\Logger;
  *   50 => [
  *       'core:SubjectID',
  *       'identifyingAttribute' => 'uid',
- *       'scope' => 'example.org',
+ *       'scopeAttribute' => 'scope',
  *   ]
  * ]
  * </code>
@@ -69,11 +69,18 @@ class SubjectID extends Auth\ProcessingFilter
     protected $identifyingAttribute;
 
     /**
-     * The scope to use for this attribute.
+     * The scope of the subject id.
      *
      * @var string
      */
-    protected $scope;
+    protected $scope = null;
+
+    /**
+     * The attribute we should use for the scope of the subject id.
+     *
+     * @var string
+     */
+    protected $scopeAttribute = null;
 
     /**
      * @var \SimpleSAML\Logger|string
@@ -93,16 +100,23 @@ class SubjectID extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         Assert::keyExists($config, 'identifyingAttribute', "Missing mandatory 'identifyingAttribute' config setting.");
-        Assert::keyExists($config, 'scope', "Missing mandatory 'scope' config setting.");
+        Assert::true(array_key_exists('scope', $config) || array_key_exists('scopeAttribute', $config), "Missing either one of 'scope' or 'scopeAttribute' config setting.");
+        Assert::false(array_key_exists('scope', $config) && array_key_exists('scopeAttribute', $config), "Please use either one of 'scope' or 'scopeAttribute' config setting, not both.");
         Assert::stringNotEmpty($config['identifyingAttribute']);
-        Assert::regex(
-            $config['scope'],
-            self::SCOPE_PATTERN,
-            'core:' . static::NAME . ': \'scope\' contains illegal characters.'
-        );
+
+        if (isset($config['scope'])) {
+            Assert::regex(
+                $config['scope'],
+                self::SCOPE_PATTERN,
+                'core:' . static::NAME . ': \'scope\' contains illegal characters.'
+            );
+            $this->scope = $config['scope'];
+        } else {
+            Assert::stringNotEmpty($config['scopeAttribute']);
+            $this->scopeAttribute = $config['scopeAttribute'];
+        }
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
-        $this->scope = $config['scope'];
     }
 
 
@@ -114,8 +128,9 @@ class SubjectID extends Auth\ProcessingFilter
     public function process(&$state): void
     {
         $userID = $this->getIdentifyingAttribute($state);
+        $scope = $this->getScopeAttribute($state);
 
-        $value = strtolower($userID . '@' . $this->scope);
+        $value = strtolower($userID . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
         $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
@@ -145,6 +160,42 @@ class SubjectID extends Auth\ProcessingFilter
         Assert::stringNotEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
 
         return $userID;
+    }
+
+
+    /**
+     * Retrieve the scope attribute from the state and test it for erroneous conditions
+     *
+     * @param array $state
+     * @return string
+     * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
+     */
+    protected function getScopeAttribute(array $state): string
+    {
+        if ($this->scope !== null) {
+            return $this->scope;
+        }
+
+        Assert::keyExists($state, 'Attributes');
+        Assert::keyExists(
+            $state['Attributes'],
+            $this->scopeAttribute,
+            sprintf(
+                "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                $this->scopeAttribute
+            )
+        );
+
+        $scope = $state['Attributes'][$this->scopeAttribute][0];
+        Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
+        Assert::regex(
+            $scope,
+            self::SCOPE_PATTERN,
+            'core:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.'
+//            ProtocolViolationException::class
+        );
+
+        return $scope;
     }
 
 

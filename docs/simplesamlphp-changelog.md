@@ -10,6 +10,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+  * The `scope` config-setting for core:PairwiseID and core:SubjectID has been deprecated. Please use the new `scopeAttribute`.
+
 ### sqlauth
   * Fixed a bug that rendered the module useless due to missing use-statements.
 

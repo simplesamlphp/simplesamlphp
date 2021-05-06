@@ -78,9 +78,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testBasic(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['u=se-r2']],
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['ex-ample.org']],
             'core:SP' => 'urn:sp',
         ];
         $result = self::processFilter($config, $request);
@@ -102,9 +102,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testBasicProxiedRequest(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['u=se-r2']],
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['ex-ample.org']],
             'saml:RequesterID' => [0 => 'urn:sp'],
         ];
         $result = self::processFilter($config, $request);
@@ -126,9 +126,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testProxiedRequestMultipleHops(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['u=se-r2']],
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['ex-ample.org']],
             'saml:RequesterID' => [0 => 'urn:sp', 1 => 'urn:some:sp', 2 => 'urn:some:other:sp'],
         ];
         $result = self::processFilter($config, $request);
@@ -150,9 +150,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testScopeIllegalCharacterThrowsException(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex%ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user2']],
+            'Attributes' => ['uid' => ['user2'], 'scope' => ['ex%ample.org']],
             'core:SP' => 'urn:sp',
         ];
 
@@ -166,9 +166,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testUniqueIdentifierPerSPSameUser(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
             'core:SP' => 'urn:sp',
         ];
 
@@ -196,9 +196,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testUniqueIdentifierPerUserSameSP(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
             'core:SP' => 'urn:sp',
         ];
 
@@ -209,7 +209,7 @@ class PairwiseIDTest extends TestCase
         $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
 
         // Switch user
-        $request['Attributes'] = ['uid' => ['user2']];
+        $request['Attributes']['uid'] = ['user2'];
 
         // Generate second ID
         $result = self::processFilter($config, $request);
@@ -226,9 +226,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testUniqueIdentifierDifferentSalts(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
             'core:SP' => 'urn:sp',
         ];
 
@@ -262,9 +262,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testUniqueIdentifierDifferentScopes(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
             'core:SP' => 'urn:sp',
         ];
 
@@ -275,7 +275,7 @@ class PairwiseIDTest extends TestCase
         $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
 
         // Change the scope
-        $config['scope'] = 'example.edu';
+        $request['Attributes']['scope'] = ['example.edu'];
 
         // Generate second ID
         $result = self::processFilter($config, $request);
@@ -301,9 +301,9 @@ class PairwiseIDTest extends TestCase
      */
     public function testWeakIdentifierLogsWarning(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['a']],
+            'Attributes' => ['uid' => ['a'], 'scope' => ['b']],
             'core:SP' => 'urn:sp',
         ];
 

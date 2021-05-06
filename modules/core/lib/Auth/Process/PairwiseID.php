@@ -26,7 +26,7 @@ use SimpleSAML\Utils;
  *   50 => [
  *       'core:PairwiseID',
  *       'identifyingAttribute' => 'uid',
- *       'scope' => 'example.org',
+ *       'scopeAttribute' => 'example.org',
  *   ]
  * ]
  * </code>
@@ -55,6 +55,7 @@ class PairwiseID extends SubjectID
     public function process(&$state): void
     {
         $userID = $this->getIdentifyingAttribute($state);
+        $scope = $this->getScopeAttribute($state);
 
         if (!empty($state['saml:RequesterID'])) {
             // Proxied request - use actual SP entity ID
@@ -67,7 +68,7 @@ class PairwiseID extends SubjectID
         $salt = $this->configUtils::getSecretSalt();
         $hash = hash('sha256', $salt . '|' . $userID . '|' . $sp_entityid, false);
 
-        $value = strtolower($hash . '@' . $this->scope);
+        $value = strtolower($hash . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
         $state['Attributes'][Constants::ATTR_PAIRWISE_ID] = [$value];
