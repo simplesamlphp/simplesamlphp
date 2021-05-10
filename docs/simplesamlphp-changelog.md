@@ -14,6 +14,8 @@ See the upgrade notes for specific information about upgrading.
   * Old-style dictionaries were removed
   * The default value for attrname-format was changed to 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri'
     to comply with SAML2INT
+  * core:PairwiseID and core:SubjectID authprocs no longer support the 'scope' config-setting.
+    Use 'scopeAttribute' instead to identify the attribute holding the scope.
 
 ## Version 1.19.1
 

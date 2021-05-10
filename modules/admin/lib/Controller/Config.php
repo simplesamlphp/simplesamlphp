@@ -341,38 +341,40 @@ class Config
             'enabled' => $this->config->getString('auth.adminpassword', '123') !== '123',
         ];
 
+        $cryptoUtils = new Utils\Crypto();
+
         // perform some sanity checks on the configured certificates
         if ($this->config->getString('enable.saml20-idp', false) !== false) {
             $handler = MetaDataStorageHandler::getMetadataHandler();
             $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             $metadata_config = Configuration::loadfromArray($metadata);
-            $private = Utils\Crypto::loadPrivateKey($metadata_config, false);
-            $public = Utils\Crypto::loadPublicKey($metadata_config, false);
+            $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
+            $public = $cryptoUtils->loadPublicKey($metadata_config, false);
 
             $matrix[] = [
                 'required' => 'required',
                 'descr' => Translate::noop('Matching key-pair for signing assertions'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
             ];
 
-            $private = Utils\Crypto::loadPrivateKey($metadata_config, false, 'new_');
+            $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
             if ($private !== null) {
-                $public = Utils\Crypto::loadPublicKey($metadata_config, false, 'new_');
+                $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
                 $matrix[] = [
                     'required' => 'required',
                     'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
-                    'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                    'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
                 ];
             }
         }
 
         if ($this->config->getBoolean('metadata.sign.enable', false) !== false) {
-            $private = Utils\Crypto::loadPrivateKey($this->config, false, 'metadata.sign.');
-            $public = Utils\Crypto::loadPublicKey($this->config, false, 'metadata.sign.');
+            $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
+            $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
             $matrix[] = [
                 'required' => 'required',
                 'descr' => Translate::noop('Matching key-pair for signing metadata'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], [$private['PEM'], $private['password']]),
+                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
             ];
 
         }
@@ -483,7 +485,7 @@ class Config
      * @param string|null $password
      * @return bool
      */
-    private function matchingKeyPair(string $publicKey, string $privateKey, ?string $password) : bool {
+    private function matchingKeyPair(string $publicKey, string $privateKey, ?string $password = null) : bool {
         return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
     }
 }

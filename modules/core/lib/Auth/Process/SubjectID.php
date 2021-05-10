@@ -21,13 +21,16 @@ use SimpleSAML\Logger;
  * This is generated from the attribute configured in 'identifyingAttribute' in the
  * authproc-configuration.
  *
+ * NOTE: since the subject-id is specified as single-value attribute, only the first value of `identifyingAttribute`
+ *       and `scopeAttribute` are considered.
+ *
  * Example - generate from attribute:
  * <code>
  * 'authproc' => [
  *   50 => [
  *       'core:SubjectID',
  *       'identifyingAttribute' => 'uid',
- *       'scope' => 'example.org',
+ *       'scopeAttribute' => 'scope',
  *   ]
  * ]
  * </code>
@@ -70,11 +73,11 @@ class SubjectID extends Auth\ProcessingFilter
     protected string $identifyingAttribute;
 
     /**
-     * The scope to use for this attribute.
+     * The attribute we should use for the scope of the subject id.
      *
      * @var string
      */
-    protected string $scope;
+    protected string $scopeAttribute;
 
     /**
      * @var \SimpleSAML\Logger|string
@@ -94,17 +97,12 @@ class SubjectID extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         Assert::keyExists($config, 'identifyingAttribute', "Missing mandatory 'identifyingAttribute' config setting.");
-        Assert::keyExists($config, 'scope', "Missing mandatory 'scope' config setting.");
+        Assert::keyExists($config, 'scopeAttribute', "Missing mandatory 'scope' config setting.");
         Assert::stringNotEmpty($config['identifyingAttribute']);
-        Assert::regex(
-            $config['scope'],
-            self::SCOPE_PATTERN,
-            'core:' . static::NAME . ': \'scope\' contains illegal characters.'
-//            ProtocolViolationException::class
-        );
+        Assert::stringNotEmpty($config['scopeAttribute']);
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
-        $this->scope = $config['scope'];
+        $this->scopeAttribute = $config['scopeAttribute'];
     }
 
 
@@ -116,8 +114,9 @@ class SubjectID extends Auth\ProcessingFilter
     public function process(array &$state): void
     {
         $userID = $this->getIdentifyingAttribute($state);
+        $scope = $this->getScopeAttribute($state);
 
-        $value = strtolower($userID . '@' . $this->scope);
+        $value = strtolower($userID . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
         $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
@@ -147,6 +146,45 @@ class SubjectID extends Auth\ProcessingFilter
         Assert::stringNotEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
 
         return $userID;
+    }
+
+
+    /**
+     * Retrieve the scope attribute from the state and test it for erroneous conditions
+     *
+     * @param array $state
+     * @return string
+     * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
+     */
+    protected function getScopeAttribute(array $state): string
+    {
+        Assert::keyExists($state, 'Attributes');
+        Assert::keyExists(
+            $state['Attributes'],
+            $this->scopeAttribute,
+            sprintf(
+                "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                $this->scopeAttribute
+            )
+        );
+
+        $scope = $state['Attributes'][$this->scopeAttribute][0];
+        Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
+
+        // If the value is scoped, extract the scope from it
+        if (strpos($scope, '@') !== false) {
+            $scope = explode('@', $scope, 2);
+            $scope = $scope[1];
+        }
+
+        Assert::regex(
+            $scope,
+            self::SCOPE_PATTERN,
+            'core:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.'
+//            ProtocolViolationException::class
+        );
+
+        return $scope;
     }
 
 

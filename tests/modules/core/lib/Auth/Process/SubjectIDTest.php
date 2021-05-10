@@ -66,9 +66,29 @@ class SubjectIDTest extends TestCase
      */
     public function testBasic(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex-ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['u=se-r2']],
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['ex-ample.org']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertMatchesRegularExpression(
+            SubjectID::SPEC_PATTERN,
+            $attributes[Constants::ATTR_SUBJECT_ID][0]
+        );
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+    }
+
+
+    /**
+     * Test the most basic functionality, but with a scoped scope-attribute
+     */
+    public function testScopedScope(): void
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['u=se-r2@ex-ample.org']],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -86,9 +106,9 @@ class SubjectIDTest extends TestCase
      */
     public function testUserIDIllegalCharacterThrowsException(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['u=se+r2']],
+            'Attributes' => ['uid' => ['u=se+r2'], 'scope' => ['example.org']],
         ];
 
         $this->expectException(AssertionFailedException::class);
@@ -101,9 +121,9 @@ class SubjectIDTest extends TestCase
      */
     public function testScopeIllegalCharacterThrowsException(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'ex%ample.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user2']],
+            'Attributes' => ['uid' => ['user2'], 'scope' => ['ex%ample.org']],
         ];
 
         $this->expectException(AssertionFailedException::class);
@@ -116,9 +136,9 @@ class SubjectIDTest extends TestCase
      */
     public function testUniqueIdentifierPerUserSameSP(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
         ];
 
         // Generate first ID
@@ -128,7 +148,7 @@ class SubjectIDTest extends TestCase
         $value1 = $attributes[Constants::ATTR_SUBJECT_ID][0];
 
         // Switch user
-        $request['Attributes'] = ['uid' => ['user2']];
+        $request['Attributes']['uid'] = ['user2'];
 
         // Generate second ID
         $result = self::processFilter($config, $request);
@@ -145,9 +165,9 @@ class SubjectIDTest extends TestCase
      */
     public function testUniqueIdentifierDifferentScopes(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'example.org'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['user1']],
+            'Attributes' => ['uid' => ['user1'], 'scope' => ['example.org']],
         ];
 
         // Generate first ID
@@ -157,7 +177,7 @@ class SubjectIDTest extends TestCase
         $value1 = $attributes[Constants::ATTR_SUBJECT_ID][0];
 
         // Change the scope
-        $config['scope'] = 'example.edu';
+        $request['Attributes']['scope'] = ['example.edu'];
 
         // Generate second ID
         $result = self::processFilter($config, $request);
@@ -183,9 +203,9 @@ class SubjectIDTest extends TestCase
      */
     public function testWeakIdentifierLogsWarning(): void
     {
-        $config = ['identifyingAttribute' => 'uid', 'scope' => 'b'];
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope'];
         $request = [
-            'Attributes' => ['uid' => ['a']],
+            'Attributes' => ['uid' => ['a'], 'scope' => ['b']],
         ];
 
         $this->expectException(RuntimeException::class);
