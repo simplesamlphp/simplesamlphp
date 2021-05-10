@@ -61,9 +61,9 @@ rm "$TARGET/www/assets/js/stylesheet.js"*
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
 rm -r "$TARGET/.github"
-rm "$TARGET/.php_cs.dist"
-rm "$TARGET/codecov.yml"
-rm "$TARGET/psalm.xml"
+rm "$TARGET"/{,modules}/.php_cs.dist
+rm "$TARGET"/{,modules}/codecov.yml
+rm "$TARGET"/{,modules}/psalm.xml
 rm "$TARGET"/{,modules}/.gitignore
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
 rm "$TARGET/composer.phar"
