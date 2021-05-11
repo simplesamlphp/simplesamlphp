@@ -73,6 +73,11 @@ class PairwiseID extends SubjectID
         $userID = $this->getIdentifyingAttribute($state);
         $scope = $this->getScopeAttribute($state);
 
+        if ($scope === null || $userID === null) {
+            // Attributes missing, precondition not met
+            return;
+        }
+
         if (!empty($state['saml:RequesterID'])) {
             // Proxied request - use actual SP entity ID
             $sp_entityid = $state['saml:RequesterID'][0];
