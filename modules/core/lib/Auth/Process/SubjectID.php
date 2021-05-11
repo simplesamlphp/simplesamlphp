@@ -133,6 +133,11 @@ class SubjectID extends Auth\ProcessingFilter
         $userID = $this->getIdentifyingAttribute($state);
         $scope = $this->getScopeAttribute($state);
 
+        if ($scope === null || $userID === null) {
+            // Attributes missing, precondition not met
+            return;
+        }
+
         $value = strtolower($userID . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
@@ -144,20 +149,21 @@ class SubjectID extends Auth\ProcessingFilter
      * Retrieve the identifying attribute from the state and test it for erroneous conditions
      *
      * @param array $state
-     * @return string
+     * @return string|null
      * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
      */
-    protected function getIdentifyingAttribute(array $state): string
+    protected function getIdentifyingAttribute(array $state): ?string
     {
-        Assert::keyExists($state, 'Attributes');
-        Assert::keyExists(
-            $state['Attributes'],
-            $this->identifyingAttribute,
-            sprintf(
-                "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
-                $this->identifyingAttribute
-            )
-        );
+        if (!array_key_exists('Attributes', $state) || !array_key_exists($this->identifyingAttribute, $state['Attributes'])) {
+            $this->logger::warning(
+                sprintf(
+                    "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                    $this->identifyingAttribute
+                )
+            );
+
+            return null;
+        }
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::stringNotEmpty($userID, 'core' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.');
@@ -170,22 +176,22 @@ class SubjectID extends Auth\ProcessingFilter
      * Retrieve the scope attribute from the state and test it for erroneous conditions
      *
      * @param array $state
-     * @return string
+     * @return string|null
      * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
      */
-    protected function getScopeAttribute(array $state): string
+    protected function getScopeAttribute(array $state): ?string
     {
         if ($this->scopeAttribute !== null) {
+            if (!array_key_exists('Attributes', $state) || !array_key_exists($this->scopeAttribute, $state['Attributes'])) {
+                $this->logger::warning(
+                    sprintf(
+                        "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                        $this->scopeAttribute
+                    )
+                );
 
-            Assert::keyExists($state, 'Attributes');
-            Assert::keyExists(
-                $state['Attributes'],
-                $this->scopeAttribute,
-                sprintf(
-                    "core:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
-                    $this->scopeAttribute
-                )
-            );
+                return null;
+            }
 
             $scope = $state['Attributes'][$this->scopeAttribute][0];
             Assert::stringNotEmpty($scope, 'core' . static::NAME . ': \'scopeAttribute\' cannot be an empty string.');
@@ -202,7 +208,6 @@ class SubjectID extends Auth\ProcessingFilter
                 'core:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.'
 //                ProtocolViolationException::class
             );
-
             return $scope;
         }
 
