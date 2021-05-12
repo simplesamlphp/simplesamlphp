@@ -436,6 +436,12 @@ class Module
             if (!class_exists($className)) {
                 throw new \Exception("Could not resolve '$id': no class named '$className'.");
             }
+        } elseif (!in_array($tmp[0], self::getModules())) {
+            // Module not installed
+            throw new \Exception('No module named \'' . $tmp[0]. '\' has been installed.');
+        } elseif (!self::isModuleEnabled($tmp[0])) {
+            // Module installed, but not enabled
+            throw new \Exception('The module \'' . $tmp[0]. '\' is not enabled.');
         } else {
             // should be a module
             // make sure empty types are handled correctly
