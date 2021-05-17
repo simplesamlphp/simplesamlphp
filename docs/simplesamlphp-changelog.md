@@ -15,7 +15,10 @@ Released TBD
     simplesamlphp-module-subject-identifier-attrs module.
 
 ### discopower
-  * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10)
+  * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
+
+### negotiate
+  * Fixed a regression that rendered the new UI useless for this module (v0.9.11)
 
 ### sqlauth
   * Fixed a bug that rendered the module useless due to missing use-statements.
