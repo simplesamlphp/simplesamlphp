@@ -25,7 +25,6 @@ $sourceId = substr($sourceId, 1, $end - 1);
 $source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
-SimpleSAML\Logger::notice('SAML1 support is deprecated and will be removed in SimpleSAMLphp 2.0');
 
 $target = (string) $_REQUEST['TARGET'];
 
@@ -36,6 +35,7 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:AuthId' => $sourceId,
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     ];
+    $deprecated_extra = '';
 } else {
     /** @var array $state  State can never be null without a third argument */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
@@ -49,7 +49,10 @@ if (preg_match('@^https?://@i', $target)) {
     }
 
     assert(isset($state['saml:idp']));
+    $deprecated_extra = " IdP: {$state['saml:idp']}";
 }
+
+SimpleSAML\Logger::notice('SAML1 support is deprecated and will be removed in SimpleSAMLphp 2.0'. $deprecated_extra);
 
 $spMetadata = $source->getMetadata();
 
