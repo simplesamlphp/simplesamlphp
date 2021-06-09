@@ -84,8 +84,7 @@ module.exports = environment => {
                 patterns: [
                     {
                         from: path.resolve(__dirname + '/node_modules/\@fortawesome/fontawesome-free/webfonts/*'),
-                        to: 'fonts/',
-                        flatten: true
+                        to: 'fonts/[name][ext]'
                     }
                 ]
             })
