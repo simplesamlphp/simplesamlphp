@@ -30,7 +30,7 @@
     "@babel/helper-compilation-targets": "^7.14.4",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^6.4.1",
-    "css-loader": "^4.3.0",
+    "css-loader": "^5.2.6",
     "expose-loader": "^2.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^6.0.0",
