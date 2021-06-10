@@ -54,6 +54,9 @@ abstract class Store implements Utils\ClearableState
             case 'redis':
                 self::$instance = new Store\Redis();
                 break;
+            case 'redissentinel':
+                self::$instance = new Store\RedisSentinel();
+                break;
             default:
                 // datastore from module
                 try {
