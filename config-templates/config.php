@@ -129,7 +129,7 @@ $config = [
      * 'secretsalt' can be any valid string of any length.
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
-     * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     * LC_ALL=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
     'secretsalt' => 'defaultsecretsalt',
 
@@ -544,7 +544,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain' => null,
+    'session.cookie.domain' => '',
 
     /*
      * Set the secure flag in the cookie.
@@ -788,7 +788,7 @@ $config = [
      * Options to override the default settings for the language cookie
      */
     'language.cookie.name' => 'language',
-    'language.cookie.domain' => null,
+    'language.cookie.domain' => '',
     'language.cookie.path' => '/',
     'language.cookie.secure' => true,
     'language.cookie.httponly' => false,
