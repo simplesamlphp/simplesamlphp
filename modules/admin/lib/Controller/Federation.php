@@ -195,8 +195,10 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
+                    if (isset($entity['metadata_array']['contacts'])) {
+                        foreach ($entity['metadata_array']['contacts'] as $contact) {
+                            $builder->addContact($contact['contactType'], $contact);
+                        }
                     }
 
                     $entity['metadata'] = Signer::sign(
@@ -236,8 +238,10 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP11($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
+                    if (isset($entity['metadata_array']['contacts'])) {
+                        foreach ($entity['metadata_array']['contacts'] as $contact) {
+                            $builder->addContact($contact['contactType'], $contact);
+                        }
                     }
 
                     $entity['metadata'] = Signer::sign(
@@ -277,8 +281,10 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
+                    if (isset($entity['metadata_array']['contacts'])) {
+                        foreach ($entity['metadata_array']['contacts'] as $contact) {
+                            $builder->addContact($contact['contactType'], $contact);
+                        }
                     }
 
                     $entity['metadata'] = Signer::sign(

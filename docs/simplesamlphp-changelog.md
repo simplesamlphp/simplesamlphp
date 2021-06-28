@@ -14,6 +14,9 @@ Released TBD
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
     simplesamlphp-module-subject-identifier-attrs module.
 
+### admin
+  * Fix warning in FederationController (#1475)
+
 ### discopower
   * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
 
