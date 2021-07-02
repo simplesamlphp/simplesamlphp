@@ -12,7 +12,7 @@ Released TBD
 
   * Restored PHP 8.0 compatibility (#1461)
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
-    simplesamlphp-module-subject-identifier-attrs module.
+    simplesamlphp-module-subjectidattrs module.
 
 ### admin
   * Fix warning in FederationController (#1475)
