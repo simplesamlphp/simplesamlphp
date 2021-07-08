@@ -344,7 +344,7 @@ class Config
         $cryptoUtils = new Utils\Crypto();
 
         // perform some sanity checks on the configured certificates
-        if ($this->config->getString('enable.saml20-idp', false) !== false) {
+        if ($this->config->getBoolean('enable.saml20-idp', false) !== false) {
             $handler = MetaDataStorageHandler::getMetadataHandler();
             $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             $metadata_config = Configuration::loadfromArray($metadata);
