@@ -506,6 +506,8 @@ class SAMLBuilder
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
+        $this->setExpiration($metadata);
+
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new SPSSODescriptor();
