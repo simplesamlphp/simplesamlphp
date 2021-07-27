@@ -160,9 +160,13 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function newSessionId()
     {
-        $sessionId = session_id();
+//        $sessionId = session_id();
 
-        if ($sessionId === false || $sessionId === '') {
+        if ($this->hasSessionCookie()) {
+            session_recreate_id(false);
+            $session_id = session_id();
+        } else {
+//        if ($sessionId === false || $sessionId === '') {
             // generate new (secure) session id
 
             if (function_exists('session_create_id')) {
