@@ -180,7 +180,7 @@ class Crypto
      * - 'privatekey': Name of a private key file in the cert-directory.
      * - 'privatekey_pass': Password for the private key.
      *
-     * It returns and array with the following elements:
+     * It returns an array with the following elements:
      * - 'PEM': Data for the private key, in PEM-format.
      * - 'password': Password for the private key.
      *
