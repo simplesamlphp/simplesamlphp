@@ -1119,6 +1119,21 @@ class Configuration implements Utils\ClearableState
         return $ret;
     }
 
+    /**
+     * Get the fingerprint for provided certificateData
+     *
+     * @param string $certData The certificate data in PEM format
+     *
+     * @return string|null Given certificate's fingerprint
+     *
+     */
+    public static function extractKeyNameFromCertData(string $certData) : ?string {
+        $certFingerPrint = openssl_x509_fingerprint($certData, 'sha1');
+        if ($certFingerPrint === false) {
+            return NULL;
+        }
+        return $certFingerPrint;
+    }
 
     /**
      * Get public key from metadata.
@@ -1144,8 +1159,13 @@ class Configuration implements Utils\ClearableState
                     continue;
                 }
                 if (isset($key['X509Certificate'])) {
+                    $certData = preg_replace('/\s+/', '', $key['X509Certificate']);
+                    $pem = "-----BEGIN CERTIFICATE-----\n".$certData."\n-----END CERTIFICATE-----\n";
+                    $keyName = self::extractKeyNameFromCertData($pem);
+
                     // Strip whitespace from key
-                    $key['X509Certificate'] = preg_replace('/\s+/', '', $key['X509Certificate']);
+                    $key['X509Certificate'] = $certData;
+                    $key['keyName'] = $keyName;
                 }
                 $ret[] = $key;
             }
@@ -1153,12 +1173,15 @@ class Configuration implements Utils\ClearableState
         } elseif ($this->hasValue($prefix . 'certData')) {
             $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
+            $pem = "-----BEGIN CERTIFICATE-----\n".$certData."\n-----END CERTIFICATE-----\n";
+            $keyName = self::extractKeyNameFromCertData($pem);
             return [
                 [
                     'encryption'      => true,
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
+                    'keyName'         => $keyName
                 ],
             ];
         } elseif ($this->hasValue($prefix . 'certificate')) {
@@ -1167,6 +1190,7 @@ class Configuration implements Utils\ClearableState
             $file = $this->getString($prefix . 'certificate');
             $file = $configUtils->getCertPath($file);
             $data = @file_get_contents($file);
+            $keyName = self::extractKeyNameFromCertData($data);
 
             if ($data === false) {
                 throw new \Exception(
@@ -1189,6 +1213,7 @@ class Configuration implements Utils\ClearableState
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
+                    'keyName'         => $keyName
                 ],
             ];
         } elseif ($required === true) {

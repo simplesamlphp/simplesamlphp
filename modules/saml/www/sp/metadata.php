@@ -77,6 +77,9 @@ $eps = [];
 $supported_protocols = [];
 foreach ($assertionsconsumerservices as $services) {
     $acsArray = ['index' => $index];
+    if ($index == 0) {
+        $acsArray['isDefault'] = TRUE;
+    }
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = Constants::BINDING_HTTP_POST;

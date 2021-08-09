@@ -381,6 +381,9 @@ class SAMLBuilder
                     }
 
                     $ep['index'] = $maxIndex + 1;
+                    if (isset($ep['isDefault'])) {
+                        $t->setIsDefault($ep['isDefault']);
+                    }
                 }
 
                 $t->setIndex($ep['index']);
@@ -690,12 +693,13 @@ class SAMLBuilder
      * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param string                      $use The value of the 'use' attribute.
      * @param string                      $x509data The certificate data.
+     * @param string|null                 $keyName The name of the key. Should be valid for usage in an ID attribute, e.g. not start with a digit
      */
-    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data): void
+    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data, ?string $keyName = null): void
     {
         Assert::oneOf($use, ['encryption', 'signing']);
 
-        $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data);
+        $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data, $keyName);
         $keyDescriptor->setUse($use);
         $rd->addKeyDescriptor($keyDescriptor);
     }
@@ -716,11 +720,15 @@ class SAMLBuilder
             if ($key['type'] !== 'X509Certificate') {
                 continue;
             }
+
+            //make sure the key is unique, even when used for multiple entities
+            $keyName = '_' . sha1( $this->entityDescriptor->getEntityID() . $key['keyName']) ?? null;
+
             if (!isset($key['signing']) || $key['signing'] === true) {
-                $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate']);
+                $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate'], $keyName );
             }
             if (!isset($key['encryption']) || $key['encryption'] === true) {
-                $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate']);
+                $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate'], $keyName );
             }
         }
 
