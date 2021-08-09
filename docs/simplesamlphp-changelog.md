@@ -14,6 +14,7 @@ Released TBD
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
     simplesamlphp-module-subjectidattrs module.
   * Fixed a bug in the logger that would break encoded urls in the message
+  * Return a proper HTTP/405 code when incorrect method is used (#1400)
 
 ### admin
   * Fix warning in FederationController (#1475)
