@@ -1130,7 +1130,7 @@ class Configuration implements Utils\ClearableState
      */
     public static function extractKeyNameFromCertData(string $certData) : ?string
     {
-        $certFingerPrint = openssl_x509_fingerprint($certData, 'sha1');
+        $certFingerPrint = @openssl_x509_fingerprint($certData, 'sha1');
         if ($certFingerPrint === false) {
             return null;
         }
