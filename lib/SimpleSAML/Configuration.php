@@ -1119,6 +1119,7 @@ class Configuration implements Utils\ClearableState
         return $ret;
     }
 
+
     /**
      * Get the fingerprint for provided certificateData
      *
@@ -1127,13 +1128,15 @@ class Configuration implements Utils\ClearableState
      * @return string|null Given certificate's fingerprint
      *
      */
-    public static function extractKeyNameFromCertData(string $certData) : ?string {
+    public static function extractKeyNameFromCertData(string $certData) : ?string
+    {
         $certFingerPrint = openssl_x509_fingerprint($certData, 'sha1');
         if ($certFingerPrint === false) {
-            return NULL;
+            return null;
         }
         return $certFingerPrint;
     }
+
 
     /**
      * Get public key from metadata.
@@ -1160,7 +1163,7 @@ class Configuration implements Utils\ClearableState
                 }
                 if (isset($key['X509Certificate'])) {
                     $certData = preg_replace('/\s+/', '', $key['X509Certificate']);
-                    $pem = "-----BEGIN CERTIFICATE-----\n".$certData."\n-----END CERTIFICATE-----\n";
+                    $pem = "-----BEGIN CERTIFICATE-----\n" . $certData . "\n-----END CERTIFICATE-----\n";
                     $keyName = self::extractKeyNameFromCertData($pem);
 
                     // Strip whitespace from key
@@ -1173,7 +1176,7 @@ class Configuration implements Utils\ClearableState
         } elseif ($this->hasValue($prefix . 'certData')) {
             $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
-            $pem = "-----BEGIN CERTIFICATE-----\n".$certData."\n-----END CERTIFICATE-----\n";
+            $pem = "-----BEGIN CERTIFICATE-----\n" . $certData  ."\n-----END CERTIFICATE-----\n";
             $keyName = self::extractKeyNameFromCertData($pem);
             return [
                 [
