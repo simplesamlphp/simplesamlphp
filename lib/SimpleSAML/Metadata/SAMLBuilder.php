@@ -381,12 +381,12 @@ class SAMLBuilder
                     }
 
                     $ep['index'] = $maxIndex + 1;
-                    if (isset($ep['isDefault'])) {
-                        $t->setIsDefault($ep['isDefault']);
-                    }
                 }
 
                 $t->setIndex($ep['index']);
+                if (isset($ep['isDefault'])) {
+                    $t->setIsDefault($ep['isDefault']);
+                }
             } else {
                 $t = new EndpointType();
             }
