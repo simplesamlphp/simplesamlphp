@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\IdP;
 
 use DOMNodeList;
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
@@ -125,7 +126,7 @@ class SAML2
      *
      * @param array $state The error state.
      */
-    public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state): void
+    public static function handleAuthError(Error\Exception $exception, array $state): void
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL.
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -353,7 +354,12 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
-            $binding = Binding::getCurrentBinding();
+            try {
+                $binding = Binding::getCurrentBinding();
+            } catch (Exception $e) {
+                header($_SERVER["SERVER_PROTOCOL"]." 405 Method Not Allowed", true, 405);
+                exit;
+            }
             $request = $binding->receive();
 
             if (!($request instanceof AuthnRequest)) {
@@ -426,7 +432,7 @@ class SAML2
             $consumerIndex
         );
         if ($acsEndpoint === null) {
-            throw new \Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
+            throw new Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
         }
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
@@ -707,7 +713,7 @@ class SAML2
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Configuration::loadFromArray([], 'Unknown SAML 2 entity.');
         }
     }
