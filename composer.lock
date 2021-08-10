@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f875fdfac270abb5f875854cf1286fc6",
+    "content-hash": "e425394cf88dd3a94d731868d6b880f5",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -523,16 +523,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "8958eee3338e7f49365205a42678870e6b0af634"
+                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/8958eee3338e7f49365205a42678870e6b0af634",
-                "reference": "8958eee3338e7f49365205a42678870e6b0af634",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
+                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
                 "shasum": ""
             },
             "require": {
@@ -575,9 +575,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.2"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.3"
             },
-            "time": "2021-08-06T15:16:51+00:00"
+            "time": "2021-08-10T07:09:22+00:00"
         },
         {
             "name": "simplesamlphp/twig-configurable-i18n",

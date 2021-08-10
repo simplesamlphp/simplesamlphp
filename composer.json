@@ -51,7 +51,7 @@
         "gettext/gettext": "^4.6",
         "phpmailer/phpmailer": "^6.1",
         "simplesamlphp/assert": "^0.2.6",
-        "simplesamlphp/saml2": "^4.2.2",
+        "simplesamlphp/saml2": "^4.2.3",
         "simplesamlphp/twig-configurable-i18n": "^2.3",
         "symfony/cache": "^4.0 || ^5.0",
         "symfony/config": "^4.0 || ^5.0",
