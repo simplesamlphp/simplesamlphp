@@ -1189,6 +1189,11 @@ $config = [
     'store.sql.prefix' => 'SimpleSAMLphp',
 
     /*
+     * The driver-options we should pass to the PDO-constructor.
+     */
+    'store.sql.options' => [],
+
+    /*
      * The hostname and port of the Redis datastore instance.
      */
     'store.redis.host' => 'localhost',
