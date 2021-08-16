@@ -64,7 +64,8 @@
         "symfony/routing": "^4.0 || ^5.0",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^4.0 || ^5.0",
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "twig/intl-extra": "^3.3"
     },
     "require-dev": {
         "ext-curl": "*",
