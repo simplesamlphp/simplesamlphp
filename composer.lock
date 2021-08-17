@@ -565,12 +565,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "823c05223684e1a16748d53d9c2c6c0296591730"
+                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/823c05223684e1a16748d53d9c2c6c0296591730",
-                "reference": "823c05223684e1a16748d53d9c2c6c0296591730",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
+                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
                 "shasum": ""
             },
             "require": {
@@ -611,20 +611,24 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2021-08-10T06:59:37+00:00"
+            "support": {
+                "issues": "https://github.com/simplesamlphp/saml2/issues",
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.3"
+            },
+            "time": "2021-08-10T07:09:22+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v0.9.6",
+            "version": "v0.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "425e5ebbdd097c92fe5265a6b48d32a3095c7237"
+                "reference": "2f26487736cb4011fe353528b3afe01630259094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/425e5ebbdd097c92fe5265a6b48d32a3095c7237",
-                "reference": "425e5ebbdd097c92fe5265a6b48d32a3095c7237",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/2f26487736cb4011fe353528b3afe01630259094",
+                "reference": "2f26487736cb4011fe353528b3afe01630259094",
                 "shasum": ""
             },
             "require": {
@@ -633,7 +637,9 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "~5.7",
+                "sensiolabs/security-checker": "^5.0",
                 "simplesamlphp/simplesamlphp": "^1.17",
+                "simplesamlphp/simplesamlphp-test-framework": "^0.0.15",
                 "webmozart/assert": "<1.7"
             },
             "type": "simplesamlphp-module",
@@ -657,7 +663,7 @@
                 "adfs",
                 "simplesamlphp"
             ],
-            "time": "2020-03-31T14:29:24+00:00"
+            "time": "2021-08-16T08:56:26+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authcrypt",

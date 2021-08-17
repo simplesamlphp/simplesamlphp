@@ -10,11 +10,14 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Restored PHP 8.0 compatibility (#1461)
+  * Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
     simplesamlphp-module-subjectidattrs module.
   * Fixed a bug in the logger that would break encoded urls in the message
   * Return a proper HTTP/405 code when incorrect method is used (#1400)
+
+### adfs
+  * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
 
 ### admin
   * Fix warning in FederationController (#1475)
