@@ -4,6 +4,8 @@ SimpeSAMLphp Upgrade Notes
 See the following pages for important information for users upgrading
 from older versions of SimpleSAMLphp:
 
+* [Upgrade notes for version 2.0](simplesamlphp-upgrade-notes-2.0)
+* [Upgrade notes for version 1.19](simplesamlphp-upgrade-notes-1.19)
 * [Upgrade notes for version 1.18](simplesamlphp-upgrade-notes-1.18)
 * [Upgrade notes for version 1.17](simplesamlphp-upgrade-notes-1.17)
 * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)

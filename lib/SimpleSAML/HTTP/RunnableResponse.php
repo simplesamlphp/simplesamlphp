@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class RunnableResponse extends Response
 {
     /** @var array */
-    protected $arguments;
+    protected array $arguments;
 
     /** @var callable */
     protected $callable;

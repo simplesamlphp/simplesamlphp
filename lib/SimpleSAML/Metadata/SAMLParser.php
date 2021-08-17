@@ -58,7 +58,7 @@ class SAMLParser
      *
      * @var string[]
      */
-    private static $SAML20Protocols = [
+    private static array $SAML20Protocols = [
         Constants::NS_SAMLP,
     ];
 
@@ -67,7 +67,7 @@ class SAMLParser
      *
      * @var string
      */
-    private $entityId;
+    private string $entityId;
 
     /**
      * This is an array with the processed SPSSODescriptor elements we have found in this
@@ -77,9 +77,9 @@ class SAMLParser
      *   Each assertion consumer service is stored as an associative array with the
      *   elements that parseGenericEndpoint returns.
      *
-     * @var array[]
+     * @var array
      */
-    private $spDescriptors;
+    private array $spDescriptors;
 
     /**
      * This is an array with the processed IDPSSODescriptor elements we have found.
@@ -87,84 +87,84 @@ class SAMLParser
      * - 'SingleSignOnService': Array with the IdP's single sign on service endpoints. Each endpoint is stored
      *   as an associative array with the elements that parseGenericEndpoint returns.
      *
-     * @var array[]
+     * @var array
      */
-    private $idpDescriptors;
+    private array $idpDescriptors;
 
     /**
      * List of attribute authorities we have found.
      *
      * @var array
      */
-    private $attributeAuthorityDescriptors = [];
+    private array $attributeAuthorityDescriptors = [];
 
     /**
      * This is an associative array with the organization name for this entity. The key of
      * the associative array is the language code, while the value is a string with the
      * organization name.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationName = [];
+    private array $organizationName = [];
 
     /**
      * This is an associative array with the organization display name for this entity. The key of
      * the associative array is the language code, while the value is a string with the
      * organization display name.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationDisplayName = [];
+    private array $organizationDisplayName = [];
 
     /**
      * This is an associative array with the organization URI for this entity. The key of
      * the associative array is the language code, while the value is the URI.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    private $organizationURL = [];
+    private array $organizationURL = [];
 
     /**
      * This is an array of the Contact Persons of this entity.
      *
-     * @var array[]
+     * @var array
      */
-    private $contacts = [];
+    private array $contacts = [];
 
     /**
      * @var array
      */
-    private $scopes;
+    private array $scopes;
 
     /**
      * @var array
      */
-    private $entityAttributes;
+    private array $entityAttributes;
 
     /**
      * An associative array of attributes from the RegistrationInfo element.
      * @var array
      */
-    private $registrationInfo;
+    private array $registrationInfo;
 
     /**
      * @var array
      */
-    private $tags;
+    private array $tags;
 
     /**
      * This is an array of elements that may be used to validate this element.
      *
      * @var \SAML2\SignedElementHelper[]
      */
-    private $validators = [];
+    private array $validators = [];
 
     /**
      * The original EntityDescriptor element for this entity, as a base64 encoded string.
      *
      * @var string
      */
-    private $entityDescriptor;
+    private string $entityDescriptor;
 
 
     /**
@@ -237,7 +237,8 @@ class SAMLParser
     public static function parseFile(string $file): SAMLParser
     {
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
@@ -316,7 +317,8 @@ class SAMLParser
         }
 
         /** @var string $data */
-        $data = Utils\HTTP::fetch($file);
+        $httpUtils = new Utils\HTTP();
+        $data = $httpUtils->fetch($file);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
@@ -368,9 +370,10 @@ class SAMLParser
             throw new \Exception('Document was empty.');
         }
 
-        if (Utils\XML::isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntityDescriptor($element));
-        } elseif (Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
+        } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntitiesDescriptor($element));
         } else {
             throw new \Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
@@ -1009,9 +1012,10 @@ class SAMLParser
                 $attribute = $e->getXML();
 
                 $name = $attribute->getAttribute('Name');
+                $xmlUtils = new Utils\XML();
                 $values = array_map(
-                    '\SimpleSAML\Utils\XML::getDOMText',
-                    Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+                    [$xmlUtils, 'getDOMText'],
+                    $xmlUtils->getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
                 if ($name === 'tags') {
@@ -1279,7 +1283,8 @@ class SAMLParser
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
-        if (Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
+        $xmlUtils = new Utils\XML();
+        if ($xmlUtils->isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
             throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
@@ -1298,9 +1303,11 @@ class SAMLParser
      */
     public function validateSignature(array $certificates): bool
     {
+        $configUtils = new Utils\Config();
+
         foreach ($certificates as $cert) {
             Assert::string($cert);
-            $certFile = Utils\Config::getCertPath($cert);
+            $certFile = $configUtils->getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new \Exception(
                     'Could not find certificate file [' . $certFile . '], which is needed to validate signature'

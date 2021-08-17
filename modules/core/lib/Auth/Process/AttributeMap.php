@@ -21,13 +21,13 @@ class AttributeMap extends Auth\ProcessingFilter
      * Associative array with the mappings of attribute names.
      * @var array
      */
-    private $map = [];
+    private array $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
      * @var bool
      */
-    private $duplicate = false;
+    private bool $duplicate = false;
 
 
     /**
@@ -53,10 +53,6 @@ class AttributeMap extends Auth\ProcessingFilter
                     $mapFiles[] = $newName;
                 }
                 continue;
-            }
-
-            if (!is_string($origName)) {
-                throw new Exception('Invalid attribute name: ' . var_export($origName, true));
             }
 
             if (!is_string($newName) && !is_array($newName)) {

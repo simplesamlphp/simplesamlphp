@@ -350,7 +350,8 @@ class LogoutStore
              * it supports SLO, but we don't want an LogoutRequest with a specific
              * SessionIndex to match this session. We therefore generate our own session index.
              */
-            $sessionIndex = Utils\Random::generateID();
+            $randomUtils = new Utils\Random();
+            $sessionIndex = $randomUtils->generateID();
         }
 
         $store = Store::getInstance();

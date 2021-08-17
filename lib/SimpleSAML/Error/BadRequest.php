@@ -21,7 +21,7 @@ class BadRequest extends Error
      * Reason why this request was invalid.
      * @var string
      */
-    private $reason;
+    private string $reason;
 
 
     /**

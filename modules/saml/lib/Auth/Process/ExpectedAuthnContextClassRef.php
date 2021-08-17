@@ -34,14 +34,14 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
      * Array of accepted AuthnContextClassRef
      * @var array
      */
-    private $accepted;
+    private array $accepted;
 
 
     /**
      * AuthnContextClassRef of the assertion
      * @var string|null
      */
-    private $AuthnContextClassRef = null;
+    private ?string $AuthnContextClassRef = null;
 
 
     /**
@@ -107,6 +107,8 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
         $url = Module::getModuleURL(
             'saml/sp/wrong_authncontextclassref.php'
         );
-        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

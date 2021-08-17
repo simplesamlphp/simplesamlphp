@@ -33,7 +33,7 @@ Add multiple attributes:
     'authproc' => array(
         50 => array(
             'class' => 'core:AttributeAdd',
-	    'eduPersonPrimaryAffiliation' => 'student',
+            'eduPersonPrimaryAffiliation' => 'student',
             'eduPersonAffiliation' => array('student', 'employee', 'members'),
         ),
     ),

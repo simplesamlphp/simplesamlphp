@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
-        php-versions: ['7.4']
+        php-versions: ['7.4', '8.0']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -22,7 +22,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, mysql, pdo, pdo_sqlite, xml
-          coverage: pcov
+          tools: composer:v2
+          coverage: xdebug
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
@@ -52,7 +53,7 @@ jobs:
         run: composer validate
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Syntax check PHP
         run: bash vendor/bin/check-syntax-php.sh
@@ -83,6 +84,7 @@ jobs:
         with:
             php-version: '7.4'
             extensions: mbstring, xml
+            tools: composer:v2
             coverage: none
 
       - name: Setup problem matchers for PHP
@@ -102,16 +104,16 @@ jobs:
             restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Security check for locked dependencies
-        run: ./vendor/bin/security-checker security:check
+        uses: symfonycorp/security-checker-action@v2
 
       - name: Update Composer dependencies
-        run: composer update --no-progress --no-suggest --prefer-dist --optimize-autoloader
+        run: composer update --no-progress --prefer-dist --optimize-autoloader
 
       - name: Security check for updated dependencies
-        run: ./vendor/bin/security-checker security:check
+        uses: symfonycorp/security-checker-action@v2
 
   sanity-check:
     name: Sanity checks
@@ -123,6 +125,7 @@ jobs:
         with:
           php-version: '7.4'
           extensions: mbstring, xml
+          tools: composer:v2
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -142,7 +145,7 @@ jobs:
             restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Syntax check YAML / XML / JSON
         run: |
@@ -160,6 +163,7 @@ jobs:
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
           php-version: '7.4'
+          tools: composer:v2
           extensions: mbstring, xml
 
       - name: Setup problem matchers for PHP
@@ -179,7 +183,7 @@ jobs:
             restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - uses: actions/download-artifact@v1
         with:

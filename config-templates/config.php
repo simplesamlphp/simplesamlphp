@@ -3,6 +3,7 @@
 /**
  * The configuration of SimpleSAMLphp
  */
+$httpUtils = new \SimpleSAML\Utils\HTTP();
 
 $config = [
 
@@ -128,7 +129,7 @@ $config = [
      * 'secretsalt' can be any valid string of any length.
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
-     * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     * LC_ALL=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
     'secretsalt' => 'defaultsecretsalt',
 
@@ -470,7 +471,7 @@ $config = [
      ***********/
 
     /*
-     * Configuration to override module enabling/disabling.
+     * Configuration for enabling/disabling modules. By default the 'core' and 'saml' modules are enabled.
      *
      * Example:
      *
@@ -543,7 +544,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain' => null,
+    'session.cookie.domain' => '',
 
     /*
      * Set the secure flag in the cookie.
@@ -552,7 +553,7 @@ $config = [
      * through https. If the user can access the service through
      * both http and https, this must be set to FALSE.
      */
-    'session.cookie.secure' => false,
+    'session.cookie.secure' => true,
 
     /*
      * Set the SameSite attribute in the cookie.
@@ -564,7 +565,7 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    'session.cookie.samesite' => $httpUtils->canSetSameSiteNone() ? 'None' : null,
 
     /*
      * Options to override the default settings for php sessions.
@@ -751,7 +752,7 @@ $config = [
          * ],
          *
          * establishing that if a translation for the "no" language code is
-         * not available, we look for translations in "nb" (Norwegian Bokmål),
+         * not available, we look for translations in "nb",
          * and so on, in that order.
          */
         'priorities' => [
@@ -787,12 +788,12 @@ $config = [
      * Options to override the default settings for the language cookie
      */
     'language.cookie.name' => 'language',
-    'language.cookie.domain' => null,
+    'language.cookie.domain' => '',
     'language.cookie.path' => '/',
-    'language.cookie.secure' => false,
+    'language.cookie.secure' => true,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-    'language.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    'language.cookie.samesite' => $httpUtils->canSetSameSiteNone() ? 'None' : null,
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
@@ -971,7 +972,7 @@ $config = [
             'type'          => 'saml20-idp-SSO',
         ],
 
-        /* When called without parameters, it will fallback to filter attributes ‹the old way›
+        /* When called without parameters, it will fallback to filter attributes 'the old way'
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
          */
         50 => 'core:AttributeLimit',
@@ -1186,6 +1187,11 @@ $config = [
      * The prefix we should use on our tables.
      */
     'store.sql.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The driver-options we should pass to the PDO-constructor.
+     */
+    'store.sql.options' => [],
 
     /*
      * The hostname and port of the Redis datastore instance.

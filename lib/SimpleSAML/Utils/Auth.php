@@ -24,10 +24,11 @@ class Auth
      * @return string A URL which can be used for admin authentication.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLoginURL(?string $returnTo = null): string
+    public function getAdminLoginURL(?string $returnTo = null): string
     {
+        $httpUtils = new HTTP();
         if ($returnTo === null) {
-            $returnTo = HTTP::getSelfURL();
+            $returnTo = $httpUtils->getSelfURL();
         }
 
         return Module::getModuleURL('core/login-admin.php', ['ReturnTo' => $returnTo]);
@@ -42,7 +43,7 @@ class Auth
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLogoutURL(?string $returnTo = null): string
+    public function getAdminLogoutURL(?string $returnTo = null): string
     {
         $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo);
@@ -55,7 +56,7 @@ class Auth
      * @return boolean True if the current user is an admin user, false otherwise.
      *
      */
-    public static function isAdmin(): bool
+    public function isAdmin(): bool
     {
         $session = Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
@@ -71,9 +72,9 @@ class Auth
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
      */
-    public static function requireAdmin(): void
+    public function requireAdmin(): void
     {
-        if (self::isAdmin()) {
+        if ($this->isAdmin()) {
             return;
         }
 

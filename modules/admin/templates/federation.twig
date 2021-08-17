@@ -118,9 +118,9 @@
           </a>
           {% if entity.expire is defined %}
             {% if entity.expire < date().timestamp %}
-              <span class="entity-expired"> ({% trans %}expired{% endtrans %} {{ entity.expire | time_diff }})</span>
+              <span class="entity-expired"> ({% trans %}expired{% endtrans %} {{ entity.expire | format_datetime }})</span>
             {% else %}
-              <span class="entity-expires"> ({% trans %}expires{% endtrans %} {{ entity.expire | time_diff }})</span>
+              <span class="entity-expires"> ({% trans %}expires{% endtrans %} {{ entity.expire | format_datetime }})</span>
             {% endif %}
           {% endif %}
         </li>

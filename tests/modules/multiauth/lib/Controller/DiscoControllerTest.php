@@ -25,10 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DiscoControllerTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -200,7 +200,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a Twig template
+     * Test that a valid requests results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth1(): void
@@ -256,7 +256,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a Twig template
+     * Test that a valid requests results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth1WithPreviousSource(): void

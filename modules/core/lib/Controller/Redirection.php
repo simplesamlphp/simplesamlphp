@@ -26,10 +26,13 @@ use Symfony\Component\HttpFoundation\Response;
 class Redirection
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
+
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
 
 
     /**
@@ -48,6 +51,7 @@ class Redirection
     ) {
         $this->config = $config;
         $this->session = $session;
+        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -72,7 +76,7 @@ class Redirection
                 throw new Error\BadRequest('Invalid RedirInfo data.');
             }
 
-            list($sessionId, $postId) = explode(':', Utils\Crypto::aesDecrypt($encData));
+            list($sessionId, $postId) = explode(':', $this->cryptoUtils->aesDecrypt($encData));
 
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');
@@ -99,7 +103,8 @@ class Redirection
         Assert::keyExists($postData, 'url');
         Assert::keyExists($postData, 'post');
 
-        if (!Utils\HTTP::isValidURL($postData['url'])) {
+        $httpUtils = new Utils\HTTP();
+        if (!$httpUtils->isValidURL($postData['url'])) {
             throw new Error\Exception('Invalid destination URL.');
         }
 

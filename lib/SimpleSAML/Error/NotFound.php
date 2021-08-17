@@ -21,7 +21,7 @@ class NotFound extends Error
     /**
      * Reason why the given page could not be found.
      */
-    private $reason;
+    private ?string $reason;
 
 
     /**
@@ -31,7 +31,8 @@ class NotFound extends Error
      */
     public function __construct(?string $reason = null)
     {
-        $url = Utils\HTTP::getSelfURL();
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getSelfURL();
 
         if ($reason === null) {
             parent::__construct(['NOTFOUND', '%URL%' => $url]);

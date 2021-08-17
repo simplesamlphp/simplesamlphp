@@ -23,7 +23,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var string
      */
-    protected $cookie_name;
+    protected string $cookie_name;
 
     /**
      * An associative array containing the details of a session existing previously to creating or loading one with this
@@ -35,7 +35,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var array
      */
-    private $previous_session = [];
+    private array $previous_session = [];
 
 
     /**
@@ -48,7 +48,7 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', ini_get('session.name') ?? 'PHPSESSID');
 
         if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {
@@ -178,7 +178,8 @@ class SessionHandlerPHP extends SessionHandler
 
         $session_cookie_params = session_get_cookie_params();
 
-        if ($session_cookie_params['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($session_cookie_params['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\Exception('Session start with secure cookie not allowed on http.');
         }
 
@@ -302,7 +303,8 @@ class SessionHandlerPHP extends SessionHandler
             $cookieParams = session_get_cookie_params();
         }
 
-        if ($cookieParams['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($cookieParams['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\CannotSetCookie(
                 'Setting secure cookie on plain HTTP is not allowed.',
                 Error\CannotSetCookie::SECURE_COOKIE

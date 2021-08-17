@@ -31,9 +31,9 @@ class Configuration implements Utils\ClearableState
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
-     * @var array
+     * @var array<string, \SimpleSAML\Configuration>
      */
-    private static $instance = [];
+    private static array $instance = [];
 
     /**
      * Configuration directories.
@@ -41,9 +41,9 @@ class Configuration implements Utils\ClearableState
      * This associative array contains the mappings from configuration sets to
      * configuration directories.
      *
-     * @var array
+     * @var array<string, string>
      */
-    private static $configDirs = [];
+    private static array $configDirs = [];
 
     /**
      * Cache of loaded configuration files.
@@ -52,28 +52,28 @@ class Configuration implements Utils\ClearableState
      *
      * @var array
      */
-    private static $loadedConfigs = [];
+    private static array $loadedConfigs = [];
 
     /**
      * The configuration array.
      *
      * @var array
      */
-    private $configuration;
+    private array $configuration;
 
     /**
      * The location which will be given when an error occurs.
      *
      * @var string
      */
-    private $location;
+    private string $location;
 
     /**
      * The file this configuration was loaded from.
      *
      * @var string|null
      */
-    private $filename = null;
+    private ?string $filename = null;
 
     /**
      * Initializes a configuration from the given array.
@@ -233,7 +233,8 @@ class Configuration implements Utils\ClearableState
             if ($configSet !== 'simplesaml') {
                 throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
+                $configUtils = new Utils\Config();
+                self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
             }
         }
 
@@ -262,7 +263,8 @@ class Configuration implements Utils\ClearableState
             if ($configSet !== 'simplesaml') {
                 throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
+                $configUtils = new Utils\Config();
+                self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
             }
         }
 
@@ -435,7 +437,8 @@ class Configuration implements Utils\ClearableState
              * with the configuration. Use a guessed base path instead of the one provided.
              */
             $c = $this->toArray();
-            $c['baseurlpath'] = Utils\HTTP::guessBasePath();
+            $httpUtils = new Utils\HTTP();
+            $c['baseurlpath'] = $httpUtils->guessBasePath();
             throw new Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "' .
                 $this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
@@ -463,7 +466,8 @@ class Configuration implements Utils\ClearableState
             return null;
         }
 
-        return Utils\System::resolvePath($path, $this->getBaseDir());
+        $sysUtils = new Utils\System();
+        return $sysUtils->resolvePath($path, $this->getBaseDir());
     }
 
 
@@ -1158,8 +1162,10 @@ class Configuration implements Utils\ClearableState
                 ],
             ];
         } elseif ($this->hasValue($prefix . 'certificate')) {
+            $configUtils = new Utils\Config();
+
             $file = $this->getString($prefix . 'certificate');
-            $file = Utils\Config::getCertPath($file);
+            $file = $configUtils->getCertPath($file);
             $data = @file_get_contents($file);
 
             if ($data === false) {

@@ -20,7 +20,7 @@ class AuthnContextClassRef extends ProcessingFilter
      *
      * @var string|null
      */
-    private $authnContextClassRef = null;
+    private ?string $authnContextClassRef = null;
 
 
     /**

@@ -6,11 +6,12 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Utils\System;
+use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\System.
@@ -24,10 +25,13 @@ class SystemTest extends TestCase
     private const DEFAULTTEMPDIR = 'tempdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
-    protected $root;
+    protected VfsStreamDirectory $root;
 
     /** @var string */
     protected $root_directory;
+
+    /** @var \SimpleSAML\Utils\System */
+    protected $sysUtils;
 
 
     /**
@@ -42,6 +46,7 @@ class SystemTest extends TestCase
             ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
+        $this->sysUtils = new Utils\System();
     }
 
 
@@ -50,7 +55,7 @@ class SystemTest extends TestCase
      */
     public function testGetOSBasic(): void
     {
-        $res = System::getOS();
+        $res = $this->sysUtils->getOS();
 
         $this->assertIsInt($res);
     }
@@ -64,7 +69,7 @@ class SystemTest extends TestCase
         $base = "/base////";
         $path = "test";
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = "/base/test";
 
         $this->assertEquals($expected, $res);
@@ -79,7 +84,7 @@ class SystemTest extends TestCase
         $base = "/base/";
         $path = "/test";
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = "/test";
 
         $this->assertEquals($expected, $res);
@@ -94,7 +99,7 @@ class SystemTest extends TestCase
         $base = "/base/";
         $path = "/test/.";
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = "/test";
 
         $this->assertEquals($expected, $res);
@@ -109,7 +114,7 @@ class SystemTest extends TestCase
         $base = "/base/";
         $path = "/test/child/..";
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = "/test";
 
         $this->assertEquals($expected, $res);
@@ -124,7 +129,7 @@ class SystemTest extends TestCase
         $base = '/base/';
         $path = 'vfs://simplesaml';
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = $path;
 
         $this->assertEquals($expected, $res);
@@ -139,7 +144,7 @@ class SystemTest extends TestCase
         $base = '/base/';
         $path = 's3://bucket-name/key-name';
 
-        $res = System::resolvePath($path, $base);
+        $res = $this->sysUtils->resolvePath($path, $base);
         $expected = $path;
 
         $this->assertEquals($expected, $res);
@@ -156,7 +161,7 @@ class SystemTest extends TestCase
 
         $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
 
-        System::writeFile($filename, '');
+        $this->sysUtils->writeFile($filename, '');
 
         $this->assertFileExists($filename);
 
@@ -175,7 +180,7 @@ class SystemTest extends TestCase
         $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
         $contents = 'TEST';
 
-        System::writeFile($filename, $contents);
+        $this->sysUtils->writeFile($filename, $contents);
 
         $res = file_get_contents($filename);
         $expected = $contents;
@@ -197,7 +202,7 @@ class SystemTest extends TestCase
         $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
         $mode = 0666;
 
-        System::writeFile($filename, '', $mode);
+        $this->sysUtils->writeFile($filename, '', $mode);
 
         $res = $this->root->getChild('test')->getPermissions();
         $expected = $mode;
@@ -216,7 +221,7 @@ class SystemTest extends TestCase
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $res = System::getTempDir();
+        $res = $this->sysUtils->getTempDir();
         $expected = $tempdir;
 
         $this->assertEquals($expected, $res);
@@ -234,7 +239,7 @@ class SystemTest extends TestCase
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $res = System::getTempDir();
+        $res = $this->sysUtils->getTempDir();
         $expected = $tempdir;
 
         $this->assertEquals($expected, $res);
@@ -255,7 +260,7 @@ class SystemTest extends TestCase
         chmod($tempdir, 0440);
 
         $this->expectException(Error\Exception::class);
-        System::getTempDir();
+        $this->sysUtils->getTempDir();
 
         $this->clearInstance($config, Configuration::class);
     }
@@ -284,7 +289,7 @@ class SystemTest extends TestCase
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, null);
+        $reflectedInstance->setValue($service, []);
         $reflectedInstance->setAccessible(false);
     }
 }

@@ -24,7 +24,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @var \SimpleSAML\IdP
      */
-    private $idp;
+    private IDP $idp;
 
 
     /**
@@ -60,7 +60,8 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         try {
             $idp = IdP::getByState($association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
-            Utils\HTTP::redirectTrustedURL($url);
+            $httpUtils = new Utils\HTTP();
+            $httpUtils->redirectTrustedURL($url);
         } catch (\Exception $e) {
             Logger::warning('Unable to initialize logout to ' . var_export($id, true) . '.');
             $this->idp->terminateAssociation($id);

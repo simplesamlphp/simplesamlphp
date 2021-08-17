@@ -60,11 +60,11 @@ rm -rf "$TARGET/node_modules"
 rm "$TARGET/www/assets/js/stylesheet.js"*
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
-rm "$TARGET/.php_cs.dist"
-rm "$TARGET/.travis.yml"
-rm "$TARGET/codecov.yml"
-rm "$TARGET/psalm.xml"
-rm "$TARGET"/{,modules}/.gitignore
+rm -r "$TARGET/.github"
+rm "$TARGET"/{,modules/*}/.php_cs.dist
+rm "$TARGET"/{,modules/*}/codecov.yml
+rm "$TARGET"/{,modules/*}/psalm.xml
+rm "$TARGET"/{,modules/*}/.gitignore
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
 rm "$TARGET/composer.phar"
 tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"

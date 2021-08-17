@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -23,13 +22,13 @@ use Symfony\Component\HttpFoundation\Response;
 class ConfigTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -62,7 +61,7 @@ class ConfigTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public static function requireAdmin(): void
+            public function requireAdmin(): void
             {
                 // stub
             }

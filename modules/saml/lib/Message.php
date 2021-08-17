@@ -44,15 +44,16 @@ class Message
         SignedElement $element
     ): void {
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
+        $cryptoUtils = new Utils\Crypto();
 
         if ($dstPrivateKey !== null) {
             /** @var array $keyArray */
-            $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, true, 'signature.');
-            $certArray = Utils\Crypto::loadPublicKey($dstMetadata, false, 'signature.');
+            $keyArray = $cryptoUtils->loadPrivateKey($dstMetadata, true, 'signature.');
+            $certArray = $cryptoUtils->loadPublicKey($dstMetadata, false, 'signature.');
         } else {
             /** @var array $keyArray */
-            $keyArray = Utils\Crypto::loadPrivateKey($srcMetadata, true);
-            $certArray = Utils\Crypto::loadPublicKey($srcMetadata, false);
+            $keyArray = $cryptoUtils->loadPrivateKey($srcMetadata, true);
+            $certArray = $cryptoUtils->loadPublicKey($srcMetadata, false);
         }
 
         $algo = $dstMetadata->getString('signature.algorithm', null);
@@ -213,7 +214,14 @@ class Message
             }
         }
 
-        if ($enabled === null) {
+        // If not specifically set to false, the signature must be checked to conform to SAML2INT
+        if (
+            (isset($_REQUEST['Signature'])
+            || $message->isMessageConstructedWithSignature() === true)
+            && ($enabled !== false)
+        ) {
+            $enabled = true;
+        } elseif ($enabled === null) {
             $enabled = $srcMetadata->getBoolean('redirect.validate', null);
             if ($enabled === null) {
                 $enabled = $dstMetadata->getBoolean('redirect.validate', false);
@@ -222,9 +230,7 @@ class Message
 
         if (!$enabled) {
             return false;
-        }
-
-        if (!self::checkSign($srcMetadata, $message)) {
+        } elseif (!self::checkSign($srcMetadata, $message)) {
             throw new SSP_Error\Exception(
                 'Validation of received messages enabled, but no signature found on message.'
             );
@@ -266,9 +272,10 @@ class Message
         }
 
         $keys = [];
+        $cryptoUtils = new Utils\Crypto();
 
         // load the new private key if it exists
-        $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
+        $keyArray = $cryptoUtils->loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
             assert::keyExists($keyArray, 'PEM');
 
@@ -285,7 +292,7 @@ class Message
          *
          * @var array $keyArray  Because the second param is true
          */
-        $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, true);
+        $keyArray = $cryptoUtils->loadPrivateKey($dstMetadata, true);
         Assert::keyExists($keyArray, 'PEM');
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
@@ -578,7 +585,8 @@ class Message
         }
 
         // validate Response-element destination
-        $currentURL = Utils\HTTP::getSelfURLNoQuery();
+        $httpUtils = new \SimpleSAML\Utils\HTTP();
+        $currentURL = $httpUtils->getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
             throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
@@ -639,7 +647,8 @@ class Message
             }
         } // at least one valid signature found
 
-        $currentURL = Utils\HTTP::getSelfURLNoQuery();
+        $httpUtils = new Utils\HTTP();
+        $currentURL = $httpUtils->getSelfURLNoQuery();
 
         // check various properties of the assertion
         $config = Configuration::getInstance();
@@ -710,7 +719,7 @@ class Message
             $scd = $sc->getSubjectConfirmationData();
             if ($method === Constants::CM_HOK) {
                 // check HoK Assertion
-                if (Utils\HTTP::isHTTPS() === false) {
+                if ($httpUtils->isHTTPS() === false) {
                     $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
                     continue;
                 }

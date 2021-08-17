@@ -27,31 +27,37 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FederationTest extends TestCase
 {
     /** @var string */
+    private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
+
+    /** @var string */
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+    private const LIBRARY = 'vendor/simplesamlphp/saml2/tests/resources';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::FRAMEWORK . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+    public const CERT_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+
+    /** @var string */
+    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var string */
-    private $metadata_xml = self::FRAMEWORK . '/metadata/xml/valid-metadata-selfsigned.xml';
+    private string $metadata_xml = self::LIBRARY . '/xml/metadata/valid-metadata-selfsigned.xml';
 
     /** @var string */
-    private $broken_metadata_xml = self::FRAMEWORK . '/metadata/xml/corrupted-metadata-selfsigned.xml';
+    private string $broken_metadata_xml = self::LIBRARY . '/xml/metadata/corrupted-metadata-selfsigned.xml';
 
     /** @var string */
-    private $expired_metadata_xml = self::FRAMEWORK . '/metadata/xml/expired-metadata.xml';
+    private string $expired_metadata_xml = self::LIBRARY . '/xml/metadata/expired-metadata.xml';
 
     /** @var string */
-    private $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
+    private string $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
 
     /**
      * Set up for each test.
@@ -73,7 +79,7 @@ class FederationTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public static function requireAdmin(): void
+            public function requireAdmin(): void
             {
                 // stub
             }

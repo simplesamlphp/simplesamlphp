@@ -19,13 +19,13 @@ use SimpleSAML\Utils;
 class Cardinality extends Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
-    private $cardinality = [];
+    private array $cardinality = [];
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = [];
+    private array $ignoreEntities = [];
 
-    /** @var \SimpleSAML\Utils\HttpAdapter */
-    private $http;
+    /** @var \SimpleSAML\Utils\HTTP */
+    private Utils\HTTP $httpUtils;
 
 
     /**
@@ -33,14 +33,14 @@ class Cardinality extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @param \SimpleSAML\Utils\HttpAdapter $http  HTTP utility service (handles redirects).
+     * @param \SimpleSAML\Utils\HTTP $httpUtils  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct(array &$config, $reserved, Utils\HttpAdapter $http = null)
+    public function __construct(array &$config, $reserved, Utils\HTTP $httpUtils = null)
     {
         parent::__construct($config, $reserved);
 
-        $this->http = $http ? : new Utils\HttpAdapter();
+        $this->httpUtils = $httpUtils ? : new Utils\HTTP();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -195,7 +195,7 @@ class Cardinality extends Auth\ProcessingFilter
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
             $id = Auth\State::saveState($request, 'core:cardinality');
             $url = Module::getModuleURL('core/cardinality_error.php');
-            $this->http->redirectTrustedURL($url, ['StateId' => $id]);
+            $this->httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
             return;
         }
     }

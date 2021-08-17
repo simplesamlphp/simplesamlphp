@@ -26,7 +26,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      *
      * @var \SimpleSAML\IdP
      */
-    private $idp;
+    private IDP $idp;
+
 
     /**
      * LogoutIFrame constructor.
@@ -37,6 +38,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     {
         $this->idp = $idp;
     }
+
 
     /**
      * Start the logout operation.
@@ -78,7 +80,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         }
 
         $url = Module::getModuleURL('core/idp/logout-iframe.php', $params);
-        Utils\HTTP::redirectTrustedURL($url);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url);
     }
 
 

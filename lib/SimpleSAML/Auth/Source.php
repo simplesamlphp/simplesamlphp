@@ -28,7 +28,7 @@ abstract class Source
      *
      * @var string
      */
-    protected $authId;
+    protected string $authId = '';
 
 
     /**
@@ -226,7 +226,8 @@ abstract class Source
 
         if (is_string($return)) {
             // redirect...
-            Utils\HTTP::redirectTrustedURL($return);
+            $httpUtils = new Utils\HTTP();
+            $httpUtils->redirectTrustedURL($return);
         } else {
             call_user_func($return, $state);
         }

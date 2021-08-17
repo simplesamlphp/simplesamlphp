@@ -68,8 +68,9 @@ $spMetadata = $source->getMetadata();
 
 Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);
 
+$httpUtils = new Utils\HTTP();
 $destination = $message->getDestination();
-if ($destination !== null && $destination !== Utils\HTTP::getSelfURLNoQuery()) {
+if ($destination !== null && $destination !== $httpUtils->getSelfURLNoQuery()) {
     throw new Error\Exception('Destination in logout message is wrong.');
 }
 

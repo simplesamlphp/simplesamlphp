@@ -20,9 +20,9 @@ class RouterDebugCommand extends Command
     protected static $defaultName = 'debug:router';
 
     /**
-     * @var RouterInterface
+     * @var \Symfony\Component\Routing\RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
 
     /**

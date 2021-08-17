@@ -27,42 +27,42 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string
      */
-    private $entityId;
+    private string $entityId;
 
     /**
      * The metadata of this SP.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $metadata;
+    private Configuration $metadata;
 
     /**
      * The IdP the user is allowed to log into.
      *
      * @var string|null  The IdP the user can log into, or null if the user can log into all IdPs.
      */
-    private $idp;
+    private ?string $idp;
 
     /**
      * URL to discovery service.
      *
      * @var string|null
      */
-    private $discoURL;
+    private ?string $discoURL;
 
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
      * @var bool
      */
-    private $disable_scoping;
+    private bool $disable_scoping;
 
     /**
      * A list of supported protocols.
      *
      * @var string[]
      */
-    private $protocols = [];
+    private array $protocols = [];
 
 
     /**
@@ -205,8 +205,10 @@ class SP extends \SimpleSAML\Auth\Source
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
 
+        $cryptoUtils = new Utils\Crypto();
+
         // add certificate(s)
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $hasNewCert = true;
@@ -228,7 +230,7 @@ class SP extends \SimpleSAML\Auth\Source
             ];
         }
 
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata);
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata);
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $metadata['keys'][] = [
                 'type' => 'X509Certificate',
@@ -264,7 +266,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add signature options
-        if ($this->metadata->hasValue('WantAssertiosnsSigned')) {
+        if ($this->metadata->hasValue('WantAssertionsSigned')) {
             $metadata['saml20.sign.assertion'] = $this->metadata->getBoolean('WantAssertionsSigned');
         }
         if ($this->metadata->hasValue('redirect.sign')) {
@@ -329,9 +331,7 @@ class SP extends \SimpleSAML\Auth\Source
         $endpoints = [];
         $default = [
             Constants::BINDING_HTTP_POST,
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
             Constants::BINDING_HTTP_ARTIFACT,
-            'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
         ];
         if ($this->metadata->getString('ProtocolBinding', '') === Constants::BINDING_HOK_SSO) {
             $default[] = Constants::BINDING_HOK_SSO;
@@ -350,15 +350,6 @@ class SP extends \SimpleSAML\Auth\Source
                         $this->protocols[] = Constants::NS_SAMLP;
                     }
                     break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-                        'Location' => Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->getAuthId()),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.0:profiles:browser-post', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
-                    }
-                    break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
@@ -366,17 +357,6 @@ class SP extends \SimpleSAML\Auth\Source
                     ];
                     if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
                         $this->protocols[] = Constants::NS_SAMLP;
-                    }
-                    break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
-                        'Location' => Module::getModuleURL(
-                            'saml/sp/saml1-acs.php/' . $this->getAuthId() . '/artifact'
-                        ),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
                     }
                     break;
                 case Constants::BINDING_HOK_SSO:
@@ -456,11 +436,13 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
+        $arrayUtils = new Utils\Arrays();
+
         $accr = null;
         if ($idpMetadata->getString('AuthnContextClassRef', false)) {
-            $accr = Utils\Arrays::arrayize($idpMetadata->getString('AuthnContextClassRef'));
+            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
-            $accr = Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+            $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
 
         if ($accr !== null) {
@@ -707,7 +689,8 @@ class SP extends \SimpleSAML\Auth\Source
             $params['isPassive'] = 'true';
         }
 
-        Utils\HTTP::redirectTrustedURL($discoURL, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -879,7 +862,9 @@ class SP extends \SimpleSAML\Auth\Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = Auth\State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = Module::getModuleURL('saml/proxy/invalid_session.php');
-        Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
         Assert::true(false);
     }
 
@@ -1104,7 +1089,8 @@ class SP extends \SimpleSAML\Auth\Source
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
-        Utils\HTTP::redirectUntrustedURL($redirectTo);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectUntrustedURL($redirectTo);
     }
 
 

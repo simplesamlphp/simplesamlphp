@@ -70,6 +70,7 @@ $issuer = $issuer->getValue();
 $session = Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
 
+$httpUtils = new Utils\HTTP();
 if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $issuer) {
     /* OK, it looks like this message has the same issuer
      * and ID as the SP session we already have active. We
@@ -82,7 +83,7 @@ if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['i
         'Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.'
     );
     if (isset($prevAuth['redirect'])) {
-        Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
+        $httpUtils->redirectTrustedURL($prevAuth['redirect']);
     }
 
     Logger::info('No RelayState or ReturnURL available, cannot redirect.');
@@ -130,7 +131,7 @@ if ($state) {
     $state = [
         'saml:sp:isUnsolicited' => true,
         'saml:sp:AuthId'        => $sourceId,
-        'saml:sp:RelayState'    => $relaystate === null ? null : Utils\HTTP::checkURLAllowed($relaystate),
+        'saml:sp:RelayState'    => $relaystate === null ? null : $httpUtils->checkURLAllowed($relaystate),
     ];
 }
 
@@ -261,6 +262,7 @@ if ($expire !== null) {
 $state['saml:sp:prevAuth'] = [
     'id'     => $response->getId(),
     'issuer' => $issuer,
+    'inResponseTo' => $response->getInResponseTo(),
 ];
 if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['\SimpleSAML\Auth\Source.ReturnURL'];

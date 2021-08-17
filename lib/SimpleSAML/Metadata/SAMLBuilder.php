@@ -46,7 +46,7 @@ class SAMLBuilder
      *
      * @var \SAML2\XML\md\EntityDescriptor
      */
-    private $entityDescriptor;
+    private EntityDescriptor $entityDescriptor;
 
 
     /**
@@ -54,7 +54,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxCache = null;
+    private ?int $maxCache = null;
 
 
     /**
@@ -62,7 +62,7 @@ class SAMLBuilder
      *
      * @var int|null
      */
-    private $maxDuration = null;
+    private ?int $maxDuration = null;
 
 
     /**
@@ -130,7 +130,8 @@ class SAMLBuilder
     {
         $xml = $this->getEntityDescriptor();
         if ($formatted) {
-            Utils\XML::formatDOMElement($xml);
+            $xmlUtils = new Utils\XML();
+            $xmlUtils->formatDOMElement($xml);
         }
 
         return $xml->ownerDocument->saveXML();
@@ -204,7 +205,7 @@ class SAMLBuilder
             foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
                 $a = new Attribute();
                 $a->setName($attributeName);
-                $a->setNameFormat('urn:oasis:names:tc:SAML:2.0:attrname-format:uri');
+                $a->setNameFormat(Constants::NAMEFORMAT_UNSPECIFIED);
 
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
@@ -340,9 +341,11 @@ class SAMLBuilder
             return;
         }
 
-        $orgName = Utils\Arrays::arrayize($metadata['OrganizationName'], 'en');
-        $orgDisplayName = Utils\Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
-        $orgURL = Utils\Arrays::arrayize($metadata['OrganizationURL'], 'en');
+        $arrayUtils = new Utils\Arrays();
+
+        $orgName = $arrayUtils->arrayize($metadata['OrganizationName'], 'en');
+        $orgDisplayName = $arrayUtils->arrayize($metadata['OrganizationDisplayName'], 'en');
+        $orgURL = $arrayUtils->arrayize($metadata['OrganizationURL'], 'en');
 
         $this->addOrganization($orgName, $orgDisplayName, $orgURL);
     }
@@ -440,7 +443,7 @@ class SAMLBuilder
         $attributeconsumer->setServiceName($name);
         $attributeconsumer->setServiceDescription($metadata->getLocalizedString('description', []));
 
-        $nameFormat = $metadata->getString('attributes.NameFormat', Constants::NAMEFORMAT_UNSPECIFIED);
+        $nameFormat = $metadata->getString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
         foreach ($attributes as $friendlyName => $attribute) {
             $t = new RequestedAttribute();
             $t->setName($attribute);

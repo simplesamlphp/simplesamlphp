@@ -23,42 +23,42 @@ class Translate
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * Associative array of languages.
      *
      * @var array
      */
-    private $langtext = [];
+    private array $langtext = [];
 
     /**
      * Associative array of dictionaries.
      *
      * @var array
      */
-    private $dictionaries = [];
+    private array $dictionaries = [];
 
     /**
      * The default dictionary.
      *
      * @var string|null
      */
-    private $defaultDictionary = null;
+    private ?string $defaultDictionary = null;
 
     /**
      * The language object we'll use internally.
      *
      * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Language $language;
 
 
     /**
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string|null               $defaultDictionary The default dictionary where tags will come from.
+     * @param string|null $defaultDictionary The default dictionary where tags will come from.
      */
     public function __construct(Configuration $configuration, ?string $defaultDictionary = null)
     {
@@ -218,7 +218,7 @@ class Translate
     /**
      * Mark a string for translation without translating it.
      *
-     * @param string  $tag A tag name to mark for translation.
+     * @param string $tag A tag name to mark for translation.
      *
      * @return string The tag, unchanged.
      */
@@ -234,7 +234,7 @@ class Translate
      * or in metadata.
      *
      * @param string $tag The tag that has a translation
-     * @param mixed  $translation The translation array
+     * @param mixed $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
      */
@@ -256,7 +256,7 @@ class Translate
     /**
      * Include a language file from the dictionaries directory.
      *
-     * @param string                         $file File name of dictionary to include
+     * @param string $file File name of dictionary to include
      * @param \SimpleSAML\Configuration|null $otherConfig Optionally provide a different configuration object than the
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
@@ -324,6 +324,7 @@ class Translate
 
         $lang = null;
         include($phpFile);
+        /** @psalm-var array|null $lang */
         if (isset($lang)) {
             return $lang;
         }
@@ -447,5 +448,22 @@ class Translate
 
         // nothing we can use, return null so that we can set a default
         return null;
+    }
+
+    /**
+     * Prefix tag
+     *
+     * @param string $tag Translation tag
+     * @param string $prefix Prefix to be added
+     *
+     * @return string Prefixed tag
+     */
+    public static function addTagPrefix(string $tag, string $prefix): string
+    {
+        $tagPos = strrpos($tag, ':');
+        // if tag contains ':' target actual tag
+        $tagPos = ($tagPos === false) ? 0 : $tagPos + 1;
+        // add prefix at $tagPos
+        return substr_replace($tag, $prefix, $tagPos, 0);
     }
 }

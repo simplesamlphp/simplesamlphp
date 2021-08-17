@@ -30,13 +30,13 @@ use Symfony\Component\HttpFoundation\Request;
 class LoginTest extends ClearStateTestCase
 {
     /** @var array */
-    protected $authSources;
+    protected array $authSources;
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Configuration[] */
-    protected $loadedConfigs;
+    protected array $loadedConfigs;
 
     /**
      * Set up for each test.

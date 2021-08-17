@@ -9,6 +9,7 @@ use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -37,20 +38,20 @@ class TargetedID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $identifyingAttribute;
+    private string $identifyingAttribute;
 
     /**
      * Whether the attribute should be generated as a NameID value, or as a simple string.
      *
      * @var boolean
      */
-    private $generateNameId = false;
+    private bool $generateNameId = false;
 
     /**
-     * @var \SimpleSAML\Utils\Config|string
-     * @psalm-var \SimpleSAML\Utils\Config|class-string
+     * @var \SimpleSAML\Utils\Config
      */
-    protected $configUtils = Utils\Config::class;
+    protected $configUtils;
+
 
     /**
      * Initialize this filter.
@@ -76,6 +77,8 @@ class TargetedID extends Auth\ProcessingFilter
                 throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
             }
         }
+
+        $this->configUtils = new Utils\Config();
     }
 
 
@@ -98,14 +101,16 @@ class TargetedID extends Auth\ProcessingFilter
     public function process(array &$state): void
     {
         Assert::keyExists($state, 'Attributes');
-        Assert::keyExists(
-            $state['Attributes'],
-            $this->identifyingAttribute,
-            sprintf(
-                "core:TargetedID: Missing attribute '%s', which is needed to generate the targeted ID.",
-                $this->identifyingAttribute
-            )
-        );
+        if (!array_key_exists($this->identifyingAttribute, $state['Attributes'])) {
+            Logger::warning(
+                sprintf(
+                    "core:TargetedID: Missing attribute '%s', which is needed to generate the TargetedID.",
+                    $this->identifyingAttribute
+                )
+            );
+
+            return;
+        }
 
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::stringNotEmpty($userID);
@@ -122,7 +127,7 @@ class TargetedID extends Auth\ProcessingFilter
             $dstID = '';
         }
 
-        $secretSalt = $this->configUtils::getSecretSalt();
+        $secretSalt = $this->configUtils->getSecretSalt();
         $uidData = 'uidhashbase' . $secretSalt;
         $uidData .= strlen($srcID) . ':' . $srcID;
         $uidData .= strlen($dstID) . ':' . $dstID;

@@ -30,7 +30,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @var string
      */
-    private $directory = '/';
+    private string $directory = '/';
 
 
     /**
@@ -51,7 +51,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
-        $this->directory = Utils\System::resolvePath($this->directory, $globalConfig->getBaseDir());
+        $sysUtils = new Utils\System();
+        $this->directory = $sysUtils->resolvePath($this->directory, $globalConfig->getBaseDir());
     }
 
 

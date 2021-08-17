@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Predis\Client;
 use ReflectionClass;
 use SimpleSAML\Configuration;
@@ -22,13 +23,13 @@ use SimpleSAML\Store;
 class RedisTest extends TestCase
 {
     /** @var \PHPUnit\Framework\MockObject\MockObject */
-    protected $mocked_redis;
+    protected MockObject $mocked_redis;
 
     /** @var \SimpleSAML\Store\Redis */
-    protected $redis;
+    protected Store\Redis $redis;
 
     /** @var array */
-    protected $config;
+    protected array $config;
 
 
     /**
@@ -228,7 +229,11 @@ class RedisTest extends TestCase
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, null);
+        if ($service instanceof Configuration) {
+            $reflectedInstance->setValue($service, []);
+        } else {
+            $reflectedInstance->setValue($service, null);
+        }
         $reflectedInstance->setAccessible(false);
     }
 }

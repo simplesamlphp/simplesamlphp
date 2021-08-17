@@ -23,7 +23,7 @@ class StaticSource extends Auth\Source
      * The attributes we return.
      * @var array
      */
-    private $attributes;
+    private array $attributes;
 
 
     /**
@@ -37,9 +37,11 @@ class StaticSource extends Auth\Source
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
+        $attrUtils = new Utils\Attributes();
+
         // Parse attributes
         try {
-            $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
+            $this->attributes = $attrUtils->normalizeAttributesArray($config);
         } catch (Exception $e) {
             throw new Exception('Invalid attributes for authentication source ' .
                 $this->authId . ': ' . $e->getMessage());
