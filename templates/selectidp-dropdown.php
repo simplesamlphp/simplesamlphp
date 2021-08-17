@@ -53,7 +53,11 @@ foreach ($this->data['idplist'] as $idpentry) {
         <button class="btn" type="submit"><?php echo $this->t('select'); ?></button>
         <?php
         if ($this->data['rememberenabled']) {
-            echo('<br/><input type="checkbox" name="remember" value="1" />'.$this->t('remember'));
+            echo('<br/><input type="checkbox" id="remember" name="remember" value="1"');
+            if ($this->data['rememberchecked']) {
+                echo(' checked');
+            }
+            echo(' /><label for="remember">'.$this->t('remember').'</label>');
         }
         ?>
     </form>

@@ -23,8 +23,10 @@
         </div>
         {% if rememberenabled %}
         <div class="pure-control-group">
-            <input type="checkbox" name="remember" id="remember" value="1">
-            <label for="remember">{{ 'Remember my choice' | trans }}</label>
+            <label for="remember">
+                <input type="checkbox" name="remember" id="remember" value="1"{% if rememberchecked %} checked{% endif %}>
+                {{ 'Remember my choice' | trans }}
+            </label>
         </div>
         {% endif %}
     </form>
