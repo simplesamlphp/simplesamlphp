@@ -601,6 +601,13 @@ input[type="file"] {
   border-radius: 0;
 }
 
+.pure-button {
+  margin-left: 1ex;
+}
+
+.pure-control-group {
+  margin-bottom: 1ex;
+}
 .pure-form-aligned .pure-controls {
   margin: 0 0 0 11em;
 }
@@ -885,4 +892,19 @@ div.preferredidp {
 
 .hidden {
   display: none;
+}
+
+.idp {
+        border: 1px solid silver;
+        padding: 1ex;
+        margin: 1ex;
+}
+
+.idp .idpname {
+        font-size: larger;
+        font-weight: bold;
+}
+.idp .idpdesc {
+        font-size: small;
+        color: gray;
 }
