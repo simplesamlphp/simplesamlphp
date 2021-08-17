@@ -253,21 +253,23 @@ class SAML2
         }
 
         $skipEndpointValidation = false;
-        if ($authnMessageSigned){         
-          $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
-          if (is_bool($skipEndpointValidationWhenSigned)){
-            $skipEndpointValidation = $skipEndpointValidationWhenSigned;
-          }
-          else if (is_callable($skipEndpointValidationWhenSigned)){
-            $shouldSkipEndpointValidation = $skipEndpointValidationWhenSigned($spMetadata);
-            if (is_bool($shouldSkipEndpointValidation)){
-              $skipEndpointValidation = $shouldSkipEndpointValidation;
+        if ($authnMessageSigned === true) {         
+            $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
+            if (is_bool($skipEndpointValidationWhenSigned) === true) {
+                $skipEndpointValidation = $skipEndpointValidationWhenSigned;
+            } elseif (is_callable($skipEndpointValidationWhenSigned) === true) {
+                $shouldSkipEndpointValidation = $skipEndpointValidationWhenSigned($spMetadata);
+                if (is_bool($shouldSkipEndpointValidation) === true) {
+                    $skipEndpointValidation = $shouldSkipEndpointValidation;
+                }
             }
-          }
         }
-        if ($AssertionConsumerServiceURL !== null && $skipEndpointValidation){
-            Logger::warning('Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true');
-            return array('Location'=>$AssertionConsumerServiceURL, 'Binding'=>$ProtocolBinding);
+
+        if (($AssertionConsumerServiceURL !== null) && ($skipEndpointValidation === true)) {
+            Logger::warning(
+                'Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true'
+            );
+            return ['Location' => $AssertionConsumerServiceURL, 'Binding' => $ProtocolBinding];
         }
         
         Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
