@@ -36,6 +36,12 @@ class ExampleAuth
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
+    protected $authState = Auth\State::class;
+
 
     /**
      * Controller constructor.
@@ -57,6 +63,17 @@ class ExampleAuth
 
 
     /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
+    }
+
+
+    /**
      * Auth testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
@@ -71,8 +88,8 @@ class ExampleAuth
          * Note that we don't actually validate the user in this example. This page
          * just serves to make the example work out of the box.
          */
-        if (!$request->query->has('ReturnTo')) {
-            die('Missing ReturnTo parameter.');
+        if ($request->get('ReturnTo') === null) {
+            throw new Error\Exception('Missing ReturnTo parameter.');
         }
 
         $httpUtils = new Utils\HTTP();
@@ -88,7 +105,7 @@ class ExampleAuth
          * the exampleauth:External process.
          */
         if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
-            die('Invalid ReturnTo URL for this example.');
+            throw new Error\Exception('Invalid ReturnTo URL for this example.');
         }
 
         /**
@@ -96,7 +113,7 @@ class ExampleAuth
          * match the parameter passed to saveState, so by now we know that we arrived here
          * through the exampleauth:External authentication page.
          */
-        Auth\State::loadState(urldecode($matches[1]), 'exampleauth:External');
+        $this->authState::loadState(urldecode($matches[1]), 'exampleauth:External');
 
         // our list of users.
         $users = [
@@ -119,8 +136,8 @@ class ExampleAuth
         // time to handle login responses; since this is a dummy example, we accept any data
         $badUserPass = false;
         if ($request->getMethod() === 'POST') {
-            $username = $request->request->get('username');
-            $password = $request->request->get('password');
+            $username = $request->get('username');
+            $password = $request->get('password');
 
             if (!isset($users[$username]) || $users[$username]['password'] !== $password) {
                 $badUserPass = true;
@@ -137,7 +154,7 @@ class ExampleAuth
                 $session->set('mail', $user['mail']);
                 $session->set('type', $user['type']);
 
-                $httpUtils->redirectTrustedURL($returnTo);
+                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
             }
         }
 
@@ -145,7 +162,8 @@ class ExampleAuth
         $t = new Template($this->config, 'exampleauth:authenticate.twig');
         $t->data['badUserPass'] = $badUserPass;
         $t->data['returnTo'] = $returnTo;
-        $t->send();
+
+        return $t;
     }
 
 
@@ -161,12 +179,12 @@ class ExampleAuth
         /**
          * Request handler for redirect filter test.
          */
-        if (!$request->has('StateId')) {
+        if ($request->get('StateId') === null) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
 
         /** @var array $state */
-        $state = Auth\State::loadState($request->get('StateId'), 'exampleauth:redirectfilter-test');
+        $state = $this->authState::loadState($request->get('StateId'), 'exampleauth:redirectfilter-test');
         $state['Attributes']['RedirectTest2'] = ['OK'];
 
         return new RunnableResponse([Auth\ProcessingChain::class, 'resumeProcessing'], [$state]);
