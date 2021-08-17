@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
@@ -519,5 +520,108 @@ class AttributeLimitTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
         $this->assertEmpty($attributes);
+    }
+
+
+    /**
+     * Test releasing bilateral attributes by SPs
+     */
+    public function testBilateralSPs(): void
+    {
+        $expectedData = [
+            'Attributes' => [
+                'mail' => ['bob@institutionalmail.org'],
+                'notification-mail' => ['bob@gmail.com'],
+            ],
+        ];
+
+        $request = [
+            'Attributes' => [
+                'mail' => ['bob@institutionalmail.org'],
+                'notification-mail' => ['bob@gmail.com'],
+            ],
+            'Destination' => [
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => ['mail'],
+            ],
+            'Source' => [],
+        ];
+
+        $config = [
+            'bilateralSPs' => [
+                'https://tesztsp.hu/shibboleth' => [
+                    'notification-mail',
+                ],
+            ],
+        ];
+
+        $result = self::processFilter($config, $request);
+        $this->assertEquals($result['Attributes'], $expectedData['Attributes'], "OK");
+    }
+
+
+    /**
+     * Test releasing bilateral attributes by attributes
+     */
+    public function testBilateralAttributes(): void
+    {
+        $expectedData = [
+            'Attributes' => [
+                'mail' => ['bob@institutionalmail.org'],
+                'notification-mail' => ['bob@gmail.com'],
+            ],
+        ];
+
+        $request = [
+            'Attributes' => [
+                'mail' => ['bob@institutionalmail.org'],
+                'notification-mail' => ['bob@gmail.com'],
+            ],
+            'Destination' => [
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => ['mail'],
+            ],
+            'Source' => [],
+        ];
+
+        $config = [
+            'bilateralAttributes' => [
+                'notification-mail' => [
+                    'https://tesztsp.hu/shibboleth',
+                ],
+            ],
+        ];
+
+        $result = self::processFilter($config, $request);
+        $this->assertEquals($result['Attributes'], $expectedData['Attributes'], "OK");
+    }
+
+
+    public function testInvalidConfigs(): void
+    {
+        $request = [
+            'Attributes' => [
+                'mail' => ['bob@institutionalmail.org'],
+                'notification-mail' => ['bob@gmail.com'],
+            ],
+            'Destination' => [
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => ['mail'],
+            ],
+            'Source' => [],
+        ];
+
+        $config = [
+            'bilateralAttributes' => [
+                'notification-mail' => 'https://tesztsp.hu/shibboleth',
+            ],
+            'bilateralSPs' => [
+                'https://tesztsp.hu/shibboleth' => 'notification-mail',
+            ],
+            'invalidConfigKey' => [],
+        ];
+
+        $this->expectException(Error\Exception::class);
+        $result = self::processFilter($config, $request);
     }
 }

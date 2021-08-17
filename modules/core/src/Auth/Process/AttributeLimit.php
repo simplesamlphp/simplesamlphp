@@ -9,6 +9,18 @@ use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 
+use function array_intersect;
+use function array_key_exists;
+use function array_uintersect;
+use function boolval;
+use function in_array;
+use function is_array;
+use function is_int;
+use function is_string;
+use function preg_match;
+use function strcasecmp;
+use function var_export;
+
 /**
  * A filter for limiting which attributes are passed on.
  *
@@ -29,6 +41,16 @@ class AttributeLimit extends Auth\ProcessingFilter
      */
     private bool $isDefault = false;
 
+    /**
+     * Array of sp attributes arrays which this filter will allow through.
+     */
+    private $bilateralSPs = [];
+
+    /**
+     * Array of attribute sps arrays which this filter will allow through.
+     */
+    private $bilateralAttributes = [];
+
 
     /**
      * Initialize this filter.
@@ -43,17 +65,51 @@ class AttributeLimit extends Auth\ProcessingFilter
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {
-                $this->isDefault = (bool) $value;
+                $this->isDefault = boolval($value);
             } elseif (is_int($index)) {
                 if (!is_string($value)) {
-                    throw new Error\Exception('AttributeLimit: Invalid attribute name: ' .
-                        var_export($value, true));
+                    throw new Error\Exception(
+                        'AttributeLimit: Invalid attribute name: ' . var_export($value, true)
+                    );
                 }
                 $this->allowedAttributes[] = $value;
+            } elseif ($index === 'bilateralSPs') {
+                if (!is_array($value)) {
+                    throw new Error\Exception(
+                        'AttributeLimit: Invalid option bilateralSPs: must be specified in an array: '
+                        . var_export($index, true)
+                    );
+                }
+                foreach ($value as $valuearray) {
+                    if (!is_array($valuearray)) {
+                        throw new Error\Exception(
+                            'AttributeLimit: An invalid value in option bilateralSPs: must be specified in an array: '
+                            . var_export($value, true)
+                        );
+                    }
+                }
+                $this->bilateralSPs = $value;
+            } elseif ($index === 'bilateralAttributes') {
+                if (!is_array($value)) {
+                    throw new Error\Exception(
+                        'AttributeLimit: Invalid option bilateralAttributes: must be specified in an array: '
+                        . var_export($index, true)
+                    );
+                }
+                foreach ($value as $valuearray) {
+                    if (!is_array($valuearray)) {
+                        throw new Error\Exception(
+                            'AttributeLimit: An invalid value in option bilateralAttributes: must be specified in an array: '
+                            . var_export($value, true)
+                        );
+                    }
+                }
+                $this->bilateralAttributes = $value;
             } else { // Can only be string since PHP only allows string|int for array keys
                 if (!is_array($value)) {
-                    throw new Error\Exception('AttributeLimit: Values for ' .
-                        var_export($index, true) . ' must be specified in an array.');
+                    throw new Error\Exception(
+                        'AttributeLimit: Values for ' . var_export($index, true) . ' must be specified in an array.'
+                    );
                 }
                 $this->allowedAttributes[$index] = $value;
             }
@@ -91,7 +147,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      */
     public function process(array &$state): void
     {
-        assert::keyExists($state, 'Attributes');
+        Assert::keyExists($request, 'Attributes');
 
         if ($this->isDefault) {
             $allowedAttributes = self::getSPIdPAllowed($state);
@@ -110,6 +166,10 @@ class AttributeLimit extends Auth\ProcessingFilter
 
         $attributes = &$state['Attributes'];
 
+        if (!empty($this->bilateralSPs) || !empty($this->bilateralAttributes)) {
+            $entityid = $request['Destination']['entityid'];
+        }
+
         foreach ($attributes as $name => $values) {
             if (!in_array($name, $allowedAttributes, true)) {
                 // the attribute name is not in the array of allowed attributes
@@ -121,6 +181,22 @@ class AttributeLimit extends Auth\ProcessingFilter
                     }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
+                        continue;
+                    }
+                }
+                if (!empty($this->bilateralSPs)) {
+                    if (
+                        array_key_exists($entityid, $this->bilateralSPs)
+                        && in_array($name, $this->bilateralSPs[$entityid])
+                    ) {
+                        continue;
+                    }
+                }
+                if (!empty($this->bilateralAttributes)) {
+                    if (
+                        array_key_exists($name, $this->bilateralAttributes)
+                        && in_array($entityid, $this->bilateralAttributes[$name])
+                    ) {
                         continue;
                     }
                 }
