@@ -331,9 +331,7 @@ class SP extends \SimpleSAML\Auth\Source
         $endpoints = [];
         $default = [
             Constants::BINDING_HTTP_POST,
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
             Constants::BINDING_HTTP_ARTIFACT,
-            'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
         ];
         if ($this->metadata->getString('ProtocolBinding', '') === Constants::BINDING_HOK_SSO) {
             $default[] = Constants::BINDING_HOK_SSO;
@@ -352,15 +350,6 @@ class SP extends \SimpleSAML\Auth\Source
                         $this->protocols[] = Constants::NS_SAMLP;
                     }
                     break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-                        'Location' => Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->getAuthId()),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.0:profiles:browser-post', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
-                    }
-                    break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
@@ -368,17 +357,6 @@ class SP extends \SimpleSAML\Auth\Source
                     ];
                     if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
                         $this->protocols[] = Constants::NS_SAMLP;
-                    }
-                    break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
-                        'Location' => Module::getModuleURL(
-                            'saml/sp/saml1-acs.php/' . $this->getAuthId() . '/artifact'
-                        ),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
                     }
                     break;
                 case Constants::BINDING_HOK_SSO:

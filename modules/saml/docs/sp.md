@@ -100,9 +100,7 @@ Options
 : Possible values:
 
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-    * `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
-    * `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
     * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 
 `assertion.encryption`
