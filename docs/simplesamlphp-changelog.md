@@ -15,6 +15,7 @@ Released TBD
     simplesamlphp-module-subjectidattrs module.
   * Fixed a bug in the logger that would break encoded urls in the message
   * Return a proper HTTP/405 code when incorrect method is used (#1400)
+  * Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
