@@ -390,16 +390,6 @@ Options
 `SingleLogoutServiceLocation`
 :   The Single Logout Service URL published in the generated metadata.
 
-`url`
-:   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
-
-        'url' => [
-            'en' => 'http://sp.example.net/en/info.html',
-            'no' => 'http://sp.example.net/no/info.html',
-        ],
-
 `validate.logout`
 :   Whether we require signatures on logout messages sent to this SP.
 
