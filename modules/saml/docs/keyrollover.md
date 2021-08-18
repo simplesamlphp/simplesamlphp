@@ -33,7 +33,7 @@ This ensures that both those entities that use your old metadata and those that 
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
         'privatekey' => 'old.pem',
         'certificate' => 'old.crt',
@@ -44,11 +44,11 @@ In `config/authsources.php`:
         'new_certificate' => 'new.crt',
         // When new private key is passphrase protected.
         'new_privatekey_pass' => '<new-secret>',
-    ),
+    ],
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
         'privatekey' => 'old.pem',
@@ -60,7 +60,7 @@ In `metadata/saml20-idp-hosted.php`:
         'new_certificate' => 'new.crt',
         // When new private key is passphrase protected.
         'new_privatekey_pass' => '<new-secret>',
-    );
+    ];
 
 
 Distribute your new metadata
@@ -86,24 +86,24 @@ This will cause your old key to be removed from your metadata.
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
         'certificate' => 'new.crt',
         'privatekey' => 'new.pem',
         // When private key is passphrase protected.
         'privatekey_pass' => '<new-secret>',
-    ),
+    ],
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
         'certificate' => 'new.crt',
         'privatekey' => 'new.pem',
         // When private key is passphrase protected.
         'privatekey_pass' => '<new-secret>',
-    );
+    ];
 
 
 

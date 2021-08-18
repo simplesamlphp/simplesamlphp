@@ -177,16 +177,16 @@ Options
 
 :   For example, specifying a support contact:
 
-        'contacts' => array(
-            array(
+        'contacts' => [
+            [
                 'contactType'       => 'support',
                 'emailAddress'      => 'support@example.org',
                 'givenName'         => 'John',
                 'surName'           => 'Doe',
                 'telephoneNumber'   => '+31(0)12345678',
                 'company'           => 'Example Inc.',
-            )
-        ),
+            ],
+        ],
 
 :   Valid values for `contactType` are: `technical`, `support`, `administrative`, `billing` and `other`. All
     fields, except `contactType` are OPTIONAL.
@@ -197,10 +197,10 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
 
-        'description' => array(
+        'description' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],
 
 :   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
@@ -249,10 +249,10 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'name' => array(
+        'name' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],,
 
 :   *Note*: You must also specify at least one attribute in the `attributes` option for this element to be added to the metadata.
 
@@ -279,10 +279,10 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -395,10 +395,10 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
 
-        'url' => array(
+        'url' => [
             'en' => 'http://sp.example.net/en/info.html',
             'no' => 'http://sp.example.net/no/info.html',
-        ),
+        ],
 
 `validate.logout`
 :   Whether we require signatures on logout messages sent to this SP.
@@ -421,29 +421,29 @@ Here we will list some examples for this authentication source.
 
 ### Minimal
 
-    'example-minimal' => array(
+    'example-minimal' => [
         'saml:SP',
-    ),
+    ],
 
 ### Connecting to a specific IdP
 
-    'example' => array(
+    'example' => [
         'saml:SP',
         'idp' => 'https://idp.example.net/',
-    ),
+    ],
 
 ### Using a specific entity ID
 
-    'example' => array(
+    'example' => [
         'saml:SP',
         'entityID' => 'https://sp.example.net',
-    ),
+    ],
 
 ### Encryption and signing
 
     This SP will accept encrypted assertions, and will sign and validate all messages.
 
-    'example-enc' => array(
+    'example-enc' => [
         'saml:SP',
 
         'certificate' => 'example.crt',
@@ -451,50 +451,50 @@ Here we will list some examples for this authentication source.
         'privatekey_pass' => 'secretpassword',
         'redirect.sign' => TRUE,
         'redirect.validate' => TRUE,
-    ),
+    ],
 
 
 ### Specifying attributes and required attributes
 
     An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
 
-    'example-attributes => array(
+    'example-attributes => [
         'saml:SP',
-        'name' => array( // Name required for AttributeConsumingService-element.
+        'name' => [ // Name required for AttributeConsumingService-element.
             'en' => 'Example service',
             'no' => 'Eksempeltjeneste',
-        ),
-        'attributes' => array(
+        ],
+        'attributes' => [
             'eduPersonPrincipalName',
             'mail',
             // Specify friendly names for these attributes:
             'sn' => 'urn:oid:2.5.4.4',
             'givenName' => 'urn:oid:2.5.4.42',
-        ),
-        'attributes.required' => array (
+        ],
+        'attributes.required' => [
             'eduPersonPrincipalName',
-        ),
+        ],
         'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-    ),
+    ],
 
 
 ### Limiting supported AssertionConsumerService endpoint bindings
 
-    'example-acs-limit' => array(
+    'example-acs-limit' => [
         'saml:SP',
-        'acs.Bindings' => array(
+        'acs.Bindings' => [
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
             'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-        ),
-    ),
+        ],
+    ],
 
 
 ### Requesting a specific authentication method.
 
     $auth = new \SimpleSAML\Auth\Simple('default-sp');
-    $auth->login(array(
+    $auth->login([
         'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-    ));
+    ]);
 
 ### Using samlp:Extensions
 
@@ -503,6 +503,6 @@ Here we will list some examples for this authentication source.
     $ext[] = new \SAML2\XML\Chunk($ce);
 
     $auth = new \SimpleSAML\Auth\Simple('default-sp');
-    $auth->login(array(
+    $auth->login([
         'saml:Extensions' => $ext,
-    ));
+    ]);

@@ -120,55 +120,55 @@ Example
 
 This example makes three NameIDs available:
 
-    'authproc' => array(
-        1 => array(
+    'authproc' => [
+        1 => [
             'class' => 'saml:TransientNameID',
-        ),
-        2 => array(
+        ],
+        2 => [
             'class' => 'saml:PersistentNameID',
             'attribute' => 'eduPersonPrincipalName',
-        ),
-        3 => array(
+        ],
+        3 => [
             'class' => 'saml:AttributeNameID',
             'attribute' => 'mail',
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
-        ),
-    ),
+        ],
+    ],
 
 Storing persistent NameIDs in a SQL database:
 
-    'authproc' => array(
-        1 => array(
+    'authproc' => [
+        1 => [
             'class' => 'saml:TransientNameID',
-        ),
-        2 => array(
+        ],
+        2 => [
             'class' => 'saml:SQLPersistentNameID',
             'attribute' => 'eduPersonPrincipalName',
-        ),
-    ),
+        ],
+    ],
 
 Generating Persistent NameID and eduPersonTargetedID.
 
-    'authproc' => array(
+    'authproc' => [
         // Generate the persistent NameID.
-        2 => array(
+        2 => [
             'class' => 'saml:PersistentNameID',
             'attribute' => 'eduPersonPrincipalName',
-        ),
+        ],
         // Add the persistent to the eduPersonTargetedID attribute
-        60 => array(
+        60 => [
             'class' => 'saml:PersistentNameID2TargetedID',
             'attribute' => 'eduPersonTargetedID', // The default
             'nameId' => TRUE, // The default
-        ),
+        ],
         // Use OID attribute names.
-        90 => array(
+        90 => [
             'class' => 'core:AttributeMap',
             'name2oid',
-        ),
-    ),
+        ],
+    ],
     // The URN attribute NameFormat for OID attributes.
     'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-    'attributeencodings' => array(
+    'attributeencodings' => [
         'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' => 'raw', /* eduPersonTargetedID with oid NameFormat is a raw XML value */
-    ),
+    ],
