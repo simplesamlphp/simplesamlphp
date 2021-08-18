@@ -272,35 +272,27 @@ Options
 :   For compatibility purposes, `null` is equivalent to transient and a format
     can be defined as a string instead of an array. These variants are deprecated.
 
+`OrganizationName`, `OrganizationDisplayName`, `OrganizationURL`
+:   The name and URL of the organization responsible for this IdP.
+    You need to either specify _all three_ or none of these options.
 
-`OrganizationName`
-:   The name of the organization responsible for this SP.
-    This name does not need to be suitable for display to end users.
+:   The Name does not need to be suitable for display to end users, the DisplayName should be.
+    The URL is a website the user can access for more information about the organization.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
         'OrganizationName' => [
-            'en' => 'Example organization',
-            'no' => 'Eksempel organisation',
+            'en' => 'Voorbeeld Organisatie Foundation b.a.',
+            'nl' => 'Stichting Voorbeeld Organisatie b.a.',
         ],
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
-
-`OrganizationDisplayName`
-:   The name of the organization responsible for this SP.
-    This name must be suitable for display to end users.
-    If this option isn't specified, `OrganizationName` will be used instead.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
-
-`OrganizationURL`
-:   A URL the end user can access for more information about the organization.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+        'OrganizationDisplayName' => [
+            'en' => 'Example organization',
+            'nl' => 'Voorbeeldorganisatie',
+        ],
+        'OrganizationURL' => [
+            'en' => 'https://example.com',
+            'nl' => 'https://example.com/nl',
+        ],
 
 `privatekey`
 :   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.

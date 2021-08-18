@@ -83,34 +83,27 @@ Common options
 `logouttype`
 :   The logout handler to use. Either `iframe` or `traditional`. `traditional` is the default.
 
-`OrganizationName`
-:   The name of the organization responsible for this IdP.
-    This name does not need to be suitable for display to end users.
+`OrganizationName`, `OrganizationDisplayName`, `OrganizationURL`
+:   The name and URL of the organization responsible for this IdP.
+    You need to either specify _all three_ or none of these options.
+
+:   The Name does not need to be suitable for display to end users, the DisplayName should be.
+    The URL is a website the user can access for more information about the organization.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
         'OrganizationName' => [
-            'en' => 'Example organization',
-            'no' => 'Eksempel organisation',
+            'en' => 'Voorbeeld Organisatie Foundation b.a.',
+            'nl' => 'Stichting Voorbeeld Organisatie b.a.',
         ],
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
-
-`OrganizationDisplayName`
-:   The name of the organization responsible for this IdP.
-    This name must be suitable for display to end users.
-    If this option isn't specified, `OrganizationName` will be used instead.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
-
-`OrganizationURL`
-:   A URL the end user can access for more information about the organization.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
-
-:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+        'OrganizationDisplayName' => [
+            'en' => 'Example organization',
+            'nl' => 'Voorbeeldorganisatie',
+        ],
+        'OrganizationURL' => [
+            'en' => 'https://example.com',
+            'nl' => 'https://example.com/nl',
+        ],
 
 `privacypolicy`
 :   This is an absolute URL for where an user can find a
