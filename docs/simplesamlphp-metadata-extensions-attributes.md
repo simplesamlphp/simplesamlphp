@@ -118,7 +118,7 @@ entity category support for a service provider in `authsources.php`:
         ...
         'EntityAttributes' => [
             'http://macedir.org/entity-category' => [
-                'http://www.geant.net/uri/dataprotection-code-of-conduct/v1'
+                '{urn:oasis:names:tc:SAML:2.0:attrname-format:uri}http://www.geant.net/uri/dataprotection-code-of-conduct/v1'
             ]
         ],
         'UIInfo' =>[
