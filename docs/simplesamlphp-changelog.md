@@ -32,6 +32,9 @@ Released TBD
 ### sqlauth
   * Fixed a bug that rendered the module useless due to missing use-statements.
 
+### saml
+  * Fixed a bug where the contacts were not in the displayed metadata on the federation page.
+
 ## Version 1.19.1
 
 Released 2021-04-29
