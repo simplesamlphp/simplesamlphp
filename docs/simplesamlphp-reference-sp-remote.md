@@ -86,18 +86,6 @@ The following options can be set:
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
-`privacypolicy`
-:   This is an absolute URL for where an user can find a privacypolicy
-    for this SP. If set, this will be shown on the consent page.
-    `%SPENTITYID%` in the URL will be replaced with the entity id of
-    this service provider.
-
-:   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-
-:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
-
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
     This option is required - without it you will not be able to send

@@ -105,18 +105,6 @@ Common options
             'nl' => 'https://example.com/nl',
         ],
 
-`privacypolicy`
-:   This is an absolute URL for where an user can find a
-    privacypolicy. If set, this will be shown on the consent page.
-    `%SPENTITYID%` in the URL will be replaced with the entity id of
-    the service the user is accessing.
-
-:   Note that this option also exists in the SP-remote metadata, and
-    any value in the SP-remote metadata overrides the one configured
-    in the IdP metadata.
-
-:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
-
 `privatekey`
 :   Name of private key file for this IdP, in PEM format. The filename
     is relative to the `cert/`-directory.
