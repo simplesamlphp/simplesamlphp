@@ -188,7 +188,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add contacts
-        $contacts = $this->metadata->getArray('contact', []);
+        $contacts = $this->metadata->getArray('contacts', []);
         foreach ($contacts as $contact) {
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
