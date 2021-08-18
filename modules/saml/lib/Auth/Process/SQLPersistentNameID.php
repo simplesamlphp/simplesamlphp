@@ -62,7 +62,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
      *
      * @throws \SimpleSAML\Error\Exception If the 'attribute' option is not specified.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
 

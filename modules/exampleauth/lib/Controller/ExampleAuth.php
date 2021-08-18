@@ -78,9 +78,9 @@ class ExampleAuth
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function authpage(Request $request): Template
+    public function authpage(Request $request)
     {
         /**
          * This page serves as a dummy login page.
@@ -88,12 +88,13 @@ class ExampleAuth
          * Note that we don't actually validate the user in this example. This page
          * just serves to make the example work out of the box.
          */
-        if ($request->get('ReturnTo') === null) {
+        $returnTo = $request->get('ReturnTo');
+        if ($returnTo === null) {
             throw new Error\Exception('Missing ReturnTo parameter.');
         }
 
         $httpUtils = new Utils\HTTP();
-        $returnTo = $httpUtils->checkURLAllowed($request->get('ReturnTo'));
+        $returnTo = $httpUtils->checkURLAllowed($returnTo);
 
         /**
          * The following piece of code would never be found in a real authentication page. Its
@@ -179,12 +180,13 @@ class ExampleAuth
         /**
          * Request handler for redirect filter test.
          */
-        if ($request->get('StateId') === null) {
+        $stateId = $request->get('StateId');
+        if ($stateId === null) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
 
         /** @var array $state */
-        $state = $this->authState::loadState($request->get('StateId'), 'exampleauth:redirectfilter-test');
+        $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');
         $state['Attributes']['RedirectTest2'] = ['OK'];
 
         return new RunnableResponse([Auth\ProcessingChain::class, 'resumeProcessing'], [$state]);
@@ -198,7 +200,7 @@ class ExampleAuth
      *
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function resume(Request $request): RunnableResponse
+    public function resume(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
         /**
          * This page serves as the point where the user's authentication
