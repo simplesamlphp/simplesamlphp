@@ -267,7 +267,7 @@ class SAML2
         }
 
         if (($AssertionConsumerServiceURL !== null) && ($skipEndpointValidation === true)) {
-            Logger::warning(
+            Logger::info(
                 'Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true'
             );
             return ['Location' => $AssertionConsumerServiceURL, 'Binding' => $ProtocolBinding];
