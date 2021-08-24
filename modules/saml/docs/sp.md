@@ -53,6 +53,10 @@ All these parameters override the equivalent option from the configuration.
 :   The samlp:Extensions that will be sent in the login request.
 
 
+`saml:logout:Extensions`
+:   The samlp:Extensions that will be sent in the logout request.
+
+
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
     This must be a \SAML2\XML\saml\NameID object.

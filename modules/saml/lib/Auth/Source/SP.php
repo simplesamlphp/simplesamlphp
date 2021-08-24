@@ -977,6 +977,12 @@ class SP extends \SimpleSAML\Auth\Source
         $lr->setRelayState($id);
         $lr->setDestination($endpoint['Location']);
 
+        if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
+            $lr->setExtensions($state['saml:logout:Extensions']);
+        } elseif ($this->metadata->getArray('saml:logout:Extensions', null) !== null) {
+            $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
+        }
+
         $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
             $encryptNameId = $this->metadata->getBoolean('nameid.encryption', false);
