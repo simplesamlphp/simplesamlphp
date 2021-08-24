@@ -40,7 +40,7 @@ class Cardinality extends Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        $this->httpUtils = $httpUtils ? : new Utils\HTTP();
+        $this->httpUtils = $httpUtils ?: new Utils\HTTP();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {

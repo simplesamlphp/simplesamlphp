@@ -98,7 +98,7 @@ class Localization
     {
         $this->configuration = $configuration;
         /** @var string $locales */
-        $locales =  $this->configuration->resolvePath('locales');
+        $locales = $this->configuration->resolvePath('locales');
         $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());

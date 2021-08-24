@@ -330,9 +330,9 @@ class SAML2
             }
 
             if (isset($_REQUEST['ConsumerURL'])) {
-                $consumerURL = (string)$_REQUEST['ConsumerURL'];
+                $consumerURL = (string) $_REQUEST['ConsumerURL'];
             } elseif (isset($_REQUEST['shire'])) {
-                $consumerURL = (string)$_REQUEST['shire'];
+                $consumerURL = (string) $_REQUEST['shire'];
             } else {
                 $consumerURL = null;
             }
@@ -357,7 +357,7 @@ class SAML2
             try {
                 $binding = Binding::getCurrentBinding();
             } catch (Exception $e) {
-                header($_SERVER["SERVER_PROTOCOL"]." 405 Method Not Allowed", true, 405);
+                header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
                 exit;
             }
             $request = $binding->receive();

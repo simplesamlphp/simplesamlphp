@@ -166,7 +166,7 @@ class Template extends Response
         $baseDir = $this->configuration->getBaseDir();
         if (is_null($module)) {
             $file = $baseDir . 'www/assets/' . $asset;
-            $basePath =  $this->configuration->getBasePath();
+            $basePath = $this->configuration->getBasePath();
             $path = $basePath . 'assets/' . $asset;
         } else {
             $file = $baseDir . 'modules/' . $module . '/www/assets/' . $asset;
