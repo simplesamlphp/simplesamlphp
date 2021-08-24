@@ -12,6 +12,7 @@ namespace SimpleSAML\Locale;
 
 use Gettext\Translations;
 use Gettext\Translator;
+use Gettext\TranslatorFunctions;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 
@@ -196,7 +197,7 @@ class Localization
     private function setupTranslator(): void
     {
         $this->translator = new Translator();
-        $this->translator->register();
+        TranslatorFunctions::register($this->translator);
     }
 
 
