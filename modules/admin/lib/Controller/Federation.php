@@ -360,7 +360,7 @@ class Federation
                 $source->getMetadata()->getLocalizedString('OrganizationDisplayName', $source->getAuthId())
             );
 
-            $builder = new SAMLBuilder($source->getEntityId(), $metadata['maxCache'] ?? null, $metadata['maxDuration'] ?? null);
+            $builder = new SAMLBuilder($source->getEntityId(), $metadata['validUntil'] ?? null, $metadata['cacheDuration'] ?? null);
             $builder->addMetadataSP20($metadata, $source->getSupportedProtocols());
             $builder->addOrganizationInfo($metadata);
             $xml = $builder->getEntityDescriptorText(true);

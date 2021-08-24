@@ -136,13 +136,13 @@ class SP extends \SimpleSAML\Auth\Source
             'AssertionConsumerService' => $this->getACSEndpoints(),
         ];
 
-        // add maxCache / maxDuration
-        if ($this->metadata->hasValue('maxCache')) {
-            $metadata['maxCache'] = $this->metadata->getInteger('maxCache');
+        // add validUntil / cacheDuration
+        if ($this->metadata->hasValue('validUntil')) {
+            $metadata['validUntil'] = $this->metadata->getInteger('validUntil');
         }
 
-        if ($this->metadata->hasValue('maxDuration')) {
-            $metadata['maxDuration'] = $this->metadata->getInteger('maxDuration');
+        if ($this->metadata->hasValue('cacheDuration')) {
+            $metadata['cacheDuration'] = $this->metadata->getInteger('cacheDuration');
         }
 
         // add NameIDPolicy
