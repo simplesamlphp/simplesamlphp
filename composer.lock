@@ -523,16 +523,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87"
+                "reference": "8e3ad89b97d2f2f922f67894675e3460feab2209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
-                "reference": "04d0ed6c5e51cbb328afe1bdcba2cc7bd84d7e87",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/8e3ad89b97d2f2f922f67894675e3460feab2209",
+                "reference": "8e3ad89b97d2f2f922f67894675e3460feab2209",
                 "shasum": ""
             },
             "require": {
@@ -575,9 +575,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.3"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.4"
             },
-            "time": "2021-08-10T07:09:22+00:00"
+            "time": "2021-08-24T12:21:57+00:00"
         },
         {
             "name": "simplesamlphp/twig-configurable-i18n",
