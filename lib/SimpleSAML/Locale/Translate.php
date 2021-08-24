@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use Gettext\BaseTranslator;
+use Gettext\Translator;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
