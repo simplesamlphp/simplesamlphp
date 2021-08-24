@@ -50,7 +50,7 @@ class CardinalitySingle extends Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        $this->httpUtils = $httpUtils ? : new Utils\HTTP();
+        $this->httpUtils = $httpUtils ?: new Utils\HTTP();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
