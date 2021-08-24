@@ -81,7 +81,7 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $text = BaseTranslator::$current->gettext($original);
+        $text = Translator::$current->gettext($original);
 
         if (func_num_args() === 1) {
             return $text;
@@ -107,7 +107,7 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $text = BaseTranslator::$current->ngettext($original, $plural, $value);
+        $text = Translator::$current->ngettext($original, $plural, $value);
 
         if (func_num_args() === 3) {
             return $text;
