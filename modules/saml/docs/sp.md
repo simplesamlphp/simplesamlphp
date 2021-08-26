@@ -466,7 +466,6 @@ Here we will list some examples for this authentication source.
         'saml:SP',
         'acs.Bindings' => [
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
         ],
     ],
 
