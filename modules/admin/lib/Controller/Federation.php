@@ -203,7 +203,7 @@ class Federation
 
 
     /**
-     * Get a list of the hosted IdP entities, including SAML 2, SAML 1.1 and ADFS.
+     * Get a list of the hosted IdP entities, including SAML 2 and ADFS.
      *
      * @return array
      * @throws \Exception
