@@ -140,7 +140,7 @@ class SP extends \SimpleSAML\Auth\Source
         ];
 
         // add NameIDPolicy
-        if ($this->metadata->hasValue('NameIDValue')) {
+        if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getValue('NameIDPolicy');
             if (is_array($format)) {
                 $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getString(
