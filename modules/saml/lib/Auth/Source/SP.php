@@ -439,7 +439,8 @@ class SP extends \SimpleSAML\Auth\Source
                 Constants::BINDING_SOAP,
             ]
         );
-        $location = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $location = $this->metadata->getString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
         foreach ($bindings as $binding) {
