@@ -370,7 +370,8 @@ class SP extends \SimpleSAML\Auth\Source
                     }
                     break;
                 default:
-                    $acs = [];
+                    Logger::warning('Unknown acs.Binding value specified, ignoring: ' . $service);
+                    continue 2;
             }
             $acs['index'] = $index;
             $endpoints[] = $acs;
