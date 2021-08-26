@@ -328,6 +328,11 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getACSEndpoints(): array
     {
+        // If a list of endpoints is specified in config, take that at face value
+        if ($this->metadata->hasValue('AssertionConsumerService')) {
+            return $this->metadata->getArray('AssertionConsumerService');
+        }
+
         $endpoints = [];
         $default = [
             Constants::BINDING_HTTP_POST,
