@@ -10,6 +10,7 @@ use SAML2\AuthnRequest;
 use SAML2\Constants;
 use SAML2\Utils;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\Module\saml\Error\NoSupportedIDP;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
@@ -24,6 +25,21 @@ use SimpleSAML\Test\Utils\SpTester;
  */
 class SPTest extends ClearStateTestCase
 {
+    /** @var string */
+    private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
+
+    /** @var string */
+    public const CERT_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+
+    /** @var string */
+    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+
+    /** @var string */
+    public const CERT_OTHER_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.key';
+
+    /** @var string */
+    public const CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.crt';
+
     /** @var \SimpleSAML\Configuration|null $idpMetadata */
     private ?Configuration $idpMetadata = null;
 
@@ -393,5 +409,710 @@ class SPTest extends ClearStateTestCase
         $_SERVER['REQUEST_URI'] = 'https://l.example.com/';
         $as = new SpTester($info, $config);
         $as->authenticate($state);
+    }
+
+    /**
+     * Basic test for the hosted metadata generation in a default config
+     */
+    public function testMetadataHostedBasicConfig(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertIsArray($md);
+        $this->assertEquals('saml20-sp-remote', $md['metadata-set']);
+        $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/metadata.php/' . $spId, $md['entityid']);
+        $this->assertArrayHasKey('SingleLogoutService', $md);
+        $this->assertIsArray($md['SingleLogoutService']);
+        $this->assertArrayHasKey('AssertionConsumerService', $md);
+        $this->assertIsArray($md['AssertionConsumerService']);
+        foreach($md['AssertionConsumerService'] as $acs) {
+            $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId, $acs['Location']);
+            $this->assertStringStartsWith('urn:oasis:names:tc:SAML:2.0:bindings', $acs['Binding']);
+            $this->assertIsInt($acs['index']);
+        }
+    }
+
+    /**
+     * Test for the hosted metadata generation with a custom entityID
+     */
+    public function testMetadataHostedSetEntityId(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['entityID' => 'urn:example:mysp:001'];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertEquals('urn:example:mysp:001', $md['entityid']);
+    }
+
+    /**
+     * Contacts in SP hosted config appear in metadata
+     */
+    public function testMetadataHostedContacts(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' => [
+            [
+               'contactType'       => 'other',
+               'emailAddress'      => 'csirt@example.com',
+               'surName'           => 'CSIRT',
+               'telephoneNumber'   => '+31SECOPS',
+               'company'           => 'Acme Inc',
+               'attributes'        => [
+                   'xmlns:remd'        => 'http://refeds.org/metadata',
+                   'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+               ],
+            ],
+            [
+               'contactType'       => 'administrative',
+               'emailAddress'      => 'j.doe@example.edu',
+               'givenName'         => 'Jane',
+               'surName'           => 'Doe',
+            ],
+        ]];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('contacts', $md);
+        $this->assertIsArray($md['contacts']);
+
+        $contacts = $md['contacts'];
+        $contact = $md['contacts'][0];
+
+        $this->assertIsArray($contact);
+        $this->assertEquals('other', $contact['contactType']);
+        $this->assertEquals('CSIRT', $contact['surName']);
+        $this->assertArrayNotHasKey('givenName', $contact);
+        $this->assertEquals('+31SECOPS', $contact['telephoneNumber']);
+        $this->assertEquals('Acme Inc', $contact['company']);
+        $this->assertIsArray($contact['attributes']);
+        $attrs = ['xmlns:remd' => 'http://refeds.org/metadata', 'remd:contactType' => 'http://refeds.org/metadata/contactType/security'];
+        $this->assertEquals($attrs, $contact['attributes']);
+
+        $contact = $md['contacts'][1];
+        $this->assertIsArray($contact);
+        $this->assertEquals('administrative', $contact['contactType']);
+        $this->assertEquals('j.doe@example.edu', $contact['emailAddress']);
+        $this->assertArrayNotHasKey('attributes', $contact);
+    }
+
+    /**
+     * Contacts in SP hosted of unknown type throws Exceptiona
+     */
+    public function testMetadataHostedContactsUnknownTypeThrowsException(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' => [
+            [
+               'contactType'       => 'anything',
+               'emailAddress'      => 'j.doe@example.edu',
+               'givenName'         => 'Jane',
+               'surName'           => 'Doe',
+            ],
+        ]];
+        $as = new SpTester($info, $config);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"contactType" is mandatory and must be one of');
+
+        $md = $as->getHostedMetadata();
+    }
+
+    /**
+     * SP acs.Bindings option overrides default bindigs
+     */
+    public function testMetadataHostedAcsBindingsOption(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' =>
+                [
+                [
+                    'contactType'       => 'administrative',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'givenName'         => 'Jane',
+                    'surName'           => 'Doe',
+                ],
+                ],
+                'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(1, $md['AssertionConsumerService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+    }
+
+    /**
+     * SP acs.Bindings option with unsupported value should be skipped
+     */
+    public function testMetadataHostedAcsBindingsUnknownValueIsSkipped(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' =>
+                [
+                [
+                    'contactType'       => 'administrative',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'givenName'         => 'Jane',
+                    'surName'           => 'Doe',
+                ],
+                ],
+                'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(1, $md['AssertionConsumerService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+    }
+
+    /**
+     * SP SLO Bindings option overrides default bindigs
+     */
+    public function testMetadataHostedSloBindingsOption(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(1, $md['SingleLogoutService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+    }
+
+    /**
+     * SP empty SLO Bindings option omits SLO in metadata
+     */
+    public function testMetadataHostedSloBindingsEmptyNotInMetadata(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+                'SingleLogoutServiceBinding' => [],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(0, $md['SingleLogoutService']);
+    }
+
+    /**
+     * SP SLO Bindings option with unknown value is accepted as-is
+     */
+    public function testMetadataHostedSloBindingsUnknownValueIsAccepted(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(2, $md['SingleLogoutService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+        $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
+    }
+
+    /**
+     * SP SLO Location option is used as URL for all SLO Bindings
+     */
+    public function testMetadataHostedSloURLIsUsedForAllSLOBindings(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
+                'SingleLogoutServiceLocation' => 'https://sp.example.org/logout',
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(2, $md['SingleLogoutService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+        $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
+        $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][0]['Location']);
+        $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][1]['Location']);
+    }
+
+    /**
+     * SP AssertionConsumerService option overrides default bindigs
+     */
+    public function testMetadataHostedAssertionConsumerServiceOption(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+            'AssertionConsumerService' => [
+                [
+                    'index' => 1,
+                    'isDefault' => TRUE,
+                    'Location' => 'https://sp.example.org/ACS',
+                    'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                ],
+                [
+                    'index' => 17,
+                    'Location' => 'https://sp.example.org/ACSeventeen',
+                    'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+                ],
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(2, $md['AssertionConsumerService']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+        $this->assertEquals('https://sp.example.org/ACS', $md['AssertionConsumerService'][0]['Location']);
+        $this->assertEquals(1, $md['AssertionConsumerService'][0]['index']);
+        $this->assertTrue($md['AssertionConsumerService'][0]['isDefault']);
+
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact', $md['AssertionConsumerService'][1]['Binding']);
+        $this->assertEquals('https://sp.example.org/ACSeventeen', $md['AssertionConsumerService'][1]['Location']);
+        $this->assertEquals(17, $md['AssertionConsumerService'][1]['index']);
+        $this->assertArrayNotHasKey('isDefault', $md['AssertionConsumerService'][1]);
+    }
+
+
+    /**
+     * SP config options WantAssertionsSigned, redirect.sign is reflected in metadata
+     */
+    public function testMetadataHostedSigning(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'WantAssertionsSigned' => true,
+                'redirect.sign' => true,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('saml20.sign.assertion', $md);
+        $this->assertArrayHasKey('redirect.validate', $md);
+        $this->assertTrue($md['saml20.sign.assertion']);
+        $this->assertTrue($md['redirect.validate']);
+
+        $config = [
+                'WantAssertionsSigned' => false,
+                'redirect.sign' => false,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('saml20.sign.assertion', $md);
+        $this->assertArrayHasKey('redirect.validate', $md);
+        $this->assertFalse($md['saml20.sign.assertion']);
+        $this->assertFalse($md['redirect.validate']);
+    }
+
+    /**
+     * SP config option RegistationInfo is reflected in metadata
+     */
+    public function testMetadataHostedContainsRegistrationInfo(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'RegistrationInfo' => [
+                    'authority' => 'urn:mace:sp.example.org',
+                    'instant' => '2008-01-17T11:28:03.577Z',
+                    'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+                ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('RegistrationInfo', $md);
+        $reginfo = $md['RegistrationInfo'];
+        $this->assertIsArray($reginfo);
+        $this->assertEquals('urn:mace:sp.example.org', $reginfo['authority']);
+        $this->assertEquals('2008-01-17T11:28:03.577Z', $reginfo['instant']);
+        $this->assertIsArray($reginfo['policies']);
+        $this->assertCount(2, $reginfo['policies']);
+        $this->assertEquals('http://sp.example.org/politica', $reginfo['policies']['es']);
+    }
+
+    /**
+     * SP config option NameIDPolicy is reflected in metadata
+     */
+    public function testMetadataHostedNameIDPolicy(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'NameIDPolicy' => [ 'Format' => 'urn:mace:shibboleth:1.0:nameIdentifier', 'AllowCreate' => true ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('NameIDFormat', $md);
+        $this->assertEquals('urn:mace:shibboleth:1.0:nameIdentifier', $md['NameIDFormat']);
+    }
+
+    /**
+     * SP config option NameIDPolicy specified in legacy string form is reflected in metadata
+     */
+    public function testMetadataHostedNameIDPolicyString(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'NameIDPolicy' => 'urn:mace:shibboleth:1.0:nameIdentifier',
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('NameIDFormat', $md);
+        $this->assertEquals('urn:mace:shibboleth:1.0:nameIdentifier', $md['NameIDFormat']);
+    }
+
+    /**
+     * SP config option NameIDPolicy specified in deprecated form without Format is reflected in metadata
+     */
+    public function testMetadataHostedNameIDPolicyNullFormat(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'NameIDPolicy' => ['AllowCreate' => true],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('NameIDFormat', $md);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:nameid-format:transient', $md['NameIDFormat']);
+    }
+
+    /**
+     * SP config option Organization* are reflected in metadata
+     */
+    public function testMetadataHostedOrganizationData(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'OrganizationName' => [
+                    'en' => 'Voorbeeld Organisatie Foundation b.a.',
+                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+                ],
+                'OrganizationDisplayName' => [
+                    'en' => 'Example organization',
+                    'nl' => 'Voorbeeldorganisatie',
+                ],
+                'OrganizationURL' => [
+                    'en' => 'https://example.com',
+                    'nl' => 'https://example.com/nl',
+                ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertEquals('Voorbeeld Organisatie Foundation b.a.', $md['OrganizationName']['en']);
+        $this->assertEquals('Voorbeeldorganisatie', $md['OrganizationDisplayName']['nl']);
+        $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
+    }
+
+    /**
+     * SP config option Organization* without explicit DisplayName are reflected in metadata
+     */
+    public function testMetadataHostedOrganizationDataDefaultForDisplayNameIsName(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'OrganizationName' => [
+                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+                ],
+                'OrganizationURL' => [
+                    'nl' => 'https://example.com/nl',
+                ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertEquals('Stichting Voorbeeld Organisatie b.a.', $md['OrganizationName']['nl']);
+        $this->assertEquals('Stichting Voorbeeld Organisatie b.a.', $md['OrganizationDisplayName']['nl']);
+        $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
+    }
+
+    /**
+     * SP config option Organization* without URL is rejected with an Exception
+     */
+    public function testMetadataHostedOrganizationURLMissingRaisesException(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'OrganizationName' => [
+                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+                ],
+                'OrganizationDisplayName' => [
+                    'nl' => 'Voorbeeldorganisatie',
+                ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('If OrganizationName is set, OrganizationURL must also be set.');
+        $md = $as->getHostedMetadata();
+    }
+
+    /**
+     * SP config option for UIInfo is reflected in metadata
+     */
+    public function testMetadataHostedUIInfo(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'UIInfo' => [
+                'DisplayName' => [
+                    'en' => 'English name',
+                    'es' => 'Nombre en Español'
+                 ],
+                 'Description' => [
+                    'en' => 'English description',
+                    'es' => 'Descripción en Español'
+                 ],
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('UIInfo', $md);
+        $this->assertIsArray($md['UIInfo']);
+        $this->assertEquals('Descripción en Español', $md['UIInfo']['Description']['es']);
+    }
+
+    /**
+     * SP config option for entity attribute extensions is reflected in metadata
+     */
+    public function testMetadataHostedEntityExtensions(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $ea = ['{urn:simplesamlphp:v1}foo' => ['bar']];
+        $config = [
+            'EntityAttributes' => $ea,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('EntityAttributes', $md);
+        $this->assertEquals($ea, $md['EntityAttributes']);
+    }
+
+    /**
+     * SP config option for Name, Description, Attributes is in metadata
+     */
+    public function testMetadataHostedNameDescriptionAttributes(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'name' => [
+                'en' => 'My First SP',
+            ],
+            'description' => [
+                'en' => 'This SP is my first one',
+            ],
+            'attributes' => [
+                'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
+                'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+            ],
+            'attributes.required' => [
+                'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('name', $md);
+        $this->assertEquals('My First SP', $md['name']['en']);
+        $this->assertArrayHasKey('description', $md);
+        $this->assertEquals('This SP is my first one', $md['description']['en']);
+        $this->assertArrayHasKey('attributes', $md);
+        $this->assertEquals([
+                'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
+                'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+            ], $md['attributes']);
+        $this->assertArrayHasKey('attributes.required', $md);
+        $this->assertEquals([
+                'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+            ], $md['attributes.required']);
+    }
+
+    /**
+     * SP config option for Name, Description require attributes to be specified
+     */
+    public function testMetadataHostedNameDescriptionAbsentWhenNoAttributes(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'name' => [
+                'en' => 'My First SP',
+            ],
+            'description' => [
+                'en' => 'This SP is my first one',
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayNotHasKey('name', $md);
+        $this->assertArrayNotHasKey('description', $md);
+    }
+
+    /**
+     * SP config for attributes also requries name in metadata
+     */
+    public function testMetadataHostedAttributesRequiresName(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'attributes' => [
+                'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
+                'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayNotHasKey('attributes', $md);
+    }
+
+    /**
+     * SP config for attributes with extra options
+     */
+    public function testMetadataHostedAttributesExtraOptions(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+            'name' => [
+                'en' => 'My First SP',
+            ],
+            'attributes' => [
+                'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
+                'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+            ],
+            'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+            'attributes.index' => 5,
+            'attributes.isDefault' => true,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:attrname-format:uri', $md['attributes.NameFormat']);
+        $this->assertEquals(5, $md['attributes.index']);
+        $this->assertEquals(true, $md['attributes.isDefault']);
+    }
+
+    /**
+     * SP config for holder-of-key profile via ProtocolBinding is reflected in metadata
+     */
+    public function testMetadataHolderOfKeyViaProtocolBindingIsInMetadata(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(3, $md['AssertionConsumerService']);
+        $hok = $md['AssertionConsumerService'][2];
+        $this->assertIsArray($hok);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser', $hok['Binding']);
+        $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId, $hok['Location']);
+        $this->assertEquals(2, $hok['index']);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect', $hok['hoksso:ProtocolBinding']);
+    }
+
+    /**
+     * SP config with certificate are reflected in metdata
+     */
+    public function testMetadatCertificateIsInMetadata(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'privatekey' => self::CERT_KEY,
+                'certificate' => self::CERT_PUBLIC,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('keys', $md);
+        $this->assertIsArray($md['keys']);
+        $this->assertCount(1, $md['keys']);
+        $this->assertEquals('X509Certificate', $md['keys'][0]['type']);
+        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUCJ8EYI', $md['keys'][0]['X509Certificate']);
+        $this->assertTrue($md['keys'][0]['encryption']);
+        $this->assertTrue($md['keys'][0]['signing']);
+        $this->assertEquals('', $md['keys'][0]['prefix']);
+    }
+
+    /**
+     * SP config with certificate in rollocer scenario are reflected in metdata
+     */
+    public function testMetadatCertificateInRolloverIsInMetadata(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+
+        $config = [
+                'privatekey' => self::CERT_KEY,
+                'certificate' => self::CERT_PUBLIC,
+                'new_privatekey' => self::CERT_OTHER_KEY,
+                'new_certificate' => self::CERT_OTHER_PUBLIC,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('keys', $md);
+        $this->assertIsArray($md['keys']);
+        $this->assertCount(2, $md['keys']);
+        $this->assertEquals('X509Certificate', $md['keys'][0]['type']);
+        $this->assertEquals('X509Certificate', $md['keys'][1]['type']);
+        $this->assertStringStartsWith('MIICeTCCAeICAQMwDQYJKoZIhv', $md['keys'][0]['X509Certificate']);
+        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUCJ8EYI', $md['keys'][1]['X509Certificate']);
+        $this->assertTrue($md['keys'][0]['encryption']);
+        $this->assertTrue($md['keys'][0]['signing']);
+        $this->assertFalse($md['keys'][1]['encryption']);
+        $this->assertTrue($md['keys'][1]['signing']);
+        $this->assertEquals('new_', $md['keys'][0]['prefix']);
+        $this->assertEquals('', $md['keys'][1]['prefix']);
     }
 }
