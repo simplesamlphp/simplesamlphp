@@ -1,9 +1,9 @@
 exampleauth-authpage:
     path:       /authpage
-    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\Autotest::authpage' }
+    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::authpage' }
 exampleauth-redirect:
     path:       /redirect
-    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\Autotest::redirect' }
+    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::redirect' }
 exampleauth-resume:
     path:       /resume
-    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\Autotest::resume' }
+    defaults:   { _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::resume' }
