@@ -481,6 +481,7 @@ class SPTest extends ClearStateTestCase
         $md = $as->getHostedMetadata();
         $this->assertArrayHasKey('contacts', $md);
         $this->assertIsArray($md['contacts']);
+        $this->assertCount(2, $md['contacts']);
 
         $contacts = $md['contacts'];
         $contact = $md['contacts'][0];
@@ -500,6 +501,74 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('administrative', $contact['contactType']);
         $this->assertEquals('j.doe@example.edu', $contact['emailAddress']);
         $this->assertArrayNotHasKey('attributes', $contact);
+    }
+
+    /**
+     * A globally set tech contact also appears in SP hosted metadata
+     */
+    public function testMetadataHostedContactsIncludesGlobalTechContact(): void
+    {
+        Configuration::loadFromArray([
+            'technicalcontact_email' => 'someone.somewhere@example.org',
+            'technicalcontact_name' => 'Someone von Somewhere',
+        ], '[ARRAY]', 'simplesaml');
+
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' => [
+            [
+               'contactType'       => 'technical',
+               'emailAddress'      => 'j.doe@example.edu',
+               'givenName'         => 'Jane',
+               'surName'           => 'Doe',
+            ],
+        ]];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayHasKey('contacts', $md);
+        $this->assertIsArray($md['contacts']);
+        $this->assertCount(2, $md['contacts']);
+
+        $contacts = $md['contacts'];
+        $contact = $md['contacts'][0];
+
+        $this->assertIsArray($contact);
+        $this->assertEquals('technical', $contact['contactType']);
+        $this->assertEquals('Doe', $contact['surName']);
+
+        $contact = $md['contacts'][1];
+        $this->assertIsArray($contact);
+        $this->assertEquals('technical', $contact['contactType']);
+        $this->assertEquals('someone.somewhere@example.org', $contact['emailAddress']);
+        $this->assertEquals('Someone von Somewhere', $contact['givenName']);
+        $this->assertArrayNotHasKey('surName', $contact);
+    }
+
+    /**
+     * The special value na@example.org global tech contact is not included in SP metadata
+     */
+    public function testMetadataHostedContactsSkipsNAGlobalTechContact(): void
+    {
+        Configuration::loadFromArray([
+            'technicalcontact_email' => 'na@example.org',
+            'technicalcontact_name' => 'Someone von Somewhere',
+        ], '[ARRAY]', 'simplesaml');
+
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = ['contacts' => [
+            [
+               'contactType'       => 'technical',
+               'emailAddress'      => 'j.doe@example.edu',
+               'surName'           => 'Doe',
+            ],
+        ]];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertCount(1, $md['contacts']);
+        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['emailAddress']);
     }
 
     /**
@@ -696,6 +765,7 @@ class SPTest extends ClearStateTestCase
         $config = [
                 'WantAssertionsSigned' => true,
                 'redirect.sign' => true,
+                'sign.authnrequest' => true,
             ];
         $as = new SpTester($info, $config);
 
@@ -704,10 +774,12 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayHasKey('redirect.validate', $md);
         $this->assertTrue($md['saml20.sign.assertion']);
         $this->assertTrue($md['redirect.validate']);
+        $this->assertArrayNotHasKey('validate.authnrequest', $md);
 
         $config = [
                 'WantAssertionsSigned' => false,
                 'redirect.sign' => false,
+                'sign.authnrequest' => false,
             ];
         $as = new SpTester($info, $config);
 
@@ -716,6 +788,17 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayHasKey('redirect.validate', $md);
         $this->assertFalse($md['saml20.sign.assertion']);
         $this->assertFalse($md['redirect.validate']);
+        $this->assertArrayNotHasKey('validate.authnrequest', $md);
+
+        $config = [
+            'sign.authnrequest' => true,
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $this->assertArrayNotHasKey('redirect.validate', $md);
+        $this->assertArrayHasKey('validate.authnrequest', $md);
+        $this->assertTrue($md['validate.authnrequest']);
     }
 
     /**
