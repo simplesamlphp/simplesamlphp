@@ -124,7 +124,8 @@ Options
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
-    documentation.
+    documentation. Note: you must ensure that you set the `acs.Bindings` option to the set
+    of bindings that you use here if it is different from the default.
 
 `AssertionConsumerServiceIndex`
 :   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
