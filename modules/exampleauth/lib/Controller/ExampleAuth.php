@@ -175,7 +175,7 @@ class ExampleAuth
      *
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function redirect(Request $request): RunnableResponse
+    public function redirecttest(Request $request): RunnableResponse
     {
         /**
          * Request handler for redirect filter test.

@@ -197,14 +197,14 @@ class ExampleAuthTest extends TestCase
 
 
     /**
-     * Test that accessing the redirect-endpoint leads to a redirect
+     * Test that accessing the redirecttest-endpoint leads to a redirect
      *
      * @return void
      */
     public function testRedirect(): void
     {
         $request = Request::create(
-            '/redirect',
+            '/redirecttest',
             'GET',
             ['StateId' => 'someState']
         );
@@ -217,21 +217,21 @@ class ExampleAuthTest extends TestCase
             }
         });
 
-        $response = $c->redirect($request);
+        $response = $c->redirecttest($request);
         $this->assertTrue($response->isSuccessful());
         $this->assertInstanceOf(RunnableResponse::class, $response);
     }
 
 
     /**
-     * Test that accessing the redirect-endpoint without StateId leads to an exception
+     * Test that accessing the redirecttest-endpoint without StateId leads to an exception
      *
      * @return void
      */
     public function testRedirectMissingStateId(): void
     {
         $request = Request::create(
-            '/redirect',
+            '/redirecttest',
             'GET',
         );
 
@@ -240,6 +240,6 @@ class ExampleAuthTest extends TestCase
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Missing required StateId query parameter.');
 
-        $c->redirect($request);
+        $c->redirecttest($request);
     }
 }
