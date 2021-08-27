@@ -18,12 +18,14 @@ Released TBD
   * Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
   * Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
   * Fix unsolicited response with no RelayState (#1473)
+  * Fix statistics being logged despire a configured loglevel that excludes statistics.
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
 
 ### admin
   * Fix warning in FederationController (#1475)
+  * Fix displayed metadata for hosted entities differing from actual metadata.
 
 ### discopower
   * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
@@ -34,8 +36,6 @@ Released TBD
 ### sqlauth
   * Fixed a bug that rendered the module useless due to missing use-statements.
 
-### saml
-  * Fixed a bug where the contacts were not in the displayed metadata on the federation page.
 
 ## Version 1.19.1
 
