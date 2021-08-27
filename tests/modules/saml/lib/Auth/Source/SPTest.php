@@ -1198,4 +1198,54 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('new_', $md['keys'][0]['prefix']);
         $this->assertEquals('', $md['keys'][1]['prefix']);
     }
+
+    /**
+     * We only support SAML 2.0 as a protocol with this auth source
+     */
+    public function testSupportedProtocolsReturnsSAML20Only(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+        $protocols = $as->getSupportedProtocols();
+        $this->assertIsArray($protocols);
+        $this->assertCount(1, $protocols);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
+    }
+
+    /**
+     * We only support SAML 2.0 as a protocol with this auth source
+     */
+    public function testSAML11BindingsDoesNotInfluenceProtocolsSupported(): void
+    {
+        $spId = 'myhosted-sp';
+        $info = ['AuthId' => $spId];
+        $config = [
+            'AssertionConsumerService' => [
+                [
+                    'index' => 1,
+                    'isDefault' => TRUE,
+                    'Location' => 'https://sp.example.org/ACS',
+                    'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                ],
+                [
+                    'index' => 17,
+                    'Location' => 'https://sp.example.org/ACS',
+                    'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+                ],
+            ],
+            ];
+        $as = new SpTester($info, $config);
+
+        $md = $as->getHostedMetadata();
+
+        $protocols = $as->getSupportedProtocols();
+        $this->assertIsArray($protocols);
+        $this->assertCount(1, $protocols);
+        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
+    }
+
 }

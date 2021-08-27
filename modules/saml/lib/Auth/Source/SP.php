@@ -62,7 +62,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string[]
      */
-    private array $protocols = [];
+    private array $protocols = [Constants::NS_SAMLP];
 
 
     /**
@@ -351,18 +351,12 @@ class SP extends \SimpleSAML\Auth\Source
                         'Binding' => Constants::BINDING_HTTP_POST,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 case Constants::BINDING_HOK_SSO:
                     $acs = [
@@ -370,9 +364,6 @@ class SP extends \SimpleSAML\Auth\Source
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                         'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 default:
                     Logger::warning('Unknown acs.Binding value specified, ignoring: ' . $service);
