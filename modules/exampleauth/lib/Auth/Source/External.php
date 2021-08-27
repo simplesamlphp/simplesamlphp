@@ -183,16 +183,18 @@ class External extends Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume(): void
+    public static function resume(Request $request): void
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
          * it in the 'State' request parameter.
          */
-        if (!isset($_REQUEST['State'])) {
+        if (!$request->has('State')) {
             throw new Error\BadRequest('Missing "State" parameter.');
         }
 
@@ -201,7 +203,7 @@ class External extends Auth\Source
          * match the string we used in the saveState-call above.
          */
         /** @var array $state */
-        $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
+        $state = Auth\State::loadState($request->get('State'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication

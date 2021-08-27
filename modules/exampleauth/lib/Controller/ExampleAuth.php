@@ -200,7 +200,7 @@ class ExampleAuth
      *
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function resume(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
+    public function resume(Request $request): RunnableResponse
     {
         /**
          * This page serves as the point where the user's authentication
@@ -208,7 +208,6 @@ class ExampleAuth
          *
          * It simply passes control back to the class.
          */
-
-        return new RunnableResponse([External::class, 'resume'], []);
+        return new RunnableResponse([External::class, 'resume'], [$request]);
     }
 }
