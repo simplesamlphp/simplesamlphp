@@ -19,9 +19,8 @@ use SimpleSAML\Utils;
  * To adapt this to your own web site, you should:
  * 1. Create your own module directory.
  * 2. Enable to module in the config by adding '<module-dir>' => true to the $config['module.enable'] array.
- * 3. Copy this file and modules/exampleauth/www/resume.php to their corresponding
- *    location in the new module.
- * 4. Replace all occurrences of "exampleauth" in this file and in resume.php with the name of your module.
+ * 3. Copy this file to its corresponding location in the new module.
+ * 4. Replace all occurrences of "exampleauth" in this file with the name of your module.
  * 5. Adapt the getUser()-function, the authenticate()-function and the logout()-function to your site.
  * 6. Add an entry in config/authsources.php referencing your module. E.g.:
  *        'myauth' => array(
@@ -148,7 +147,7 @@ class External extends Auth\Source
          * We assume that whatever authentication page we send the user to has an
          * option to return the user to a specific page afterwards.
          */
-        $returnTo = Module::getModuleURL('exampleauth/resume.php', [
+        $returnTo = Module::getModuleURL('exampleauth/resume', [
             'State' => $stateId,
         ]);
 
@@ -159,7 +158,7 @@ class External extends Auth\Source
          * is also part of this module, but in a real example, this would likely be
          * the absolute URL of the login page for the site.
          */
-        $authPage = Module::getModuleURL('exampleauth/authpage.php');
+        $authPage = Module::getModuleURL('exampleauth/authpage');
 
         /*
          * The redirect to the authentication page.

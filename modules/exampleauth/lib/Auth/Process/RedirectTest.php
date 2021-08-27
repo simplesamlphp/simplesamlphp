@@ -29,7 +29,7 @@ class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
 
         // Save state and redirect
         $id = Auth\State::saveState($state, 'exampleauth:redirectfilter-test');
-        $url = Module::getModuleURL('exampleauth/redirecttest.php');
+        $url = Module::getModuleURL('exampleauth/redirecttest');
 
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
