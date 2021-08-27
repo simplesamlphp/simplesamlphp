@@ -9,6 +9,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 /**
  * Example external authentication source.
@@ -64,13 +65,12 @@ class External extends Auth\Source
          * stored in the users PHP session, but this could be replaced
          * with anything.
          */
-
-        if (!session_id()) {
-            // session_start not called before. Do it here
-            session_start();
+        $session = new SymfonySession();
+        if (!$session->getId()) {
+            $session->start();
         }
 
-        if (!isset($_SESSION['uid'])) {
+        if (!$session->has('uid')) {
             // The user isn't authenticated
             return null;
         }
@@ -80,16 +80,15 @@ class External extends Auth\Source
          * Note that all attributes in SimpleSAMLphp are multivalued, so we need
          * to store them as arrays.
          */
-
         $attributes = [
-            'uid' => [$_SESSION['uid']],
-            'displayName' => [$_SESSION['name']],
-            'mail' => [$_SESSION['mail']],
+            'uid' => [$session->get('uid')],
+            'displayName' => [$session->get('name')],
+            'mail' => [$session->get('mail')],
         ];
 
         // Here we generate a multivalued attribute based on the account type
         $attributes['eduPersonAffiliation'] = [
-            $_SESSION['type'], /* In this example, either 'student' or 'employee'. */
+            $session->get('type'), /* In this example, either 'student' or 'employee'. */
             'member',
         ];
 
@@ -265,15 +264,12 @@ class External extends Auth\Source
      */
     public function logout(array &$state): void
     {
-        if (!session_id()) {
-            // session_start not called before. Do it here
-            session_start();
+        $session = new SymfonySession();
+        if (!$session->getId()) {
+            $session->start();
         }
 
-        /*
-         * In this example we simply remove the 'uid' from the session.
-         */
-        unset($_SESSION['uid']);
+        $session->clear();
 
         /*
          * If we need to do a redirect to a different page, we could do this
