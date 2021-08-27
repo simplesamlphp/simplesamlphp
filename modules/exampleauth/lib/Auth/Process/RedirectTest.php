@@ -13,7 +13,7 @@ use SimpleSAML\Utils;
  * A simple processing filter for testing that redirection works as it should.
  *
  */
-class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
+class RedirectTest extends Auth\ProcessingFilter
 {
     /**
      * Initialize processing of the redirect test.
