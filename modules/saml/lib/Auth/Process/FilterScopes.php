@@ -66,12 +66,12 @@ class FilterScopes extends ProcessingFilter
             $values = $request['Attributes'][$attribute];
             $newValues = [];
             foreach ($values as $value) {
-                $value_a = explode('@', $value, 2);
-                if (count($value_a) < 2) {
+                list(, $scope) = explode('@', $value, 2);
+                if ($scope === null) {
                     $newValues[] = $value;
                     continue; // there's no scope
                 }
-                $scope = $value_a[1];
+
                 if (in_array($scope, $validScopes, true)) {
                     $newValues[] = $value;
                 } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
