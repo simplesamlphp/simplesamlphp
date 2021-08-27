@@ -113,7 +113,9 @@ Options
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
-    documentation.
+    documentation. Note that this list is taken at face value, so it's not useful to list
+    anything here that the SP auth source does not actually support (unless the URLs point
+    externally).
 
 `AssertionConsumerServiceIndex`
 :   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
