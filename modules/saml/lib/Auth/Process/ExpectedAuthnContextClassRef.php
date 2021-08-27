@@ -17,13 +17,13 @@ use SimpleSAML\Utils;
  *
  * Example configuration:
  *
- * 91 => array(
+ * 91 => [
  *      'class' => 'saml:ExpectedAuthnContextClassRef',
- *      'accepted' => array(
+ *      'accepted' => [
  *         'urn:oasis:names:tc:SAML:2.0:post:ac:classes:nist-800-63:3',
  *         'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
- *         ),
- *       ),
+ *         ],
+ *       ],
  *
  * @package SimpleSAMLphp
  */

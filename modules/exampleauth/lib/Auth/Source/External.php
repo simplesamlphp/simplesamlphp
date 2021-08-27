@@ -24,9 +24,9 @@ use SimpleSAML\Utils;
  * 4. Replace all occurrences of "exampleauth" in this file and in resume.php with the name of your module.
  * 5. Adapt the getUser()-function, the authenticate()-function and the logout()-function to your site.
  * 6. Add an entry in config/authsources.php referencing your module. E.g.:
- *        'myauth' => array(
+ *        'myauth' => [
  *            '<mymodule>:External',
- *        ),
+ *        ],
  *
  * @package SimpleSAMLphp
  */

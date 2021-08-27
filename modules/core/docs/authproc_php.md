@@ -25,7 +25,7 @@ Examples
 
 Add the `mail` attribute based on the user's `uid` attribute:
 
-    10 => array(
+    10 => [
         'class' => 'core:PHP',
         'code' => '
             if (empty($attributes["uid"])) {
@@ -34,25 +34,25 @@ Add the `mail` attribute based on the user's `uid` attribute:
 
             $uid = $attributes["uid"][0];
             $mail = $uid . "@example.net";
-            $attributes["mail"] = array($mail);
+            $attributes["mail"] = [$mail];
         ',
-    ),
+    ],
 
 
 Create a random number variable:
 
-    10 => array(
+    10 => [
         'class' => 'core:PHP',
         'code' => '
-            $attributes["random"] = array(
+            $attributes["random"] = [
                 (string)rand(),
-            );
+            ];
         ',
-    ),
+    ],
 
 Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
 
-    90 => array(
+    90 => [
          'class' => 'core:PHP',
          'code' => '$state["saml:NameIDFormat"] = ["Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" => true];'
-    ),
+    ],

@@ -30,20 +30,20 @@ Examples
 
 Require at least one `givenName`, no more than two email addresses, and between two and four values for `eduPersonScopedAffiliation`.
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:Cardinality',
-            'givenName' => array('min' => 1),
-            'mail' => array('max' => 2),
-            'eduPersonScopedAffiliation' => array('min' => 2, 'max' => 4),
-        ),
-    ),
+            'givenName' => ['min' => 1],
+            'mail' => ['max' => 2[,
+            'eduPersonScopedAffiliation' => ['min' => 2, 'max' => 4],
+        ],
+    ],
 
 Use the shorthand notation for min, max:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:Cardinality',
-            'mail' => array(0, 2),
-        ),
-    ),
+            'mail' => [0, 2],
+        ],
+    ],

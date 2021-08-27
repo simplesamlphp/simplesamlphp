@@ -26,17 +26,17 @@ Examples
 
 Default attribute (`preferredLanguage`):
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:LanguageAdaptor',
-        ),
-    ),
+        ],
+    ],
 
 Custon attribute:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:LanguageAdaptor',
             'attributename' => 'lang',
-        ),
-    ),
+        ],
+    ],
