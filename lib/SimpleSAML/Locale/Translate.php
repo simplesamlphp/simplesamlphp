@@ -144,45 +144,6 @@ class Translate
 
 
     /**
-     * Retrieve the preferred translation of a given text.
-     *
-     * @param array $translations The translations, as an associative array with language => text mappings.
-     *
-     * @return string The preferred translation.
-     *
-     * @throws \Exception If there's no suitable translation.
-     */
-    public function getPreferredTranslation(array $translations): string
-    {
-        // look up translation of tag in the selected language
-        $selected_language = $this->language->getLanguage();
-        if (array_key_exists($selected_language, $translations)) {
-            return $translations[$selected_language];
-        }
-
-        // look up translation of tag in the default language
-        $default_language = $this->language->getDefaultLanguage();
-        if (array_key_exists($default_language, $translations)) {
-            return $translations[$default_language];
-        }
-
-        // check for english translation
-        if (array_key_exists('en', $translations)) {
-            return $translations['en'];
-        }
-
-        // pick the first translation available
-        if (count($translations) > 0) {
-            $languages = array_keys($translations);
-            return $translations[$languages[0]];
-        }
-
-        // we don't have anything to return
-        throw new \Exception('Nothing to return from translation.');
-    }
-
-
-    /**
      * Translate the name of an attribute.
      *
      * @param string $name The attribute name.
