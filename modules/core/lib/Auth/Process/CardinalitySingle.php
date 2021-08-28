@@ -81,22 +81,22 @@ class CardinalitySingle extends Auth\ProcessingFilter
     /**
      * Process this filter
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         if (
-            array_key_exists('Source', $request)
-            && array_key_exists('entityid', $request['Source'])
-            && in_array($request['Source']['entityid'], $this->ignoreEntities, true)
+            array_key_exists('Source', $state)
+            && array_key_exists('entityid', $state['Source'])
+            && in_array($state['Source']['entityid'], $this->ignoreEntities, true)
         ) {
-            Logger::debug('CardinalitySingle: Ignoring assertions from ' . $request['Source']['entityid']);
+            Logger::debug('CardinalitySingle: Ignoring assertions from ' . $state['Source']['entityid']);
             return;
         }
 
-        foreach ($request['Attributes'] as $k => $v) {
+        foreach ($state['Attributes'] as $k => $v) {
             if (!is_array($v)) {
                 continue;
             }
@@ -105,22 +105,22 @@ class CardinalitySingle extends Auth\ProcessingFilter
             }
 
             if (in_array($k, $this->singleValued)) {
-                $request['core:cardinality:errorAttributes'][$k] = [count($v), '0 ≤ n ≤ 1'];
+                $state['core:cardinality:errorAttributes'][$k] = [count($v), '0 ≤ n ≤ 1'];
                 continue;
             }
             if (in_array($k, $this->firstValue)) {
-                $request['Attributes'][$k] = [array_shift($v)];
+                $state['Attributes'][$k] = [array_shift($v)];
                 continue;
             }
             if (in_array($k, $this->flatten)) {
-                $request['Attributes'][$k] = [implode($this->flattenWith, $v)];
+                $state['Attributes'][$k] = [implode($this->flattenWith, $v)];
                 continue;
             }
         }
 
         /* abort if we found a problematic attribute */
-        if (array_key_exists('core:cardinality:errorAttributes', $request)) {
-            $id = Auth\State::saveState($request, 'core:cardinality');
+        if (array_key_exists('core:cardinality:errorAttributes', $state)) {
+            $id = Auth\State::saveState($state, 'core:cardinality');
             $url = Module::getModuleURL('core/cardinality_error.php');
             $this->httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
             return;

@@ -67,13 +67,13 @@ class ScopeAttribute extends Auth\ProcessingFilter
     /**
      * Apply this filter to the request.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         if (!isset($attributes[$this->scopeAttribute])) {
             return;

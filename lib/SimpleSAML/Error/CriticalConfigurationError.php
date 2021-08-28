@@ -67,19 +67,19 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param \Throwable $exception
+     * @param \Throwable $e
      *
      * @return \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function fromException(Throwable $exception): CriticalConfigurationError
+    public static function fromException(Throwable $e): CriticalConfigurationError
     {
         $reason = null;
         $file = null;
-        if ($exception instanceof ConfigurationError) {
-            $reason = $exception->getReason();
-            $file = $exception->getConfFile();
+        if ($e instanceof ConfigurationError) {
+            $reason = $e->getReason();
+            $file = $e->getConfFile();
         } else {
-            $reason = $exception->getMessage();
+            $reason = $e->getMessage();
         }
         return new CriticalConfigurationError($reason, $file);
     }

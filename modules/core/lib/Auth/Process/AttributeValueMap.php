@@ -107,14 +107,14 @@ class AttributeValueMap extends Auth\ProcessingFilter
     /**
      * Apply filter.
      *
-     * @param array &$request The current request
+     * @param array &$state The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
         Logger::debug('Processing the AttributeValueMap filter.');
 
-        Assert::keyExists($request, 'Attributes');
-        $attributes = &$request['Attributes'];
+        Assert::keyExists($state, 'Attributes');
+        $attributes = &$state['Attributes'];
 
         if (!array_key_exists($this->sourceattribute, $attributes)) {
             // the source attribute does not exist, nothing to do here

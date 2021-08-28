@@ -64,18 +64,18 @@ class AttributeLimit extends Auth\ProcessingFilter
     /**
      * Get list of allowed from the SP/IdP config.
      *
-     * @param array &$request  The current request.
+     * @param array &$state  The current request.
      * @return array|null  Array with attribute names, or NULL if no limit is placed.
      */
-    private static function getSPIdPAllowed(array &$request): ?array
+    private static function getSPIdPAllowed(array &$state): ?array
     {
-        if (array_key_exists('attributes', $request['Destination'])) {
+        if (array_key_exists('attributes', $state['Destination'])) {
             // SP Config
-            return $request['Destination']['attributes'];
+            return $state['Destination']['attributes'];
         }
-        if (array_key_exists('attributes', $request['Source'])) {
+        if (array_key_exists('attributes', $state['Source'])) {
             // IdP Config
-            return $request['Source']['attributes'];
+            return $state['Source']['attributes'];
         }
         return null;
     }
@@ -86,29 +86,29 @@ class AttributeLimit extends Auth\ProcessingFilter
      *
      * Removes all attributes which aren't one of the allowed attributes.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        assert::keyExists($request, 'Attributes');
+        assert::keyExists($state, 'Attributes');
 
         if ($this->isDefault) {
-            $allowedAttributes = self::getSPIdPAllowed($request);
+            $allowedAttributes = self::getSPIdPAllowed($state);
             if ($allowedAttributes === null) {
                 $allowedAttributes = $this->allowedAttributes;
             }
         } elseif (!empty($this->allowedAttributes)) {
             $allowedAttributes = $this->allowedAttributes;
         } else {
-            $allowedAttributes = self::getSPIdPAllowed($request);
+            $allowedAttributes = self::getSPIdPAllowed($state);
             if ($allowedAttributes === null) {
                 // No limit on attributes
                 return;
             }
         }
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         foreach ($attributes as $name => $values) {
             if (!in_array($name, $allowedAttributes, true)) {

@@ -43,27 +43,27 @@ class FilterScopes extends ProcessingFilter
     /**
      * This method applies the filter, removing any values
      *
-     * @param array &$request the current request
+     * @param array &$state the current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        $src = $request['Source'];
+        $src = $state['Source'];
 
         $validScopes = [];
         $host = '';
         if (array_key_exists('scope', $src) && is_array($src['scope']) && !empty($src['scope'])) {
             $validScopes = $src['scope'];
         } else {
-            $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
+            $ep = Utils\Config\Metadata::getDefaultEndpoint($state['Source']['SingleSignOnService']);
             $host = parse_url($ep['Location'], PHP_URL_HOST) ?? '';
         }
 
         foreach ($this->scopedAttributes as $attribute) {
-            if (!isset($request['Attributes'][$attribute])) {
+            if (!isset($state['Attributes'][$attribute])) {
                 continue;
             }
 
-            $values = $request['Attributes'][$attribute];
+            $values = $state['Attributes'][$attribute];
             $newValues = [];
             foreach ($values as $value) {
                 @list(, $scope) = explode('@', $value, 2);
@@ -83,9 +83,9 @@ class FilterScopes extends ProcessingFilter
 
             if (empty($newValues)) {
                 Logger::warning("No suitable values for attribute '$attribute', removing it.");
-                unset($request['Attributes'][$attribute]); // remove empty attributes
+                unset($state['Attributes'][$attribute]); // remove empty attributes
             } else {
-                $request['Attributes'][$attribute] = $newValues;
+                $state['Attributes'][$attribute] = $newValues;
             }
         }
     }
