@@ -64,7 +64,7 @@ All these parameters override the equivalent option from the configuration.
 
 `saml:NameIDPolicy`
 :   The format of the NameID we request from the IdP: an array in the form of
-    `[ 'Format' => the format, 'allowcreate' => true or false ]`.
+    `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
     Set to `false` instead of an array to omit sending any specific NameIDPolicy
     in the AuthnRequest.
 
@@ -108,8 +108,8 @@ Options
     * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 
 `assertion.encryption`
-:   Whether assertions received by this SP must be encrypted. The default value is `FALSE`.
-    If this option is set to `TRUE`, unencrypted assertions will be rejected.
+:   Whether assertions received by this SP must be encrypted. The default value is `false`.
+    If this option is set to `true`, unencrypted assertions will be rejected.
 
 :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
 
@@ -117,7 +117,9 @@ Options
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
-    documentation.
+    documentation. Note that this list is taken at face value, so it's not useful to list
+    anything here that the SP auth source does not actually support (unless the URLs point
+    externally).
 
 `AssertionConsumerServiceIndex`
 :   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
@@ -209,8 +211,8 @@ Options
 :   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
 `disable_scoping`
-:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
-     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
+:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `false`.
+     When set to `true`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
      interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
 
 :   Note that this option also exists in the IdP remote configuration. An entry
@@ -262,7 +264,7 @@ Options
 
 `nameid.encryption`
 :   Whether NameIDs sent from this SP should be encrypted. The default
-    value is `FALSE`.
+    value is `false`.
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
@@ -317,13 +319,13 @@ Options
 
 
 `redirect.sign`
-:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
+:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `false`.
     If set, the `AuthnRequestsSigned` attribute of the `SPSSODescriptor` element in SAML 2.0 metadata will contain its value. This
     option takes precedence over the `sign.authnrequest` option in any metadata generated for this SP.
 
 
 `redirect.validate`
-:   Whether logout requests and logout responses received by this SP should be validated. The default is `FALSE`.
+:   Whether logout requests and logout responses received by this SP should be validated. The default is `false`.
 
 
 `RegistrationInfo`
@@ -338,7 +340,7 @@ Options
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
     If this option isn't specified, the SP private key and certificate will be used.
 
-:   This option can also be set to `FALSE`, in which case no client certificate will be used.
+:   This option can also be set to `false`, in which case no client certificate will be used.
 
 `saml.SOAPClient.privatekey_pass`
 :   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
@@ -395,7 +397,7 @@ Options
 
 
 `WantAssertionsSigned`
-:   Whether assertions received by this SP must be signed. The default value is `FALSE`.
+:   Whether assertions received by this SP must be signed. The default value is `false`.
     The value set for this option will be used to set the `WantAssertionsSigned` attribute of the `SPSSODescriptor` element in
     the exported SAML 2.0 metadata.
 
@@ -435,8 +437,8 @@ Here we will list some examples for this authentication source.
         'certificate' => 'example.crt',
         'privatekey' => 'example.key',
         'privatekey_pass' => 'secretpassword',
-        'redirect.sign' => TRUE,
-        'redirect.validate' => TRUE,
+        'redirect.sign' => true,
+        'redirect.validate' => true,
     ],
 
 
@@ -470,7 +472,6 @@ Here we will list some examples for this authentication source.
         'saml:SP',
         'acs.Bindings' => [
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
         ],
     ],
 

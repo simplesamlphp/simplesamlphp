@@ -46,7 +46,7 @@ Array of arrays
     'AssertionConsumerService' => [
         [
             'index' => 1,
-            'isDefault' => TRUE,
+            'isDefault' => true,
             'Location' => 'https://sp.example.org/ACS',
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
         ],

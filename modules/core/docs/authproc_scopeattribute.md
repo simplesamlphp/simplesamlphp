@@ -38,12 +38,12 @@ Example
 
 Add eduPersonScopedAffiliation based on eduPersonAffiliation and eduPersonPrincipalName.
 
-    10 => array(
+    10 => [
         'class' => 'core:ScopeAttribute',
         'scopeAttribute' => 'eduPersonPrincipalName',
         'sourceAttribute' => 'eduPersonAffiliation',
         'targetAttribute' => 'eduPersonScopedAffiliation',
-    ),
+    ],
 
 With values being `eduPersonPrincipalName`: `jdoe@example.edu` and
 `eduPersonAffiliation`: `faculty`, this will result in the attribute

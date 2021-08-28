@@ -1,5 +1,5 @@
 `core:AttributeAlter`
-==========
+=====================
 
 This filter can be used to substitute and replace different parts of the attribute values based on regular expressions.
 It can also be used to create new attributes based on existing values, or even to remove blacklisted values from

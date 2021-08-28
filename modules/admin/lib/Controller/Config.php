@@ -346,25 +346,36 @@ class Config
         // perform some sanity checks on the configured certificates
         if ($this->config->getBoolean('enable.saml20-idp', false) !== false) {
             $handler = MetaDataStorageHandler::getMetadataHandler();
-            $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
-            $metadata_config = Configuration::loadfromArray($metadata);
-            $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
-            $public = $cryptoUtils->loadPublicKey($metadata_config, false);
+            try {
+                $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
+            } catch (\Exception $e) {
+                 $matrix[] = [
+                     'required' => 'required',
+                     'descr' => Translate::noop('Hosted IdP metadata present'),
+                     'enabled'=>false
+                 ];
+            }
 
-            $matrix[] = [
-                'required' => 'required',
-                'descr' => Translate::noop('Matching key-pair for signing assertions'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
-            ];
+            if(isset($metadata)) {
+                $metadata_config = Configuration::loadfromArray($metadata);
+                $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
+                $public = $cryptoUtils->loadPublicKey($metadata_config, false);
 
-            $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
-            if ($private !== null) {
-                $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
                 $matrix[] = [
                     'required' => 'required',
-                    'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
+                    'descr' => Translate::noop('Matching key-pair for signing assertions'),
                     'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
                 ];
+
+                $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
+                if ($private !== null) {
+                    $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
+                    $matrix[] = [
+                        'required' => 'required',
+                        'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
+                        'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
+                    ];
+                }
             }
         }
 

@@ -63,7 +63,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string[]
      */
-    private array $protocols = [];
+    private array $protocols = [Constants::NS_SAMLP];
 
 
     /**
@@ -138,7 +138,7 @@ class SP extends \SimpleSAML\Auth\Source
         ];
 
         // add NameIDPolicy
-        if ($this->metadata->hasValue('NameIDValue')) {
+        if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getValue('NameIDPolicy');
             if (is_array($format)) {
                 $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getString(
@@ -329,6 +329,11 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getACSEndpoints(): array
     {
+        // If a list of endpoints is specified in config, take that at face value
+        if ($this->metadata->hasValue('AssertionConsumerService')) {
+            return $this->metadata->getArray('AssertionConsumerService');
+        }
+
         $endpoints = [];
         $default = [
             Constants::BINDING_HTTP_POST,
@@ -347,18 +352,12 @@ class SP extends \SimpleSAML\Auth\Source
                         'Binding' => Constants::BINDING_HTTP_POST,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 case Constants::BINDING_HOK_SSO:
                     $acs = [
@@ -366,12 +365,10 @@ class SP extends \SimpleSAML\Auth\Source
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                         'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 default:
-                    $acs = [];
+                    Logger::warning('Unknown acs.Binding value specified, ignoring: ' . $service);
+                    continue 2;
             }
             $acs['index'] = $index;
             $endpoints[] = $acs;
@@ -397,7 +394,8 @@ class SP extends \SimpleSAML\Auth\Source
                 Constants::BINDING_SOAP,
             ]
         );
-        $location = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $location = $this->metadata->getString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
         foreach ($bindings as $binding) {

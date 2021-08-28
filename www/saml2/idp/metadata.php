@@ -173,6 +173,10 @@ try {
         }
     }
 
+    if ($idpmeta->hasValue('saml:Extensions')) {
+        $metaArray['saml:Extensions'] = $idpmeta->getArray('saml:Extensions');
+    }
+
     if ($idpmeta->hasValue('UIInfo')) {
         $metaArray['UIInfo'] = $idpmeta->getArray('UIInfo');
     }

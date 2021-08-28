@@ -186,10 +186,10 @@ class Login
 
         // we're not logged in, start auth
         $url = Module::getModuleURL('core/login/' . $as);
-        $params = array(
+        $params = [
             'ErrorURL' => $url,
             'ReturnTo' => $url,
-        );
+	];
         return new RunnableResponse([$auth, 'login'], [$params]);
     }
 
