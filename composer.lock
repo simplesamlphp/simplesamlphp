@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f7b1c658a21ed99cf2359c5ac11761f",
+    "content-hash": "3454198cab8a477aa3697b77ec51f1a9",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -469,22 +469,22 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v0.2.6",
+            "version": "v0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "fbbf5df9f7d25c2049ad4681d64262abec095c40"
+                "reference": "d1d568ac85c133b7ec517cb00e7eda7f6a40e063"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/fbbf5df9f7d25c2049ad4681d64262abec095c40",
-                "reference": "fbbf5df9f7d25c2049ad4681d64262abec095c40",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/d1d568ac85c133b7ec517cb00e7eda7f6a40e063",
+                "reference": "d1d568ac85c133b7ec517cb00e7eda7f6a40e063",
                 "shasum": ""
             },
             "require": {
                 "ext-spl": "*",
                 "php": "^7.4 || ^8.0",
-                "webmozart/assert": "^1.9"
+                "webmozart/assert": "^1.10"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.0.5"
@@ -517,9 +517,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v0.2.6"
+                "source": "https://github.com/simplesamlphp/assert/tree/v0.2.7"
             },
-            "time": "2021-04-07T17:19:30+00:00"
+            "time": "2021-07-24T19:23:31+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -6482,5 +6482,5 @@
     "platform-dev": {
         "ext-curl": "*"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
