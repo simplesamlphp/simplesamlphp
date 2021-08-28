@@ -121,6 +121,33 @@ class SPTest extends ClearStateTestCase
 
 
     /**
+     * Create a SAML LogoutRequest using \SimpleSAML\Module\saml\Auth\Source\SP
+     *
+     * @param array $state The state array to use in the test. This is an array of the parameters described in section
+     * 2 of https://simplesamlphp.org/docs/development/saml:sp
+     *
+     * @return \SAML2\LogoutRequest The LogoutRequest generated.
+     */
+    private function createLogoutRequest(array $state = []): LogoutRequest
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'];
+        $as = new SpTester($info, $config);
+
+        /** @var \SAML2\LogoutRequest $lr */
+        $lr = null;
+        try {
+            $as->startSLO2($state);
+            $this->assertTrue(false, 'Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            $lr = $r['lr'];
+        }
+        return $lr;
+    }
+
+
+    /**
      * Test generating an AuthnRequest
      * @test
      */
@@ -393,5 +420,42 @@ class SPTest extends ClearStateTestCase
         $_SERVER['REQUEST_URI'] = 'https://l.example.com/';
         $as = new SpTester($info, $config);
         $as->authenticate($state);
+    }
+
+
+    /**
+     * Test setting a logout-extension
+     */
+    public function testLogoutExtensions(): void
+    {
+        $entityId = "https://example.com";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $c = [
+            'metadata.sources' => [
+                ["type" => "xml", "xml" => $xml],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+
+        $state = [
+            'saml:logout:IdP' => 'https://engine.surfconext.nl/authentication/idp/metadata',
+            'saml:logout:NameID' => 'someone@example.com',
+            'saml:logout:SessionIndex' => 'abc123',
+            'saml:logout:Extensions' => [
+                'some extention'
+            ]
+        ];
+
+        $lr = $this->createLogoutRequest($state);
+
+        /** @var \SAML2\XML\samlp\Extensions $extentions */
+        $extensions = $lr->getExtensions();
+        $this->assertcount(1, $state['saml:logout:Extionsions']);
+
+        $xml = $lr->toSignedXML();
+
+        /** @var \DOMNode[] $q */
+        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:Extentions');
+        $this->assertCount(1, $q);
     }
 }
