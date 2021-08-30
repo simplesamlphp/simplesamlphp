@@ -698,6 +698,8 @@ class SAMLBuilder
     private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data, ?string $keyName = null): void
     {
         Assert::oneOf($use, ['encryption', 'signing']);
+        Assert::nullOrNotWhitespaceOnly($keyName);
+        Assert::regex('/^[a-zA-Z_][\w.-]*$/', $keyName, "KeyName should be valid for usage in an ID atttribute, e.g. not start with a digit, no whitespace.");
 
         $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data, $keyName);
         $keyDescriptor->setUse($use);
