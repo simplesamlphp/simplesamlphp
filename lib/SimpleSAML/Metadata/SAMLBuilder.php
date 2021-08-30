@@ -721,14 +721,20 @@ class SAMLBuilder
                 continue;
             }
 
-            //make sure the key is unique, even when used for multiple entities
-            $keyName = '_' . sha1( $this->entityDescriptor->getEntityID() . $key['keyName']) ?? null;
+            // Make sure the key is unique, even when used for multiple entities
+            $keyName = null;
+            if ($key['keyName'] !== null) {
+                $configUtils = new Utils\Config();
+                $salt = $configUtils->getSecretSalt();
+                $entityId = $this->entityDescriptor->getEntityID();
+                $keyName = '_' . hash('sha256', $salt . $entityId . $key['keyName'], false);
+            }
 
             if (!isset($key['signing']) || $key['signing'] === true) {
-                $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate'], $keyName );
+                $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate'], $keyName);
             }
             if (!isset($key['encryption']) || $key['encryption'] === true) {
-                $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate'], $keyName );
+                $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate'], $keyName);
             }
         }
 

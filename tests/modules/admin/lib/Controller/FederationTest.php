@@ -72,7 +72,8 @@ class FederationTest extends TestCase
                 'enable.saml20-idp' => true,
                 'enable.adfs-idp' => true,
                 'language.default' => 'fr',
-                'language.get_language_function' => [$this, 'getLanguage']
+                'language.get_language_function' => [$this, 'getLanguage'],
+                'secretsalt' => 'abc123',
             ],
             '[ARRAY]',
             'simplesaml'
