@@ -37,7 +37,9 @@ if (!($source instanceof Module\saml\Auth\Source\SP)) {
 $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 $metaArray20 = $source->getHostedMetadata();
-$store = StoreFactory::getInstance();
+
+$storeType = $config->getString('store.type', 'phpsession');
+$store = StoreFactory::getInstance($storeType);
 
 $metaBuilder = new Metadata\SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP20($metaArray20, $source->getSupportedProtocols());

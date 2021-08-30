@@ -10,6 +10,7 @@ use SAML2\HTTPArtifact;
 use SAML2\Response;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Logger;
@@ -159,7 +160,10 @@ $foundAuthnStatement = false;
 
 foreach ($assertions as $assertion) {
     // check for duplicate assertion (replay attack)
-    $store = StoreFactory::getInstance();
+    $config = Configuration::getInstance();
+    $storeType = $config->getString('store.type', 'phpsession');
+
+    $store = StoreFactory::getInstance($storeType);
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {

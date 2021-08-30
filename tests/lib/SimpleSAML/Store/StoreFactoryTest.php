@@ -31,8 +31,11 @@ class StoreFactoryTest extends TestCase
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
         /** @var false $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
 
         $this->assertFalse($store);
     }
@@ -43,10 +46,15 @@ class StoreFactoryTest extends TestCase
      */
     public function phpSessionStore(): void
     {
-        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([
+            'store.type' => 'phpsession',
+        ], '[ARRAY]', 'simplesaml');
+
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
 
         /** @var false $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
 
         $this->assertFalse($store);
     }
@@ -61,7 +69,10 @@ class StoreFactoryTest extends TestCase
             'store.type'                    => 'memcache',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+
+        $store = StoreFactory::getInstance($storeType);
 
         $this->assertInstanceOf(Store\MemcacheStore::class, $store);
     }
@@ -77,8 +88,11 @@ class StoreFactoryTest extends TestCase
             'store.redis.prefix'            => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+
         /** @psalm-var \SimpleSAML\Store\RedisStore $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
         $store->redis = $this->getMockBuilder(Client::class)
                                    ->setMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
                                    ->disableOriginalConstructor()
@@ -99,7 +113,10 @@ class StoreFactoryTest extends TestCase
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+
+        $store = StoreFactory::getInstance($storeType);
 
         $this->assertInstanceOf(Store\SQLStore::class, $store);
     }
@@ -116,7 +133,10 @@ class StoreFactoryTest extends TestCase
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+
+        $store = StoreFactory::getInstance($storeType);
 
         $this->assertInstanceOf(Store\SQLStore::class, $store);
     }
@@ -134,7 +154,10 @@ class StoreFactoryTest extends TestCase
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+
+        StoreFactory::getInstance($storeType);
     }
 
 
@@ -143,8 +166,10 @@ class StoreFactoryTest extends TestCase
     protected function tearDown(): void
     {
         $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
         /** @var \SimpleSAML\Store\StoreInterface $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
 
         $this->clearInstance($config, Configuration::class);
         $this->clearInstance($store, StoreFactory::class);

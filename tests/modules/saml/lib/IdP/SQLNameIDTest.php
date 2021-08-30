@@ -46,8 +46,9 @@ class SQLNameIDTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $this->addGetDelete();
         $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
         /** @var \SimpleSAML\Store\StoreInterface $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
         $this->clearInstance($config, Configuration::class);
         $this->clearInstance($store, StoreFactory::class);
     }
@@ -62,13 +63,16 @@ class SQLNameIDTest extends TestCase
         Configuration::loadFromArray([
             'store.type'                    => 'memcache',
         ], '[ARRAY]', 'simplesaml');
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+        $store = StoreFactory::getInstance($storeType);
         $this->assertInstanceOf(Store\MemcacheStore::class, $store);
         $this->expectException(Error\Exception::class);
         $this->addGetDelete();
         $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
         /** @var \SimpleSAML\Store\StoreInterface $store */
-        $store = StoreFactory::getInstance();
+        $store = StoreFactory::getInstance($storeType);
         $this->clearInstance($config, Configuration::class);
         $this->clearInstance($store, StoreFactory::class);
     }

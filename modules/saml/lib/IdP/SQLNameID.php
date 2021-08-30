@@ -158,12 +158,16 @@ class SQLNameID
      */
     private static function getStore(): Store\SQLStore
     {
-        $store = StoreFactory::getInstance();
-        if (!($store instanceof Store\SQLStore)) {
-            throw new Error\Exception(
-                'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.'
-            );
-        }
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
+        Assert::isInstanceOf(
+            $store,
+            Store\SQLStore::class,
+            'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.',
+            Error\Exception::class
+        );
 
         return $store;
     }

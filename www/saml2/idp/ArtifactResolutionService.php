@@ -35,7 +35,8 @@ if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
     throw new Error\Error('NOACCESS');
 }
 
-$store = StoreFactory::getInstance();
+$storeType = $config->getString('store.type', 'phpsession');
+$store = StoreFactory::getInstance($storeType);
 if ($store === false) {
     throw new Exception('Unable to send artifact without a datastore configured.');
 }

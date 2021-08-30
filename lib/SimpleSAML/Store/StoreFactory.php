@@ -30,18 +30,16 @@ abstract class StoreFactory implements Utils\ClearableState
     /**
      * Retrieve our singleton instance.
      *
+     * @param string $storeType The type of store we need to instantiate
      * @return \SimpleSAML\Store\StoreInterface|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function getInstance()
+    public static function getInstance(string $storeType)
     {
         if (self::$instance !== null) {
             return self::$instance;
         }
-
-        $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
 
         switch ($storeType) {
             case 'phpsession':
@@ -62,6 +60,7 @@ abstract class StoreFactory implements Utils\ClearableState
                 try {
                     $className = Module::resolveClass($storeType, 'StoreInterface');
                 } catch (Exception $e) {
+                    $config = Configuration::getInstance();
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
                     throw new Error\CriticalConfigurationError(

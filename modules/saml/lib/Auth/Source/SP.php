@@ -386,7 +386,10 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getSLOEndpoints(): array
     {
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getArray(
             'SingleLogoutServiceBinding',
             [

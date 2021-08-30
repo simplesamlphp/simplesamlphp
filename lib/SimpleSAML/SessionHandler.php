@@ -135,7 +135,10 @@ abstract class SessionHandler
      */
     private static function createSessionHandler(): void
     {
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {

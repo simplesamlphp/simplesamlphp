@@ -8,6 +8,7 @@ use Exception;
 use PDO;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
@@ -209,7 +210,10 @@ class LogoutStore
             $sessionIndex = $randomUtils->generateID();
         }
 
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             // We don't have a datastore.
             return;
@@ -245,7 +249,10 @@ class LogoutStore
      */
     public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
-        $store = StoreFactory::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             // We don't have a datastore
             return false;
