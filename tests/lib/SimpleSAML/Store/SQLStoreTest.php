@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;

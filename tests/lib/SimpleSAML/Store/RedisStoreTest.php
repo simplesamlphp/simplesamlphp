@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Predis\Client;
-use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;

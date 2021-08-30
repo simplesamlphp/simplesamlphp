@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Predis\Client;
 use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
@@ -62,6 +64,26 @@ class StoreFactoryTest extends TestCase
         $store = StoreFactory::getInstance();
 
         $this->assertInstanceOf(Store\MemcacheStore::class, $store);
+    }
+
+
+    /**
+     * @test
+     */
+    public function redisStore(): void
+    {
+        Configuration::loadFromArray([
+            'store.type'                    => 'redis',
+            'store.redis.prefix'            => 'phpunit_',
+        ], '[ARRAY]', 'simplesaml');
+
+        $store = StoreFactory::getInstance();
+        $store->redis = $this->getMockBuilder(Client::class)
+                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
+                                   ->disableOriginalConstructor()
+                                   ->getMock();
+
+        $this->assertInstanceOf(Store\RedisStore::class, $store);
     }
 
 
