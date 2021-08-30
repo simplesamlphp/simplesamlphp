@@ -9,7 +9,7 @@ use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
-use SimpleSAML\Store;
+use SimpleSAML\Store;;
 use SimpleSAML\Utils;
 
 /**
@@ -23,9 +23,9 @@ class LogoutStore
     /**
      * Create logout table in SQL, if it is missing.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLSTore $store  The datastore.
      */
-    private static function createLogoutTable(Store\SQL $store): void
+    private static function createLogoutTable(Store\SQLStore $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
@@ -208,9 +208,9 @@ class LogoutStore
     /**
      * Clean the logout table of expired entries.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
-    private static function cleanLogoutStore(Store\SQL $store): void
+    private static function cleanLogoutStore(Store\SQLStore $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -225,7 +225,7 @@ class LogoutStore
     /**
      * Register a session in the SQL datastore.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param string $sessionIndex  The SessionIndex of the user.
@@ -233,7 +233,7 @@ class LogoutStore
      * @param string $sessionId
      */
     private static function addSessionSQL(
-        Store\SQL $store,
+        Store\SQLStore $store,
         string $authId,
         string $nameId,
         string $sessionIndex,
@@ -264,12 +264,12 @@ class LogoutStore
     /**
      * Retrieve sessions from the SQL datastore.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsSQL(Store\SQL $store, string $authId, string $nameId): array
+    private static function getSessionsSQL(Store\SQLStore $store, string $authId, string $nameId): array
     {
         self::createLogoutTable($store);
 
@@ -298,13 +298,13 @@ class LogoutStore
     /**
      * Retrieve all session IDs from a key-value store.
      *
-     * @param \SimpleSAML\Store $store  The datastore.
+     * @param \SimpleSAML\Store\StoreInterface $store  The datastore.
      * @param string $nameId  The hash of the users NameID.
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
     private static function getSessionsStore(
-        Store $store,
+        StoreInterface $store,
         string $nameId,
         array $sessionIndexes
     ): array {
@@ -372,7 +372,7 @@ class LogoutStore
         /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
-        if ($store instanceof Store\SQL) {
+        if ($store instanceof Store\SQLStore) {
             self::addSessionSQL($store, $authId, $strNameId, $sessionIndex, $expire, $sessionId);
         } else {
             $store->set('saml.LogoutStore', $strNameId . ':' . $sessionIndex, $sessionId, $expire);
@@ -411,7 +411,7 @@ class LogoutStore
         // Remove reference
         unset($sessionIndex);
 
-        if ($store instanceof Store\SQL) {
+        if ($store instanceof Store\SQLStore) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
         } else {
             if (empty($sessionIndexes)) {

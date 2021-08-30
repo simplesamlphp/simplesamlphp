@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Store;
 
+use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use SimpleSAML\Store;
 
 /**
  * A data store using a RDBMS to keep the data.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-class SQL extends Store
+class SQLStore implements StoreInterface
 {
     /**
      * The PDO object for our database.
@@ -62,7 +62,7 @@ class SQL extends Store
         try {
             $this->pdo = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $e) {
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

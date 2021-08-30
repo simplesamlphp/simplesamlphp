@@ -7,7 +7,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
-use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\VarExporter\VarExporter;
@@ -37,7 +37,7 @@ if (!($source instanceof Module\saml\Auth\Source\SP)) {
 $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 $metaArray20 = $source->getHostedMetadata();
-$store = Store::getInstance();
+$store = StoreFactory::getInstance();
 
 $metaBuilder = new Metadata\SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP20($metaArray20, $source->getSupportedProtocols());

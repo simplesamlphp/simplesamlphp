@@ -6,14 +6,14 @@ namespace SimpleSAML\Store;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Store;
+use SimpleSAML\Memcache;
 
 /**
  * A memcache based data store.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-class Memcache extends Store
+class MemcacheStore implements StoreInterface
 {
     /**
      * This variable contains the session name prefix.
@@ -42,7 +42,7 @@ class Memcache extends Store
      */
     public function get(string $type, string $key)
     {
-        return \SimpleSAML\Memcache::get($this->prefix . '.' . $type . '.' . $key);
+        return Memcache::get($this->prefix . '.' . $type . '.' . $key);
     }
 
 
@@ -62,7 +62,7 @@ class Memcache extends Store
             $expire = 0;
         }
 
-        \SimpleSAML\Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
+        Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
     }
 
 
@@ -74,6 +74,6 @@ class Memcache extends Store
      */
     public function delete(string $type, string $key): void
     {
-        \SimpleSAML\Memcache::delete($this->prefix . '.' . $type . '.' . $key);
+        Memcache::delete($this->prefix . '.' . $type . '.' . $key);
     }
 }

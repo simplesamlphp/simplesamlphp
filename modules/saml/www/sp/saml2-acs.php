@@ -14,7 +14,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
-use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
@@ -159,7 +159,7 @@ $foundAuthnStatement = false;
 
 foreach ($assertions as $assertion) {
     // check for duplicate assertion (replay attack)
-    $store = Store::getInstance();
+    $store = StoreFactory::getInstance();
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {
