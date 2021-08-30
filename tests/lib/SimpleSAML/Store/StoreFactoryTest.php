@@ -20,7 +20,7 @@ use SimpleSAML\Store\StoreFactory;
  * @covers \SimpleSAML\Store\StoreFactory
  * @package simplesamlphp/simplesamlphp
  */
-class StoreTest extends TestCase
+class StoreFactoryTest extends TestCase
 {
     /**
      * @test
@@ -124,11 +124,12 @@ class StoreTest extends TestCase
         $store = StoreFactory::getInstance();
 
         $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, StoreFactory::class);
     }
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreFactory $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void

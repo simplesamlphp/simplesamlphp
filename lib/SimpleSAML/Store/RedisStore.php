@@ -14,7 +14,7 @@ use SimpleSAML\Error;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class RedisStore extends StoreInterface
+class RedisStore implements StoreInterface
 {
     /** @var \Predis\Client */
     public Client $redis;

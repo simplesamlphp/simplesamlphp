@@ -9,6 +9,7 @@ use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Store\StoreInterface;
 
 /**
  * Tests for the SQL store.
@@ -17,11 +18,14 @@ use SimpleSAML\Store\StoreFactory;
  * code.
  *
  * @covers \SimpleSAML\Store\SQLStore
- *
  * @package simplesamlphp/simplesamlphp
  */
-class SQLTest extends TestCase
+class SQLStoreTest extends TestCase
 {
+    /** @var \SimpleSAML\Store\StoreInterface $store */
+    private StoreInterface $store;
+
+
     /**
      */
     protected function setUp(): void
@@ -31,6 +35,8 @@ class SQLTest extends TestCase
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
+
+        $this->store = new Store\SQLStore();
     }
 
 
@@ -39,9 +45,7 @@ class SQLTest extends TestCase
      */
     public function SQLInstance(): void
     {
-        $store = StoreFactory::getInstance();
-
-        $this->assertInstanceOf(Store\SQL::class, $store);
+        $this->assertInstanceOf(Store\SQLStore::class, $this->store);
     }
 
 
@@ -50,10 +54,7 @@ class SQLTest extends TestCase
      */
     public function kvstoreTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $version = $store->getTableVersion('kvstore');
+        $version = $this->store->getTableVersion('kvstore');
 
         $this->assertEquals(2, $version);
     }
@@ -64,10 +65,7 @@ class SQLTest extends TestCase
      */
     public function newTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $version = $store->getTableVersion('test');
+        $version = $this->store->getTableVersion('test');
 
         $this->assertEquals(0, $version);
     }
@@ -78,11 +76,8 @@ class SQLTest extends TestCase
      */
     public function testSetTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $store->setTableVersion('kvstore', 2);
-        $version = $store->getTableVersion('kvstore');
+        $this->store->setTableVersion('kvstore', 2);
+        $version = $this->store->getTableVersion('kvstore');
 
         $this->assertEquals(2, $version);
     }
@@ -93,10 +88,7 @@ class SQLTest extends TestCase
      */
     public function testGetEmptyData(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $value = $store->get('test', 'foo');
+        $value = $this->store->get('test', 'foo');
 
         $this->assertNull($value);
     }
@@ -107,11 +99,8 @@ class SQLTest extends TestCase
      */
     public function testInsertData(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $store->set('test', 'foo', 'bar');
-        $value = $store->get('test', 'foo');
+        $this->store->set('test', 'foo', 'bar');
+        $value = $this->store->get('test', 'foo');
 
         $this->assertEquals('bar', $value);
     }
@@ -122,12 +111,9 @@ class SQLTest extends TestCase
      */
     public function testOverwriteData(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $store->set('test', 'foo', 'bar');
-        $store->set('test', 'foo', 'baz');
-        $value = $store->get('test', 'foo');
+        $this->store->set('test', 'foo', 'bar');
+        $this->store->set('test', 'foo', 'baz');
+        $value = $this->store->get('test', 'foo');
 
         $this->assertEquals('baz', $value);
     }
@@ -138,12 +124,9 @@ class SQLTest extends TestCase
      */
     public function testDeleteData(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $store->set('test', 'foo', 'bar');
-        $store->delete('test', 'foo');
-        $value = $store->get('test', 'foo');
+        $this->store->set('test', 'foo', 'bar');
+        $this->store->delete('test', 'foo');
+        $value = $this->store->get('test', 'foo');
 
         $this->assertNull($value);
     }
@@ -154,13 +137,10 @@ class SQLTest extends TestCase
      */
     public function testVeryLongKey(): void
     {
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
         $key = str_repeat('x', 100);
-        $store->set('test', $key, 'bar');
-        $store->delete('test', $key);
-        $value = $store->get('test', $key);
+        $this->store->set('test', $key, 'bar');
+        $this->store->delete('test', $key);
+        $value = $this->store->get('test', $key);
 
         $this->assertNull($value);
     }
@@ -170,30 +150,20 @@ class SQLTest extends TestCase
      */
     protected function tearDown(): void
     {
-        $config = Configuration::getInstance();
-
-        /** @var \SimpleSAML\Store\SQLStore $store */
-        $store = StoreFactory::getInstance();
-
-        $this->clearInstance($config, Configuration::class);
-//        $this->clearInstance($store, Store\SQL::class);
+        $this->clearInstance(Configuration::getInstance(), Configuration::class);
     }
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
+     * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      */
-    protected function clearInstance($service, string $className): void
+    protected function clearInstance(Configuration $service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        if ($service instanceof Configuration) {
-            $reflectedInstance->setValue($service, []);
-        } else {
-            $reflectedInstance->setValue($service, null);
-        }
+        $reflectedInstance->setValue($service, []);
         $reflectedInstance->setAccessible(false);
     }
 }

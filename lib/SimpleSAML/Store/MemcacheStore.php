@@ -26,7 +26,7 @@ class MemcacheStore implements StoreInterface
     /**
      * This function implements the constructor for this class. It loads the Memcache configuration.
      */
-    protected function __construct()
+    public function __construct()
     {
         $config = Configuration::getInstance();
         $this->prefix = $config->getString('memcache_store.prefix', 'simpleSAMLphp');

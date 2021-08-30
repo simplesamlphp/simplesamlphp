@@ -8,13 +8,14 @@ use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 /**
  * Base class for data stores.
  *
  * @package simplesamlphp/simplesamlphp
  */
-abstract class StoreFactory
+abstract class StoreFactory implements Utils\ClearableState
 {
     /**
      * Our singleton instance.
@@ -33,7 +34,7 @@ abstract class StoreFactory
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function getInstance(): StoreInterface
+    public static function getInstance()
     {
         if (self::$instance !== null) {
             return self::$instance;
@@ -48,13 +49,13 @@ abstract class StoreFactory
                 self::$instance = false;
                 break;
             case 'memcache':
-                self::$instance = new Store\Memcache();
+                self::$instance = new MemcacheStore();
                 break;
             case 'sql':
-                self::$instance = new Store\SQL();
+                self::$instance = new SQLStore();
                 break;
             case 'redis':
-                self::$instance = new Store\Redis();
+                self::$instance = new RedisStore();
                 break;
             default:
                 // datastore from module
@@ -74,5 +75,14 @@ abstract class StoreFactory
         }
 
         return self::$instance;
+    }
+
+
+    /**
+     * Clear any SSP specific state, such as SSP environmental variables or cached internals.
+     */
+    public static function clearInternalState(): void
+    {
+        self::$instance = null;
     }
 }

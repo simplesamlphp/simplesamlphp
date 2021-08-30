@@ -9,7 +9,9 @@ use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
-use SimpleSAML\Store;;
+use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Store\StoreInterface;
 use SimpleSAML\Utils;
 
 /**
@@ -23,7 +25,7 @@ class LogoutStore
     /**
      * Create logout table in SQL, if it is missing.
      *
-     * @param \SimpleSAML\Store\SQLSTore $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
     private static function createLogoutTable(Store\SQLStore $store): void
     {
@@ -354,7 +356,7 @@ class LogoutStore
             $sessionIndex = $randomUtils->generateID();
         }
 
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
         if ($store === false) {
             // We don't have a datastore.
             return;
@@ -390,7 +392,7 @@ class LogoutStore
      */
     public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
         if ($store === false) {
             // We don't have a datastore
             return false;
