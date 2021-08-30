@@ -17,7 +17,7 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @covers \SimpleSAML\Store\Redis
+ * @covers \SimpleSAML\Store\RedisStore
  * @package simplesamlphp/simplesamlphp
  */
 class RedisTest extends TestCase
@@ -25,8 +25,8 @@ class RedisTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject */
     protected MockObject $mocked_redis;
 
-    /** @var \SimpleSAML\Store\Redis */
-    protected Store\Redis $redis;
+    /** @var \SimpleSAML\Store\RedisStore */
+    protected Store\RedisStore $redis;
 
     /** @var array */
     protected array $config;
@@ -63,7 +63,7 @@ class RedisTest extends TestCase
                            ->will($this->returnCallback($nop));
 
         /** @var \Predis\Client $this->mocked_redis */
-        $this->redis = new Store\Redis($this->mocked_redis);
+        $this->redis = new Store\RedisStore($this->mocked_redis);
     }
 
 
@@ -118,13 +118,13 @@ class RedisTest extends TestCase
             'store.redis.prefix' => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        /** @var \SimpleSAML\Store\Redis $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\RedisStore $store */
+        $store = StoreFactory::getInstance();
 
-        $this->assertInstanceOf(Store\Redis::class, $store);
+        $this->assertInstanceOf(Store\RedisStore::class, $store);
 
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+//        $this->clearInstance($store, Store::class);
     }
 
 
@@ -139,13 +139,13 @@ class RedisTest extends TestCase
             'store.redis.password' => 'password',
         ], '[ARRAY]', 'simplesaml');
 
-        /** @var \SimpleSAML\Store\Redis $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\RedisStore $store */
+        $store = StoreFactory::getInstance();
 
-        $this->assertInstanceOf(Store\Redis::class, $store);
+        $this->assertInstanceOf(Store\RedisStore::class, $store);
 
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+//        $this->clearInstance($store, Store::class);
     }
 
 
@@ -221,7 +221,7 @@ class RedisTest extends TestCase
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void

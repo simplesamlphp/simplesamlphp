@@ -10,6 +10,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\saml\IdP\SQLNameID;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 /**
  * Test for the SQLNameID helper class.
@@ -45,10 +46,10 @@ class SQLNameIDTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $this->addGetDelete();
         $config = Configuration::getInstance();
-        /** @var \SimpleSAML\Store $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\StoreInterface $store */
+        $store = StoreFactory::getInstance();
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->clearInstance($store, Store\SQLStore::class);
     }
 
 
@@ -61,15 +62,15 @@ class SQLNameIDTest extends TestCase
         Configuration::loadFromArray([
             'store.type'                    => 'memcache',
         ], '[ARRAY]', 'simplesaml');
-        $store = Store::getInstance();
-        $this->assertInstanceOf(Store\Memcache::class, $store);
+        $store = StoreFactory::getInstance();
+        $this->assertInstanceOf(Store\MemcacheStote::class, $store);
         $this->expectException(Error\Exception::class);
         $this->addGetDelete();
         $config = Configuration::getInstance();
-        /** @var \SimpleSAML\Store $store */
+        /** @var \SimpleSAML\Store\StoreInterface $store */
         $store = Store::getInstance();
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->clearInstance($store, Store\MemcacheStore::class);
     }
 
 
@@ -98,7 +99,7 @@ class SQLNameIDTest extends TestCase
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void

@@ -9,15 +9,15 @@ use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 /**
- * Tests for the Store abstract class.
+ * Tests for the StoreFactory class.
  *
  * For the full copyright and license information, please view the LICENSE file that was
  * distributed with this source code.
  *
- * @covers \SimpleSAML\Store
- *
+ * @covers \SimpleSAML\Store\StoreFactory
  * @package simplesamlphp/simplesamlphp
  */
 class StoreTest extends TestCase
@@ -30,7 +30,7 @@ class StoreTest extends TestCase
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         /** @var false $store */
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
         $this->assertFalse($store);
     }
@@ -44,7 +44,7 @@ class StoreTest extends TestCase
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         /** @var false $store */
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
         $this->assertFalse($store);
     }
@@ -59,9 +59,9 @@ class StoreTest extends TestCase
             'store.type'                    => 'memcache',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
-        $this->assertInstanceOf(Store\Memcache::class, $store);
+        $this->assertInstanceOf(Store\MemcacheStore::class, $store);
     }
 
 
@@ -76,9 +76,9 @@ class StoreTest extends TestCase
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
-        $this->assertInstanceOf(Store\SQL::class, $store);
+        $this->assertInstanceOf(Store\SQLStore::class, $store);
     }
 
 
@@ -88,14 +88,14 @@ class StoreTest extends TestCase
     public function pathStore(): void
     {
         Configuration::loadFromArray([
-            'store.type'                    => '\SimpleSAML\Store\SQL',
+            'store.type'                    => '\SimpleSAML\Store\SQLStore',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
-        $this->assertInstanceOf(Store\SQL::class, $store);
+        $this->assertInstanceOf(Store\SQLStore::class, $store);
     }
 
 
@@ -111,7 +111,7 @@ class StoreTest extends TestCase
             'store.sql.prefix'              => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        Store::getInstance();
+        StoreFactory::getInstance();
     }
 
 
@@ -120,16 +120,15 @@ class StoreTest extends TestCase
     protected function tearDown(): void
     {
         $config = Configuration::getInstance();
-        /** @var \SimpleSAML\Store $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\StoreInterface $store */
+        $store = StoreFactory::getInstance();
 
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
     }
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void

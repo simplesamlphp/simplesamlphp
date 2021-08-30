@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 /**
  * Tests for the SQL store.
@@ -15,7 +16,7 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @covers \SimpleSAML\Store\SQL
+ * @covers \SimpleSAML\Store\SQLStore
  *
  * @package simplesamlphp/simplesamlphp
  */
@@ -38,7 +39,7 @@ class SQLTest extends TestCase
      */
     public function SQLInstance(): void
     {
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance();
 
         $this->assertInstanceOf(Store\SQL::class, $store);
     }
@@ -49,8 +50,8 @@ class SQLTest extends TestCase
      */
     public function kvstoreTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $version = $store->getTableVersion('kvstore');
 
@@ -63,8 +64,8 @@ class SQLTest extends TestCase
      */
     public function newTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $version = $store->getTableVersion('test');
 
@@ -77,8 +78,8 @@ class SQLTest extends TestCase
      */
     public function testSetTableVersion(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $store->setTableVersion('kvstore', 2);
         $version = $store->getTableVersion('kvstore');
@@ -92,8 +93,8 @@ class SQLTest extends TestCase
      */
     public function testGetEmptyData(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $value = $store->get('test', 'foo');
 
@@ -106,8 +107,8 @@ class SQLTest extends TestCase
      */
     public function testInsertData(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $store->set('test', 'foo', 'bar');
         $value = $store->get('test', 'foo');
@@ -121,8 +122,8 @@ class SQLTest extends TestCase
      */
     public function testOverwriteData(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $store->set('test', 'foo', 'bar');
         $store->set('test', 'foo', 'baz');
@@ -137,8 +138,8 @@ class SQLTest extends TestCase
      */
     public function testDeleteData(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $store->set('test', 'foo', 'bar');
         $store->delete('test', 'foo');
@@ -153,8 +154,8 @@ class SQLTest extends TestCase
      */
     public function testVeryLongKey(): void
     {
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $key = str_repeat('x', 100);
         $store->set('test', $key, 'bar');
@@ -171,16 +172,16 @@ class SQLTest extends TestCase
     {
         $config = Configuration::getInstance();
 
-        /** @var \SimpleSAML\Store\SQL $store */
-        $store = Store::getInstance();
+        /** @var \SimpleSAML\Store\SQLStore $store */
+        $store = StoreFactory::getInstance();
 
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+//        $this->clearInstance($store, Store\SQL::class);
     }
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void
