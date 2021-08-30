@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
-use SimpleSAML\Store\StoreInterface;
 
 /**
  * Tests for the SQL store.
@@ -21,8 +20,8 @@ use SimpleSAML\Store\StoreInterface;
  */
 class SQLStoreTest extends TestCase
 {
-    /** @var \SimpleSAML\Store\StoreInterface $store */
-    private StoreInterface $store;
+    /** @var \SimpleSAML\Store\SQLStore $store */
+    private Store\SQLStore $store;
 
 
     /**

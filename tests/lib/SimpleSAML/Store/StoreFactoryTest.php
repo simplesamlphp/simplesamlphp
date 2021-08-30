@@ -77,6 +77,7 @@ class StoreFactoryTest extends TestCase
             'store.redis.prefix'            => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
+        /** @psalm-var \SimpleSAML\Store\RedisStore $store */
         $store = StoreFactory::getInstance();
         $store->redis = $this->getMockBuilder(Client::class)
                                    ->setMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
@@ -151,7 +152,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreFactory $service
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
      */
     protected function clearInstance($service, string $className): void
