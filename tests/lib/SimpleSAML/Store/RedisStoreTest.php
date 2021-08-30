@@ -112,7 +112,6 @@ class RedisStoreTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
 
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
-        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -128,7 +127,6 @@ class RedisStoreTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
 
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
-        $this->clearInstance($config, Configuration::class);
     }
 
 
@@ -200,19 +198,5 @@ class RedisStoreTest extends TestCase
         $res = $this->store->get('test', 'key');
 
         $this->assertNull($res);
-    }
-
-
-    /**
-     * @param \SimpleSAML\Configuration $service
-     * @param class-string $className
-     */
-    protected function clearInstance(Configuration $service, string $className): void
-    {
-        $reflectedClass = new ReflectionClass($className);
-        $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, []);
-        $reflectedInstance->setAccessible(false);
     }
 }

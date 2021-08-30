@@ -144,26 +144,4 @@ class SQLStoreTest extends TestCase
 
         $this->assertNull($value);
     }
-
-
-    /**
-     */
-    protected function tearDown(): void
-    {
-        $this->clearInstance(Configuration::getInstance(), Configuration::class);
-    }
-
-
-    /**
-     * @param \SimpleSAML\Configuration $service
-     * @param class-string $className
-     */
-    protected function clearInstance(Configuration $service, string $className): void
-    {
-        $reflectedClass = new ReflectionClass($className);
-        $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, []);
-        $reflectedInstance->setAccessible(false);
-    }
 }

@@ -70,7 +70,7 @@ abstract class StoreFactory implements Utils\ClearableState
                         $c
                     );
                 }
-                /** @var \SimpleSAML\Store|false */
+                /** @var \SimpleSAML\Store\StoreInterface|false */
                 self::$instance = new $className();
         }
 
