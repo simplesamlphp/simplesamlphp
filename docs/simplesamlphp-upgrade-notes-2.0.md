@@ -15,18 +15,18 @@ Upgrade notes for SimpleSAMLphp 2.0
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
 - In compliancy with SAML2INT, AuthnRequests that are signed will have their signature validated unless specifically disabled by setting `validate.authnrequest` to `false`.  If unset, or set to true, signatures will be validated and requests not passing validation will be refused.
 - The following classes have been migrated to non-static:
-  + lib/SimpleSAML\Utils\Arrays
-  + lib/SimpleSAML\Utils\Attributes
-  + lib/SimpleSAML\Utils\Auth
-  + lib/SimpleSAML\Utils\Config
-  + lib/SimpleSAML\Utils\Crypto
-  + lib/SimpleSAML\Utils\EMail
-  + lib/SimpleSAML\Utils\HTTP
-  + lib/SimpleSAML\Utils\Net
-  + lib/SimpleSAML\Utils\Random
-  + lib/SimpleSAML\Utils\System
-  + lib/SimpleSAML\Utils\Time
-  + lib/SimpleSAML\Utils\XML
+  + \SimpleSAML\Utils\Arrays
+  + \SimpleSAML\Utils\Attributes
+  + \SimpleSAML\Utils\Auth
+  + \SimpleSAML\Utils\Config
+  + \SimpleSAML\Utils\Crypto
+  + \SimpleSAML\Utils\EMail
+  + \SimpleSAML\Utils\HTTP
+  + \SimpleSAML\Utils\Net
+  + \SimpleSAML\Utils\Random
+  + \SimpleSAML\Utils\System
+  + \SimpleSAML\Utils\Time
+  + \SimpleSAML\Utils\XML
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 
