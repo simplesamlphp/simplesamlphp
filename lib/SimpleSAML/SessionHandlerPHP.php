@@ -138,19 +138,26 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function newSessionId(): string
     {
-        // generate new (secure) session id
-        $sid_length = (int) ini_get('session.sid_length');
-        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        if ($this->hasSessionCookie()) {
+            session_regenerate_id(false);
+            $session_id = session_id();
+        } else {
+            // generate new (secure) session id
+            $sid_length = (int) ini_get('session.sid_length');
+            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
-        if (($sid_length * $sid_bits_per_char) < 128) {
-            Logger::warning("Unsafe defaults used for sessionId generation!");
+            if (($sid_length * $sid_bits_per_char) < 128) {
+                Logger::warning("Unsafe defaults used for sessionId generation!");
+            }
+
+            $sessionId = session_create_id();
         }
-        $sessionId = session_create_id();
 
         if (!$sessionId) {
             Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
+
         Session::createSession($sessionId);
         return $sessionId;
     }
@@ -165,7 +172,8 @@ class SessionHandlerPHP extends SessionHandler
     public function getCookieSessionId(): ?string
     {
         if (!$this->hasSessionCookie()) {
-            return null; // there's no session cookie, can't return ID
+            // there's no session cookie, can't return ID
+            return null;
         }
 
         if (headers_sent()) {
