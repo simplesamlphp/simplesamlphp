@@ -19,6 +19,7 @@ Released TBD
   * Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
   * Fix unsolicited response with no RelayState (#1473)
   * Fix statistics being logged despire a configured loglevel that excludes statistics.
+  * Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
