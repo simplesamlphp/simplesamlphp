@@ -1278,18 +1278,16 @@ class SPTest extends ClearStateTestCase
     }
 
    /**
-     * Test setting a logout-extension
-     */
-    public function testLogoutExtensions(): void
+    * Test sending a LogoutRequest
+    */
+    public function testLogoutRequest(): void
     {
         $nameId = new NameID();
         $nameId->setValue('someone@example.com');
 
         $dom = \SAML2\DOMDocumentFactory::create();
-        $republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
-        $republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
-        $republishRequest->appendChild($republishTarget);
-        $ext = [new \SAML2\XML\Chunk($republishRequest)];
+        $extension = $dom->createElementNS('urn:some:namespace', 'MyLogoutExtension');
+        $extChunk = [new \SAML2\XML\Chunk($extension)];
 
         $entityId = "https://engine.surfconext.nl/authentication/idp/metadata";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
@@ -1304,7 +1302,7 @@ class SPTest extends ClearStateTestCase
             'saml:logout:IdP' => $entityId,
             'saml:logout:NameID' => $nameId,
             'saml:logout:SessionIndex' => 'abc123',
-            'saml:logout:Extensions' => $ext,
+            'saml:logout:Extensions' => $extChunk,
         ];
 
         $lr = $this->createLogoutRequest($state);
@@ -1316,7 +1314,14 @@ class SPTest extends ClearStateTestCase
         $xml = $lr->toSignedXML();
 
         /** @var \DOMNode[] $q */
+        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID');
+        $this->assertCount(1, $q);
+        $this->assertEquals('someone@example.com', $q[0]->nodeValue);
+
         $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions');
         $this->assertCount(1, $q);
+        $this->assertCount(1, $q[0]->childNodes);
+        $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);
+        $this->assertEquals('urn:some:namespace', $q[0]->firstChild->namespaceURI);
     }
 }
