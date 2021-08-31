@@ -8,7 +8,9 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
+use SAML2\LogoutRequest;
 use SAML2\Utils;
+use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
@@ -1280,7 +1282,16 @@ class SPTest extends ClearStateTestCase
      */
     public function testLogoutExtensions(): void
     {
-        $entityId = "https://example.com";
+        $nameId = new NameID();
+        $nameId->setValue('someone@example.com');
+
+        $dom = \SAML2\DOMDocumentFactory::create();
+        $republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
+        $republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
+        $republishRequest->appendChild($republishTarget);
+        $ext = [new \SAML2\XML\Chunk($republishRequest)];
+
+        $entityId = "https://engine.surfconext.nl/authentication/idp/metadata";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
         $c = [
             'metadata.sources' => [
@@ -1290,24 +1301,22 @@ class SPTest extends ClearStateTestCase
         Configuration::loadFromArray($c, '', 'simplesaml');
 
         $state = [
-            'saml:logout:IdP' => 'https://engine.surfconext.nl/authentication/idp/metadata',
-            'saml:logout:NameID' => 'someone@example.com',
+            'saml:logout:IdP' => $entityId,
+            'saml:logout:NameID' => $nameId,
             'saml:logout:SessionIndex' => 'abc123',
-            'saml:logout:Extensions' => [
-                'some extention'
-            ]
+            'saml:logout:Extensions' => $ext,
         ];
 
         $lr = $this->createLogoutRequest($state);
 
         /** @var \SAML2\XML\samlp\Extensions $extentions */
         $extensions = $lr->getExtensions();
-        $this->assertcount(1, $state['saml:logout:Extionsions']);
+        $this->assertcount(1, $state['saml:logout:Extensions']);
 
         $xml = $lr->toSignedXML();
 
         /** @var \DOMNode[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:Extentions');
+        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions');
         $this->assertCount(1, $q);
     }
 }
