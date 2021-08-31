@@ -117,6 +117,7 @@ xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 </RoleDescriptor>
 <IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
 <SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
+<SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/logout/\"/>
 </IDPSSODescriptor>
 </EntityDescriptor>
 ";

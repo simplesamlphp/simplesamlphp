@@ -50,7 +50,11 @@ All these parameters override the equivalent option from the configuration.
 
 
 `saml:Extensions`
-:   The samlp:Extensions that will be sent in the login request.
+:   The samlp:Extensions (an XML chunk) that will be sent in the login request.
+
+
+`saml:logout:Extensions`
+:   The samlp:Extensions (an XML chunk) that will be sent in the logout request.
 
 
 `saml:NameID`

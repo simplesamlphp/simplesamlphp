@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants;
+use SAML2\LogoutRequest;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -616,7 +617,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $b = Binding::getBinding($dst['Binding']);
 
-        $this->sendSAML2AuthnRequest($state, $b, $ar);
+        $this->sendSAML2AuthnRequest($b, $ar);
 
         Assert::true(false);
     }
@@ -627,13 +628,27 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * This function does not return.
      *
-     * @param array &$state  The state array.
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\AuthnRequest  $ar  The authentication request.
      */
-    public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar): void
+    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
     {
         $binding->send($ar);
+        Assert::true(false);
+    }
+
+
+    /**
+     * Function to actually send the logout request.
+     *
+     * This function does not return.
+     *
+     * @param \SAML2\Binding $binding  The binding.
+     * @param \SAML2\LogoutRequest  $ar  The logout request.
+     */
+    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): void
+    {
+        $binding->send($lr);
         Assert::true(false);
     }
 
@@ -979,6 +994,12 @@ class SP extends \SimpleSAML\Auth\Source
         $lr->setRelayState($id);
         $lr->setDestination($endpoint['Location']);
 
+        if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
+            $lr->setExtensions($state['saml:logout:Extensions']);
+        } elseif ($this->metadata->getArray('saml:logout:Extensions', null) !== null) {
+            $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
+        }
+
         $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
             $encryptNameId = $this->metadata->getBoolean('nameid.encryption', false);
@@ -988,9 +1009,8 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         $b = Binding::getBinding($endpoint['Binding']);
-        $b->send($lr);
 
-        Assert::true(false);
+        $this->sendSAML2LogoutRequest($b, $lr);
     }
 
 

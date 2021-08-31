@@ -8,7 +8,9 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
+use SAML2\LogoutRequest;
 use SAML2\Utils;
+use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
@@ -133,6 +135,33 @@ class SPTest extends ClearStateTestCase
             $ar = $r['ar'];
         }
         return $ar;
+    }
+
+
+    /**
+     * Create a SAML LogoutRequest using \SimpleSAML\Module\saml\Auth\Source\SP
+     *
+     * @param array $state The state array to use in the test. This is an array of the parameters described in section
+     * 2 of https://simplesamlphp.org/docs/development/saml:sp
+     *
+     * @return \SAML2\LogoutRequest The LogoutRequest generated.
+     */
+    private function createLogoutRequest(array $state = []): LogoutRequest
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'];
+        $as = new SpTester($info, $config);
+
+        /** @var \SAML2\LogoutRequest $lr */
+        $lr = null;
+        try {
+            $as->startSLO2($state);
+            $this->assertTrue(false, 'Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            $lr = $r['lr'];
+        }
+        return $lr;
     }
 
 
@@ -1248,4 +1277,51 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
 
+   /**
+    * Test sending a LogoutRequest
+    */
+    public function testLogoutRequest(): void
+    {
+        $nameId = new NameID();
+        $nameId->setValue('someone@example.com');
+
+        $dom = \SAML2\DOMDocumentFactory::create();
+        $extension = $dom->createElementNS('urn:some:namespace', 'MyLogoutExtension');
+        $extChunk = [new \SAML2\XML\Chunk($extension)];
+
+        $entityId = "https://engine.surfconext.nl/authentication/idp/metadata";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $c = [
+            'metadata.sources' => [
+                ["type" => "xml", "xml" => $xml],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+
+        $state = [
+            'saml:logout:IdP' => $entityId,
+            'saml:logout:NameID' => $nameId,
+            'saml:logout:SessionIndex' => 'abc123',
+            'saml:logout:Extensions' => $extChunk,
+        ];
+
+        $lr = $this->createLogoutRequest($state);
+
+        /** @var \SAML2\XML\samlp\Extensions $extentions */
+        $extensions = $lr->getExtensions();
+        $this->assertcount(1, $state['saml:logout:Extensions']);
+
+        $xml = $lr->toSignedXML();
+
+        /** @var \DOMNode[] $q */
+        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID');
+        $this->assertCount(1, $q);
+        $this->assertEquals('someone@example.com', $q[0]->nodeValue);
+
+        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions');
+        $this->assertCount(1, $q);
+        $this->assertCount(1, $q[0]->childNodes);
+        $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);
+        $this->assertEquals('urn:some:namespace', $q[0]->firstChild->namespaceURI);
+    }
 }
