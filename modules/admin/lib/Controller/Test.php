@@ -180,10 +180,7 @@ class Test
             "NameId" => [$nameId->getValue()],
         ];
         if ($nameId->getFormat() !== null) {
-            $format = $translator->getPreferredTranslation(
-                $translator->getTag('{status:subject_format}') ?? ['en' => 'Format']
-            );
-            $list[$format] = [$nameId->getFormat()];
+            $list['Format'] = [$nameId->getFormat()];
         }
         if ($nameId->getNameQualifier() !== null) {
             $list['NameQualifier'] = [$nameId->getNameQualifier()];
@@ -327,10 +324,7 @@ class Test
             'NameID' => [$nameID->getValue()],
         ];
         if ($nameID->getFormat() !== null) {
-            $format = $t->getPreferredTranslation(
-                $t->getTag('{status:subject_format}') ?? ['en' => 'Format']
-            );
-            $eptid[$format] = [$nameID->getFormat()];
+            $eptid['Format'] = [$nameID->getFormat()];
         }
         if ($nameID->getNameQualifier() !== null) {
             $eptid['NameQualifier'] = [$nameID->getNameQualifier()];

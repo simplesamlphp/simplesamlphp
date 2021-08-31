@@ -41,13 +41,13 @@ class LanguageAdaptor extends Auth\ProcessingFilter
      *
      * Add or replace existing attributes with the configured values.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         $attrlang = null;
         if (array_key_exists($this->langattr, $attributes)) {
@@ -68,7 +68,7 @@ class LanguageAdaptor extends Auth\ProcessingFilter
             Language::setLanguageCookie($attrlang);
         } elseif (!isset($attrlang) && isset($lang)) {
             // Language set in cookie, but not in attribute. Update attribute
-            $request['Attributes'][$this->langattr] = [$lang];
+            $state['Attributes'][$this->langattr] = [$lang];
         }
     }
 }

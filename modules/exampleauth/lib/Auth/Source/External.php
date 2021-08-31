@@ -195,7 +195,7 @@ class External extends Auth\Source
          * First we need to restore the $state-array. We should have the identifier for
          * it in the 'State' request parameter.
          */
-        if (!$request->has('State')) {
+        if (!$request->query->has('State')) {
             throw new Error\BadRequest('Missing "State" parameter.');
         }
 

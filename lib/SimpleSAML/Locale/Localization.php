@@ -206,7 +206,7 @@ class Localization
         }
 
         // Locale for default language missing even, error out
-        $error = "Localization directory missing/broken for langcode '$langcode' and domain '$domain'";
+        $error = "Localization directory '$langPath' missing/broken for langcode '$langcode' and domain '$domain'";
         Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
         throw new \Exception($error);
     }

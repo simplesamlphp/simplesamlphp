@@ -56,21 +56,19 @@ $idpmdcfg = $state['saml:sp:IdPMetadata'];
 /** @var \SimpleSAML\Configuration $idpmdcfg */
 $idpmd = $idpmdcfg->toArray();
 if (array_key_exists('name', $idpmd)) {
-    $template->data['idp_name'] = $translator->getPreferredTranslation($idpmd['name']);
+    $template->data['idp_name'] = $idpmd['name'];
 } elseif (array_key_exists('OrganizationDisplayName', $idpmd)) {
-    $template->data['idp_name'] = $translator->getPreferredTranslation($idpmd['OrganizationDisplayName']);
-} else {
-    $template->data['idp_name'] = $idpmd['entityid'];
+    $template->data['idp_name'] = $idpmd['OrganizationDisplayName'];
 }
+$template->data['idp_entityid'] = $idpmd['entityid'];
 
 // get the name of the SP
 $spmd = $state['SPMetadata'];
 if (array_key_exists('name', $spmd)) {
-    $template->data['sp_name'] = $translator->getPreferredTranslation($spmd['name']);
+    $template->data['sp_name'] = $spmd['name'];
 } elseif (array_key_exists('OrganizationDisplayName', $spmd)) {
-    $template->data['sp_name'] = $translator->getPreferredTranslation($spmd['OrganizationDisplayName']);
-} else {
-    $template->data['sp_name'] = $spmd['entityid'];
+    $template->data['sp_name'] = $spmd['OrganizationDisplayName'];
 }
+$template->data['sp_entityid'] = $spmd['entityid'];
 
 $template->send();

@@ -99,15 +99,15 @@ class AttributeAlter extends Auth\ProcessingFilter
      *
      * Modify existing attributes with the configured values.
      *
-     * @param array &$request The current request.
+     * @param array &$state The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         // get attributes from request
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {

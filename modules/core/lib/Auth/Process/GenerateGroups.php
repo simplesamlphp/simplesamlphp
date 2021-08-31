@@ -56,14 +56,14 @@ class GenerateGroups extends Auth\ProcessingFilter
     /**
      * Apply filter to add groups attribute.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         $groups = [];
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         $realm = self::getRealm($attributes);
         if ($realm !== null) {

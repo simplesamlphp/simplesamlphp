@@ -115,15 +115,15 @@ class AttributeMap extends Auth\ProcessingFilter
     /**
      * Apply filter to rename attributes.
      *
-     * @param array &$request The current request.
+     * @param array &$state The current request.
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         $mapped_attributes = [];
 
-        foreach ($request['Attributes'] as $name => $values) {
+        foreach ($state['Attributes'] as $name => $values) {
             if (array_key_exists($name, $this->map)) {
                 if (!is_array($this->map[$name])) {
                     if ($this->duplicate) {
@@ -146,6 +146,6 @@ class AttributeMap extends Auth\ProcessingFilter
             }
         }
 
-        $request['Attributes'] = $mapped_attributes;
+        $state['Attributes'] = $mapped_attributes;
     }
 }
