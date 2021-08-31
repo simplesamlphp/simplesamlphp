@@ -351,11 +351,9 @@ class Template extends Response
 
         // setup directories & namespaces
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
-        $subdirs = scandir($themeDir);
+        $subdirs = @scandir($themeDir);
         if (empty($subdirs)) {
-            // no subdirectories in the theme directory, nothing to do here
-            // this is probably wrong, log a message
-            Logger::warning('Empty theme directory for theme "' . $this->theme['name'] . '".');
+            Logger::warning('Theme directory for theme "' . $this->theme['name'] . '" (' . $themeDir . ') is not readable or is empty.');
             return [];
         }
 
