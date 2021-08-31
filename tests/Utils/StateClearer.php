@@ -22,7 +22,7 @@ class StateClearer
     private array $clearableState = [
         'SimpleSAML\Configuration',
         'SimpleSAML\Metadata\MetaDataStorageHandler',
-        'SimpleSAML\Store',
+        'SimpleSAML\Store\StoreFactory',
         'SimpleSAML\Session'
     ];
 

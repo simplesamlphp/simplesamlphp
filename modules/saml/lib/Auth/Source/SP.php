@@ -18,6 +18,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 
 class SP extends \SimpleSAML\Auth\Source
@@ -385,7 +386,10 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getSLOEndpoints(): array
     {
-        $store = Store::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getArray(
             'SingleLogoutServiceBinding',
             [
@@ -398,7 +402,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $endpoints = [];
         foreach ($bindings as $binding) {
-            if ($binding == Constants::BINDING_SOAP && !($store instanceof Store\SQL)) {
+            if ($binding == Constants::BINDING_SOAP && !($store instanceof Store\SQLStore)) {
                 // we cannot properly support SOAP logout
                 continue;
             }

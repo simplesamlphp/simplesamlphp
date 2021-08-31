@@ -8,14 +8,13 @@ use Predis\Client;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Store;
 
 /**
  * A data store using Redis to keep the data.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-class Redis extends Store
+class RedisStore implements StoreInterface
 {
     /** @var \Predis\Client */
     public Client $redis;
@@ -64,9 +63,7 @@ class Redis extends Store
      */
     public function __destruct()
     {
-        if (method_exists($this->redis, 'disconnect')) {
-            $this->redis->disconnect();
-        }
+        $this->redis->disconnect();
     }
 
 

@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\IdP;
 
+use Exception;
 use PDO;
 use PDOStatement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Database;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
@@ -89,8 +92,8 @@ class SQLNameID
         if ($store === null) {
             try {
                 self::createTable($table, $config);
-            } catch (\Exception $e) {
-                \SimpleSAML\Logger::debug('SQL persistent NameID table already exists.');
+            } catch (Exception $e) {
+                Logger::debug('SQL persistent NameID table already exists.');
             }
         } elseif ($store->getTableVersion('saml_PersistentNameID') !== self::TABLE_VERSION) {
             self::createTable($table);
@@ -151,16 +154,20 @@ class SQLNameID
     /**
      * Retrieve the SQL datastore.
      *
-     * @return \SimpleSAML\Store\SQL  SQL datastore.
+     * @return \SimpleSAML\Store\SQLStore  SQL datastore.
      */
-    private static function getStore(): Store\SQL
+    private static function getStore(): Store\SQLStore
     {
-        $store = Store::getInstance();
-        if (!($store instanceof Store\SQL)) {
-            throw new Error\Exception(
-                'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.'
-            );
-        }
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
+        Assert::isInstanceOf(
+            $store,
+            Store\SQLStore::class,
+            'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.',
+            Error\Exception::class
+        );
 
         return $store;
     }

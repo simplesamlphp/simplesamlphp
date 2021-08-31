@@ -15,18 +15,18 @@ Upgrade notes for SimpleSAMLphp 2.0
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
 - In compliancy with SAML2INT, AuthnRequests that are signed will have their signature validated unless specifically disabled by setting `validate.authnrequest` to `false`.  If unset, or set to true, signatures will be validated and requests not passing validation will be refused.
 - The following classes have been migrated to non-static:
-  + lib/SimpleSAMLphp\Utils\Arrays
-  + lib/SimpleSAMLphp\Utils\Attributes
-  + lib/SimpleSAMLphp\Utils\Auth
-  + lib/SimpleSAMLphp\Utils\Config
-  + lib/SimpleSAMLphp\Utils\Crypto
-  + lib/SimpleSAMLphp\Utils\EMail
-  + lib/SimpleSAMLphp\Utils\HTTP
-  + lib/SimpleSAMLphp\Utils\Net
-  + lib/SimpleSAMLphp\Utils\Random
-  + lib/SimpleSAMLphp\Utils\System
-  + lib/SimpleSAMLphp\Utils\Time
-  + lib/SimpleSAMLphp\Utils\XML
+  + \SimpleSAML\Utils\Arrays
+  + \SimpleSAML\Utils\Attributes
+  + \SimpleSAML\Utils\Auth
+  + \SimpleSAML\Utils\Config
+  + \SimpleSAML\Utils\Crypto
+  + \SimpleSAML\Utils\EMail
+  + \SimpleSAML\Utils\HTTP
+  + \SimpleSAML\Utils\Net
+  + \SimpleSAML\Utils\Random
+  + \SimpleSAML\Utils\System
+  + \SimpleSAML\Utils\Time
+  + \SimpleSAML\Utils\XML
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 
@@ -38,3 +38,14 @@ Upgrade notes for SimpleSAMLphp 2.0
   // New style
   $arrayUtils = new \SimpleSAML\Utils\Arrays();
   $x = $arrayUtils->arrayize($someVar);
+
+- Database table schemes have been flattened. Upgrade paths are:
+  - Generic KVStore:  1.16+ > 2.0
+  - Logout store:     1.18+ > 2.0
+
+- Data stores have been refactored:
+  - lib/SimpleSAML/Store.php has been renamed to lib/SimpleSAML/Store/StoreFactory.php and is now solely a Factory-class
+  - All store implementations now implement \SimpleSAML\Store\StoreInterface:
+    - lib/SimpleSAML/Store/SQL.php has been renamed to lib/SimpleSAML/Store/SQLStore.php
+    - lib/SimpleSAML/Store/Memcache.php has been renamed to lib/SimpleSAML/Store/MemcacheStore.php
+    - lib/SimpleSAML/Store/Redis.php has been renamed to lib/SimpleSAML/Store/RedisStore.php
