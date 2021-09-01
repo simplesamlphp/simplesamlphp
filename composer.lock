@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfcef4c0cdc98aa53be61111a1605eac",
+    "content-hash": "65a24fb5cb434466209b6443087746dd",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1711,16 +1711,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-oauth",
-            "version": "v0.9.2",
+            "version": "v0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-oauth.git",
-                "reference": "d14d7aca6e699ec12b3f4dd0128373faa1a2cc61"
+                "reference": "2a2433144dca408315e4ee163f9ab73a6110b2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-oauth/zipball/d14d7aca6e699ec12b3f4dd0128373faa1a2cc61",
-                "reference": "d14d7aca6e699ec12b3f4dd0128373faa1a2cc61",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-oauth/zipball/2a2433144dca408315e4ee163f9ab73a6110b2b1",
+                "reference": "2a2433144dca408315e4ee163f9ab73a6110b2b1",
                 "shasum": ""
             },
             "require": {
@@ -1731,6 +1731,11 @@
                 "simplesamlphp/simplesamlphp": "^1.17"
             },
             "type": "simplesamlphp-module",
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\Module\\oauth\\": "lib/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-2.1-or-later"
@@ -1755,7 +1760,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-oauth/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-oauth/"
             },
-            "time": "2020-04-29T19:37:43+00:00"
+            "time": "2021-08-31T18:55:00+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-preprodwarning",

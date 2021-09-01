@@ -62,6 +62,9 @@ Released 2021-04-29
 ### negotiate
   * Fix a bug that was breaking the module when using the old UI
 
+### oauth
+  * Fixed a namespace bug that was breaking the module
+
 ### statistics
   * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 

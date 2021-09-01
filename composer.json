@@ -68,7 +68,7 @@
         "simplesamlphp/simplesamlphp-module-memcachemonitor": "^0.9",
         "simplesamlphp/simplesamlphp-module-metarefresh": "^1.0",
         "simplesamlphp/simplesamlphp-module-negotiate": "^0.9",
-        "simplesamlphp/simplesamlphp-module-oauth": "^0.9",
+        "simplesamlphp/simplesamlphp-module-oauth": "^0.9.3",
         "simplesamlphp/simplesamlphp-module-preprodwarning": "^0.9",
         "simplesamlphp/simplesamlphp-module-radius": "^0.9",
         "simplesamlphp/simplesamlphp-module-riak": "^0.9",
