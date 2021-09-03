@@ -325,6 +325,13 @@ class Template extends Response
                 ['needs_context' => true]
             )
         );
+        // add a filter for preferred entity name
+        $twig->addFilter(
+            new TwigFilter(
+                'entityDisplayName',
+                [$this, 'getEntityDisplayName'],
+            )
+        );
 
         // add an asset() function
         $twig->addFunction(new TwigFunction('asset', [$this, 'asset']));
