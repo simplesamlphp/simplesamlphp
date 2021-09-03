@@ -94,10 +94,6 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
         $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
-
-        if (empty($this->discoURL) && Module::isModuleEnabled('discojuice')) {
-            $this->discoURL = Module::getModuleURL('discojuice/central.php');
-        }
     }
 
 
