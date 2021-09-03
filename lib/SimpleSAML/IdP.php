@@ -169,7 +169,7 @@ class IdP
 
     /**
      * Get SP name.
-     * Only usefd in IFrameLogout it seems.
+     * Only used in IFrameLogout it seems.
      * TODO: probably replace with template Template::getEntityDisplayName()
      *
      * @param string $assocId The association identifier.
