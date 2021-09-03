@@ -589,30 +589,12 @@ class IdPDisco
 
         $t = new Template($this->config, $templateFile, 'disco');
 
-        $fallbackLanguage = 'en';
-        $defaultLanguage = $this->config->getString('language.default', $fallbackLanguage);
-        $translator = $t->getTranslator();
-        $language = $translator->getLanguage()->getLanguage();
-        $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
-
         $newlist = [];
         foreach ($idpList as $entityid => $data) {
             $newlist[$entityid]['entityid'] = $entityid;
-            foreach ($tryLanguages as $lang) {
-                if ($name = $this->getEntityDisplayName($data, $lang)) {
-                    $newlist[$entityid]['name'] = $name;
-                    continue;
-                }
-            }
-            if (empty($newlist[$entityid]['name'])) {
-                $newlist[$entityid]['name'] = $entityid;
-            }
-            foreach ($tryLanguages as $lang) {
-                if (!empty($data['description'][$lang])) {
-                    $newlist[$entityid]['description'] = $data['description'][$lang];
-                    continue;
-                }
-            }
+            $newlist[$entityid]['name'] = $t->getEntityDisplayName($data);
+
+            $newlist[$entityid]['description'] = $t->getEntityPropertyTranslation('description', $data);
             if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
                 $newlist[$entityid]['iconurl'] = $httpUtils->resolveURL($data['icon']);
@@ -639,23 +621,5 @@ class IdPDisco
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
         $t->send();
-    }
-
-
-    /**
-     * @param array $idpData
-     * @param string $language
-     * @return string|null
-     */
-    private function getEntityDisplayName(array $idpData, string $language): ?string
-    {
-        if (isset($idpData['UIInfo']['DisplayName'][$language])) {
-            return $idpData['UIInfo']['DisplayName'][$language];
-        } elseif (isset($idpData['name'][$language])) {
-            return $idpData['name'][$language];
-        } elseif (isset($idpData['OrganizationDisplayName'][$language])) {
-            return $idpData['OrganizationDisplayName'][$language];
-        }
-        return null;
     }
 }

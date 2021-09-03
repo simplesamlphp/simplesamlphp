@@ -583,4 +583,47 @@ class Template extends Response
     {
         return $this->translator->getLanguage()->isLanguageRTL();
     }
+
+    /**
+     * Search through entity metadata to find the best display name for this
+     * entity. It will search in order for the current language, default
+     * language and fallback language for the DisplayName, name, OrganizationDisplayName
+     * and OrganizationName; the first one found is considered the best match.
+     * If nothing found, will return the entityId.
+     */
+    public function getEntityDisplayName(array $data): string
+    {
+        $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
+
+        foreach($tryLanguages as $language) {
+            if (isset($data['UIInfo']['DisplayName'][$language])) {
+                return $data['UIInfo']['DisplayName'][$language];
+            } elseif (isset($data['name'][$language])) {
+                return $data['name'][$language];
+            } elseif (isset($data['OrganizationDisplayName'][$language])) {
+                return $data['OrganizationDisplayName'][$language];
+            } elseif (isset($data['OrganizationName'][$language])) {
+                return $data['OrganizationName'][$language];
+            }
+        }
+        return $data['entityid'];
+    }
+
+    /**
+     * Search through entity metadata to find the best value for a
+     * specific property. It will search in order for the current language, default
+     * language and fallback language; if not found it returns null.
+     */
+    public function getEntityPropertyTranslation(string $property, array $data): ?string
+    {
+        $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
+
+        foreach($tryLanguages as $language) {
+            if (isset($data[$property][$language])) {
+                return $data[$property][$language];
+            }
+        }
+
+        return null;
+    }
 }

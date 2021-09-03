@@ -52,6 +52,13 @@ class Language
     private string $defaultLanguage;
 
     /**
+     * The final fallback language to use when no current or default available
+     *
+     * @var string
+     */
+    public const FALLBACKLANGUAGE = 'en';
+
+    /**
      * An array holding a list of languages that are written from right to left.
      *
      * @var string[]
@@ -146,7 +153,7 @@ class Language
     {
         $this->configuration = $configuration;
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $this->configuration->getString('language.default', 'en');
+        $this->defaultLanguage = $this->configuration->getString('language.default', self::FALLBACKLANGUAGE);
         $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
         $this->rtlLanguages = $this->configuration->getArray('language.rtl', []);
@@ -166,7 +173,7 @@ class Language
      */
     private function getInstalledLanguages(): array
     {
-        $configuredAvailableLanguages = $this->configuration->getArray('language.available', ['en']);
+        $configuredAvailableLanguages = $this->configuration->getArray('language.available', [self::FALLBACKLANGUAGE]);
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
             if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
@@ -377,6 +384,16 @@ class Language
         return in_array($this->getLanguage(), $this->rtlLanguages, true);
     }
 
+    /**
+     * Returns the list of languages in order of preference. This is useful
+     * to search e.g. an array of entity names for first the current language,
+     * if not present the default language, if not present the fallback language.
+     */
+    public function getPreferredLanguages(): array
+    {
+        $curLanguage = $this->getLanguage();
+        return array_unique([0 => $curLanguage, 1 => $this->defaultLanguage, 2 => self::FALLBACKLANGUAGE]);
+    }
 
     /**
      * Retrieve the user-selected language from a cookie.
@@ -386,7 +403,7 @@ class Language
     public static function getLanguageCookie(): ?string
     {
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', ['en']);
+        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
         $name = $config->getString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
@@ -399,7 +416,6 @@ class Language
         return null;
     }
 
-
     /**
      * This method will attempt to set the user-selected language in a cookie. It will do nothing if the language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
@@ -410,7 +426,7 @@ class Language
     {
         $language = strtolower($language);
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', ['en']);
+        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
 
         if (!in_array($language, $availableLanguages, true) || headers_sent()) {
             return;
