@@ -80,6 +80,9 @@ class TemplateTest extends TestCase
         $c = Configuration::loadFromArray(['language.default' => 'nl'], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
 
+        $name = $t->getEntityDisplayName($data);
+        $this->assertEquals('DisplayAnything', $name);
+
         $data['UIInfo']['DisplayName'] = ['de' => 'UIname', 'nl' => 'UIname NL'];
         $name = $t->getEntityDisplayName($data);
         $this->assertEquals('UIname NL', $name);
