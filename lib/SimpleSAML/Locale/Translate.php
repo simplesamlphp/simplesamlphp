@@ -393,20 +393,6 @@ class Translate
             return $translations[$context['currentLanguage']];
         }
 
-        // we don't have a translation for the current language, load alternative priorities
-        $sspcfg = Configuration::getInstance();
-        /** @psalm-var \SimpleSAML\Configuration $langcfg */
-        $langcfg = $sspcfg->getConfigItem('language');
-        $priorities = $langcfg->getArray('priorities', []);
-
-        if (!empty($priorities[$context['currentLanguage']])) {
-            foreach ($priorities[$context['currentLanguage']] as $lang) {
-                if (isset($translations[$lang])) {
-                    return $translations[$lang];
-                }
-            }
-        }
-
         // nothing we can use, return null so that we can set a default
         return null;
     }

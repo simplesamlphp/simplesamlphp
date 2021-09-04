@@ -49,3 +49,6 @@ Upgrade notes for SimpleSAMLphp 2.0
     - lib/SimpleSAML/Store/SQL.php has been renamed to lib/SimpleSAML/Store/SQLStore.php
     - lib/SimpleSAML/Store/Memcache.php has been renamed to lib/SimpleSAML/Store/MemcacheStore.php
     - lib/SimpleSAML/Store/Redis.php has been renamed to lib/SimpleSAML/Store/RedisStore.php
+
+- Configuration options removed:
+  - languages[priorities]
