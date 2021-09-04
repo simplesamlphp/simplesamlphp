@@ -254,12 +254,12 @@ class Test
                             if (!($elem->localName === 'NameID' && $elem->namespaceURI === Constants::NS_SAML)) {
                                 continue;
                             }
-                            $str .= $this->presentEptid($trans, new NameID($elem));
+                            $str .= $this->presentEptid($t->getTranslator(), new NameID($elem));
                             break; // we only support one NameID here
                         }
                         $str .= '</td></tr>';
                     } elseif (is_a($value[0], '\SAML2\XML\saml\NameID')) {
-                        $str .= $this->presentEptid($trans, $value[0]);
+                        $str .= $this->presentEptid($t->getTranslator(), $value[0]);
                         $str .= '</td></tr>';
                     } else {
                         $str .= '<td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
