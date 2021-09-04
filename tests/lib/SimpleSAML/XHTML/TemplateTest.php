@@ -90,7 +90,7 @@ class TemplateTest extends TestCase
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
 
-	$prop = 'description';
+        $prop = 'description';
         $data = [
             'entityid' => 'urn:example.org',
             $prop => ['nl' => 'Something', 'en' => 'Other lang', 'fr' => 'Another desc'],
@@ -103,11 +103,11 @@ class TemplateTest extends TestCase
         $name = $t->getEntityPropertyTranslation($prop, $data);
         $this->assertEquals('Something', $name);
 
-	unset($data[$prop]['nl']);
+        unset($data[$prop]['nl']);
         $name = $t->getEntityPropertyTranslation($prop, $data);
         $this->assertEquals('Other lang', $name);
 
-	unset($data[$prop]['en']);
+        unset($data[$prop]['en']);
         $name = $t->getEntityPropertyTranslation($prop, $data);
         $this->assertNull($name);
     }
