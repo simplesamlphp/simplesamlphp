@@ -1445,16 +1445,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-ldap",
-            "version": "v0.9.10",
+            "version": "v0.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-ldap.git",
-                "reference": "78f04cbe41bfb9dcbcdeff4b5f12e67c060e1a77"
+                "reference": "250285fa613022f1907ba076ac65cd1148521cfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-ldap/zipball/78f04cbe41bfb9dcbcdeff4b5f12e67c060e1a77",
-                "reference": "78f04cbe41bfb9dcbcdeff4b5f12e67c060e1a77",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-ldap/zipball/250285fa613022f1907ba076ac65cd1148521cfe",
+                "reference": "250285fa613022f1907ba076ac65cd1148521cfe",
                 "shasum": ""
             },
             "require": {
@@ -1497,7 +1497,7 @@
                 "issues": "https://github.com/tvdijen/simplesamlphp-module-ldap/issues",
                 "source": "https://github.com/tvdijen/simplesamlphp-module-ldap"
             },
-            "time": "2020-09-16T21:09:07+00:00"
+            "time": "2021-09-04T20:07:08+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-memcachemonitor",

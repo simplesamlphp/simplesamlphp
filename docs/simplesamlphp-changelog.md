@@ -34,6 +34,9 @@ Released TBD
 ### discopower
   * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
 
+### ldap
+  * Added search-filters to AttributeAddUserGroups and made the return-attribute configurable (v0.9.11)
+
 ### negotiate
   * Fixed a regression that rendered the new UI useless for this module (v0.9.11)
 
