@@ -66,7 +66,7 @@ if (isset($state['error'])) {
     $queryParams = ['AuthState' => $authStateId];
 }
 
-if ($organizations === null || !empty($organization)) {
+if ($organizations === null || $organization !== '') {
     if (!empty($username) || !empty($password)) {
         if ($source->getRememberUsernameEnabled()) {
             $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
