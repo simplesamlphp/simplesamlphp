@@ -28,6 +28,9 @@ Released TBD
   * Fix warning in FederationController (#1475)
   * Fix displayed metadata for hosted entities differing from actual metadata.
 
+### consent
+  * Add posibility to set the sameSite flag on cookies set by this module (v0.9.7)
+
 ### discopower
   * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
 
