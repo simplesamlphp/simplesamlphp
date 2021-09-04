@@ -174,7 +174,6 @@ class Test
      */
     private function getNameIDHTML(Template $t, NameID $nameId): string
     {
-        $translator = $t->getTranslator();
         $result = '';
         $list = [
             "NameId" => [$nameId->getValue()],
@@ -212,8 +211,7 @@ class Test
             . ' summary="attribute overview">';
         foreach ($attributes as $name => $value) {
             $nameraw = $name;
-            $trans = $t->getTranslator();
-            $name = $trans->getAttributeTranslation($parentStr . $nameraw);
+            $name = Translate::noop($parentStr . $nameraw);
             if (preg_match('/^child_/', $nameraw)) {
                 $parentName = preg_replace('/^child_/', '', $nameraw);
                 foreach ($value as $child) {
