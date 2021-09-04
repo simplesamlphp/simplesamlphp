@@ -48,27 +48,11 @@ if (isset($_POST['continue'])) {
 
 $cfg = \SimpleSAML\Configuration::getInstance();
 $template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.twig');
-$translator = $template->getTranslator();
 $template->data['AuthState'] = (string) $_REQUEST['AuthState'];
 
-// get the name of the IdP
 $idpmdcfg = $state['saml:sp:IdPMetadata'];
 /** @var \SimpleSAML\Configuration $idpmdcfg */
-$idpmd = $idpmdcfg->toArray();
-if (array_key_exists('name', $idpmd)) {
-    $template->data['idp_name'] = $idpmd['name'];
-} elseif (array_key_exists('OrganizationDisplayName', $idpmd)) {
-    $template->data['idp_name'] = $idpmd['OrganizationDisplayName'];
-}
-$template->data['idp_entityid'] = $idpmd['entityid'];
-
-// get the name of the SP
-$spmd = $state['SPMetadata'];
-if (array_key_exists('name', $spmd)) {
-    $template->data['sp_name'] = $spmd['name'];
-} elseif (array_key_exists('OrganizationDisplayName', $spmd)) {
-    $template->data['sp_name'] = $spmd['OrganizationDisplayName'];
-}
-$template->data['sp_entityid'] = $spmd['entityid'];
+$template->data['entity_idp'] = $idpmdcfg->toArray();
+$template->data['entity_sp'] = $state['SPMetadata'];
 
 $template->send();

@@ -149,29 +149,6 @@ class Federation
             }
         }
 
-        $translators = [
-            'name' => 'name_translated',
-            'descr' => 'descr_translated',
-            'OrganizationDisplayName' => 'organizationdisplayname_translated',
-        ];
-
-        foreach ($entries['remote'] as $key => $set) {
-            foreach ($set as $entityid => $entity) {
-                foreach ($translators as $old => $new) {
-                    if (isset($entity[$old][$language])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old][$language];
-                    } elseif (isset($entity[$old][$defaultLang])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLang];
-                    } elseif (isset($entity[$old]['en'])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old]['en'];
-                    } elseif (isset($entries['remote'][$key][$entityid][$old])) {
-                        $old_entry = $entries['remote'][$key][$entityid][$old];
-                        $entries['remote'][$key][$entityid][$new] = is_array($old_entry) ? $entityid : $old_entry;
-                    }
-                }
-            }
-        }
-
         $t->data = [
             'links' => [
                 [

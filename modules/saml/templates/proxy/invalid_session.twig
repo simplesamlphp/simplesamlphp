@@ -3,10 +3,10 @@
 
 {% block content %}
     <h2>{{ 'Invalid Identity Provider'|trans }}</h2>
-    <p>{{ 'You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?'|trans({"%IDP%": idp_name|translateFromArray|default(idp_entityid), "%SP%": sp_name|translateFromArray|default(sp_entityid)}, "app")|raw</p>
+    <p>{{ 'You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?'|trans({"%IDP%": entity_idp|entityDiplayName, "%SP%": entity_sp|entityDisplayName}, "app")|raw</p>
     <form method="post" action="?">
-        <input type="hidden" name="AuthState" value="{{ AuthState|escape('html') }}" />
-        <input type="submit" name="continue" value="{{ 'Yes, continue'|trans }}" />
-        <input type="submit" name="cancel" value="{{ 'No, cancel'|trans }}" />
+        <input type="hidden" name="AuthState" value="{{ AuthState|escape('html') }}">
+        <input type="submit" name="continue" value="{{ 'Yes, continue'|trans }}">
+        <input type="submit" name="cancel" value="{{ 'No, cancel'|trans }}">
     </form>
 {% endblock %}

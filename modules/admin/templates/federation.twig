@@ -16,10 +16,7 @@
           {%- block general %}
 
           <dl>
-            {%- if set.name is defined %}
-
-              <dt>{{ set.name|translateFromArray }}</dt>
-            {%- endif %}
+            <dt>{{ set|entityDisplayName }}</dt>
 
             <dd>EntityID: <code>{{ set.entityid }}</code></dd>
             {%- if set.deprecated is defined and set.deprecated %}
@@ -105,16 +102,7 @@
       {% for entityid, entity in set %}
 
         <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
-          {%- if entity.name_translated is defined -%}
-
-          {{ entity.name_translated }}
-          {%- elseif entity.organizationdisplayname_translated is defined -%}
-
-          {{ entity.organizationdisplayname_translated }}
-          {%- else -%}
-
-          {{ entity.entityid|escape('html') }}
-          {%- endif -%}
+            {{ entity | entityDisplayName }}
           </a>
           {% if entity.expire is defined %}
             {% if entity.expire < date().timestamp %}
