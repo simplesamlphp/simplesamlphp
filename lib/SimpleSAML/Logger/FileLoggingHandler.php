@@ -57,7 +57,11 @@ class FileLoggingHandler implements LoggingHandlerInterface
             $config->getString('logging.logfile', 'simplesamlphp.log');
 
         // Remove any non-printable characters before storing
-        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
+        $this->processname = preg_replace(
+            '/[\x00-\x1F\x7F\xA0]/u',
+            '',
+            $config->getString('logging.processname', 'SimpleSAMLphp')
+        );
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {

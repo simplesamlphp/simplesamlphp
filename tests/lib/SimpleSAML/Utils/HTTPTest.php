@@ -215,7 +215,10 @@ class HTTPTest extends ClearStateTestCase
             $httpUtils->getSelfURL()
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
-        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertEquals(
+            'https://example.com/simplesaml/module.php/module/file.php',
+            $httpUtils->getSelfURLNoQuery()
+        );
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
@@ -228,7 +231,10 @@ class HTTPTest extends ClearStateTestCase
             $httpUtils->getSelfURL()
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
-        $this->assertEquals('https://example.com/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertEquals(
+            'https://example.com/simplesaml/module.php/module/file.php',
+            $httpUtils->getSelfURLNoQuery()
+        );
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
@@ -255,7 +261,10 @@ class HTTPTest extends ClearStateTestCase
             $httpUtils->getSelfURL()
         );
         $this->assertEquals('http://www.example.org', $httpUtils->getSelfURLHost());
-        $this->assertEquals('http://www.example.org/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertEquals(
+            'http://www.example.org/simplesaml/module.php/module/file.php',
+            $httpUtils->getSelfURLNoQuery()
+        );
         $this->assertFalse($httpUtils->isHTTPS());
         $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
@@ -269,7 +278,10 @@ class HTTPTest extends ClearStateTestCase
             $httpUtils->getSelfURL()
         );
         $this->assertEquals('http://example.org:8080', $httpUtils->getSelfURLHost());
-        $this->assertEquals('http://example.org:8080/simplesaml/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertEquals(
+            'http://example.org:8080/simplesaml/module.php/module/file.php',
+            $httpUtils->getSelfURLNoQuery()
+        );
         $this->assertFalse($httpUtils->isHTTPS());
         $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 

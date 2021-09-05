@@ -188,7 +188,10 @@ CIPHER;
      */
     public function testFormatConversion(): void
     {
-        $this->assertEquals(trim($this->pem), trim($this->cryptoUtils->der2pem($this->cryptoUtils->pem2der($this->pem))));
+        $this->assertEquals(
+            trim($this->pem),
+            trim($this->cryptoUtils->der2pem($this->cryptoUtils->pem2der($this->pem)))
+        );
     }
 
 

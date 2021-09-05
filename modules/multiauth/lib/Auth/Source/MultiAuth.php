@@ -177,7 +177,7 @@ class MultiAuth extends Auth\Source
                     Constants::STATUS_RESPONDER,
                     'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs)
                 );
-            } else if ($number_of_sources === 1) {
+            } elseif ($number_of_sources === 1) {
                 MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
             }
         }

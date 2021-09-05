@@ -189,7 +189,7 @@ class Login
         $params = [
             'ErrorURL' => $url,
             'ReturnTo' => $url,
-	];
+        ];
         return new RunnableResponse([$auth, 'login'], [$params]);
     }
 

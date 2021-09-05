@@ -195,5 +195,4 @@ class LanguageTest extends TestCase
         $l->setLanguage('nn');
         $this->assertEquals([0 => 'nn', 2 => 'en'], $l->getPreferredLanguages());
     }
-
 }

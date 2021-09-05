@@ -666,7 +666,7 @@ class HTTP
             $protocol .= ($this->getServerHTTPS()) ? 's' : '';
             $protocol .= '://';
 
-            $hostname =$this->getServerHost();
+            $hostname = $this->getServerHost();
             $port = $this->getServerPort();
             $path = $globalConfig->getBasePath();
 

@@ -28,7 +28,10 @@ class TimeTest extends TestCase
         $this->assertEquals('2016-03-03T14:48:05Z', $timeUtils->generateTimestamp(1457016485));
 
         // test timestamp generation for current time
-        $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $timeUtils->generateTimestamp());
+        $this->assertMatchesRegularExpression(
+            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/',
+            $timeUtils->generateTimestamp()
+        );
     }
 
 
@@ -101,25 +104,53 @@ class TimeTest extends TestCase
         $this->assertEquals($base + (60 * 60) + 60 + 1, $timeUtils->parseDuration('P0Y0M0DT1H1M1S', $base));
 
         // test seconds
-        $this->assertEquals($second, $timeUtils->parseDuration('PT1S', $base), "Failure checking for 1 second duration.");
+        $this->assertEquals(
+            $second,
+            $timeUtils->parseDuration('PT1S', $base),
+            "Failure checking for 1 second duration."
+        );
 
         // test minutes
-        $this->assertEquals($minute, $timeUtils->parseDuration('PT1M', $base), "Failure checking for 1 minute duration.");
+        $this->assertEquals(
+            $minute,
+            $timeUtils->parseDuration('PT1M', $base),
+            "Failure checking for 1 minute duration."
+        );
 
         // test hours
-        $this->assertEquals($hour, $timeUtils->parseDuration('PT1H', $base), "Failure checking for 1 hour duration.");
+        $this->assertEquals(
+            $hour,
+            $timeUtils->parseDuration('PT1H', $base),
+            "Failure checking for 1 hour duration."
+        );
 
         // test days
-        $this->assertEquals($day, $timeUtils->parseDuration('P1D', $base), "Failure checking for 1 day duration.");
+        $this->assertEquals(
+            $day,
+            $timeUtils->parseDuration('P1D', $base),
+            "Failure checking for 1 day duration."
+        );
 
         // test weeks
-        $this->assertEquals($week, $timeUtils->parseDuration('P1W', $base), "Failure checking for 1 week duration.");
+        $this->assertEquals(
+            $week,
+            $timeUtils->parseDuration('P1W', $base),
+            "Failure checking for 1 week duration."
+        );
 
         // test month
-        $this->assertEquals($month, $timeUtils->parseDuration('P1M', $base), "Failure checking for 1 month duration.");
+        $this->assertEquals(
+            $month,
+            $timeUtils->parseDuration('P1M', $base),
+            "Failure checking for 1 month duration."
+        );
 
         // test year
-        $this->assertEquals($year, $timeUtils->parseDuration('P1Y', $base), "Failure checking for 1 year duration.");
+        $this->assertEquals(
+            $year,
+            $timeUtils->parseDuration('P1Y', $base),
+            "Failure checking for 1 year duration."
+        );
 
         // test months > 12
         $this->assertEquals(

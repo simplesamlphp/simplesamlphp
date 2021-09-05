@@ -48,7 +48,8 @@ class Kernel extends BaseKernel
     public function getCacheDir(): string
     {
         $configuration = Configuration::getInstance();
-        $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $this->module;
+        $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR
+            . 'cache' . DIRECTORY_SEPARATOR . $this->module;
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($cachePath)) {

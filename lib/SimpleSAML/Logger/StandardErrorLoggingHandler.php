@@ -23,7 +23,11 @@ class StandardErrorLoggingHandler extends FileLoggingHandler
     public function __construct(Configuration $config)
     {
         // Remove any non-printable characters before storing
-        $this->processname = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $config->getString('logging.processname', 'SimpleSAMLphp'));
+        $this->processname = preg_replace(
+            '/[\x00-\x1F\x7F\xA0]/u',
+            '',
+            $config->getString('logging.processname', 'SimpleSAMLphp')
+        );
         $this->logFile = 'php://stderr';
     }
 }

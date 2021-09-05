@@ -150,7 +150,8 @@ class ExampleAuthTest extends TestCase
 
 
     /**
-     * Test that accessing the authpage-endpoint using POST-method and an incorrect password shows the login-screen again
+     * Test that accessing the authpage-endpoint using POST-method and
+     * an incorrect password shows the login-screen again
      *
      * @return void
      */

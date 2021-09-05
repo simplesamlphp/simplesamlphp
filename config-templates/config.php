@@ -3,6 +3,7 @@
 /**
  * The configuration of SimpleSAMLphp
  */
+
 $httpUtils = new \SimpleSAML\Utils\HTTP();
 
 $config = [

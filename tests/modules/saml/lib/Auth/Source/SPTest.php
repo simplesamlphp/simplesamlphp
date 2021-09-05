@@ -458,8 +458,11 @@ class SPTest extends ClearStateTestCase
         $this->assertIsArray($md['SingleLogoutService']);
         $this->assertArrayHasKey('AssertionConsumerService', $md);
         $this->assertIsArray($md['AssertionConsumerService']);
-        foreach($md['AssertionConsumerService'] as $acs) {
-            $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId, $acs['Location']);
+        foreach ($md['AssertionConsumerService'] as $acs) {
+            $this->assertEquals(
+                'http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId,
+                $acs['Location']
+            );
             $this->assertStringStartsWith('urn:oasis:names:tc:SAML:2.0:bindings', $acs['Binding']);
             $this->assertIsInt($acs['index']);
         }
@@ -522,7 +525,10 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('+31SECOPS', $contact['telephoneNumber']);
         $this->assertEquals('Acme Inc', $contact['company']);
         $this->assertIsArray($contact['attributes']);
-        $attrs = ['xmlns:remd' => 'http://refeds.org/metadata', 'remd:contactType' => 'http://refeds.org/metadata/contactType/security'];
+        $attrs = [
+            'xmlns:remd' => 'http://refeds.org/metadata',
+            'remd:contactType' => 'http://refeds.org/metadata/contactType/security'
+        ];
         $this->assertEquals($attrs, $contact['attributes']);
 
         $contact = $md['contacts'][1];
@@ -645,7 +651,10 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $this->assertCount(1, $md['AssertionConsumerService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['AssertionConsumerService'][0]['Binding']
+        );
     }
 
     /**
@@ -670,7 +679,10 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $this->assertCount(1, $md['AssertionConsumerService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['AssertionConsumerService'][0]['Binding']
+        );
     }
 
     /**
@@ -687,7 +699,10 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $this->assertCount(1, $md['SingleLogoutService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['SingleLogoutService'][0]['Binding']
+        );
     }
 
     /**
@@ -714,13 +729,19 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
-                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
-            ];
+            'SingleLogoutServiceBinding' => [
+                'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                'urn:this:doesnotexist'
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
         $this->assertCount(2, $md['SingleLogoutService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['SingleLogoutService'][0]['Binding']
+        );
         $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
     }
 
@@ -732,14 +753,20 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
-                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
-                'SingleLogoutServiceLocation' => 'https://sp.example.org/logout',
-            ];
+            'SingleLogoutServiceBinding' => [
+                'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                'urn:this:doesnotexist'
+            ],
+            'SingleLogoutServiceLocation' => 'https://sp.example.org/logout',
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
         $this->assertCount(2, $md['SingleLogoutService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['SingleLogoutService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['SingleLogoutService'][0]['Binding']
+        );
         $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
         $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][0]['Location']);
         $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][1]['Location']);
@@ -771,12 +798,18 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $this->assertCount(2, $md['AssertionConsumerService']);
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', $md['AssertionConsumerService'][0]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            $md['AssertionConsumerService'][0]['Binding']
+        );
         $this->assertEquals('https://sp.example.org/ACS', $md['AssertionConsumerService'][0]['Location']);
         $this->assertEquals(1, $md['AssertionConsumerService'][0]['index']);
         $this->assertTrue($md['AssertionConsumerService'][0]['isDefault']);
 
-        $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact', $md['AssertionConsumerService'][1]['Binding']);
+        $this->assertEquals(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+            $md['AssertionConsumerService'][1]['Binding']
+        );
         $this->assertEquals('https://sp.example.org/ACSeventeen', $md['AssertionConsumerService'][1]['Location']);
         $this->assertEquals(17, $md['AssertionConsumerService'][1]['index']);
         $this->assertArrayNotHasKey('isDefault', $md['AssertionConsumerService'][1]);

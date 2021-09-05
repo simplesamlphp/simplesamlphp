@@ -159,7 +159,6 @@ class FilterScopesTest extends TestCase
         ];
         $result = $this->processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
-
     }
 
     /**

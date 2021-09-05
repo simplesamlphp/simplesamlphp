@@ -35,7 +35,10 @@ class LogoutStore
         if ($tableVer === 4) {
             return;
         } elseif ($tableVer < 4 && $tableVer > 0) {
-            throw new Exception('No upgrade path available. Please migrate to the latest 1.18+ version of SimpleSAMLphp first before upgrading to 2.x.');
+            throw new Exception(
+                'No upgrade path available. Please migrate to the latest 1.18+ '
+                .  'version of SimpleSAMLphp first before upgrading to 2.x.'
+            );
         }
 
         $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (

@@ -360,7 +360,13 @@ class Template extends Response
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
         $subdirs = @scandir($themeDir);
         if (empty($subdirs)) {
-            Logger::warning('Theme directory for theme "' . $this->theme['name'] . '" (' . $themeDir . ') is not readable or is empty.');
+            Logger::warning(
+                sprintf(
+                    'Theme directory for theme "%s" (%s) is not readable or is empty.',
+                    $this->theme['name'],
+                    $themeDir
+                )
+            );
             return [];
         }
 
@@ -602,7 +608,7 @@ class Template extends Response
     {
         $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
 
-        foreach($tryLanguages as $language) {
+        foreach ($tryLanguages as $language) {
             if (isset($data['UIInfo']['DisplayName'][$language])) {
                 return $data['UIInfo']['DisplayName'][$language];
             } elseif (isset($data['name'][$language])) {
@@ -625,7 +631,7 @@ class Template extends Response
     {
         $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
 
-        foreach($tryLanguages as $language) {
+        foreach ($tryLanguages as $language) {
             if (isset($data[$property][$language])) {
                 return $data[$property][$language];
             }

@@ -183,4 +183,3 @@ class Logger implements LoggerInterface
         }
     }
 }
-

@@ -16,28 +16,28 @@ class TemplateTest extends TestCase
 {
     private const TEMPLATE = 'sandbox.twig';
 
-    function testSetup(): void
+    public function testSetup(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
-    function testNormalizeName(): void
+    public function testNormalizeName(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'sandbox');
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
-    function testTemplateModuleNamespace(): void
+    public function testTemplateModuleNamespace(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'core:login');
         $this->assertEquals('core:login.twig', $t->getTemplateName());
     }
 
-    function testGetEntityDisplayNameBasic(): void
+    public function testGetEntityDisplayNameBasic(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
@@ -55,7 +55,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('Something', $name);
     }
 
-    function testGetEntityDisplayNamePriorities(): void
+    public function testGetEntityDisplayNamePriorities(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
@@ -73,7 +73,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('urn:example.org', $name);
 
         $data['OrganizationName']['en'] = 'Example Org EN';
-        
+
         $name = $t->getEntityDisplayName($data);
         $this->assertEquals('Example Org EN', $name);
 
@@ -88,7 +88,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('UIname NL', $name);
     }
 
-    function testGetEntityPropertyTranslation(): void
+    public function testGetEntityPropertyTranslation(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);

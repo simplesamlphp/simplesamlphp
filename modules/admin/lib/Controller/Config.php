@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
@@ -348,15 +349,15 @@ class Config
             $handler = MetaDataStorageHandler::getMetadataHandler();
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                  $matrix[] = [
                      'required' => 'required',
                      'descr' => Translate::noop('Hosted IdP metadata present'),
-                     'enabled'=>false
+                     'enabled' => false
                  ];
             }
 
-            if(isset($metadata)) {
+            if (isset($metadata)) {
                 $metadata_config = Configuration::loadfromArray($metadata);
                 $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
                 $public = $cryptoUtils->loadPublicKey($metadata_config, false);
@@ -387,7 +388,6 @@ class Config
                 'descr' => Translate::noop('Matching key-pair for signing metadata'),
                 'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
             ];
-
         }
 
         return $matrix;
@@ -496,7 +496,11 @@ class Config
      * @param string|null $password
      * @return bool
      */
-    private function matchingKeyPair(string $publicKey, string $privateKey, ?string $password = null) : bool {
+    private function matchingKeyPair(
+        string $publicKey,
+        string $privateKey,
+        ?string $password = null
+    ): bool {
         return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
     }
 }
