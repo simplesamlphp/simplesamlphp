@@ -50,7 +50,7 @@ class SessionHandlerPHP extends SessionHandler
         $config = Configuration::getInstance();
         $this->cookie_name = $config->getString(
             'session.phpsession.cookiename',
-            ini_get('session.name') ?? 'PHPSESSID'
+            ini_get('session.name') ?: 'PHPSESSID'
         );
 
         if (session_status() === PHP_SESSION_ACTIVE) {

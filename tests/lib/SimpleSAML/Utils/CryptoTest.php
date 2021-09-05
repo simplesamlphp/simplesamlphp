@@ -33,6 +33,9 @@ class CryptoTest extends TestCase
     /** @var string */
     protected string $certdir;
 
+    /** @var \SimpleSAML\Configuration */
+    protected Configuration $config;
+
     /** @var \SimpleSAML\Utils\Crypto */
     protected $cryptoUtils;
 
