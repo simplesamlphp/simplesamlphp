@@ -350,11 +350,11 @@ class Config
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             } catch (Exception $e) {
-                 $matrix[] = [
-                     'required' => 'required',
-                     'descr' => Translate::noop('Hosted IdP metadata present'),
-                     'enabled' => false
-                 ];
+                    $matrix[] = [
+                        'required' => 'required',
+                        'descr' => Translate::noop('Hosted IdP metadata present'),
+                        'enabled' => false
+                    ];
             }
 
             if (isset($metadata)) {

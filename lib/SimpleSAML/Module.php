@@ -351,7 +351,7 @@ class Module
             throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
-        $core_module =  array_key_exists($module, self::$core_modules) ? true : false;
+        $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
         return $core_module ? true : false;
