@@ -54,14 +54,8 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`radius:Radius`](./radius:radius)
 : Authenticates an user to a Radius server.
 
-[`InfoCard:ICAuth`](https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md)
-: Authenticate with an InfoCard.
-
 [`multiauth:MultiAuth`](./multiauth:multiauth)
 : Allow the user to select from a list of authentication sources.
-
-`openid:OpenIDConsumer`
-: Authenticate against an OpenID provider.
 
 [`saml:SP`](./saml:sp)
 : Authenticate against a SAML IdP. Can be used for bridging.
