@@ -15,7 +15,7 @@
                 <li class="pure-menu-item">
                     <a href="{{ moduleURL('core/login/' ~ id|url_encode) }}" class="pure-menu-link">
                       {% if config.name is defined %}
-                        {{ config.name|translateFromArray }}
+                        {{ config.name|translateFromArray|default(id) }}
                       {% else %}
                         {{ id }}
                       {% endif %}
