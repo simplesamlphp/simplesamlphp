@@ -1346,7 +1346,6 @@ class SPTest extends ClearStateTestCase
 
         $xml = $lr->toSignedXML();
 
-        /** @var \DOMNode[] $q */
         $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID');
         $this->assertCount(1, $q);
         $this->assertEquals('someone@example.com', $q[0]->nodeValue);

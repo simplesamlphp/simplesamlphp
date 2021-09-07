@@ -41,7 +41,6 @@ class UnserializableException extends Exception
         $this->class = get_class($original);
         $msg = $original->getMessage();
 
-        /** @var string|int $code */
         $code = $original->getCode();
 
         if (!is_int($code)) {

@@ -35,7 +35,6 @@ class Crypto
             throw new Error\Exception("The openssl PHP module is not loaded.");
         }
 
-        /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
             throw new InvalidArgumentException(
