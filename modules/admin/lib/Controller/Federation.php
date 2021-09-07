@@ -215,11 +215,6 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    if (isset($entity['metadata_array']['contacts'])) {
-                        foreach ($entity['metadata_array']['contacts'] as $contact) {
-                            $builder->addContact($contact['contactType'], $contact);
-                        }
-                    }
 
                     $entity['metadata'] = Signer::sign(
                         $builder->getEntityDescriptorText(),
@@ -284,7 +279,7 @@ class Federation
                     'admin/federation/cert',
                     [
                         'set' => $entity['metadata-set'],
-                        'idp' => $entity['metadata-index'],
+                        'entity' => $entity['metadata-index'],
                         'prefix' => $key['prefix'],
                     ]
                 );
