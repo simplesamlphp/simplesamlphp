@@ -222,6 +222,13 @@ class DatabaseTest extends TestCase
         $this->assertEquals($prefix . $table, $pftable, "Did not properly apply the table prefix");
     }
 
+    /**
+     * @test
+     */
+    public function testGetDriver(): void
+    {
+        $this->assertEquals('sqlite', $this->db->getDriver());
+    }
 
     /**
      * @test
