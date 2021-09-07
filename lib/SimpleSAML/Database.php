@@ -298,6 +298,6 @@ class Database
      */
     public function getDriver(): string
     {
-        return $this->dbPrimary->getAttribute(PDO::ATTR_DRIVER_NAME);
+        return $this->dbMaster->getAttribute(PDO::ATTR_DRIVER_NAME);
     }
 }
