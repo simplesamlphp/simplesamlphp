@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -155,7 +156,7 @@ class Database
 
             return $db;
         } catch (PDOException $e) {
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -218,7 +219,7 @@ class Database
             return $query;
         } catch (PDOException $e) {
             $this->lastError = $db->errorInfo();
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -238,7 +239,7 @@ class Database
             return $db->exec($stmt);
         } catch (PDOException $e) {
             $this->lastError = $db->errorInfo();
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -287,5 +288,16 @@ class Database
     public function getLastError()
     {
         return $this->lastError;
+    }
+
+
+    /**
+     * Return the name of the PDO-driver
+     *
+     * @return string
+     */
+    public function getDriver(): string
+    {
+        return $this->dbPrimary->getAttribute(PDO::ATTR_DRIVER_NAME);
     }
 }
