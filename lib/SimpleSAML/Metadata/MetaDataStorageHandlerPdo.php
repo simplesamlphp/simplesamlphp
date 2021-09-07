@@ -290,18 +290,28 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
     {
         $stmt = 0;
         $fine = true;
+        $driver = $this->db->getDriver();
+
+        $text = 'TEXT';
+        if ($driver === 'mysql') {
+            $text = 'MEDIUMTEXT';
+        }
+
         foreach ($this->supportedSets as $set) {
             $tableName = $this->getTableName($set);
-            $rows = $this->db->write(
-                "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data " .
-                "TEXT NOT NULL)"
-            );
+            $rows = $this->db->write(sprintf(
+                "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, "
+                    . "entity_data %s NOT NULL)",
+                $text
+            ));
+
             if ($rows === false) {
                 $fine = false;
             } else {
                 $stmt += $rows;
             }
         }
+
         if (!$fine) {
             return false;
         }
