@@ -81,15 +81,19 @@ class SAML2
             $assertion->setAuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
         }
 
-        // create the session association (for logout)
-        $association = [
-            'id'                => 'saml:' . $spEntityId,
-            'Handler'           => '\SimpleSAML\Module\saml\IdP\SAML2',
-            'Expires'           => $assertion->getSessionNotOnOrAfter(),
-            'saml:entityID'     => $spEntityId,
-            'saml:NameID'       => $state['saml:idp:NameID'],
-            'saml:SessionIndex' => $assertion->getSessionIndex(),
-        ];
+        $noSession = isset($state['as:NoSession']) && $state['as:NoSession'];
+        // if current AuthenticationSource says no session: do not to be released to SP (no SLO)
+        if (!$noSession) {
+            // create the session association (for logout)
+            $association = [
+                'id'                => 'saml:' . $spEntityId,
+                'Handler'           => '\SimpleSAML\Module\saml\IdP\SAML2',
+                'Expires'           => $assertion->getSessionNotOnOrAfter(),
+                'saml:entityID'     => $spEntityId,
+                'saml:NameID'       => $state['saml:idp:NameID'],
+                'saml:SessionIndex' => $assertion->getSessionIndex(),
+            ];
+        }
 
         // maybe encrypt the assertion
         $assertion = self::encryptAssertion($idpMetadata, $spMetadata, $assertion);
@@ -100,8 +104,11 @@ class SAML2
         $ar->setRelayState($relayState);
         $ar->setAssertions([$assertion]);
 
-        // register the session association with the IdP
-        $idp->addAssociation($association);
+        // if current AuthenticationSource says no session to be released to SP (no SLO)
+        if (!$noSession) {
+            // register the session association with the IdP
+            $idp->addAssociation($association);
+        }
 
         $statsData = [
             'spEntityID'  => $spEntityId,
@@ -1146,7 +1153,11 @@ class SAML2
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
         $randomUtils = new Utils\Random();
-        $a->setSessionIndex($randomUtils->generateID());
+        $noSession = isset($state['as:NoSession']) && $state['as:NoSession'];
+        // if current AuthenticationSource says no session to be released to SP (no SLO)
+        if (!$noSession) {
+            $a->setSessionIndex($randomUtils->generateID());
+        }
 
         $sc = new SubjectConfirmation();
         $scd = new SubjectConfirmationData();
