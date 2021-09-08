@@ -32,20 +32,6 @@ class Localization
     public const DEFAULT_DOMAIN = 'messages';
 
     /**
-     * Old internationalization backend included in SimpleSAMLphp.
-     *
-     * @var string
-     */
-    public const SSP_I18N_BACKEND = 'SimpleSAMLphp';
-
-    /**
-     * An internationalization backend implemented purely in PHP.
-     *
-     * @var string
-     */
-    public const GETTEXT_I18N_BACKEND = 'gettext/gettext';
-
-    /**
      * The default locale directory
      *
      * @var string
@@ -82,14 +68,6 @@ class Localization
 
 
     /**
-     * The language backend to use
-     *
-     * @var string
-     */
-    public string $i18nBackend;
-
-
-    /**
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
@@ -102,7 +80,6 @@ class Localization
         $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
-        $this->i18nBackend = self::GETTEXT_I18N_BACKEND;
         $this->setupL10N();
     }
 
@@ -262,31 +239,10 @@ class Localization
 
 
     /**
-     * Test to check if backend is set to default
-     *
-     * (if false: backend unset/there's an error)
-     *
-     * @return bool
-     */
-    public function isI18NBackendDefault(): bool
-    {
-        if ($this->i18nBackend === $this::SSP_I18N_BACKEND) {
-            return true;
-        }
-        return false;
-    }
-
-
-    /**
      * Set up L18N if configured or fallback to old system
      */
     private function setupL10N(): void
     {
-        if ($this->i18nBackend === self::SSP_I18N_BACKEND) {
-            Logger::debug("Localization: using old system");
-            return;
-        }
-
         $this->setupTranslator();
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
