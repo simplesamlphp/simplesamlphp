@@ -219,9 +219,6 @@ msgstr ""
 "benutzten Metadaten etwas nicht. Überprüfen Sie die Metadaten des "
 "Identity Providers und des Service Providers."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Erneut versuchen"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nützliche Links für ihre Installation"
 

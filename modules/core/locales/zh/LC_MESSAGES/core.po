@@ -193,9 +193,6 @@ msgstr ""
 msgid "{core:no_metadata:suggestion_developer}"
 msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
 
-msgid "{core:no_cookie:retry}"
-msgstr "重试"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "对你有用的一些链接"
 

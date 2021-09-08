@@ -220,9 +220,6 @@ msgstr ""
 " ces métadonnées sont correctement configurées sur le fournisseur "
 "d'identité et le fournisseur de service "
 
-msgid "{core:no_cookie:retry}"
-msgstr "Ré-essayer"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Liens utiles pour votre installation"
 

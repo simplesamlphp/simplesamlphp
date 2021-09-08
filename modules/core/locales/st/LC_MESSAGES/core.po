@@ -141,9 +141,6 @@ msgstr "Kwala sebadi sa webe, ebe o leka hape."
 msgid "Go back to the previous page and try again."
 msgstr "Kgutlela leqepheng le fetileng ebe o leka hape."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Khukhi e siyo"
-
 msgid "{core:cardinality:problematic_attributes}"
 msgstr "Makgabane a nang le mathata ke:"
 

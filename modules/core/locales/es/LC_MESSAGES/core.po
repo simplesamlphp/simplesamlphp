@@ -233,9 +233,6 @@ msgstr ""
 " que los metadatos están configurados correctamente en el proveedor de "
 "identidad y en el proveedor de servicios"
 
-msgid "{core:no_cookie:retry}"
-msgstr "Reintentar"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Enlaces &uacute;tiles para su instalaci&oacute;n"
 

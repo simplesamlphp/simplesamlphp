@@ -209,9 +209,6 @@ msgstr ""
 "konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, "
 "gan pie servisa piegādātāja."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Mēģināt vēlreiz"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Derīgas saites instalācijai"
 

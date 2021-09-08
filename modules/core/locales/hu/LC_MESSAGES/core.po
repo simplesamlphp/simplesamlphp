@@ -216,9 +216,6 @@ msgstr ""
 "Ha ön az oldal üzemeltetője, úgy javasoljuk, ellenőrizze a metaadat "
 "beállításokat mint IdP-, mind SP oldalon."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Újra"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Hasznos linkek"
 

@@ -219,7 +219,7 @@ msgstr ""
 "dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi"
 " service provider."
 
-msgid "{core:no_cookie:retry}"
+msgid "Retry"
 msgstr "Coba lagi"
 
 msgid "{core:frontpage:useful_links_header}"
@@ -388,9 +388,6 @@ msgstr ""
 
 msgid "Metadata"
 msgstr "Metadata"
-
-msgid "Retry"
-msgstr "Coba lagi"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "Konfigurasi dan Pemeliharaan SimpleSAMLphp"

@@ -214,9 +214,6 @@ msgstr ""
 "problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována "
 "správně jak u poskytovatele identity tak u poskytovatele služby."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Opakujte"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Linky pro vaši instalaci"
 

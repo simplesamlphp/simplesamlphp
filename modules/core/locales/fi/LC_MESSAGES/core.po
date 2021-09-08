@@ -139,9 +139,6 @@ msgstr ""
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp blogista Feide "
 "RnD:llä</a> <a href=\"http://uninett.no\">UNINETT</a>issa."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Uudestaan"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Asennuksesi käytännöllisiä linkkejä"
 

@@ -224,9 +224,6 @@ msgstr ""
 "sistema, proverite da li metapodaci ispravno uneseni na strani davaoca "
 "servisa i davaoca identiteta."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Pokušaj ponovo"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Korisni linkovi"
 

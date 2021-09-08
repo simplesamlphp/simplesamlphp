@@ -204,9 +204,6 @@ msgstr ""
 msgid "{core:no_metadata:suggestion_developer}"
 msgstr "若您是單一簽入程式開發人員，您的詮釋資料設定可能有問題。請確認服務提供者或驗證提供者之詮釋資料設定檔是否正確。"
 
-msgid "{core:no_cookie:retry}"
-msgstr "重試"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "已安裝的常用連結"
 

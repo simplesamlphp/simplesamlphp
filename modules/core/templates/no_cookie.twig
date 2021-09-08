@@ -7,7 +7,7 @@
     <p>{{ '{core:no_cookie:description}'|trans }}</p>
     {% if retryURL is not null %}
     <ul>
-        <li><a href="{{ retryURL|escape('html') }}" id="retry">{{ '{core:no_cookie:retry}'|trans }}</a></li>
+        <li><a href="{{ retryURL|escape('html') }}" id="retry">{{ 'Retry'|trans }}</a></li>
     </ul>
     {% endif %}
 {% endblock %}

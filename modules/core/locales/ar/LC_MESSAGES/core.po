@@ -208,9 +208,6 @@ msgstr ""
 "لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات"
 " الوصفية صحيح بكل من محدد الهوية و المخدم  "
 
-msgid "{core:no_cookie:retry}"
-msgstr "اعد المحاولة"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "روابط مفيدة للإنزال "
 

@@ -51,9 +51,6 @@ msgstr ""
 " metadata korrek ingestel is op beide die identiteit verskaffer en "
 "diensverskaffer."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Probeer weer"
-
 msgid "{core:short_sso_interval:retry}"
 msgstr "Probeer weer aanmeld"
 

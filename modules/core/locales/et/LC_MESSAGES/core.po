@@ -213,9 +213,6 @@ msgstr ""
 "metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui "
 "teenusepakkuja poolel."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Proovi uuesti"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Kasulikud viited"
 

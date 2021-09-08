@@ -226,9 +226,6 @@ msgstr ""
 "verificați configurarea corectă a metadatelor, atât la furnizorul de "
 "identitate cât și la furnizorul de servicii."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Încearcă din nou"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Link-uri utile pentru instalare"
 

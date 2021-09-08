@@ -243,9 +243,6 @@ msgstr ""
 "Controleer of de metadata correct is geconfigureerd zowel bij de "
 "identiteitsverstrekker als bij de service provider."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Opnieuw"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nuttige links"
 

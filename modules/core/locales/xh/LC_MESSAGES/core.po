@@ -26,7 +26,7 @@ msgstr ""
 "ilungiselelwe ngokuchanekileyo kuzo zombini umbonelei wesazisi "
 "nomboneleli wenkonzo."
 
-msgid "{core:no_cookie:retry}"
+msgid "Retry"
 msgstr "Zama kwakhona"
 
 msgid "{core:no_cookie:description}"

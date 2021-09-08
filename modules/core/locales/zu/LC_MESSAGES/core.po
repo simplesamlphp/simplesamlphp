@@ -25,7 +25,7 @@ msgstr ""
 "unenkinga ngomiso lwemethadatha. Qinisekisa ukuthi imethadatha imiswe "
 "ngendlela efanele kokubili kumhlinzeki womazisi nomhlinzeki wesevisi."
 
-msgid "{core:no_cookie:retry}"
+msgid "Retry"
 msgstr "Zama futhi"
 
 msgid "{core:no_cookie:description}"

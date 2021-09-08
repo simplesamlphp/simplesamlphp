@@ -218,9 +218,6 @@ msgstr ""
 " metadata er konfigurerede korrekt både på service-siden og "
 "identitetsudbyder-siden."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Forsøg igen"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nyttige links"
 

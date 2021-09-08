@@ -258,9 +258,6 @@ msgstr ""
 "have a problem with the metadata configuration. Verify that metadata is "
 "configured correctly on both the identity provider and service provider."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Retry"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Useful links for your installation"
 

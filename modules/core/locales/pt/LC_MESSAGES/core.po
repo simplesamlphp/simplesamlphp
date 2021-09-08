@@ -152,9 +152,6 @@ msgstr ""
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp no blog da Feide"
 " RnD</a> em <a href=\"http://uninett.no\">UNINETT</a>."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Tentar de novo"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Ligações úteis da sua instalação"
 

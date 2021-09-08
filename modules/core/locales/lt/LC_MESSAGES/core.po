@@ -219,9 +219,6 @@ msgstr ""
 "teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo "
 "pusėse."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Bandyti dar kartą"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Naudingos nuorodos diegimui"
 

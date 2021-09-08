@@ -213,9 +213,6 @@ msgstr ""
 "metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na "
 "strani ponudnika storitve (SP)."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Poskusi ponovno"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Uporabne povezave"
 

@@ -232,9 +232,6 @@ msgstr ""
 "metapodataka. Provjerite jesu li metapodaci ispravno uneseni i na strani "
 "davatelja usluge i u konfiguraciji autentifikacijskog servisa."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Pokušaj ponovo"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Korisne poveznice"
 

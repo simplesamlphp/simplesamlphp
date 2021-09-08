@@ -219,9 +219,6 @@ msgstr ""
 "metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta "
 "zerbitzu hornitzailean."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Saiatu berriro"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Instalaziorako lotura erabilgarriak"
 

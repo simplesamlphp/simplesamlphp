@@ -222,9 +222,6 @@ msgstr ""
 "siano correttamente configurati sia sull'identity provider che sul "
 "service provider."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Riprovare"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Link utili per la tua installazione"
 

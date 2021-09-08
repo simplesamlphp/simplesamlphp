@@ -215,9 +215,6 @@ msgstr ""
 "problem med metadatakonfigurationen. Kontrollera att metadata är korrekt "
 "konfigurerade både i identitetsutgivare och tjänsteleverantören."
 
-msgid "{core:no_cookie:retry}"
-msgstr "Försök igen"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nyttiga länkar gällande installationen"
 
