@@ -320,6 +320,7 @@ class Config
         foreach ($libs as $lib) {
             $enabled = false;
             foreach ($lib['classes'] as $class) {
+                /** @psalm-suppress InvalidOperand - See https://github.com/vimeo/psalm/issues/1340 */
                 $enabled |= class_exists($class);
             }
             $matrix[] = [
