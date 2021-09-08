@@ -53,3 +53,4 @@ Upgrade notes for SimpleSAMLphp 2.0
 
 - Configuration options removed:
   - languages[priorities]
+  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.

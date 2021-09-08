@@ -140,13 +140,14 @@ class Localization
      *
      * @param string $module Module name
      * @param string $localeDir Absolute path if the module is housed elsewhere
+     * @param string $domain Translation domain within module; defaults to module name
      */
-    public function addModuleDomain(string $module, string $localeDir = null): void
+    public function addModuleDomain(string $module, string $localeDir = null, string $domain = null): void
     {
         if (!$localeDir) {
             $localeDir = $this->getDomainLocaleDir($module);
         }
-        $this->addDomain($localeDir, $module);
+        $this->addDomain($localeDir, $domain ?? $module);
     }
 
 
@@ -301,5 +302,19 @@ class Localization
     public function getRegisteredDomains(): array
     {
         return $this->localeDomainMap;
+    }
+
+    /**
+     * Add translation domains specifically used for translating attributes names:
+     * the default in attributes.po and any attributes.po in the enabled theme.
+     */
+    public function addAttributeDomains(): void
+    {
+        $this->addDomain($this->localeDir, 'attributes');
+
+        list($theme,) = explode(':', $this->configuration->getString('theme.use', 'default'));
+        if($theme !== 'default') {
+            $this->addModuleDomain($theme, null, 'attributes');
+        }
     }
 }
