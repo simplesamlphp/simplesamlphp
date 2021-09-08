@@ -19,9 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP - przykład - test logowania przez Twoje Shib IdP"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Zaloguj się jako administrator"
 
@@ -45,11 +42,6 @@ msgstr "Metadane - Lokalny SAML 2.0 Dostawca Tożsamości (generowane automatycz
 
 msgid "{core:frontpage:optional}"
 msgstr "Opcjonalne"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Metadane - Lokalny Shibboleth 1.3 Dostawca Serwisu (generowane "
-"automatycznie)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentacja"
@@ -94,7 +86,7 @@ msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Jesteś zalogowany jako administrator"
 
 msgid "{core:frontpage:auth}"
-msgstr "Autentykacja"
+msgstr "Uwierzytelnianie"
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Wyświetl metadane"
@@ -105,11 +97,6 @@ msgstr ""
 "pomyślnie. To jest strona startowa Twojej instalacji, na której "
 "znajdziesz odnośniki do przykładów, narzędzi do diagnozowania, metadane a"
 " nawet linki do dokumentacji."
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Metadane - Lokalny Shibboleth 1.3 Dostawca Tożsamości (generowane "
-"automatycznie)"
 
 msgid "{core:frontpage:required}"
 msgstr "Wymagane"
@@ -278,7 +265,7 @@ msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP - przykład - test logowania przez Twoje Shib IdP"
 
 msgid "Authentication"
-msgstr "Autentykacja"
+msgstr "Uwierzytelnianie"
 
 msgid "Show metadata"
 msgstr "Wyświetl metadane"

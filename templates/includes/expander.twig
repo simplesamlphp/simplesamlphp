@@ -1,4 +1,4 @@
-        <div class="expandable{% if expanded %} expanded{% endif %}">
+        <div class="expandable{% if expanded is defined %} expanded{% endif %}">
           {% if block('general') is defined %}
           <div class="general">
             {{- block("general") }}

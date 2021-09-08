@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use SimpleSAML\Configuration;
@@ -7,13 +9,16 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
+/**
+ * @covers \SimpleSAML\Module\saml\IdP\SAML2
+ */
 class SAML2Test extends ClearStateTestCase
 {
     /**
      * Default values for the state array expected to be generated at the start of logins
      * @var array
      */
-    private $defaultExpectedAuthState = [
+    private array $defaultExpectedAuthState = [
         'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
         '\SimpleSAML\Auth\State.exceptionFunc' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'],
         'saml:RelayState' => null,
@@ -34,9 +39,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
-     * @return void
      */
-    public function testIdPInitiatedLoginMinimumParams()
+    public function testIdPInitiatedLoginMinimumParams(): void
     {
         $state = $this->idpInitiatedHelper(['spentityid' => 'https://some-sp-entity-id']);
         $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
@@ -59,9 +63,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
-     * @return void
      */
-    public function testIdPInitiatedLoginOptionalParams()
+    public function testIdPInitiatedLoginOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'spentityid' => 'https://some-sp-entity-id',
@@ -94,9 +97,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
-    public function testIdPInitShibCompatyMinimumParams()
+    public function testIdPInitShibCompatyMinimumParams(): void
     {
         //https://wiki.shibboleth.net/confluence/display/IDP30/UnsolicitedSSOConfiguration
         // Shib uses the param providerId instead of spentityid
@@ -121,9 +123,8 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @return void
      */
-    public function testIdPInitShibCompatOptionalParams()
+    public function testIdPInitShibCompatOptionalParams(): void
     {
         $state = $this->idpInitiatedHelper([
             'providerId' => 'https://some-sp-entity-id',
@@ -158,9 +159,8 @@ class SAML2Test extends ClearStateTestCase
      * @param array $queryParams
      * @return array The state array used for handling the authentication request.
      */
-    private function idpInitiatedHelper(array $queryParams)
+    private function idpInitiatedHelper(array $queryParams): array
     {
-        /** @var \PHPUnit_Framework_MockObject_MockObject $idpStub */
         $idpStub = $this->getMockBuilder(IdP::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -169,7 +169,6 @@ class SAML2Test extends ClearStateTestCase
             'saml20.ecp' => true, //enable additional bindings so we can test selection logic
         ]);
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $idpStub->method("getConfig")
             ->willReturn($idpMetadata);
 
@@ -200,7 +199,6 @@ EOT;
 
         $state = [];
 
-        /** @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place */
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
             ->with($this->callback(

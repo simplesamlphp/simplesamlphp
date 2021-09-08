@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 
 /**
@@ -9,7 +12,6 @@ use SimpleSAML\Configuration;
  * Instantiation of session handler objects should be done through
  * the class method getMetadataHandler().
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -21,7 +23,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var string
      */
-    private $directory = '/';
+    private string $directory = '/';
 
 
     /**
@@ -29,7 +31,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var array
      */
-    private $cachedMetadata = [];
+    private array $cachedMetadata = [];
 
 
     /**
@@ -41,10 +43,8 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    protected function __construct($config)
+    protected function __construct(array $config)
     {
-        assert(is_array($config));
-
         // get the configuration
         $globalConfig = Configuration::getInstance();
 
@@ -75,7 +75,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *     or null if we are unable to load metadata from the given file.
      * @throws \Exception If the metadata set cannot be loaded.
      */
-    private function load($set)
+    private function load(string $set): ?array
     {
         $metadatasetfile = $this->directory . $set . '.php';
 
@@ -83,6 +83,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
             return null;
         }
 
+        /** @psalm-var mixed $metadata   We cannot be sure what the include below will do with this var */
         $metadata = [];
 
         include($metadatasetfile);
@@ -104,13 +105,12 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      * @return array An associative array with the metadata. Each element in the array is an entity, and the
      *         key is the entity id.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
         }
 
-        /** @var array|null $metadataSet */
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
             $metadataSet = [];

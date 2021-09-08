@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Utils;
 
 /**
@@ -11,7 +15,7 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
+class TransientNameID extends BaseNameIDGenerator
 {
     /**
      * Initialize this filter, parse configuration
@@ -19,10 +23,9 @@ class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $this->format = Constants::NAMEID_TRANSIENT;
     }
@@ -34,8 +37,9 @@ class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $state The state array.
      * @return string|null The NameID value.
      */
-    protected function getValue(array &$state)
+    protected function getValue(array &$state): ?string
     {
-        return Utils\Random::generateID();
+        $randomUtils = new Utils\Random();
+        return $randomUtils->generateID();
     }
 }

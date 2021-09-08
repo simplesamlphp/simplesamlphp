@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\XHTML;
 
 use Twig\Environment;
@@ -11,15 +13,13 @@ use Twig\Environment;
  */
 interface TemplateControllerInterface
 {
-
     /**
      * Implement to modify the twig environment after its initialization (e.g. add filters or extensions).
      *
      * @param \Twig\Environment $twig The current twig environment.
      *
-     * @return void
      */
-    public function setUpTwig(Environment &$twig);
+    public function setUpTwig(Environment &$twig): void;
 
 
     /**
@@ -29,7 +29,6 @@ interface TemplateControllerInterface
      *
      * @param array $data The current data used by the template.
      *
-     * @return void
      */
-    public function display(&$data);
+    public function display(array &$data): void;
 }

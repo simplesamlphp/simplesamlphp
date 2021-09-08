@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 
 /**
@@ -10,35 +14,35 @@ use SimpleSAML\Configuration;
  * @package SimpleSAMLphp
  */
 
-class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeAttribute extends Auth\ProcessingFilter
 {
     /**
      * The attribute we extract the scope from.
      *
      * @var string
      */
-    private $scopeAttribute;
+    private string $scopeAttribute;
 
     /**
      * The attribute we want to add scope to.
      *
      * @var string
      */
-    private $sourceAttribute;
+    private string $sourceAttribute;
 
     /**
      * The attribute we want to add the scoped attributes to.
      *
      * @var string
      */
-    private $targetAttribute;
+    private string $targetAttribute;
 
     /**
      * Only modify targetAttribute if it doesn't already exist.
      *
      * @var bool
      */
-    private $onlyIfEmpty = false;
+    private bool $onlyIfEmpty = false;
 
 
     /**
@@ -47,10 +51,9 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $cfg = Configuration::loadFromArray($config, 'ScopeAttribute');
 
@@ -64,15 +67,13 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Apply this filter to the request.
      *
-     * @param array &$request  The current request
-     * @return void
+     * @param array &$state  The current request
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         if (!isset($attributes[$this->scopeAttribute])) {
             return;

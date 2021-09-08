@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -23,7 +26,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      *
      * @var \SimpleSAML\IdP
      */
-    private $idp;
+    private IDP $idp;
+
 
     /**
      * LogoutIFrame constructor.
@@ -35,17 +39,15 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         $this->idp = $idp;
     }
 
+
     /**
      * Start the logout operation.
      *
      * @param array &$state The logout state.
      * @param string|null $assocId The SP we are logging out from.
-     * @return void
      */
-    public function startLogout(array &$state, $assocId)
+    public function startLogout(array &$state, ?string $assocId): void
     {
-        assert(is_string($assocId) || $assocId === null);
-
         $associations = $this->idp->getAssociations();
 
         if (count($associations) === 0) {
@@ -78,7 +80,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         }
 
         $url = Module::getModuleURL('core/idp/logout-iframe.php', $params);
-        Utils\HTTP::redirectTrustedURL($url);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url);
     }
 
 
@@ -90,23 +93,20 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
-     * @return void
      */
-    public function onResponse($assocId, $relayState, Error\Exception $error = null)
+    public function onResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
     {
-        assert(is_string($assocId));
-
         $this->idp->terminateAssociation($assocId);
 
         $config = Configuration::getInstance();
 
-        $t = new Template($config, 'IFrameLogoutHandler.tpl.php');
+        $t = new Template($config, 'IFrameLogoutHandler.twig');
         $t->data['assocId'] = var_export($assocId, true);
         $t->data['spId'] = sha1($assocId);
         if (!is_null($error)) {
             $t->data['errorMsg'] = $error->getMessage();
         }
 
-        $t->show();
+        $t->send();
     }
 }

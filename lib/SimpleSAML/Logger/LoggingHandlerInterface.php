@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Logger;
 
 use SimpleSAML\Configuration;
@@ -7,7 +9,6 @@ use SimpleSAML\Configuration;
 /**
  * The interface that must be implemented by any log handler.
  *
- * @author Jaime Perez Crespo, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -26,16 +27,14 @@ interface LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The message to log.
-     * @return void
      */
-    public function log($level, $string);
+    public function log(int $level, string $string): void;
 
 
     /**
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
-    public function setLogFormat($format);
+    public function setLogFormat(string $format): void;
 }

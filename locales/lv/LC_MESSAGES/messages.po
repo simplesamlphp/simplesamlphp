@@ -113,9 +113,6 @@ msgstr ""
 "Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
 "atšķiras no veiksmīga"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP metadati"
-
 msgid "{login:help_text}"
 msgstr ""
 "Bez lietotāja vārda un paroles Jūs nevarat autentificēties un nevarat "
@@ -211,9 +208,6 @@ msgstr "Atslēgšanās..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nekorekts lietotāja vārds vai parole."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 servisa piegādātājs (attālināts)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -442,9 +436,6 @@ msgstr "Ziņas sūtīšana"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Kļūda no identitātes piegādātāja"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP metadati"
-
 msgid "{admin:metaover_intro}"
 msgstr "Lai aplūkotu SAML vienuma detaļas, klikšķiniet uz vienuma galvenes."
 
@@ -515,9 +506,6 @@ msgstr "Lapa nav atrasta"
 msgid "{logout:logged_out_text}"
 msgstr "Jūs esat izgājis no sistēmas."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 servisa piegādātājs (hostēts)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
 
@@ -543,8 +531,11 @@ msgstr ""
 "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas "
 "SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 identitātes piegādātājs (hostēts)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobilais telefons"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Vēlamā valoda"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Jūs neesat norādījis derīgu sertifikātu."
@@ -579,9 +570,6 @@ msgstr "Nav sertifikāta"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atslēgšanās informācija zaudēta"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 identitātes piegādātājs (attālināts)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp nav pareizi nokonfigurēts."

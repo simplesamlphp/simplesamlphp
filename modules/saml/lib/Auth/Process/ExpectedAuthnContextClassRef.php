@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
@@ -13,31 +17,31 @@ use SimpleSAML\Utils;
  *
  * Example configuration:
  *
- * 91 => array(
+ * 91 => [
  *      'class' => 'saml:ExpectedAuthnContextClassRef',
- *      'accepted' => array(
+ *      'accepted' => [
  *         'urn:oasis:names:tc:SAML:2.0:post:ac:classes:nist-800-63:3',
  *         'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
- *         ),
- *       ),
+ *         ],
+ *       ],
  *
  * @package SimpleSAMLphp
  */
 
-class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
+class ExpectedAuthnContextClassRef extends ProcessingFilter
 {
     /**
      * Array of accepted AuthnContextClassRef
      * @var array
      */
-    private $accepted;
+    private array $accepted;
 
 
     /**
      * AuthnContextClassRef of the assertion
      * @var string|null
      */
-    private $AuthnContextClassRef = null;
+    private ?string $AuthnContextClassRef = null;
 
 
     /**
@@ -48,11 +52,10 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the mandatory 'accepted' configuration option is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
         if (empty($config['accepted'])) {
             Logger::error(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
@@ -66,19 +69,16 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
 
 
     /**
-     *
-     * @param array &$request The current request
-     * @return void
+     * @param array &$state The current request
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('saml:sp:State', $request));
+        Assert::keyExists($state, 'Attributes');
 
-        $this->AuthnContextClassRef = $request['saml:sp:State']['saml:sp:AuthnContext'];
+        $this->AuthnContextClassRef = $state['saml:sp:State']['saml:sp:AuthnContext'];
 
         if (!in_array($this->AuthnContextClassRef, $this->accepted, true)) {
-            $this->unauthorized($request);
+            $this->unauthorized($state);
         }
     }
 
@@ -93,20 +93,21 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * thinking in case a "chained" ACL is needed, more complex
      * permission logic.
      *
-     * @param array $request
-     * @return void
+     * @param array $state
      */
-    protected function unauthorized(&$request)
+    protected function unauthorized(array &$state): void
     {
         Logger::error(
             'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .
             '. Accepted values are: ' . var_export($this->accepted, true)
         );
 
-        $id = Auth\State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
+        $id = Auth\State::saveState($state, 'saml:ExpectedAuthnContextClassRef:unauthorized');
         $url = Module::getModuleURL(
             'saml/sp/wrong_authncontextclassref.php'
         );
-        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

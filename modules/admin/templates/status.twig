@@ -8,9 +8,29 @@
     <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long
      it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
 
+    {% if remaining %}
+        <p>{% trans %}Your session is valid for {{ remaining }} seconds from now.{% endtrans %}</p>
+    {% endif %}
+
     <h2>{{ '{status:attributes_header}'|trans }}</h2>
 
-    {{ attributesHtml|raw }}
+    {% set items = attributes %}
+
+{% embed '_table.twig' -%}
+
+    {% block namecol -%}
+    {% set translated = name|trans %}
+    <td class="attrname">{% if translated != name %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
+    {% endblock %}
+
+
+    {% block value -%}
+    {% if name =='jpegPhoto'-%}
+        <img src="data:image/jpeg;base64,{{ value }}" alt="{% trans %}Content of jpegPhoto attribute{% endtrans %}">
+    {% else %}{{ value }}{% endif -%}
+    {% endblock %}
+
+{%- endembed %}
 
     {%- if nameid or authData %}
 
@@ -56,7 +76,8 @@
     {% endif %}
 
     {% if authData %}
-    <h3>{% trans %}Authentication data{% endtrans %}</h3>
+    <details>
+    <summary>{% trans %}Authentication data{% endtrans %}</summary>
     <div class="code-box hljs">
       <div class="pure-button-group top-right-corner">
         <a class="pure-button copy hljs" data-clipboard-target="#auth-data"
@@ -66,6 +87,7 @@
         {{- authData|json_encode(constant("JSON_PRETTY_PRINT") b-or constant("JSON_UNESCAPED_SLASHES")) }}
       </code>
     </div>
+    </details>
     <br/>
     {% endif %}
 

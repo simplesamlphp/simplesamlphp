@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Constants;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
 
 /**
@@ -11,14 +15,14 @@ use SimpleSAML\Logger;
  * @package SimpleSAMLphp
  */
 
-class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+class PersistentNameID2TargetedID extends ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
 
     /**
@@ -26,7 +30,7 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @var bool
      */
-    private $nameId;
+    private bool $nameId;
 
 
     /**
@@ -35,13 +39,12 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (isset($config['attribute'])) {
-            $this->attribute = (string) $config['attribute'];
+            $this->attribute = strval($config['attribute']);
         } else {
             $this->attribute = 'eduPersonTargetedID';
         }
@@ -58,11 +61,9 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * Store a NameID to attribute.
      *
      * @param array &$state The request state.
-     * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
         if (!isset($state['saml:NameID'][Constants::NAMEID_PERSISTENT])) {
             Logger::warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'

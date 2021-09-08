@@ -120,9 +120,6 @@ msgstr ""
 "O Provedor de Identidade respondeu com um erro. (O código de resposta do "
 "SAML não teve sucesso."
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Muito mal! - Sem o seu nome de usuário e a senha você não pode "
@@ -224,9 +221,6 @@ msgstr "Saindo do serviço..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nome de usuário ou senha incorretos."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remoto)"
 
 msgid "{login:remember_username}"
 msgstr "Lembrar meu nome de usuário"
@@ -464,9 +458,6 @@ msgstr "Enviando a mensagem"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Erro recebido do Provedor de Identidade"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "Para ver os detalhes da entidade SAML, clique "
 
@@ -540,9 +531,6 @@ msgstr "Página não encontrada"
 msgid "{logout:logged_out_text}"
 msgstr "Você foi desconectado."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Local)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensagem"
 
@@ -566,8 +554,11 @@ msgstr ""
 "SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe"
 " a mensagem de erro acima."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Local)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Celular"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Linguagem preferida"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Você não possui um certificado válido"
@@ -604,9 +595,6 @@ msgstr "Sem Certificado"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informações de desconexão perdidas"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remoto)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp parece estar mal configurado."

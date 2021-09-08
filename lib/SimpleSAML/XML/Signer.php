@@ -5,9 +5,10 @@
  *
  * This is a helper class for signing XML documents.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
+
+declare(strict_types=1);
 
 namespace SimpleSAML\XML;
 
@@ -16,6 +17,7 @@ use DOMElement;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
 
 class Signer
@@ -23,23 +25,23 @@ class Signer
     /**
      * @var string The name of the ID attribute.
      */
-    private $idAttrName = '';
+    private string $idAttrName = '';
 
     /**
-     * @var XMLSecurityKey|false  The private key (as an XMLSecurityKey).
+     * @var \RobRichards\XMLSecLibs\XMLSecurityKey|false  The private key (as an XMLSecurityKey).
      */
     private $privateKey = false;
 
     /**
      * @var string The certificate (as text).
      */
-    private $certificate = '';
+    private string $certificate = '';
 
 
     /**
      * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates = [];
+    private array $extraCertificates = [];
 
 
     /**
@@ -58,10 +60,8 @@ class Signer
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        assert(is_array($options));
-
         if (array_key_exists('privatekey', $options)) {
             $pass = null;
             if (array_key_exists('privatekey_pass', $options)) {
@@ -96,12 +96,10 @@ class Signer
      * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
-     * @return void
      */
-    public function loadPrivateKeyArray($privatekey)
+    public function loadPrivateKeyArray(array $privatekey): void
     {
-        assert(is_array($privatekey));
-        assert(array_key_exists('PEM', $privatekey));
+        Assert::keyExists($privatekey, 'PEM');
 
         $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'private']);
         if (array_key_exists('password', $privatekey)) {
@@ -123,16 +121,12 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
-    public function loadPrivateKey($file, $pass = null, $full_path = false)
+    public function loadPrivateKey(string $file, ?string $pass, bool $full_path = false): void
     {
-        assert(is_string($file));
-        assert(is_string($pass) || $pass === null);
-        assert(is_bool($full_path));
-
         if (!$full_path) {
-            $keyFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $keyFile = $configUtils->getCertPath($file);
         } else {
             $keyFile = $file;
         }
@@ -161,12 +155,9 @@ class Signer
      *
      * @param array $publickey The public key.
      * @throws \Exception
-     * @return void
      */
-    public function loadPublicKeyArray($publickey)
+    public function loadPublicKeyArray(array $publickey): void
     {
-        assert(is_array($publickey));
-
         if (!array_key_exists('PEM', $publickey)) {
             // We have a public key with only a fingerprint
             throw new \Exception('Tried to add a certificate fingerprint in a signature.');
@@ -188,15 +179,12 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
-    public function loadCertificate($file, $full_path = false)
+    public function loadCertificate(string $file, bool $full_path = false): void
     {
-        assert(is_string($file));
-        assert(is_bool($full_path));
-
         if (!$full_path) {
-            $certFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $certFile = $configUtils->getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -217,12 +205,9 @@ class Signer
      * Set the attribute name for the ID value.
      *
      * @param string $idAttrName  The name of the attribute which contains the id.
-     * @return void
      */
-    public function setIDAttribute($idAttrName)
+    public function setIDAttribute(string $idAttrName): void
     {
-        assert(is_string($idAttrName));
-
         $this->idAttrName = $idAttrName;
     }
 
@@ -237,15 +222,12 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
-     * @return void
      */
-    public function addCertificate($file, $full_path = false)
+    public function addCertificate(string $file, bool $full_path = false): void
     {
-        assert(is_string($file));
-        assert(is_bool($full_path));
-
         if (!$full_path) {
-            $certFile = Utils\Config::getCertPath($file);
+            $configUtils = new Utils\Config();
+            $certFile = $configUtils->getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -270,18 +252,14 @@ class Signer
      *
      * @param \DOMElement $node  The DOMElement we should generate a signature for.
      * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
-     * @param \DOMElement $insertBefore  The element we should insert the signature element before. Defaults to NULL,
-     *                                   in which case the signature will be appended to the element spesified in
-     *                                   $insertInto.
+     * @param \DOMElement|\DOMComment|\DOMText $insertBefore
+     *  The element we should insert the signature element before. Defaults to NULL,
+     *  in which case the signature will be appended to the element spesified in $insertInto.
      * @throws \Exception
-     * @return void
      */
-    public function sign($node, $insertInto, $insertBefore = null)
+    public function sign(DOMElement $node, DOMElement $insertInto, $insertBefore = null): void
     {
-        assert($node instanceof DOMElement);
-        assert($insertInto instanceof DOMElement);
-        assert($insertBefore === null || $insertBefore instanceof DOMElement ||
-            $insertBefore instanceof DOMComment || $insertBefore instanceof DOMText);
+        Assert::nullOrInstanceOfAny($insertBefore, [DOMElement::class, DOMComment::class, DOMText::class]);
 
         $privateKey = $this->privateKey;
         if ($privateKey === false) {

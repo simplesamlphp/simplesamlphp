@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Throwable;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -22,49 +25,50 @@ class Error extends Exception
      *
      * @var string
      */
-    private $errorCode;
+    private string $errorCode;
 
     /**
      * The http code.
      *
      * @var integer
      */
-    protected $httpCode = 500;
+    protected int $httpCode = 500;
 
     /**
      * The error title tag in dictionary.
      *
      * @var string
      */
-    private $dictTitle;
+    private string $dictTitle;
 
     /**
      * The error description tag in dictionary.
      *
      * @var string
      */
-    private $dictDescr;
+    private string $dictDescr;
 
     /**
      * The name of module that threw the error.
      *
      * @var string|null
      */
-    private $module = null;
+    private ?string $module = null;
 
     /**
      * The parameters for the error.
      *
      * @var array
      */
-    private $parameters;
+    private array $parameters;
 
     /**
      * Name of custom include template for the error.
      *
      * @var string|null
      */
-    protected $includeTemplate = null;
+    protected ?string $includeTemplate = null;
+
 
     /**
      * Constructor for this error.
@@ -72,13 +76,13 @@ class Error extends Exception
      * The error can either be given as a string, or as an array. If it is an array, the first element in the array
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
-     * @param mixed     $errorCode One of the error codes defined in the errors dictionary.
-     * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
-     * @param int|null  $httpCode The HTTP response code to use. Optional.
+     * @param mixed      $errorCode One of the error codes defined in the errors dictionary.
+     * @param \Throwable $cause The exception which caused this fatal error (if any). Optional.
+     * @param int|null   $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, \Exception $cause = null, $httpCode = null)
+    public function __construct($errorCode, Throwable $cause = null, ?int $httpCode = null)
     {
-        assert(is_string($errorCode) || is_array($errorCode));
+        Assert::true(is_string($errorCode) || is_array($errorCode));
 
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
@@ -118,7 +122,7 @@ class Error extends Exception
      *
      * @return string  The error code.
      */
-    public function getErrorCode()
+    public function getErrorCode(): string
     {
         return $this->errorCode;
     }
@@ -129,7 +133,7 @@ class Error extends Exception
      *
      * @return array  The parameters.
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }
@@ -140,7 +144,7 @@ class Error extends Exception
      *
      * @return string  The error title tag.
      */
-    public function getDictTitle()
+    public function getDictTitle(): string
     {
         return $this->dictTitle;
     }
@@ -151,7 +155,7 @@ class Error extends Exception
      *
      * @return string  The error description tag.
      */
-    public function getDictDescr()
+    public function getDictDescr(): string
     {
         return $this->dictDescr;
     }
@@ -161,9 +165,8 @@ class Error extends Exception
      * Set the HTTP return code for this error.
      *
      * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
-     * @return void
      */
-    protected function setHTTPCode()
+    protected function setHTTPCode(): void
     {
         http_response_code($this->httpCode);
     }
@@ -174,7 +177,7 @@ class Error extends Exception
      *
      * @return array  The array with the error report data.
      */
-    protected function saveError()
+    protected function saveError(): array
     {
         $data = $this->format(true);
         $emsg = array_shift($data);
@@ -196,12 +199,13 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
+        $httpUtils = new Utils\HTTP();
         $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
             'trackId'        => $session->getTrackID(),
-            'url'            => Utils\HTTP::getSelfURLNoQuery(),
+            'url'            => $httpUtils->getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
         ];
@@ -215,12 +219,9 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
-     * @return void
      */
-    public function show()
+    public function show(): void
     {
-        $this->setHTTPCode();
-
         // log the error message
         $this->logError();
 
@@ -244,7 +245,8 @@ class Error extends Exception
             && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
-            $baseurl = Utils\HTTP::getBaseURL();
+            $httpUtils = new Utils\HTTP();
+            $baseurl = $httpUtils->getBaseURL();
             $data['errorReportAddress'] = $baseurl . 'errorreport.php';
         }
 
@@ -261,13 +263,15 @@ class Error extends Exception
 
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
-            assert(is_callable($show_function));
+            Assert::isCallable($show_function);
+            $this->setHTTPCode();
             call_user_func($show_function, $config, $data);
-            assert(false);
+            Assert::true(false);
         } else {
-            $t = new Template($config, 'error.php', 'errors');
+            $t = new Template($config, 'error.twig', 'errors');
+            $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
-            $t->show();
+            $t->send();
         }
 
         exit;

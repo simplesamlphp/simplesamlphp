@@ -32,6 +32,7 @@ if (!array_key_exists('t', $options)) {
     exit(2);
 }
 
+/** @psalm-var string $tag */
 $tag = $options['t'];
 $cron = new SimpleSAML\Module\cron\Cron();
 if (!$cron->isValidTag($tag)) {

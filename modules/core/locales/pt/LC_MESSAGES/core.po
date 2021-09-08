@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Entrar como administrador"
 
@@ -53,11 +50,6 @@ msgstr ""
 
 msgid "{core:frontpage:optional}"
 msgstr "Opcional"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado "
-"automaticamente)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Documentação"
@@ -124,11 +116,6 @@ msgstr ""
 "sucesso. Esta é a página inicial da sua instalação, onde encontrará "
 "ligações para páginas de teste, de diagnóstico, de metadados e de "
 "documentação relevante."
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado "
-"automaticamente)"
 
 msgid "{core:frontpage:required}"
 msgstr "Necessário"

@@ -1,47 +1,50 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 
 /**
  * Filter to create target attribute based on value(s) in source attribute
  *
- * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeValueMap extends Auth\ProcessingFilter
 {
     /**
      * The name of the attribute we should assign values to (ie: the target attribute).
      * @var string
      */
-    private $targetattribute;
+    private string $targetattribute = '';
 
     /**
      * The name of the attribute we should create values from.
      * @var string
      */
-    private $sourceattribute;
+    private string $sourceattribute = '';
 
     /**
      * The required $sourceattribute values and target affiliations.
      * @var array
      */
-    private $values = [];
+    private array $values = [];
 
     /**
      * Whether $sourceattribute should be kept or not.
      * @var bool
      */
-    private $keep = false;
+    private bool $keep = false;
 
     /**
      * Whether $target attribute values should be replaced by new values or not.
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
 
     /**
@@ -51,11 +54,9 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse configuration
         foreach ($config as $name => $value) {
@@ -91,10 +92,10 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         // now validate it
-        if (!is_string($this->sourceattribute)) {
+        if (empty($this->sourceattribute)) {
             throw new Error\Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
         }
-        if (!is_string($this->targetattribute)) {
+        if (empty($this->targetattribute)) {
             throw new Error\Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
         }
         if (!is_array($this->values)) {
@@ -106,16 +107,14 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Apply filter.
      *
-     * @param array &$request The current request
-     * @return void
+     * @param array &$state The current request
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
         Logger::debug('Processing the AttributeValueMap filter.');
 
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
-        $attributes = &$request['Attributes'];
+        Assert::keyExists($state, 'Attributes');
+        $attributes = &$state['Attributes'];
 
         if (!array_key_exists($this->sourceattribute, $attributes)) {
             // the source attribute does not exist, nothing to do here

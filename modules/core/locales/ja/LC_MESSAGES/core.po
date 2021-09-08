@@ -21,23 +21,23 @@ msgstr "PHP info"
 msgid "{core:no_state:report_text}"
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"
 
+msgid "{core:no_state:cause_badlink}"
+msgstr "ここにアクセスするために使用するリンクが不正でした、おそらくブックマークに登録されているリンクが原因でしょう。"
+
 msgid "{core:no_state:cause_backforward}"
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 
 msgid "{core:no_metadata:not_found_for}"
 msgstr "メタデータの実体を見つけることが出来ませんでした:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP example - Shib IdP 経由でテストログイン"
-
 msgid "{core:no_state:suggestions}"
 msgstr "この問題を解決する為の提案:"
 
 msgid "{core:frontpage:login_as_admin}"
-msgstr "管理者でログイン"
+msgstr "管理者としてログイン"
 
 msgid "{core:short_sso_interval:warning}"
-msgstr "私たちはたった数秒前にあなたがこのサービスプロバイダに認証されている事を検知しています、従って問題はSPに在ると推測できます。"
+msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
 
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphpをサービスプロバイダとして使用する"
@@ -51,8 +51,35 @@ msgstr "OpenID プロバイダサイト - アルファバージョン (テスト
 msgid "{core:frontpage:link_doc_install}"
 msgstr "SimpleSAMLphpのインストール"
 
+msgid "{core:frontpage:link_consentAdmin}"
+msgstr "Consent Administration"
+
+msgid "{core:frontpage:link_memcacheMonitor}"
+msgstr "MemCache ステータス"
+
+msgid "{core:frontpage:link_oauth}"
+msgstr "OAuth ユーザー登録"
+
+msgid "{core:frontpage:link_cron}"
+msgstr "cronモジュール情報ページ"
+
+msgid "{core:frontpage:link_statistics}"
+msgstr "ステータス情報を表示"
+
+msgid "{core:frontpage:link_statistics_metadata}"
+msgstr "ステータスメタデータを表示"
+
+msgid "{core:frontpage:link_metarefresh}"
+msgstr "Metarefresh: メタデータを取得"
+
+msgid "{core:frontpage:link_sanitycheck}"
+msgstr "SimpleSAMLphpセットアップのサニティーチェック"
+
 msgid "{core:frontpage:link_diagnostics}"
-msgstr "ホストネームやポート、プロトコルを診断"
+msgstr "ホストネームやポート、プロトコルを確認"
+
+msgid "{core:no_state:suggestion_badlink}"
+msgstr "WEBサイトのリンクが正しいことを確認してください。"
 
 msgid "{core:no_state:suggestion_goback}"
 msgstr "前のページに戻り、再度試してください。"
@@ -66,17 +93,19 @@ msgstr "ホスト SAML 2.0 アイデンティティプロバイダメタデー�
 msgid "{core:frontpage:optional}"
 msgstr "任意"
 
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr "ホスト Shibboleth 1.3 サービスプロバイダメタデータ(自動生成)"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "ドキュメント"
 
 msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp の高度な機能"
+msgstr "SimpleSAMLphpの高度な機能"
 
 msgid "{core:frontpage:required_ldap}"
 msgstr "LDAPに必要"
+
+msgid "{core:frontpage:warnings_secretsalt}"
+msgstr ""
+"<strong>デフォルトのシークレットソルトが使われています</strong> - プロダクションでsimpleSAMLを使用される場合はデフォルトの「secretsalt」オプションを必ず変更してください。"
+"[<a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">SimpleSAMLphpの設定についてはこちら</a> ]"
 
 msgid "{core:frontpage:authtest}"
 msgstr "設定されている認証元をテスト"
@@ -91,7 +120,7 @@ msgid "{core:frontpage:welcome}"
 msgstr "ようこそ"
 
 msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "SimpleSAMLphp IdP と 連携する Shibboleth SP 1.3 として設定"
+msgstr "SimpleSAMLphp IdPと連携するShibboleth SP 1.3として設定"
 
 msgid "{core:no_state:header}"
 msgstr "状態情報が無くなりました。"
@@ -100,13 +129,13 @@ msgid "{core:frontpage:metadata_header}"
 msgstr "メタデータ"
 
 msgid "{core:frontpage:link_doc_maintenance}"
-msgstr "SimpleSAMLphp のメンテナンスと設定"
+msgstr "SimpleSAMLphpのメンテナンスと設定"
 
 msgid "{core:frontpage:link_configcheck}"
 msgstr "SimpleSAMLphp 設定確認"
 
 msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp設定ページ"
+msgstr "SimpleSAMLphp 設定ページ"
 
 msgid "{core:no_cookie:header}"
 msgstr "クッキーが見つかりません"
@@ -115,10 +144,13 @@ msgid "{core:frontpage:warnings}"
 msgstr "警告"
 
 msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML を SimpleSAMLphpメタデータに変換"
+msgstr "XMLをSimpleSAMLphpメタデータに変換"
 
 msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "IdPディスカバリサービス内のIdpの選択を削除する"
+msgstr "IdPディスカバリサービス内のIdPの選択を削除"
+
+msgid "{core:frontpage:warnings_outdated}"
+msgstr "旧バージョンのSimpleSAMLphpが使われています。できるだけ早く<a href=\"https://simplesamlphp.org/download\">最新バーション</a>にアップロードしてください"
 
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "管理者でログインしています"
@@ -126,8 +158,11 @@ msgstr "管理者でログインしています"
 msgid "{core:frontpage:auth}"
 msgstr "認証"
 
+msgid "{core:frontpage:logout}"
+msgstr "ログアウト"
+
 msgid "{core:no_metadata:suggestion_user_link}"
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、あなたはこのエラーをサイトの管理者に報告してください。"
+msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
 
 msgid "{core:no_state:description}"
 msgstr "現在のリクエストから状態情報を特定することが出来ませんでした。"
@@ -143,14 +178,11 @@ msgstr "シングルサインオンイベントの間隔が短すぎます。"
 
 msgid "{core:frontpage:intro}"
 msgstr ""
-"<strong>おめでとう</strong>, あなたは SimpleSAMLphp "
-"のインストールに成功しました。このページは設定を行うためのスタートページです。テスト、診断、メタデータや関連するドキュメントへのリンクを見つけるでしょう。"
+"<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
+"テスト、診断、メタデータや関連するドキュメントへのリンクを見つけることができるでしょう。"
 
 msgid "{core:no_metadata:header}"
 msgstr "メタデータが見つかりません"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr "ホスト Shibboleth 1.3 アイデンティティプロバイダメタデータ (自動生成)"
 
 msgid "{core:frontpage:required}"
 msgstr "必須"
@@ -167,13 +199,13 @@ msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>あなたはHTTPS(暗号化通信)を行っていません。</strong>HTTPはテスト環境であれば正常に動作します、しかし製品環境ではHTTPSを使用するべきです。["
 " <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\">詳しくは SimpleSAMLphp メンテナンス情報を読んでください。</a> ]"
+"\">詳しくはSimpleSAMLphpメンテナンス情報を読んでください</a> ]"
 
 msgid "{core:frontpage:federation}"
 msgstr "連携"
 
 msgid "{core:frontpage:required_radius}"
-msgstr "Radiusに必要"
+msgstr "Radiusのために必須"
 
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "ブラウザに保存されたタブにより、以前のセッションが開かれました。"
@@ -188,19 +220,17 @@ msgid "{core:no_state:report_header}"
 msgstr "このエラーをレポート"
 
 msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP example - IdP 経由でテストログイン"
+msgstr "SAML 2.0 SP example - IdP経由でテストログイン"
 
 msgid "{core:no_state:cause_nocookie}"
 msgstr "このWEBブラウザではクッキーが無効化されています。"
 
 msgid "{core:frontpage:about_header}"
-msgstr "SimpleSAMLphp について"
+msgstr "SimpleSAMLphpについて"
 
 msgid "{core:frontpage:about_text}"
 msgstr ""
-"この SimpleSAMLphp は素晴らしいものです。これ以上の説明が在りますか？こちらのリンクで更なる情報を見つけることが出来ます <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp at the Feide RnD"
-" blog</a>"
+"SimpleSAMLphpは素晴らしいものです。詳細についてお探しですか？<a href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphpのWEBページ</a>で更なる情報を見つけることが出来ます。"
 
 msgid "{core:no_metadata:suggestion_developer}"
 msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題が有ります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
@@ -218,7 +248,7 @@ msgid "{core:frontpage:recommended}"
 msgstr "推奨"
 
 msgid "{core:frontpage:link_doc_googleapps}"
-msgstr "SimpleSAMLphp を Google Apps for Education の為のIdPとして設定"
+msgstr "SimpleSAMLphpをGoogle Apps for Educationの為のIdPとして設定"
 
 msgid "{core:frontpage:tools}"
 msgstr "ツール"
@@ -227,10 +257,10 @@ msgid "{core:short_sso_interval:retry}"
 msgstr "ログインを再試行"
 
 msgid "{core:no_cookie:description}"
-msgstr "あなたのブラウザでクッキーが無効化されている様です。ブラウザの設定を確認し、再度試してください。"
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
 
 msgid "{core:frontpage:deprecated}"
-msgstr "古い"
+msgstr "非推奨"
 
 msgid "You are logged in as administrator"
 msgstr "管理者でログインしています"
@@ -251,7 +281,7 @@ msgid "Metadata overview for your installation. Diagnose your metadata files"
 msgstr "メタデータの概要。メタデータファイルを診断します。"
 
 msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML を SimpleSAMLphpメタデータに変換"
+msgstr "XMLをSimpleSAMLphpメタデータに変換"
 
 msgid "Required"
 msgstr "必須"
@@ -269,7 +299,7 @@ msgid "PHP info"
 msgstr "PHP info"
 
 msgid "About SimpleSAMLphp"
-msgstr "SimpleSAMLphp について"
+msgstr "SimpleSAMLphpについて"
 
 msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
 msgstr "ホスト SAML 2.0 サービスプロバイダメタデータ(自動生成)"
@@ -278,7 +308,7 @@ msgid "Retry login"
 msgstr "ログインを再試行"
 
 msgid "Required for LDAP"
-msgstr "LDAPに必要"
+msgstr "LDAPのために必須"
 
 msgid "Close the web browser, and try again."
 msgstr "WEBブラウザを閉じて、再度試してください。"
@@ -290,7 +320,7 @@ msgid "We were unable to locate the state information for the current request."
 msgstr "現在のリクエストから状態情報を特定することが出来ませんでした。"
 
 msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "IdPディスカバリサービス内のIdpの選択を削除する"
+msgstr "IdPディスカバリサービス内のIdPの選択を削除"
 
 msgid ""
 "This is most likely a configuration problem on either the service "
@@ -298,7 +328,7 @@ msgid ""
 msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
 
 msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "SimpleSAMLphp IdP と 連携する Shibboleth SP 1.3 として設定"
+msgstr "SimpleSAMLphp IdPと連携するShibboleth SP 1.3として設定"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
@@ -324,13 +354,13 @@ msgstr "設定されている認証元をテスト"
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
-msgstr "あなたのブラウザでクッキーが無効化されている様です。ブラウザの設定を確認し、再度試してください。"
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
 
 msgid "Installing SimpleSAMLphp"
 msgstr "SimpleSAMLphpのインストール"
 
 msgid "Deprecated"
-msgstr "古い"
+msgstr "非推奨"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "
@@ -338,8 +368,8 @@ msgid ""
 "will find links to test examples, diagnostics, metadata and even links to"
 " relevant documentation."
 msgstr ""
-"<strong>おめでとう</strong>, あなたは SimpleSAMLphp "
-"のインストールに成功しました。このページは設定を行うためのスタートページです。テスト、診断、メタデータや関連するドキュメントへのリンクを見つけるでしょう。"
+"<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
+"テスト、診断、メタデータや関連するドキュメントへのリンクを見つけることができるでしょう。"
 
 msgid "This error may be caused by:"
 msgstr "このエラーの原因:"
@@ -353,7 +383,7 @@ msgid ""
 msgstr ""
 "<strong>あなたはHTTPS(暗号化通信)を行っていません。</strong>HTTPはテスト環境であれば正常に動作します、しかし製品環境ではHTTPSを使用するべきです。["
 " <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\">詳しくは SimpleSAMLphp メンテナンス情報を読んでください。</a> ]"
+"\">詳しくはSimpleSAMLphpメンテナンス情報を読んでください</a> ]"
 
 msgid "Metadata"
 msgstr "メタデータ"
@@ -362,7 +392,7 @@ msgid "Retry"
 msgstr "再試行"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
-msgstr "SimpleSAMLphp のメンテナンスと設定"
+msgstr "SimpleSAMLphpのメンテナンスと設定"
 
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "ホストネームやポート、プロトコルを診断"
@@ -370,7 +400,7 @@ msgstr "ホストネームやポート、プロトコルを診断"
 msgid ""
 "If you are an user who received this error after following a link on a "
 "site, you should report this error to the owner of that site."
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、あなたはこのエラーをサイトの管理者に報告してください。"
+msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphpをアイデンティティプロバイダとして使用する"
@@ -386,28 +416,25 @@ msgid ""
 "You can find more information about it at the <a "
 "href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
 "<a href=\"http://uninett.no\">UNINETT</a>."
-msgstr ""
-"この SimpleSAMLphp は素晴らしいものです。これ以上の説明が在りますか？こちらのリンクで更なる情報を見つけることが出来ます <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp at the Feide RnD"
-" blog</a>"
+msgstr "SimpleSAMLphpは素晴らしいものです。詳細についてお探しですか？<a href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphpのWEBページ</a>で更なる情報を見つけることが出来ます。"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr "Shibboleth 1.3 SP example - Shib IdP 経由でテストログイン"
+msgstr "Shibboleth 1.3 SP example - Shib IdP経由でテストログイン"
 
 msgid "Authentication"
 msgstr "認証"
 
 msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp設定ページ"
+msgstr "SimpleSAMLphp 設定ページ"
 
 msgid "Show metadata"
 msgstr "メタデータを表示"
 
 msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
-msgstr "SimpleSAMLphp を Google Apps for Education の為のIdPとして設定"
+msgstr "SimpleSAMLphpをGoogle Apps for Educationの為のIdPとして設定"
 
 msgid "State information lost"
-msgstr "状態情報が無くなりました。"
+msgstr "状態情報が無くなりました"
 
 msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
 msgstr "ホスト SAML 2.0 アイデンティティプロバイダメタデータ(自動生成)"
@@ -416,7 +443,7 @@ msgid "OpenID Provider site - Alpha version (test code)"
 msgstr "OpenID プロバイダサイト - アルファバージョン (テストコード)"
 
 msgid "Required for Radius"
-msgstr "Radiusに必要"
+msgstr "Radiusのために必須"
 
 msgid "We were unable to locate the metadata for the entity:"
 msgstr "メタデータの実体を見つけることが出来ませんでした:"
@@ -431,7 +458,7 @@ msgid ""
 "We have detected that there is only a few seconds since you last "
 "authenticated with this service provider, and therefore assume that there"
 " is a problem with this SP."
-msgstr "私たちはたった数秒前にあなたがこのサービスプロバイダに認証されている事を検知しています、従って問題はSPに在ると推測できます。"
+msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
 
 msgid "Recommended"
 msgstr "推奨"
@@ -440,10 +467,10 @@ msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "
 "have a problem with the metadata configuration. Verify that metadata is "
 "configured correctly on both the identity provider and service provider."
-msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題が有ります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
+msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
 
 msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp の高度な機能"
+msgstr "SimpleSAMLphpの高度な機能"
 
 msgid "Too short interval between single sign on events."
 msgstr "シングルサインオンイベントの間隔が短すぎます。"
@@ -469,7 +496,7 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr "ホスト Shibboleth 1.3 アイデンティティプロバイダメタデータ (自動生成)"
 
 msgid "Login as administrator"
-msgstr "管理者でログイン"
+msgstr "管理者としてログイン"
 
 msgid "Report this error"
 msgstr "このエラーをレポート"

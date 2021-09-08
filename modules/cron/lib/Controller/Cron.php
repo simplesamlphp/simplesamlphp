@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\cron\Controller;
 
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
@@ -13,6 +16,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -25,13 +29,18 @@ use Symfony\Component\HttpFoundation\Response;
 class Cron
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Configuration */
-    protected $cronconfig;
+    protected Configuration $cronconfig;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
+
+    /**
+     * @var \SimpleSAML\Utils\Auth
+     */
+    protected $authUtils;
 
 
     /**
@@ -40,7 +49,6 @@ class Cron
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Configuration              $moduleConfig The module-configuration to use by the controllers.
      * @param \SimpleSAML\Session                    $session The session to use by the controllers.
      *
      * @throws \Exception
@@ -52,6 +60,18 @@ class Cron
         $this->config = $config;
         $this->cronconfig = Configuration::getConfig('module_cron.php');
         $this->session = $session;
+        $this->authUtils = new Utils\Auth();
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
     }
 
 
@@ -61,12 +81,12 @@ class Cron
      * @return \SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info()
+    public function info(): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $key = $this->cronconfig->getValue('key', 'secret');
-        $tags = $this->cronconfig->getValue('allowed_tags');
+        $tags = $this->cronconfig->getValue('allowed_tags', []);
 
         $def = [
             'weekly' => "22 0 * * 0",
@@ -85,7 +105,7 @@ class Cron
             ];
         }
 
-        $t = new Template($this->config, 'cron:croninfo.tpl.php', 'cron:cron');
+        $t = new Template($this->config, 'cron:croninfo.twig', 'cron:cron');
         $t->data['urls'] = $urls;
         return $t;
     }
@@ -98,14 +118,14 @@ class Cron
      *
      * @param string $tag The tag
      * @param string $key The secret key
-     * @param string|null $output The output format, defaulting to xhtml
+     * @param string $output The output format, defaulting to xhtml
      *
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run($tag, $key, $output)
+    public function run(string $tag, string $key, string $output = 'xhtml'): Response
     {
         $configKey = $this->cronconfig->getValue('key', 'secret');
         if ($key !== $configKey) {
@@ -114,12 +134,13 @@ class Cron
         }
 
         $cron = new \SimpleSAML\Module\cron\Cron();
-        if ($tag === null || !$cron->isValidTag($tag)) {
+        if (!$cron->isValidTag($tag)) {
             Logger::error('Cron - Illegal tag [' . $tag . '].');
             exit;
         }
 
-        $url = Utils\HTTP::getSelfURL();
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getSelfURL();
         $time = date(DATE_RFC822);
 
         $croninfo = $cron->runTag($tag);
@@ -130,13 +151,13 @@ class Cron
             $mail->setData(['url' => $url, 'tag' => $croninfo['tag'], 'summary' => $croninfo['summary']]);
             try {
                 $mail->send();
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-                Logger::warning("Unable to send cron report");
+            } catch (PHPMailerException $e) {
+                Logger::warning("Unable to send cron report; " . $e->getMessage());
             }
         }
 
         if ($output === 'xhtml') {
-            $t = new Template($this->config, 'cron:croninfo-result.tpl.php', 'cron:cron');
+            $t = new Template($this->config, 'cron:croninfo-result.twig', 'cron:cron');
             $t->data['tag'] = $croninfo['tag'];
             $t->data['time'] = $time;
             $t->data['url'] = $url;

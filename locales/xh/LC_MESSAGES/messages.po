@@ -35,7 +35,7 @@ msgstr ""
 msgid "{errors:descr_NOSTATE}"
 msgstr "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo"
 
-msgid "{errors:title_SSOPARAMS}"
+msgid "No SAML request provided"
 msgstr "Akukho sicelo se-SAML sinikelweyo"
 
 msgid "{errors:descr_CASERROR}"
@@ -207,7 +207,10 @@ msgstr "Hayi, rhoxisa"
 msgid "{status:header_diagnostics}"
 msgstr "Uhlalutyo lwe-SimpleSAMLphp"
 
-msgid "{errors:descr_SSOPARAMS}"
+msgid ""
+"You accessed the Single Sign On Service interface, but did not provide a "
+"SAML Authentication Request. Please note that this endpoint is not "
+"intended to be accessed directly."
 msgstr ""
 "Ufikelele i-intafeyisi ye-Single Sign On Service, kodwa awukhange unikele"
 " iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela "
@@ -396,9 +399,6 @@ msgstr ""
 "Uye wakhetha u-<b>%HOMEORG%</b> njengombutho wakho wekhaya. Ukuba oku "
 "akuchanekanga usenokukhetha omnye."
 
-msgid "{login:processing}"
-msgstr "Iyaprosesa..."
-
 msgid "{logout:default_link_text}"
 msgstr "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp"
 
@@ -458,13 +458,16 @@ msgstr ""
 "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na "
 "isatifikethi"
 
-msgid "{errors:descr_ARSPARAMS}"
+msgid ""
+"You accessed the Artifact Resolution Service interface, but did not "
+"provide a SAML ArtifactResolve message. Please note that this endpoint is"
+" not intended to be accessed directly."
 msgstr ""
 "Ufikelele i-intafeyisi ye-Artifact Resolution Service, kodwa awukhange "
 "unikrele umyalezo we-SAML ArtifactResolve. Nceda uqaphele ukuba le ndawo "
 "yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
-msgid "{errors:title_MEMCACHEDOWN}"
+msgid "Cannot retrieve session data"
 msgstr "Ayikwazi ukubuyisela ingcombolo yeseshoni"
 
 msgid "{status:some_error_occurred}"
@@ -473,7 +476,7 @@ msgstr "Kwenzeke impazamo ethile"
 msgid "{errors:errorreport_text}"
 msgstr "Ingxelo yempazamo ithunyelwe kubalawuli."
 
-msgid "{errors:title_ARSPARAMS}"
+msgid "No SAML message provided"
 msgstr "Akukho myalezo we-SAML unikelweyo"
 
 msgid "{login:help_desk_email}"

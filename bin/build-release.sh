@@ -41,7 +41,7 @@ if [ ! -x "$TARGET/composer.phar" ]; then
 fi
 
 # Set the version in composer.json
-php "$TARGET/composer.phar" config version "$VERSION" -d "$TARGET"
+php "$TARGET/composer.phar" config version "v$VERSION" -d "$TARGET"
 
 # Install dependencies (without vcs history or dev tools)
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
@@ -58,15 +58,17 @@ cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"
 rm -rf "$TARGET/node_modules"
 rm "$TARGET/www/assets/js/stylesheet.js"*
-rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
-rm "$TARGET/.php_cs.dist"
-rm "$TARGET/.travis.yml"
-rm "$TARGET/psalm.xml"
-rm "$TARGET"/{,modules}/.gitignore
+rm -r "$TARGET/.github"
+rm "$TARGET"/phpunit.xml
+rm "$TARGET"/{,modules/*}/.php_cs.dist
+rm "$TARGET"/{,modules/*}/codecov.yml
+rm "$TARGET"/{,modules/*}/psalm.xml
+rm "$TARGET"/{,modules/*}/.gitignore
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
 rm "$TARGET/composer.phar"
+rm "$TARGET/bin/build-release.sh"
 tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
 rm -rf "$TARGET"
 

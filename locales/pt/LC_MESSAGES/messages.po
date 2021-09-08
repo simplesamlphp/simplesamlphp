@@ -104,9 +104,6 @@ msgstr ""
 "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML contém"
 " um código de insucesso)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Metadados Shib 1.3 IdP"
-
 msgid "{login:help_text}"
 msgstr ""
 "Sem o seu nome de utilizador e senha não se pode autenticar para acesso "
@@ -200,9 +197,6 @@ msgstr "A sair..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nome de utilizador ou senha incorrecta."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -412,9 +406,6 @@ msgstr "A enviar a mensagem"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Erro recebido do Fornecedor de Identidade"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Metadados Shib 1.3 SP"
-
 msgid "{admin:metaover_intro}"
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 
@@ -482,9 +473,6 @@ msgstr "Página não encontrada"
 msgid "{logout:logged_out_text}"
 msgstr "Saída efectuada com sucesso. Obrigado por ter usado este serviço."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Fornecedor de serviço (SP) Shib 1.3 (Local)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensagem"
 
@@ -505,8 +493,11 @@ msgstr ""
 "uma má configuração do SimpleSAMLphp. Contacte o administrador deste "
 "serviço de login, e comunique a mensagem de erro."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Fornecedor de identidade (IdP) Shib 1.3 (Local)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Telemóvel"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Idioma"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Não foi apresentado um certificado válido."
@@ -540,9 +531,6 @@ msgstr ""
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informação de logout perdida"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Fornecedor de identidade (IdP) Shib 1.3 (Remoto)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "O software SimpleSAMLphp tem um problema de configuração."

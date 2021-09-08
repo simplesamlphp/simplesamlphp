@@ -1,8 +1,10 @@
 <?php
-/*
+
+/**
  * The configuration of SimpleSAMLphp
- *
  */
+
+$httpUtils = new \SimpleSAML\Utils\HTTP();
 
 $config = [
 
@@ -128,7 +130,7 @@ $config = [
      * 'secretsalt' can be any valid string of any length.
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
-     * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     * LC_ALL=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
     'secretsalt' => 'defaultsecretsalt',
 
@@ -226,7 +228,7 @@ $config = [
      * alternatively a hashed array where the keys are the actions and their
      * corresponding values are booleans enabling or disabling each particular action.
      *
-     * SimpleSAMLphp provides some pre-defined actiones, though modules could add new
+     * SimpleSAMLphp provides some pre-defined actions, though modules could add new
      * actions here. Refer to the documentation of every module to learn if they
      * allow you to set any more debugging actions.
      *
@@ -237,9 +239,8 @@ $config = [
      * SAML messages will be logged, including plaintext versions of encrypted
      * messages.
      *
-     * - 'backtraces': this action controls the logging of error backtraces. If you
-     * want to log backtraces so that you can debug any possible errors happening in
-     * SimpleSAMLphp, enable this action (add it to the array or set it to true).
+     * - 'backtraces': this action controls the logging of error backtraces so you
+     * can debug any possible errors happening in SimpleSAMLphp.
      *
      * - 'validatexml': this action allows you to validate SAML documents against all
      * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
@@ -430,19 +431,19 @@ $config = [
     'database.persistent' => false,
 
     /*
-     * Database slave configuration is optional as well. If you are only
+     * Database secondary configuration is optional as well. If you are only
      * running a single database server, leave this blank. If you have
-     * a master/slave configuration, you can define as many slave servers
-     * as you want here. Slaves will be picked at random to be queried from.
+     * a primary/secondary configuration, you can define as many secondary servers
+     * as you want here. Secondaries will be picked at random to be queried from.
      *
-     * Configuration options in the slave array are exactly the same as the
-     * options for the master (shown above) with the exception of the table
+     * Configuration options in the secondary array are exactly the same as the
+     * options for the primary (shown above) with the exception of the table
      * prefix and driver options.
      */
-    'database.slaves' => [
+    'database.secondaries' => [
         /*
         [
-            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'dsn' => 'mysql:host=mysecondary;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,
@@ -462,18 +463,7 @@ $config = [
      * In example when you are setting up a federation bridge.
      */
     'enable.saml20-idp' => false,
-    'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
-
-    /*
-     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
-     * responses.
-     *
-     * The default is to sign the assertion element, but that can be overridden by setting this
-     * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
-     * same name to the metadata of the SP.
-     */
-    'shib13.signresponse' => true,
 
 
 
@@ -482,7 +472,7 @@ $config = [
      ***********/
 
     /*
-     * Configuration to override module enabling/disabling.
+     * Configuration for enabling/disabling modules. By default the 'core', 'admin' and 'saml' modules are enabled.
      *
      * Example:
      *
@@ -491,9 +481,14 @@ $config = [
      *      'consent' => false, // Setting to FALSE disables.
      *      'core' => null, // Unset or NULL uses default.
      * ],
-     *
      */
 
+     'module.enable' => [
+         'exampleauth' => false,
+         'core' => true,
+         'admin' => true,
+         'saml' => true
+     ],
 
 
     /*************************
@@ -551,7 +546,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain' => null,
+    'session.cookie.domain' => '',
 
     /*
      * Set the secure flag in the cookie.
@@ -560,7 +555,7 @@ $config = [
      * through https. If the user can access the service through
      * both http and https, this must be set to FALSE.
      */
-    'session.cookie.secure' => false,
+    'session.cookie.secure' => true,
 
     /*
      * Set the SameSite attribute in the cookie.
@@ -572,7 +567,7 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => null,
+    'session.cookie.samesite' => $httpUtils->canSetSameSiteNone() ? 'None' : null,
 
     /*
      * Options to override the default settings for php sessions.
@@ -634,6 +629,9 @@ $config = [
      *  - 'port': This is the port number of the memcache server. If this
      *    option isn't set, then we will use the 'memcache.default_port'
      *    ini setting. This is 11211 by default.
+     *
+     * When using the "memcache" extension, the following options are also
+     * supported:
      *  - 'weight': This sets the weight of this server in this server
      *    group. http://php.net/manual/en/function.Memcache-addServer.php
      *    contains more information about the weight option.
@@ -664,6 +662,35 @@ $config = [
      * 'memcache_store.servers' => [
      *     [
      *         ['hostname' => 'localhost'],
+     *     ],
+     * ],
+     *
+     * Additionally, when using the "memcached" extension, unique keys must
+     * be provided for each group of servers if persistent connections are
+     * desired. Each server group can also have an "options" indexed array
+     * with the options desired for the given group:
+     *
+     * 'memcache_store.servers' => [
+     *     'memcache_group_1' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *         ],
+     *         ['hostname' => '127.0.0.1', 'port' => 11211],
+     *         ['hostname' => '127.0.0.2', 'port' => 11211],
+     *     ],
+     *
+     *     'memcache_group_2' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *         ],
+     *         ['hostname' => '127.0.0.3', 'port' => 11211],
+     *         ['hostname' => '127.0.0.4', 'port' => 11211],
      *     ],
      * ],
      *
@@ -708,45 +735,12 @@ $config = [
      *************************************/
 
     /*
-     * Language-related options.
-     */
-    'language' => [
-        /*
-         * An array in the form 'language' => <list of alternative languages>.
-         *
-         * Each key in the array is the ISO 639 two-letter code for a language,
-         * and its value is an array with a list of alternative languages that
-         * can be used if the given language is not available at some point.
-         * Each alternative language is also specified by its ISO 639 code.
-         *
-         * For example, for the "no" language code (Norwegian), we would have:
-         *
-         * 'priorities' => [
-         *      'no' => ['nb', 'nn', 'en', 'se'],
-         *      ...
-         * ],
-         *
-         * establishing that if a translation for the "no" language code is
-         * not available, we look for translations in "nb" (Norwegian Bokmål),
-         * and so on, in that order.
-         */
-        'priorities' => [
-            'no' => ['nb', 'nn', 'en', 'se'],
-            'nb' => ['no', 'nn', 'en', 'se'],
-            'nn' => ['no', 'nb', 'en', 'se'],
-            'se' => ['nb', 'no', 'nn', 'en'],
-            'nr' => ['zu', 'en'],
-            'nd' => ['zu', 'en'],
-        ],
-    ],
-
-    /*
      * Languages available, RTL languages, and what language is the default.
      */
     'language.available' => [
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
-        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh',
+        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh', 'st',
     ],
     'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',
@@ -761,12 +755,12 @@ $config = [
      * Options to override the default settings for the language cookie
      */
     'language.cookie.name' => 'language',
-    'language.cookie.domain' => null,
+    'language.cookie.domain' => '',
     'language.cookie.path' => '/',
-    'language.cookie.secure' => false,
+    'language.cookie.secure' => true,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-    'language.cookie.samesite' => null,
+    'language.cookie.samesite' => $httpUtils->canSetSameSiteNone() ? 'None' : null,
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
@@ -779,34 +773,6 @@ $config = [
      * Example:
      *   'language.get_language_function' => ['\SimpleSAML\Module\example\Template', 'getLanguage'],
      */
-
-    /*
-     * Extra dictionary for attribute names.
-     * This can be used to define local attributes.
-     *
-     * The format of the parameter is a string with <module>:<dictionary>.
-     *
-     * Specifying this option will cause us to look for modules/<module>/dictionaries/<dictionary>.definition.json
-     * The dictionary should look something like:
-     *
-     * {
-     *     "firstattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     },
-     *     "secondattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     }
-     * }
-     *
-     * Note that all attribute names in the dictionary must in lowercase.
-     *
-     * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
-     */
-    'attributes.extradictionary' => null,
-
-
 
     /**************
      | APPEARANCE |
@@ -925,7 +891,6 @@ $config = [
 
     /*
      * Authentication processing filters that will be executed for all IdPs
-     * Both Shibboleth and SAML 2.0
      */
     'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
@@ -946,7 +911,7 @@ $config = [
             'type'          => 'saml20-idp-SSO',
         ],
 
-        /* When called without parameters, it will fallback to filter attributes ‹the old way›
+        /* When called without parameters, it will fallback to filter attributes 'the old way'
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
          */
         50 => 'core:AttributeLimit',
@@ -981,7 +946,6 @@ $config = [
 
     /*
      * Authentication processing filters that will be executed for all SPs
-     * Both Shibboleth and SAML 2.0
      */
     'authproc.sp' => [
         /*
@@ -1126,7 +1090,6 @@ $config = [
     'metadata.sign.privatekey' => null,
     'metadata.sign.privatekey_pass' => null,
     'metadata.sign.certificate' => null,
-    'metadata.sign.algorithm' => null,
 
 
     /****************************
@@ -1163,6 +1126,11 @@ $config = [
      * The prefix we should use on our tables.
      */
     'store.sql.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The driver-options we should pass to the PDO-constructor.
+     */
+    'store.sql.options' => [],
 
     /*
      * The hostname and port of the Redis datastore instance.

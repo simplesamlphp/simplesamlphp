@@ -4,7 +4,6 @@
  * This file will handle the case of a user with an existing session that's not valid for a specific Service Provider,
  * since the authenticating IdP is not in the list of IdPs allowed by the SP.
  *
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  *
  * @package SimpleSAMLphp
  */
@@ -48,30 +47,12 @@ if (isset($_POST['continue'])) {
 }
 
 $cfg = \SimpleSAML\Configuration::getInstance();
-$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.tpl.php');
-$translator = $template->getTranslator();
+$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.twig');
 $template->data['AuthState'] = (string) $_REQUEST['AuthState'];
 
-// get the name of the IdP
 $idpmdcfg = $state['saml:sp:IdPMetadata'];
 /** @var \SimpleSAML\Configuration $idpmdcfg */
-$idpmd = $idpmdcfg->toArray();
-if (array_key_exists('name', $idpmd)) {
-    $template->data['idp_name'] = $translator->getPreferredTranslation($idpmd['name']);
-} elseif (array_key_exists('OrganizationDisplayName', $idpmd)) {
-    $template->data['idp_name'] = $translator->getPreferredTranslation($idpmd['OrganizationDisplayName']);
-} else {
-    $template->data['idp_name'] = $idpmd['entityid'];
-}
+$template->data['entity_idp'] = $idpmdcfg->toArray();
+$template->data['entity_sp'] = $state['SPMetadata'];
 
-// get the name of the SP
-$spmd = $state['SPMetadata'];
-if (array_key_exists('name', $spmd)) {
-    $template->data['sp_name'] = $translator->getPreferredTranslation($spmd['name']);
-} elseif (array_key_exists('OrganizationDisplayName', $spmd)) {
-    $template->data['sp_name'] = $translator->getPreferredTranslation($spmd['OrganizationDisplayName']);
-} else {
-    $template->data['sp_name'] = $spmd['entityid'];
-}
-
-$template->show();
+$template->send();

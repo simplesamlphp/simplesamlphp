@@ -1,17 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 
+/**
+ * @covers \SimpleSAML\Module
+ */
 class ModuleTest extends TestCase
 {
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
-     * @return void
      */
-    public function testIsModuleEnabled()
+    public function testIsModuleEnabled(): void
     {
         // test for the most basic functionality
         $this->assertTrue(Module::isModuleEnabled('core'));
@@ -20,9 +26,8 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleDir().
-     * @return void
      */
-    public function testGetModuleDir()
+    public function testGetModuleDir(): void
     {
         // test for the most basic functionality
         $this->assertEquals(
@@ -34,11 +39,10 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleURL().
-     * @return void
      */
-    public function testGetModuleURL()
+    public function testGetModuleURL(): void
     {
-        \SimpleSAML\Configuration::loadFromArray([
+        Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/'
         ], '', 'simplesaml');
         $this->assertEquals(
@@ -57,9 +61,8 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModules().
-     * @return void
      */
-    public function testGetModules()
+    public function testGetModules(): void
     {
         $this->assertGreaterThan(0, count(Module::getModules()));
     }
@@ -69,59 +72,66 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if we are not asking
      * for a class inside a module (that is, there is no colon separating the name of the module and the name of the
      * class).
-     * @return void
      */
-    public function testResolveClassNoModule()
+    public function testResolveClassNoModule(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Module::resolveClass('nomodule', '');
     }
 
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if the class we are
-     * asking for cannot be found.
-     * @return void
-     */
-    public function testResolveClassNotFound()
-    {
-        $this->expectException(\Exception::class);
-        Module::resolveClass('core:Missing', '');
-    }
-
-
-    /**
-     * Test for SimpleSAML\Module::resolveClass(). It will make sure that an exception is thrown if the class we are
      * asking for can be resolved, but does not extend a given class.
-     * @return void
      */
-    public function testResolveClassNotSubclass()
+    public function testResolveClassNotSubclass(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Module::resolveClass('core:PHP', 'Auth_Process', '\Exception');
     }
 
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
-     * @return void
      */
-    public function tesstResolveClass()
+    public function testResolveClass(): void
     {
         // most basic test
-        $this->assertEquals('sspmod_core_ACL', Module::resolveClass('core:ACL', ''));
+        $this->assertEquals('SimpleSAML\Module\cron\Cron', Module::resolveClass('cron:Cron', ''));
 
         // test for the $type parameter correctly translated into a path
         $this->assertEquals(
-            '\SimpleSAML\Module\core\Auth\Process\PHP',
-            Module::resolveClass('core:PHP', 'Auth_Process')
+            'SimpleSAML\Module\core\Auth\Process\PHP',
+            Module::resolveClass('core:PHP', 'Auth\Process')
         );
 
         // test for valid subclasses
-        $this->assertEquals('\SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
+        $this->assertEquals('SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
             'core:PHP',
             'Auth\Process',
             '\SimpleSAML\Auth\ProcessingFilter'
         ));
+    }
+
+    /**
+     * Test for SimpleSAML\Module::getModuleHooks(). It covers happy path.
+     */
+    public function testGetModuleHooks(): void
+    {
+        $hooks = Module::getModuleHooks('saml');
+        $this->assertArrayHasKey('metadata_hosted', $hooks);
+        $this->assertEquals('saml_hook_metadata_hosted', $hooks['metadata_hosted']['func']);
+        $expectedFile = dirname(__DIR__, 3) . '/modules/saml/hooks/hook_metadata_hosted.php';
+        $this->assertEquals($expectedFile, $hooks['metadata_hosted']['file']);
+    }
+
+    /**
+     * Test for SimpleSAML\Module::getModuleHooks(). It covers invalid hook names
+     */
+    public function testGetModuleHooksIgnoresInvalidHooks(): void
+    {
+        $hooks = Module::getModuleHooks('../tests/modules/unittest');
+        $this->assertArrayHasKey('valid', $hooks, 'hooks=' . var_export($hooks, true));
+        $this->assertCount(1, $hooks, "Invalid hooks should be ignored");
     }
 }

@@ -16,14 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Jūsų autentikacijos kontekstas šioje paslaugoje nepriimamas. Greičiausiai"
-" jis yra per silpnas arba ne dviejų faktorių."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Neteisingas autentifikacijos kontekstas"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

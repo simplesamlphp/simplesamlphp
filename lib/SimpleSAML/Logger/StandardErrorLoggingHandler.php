@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Logger;
 
 use SimpleSAML\Configuration;
@@ -7,7 +9,6 @@ use SimpleSAML\Configuration;
 /**
  * A logging handler that outputs all messages to standard error.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class StandardErrorLoggingHandler extends FileLoggingHandler
@@ -21,7 +22,12 @@ class StandardErrorLoggingHandler extends FileLoggingHandler
      */
     public function __construct(Configuration $config)
     {
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace(
+            '/[\x00-\x1F\x7F\xA0]/u',
+            '',
+            $config->getString('logging.processname', 'SimpleSAMLphp')
+        );
         $this->logFile = 'php://stderr';
     }
 }

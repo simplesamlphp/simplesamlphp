@@ -5,7 +5,6 @@
  * into the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password/organization authentication.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -67,7 +66,7 @@ if (isset($state['error'])) {
     $queryParams = ['AuthState' => $authStateId];
 }
 
-if ($organizations === null || !empty($organization)) {
+if ($organizations === null || $organization !== '') {
     if (!empty($username) || !empty($password)) {
         if ($source->getRememberUsernameEnabled()) {
             $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
@@ -78,7 +77,8 @@ if ($organizations === null || !empty($organization)) {
                 $params['expire'] = time() - 300;
             }
 
-            \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
+            $httpUtils = new \SimpleSAML\Utils\HTTP();
+            $httpUtils->setCookie($source->getAuthId() . '-username', $username, $params, false);
         }
 
         if ($source->getRememberOrganizationEnabled()) {
@@ -128,7 +128,7 @@ if ($organizations === null || !empty($organization)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.twig');
 $t->data['stateparams'] = ['AuthState' => $authStateId];
 $t->data['username'] = $username;
 $t->data['forceUsername'] = false;
@@ -163,5 +163,5 @@ if (isset($state['SPMetadata'])) {
     $t->data['SPMetadata'] = null;
 }
 
-$t->show();
+$t->send();
 exit();

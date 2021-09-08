@@ -102,12 +102,12 @@
     </dl>
     <br>
 
-{% if logout %}
+{% if logout is defined %}
     <h2>{% trans %}Logout{% endtrans %}</h2>
     <p> {{ logout }}</p>
 {% endif %}
 
-{% if logouturl %}
+{% if logouturl is defined %}
     <div class="center">
         <a class="pure-button pure-button-red" href="{{ logouturl }}">{{ 'Logout'|trans }}</a>
     </div>

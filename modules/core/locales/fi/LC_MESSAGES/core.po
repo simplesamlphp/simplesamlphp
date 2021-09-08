@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP esimerkki - testikirjautuminen Shib IdP:si kautta"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Kirjaudu ylläpitäjänä"
 
@@ -44,11 +41,6 @@ msgstr "Isännöidyn SAML 2.0 identiteetintarjoajan Metadata (automaattisesti lu
 
 msgid "{core:frontpage:optional}"
 msgstr "Valinnainen"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Isännöidyn Shibboleth 1.3 palveluntarjoajan Metadata (automaattisesti "
-"luotu)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentaatio"
@@ -111,11 +103,6 @@ msgstr ""
 "<strong>Onnittelut</strong>, olet onnistuneesti asentanut "
 "SimpleSAMLphp:n. Tämä on asennuksen lähtösivu, millä löydät linkkejä "
 "testiesimerkkeihin, diagnostiikkaan, metadataan ja dokumentaatioon."
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Isännöidyn Shibboleth 1.3 identiteetintarjoajan Metadata (automaattisesti"
-" luotu)"
 
 msgid "{core:frontpage:required}"
 msgstr "Pakollinen"

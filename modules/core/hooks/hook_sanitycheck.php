@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+
 /**
  * Hook to do sanitycheck
  *
  * @param array &$hookinfo  hookinfo
- * @return void
  */
-function core_hook_sanitycheck(&$hookinfo)
+function core_hook_sanitycheck(array &$hookinfo): void
 {
-    assert(is_array($hookinfo));
-    assert(array_key_exists('errors', $hookinfo));
-    assert(array_key_exists('info', $hookinfo));
+    Assert::keyExists($hookinfo, 'errors');
+    Assert::keyExists($hookinfo, 'info');
 
-    $config = \SimpleSAML\Configuration::getInstance();
+    $config = Configuration::getInstance();
 
     if ($config->getString('auth.adminpassword', '123') === '123') {
         $hookinfo['errors'][] = '[core] Password in config.php is not set properly';
@@ -26,7 +30,7 @@ function core_hook_sanitycheck(&$hookinfo)
         $hookinfo['info'][] = '[core] In config.php technicalcontact_email is set properly';
     }
 
-    if (version_compare(phpversion(), '5.6', '>=')) {
+    if (version_compare(phpversion(), '7.4', '>=')) {
         $hookinfo['info'][] = '[core] You are running a PHP version suitable for SimpleSAMLphp.';
     } else {
         $hookinfo['errors'][] = '[core] You are running an old PHP installation. ' .
@@ -37,8 +41,8 @@ function core_hook_sanitycheck(&$hookinfo)
     $mihookinfo = [
         'info' => &$info,
     ];
-    $availmodules = SimpleSAML\Module::getModules();
-    SimpleSAML\Module::callHooks('moduleinfo', $mihookinfo);
+    $availmodules = Module::getModules();
+    Module::callHooks('moduleinfo', $mihookinfo);
     foreach ($info as $mi => $i) {
         if (isset($i['dependencies']) && is_array($i['dependencies'])) {
             foreach ($i['dependencies'] as $dep) {

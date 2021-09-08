@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 
 /**
@@ -9,28 +13,27 @@ use SimpleSAML\Error;
  *
  * This filter can modify or replace attributes given a regular expression.
  *
- * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
-class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAlter extends Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
     /**
      * Should the value found be removed?
      * @var bool
      */
-    private $remove = false;
+    private bool $remove = false;
 
     /**
      * Pattern to search for.
      * @var string
      */
-    private $pattern = '';
+    private string $pattern = '';
 
     /**
      * String to replace the pattern found with.
@@ -42,13 +45,13 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * Attribute to search in
      * @var string
      */
-    private $subject = '';
+    private string $subject = '';
 
     /**
      * Attribute to place the result in.
      * @var string
      */
-    private $target = '';
+    private string $target = '';
 
 
     /**
@@ -58,11 +61,9 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -98,17 +99,15 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Modify existing attributes with the configured values.
      *
-     * @param array &$request The current request.
+     * @param array &$state The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
-     * @return void
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($state, 'Attributes');
 
         // get attributes from request
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {
@@ -150,7 +149,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
-                    if ($this->replacement !== false) {
+                    if (is_string($this->replacement)) {
                         $new_value = $this->replacement;
                     }
 

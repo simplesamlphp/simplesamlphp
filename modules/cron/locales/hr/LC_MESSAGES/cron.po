@@ -16,32 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Cron izvještaj"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Cron je pokrenut u"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "U nastavku je prijedlog sadržaja crontab datoteke:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Pokreni cron:"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Kliknite ovdje da biste pokrenuli izvršavanje cron zadataka:"
-
-msgid "{cron:cron:cron_info}"
-msgstr ""
-"Cron je mehanizam za periodičko pokretanje procesa na Unix operacijskim "
-"sustavima."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "U nastavku su navedeni rezultati izvršavanja cron zadataka:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Cron rezultati"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr ""
 "Cron je mehanizam za periodičko pokretanje procesa na Unix operacijskim "

@@ -57,31 +57,6 @@ For compatibility with certain SPs, SimpleSAMLphp will also accept the
 `RelayState` and `ConsumerURL`, respectively.
 
 
-### IdP first with SAML 1.1
-
-A SAML 1.1 SP does not send an authentication request to the IdP, but instead triggers IdP initiated authentication directly.
-If you want to do it manually, you can access the following URL:
-
-	https://idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&shire=https://sp.example.org/acs-endpoint&target=https://sp.example.org/somepage
-
-The parameters are as follows:
-
-`providerID`
-:   The entityID of the SP.
-    This parameter is required.
-
-`shire`
-:   The AssertionConsumerService endpoint of the SP.
-    This parameter is required.
-
-`target`
-:   The target parameter the SP should receive with the authentication response.
-    This is often the page the user should be sent to after authentication.
-    This parameter is optional for the IdP, but must be specified if the SP you are targeting is running SimpleSAMLphp.
-
-:   *Note*: This parameter must be sent as `target` (with lowercase letters) when starting the authentication, while it is sent as `TARGET` (with uppercase letters) in the authentication response.
-
-
 IdP-initiated logout
 --------------------
 

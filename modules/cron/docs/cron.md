@@ -33,13 +33,13 @@ Configuring the cron module
 
 The configuration (`config/module_cron.php`) should look similar to this:
 
-	$config = array (
+	$config = [
 	       'key' => 'RANDOM_KEY',
-	       'allowed_tags' => array('daily', 'hourly', 'frequent'),
+	       'allowed_tags' => ['daily', 'hourly', 'frequent'],
 	       'debug_message' => TRUE,
 	       'sendemail' => TRUE,
 	
-	);
+	];
 
 Bear in mind that the key is used as a security feature, to restrict
 access to your cron. Therefore, you need to make sure that the string

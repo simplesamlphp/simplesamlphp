@@ -8,11 +8,14 @@
  * Instantiation of session handler objects should be done through
  * the class method getSessionHandler().
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
+
+use SimpleSAML\Store\StoreFactory;
 
 abstract class SessionHandler
 {
@@ -21,9 +24,9 @@ abstract class SessionHandler
      * instance of the session handler. This variable will be NULL if
      * we haven't instantiated a session handler yet.
      *
-     * @var \SimpleSAML\SessionHandler
+     * @var \SimpleSAML\SessionHandler|null
      */
-    protected static $sessionHandler;
+    protected static ?SessionHandler $sessionHandler = null;
 
 
     /**
@@ -35,7 +38,7 @@ abstract class SessionHandler
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    public static function getSessionHandler()
+    public static function getSessionHandler(): SessionHandler
     {
         if (self::$sessionHandler === null) {
             self::createSessionHandler();
@@ -60,7 +63,7 @@ abstract class SessionHandler
      *
      * @return string The new session id.
      */
-    abstract public function newSessionId();
+    abstract public function newSessionId(): string;
 
 
     /**
@@ -68,7 +71,7 @@ abstract class SessionHandler
      *
      * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
-    abstract public function getCookieSessionId();
+    abstract public function getCookieSessionId(): ?string;
 
 
     /**
@@ -76,7 +79,7 @@ abstract class SessionHandler
      *
      * @return string The session cookie name.
      */
-    abstract public function getSessionCookieName();
+    abstract public function getSessionCookieName(): string;
 
 
     /**
@@ -84,7 +87,7 @@ abstract class SessionHandler
      *
      * @param \SimpleSAML\Session $session The session object we should save.
      */
-    abstract public function saveSession(Session $session);
+    abstract public function saveSession(Session $session): void;
 
 
     /**
@@ -94,7 +97,7 @@ abstract class SessionHandler
      *
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
-    abstract public function loadSession($sessionId = null);
+    abstract public function loadSession(?string $sessionId): ?Session;
 
 
     /**
@@ -104,7 +107,7 @@ abstract class SessionHandler
      *
      * @return bool True if it was set, false if not.
      */
-    abstract public function hasSessionCookie();
+    abstract public function hasSessionCookie(): bool;
 
 
     /**
@@ -116,7 +119,7 @@ abstract class SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    abstract public function setCookie($sessionName, $sessionID, array $cookieParams = null);
+    abstract public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void;
 
 
     /**
@@ -127,17 +130,18 @@ abstract class SessionHandler
      * session handler is selected, then we will fall back to the default
      * PHP session handler.
      *
-     * @return void
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    private static function createSessionHandler()
+    private static function createSessionHandler(): void
     {
-        $store = Store::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {
-            /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SessionHandlerStore($store);
         }
     }
@@ -149,7 +153,7 @@ abstract class SessionHandler
      * @return array An array with the cookie parameters.
      * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
      */
-    public function getCookieParams()
+    public function getCookieParams(): array
     {
         $config = Configuration::getInstance();
 

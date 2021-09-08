@@ -1,27 +1,30 @@
 <?php
 
-/**
- * Test for the SQLNameID helper class.
- *
- * @author Pavel Brousek <brousek@ics.muni.cz>
- * @package SimpleSAMLphp
- */
+declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\saml\IdP\SQLNameID;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
+/**
+ * Test for the SQLNameID helper class.
+ *
+ * @covers \SimpleSAML\Module\saml\IdP\SQLNameID
+ *
+ * @package SimpleSAMLphp
+ */
 class SQLNameIDTest extends TestCase
 {
     /**
      * @param array $config
-     * @return void
      */
-    private function addGetDelete(array $config = [])
+    private function addGetDelete(array $config = []): void
     {
         SQLNameID::add('idp', 'sp', 'user', 'value', $config);
         $this->assertEquals('value', SQLNameID::get('idp', 'sp', 'user', $config));
@@ -29,12 +32,12 @@ class SQLNameIDTest extends TestCase
         $this->assertNull(SQLNameID::get('idp', 'sp', 'user', $config));
     }
 
+
     /**
      * Test Store.
      * @test
-     * @return void
      */
-    public function testSQLStore()
+    public function testSQLStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -43,47 +46,51 @@ class SQLNameIDTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $this->addGetDelete();
         $config = Configuration::getInstance();
-        /** @var \SimpleSAML\Store $store */
-        $store = Store::getInstance();
+        $storeType = $config->getString('store.type');
+        /** @var \SimpleSAML\Store\StoreInterface $store */
+        $store = StoreFactory::getInstance($storeType);
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->clearInstance($store, StoreFactory::class);
     }
+
 
     /**
      * Test incompatible Store.
      * @test
-     * @return void
      */
-    public function testIncompatibleStore()
+    public function testIncompatibleStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'memcache',
         ], '[ARRAY]', 'simplesaml');
-        $store = Store::getInstance();
-        $this->assertInstanceOf(Store\Memcache::class, $store);
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type');
+        $store = StoreFactory::getInstance($storeType);
+        $this->assertInstanceOf(Store\MemcacheStore::class, $store);
         $this->expectException(Error\Exception::class);
         $this->addGetDelete();
         $config = Configuration::getInstance();
-        /** @var \SimpleSAML\Store $store */
-        $store = Store::getInstance();
+        $storeType = $config->getString('store.type');
+        /** @var \SimpleSAML\Store\StoreInterface $store */
+        $store = StoreFactory::getInstance($storeType);
         $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->clearInstance($store, StoreFactory::class);
     }
+
 
     /**
      * Test Database.
      * @test
-     * @return void
      */
-    public function testDatabase()
+    public function testDatabase(): void
     {
         $config = [
-            'database.dsn'        => 'sqlite::memory:',
-            'database.username'   => null,
-            'database.password'   => null,
-            'database.prefix'     => 'phpunit_',
-            'database.persistent' => true,
-            'database.slaves'     => [
+            'database.dsn'         => 'sqlite::memory:',
+            'database.username'    => null,
+            'database.password'    => null,
+            'database.prefix'      => 'phpunit_',
+            'database.persistent'  => true,
+            'database.secondaries' => [
                 [
                     'dsn'      => 'sqlite::memory:',
                     'username' => null,
@@ -94,17 +101,21 @@ class SQLNameIDTest extends TestCase
         $this->addGetDelete($config);
     }
 
+
     /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param string $className
-     * @return void
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
+     * @param class-string $className
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance($service, string $className): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, null);
+        if ($service instanceof Configuration) {
+            $reflectedInstance->setValue($service, []);
+        } else {
+            $reflectedInstance->setValue($service, null);
+        }
         $reflectedInstance->setAccessible(false);
     }
 }

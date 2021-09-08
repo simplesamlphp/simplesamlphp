@@ -29,11 +29,6 @@ msgstr "Brug frem- og tilbage-knappen i browseren."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Vi kan ikke finde metadata for denne forbindelse:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr ""
-"Shibboleth 1.3 SP eksempel - test indlogning med Shibboleth 1.3 via din "
-"IdP"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Løsningsforslag til problemet:"
 
@@ -72,9 +67,6 @@ msgstr "Hosted SAML 2.0 identitetsudbyder metadata (automatisk genereret)"
 
 msgid "{core:frontpage:optional}"
 msgstr "Valgfrit"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr "Hosted Shibboleth 1.3 tjenesteudbyder metadata (automatisk genereret)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentation"
@@ -165,9 +157,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Metadata er ikke fundt"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr "Hosted Shibboleth 1.3 identitetsudbyder metadata (automatisk genereret)"
 
 msgid "{core:frontpage:required}"
 msgstr "Påkrævet"

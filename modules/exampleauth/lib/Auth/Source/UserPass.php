@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Utils;
 
 /**
@@ -11,11 +16,10 @@ use SimpleSAML\Utils;
  * This class is an example authentication source which stores all username/passwords in an array,
  * and authenticates users against this array.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
-class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
+class UserPass extends UserPassBase
 {
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<password>",
@@ -23,7 +27,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      *
      * @var array
      */
-    private $users;
+    private array $users;
 
 
     /**
@@ -32,11 +36,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -45,24 +46,26 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Validate and parse our configuration
         foreach ($config as $userpass => $attributes) {
             if (!is_string($userpass)) {
-                throw new \Exception(
+                throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
                 );
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
-                throw new \Exception(
+                throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass[0]
                 );
             }
             $username = $userpass[0];
             $password = $userpass[1];
 
+            $attrUtils = new Utils\Attributes();
+
             try {
-                $attributes = Utils\Attributes::normalizeAttributesArray($attributes);
-            } catch (\Exception $e) {
-                throw new \Exception('Invalid attributes for user ' . $username .
+                $attributes = $attrUtils->normalizeAttributesArray($attributes);
+            } catch (Exception $e) {
+                throw new Exception('Invalid attributes for user ' . $username .
                     ' in authentication source ' . $this->authId . ': ' . $e->getMessage());
             }
             $this->users[$username . ':' . $password] = $attributes;
@@ -83,11 +86,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
      */
-    protected function login($username, $password)
+    protected function login(string $username, string $password): array
     {
-        assert(is_string($username));
-        assert(is_string($password));
-
         $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {
             throw new Error\Error('WRONGUSERPASS');

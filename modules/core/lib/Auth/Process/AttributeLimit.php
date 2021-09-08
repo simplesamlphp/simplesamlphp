@@ -1,30 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 
 /**
  * A filter for limiting which attributes are passed on.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeLimit extends Auth\ProcessingFilter
 {
     /**
      * List of attributes which this filter will allow through.
      * @var array
      */
-    private $allowedAttributes = [];
+    private array $allowedAttributes = [];
 
     /**
      * Whether the 'attributes' option in the metadata takes precedence.
      *
      * @var bool
      */
-    private $isDefault = false;
+    private bool $isDefault = false;
 
 
     /**
@@ -34,11 +37,9 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {
@@ -49,14 +50,12 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
-            } elseif (is_string($index)) {
+            } else { // Can only be string since PHP only allows string|int for array keys
                 if (!is_array($value)) {
                     throw new Error\Exception('AttributeLimit: Values for ' .
                         var_export($index, true) . ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
-            } else {
-                throw new Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, true));
             }
         }
     }
@@ -65,18 +64,18 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Get list of allowed from the SP/IdP config.
      *
-     * @param array &$request  The current request.
+     * @param array &$state  The current request.
      * @return array|null  Array with attribute names, or NULL if no limit is placed.
      */
-    private static function getSPIdPAllowed(array &$request)
+    private static function getSPIdPAllowed(array &$state): ?array
     {
-        if (array_key_exists('attributes', $request['Destination'])) {
+        if (array_key_exists('attributes', $state['Destination'])) {
             // SP Config
-            return $request['Destination']['attributes'];
+            return $state['Destination']['attributes'];
         }
-        if (array_key_exists('attributes', $request['Source'])) {
+        if (array_key_exists('attributes', $state['Source'])) {
             // IdP Config
-            return $request['Source']['attributes'];
+            return $state['Source']['attributes'];
         }
         return null;
     }
@@ -87,31 +86,29 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Removes all attributes which aren't one of the allowed attributes.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-     * @return void
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        assert::keyExists($state, 'Attributes');
 
         if ($this->isDefault) {
-            $allowedAttributes = self::getSPIdPAllowed($request);
+            $allowedAttributes = self::getSPIdPAllowed($state);
             if ($allowedAttributes === null) {
                 $allowedAttributes = $this->allowedAttributes;
             }
         } elseif (!empty($this->allowedAttributes)) {
             $allowedAttributes = $this->allowedAttributes;
         } else {
-            $allowedAttributes = self::getSPIdPAllowed($request);
+            $allowedAttributes = self::getSPIdPAllowed($state);
             if ($allowedAttributes === null) {
                 // No limit on attributes
                 return;
             }
         }
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         foreach ($attributes as $name => $values) {
             if (!in_array($name, $allowedAttributes, true)) {
@@ -139,7 +136,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $allowedConfigValues The allowed values, and possibly configuration options.
      * @return array The filtered values
      */
-    private function filterAttributeValues(array $values, array $allowedConfigValues)
+    private function filterAttributeValues(array $values, array $allowedConfigValues): array
     {
         if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
             $matchedValues = [];

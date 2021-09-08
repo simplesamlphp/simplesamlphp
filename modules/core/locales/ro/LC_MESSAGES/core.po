@@ -28,11 +28,6 @@ msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Nu am găsit metadate pentru următoarea entitate:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr ""
-"Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentificării "
-"prin furnizorul dumneavoastră de identitate Shib"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Sugestii pentru rezolvarea acestei probleme:"
 
@@ -73,11 +68,6 @@ msgstr ""
 
 msgid "{core:frontpage:optional}"
 msgstr "Opțional"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Metadate pentru furnizorul de servicii Shibboleth 1.3 găzduit (generate "
-"automat)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Documentație"
@@ -170,11 +160,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Nu au fost găsite metadate"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Metadate pentru furnizorul de identitate Shibboleth 1.3 găzduit (generate"
-" automat)"
 
 msgid "{core:frontpage:required}"
 msgstr "Necesar"

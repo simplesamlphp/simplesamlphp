@@ -1,6 +1,17 @@
 <?php
 
 $config = [
+    /*
+     * When multiple authentication sources are defined, you can specify one to use by default
+     * in order to authenticate users. In order to do that, you just need to name it "default"
+     * here. That authentication source will be used by default then when a user reaches the
+     * SimpleSAMLphp installation from the web browser, without passing through the API.
+     *
+     * If you already have named your auth source with a different name, you don't need to change
+     * it in order to use it as a default. Just create an alias by the end of this file:
+     *
+     * $config['default'] = &$config['your_auth_source'];
+     */
 
     // This is a authentication source which handles admin authentication.
     'admin' => [
@@ -11,8 +22,7 @@ $config = [
     ],
 
 
-    // An authentication source which can authenticate against both SAML 2.0
-    // and Shibboleth 1.3 IdPs.
+    // An authentication source which can authenticate against SAML 2.0 IdPs.
     'default-sp' => [
         'saml:SP',
 
@@ -150,16 +160,16 @@ $config = [
     */
 
     /*
-    // LinkedIn OAuth Authentication API.
+    // Twitter OAuth Authentication API.
     // Register your application to get an API key here:
-    //  https://www.linkedin.com/secure/developer
-    // Attributes definition:
-    //  https://developer.linkedin.com/docs/fields
-    'linkedin' => [
-        'authlinkedin:LinkedIn',
+    //  http://twitter.com/oauth_clients
+    'twitter' => [
+        'authtwitter:Twitter',
         'key' => 'xxxxxxxxxxxxxxxx',
         'secret' => 'xxxxxxxxxxxxxxxx',
-        'attributes' => 'id,first-name,last-name,headline,summary,specialties,picture-url,email-address',
+        // Forces the user to enter their credentials to ensure the correct users account is authorized.
+        // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate
+        'force_login' => false,
     ],
     */
 

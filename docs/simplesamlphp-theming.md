@@ -22,19 +22,23 @@ If you want to customize the UI, the right way to do that is to create a new **t
 
 ### Configuring which theme to use
 
-In `config.php` there is a configuration option that controls theming. Here is an example:
+In `config.php` there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
 
-	'theme.use' 		=> 'fancymodule:fancytheme',
+     'module.enable' => [
+         ...
+         'fancymodule' => true,
+     ],
 
-The `theme.use` parameter points to which theme that will be used. If some functionality in SimpleSAMLphp needs to present UI in example with the `logout.php` template, it will first look for `logout.php` in the `theme.use` theme, and if not found it will all fallback to look for the base templates.
+     'theme.use' => 'fancymodule:fancytheme',
+
+The `theme.use` parameter points to which theme that will be used. If some functionality in SimpleSAMLphp needs to present UI in example with the `logout.twig` template, it will first look for `logout.twig` in the `theme.use` theme, and if not found it will all fallback to look for the base templates.
 
 All required templates SHOULD be available as a base in the `templates` folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
 
-### Templates that include other files
+### Override only specific templates
 
-A template file may *include* other files. For example all the default templates will include a header and footer: the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
-
-SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
+The SimpleSAMLphp templates are derived from a base template and include other templates as building blocks. You only need to override the templates or building blocks needed for your change.
+SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer template. These templates may refer to your own CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
 
 
 Creating your first theme
@@ -44,57 +48,28 @@ The first thing you need to do is having a SimpleSAMLphp module to place your th
 
 	cd modules
 	mkdir mymodule
-	cd mymodule
-	touch default-enable
+
+	Enable the module by setting `$config['module.enable' => ['mymodule' => true]]`
 
 Then within this module, you can create a new theme named `fancytheme`.
 
 	cd modules/mymodule
-	mkdir -p themes/fancytheme/default/includes
+	mkdir -p themes/fancytheme/default/
 
 Now, configure SimpleSAMLphp to use your new theme in `config.php`:
 
 	'theme.use' 		=> 'mymodule:fancytheme',
 
-Next, we create `themes/fancytheme/default/includes`, and copy the header file from the base theme:
+Next, we copy the header file from the base theme:
 
-	cp templates/includes/header.php modules/mymodule/themes/fancytheme/default/includes/
+	cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 
-In the `modules/mymodule/themes/fancytheme/default/includes/header.php` type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
-
-A good start is to modify the reference to the default CSS:
-
-	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
-
-to in example:
-
-	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/fancytheme/default.css" />
-
-
-Examples
----------------------
-
-To override the frontpage body, add the file:
-
-	modules/mymodule/themes/fancytheme/default/frontpage.php
-
-In the path above `default` means that the frontpage template is not part of any modules. If you are replacing a template that is part of a module, then use the module name instead of `default`.
-
-For example, to override the `preprodwarning` template, (the file is located in `modules/preprodwarning/templates/warning.php`), you need to add a new file:
-
-	modules/mymodule/themes/fancytheme/preprodwarning/warning.php
-
-
-Say in a module `foomodule`, some code requests to present the `bar.php` template, SimpleSAMLphp will:
-
- 1. first look in your theme for a replacement: `modules/mymodule/themes/fancytheme/foomodule/bar.php`.
- 2. If not found, it will use the base template of that module: `modules/foomodule/templates/bar.php`
-
+In the `modules/mymodule/themes/fancytheme/default/includes/_header.twig` file type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
 
 Adding resource files
 ---------------------
 
-You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
+You can put resource files within the `www/assets` folder of your module, to make your module completely independent with included css, icons etc.
 
 ```
 modules
@@ -102,18 +77,17 @@ modules
     └───lib
     └───themes
     └───www
-        └───logo.png
-        └───style.css
+        └───assets
+            └───logo.png
+            └───style.css
 ```
 
-Reference these resources in your custom PHP templates under `themes/fancytheme` by using a generator for the URL:
-```
-<?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?>
-```
-
+Reference these resources in your custom templates under `themes/fancytheme` by using a generator for the URL.
 Example for a custom CSS stylesheet file:
 ```
-<link rel="stylesheet" href="<?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?>">
+{% block preload %}
+<link rel="stylesheet" href="{{ asset('style.css', 'mymodule') }}">
+{% endblock %}
 ```
 
 Migrating to Twig templates
@@ -129,7 +103,7 @@ If you need to make more extensive customizations to the base template, you shou
 
 	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 
-Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...` or the `asset()` function like shown above.
 
 Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's `@namespace_name/template_path` notation. For instance, a template in `mymodule` can include the widget template from the `yourmodule` module using the notation `@yourmodule/widget.twig`. A special namespace, `__parent__`, exists to allow theme developers to more easily extend a module's stock template.
 

@@ -1,12 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\SP;
 
+use Exception;
 use PDO;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Store\StoreInterface;
 use SimpleSAML\Utils;
 
 /**
@@ -20,153 +27,18 @@ class LogoutStore
     /**
      * Create logout table in SQL, if it is missing.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
-    private static function createLogoutTable(Store\SQL $store)
+    private static function createLogoutTable(Store\SQLStore $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
             return;
-        } elseif ($tableVer === 3) {
-            /**
-             * Table version 4 fixes the column type for the _expire column.
-             * We now use DATETIME instead of TIMESTAMP to support MSSQL.
-             */
-            switch ($store->driver) {
-                case 'pgsql':
-                    // This does not affect the NOT NULL constraint
-                    $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'
-                    ];
-                    break;
-                case 'sqlite':
-                    /**
-                     * Because SQLite does not support field alterations, the approach is to:
-                     *     Create a new table without the proper column size
-                     *     Copy the current data to the new table
-                     *     Drop the old table
-                     *     Rename the new table correctly
-                     *     Read the index
-                     */
-                    $update = [
-                        'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore_new (' .
-                        '_authSource VARCHAR(255) NOT NULL, _nameId VARCHAR(40) NOT NULL' .
-                        ', _sessionIndex VARCHAR(50) NOT NULL, _expire DATETIME NOT NULL,' .
-                        '_sessionId VARCHAR(50) NOT NULL, UNIQUE (_authSource, _nameID, _sessionIndex))',
-                        'INSERT INTO ' . $store->prefix . '_saml_LogoutStore_new SELECT * FROM ' .
-                        $store->prefix . '_saml_LogoutStore',
-                        'DROP TABLE ' . $store->prefix . '_saml_LogoutStore',
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore_new RENAME TO ' .
-                        $store->prefix . '_saml_LogoutStore',
-                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ' .
-                        $store->prefix . '_saml_LogoutStore (_expire)',
-                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ' .
-                        $store->prefix . '_saml_LogoutStore (_authSource, _nameId)'
-                    ];
-                    break;
-                default:
-                    $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _expire DATETIME NOT NULL'
-                    ];
-                    break;
-            }
-
-            try {
-                foreach ($update as $query) {
-                    $store->pdo->exec($query);
-                }
-            } catch (\Exception $e) {
-                Logger::warning('Database error: ' . var_export($store->pdo->errorInfo(), true));
-                return;
-            }
-            $store->setTableVersion('saml_LogoutStore', 4);
-            return;
-        } elseif ($tableVer === 2) {
-            /**
-             * TableVersion 3 fixes the indexes that were set to 255 in version 2;
-             *   they cannot be larger than 191 on MySQL
-             */
-
-            if ($store->driver === 'mysql') {
-                // Drop old indexes
-                $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX ' .
-                $store->prefix . '_saml_LogoutStore_nameId';
-                $store->pdo->exec($query);
-                $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX _authSource';
-                $store->pdo->exec($query);
-
-                // Create new indexes
-                $query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ';
-                $query .= $store->prefix . '_saml_LogoutStore (_authSource(191), _nameId)';
-                $store->pdo->exec($query);
-
-                $query = 'ALTER TABLE ' . $store->prefix .
-                '_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
-                $store->pdo->exec($query);
-            }
-
-            $store->setTableVersion('saml_LogoutStore', 3);
-            return;
-        } elseif ($tableVer === 1) {
-            // TableVersion 2 increased the column size to 255 (191 for mysql) which is the maximum length of a FQDN
-            switch ($store->driver) {
-                case 'pgsql':
-                    // This does not affect the NOT NULL constraint
-                    $update = [
-                        'ALTER TABLE ' . $store->prefix .
-                        '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
-                    break;
-                case 'sqlite':
-                    /**
-                     * Because SQLite does not support field alterations, the approach is to:
-                     *     Create a new table without the proper column size
-                     *     Copy the current data to the new table
-                     *     Drop the old table
-                     *     Rename the new table correctly
-                     *     Read the index
-                     */
-                    $update = [
-                        'CREATE TABLE ' . $store->prefix .
-                        '_saml_LogoutStore_new (_authSource VARCHAR(255) NOT NULL,' .
-                        '_nameId VARCHAR(40) NOT NULL, _sessionIndex VARCHAR(50) NOT NULL, ' .
-                        '_expire TIMESTAMP NOT NULL, _sessionId VARCHAR(50) NOT NULL, UNIQUE ' .
-                        '(_authSource, _nameID, _sessionIndex))',
-                        'INSERT INTO ' . $store->prefix . '_saml_LogoutStore_new SELECT * FROM ' .
-                        $store->prefix . '_saml_LogoutStore',
-                        'DROP TABLE ' . $store->prefix . '_saml_LogoutStore',
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore_new RENAME TO ' .
-                        $store->prefix . '_saml_LogoutStore',
-                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ' .
-                        $store->prefix . '_saml_LogoutStore (_expire)',
-                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ' .
-                        $store->prefix . '_saml_LogoutStore (_authSource, _nameId)'
-                    ];
-                    break;
-                case 'mysql':
-                    $update = [
-                        'ALTER TABLE ' . $store->prefix .
-                        '_saml_LogoutStore MODIFY _authSource VARCHAR(191) NOT NULL'
-                    ];
-                    break;
-                default:
-                    $update = [
-                        'ALTER TABLE ' . $store->prefix .
-                        '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL'
-                    ];
-                    break;
-            }
-
-            try {
-                foreach ($update as $query) {
-                    $store->pdo->exec($query);
-                }
-            } catch (\Exception $e) {
-                Logger::warning('Database error: ' . var_export($store->pdo->errorInfo(), true));
-                return;
-            }
-            $store->setTableVersion('saml_LogoutStore', 2);
-            return;
+        } elseif ($tableVer < 4 && $tableVer > 0) {
+            throw new Exception(
+                'No upgrade path available. Please migrate to the latest 1.18+ '
+                .  'version of SimpleSAMLphp first before upgrading to 2.x.'
+            );
         }
 
         $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
@@ -195,10 +67,9 @@ class LogoutStore
     /**
      * Clean the logout table of expired entries.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
-     * @return void
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
-    private static function cleanLogoutStore(Store\SQL $store)
+    private static function cleanLogoutStore(Store\SQLStore $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -213,28 +84,21 @@ class LogoutStore
     /**
      * Register a session in the SQL datastore.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param string $sessionIndex  The SessionIndex of the user.
      * @param int $expire
      * @param string $sessionId
-     * @return void
      */
     private static function addSessionSQL(
-        Store\SQL $store,
-        $authId,
-        $nameId,
-        $sessionIndex,
-        $expire,
-        $sessionId
-    ) {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-        assert(is_string($sessionIndex));
-        assert(is_int($expire));
-        assert(is_string($sessionId));
-
+        Store\SQLStore $store,
+        string $authId,
+        string $nameId,
+        string $sessionIndex,
+        int $expire,
+        string $sessionId
+    ): void {
         self::createLogoutTable($store);
 
         if (rand(0, 1000) < 10) {
@@ -259,16 +123,13 @@ class LogoutStore
     /**
      * Retrieve sessions from the SQL datastore.
      *
-     * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsSQL(Store\SQL $store, $authId, $nameId)
+    private static function getSessionsSQL(Store\SQLStore $store, string $authId, string $nameId): array
     {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
         self::createLogoutTable($store);
 
         $params = [
@@ -288,6 +149,7 @@ class LogoutStore
             $res[$row['_sessionindex']] = $row['_sessionid'];
         }
 
+        /** @var array $res */
         return $res;
     }
 
@@ -295,24 +157,23 @@ class LogoutStore
     /**
      * Retrieve all session IDs from a key-value store.
      *
-     * @param \SimpleSAML\Store $store  The datastore.
-     * @param string $authId  The authsource ID.
+     * @param \SimpleSAML\Store\StoreInterface $store  The datastore.
      * @param string $nameId  The hash of the users NameID.
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsStore(Store $store, $authId, $nameId, array $sessionIndexes)
-    {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
+    private static function getSessionsStore(
+        StoreInterface $store,
+        string $nameId,
+        array $sessionIndexes
+    ): array {
         $res = [];
         foreach ($sessionIndexes as $sessionIndex) {
             $sessionId = $store->get('saml.LogoutStore', $nameId . ':' . $sessionIndex);
             if ($sessionId === null) {
                 continue;
             }
-            assert(is_string($sessionId));
+            Assert::string($sessionId);
             $res[$sessionIndex] = $sessionId;
         }
 
@@ -333,14 +194,9 @@ class LogoutStore
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
      * @param int $expire
-     * @return void
      */
-    public static function addSession($authId, $nameId, $sessionIndex, $expire)
+    public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
-        assert(is_string($authId));
-        assert(is_string($sessionIndex) || $sessionIndex === null);
-        assert(is_int($expire));
-
         $session = Session::getSessionFromRequest();
         if ($session->isTransient()) {
             // transient sessions are useless for this purpose, nothing to do
@@ -353,20 +209,20 @@ class LogoutStore
              * it supports SLO, but we don't want an LogoutRequest with a specific
              * SessionIndex to match this session. We therefore generate our own session index.
              */
-            $sessionIndex = Utils\Random::generateID();
+            $randomUtils = new Utils\Random();
+            $sessionIndex = $randomUtils->generateID();
         }
 
-        $store = Store::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             // We don't have a datastore.
             return;
         }
 
         // serialize and anonymize the NameID
-        // TODO: remove this conditional statement
-        if (is_array($nameId)) {
-            $nameId = NameID::fromArray($nameId);
-        }
         $strNameId = serialize($nameId);
         $strNameId = sha1($strNameId);
 
@@ -378,7 +234,7 @@ class LogoutStore
         /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
-        if ($store instanceof Store\SQL) {
+        if ($store instanceof Store\SQLStore) {
             self::addSessionSQL($store, $authId, $strNameId, $sessionIndex, $expire, $sessionId);
         } else {
             $store->set('saml.LogoutStore', $strNameId . ':' . $sessionIndex, $sessionId, $expire);
@@ -394,27 +250,24 @@ class LogoutStore
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */
-    public static function logoutSessions($authId, $nameId, array $sessionIndexes)
+    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
-        assert(is_string($authId));
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
 
-        $store = Store::getInstance();
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             // We don't have a datastore
             return false;
         }
 
         // serialize and anonymize the NameID
-        // TODO: remove this conditional statement
-        if (is_array($nameId)) {
-            $nameId = NameID::fromArray($nameId);
-        }
         $strNameId = serialize($nameId);
         $strNameId = sha1($strNameId);
 
         // Normalize SessionIndexes
         foreach ($sessionIndexes as &$sessionIndex) {
-            assert(is_string($sessionIndex));
+            Assert::string($sessionIndex);
             if (strlen($sessionIndex) > 50) {
                 $sessionIndex = sha1($sessionIndex);
             }
@@ -423,14 +276,14 @@ class LogoutStore
         // Remove reference
         unset($sessionIndex);
 
-        if ($store instanceof Store\SQL) {
+        if ($store instanceof Store\SQLStore) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
-        } elseif (empty($sessionIndexes)) {
-            // We cannot fetch all sessions without a SQL store
-            return false;
         } else {
-            /** @var array $sessions At this point the store cannot be false */
-            $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
+            if (empty($sessionIndexes)) {
+                // We cannot fetch all sessions without a SQL store
+                return false;
+            }
+            $sessions = self::getSessionsStore($store, $strNameId, $sessionIndexes);
         }
 
         if (empty($sessionIndexes)) {

@@ -3,8 +3,7 @@ SP remote metadata reference
 
 <!-- {{TOC}} -->
 
-This is a reference for metadata options available for
-`metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
 Both files have the following format:
 
     <?php
@@ -21,8 +20,7 @@ Both files have the following format:
 Common options
 --------------
 
-The following options are common between both the SAML 2.0 protocol
-and Shibboleth 1.3 protocol:
+The following options can be set:
 
 `attributes`
 :   This should indicate which attributes an SP should receive. It is
@@ -88,32 +86,6 @@ and Shibboleth 1.3 protocol:
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
-`privacypolicy`
-:   This is an absolute URL for where an user can find a privacypolicy
-    for this SP. If set, this will be shown on the consent page.
-    `%SPENTITYID%` in the URL will be replaced with the entity id of
-    this service provider.
-
-:   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-
-:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
-
-`userid.attribute`
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if SimpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    SP-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
-
-SAML 2.0 options
-----------------
-
-The following SAML 2.0 options are available:
-
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
     This option is required - without it you will not be able to send
@@ -147,7 +119,7 @@ The following SAML 2.0 options are available:
     2.  IdP Hosted Metadata
 
 :   The default value is:
-    `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
+    `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
 
 :   Some examples of values specified in the SAML 2.0 Core
     Specification:
@@ -155,7 +127,7 @@ The following SAML 2.0 options are available:
 :   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-        in Shibboleth 2.0)
+        in Shibboleth 2.0, mandatory as per SAML2INT)
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
         default in Sun Access Manager)
@@ -166,7 +138,8 @@ The following SAML 2.0 options are available:
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
 
-:   (This option was previously named `AttributeNameFormat`.)
+`audience`
+:   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID. 
 
 `certData`
 :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
@@ -301,6 +274,11 @@ The following SAML 2.0 options are available:
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent from this SP.
+    Set it to:
+
+    true: authnrequest must be signed (and signature will be validated)
+    null: authnrequest may be signed, if it is, signature will be validated
+    false: authnrequest signature is never checked
 
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
@@ -333,9 +311,18 @@ of the SP.
 
 `sharedkey`
 :   Symmetric key which should be used for encryption. This should be a
-    128-bit key. If this option is not specified, public key encryption
-    will be used instead.
+    128-bit, 192-bit or 256-bit key based on the algorithm used.
+    If this option is not specified, public key encryption will be used instead.
 
+`sharedkey_algorithm`
+:   Algorithm which should be used for encryption. Possible values are:
+
+    * http://www.w3.org/2001/04/xmlenc#aes128-cbc
+    * http://www.w3.org/2001/04/xmlenc#aes192-cbc
+    * http://www.w3.org/2001/04/xmlenc#aes256-cbc
+    * http://www.w3.org/2009/xmlenc11#aes128-gcm
+    * http://www.w3.org/2009/xmlenc11#aes192-gcm
+    * http://www.w3.org/2009/xmlenc11#aes256-gcm
 
 ### Fields for signing and validating messages
 
@@ -378,44 +365,3 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 
 
      'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
-     
-
-Shibboleth 1.3 options
-----------------------
-
-The following options for Shibboleth 1.3 SP's are avaiblable:
-
-`audience`
-:   The value which should be given in the `<Audience>`-element in the
-    `<AudienceRestrictionCondition>`-element in the response. The
-    default value is the entity ID of the SP.
-
-`AssertionConsumerService`
-:   The URL of the AssertionConsumerService endpoint for this SP.
-    This endpoint must accept the SAML responses encoded with the
-    `urn:oasis:names:tc:SAML:1.0:profiles:browser-post` encoding.
-    This option is required - without it you will not be able to send
-    responses back to the SP.
-
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
-
-`NameQualifier`
-:   What the value of the `NameQualifier`-attribute of the
-    `<NameIdentifier>`-element should be. The default value is the
-    entity ID of the SP.
-
-`scopedattributes`
-:   Array with names of attributes which should be scoped. Scoped
-    attributes will receive a `Scope`-attribute on the
-    `AttributeValue`-element. The value of the Scope-attribute will
-    be taken from the attribute value:
-
-:   `<AttributeValue>someuser@example.org</AttributeValue>`
-
-:   will be transformed into
-
-:   `<AttributeValue Scope="example.org">someuser</AttributeValue>`
-
-:   By default, no attributes are scoped. This option overrides the
-    option with the same name in the `shib13-idp-hosted.php` metadata
-    file.

@@ -225,7 +225,7 @@ Example code for this function, which implements the same functionality as \Simp
     public static function show(\SimpleSAML\Configuration $config, array $data) {
         $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
         $t->data = array_merge($t->data, $data);
-        $t->show();
+        $t->send();
         exit;
     }
 

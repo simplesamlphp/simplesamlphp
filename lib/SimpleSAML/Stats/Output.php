@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Stats;
 
 use SimpleSAML\Configuration;
@@ -17,7 +19,7 @@ abstract class Output
      *
      * @param \SimpleSAML\Configuration $config The configuration for this output.
      */
-    public function __construct(Configuration $config)
+    public function __construct(/** @scrutinizer ignore-unused */ Configuration $config)
     {
         // do nothing by default
     }
@@ -28,5 +30,5 @@ abstract class Output
      *
      * @param array $data The event.
      */
-    abstract public function emit(array $data);
+    abstract public function emit(array $data): void;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
@@ -19,17 +21,13 @@ class Config
      * @return string  The file path.
      * @throws \InvalidArgumentException If $path is not a string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getCertPath($path)
+    public function getCertPath(string $path): string
     {
-        if (!is_string($path)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
-        return System::resolvePath($path, $base);
+        $sysUtils = new System();
+        return $sysUtils->resolvePath($path, $base);
     }
 
 
@@ -46,9 +44,8 @@ class Config
      * @return string The secret salt.
      * @throws \InvalidArgumentException If the secret salt hasn't been configured.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getSecretSalt()
+    public function getSecretSalt(): string
     {
         $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
@@ -66,16 +63,15 @@ class Config
      *
      * @return string The path to the configuration directory.
      */
-    public static function getConfigDir()
+    public function getConfigDir(): string
     {
         $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
-        /** @var string|false $configDirEnv */
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
-        
+
         if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
-        
+
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(

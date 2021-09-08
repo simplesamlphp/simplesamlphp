@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 /**
  * Example external authentication source.
@@ -15,24 +20,23 @@ use SimpleSAML\Utils;
  *
  * To adapt this to your own web site, you should:
  * 1. Create your own module directory.
- * 2. Add a file "default-enable" to that directory.
- * 3. Copy this file and modules/exampleauth/www/resume.php to their corresponding
- *    location in the new module.
- * 4. Replace all occurrences of "exampleauth" in this file and in resume.php with the name of your module.
+ * 2. Enable to module in the config by adding '<module-dir>' => true to the $config['module.enable'] array.
+ * 3. Copy this file to its corresponding location in the new module.
+ * 4. Replace all occurrences of "exampleauth" in this file with the name of your module.
  * 5. Adapt the getUser()-function, the authenticate()-function and the logout()-function to your site.
  * 6. Add an entry in config/authsources.php referencing your module. E.g.:
- *        'myauth' => array(
+ *        'myauth' => [
  *            '<mymodule>:External',
- *        ),
+ *        ],
  *
  * @package SimpleSAMLphp
  */
-class External extends \SimpleSAML\Auth\Source
+class External extends Auth\Source
 {
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
+    public const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
 
 
     /**
@@ -41,11 +45,8 @@ class External extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -58,20 +59,19 @@ class External extends \SimpleSAML\Auth\Source
      *
      * @return array|null  The user's attributes, or NULL if the user isn't authenticated.
      */
-    private function getUser()
+    private function getUser(): ?array
     {
         /*
          * In this example we assume that the attributes are
          * stored in the users PHP session, but this could be replaced
          * with anything.
          */
-
-        if (!session_id()) {
-            // session_start not called before. Do it here
-            session_start();
+        $session = new SymfonySession();
+        if (!$session->getId()) {
+            $session->start();
         }
 
-        if (!isset($_SESSION['uid'])) {
+        if (!$session->has('uid')) {
             // The user isn't authenticated
             return null;
         }
@@ -81,16 +81,15 @@ class External extends \SimpleSAML\Auth\Source
          * Note that all attributes in SimpleSAMLphp are multivalued, so we need
          * to store them as arrays.
          */
-
         $attributes = [
-            'uid' => [$_SESSION['uid']],
-            'displayName' => [$_SESSION['name']],
-            'mail' => [$_SESSION['mail']],
+            'uid' => [$session->get('uid')],
+            'displayName' => [$session->get('name')],
+            'mail' => [$session->get('mail')],
         ];
 
         // Here we generate a multivalued attribute based on the account type
         $attributes['eduPersonAffiliation'] = [
-            $_SESSION['type'], /* In this example, either 'student' or 'employee'. */
+            $session->get('type'), /* In this example, either 'student' or 'employee'. */
             'member',
         ];
 
@@ -102,12 +101,9 @@ class External extends \SimpleSAML\Auth\Source
      * Log in using an external authentication helper.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
-
         $attributes = $this->getUser();
         if ($attributes !== null) {
             /*
@@ -151,7 +147,7 @@ class External extends \SimpleSAML\Auth\Source
          * We assume that whatever authentication page we send the user to has an
          * option to return the user to a specific page afterwards.
          */
-        $returnTo = Module::getModuleURL('exampleauth/resume.php', [
+        $returnTo = Module::getModuleURL('exampleauth/resume', [
             'State' => $stateId,
         ]);
 
@@ -162,7 +158,7 @@ class External extends \SimpleSAML\Auth\Source
          * is also part of this module, but in a real example, this would likely be
          * the absolute URL of the login page for the site.
          */
-        $authPage = Module::getModuleURL('exampleauth/authpage.php');
+        $authPage = Module::getModuleURL('exampleauth/authpage');
 
         /*
          * The redirect to the authentication page.
@@ -170,14 +166,15 @@ class External extends \SimpleSAML\Auth\Source
          * Note the 'ReturnTo' parameter. This must most likely be replaced with
          * the real name of the parameter for the login page.
          */
-        Utils\HTTP::redirectTrustedURL($authPage, [
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
         ]);
 
         /*
          * The redirect function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -187,17 +184,18 @@ class External extends \SimpleSAML\Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
-     * @return void
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume()
+    public static function resume(Request $request): void
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
          * it in the 'State' request parameter.
          */
-        if (!isset($_REQUEST['State'])) {
+        if (!$request->query->has('State')) {
             throw new Error\BadRequest('Missing "State" parameter.');
         }
 
@@ -206,7 +204,7 @@ class External extends \SimpleSAML\Auth\Source
          * match the string we used in the saveState-call above.
          */
         /** @var array $state */
-        $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
+        $state = Auth\State::loadState($request->get('State'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication
@@ -257,7 +255,7 @@ class External extends \SimpleSAML\Auth\Source
         /*
          * The completeAuth-function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -266,21 +264,15 @@ class External extends \SimpleSAML\Auth\Source
      * by logging out of a SP that supports single logout.
      *
      * @param array &$state  The logout state array.
-     * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state): void
     {
-        assert(is_array($state));
-
-        if (!session_id()) {
-            // session_start not called before. Do it here
-            session_start();
+        $session = new SymfonySession();
+        if (!$session->getId()) {
+            $session->start();
         }
 
-        /*
-         * In this example we simply remove the 'uid' from the session.
-         */
-        unset($_SESSION['uid']);
+        $session->clear();
 
         /*
          * If we need to do a redirect to a different page, we could do this

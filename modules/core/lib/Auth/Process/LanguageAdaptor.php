@@ -1,20 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Logger;
 
 /**
  * Filter to set and get language settings from attributes.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
+class LanguageAdaptor extends Auth\ProcessingFilter
 {
     /** @var string */
-    private $langattr = 'preferredLanguage';
+    private string $langattr = 'preferredLanguage';
 
 
     /**
@@ -23,10 +26,9 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->langattr = $config['attributename'];
@@ -39,15 +41,13 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Add or replace existing attributes with the configured values.
      *
-     * @param array &$request  The current request
-     * @return void
+     * @param array &$state  The current request
      */
-    public function process(&$request)
+    public function process(array &$state): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         $attrlang = null;
         if (array_key_exists($this->langattr, $attributes)) {
@@ -68,7 +68,7 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
             Language::setLanguageCookie($attrlang);
         } elseif (!isset($attrlang) && isset($lang)) {
             // Language set in cookie, but not in attribute. Update attribute
-            $request['Attributes'][$this->langattr] = [$lang];
+            $state['Attributes'][$this->langattr] = [$lang];
         }
     }
 }

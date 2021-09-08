@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils\Config;
 
 use SAML2\Constants;
@@ -10,7 +12,6 @@ use SimpleSAML\Logger;
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
  *
  * @package SimpleSAMLphp
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  */
 class Metadata
 {
@@ -19,7 +20,7 @@ class Metadata
      *
      * @var string
      */
-    public static $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
+    public static string $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
 
 
     /**
@@ -27,7 +28,7 @@ class Metadata
      *
      * @var string
      */
-    public static $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
+    public static string $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
 
 
     /**
@@ -37,10 +38,10 @@ class Metadata
      * it is required to allow additons to the main contact person element for trust
      * frameworks.
      *
-     * @var array The valid configuration options for a contact configuration array.
+     * @var string[] The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = [
+    public static array $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -52,10 +53,10 @@ class Metadata
 
 
     /**
-     * @var array The valid types of contact for a contact configuration array.
+     * @var string[] The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = [
+    public static array $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
@@ -94,7 +95,7 @@ class Metadata
      *
      * otherwise it will just return the name as "givenName" in the resulting array.
      *
-     * @param array $contact The contact to parse and sanitize.
+     * @param array|null $contact The contact to parse and sanitize.
      *
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
@@ -102,12 +103,8 @@ class Metadata
      * @throws \InvalidArgumentException If $contact is neither an array nor null, or the contact does not conform to
      *     valid configuration rules for contacts.
      */
-    public static function getContact($contact)
+    public static function getContact(?array $contact): array
     {
-        if (!(is_array($contact) || is_null($contact))) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
@@ -242,9 +239,8 @@ class Metadata
      *
      * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getDefaultEndpoint(array $endpoints, array $bindings = null)
+    public static function getDefaultEndpoint(array $endpoints, array $bindings = null): ?array
     {
         $firstNotFalse = null;
         $firstAllowed = null;
@@ -298,12 +294,12 @@ class Metadata
      *
      * @return boolean True if the entity should be hidden, false otherwise.
      */
-    public static function isHiddenFromDiscovery(array $metadata)
+    public static function isHiddenFromDiscovery(array $metadata): bool
     {
-        Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
-        Logger::popErrorMask();
-        return $hidden === true;
+        if (!isset($metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+            return false;
+        }
+        return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
     }
 
 
@@ -314,7 +310,7 @@ class Metadata
      *
      * @return null|array
      */
-    public static function parseNameIdPolicy($nameIdPolicy)
+    public static function parseNameIdPolicy($nameIdPolicy): ?array
     {
         $policy = null;
 

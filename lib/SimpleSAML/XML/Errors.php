@@ -6,33 +6,34 @@
  * In PHP versions which doesn't support accessing error information, this class
  * will hide that, and pretend that no errors were logged.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
+
+declare(strict_types=1);
 
 namespace SimpleSAML\XML;
 
 use LibXMLError;
+use SimpleSAML\Assert\Assert;
 
 class Errors
 {
     /**
      * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
      */
-    private static $errorStack = [];
+    private static array $errorStack = [];
 
     /**
      * @var bool This is the xml error state we had before we began logging.
      */
-    private static $xmlErrorState;
+    private static bool $xmlErrorState;
 
 
     /**
      * Append current XML errors to the current stack level.
      *
-     * @return void
      */
-    private static function addErrors()
+    private static function addErrors(): void
     {
         $currentErrors = libxml_get_errors();
         libxml_clear_errors();
@@ -48,9 +49,8 @@ class Errors
      * A call to this function will begin a new error logging context. Every call must have
      * a corresponding call to end().
      *
-     * @return void
      */
-    public static function begin()
+    public static function begin(): void
     {
 
         // Check whether the error access functions are present
@@ -79,7 +79,7 @@ class Errors
      *
      * @return array  An array with the LibXMLErrors which has occurred since begin() was called.
      */
-    public static function end()
+    public static function end(): array
     {
         // Check whether the error access functions are present
         if (!function_exists('libxml_use_internal_errors')) {
@@ -110,9 +110,8 @@ class Errors
      * @param \LibXMLError $error  The LibXMLError which should be formatted.
      * @return string  A string representing the given LibXMLError.
      */
-    public static function formatError($error)
+    public static function formatError(LibXMLError $error): string
     {
-        assert($error instanceof LibXMLError);
         return 'level=' . $error->level
             . ',code=' . $error->code
             . ',line=' . $error->line
@@ -131,10 +130,8 @@ class Errors
      * @return string  A string representing the errors. An empty string will be returned if there were no
      *          errors in the array.
      */
-    public static function formatErrors($errors)
+    public static function formatErrors(array $errors): string
     {
-        assert(is_array($errors));
-
         $ret = '';
         foreach ($errors as $error) {
             $ret .= self::formatError($error) . "\n";

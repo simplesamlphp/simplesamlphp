@@ -32,9 +32,6 @@ msgstr ""
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Ne mogu pronaći metapodatke za entitet:"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP primjer - isprobajte autentifikaciju kroz vaš Shib IdP"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Preporuke za rješavanje ovog problema:"
 
@@ -75,9 +72,6 @@ msgstr "Metapodaci za lokalni SAML 2.0 IdP (automatski generirani) "
 
 msgid "{core:frontpage:optional}"
 msgstr "Opcionalno"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr "Metapodaci za lokalni Shibboleth 1.3 SP (automatski generirani)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentacija"
@@ -168,9 +162,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Metapodaci nisu pronađeni"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr "Metapodaci za lokalni Shibboleth 1.3 IdP (automatski generirani)"
 
 msgid "{core:frontpage:required}"
 msgstr "Obavezno"

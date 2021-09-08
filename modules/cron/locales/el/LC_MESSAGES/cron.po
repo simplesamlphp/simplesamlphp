@@ -15,32 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{cron:cron:cron_report_title}"
-msgstr "Αναφορά cron"
-
-msgid "{cron:cron:ran_text}"
-msgstr "Ημερομηνία και ώρα εκτέλεσης cron:"
-
-msgid "{cron:cron:cron_suggestion}"
-msgstr "Προτεινόμενο αρχείο crontab:"
-
-msgid "{cron:cron:run_text}"
-msgstr "Εκτέλεση cron"
-
-msgid "{cron:cron:cron_execution}"
-msgstr "Κάντε κλικ εδώ για να εκτελέσετε τις εργασίες cron:"
-
-msgid "{cron:cron:cron_info}"
-msgstr ""
-"Το cron επιτρέπει την εκτέλεση εργασιών ανά τακτά διαστήματα σε συστήματα"
-" UNIX."
-
-msgid "{cron:cron:cron_result_title}"
-msgstr "Αποτέλεσμα εκτέλεσης εργασίας cron:"
-
-msgid "{cron:cron:cron_header}"
-msgstr "Πληροφορίες περιοδικών εργασιών cron"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr ""
 "Το cron επιτρέπει την εκτέλεση εργασιών ανά τακτά διαστήματα σε συστήματα"

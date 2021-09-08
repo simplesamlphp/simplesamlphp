@@ -588,15 +588,15 @@ msgstr "urn:oid:2.5.4.47"
 
 # English string: Fax number
 msgid "facsimileTelephoneNumber"
-msgstr "Fax番号"
+msgstr "FAX番号"
 
 # English string: Fax number
 msgid "urn:mace:dir:attribute-def:facsimileTelephoneNumber"
-msgstr "Fax番号"
+msgstr "FAX番号"
 
 # English string: Fax number
 msgid "urn:oid:2.5.4.23"
-msgstr "Fax番号"
+msgstr "FAX番号"
 
 msgid "favouriteDrink"
 msgstr "favouriteDrink"

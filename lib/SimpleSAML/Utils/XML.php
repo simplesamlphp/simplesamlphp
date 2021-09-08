@@ -6,6 +6,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 use DOMComment;
@@ -14,6 +16,7 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 use SAML2\DOMDocumentFactory;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
@@ -28,22 +31,18 @@ class XML
      * @param string $message The SAML document we want to check.
      * @param string $type The type of document. Can be one of:
      * - 'saml20'
-     * - 'saml11'
      * - 'saml-meta'
      *
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function checkSAMLMessage($message, $type)
+    public function checkSAMLMessage(string $message, string $type): void
     {
-        $allowed_types = ['saml20', 'saml11', 'saml-meta'];
-        if (!(is_string($message) && in_array($type, $allowed_types, true))) {
+        $allowed_types = ['saml20', 'saml-meta'];
+        if (!in_array($type, $allowed_types, true)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -54,15 +53,12 @@ class XML
 
         // see if debugging is enabled for XML validation
         $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
-        $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (
-            !(in_array('validatexml', $debug, true) // implicitly enabled
-            || (array_key_exists('validatexml', $debug)
-            && $debug['validatexml'] === true)
-            // explicitly enabled
-            // TODO: deprecate this option and remove it in 2.0
-            || $enabled) // old 'debug.validatexml' configuration option
+            !(
+                in_array('validatexml', $debug, true)
+                || (array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true))
+            )
         ) {
             // XML validation is disabled
             return;
@@ -70,14 +66,11 @@ class XML
 
         $result = true;
         switch ($type) {
-            case 'saml11':
-                $result = self::isValid($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
-                break;
             case 'saml20':
-                $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-protocol-2.0.xsd');
                 break;
             case 'saml-meta':
-                $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
         if (is_string($result)) {
             Logger::warning($result);
@@ -98,13 +91,11 @@ class XML
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function debugSAMLMessage($message, $type)
+    public function debugSAMLMessage($message, string $type): void
     {
-        if (!(is_string($type) && (is_string($message) || $message instanceof DOMElement))) {
+        if (!(is_string($message) || $message instanceof DOMElement)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -142,10 +133,10 @@ class XML
                 Logger::debug('Encrypted message:');
                 break;
             default:
-                assert(false);
+                Assert::true(false);
         }
 
-        $str = self::formatXMLString($message);
+        $str = $this->formatXMLString($message);
         foreach (explode("\n", $str) as $line) {
             Logger::debug($line);
         }
@@ -164,16 +155,10 @@ class XML
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
      *
-     * @return void
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(DOMNode $root, $indentBase = '')
+    public function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
-        if (!is_string($indentBase)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         // check what this element contains
         $fullText = ''; // all text in this element
         $textNodes = []; // text nodes which should be deleted
@@ -234,7 +219,7 @@ class XML
 
             // format child elements
             if ($node instanceof \DOMElement) {
-                self::formatDOMElement($node, $childIndentation);
+                $this->formatDOMElement($node, $childIndentation);
             }
         }
 
@@ -256,14 +241,9 @@ class XML
      * @throws \InvalidArgumentException If the parameters are not strings.
      * @throws \DOMException If the input does not parse correctly as an XML string.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatXMLString($xml, $indentBase = '')
+    public function formatXMLString(string $xml, string $indentBase = ''): string
     {
-        if (!is_string($xml) || !is_string($indentBase)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         try {
             $doc = DOMDocumentFactory::fromString($xml);
         } catch (\Exception $e) {
@@ -271,79 +251,10 @@ class XML
         }
 
         $root = $doc->firstChild;
-        self::formatDOMElement($root, $indentBase);
+        Assert::notNull($root);
+        $this->formatDOMElement($root, $indentBase);
 
         return $doc->saveXML($root);
-    }
-
-
-    /**
-     * This function finds direct descendants of a DOM element with the specified
-     * localName and namespace. They are returned in an array.
-     *
-     * This function accepts the same shortcuts for namespaces as the isDOMNodeOfType function.
-     *
-     * @param \DOMNode $element The element we should look in.
-     * @param string   $localName The name the element should have.
-     * @param string   $namespaceURI The namespace the element should have.
-     *
-     * @return array Array with the matching elements in the order they are found. An empty array is
-     *         returned if no elements match.
-     * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
-     *     $namespaceURI is not a string.
-     */
-    public static function getDOMChildren(DOMNode $element, $localName, $namespaceURI)
-    {
-        if (!is_string($localName) || !is_string($namespaceURI)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
-        $ret = [];
-
-        for ($i = 0; $i < $element->childNodes->length; $i++) {
-            /** @var \DOMNode $child */
-            $child = $element->childNodes->item($i);
-
-            // skip text nodes and comment elements
-            if ($child instanceof DOMText || $child instanceof DOMComment) {
-                continue;
-            }
-
-            if (self::isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
-                $ret[] = $child;
-            }
-        }
-
-        return $ret;
-    }
-
-
-    /**
-     * This function extracts the text from DOMElements which should contain only text content.
-     *
-     * @param \DOMElement $element The element we should extract text from.
-     *
-     * @return string The text content of the element.
-     * @throws \SimpleSAML\Error\Exception If the element contains a non-text child node.
-     *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     */
-    public static function getDOMText(DOMElement $element)
-    {
-        $txt = '';
-
-        for ($i = 0; $i < $element->childNodes->length; $i++) {
-            /** @var \DOMElement $child */
-            $child = $element->childNodes->item($i);
-            if (!($child instanceof DOMText)) {
-                throw new Error\Exception($element->localName . ' contained a non-text child node.');
-            }
-
-            $txt .= $child->wholeText;
-        }
-
-        $txt = trim($txt);
-        return $txt;
     }
 
 
@@ -353,9 +264,7 @@ class XML
      * We also define the following shortcuts for namespaces:
      * - '@ds':      'http://www.w3.org/2000/09/xmldsig#'
      * - '@md':      'urn:oasis:names:tc:SAML:2.0:metadata'
-     * - '@saml1':   'urn:oasis:names:tc:SAML:1.0:assertion'
      * - '@saml1md': 'urn:oasis:names:tc:SAML:profiles:v1metadata'
-     * - '@saml1p':  'urn:oasis:names:tc:SAML:1.0:protocol'
      * - '@saml2':   'urn:oasis:names:tc:SAML:2.0:assertion'
      * - '@saml2p':  'urn:oasis:names:tc:SAML:2.0:protocol'
      *
@@ -366,12 +275,10 @@ class XML
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isDOMNodeOfType(DOMNode $element, $name, $nsURI)
+    public function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
-        if (!is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
+        if (strlen($nsURI) === 0) {
             // most likely a comment-node
             return false;
         }
@@ -382,12 +289,8 @@ class XML
             $shortcuts = [
                 '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
                 '@md'      => 'urn:oasis:names:tc:SAML:2.0:metadata',
-                '@saml1'   => 'urn:oasis:names:tc:SAML:1.0:assertion',
-                '@saml1md' => 'urn:oasis:names:tc:SAML:profiles:v1metadata',
-                '@saml1p'  => 'urn:oasis:names:tc:SAML:1.0:protocol',
                 '@saml2'   => 'urn:oasis:names:tc:SAML:2.0:assertion',
-                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol',
-                '@shibmd'  => 'urn:mace:shibboleth:metadata:1.0',
+                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol'
             ];
 
             // check if it is a valid shortcut
@@ -421,11 +324,10 @@ class XML
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isValid($xml, $schema)
+    public function isValid($xml, string $schema)
     {
-        if (!(is_string($schema) && (is_string($xml) || $xml instanceof DOMDocument))) {
+        if (!is_string($xml) && !($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -443,12 +345,28 @@ class XML
             }
         }
 
-        if ($res) {
+        if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
+            libxml_set_external_entity_loader(
+                /**
+                 * @param string|null $public
+                 * @param string $system
+                 * @param array $context
+                 * @return string|null
+                 */
+                function (string $public = null, string $system, /** @scrutinizer ignore-unused */ array $context) {
+                    if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
+                        return null;
+                    }
+                    return $system;
+                }
+            );
+
+            /** @psalm-suppress PossiblyUndefinedVariable */
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();

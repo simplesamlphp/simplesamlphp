@@ -3,9 +3,10 @@
 /**
  * Glue to connect one or more translation/locale systems to the rest
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
+
+declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
@@ -21,71 +22,50 @@ class Localization
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The default gettext domain.
      *
      * @var string
      */
-    const DEFAULT_DOMAIN = 'messages';
-
-    /**
-     * Old internationalization backend included in SimpleSAMLphp.
-     *
-     * @var string
-     */
-    const SSP_I18N_BACKEND = 'SimpleSAMLphp';
-
-    /**
-     * An internationalization backend implemented purely in PHP.
-     *
-     * @var string
-     */
-    const GETTEXT_I18N_BACKEND = 'gettext/gettext';
+    public const DEFAULT_DOMAIN = 'messages';
 
     /**
      * The default locale directory
      *
      * @var string
      */
-    private $localeDir;
+    private string $localeDir;
 
     /**
      * Where specific domains are stored
      *
      * @var array
      */
-    private $localeDomainMap = [];
+    private array $localeDomainMap = [];
 
     /**
      * Pointer to currently active translator
      *
      * @var \Gettext\Translator
      */
-    private $translator;
+    private Translator $translator;
 
     /**
      * Pointer to current Language
      *
-     * @var Language
+     * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Language $language;
 
     /**
      * Language code representing the current Language
      *
      * @var string
      */
-    private $langcode;
+    private string $langcode;
 
-
-    /**
-     * The language backend to use
-     *
-     * @var string
-     */
-    public $i18nBackend;
 
     /**
      * Constructor
@@ -96,15 +76,10 @@ class Localization
     {
         $this->configuration = $configuration;
         /** @var string $locales */
-        $locales =  $this->configuration->resolvePath('locales');
+        $locales = $this->configuration->resolvePath('locales');
         $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
-        $this->i18nBackend = (
-            $this->configuration->getBoolean('usenewui', false)
-            ? self::GETTEXT_I18N_BACKEND
-            : self::SSP_I18N_BACKEND
-        );
         $this->setupL10N();
     }
 
@@ -114,7 +89,7 @@ class Localization
      *
      * @return string
      */
-    public function getLocaleDir()
+    public function getLocaleDir(): string
     {
         return $this->localeDir;
     }
@@ -127,7 +102,7 @@ class Localization
      *
      * @return string
      */
-    public function getDomainLocaleDir($domain)
+    public function getDomainLocaleDir(string $domain): string
     {
         /** @var string $base */
         $base = $this->configuration->resolvePath('modules');
@@ -142,14 +117,14 @@ class Localization
      *
      * @param string $module Module name
      * @param string $localeDir Absolute path if the module is housed elsewhere
-     * @return void
+     * @param string $domain Translation domain within module; defaults to module name
      */
-    public function addModuleDomain($module, $localeDir = null)
+    public function addModuleDomain(string $module, string $localeDir = null, string $domain = null): void
     {
         if (!$localeDir) {
             $localeDir = $this->getDomainLocaleDir($module);
         }
-        $this->addDomain($localeDir, $module);
+        $this->addDomain($localeDir, $domain ?? $module);
     }
 
 
@@ -159,14 +134,14 @@ class Localization
      *
      * @param string $localeDir Location of translations
      * @param string $domain Domain at location
-     * @return void
      */
-    public function addDomain($localeDir, $domain)
+    public function addDomain(string $localeDir, string $domain): void
     {
         $this->localeDomainMap[$domain] = $localeDir;
         Logger::debug("Localization: load domain '$domain' at '$localeDir'");
         $this->loadGettextGettextFromPO($domain);
     }
+
 
     /**
      * Get and check path of localization file
@@ -176,7 +151,7 @@ class Localization
      *
      * @return string
      */
-    public function getLangPath($domain = self::DEFAULT_DOMAIN)
+    public function getLangPath(string $domain = self::DEFAULT_DOMAIN): string
     {
         $langcode = explode('_', $this->langcode);
         $langcode = $langcode[0];
@@ -209,7 +184,7 @@ class Localization
         }
 
         // Locale for default language missing even, error out
-        $error = "Localization directory missing/broken for langcode '$langcode' and domain '$domain'";
+        $error = "Localization directory '$langPath' missing/broken for langcode '$langcode' and domain '$domain'";
         Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
         throw new \Exception($error);
     }
@@ -217,9 +192,8 @@ class Localization
 
     /**
      * Setup the translator
-     * @return void
      */
-    private function setupTranslator()
+    private function setupTranslator(): void
     {
         $this->translator = new Translator();
         $this->translator->register();
@@ -234,12 +208,13 @@ class Localization
      *
      * @param string $domain Name of domain
      * @param boolean $catchException Whether to catch an exception on error or return early
-     * @return void
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
-    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN, $catchException = true)
-    {
+    private function loadGettextGettextFromPO(
+        string $domain = self::DEFAULT_DOMAIN,
+        bool $catchException = true
+    ): void {
         try {
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
@@ -265,44 +240,37 @@ class Localization
 
 
     /**
-     * Test to check if backend is set to default
-     *
-     * (if false: backend unset/there's an error)
-     *
-     * @return bool
-     */
-    public function isI18NBackendDefault()
-    {
-        if ($this->i18nBackend === $this::SSP_I18N_BACKEND) {
-            return true;
-        }
-        return false;
-    }
-
-
-    /**
      * Set up L18N if configured or fallback to old system
-     * @return void
      */
-    private function setupL10N()
+    private function setupL10N(): void
     {
-        if ($this->i18nBackend === self::SSP_I18N_BACKEND) {
-            Logger::debug("Localization: using old system");
-            return;
-        }
-
         $this->setupTranslator();
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
     }
+
 
     /**
      * Show which domains are registered
      *
      * @return array
      */
-    public function getRegisteredDomains()
+    public function getRegisteredDomains(): array
     {
         return $this->localeDomainMap;
+    }
+
+    /**
+     * Add translation domains specifically used for translating attributes names:
+     * the default in attributes.po and any attributes.po in the enabled theme.
+     */
+    public function addAttributeDomains(): void
+    {
+        $this->addDomain($this->localeDir, 'attributes');
+
+        list($theme,) = explode(':', $this->configuration->getString('theme.use', 'default'));
+        if($theme !== 'default') {
+            $this->addModuleDomain($theme, null, 'attributes');
+        }
     }
 }

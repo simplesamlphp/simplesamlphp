@@ -5,7 +5,6 @@
  * to the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password authentication.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -67,7 +66,9 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
         } else {
             $params['expire'] = time() - 300;
         }
-        \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
+
+        $httpUtils = new \SimpleSAML\Utils\HTTP();
+        $httpUtils->setCookie($source->getAuthId() . '-username', $username, $params, false);
     }
 
     if ($source->isRememberMeEnabled()) {
@@ -99,7 +100,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.twig');
 $t->data['stateparams'] = ['AuthState' => $authStateId];
 if (array_key_exists('forcedUsername', $state)) {
     $t->data['username'] = $state['forcedUsername'];
@@ -133,5 +134,4 @@ if (isset($state['SPMetadata'])) {
     $t->data['SPMetadata'] = null;
 }
 
-$t->show();
-exit();
+$t->send();

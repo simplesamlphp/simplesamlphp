@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -18,10 +20,8 @@ class Arrays
      * @return array An array with one element containing $data, with key $index, or $data itself if it's already an
      *     array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function arrayize($data, $index = 0)
+    public function arrayize($data, $index = 0): array
     {
         return (is_array($data)) ? $data : [$index => $data];
     }
@@ -32,16 +32,11 @@ class Arrays
      *
      * @param array $array The two-dimensional array to transpose.
      *
-     * @return mixed The transposed array, or false if $array is not a valid two-dimensional array.
+     * @return array|false The transposed array, or false if $array is not a valid two-dimensional array.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
-    public static function transpose($array)
+    public function transpose(array $array)
     {
-        if (!is_array($array)) {
-            return false;
-        }
-
         $ret = [];
         foreach ($array as $k1 => $a2) {
             if (!is_array($a2)) {

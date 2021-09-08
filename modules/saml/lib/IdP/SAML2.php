@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\IdP;
 
 use DOMNodeList;
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
@@ -13,6 +16,7 @@ use SAML2\EncryptedAssertion;
 use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
+use SAML2\Response;
 use SAML2\SOAP;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -22,6 +26,7 @@ use SAML2\XML\saml\Issuer;
 use SAML2\XML\saml\NameID;
 use SAML2\XML\saml\SubjectConfirmation;
 use SAML2\XML\saml\SubjectConfirmationData;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -43,15 +48,14 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
-     * @return void
      */
-    public static function sendResponse(array $state)
+    public static function sendResponse(array $state): void
     {
-        assert(isset($state['Attributes']));
-        assert(isset($state['SPMetadata']));
-        assert(isset($state['saml:ConsumerURL']));
-        assert(array_key_exists('saml:RequestId', $state)); // Can be NULL
-        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
+        Assert::keyExists($state, 'saml:RequestId'); // Can be NULL
+        Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
+        Assert::notNull($state['Attributes']);
+        Assert::notNull($state['SPMetadata']);
+        Assert::notNull($state['saml:ConsumerURL']);
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
@@ -128,14 +132,13 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
-     * @return void
      */
-    public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state)
+    public static function handleAuthError(Error\Exception $exception, array $state): void
     {
-        assert(isset($state['SPMetadata']));
-        assert(isset($state['saml:ConsumerURL']));
-        assert(array_key_exists('saml:RequestId', $state)); // Can be NULL.
-        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
+        Assert::keyExists($state, 'saml:RequestId'); // Can be NULL.
+        Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
+        Assert::notNull($state['SPMetadata']);
+        Assert::notNull($state['saml:ConsumerURL']);
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
@@ -153,6 +156,7 @@ class SAML2
 
         $idpMetadata = $idp->getConfig();
 
+        /** @var \SimpleSAML\Module\saml\Error $error */
         $error = \SimpleSAML\Module\saml\Error::fromException($exception);
 
         Logger::warning("Returning error to SP with entity ID '" . var_export($spEntityId, true) . "'.");
@@ -199,14 +203,10 @@ class SAML2
     private static function getAssertionConsumerService(
         array $supportedBindings,
         Configuration $spMetadata,
-        $AssertionConsumerServiceURL,
-        $ProtocolBinding,
-        $AssertionConsumerServiceIndex
-    ) {
-        assert(is_string($AssertionConsumerServiceURL) || $AssertionConsumerServiceURL === null);
-        assert(is_string($ProtocolBinding) || $ProtocolBinding === null);
-        assert(is_int($AssertionConsumerServiceIndex) || $AssertionConsumerServiceIndex === null);
-
+        string $AssertionConsumerServiceURL = null,
+        string $ProtocolBinding = null,
+        int $AssertionConsumerServiceIndex = null
+    ): ?array {
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
          * following priority:
@@ -280,13 +280,13 @@ class SAML2
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
+    public static function receiveAuthnRequest(IdP $idp): void
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
+        $httpUtils = new Utils\HTTP();
 
         $supportedBindings = [Constants::BINDING_HTTP_POST];
         if ($idpMetadata->getBoolean('saml20.sendartifact', false)) {
@@ -309,7 +309,7 @@ class SAML2
                      * Less than five seconds has passed since we were
                      * here the last time. Cookies are probably disabled.
                      */
-                    Utils\HTTP::checkSessionCookie(Utils\HTTP::getSelfURL());
+                    $httpUtils->checkSessionCookie($httpUtils->getSelfURL());
                 }
             }
 
@@ -337,9 +337,9 @@ class SAML2
             }
 
             if (isset($_REQUEST['ConsumerURL'])) {
-                $consumerURL = (string)$_REQUEST['ConsumerURL'];
+                $consumerURL = (string) $_REQUEST['ConsumerURL'];
             } elseif (isset($_REQUEST['shire'])) {
-                $consumerURL = (string)$_REQUEST['shire'];
+                $consumerURL = (string) $_REQUEST['shire'];
             } else {
                 $consumerURL = null;
             }
@@ -361,7 +361,12 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
-            $binding = Binding::getCurrentBinding();
+            try {
+                $binding = Binding::getCurrentBinding();
+            } catch (Exception $e) {
+                header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
+                exit;
+            }
             $request = $binding->receive();
 
             if (!($request instanceof AuthnRequest)) {
@@ -375,15 +380,8 @@ class SAML2
                 throw new Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
-            } elseif ($issuer instanceof Issuer) {
-                $spEntityId = $issuer->getValue();
-                if ($spEntityId === null) {
-                    /* Without an issuer we have no way to respond to the message. */
-                    throw new Error\BadRequest('Received message on logout endpoint without issuer.');
-                }
-            } else { // we got a string, old case
-                $spEntityId = $issuer;
             }
+            $spEntityId = $issuer->getValue();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
             \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
@@ -441,7 +439,7 @@ class SAML2
             $consumerIndex
         );
         if ($acsEndpoint === null) {
-            throw new \Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
+            throw new Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
         }
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
@@ -465,8 +463,8 @@ class SAML2
         */
         $sessionLostParams['cookieTime'] = time();
 
-        $sessionLostURL = Utils\HTTP::addURLParameters(
-            Utils\HTTP::getSelfURLNoQuery(),
+        $sessionLostURL = $httpUtils->addURLParameters(
+            $httpUtils->getSelfURLNoQuery(),
             $sessionLostParams
         );
 
@@ -505,12 +503,9 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
-     * @return void
      */
-    public static function sendLogoutRequest(IdP $idp, array $association, $relayState)
+    public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
     {
-        assert(is_string($relayState) || $relayState === null);
-
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -543,13 +538,12 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
-     * @return void
      */
-    public static function sendLogoutResponse(IdP $idp, array $state)
+    public static function sendLogoutResponse(IdP $idp, array $state): void
     {
-        assert(isset($state['saml:SPEntityId']));
-        assert(isset($state['saml:RequestId']));
-        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
+        Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
+        Assert::notNull($state['saml:SPEntityId']);
+        Assert::notNull($state['saml:RequestId']);
 
         $spEntityId = $state['saml:SPEntityId'];
 
@@ -603,10 +597,9 @@ class SAML2
      * Receive a logout message.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
-     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp)
+    public static function receiveLogoutMessage(IdP $idp): void
     {
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
@@ -615,14 +608,8 @@ class SAML2
         if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
-        } elseif ($issuer instanceof Issuer) {
-            $spEntityId = $issuer->getValue();
-            if ($spEntityId === null) {
-                /* Without an issuer we have no way to respond to the message. */
-                throw new Error\BadRequest('Received message on logout endpoint without issuer.');
-            }
         } else {
-            $spEntityId = $issuer;
+            $spEntityId = $issuer->getValue();
         }
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -688,10 +675,8 @@ class SAML2
      *
      * @return string The logout URL.
      */
-    public static function getLogoutURL(IdP $idp, array $association, $relayState)
+    public static function getLogoutURL(IdP $idp, array $association, string $relayState = null): string
     {
-        assert(is_string($relayState) || $relayState === null);
-
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -730,12 +715,12 @@ class SAML2
      *
      * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
      */
-    public static function getAssociationConfig(IdP $idp, array $association)
+    public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Configuration::loadFromArray([], 'Unknown SAML 2 entity.');
         }
     }
@@ -751,7 +736,7 @@ class SAML2
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      */
-    public static function getHostedMetadata($entityid)
+    public static function getHostedMetadata(string $entityid): array
     {
         $handler = MetaDataStorageHandler::getMetadataHandler();
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
@@ -800,9 +785,12 @@ class SAML2
             'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
         ];
 
+        $cryptoUtils = new Utils\Crypto();
+        $httpUtils = new Utils\HTTP();
+
         // add certificates
         $keys = [];
-        $certInfo = Utils\Crypto::loadPublicKey($config, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($config, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null) {
             $keys[] = [
@@ -816,7 +804,7 @@ class SAML2
         }
 
         /** @var array $certInfo */
-        $certInfo = Utils\Crypto::loadPublicKey($config, true);
+        $certInfo = $cryptoUtils->loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',
             'signing' => true,
@@ -827,7 +815,7 @@ class SAML2
 
         if ($config->hasValue('https.certificate')) {
             /** @var array $httpsCert */
-            $httpsCert = Utils\Crypto::loadPublicKey($config, true, 'https.');
+            $httpsCert = $cryptoUtils->loadPublicKey($config, true, 'https.');
             $keys[] = [
                 'type' => 'X509Certificate',
                 'signing' => true,
@@ -843,7 +831,7 @@ class SAML2
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
+                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
             ];
         }
 
@@ -854,7 +842,7 @@ class SAML2
                 [
                     'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     'Binding' => Constants::BINDING_HOK_SSO,
-                    'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+                    'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
                 ]
             );
         }
@@ -864,7 +852,7 @@ class SAML2
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
             ];
         }
 
@@ -954,29 +942,13 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
-
+    ): ?string {
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
             if ($attribute === null) {
-                if (!isset($state['UserID'])) {
-                    Logger::error('Unable to generate NameID. Check the userid.attribute option.');
-                    return null;
-                }
-                $attributeValue = $state['UserID'];
-                $idpEntityId = $idpMetadata->getString('entityid');
-                $spEntityId = $spMetadata->getString('entityid');
-
-                $secretSalt = Utils\Config::getSecretSalt();
-
-                $uidData = 'uidhashbase' . $secretSalt;
-                $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
-                $uidData .= strlen($spEntityId) . ':' . $spEntityId;
-                $uidData .= strlen($attributeValue) . ':' . $attributeValue;
-                $uidData .= $secretSalt;
-
-                return hash('sha1', $uidData);
+                Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
+                return null;
             }
         }
 
@@ -1006,7 +978,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $attributes
-    ) {
+    ): array {
         $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
         if ($base64Attributes === null) {
             $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
@@ -1045,6 +1017,7 @@ class SAML2
 
                 $attrval = $value;
                 if ($value instanceof DOMNodeList) {
+                    /** @psalm-suppress PossiblyNullPropertyFetch */
                     $attrval = new AttributeValue($value->item(0)->parentNode);
                 }
 
@@ -1058,9 +1031,10 @@ class SAML2
                     case 'raw':
                         if (is_string($value)) {
                             $doc = DOMDocumentFactory::fromString('<root>' . $value . '</root>');
+                            /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
-                        assert($value instanceof DOMNodeList || $value instanceof NameID);
+                        Assert::isInstanceOfAny($value, [\DOMNodeList::class, \SAML2\XML\saml\NameID::class]);
                         break;
                     default:
                         throw new Error\Exception('Invalid encoding for attribute ' .
@@ -1085,7 +1059,7 @@ class SAML2
     private static function getAttributeNameFormat(
         Configuration $idpMetadata,
         Configuration $spMetadata
-    ) {
+    ): string {
         // try SP metadata first
         $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
@@ -1107,7 +1081,7 @@ class SAML2
         }
 
         // default
-        return Constants::NAMEFORMAT_BASIC;
+        return Constants::NAMEFORMAT_URI;
     }
 
 
@@ -1126,10 +1100,11 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
-        assert(isset($state['Attributes']));
-        assert(isset($state['saml:ConsumerURL']));
+    ): Assertion {
+        Assert::notNull($state['Attributes']);
+        Assert::notNull($state['saml:ConsumerURL']);
 
+        $httpUtils = new Utils\HTTP();
         $now = time();
 
         $signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', null);
@@ -1148,7 +1123,9 @@ class SAML2
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
-        $a->setValidAudiences([$spMetadata->getString('entityid')]);
+
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
 
@@ -1160,7 +1137,7 @@ class SAML2
 
         if (isset($state['saml:AuthnContextClassRef'])) {
             $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
-        } elseif (Utils\HTTP::isHTTPS()) {
+        } elseif ($httpUtils->isHTTPS()) {
             $a->setAuthnContextClassRef(Constants::AC_PASSWORD_PROTECTED_TRANSPORT);
         } else {
             $a->setAuthnContextClassRef(Constants::AC_PASSWORD);
@@ -1175,10 +1152,11 @@ class SAML2
         $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
+        $randomUtils = new Utils\Random();
         $noSession = isset($state['as:NoSession']) && $state['as:NoSession'];
         // if current AuthenticationSource says no session to be released to SP (no SLO)
         if (!$noSession) {
-            $a->setSessionIndex(Utils\Random::generateID());
+            $a->setSessionIndex($randomUtils->generateID());
         }
 
         $sc = new SubjectConfirmation();
@@ -1200,7 +1178,8 @@ class SAML2
         if ($hokAssertion) {
             // Holder-of-Key
             $sc->setMethod(Constants::CM_HOK);
-            if (Utils\HTTP::isHTTPS()) {
+
+            if ($httpUtils->isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
                     // extract certificate data (if this is a certificate)
                     $clientCert = $_SERVER['SSL_CLIENT_CERT'];
@@ -1274,7 +1253,7 @@ class SAML2
 
             if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
                 // generate a random id
-                $nameIdValue = Utils\Random::generateID();
+                $nameIdValue = $randomUtils->generateID();
             } else {
                 /* this code will end up generating either a fixed assigned id (via nameid.attribute)
                    or random id if not assigned/configured */
@@ -1282,7 +1261,7 @@ class SAML2
                 if ($nameIdValue === null) {
                     Logger::warning('Falling back to transient NameID.');
                     $nameIdFormat = Constants::NAMEID_TRANSIENT;
-                    $nameIdValue = Utils\Random::generateID();
+                    $nameIdValue = $randomUtils->generateID();
                 }
             }
 
@@ -1339,7 +1318,13 @@ class SAML2
 
         $sharedKey = $spMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
-            $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+            $algo = $spMetadata->getString('sharedkey_algorithm', null);
+            if ($algo === null) {
+                // If no algorithm is configured, use a sane default
+                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+            }
+
+            $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
         } else {
             $keys = $spMetadata->getPublicKeys('encryption', true);
@@ -1387,8 +1372,8 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $association,
-        $relayState
-    ) {
+        string $relayState = null
+    ): LogoutRequest {
         $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
@@ -1424,14 +1409,14 @@ class SAML2
     private static function buildResponse(
         Configuration $idpMetadata,
         Configuration $spMetadata,
-        $consumerURL
-    ) {
+        string $consumerURL
+    ): Response {
         $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);
         }
 
-        $r = new \SAML2\Response();
+        $r = new Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);

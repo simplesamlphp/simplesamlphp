@@ -117,9 +117,6 @@ msgstr ""
 "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. "
 "(Statusmeddelandet i SAML-svaret var ett felmeddelande)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Tyvärr kan du inte logga in i tjänsten om du inte har ditt användarnamn "
@@ -221,9 +218,6 @@ msgstr "Loggar ut..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Fel användarnamn eller lösenord."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Fjärr)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -459,9 +453,6 @@ msgstr "Skickar meddelande"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Fel mottaget från IdP"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "För att titta på detaljer för en SAML-entitet klicka på rubriken för "
@@ -534,9 +525,6 @@ msgstr "Sidan finns inte"
 msgid "{logout:logged_out_text}"
 msgstr "Du har blivit uloggad. Tack för att du använde denna tjänst."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Värd)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Hämta X509-certifikaten som PEM-kodade filer."
 
@@ -564,8 +552,11 @@ msgstr ""
 " av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att "
 "meddela dem ovanstående felmeddelande."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Värd)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobiltelefon"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Önskvärt språk"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Du tillhandahöll inget godkänt certifikat"
@@ -600,9 +591,6 @@ msgstr "Inget certfikat"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Utloggningsinformation är borta"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Fjärr)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Det förfaller som SimpleSAMLphp är felkonfigurerat."

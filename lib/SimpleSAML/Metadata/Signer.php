@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -12,7 +14,6 @@ use SimpleSAML\Utils;
 /**
  * This class implements a helper function for signing of metadata.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -24,13 +25,12 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
      * @throws \Exception If the key and certificate used to sign is unknown.
      */
-    private static function findKeyCert($config, $entityMetadata, $type)
+    private static function findKeyCert(Configuration $config, array $entityMetadata, string $type): array
     {
         // first we look for metadata.privatekey and metadata.certificate in the metadata
         if (
@@ -124,13 +124,12 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return boolean True if metadata signing is enabled, false otherwise.
      * @throws \Exception If the value of the 'metadata.sign.enable' option is not a boolean.
      */
-    private static function isMetadataSigningEnabled($config, $entityMetadata, $type)
+    private static function isMetadataSigningEnabled(Configuration $config, array $entityMetadata, string $type): bool
     {
         // first check the metadata for the entity
         if (array_key_exists('metadata.sign.enable', $entityMetadata)) {
@@ -145,9 +144,7 @@ class Signer
             return $entityMetadata['metadata.sign.enable'];
         }
 
-        $enabled = $config->getBoolean('metadata.sign.enable', false);
-
-        return $enabled;
+        return $config->getBoolean('metadata.sign.enable', false);
     }
 
 
@@ -166,8 +163,11 @@ class Signer
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    private static function getMetadataSigningAlgorithm($config, $entityMetadata, $type)
-    {
+    private static function getMetadataSigningAlgorithm(
+        Configuration $config,
+        array $entityMetadata,
+        string $type
+    ): array {
         // configure the algorithm to use
         if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
             if (!is_string($entityMetadata['metadata.sign.algorithm'])) {
@@ -223,9 +223,10 @@ class Signer
      * @return string The $metadataString with the signature embedded.
      * @throws \Exception If the certificate or private key cannot be loaded, or the metadata doesn't parse properly.
      */
-    public static function sign($metadataString, $entityMetadata, $type)
+    public static function sign(string $metadataString, array $entityMetadata, string $type): string
     {
         $config = Configuration::getInstance();
+        $configUtils = new Utils\Config();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {
@@ -235,7 +236,7 @@ class Signer
         // find the key & certificate which should be used to sign the metadata
         $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-        $keyFile = Utils\Config::getCertPath($keyCertFiles['privatekey']);
+        $keyFile = $configUtils->getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
             throw new \Exception(
                 'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
@@ -243,7 +244,7 @@ class Signer
         }
         $keyData = file_get_contents($keyFile);
 
-        $certFile = Utils\Config::getCertPath($keyCertFiles['certificate']);
+        $certFile = $configUtils->getCertPath($keyCertFiles['certificate']);
         if (!file_exists($certFile)) {
             throw new \Exception(
                 'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'

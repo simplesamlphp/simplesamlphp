@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Utils;
 
 /**
@@ -10,16 +15,15 @@ use SimpleSAML\Utils;
  * This class is an example authentication source which will always return a user with
  * a static set of attributes.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class StaticSource extends \SimpleSAML\Auth\Source
+class StaticSource extends Auth\Source
 {
     /**
      * The attributes we return.
      * @var array
      */
-    private $attributes;
+    private array $attributes;
 
 
     /**
@@ -28,19 +32,18 @@ class StaticSource extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
+        $attrUtils = new Utils\Attributes();
+
         // Parse attributes
         try {
-            $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
-        } catch (\Exception $e) {
-            throw new \Exception('Invalid attributes for authentication source ' .
+            $this->attributes = $attrUtils->normalizeAttributesArray($config);
+        } catch (Exception $e) {
+            throw new Exception('Invalid attributes for authentication source ' .
                 $this->authId . ': ' . $e->getMessage());
         }
     }
@@ -50,11 +53,9 @@ class StaticSource extends \SimpleSAML\Auth\Source
      * Log in using static attributes.
      *
      * @param array &$state  Information about the current authentication.
-     * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
         $state['Attributes'] = $this->attributes;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Logger;
 
 use SimpleSAML\Configuration;
@@ -8,9 +10,6 @@ use SimpleSAML\Logger;
 /**
  * A class for logging to the default php error log.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class ErrorLogLoggingHandler implements LoggingHandlerInterface
@@ -18,9 +17,9 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
     /**
      * This array contains the mappings from syslog log level to names.
      *
-     * @var array
+     * @var array<int, string>
      */
-    private static $levelNames = [
+    private static array $levelNames = [
         Logger::EMERG   => 'EMERG',
         Logger::ALERT   => 'ALERT',
         Logger::CRIT    => 'CRIT',
@@ -36,7 +35,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @var string
      */
-    private $processname;
+    private string $processname;
 
 
     /**
@@ -46,7 +45,12 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      */
     public function __construct(Configuration $config)
     {
-        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+        // Remove any non-printable characters before storing
+        $this->processname = preg_replace(
+            '/[\x00-\x1F\x7F\xA0]/u',
+            '',
+            $config->getString('logging.processname', 'SimpleSAMLphp')
+        );
     }
 
 
@@ -54,9 +58,8 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
-     * @return void
      */
-    public function setLogFormat($format)
+    public function setLogFormat(string $format): void
     {
         // we don't need the format here
     }
@@ -67,9 +70,8 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The formatted message to log.
-     * @return void
      */
-    public function log($level, $string)
+    public function log(int $level, string $string): void
     {
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];
@@ -80,7 +82,6 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
         $formats = ['%process', '%level'];
         $replacements = [$this->processname, $levelName];
         $string = str_replace($formats, $replacements, $string);
-        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
         $string = trim($string);
 
         error_log($string);

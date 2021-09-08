@@ -38,9 +38,9 @@ How to configure Auth Proc Filters
 
   * Globally in `config.php`
   * On the SP: Specific for only the SP in `authsources.php`
-  * On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
-  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
-  * On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
+  * On the SP: Specific for only one remote IdP in `saml20-idp-remote`
+  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
+  * On the IdP: Specific for only one remote SP in `saml20-sp-remote`
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 
@@ -129,7 +129,6 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
-- [`core:AttributeRealm`](./core:authproc_attributerealm): (deprecated) Create an attribute with the realm of the user.
 - [`core:AttributeValueMap`](./core:authproc_attributevaluemap): Map attribute values to new values and attribute name.
 - [`core:Cardinality`](./core:authproc_cardinality): Ensure the number of attribute values is within the specified multiplicity.
 - [`core:CardinalitySingle`](./core:authproc_cardinalitysingle): Ensure the correct cardinality of single-valued attributes.

@@ -37,7 +37,7 @@
 
     {# Add error report submit section if we have a valid technical contact. 'errorreportaddress' will only be set if
        the technical contact email address has been set. #}
-    {% if errorReportAddress -%}
+    {% if errorReportAddress is defined -%}
         <h2>{{ '{errors:report_header}' | trans }}</h2>
         <form action="{{ errorReportAddress }}" class="pure-form" method="post">
             <p>{{ '{errors:report_text}' | trans }}</p>

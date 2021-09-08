@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
 
 use SimpleSAML\Configuration;
@@ -11,12 +13,16 @@ use SimpleSAML\Session;
 class AuthenticationFactory
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
+    /**
+     * @param \SimpleSAML\Configuration $config
+     * @param \SimpleSAML\Session $session
+     */
     public function __construct(Configuration $config, Session $session)
     {
         $this->config = $config;
@@ -32,7 +38,7 @@ class AuthenticationFactory
      *
      * @return \SimpleSAML\Auth\Simple
      */
-    public function create($as)
+    public function create(string $as): Simple
     {
         return new Simple($as, $this->config, $this->session);
     }

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
@@ -13,8 +16,6 @@ use SimpleSAML\Utils;
  * A metadata storage source can be loaded by passing the configuration of it
  * to the getSource static function.
  *
- * @author Olav Morken, UNINETT AS.
- * @author Andreas Aakre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 
@@ -32,10 +33,8 @@ abstract class MetaDataStorageSource
      *
      * @throws \Exception If something is wrong in the configuration.
      */
-    public static function parseSources($sourcesConfig)
+    public static function parseSources(array $sourcesConfig): array
     {
-        assert(is_array($sourcesConfig));
-
         $sources = [];
 
         foreach ($sourcesConfig as $sourceConfig) {
@@ -61,10 +60,8 @@ abstract class MetaDataStorageSource
      *
      * @throws \Exception If the metadata source type is invalid.
      */
-    public static function getSource($sourceConfig)
+    public static function getSource(array $sourceConfig): MetaDataStorageSource
     {
-        assert(is_array($sourceConfig));
-
         if (array_key_exists('type', $sourceConfig)) {
             $type = $sourceConfig['type'];
         } else {
@@ -115,7 +112,7 @@ abstract class MetaDataStorageSource
      * @return array An associative array with all entities in the given set, or an empty array if we are
      *         unable to generate this list.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
         return [];
     }
@@ -135,15 +132,9 @@ abstract class MetaDataStorageSource
      * @return string|null An entity id which matches the given host/path combination, or NULL if
      *         we are unable to locate one which matches.
      */
-    public function getEntityIdFromHostPath($hostPath, $set, $type = 'entityid')
+    public function getEntityIdFromHostPath(string $hostPath, string $set, string $type = 'entityid'): ?string
     {
-
         $metadataSet = $this->getMetadataSet($set);
-        /** @psalm-suppress DocblockTypeContradiction */
-        if ($metadataSet === null) {
-            // this metadata source does not have this metadata set
-            return null;
-        }
 
         foreach ($metadataSet as $index => $entry) {
             if (!array_key_exists('host', $entry)) {
@@ -177,13 +168,13 @@ abstract class MetaDataStorageSource
      * @return string|null The entity id of a entity which have a CIDR hint where the provided
      *        IP address match.
      */
-    public function getPreferredEntityIdFromCIDRhint($set, $ip, $type = 'entityid')
+    public function getPreferredEntityIdFromCIDRhint(string $set, string $ip, string $type = 'entityid'): ?string
     {
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
             $cidrHints = [];
-            
+
             // support hint.cidr for idp discovery
             if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
                 $cidrHints = $entry['hint.cidr'];
@@ -203,8 +194,9 @@ abstract class MetaDataStorageSource
                 continue;
             }
 
+            $netUtils = new Utils\Net();
             foreach ($cidrHints as $hint_entry) {
-                if (Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
+                if ($netUtils->ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
@@ -227,21 +219,17 @@ abstract class MetaDataStorageSource
      * override this function if it doesn't implement the getMetadataSet function, or if the
      * implementation of getMetadataSet is slow.
      *
-     * @param string $index The entityId or metaindex we are looking up.
+     * @param string $entityId The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData($index, $set)
+    public function getMetaData(string $entityId, string $set): ?array
     {
-
-        assert(is_string($index));
-        assert(isset($set));
-
         $metadataSet = $this->getMetadataSet($set);
 
-        $indexLookup = $this->lookupIndexFromEntityId($index, $metadataSet);
+        $indexLookup = $this->lookupIndexFromEntityId($entityId, $metadataSet);
         if (isset($indexLookup) && array_key_exists($indexLookup, $metadataSet)) {
             return $metadataSet[$indexLookup];
         }
@@ -249,16 +237,17 @@ abstract class MetaDataStorageSource
         return null;
     }
 
+
     /**
      * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
      * where the key is the entity id. An empty array may be returned if no matching entities were found.
      * Subclasses should override if their getMetadataSet returns nothing or is slow. Subclasses may want to
      * delegate to getMetaDataForEntitiesIndividually if loading entities one at a time is faster.
-     * @param array $entityIds The entity ids to load
+     * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
-    public function getMetaDataForEntities(array $entityIds, $set)
+    public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         if (count($entityIds) === 1) {
             return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
@@ -267,15 +256,16 @@ abstract class MetaDataStorageSource
         return array_intersect_key($entities, array_flip($entityIds));
     }
 
+
     /**
      * Loads metadata entities one at a time, rather than the default implementation of loading all entities
      * and filtering.
      * @see MetaDataStorageSource::getMetaDataForEntities()
-     * @param array $entityIds The entity ids to load
+     * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
-    protected function getMetaDataForEntitiesIndividually(array $entityIds, $set)
+    protected function getMetaDataForEntitiesIndividually(array $entityIds, string $set): array
     {
         $entities = [];
         foreach ($entityIds as $entityId) {
@@ -287,6 +277,7 @@ abstract class MetaDataStorageSource
         return $entities;
     }
 
+
     /**
      * This method returns the full metadata set for a given entity id or null if the entity id cannot be found
      * in the given metadata set.
@@ -295,13 +286,11 @@ abstract class MetaDataStorageSource
      * @param array $metadataSet the already loaded metadata set
      * @return mixed|null
      */
-    protected function lookupIndexFromEntityId($entityId, array $metadataSet)
+    protected function lookupIndexFromEntityId(string $entityId, array $metadataSet)
     {
-        assert(is_string($entityId));
-        assert(is_array($metadataSet));
-
         // check for hostname
-        $currentHost = Utils\HTTP::getSelfHost(); // sp.example.org
+        $httpUtils = new Utils\HTTP();
+        $currentHost = $httpUtils->getSelfHost(); // sp.example.org
 
         foreach ($metadataSet as $index => $entry) {
             // explicit index match
@@ -319,32 +308,29 @@ abstract class MetaDataStorageSource
         return null;
     }
 
+
     /**
      * @param string $set
      * @throws \Exception
      * @return string
      */
-    private function getDynamicHostedUrl($set)
+    private function getDynamicHostedUrl(string $set): string
     {
-        assert(is_string($set));
-
         // get the configuration
-        $baseUrl = Utils\HTTP::getBaseURL();
+        $httpUtils = new Utils\HTTP();
+        $baseUrl = $httpUtils->getBaseURL();
 
         if ($set === 'saml20-idp-hosted') {
             return $baseUrl . 'saml2/idp/metadata.php';
         } elseif ($set === 'saml20-sp-hosted') {
             return $baseUrl . 'saml2/sp/metadata.php';
-        } elseif ($set === 'shib13-idp-hosted') {
-            return $baseUrl . 'shib13/idp/metadata.php';
-        } elseif ($set === 'shib13-sp-hosted') {
-            return $baseUrl . 'shib13/sp/metadata.php';
         } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:' . Utils\HTTP::getSelfHost() . ':idp';
+            return 'urn:federation:' . $httpUtils->getSelfHost() . ':idp';
         } else {
             throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
         }
     }
+
 
     /**
      * Updates the metadata entry's entity id and returns the modified array.  If the entity id is __DYNAMIC:*__ a
@@ -358,12 +344,8 @@ abstract class MetaDataStorageSource
      *
      * @throws \Exception
      */
-    protected function updateEntityID($metadataSet, $entityId, array $metadataEntry)
+    protected function updateEntityID(string $metadataSet, string $entityId, array $metadataEntry): array
     {
-        assert(is_string($metadataSet));
-        assert(is_string($entityId));
-        assert(is_array($metadataEntry));
-
         $modifiedMetadataEntry = $metadataEntry;
 
         // generate a dynamic hosted url

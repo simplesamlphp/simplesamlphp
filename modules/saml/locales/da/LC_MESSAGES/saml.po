@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{saml:wrong_authncontextclassref:description}"
-msgstr ""
-"Din authentication context er ikke accepteret at denne tjeneste. "
-"Formentlig for svag eller manglende 2-faktor login."
-
-msgid "{saml:wrong_authncontextclassref:header}"
-msgstr "Forkert authentication context"
-
 msgid ""
 "Your authentication context is not accepted at this service. Probably too"
 " weak or not two-factor."

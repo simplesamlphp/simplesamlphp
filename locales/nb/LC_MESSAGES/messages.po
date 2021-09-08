@@ -113,9 +113,6 @@ msgstr ""
 "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-"
 "svaret var noe annet enn OK)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. "
@@ -215,9 +212,6 @@ msgstr "Logger ut..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Feil brukernavn eller passord."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Tjenesteleverandør (ekstern)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -448,9 +442,6 @@ msgstr "Sender melding"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Feilmelding mottatt fra innloggingstjenesten"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "For å se på detaljene i en SAML-entitet, klikk på SAML-entitet "
@@ -523,9 +514,6 @@ msgstr "Kan ikke finne siden"
 msgid "{logout:logged_out_text}"
 msgstr "Du er nå utlogget."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Tjenesteleverandør (intern)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Last ned X509-sertifikatene som PEM-filer."
 
@@ -553,8 +541,11 @@ msgstr ""
 "eller den er en følge av en uforutsett hendelse. Kontakt administratoren "
 "av denne tjenesten og rapporter så mye som mulig angående feilen."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identitetsleverandør (ekstern)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobiltelefon"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Foretrukket språk"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Du presenterte ikke et gyldig sertifikat"
@@ -589,9 +580,6 @@ msgstr "Ikke noe sertifikat mottatt"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informasjon om utlogging er tapt"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identitetsleverandør (ekstern) "
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Det virker som det er en feil i oppsettet av SimpleSAMLphp."

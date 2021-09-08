@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
+
+use SimpleSAML\Assert\Assert;
+use Throwable;
 
 /**
  * Baseclass for auth source exceptions.
  *
- * @package SimpleSAMLphp_base
+ * @package SimpleSAMLphp
  *
  */
 
@@ -15,14 +20,13 @@ class AuthSource extends Error
      * Authsource module name
      * @var string
      */
-    private $authsource;
-
+    private string $authsource;
 
     /**
      * Reason why this request was invalid.
      * @var string
      */
-    private $reason;
+    private string $reason;
 
 
     /**
@@ -30,13 +34,10 @@ class AuthSource extends Error
      *
      * @param string $authsource  Authsource module name from where this error was thrown.
      * @param string $reason  Description of the error.
-     * @param \Exception|null $cause
+     * @param \Throwable|null $cause
      */
-    public function __construct($authsource, $reason, $cause = null)
+    public function __construct(string $authsource, string $reason, Throwable $cause = null)
     {
-        assert(is_string($authsource));
-        assert(is_string($reason));
-
         $this->authsource = $authsource;
         $this->reason = $reason;
         parent::__construct(
@@ -57,7 +58,7 @@ class AuthSource extends Error
      *
      * @return string  Authsource module name.
      */
-    public function getAuthSource()
+    public function getAuthSource(): string
     {
         return $this->authsource;
     }
@@ -68,7 +69,7 @@ class AuthSource extends Error
      *
      * @return string  The reason why the request was invalid.
      */
-    public function getReason()
+    public function getReason(): string
     {
         return $this->reason;
     }

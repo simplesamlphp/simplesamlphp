@@ -1,50 +1,55 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
+use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger\ErrorLogLoggingHandler;
+use SimpleSAML\Logger\FileLoggingHandler;
+use SimpleSAML\Logger\LoggingHandlerInterface;
+use SimpleSAML\Logger\StandardErrorLoggingHandler;
+use SimpleSAML\Logger\SyslogLoggingHandler;
 
 /**
  * The main logger class for SimpleSAMLphp.
  *
- * @author Lasse Birnbaum Jensen, SDU.
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class Logger
 {
     /**
-     * @var \SimpleSAML\Logger\LoggingHandlerInterface
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
-    private static $loggingHandler;
+    private static ?LoggingHandlerInterface $loggingHandler = null;
 
     /**
      * @var bool
      */
-    private static $initializing = false;
+    private static bool $initializing = false;
 
     /**
      * @var integer|null
      */
-    private static $logLevel = null;
+    private static ?int $logLevel = null;
 
     /**
      * @var boolean
      */
-    private static $captureLog = false;
+    private static bool $captureLog = false;
 
     /**
-     * @var array
+     * @var string[]
      */
-    private static $capturedLog = [];
+    private static array $capturedLog = [];
 
     /**
      * Array with messages logged before the logging handler was initialized.
      *
      * @var array
      */
-    private static $earlyLog = [];
+    private static array $earlyLog = [];
 
     /**
      * List of log levels.
@@ -53,7 +58,7 @@ class Logger
      *
      * @var array
      */
-    private static $logLevelStack = [];
+    private static array $logLevelStack = [];
 
     /**
      * The current mask of log levels disabled.
@@ -62,8 +67,7 @@ class Logger
      *
      * @var int
      */
-    private static $logMask = 0;
-
+    private static int $logMask = 0;
 
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
@@ -71,7 +75,7 @@ class Logger
      *
      * @var string
      */
-    const NO_TRACKID = '_NOTRACKIDYET_';
+    public const NO_TRACKID = '_NOTRACKIDYET_';
 
     /**
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
@@ -79,7 +83,7 @@ class Logger
      *
      * @var string
      */
-    private static $trackid = self::NO_TRACKID;
+    private static string $trackid = self::NO_TRACKID;
 
     /**
      * This variable holds the format used to log any message. Its use varies depending on the log handler used (for
@@ -109,54 +113,53 @@ class Logger
      *
      * @var string The format of the log line.
      */
-    private static $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
+    private static string $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
 
     /**
      * This variable tells if we have a shutdown function registered or not.
      *
      * @var bool
      */
-    private static $shutdownRegistered = false;
+    private static bool $shutdownRegistered = false;
 
     /**
      * This variable tells if we are shutting down.
      *
      * @var bool
      */
-    private static $shuttingDown = false;
+    private static bool $shuttingDown = false;
 
     /** @var int */
-    const EMERG = 0;
+    public const EMERG = 0;
 
     /** @var int */
-    const ALERT = 1;
+    public const ALERT = 1;
 
     /** @var int */
-    const CRIT = 2;
+    public const CRIT = 2;
 
     /** @var int */
-    const ERR = 3;
+    public const ERR = 3;
 
     /** @var int */
-    const WARNING = 4;
+    public const WARNING = 4;
 
     /** @var int */
-    const NOTICE = 5;
+    public const NOTICE = 5;
 
     /** @var int */
-    const INFO = 6;
+    public const INFO = 6;
 
     /** @var int */
-    const DEBUG = 7;
+    public const DEBUG = 7;
 
 
     /**
      * Log an emergency message.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function emergency($string)
+    public static function emergency(string $string): void
     {
         self::log(self::EMERG, $string);
     }
@@ -166,9 +169,8 @@ class Logger
      * Log a critical message.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function critical($string)
+    public static function critical(string $string): void
     {
         self::log(self::CRIT, $string);
     }
@@ -178,9 +180,8 @@ class Logger
      * Log an alert.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function alert($string)
+    public static function alert(string $string): void
     {
         self::log(self::ALERT, $string);
     }
@@ -190,9 +191,8 @@ class Logger
      * Log an error.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function error($string)
+    public static function error(string $string): void
     {
         self::log(self::ERR, $string);
     }
@@ -202,9 +202,8 @@ class Logger
      * Log a warning.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function warning($string)
+    public static function warning(string $string): void
     {
         self::log(self::WARNING, $string);
     }
@@ -214,9 +213,8 @@ class Logger
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function notice($string)
+    public static function notice(string $string): void
     {
         self::log(self::NOTICE, $string);
     }
@@ -226,9 +224,8 @@ class Logger
      * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function info($string)
+    public static function info(string $string): void
     {
         self::log(self::INFO, $string);
     }
@@ -239,9 +236,8 @@ class Logger
      * system.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function debug($string)
+    public static function debug(string $string): void
     {
         self::log(self::DEBUG, $string);
     }
@@ -251,11 +247,10 @@ class Logger
      * Statistics.
      *
      * @param string $string The message to log.
-     * @return void
      */
-    public static function stats($string)
+    public static function stats(string $string): void
     {
-        self::log(self::NOTICE, $string, true);
+        self::log(self::NOTICE, $string, self::$logLevel >= self::NOTICE);
     }
 
 
@@ -263,9 +258,8 @@ class Logger
      * Set the logger to capture logs.
      *
      * @param boolean $val Whether to capture logs or not. Defaults to TRUE.
-     * @return void
      */
-    public static function setCaptureLog($val = true)
+    public static function setCaptureLog(bool $val = true): void
     {
         self::$captureLog = $val;
     }
@@ -275,9 +269,18 @@ class Logger
      * Get the captured log.
      * @return array
      */
-    public static function getCapturedLog()
+    public static function getCapturedLog(): array
     {
         return self::$capturedLog;
+    }
+
+
+    /**
+     * Clears the captured log.
+     */
+    public static function clearCapturedLog(): void
+    {
+        self::$capturedLog = [];
     }
 
 
@@ -285,9 +288,8 @@ class Logger
      * Set the track identifier to use in all logs.
      *
      * @param string $trackId The track identifier to use during this session.
-     * @return void
      */
-    public static function setTrackId($trackId)
+    public static function setTrackId(string $trackId): void
     {
         self::$trackid = $trackId;
         self::flush();
@@ -297,9 +299,8 @@ class Logger
     /**
      * Flush any pending log messages to the logging handler.
      *
-     * @return void
      */
-    public static function flush()
+    public static function flush(): void
     {
         foreach (self::$earlyLog as $msg) {
             self::log($msg['level'], $msg['string'], $msg['statsLog']);
@@ -314,14 +315,13 @@ class Logger
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
-     * @return void
      */
-    public static function shutdown()
+    public static function shutdown(): void
     {
         if (self::$trackid === self::NO_TRACKID) {
             try {
                 $s = Session::getSessionFromRequest();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // loading session failed. We don't care why, at this point we have a transient session, so we use that
                 $s = Session::getSessionFromRequest();
             }
@@ -339,7 +339,7 @@ class Logger
      *
      * @return bool True if the error is masked, false otherwise.
      */
-    public static function isErrorMasked($errno)
+    public static function isErrorMasked(int $errno): bool
     {
         return ($errno & self::$logMask) || !($errno & error_reporting());
     }
@@ -351,12 +351,9 @@ class Logger
      * Every call to this function must be followed by a call to popErrorMask().
      *
      * @param int $mask The log levels that should be masked.
-     * @return void
      */
-    public static function maskErrors($mask)
+    public static function maskErrors(int $mask): void
     {
-        assert(is_int($mask));
-
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = [$currentEnabled, self::$logMask];
 
@@ -371,9 +368,8 @@ class Logger
      *
      * This function restores the previous error mask.
      *
-     * @return void
      */
-    public static function popErrorMask()
+    public static function popErrorMask(): void
     {
         $lastMask = array_pop(self::$logLevelStack);
         error_reporting($lastMask[0]);
@@ -382,14 +378,45 @@ class Logger
 
 
     /**
+     * Returns the current logging handler
+     *
+     * @return LoggingHandlerInterface
+     */
+    public static function getLoggingHandler(): ?LoggingHandlerInterface
+    {
+        return self::$loggingHandler;
+    }
+
+
+    /**
+     * Sets the current logging handler
+     *
+     * @param LoggingHandlerInterface|null $loggingHandler The logging handler to set
+     */
+    public static function setLoggingHandler(?LoggingHandlerInterface $loggingHandler): void
+    {
+        self::$initializing   = false;
+        self::$loggingHandler = $loggingHandler;
+    }
+
+    /**
+     * Sets the log level.
+     *
+     * @param int $level One of the Logger class constants.
+     */
+    public static function setLogLevel(int $level): void
+    {
+        self::$logLevel = $level;
+    }
+
+    /**
      * Defer a message for later logging.
      *
      * @param int     $level The log level corresponding to this message.
      * @param string  $message The message itself to log.
      * @param boolean $stats Whether this is a stats message or a regular one.
-     * @return void
      */
-    private static function defer($level, $message, $stats)
+    private static function defer(int $level, string $message, bool $stats): void
     {
         // save the message for later
         self::$earlyLog[] = ['level' => $level, 'string' => $message, 'statsLog' => $stats];
@@ -404,41 +431,42 @@ class Logger
 
     /**
      * @param string|null $handler
-     * @return void
      * @throws \Exception
      */
-    private static function createLoggingHandler($handler = null)
+    private static function createLoggingHandler(?string $handler = null): void
     {
         self::$initializing = true;
 
         // a set of known logging handlers
         $known_handlers = [
-            'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
-            'file'     => 'SimpleSAML\Logger\FileLoggingHandler',
-            'errorlog' => 'SimpleSAML\Logger\ErrorLogLoggingHandler',
-            'stderr' => 'SimpleSAML\Logger\StandardErrorLoggingHandler',
+            'syslog'   => SyslogLoggingHandler::class,
+            'file'     => FileLoggingHandler::class,
+            'errorlog' => ErrorLogLoggingHandler::class,
+            'stderr' => StandardErrorLoggingHandler::class,
         ];
 
         // get the configuration
         $config = Configuration::getInstance();
-        assert($config instanceof Configuration);
 
         // setting minimum log_level
         self::$logLevel = $config->getInteger('logging.level', self::INFO);
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
-            $handler = $config->getString('logging.handler', 'syslog');
+            $handler = $config->getString(
+                'logging.handler',
+                php_sapi_name() === 'cli' || defined('STDIN') ? 'stderr' : 'syslog'
+            );
         }
 
         if (!array_key_exists($handler, $known_handlers) && class_exists($handler)) {
-            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler), true)) {
-                throw new \Exception("The logging handler '$handler' is invalid.");
+            if (!in_array(LoggingHandlerInterface::class, class_implements($handler), true)) {
+                throw new Exception("The logging handler '$handler' is invalid.");
             }
         } else {
             $handler = strtolower($handler);
             if (!array_key_exists($handler, $known_handlers)) {
-                throw new \Exception(
+                throw new Exception(
                     "Invalid value for the 'logging.handler' configuration option. Unknown handler '" . $handler . "'."
                 );
             }
@@ -452,7 +480,7 @@ class Logger
             self::$loggingHandler = new $handler($config);
             self::$loggingHandler->setLogFormat(self::$format);
             self::$initializing = false;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             self::$loggingHandler = new ErrorLogLoggingHandler($config);
             self::$initializing = false;
             self::log(self::CRIT, $e->getMessage(), false);
@@ -464,40 +492,37 @@ class Logger
      * @param int $level
      * @param string $string
      * @param bool $statsLog
-     * @return void
      */
-    private static function log($level, $string, $statsLog = false)
+    private static function log(int $level, string $string, bool $statsLog = false): void
     {
         if (self::$initializing) {
             // some error occurred while initializing logging
             self::defer($level, $string, $statsLog);
             return;
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
-            // we are being executed from the CLI, nowhere to log
-            if (!isset(self::$loggingHandler)) {
-                self::createLoggingHandler(\SimpleSAML\Logger\StandardErrorLoggingHandler::class);
-            }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
                 self::$trackid = 'CL' . bin2hex(openssl_random_pseudo_bytes(4));
             }
-        } elseif (!isset(self::$loggingHandler)) {
+        }
+
+        if (!isset(self::$loggingHandler)) {
             // Initialize logging
             self::createLoggingHandler();
         }
 
         if (self::$captureLog) {
-            $ts = microtime(true);
-            $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = gmdate('H:i:s', $ts) . sprintf('.%03d', $msecs) . 'Z';
+            $sample = microtime(false);
+            list($msecs, $mtime) = explode(' ', $sample);
+
+            $time = intval($mtime);
+            $usec = substr($msecs, 2, 3);
+
+            $ts = gmdate('H:i:s', $time) . '.' . $usec . 'Z';
             self::$capturedLog[] = $ts . ' ' . $string;
         }
 
         if (self::$logLevel >= $level || $statsLog) {
-            if (is_array($string)) {
-                $string = implode(",", $string);
-            }
-
             $formats = ['%trackid', '%msg', '%srcip', '%stat'];
             $replacements = [self::$trackid, $string, $_SERVER['REMOTE_ADDR']];
 

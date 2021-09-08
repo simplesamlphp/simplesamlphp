@@ -122,9 +122,6 @@ msgstr ""
 "Furnizorul de identitate a răspuns cu o eroare. (Codul de stare in "
 "răspunsul SAML a fost  încercare nereușită)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Metadate furnizor de identitate (IdP) Shib 1.3"
-
 msgid "{login:help_text}"
 msgstr ""
 "Din păcate fără nume de utilizator și parolă nu vă puteți autentifica "
@@ -225,9 +222,6 @@ msgstr "Deautentificare ..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nume de utilizator incorect sau parola incorectă."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Furnizor de servicii Shib 1.3 (distant)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -463,9 +457,6 @@ msgstr "Se trimite mesajul"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Eroare primită de la furnizorul de identitate"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Metadate furnizor de servicii (SP) Shib 1.3"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "
@@ -538,9 +529,6 @@ msgstr "Pagina nu a fost găsită"
 msgid "{logout:logged_out_text}"
 msgstr "Ați fost deautentificat"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Furnizor de servicii Shib 1.3 (găzduit)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Descărcați certificatele X509 ca fișiere PEM."
 
@@ -569,8 +557,11 @@ msgstr ""
 "administratorul acestui serviciu și să-i furnizați mesajul de eroare de "
 "mai sus."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Furnizor de identitate Shib 1.3 (găzduit)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobil"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Limba preferată"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nu ați oferit un certificat valid."
@@ -609,9 +600,6 @@ msgstr "Lipsește certificatul"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informația de deautentificare a fost pierdută"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Furnizor de identitate Shib 1.3 (distant)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Probleme la configurarea SimpleSAMLphp."

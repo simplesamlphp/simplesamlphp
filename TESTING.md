@@ -33,7 +33,7 @@ the ones prefixed with "test".
 
 You will usually make use of the `assert*()` methods provided by
 `PHPUnit\Framework\TestCase`, but you can also tell `phpunit` to expect
-an exception to be thrown using *phpdoc*. For example, if you want to
+an exception to be thrown using the `expectException()`-method. For example, if you want to
 ensure that the `SimpleSAML\Utils\HTTP::addURLParameters()` method
 throws an exception in a specific situation:
 
@@ -45,9 +45,8 @@ throws an exception in a specific situation:
       $this->expectException(ExpectedException::class);
 ```
 
-Refer to [the `phpunit 5.7` documentation](https://phpunit.de/manual/5.7/en/installation.html)
-for more information on how to write tests. We currently use the `phpunit 5.7`
-since it is the last version to support php 5.6.
+Refer to [the `phpunit 8.5` documentation](https://phpunit.readthedocs.io/en/8.5/)
+for more information on how to write tests.
 
 Once you have implemented your tests, you can run them locally. First,
 make sure the `config` directory is **not** in the root of your
@@ -65,7 +64,6 @@ the old version installed by composer
 ./vendor/bin/phpunit -c ./phpunit.xml
 ```
 
-All the tests are run by our *continuous integration* platform,
-[travis](https://travis-ci.org/simplesamlphp/simplesamlphp). If you are
-submitting a pull request, Travis will run your tests and notify whether
-your code builds or not according to them.
+All the tests are run by our *continuous integration* platform using GitHub
+Actions. If you are submitting a pull request, GitHub Actions will run your
+tests and notify whether your code builds or not according to them.

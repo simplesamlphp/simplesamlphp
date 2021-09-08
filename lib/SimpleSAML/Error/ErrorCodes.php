@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Locale\Translate;
@@ -7,10 +9,8 @@ use SimpleSAML\Locale\Translate;
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
- * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class ErrorCodes
 {
     /**
@@ -18,11 +18,11 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    final public static function defaultGetAllErrorCodeTitles()
+    final public static function defaultGetAllErrorCodeTitles(): array
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:title_ACSPARAMS}'),
-            'ARSPARAMS' => Translate::noop('{errors:title_ARSPARAMS}'),
+            'ARSPARAMS' => Translate::noop('No SAML message provided'),
             'AUTHSOURCEERROR' => Translate::noop('{errors:title_AUTHSOURCEERROR}'),
             'BADREQUEST' => Translate::noop('{errors:title_BADREQUEST}'),
             'CASERROR' => Translate::noop('{errors:title_CASERROR}'),
@@ -34,7 +34,7 @@ class ErrorCodes
             'LDAPERROR' => Translate::noop('{errors:title_LDAPERROR}'),
             'LOGOUTINFOLOST' => Translate::noop('{errors:title_LOGOUTINFOLOST}'),
             'LOGOUTREQUEST' => Translate::noop('{errors:title_LOGOUTREQUEST}'),
-            'MEMCACHEDOWN' => Translate::noop('{errors:title_MEMCACHEDOWN}'),
+            'MEMCACHEDOWN' => Translate::noop('Cannot retrieve session data'),
             'METADATA' => Translate::noop('{errors:title_METADATA}'),
             'METADATANOTFOUND' => Translate::noop('{errors:title_METADATANOTFOUND}'),
             'NOACCESS' => Translate::noop('{errors:title_NOACCESS}'),
@@ -49,7 +49,7 @@ class ErrorCodes
             'PROCESSAUTHNREQUEST' => Translate::noop('{errors:title_PROCESSAUTHNREQUEST}'),
             'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:title_RESPONSESTATUSNOSUCCESS}'),
             'SLOSERVICEPARAMS' => Translate::noop('{errors:title_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => Translate::noop('{errors:title_SSOPARAMS}'),
+            'SSOPARAMS' => Translate::noop('No SAML request provided'),
             'UNHANDLEDEXCEPTION' => Translate::noop('{errors:title_UNHANDLEDEXCEPTION}'),
             'UNKNOWNCERT' => Translate::noop('{errors:title_UNKNOWNCERT}'),
             'USERABORTED' => Translate::noop('{errors:title_USERABORTED}'),
@@ -65,7 +65,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    public static function getAllErrorCodeTitles()
+    public static function getAllErrorCodeTitles(): array
     {
         return self::defaultGetAllErrorCodeTitles();
     }
@@ -76,11 +76,14 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    final public static function defaultGetAllErrorCodeDescriptions()
+    final public static function defaultGetAllErrorCodeDescriptions(): array
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:descr_ACSPARAMS}'),
-            'ARSPARAMS' => Translate::noop('{errors:descr_ARSPARAMS}'),
+            'ARSPARAMS' => Translate::noop("" .
+                "You accessed the Artifact Resolution Service interface, but did not " .
+                "provide a SAML ArtifactResolve message. Please note that this endpoint is" .
+                " not intended to be accessed directly."),
             'AUTHSOURCEERROR' => Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
             'BADREQUEST' => Translate::noop('{errors:descr_BADREQUEST}'),
             'CASERROR' => Translate::noop('{errors:descr_CASERROR}'),
@@ -107,7 +110,10 @@ class ErrorCodes
             'PROCESSAUTHNREQUEST' => Translate::noop('{errors:descr_PROCESSAUTHNREQUEST}'),
             'RESPONSESTATUSNOSUCCESS' => Translate::noop('{errors:descr_RESPONSESTATUSNOSUCCESS}'),
             'SLOSERVICEPARAMS' => Translate::noop('{errors:descr_SLOSERVICEPARAMS}'),
-            'SSOPARAMS' => Translate::noop('{errors:descr_SSOPARAMS}'),
+            'SSOPARAMS' => Translate::noop("" .
+                "You accessed the Single Sign On Service interface, but did not provide a " .
+                "SAML Authentication Request. Please note that this endpoint is not " .
+                "intended to be accessed directly."),
             'UNHANDLEDEXCEPTION' => Translate::noop('{errors:descr_UNHANDLEDEXCEPTION}'),
             'UNKNOWNCERT' => Translate::noop('{errors:descr_UNKNOWNCERT}'),
             'USERABORTED' => Translate::noop('{errors:descr_USERABORTED}'),
@@ -122,7 +128,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    public static function getAllErrorCodeDescriptions()
+    public static function getAllErrorCodeDescriptions(): array
     {
         return self::defaultGetAllErrorCodeDescriptions();
     }
@@ -135,7 +141,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode maps.
      */
-    public static function getAllErrorCodeMessages()
+    public static function getAllErrorCodeMessages(): array
     {
         return [
             'title' => self::getAllErrorCodeTitles(),
@@ -151,10 +157,14 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeTitle($errorCode)
+    public static function getErrorCodeTitle(string $errorCode): string
     {
-        $errorCodeTitles = self::getAllErrorCodeTitles();
-        return $errorCodeTitles[$errorCode];
+        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
+            $errorCodeTitles = self::getAllErrorCodeTitles();
+            return $errorCodeTitles[$errorCode];
+        } else {
+            return Translate::addTagPrefix($errorCode, 'title_');
+        }
     }
 
 
@@ -165,10 +175,14 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeDescription($errorCode)
+    public static function getErrorCodeDescription(string $errorCode): string
     {
-        $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
-        return $errorCodeDescriptions[$errorCode];
+        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
+            $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
+            return $errorCodeDescriptions[$errorCode];
+        } else {
+            return Translate::addTagPrefix($errorCode, 'descr_');
+        }
     }
 
 
@@ -181,7 +195,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode strings.
      */
-    public static function getErrorCodeMessage($errorCode)
+    public static function getErrorCodeMessage(string $errorCode): array
     {
         return [
             'title' => self::getErrorCodeTitle($errorCode),

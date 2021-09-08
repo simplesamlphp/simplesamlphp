@@ -62,7 +62,7 @@ As an example, here is the saml20_idp_hosted table:
 
 entity_id       | entity_data
 ----------------|-------------------------------------------------------------------------------------------------------------------------
-`__DEFAULT:1__` | {"host":"\_\_DEFAULT\_\_","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","userid.attribute":"uid"}
+`__DEFAULT:1__` | {"host":"\_\_DEFAULT\_\_","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","identifyingAttribute":"uid"}
 
 Another example is the saml20_idp_remote table:
 

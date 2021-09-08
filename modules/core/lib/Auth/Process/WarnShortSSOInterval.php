@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
@@ -12,7 +15,7 @@ use SimpleSAML\Utils;
  *
  * @package SimpleSAMLphp
  */
-class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
+class WarnShortSSOInterval extends Auth\ProcessingFilter
 {
     /**
      * Process a authentication response.
@@ -21,12 +24,9 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
      * If it is to short a while since, we will show a warning to the user.
      *
      * @param array $state  The state of the response.
-     * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        assert(is_array($state));
-
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             /*
              * No timestamp from the previous SSO to this SP. This is the first
@@ -53,6 +53,7 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and redirect
         $id = Auth\State::saveState($state, 'core:short_sso_interval');
         $url = Module::getModuleURL('core/short_sso_interval.php');
-        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

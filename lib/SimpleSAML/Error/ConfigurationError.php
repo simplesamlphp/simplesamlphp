@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Error;
 
 /**
  * This exception represents a configuration error.
  *
- * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 
@@ -16,14 +17,14 @@ class ConfigurationError extends Error
      *
      * @var null|string
      */
-    protected $reason;
+    protected ?string $reason;
 
     /**
      * The configuration file that caused this exception.
      *
      * @var null|string
      */
-    protected $config_file;
+    protected ?string $config_file;
 
 
     /**
@@ -33,7 +34,7 @@ class ConfigurationError extends Error
      * @param string|null $file The configuration file that originated this error.
      * @param array|null $config The configuration array that led to this problem.
      */
-    public function __construct($reason = null, $file = null, array $config = null)
+    public function __construct(string $reason = null, string $file = null, array $config = null)
     {
         $file_str = '';
         $reason_str = '.';
@@ -59,7 +60,7 @@ class ConfigurationError extends Error
      *
      * @return null|string The reason for this exception.
      */
-    public function getReason()
+    public function getReason(): ?string
     {
         return $this->reason;
     }
@@ -70,7 +71,7 @@ class ConfigurationError extends Error
      *
      * @return null|string The configuration file that caused this exception.
      */
-    public function getConfFile()
+    public function getConfFile(): ?string
     {
         return $this->config_file;
     }

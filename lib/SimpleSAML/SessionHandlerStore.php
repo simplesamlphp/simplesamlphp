@@ -6,24 +6,29 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
+
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Store\StoreInterface;
 
 class SessionHandlerStore extends SessionHandlerCookie
 {
     /**
      * The data store we save the session to.
      *
-     * @var \SimpleSAML\Store
+     * @var \SimpleSAML\Store\StoreInterface
      */
-    private $store;
+    private StoreInterface $store;
 
 
     /**
      * Initialize the session.
      *
-     * @param \SimpleSAML\Store $store The store to use.
+     * @param \SimpleSAML\Store\StoreInterface $store The store to use.
      */
-    protected function __construct(Store $store)
+    protected function __construct(StoreInterface $store)
     {
         parent::__construct();
 
@@ -38,10 +43,8 @@ class SessionHandlerStore extends SessionHandlerCookie
      *
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
-    public function loadSession($sessionId = null)
+    public function loadSession(?string $sessionId): ?Session
     {
-        assert(is_string($sessionId) || $sessionId === null);
-
         if ($sessionId === null) {
             $sessionId = $this->getCookieSessionId();
             if ($sessionId === null) {
@@ -52,7 +55,7 @@ class SessionHandlerStore extends SessionHandlerCookie
 
         $session = $this->store->get('session', $sessionId);
         if ($session !== null) {
-            assert($session instanceof Session);
+            Assert::isInstanceOf($session, Session::class);
             return $session;
         }
 
@@ -64,9 +67,8 @@ class SessionHandlerStore extends SessionHandlerCookie
      * Save a session to the data store.
      *
      * @param \SimpleSAML\Session $session The session object we should save.
-     * @return void
      */
-    public function saveSession(Session $session)
+    public function saveSession(Session $session): void
     {
         if ($session->isTransient()) {
             // transient session, nothing to save
