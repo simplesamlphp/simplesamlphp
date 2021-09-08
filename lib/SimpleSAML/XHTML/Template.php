@@ -302,7 +302,6 @@ class Template extends Response
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
-        $twig->addGlobal('localeBackend', Localization::GETTEXT_I18N_BACKEND);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
         if ($this->translator->getLanguage()->isLanguageRTL()) {
