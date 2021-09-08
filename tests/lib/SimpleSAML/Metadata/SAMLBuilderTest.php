@@ -240,4 +240,44 @@ class SAMLBuilderTest extends TestCase
             $entityDescriptorXml
         );
     }
+
+    /**
+     * Test custom metadata extension (saml:Extensions).
+     */
+    public function testCustomMetadataExtension(): void
+    {
+        $entityId = 'https://entity.example.com/id';
+        $set = 'saml20-idp-remote';
+
+        $dom = \SAML2\DOMDocumentFactory::create();
+        $republishRequest = $dom->createElementNS(
+            'http://eduid.cz/schema/metadata/1.0',
+            'eduidmd:RepublishRequest'
+        );
+        $republishTargetContent = 'http://edugain.org/';
+        $republishTarget = $dom->createElementNS(
+            'http://eduid.cz/schema/metadata/1.0',
+            'eduidmd:RepublishTarget',
+            $republishTargetContent
+        );
+        $republishRequest->appendChild($republishTarget);
+        $ext = [new \SAML2\XML\Chunk($republishRequest)];
+
+        $metadata = [
+            'entityid' => $entityId,
+            'name' => ['en' => 'Test IdP'],
+            'metadata-set' => $set,
+            'saml:Extensions' => $ext,
+        ];
+
+        $samlBuilder = new SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+
+        $idpDesc = $samlBuilder->getEntityDescriptor();
+        $rt = $idpDesc->getElementsByTagNameNS('http://eduid.cz/schema/metadata/1.0', 'RepublishTarget');
+
+        /** @var \DOMElement $rt1 */
+        $rt1 = $rt->item(0);
+        $this->assertEquals($republishTargetContent, $rt1->textContent);
+    }
 }

@@ -9,9 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
-use SimpleSAML\Utils\Auth as Auth;
-use SimpleSAML\Utils\Crypto as Crypto;
-use SimpleSAML\Utils\HTTP as HTTP;
+use SimpleSAML\Utils;
 use SimpleSAML\Utils\Config\Metadata as Metadata;
 
 $config = Configuration::getInstance();
@@ -21,9 +19,11 @@ if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled
 
 // check if valid local session exists
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    Auth::requireAdmin();
+    $authUtils = new Utils\Auth();
+    $authUtils->requireAdmin();
 }
 
+$httpUtils = new Utils\HTTP();
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 try {
@@ -31,10 +31,11 @@ try {
         $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
+    $cryptoUtils = new Utils\Crypto();
     $availableCerts = [];
-
     $keys = [];
-    $certInfo = Crypto::loadPublicKey($idpmeta, false, 'new_');
+
+    $certInfo = $cryptoUtils->loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
         $keys[] = [
@@ -48,7 +49,7 @@ try {
         $hasNewCert = false;
     }
 
-    $certInfo = Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = $cryptoUtils->loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
     $keys[] = [
         'type'            => 'X509Certificate',
@@ -58,7 +59,7 @@ try {
     ];
 
     if ($idpmeta->hasValue('https.certificate')) {
-        $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
+        $httpsCert = $cryptoUtils->loadPublicKey($idpmeta, true, 'https.');
         Assert::notNull($httpsCert['certData']);
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = [
@@ -117,7 +118,7 @@ try {
         // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = [
             'index'    => 0,
-            'Location' => HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
+            'Location' => $httpUtils->getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
             'Binding'  => Constants::BINDING_SOAP,
         ];
     }
@@ -127,7 +128,7 @@ try {
         array_unshift($metaArray['SingleSignOnService'], [
             'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
             'Binding'                => Constants::BINDING_HOK_SSO,
-            'Location'               => HTTP::getBaseURL() . 'saml2/idp/SSOService.php'
+            'Location'               => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php'
         ]);
     }
 
@@ -135,7 +136,7 @@ try {
         $metaArray['SingleSignOnService'][] = [
             'index' => 0,
             'Binding'  => Constants::BINDING_SOAP,
-            'Location' => HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+            'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
         ];
     }
 
@@ -172,6 +173,10 @@ try {
         }
     }
 
+    if ($idpmeta->hasValue('saml:Extensions')) {
+        $metaArray['saml:Extensions'] = $idpmeta->getArray('saml:Extensions');
+    }
+
     if ($idpmeta->hasValue('UIInfo')) {
         $metaArray['UIInfo'] = $idpmeta->getArray('UIInfo');
     }
@@ -201,9 +206,11 @@ try {
 
     $technicalContactEmail = $config->getString('technicalcontact_email', false);
     if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-        $techcontact['emailAddress'] = $technicalContactEmail;
-        $techcontact['name'] = $config->getString('technicalcontact_name', null);
-        $techcontact['contactType'] = 'technical';
+        $techcontact = [
+            'emailAddress' => $technicalContactEmail,
+            'name' => $config->getString('technicalcontact_name', null),
+            'contactType' => 'technical',
+        ];
         $metaArray['contacts'][] = Metadata::getContact($techcontact);
     }
 
@@ -236,12 +243,12 @@ try {
         $t->data['certdata'] = $certdata;
         $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
         $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-idp');
-        $t->data['metaurl'] = HTTP::getSelfURLNoQuery();
+        $t->data['metaurl'] = $httpUtils->getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->send();
     } else {
-        header('Content-Type: application/xml');
+        header('Content-Type: application/samlmetadata+xml');
 
         echo $metaxml;
         exit(0);

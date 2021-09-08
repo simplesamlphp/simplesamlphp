@@ -5,7 +5,7 @@ require_once('../../_include.php');
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Idp;
+use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
@@ -26,5 +26,6 @@ if (!isset($_GET['RelayState'])) {
     throw new Error\Error('NORELAYSTATE');
 }
 
-$idp->doLogoutRedirect(Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
+$httpUtils = new Utils\HTTP();
+$idp->doLogoutRedirect($httpUtils->checkURLAllowed((string) $_GET['RelayState']));
 Assert::true(false);

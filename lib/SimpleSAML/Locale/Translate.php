@@ -23,42 +23,42 @@ class Translate
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * Associative array of languages.
      *
      * @var array
      */
-    private $langtext = [];
+    private array $langtext = [];
 
     /**
      * Associative array of dictionaries.
      *
      * @var array
      */
-    private $dictionaries = [];
+    private array $dictionaries = [];
 
     /**
      * The default dictionary.
      *
      * @var string|null
      */
-    private $defaultDictionary = null;
+    private ?string $defaultDictionary = null;
 
     /**
      * The language object we'll use internally.
      *
      * @var \SimpleSAML\Locale\Language
      */
-    private $language;
+    private Language $language;
 
 
     /**
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string|null               $defaultDictionary The default dictionary where tags will come from.
+     * @param string|null $defaultDictionary The default dictionary where tags will come from.
      */
     public function __construct(Configuration $configuration, ?string $defaultDictionary = null)
     {
@@ -144,81 +144,9 @@ class Translate
 
 
     /**
-     * Retrieve the preferred translation of a given text.
-     *
-     * @param array $translations The translations, as an associative array with language => text mappings.
-     *
-     * @return string The preferred translation.
-     *
-     * @throws \Exception If there's no suitable translation.
-     */
-    public function getPreferredTranslation(array $translations): string
-    {
-        // look up translation of tag in the selected language
-        $selected_language = $this->language->getLanguage();
-        if (array_key_exists($selected_language, $translations)) {
-            return $translations[$selected_language];
-        }
-
-        // look up translation of tag in the default language
-        $default_language = $this->language->getDefaultLanguage();
-        if (array_key_exists($default_language, $translations)) {
-            return $translations[$default_language];
-        }
-
-        // check for english translation
-        if (array_key_exists('en', $translations)) {
-            return $translations['en'];
-        }
-
-        // pick the first translation available
-        if (count($translations) > 0) {
-            $languages = array_keys($translations);
-            return $translations[$languages[0]];
-        }
-
-        // we don't have anything to return
-        throw new \Exception('Nothing to return from translation.');
-    }
-
-
-    /**
-     * Translate the name of an attribute.
-     *
-     * @param string $name The attribute name.
-     *
-     * @return string The translated attribute name, or the original attribute name if no translation was found.
-     */
-    public function getAttributeTranslation(string $name): string
-    {
-        // normalize attribute name
-        $normName = strtolower($name);
-        $normName = str_replace([":", "-"], "_", $normName);
-
-        // check for an extra dictionary
-        $extraDict = $this->configuration->getString('attributes.extradictionary', null);
-        if ($extraDict !== null) {
-            $dict = $this->getDictionary($extraDict);
-            if (array_key_exists($normName, $dict)) {
-                return $this->getPreferredTranslation($dict[$normName]);
-            }
-        }
-
-        // search the default attribute dictionary
-        $dict = $this->getDictionary('attributes');
-        if (array_key_exists('attribute_' . $normName, $dict)) {
-            return $this->getPreferredTranslation($dict['attribute_' . $normName]);
-        }
-
-        // no translations found
-        return $name;
-    }
-
-
-    /**
      * Mark a string for translation without translating it.
      *
-     * @param string  $tag A tag name to mark for translation.
+     * @param string $tag A tag name to mark for translation.
      *
      * @return string The tag, unchanged.
      */
@@ -234,7 +162,7 @@ class Translate
      * or in metadata.
      *
      * @param string $tag The tag that has a translation
-     * @param mixed  $translation The translation array
+     * @param mixed $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
      */
@@ -256,7 +184,7 @@ class Translate
     /**
      * Include a language file from the dictionaries directory.
      *
-     * @param string                         $file File name of dictionary to include
+     * @param string $file File name of dictionary to include
      * @param \SimpleSAML\Configuration|null $otherConfig Optionally provide a different configuration object than the
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
@@ -324,6 +252,7 @@ class Translate
 
         $lang = null;
         include($phpFile);
+        /** @psalm-var array|null $lang */
         if (isset($lang)) {
             return $lang;
         }
@@ -431,21 +360,24 @@ class Translate
             return $translations[$context['currentLanguage']];
         }
 
-        // we don't have a translation for the current language, load alternative priorities
-        $sspcfg = Configuration::getInstance();
-        /** @psalm-var \SimpleSAML\Configuration $langcfg */
-        $langcfg = $sspcfg->getConfigItem('language');
-        $priorities = $langcfg->getArray('priorities', []);
-
-        if (!empty($priorities[$context['currentLanguage']])) {
-            foreach ($priorities[$context['currentLanguage']] as $lang) {
-                if (isset($translations[$lang])) {
-                    return $translations[$lang];
-                }
-            }
-        }
-
         // nothing we can use, return null so that we can set a default
         return null;
+    }
+
+    /**
+     * Prefix tag
+     *
+     * @param string $tag Translation tag
+     * @param string $prefix Prefix to be added
+     *
+     * @return string Prefixed tag
+     */
+    public static function addTagPrefix(string $tag, string $prefix): string
+    {
+        $tagPos = strrpos($tag, ':');
+        // if tag contains ':' target actual tag
+        $tagPos = ($tagPos === false) ? 0 : $tagPos + 1;
+        // add prefix at $tagPos
+        return substr_replace($tag, $prefix, $tagPos, 0);
     }
 }

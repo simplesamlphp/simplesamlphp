@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -27,19 +29,19 @@ class Config
     public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
-     */
-    protected $authUtils = Utils\Auth::class;
+    /** @var \SimpleSAML\Utils\Auth */
+    protected $authUtils;
 
-    /** @var Menu */
-    protected $menu;
+    /** @var \SimpleSAML\Utils\HTTP */
+    protected $httpUtils;
+
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Menu $menu;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -53,6 +55,8 @@ class Config
         $this->config = $config;
         $this->session = $session;
         $this->menu = new Menu();
+        $this->authUtils = new Utils\Auth();
+        $this->httpUtils = new Utils\HTTP();
     }
 
 
@@ -76,24 +80,24 @@ class Config
      */
     public function diagnostics(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
             'remaining' => $this->session->getAuthData('admin', 'Expire') - time(),
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
             'items' => [
                 'HTTP_HOST' => [$request->getHost()],
                 'HTTPS' => $request->isSecure() ? ['on'] : [],
                 'SERVER_PROTOCOL' => [$request->getProtocolVersion()],
-                'getBaseURL()' => [Utils\HTTP::getBaseURL()],
-                'getSelfHost()' => [Utils\HTTP::getSelfHost()],
-                'getSelfHostWithNonStandardPort()' => [Utils\HTTP::getSelfHostWithNonStandardPort()],
-                'getSelfURLHost()' => [Utils\HTTP::getSelfURLHost()],
-                'getSelfURLNoQuery()' => [Utils\HTTP::getSelfURLNoQuery()],
-                'getSelfHostWithPath()' => [Utils\HTTP::getSelfHostWithPath()],
-                'getFirstPathElement()' => [Utils\HTTP::getFirstPathElement()],
-                'getSelfURL()' => [Utils\HTTP::getSelfURL()],
+                'getBaseURL()' => [$this->httpUtils->getBaseURL()],
+                'getSelfHost()' => [$this->httpUtils->getSelfHost()],
+                'getSelfHostWithNonStandardPort()' => [$this->httpUtils->getSelfHostWithNonStandardPort()],
+                'getSelfURLHost()' => [$this->httpUtils->getSelfURLHost()],
+                'getSelfURLNoQuery()' => [$this->httpUtils->getSelfURLNoQuery()],
+                'getSelfHostWithPath()' => [$this->httpUtils->getSelfHostWithPath()],
+                'getFirstPathElement()' => [$this->httpUtils->getFirstPathElement()],
+                'getSelfURL()' => [$this->httpUtils->getSelfURL()],
             ],
         ];
 
@@ -111,7 +115,7 @@ class Config
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -132,11 +136,11 @@ class Config
                 'saml20idp' => $this->config->getBoolean('enable.saml20-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
         ];
 
         Module::callHooks('configpage', $t);
-        $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -150,7 +154,7 @@ class Config
      */
     public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         return new RunnableResponse('phpinfo');
     }
@@ -316,6 +320,7 @@ class Config
         foreach ($libs as $lib) {
             $enabled = false;
             foreach ($lib['classes'] as $class) {
+                /** @psalm-suppress InvalidOperand - See https://github.com/vimeo/psalm/issues/1340 */
                 $enabled |= class_exists($class);
             }
             $matrix[] = [
@@ -338,6 +343,54 @@ class Config
             'enabled' => $this->config->getString('auth.adminpassword', '123') !== '123',
         ];
 
+        $cryptoUtils = new Utils\Crypto();
+
+        // perform some sanity checks on the configured certificates
+        if ($this->config->getBoolean('enable.saml20-idp', false) !== false) {
+            $handler = MetaDataStorageHandler::getMetadataHandler();
+            try {
+                $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
+            } catch (Exception $e) {
+                    $matrix[] = [
+                        'required' => 'required',
+                        'descr' => Translate::noop('Hosted IdP metadata present'),
+                        'enabled' => false
+                    ];
+            }
+
+            if (isset($metadata)) {
+                $metadata_config = Configuration::loadfromArray($metadata);
+                $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
+                $public = $cryptoUtils->loadPublicKey($metadata_config, false);
+
+                $matrix[] = [
+                    'required' => 'required',
+                    'descr' => Translate::noop('Matching key-pair for signing assertions'),
+                    'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
+                ];
+
+                $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
+                if ($private !== null) {
+                    $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
+                    $matrix[] = [
+                        'required' => 'required',
+                        'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
+                        'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
+                    ];
+                }
+            }
+        }
+
+        if ($this->config->getBoolean('metadata.sign.enable', false) !== false) {
+            $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
+            $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
+            $matrix[] = [
+                'required' => 'required',
+                'descr' => Translate::noop('Matching key-pair for signing metadata'),
+                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
+            ];
+        }
+
         return $matrix;
     }
 
@@ -359,7 +412,7 @@ class Config
         $warnings = [];
 
         // make sure we're using HTTPS
-        if (!Utils\HTTP::isHTTPS()) {
+        if (!$this->httpUtils->isHTTPS()) {
             $warnings[] = Translate::noop(
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
                 'for testing purposes, but in a production environment you should use HTTPS. <a ' .
@@ -433,5 +486,22 @@ class Config
         }
 
         return $warnings;
+    }
+
+
+    /**
+     * Test whether public & private key are a matching pair
+     *
+     * @param string $publicKey
+     * @param string $privateKey
+     * @param string|null $password
+     * @return bool
+     */
+    private function matchingKeyPair(
+        string $publicKey,
+        string $privateKey,
+        ?string $password = null
+    ): bool {
+        return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
     }
 }

@@ -28,42 +28,42 @@ class IdPDisco
      *
      * @var \SimpleSAML\Configuration
      */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * The identifier of this discovery service.
      *
      * @var string
      */
-    protected $instance;
+    protected string $instance;
 
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
-    protected $metadata;
+    protected MetadataStorageHandler $metadata;
 
     /**
      * The users session.
      *
      * @var \SimpleSAML\Session
      */
-    protected $session;
+    protected Session $session;
 
     /**
      * The metadata sets we find allowed entities in, in prioritized order.
      *
      * @var array
      */
-    protected $metadataSets;
+    protected array $metadataSets;
 
     /**
      * The entity id of the SP which accesses this IdP discovery service.
      *
      * @var string
      */
-    protected $spEntityId;
+    protected string $spEntityId;
 
     /**
      * HTTP parameter from the request, indicating whether the discovery service
@@ -71,14 +71,14 @@ class IdPDisco
      *
      * @var boolean
      */
-    protected $isPassive;
+    protected bool $isPassive;
 
     /**
      * The SP request to set the IdPentityID...
      *
      * @var string|null
      */
-    protected $setIdPentityID = null;
+    protected ?string $setIdPentityID = null;
 
     /**
      * The name of the query parameter which should contain the users choice of IdP.
@@ -86,7 +86,7 @@ class IdPDisco
      *
      * @var string
      */
-    protected $returnIdParam;
+    protected string $returnIdParam;
 
     /**
      * The list of scoped idp's. The intersection between the metadata idpList
@@ -95,14 +95,14 @@ class IdPDisco
      *
      * @var array
      */
-    protected $scopedIDPList = [];
+    protected array $scopedIDPList = [];
 
     /**
      * The URL the user should be redirected to after choosing an IdP.
      *
      * @var string
      */
-    protected $returnURL;
+    protected string $returnURL;
 
 
     /**
@@ -144,7 +144,8 @@ class IdPDisco
         if (!array_key_exists('return', $_GET)) {
             throw new \Exception('Missing parameter: return');
         } else {
-            $this->returnURL = Utils\HTTP::checkURLAllowed($_GET['return']);
+            $httpUtils = new Utils\HTTP();
+            $this->returnURL = $httpUtils->checkURLAllowed($_GET['return']);
         }
 
         $this->isPassive = false;
@@ -221,7 +222,8 @@ class IdPDisco
             'httponly' => false,
         ];
 
-        Utils\HTTP::setCookie($prefixedName, $value, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($prefixedName, $value, $params, false);
     }
 
 
@@ -508,12 +510,13 @@ class IdPDisco
      */
     protected function start(): void
     {
+        $httpUtils = new Utils\HTTP();
         $idp = $this->getTargetIdP();
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-                Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
+                $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
@@ -525,13 +528,13 @@ class IdPDisco
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
                     . $this->returnIdParam . ')'
                 );
-                Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
+                $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
-            Utils\HTTP::redirectTrustedURL($this->returnURL);
+            $httpUtils->redirectTrustedURL($this->returnURL);
         }
     }
 
@@ -556,13 +559,14 @@ class IdPDisco
         }
 
         $idpintersection = array_values($idpintersection);
+        $httpUtils = new Utils\HTTP();
 
         if (sizeof($idpintersection) == 1) {
             $this->log(
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
                 $this->returnIdParam . ')'
             );
-            Utils\HTTP::redirectTrustedURL(
+            $httpUtils->redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $idpintersection[0]]
             );
@@ -585,33 +589,15 @@ class IdPDisco
 
         $t = new Template($this->config, $templateFile, 'disco');
 
-        $fallbackLanguage = 'en';
-        $defaultLanguage = $this->config->getString('language.default', $fallbackLanguage);
-        $translator = $t->getTranslator();
-        $language = $translator->getLanguage()->getLanguage();
-        $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
-
         $newlist = [];
         foreach ($idpList as $entityid => $data) {
             $newlist[$entityid]['entityid'] = $entityid;
-            foreach ($tryLanguages as $lang) {
-                if ($name = $this->getEntityDisplayName($data, $lang)) {
-                    $newlist[$entityid]['name'] = $name;
-                    continue;
-                }
-            }
-            if (empty($newlist[$entityid]['name'])) {
-                $newlist[$entityid]['name'] = $entityid;
-            }
-            foreach ($tryLanguages as $lang) {
-                if (!empty($data['description'][$lang])) {
-                    $newlist[$entityid]['description'] = $data['description'][$lang];
-                    continue;
-                }
-            }
+            $newlist[$entityid]['name'] = $t->getEntityDisplayName($data);
+
+            $newlist[$entityid]['description'] = $t->getEntityPropertyTranslation('description', $data);
             if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
-                $newlist[$entityid]['iconurl'] = Utils\HTTP::resolveURL($data['icon']);
+                $newlist[$entityid]['iconurl'] = $httpUtils->resolveURL($data['icon']);
             }
         }
         usort(
@@ -631,26 +617,9 @@ class IdPDisco
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
-        $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
+        $t->data['urlpattern'] = htmlspecialchars($httpUtils->getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
+        $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
         $t->send();
-    }
-
-
-    /**
-     * @param array $idpData
-     * @param string $language
-     * @return string|null
-     */
-    private function getEntityDisplayName(array $idpData, string $language): ?string
-    {
-        if (isset($idpData['UIInfo']['DisplayName'][$language])) {
-            return $idpData['UIInfo']['DisplayName'][$language];
-        } elseif (isset($idpData['name'][$language])) {
-            return $idpData['name'][$language];
-        } elseif (isset($idpData['OrganizationDisplayName'][$language])) {
-            return $idpData['OrganizationDisplayName'][$language];
-        }
-        return null;
     }
 }

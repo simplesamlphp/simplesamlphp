@@ -21,7 +21,7 @@ class Net
      * @return boolean True if the IP address belongs to the specified CIDR, false otherwise.
      *
      */
-    public static function ipCIDRcheck(string $cidr, string $ip = null): bool
+    public function ipCIDRcheck(string $cidr, string $ip = null): bool
     {
         if ($ip === null) {
             $ip = $_SERVER['REMOTE_ADDR'];

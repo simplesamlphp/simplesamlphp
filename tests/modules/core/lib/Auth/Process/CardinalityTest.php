@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception as SspException;
 use SimpleSAML\Module\core\Auth\Process\Cardinality;
-use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Utils;
 
 /**
  * Test for the core:Cardinality filter.
@@ -17,8 +17,8 @@ use SimpleSAML\Utils\HttpAdapter;
  */
 class CardinalityTest extends TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
-    private $http;
+    /** @var \SimpleSAML\Utils\HTTP|\PHPUnit\Framework\MockObject\MockObject */
+    private object $httpUtils;
 
 
     /**
@@ -33,10 +33,10 @@ class CardinalityTest extends TestCase
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        /** @var \SimpleSAML\Utils\HttpAdapter $http */
-        $http = $this->http;
+        /** @var \SimpleSAML\Utils\HTTP $httpUtils */
+        $httpUtils = $this->httpUtils;
 
-        $filter = new Cardinality($config, null, $http);
+        $filter = new Cardinality($config, null, $httpUtils);
         $filter->process($request);
         return $request;
     }
@@ -47,7 +47,7 @@ class CardinalityTest extends TestCase
     protected function setUp(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder(HttpAdapter::class)
+        $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
@@ -128,7 +128,7 @@ class CardinalityTest extends TestCase
         ];
 
         /** @psalm-suppress UndefinedMethod   It's a mock-object */
-        $this->http->expects($this->once())
+        $this->httpUtils->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
@@ -150,7 +150,7 @@ class CardinalityTest extends TestCase
         ];
 
         /** @psalm-suppress UndefinedMethod   It's a mock-object */
-        $this->http->expects($this->once())
+        $this->httpUtils->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
@@ -170,7 +170,7 @@ class CardinalityTest extends TestCase
         ];
 
         /** @psalm-suppress UndefinedMethod   It's a mock-object */
-        $this->http->expects($this->once())
+        $this->httpUtils->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);

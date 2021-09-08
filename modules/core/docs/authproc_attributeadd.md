@@ -12,38 +12,38 @@ Examples
 
 Add a single-valued attributes:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeAdd',
-            'source' => array('myidp'),
-        ),
-    ),
+            'source' => ['myidp'],
+        ],
+    ],
 
 Add a multi-valued attribute:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeAdd',
-            'groups' => array('users', 'members'),
-        ),
-    ),
+            'groups' => ['users', 'members'],
+        ],
+    ],
 
 Add multiple attributes:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeAdd',
-	    'eduPersonPrimaryAffiliation' => 'student',
-            'eduPersonAffiliation' => array('student', 'employee', 'members'),
-        ),
-    ),
+            'eduPersonPrimaryAffiliation' => 'student',
+            'eduPersonAffiliation' => ['student', 'employee', 'members'],
+        ],
+    ],
 
 Replace an existing attributes:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeAdd',
             '%replace',
-            'uid' => array('guest'),
-        ),
-    ),
+            'uid' => ['guest'],
+        ],
+    ],

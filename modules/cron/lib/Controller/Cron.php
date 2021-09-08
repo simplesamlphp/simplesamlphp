@@ -29,19 +29,18 @@ use Symfony\Component\HttpFoundation\Response;
 class Cron
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Configuration */
-    protected $cronconfig;
+    protected Configuration $cronconfig;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
     /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     * @var \SimpleSAML\Utils\Auth
      */
-    protected $authUtils = Utils\Auth::class;
+    protected $authUtils;
 
 
     /**
@@ -61,6 +60,7 @@ class Cron
         $this->config = $config;
         $this->cronconfig = Configuration::getConfig('module_cron.php');
         $this->session = $session;
+        $this->authUtils = new Utils\Auth();
     }
 
 
@@ -83,7 +83,7 @@ class Cron
      */
     public function info(): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $key = $this->cronconfig->getValue('key', 'secret');
         $tags = $this->cronconfig->getValue('allowed_tags', []);
@@ -139,7 +139,8 @@ class Cron
             exit;
         }
 
-        $url = Utils\HTTP::getSelfURL();
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getSelfURL();
         $time = date(DATE_RFC822);
 
         $croninfo = $cron->runTag($tag);

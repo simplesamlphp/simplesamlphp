@@ -15,7 +15,7 @@ use SimpleXMLElement;
 class Parser
 {
     /** @var \SimpleXMLElement */
-    public $simplexml;
+    public SimpleXMLElement $simplexml;
 
     /**
      * @param string $xml

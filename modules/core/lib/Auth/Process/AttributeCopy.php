@@ -28,7 +28,7 @@ class AttributeCopy extends Auth\ProcessingFilter
      * Assosiative array with the mappings of attribute names.
      * @var array
      */
-    private $map = [];
+    private array $map = [];
 
 
     /**
@@ -58,13 +58,13 @@ class AttributeCopy extends Auth\ProcessingFilter
     /**
      * Apply filter to rename attributes.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         foreach ($attributes as $name => $values) {
             if (array_key_exists($name, $this->map)) {

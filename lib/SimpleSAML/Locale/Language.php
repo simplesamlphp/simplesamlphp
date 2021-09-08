@@ -19,50 +19,58 @@ class Language
 {
     /**
      * This is the default language map. It is used to map languages codes from the user agent to other language codes.
+     * @var array<string, string>
      */
-    private static $defaultLanguageMap = ['nb' => 'no'];
+    private static array $defaultLanguageMap = ['nb' => 'no'];
 
     /**
      * The configuration to use.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * An array holding a list of languages available.
      *
-     * @var array
+     * @var string[]
      */
-    private $availableLanguages;
+    private array $availableLanguages;
 
     /**
      * The language currently in use.
      *
      * @var null|string
      */
-    private $language = null;
+    private ?string $language = null;
 
     /**
      * The language to use by default.
      *
      * @var string
      */
-    private $defaultLanguage;
+    private string $defaultLanguage;
+
+    /**
+     * The final fallback language to use when no current or default available
+     *
+     * @var string
+     */
+    public const FALLBACKLANGUAGE = 'en';
 
     /**
      * An array holding a list of languages that are written from right to left.
      *
-     * @var array
+     * @var string[]
      */
-    private $rtlLanguages;
+    private array $rtlLanguages;
 
     /**
      * HTTP GET language parameter name.
      *
      * @var string
      */
-    private $languageParameterName;
+    private string $languageParameterName;
 
     /**
      * A custom function to use in order to determine the language in use.
@@ -77,9 +85,9 @@ class Language
      * with some charming SimpleSAML-specific variants...
      * that must remain before 2.0 due to backwards compatibility
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $language_names = [
+    public static array $language_names = [
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
@@ -128,9 +136,9 @@ class Language
     /**
      * A mapping of SSP languages to locales
      *
-     * @var array
+     * @var array<string, string>
      */
-    private $languagePosixMapping = [
+    private array $languagePosixMapping = [
         'no' => 'nb_NO',
         'nn' => 'nn_NO',
     ];
@@ -145,7 +153,7 @@ class Language
     {
         $this->configuration = $configuration;
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $this->configuration->getString('language.default', 'en');
+        $this->defaultLanguage = $this->configuration->getString('language.default', self::FALLBACKLANGUAGE);
         $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
         $this->rtlLanguages = $this->configuration->getArray('language.rtl', []);
@@ -165,7 +173,7 @@ class Language
      */
     private function getInstalledLanguages(): array
     {
-        $configuredAvailableLanguages = $this->configuration->getArray('language.available', ['en']);
+        $configuredAvailableLanguages = $this->configuration->getArray('language.available', [self::FALLBACKLANGUAGE]);
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
             if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
@@ -289,7 +297,8 @@ class Language
      */
     private function getHTTPLanguage(): ?string
     {
-        $languageScore = Utils\HTTP::getAcceptLanguage();
+        $httpUtils = new Utils\HTTP();
+        $languageScore = $httpUtils->getAcceptLanguage();
 
         // for now we only use the default language map. We may use a configurable language map in the future
         $languageMap = self::$defaultLanguageMap;
@@ -375,6 +384,16 @@ class Language
         return in_array($this->getLanguage(), $this->rtlLanguages, true);
     }
 
+    /**
+     * Returns the list of languages in order of preference. This is useful
+     * to search e.g. an array of entity names for first the current language,
+     * if not present the default language, if not present the fallback language.
+     */
+    public function getPreferredLanguages(): array
+    {
+        $curLanguage = $this->getLanguage();
+        return array_unique([0 => $curLanguage, 1 => $this->defaultLanguage, 2 => self::FALLBACKLANGUAGE]);
+    }
 
     /**
      * Retrieve the user-selected language from a cookie.
@@ -384,7 +403,7 @@ class Language
     public static function getLanguageCookie(): ?string
     {
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', ['en']);
+        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
         $name = $config->getString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
@@ -397,7 +416,6 @@ class Language
         return null;
     }
 
-
     /**
      * This method will attempt to set the user-selected language in a cookie. It will do nothing if the language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
@@ -408,7 +426,7 @@ class Language
     {
         $language = strtolower($language);
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', ['en']);
+        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
 
         if (!in_array($language, $availableLanguages, true) || headers_sent()) {
             return;
@@ -424,6 +442,7 @@ class Language
             'samesite' => ($config->getString('language.cookie.samesite', null)),
         ];
 
-        Utils\HTTP::setCookie($name, $language, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($name, $language, $params, false);
     }
 }

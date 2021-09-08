@@ -86,26 +86,6 @@ The following options can be set:
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
-`privacypolicy`
-:   This is an absolute URL for where an user can find a privacypolicy
-    for this SP. If set, this will be shown on the consent page.
-    `%SPENTITYID%` in the URL will be replaced with the entity id of
-    this service provider.
-
-:   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-
-:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
-
-`userid.attribute`
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if SimpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    SP-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
     This option is required - without it you will not be able to send
@@ -139,7 +119,7 @@ The following options can be set:
     2.  IdP Hosted Metadata
 
 :   The default value is:
-    `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
+    `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
 
 :   Some examples of values specified in the SAML 2.0 Core
     Specification:
@@ -147,7 +127,7 @@ The following options can be set:
 :   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-        in Shibboleth 2.0)
+        in Shibboleth 2.0, mandatory as per SAML2INT)
 
     -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
         default in Sun Access Manager)
@@ -157,8 +137,6 @@ The following options can be set:
 :   Note that this option also exists in the IdP-hosted metadata. This
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
-
-:   (This option was previously named `AttributeNameFormat`.)
 
 `audience`
 :   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID. 
@@ -296,6 +274,11 @@ The following options can be set:
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent from this SP.
+    Set it to:
+
+    true: authnrequest must be signed (and signature will be validated)
+    null: authnrequest may be signed, if it is, signature will be validated
+    false: authnrequest signature is never checked
 
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.

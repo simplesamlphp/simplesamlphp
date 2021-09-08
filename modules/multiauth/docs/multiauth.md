@@ -22,41 +22,41 @@ To create a MultiAuth authentication source, open
 `config/authsources.php` in a text editor, and add an entry for the
 authentication source:
 
-    'example-multi' => array(
+    'example-multi' => [
         'multiauth:MultiAuth',
 
         /*
          * The available authentication sources.
          * They must be defined in this authsources.php file.
          */
-        'sources' => array(
-            'example-saml' => array(
-                'text' => array(
+        'sources' => [
+            'example-saml' => [
+                'text' => [
                     'en' => 'Log in using a SAML SP',
                     'es' => 'Entrar usando un SP SAML',
-                ),
+                ],
                 'css-class' => 'SAML',
-                'AuthnContextClassRef' => array('urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'),
-            ),
-            'example-admin' => array(
-                'text' => array(
+                'AuthnContextClassRef' => ['urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'],
+            ],
+            'example-admin' => [
+                'text' => [
                     'en' => 'Log in using the admin password',
                     'es' => 'Entrar usando la contraseña de administrador',
-                ),
+                ],
                 'AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
 
-    'example-saml' => array(
+    'example-saml' => [
         'saml:SP',
         'entityId' => 'my-entity-id',
         'idp' => 'my-idp',
-    ),
+    ],
 
-    'example-admin' => array(
+    'example-admin' => [
         'core:AdminPassword',
-    ),
+    ],
 
 You should update the name of this authentication source
 (`example-multi`), and the authentication sources it references,
@@ -116,27 +116,27 @@ don't have redirections during the authentication process.
 You can also use the multiauth:preselect parameter to the login call:
 
     $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
-    $as->login(array(
+    $as->login([
         'multiauth:preselect' => 'default-sp',
-    ));
+    ]);
 
 Or add the `preselect` option in the filter:
 
-    'example-multi' => array(
+    'example-multi' => [
         'multiauth:MultiAuth',
 
         /*
          * The available authentication sources.
          * They must be defined in this authsources.php file.
          */
-        'sources' => array(
-            'example-saml' => array(
+        'sources' => [
+            'example-saml' => [
             // ...
-            ),
-            'example-admin' => array(
+            ],
+            'example-admin' => [
             // ...
-            ),
-        ),
+            ],
+        ],
         'preselect' => 'example-saml',
     ),
 

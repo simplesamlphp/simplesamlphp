@@ -21,7 +21,7 @@ class PHP extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $code;
+    private string $code;
 
 
     /**
@@ -46,13 +46,11 @@ class PHP extends Auth\ProcessingFilter
     /**
      * Apply the PHP code to the attributes.
      *
-     * @param array &$request The current request
-     *
-     * @scrutinizer ignore-unused
+     * @param array &$state The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         /**
          * @param array &$attributes
@@ -64,6 +62,6 @@ class PHP extends Auth\ProcessingFilter
         ) {
             eval($this->code);
         };
-        $function($request['Attributes'], $request);
+        $function($state['Attributes'], $state);
     }
 }

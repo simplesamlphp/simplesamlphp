@@ -15,6 +15,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use SimpleSAML\Store\StoreFactory;
+
 abstract class SessionHandler
 {
     /**
@@ -22,9 +24,9 @@ abstract class SessionHandler
      * instance of the session handler. This variable will be NULL if
      * we haven't instantiated a session handler yet.
      *
-     * @var \SimpleSAML\SessionHandler
+     * @var \SimpleSAML\SessionHandler|null
      */
-    protected static $sessionHandler;
+    protected static ?SessionHandler $sessionHandler = null;
 
 
     /**
@@ -133,7 +135,10 @@ abstract class SessionHandler
      */
     private static function createSessionHandler(): void
     {
-        $store = Store::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {

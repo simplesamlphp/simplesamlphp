@@ -27,7 +27,7 @@ class UserPass extends UserPassBase
      *
      * @var array
      */
-    private $users;
+    private array $users;
 
 
     /**
@@ -60,8 +60,10 @@ class UserPass extends UserPassBase
             $username = $userpass[0];
             $password = $userpass[1];
 
+            $attrUtils = new Utils\Attributes();
+
             try {
-                $attributes = Utils\Attributes::normalizeAttributesArray($attributes);
+                $attributes = $attrUtils->normalizeAttributesArray($attributes);
             } catch (Exception $e) {
                 throw new Exception('Invalid attributes for user ' . $username .
                     ' in authentication source ' . $this->authId . ': ' . $e->getMessage());

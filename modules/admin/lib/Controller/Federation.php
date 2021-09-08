@@ -8,7 +8,6 @@ use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -35,7 +34,7 @@ use Symfony\Component\VarExporter\VarExporter;
 class Federation
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * @var \SimpleSAML\Auth\Source|string
@@ -43,17 +42,17 @@ class Federation
      */
     protected $authSource = Auth\Source::class;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth|string
-     * @psalm-var \SimpleSAML\Utils\Auth|class-string
-     */
-    protected $authUtils = Utils\Auth::class;
+    /** @var \SimpleSAML\Utils\Auth */
+    protected $authUtils;
+
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
-    protected $mdHandler;
+    protected MetadataStorageHandler $mdHandler;
 
-    /** @var Menu */
-    protected $menu;
+    /** @var \SimpleSAML\Module\admin\Controller\Menu */
+    protected Menu $menu;
 
 
     /**
@@ -66,6 +65,8 @@ class Federation
         $this->config = $config;
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->authUtils = new Utils\Auth();
+        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -112,7 +113,7 @@ class Federation
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -148,29 +149,6 @@ class Federation
             }
         }
 
-        $translators = [
-            'name' => 'name_translated',
-            'descr' => 'descr_translated',
-            'OrganizationDisplayName' => 'organizationdisplayname_translated',
-        ];
-
-        foreach ($entries['remote'] as $key => $set) {
-            foreach ($set as $entityid => $entity) {
-                foreach ($translators as $old => $new) {
-                    if (isset($entity[$old][$language])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old][$language];
-                    } elseif (isset($entity[$old][$defaultLang])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLang];
-                    } elseif (isset($entity[$old]['en'])) {
-                        $entries['remote'][$key][$entityid][$new] = $entity[$old]['en'];
-                    } elseif (isset($entries['remote'][$key][$entityid][$old])) {
-                        $old_entry = $entries['remote'][$key][$entityid][$old];
-                        $entries['remote'][$key][$entityid][$new] = is_array($old_entry) ? $entityid : $old_entry;
-                    }
-                }
-            }
-        }
-
         $t->data = [
             'links' => [
                 [
@@ -189,19 +167,20 @@ class Federation
                 'adfs-idp-remote' => Translate::noop('ADFS IdP metadata'),
                 'adfs-idp-hosted' => Translate::noop('ADFS IdP metadata'),
             ],
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
         ];
 
         Module::callHooks('federationpage', $t);
         Assert::isInstanceOf($t, Template::class);
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
+        /** @psalm-var \SimpleSAML\XHTML\Template $t */
         return $this->menu->insert($t);
     }
 
 
     /**
-     * Get a list of the hosted IdP entities, including SAML 2, SAML 1.1 and ADFS.
+     * Get a list of the hosted IdP entities, including SAML 2 and ADFS.
      *
      * @return array
      * @throws \Exception
@@ -224,8 +203,9 @@ class Federation
                         $saml2entities[] = $idp;
                     }
                 } else {
+                    $httpUtils = new Utils\HTTP();
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
-                    $saml2entities['saml20-idp']['url'] = Utils\HTTP::getBaseURL() . 'saml2/idp/metadata.php';
+                    $saml2entities['saml20-idp']['url'] = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
                     $saml2entities['saml20-idp']['metadata_array'] = SAML2_IdP::getHostedMetadata(
                         $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
                     );
@@ -235,9 +215,6 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
-                    }
 
                     $entity['metadata'] = Signer::sign(
                         $builder->getEntityDescriptorText(),
@@ -276,8 +253,10 @@ class Federation
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
+                    if (isset($entity['metadata_array']['contacts'])) {
+                        foreach ($entity['metadata_array']['contacts'] as $contact) {
+                            $builder->addContact($contact['contactType'], $contact);
+                        }
                     }
 
                     $entity['metadata'] = Signer::sign(
@@ -300,7 +279,7 @@ class Federation
                     'admin/federation/cert',
                     [
                         'set' => $entity['metadata-set'],
-                        'idp' => $entity['metadata-index'],
+                        'entity' => $entity['metadata-index'],
                         'prefix' => $key['prefix'],
                     ]
                 );
@@ -396,7 +375,7 @@ class Federation
      */
     public function metadataConverter(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
         if ($xmlfile = $request->files->get('xmlfile')) {
             $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
@@ -405,7 +384,8 @@ class Federation
 
         $error = null;
         if (!empty($xmldata)) {
-            Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
+            $xmlUtils = new Utils\XML();
+            $xmlUtils->checkSAMLMessage($xmldata, 'saml-meta');
 
             $entities = null;
             try {
@@ -425,7 +405,8 @@ class Federation
                 }
 
                 // transpose from $entities[entityid][type] to $output[type][entityid]
-                $output = Utils\Arrays::transpose($entities);
+                $arrayUtils = new Utils\Arrays();
+                $output = $arrayUtils->transpose($entities);
 
                 // merge all metadata of each type to a single string which should be added to the corresponding file
                 foreach ($output as $type => &$entities) {
@@ -461,7 +442,7 @@ class Federation
 
         $t = new Template($this->config, 'admin:metadata_converter.twig');
         $t->data = [
-            'logouturl' => Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => $this->authUtils->getAdminLogoutURL(),
             'xmldata' => $xmldata,
             'output' => $output,
             'error' => $error,
@@ -481,7 +462,7 @@ class Federation
      */
     public function downloadCert(Request $request): Response
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $set = $request->get('set');
         $prefix = $request->get('prefix', '');
@@ -500,7 +481,7 @@ class Federation
         }
 
         /** @var array $certInfo  Second param ensures non-nullable return-value */
-        $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
+        $certInfo = $this->cryptoUtils->loadPublicKey($mdconfig, true, $prefix);
 
         $response = new Response($certInfo['PEM']);
         $disposition = $response->headers->makeDisposition(
@@ -524,7 +505,7 @@ class Federation
      */
     public function showRemoteEntity(Request $request): Template
     {
-        $this->authUtils::requireAdmin();
+        $this->authUtils->requireAdmin();
 
         $entityId = $request->get('entityid');
         $set = $request->get('set');

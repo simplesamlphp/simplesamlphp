@@ -39,7 +39,7 @@ class XML
      *
      *
      */
-    public static function checkSAMLMessage(string $message, string $type): void
+    public function checkSAMLMessage(string $message, string $type): void
     {
         $allowed_types = ['saml20', 'saml-meta'];
         if (!in_array($type, $allowed_types, true)) {
@@ -67,10 +67,10 @@ class XML
         $result = true;
         switch ($type) {
             case 'saml20':
-                $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-protocol-2.0.xsd');
                 break;
             case 'saml-meta':
-                $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
+                $result = $this->isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
         if (is_string($result)) {
             Logger::warning($result);
@@ -93,7 +93,7 @@ class XML
      *
      *
      */
-    public static function debugSAMLMessage($message, string $type): void
+    public function debugSAMLMessage($message, string $type): void
     {
         if (!(is_string($message) || $message instanceof DOMElement)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -136,7 +136,7 @@ class XML
                 Assert::true(false);
         }
 
-        $str = self::formatXMLString($message);
+        $str = $this->formatXMLString($message);
         foreach (explode("\n", $str) as $line) {
             Logger::debug($line);
         }
@@ -157,7 +157,7 @@ class XML
      *
      *
      */
-    public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void
+    public function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
         // check what this element contains
         $fullText = ''; // all text in this element
@@ -219,7 +219,7 @@ class XML
 
             // format child elements
             if ($node instanceof \DOMElement) {
-                self::formatDOMElement($node, $childIndentation);
+                $this->formatDOMElement($node, $childIndentation);
             }
         }
 
@@ -242,7 +242,7 @@ class XML
      * @throws \DOMException If the input does not parse correctly as an XML string.
      *
      */
-    public static function formatXMLString(string $xml, string $indentBase = ''): string
+    public function formatXMLString(string $xml, string $indentBase = ''): string
     {
         try {
             $doc = DOMDocumentFactory::fromString($xml);
@@ -252,74 +252,9 @@ class XML
 
         $root = $doc->firstChild;
         Assert::notNull($root);
-        self::formatDOMElement($root, $indentBase);
+        $this->formatDOMElement($root, $indentBase);
 
         return $doc->saveXML($root);
-    }
-
-
-    /**
-     * This function finds direct descendants of a DOM element with the specified
-     * localName and namespace. They are returned in an array.
-     *
-     * This function accepts the same shortcuts for namespaces as the isDOMNodeOfType function.
-     *
-     * @param \DOMNode $element The element we should look in.
-     * @param string   $localName The name the element should have.
-     * @param string   $namespaceURI The namespace the element should have.
-     *
-     * @return array Array with the matching elements in the order they are found. An empty array is
-     *         returned if no elements match.
-     * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
-     *     $namespaceURI is not a string.
-     */
-    public static function getDOMChildren(DOMNode $element, string $localName, string $namespaceURI): array
-    {
-        $ret = [];
-
-        for ($i = 0; $i < $element->childNodes->length; $i++) {
-            /** @var \DOMNode $child */
-            $child = $element->childNodes->item($i);
-
-            // skip text nodes and comment elements
-            if ($child instanceof DOMText || $child instanceof DOMComment) {
-                continue;
-            }
-
-            if (self::isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
-                $ret[] = $child;
-            }
-        }
-
-        return $ret;
-    }
-
-
-    /**
-     * This function extracts the text from DOMElements which should contain only text content.
-     *
-     * @param \DOMElement $element The element we should extract text from.
-     *
-     * @return string The text content of the element.
-     * @throws \SimpleSAML\Error\Exception If the element contains a non-text child node.
-     *
-     */
-    public static function getDOMText(DOMElement $element): string
-    {
-        $txt = '';
-
-        for ($i = 0; $i < $element->childNodes->length; $i++) {
-            /** @var \DOMElement $child */
-            $child = $element->childNodes->item($i);
-            if (!($child instanceof DOMText)) {
-                throw new Error\Exception($element->localName . ' contained a non-text child node.');
-            }
-
-            $txt .= $child->wholeText;
-        }
-
-        $txt = trim($txt);
-        return $txt;
     }
 
 
@@ -341,7 +276,7 @@ class XML
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      *
      */
-    public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
+    public function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
         if (strlen($nsURI) === 0) {
             // most likely a comment-node
@@ -390,7 +325,7 @@ class XML
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
      */
-    public static function isValid($xml, string $schema)
+    public function isValid($xml, string $schema)
     {
         if (!is_string($xml) && !($xml instanceof DOMDocument)) {
             throw new \InvalidArgumentException('Invalid input parameters.');

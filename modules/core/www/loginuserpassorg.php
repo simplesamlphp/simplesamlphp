@@ -66,7 +66,7 @@ if (isset($state['error'])) {
     $queryParams = ['AuthState' => $authStateId];
 }
 
-if ($organizations === null || !empty($organization)) {
+if ($organizations === null || $organization !== '') {
     if (!empty($username) || !empty($password)) {
         if ($source->getRememberUsernameEnabled()) {
             $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
@@ -77,7 +77,8 @@ if ($organizations === null || !empty($organization)) {
                 $params['expire'] = time() - 300;
             }
 
-            \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
+            $httpUtils = new \SimpleSAML\Utils\HTTP();
+            $httpUtils->setCookie($source->getAuthId() . '-username', $username, $params, false);
         }
 
         if ($source->getRememberOrganizationEnabled()) {

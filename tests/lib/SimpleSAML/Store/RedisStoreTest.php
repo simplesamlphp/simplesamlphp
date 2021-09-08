@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Predis\Client;
-use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 /**
  * Tests for the Redis store.
@@ -16,19 +17,19 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @covers \SimpleSAML\Store\Redis
+ * @covers \SimpleSAML\Store\RedisStore
  * @package simplesamlphp/simplesamlphp
  */
-class RedisTest extends TestCase
+class RedisStoreTest extends TestCase
 {
     /** @var \PHPUnit\Framework\MockObject\MockObject */
-    protected $mocked_redis;
+    protected MockObject $mocked_redis;
 
-    /** @var \SimpleSAML\Store\Redis */
-    protected $redis;
+    /** @var \SimpleSAML\Store\RedisStore */
+    protected Store\RedisStore $store;
 
     /** @var array */
-    protected $config;
+    protected array $config;
 
 
     /**
@@ -38,7 +39,7 @@ class RedisTest extends TestCase
         $this->config = [];
 
         $this->mocked_redis = $this->getMockBuilder(Client::class)
-                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect'])
+                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
                                    ->disableOriginalConstructor()
                                    ->getMock();
 
@@ -54,15 +55,7 @@ class RedisTest extends TestCase
         $this->mocked_redis->method('del')
                            ->will($this->returnCallback([$this, 'delMocked']));
 
-        $nop = /** @return void */ function () {
-            return;
-        };
-
-        $this->mocked_redis->method('disconnect')
-                           ->will($this->returnCallback($nop));
-
-        /** @var \Predis\Client $this->mocked_redis */
-        $this->redis = new Store\Redis($this->mocked_redis);
+        $this->store = new Store\RedisStore($this->mocked_redis);
     }
 
 
@@ -117,13 +110,7 @@ class RedisTest extends TestCase
             'store.redis.prefix' => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
-        /** @var \SimpleSAML\Store\Redis $store */
-        $store = Store::getInstance();
-
-        $this->assertInstanceOf(Store\Redis::class, $store);
-
-        $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
 
@@ -138,13 +125,7 @@ class RedisTest extends TestCase
             'store.redis.password' => 'password',
         ], '[ARRAY]', 'simplesaml');
 
-        /** @var \SimpleSAML\Store\Redis $store */
-        $store = Store::getInstance();
-
-        $this->assertInstanceOf(Store\Redis::class, $store);
-
-        $this->clearInstance($config, Configuration::class);
-        $this->clearInstance($store, Store::class);
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
 
@@ -155,8 +136,8 @@ class RedisTest extends TestCase
     {
         $value = 'TEST';
 
-        $this->redis->set('test', 'key', $value);
-        $res = $this->redis->get('test', 'key');
+        $this->store->set('test', 'key', $value);
+        $res = $this->store->get('test', 'key');
         $expected = $value;
 
         $this->assertEquals($expected, $res);
@@ -170,8 +151,8 @@ class RedisTest extends TestCase
     {
         $value = 'TEST';
 
-        $this->redis->set('test', 'key', $value, $expire = 80808080);
-        $res = $this->redis->get('test', 'key');
+        $this->store->set('test', 'key', $value, $expire = 80808080);
+        $res = $this->store->get('test', 'key');
         $expected = $value;
 
         $this->assertEquals($expected, $res);
@@ -183,7 +164,7 @@ class RedisTest extends TestCase
      */
     public function testGetEmptyData(): void
     {
-        $res = $this->redis->get('test', 'key');
+        $res = $this->store->get('test', 'key');
 
         $this->assertNull($res);
     }
@@ -197,9 +178,9 @@ class RedisTest extends TestCase
         $value1 = 'TEST1';
         $value2 = 'TEST2';
 
-        $this->redis->set('test', 'key', $value1);
-        $this->redis->set('test', 'key', $value2);
-        $res = $this->redis->get('test', 'key');
+        $this->store->set('test', 'key', $value1);
+        $this->store->set('test', 'key', $value2);
+        $res = $this->store->get('test', 'key');
         $expected = $value2;
 
         $this->assertEquals($expected, $res);
@@ -211,24 +192,10 @@ class RedisTest extends TestCase
      */
     public function testDeleteData(): void
     {
-        $this->redis->set('test', 'key', 'TEST');
-        $this->redis->delete('test', 'key');
-        $res = $this->redis->get('test', 'key');
+        $this->store->set('test', 'key', 'TEST');
+        $this->store->delete('test', 'key');
+        $res = $this->store->get('test', 'key');
 
         $this->assertNull($res);
-    }
-
-
-    /**
-     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param class-string $className
-     */
-    protected function clearInstance($service, string $className): void
-    {
-        $reflectedClass = new ReflectionClass($className);
-        $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
-        $reflectedInstance->setValue($service, null);
-        $reflectedInstance->setAccessible(false);
     }
 }

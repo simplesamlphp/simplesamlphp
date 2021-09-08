@@ -15,11 +15,12 @@ use SAML2\ArtifactResponse;
 use SAML2\DOMDocumentFactory;
 use SAML2\SOAP;
 use SAML2\XML\saml\Issuer;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Metadata;
-use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 $config = Configuration::getInstance();
 if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
@@ -34,7 +35,8 @@ if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
     throw new Error\Error('NOACCESS');
 }
 
-$store = Store::getInstance();
+$storeType = $config->getString('store.type', 'phpsession');
+$store = StoreFactory::getInstance($storeType);
 if ($store === false) {
     throw new Exception('Unable to send artifact without a datastore configured.');
 }
@@ -57,7 +59,10 @@ if (!($request instanceof ArtifactResolve)) {
     throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
 
-$issuer = $request->getIssuer()->getValue();
+$issuer = $request->getIssuer();
+/** @psalm-assert \SAML2\XML\saml\Issuer $issuer */
+Assert::notNull($issuer);
+$issuer = $issuer->getValue();
 $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 $artifact = $request->getArtifact();
 $responseData = $store->get('artifact', $artifact);
@@ -65,7 +70,7 @@ $store->delete('artifact', $artifact);
 
 if ($responseData !== null) {
     $document = DOMDocumentFactory::fromString($responseData);
-    $responseXML = $document->firstChild;
+    $responseXML = $document->documentElement;
 } else {
     $responseXML = null;
 }

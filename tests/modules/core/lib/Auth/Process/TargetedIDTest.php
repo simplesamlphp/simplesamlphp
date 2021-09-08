@@ -20,10 +20,10 @@ use SimpleSAML\Utils;
 class TargetedIDTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Config */
-    protected static $configUtils;
+    protected static Utils\Config $configUtils;
 
     /**
      * Set up for each test.
@@ -33,7 +33,7 @@ class TargetedIDTest extends TestCase
         parent::setUp();
 
         self::$configUtils = new class () extends Utils\Config {
-            public static function getSecretSalt(): string
+            public function getSecretSalt(): string
             {
                 // stub
                 return 'secretsalt';

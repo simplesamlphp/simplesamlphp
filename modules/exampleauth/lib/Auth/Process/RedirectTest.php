@@ -13,7 +13,7 @@ use SimpleSAML\Utils;
  * A simple processing filter for testing that redirection works as it should.
  *
  */
-class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
+class RedirectTest extends Auth\ProcessingFilter
 {
     /**
      * Initialize processing of the redirect test.
@@ -29,7 +29,9 @@ class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
 
         // Save state and redirect
         $id = Auth\State::saveState($state, 'exampleauth:redirectfilter-test');
-        $url = Module::getModuleURL('exampleauth/redirecttest.php');
-        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
+        $url = Module::getModuleURL('exampleauth/redirecttest');
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

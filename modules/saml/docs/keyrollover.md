@@ -22,7 +22,7 @@ If you are doing key rollover for a service provider, the new key must be added 
 To do key rollover for an identity provider, you must add the new key to `metadata/saml20-idp-hosted.php`.
 If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
 
-The new certificate and key is added to the configuration with the prefix `new_`:
+The new certificate, private key and private key passphrase are added to the configuration with the prefix `new_`:
 
 When the new key is added, SimpleSAMLphp will attempt to use both the new key and the old key for decryption of messages, but only the old key will be used for signing messages.
 The metadata will be updated to list the new key for signing and encryption, and the old key will no longer listed as available for encryption.
@@ -33,24 +33,34 @@ This ensures that both those entities that use your old metadata and those that 
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
         'privatekey' => 'old.pem',
         'certificate' => 'old.crt',
+        // When private key is passphrase protected.
+        'privatekey_pass' => '<old-secret>',
+
         'new_privatekey' => 'new.pem',
         'new_certificate' => 'new.crt',
-    ),
+        // When new private key is passphrase protected.
+        'new_privatekey_pass' => '<new-secret>',
+    ],
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
         'privatekey' => 'old.pem',
         'certificate' => 'old.crt',
+        // When private key is passphrase protected.
+        'privatekey_pass' => '<old-secret>',
+
         'new_privatekey' => 'new.pem',
         'new_certificate' => 'new.crt',
-    );
+        // When new private key is passphrase protected.
+        'new_privatekey_pass' => '<new-secret>',
+    ];
 
 
 Distribute your new metadata
@@ -69,27 +79,31 @@ Remove the old key
 ------------------
 
 Once you are certain that all your peers are using the new metadata, you must remove the old key.
-Replace the existing `privatekey` and `certificate` options in your configuration with the `new_privatekey` and `new_certificate` options.
+Replace the existing `privatekey`, `privatekey_pass` and `certificate` options in your configuration with the `new_privatekey`, `new_privatekey_pass` and `new_certificate` options.
 This will cause your old key to be removed from your metadata.
 
 ### Examples
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
-        'privatekey' => 'new.pem',
         'certificate' => 'new.crt',
-    ),
+        'privatekey' => 'new.pem',
+        // When private key is passphrase protected.
+        'privatekey_pass' => '<new-secret>',
+    ],
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
-        'privatekey' => 'new.pem',
         'certificate' => 'new.crt',
-    );
+        'privatekey' => 'new.pem',
+        // When private key is passphrase protected.
+        'privatekey_pass' => '<new-secret>',
+    ];
 
 
 

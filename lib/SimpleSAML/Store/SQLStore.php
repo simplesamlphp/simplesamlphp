@@ -4,47 +4,47 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Store;
 
+use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use SimpleSAML\Store;
 
 /**
  * A data store using a RDBMS to keep the data.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-class SQL extends Store
+class SQLStore implements StoreInterface
 {
     /**
      * The PDO object for our database.
      *
      * @var \PDO
      */
-    public $pdo;
+    public PDO $pdo;
 
     /**
      * Our database driver.
      *
      * @var string
      */
-    public $driver;
+    public string $driver;
 
     /**
      * The prefix we should use for our tables.
      *
      * @var string
      */
-    public $prefix;
+    public string $prefix;
 
     /**
      * Associative array of table versions.
      *
      * @var array
      */
-    private $tableVersions;
+    private array $tableVersions;
 
 
     /**
@@ -62,7 +62,7 @@ class SQL extends Store
         try {
             $this->pdo = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $e) {
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -95,7 +95,7 @@ class SQL extends Store
         }
 
         while (($row = $fetchTableVersion->fetch(PDO::FETCH_ASSOC)) !== false) {
-            $this->tableVersions[$row['_name']] = (int) $row['_version'];
+            $this->tableVersions[$row['_name']] = intval($row['_version']);
         }
     }
 
@@ -105,74 +105,40 @@ class SQL extends Store
      */
     private function initKVTable(): void
     {
-        $current_version = $this->getTableVersion('kvstore');
+        $tableVer = $this->getTableVersion('kvstore');
+        if ($tableVer === 2) {
+            return;
+        } elseif ($tableVer < 2 && $tableVer > 0) {
+            throw new Exception(
+                'No upgrade path available. Please migrate to the latest 1.16+ '
+                . 'version of SimpleSAMLphp first before upgrading to 2.x.'
+            );
+        }
 
         $text_t = 'TEXT';
-        $time_field = 'TIMESTAMP';
         if ($this->driver === 'mysql') {
             // TEXT data type has size constraints that can be hit at some point, so we use LONGTEXT instead
             $text_t = 'LONGTEXT';
         }
+
+        $time_field = 'TIMESTAMP';
         if ($this->driver === 'sqlsrv') {
             // TIMESTAMP will not work for MSSQL. TIMESTAMP is automatically generated and cannot be inserted
             //    so we use DATETIME instead
             $time_field = 'DATETIME';
         }
 
-        /**
-         * Queries for updates, grouped by version.
-         * New updates can be added as a new array in this array
-         */
-        $table_updates = [
-            [
-                'CREATE TABLE ' . $this->prefix .
-                '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
-                ' NOT NULL, _expire ' . $time_field . ', PRIMARY KEY (_key, _type))',
-                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' || $this->driver === 'pgsql' ?
-                'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
-                'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
-            ],
-            /**
-             * This upgrade removes the default NOT NULL constraint on the _expire field in MySQL.
-             * Because SQLite does not support field alterations, the approach is to:
-             *     Create a new table without the NOT NULL constraint
-             *     Copy the current data to the new table
-             *     Drop the old table
-             *     Rename the new table correctly
-             *     Read the index
-             */
-            [
-                'CREATE TABLE ' . $this->prefix .
-                '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
-                ' NOT NULL, _expire ' . $time_field . ' NULL, PRIMARY KEY (_key, _type))',
-                'INSERT INTO ' . $this->prefix . '_kvstore_new SELECT * FROM ' . $this->prefix . '_kvstore',
-                'DROP TABLE ' . $this->prefix . '_kvstore',
-                // FOR MSSQL use EXEC sp_rename to rename a table (RENAME won't work)
-                $this->driver === 'sqlsrv' ?
-                'EXEC sp_rename ' . $this->prefix . '_kvstore_new, ' . $this->prefix . '_kvstore' :
-                'ALTER TABLE ' . $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
-                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' || $this->driver === 'pgsql' ?
-                'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
-                'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
-            ]
-        ];
+        $query = 'CREATE TABLE ' . $this->prefix .
+            '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
+            ' NOT NULL, _expire ' . $time_field . ' NULL, PRIMARY KEY (_key, _type))';
+        $this->pdo->exec($query);
 
-        $latest_version = count($table_updates);
+        $query = $this->driver === 'sqlite' || $this->driver === 'sqlsrv' || $this->driver === 'pgsql' ?
+            'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
+            'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)';
+        $this->pdo->exec($query);
 
-        if ($current_version == $latest_version) {
-            return;
-        }
-
-        // Only run queries for after the current version
-        $updates_to_run = array_slice($table_updates, $current_version);
-
-        foreach ($updates_to_run as $version_updates) {
-            foreach ($version_updates as $query) {
-                $this->pdo->exec($query);
-            }
-        }
-
-        $this->setTableVersion('kvstore', $latest_version);
+        $this->setTableVersion('kvstore', 2);
     }
 
 
@@ -313,9 +279,6 @@ class SQL extends Store
         }
 
         $value = $row['_value'];
-//        if (is_resource($value)) {
-//            $value = stream_get_contents($value);
-//        }
 
         Assert::string($value);
 

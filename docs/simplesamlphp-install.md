@@ -211,7 +211,7 @@ look like this:
         location ^~ /simplesaml {
             alias /var/simplesamlphp/www;
 
-            location ~ ^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
+            location ~^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
                 include          fastcgi_params;
                 fastcgi_pass     $fastcgi_pass;
                 fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
@@ -392,7 +392,7 @@ in a separate document.
  - [Using SimpleSAMLphp as an Identity Provider (IdP)](simplesamlphp-idp)
    + [Hosted IdP reference](simplesamlphp-reference-idp-hosted)
    + [Remote SP reference](simplesamlphp-reference-sp-remote)
-   + [Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
+   + [Setting up an IdP for Google Workspace (G Suite / Google Apps)](simplesamlphp-googleapps)
    + [Advanced Topics](simplesamlphp-idp-more)
  - [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
  - [Maintenance and configuration](simplesamlphp-maintenance)

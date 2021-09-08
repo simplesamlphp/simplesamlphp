@@ -21,7 +21,7 @@ class Time
      *
      * @var bool
      */
-    private static $tz_initialized = false;
+    private static bool $tz_initialized = false;
 
 
     /**
@@ -31,7 +31,7 @@ class Time
      *
      * @return string The timestamp.
      */
-    public static function generateTimestamp(int $instant = null): string
+    public function generateTimestamp(int $instant = null): string
     {
         if ($instant === null) {
             $instant = time();
@@ -48,7 +48,7 @@ class Time
      *
      * @throws \SimpleSAML\Error\Exception If the timezone set in the configuration is invalid.
      */
-    public static function initTimezone(): void
+    public function initTimezone(): void
     {
         if (self::$tz_initialized) {
             return;
@@ -88,7 +88,7 @@ class Time
      * @throws \InvalidArgumentException If $duration is not a valid ISO 8601 duration or if the input parameters do
      *     not have the right data types.
      */
-    public static function parseDuration(string $duration, int $timestamp = null): int
+    public function parseDuration(string $duration, int $timestamp = null): int
     {
         // parse the duration. We use a very strict pattern
         $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)' .

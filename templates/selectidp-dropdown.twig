@@ -4,6 +4,10 @@
 {% block content %}
     <h2>{{ pagetitle }}</h2>
 
+    {% if idplist|length == 0 %}
+    <div class="message-box message-box-error">{{ "No identity providers found. Cannot continue." | trans }}</div>
+    {% else %}
+
     <p>{{ "Please select the identity provider where you want to authenticate:" | trans }}</p>
     <form method="get" action="{{ urlpattern }}" class="pure-form">
         <input type="hidden" name="entityID" value="{{ entityID }}">
@@ -23,9 +27,12 @@
         </div>
         {% if rememberenabled %}
         <div class="pure-control-group">
-            <input type="checkbox" name="remember" id="remember" value="1">
-            <label for="remember">{{ 'Remember my choice' | trans }}</label>
+            <label for="remember">
+                <input type="checkbox" name="remember" id="remember" value="1"{% if rememberchecked %} checked{% endif %}>
+                {{ 'Remember my choice' | trans }}
+            </label>
         </div>
         {% endif %}
     </form>
+    {% endif %}
 {% endblock %}

@@ -21,13 +21,13 @@ class AttributeMap extends Auth\ProcessingFilter
      * Associative array with the mappings of attribute names.
      * @var array
      */
-    private $map = [];
+    private array $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
      * @var bool
      */
-    private $duplicate = false;
+    private bool $duplicate = false;
 
 
     /**
@@ -53,10 +53,6 @@ class AttributeMap extends Auth\ProcessingFilter
                     $mapFiles[] = $newName;
                 }
                 continue;
-            }
-
-            if (!is_string($origName)) {
-                throw new Exception('Invalid attribute name: ' . var_export($origName, true));
             }
 
             if (!is_string($newName) && !is_array($newName)) {
@@ -119,15 +115,15 @@ class AttributeMap extends Auth\ProcessingFilter
     /**
      * Apply filter to rename attributes.
      *
-     * @param array &$request The current request.
+     * @param array &$state The current request.
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         $mapped_attributes = [];
 
-        foreach ($request['Attributes'] as $name => $values) {
+        foreach ($state['Attributes'] as $name => $values) {
             if (array_key_exists($name, $this->map)) {
                 if (!is_array($this->map[$name])) {
                     if ($this->duplicate) {
@@ -150,6 +146,6 @@ class AttributeMap extends Auth\ProcessingFilter
             }
         }
 
-        $request['Attributes'] = $mapped_attributes;
+        $state['Attributes'] = $mapped_attributes;
     }
 }

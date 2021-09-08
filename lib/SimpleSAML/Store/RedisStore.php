@@ -8,17 +8,16 @@ use Predis\Client;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Store;
 
 /**
  * A data store using Redis to keep the data.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-class Redis extends Store
+class RedisStore implements StoreInterface
 {
     /** @var \Predis\Client */
-    public $redis;
+    public Client $redis;
 
 
     /**
@@ -31,7 +30,7 @@ class Redis extends Store
             throw new Error\CriticalConfigurationError('predis/predis is not available.');
         }
 
-        Assert::nullOrIsInstanceOf($redis, \Predis\Client::class);
+        Assert::nullOrIsInstanceOf($redis, Client::class);
 
         if ($redis === null) {
             $config = Configuration::getInstance();
@@ -64,9 +63,7 @@ class Redis extends Store
      */
     public function __destruct()
     {
-        if (method_exists($this->redis, 'disconnect')) {
-            $this->redis->disconnect();
-        }
+        $this->redis->disconnect();
     }
 
 

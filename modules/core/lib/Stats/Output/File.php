@@ -19,7 +19,7 @@ class File extends \SimpleSAML\Stats\Output
      * The log directory.
      * @var string
      */
-    private $logDir;
+    private string $logDir;
 
     /**
      * The file handle for the current file.
@@ -31,7 +31,7 @@ class File extends \SimpleSAML\Stats\Output
      * The current file date.
      * @var string|null
      */
-    private $fileDate = null;
+    private ?string $fileDate = null;
 
 
     /**
@@ -88,9 +88,9 @@ class File extends \SimpleSAML\Stats\Output
         Assert::notNull($data['time']);
 
         $time = $data['time'];
-        $milliseconds = (int) (($time - (int) $time) * 1000);
+        $milliseconds = intval((($time - intval($time)) * 1000));
 
-        $timestamp = gmdate('Y-m-d\TH:i:s', $time) . sprintf('.%03dZ', $milliseconds);
+        $timestamp = gmdate('Y-m-d\TH:i:s', intval($time)) . sprintf('.%03dZ', $milliseconds);
 
         $outDate = substr($timestamp, 0, 10); // The date-part of the timstamp
 

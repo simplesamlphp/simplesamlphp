@@ -173,4 +173,26 @@ class LanguageTest extends TestCase
         $l = new Language($c);
         $this->assertEquals('en', $l->getLanguage());
     }
+
+    public function testGetPreferredLanguages(): void
+    {
+        // test defaults
+        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('en');
+        $this->assertEquals(['en'], $l->getPreferredLanguages());
+
+        // test order current, default, fallback
+        $c = Configuration::loadFromArray([
+            'language.available' => ['fr', 'nn', 'es'],
+            'language.default' => 'nn',
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('es');
+        $this->assertEquals(['es', 'nn', 'en'], $l->getPreferredLanguages());
+
+        // test duplicate values (curlang is default lang) removed
+        $l->setLanguage('nn');
+        $this->assertEquals([0 => 'nn', 2 => 'en'], $l->getPreferredLanguages());
+    }
 }

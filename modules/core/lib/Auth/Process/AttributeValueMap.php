@@ -20,31 +20,31 @@ class AttributeValueMap extends Auth\ProcessingFilter
      * The name of the attribute we should assign values to (ie: the target attribute).
      * @var string
      */
-    private $targetattribute = '';
+    private string $targetattribute = '';
 
     /**
      * The name of the attribute we should create values from.
      * @var string
      */
-    private $sourceattribute = '';
+    private string $sourceattribute = '';
 
     /**
      * The required $sourceattribute values and target affiliations.
      * @var array
      */
-    private $values = [];
+    private array $values = [];
 
     /**
      * Whether $sourceattribute should be kept or not.
      * @var bool
      */
-    private $keep = false;
+    private bool $keep = false;
 
     /**
      * Whether $target attribute values should be replaced by new values or not.
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
 
     /**
@@ -107,14 +107,14 @@ class AttributeValueMap extends Auth\ProcessingFilter
     /**
      * Apply filter.
      *
-     * @param array &$request The current request
+     * @param array &$state The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
         Logger::debug('Processing the AttributeValueMap filter.');
 
-        Assert::keyExists($request, 'Attributes');
-        $attributes = &$request['Attributes'];
+        Assert::keyExists($state, 'Attributes');
+        $attributes = &$state['Attributes'];
 
         if (!array_key_exists($this->sourceattribute, $attributes)) {
             // the source attribute does not exist, nothing to do here

@@ -36,56 +36,56 @@ class Template extends Response
      *
      * @var array
      */
-    public $data = [];
+    public array $data = [];
 
     /**
      * A translator instance configured to work with this template.
      *
      * @var \SimpleSAML\Locale\Translate
      */
-    private $translator;
+    private Translate $translator;
 
     /**
      * The localization backend
      *
      * @var \SimpleSAML\Locale\Localization
      */
-    private $localization;
+    private Localization $localization;
 
     /**
      * The configuration to use in this template.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The file to load in this template.
      *
      * @var string
      */
-    private $template = 'default.php';
+    private string $template = 'default.php';
 
     /**
      * The twig environment.
      *
      * @var \Twig\Environment
      */
-    private $twig;
+    private \Twig\Environment $twig;
 
     /**
      * The template name.
      *
      * @var string
      */
-    private $twig_template;
+    private string $twig_template;
 
     /**
      * Current module, if any.
      *
-     * @var string
+     * @var string|null
      */
-    private $module;
+    private ?string $module = null;
 
     /**
      * A template controller, if any.
@@ -96,7 +96,7 @@ class Template extends Response
      *
      * @var \SimpleSAML\XHTML\TemplateControllerInterface|null
      */
-    private $controller = null;
+    private ?TemplateControllerInterface $controller = null;
 
     /**
      * Whether we are using a non-default theme or not.
@@ -107,7 +107,7 @@ class Template extends Response
      *
      * @var array
      */
-    private $theme = ['module' => null, 'name' => 'default'];
+    private array $theme = ['module' => null, 'name' => 'default'];
 
 
     /**
@@ -166,7 +166,7 @@ class Template extends Response
         $baseDir = $this->configuration->getBaseDir();
         if (is_null($module)) {
             $file = $baseDir . 'www/assets/' . $asset;
-            $basePath =  $this->configuration->getBasePath();
+            $basePath = $this->configuration->getBasePath();
             $path = $basePath . 'assets/' . $asset;
         } else {
             $file = $baseDir . 'modules/' . $module . '/www/assets/' . $asset;
@@ -295,14 +295,13 @@ class Template extends Response
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
-        $twig->addExtension(new \Twig\Extensions\DateExtension());
+        $twig->addExtension(new \Twig\Extra\Intl\IntlExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
-        $twig->addGlobal('localeBackend', Localization::GETTEXT_I18N_BACKEND);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
         if ($this->translator->getLanguage()->isLanguageRTL()) {
@@ -323,6 +322,13 @@ class Template extends Response
                 'translateFromArray',
                 [Translate::class, 'translateFromArray'],
                 ['needs_context' => true]
+            )
+        );
+        // add a filter for preferred entity name
+        $twig->addFilter(
+            new TwigFilter(
+                'entityDisplayName',
+                [$this, 'getEntityDisplayName'],
             )
         );
 
@@ -351,11 +357,15 @@ class Template extends Response
 
         // setup directories & namespaces
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
-        $subdirs = scandir($themeDir);
+        $subdirs = @scandir($themeDir);
         if (empty($subdirs)) {
-            // no subdirectories in the theme directory, nothing to do here
-            // this is probably wrong, log a message
-            Logger::warning('Empty theme directory for theme "' . $this->theme['name'] . '".');
+            Logger::warning(
+                sprintf(
+                    'Theme directory for theme "%s" (%s) is not readable or is empty.',
+                    $this->theme['name'],
+                    $themeDir
+                )
+            );
             return [];
         }
 
@@ -433,7 +443,8 @@ class Template extends Response
                 $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
                 $url = false;
                 if (!$current) {
-                    $url = htmlspecialchars(Utils\HTTP::addURLParameters(
+                    $httpUtils = new Utils\HTTP();
+                    $url = htmlspecialchars($httpUtils->addURLParameters(
                         '',
                         [$parameterName => $lang]
                     ));
@@ -583,5 +594,48 @@ class Template extends Response
     private function isLanguageRTL(): bool
     {
         return $this->translator->getLanguage()->isLanguageRTL();
+    }
+
+    /**
+     * Search through entity metadata to find the best display name for this
+     * entity. It will search in order for the current language, default
+     * language and fallback language for the DisplayName, name, OrganizationDisplayName
+     * and OrganizationName; the first one found is considered the best match.
+     * If nothing found, will return the entityId.
+     */
+    public function getEntityDisplayName(array $data): string
+    {
+        $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
+
+        foreach ($tryLanguages as $language) {
+            if (isset($data['UIInfo']['DisplayName'][$language])) {
+                return $data['UIInfo']['DisplayName'][$language];
+            } elseif (isset($data['name'][$language])) {
+                return $data['name'][$language];
+            } elseif (isset($data['OrganizationDisplayName'][$language])) {
+                return $data['OrganizationDisplayName'][$language];
+            } elseif (isset($data['OrganizationName'][$language])) {
+                return $data['OrganizationName'][$language];
+            }
+        }
+        return $data['entityid'];
+    }
+
+    /**
+     * Search through entity metadata to find the best value for a
+     * specific property. It will search in order for the current language, default
+     * language and fallback language; if not found it returns null.
+     */
+    public function getEntityPropertyTranslation(string $property, array $data): ?string
+    {
+        $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
+
+        foreach ($tryLanguages as $language) {
+            if (isset($data[$property][$language])) {
+                return $data[$property][$language];
+            }
+        }
+
+        return null;
     }
 }

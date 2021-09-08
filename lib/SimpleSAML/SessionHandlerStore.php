@@ -11,23 +11,24 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Store\StoreInterface;
 
 class SessionHandlerStore extends SessionHandlerCookie
 {
     /**
      * The data store we save the session to.
      *
-     * @var \SimpleSAML\Store
+     * @var \SimpleSAML\Store\StoreInterface
      */
-    private $store;
+    private StoreInterface $store;
 
 
     /**
      * Initialize the session.
      *
-     * @param \SimpleSAML\Store $store The store to use.
+     * @param \SimpleSAML\Store\StoreInterface $store The store to use.
      */
-    protected function __construct(Store $store)
+    protected function __construct(StoreInterface $store)
     {
         parent::__construct();
 

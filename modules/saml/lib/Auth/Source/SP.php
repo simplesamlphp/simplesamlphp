@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants;
+use SAML2\LogoutRequest;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -18,6 +19,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 
 class SP extends \SimpleSAML\Auth\Source
@@ -27,35 +29,35 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string
      */
-    private $entityId;
+    private string $entityId;
 
     /**
      * The metadata of this SP.
      *
      * @var \SimpleSAML\Configuration
      */
-    private $metadata;
+    private Configuration $metadata;
 
     /**
      * The IdP the user is allowed to log into.
      *
      * @var string|null  The IdP the user can log into, or null if the user can log into all IdPs.
      */
-    private $idp;
+    private ?string $idp;
 
     /**
      * URL to discovery service.
      *
      * @var string|null
      */
-    private $discoURL;
+    private ?string $discoURL;
 
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
      * @var bool
      */
-    private $disable_scoping;
+    private bool $disable_scoping;
 
     /**
      * If pass AuthnContextClassRef back to the IdPs in front of the SP/IdP Proxy.
@@ -69,7 +71,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string[]
      */
-    private $protocols = [];
+    private array $protocols = [Constants::NS_SAMLP];
 
 
     /**
@@ -99,10 +101,11 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
         $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
-	$this->passAuthnContextClassRef = false;
-	if (isset($config['proxymode.passAuthnContextClassRef'])) {
-        	$this->passAuthnContextClassRef = $config['proxymode.passAuthnContextClassRef'];
-	}
+
+    	  $this->passAuthnContextClassRef = false;
+        if (isset($config['proxymode.passAuthnContextClassRef'])) {
+           	$this->passAuthnContextClassRef = $config['proxymode.passAuthnContextClassRef'];
+        }
 
         if (empty($this->discoURL) && Module::isModuleEnabled('discojuice')) {
             $this->discoURL = Module::getModuleURL('discojuice/central.php');
@@ -148,7 +151,7 @@ class SP extends \SimpleSAML\Auth\Source
         ];
 
         // add NameIDPolicy
-        if ($this->metadata->hasValue('NameIDValue')) {
+        if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getValue('NameIDPolicy');
             if (is_array($format)) {
                 $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getString(
@@ -199,7 +202,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add contacts
-        $contacts = $this->metadata->getArray('contact', []);
+        $contacts = $this->metadata->getArray('contacts', []);
         foreach ($contacts as $contact) {
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
@@ -216,8 +219,10 @@ class SP extends \SimpleSAML\Auth\Source
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
 
+        $cryptoUtils = new Utils\Crypto();
+
         // add certificate(s)
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata, false, 'new_');
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $hasNewCert = true;
@@ -239,7 +244,7 @@ class SP extends \SimpleSAML\Auth\Source
             ];
         }
 
-        $certInfo = Utils\Crypto::loadPublicKey($this->metadata);
+        $certInfo = $cryptoUtils->loadPublicKey($this->metadata);
         if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
             $metadata['keys'][] = [
                 'type' => 'X509Certificate',
@@ -275,7 +280,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add signature options
-        if ($this->metadata->hasValue('WantAssertiosnsSigned')) {
+        if ($this->metadata->hasValue('WantAssertionsSigned')) {
             $metadata['saml20.sign.assertion'] = $this->metadata->getBoolean('WantAssertionsSigned');
         }
         if ($this->metadata->hasValue('redirect.sign')) {
@@ -337,12 +342,15 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getACSEndpoints(): array
     {
+        // If a list of endpoints is specified in config, take that at face value
+        if ($this->metadata->hasValue('AssertionConsumerService')) {
+            return $this->metadata->getArray('AssertionConsumerService');
+        }
+
         $endpoints = [];
         $default = [
             Constants::BINDING_HTTP_POST,
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
             Constants::BINDING_HTTP_ARTIFACT,
-            'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
         ];
         if ($this->metadata->getString('ProtocolBinding', '') === Constants::BINDING_HOK_SSO) {
             $default[] = Constants::BINDING_HOK_SSO;
@@ -357,38 +365,12 @@ class SP extends \SimpleSAML\Auth\Source
                         'Binding' => Constants::BINDING_HTTP_POST,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
-                    break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-                        'Location' => Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->getAuthId()),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.0:profiles:browser-post', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
-                    }
                     break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
-                    break;
-                case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
-                    $acs = [
-                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
-                        'Location' => Module::getModuleURL(
-                            'saml/sp/saml1-acs.php/' . $this->getAuthId() . '/artifact'
-                        ),
-                    ];
-                    if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $this->protocols, true)) {
-                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
-                    }
                     break;
                 case Constants::BINDING_HOK_SSO:
                     $acs = [
@@ -396,12 +378,10 @@ class SP extends \SimpleSAML\Auth\Source
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                         'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     ];
-                    if (!in_array(Constants::NS_SAMLP, $this->protocols, true)) {
-                        $this->protocols[] = Constants::NS_SAMLP;
-                    }
                     break;
                 default:
-                    $acs = [];
+                    Logger::warning('Unknown acs.Binding value specified, ignoring: ' . $service);
+                    continue 2;
             }
             $acs['index'] = $index;
             $endpoints[] = $acs;
@@ -419,7 +399,10 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getSLOEndpoints(): array
     {
-        $store = Store::getInstance();
+        $config = Configuration::getInstance();
+        $storeType = $config->getString('store.type', 'phpsession');
+
+        $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getArray(
             'SingleLogoutServiceBinding',
             [
@@ -427,11 +410,12 @@ class SP extends \SimpleSAML\Auth\Source
                 Constants::BINDING_SOAP,
             ]
         );
-        $location = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $location = $this->metadata->getString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
         foreach ($bindings as $binding) {
-            if ($binding == Constants::BINDING_SOAP && !($store instanceof Store\SQL)) {
+            if ($binding == Constants::BINDING_SOAP && !($store instanceof Store\SQLStore)) {
                 // we cannot properly support SOAP logout
                 continue;
             }
@@ -467,11 +451,13 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
+        $arrayUtils = new Utils\Arrays();
+
         $accr = null;
         if ($idpMetadata->getString('AuthnContextClassRef', false)) {
-            $accr = Utils\Arrays::arrayize($idpMetadata->getString('AuthnContextClassRef'));
+            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
-            $accr = Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+            $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
 
         if ($accr !== null) {
@@ -656,7 +642,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $b = Binding::getBinding($dst['Binding']);
 
-        $this->sendSAML2AuthnRequest($state, $b, $ar);
+        $this->sendSAML2AuthnRequest($b, $ar);
 
         Assert::true(false);
     }
@@ -667,13 +653,27 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * This function does not return.
      *
-     * @param array &$state  The state array.
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\AuthnRequest  $ar  The authentication request.
      */
-    public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar): void
+    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
     {
         $binding->send($ar);
+        Assert::true(false);
+    }
+
+
+    /**
+     * Function to actually send the logout request.
+     *
+     * This function does not return.
+     *
+     * @param \SAML2\Binding $binding  The binding.
+     * @param \SAML2\LogoutRequest  $ar  The logout request.
+     */
+    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): void
+    {
+        $binding->send($lr);
         Assert::true(false);
     }
 
@@ -731,7 +731,8 @@ class SP extends \SimpleSAML\Auth\Source
             $params['isPassive'] = 'true';
         }
 
-        Utils\HTTP::redirectTrustedURL($discoURL, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -903,7 +904,9 @@ class SP extends \SimpleSAML\Auth\Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = Auth\State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = Module::getModuleURL('saml/proxy/invalid_session.php');
-        Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
+
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
         Assert::true(false);
     }
 
@@ -1016,6 +1019,12 @@ class SP extends \SimpleSAML\Auth\Source
         $lr->setRelayState($id);
         $lr->setDestination($endpoint['Location']);
 
+        if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
+            $lr->setExtensions($state['saml:logout:Extensions']);
+        } elseif ($this->metadata->getArray('saml:logout:Extensions', null) !== null) {
+            $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
+        }
+
         $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
             $encryptNameId = $this->metadata->getBoolean('nameid.encryption', false);
@@ -1025,9 +1034,8 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         $b = Binding::getBinding($endpoint['Binding']);
-        $b->send($lr);
 
-        Assert::true(false);
+        $this->sendSAML2LogoutRequest($b, $lr);
     }
 
 
@@ -1128,7 +1136,8 @@ class SP extends \SimpleSAML\Auth\Source
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
-        Utils\HTTP::redirectUntrustedURL($redirectTo);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectUntrustedURL($redirectTo);
     }
 
 

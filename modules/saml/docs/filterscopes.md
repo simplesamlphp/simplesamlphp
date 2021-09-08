@@ -41,7 +41,7 @@ Basic configuration:
         90 => [
             'class' => 'saml:FilterScopes',
         ],
-    [,
+    ],
 ```
 
 Specify `mail` and `eduPersonPrincipalName` as scoped attributes:

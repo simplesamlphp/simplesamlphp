@@ -32,14 +32,14 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $sourceAttribute;
+    private string $sourceAttribute;
 
     /**
      * The name of the attribute which includes the scope
      *
      * @var string
      */
-    private $targetAttribute;
+    private string $targetAttribute;
 
 
     /**
@@ -61,13 +61,13 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
     /**
      * Apply this filter.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         if (!isset($attributes[$this->sourceAttribute])) {
             return;

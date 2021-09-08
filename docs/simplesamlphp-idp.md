@@ -54,14 +54,8 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`radius:Radius`](./radius:radius)
 : Authenticates an user to a Radius server.
 
-[`InfoCard:ICAuth`](https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md)
-: Authenticate with an InfoCard.
-
 [`multiauth:MultiAuth`](./multiauth:multiauth)
 : Allow the user to select from a list of authentication sources.
-
-`openid:OpenIDConsumer`
-: Authenticate against an OpenID provider.
 
 [`saml:SP`](./saml:sp)
 : Authenticate against a SAML IdP. Can be used for bridging.
@@ -84,12 +78,15 @@ In this guide, we will use the `exampleauth:UserPass` authentication module. Thi
 Configuring the authentication module
 -------------------------------------
 
-The `exampleauth:UserPass` authentication module is part of the `exampleauth` module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named `enable` in `modules/exampleauth/`.
+The `exampleauth:UserPass` authentication module is part of the `exampleauth` module. This module isn't enabled by default, so you will have to enable it. In
+`config.php`, search for the `module.enable` key and set `exampleauth` to true:
 
-On unix, this can be done by running (from the SimpleSAMLphp
-installation directory):
-
-    touch modules/exampleauth/enable
+```
+    'module.enable' => [
+         'exampleauth' => true,
+         …
+    ],
+```
 
 The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in `config/authsources.php`.
 

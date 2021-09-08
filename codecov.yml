@@ -9,3 +9,5 @@ comment:
   require_base: no
   require_head: yes
   branches: null
+github_checks:
+  annotations: false

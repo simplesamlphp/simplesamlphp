@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Utils\Time;
+use SimpleSAML\Utils;
 
 /**
  * @covers \SimpleSAML\Utils\Time
@@ -22,11 +22,16 @@ class TimeTest extends TestCase
      */
     public function testGenerateTimestamp(): void
     {
+        $timeUtils = new Utils\Time();
+
         // make sure passed timestamps are used
-        $this->assertEquals('2016-03-03T14:48:05Z', Time::generateTimestamp(1457016485));
+        $this->assertEquals('2016-03-03T14:48:05Z', $timeUtils->generateTimestamp(1457016485));
 
         // test timestamp generation for current time
-        $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', Time::generateTimestamp());
+        $this->assertMatchesRegularExpression(
+            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/',
+            $timeUtils->generateTimestamp()
+        );
     }
 
 
@@ -36,6 +41,7 @@ class TimeTest extends TestCase
      */
     public function testInitTimezone(): void
     {
+        $timeUtils = new Utils\Time();
         $tz = 'UTC';
         $os = @date_default_timezone_get();
         if ($os === 'UTC') { // avoid collisions
@@ -44,7 +50,7 @@ class TimeTest extends TestCase
 
         // test guessing timezone from the OS
         Configuration::loadFromArray(['timezone' => null], '[ARRAY]', 'simplesaml');
-        @Time::initTimezone();
+        @$timeUtils->initTimezone();
         $this->assertEquals($os, @date_default_timezone_get());
 
         // clear initialization
@@ -55,7 +61,7 @@ class TimeTest extends TestCase
         // test unknown timezone
         Configuration::loadFromArray(['timezone' => 'INVALID'], '[ARRAY]', 'simplesaml');
         try {
-            @Time::initTimezone();
+            @$timeUtils->initTimezone();
             $this->fail('Failed to recognize an invalid timezone.');
         } catch (Error\Exception $e) {
             $this->assertEquals('Invalid timezone set in the "timezone" option in config.php.', $e->getMessage());
@@ -63,12 +69,12 @@ class TimeTest extends TestCase
 
         // test a valid timezone
         Configuration::loadFromArray(['timezone' => $tz], '[ARRAY]', 'simplesaml');
-        @Time::initTimezone();
+        @$timeUtils->initTimezone();
         $this->assertEquals($tz, @date_default_timezone_get());
 
         // make sure initialization happens only once
         Configuration::loadFromArray(['timezone' => 'Europe/Madrid'], '[ARRAY]', 'simplesaml');
-        @Time::initTimezone();
+        @$timeUtils->initTimezone();
         $this->assertEquals($tz, @date_default_timezone_get());
     }
 
@@ -94,40 +100,69 @@ class TimeTest extends TestCase
         $negmonths = gmmktime(0, 0, 0, 10, 1, 1999); // -3 months = -1 year +9 months
 
         // test valid duration with timestamp and zeroes
-        $this->assertEquals($base + (60 * 60) + 60 + 1, Time::parseDuration('P0Y0M0DT1H1M1S', $base));
+        $timeUtils = new Utils\Time();
+        $this->assertEquals($base + (60 * 60) + 60 + 1, $timeUtils->parseDuration('P0Y0M0DT1H1M1S', $base));
 
         // test seconds
-        $this->assertEquals($second, Time::parseDuration('PT1S', $base), "Failure checking for 1 second duration.");
+        $this->assertEquals(
+            $second,
+            $timeUtils->parseDuration('PT1S', $base),
+            "Failure checking for 1 second duration."
+        );
 
         // test minutes
-        $this->assertEquals($minute, Time::parseDuration('PT1M', $base), "Failure checking for 1 minute duration.");
+        $this->assertEquals(
+            $minute,
+            $timeUtils->parseDuration('PT1M', $base),
+            "Failure checking for 1 minute duration."
+        );
 
         // test hours
-        $this->assertEquals($hour, Time::parseDuration('PT1H', $base), "Failure checking for 1 hour duration.");
+        $this->assertEquals(
+            $hour,
+            $timeUtils->parseDuration('PT1H', $base),
+            "Failure checking for 1 hour duration."
+        );
 
         // test days
-        $this->assertEquals($day, Time::parseDuration('P1D', $base), "Failure checking for 1 day duration.");
+        $this->assertEquals(
+            $day,
+            $timeUtils->parseDuration('P1D', $base),
+            "Failure checking for 1 day duration."
+        );
 
         // test weeks
-        $this->assertEquals($week, Time::parseDuration('P1W', $base), "Failure checking for 1 week duration.");
+        $this->assertEquals(
+            $week,
+            $timeUtils->parseDuration('P1W', $base),
+            "Failure checking for 1 week duration."
+        );
 
         // test month
-        $this->assertEquals($month, Time::parseDuration('P1M', $base), "Failure checking for 1 month duration.");
+        $this->assertEquals(
+            $month,
+            $timeUtils->parseDuration('P1M', $base),
+            "Failure checking for 1 month duration."
+        );
 
         // test year
-        $this->assertEquals($year, Time::parseDuration('P1Y', $base), "Failure checking for 1 year duration.");
+        $this->assertEquals(
+            $year,
+            $timeUtils->parseDuration('P1Y', $base),
+            "Failure checking for 1 year duration."
+        );
 
         // test months > 12
         $this->assertEquals(
             $manymonths,
-            Time::parseDuration('P14M', $base),
+            $timeUtils->parseDuration('P14M', $base),
             "Failure checking for 14 months duration (1 year and 2 months)."
         );
 
         // test negative months
         $this->assertEquals(
             $negmonths,
-            Time::parseDuration('-P3M', $base),
+            $timeUtils->parseDuration('-P3M', $base),
             "Failure checking for -3 months duration (-1 year + 9 months)."
         );
 
@@ -135,21 +170,21 @@ class TimeTest extends TestCase
         $now = time();
         $this->assertGreaterThanOrEqual(
             $now + 60,
-            Time::parseDuration('PT1M'),
+            $timeUtils->parseDuration('PT1M'),
             "Failure testing for 1 minute over current time."
         );
 
         // test invalid durations
         try {
             // invalid string
-            Time::parseDuration('abcdefg');
+            $timeUtils->parseDuration('abcdefg');
             $this->fail("Did not fail with invalid ISO 8601 duration.");
         } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
         }
         try {
             // missing T delimiter
-            Time::parseDuration('P1S');
+            $timeUtils->parseDuration('P1S');
             $this->fail("Did not fail with duration missing T delimiter.");
         } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());

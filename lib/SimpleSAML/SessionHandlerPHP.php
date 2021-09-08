@@ -23,7 +23,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var string
      */
-    protected $cookie_name;
+    protected string $cookie_name;
 
     /**
      * An associative array containing the details of a session existing previously to creating or loading one with this
@@ -35,7 +35,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var array
      */
-    private $previous_session = [];
+    private array $previous_session = [];
 
 
     /**
@@ -48,7 +48,10 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
+        $this->cookie_name = $config->getString(
+            'session.phpsession.cookiename',
+            ini_get('session.name') ?: 'PHPSESSID'
+        );
 
         if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {
@@ -138,19 +141,26 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function newSessionId(): string
     {
-        // generate new (secure) session id
-        $sid_length = (int) ini_get('session.sid_length');
-        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        if ($this->hasSessionCookie()) {
+            session_regenerate_id(false);
+            $sessionId = session_id();
+        } else {
+            // generate new (secure) session id
+            $sid_length = (int) ini_get('session.sid_length');
+            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
-        if (($sid_length * $sid_bits_per_char) < 128) {
-            Logger::warning("Unsafe defaults used for sessionId generation!");
+            if (($sid_length * $sid_bits_per_char) < 128) {
+                Logger::warning("Unsafe defaults used for sessionId generation!");
+            }
+
+            $sessionId = session_create_id();
         }
-        $sessionId = session_create_id();
 
         if (!$sessionId) {
             Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
+
         Session::createSession($sessionId);
         return $sessionId;
     }
@@ -165,7 +175,8 @@ class SessionHandlerPHP extends SessionHandler
     public function getCookieSessionId(): ?string
     {
         if (!$this->hasSessionCookie()) {
-            return null; // there's no session cookie, can't return ID
+            // there's no session cookie, can't return ID
+            return null;
         }
 
         if (headers_sent()) {
@@ -178,7 +189,8 @@ class SessionHandlerPHP extends SessionHandler
 
         $session_cookie_params = session_get_cookie_params();
 
-        if ($session_cookie_params['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($session_cookie_params['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\Exception('Session start with secure cookie not allowed on http.');
         }
 
@@ -302,7 +314,8 @@ class SessionHandlerPHP extends SessionHandler
             $cookieParams = session_get_cookie_params();
         }
 
-        if ($cookieParams['secure'] && !Utils\HTTP::isHTTPS()) {
+        $httpUtils = new Utils\HTTP();
+        if ($cookieParams['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\CannotSetCookie(
                 'Setting secure cookie on plain HTTP is not allowed.',
                 Error\CannotSetCookie::SECURE_COOKIE

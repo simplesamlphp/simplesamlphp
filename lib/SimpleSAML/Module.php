@@ -25,18 +25,18 @@ class Module
     /**
      * Index pages: file names to attempt when accessing directories.
      *
-     * @var array
+     * @var string[]
      */
-    public static $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
+    public static array $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
 
     /**
      * MIME Types
      *
      * The key is the file extension and the value the corresponding MIME type.
      *
-     * @var array
+     * @var array<string, string>
      */
-    public static $mimeTypes = [
+    public static array $mimeTypes = [
         'bmp'   => 'image/x-ms-bmp',
         'css'   => 'text/css',
         'gif'   => 'image/gif',
@@ -62,16 +62,16 @@ class Module
     /**
      * A list containing the modules currently installed.
      *
-     * @var array
+     * @var string[]
      */
-    public static $modules = [];
+    public static array $modules = [];
 
     /**
      * A list containing the modules that are enabled by default, unless specifically disabled
      *
-     * @var array
+     * @var array<string, bool>
      */
-    public static $core_modules = [
+    public static array $core_modules = [
         'core' => true,
         'saml' => true
     ];
@@ -81,7 +81,7 @@ class Module
      *
      * @var array
      */
-    public static $module_info = [];
+    public static array $module_info = [];
 
 
     /**
@@ -351,7 +351,7 @@ class Module
             throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
-        $core_module =  array_key_exists($module, self::$core_modules) ? true : false;
+        $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
         return $core_module ? true : false;
@@ -422,6 +422,12 @@ class Module
             if (!class_exists($className)) {
                 throw new \Exception("Could not resolve '$id': no class named '$className'.");
             }
+        } elseif (!in_array($tmp[0], self::getModules())) {
+            // Module not installed
+            throw new \Exception('No module named \'' . $tmp[0] . '\' has been installed.');
+        } elseif (!self::isModuleEnabled($tmp[0])) {
+            // Module installed, but not enabled
+            throw new \Exception('The module \'' . $tmp[0] . '\' is not enabled.');
         } else {
             // should be a module
             // make sure empty types are handled correctly
@@ -455,9 +461,10 @@ class Module
     {
         Assert::notSame($resource[0], '/');
 
-        $url = Utils\HTTP::getBaseURL() . 'module.php/' . $resource;
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getBaseURL() . 'module.php/' . $resource;
         if (!empty($parameters)) {
-            $url = Utils\HTTP::addURLParameters($url, $parameters);
+            $url = $httpUtils->addURLParameters($url, $parameters);
         }
         return $url;
     }
@@ -490,7 +497,7 @@ class Module
                 continue;
             }
 
-            if (!preg_match('/hook_(\w+)\.php/', $file, $matches)) {
+            if (!preg_match('/^hook_(\w+)\.php$/', $file, $matches)) {
                 continue;
             }
             $hook_name = $matches[1];

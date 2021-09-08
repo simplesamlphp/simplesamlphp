@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Utils\Crypto;
+use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
@@ -23,83 +25,22 @@ class CryptoTest extends TestCase
     private const DEFAULTCERTDIR = 'certdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
-    protected $root;
+    protected VfsStreamDirectory $root;
 
     /** @var string */
-    protected $root_directory;
+    protected string $root_directory;
 
     /** @var string */
-    protected $certdir;
+    protected string $certdir;
 
+    /** @var \SimpleSAML\Configuration */
+    protected Configuration $config;
 
-    /**
-     */
-    public function setUp(): void
-    {
-        $this->root = vfsStream::setup(
-            self::ROOTDIRNAME,
-            null,
-            [
-                self::DEFAULTCERTDIR => [],
-            ]
-        );
-        $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
-        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
-    }
+    /** @var \SimpleSAML\Utils\Crypto */
+    protected $cryptoUtils;
 
-
-    /**
-     * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
-     * ciphertext.
-     *
-     */
-    public function testAesDecrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->expectException(Error\Exception::class);
-        }
-
-        $secret = 'SUPER_SECRET_SALT';
-        $m = new ReflectionMethod(Crypto::class, 'aesDecryptInternal');
-        $m->setAccessible(true);
-
-        $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = 'uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4'
-            . 'vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=';
-        $this->assertEquals($plaintext, $m->invokeArgs(null, [base64_decode($ciphertext), $secret]));
-    }
-
-
-    /**
-     * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
-     *
-     */
-    public function testAesEncrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->expectException(Error\Exception::class);
-        }
-
-        $secret = 'SUPER_SECRET_SALT';
-        $e = new ReflectionMethod(Crypto::class, 'aesEncryptInternal');
-        $d = new ReflectionMethod(Crypto::class, 'aesDecryptInternal');
-        $e->setAccessible(true);
-        $d->setAccessible(true);
-
-        $original_plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = $e->invokeArgs(null, [$original_plaintext, $secret]);
-        $decrypted_plaintext = $d->invokeArgs(null, [$ciphertext, $secret]);
-        $this->assertEquals($original_plaintext, $decrypted_plaintext);
-    }
-
-
-    /**
-     * Test that the pem2der() and der2pem() methods work correctly.
-     *
-     */
-    public function testFormatConversion(): void
-    {
-        $pem = <<<PHP
+    /** @var string */
+    protected $pem = <<<PHP
 -----BEGIN CERTIFICATE-----
 MIIF8zCCA9ugAwIBAgIJANSv0D4ZoP9iMA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
 VQQGEwJFWDEQMA4GA1UECAwHRXhhbXBsZTEQMA4GA1UEBwwHRXhhbXBsZTEQMA4G
@@ -135,7 +76,147 @@ pfajpJ9ZzdyLIo6dVjdQtl+S1rpFCx7ziVN8tCCX4fAVCqRqZJaG/UMLvguVqayb
 5iHKlJ6FlnuhcGCDsUCvG8qCw9FfoS0tuS4tKoQ5WHGQx3sKmr/D
 -----END CERTIFICATE-----
 PHP;
-        $this->assertEquals(trim($pem), trim(Crypto::der2pem(Crypto::pem2der($pem))));
+
+    /**
+     */
+    public function setUp(): void
+    {
+        $this->config = Configuration::loadFromArray(
+            [
+                'module.enable' => [],
+                'secretsalt' => 'SUPER_SECRET_SALT'
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+
+        $this->root = vfsStream::setup(
+            self::ROOTDIRNAME,
+            null,
+            [
+                self::DEFAULTCERTDIR => [],
+            ]
+        );
+        $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
+        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
+        $this->cryptoUtils = new Utils\Crypto();
+    }
+
+
+    /**
+     * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
+     * ciphertext.
+     *
+     */
+    public function testAesDecrypt(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $plaintext = 'SUPER_SECRET_TEXT';
+        $ciphertext = <<<CIPHER
+uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
+CIPHER;
+
+        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext));
+        $this->assertEquals($plaintext, $decrypted);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testAesDecryptWithSmallCipherTextThrowsException(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $secret = 'SUPER_SECRET_SALT';
+        $plaintext = 'SUPER_SECRET_TEXT';
+        // This is too small!
+        $ciphertext = 'AWcTN8tyO82hiSY=';
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Input parameter "$ciphertext" must be a string with more than 48 characters.');
+        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testAesDecryptWithWrongSecretThrowsException(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        // This is the wrong secret!
+        $secret = 'notsosecret';
+        $plaintext = 'SUPER_SECRET_TEXT';
+        $ciphertext = <<<CIPHER
+uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
+CIPHER;
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Failed to decrypt ciphertext.');
+        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
+    }
+
+
+    /**
+     * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
+     *
+     */
+    public function testAesEncrypt(): void
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The openssl PHP module is not loaded.');
+        }
+
+        $original_plaintext = 'SUPER_SECRET_TEXT';
+
+        $ciphertext = $this->cryptoUtils->aesEncrypt($original_plaintext);
+        $decrypted_plaintext = $this->cryptoUtils->aesDecrypt($ciphertext);
+
+        $this->assertEquals($original_plaintext, $decrypted_plaintext);
+    }
+
+
+    /**
+     * Test that the pem2der() and der2pem() methods work correctly.
+     *
+     */
+    public function testFormatConversion(): void
+    {
+        $this->assertEquals(
+            trim($this->pem),
+            trim($this->cryptoUtils->der2pem($this->cryptoUtils->pem2der($this->pem)))
+        );
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testFormatConversionThrowsExceptionWhenNotPEMStart(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pem2der: input is not encoded in PEM format.');
+        $this->cryptoUtils->pem2der(substr($this->pem, 6));
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testFormatConversionThrowsExceptionWhenNotPEMEnd(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pem2der: input is not encoded in PEM format.');
+        $this->cryptoUtils->pem2der(substr($this->pem, 0, -20));
     }
 
 
@@ -145,8 +226,8 @@ PHP;
     {
         $pw = "password";
 
-        $hash = Crypto::pwHash($pw);
-        $res = Crypto::pwValid($hash, $pw);
+        $hash = $this->cryptoUtils->pwHash($pw);
+        $res = $this->cryptoUtils->pwValid($hash, $pw);
 
         $this->assertTrue($res);
     }
@@ -159,10 +240,22 @@ PHP;
         $pw = "password";
         $pw2 = "password2";
 
-        $hash = Crypto::pwHash($pw);
-        $res = Crypto::pwValid($hash, $pw2);
+        $hash = $this->cryptoUtils->pwHash($pw);
+        $res = $this->cryptoUtils->pwValid($hash, $pw2);
 
         $this->assertFalse($res);
+    }
+
+    /**
+     * Check that hash cannot be used to authenticate ith.
+     */
+    public function testHashAsPwInvalid(): void
+    {
+        $pw = "password";
+
+        $hash = $this->cryptoUtils->pwHash($pw);
+        $this->expectException(Error\Exception::class);
+        $this->cryptoUtils->pwValid($hash, $hash);
     }
 
 
@@ -170,7 +263,7 @@ PHP;
      */
     public function testSecureCompareEqual(): void
     {
-        $res = Crypto::secureCompare("string", "string");
+        $res = $this->cryptoUtils->secureCompare("string", "string");
 
         $this->assertTrue($res);
     }
@@ -180,7 +273,7 @@ PHP;
      */
     public function testSecureCompareNotEqual(): void
     {
-        $res = Crypto::secureCompare("string1", "string2");
+        $res = $this->cryptoUtils->secureCompare("string1", "string2");
 
         $this->assertFalse($res);
     }
@@ -194,7 +287,7 @@ PHP;
         $config = new Configuration([], 'test');
         $required = true;
 
-        Crypto::loadPrivateKey($config, $required);
+        $this->cryptoUtils->loadPrivateKey($config, $required);
     }
 
 
@@ -205,7 +298,7 @@ PHP;
         $config = new Configuration([], 'test');
         $required = false;
 
-        $res = Crypto::loadPrivateKey($config, $required);
+        $res = $this->cryptoUtils->loadPrivateKey($config, $required);
 
         $this->assertNull($res);
     }
@@ -218,7 +311,7 @@ PHP;
         $this->expectException(Error\Exception::class);
         $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
 
-        Crypto::loadPrivateKey($config, false, '', true);
+        $this->cryptoUtils->loadPrivateKey($config, false, '', true);
     }
 
 
@@ -233,7 +326,7 @@ PHP;
 
         file_put_contents($filename, $data);
 
-        $res = Crypto::loadPrivateKey($config, false, '', $full_path);
+        $res = $this->cryptoUtils->loadPrivateKey($config, false, '', $full_path);
         $expected = ['PEM' => $data, 'password' => null];
 
         $this->assertEquals($expected, $res);
@@ -258,7 +351,7 @@ PHP;
 
         file_put_contents($filename, $data);
 
-        $res = Crypto::loadPrivateKey($config, false, '', $full_path);
+        $res = $this->cryptoUtils->loadPrivateKey($config, false, '', $full_path);
         $expected = ['PEM' => $data, 'password' => $password];
 
         $this->assertEquals($expected, $res);
@@ -284,7 +377,7 @@ PHP;
 
         file_put_contents($filename, $data);
 
-        $res = Crypto::loadPrivateKey($config, false, $prefix, $full_path);
+        $res = $this->cryptoUtils->loadPrivateKey($config, false, $prefix, $full_path);
         $expected = ['PEM' => $data, 'password' => $password];
 
         $this->assertEquals($expected, $res);
@@ -299,7 +392,7 @@ PHP;
         $config = new Configuration([], 'test');
         $required = true;
 
-        Crypto::loadPublicKey($config, $required);
+        $this->cryptoUtils->loadPublicKey($config, $required);
     }
 
 
@@ -310,7 +403,7 @@ PHP;
         $config = new Configuration([], 'test');
         $required = false;
 
-        $res = Crypto::loadPublicKey($config, $required);
+        $res = $this->cryptoUtils->loadPublicKey($config, $required);
 
         $this->assertNull($res);
     }
@@ -333,7 +426,7 @@ PHP;
             'test'
         );
 
-        $res = Crypto::loadPublicKey($config);
+        $res = $this->cryptoUtils->loadPublicKey($config);
 
         $this->assertNull($res);
     }
@@ -356,7 +449,7 @@ PHP;
             'test'
         );
 
-        $res = Crypto::loadPublicKey($config);
+        $res = $this->cryptoUtils->loadPublicKey($config);
 
         $this->assertNull($res);
     }
@@ -381,7 +474,7 @@ PHP;
         );
 
         /** @var array $pubkey */
-        $pubkey = Crypto::loadPublicKey($config);
+        $pubkey = $this->cryptoUtils->loadPublicKey($config);
         $res = $pubkey['certData'];
         $expected = $x509certificate;
 

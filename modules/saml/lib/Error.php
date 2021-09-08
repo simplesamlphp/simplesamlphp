@@ -21,21 +21,21 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @var string
      */
-    private $status;
+    private string $status;
 
     /**
      * The second-level status code, or NULL if no second-level status code is defined.
      *
      * @var string|null
      */
-    private $subStatus;
+    private ?string $subStatus;
 
     /**
      * The status message, or NULL if no status message is defined.
      *
      * @var string|null
      */
-    private $statusMessage;
+    private ?string $statusMessage;
 
 
     /**
@@ -108,20 +108,20 @@ class Error extends \SimpleSAML\Error\Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param \Throwable $exception  The original exception.
+     * @param \Throwable $e  The original exception.
      * @return \SimpleSAML\Error\Exception  The new exception.
      */
-    public static function fromException(Throwable $exception): \SimpleSAML\Error\Exception
+    public static function fromException(Throwable $e): \SimpleSAML\Error\Exception
     {
-        if ($exception instanceof \SimpleSAML\Module\saml\Error) {
+        if ($e instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged
-            return $exception;
+            return $e;
         } else {
             $e = new self(
                 \SAML2\Constants::STATUS_RESPONDER,
                 null,
-                get_class($exception) . ': ' . $exception->getMessage(),
-                $exception
+                get_class($e) . ': ' . $e->getMessage(),
+                $e
             );
         }
 

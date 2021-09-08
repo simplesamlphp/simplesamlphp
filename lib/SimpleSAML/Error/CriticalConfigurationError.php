@@ -34,7 +34,7 @@ class CriticalConfigurationError extends ConfigurationError
      *
      * @var array
      */
-    private static $minimum_config = [
+    private static array $minimum_config = [
         'logging.handler' => 'errorlog',
         'logging.level'  => Logger::DEBUG,
         'errorreporting' => false,
@@ -53,7 +53,8 @@ class CriticalConfigurationError extends ConfigurationError
     {
         if ($config === null) {
             $config = self::$minimum_config;
-            $config['baseurlpath'] = Utils\HTTP::guessBasePath();
+            $httpUtils = new Utils\HTTP();
+            $config['baseurlpath'] = $httpUtils->guessBasePath();
         }
 
         Configuration::loadFromArray(
@@ -66,19 +67,19 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param \Throwable $exception
+     * @param \Throwable $e
      *
      * @return \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function fromException(Throwable $exception): CriticalConfigurationError
+    public static function fromException(Throwable $e): CriticalConfigurationError
     {
         $reason = null;
         $file = null;
-        if ($exception instanceof ConfigurationError) {
-            $reason = $exception->getReason();
-            $file = $exception->getConfFile();
+        if ($e instanceof ConfigurationError) {
+            $reason = $e->getReason();
+            $file = $e->getConfFile();
         } else {
-            $reason = $exception->getMessage();
+            $reason = $e->getMessage();
         }
         return new CriticalConfigurationError($reason, $file);
     }

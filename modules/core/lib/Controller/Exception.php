@@ -25,10 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
 class Exception
 {
     /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected $session;
+    protected Session $session;
 
 
     /**
@@ -97,7 +97,8 @@ class Exception
     {
         $retryURL = $request->get('retryURL', null);
         if ($retryURL !== null) {
-            $retryURL = Utils\HTTP::checkURLAllowed(strval($retryURL));
+            $httpUtils = new Utils\HTTP();
+            $retryURL = $httpUtils->checkURLAllowed(strval($retryURL));
         }
 
         $t = new Template($this->config, 'core:no_cookie.twig');

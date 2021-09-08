@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -27,28 +28,30 @@ class Database
 {
     /**
      * This variable holds the instance of the session - Singleton approach.
+     * @var \SimpleSAML\Database[]
      */
-    private static $instance = [];
+    private static array $instance = [];
 
     /**
      * PDO Object for the Primary database server
      */
-    private $dbPrimary;
+    private PDO $dbPrimary;
 
     /**
      * Array of PDO Objects for configured database secondaries
+     * @var \PDO[]
      */
-    private $dbSecondaries = [];
+    private array $dbSecondaries = [];
 
     /**
      * Prefix to apply to the tables
      */
-    private $tablePrefix;
+    private string $tablePrefix;
 
     /**
      * Array with information on the last error occurred.
      */
-    private $lastError;
+    private array $lastError = [];
 
 
     /**
@@ -162,7 +165,7 @@ class Database
 
             return $db;
         } catch (PDOException $e) {
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -225,7 +228,7 @@ class Database
             return $query;
         } catch (PDOException $e) {
             $this->lastError = $db->errorInfo();
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -245,7 +248,7 @@ class Database
             return $db->exec($stmt);
         } catch (PDOException $e) {
             $this->lastError = $db->errorInfo();
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new Exception("Database error: " . $e->getMessage());
         }
     }
 
@@ -288,5 +291,16 @@ class Database
     public function getLastError(): array
     {
         return $this->lastError;
+    }
+
+
+    /**
+     * Return the name of the PDO-driver
+     *
+     * @return string
+     */
+    public function getDriver(): string
+    {
+        return $this->dbPrimary->getAttribute(PDO::ATTR_DRIVER_NAME);
     }
 }

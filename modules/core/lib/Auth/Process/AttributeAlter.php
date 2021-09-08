@@ -21,19 +21,19 @@ class AttributeAlter extends Auth\ProcessingFilter
      * Should the pattern found be replaced?
      * @var bool
      */
-    private $replace = false;
+    private bool $replace = false;
 
     /**
      * Should the value found be removed?
      * @var bool
      */
-    private $remove = false;
+    private bool $remove = false;
 
     /**
      * Pattern to search for.
      * @var string
      */
-    private $pattern = '';
+    private string $pattern = '';
 
     /**
      * String to replace the pattern found with.
@@ -45,13 +45,13 @@ class AttributeAlter extends Auth\ProcessingFilter
      * Attribute to search in
      * @var string
      */
-    private $subject = '';
+    private string $subject = '';
 
     /**
      * Attribute to place the result in.
      * @var string
      */
-    private $target = '';
+    private string $target = '';
 
 
     /**
@@ -99,15 +99,15 @@ class AttributeAlter extends Auth\ProcessingFilter
      *
      * Modify existing attributes with the configured values.
      *
-     * @param array &$request The current request.
+     * @param array &$state The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         // get attributes from request
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {

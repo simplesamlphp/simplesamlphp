@@ -48,12 +48,12 @@ class MultiAuth extends Auth\Source
      * Array of sources we let the user chooses among.
      * @var array
      */
-    private $sources;
+    private array $sources;
 
     /**
      * @var string|null preselect source in filter module configuration
      */
-    private $preselect;
+    private ?string $preselect;
 
 
     /**
@@ -177,7 +177,7 @@ class MultiAuth extends Auth\Source
                     Constants::STATUS_RESPONDER,
                     'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs)
                 );
-            } else if ($number_of_sources === 1) {
+            } elseif ($number_of_sources === 1) {
                 MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
             }
         }
@@ -196,7 +196,8 @@ class MultiAuth extends Auth\Source
             $params['source'] = $_GET['source'];
         }
 
-        Utils\HTTP::redirectTrustedURL($url, $params);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed
         Assert::true(false);
@@ -309,7 +310,8 @@ class MultiAuth extends Auth\Source
             'httponly' => false,
         ];
 
-        Utils\HTTP::setCookie($cookieName, $source, $params, false);
+        $httpUtils = new Utils\HTTP();
+        $httpUtils->setCookie($cookieName, $source, $params, false);
     }
 
 

@@ -32,10 +32,10 @@ Examples
 
 Abort with an error if any attribute defined as single-valued in the eduPerson or SCHAC schemas exists and has more than one value:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:CardinalitySingle',
-            'singleValued' => array(
+            'singleValued' => [
                 /* from eduPerson (internet2-mace-dir-eduperson-201602) */
                 'eduPersonOrgDN', 'eduPersonPrimaryAffiliation', 'eduPersonPrimaryOrgUnitDN',
                 'eduPersonPrincipalName', 'eduPersonUniqueId',
@@ -45,44 +45,44 @@ Abort with an error if any attribute defined as single-valued in the eduPerson o
                 'schacMotherTongue', 'schacGender', 'schacDateOfBirth', 'schacPlaceOfBirth',
                 'schacPersonalTitle', 'schacHomeOrganization', 'schacHomeOrganizationType',
                 'schacExpiryDate',
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
 
 Abort if multiple values are received for `eduPersonPrincipalName`, but take the first value for `eduPersonPrimaryAffiliation`:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:CardinalitySingle',
-            'singleValued' => array('eduPersonPrincipalName'),
-            'firstValue' => array('eduPersonPrimaryAffiliation'),
-            ),
-        ),
-    ),
+            'singleValued' => ['eduPersonPrincipalName'],
+            'firstValue' => ['eduPersonPrimaryAffiliation'],
+            ],
+        ],
+    ],
 
 Construct `eduPersonPrimaryAffiliation` using the first value in `eduPersonAffiliation`:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeCopy',
             'eduPersonAffiliation' => 'eduPersonPrimaryAffiliation',
-        ),
-        51 => array(
+        ],
+        51 => [
             'class' => 'core:CardinalitySingle',
-            'firstValue' => array('eduPersonPrimaryAffiliation'),
-        ),
-    ),
+            'firstValue' => ['eduPersonPrimaryAffiliation'],
+        ],
+    ],
 
 Construct a single, comma-separated value version of `eduPersonAffiliation`:
 
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeCopy',
             'eduPersonAffiliation' => 'eduPersonAffiliationWithCommas',
-        ),
-        51 => array(
+        ],
+        51 => [
             'class' => 'core:CardinalitySingle',
-            'flatten' => array('eduPersonAffiliationWithCommas'),
+            'flatten' => ['eduPersonAffiliationWithCommas'],
 			'flattenWith' => ',',
-        ),
-    ),
+        ],
+    ],

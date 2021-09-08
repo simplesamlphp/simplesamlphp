@@ -21,28 +21,28 @@ class ScopeAttribute extends Auth\ProcessingFilter
      *
      * @var string
      */
-    private $scopeAttribute;
+    private string $scopeAttribute;
 
     /**
      * The attribute we want to add scope to.
      *
      * @var string
      */
-    private $sourceAttribute;
+    private string $sourceAttribute;
 
     /**
      * The attribute we want to add the scoped attributes to.
      *
      * @var string
      */
-    private $targetAttribute;
+    private string $targetAttribute;
 
     /**
      * Only modify targetAttribute if it doesn't already exist.
      *
      * @var bool
      */
-    private $onlyIfEmpty = false;
+    private bool $onlyIfEmpty = false;
 
 
     /**
@@ -67,13 +67,13 @@ class ScopeAttribute extends Auth\ProcessingFilter
     /**
      * Apply this filter to the request.
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
-        $attributes = &$request['Attributes'];
+        $attributes = &$state['Attributes'];
 
         if (!isset($attributes[$this->scopeAttribute])) {
             return;

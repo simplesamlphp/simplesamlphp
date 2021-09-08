@@ -27,7 +27,7 @@ class UnserializableException extends Exception
      *
      * @var string
      */
-    private $class;
+    private string $class;
 
 
     /**
@@ -40,6 +40,7 @@ class UnserializableException extends Exception
 
         $this->class = get_class($original);
         $msg = $original->getMessage();
+
         $code = $original->getCode();
 
         if (!is_int($code)) {

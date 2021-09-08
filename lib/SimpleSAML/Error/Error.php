@@ -25,49 +25,49 @@ class Error extends Exception
      *
      * @var string
      */
-    private $errorCode;
+    private string $errorCode;
 
     /**
      * The http code.
      *
      * @var integer
      */
-    protected $httpCode = 500;
+    protected int $httpCode = 500;
 
     /**
      * The error title tag in dictionary.
      *
      * @var string
      */
-    private $dictTitle;
+    private string $dictTitle;
 
     /**
      * The error description tag in dictionary.
      *
      * @var string
      */
-    private $dictDescr;
+    private string $dictDescr;
 
     /**
      * The name of module that threw the error.
      *
      * @var string|null
      */
-    private $module = null;
+    private ?string $module = null;
 
     /**
      * The parameters for the error.
      *
      * @var array
      */
-    private $parameters;
+    private array $parameters;
 
     /**
      * Name of custom include template for the error.
      *
      * @var string|null
      */
-    protected $includeTemplate = null;
+    protected ?string $includeTemplate = null;
 
 
     /**
@@ -199,12 +199,13 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
+        $httpUtils = new Utils\HTTP();
         $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
             'trackId'        => $session->getTrackID(),
-            'url'            => Utils\HTTP::getSelfURLNoQuery(),
+            'url'            => $httpUtils->getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
         ];
@@ -244,7 +245,8 @@ class Error extends Exception
             && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
-            $baseurl = Utils\HTTP::getBaseURL();
+            $httpUtils = new Utils\HTTP();
+            $baseurl = $httpUtils->getBaseURL();
             $data['errorReportAddress'] = $baseurl . 'errorreport.php';
         }
 

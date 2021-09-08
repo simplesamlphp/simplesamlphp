@@ -3,9 +3,10 @@
 require_once('_include.php');
 
 $config = \SimpleSAML\Configuration::getInstance();
+$httpUtils = new \SimpleSAML\Utils\HTTP();
 
 if (array_key_exists('link_href', $_REQUEST)) {
-    $link = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['link_href']);
+    $link = $httpUtils->checkURLAllowed($_REQUEST['link_href']);
 } else {
     $link = 'index.php';
 }

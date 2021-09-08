@@ -24,7 +24,7 @@ class PersistentNameID extends BaseNameIDGenerator
      *
      * @var string
      */
-    private $attribute;
+    private string $attribute;
 
 
     /**
@@ -93,7 +93,8 @@ class PersistentNameID extends BaseNameIDGenerator
             return null;
         }
 
-        $secretSalt = Utils\Config::getSecretSalt();
+        $configUtils = new Utils\Config();
+        $secretSalt = $configUtils->getSecretSalt();
 
         $uidData = 'uidhashbase' . $secretSalt;
         $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;

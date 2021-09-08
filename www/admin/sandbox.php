@@ -4,7 +4,6 @@ require_once('../_include.php');
 
 // Load SimpleSAMLphp configuration
 $config = \SimpleSAML\Configuration::getInstance()->toArray();
-$config['usenewui'] = true;
 $config = \SimpleSAML\Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 

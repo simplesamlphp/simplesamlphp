@@ -11,12 +11,12 @@ If the given AuthnContextClassRef does not match any accepted value, the user wi
 Examples
 --------
 
-    'authproc.sp' => array(
-      91 => array(
+    'authproc.sp' => [
+      91 => [
         'class' => 'saml:ExpectedAuthnContextClassRef',
-        'accepted' => array(
+        'accepted' => [
           'urn:oasis:names:tc:SAML:2.0:post:ac:classes:nist-800-63:3',
           'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-        ),
-      ),
-    ),
+        ],
+      ],
+    ],

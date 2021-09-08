@@ -2,43 +2,44 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML;
+namespace SimpleSAML\Store;
 
 use Exception;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 /**
  * Base class for data stores.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
-abstract class Store implements Utils\ClearableState
+abstract class StoreFactory implements Utils\ClearableState
 {
     /**
      * Our singleton instance.
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var \SimpleSAML\Store|false|null
+     * @var \SimpleSAML\Store\StoreInterface|false|null
      */
-    private static $instance;
+    private static $instance = null;
 
 
     /**
      * Retrieve our singleton instance.
      *
-     * @return \SimpleSAML\Store|false The data store, or false if it isn't enabled.
+     * @param string $storeType The type of store we need to instantiate
+     * @return \SimpleSAML\Store\StoreInterface|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public static function getInstance()
+    public static function getInstance(string $storeType)
     {
         if (self::$instance !== null) {
             return self::$instance;
         }
-
-        $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
 
         switch ($storeType) {
             case 'phpsession':
@@ -46,19 +47,20 @@ abstract class Store implements Utils\ClearableState
                 self::$instance = false;
                 break;
             case 'memcache':
-                self::$instance = new Store\Memcache();
+                self::$instance = new MemcacheStore();
                 break;
             case 'sql':
-                self::$instance = new Store\SQL();
+                self::$instance = new SQLStore();
                 break;
             case 'redis':
-                self::$instance = new Store\Redis();
+                self::$instance = new RedisStore();
                 break;
             default:
                 // datastore from module
                 try {
-                    $className = Module::resolveClass($storeType, 'Store', '\SimpleSAML\Store');
+                    $className = Module::resolveClass($storeType, 'StoreInterface');
                 } catch (Exception $e) {
+                    $config = Configuration::getInstance();
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
                     throw new Error\CriticalConfigurationError(
@@ -67,43 +69,12 @@ abstract class Store implements Utils\ClearableState
                         $c
                     );
                 }
-                /** @var \SimpleSAML\Store|false */
+                /** @var \SimpleSAML\Store\StoreInterface|false */
                 self::$instance = new $className();
         }
 
         return self::$instance;
     }
-
-
-    /**
-     * Retrieve a value from the data store.
-     *
-     * @param string $type The data type.
-     * @param string $key The key.
-     *
-     * @return mixed|null The value.
-     */
-    abstract public function get(string $type, string $key);
-
-
-    /**
-     * Save a value to the data store.
-     *
-     * @param string   $type The data type.
-     * @param string   $key The key.
-     * @param mixed    $value The value.
-     * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
-     */
-    abstract public function set(string $type, string $key, $value, ?int $expire = null): void;
-
-
-    /**
-     * Delete a value from the data store.
-     *
-     * @param string $type The data type.
-     * @param string $key The key.
-     */
-    abstract public function delete(string $type, string $key): void;
 
 
     /**

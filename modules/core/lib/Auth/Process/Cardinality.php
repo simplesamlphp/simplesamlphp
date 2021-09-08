@@ -19,13 +19,13 @@ use SimpleSAML\Utils;
 class Cardinality extends Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
-    private $cardinality = [];
+    private array $cardinality = [];
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = [];
+    private array $ignoreEntities = [];
 
-    /** @var \SimpleSAML\Utils\HttpAdapter */
-    private $http;
+    /** @var \SimpleSAML\Utils\HTTP */
+    private Utils\HTTP $httpUtils;
 
 
     /**
@@ -33,14 +33,14 @@ class Cardinality extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @param \SimpleSAML\Utils\HttpAdapter $http  HTTP utility service (handles redirects).
+     * @param \SimpleSAML\Utils\HTTP $httpUtils  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct(array &$config, $reserved, Utils\HttpAdapter $http = null)
+    public function __construct(array &$config, $reserved, Utils\HTTP $httpUtils = null)
     {
         parent::__construct($config, $reserved);
 
-        $this->http = $http ? : new Utils\HttpAdapter();
+        $this->httpUtils = $httpUtils ?: new Utils\HTTP();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -106,22 +106,22 @@ class Cardinality extends Auth\ProcessingFilter
     /**
      * Process this filter
      *
-     * @param array &$request  The current request
+     * @param array &$state  The current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         $entityid = false;
-        if (array_key_exists('Source', $request) && array_key_exists('entityid', $request['Source'])) {
-            $entityid = $request['Source']['entityid'];
+        if (array_key_exists('Source', $state) && array_key_exists('entityid', $state['Source'])) {
+            $entityid = $state['Source']['entityid'];
         }
         if (in_array($entityid, $this->ignoreEntities, true)) {
             Logger::debug('Cardinality: Ignoring assertions from ' . $entityid);
             return;
         }
 
-        foreach ($request['Attributes'] as $k => $v) {
+        foreach ($state['Attributes'] as $k => $v) {
             if (!array_key_exists($k, $this->cardinality)) {
                 continue;
             }
@@ -142,7 +142,7 @@ class Cardinality extends Auth\ProcessingFilter
                         )
                     );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = [
+                    $state['core:cardinality:errorAttributes'][$k] = [
                         count($v),
                         $this->cardinality[$k]['_expr']
                     ];
@@ -163,7 +163,7 @@ class Cardinality extends Auth\ProcessingFilter
                         )
                     );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = [
+                    $state['core:cardinality:errorAttributes'][$k] = [
                         count($v),
                         $this->cardinality[$k]['_expr']
                     ];
@@ -174,7 +174,7 @@ class Cardinality extends Auth\ProcessingFilter
 
         /* check for missing attributes with a minimum cardinality */
         foreach ($this->cardinality as $k => $v) {
-            if (!$this->cardinality[$k]['min'] || array_key_exists($k, $request['Attributes'])) {
+            if (!$this->cardinality[$k]['min'] || array_key_exists($k, $state['Attributes'])) {
                 continue;
             }
             if ($this->cardinality[$k]['warn']) {
@@ -184,7 +184,7 @@ class Cardinality extends Auth\ProcessingFilter
                     $entityid
                 ));
             } else {
-                $request['core:cardinality:errorAttributes'][$k] = [
+                $state['core:cardinality:errorAttributes'][$k] = [
                     0,
                     $this->cardinality[$k]['_expr']
                 ];
@@ -192,10 +192,10 @@ class Cardinality extends Auth\ProcessingFilter
         }
 
         /* abort if we found a problematic attribute */
-        if (array_key_exists('core:cardinality:errorAttributes', $request)) {
-            $id = Auth\State::saveState($request, 'core:cardinality');
+        if (array_key_exists('core:cardinality:errorAttributes', $state)) {
+            $id = Auth\State::saveState($state, 'core:cardinality');
             $url = Module::getModuleURL('core/cardinality_error.php');
-            $this->http->redirectTrustedURL($url, ['StateId' => $id]);
+            $this->httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
             return;
         }
     }

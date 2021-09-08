@@ -18,13 +18,12 @@ use SimpleSAML\Utils;
 class FilterScopes extends ProcessingFilter
 {
     /**
-     * @var array Stores any pre-configured scoped attributes which come from the filter configuration.
+     * @var string[]  Stores any pre-configured scoped attributes which come from the filter configuration.
      */
-    private $scopedAttributes = [
+    private array $scopedAttributes = [
         'eduPersonScopedAffiliation',
         'eduPersonPrincipalName'
     ];
-
 
     /**
      * Constructor for the processing filter.
@@ -41,61 +40,52 @@ class FilterScopes extends ProcessingFilter
         }
     }
 
-
     /**
      * This method applies the filter, removing any values
      *
-     * @param array &$request the current request
+     * @param array &$state the current request
      */
-    public function process(array &$request): void
+    public function process(array &$state): void
     {
-        $src = $request['Source'];
-        if (!count($this->scopedAttributes)) {
-            // paranoia, should never happen
-            Logger::warning('No scoped attributes configured.');
-            return;
-        }
+        $src = $state['Source'];
+
         $validScopes = [];
+        $host = '';
         if (array_key_exists('scope', $src) && is_array($src['scope']) && !empty($src['scope'])) {
             $validScopes = $src['scope'];
+        } else {
+            $ep = Utils\Config\Metadata::getDefaultEndpoint($state['Source']['SingleSignOnService']);
+            $host = parse_url($ep['Location'], PHP_URL_HOST) ?? '';
         }
 
-        $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
-        if ($ep !== null) {
-            foreach ($this->scopedAttributes as $attribute) {
-                if (!isset($request['Attributes'][$attribute])) {
-                    continue;
+        foreach ($this->scopedAttributes as $attribute) {
+            if (!isset($state['Attributes'][$attribute])) {
+                continue;
+            }
+
+            $values = $state['Attributes'][$attribute];
+            $newValues = [];
+            foreach ($values as $value) {
+                @list(, $scope) = explode('@', $value, 2);
+                if ($scope === null) {
+                    $newValues[] = $value;
+                    continue; // there's no scope
                 }
 
-                $values = $request['Attributes'][$attribute];
-                $newValues = [];
-                foreach ($values as $value) {
-                    $loc = $ep['Location'];
-                    $host = parse_url($loc, PHP_URL_HOST);
-                    if ($host === null) {
-                        $host = '';
-                    }
-                    $value_a = explode('@', $value, 2);
-                    if (count($value_a) < 2) {
-                        $newValues[] = $value;
-                        continue; // there's no scope
-                    }
-                    $scope = $value_a[1];
-                    if (in_array($scope, $validScopes, true)) {
-                        $newValues[] = $value;
-                    } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
-                        $newValues[] = $value;
-                    } else {
-                        Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
-                    }
-                }
-
-                if (empty($newValues)) {
-                    Logger::warning("No suitable values for attribute '$attribute', removing it.");
-                    unset($request['Attributes'][$attribute]); // remove empty attributes
+                if (in_array($scope, $validScopes, true)) {
+                    $newValues[] = $value;
+                } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
+                    $newValues[] = $value;
                 } else {
-                    $request['Attributes'][$attribute] = $newValues;
+                    Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
                 }
+            }
+
+            if (empty($newValues)) {
+                Logger::warning("No suitable values for attribute '$attribute', removing it.");
+                unset($state['Attributes'][$attribute]); // remove empty attributes
+            } else {
+                $state['Attributes'][$attribute] = $newValues;
             }
         }
     }
