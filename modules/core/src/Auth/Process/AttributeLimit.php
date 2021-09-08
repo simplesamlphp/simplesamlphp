@@ -147,7 +147,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      */
     public function process(array &$state): void
     {
-        Assert::keyExists($request, 'Attributes');
+        Assert::keyExists($state, 'Attributes');
 
         if ($this->isDefault) {
             $allowedAttributes = self::getSPIdPAllowed($state);
