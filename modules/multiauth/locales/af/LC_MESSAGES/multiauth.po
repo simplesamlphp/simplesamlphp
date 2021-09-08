@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Die gekose verifikasie bron sal gebruik word om jou te identifiseer en 'n"
-" geldige sessie te skep."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Kies 'n verifikasie bron"
-
 msgid "Select an authentication source"
 msgstr "Kies 'n verifikasie bron"
 

@@ -16,14 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Odabrani autentifikacijski servis bit će iskorišten za vašu "
-"autentifikaciju i kreiranje valjane sjednice."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Odaberite servis preko kojeg se želite autentificirati"
-
 msgid "Select an authentication source"
 msgstr "Odaberite servis preko kojeg se želite autentificirati"
 

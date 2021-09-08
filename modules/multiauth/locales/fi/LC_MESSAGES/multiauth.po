@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Valittua todentamislähdettä käytetään tunnistamiseen ja uuden istunnon "
-"luomiseen."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Valitse todentamislähde"
-
 msgid "Select an authentication source"
 msgstr "Valitse todentamislähde"
 

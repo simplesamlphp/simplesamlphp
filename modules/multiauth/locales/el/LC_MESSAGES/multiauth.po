@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Η επιλεγμένη πηγή ταυτοποίησης θα χρησιμοποιηθεί για την πιστοποίηση της "
-"ταυτότητά σας και τη δημιουργία έγκυρης συνεδρίας (session)."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Επιλογή πηγής ταυτοποίησης"
-
 msgid "Select an authentication source"
 msgstr "Επιλογή πηγής ταυτοποίησης"
 

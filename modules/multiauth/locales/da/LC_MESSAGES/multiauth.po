@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Den valgte authentifiseringskilde vil blive brugt til at authentifisere "
-"dig og give dig en gyldig session."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Vælg en authentifiseringskilde"
-
 msgid "Select an authentication source"
 msgstr "Vælg en authentifiseringskilde"
 

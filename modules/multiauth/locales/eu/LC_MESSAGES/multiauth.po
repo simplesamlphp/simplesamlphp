@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Kautotzeko hautatu duzun iturburua, kautotu eta baliozko saio bat "
-"sortzeko erabiliko da."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Hauta ezazu iturburu bat kautotzeko"
-
 msgid "Select an authentication source"
 msgstr "Hauta ezazu iturburu bat kautotzeko"
 

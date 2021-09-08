@@ -1,9 +1,9 @@
-{% set pagetitle = '{multiauth:multiauth:select_source_header}'|trans %}
+{% set pagetitle = 'Select an authentication source'|trans %}
 {% extends "base.twig" %}
 
 {% block content %}
-    <h2>{{ '{multiauth:multiauth:select_source_header}'| trans }}</h2>
-    <p>{{ '{multiauth:multiauth:select_source_text}'| trans }}</p>
+    <h2>{{ 'Select an authentication source'|trans }}</h2>
+    <p>{{ 'The selected authentication source will be used to authenticate you and and to create a valid session.'|trans }}</p>
 
     <form action="{{ selfUrl|escape('html') }}" method="get">
         <input type="hidden" name="AuthState" value="{{ authstate|escape('html') }}">

@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr "选定的认证源将会用于认证你的身份和给你一个有效的会话"
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "选择一个认证源"
-
 msgid "Select an authentication source"
 msgstr "选择一个认证源"
 

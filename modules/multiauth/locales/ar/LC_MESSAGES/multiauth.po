@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr "مصدرتوثيقك المختار سيستخدم لتصديق دخولك "
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "اختار مصدر توثيق"
-
 msgid "Select an authentication source"
 msgstr "اختار مصدر توثيق"
 

@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"A kiválasztott azonosítási metódust kiválasztva azonosítani fogjuk, és "
-"kiállítunk erről egy hiteles igazolást."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Válasszon azonosítási metódust"
-
 msgid "Select an authentication source"
 msgstr "Válasszon azonosítási metódust"
 

@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr ""
-"Valitud autentimisallikat kasutatakse sinu autentimiseks ja "
-"kasutussessiooni loomiseks."
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "Vali autentimisallikas"
-
 msgid "Select an authentication source"
 msgstr "Vali autentimisallikas"
 

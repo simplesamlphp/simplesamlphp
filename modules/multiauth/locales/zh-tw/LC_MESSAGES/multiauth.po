@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
-msgstr "系統將會使用您選擇之認證來源進行驗證並建立一個有效連線。"
-
-msgid "{multiauth:multiauth:select_source_header}"
-msgstr "選擇一個認證來源"
-
 msgid "Select an authentication source"
 msgstr "選擇一個認證來源"
 

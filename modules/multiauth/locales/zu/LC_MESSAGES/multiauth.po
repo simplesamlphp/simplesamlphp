@@ -14,11 +14,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-msgid "{multiauth:multiauth:select_source_text}"
+msgid ""
+"The selected authentication source will be used to authenticate you and "
+"and to create a valid session."
 msgstr ""
 "Umthombo wokuqinisekisa okhethiwe uzosetshenziswa ukuze uqinisekiswe "
 "futhi kwakhiwe iseshini esebenzayo."
 
-msgid "{multiauth:multiauth:select_source_header}"
+msgid "Select an authentication source"
 msgstr "Khetha umthombo wokuqinisekisa"
 
