@@ -144,39 +144,6 @@ class Translate
 
 
     /**
-     * Translate the name of an attribute.
-     *
-     * @param string $name The attribute name.
-     *
-     * @return string The translated attribute name, or the original attribute name if no translation was found.
-     */
-    public function getAttributeTranslation(string $name): string
-    {
-        // normalize attribute name
-        $normName = strtolower($name);
-        $normName = str_replace([":", "-"], "_", $normName);
-
-        // check for an extra dictionary
-        $extraDict = $this->configuration->getString('attributes.extradictionary', null);
-        if ($extraDict !== null) {
-            $dict = $this->getDictionary($extraDict);
-            if (array_key_exists($normName, $dict)) {
-                return $this->getPreferredTranslation($dict[$normName]);
-            }
-        }
-
-        // search the default attribute dictionary
-        $dict = $this->getDictionary('attributes');
-        if (array_key_exists('attribute_' . $normName, $dict)) {
-            return $this->getPreferredTranslation($dict['attribute_' . $normName]);
-        }
-
-        // no translations found
-        return $name;
-    }
-
-
-    /**
      * Mark a string for translation without translating it.
      *
      * @param string $tag A tag name to mark for translation.

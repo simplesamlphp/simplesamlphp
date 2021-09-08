@@ -147,7 +147,7 @@ class Test
             $httpUtils = new Utils\HTTP();
             $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $l = $t->getLocalization();
-            $l->addDomain($l->getLocaleDir(), 'attributes');
+            $l->addAttributeDomains();
             $t->data = [
                 'attributes' => $attributes,
                 'authData' => $authData,

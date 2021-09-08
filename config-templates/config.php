@@ -774,34 +774,6 @@ $config = [
      *   'language.get_language_function' => ['\SimpleSAML\Module\example\Template', 'getLanguage'],
      */
 
-    /*
-     * Extra dictionary for attribute names.
-     * This can be used to define local attributes.
-     *
-     * The format of the parameter is a string with <module>:<dictionary>.
-     *
-     * Specifying this option will cause us to look for modules/<module>/dictionaries/<dictionary>.definition.json
-     * The dictionary should look something like:
-     *
-     * {
-     *     "firstattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     },
-     *     "secondattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     }
-     * }
-     *
-     * Note that all attribute names in the dictionary must in lowercase.
-     *
-     * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
-     */
-    'attributes.extradictionary' => null,
-
-
-
     /**************
      | APPEARANCE |
      **************/

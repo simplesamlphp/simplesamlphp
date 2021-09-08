@@ -34,7 +34,7 @@ class LocalizationTest extends TestCase
 
 
     /**
-     * Test SimpleSAML\Locale\Localization::activateDomain().
+     * Test SimpleSAML\Locale\Localization::addDomain().
      */
     public function testAddDomain(): void
     {
@@ -45,6 +45,41 @@ class LocalizationTest extends TestCase
         $l->addDomain($newDomainLocaleDir, $newDomain);
         $registeredDomains = $l->getRegisteredDomains();
         $this->assertArrayHasKey($newDomain, $registeredDomains);
-        $this->assertEquals($registeredDomains[$newDomain], $newDomainLocaleDir);
+        $this->assertEquals($newDomainLocaleDir, $registeredDomains[$newDomain]);
+    }
+
+    /**
+     * Test SimpleSAML\Locale\Localization::addModuleDomains().
+     */
+    public function testAddModuleDomain(): void
+    {
+        $c = Configuration::loadFromArray([]);
+        $l = new Localization($c);
+        $newDomainLocaleDir = $l->getLocaleDir();
+
+        $l->addAttributeDomains();
+        $registeredDomains = $l->getRegisteredDomains();
+        $this->assertArrayHasKey('messages', $registeredDomains);
+        $this->assertArrayHasKey('attributes', $registeredDomains);
+        $this->assertEquals($newDomainLocaleDir, $registeredDomains['messages']);
+        $this->assertEquals($newDomainLocaleDir, $registeredDomains['attributes']);
+    }
+
+    /**
+     * Test SimpleSAML\Locale\Localization::addModuleDomains() with a theme.
+     */
+    public function testAddModuleDomainWithTheme(): void
+    {
+        $c = Configuration::loadFromArray(['theme.use' => 'testtheme:Test']);
+        $l = new Localization($c);
+        $newDomainLocaleDir = $l->getLocaleDir();
+        $newModuleDomainLocaleDir = $l->getDomainLocaleDir('testtheme');
+
+        $l->addAttributeDomains();
+        $registeredDomains = $l->getRegisteredDomains();
+        $this->assertArrayHasKey('messages', $registeredDomains);
+        $this->assertArrayHasKey('attributes', $registeredDomains);
+        $this->assertEquals($newDomainLocaleDir, $registeredDomains['messages']);
+        $this->assertEquals($newModuleDomainLocaleDir, $registeredDomains['attributes']);
     }
 }
