@@ -1,90 +1,33 @@
 <?php
 
-declare(strict_types=1);
 
 namespace SimpleSAML;
 
 use SimpleSAML\Utils\System;
+use SimpleSAML\Modules\ExpiryCheckModule;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
-use Symfony\Component\Config\FileLocator;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-/**
- * A class to create the container and handle a given request.
- */
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-    public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+    private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
-    /** @var string */
-    private string $module;
-
-
-    /**
-     * @param string $module
-     */
-    public function __construct(string $module)
+    public function registerBundles()
     {
-        $this->module = $module;
-
-        $env = getenv('APP_ENV') ?: (getenv('SYMFONY_ENV') ?: 'prod');
-
-        parent::__construct($env, false);
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getCacheDir(): string
-    {
-        $configuration = Configuration::getInstance();
-        $cachePath = $configuration->getString('tempdir') . DIRECTORY_SEPARATOR
-            . 'cache' . DIRECTORY_SEPARATOR . $this->module;
-
-        $sysUtils = new System();
-        if ($sysUtils->isAbsolutePath($cachePath)) {
-            return $cachePath;
+        $contents = require $this->getProjectDir().'/config/modules.php';
+        foreach ($contents as $class => $envs) {
+            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
+                yield new $class();
+            }
         }
-
-        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $cachePath;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getLogDir(): string
-    {
-        $configuration = Configuration::getInstance();
-        $loggingPath = $configuration->getString('loggingdir');
-
-        $sysUtils = new System();
-        if ($sysUtils->isAbsolutePath($loggingPath)) {
-            return $loggingPath;
-        }
-
-        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $loggingPath;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function registerBundles(): array
-    {
-        return [
-            new FrameworkBundle(),
-        ];
     }
 
 
@@ -99,6 +42,32 @@ class Kernel extends BaseKernel
     }
 
 
+    protected function configureRoutes(RouteCollectionBuilder $routes)
+    {
+        foreach ($this->bundles as $bundle) {
+            if ($bundle instanceof \SimpleSAML\Modules\Module) {
+                $baseDir = $bundle->getPath() . '/Resources/config';
+                $name = strtolower($bundle->getName());
+                $prefix = substr(
+                    $name,
+                    0,
+                    strpos($name, 'module'));
+
+                if (is_dir($baseDir)) {
+                    $routes->import($baseDir . '/routes' . self::CONFIG_EXTS, $prefix, 'glob');
+                }
+            }
+        }
+
+        $confDir = __DIR__ . '/Resources/config';
+
+        $routes->import($confDir.'/{routes}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
+
+    }
+
+
     /**
      * Configures the container.
      *
@@ -107,65 +76,14 @@ class Kernel extends BaseKernel
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
-        $configuration = Configuration::getInstance();
-        $baseDir = $configuration->getBaseDir();
-        $loader->load($baseDir . '/routing/services/*' . self::CONFIG_EXTS, 'glob');
-        $confDir = Module::getModuleDir($this->module) . '/routing/services';
-        if (is_dir($confDir)) {
-            $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
-        }
+        $container->addResource(new FileResource($this->getProjectDir().'/config/modules.php'));
+        $container->setParameter('container.dumper.inline_class_loader', true);
 
-        $container->loadFromExtension('framework', [
-            'secret' => Configuration::getInstance()->getString('secretsalt'),
-        ]);
+        $confDir = __DIR__ . '/Resources/config';
 
-        $this->registerModuleControllers($container);
-    }
-
-
-    /**
-     * Import routes.
-     *
-     * @param RouteCollectionBuilder $routes
-     */
-    protected function configureRoutes(RouteCollectionBuilder $routes): void
-    {
-        $configuration = Configuration::getInstance();
-        $baseDir = $configuration->getBaseDir();
-        $routes->import($baseDir . '/routing/routes/*' . self::CONFIG_EXTS, '/', 'glob');
-        $confDir = Module::getModuleDir($this->module) . '/routing/routes';
-        if (is_dir($confDir)) {
-            $routes->import($confDir . '/**/*' . self::CONFIG_EXTS, $this->module, 'glob');
-        }
-    }
-
-
-    /**
-     * @param ContainerBuilder $container
-     */
-    private function registerModuleControllers(ContainerBuilder $container): void
-    {
-        try {
-            $definition = new Definition();
-            $definition->setAutowired(true);
-            $definition->setPublic(true);
-
-            $controllerDir = Module::getModuleDir($this->module) . '/lib/Controller';
-
-            if (!is_dir($controllerDir)) {
-                return;
-            }
-
-            $loader = new DirectoryLoader(
-                $container,
-                new FileLocator($controllerDir . '/')
-            );
-            $loader->registerClasses(
-                $definition,
-                'SimpleSAML\\Module\\' . $this->module . '\\Controller\\',
-                $controllerDir . '/*'
-            );
-        } catch (FileLocatorFileNotFoundException $e) {
-        }
+        $loader->load($confDir.'/{packages}/*'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{packages}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{services}_'.$this->environment.self::CONFIG_EXTS, 'glob');
     }
 }

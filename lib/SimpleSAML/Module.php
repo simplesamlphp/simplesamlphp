@@ -6,6 +6,7 @@ namespace SimpleSAML;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
+use SimpleSAML\ModuleKernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -201,7 +202,7 @@ class Module
         );
 
         try {
-            $kernel = new Kernel($module);
+            $kernel = new ModuleKernel($module);
             $response = $kernel->handle($request);
             $kernel->terminate($request, $response);
 
@@ -327,6 +328,7 @@ class Module
      */
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
+
         if (isset(self::$module_info[$module]['enabled'])) {
             return self::$module_info[$module]['enabled'];
         }
@@ -354,6 +356,7 @@ class Module
         $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
+
         return $core_module ? true : false;
     }
 

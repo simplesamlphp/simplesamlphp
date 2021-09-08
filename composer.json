@@ -38,7 +38,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=7.4 || ^8.0 ",
+        "php": ">=7.4 || ^8.0",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -53,6 +53,7 @@
         "simplesamlphp/assert": "^0.2.7",
         "simplesamlphp/saml2": "^4.2.3",
         "simplesamlphp/twig-configurable-i18n": "^2.3",
+        "symfony/asset": "^5.0",
         "symfony/cache": "^5.0",
         "symfony/config": "^5.0",
         "symfony/console": "^5.0",
@@ -62,17 +63,26 @@
         "symfony/http-foundation": "^5.0",
         "symfony/http-kernel": "^5.0",
         "symfony/routing": "^5.0",
+        "symfony/translation": "^5.0",
+        "symfony/twig-bridge": "^5.0",
+        "symfony/twig-bundle": "^5.0",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^5.0",
+        "symfony/twig-bundle": "^5.0",
+        "symfony/twig-bridge": "^5.0",
         "twig/twig": "~2.0",
         "twig/intl-extra": "^3.3"
     },
     "require-dev": {
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
+        "sgomez/simplesamlphp-module-expirycheck": "dev-master",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
         "simplesamlphp/simplesamlphp-test-framework": "^1.1.0",
-        "simplesamlphp/xml-security": "^0.2.7"
+        "simplesamlphp/xml-security": "^0.2.7",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.0",
+        "symfony/stopwatch": "^4.4 || ^5,0",
+        "sgomez/simplesamlphp-module-expirycheck": "dev-master"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
@@ -87,5 +97,10 @@
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
         "source": "https://github.com/simplesamlphp/simplesamlphp"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bin/console cache:clear"
+        ]
     }
 }
