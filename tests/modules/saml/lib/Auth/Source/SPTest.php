@@ -451,7 +451,6 @@ class SPTest extends ClearStateTestCase
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
-        $this->assertIsArray($md);
         $this->assertEquals('saml20-sp-remote', $md['metadata-set']);
         $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/metadata.php/' . $spId, $md['entityid']);
         $this->assertArrayHasKey('SingleLogoutService', $md);
@@ -1273,7 +1272,6 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $protocols = $as->getSupportedProtocols();
-        $this->assertIsArray($protocols);
         $this->assertCount(1, $protocols);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
@@ -1305,7 +1303,6 @@ class SPTest extends ClearStateTestCase
         $md = $as->getHostedMetadata();
 
         $protocols = $as->getSupportedProtocols();
-        $this->assertIsArray($protocols);
         $this->assertCount(1, $protocols);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
