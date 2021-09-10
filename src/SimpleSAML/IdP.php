@@ -434,7 +434,7 @@ class IdP
         if (!empty($activeAssociations)) {
             $idp = self::getById($idpId);
             // Logout
-            $idp->doLogoutRedirect($returnToUrl);
+            $idp->doLogoutRedirect($returnToUrl, true);
         }
     }
 
@@ -499,6 +499,7 @@ class IdP
 
         $state['core:IdP'] = $this->id;
         $state['core:TerminatedAssocId'] = $assocId;
+        $skipAsLogout = $state['core:Logout:SkipAsLogout'];
 
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
@@ -510,9 +511,11 @@ class IdP
         $id = Auth\State::saveState($state, 'core:Logout:afterbridge');
         $returnTo = Module::getModuleURL('core/logout-resume', ['id' => $id]);
 
-        $this->authSource->logout($returnTo);
+        if (!$skipAsLogout) {
+            $this->authSource->logout($returnTo);
+        }
 
-        if ($assocId !== null) {
+        if ($assocId !== null || $skipAsLogout) {
             $handler = $this->getLogoutHandler();
             $handler->startLogout($state, $assocId);
         }
@@ -550,12 +553,16 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
+     * @param bool $skipAsLogout Whether to skip logging out authentication source.
+     *   Used in proxy logout scenario.
+     * @return void
      */
-    public function doLogoutRedirect(string $url): void
+    public function doLogoutRedirect(string $url, bool $skipAsLogout = false): void
     {
         $state = [
             'Responder'       => [IdP::class, 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
+            'core:Logout:SkipAsLogout' => $skipAsLogout,
         ];
 
         $this->handleLogoutRequest($state, null);
