@@ -775,7 +775,7 @@ class SAML2
             'entityid' => $entityid,
             'SingleSignOnService' => $sso,
             'SingleLogoutService' => $slo,
-            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
+            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
         ];
 
         $cryptoUtils = new Utils\Crypto();
