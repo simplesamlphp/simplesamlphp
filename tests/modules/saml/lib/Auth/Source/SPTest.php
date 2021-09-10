@@ -863,7 +863,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * SP config option RegistationInfo is reflected in metadata
+     * SP config option RegistrationInfo is reflected in metadata
      */
     public function testMetadataHostedContainsRegistrationInfo(): void
     {
