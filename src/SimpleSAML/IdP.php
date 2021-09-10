@@ -398,6 +398,12 @@ class IdP
 
         try {
             if ($needAuth) {
+                $callback = [get_class(), 'asConsumerLogoutCallback'];
+                $params = [$this->getId()];
+
+                $this->authSource->getAuthSource()->registerAsConsumerLogoutCallback($callback, $params);
+                // FIXME: callback registration should only happen AFTER authentication finished successfully!
+
                 $this->authenticate($state);
                 Assert::true(false);
             } else {
@@ -409,6 +415,26 @@ class IdP
         } catch (\Exception $e) {
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
+        }
+    }
+
+
+    public static function asConsumerLogoutCallback(string $idpId, string $returnToUrl): void
+    {
+        assert(is_string($idpId));
+        assert(is_string($returnToUrl));
+
+        // Get active associations for this IdP
+        $session = Session::getSessionFromRequest();
+        $activeAssociations = $session->getAssociations($idpId);
+
+        Logger::debug('saml:IdP - ASConsumerLogoutCallback: Active associations for ' . var_export($idpId, true) . ': ' . var_export($activeAssociations, true));
+
+        // If we still have active associations, log them out
+        if (!empty($activeAssociations)) {
+            $idp = self::getById($idpId);
+            // Logout
+            $idp->doLogoutRedirect($returnToUrl);
         }
     }
 

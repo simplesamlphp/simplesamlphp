@@ -204,6 +204,104 @@ abstract class Source
 
 
     /**
+     * Register a logout callback.
+     *
+     * @param $callback Callback structure ([CLASS_NAME, STATIC_FUNCTION_NAME]).
+     *        Static function has to have following signature: ($param1, ..., $paramN, string $returnUrl) with
+     *        $param1-N being members of $params.
+     *        If callback does not return directly (i.e. redirect) it has to make sure that $returnUrl is called after
+     *        processing finished.
+     * @param array $params Arbitrary parameters.
+     * @throws \Exception
+     */
+    public function registerAsConsumerLogoutCallback($callback, $params = []) {
+        assert(is_callable($callback));
+        assert(is_array($params));
+
+        $session = Session::getSessionFromRequest();
+
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
+
+        if ($callbacks === null) {
+            $callbacks = [];
+        }
+        $callbacks[] = [$callback, $params];
+
+        $session->setData(
+            '\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks',
+            $this->getAuthId(),
+            $callbacks,
+            Session::DATA_TIMEOUT_SESSION_END
+        );
+    }
+
+
+    public function hasAsConsumerLogoutCallbacks(): bool
+    {
+        $session = Session::getSessionFromRequest();
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
+        if ($callbacks === null) {
+            return false;
+        }
+
+        return !empty($callbacks);
+    }
+
+
+    /**
+     * Calls logout callbacks for consumers of this source.
+     * This function might not return directly, so a $returnToUrl has to be specified.
+     *
+     * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect. Make sure to include the id parameter to recover state after processing.
+     * @throws \Exception
+     */
+    public function callAsConsumerLogoutCallbacks(string $returnToUrl): void
+    {
+        assert(is_string($returnToUrl));
+
+        $state = [];
+        $state['asConsumerLogoutCallbacks:returnTo'] = $returnToUrl;
+        $state['asConsumerLogoutCallbacks:authId'] = $this->getAuthId();
+
+        self::handleAsConsumerLogoutCallbacks($state);
+    }
+
+
+    public static function handleAsConsumerLogoutCallbacks($state)
+    {
+        assert(is_array($state));
+        assert(array_key_exists('asConsumerLogoutCallbacks:returnTo', $state));
+        assert(array_key_exists('asConsumerLogoutCallbacks:authId', $state));
+
+        $authId = $state['asConsumerLogoutCallbacks:authId'];
+        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId);
+
+        if (!empty($callbacks)) {
+            // prepare updated returnToUrl in case callback redirects
+            $id = State::saveState($state, 'asConsumerLogoutCallbacks:resume');
+            $returnToUrl = Module::getModuleURL('core/source/as_logout_resume.php', ['id' => $id]);
+
+            foreach ($callbacks as $cb) { // FIXME: use loop variable or get rid of it!
+                $callback = array_shift($callbacks);
+
+                $cb = $callback[0];
+                $params = $callback[1];
+                $params[] = $returnToUrl; // append returnToUrl to params to get back to this handler after logout callback completes
+
+                // save remaining callbacks
+                $session->setData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId, $callbacks);
+                call_user_func_array($cb, $params);
+            }
+        }
+
+        // return to caller
+        $returnTo = $state['asConsumerLogoutCallbacks:returnTo'];
+        Utils\HTTP::redirectTrustedURL($returnTo);
+    }
+
+
+    /**
      * Called when a login operation has finished.
      *
      * This method never returns.

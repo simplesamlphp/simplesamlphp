@@ -69,6 +69,13 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private array $protocols = [Constants::NS_SAMLP];
 
+    /**
+     * Flag to indicate whether an incoming logout request should be propagated to consumers of this source (i.e. IdPs).
+     *
+     * @var bool
+     */
+    private $proxyLogoutEnabled = false;
+
 
     /**
      * Constructor for SAML SP authentication source.
@@ -101,6 +108,13 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
+        $this->proxyLogoutEnabled = $this->metadata->getBoolean('proxyLogoutEnable', false);
+    }
+
+
+    public function isProxyLogoutEnabled(): bool
+    {
+        return $this->proxyLogoutEnabled;
     }
 
 
