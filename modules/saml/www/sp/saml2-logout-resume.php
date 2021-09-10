@@ -53,6 +53,7 @@ if (isset($dst['ResponseLocation'])) {
 } else {
     $dst = $dst['Location'];
 }
+$lr->setDestination($dst);
 $binding->setDestination($dst);
 
 $binding->send($lr);
