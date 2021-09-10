@@ -878,6 +878,11 @@ class SAML2
             }
         }
 
+        if ($config->hasValue('saml:Extensions')) {
+            $metadata['saml:Extensions'] = $config->getArray('saml:Extensions');
+        }
+
+
         if ($config->hasValue('UIInfo')) {
             $metadata['UIInfo'] = $config->getArray('UIInfo');
         }
