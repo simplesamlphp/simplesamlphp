@@ -132,7 +132,6 @@ class Federation
         // initialize template and language
         $t = new Template($this->config, 'admin:federation.twig');
         $language = $t->getTranslator()->getLanguage()->getLanguage();
-        $defaultLang = $this->config->getString('language.default', 'en');
 
         // process hosted entities
         foreach ($entries['hosted'] as $index => $entity) {
@@ -387,10 +386,10 @@ class Federation
             $xmlUtils = new Utils\XML();
             $xmlUtils->checkSAMLMessage($xmldata, 'saml-meta');
 
-            $entities = null;
             try {
                 $entities = SAMLParser::parseDescriptorsString($xmldata);
             } catch (Exception $e) {
+                $entities = null;
                 $error = $e->getMessage();
             }
 
