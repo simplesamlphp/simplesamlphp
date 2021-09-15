@@ -10,15 +10,15 @@ Theming the user interface in SimpleSAMLphp
 
 <!-- {{TOC}} -->
 
-In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the XHTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
+In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
 
 You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
 
 
 How themes work
---------------------
+----------------
 
-If you want to customize the UI, the right way to do that is to create a new **theme**. A theme is a set of templates that can be configured to override the default templates.
+If you want to customize the UI, the right way to do that is to create a new **theme**. A theme is a set of templates that can be configured to override the default templates. Themes are a special type of SimpleSAMLphp module.
 
 ### Configuring which theme to use
 
@@ -33,12 +33,10 @@ In `config.php` there is a configuration option that controls theming. You need 
 
 The `theme.use` parameter points to which theme that will be used. If some functionality in SimpleSAMLphp needs to present UI in example with the `logout.twig` template, it will first look for `logout.twig` in the `theme.use` theme, and if not found it will all fallback to look for the base templates.
 
-All required templates SHOULD be available as a base in the `templates` folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
-
 ### Override only specific templates
 
 The SimpleSAMLphp templates are derived from a base template and include other templates as building blocks. You only need to override the templates or building blocks needed for your change.
-SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer template. These templates may refer to your own CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
+SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer template. These templates may refer to your own CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS. This means that for many theme requirements, you only need to specify a new header and footer template, and leave all other templates to SimpleSAMLphp's base versions.
 
 
 Creating your first theme
@@ -64,7 +62,7 @@ Next, we copy the header file from the base theme:
 
 	cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 
-In the `modules/mymodule/themes/fancytheme/default/includes/_header.twig` file type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
+In the `modules/mymodule/themes/fancytheme/default/_header.twig` file, type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
 
 Adding resource files
 ---------------------
@@ -78,7 +76,7 @@ modules
     └───themes
     └───www
         └───assets
-            └───logo.png
+            └───logo.svg
             └───style.css
 ```
 
@@ -90,10 +88,24 @@ Example for a custom CSS stylesheet file:
 {% endblock %}
 ```
 
+A custom theme controller
+-------------------------
+
+If you have very specific requirements for your theme, you can define a custom theme controller
+in `config.php`:
+
+    'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
+
+This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `lib`-directory.
+The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
+
+See the [Twig documentation](https://twig.symfony.com/doc/2.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
+
 Migrating to Twig templates
 ---------------------------
 
-In version 1.15, a new templating system based on [Twig](https://twig.symfony.com/) was introduced. As modules migrate, it will become necessary for themes to include both the old templating style described above and new Twig-based templates.
+For existing themes that have been created before SimpleSAMLphp 2.0, you may need to upgrade them to the Twig
+templating enging to be compatible with SimpleSAMLphp 2.0.
 
 Twig works by extending a base template, which can itself include other partial templates. Some of the content of the old `includes/header.php` template is now located in a separate `_header.twig` file. This can be customized by copying it from the base template:
 
@@ -104,16 +116,8 @@ If you need to make more extensive customizations to the base template, you shou
 	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 
 Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...` or the `asset()` function like shown above.
+If you want to use the `asset()` function, you need to move the asserts from `www/` to `www/assets/`.
 
 Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's `@namespace_name/template_path` notation. For instance, a template in `mymodule` can include the widget template from the `yourmodule` module using the notation `@yourmodule/widget.twig`. A special namespace, `__parent__`, exists to allow theme developers to more easily extend a module's stock template.
-
-Even more advanced changes can be made by defining a theme controller in `config.php`:
-
-    'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
-
-This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `lib`-directory.
-The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
-
-See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
 
 The wiki also includes some information on [migrating translations](https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translation-in-Twig) and [migrating templates](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates).
