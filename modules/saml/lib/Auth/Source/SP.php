@@ -102,13 +102,9 @@ class SP extends \SimpleSAML\Auth\Source
         $this->discoURL = $this->metadata->getString('discoURL', null);
         $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
 
-    	  $this->passAuthnContextClassRef = false;
+        $this->passAuthnContextClassRef = false;
         if (isset($config['proxymode.passAuthnContextClassRef'])) {
            	$this->passAuthnContextClassRef = $config['proxymode.passAuthnContextClassRef'];
-        }
-
-        if (empty($this->discoURL) && Module::isModuleEnabled('discojuice')) {
-            $this->discoURL = Module::getModuleURL('discojuice/central.php');
         }
     }
 
