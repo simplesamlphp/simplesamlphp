@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Utils;
 use Exception;
 use InvalidArgumentException;
 use SimpleSAML\Configuration;
-use SimpleSAML\Test\Utils\TestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Utils\EMail;
 
 /**

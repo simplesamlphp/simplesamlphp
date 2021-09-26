@@ -11,7 +11,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
 use SimpleSAML\Module\saml\IdP\SAML2;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * @covers \SimpleSAML\Module\saml\IdP\SAML2

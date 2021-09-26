@@ -13,7 +13,7 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Session;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

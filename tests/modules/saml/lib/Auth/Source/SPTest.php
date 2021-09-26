@@ -16,7 +16,7 @@ use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\Module\saml\Error\NoSupportedIDP;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\ExitTestException;
 use SimpleSAML\Test\Utils\SpTester;
 

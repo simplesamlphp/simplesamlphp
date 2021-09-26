@@ -8,12 +8,12 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use SimpleSAML\Test\Utils\ArrayLogger;
+use SimpleSAML\TestUtils\ArrayLogger;
 
 class LoggerTest extends TestCase
 {
     /**
-     * @var Logger\LoggingHandlerInterface|null
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
     protected $originalLogger;
 

@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Metadata;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * @covers \SimpleSAML\Metadata\MetadataStorageHandler

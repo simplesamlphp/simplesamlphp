@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Auth;
 use ReflectionClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Auth\Simple

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\SessionHandlerPHP;
 use SimpleSAML\Configuration;
 

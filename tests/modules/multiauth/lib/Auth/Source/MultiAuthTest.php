@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
 use Error;
 use Exception;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 
