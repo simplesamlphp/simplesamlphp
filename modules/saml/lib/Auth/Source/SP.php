@@ -524,6 +524,10 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
+        
+        if (isset($state['saml:RelayState'])) {
+            $ar->setRelayState($state['saml:RelayState']);
+        }
 
         $accr = null;
         if ($idpMetadata->getString('AuthnContextClassRef', false)) {
