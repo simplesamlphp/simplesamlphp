@@ -21,6 +21,7 @@ Released TBD
   * Fix statistics being logged despire a configured loglevel that excludes statistics.
   * Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
   * Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
+  * Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
