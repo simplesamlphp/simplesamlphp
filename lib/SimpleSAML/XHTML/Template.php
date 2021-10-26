@@ -15,12 +15,15 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use SimpleSAML\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
 use SimpleSAML\Utils;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -263,7 +266,7 @@ class Template extends Response
      * @return \Twig\Environment
      * @throws \Exception if the template does not exist
      */
-    private function setupTwig(): \Twig\Environment
+    private function setupTwig(): Environment
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
         $cache = $this->configuration->getString('template.cache', false);
@@ -289,12 +292,11 @@ class Template extends Response
             'auto_reload' => $auto_reload,
             'cache' => $cache,
             'strict_variables' => true,
-            'translation_function' => [Translate::class, 'translateSingularGettext'],
-            'translation_function_plural' => [Translate::class, 'translatePluralGettext'],
         ];
 
-        $twig = new Twig_Environment($loader, $options);
-        $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $twig = new Environment($loader, $options);
+        $twigTranslator = new TwigTranslator([Translate::class, 'translateSingularGettext']);
+        $twig->addExtension(new TranslationExtension($twigTranslator));
         $twig->addExtension(new \Twig\Extra\Intl\IntlExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));

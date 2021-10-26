@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c38c49fd3cfcb907c48e95defee76dd",
+    "content-hash": "7f44ed96e71c3c3978ae7c2d07122af6",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -589,62 +589,6 @@
                 "source": "https://github.com/simplesamlphp/saml2/tree/v4.2.4"
             },
             "time": "2021-08-24T12:21:57+00:00"
-        },
-        {
-            "name": "simplesamlphp/twig-configurable-i18n",
-            "version": "v2.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/simplesamlphp/twig-configurable-i18n.git",
-                "reference": "e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/twig-configurable-i18n/zipball/e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a",
-                "reference": "e2bffc7eed3112a0b3870ef5b4da0fd74c7c4b8a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1",
-                "twig/extensions": "@dev"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.5",
-                "sensiolabs/security-checker": "~6.0.3",
-                "simplesamlphp/simplesamlphp-test-framework": "~0.1.2",
-                "squizlabs/php_codesniffer": "^3.5",
-                "twig/twig": "^2.13"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "SimpleSAML\\TwigConfigurableI18n\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1"
-            ],
-            "authors": [
-                {
-                    "name": "Jaime Perez",
-                    "email": "jaime.perez@uninett.no"
-                }
-            ],
-            "description": "This is an extension on top of Twig's i18n extension, allowing you to customize which functions to use for translations.",
-            "keywords": [
-                "extension",
-                "gettext",
-                "i18n",
-                "internationalization",
-                "translation",
-                "twig"
-            ],
-            "support": {
-                "issues": "https://github.com/simplesamlphp/twig-configurable-i18n/issues",
-                "source": "https://github.com/simplesamlphp/twig-configurable-i18n"
-            },
-            "time": "2020-08-27T12:51:10+00:00"
         },
         {
             "name": "symfony/cache",
@@ -2832,6 +2776,205 @@
             "time": "2021-08-26T08:00:08+00:00"
         },
         {
+            "name": "symfony/translation-contracts",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation-contracts.git",
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/95c812666f3e91db75385749fe219c5e494c7f95",
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "suggest": {
+                "symfony/translation-implementation": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.4-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Contracts\\Translation\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Generic abstractions related to translation",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/translation-contracts/tree/v2.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-03-23T23:28:01+00:00"
+        },
+        {
+            "name": "symfony/twig-bridge",
+            "version": "v5.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/twig-bridge.git",
+                "reference": "503e12aded4d5cbda4f8d1f3824c6a108119822f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/503e12aded4d5cbda4f8d1f3824c6a108119822f",
+                "reference": "503e12aded4d5cbda4f8d1f3824c6a108119822f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16",
+                "symfony/translation-contracts": "^1.1|^2",
+                "twig/twig": "^2.13|^3.0.4"
+            },
+            "conflict": {
+                "phpdocumentor/reflection-docblock": "<3.2.2",
+                "phpdocumentor/type-resolver": "<1.4.0",
+                "symfony/console": "<4.4",
+                "symfony/form": "<5.3",
+                "symfony/http-foundation": "<5.3",
+                "symfony/http-kernel": "<4.4",
+                "symfony/translation": "<5.2",
+                "symfony/workflow": "<5.2"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.12",
+                "egulias/email-validator": "^2.1.10|^3",
+                "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
+                "symfony/asset": "^4.4|^5.0",
+                "symfony/console": "^4.4|^5.0",
+                "symfony/dependency-injection": "^4.4|^5.0",
+                "symfony/expression-language": "^4.4|^5.0",
+                "symfony/finder": "^4.4|^5.0",
+                "symfony/form": "^5.3",
+                "symfony/http-foundation": "^5.3",
+                "symfony/http-kernel": "^4.4|^5.0",
+                "symfony/intl": "^4.4|^5.0",
+                "symfony/mime": "^5.2",
+                "symfony/polyfill-intl-icu": "~1.0",
+                "symfony/property-info": "^4.4|^5.1",
+                "symfony/routing": "^4.4|^5.0",
+                "symfony/security-acl": "^2.8|^3.0",
+                "symfony/security-core": "^4.4|^5.0",
+                "symfony/security-csrf": "^4.4|^5.0",
+                "symfony/security-http": "^4.4|^5.0",
+                "symfony/serializer": "^5.2",
+                "symfony/stopwatch": "^4.4|^5.0",
+                "symfony/translation": "^5.2",
+                "symfony/web-link": "^4.4|^5.0",
+                "symfony/workflow": "^5.2",
+                "symfony/yaml": "^4.4|^5.0",
+                "twig/cssinliner-extra": "^2.12|^3",
+                "twig/inky-extra": "^2.12|^3",
+                "twig/markdown-extra": "^2.12|^3"
+            },
+            "suggest": {
+                "symfony/asset": "For using the AssetExtension",
+                "symfony/expression-language": "For using the ExpressionExtension",
+                "symfony/finder": "",
+                "symfony/form": "For using the FormExtension",
+                "symfony/http-kernel": "For using the HttpKernelExtension",
+                "symfony/routing": "For using the RoutingExtension",
+                "symfony/security-core": "For using the SecurityExtension",
+                "symfony/security-csrf": "For using the CsrfExtension",
+                "symfony/security-http": "For using the LogoutUrlExtension",
+                "symfony/stopwatch": "For using the StopwatchExtension",
+                "symfony/translation": "For using the TranslationExtension",
+                "symfony/var-dumper": "For using the DumpExtension",
+                "symfony/web-link": "For using the WebLinkExtension",
+                "symfony/yaml": "For using the YamlExtension"
+            },
+            "type": "symfony-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\Twig\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides integration for Twig with various Symfony components",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/twig-bridge/tree/v5.3.7"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-08-26T07:28:06+00:00"
+        },
+        {
             "name": "symfony/var-dumper",
             "version": "v5.3.8",
             "source": {
@@ -3068,86 +3211,26 @@
             "time": "2021-07-29T06:20:01+00:00"
         },
         {
-            "name": "twig/extensions",
-            "version": "v1.5.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "57873c8b0c1be51caa47df2cdb824490beb16202"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/57873c8b0c1be51caa47df2cdb824490beb16202",
-                "reference": "57873c8b0c1be51caa47df2cdb824490beb16202",
-                "shasum": ""
-            },
-            "require": {
-                "twig/twig": "^1.27|^2.0"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "^3.4",
-                "symfony/translation": "^2.7|^3.4"
-            },
-            "suggest": {
-                "symfony/translation": "Allow the time_diff output to be translated"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Twig_Extensions_": "lib/"
-                },
-                "psr-4": {
-                    "Twig\\Extensions\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Common additional features for Twig that do not directly belong in core",
-            "keywords": [
-                "i18n",
-                "text"
-            ],
-            "support": {
-                "issues": "https://github.com/twigphp/Twig-extensions/issues",
-                "source": "https://github.com/twigphp/Twig-extensions/tree/master"
-            },
-            "abandoned": true,
-            "time": "2018-12-05T18:34:18+00:00"
-        },
-        {
             "name": "twig/intl-extra",
-            "version": "v3.3.3",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/intl-extra.git",
-                "reference": "5a84d0f6bab386bc4224b4220da1daef8d015577"
+                "reference": "919e8f945c30bd3efeb6a4d79722cda538116658"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/5a84d0f6bab386bc4224b4220da1daef8d015577",
-                "reference": "5a84d0f6bab386bc4224b4220da1daef8d015577",
+                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/919e8f945c30bd3efeb6a4d79722cda538116658",
+                "reference": "919e8f945c30bd3efeb6a4d79722cda538116658",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
-                "symfony/intl": "^4.3|^5.0|^6.0",
+                "symfony/intl": "^4.3|^5.0",
                 "twig/twig": "^2.4|^3.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9"
             },
             "type": "library",
             "extra": {
@@ -3182,7 +3265,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/twigphp/intl-extra/tree/v3.3.3"
+                "source": "https://github.com/twigphp/intl-extra/tree/v3.3.0"
             },
             "funding": [
                 {
@@ -3194,20 +3277,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-20T14:28:34+00:00"
+            "time": "2021-01-01T14:58:18+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v2.14.7",
+            "version": "v3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "8e202327ee1ed863629de9b18a5ec70ac614d88f"
+                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8e202327ee1ed863629de9b18a5ec70ac614d88f",
-                "reference": "8e202327ee1ed863629de9b18a5ec70ac614d88f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a27fa056df8a6384316288ca8b0fa3a35fdeb569",
+                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569",
                 "shasum": ""
             },
             "require": {
@@ -3222,13 +3305,10 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.14-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                },
                 "psr-4": {
                     "Twig\\": "src/"
                 }
@@ -3261,7 +3341,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v2.14.7"
+                "source": "https://github.com/twigphp/Twig/tree/v3.3.3"
             },
             "funding": [
                 {
@@ -3273,7 +3353,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-17T08:39:54+00:00"
+            "time": "2021-09-17T08:44:23+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -6441,6 +6521,7 @@
                 "issues": "https://github.com/webmozart/path-util/issues",
                 "source": "https://github.com/webmozart/path-util/tree/2.3.0"
             },
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         }
     ],
