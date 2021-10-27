@@ -64,7 +64,7 @@
         "symfony/twig-bridge": "^5.3",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^5.0",
-        "twig/intl-extra": "3.3",
+        "twig/intl-extra": "^3.3",
         "twig/twig": "^3.0"
     },
     "require-dev": {
