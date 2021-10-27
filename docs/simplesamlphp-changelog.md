@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.2
 
-Released TBD
+Released 2021-10-27
 
   * Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
