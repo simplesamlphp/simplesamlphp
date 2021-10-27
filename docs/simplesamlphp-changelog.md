@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.3
+
+Released TBD
+
+  * Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
+
 ## Version 1.19.2
 
 Released 2021-10-27
