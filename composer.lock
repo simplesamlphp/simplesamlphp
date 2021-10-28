@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cabbca90ef3200c629afca7b92d8c241",
+    "content-hash": "0275ccc83fa86651a7106fdf2058de85",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -6290,16 +6290,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.11.1",
+            "version": "4.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "e33492398bd4e5e2ab60e331d445979bd83feecd"
+                "reference": "6fba5eb554f9507b72932f9c75533d8af593688d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e33492398bd4e5e2ab60e331d445979bd83feecd",
-                "reference": "e33492398bd4e5e2ab60e331d445979bd83feecd",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/6fba5eb554f9507b72932f9c75533d8af593688d",
+                "reference": "6fba5eb554f9507b72932f9c75533d8af593688d",
                 "shasum": ""
             },
             "require": {
@@ -6389,9 +6389,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.11.1"
+                "source": "https://github.com/vimeo/psalm/tree/4.11.2"
             },
-            "time": "2021-10-24T12:29:22+00:00"
+            "time": "2021-10-26T17:28:17+00:00"
         },
         {
             "name": "webmozart/path-util",
@@ -6465,6 +6465,7 @@
     },
     "platform-dev": {
         "ext-curl": "*",
+        "ext-pdo_sqlite": "*",
         "ext-sqlite3": "*"
     },
     "plugin-api-version": "2.1.0"

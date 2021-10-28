@@ -69,6 +69,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
+        "ext-pdo_sqlite": "*",
         "ext-sqlite3": "*",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
