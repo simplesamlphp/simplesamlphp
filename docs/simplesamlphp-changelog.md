@@ -6,6 +6,13 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.4
+
+Released TBD
+
+### metarefresh
+  * Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
+
 ## Version 1.19.3
 
 Released 2021-10-28
