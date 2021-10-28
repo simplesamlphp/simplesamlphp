@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0275ccc83fa86651a7106fdf2058de85",
+    "content-hash": "0c38c49fd3cfcb907c48e95defee76dd",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -6465,8 +6465,7 @@
     },
     "platform-dev": {
         "ext-curl": "*",
-        "ext-pdo_sqlite": "*",
-        "ext-sqlite3": "*"
+        "ext-pdo_sqlite": "*"
     },
     "plugin-api-version": "2.1.0"
 }
