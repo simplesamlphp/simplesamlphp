@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.3
 
-Released TBD
+Released 2021-10-28
 
   * Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
 
