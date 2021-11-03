@@ -10,6 +10,9 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+### ldap
+  * Added the possibility to escape the additional search filters that were introduced in 1.19.2
+
 ### metarefresh
   * Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
 
