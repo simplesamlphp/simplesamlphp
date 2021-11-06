@@ -249,7 +249,7 @@ try {
         $t->send();
     } else {
         header('Content-Type: application/samlmetadata+xml');
-        header('Content-Disposition: attachment; filename="' . $idpentityid . '.xml"');
+        header('Content-Disposition: attachment; filename="' . basename($idpentityid) . '.xml"');
 
         echo $metaxml;
         exit(0);
