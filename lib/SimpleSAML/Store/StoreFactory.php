@@ -55,6 +55,9 @@ abstract class StoreFactory implements Utils\ClearableState
             case 'redis':
                 self::$instance = new RedisStore();
                 break;
+            case 'mongo':
+                self::$instance = new MongoStore();
+                break;
             default:
                 // datastore from module
                 try {

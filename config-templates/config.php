@@ -1103,6 +1103,7 @@ $config = [
      * - 'memcache': Key-value datastore, based on memcache.
      * - 'sql': SQL datastore, using PDO.
      * - 'redis': Key-value datastore, based on redis.
+     * - 'mongo': NoSQL datastore, based on MongoDB.
      *
      * The default datastore is 'phpsession'.
      */
@@ -1142,4 +1143,21 @@ $config = [
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The connection string the MongoDB datastore should use to connect.
+     *
+     * See https://docs.mongodb.com/manual/reference/connection-string/
+     */
+    'store.mongo.connection_string' => 'mongodb://<username>:<password>@<address>/db?retryWrites=true&w=majority',
+
+    /*
+     * The database used by MongoDB datastore instance.
+     */
+    'store.mongo.database' => 'simpleSAMLphp',
+
+    /*
+     * The collection used by MongoDB datastore instance.
+     */
+    'store.mongo.collection' => 'kvstore',
 ];

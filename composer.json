@@ -77,6 +77,7 @@
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
+        "mongodb/mongodb": "Needed if a MongoDB server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
         "ext-ldap": "Needed if an LDAP backend is used",
         "ext-radius": "Needed if a Radius backend is used",
