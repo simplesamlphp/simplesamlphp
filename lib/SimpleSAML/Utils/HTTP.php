@@ -227,13 +227,13 @@ class HTTP
 
         /* Set the HTTP result code. This is either 303 See Other or
          * 302 Found. HTTP 303 See Other is sent if the HTTP version
-         * is HTTP/1.1 and the request type was a POST request.
+         * is >= HTTP/1.1 and the request type was a POST request.
          */
-        if (
-            $_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.1'
-            && $_SERVER['REQUEST_METHOD'] === 'POST'
-        ) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $code = 303;
+            if ($_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0') {
+                $code = 302;
+            }
         } else {
             $code = 302;
         }
