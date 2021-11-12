@@ -7,7 +7,14 @@ namespace SimpleSAML\Test\XHTML;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Locale\TwigTranslator;
+use SimpleSAML\Locale\Translate;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * @covers \SimpleSAML\XHTML\Template
@@ -108,4 +115,38 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('Your session is valid for ' . $t->data['remaining'] . ' seconds from now.', $html);
     }
 
+    public function testValidateTwigFiles()
+    {
+        $root = dirname(dirname((dirname(dirname(__DIR__)))));
+
+        // Setup basic twig environment
+        $loader = new \Twig\Loader\FilesystemLoader(['templates', 'modules'], $root);
+        $twig = new \Twig\Environment($loader, ['cache' => false]);
+
+        $twigTranslator = new TwigTranslator([Translate::class, 'translateSingularGettext']);
+        $twig->addExtension(new TranslationExtension($twigTranslator));
+        $twig->addExtension(new \Twig\Extra\Intl\IntlExtension());
+
+        // Fake functions
+        $twig->addFunction(new TwigFunction('asset', function() { return ''; }));
+        $twig->addFunction(new TwigFunction('moduleURL', function() { return ''; }));
+
+        // Fake filters
+        $twig->addFilter(new TwigFilter('translateFromArray', function() { return ''; }, ['needs_context' => true]));
+        $twig->addFilter(new TwigFilter('entityDisplayName', function() { return ''; }));
+
+        $files = Finder::create()
+            ->name('*.twig')
+            ->in([
+                $root . '/templates',
+                $root . '/modules'
+            ]);
+
+        foreach ($files as $file) {
+            /** @var SplFileInfo $file */
+            $twig->load($file->getRelativePathname());
+        }
+
+        $this->assertTrue(true, 'All *.twig files parsed load test.');
+    }
 }
