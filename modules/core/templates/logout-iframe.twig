@@ -20,7 +20,9 @@
   {%- if terminated_service %}
     {%- set SP = terminated_service['name']|translateFromArray|default('the service'|trans)|e %}
 
-    <p>{% trans %}You are now successfully logged out from {{ SP }}.{% endtrans %}</p>
+    <p>{% trans with {
+        '%SP%': SP
+    } %}You are now successfully logged out from %SP%.{% endtrans %}</p>
   {%- endif %}
   {%- if remaining_services %}
     {%- set failed = false  %}
@@ -74,8 +76,7 @@
     <br>
     <div id="error-message"{% if not failed or type == 'init' %} class="hidden"{% endif %}>
       <div class="message-box error">
-        {% trans %}Unable to log out of one or more services. To ensure that all your
-        {#- #} sessions are closed, you are encouraged to <i>close your webbrowser</i>.{% endtrans %}
+        {% trans %}Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>.{% endtrans %}
       </div>
     </div>
     <form id="error-form" action="logout-iframe-done.php"
@@ -101,7 +102,9 @@
           <input type="hidden" name="id" value="{{ auth_state }}">
           <input type="hidden" name="cancel" value="">
           <button id="btn-cancel" class="pure-button" type="submit">
-            {%- if terminated_service %}{% trans %}No, only {{ SP }}{% endtrans %}
+            {%- if terminated_service %}{% trans  with {
+                '%SP%': SP
+            } %}No, only %SP%{% endtrans %}
             {%- else %}{% trans %}No{% endtrans %}{% endif -%}
           </button>
         </form>
