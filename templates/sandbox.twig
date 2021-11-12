@@ -21,10 +21,10 @@
     <p>Twig allows you to translate strings in your templates. There are several ways to do that. If you want
         to translate the following text: <em>Hello, Untranslated World!</em>, you can do it with:</p>
     <ul>
-        <li><em>Inline trans tags</em>: using <code>{{ '{%' }} trans 'Hello, Untranslated World! %}</code> you would get
-            "{% trans 'Hello, Untranslated World!' %}".</li>
-        <li><em>Expanded trans tags</em>: using <code>{{ '{%' }} trans %}Hello, Untranslated World!{{ '{%' }} endtrans
-                %}</code> you would get "{% trans %}Hello, Untranslated World!{% endtrans %}".</li>
+        <li><em>Inline trans tags</em>: using <code>{{ '{{' }} 'Hello, Untranslated World!'|trans {{ '}}' }}</code> you would get
+            "{{ 'Hello, Untranslated World!'|trans  }}".</li>
+        <li><em>Expanded trans tags</em>: using <code>{{ '{%' }} trans {{ '%}' }}Hello, Untranslated World!{{ '{%' }} endtrans
+                {{ '%}' }}</code> you would get "{% trans %}Hello, Untranslated World!{% endtrans %}".</li>
         <li><em>Filters</em>: using <code>{{ '{{' }} variable|trans }}</code> you would get "{{ variable|trans }}".</li>
     </ul>
     <p>Translations support arguments too, so that you can replace parts of the translated string with the contents of
