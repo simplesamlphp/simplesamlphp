@@ -8,7 +8,7 @@
 
     <h2>{{ pagetitle }}</h2>
     <form method="post" class="pure-form" enctype="multipart/form-data" action="#converted">
-        <h3> {% trans 'XML metadata' %}</h3>
+        <h3> {{ 'XML metadata'|trans }}</h3>
         <div class="pure-control-group">
             <textarea name="xmldata" rows="20" class="text-area edge xmldata">{{ xmldata }}</textarea>
         </div>
@@ -29,7 +29,8 @@
     {% if output -%}
     <br>
     <h2 id="converted">{{ 'Converted metadata'|trans }}</h2>
-        {% for type, text in output if text -%}
+        {% for type, text in output -%}
+            {%- if text -%}
 {# spaceless is to work around a clipboard.js bug that would add extra whitespace #}
 {% apply spaceless %}
     <div class="code-box">
@@ -46,6 +47,7 @@
 {% endapply %}
             <br><br>
             {%- set i=i+1 %}
+            {%- endif -%}
         {%- endfor -%}
     {% elseif error is not null %}
     <br>
