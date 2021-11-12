@@ -7,7 +7,9 @@
     <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
 
 {% if remaining %}
-    <p>{% trans %}Your session is valid for {{ remaining }} seconds from now.{% endtrans %}</p>
+    <p>{% trans with {
+        '%remaining%': remaining
+    } %}Your session is valid for %remaining% seconds from now.{% endtrans %}</p>
 {% endif %}
 
 
