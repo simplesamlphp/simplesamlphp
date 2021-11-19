@@ -167,7 +167,7 @@ class AttributeLimit extends Auth\ProcessingFilter
         $attributes = &$state['Attributes'];
 
         if (!empty($this->bilateralSPs) || !empty($this->bilateralAttributes)) {
-            $entityid = $request['Destination']['entityid'];
+            $entityid = $state['Destination']['entityid'];
         }
 
         foreach ($attributes as $name => $values) {
