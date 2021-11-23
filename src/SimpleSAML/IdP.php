@@ -299,6 +299,11 @@ class IdP
             throw new Error\Exception('Not authenticated.');
         }
 
+        // register auth source consumer logout callback for proxy logout scenarios
+        $callback = [get_class(), 'asConsumerLogoutCallback'];
+        $params = [$idp->getId()];
+        $idp->authSource->getAuthSource()->registerAsConsumerLogoutCallback($callback, $params);
+
         $state['Attributes'] = $idp->authSource->getAttributes();
 
         if (isset($state['SPMetadata'])) {
@@ -400,12 +405,6 @@ class IdP
 
         try {
             if ($needAuth) {
-                $callback = [get_class(), 'asConsumerLogoutCallback'];
-                $params = [$this->getId()];
-
-                $this->authSource->getAuthSource()->registerAsConsumerLogoutCallback($callback, $params);
-                // FIXME: callback registration should only happen AFTER authentication finished successfully!
-
                 $this->authenticate($state);
                 Assert::true(false);
             } else {
