@@ -512,7 +512,7 @@ class SP extends \SimpleSAML\Auth\Source
             $policy = null;
             if (is_string($state['saml:NameIDPolicy'])) {
                 $policy = [
-                    'Format' => (string) $state['saml:NameIDPolicy'],
+                    'Format' => $state['saml:NameIDPolicy'],
                     'AllowCreate' => true,
                 ];
             } elseif (is_array($state['saml:NameIDPolicy'])) {

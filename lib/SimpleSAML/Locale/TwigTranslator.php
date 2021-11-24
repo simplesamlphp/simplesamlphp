@@ -14,6 +14,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TwigTranslator implements TranslatorInterface
 {
+    /** @var string|null $locale */
+    private ?string $locale = null;
+
+    /** @var callable $translator */
     private $translator;
 
     /**

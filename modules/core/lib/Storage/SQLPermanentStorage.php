@@ -47,7 +47,8 @@ class SQLPermanentStorage
         }
 
         $dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
-        if ($this->db = new PDO($dbfile)) {
+        $this->db = new PDO($dbfile);
+        if ($this->db) {
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {

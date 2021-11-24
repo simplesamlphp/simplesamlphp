@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
 class RouterDebugCommand extends Command
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected static $defaultName = 'debug:router';
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
@@ -348,7 +349,7 @@ class Module
                 return $mod_config[$module];
             }
 
-            throw new \Exception("Invalid module.enable value for the '$module' module.");
+            throw new Exception("Invalid module.enable value for the '$module' module.");
         }
 
         $core_module = array_key_exists($module, self::$core_modules) ? true : false;
@@ -375,7 +376,7 @@ class Module
 
         $dh = scandir($path);
         if ($dh === false) {
-            throw new \Exception('Unable to open module directory "' . $path . '".');
+            throw new Exception('Unable to open module directory "' . $path . '".');
         }
 
         foreach ($dh as $f) {
@@ -420,14 +421,14 @@ class Module
             // no module involved
             $className = $tmp[0];
             if (!class_exists($className)) {
-                throw new \Exception("Could not resolve '$id': no class named '$className'.");
+                throw new Exception("Could not resolve '$id': no class named '$className'.");
             }
         } elseif (!in_array($tmp[0], self::getModules())) {
             // Module not installed
-            throw new \Exception('No module named \'' . $tmp[0] . '\' has been installed.');
+            throw new Exception('No module named \'' . $tmp[0] . '\' has been installed.');
         } elseif (!self::isModuleEnabled($tmp[0])) {
             // Module installed, but not enabled
-            throw new \Exception('The module \'' . $tmp[0] . '\' is not enabled.');
+            throw new Exception('The module \'' . $tmp[0] . '\' is not enabled.');
         } else {
             // should be a module
             // make sure empty types are handled correctly
@@ -437,7 +438,7 @@ class Module
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
-            throw new \Exception(
+            throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
                 . '\' isn\'t a subclass of \'' . $subclass . '\'.'
             );
