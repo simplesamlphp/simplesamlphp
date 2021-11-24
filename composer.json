@@ -52,7 +52,6 @@
         "phpmailer/phpmailer": "^6.1",
         "simplesamlphp/assert": "^0.2.7",
         "simplesamlphp/saml2": "^4.2.3",
-        "simplesamlphp/twig-configurable-i18n": "^2.3",
         "symfony/cache": "^5.0",
         "symfony/config": "^5.0",
         "symfony/console": "^5.0",
@@ -62,10 +61,11 @@
         "symfony/http-foundation": "^5.0",
         "symfony/http-kernel": "^5.0",
         "symfony/routing": "^5.0",
+        "symfony/twig-bridge": "^5.3",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^5.0",
-        "twig/twig": "~2.0",
-        "twig/intl-extra": "^3.3"
+        "twig/intl-extra": "^3.3",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "ext-curl": "*",

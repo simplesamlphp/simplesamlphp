@@ -4,9 +4,9 @@
 
 <h1>{{ pagetitle }}</h1>
 
-<p>{% trans 'One or more of the attributes supplied by your identity provider did not contain the expected number of values.' %}</p>
+<p>{{ 'One or more of the attributes supplied by your identity provider did not contain the expected number of values.'|trans }}</p>
 
-<h3>{% trans 'The problematic attribute(s) are:' %}</h3>
+<h3>{{ 'The problematic attribute(s) are:'|trans }}</h3>
 
 <dl class="cardinalityErrorAttributes">
 {% for attr,issues in cardinalityErrorAttributes %}
@@ -14,12 +14,15 @@
   {% set want = issues[1] %}
 
   <dt>{{ attr }}</dt>
-  <dd>{% trans %}got {{ got }} values, want {{ want }}{% endtrans %}</dd>
+  <dd>{% trans with {
+      '%got%': got,
+      '%want%': want
+  } %}got %got% values, want %want%{% endtrans %}</dd>
 {% endfor %}
 </dl>
 
 {% if LogoutURL is defined %}
-    <p><a href="{{ LogoutURL }}">{% trans 'Logout' %}</a></p>
+    <p><a href="{{ LogoutURL }}">{{ 'Logout'|trans }}</a></p>
 {% endif %}
 
 {% endblock %}
