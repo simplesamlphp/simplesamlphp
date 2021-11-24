@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use InvalidArgumentException;
+use SAML2\XML\Chunk;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\IdP;
@@ -288,8 +289,13 @@ EOT;
         $this->assertArrayHasKey('SingleLogoutService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleLogoutService']);
         $this->assertCount(1, $hostedMd['SingleLogoutService']);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect', 
-            'Location' => 'http://localhost/simplesaml/saml2/idp/SingleLogoutService.php'], $hostedMd['SingleLogoutService'][0]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                'Location' => 'http://localhost/simplesaml/saml2/idp/SingleLogoutService.php'
+            ],
+            $hostedMd['SingleLogoutService'][0]
+        );
 
         $this->assertArrayHasKey('keys', $hostedMd);
         $this->assertIsArray($hostedMd['keys']);
@@ -349,8 +355,14 @@ EOT;
         $this->assertArrayHasKey('ArtifactResolutionService', $hostedMd);
         $this->assertIsArray($hostedMd['ArtifactResolutionService']);
         $this->assertCount(1, $hostedMd['ArtifactResolutionService']);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP', 'index' => 0,
-           'Location' => 'http://localhost/simplesaml/saml2/idp/ArtifactResolutionService.php'], $hostedMd['ArtifactResolutionService'][0]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+                'index' => 0,
+                'Location' => 'http://localhost/simplesaml/saml2/idp/ArtifactResolutionService.php'
+            ],
+            $hostedMd['ArtifactResolutionService'][0]
+        );
     }
 
     public function testIdPGetHostedMetadataHolderOfKey(): void
@@ -361,9 +373,14 @@ EOT;
         $this->assertArrayHasKey('SingleSignOnService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleSignOnService']);
         $this->assertCount(2, $hostedMd['SingleSignOnService']);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-            'Location' => 'http://localhost/simplesaml/saml2/idp/SSOService.php',
-            'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'], $hostedMd['SingleSignOnService'][0]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
+                'Location' => 'http://localhost/simplesaml/saml2/idp/SSOService.php',
+                'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            ],
+            $hostedMd['SingleSignOnService'][0]
+        );
         $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
            'Location' => 'http://localhost/simplesaml/saml2/idp/SSOService.php'], $hostedMd['SingleSignOnService'][1]);
     }
@@ -527,19 +544,26 @@ EOT;
     {
         $dom = \SAML2\DOMDocumentFactory::create();
         $republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
-        $republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
+        $republishTarget = $dom->createElementNS(
+            'http://eduid.cz/schema/metadata/1.0',
+            'eduidmd:RepublishTarget',
+            'http://edugain.org/'
+        );
         $republishRequest->appendChild($republishTarget);
-        $ext = [new \SAML2\XML\Chunk($republishRequest)];
+        $ext = [new Chunk($republishRequest)];
 
         $config = [
             'saml:Extensions' => $ext,
-            ];
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertArrayHasKey('saml:Extensions', $md);
         $this->assertCount(1, $md['saml:Extensions']);
-        $this->assertInstanceOf(\SAML2\XML\Chunk::class, $md['saml:Extensions'][0]);
-        $this->assertEquals('http://edugain.org/', $md['saml:Extensions'][0]->getXML()->firstChild->firstChild->textContent);
+        $this->assertInstanceOf(Chunk::class, $md['saml:Extensions'][0]);
+        $this->assertEquals(
+            'http://edugain.org/',
+            $md['saml:Extensions'][0]->getXML()->firstChild->firstChild->textContent
+        );
     }
 
     /**
@@ -723,15 +747,17 @@ EOT;
         $globalConfig = [
             'technicalcontact_email' => 'na@example.org',
             'technicalcontact_name' => 'Someone von Somewhere',
-	];
+        ];
 
-        $config = ['contacts' => [
-            [
-               'contactType'       => 'technical',
-               'emailAddress'      => 'j.doe@example.edu',
-               'surName'           => 'Doe',
-            ],
-        ]];
+        $config = [
+            'contacts' => [
+                [
+                    'contactType'       => 'technical',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'surName'           => 'Doe',
+                ],
+            ]
+        ];
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
 
         $this->assertCount(1, $md['contacts']);

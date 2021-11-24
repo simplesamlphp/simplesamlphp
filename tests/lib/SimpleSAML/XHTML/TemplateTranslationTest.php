@@ -13,6 +13,9 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Twig\Environment;
+use Twig\Extra\Intl\IntlExtension;
+use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
@@ -21,7 +24,8 @@ use Twig\TwigFunction;
  */
 class TemplateTranslationTest extends TestCase
 {
-    public function testCoreCardinalityErrorTemplate(): void {
+    public function testCoreCardinalityErrorTemplate(): void
+    {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'core:cardinality_error.twig');
 
@@ -30,18 +34,18 @@ class TemplateTranslationTest extends TestCase
             'test 2' => [1, 2],
         ];
 
-        $getContent = function() {
-            /** @var Template $this */
+        $getContent = function () {
+            /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
         $html = $getContent->call($t);
 
         $this->assertStringContainsString('got 0 values, want 1', $html);
         $this->assertStringContainsString('got 1 values, want 2', $html);
-
     }
 
-    public function testCoreLoginUserPassTemplate(): void {
+    public function testCoreLoginUserPassTemplate(): void
+    {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'core:loginuserpass.twig');
 
@@ -53,8 +57,8 @@ class TemplateTranslationTest extends TestCase
         $t->data['rememberMeEnabled'] = false;
         $t->data['stateparams'] = [];
 
-        $getContent = function() {
-            /** @var Template $this */
+        $getContent = function () {
+            /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
         $html = $getContent->call($t);
@@ -62,7 +66,8 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
 
-    public function testCoreLogoutIframeTemplate(): void {
+    public function testCoreLogoutIframeTemplate(): void
+    {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'core:logout-iframe.twig');
 
@@ -86,8 +91,8 @@ class TemplateTranslationTest extends TestCase
             ],
         ];
 
-        $getContent = function() {
-            /** @var Template $this */
+        $getContent = function () {
+            /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
         $html = $getContent->call($t);
@@ -96,7 +101,8 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('ze missing service', $html);
     }
 
-    public function testAuthStatusTemplate(): void {
+    public function testAuthStatusTemplate(): void
+    {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'auth_status.twig');
 
@@ -106,44 +112,78 @@ class TemplateTranslationTest extends TestCase
         $t->data['trackid'] = '';
         $t->data['authData'] = false;
 
-        $getContent = function() {
-            /** @var Template $this */
+        $getContent = function () {
+            /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
         $html = $getContent->call($t);
 
-        $this->assertStringContainsString('Your session is valid for ' . $t->data['remaining'] . ' seconds from now.', $html);
+        $this->assertStringContainsString(
+            'Your session is valid for ' . $t->data['remaining'] . ' seconds from now.',
+            $html
+        );
     }
 
-    public function testValidateTwigFiles()
+    public function testValidateTwigFiles(): void
     {
         $root = dirname(dirname((dirname(dirname(__DIR__)))));
 
         // Setup basic twig environment
-        $loader = new \Twig\Loader\FilesystemLoader(['templates', 'modules'], $root);
-        $twig = new \Twig\Environment($loader, ['cache' => false]);
+        $loader = new FilesystemLoader(['templates', 'modules'], $root);
+        $twig = new Environment($loader, ['cache' => false]);
 
         $twigTranslator = new TwigTranslator([Translate::class, 'translateSingularGettext']);
         $twig->addExtension(new TranslationExtension($twigTranslator));
-        $twig->addExtension(new \Twig\Extra\Intl\IntlExtension());
+        $twig->addExtension(new IntlExtension());
 
         // Fake functions
-        $twig->addFunction(new TwigFunction('asset', function() { return ''; }));
-        $twig->addFunction(new TwigFunction('moduleURL', function() { return ''; }));
+        $twig->addFunction(
+            new TwigFunction(
+                'asset',
+                function () {
+                    return '';
+                }
+            )
+        );
+        $twig->addFunction(
+            new TwigFunction(
+                'moduleURL',
+                function () {
+                    return '';
+                }
+            )
+        );
 
         // Fake filters
-        $twig->addFilter(new TwigFilter('translateFromArray', function() { return ''; }, ['needs_context' => true]));
-        $twig->addFilter(new TwigFilter('entityDisplayName', function() { return ''; }));
+        $twig->addFilter(
+            new TwigFilter(
+                'translateFromArray',
+                function () {
+                    return '';
+                },
+                ['needs_context' => true]
+            )
+        );
+        $twig->addFilter(
+            new TwigFilter(
+                'entityDisplayName',
+                function () {
+                    return '';
+                }
+            )
+        );
 
         $files = Finder::create()
             ->name('*.twig')
-            ->in([
-                $root . '/templates',
-                $root . '/modules'
-            ]);
+            ->in(
+                [
+                    $root . '/templates',
+                    $root . '/modules'
+                ]
+            );
 
         foreach ($files as $file) {
-            /** @var SplFileInfo $file */
+            /** @var \Symfony\Component\Finder\SplFileInfo $file */
             $twig->load($file->getRelativePathname());
         }
 

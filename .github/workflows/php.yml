@@ -194,7 +194,7 @@ jobs:
         uses: codecov/codecov-action@v1
 
       - name: PHP Code Sniffer
-        continue-on-error: true
+        continue-on-error: false
         run: php vendor/bin/phpcs
 
       - name: Psalm
@@ -202,5 +202,5 @@ jobs:
         run: php vendor/bin/psalm --show-info=true
 
       - name: Psalter
-        continue-on-error: true
+        continue-on-error: false
         run: php vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
