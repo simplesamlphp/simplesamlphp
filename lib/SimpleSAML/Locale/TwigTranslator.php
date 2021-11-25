@@ -21,14 +21,10 @@ class TwigTranslator implements TranslatorInterface
     private $translator;
 
     /**
-     * @param callable|null $translator
+     * @param callable $translator
      */
-    public function __construct(callable $translator = null)
+    public function __construct(callable $translator)
     {
-        if (!is_callable($translator)) {
-            $translator = fn($string) => gettext($string);
-        }
-
         $this->translator = $translator;
     }
 
