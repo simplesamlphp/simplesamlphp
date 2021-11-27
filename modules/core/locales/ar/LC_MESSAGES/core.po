@@ -28,9 +28,6 @@ msgstr "استخدام أزرار الرجوع للخلف و الامام بمت
 msgid "{core:no_metadata:not_found_for}"
 msgstr "لا يمكننا تحديد موقع البيانات الوصفية لهذه الجزئية"
 
-msgid "{core:no_state:suggestions}"
-msgstr "اقتراحات لحل المشكلة "
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "سجل دخول المشرف"
 
@@ -53,9 +50,6 @@ msgstr "ركب SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "تشخيص اسم المضيف، المنفذ، الطريقة"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
 
 msgid "{core:no_state:causes}"
 msgstr "سبب حدوث هذا الخطأ قد يكون:"
@@ -135,9 +129,6 @@ msgstr "لم نستطع تحديد المعلومات المفقودة للطل�
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "اظهر البيانات الوصفية/ الميتاداتا"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "اغلق الموقع ثم حاول مرة اخري"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "

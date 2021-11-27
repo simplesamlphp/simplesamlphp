@@ -29,9 +29,6 @@ msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Für folgende Entität konnten keine Metadaten gefunden werden:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Empfehlungen um dieses Problem zu lösen:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Als Administrator anmelden"
 
@@ -55,9 +52,6 @@ msgstr "SimpleSAMLphp installieren"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnose des Hostnamen, Ports und Protokolls"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Kehre zur letzen Seite zurück und versuche es erneut."
 
 msgid "{core:no_state:causes}"
 msgstr "Dieser Fehler könnte durch folgendes verursacht werden:"
@@ -139,9 +133,6 @@ msgstr ""
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Metadaten zeigen"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Schließe den Web-Browser und versuche es erneut."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."

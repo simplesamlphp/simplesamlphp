@@ -92,9 +92,6 @@ msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi
 msgid "The problematic attribute(s) are:"
 msgstr "Makgabane a nang le mathata ke:"
 
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Kgutlela leqepheng le fetileng ebe o leka hape."
-
 msgid "Report this error"
 msgstr "Tlaleha phoso ena"
 
@@ -122,9 +119,6 @@ msgstr ""
 
 msgid "State information lost"
 msgstr "Tlhahisoleseding ya provense e lahlehile"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Kwala sebadi sa webe, ebe o leka hape."
 
 msgid "Incorrect Attributes"
 msgstr "Makgabane a Fosahetseng"
@@ -158,9 +152,6 @@ msgstr "o fumane dipalo tse %GOT%, o batla tse %WANT%"
 
 msgid "Retry"
 msgstr "Khukhi e siyo"
-
-msgid "{core:no_state:suggestions}"
-msgstr "Ditlhahiso bakeng sa ho rarolla bothata bona:"
 
 msgid "{core:no_state:cause_backforward}"
 msgstr "Ho sebedisa dikonopo tsa pele le morao sebading sa webo."

@@ -29,9 +29,6 @@ msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικ�
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Είσοδος ως διαχειριστής"
 
@@ -59,9 +56,6 @@ msgid "{core:frontpage:link_diagnostics}"
 msgstr ""
 "Διαγνωστικά σχετικά με ρυθμίσεις ονόματος διακομιστή, θύρας και "
 "πρωτοκόλλου"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Επιστρέψτε στην προηγούμενη σελίδα και προσπαθήστε ξανά."
 
 msgid "{core:no_state:causes}"
 msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
@@ -155,9 +149,6 @@ msgstr ""
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Εμφάνιση μεταδεδομένων"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Κλείστε το πρόγραμμα περιήγησης ιστού (web browser) και προσπαθήστε ξανά"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."

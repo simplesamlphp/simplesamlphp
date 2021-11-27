@@ -29,9 +29,6 @@ msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Ezinezkoa izan da erakunde honentzat metadaturik aurkitzea: "
 
-msgid "{core:no_state:suggestions}"
-msgstr "Arazo hau konpontzeko iradokizunak:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Sartu administratzaile bezala"
 
@@ -55,9 +52,6 @@ msgstr "SimpleSAMLphp-en instalakuntza"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Host, ataka eta protokoloen gaineko diagnostikoa"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Itzul zaitez aurreko orrira eta saiatu berriro"
 
 msgid "{core:no_state:causes}"
 msgstr "Errore hau honek eragin dezake:"
@@ -139,9 +133,6 @@ msgstr "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Ikusi metadatuak"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Nabigatzailea itxi eta saiatu berriro"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."

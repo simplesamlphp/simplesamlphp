@@ -30,9 +30,6 @@ msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršykl�
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Nepavyko nustatyti metaduomenų šiems objektams:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Pasiūlymai spręsti šią problemą:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prisijungti administratoriaus teisėmis"
 
@@ -56,9 +53,6 @@ msgstr "Diegiamas SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Serverio vardo, porto ir protokolo diagnostika"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."
 
 msgid "{core:no_state:causes}"
 msgstr "Šią klaidą galėjo sukelti:"
@@ -137,9 +131,6 @@ msgstr "Nepavyko nustatyti būsenos informacijos šiai užklausai."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Parodyti metaduomenis"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Uždarykite interneto naršyklę ir pabandykite dar kartą."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."

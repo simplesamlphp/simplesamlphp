@@ -32,9 +32,6 @@ msgstr ""
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Ne mogu pronaći metapodatke za entitet:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Preporuke za rešavanje ovog problema:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavite se kao administrator"
 
@@ -60,9 +57,6 @@ msgstr "Instalacija SimpleSAMLphp-a"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Dijagnostika vezana za naziv servera (hostname), port i protokol "
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Vratite se na prethodnu stranicu i pokušajte ponovo."
 
 msgid "{core:no_state:causes}"
 msgstr "Ova greška može biti uzrokovana:"
@@ -144,9 +138,6 @@ msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Zatvorite web pretraživač i pokušajte ponovo."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Prekratak interval između uzastopnih SSO prijava."

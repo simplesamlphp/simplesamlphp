@@ -29,9 +29,6 @@ msgstr "Utilizzo i pulsanti avanti ed indietro del browser web."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Non siamo stati in grado di localizzare i metadati per l'entità:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Suggerimenti per risolvere questo problema:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Accedi come amministratore"
 
@@ -55,9 +52,6 @@ msgstr "Installazione di SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostica su nome dell'host, porta e protocollo"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Tornare alla pagina precedente e provare di nuovo."
 
 msgid "{core:no_state:causes}"
 msgstr "Questo errore potrebbe essere causato da:"
@@ -139,9 +133,6 @@ msgstr ""
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Mostra metadati"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Chiudere il browser web e quindi provare di nuovo."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "L'intervallo tra le autenticazioni è troppo breve."

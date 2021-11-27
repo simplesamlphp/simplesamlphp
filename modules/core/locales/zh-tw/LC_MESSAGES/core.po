@@ -27,9 +27,6 @@ msgstr "於網頁瀏覽器使用上一頁及下一頁。"
 msgid "{core:no_metadata:not_found_for}"
 msgstr "我們無法定位此實體之詮釋資料："
 
-msgid "{core:no_state:suggestions}"
-msgstr "建議解決這個問題："
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "以管理員身分登入"
 
@@ -50,9 +47,6 @@ msgstr "SimpleSAMLphp 安裝中"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "診斷主機名稱，連接埠及協定"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "回到上一頁並再試一次。"
 
 msgid "{core:no_state:causes}"
 msgstr "這個錯誤可能是因為："
@@ -134,9 +128,6 @@ msgstr "我們無法找到關於這個請求的狀態資訊。"
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "顯示詮釋資料"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "關閉網頁瀏覽器，並再試一次。"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "單一簽入事件間隔過短。"

@@ -27,9 +27,6 @@ msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "לא הצלחנו לאתר מטא-מידע עבור הישות:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "הצעות לפתרון הבעייה הנוכחית:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "כנס כמנהל מערכת"
 
@@ -52,9 +49,6 @@ msgstr "התקנת SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "איבחון על שם מחשב, פורט ופרוטוקול"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "חזור לדף הקודם ונסה שוב."
 
 msgid "{core:no_state:causes}"
 msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
@@ -132,9 +126,6 @@ msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכח�
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "הראה מטא-נתונים"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "סגור את הדפדפן, ונסה שוב."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."

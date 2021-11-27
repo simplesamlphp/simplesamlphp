@@ -29,9 +29,6 @@ msgstr "Brug frem- og tilbage-knappen i browseren."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Vi kan ikke finde metadata for denne forbindelse:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Løsningsforslag til problemet:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login som administrator"
 
@@ -55,9 +52,6 @@ msgstr "Installationsvejledning for SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnosticér hostnavn, port og protokol"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Gå tilbage til forrige side og prøv igen."
 
 msgid "{core:no_state:causes}"
 msgstr "Fejlen kan være forårsaget af:"
@@ -142,9 +136,6 @@ msgstr "Tilstandsinformation for igangværende request kan ikke findes"
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vis metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Luk din browser og prøv igen."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "For kort interval mellem single sign on hændelse."

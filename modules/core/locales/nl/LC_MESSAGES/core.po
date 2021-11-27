@@ -27,9 +27,6 @@ msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "De metadata voor de volgende entity kon niet gevonden worden:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Suggesties om dit probleem op te lossen:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
 
@@ -56,12 +53,6 @@ msgstr "Installatie van SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Inspectie op hostnaam, poort en protocol"
-
-msgid "{core:no_state:suggestion_badlink}"
-msgstr "Controleer of u de juiste link gebruikt om de website te benaderen."
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
 
 msgid "{core:no_state:causes}"
 msgstr "Deze error is waarschijnlijk veroorzaakt door:"
@@ -159,9 +150,6 @@ msgstr ""
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Toon metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Sluit de web browser, en probeer opnieuw."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Te kort interval tussen single sign on pogingen"

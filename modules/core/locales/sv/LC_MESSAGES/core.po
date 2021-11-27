@@ -27,9 +27,6 @@ msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Metadata för enehten hittades inte:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Förslag för att åtgärda detta problem:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logga in som administratör"
 
@@ -53,9 +50,6 @@ msgstr "Installerar SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnosera värdnamn, port och protokoll"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Gå tillbaka till föregående sida och försök igen."
 
 msgid "{core:no_state:causes}"
 msgstr "Detta fel kan bero på:"
@@ -137,9 +131,6 @@ msgstr "Hittar inte tillståndsinformationen för aktuell förfrågan."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Visa metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Stäng din webbläsare och försök igen."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "För kort intervall mellan inloggningar."

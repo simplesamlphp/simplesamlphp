@@ -27,9 +27,6 @@ msgstr "brauseri edasi-tagasi nuppude kasutamisest"
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Ei suudetud leida olemi metaandmeid:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Nõuanded selle probleemi lahendamiseks:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logi sisse administraatorina"
 
@@ -53,9 +50,6 @@ msgstr "SimpleSAMLphp paigaldamine"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Serverinime, pordi ja protokolli diagnostika"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Mine tagasi eelmisele leheküljele ja proovi uuesti."
 
 msgid "{core:no_state:causes}"
 msgstr "See tõrge võib olla põhjustatud:"
@@ -135,9 +129,6 @@ msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Näita metaandmeid"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Sulge brauser ja proovi uuesti."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."

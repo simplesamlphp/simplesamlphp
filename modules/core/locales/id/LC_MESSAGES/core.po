@@ -29,9 +29,6 @@ msgstr "Menggunakan tombol back dan forward pada browser web."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Kita tidak dapat menemukan metadata untuk entity"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Saran untuk memperbaiki masalah ini:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login sebagai administrator"
 
@@ -55,9 +52,6 @@ msgstr "Instalasi SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostik pada hostname, port dan protokol"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Kembali ke halaman sebelumnya dan coba lagi."
 
 msgid "{core:no_state:causes}"
 msgstr "Error ini mungkin disebabkan oleh:"
@@ -136,9 +130,6 @@ msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Perlihatkan metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Tutup browser, dan coba lagi."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Interval yang terlalu pendek antara event single sign on."

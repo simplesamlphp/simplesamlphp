@@ -28,9 +28,6 @@ msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Nu am găsit metadate pentru următoarea entitate:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Sugestii pentru rezolvarea acestei probleme:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Autentificare ca adminstrator"
 
@@ -54,9 +51,6 @@ msgstr "Se instalează SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostic despre numele de host, port și protocol"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Accesați pagina anterioară și încercați din nou."
 
 msgid "{core:no_state:causes}"
 msgstr "Această eroare poate fi cauzată de:"
@@ -145,9 +139,6 @@ msgstr ""
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vizualizare metadate"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Închideți browser-ul și încercați din nou."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."

@@ -30,9 +30,6 @@ msgstr "Using the back and forward buttons in the web browser."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "We were unable to locate the metadata for the entity:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Suggestions for resolving this problem:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login as administrator"
 
@@ -80,12 +77,6 @@ msgstr "Sanity check of your SimpleSAMLphp setup"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics on hostname, port and protocol"
-
-msgid "{core:no_state:suggestion_badlink}"
-msgstr "Check that the link you used to access the web site is correct."
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Go back to the previous page and try again."
 
 msgid "{core:no_state:causes}"
 msgstr "This error may be caused by:"
@@ -179,9 +170,6 @@ msgstr "We were unable to locate the state information for the current request."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Show metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Close the web browser, and try again."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Too short interval between single sign on events."

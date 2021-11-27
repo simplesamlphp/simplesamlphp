@@ -67,9 +67,6 @@ msgstr ""
 "Uma ungumsebenzisi othole leli phutha ngemva kokulandela ilinki "
 "ekusayithi, kufanele ubike leli phutha kumnikazi waleyo sayithi."
 
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Buyela emuva ekhasini langaphambilini bese uzame futhi."
-
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Izici Ezingalungile"
 
@@ -77,9 +74,6 @@ msgid "{core:no_state:cause_openbrowser}"
 msgstr ""
 "Kuvulwe isiphequluli sewebhu ngamathebhu alondolozwe kuseshini "
 "yangaphambilini."
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Vala isiphequluli sewebhu, bese uzame futhi."
 
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Asikwazanga ukuthola imethadatha yenhlangano:"
@@ -89,9 +83,6 @@ msgstr "Ikhukhi engatholakali"
 
 msgid "{core:cardinality:got_want}"
 msgstr "uthole amanani angu-%GOT%, ufuna %WANT%"
-
-msgid "{core:no_state:suggestions}"
-msgstr "Iziphakamiso zokuxazulula le nkinga:"
 
 msgid "{core:no_state:cause_backforward}"
 msgstr "Ukusebenzisa izinkinobho ezithi emuva naphambili kusiphequluli sewebhu."

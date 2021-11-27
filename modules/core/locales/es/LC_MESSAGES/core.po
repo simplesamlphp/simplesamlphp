@@ -29,9 +29,6 @@ msgstr "Usando los botones atrás y adelante de su navegador web."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Fue imposible localizar los metadatos para la entidad:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Sugerencias para resolver este problema"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Entrar como administrador"
 
@@ -55,9 +52,6 @@ msgstr "Instalación de SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnóstico sobre nombre de host, puerto y protocolo"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Regrese a la página anterior y pruebe de nuevo"
 
 msgid "{core:no_state:causes}"
 msgstr "Este error puede ser causado por"
@@ -151,9 +145,6 @@ msgstr "No podemos encontrar la información de estado para la solicitud actual"
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Ver metadatos"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Cierre el navegador y pruebe de nuevo"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."

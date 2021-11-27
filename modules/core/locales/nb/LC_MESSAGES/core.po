@@ -27,9 +27,6 @@ msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Vi fant ikke metadataene for:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Forslag for å løse dette problemet:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login som administrator"
 
@@ -53,9 +50,6 @@ msgstr "Installerer SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostiser hostnavn, port og protokoll"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Gå tilbake til forrige side og prøv på nytt."
 
 msgid "{core:no_state:causes}"
 msgstr "Denne feilen kan være forårsaket av:"
@@ -138,9 +132,6 @@ msgstr "Vi kunne ikke finne tilstandsinformasjonen for denne forespørselen."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vis metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Lukk nettleseren, og prøv på nytt."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "For kort intervall imellom innloggingsforespørsler"

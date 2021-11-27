@@ -29,9 +29,6 @@ msgstr "Utilisation des boutons avance et retour dans le navigateur."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Nous ne trouvons pas les métadonnées de l'entité :"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Suggestions pour résoudre ce problème :"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Connexion en tant qu'administrateur"
 
@@ -54,9 +51,6 @@ msgstr "Installation de SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics sur le nom d'hôte, le port et le protocole"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Retournez à la page précédente et réessayez."
 
 msgid "{core:no_state:causes}"
 msgstr "Cette erreur peut être causée par :"
@@ -137,9 +131,6 @@ msgstr "Nous ne pouvons pas trouver l'information d'état pour la demande couran
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Afficher les métadonnées"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Fermez le navigateur, essayez à nouveau."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Connexions uniques trop proches dans le temps."

@@ -28,9 +28,6 @@ msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Metapodatkov za to entiteto ni bilo moč najti."
 
-msgid "{core:no_state:suggestions}"
-msgstr "Predloga za razrešitev nastale težave:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavi se kot administrator"
 
@@ -53,9 +50,6 @@ msgstr "Namestitev SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostika strežnika, vrata in protokol"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
 
 msgid "{core:no_state:causes}"
 msgstr "Vzrok za to napako je lahko:"
@@ -133,9 +127,6 @@ msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Zaprite spletni brskalnik in poskusite znova."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Prekratek interval med dogodki enotne prijave."

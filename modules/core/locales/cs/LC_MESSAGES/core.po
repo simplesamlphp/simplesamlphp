@@ -28,9 +28,6 @@ msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Nebyla nalezena metadata pro entitu:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Návrhy pro vyřešení tohoto problému:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Příhlásit se jako administrátor"
 
@@ -56,9 +53,6 @@ msgstr "Instalace SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnoza jména počítače, portu a protokolu"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Jít zpět na předchozí stránku a zkusit znovu."
 
 msgid "{core:no_state:causes}"
 msgstr "Tato chyba může být způsobená:"
@@ -138,9 +132,6 @@ msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Zobraz metadata"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Zavřít webový prohlížeč a zkusit znovu."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."

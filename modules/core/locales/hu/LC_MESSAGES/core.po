@@ -29,9 +29,6 @@ msgstr "Használja a böngésző előre, ill. vissza gombjait"
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Az következő entitáshoz nem található metaadat:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Javaslat a probléma elhárítására:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Bejelentkezés adminisztrátorként"
 
@@ -57,9 +54,6 @@ msgstr "SimpleSAMLphp telepítése"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Port és protokoll diagnosztika"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."
 
 msgid "{core:no_state:causes}"
 msgstr "Az alábbi hibát okozhatta:"
@@ -139,9 +133,6 @@ msgstr "Nem lehet beazonosítani a kéréshez tartozó állapotinformációt."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Mutasd a metaadatokat"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Zárja be böngészőjét, majd próbálja újra."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Túl kevés idő telt el a belépési kísérletek között."

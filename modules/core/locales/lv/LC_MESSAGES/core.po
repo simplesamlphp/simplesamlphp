@@ -28,9 +28,6 @@ msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Metadati šai entītijai nav atrasti:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "Ieteikumi problēmas atrisināšanai:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Pieslēgties kā administrators"
 
@@ -53,9 +50,6 @@ msgstr "Instalē SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Saimniekdatora vārda, porta un protokola diagnostika"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Ejiet atpakaļ uz iepriekšējo lapu un mēģiniet vēlreiz."
 
 msgid "{core:no_state:causes}"
 msgstr "Kļūdu radījis:"
@@ -133,9 +127,6 @@ msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Rādīt metadatus"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Aizveriet interneta pārlūku un mēģiniet vēlreiz."
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."

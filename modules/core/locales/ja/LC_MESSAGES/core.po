@@ -30,9 +30,6 @@ msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 msgid "{core:no_metadata:not_found_for}"
 msgstr "メタデータの実体を見つけることが出来ませんでした:"
 
-msgid "{core:no_state:suggestions}"
-msgstr "この問題を解決する為の提案:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "管理者としてログイン"
 
@@ -77,12 +74,6 @@ msgstr "SimpleSAMLphpセットアップのサニティーチェック"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "ホストネームやポート、プロトコルを確認"
-
-msgid "{core:no_state:suggestion_badlink}"
-msgstr "WEBサイトのリンクが正しいことを確認してください。"
-
-msgid "{core:no_state:suggestion_goback}"
-msgstr "前のページに戻り、再度試してください。"
 
 msgid "{core:no_state:causes}"
 msgstr "このエラーの原因:"
@@ -169,9 +160,6 @@ msgstr "現在のリクエストから状態情報を特定することが出来
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "メタデータを表示"
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "WEBブラウザを閉じて、再度試してください。"
 
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "シングルサインオンイベントの間隔が短すぎます。"

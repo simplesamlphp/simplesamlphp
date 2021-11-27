@@ -68,17 +68,11 @@ msgstr ""
 "Ukuba ngaba ungumsebenzisi ofumene le mpazamo emva kokulandela ilinki "
 "kwisayithi, ufanele uchaze le mpazamo kumnini walo sayithi."
 
-msgid "{core:no_state:suggestion_goback}"
-msgstr "Buyela emva kwikhasi elidlulileyo uzame kwakhona."
-
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Iimpawu Ezingachanekanga"
 
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo."
-
-msgid "{core:no_state:suggestion_closebrowser}"
-msgstr "Vala ibhrawuza yewebhu, uzame kwakhona."
 
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Asikwazanga ukufumana imetadata ye-entithi:"
@@ -88,9 +82,6 @@ msgstr "Ikhuki engekhoyo"
 
 msgid "{core:cardinality:got_want}"
 msgstr "kukho amaxabiso e-%GOT%, sifuna %WANT%"
-
-msgid "{core:no_state:suggestions}"
-msgstr "Iingcebiso zokulungisa le ngxaki:"
 
 msgid "{core:no_state:cause_backforward}"
 msgstr "Ukusebenzisa amaqhosha okuya emva naphambili kwibhrawuza yewebhu."
