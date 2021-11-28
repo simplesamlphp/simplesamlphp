@@ -568,6 +568,7 @@ class Message
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response.
+     * @param bool $allowEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
      *
@@ -577,7 +578,8 @@ class Message
     public static function processResponse(
         Configuration $spMetadata,
         Configuration $idpMetadata,
-        Response $response
+        Response $response,
+        $allowEmptySubjectConfirmationData = false
     ): array {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
@@ -605,7 +607,7 @@ class Message
 
         $ret = [];
         foreach ($assertion as $a) {
-            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned);
+            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned, $allowEmptySubjectConfirmationData);
         }
 
         return $ret;
@@ -620,20 +622,22 @@ class Message
      * @param \SAML2\Response $response The response containing the assertion.
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
+     * @param bool $allowEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return \SAML2\Assertion The assertion, if it is valid.
      *
-     * @throws \SimpleSAML\Error\Exception if an error occurs while trying to validate the assertion, or if a assertion
-     * is not signed and it should be, or if we are unable to decrypt the NameID due to a local failure (missing or
-     * invalid decryption key).
      * @throws \Exception if we couldn't decrypt the NameID for unexpected reasons.
+     * @throws \SimpleSAML\Error\Exception if an error occurs while trying to validate the assertion, or if a assertion
+     *   is not signed and it should be, or if we are unable to decrypt the NameID due to a local failure (missing or
+     *   invalid decryption key).
      */
     private static function processAssertion(
         Configuration $spMetadata,
         Configuration $idpMetadata,
         Response $response,
         $assertion,
-        bool $responseSigned
+        bool $responseSigned,
+        $allowEmptySubjectConfirmationData = false
     ): Assertion {
         Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
 
@@ -783,8 +787,13 @@ class Message
 
             // if no SubjectConfirmationData then don't do anything.
             if ($scd === null) {
-                $lastError = 'No SubjectConfirmationData provided';
-                continue;
+                if ($allowEmptySubjectConfirmationData) {
+                    $found = true;
+                    break;
+                } else {
+                    $lastError = 'No SubjectConfirmationData provided';
+                    continue;
+                }
             }
 
             $notBefore = $scd->getNotBefore();
