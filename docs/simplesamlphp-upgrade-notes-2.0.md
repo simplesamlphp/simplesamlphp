@@ -12,6 +12,8 @@ Upgrade notes for SimpleSAMLphp 2.0
     make sure you change them to reflect the method signatures of the base classes.
 - If you used some of the modules that were shipped with SimpleSAMLphp, you now have to manually install them using Composer;
     For example, to use the ldap-module: bin/composer.phar require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
+- Modules must be enabled through the `module.enable` option in `config.php`. Modules can no longer be enabled by having
+     a file named `enable` or `default-enable` in the module's root directory.
 - If you're using the core:TargetedID authproc-filter, note that the `attributename` setting has been renamed to `identifyingAttribute`.
 - The default encryption algorithm is set from AES128_CBC to AES128_GCM. If you're upgrading from an existing implementation, you may want
     to manually switch back the `sharedkey_algorithm`. Note that CBC is vulnerable to the Padding oracle attack.
