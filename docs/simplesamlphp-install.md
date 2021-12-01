@@ -328,23 +328,8 @@ can do that in the configuration:
 
 Set to `true` the modules you want to enable, and to `false` those that you want to disable.
 
-Alternatively, you can enable or disable modules by setting empty files with given names in the module's root 
-directory. For example, in order to enable the _consent_ module: 
-
-```
-    cd modules/consent
-    touch enable
-```
-
-If you later want to disable the module, you can rename the `enable` file to `disable`.
-
-```
-    cd modules/consent
-    mv enable disable
-```
-
-This is the traditional way of enabling and disabling modules, but it is **deprecated**. Please do not rely on this in
-new installations of the software.
+Prior to SSP V2 you could enable or disable modules by setting empty files with names (`enable`, `disable`,
+`default-enable`) in the module's root directory. You need to now use the `module.enable` config option.
 
 
 The SimpleSAMLphp installation web page
