@@ -240,9 +240,16 @@ class Session implements Serializable, Utils\ClearableState
 
             foreach ($parameters['RawAttributes'] as $attribute => $values) {
                 foreach ($values as $idx => $value) {
-                    // this should be originally a DOMNodeList
-                    /* @var \SAML2\XML\saml\AttributeValue $value */
-                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->getElement()->childNodes;
+                    try {
+                        // this should be originally a DOMNodeList
+                        /* @var \SAML2\XML\saml\AttributeValue $value */
+                        $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->getElement()->childNodes;
+                    }
+                    catch (\Error $e) {
+                        // It is possible to get a PHP error.
+                        // For example: Cannot access private property SAML2\XML\saml\AttributeValue::$element.
+                        // We ignore that error.
+                    }
                 }
             }
         }
