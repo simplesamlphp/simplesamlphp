@@ -38,7 +38,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=7.4 || ^8.0 ",
+        "php": ">=7.4 || ^8.0",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -61,6 +61,7 @@
         "symfony/http-foundation": "^5.0",
         "symfony/http-kernel": "^5.0",
         "symfony/routing": "^5.0",
+        "symfony/translation-contracts": "<3",
         "symfony/twig-bridge": "^5.3",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^5.0",
