@@ -10,7 +10,7 @@
        e.g. "core:no_state.tpl.php". The format is "<module>:<template name>"
     #}
     {% if includeTemplate -%}
-        {% set parts = includeTemplate|replace({'.tpl.php':'.twig'})|split(':') %}
+        {% set parts = includeTemplate|split(':') %}
         {% set namespacedTemplate = "@" ~ parts[0] ~ "/" ~ parts[1] %}
         {% include(namespacedTemplate) %}
     {%- endif %}
