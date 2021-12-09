@@ -7,6 +7,7 @@ namespace SimpleSAML\Error;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -269,6 +270,15 @@ class Error extends Exception
             Assert::true(false);
         } else {
             $t = new Template($config, 'error.twig', 'errors');
+
+            // Include translations for the module that holds the included template
+            if ($this->includeTemplate !== null) {
+                $module = explode(':', $this->includeTemplate, 2);
+                if (count($module) === 2 && Module::isModuleEnabled($module[0])) {
+                    $t->getLocalization()->addModuleDomain($module[0]);
+                }
+            }
+
             $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
             $t->send();
