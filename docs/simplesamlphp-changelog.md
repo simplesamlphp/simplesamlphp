@@ -16,6 +16,9 @@ Released TBD
 ### ldap
   * Added the possibility to escape the additional search filters that were introduced in 1.19.2
 
+### saml2 library
+  * The library has been quick-fixed to support PHP 8.1 (#1545)
+
 ### metarefresh
   * Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
 
