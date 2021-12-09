@@ -10,6 +10,9 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+### core
+  * Fix translations for included templates (i.e. metadata not found error)
+
 ### ldap
   * Added the possibility to escape the additional search filters that were introduced in 1.19.2
 
