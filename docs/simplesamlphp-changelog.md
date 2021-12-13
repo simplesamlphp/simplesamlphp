@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.4
 
-Released TBD
+Released 13-12-2021
 
 ### core
   * Fix translations for included templates (i.e. metadata not found error)
