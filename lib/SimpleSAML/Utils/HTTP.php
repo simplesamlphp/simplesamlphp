@@ -159,6 +159,9 @@ class HTTP
     {
         $default_port = $this->getServerHTTPS() ? '443' : '80';
         $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+        if (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+        	$port = $_SERVER['HTTP_X_FORWARDED_PORT'];
+        }
 
         // Take care of edge-case where SERVER_PORT is an integer
         $port = strval($port);
