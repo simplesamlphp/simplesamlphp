@@ -90,5 +90,11 @@
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
         "source": "https://github.com/simplesamlphp/simplesamlphp"
+    },
+    "config": {
+        "allow-plugins": {
+            "simplesamlphp/composer-module-installer": true,
+            "composer/package-versions-deprecated": true
+        }
     }
 }
