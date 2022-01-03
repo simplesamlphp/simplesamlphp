@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.5
+
+Released TBD
+
+  * Fix composer-file to prevent warnings
+
 ## Version 1.19.4
 
 Released 13-12-2021
