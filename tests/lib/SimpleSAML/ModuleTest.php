@@ -118,11 +118,11 @@ class ModuleTest extends TestCase
      */
     public function testGetModuleHooks(): void
     {
-        $hooks = Module::getModuleHooks('saml');
-        $this->assertArrayHasKey('metadata_hosted', $hooks);
-        $this->assertEquals('saml_hook_metadata_hosted', $hooks['metadata_hosted']['func']);
-        $expectedFile = dirname(__DIR__, 3) . '/modules/saml/hooks/hook_metadata_hosted.php';
-        $this->assertEquals($expectedFile, $hooks['metadata_hosted']['file']);
+        $hooks = Module::getModuleHooks('cron');
+        $this->assertArrayHasKey('configpage', $hooks);
+        $this->assertEquals('cron_hook_configpage', $hooks['configpage']['func']);
+        $expectedFile = dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php';
+        $this->assertEquals($expectedFile, $hooks['configpage']['file']);
     }
 
     /**
