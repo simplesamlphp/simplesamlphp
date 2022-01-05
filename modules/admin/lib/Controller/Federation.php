@@ -236,7 +236,8 @@ class Federation
                 $adfsentities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/?idpentityid=' . urlencode($idp['entityid']));
+                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/?idpentityid=' .
+                            urlencode($idp['entityid']));
                         $idp['metadata-set'] = 'adfs-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = ADFS_IdP::getHostedMetadata($idp['entityid']);
