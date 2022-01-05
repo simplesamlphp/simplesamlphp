@@ -102,11 +102,10 @@ class XML
         // see if debugging is enabled for SAML messages
         $debug = Configuration::getInstance()->getArray('debug', ['saml' => false]);
 
-        if (
-            !(in_array('saml', $debug, true) // implicitly enabled
-            || (array_key_exists('saml', $debug)
-            && $debug['saml'] === true) // explicitly enabled
-	    )
+        if (!(
+            in_array('saml', $debug, true) || // implicitly enabled
+            (array_key_exists('saml', $debug) && $debug['saml'] === true) // explicitly enabled
+            )
         ) {
             // debugging messages is disabled
             return;

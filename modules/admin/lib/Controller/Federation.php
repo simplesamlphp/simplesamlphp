@@ -121,7 +121,8 @@ class Federation
         $entries = [
             'hosted' => array_merge($hostedSPs, $hostedIdPs),
             'remote' => [
-                'saml20-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('saml20-idp-remote', true) : [],
+                'saml20-idp-remote' => !empty($hostedSPs)
+                    ? $this->mdHandler->getList('saml20-idp-remote', true) : [],
                 'saml20-sp-remote' => $this->config->getBoolean('enable.saml20-idp', false) === true
                     ? $this->mdHandler->getList('saml20-sp-remote', true) : [],
                 'adfs-sp-remote' => ($this->config->getBoolean('enable.adfs-idp', false) === true) &&
