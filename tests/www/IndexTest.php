@@ -74,7 +74,7 @@ class IndexTest extends TestCase
         $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
-        $this->assertEquals('302', $resp['code']);
+        $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'http://example.org/simplesaml/module.php/core/login',
             $resp['headers']['Location']
@@ -87,7 +87,7 @@ class IndexTest extends TestCase
         $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
-        $this->assertEquals('302', $resp['code']);
+        $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'https://example.org/module.php/core/login',
             $resp['headers']['Location']
@@ -100,7 +100,7 @@ class IndexTest extends TestCase
         $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
-        $this->assertEquals('302', $resp['code']);
+        $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'http://' . $this->server_addr . '/simplesaml/module.php/core/login',
             $resp['headers']['Location']
