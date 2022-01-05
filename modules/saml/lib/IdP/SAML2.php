@@ -917,7 +917,7 @@ class SAML2
         if ($email && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'givenName' => $globalConfig->getString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
