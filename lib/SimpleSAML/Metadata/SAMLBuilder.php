@@ -535,7 +535,7 @@ class SAMLBuilder
 
         foreach ($metadata->getArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                $this->addContact($contact['contactType'], Utils\Config\Metadata::getContact($contact));
+                $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
         }
     }
@@ -583,7 +583,7 @@ class SAMLBuilder
 
         foreach ($metadata->getArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                $this->addContact($contact['contactType'], Utils\Config\Metadata::getContact($contact));
+                $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
         }
     }
@@ -623,22 +623,14 @@ class SAMLBuilder
     /**
      * Add contact information.
      *
-     * Accepts a contact type, and a contact array that must be previously sanitized.
+     * Accepts a contact type, and a contact array that must be previously sanitized
+     * by calling Utils\Config\Metadata::getContact().
      *
-     * WARNING: This function will change its signature and no longer parse a 'name' element.
-     *
-     * @param string $type The type of contact. Deprecated.
      * @param array  $details The details about the contact.
-     *
-     * @todo Change the signature to remove $type.
-     * @todo Remove the capability to pass a name and parse it inside the method.
      */
-    public function addContact(string $type, array $details): void
+    public function addContact(array $details): void
     {
         Assert::oneOf($type, ['technical', 'support', 'administrative', 'billing', 'other']);
-
-        // TODO: remove this check as soon as getContact() is called always before calling this function
-        $details = Utils\Config\Metadata::getContact($details);
 
         $e = new \SAML2\XML\md\ContactPerson();
         $e->setContactType($type);

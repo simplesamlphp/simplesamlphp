@@ -72,7 +72,6 @@ class Metadata
      * - contactType     The type of the contact (as string). Mandatory.
      * - emailAddress    Email address (as string), or array of email addresses. Optional.
      * - telephoneNumber Telephone number of contact (as string), or array of telephone numbers. Optional.
-     * - name            Full name of contact, either as <GivenName> <SurName>, or as <SurName>, <GivenName>. Optional.
      * - surName         Surname of contact (as string). Optional.
      * - givenName       Given name of contact (as string). Optional.
      * - company         Company name of contact (as string). Optional.
@@ -84,22 +83,11 @@ class Metadata
      * - billing
      * - other
      *
-     * If given a "name" it will try to decompose it into its given name and surname, only if neither givenName nor
-     * surName are present. It works as follows:
-     * - "surname1 surname2, given_name1 given_name2"
-     *      givenName: "given_name1 given_name2"
-     *      surname: "surname1 surname2"
-     * - "given_name surname"
-     *      givenName: "given_name"
-     *      surname: "surname"
-     *
      * otherwise it will just return the name as "givenName" in the resulting array.
      *
      * @param array|null $contact The contact to parse and sanitize.
      *
-     * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
-     * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
-     * missing.
+     * @return array An array holding valid contact configuration options.
      * @throws \InvalidArgumentException If $contact is neither an array nor null, or the contact does not conform to
      *     valid configuration rules for contacts.
      */
@@ -128,26 +116,6 @@ class Metadata
                 || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
             ) {
                 throw new \InvalidArgumentException('"attributes" must be an array and cannot be empty.');
-            }
-        }
-
-        // try to fill in givenName and surName from name
-        if (isset($contact['name']) && !isset($contact['givenName']) && !isset($contact['surName'])) {
-            // first check if it's comma separated
-            $names = explode(',', $contact['name'], 2);
-            if (count($names) === 2) {
-                $contact['surName'] = preg_replace('/\s+/', ' ', trim($names[0]));
-                $contact['givenName'] = preg_replace('/\s+/', ' ', trim($names[1]));
-            } else {
-                // check if it's in "given name surname" format
-                $names = explode(' ', preg_replace('/\s+/', ' ', trim($contact['name'])));
-                if (count($names) === 2) {
-                    $contact['givenName'] = preg_replace('/\s+/', ' ', trim($names[0]));
-                    $contact['surName'] = preg_replace('/\s+/', ' ', trim($names[1]));
-                } else {
-                    // nothing works, return it as given name
-                    $contact['givenName'] = preg_replace('/\s+/', ' ', trim($contact['name']));
-                }
             }
         }
 

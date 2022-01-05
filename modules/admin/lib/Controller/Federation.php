@@ -255,7 +255,7 @@ class Federation
                     $builder->addOrganizationInfo($entity['metadata_array']);
                     if (isset($entity['metadata_array']['contacts'])) {
                         foreach ($entity['metadata_array']['contacts'] as $contact) {
-                            $builder->addContact($contact['contactType'], $contact);
+                            $builder->addContact(Utils\Config\Metadata::getContact($contact));
                         }
                     }
 
