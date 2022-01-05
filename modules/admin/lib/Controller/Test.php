@@ -157,9 +157,6 @@ class Test
             ];
         }
 
-        Module::callHooks('configpage', $t);
-        Assert::isInstanceOf($t, Template::class);
-
         $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }

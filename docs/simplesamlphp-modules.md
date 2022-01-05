@@ -205,12 +205,7 @@ function named `<module name>_hook_<hook name>`.
 Each hook function accepts a single argument. This argument will be 
 passed by reference, which allows each hook to update that argument.
 
-There is currently a single user of the hook interface - the front 
-page. The front page defines a hook named `frontpage`, which allows 
-modules to add things to the different sections on the front page. For 
-an example of this, see the `modules/modinfo/hooks/hook_frontpage.php` 
-file in the
-[modinfo module](https://github.com/simplesamlphp/simplesamlphp-module-modinfo).
-
-
+For an example of hook usage, see the cron module, which adds a link
+to its information page in the Configuration section of the admin
+module, through the file `modules/cron/hooks/hook_configpage.php`.
 

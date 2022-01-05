@@ -1,6 +1,9 @@
 coverage:
   status:
     project: yes
+      default:
+        target: 0%
+        threshold: 2%
     patch: off
 comment:
   layout: "diff"
