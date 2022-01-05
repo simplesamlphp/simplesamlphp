@@ -48,9 +48,6 @@ Options
 `certData`
 :   The base64 encoded certificate for this IdP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
-`certFingerprint`
-:   If you only need to validate signatures received from this IdP, you can specify the certificate fingerprint instead of storing the full certificate. *Deprecated:* please use `certData` or `certificate` options. This option will be removed in a future version of simpleSAMLphp.
-
 `certificate`
 :   The file with the certificate for this IdP. The path is relative to the `cert`-directory.
 
