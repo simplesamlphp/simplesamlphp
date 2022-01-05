@@ -193,18 +193,19 @@ class Federation
             try {
                 $idps = $this->mdHandler->getList('saml20-idp-hosted');
                 $saml2entities = [];
+                $httpUtils = new Utils\HTTP();
+                $metadataBase = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml2/idp/metadata/' . $idp['auth']);
+                        $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
                         $saml2entities[] = $idp;
                     }
                 } else {
-                    $httpUtils = new Utils\HTTP();
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
-                    $saml2entities['saml20-idp']['url'] = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
+                    $saml2entities['saml20-idp']['url'] = $metadataBase;
                     $saml2entities['saml20-idp']['metadata_array'] = SAML2_IdP::getHostedMetadata(
                         $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
                     );
@@ -234,7 +235,7 @@ class Federation
                 $adfsentities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/' . $idp['auth']);
+                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/?idpentityid=' . urlencode($idp['entityid']));
                         $idp['metadata-set'] = 'adfs-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = ADFS_IdP::getHostedMetadata($idp['entityid']);
