@@ -3,9 +3,6 @@
 // initialize the autoloader
 require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 
-// enable assertion handler for all pages
-//\SimpleSAML\Error\Assertion::installHandler();
-
 // show error page on unhandled exceptions
 function SimpleSAML_exception_handler($exception)
 {
