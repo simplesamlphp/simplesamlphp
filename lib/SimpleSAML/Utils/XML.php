@@ -52,7 +52,7 @@ class XML
         }
 
         // see if debugging is enabled for XML validation
-        $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
+        $debug = Configuration::getInstance()->getArray('debug', ['validatexml' => false]);
 
         if (
             !(
@@ -100,16 +100,13 @@ class XML
         }
 
         // see if debugging is enabled for SAML messages
-        $debug = Configuration::getInstance()->getArrayize('debug', ['saml' => false]);
+        $debug = Configuration::getInstance()->getArray('debug', ['saml' => false]);
 
         if (
             !(in_array('saml', $debug, true) // implicitly enabled
             || (array_key_exists('saml', $debug)
-            && $debug['saml'] === true)
-            // explicitly enabled
-            // TODO: deprecate the old style and remove it in 2.0
-            || (array_key_exists(0, $debug)
-            && $debug[0] === true)) // old style 'debug'
+            && $debug['saml'] === true) // explicitly enabled
+	    )
         ) {
             // debugging messages is disabled
             return;
