@@ -54,52 +54,6 @@ class MetadataTest extends TestCase
             $this->assertArrayNotHasKey('surName', $parsed);
         }
 
-        // test basic name parsing
-        $contact = [
-            'contactType' => 'technical',
-            'name'        => 'John Doe'
-        ];
-        $parsed = Metadata::getContact($contact);
-        $this->assertArrayNotHasKey('name', $parsed);
-        $this->assertArrayHasKey('givenName', $parsed);
-        $this->assertArrayHasKey('surName', $parsed);
-        $this->assertEquals('John', $parsed['givenName']);
-        $this->assertEquals('Doe', $parsed['surName']);
-
-        // test comma-separated names
-        $contact = [
-            'contactType' => 'technical',
-            'name'        => 'Doe, John'
-        ];
-        $parsed = Metadata::getContact($contact);
-        $this->assertArrayHasKey('givenName', $parsed);
-        $this->assertArrayHasKey('surName', $parsed);
-        $this->assertEquals('John', $parsed['givenName']);
-        $this->assertEquals('Doe', $parsed['surName']);
-
-        // test long names
-        $contact = [
-            'contactType' => 'technical',
-            'name'        => 'John Fitzgerald Doe Smith'
-        ];
-        $parsed = Metadata::getContact($contact);
-        $this->assertArrayNotHasKey('name', $parsed);
-        $this->assertArrayHasKey('givenName', $parsed);
-        $this->assertArrayNotHasKey('surName', $parsed);
-        $this->assertEquals('John Fitzgerald Doe Smith', $parsed['givenName']);
-
-        // test comma-separated long names
-        $contact = [
-            'contactType' => 'technical',
-            'name'        => 'Doe Smith, John Fitzgerald'
-        ];
-        $parsed = Metadata::getContact($contact);
-        $this->assertArrayNotHasKey('name', $parsed);
-        $this->assertArrayHasKey('givenName', $parsed);
-        $this->assertArrayHasKey('surName', $parsed);
-        $this->assertEquals('John Fitzgerald', $parsed['givenName']);
-        $this->assertEquals('Doe Smith', $parsed['surName']);
-
         // test givenName
         $contact = [
             'contactType' => 'technical',
