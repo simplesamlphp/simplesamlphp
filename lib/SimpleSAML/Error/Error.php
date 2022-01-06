@@ -269,7 +269,7 @@ class Error extends Exception
             call_user_func($show_function, $config, $data);
             Assert::true(false);
         } else {
-            $t = new Template($config, 'error.twig', 'errors');
+            $t = new Template($config, 'error.twig');
 
             // Include translations for the module that holds the included template
             if ($this->includeTemplate !== null) {

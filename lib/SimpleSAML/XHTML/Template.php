@@ -116,9 +116,8 @@ class Template extends Response
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string                   $template Which template file to load
-     * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(Configuration $configuration, string $template, string $defaultDictionary = null)
+    public function __construct(Configuration $configuration, string $template)
     {
         $this->configuration = $configuration;
         $this->template = $template;
@@ -134,7 +133,7 @@ class Template extends Response
         );
 
         // initialize internationalization system
-        $this->translator = new Translate($configuration, $defaultDictionary);
+        $this->translator = new Translate($configuration);
         $this->localization = new Localization($configuration);
 
         // check if we need to attach a theme controller

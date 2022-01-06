@@ -145,7 +145,7 @@ class Test
             $nameId = $authsource->getAuthData('saml:sp:NameID') ?? false;
 
             $httpUtils = new Utils\HTTP();
-            $t = new Template($this->config, 'admin:status.twig', 'attributes');
+            $t = new Template($this->config, 'admin:status.twig');
             $l = $t->getLocalization();
             $l->addAttributeDomains();
             $t->data = [

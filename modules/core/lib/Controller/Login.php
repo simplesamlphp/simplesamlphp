@@ -89,7 +89,7 @@ class Login
 
         $session = Session::getSessionFromRequest();
 
-        $t = new Template($this->config, 'auth_status.twig', 'attributes');
+        $t = new Template($this->config, 'auth_status.twig');
         $l = $t->getLocalization();
         $l->addAttributeDomains();
         $t->data['header'] = '{status:header_saml20_sp}';

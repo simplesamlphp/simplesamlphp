@@ -587,7 +587,7 @@ class IdPDisco
                 throw new \Exception('Invalid value for the \'idpdisco.layout\' option.');
         }
 
-        $t = new Template($this->config, $templateFile, 'disco');
+        $t = new Template($this->config, $templateFile);
 
         $newlist = [];
         foreach ($idpList as $entityid => $data) {
