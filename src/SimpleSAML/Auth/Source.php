@@ -204,7 +204,7 @@ abstract class Source
 
 
     /**
-     * Register a logout callback.
+     * Register a logout callback to be called after the consumer of this authentication source is logged out.
      *
      * @param $callback Callback structure ([CLASS_NAME, STATIC_FUNCTION_NAME]).
      *        Static function has to have following signature: ($param1, ..., $paramN, string $returnUrl) with
@@ -236,6 +236,12 @@ abstract class Source
     }
 
 
+    /**
+     * Check if authentication source consumer logout callbacks have been registered.
+     *
+     * @return bool
+     * @throws \Exception
+     */
     public function hasAsConsumerLogoutCallbacks(): bool
     {
         $session = Session::getSessionFromRequest();
@@ -249,13 +255,13 @@ abstract class Source
 
 
     /**
-     * Calls logout callbacks for consumers of this source.
+     * Calls all registered logout callbacks for consumers of this source.
      * This function might not return directly, so a $returnToUrl has to be specified.
      *
      * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect. Make sure to include the id parameter to recover state after processing.
      * @throws \Exception
      */
-    public function callAsConsumerLogoutCallbacks(string $returnToUrl): void
+    public function callAsConsumerLogoutCallbacks(string $returnToUrl)
     {
         assert(is_string($returnToUrl));
 
@@ -267,6 +273,12 @@ abstract class Source
     }
 
 
+    /**
+     * Handle authentication source consumer logout callbacks.
+     *
+     * @param $state
+     * @throws \Exception
+     */
     public static function handleAsConsumerLogoutCallbacks($state)
     {
         assert(is_array($state));
