@@ -8,6 +8,7 @@ use DOMElement;
 use SAML2\Constants;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
+use SAML2\XML\md\ContactPerson;
 use SAML2\XML\md\EndpointType;
 use SAML2\XML\md\EntityDescriptor;
 use SAML2\XML\md\IDPSSODescriptor;
@@ -631,7 +632,7 @@ class SAMLBuilder
     public function addContact(array $details): void
     {
         Assert::notNull($details['contactType']);
-        Assert::oneOf($details['contactType'], ['technical', 'support', 'administrative', 'billing', 'other']);
+        Assert::oneOf($details['contactType'], ContactPerson::CONTACT_TYPES);
 
         $e = new \SAML2\XML\md\ContactPerson();
         $e->setContactType($details['contactType']);

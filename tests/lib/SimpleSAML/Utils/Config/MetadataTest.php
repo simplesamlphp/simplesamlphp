@@ -8,6 +8,7 @@ use DOMDocument;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\Constants;
+use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Utils\Config\Metadata;
 use TypeError;
 
@@ -44,7 +45,7 @@ class MetadataTest extends TestCase
         }
 
         // test all valid contact types
-        foreach (Metadata::$VALID_CONTACT_TYPES as $type) {
+        foreach (ContactPerson::CONTACT_TYPES as $type) {
             $contact = [
                 'contactType' => $type
             ];

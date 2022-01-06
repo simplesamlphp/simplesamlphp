@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Utils\Config;
 
 use SAML2\Constants;
+use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 
@@ -53,19 +54,6 @@ class Metadata
 
 
     /**
-     * @var string[] The valid types of contact for a contact configuration array.
-     * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
-     */
-    public static array $VALID_CONTACT_TYPES = [
-        'technical',
-        'support',
-        'administrative',
-        'billing',
-        'other',
-    ];
-
-
-    /**
      * Parse and sanitize a contact from an array.
      *
      * Accepts an array with the following elements:
@@ -94,7 +82,7 @@ class Metadata
     public static function getContact(?array $contact): array
     {
         // check the type
-        if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
+        if (!isset($contact['contactType']) || !in_array($contact['contactType'], ContactPerson::CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
                 /**
                  * @param string $t
@@ -103,7 +91,7 @@ class Metadata
                 function ($t) {
                     return '"' . $t . '"';
                 },
-                self::$VALID_CONTACT_TYPES
+                ContactPerson::CONTACT_TYPES
             ));
             throw new \InvalidArgumentException('"contactType" is mandatory and must be one of ' . $types . ".");
         }
