@@ -630,10 +630,11 @@ class SAMLBuilder
      */
     public function addContact(array $details): void
     {
-        Assert::oneOf($type, ['technical', 'support', 'administrative', 'billing', 'other']);
+        Assert::notNull($details['contactType']);
+        Assert::oneOf($details['contactType'], ['technical', 'support', 'administrative', 'billing', 'other']);
 
         $e = new \SAML2\XML\md\ContactPerson();
-        $e->setContactType($type);
+        $e->setContactType($details['contactType']);
 
         if (!empty($details['attributes'])) {
             $e->setContactPersonAttributes($details['attributes']);
