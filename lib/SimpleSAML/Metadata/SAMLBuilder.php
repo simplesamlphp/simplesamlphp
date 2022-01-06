@@ -681,10 +681,15 @@ class SAMLBuilder
      * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param string                      $use The value of the 'use' attribute.
      * @param string                      $x509data The certificate data.
-     * @param string|null                 $keyName The name of the key. Should be valid for usage in an ID attribute, e.g. not start with a digit.
+     * @param string|null                 $keyName The name of the key. Should be valid for usage in an ID attribute,
+     *                                             e.g. not start with a digit.
      */
-    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data, ?string $keyName = null): void
-    {
+    private function addX509KeyDescriptor(
+        RoleDescriptor $rd,
+        string $use,
+        string $x509data,
+        ?string $keyName = null
+    ): void {
         Assert::oneOf($use, ['encryption', 'signing']);
 
         $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data, $keyName);
