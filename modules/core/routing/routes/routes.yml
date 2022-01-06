@@ -1,12 +1,9 @@
-core-account:
-    path:       /account/{as}
-    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:account' }
+core-welcome:
+    path:       /welcome
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:welcome' }
 core-account-disco-clearchoices:
     path:       /account/disco/clearchoices
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:cleardiscochoices' }
-core-login:
-    path:       /login/{as}
-    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:login', as: null }
 core-logout:
     path:       /logout/{as}
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:logout' }

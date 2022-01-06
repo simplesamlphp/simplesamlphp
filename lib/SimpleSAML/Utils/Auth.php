@@ -16,24 +16,6 @@ use SimpleSAML\Session;
  */
 class Auth
 {
-    /**
-     * Retrieve an admin login URL.
-     *
-     * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
-     *
-     * @return string A URL which can be used for admin authentication.
-     * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
-     */
-    public function getAdminLoginURL(?string $returnTo = null): string
-    {
-        $httpUtils = new HTTP();
-        if ($returnTo === null) {
-            $returnTo = $httpUtils->getSelfURL();
-        }
-
-        return Module::getModuleURL('core/login-admin.php', ['ReturnTo' => $returnTo]);
-    }
-
 
     /**
      * Retrieve an admin logout URL.

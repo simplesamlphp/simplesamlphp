@@ -39,6 +39,7 @@ config file= manualy.
 Configuration options that have been removed:
  - languages[priorities]
  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+ - admin.protectindexpage. Replaced by the admin module which always requires login.
 
 Changes relevant for (module) developers
 ----------------------------------------

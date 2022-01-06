@@ -143,10 +143,8 @@ $config = [
     'auth.adminpassword' => '123',
 
     /*
-     * Set this options to true if you want to require administrator password to access the web interface
-     * or the metadata pages, respectively.
+     * Set this option to true if you want to require administrator password to access the metadata.
      */
-    'admin.protectindexpage' => false,
     'admin.protectmetadata' => false,
 
     /*
@@ -860,6 +858,12 @@ $config = [
         ],
     ],
 
+    /**
+     * Set to a full URL if you want to rediret users that land on SimpleSAMLphp's
+     * front page to somewhere more useful. If left unset, a basic welcome message
+     * is shown.
+     */
+    //'frontpage.redirect' => 'https://example.com/',
 
     /*********************
      | DISCOVERY SERVICE |
