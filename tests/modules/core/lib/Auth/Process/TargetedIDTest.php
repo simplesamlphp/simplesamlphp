@@ -120,7 +120,7 @@ class TargetedIDTest extends TestCase
             'identifyingAttribute' => 'eduPersonPrincipalName',
         ];
 
-        $request = array(
+        $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['joe'],
                 'eduPersonTargetedID' => [$nameid->toXML()->ownerDocument->saveXML()],
@@ -133,7 +133,7 @@ class TargetedIDTest extends TestCase
                 'metadata-set' => 'saml20-sp-remote',
                 'entityid' => 'joe',
             ],
-        );
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];

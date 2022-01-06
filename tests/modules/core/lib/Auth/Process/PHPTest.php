@@ -53,7 +53,7 @@ class PHPTest extends TestCase
     {
         $config = [
             'code' => '
-                $attributes["key"] = array("value");
+                $attributes["key"] = ["value"];
             ',
         ];
         $request = ['Attributes' => []];
@@ -74,7 +74,7 @@ class PHPTest extends TestCase
     {
         $config = [
             'code' => '
-                $attributes["orig2"] = array("value0");
+                $attributes["orig2"] = ["value0"];
             ',
         ];
         $request = [
@@ -130,7 +130,7 @@ class PHPTest extends TestCase
 
         $config = [
             'code' => '
-                $attributes["orig2"] = array("value0");
+                $attributes["orig2"] = ["value0"];
                 $state["newKey"] = ["newValue"];
                 $state["Destination"]["attributes"][] = "givenName";
             ',
