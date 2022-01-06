@@ -16,7 +16,6 @@ use SimpleSAML\Session;
  */
 class Auth
 {
-
     /**
      * Retrieve an admin logout URL.
      *

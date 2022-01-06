@@ -56,7 +56,7 @@ class LoginTest extends ClearStateTestCase
     {
         $c = new Controller\Login($this->config);
         /** @var \SimpleSAML\XHTML\Template $response */
-	$response = $c->welcome();
+        $response = $c->welcome();
         $this->assertInstanceOf(Template::class, $response);
         $this->assertEquals('core:welcome.twig', $response->getTemplateName());
     }
