@@ -86,7 +86,7 @@ class Database
     {
         $driverOptions = $config->getArray('database.driver_options', []);
         if ($config->getBoolean('database.persistent', true)) {
-            $driverOptions = [PDO::ATTR_PERSISTENT => true];
+            $driverOptions[PDO::ATTR_PERSISTENT] = true;
         }
 
         // connect to the primary
@@ -136,7 +136,7 @@ class Database
                 'database.username'   => $config->getString('database.username', null),
                 'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
-                'database.persistent' => $config->getBoolean('database.persistent', false),
+                'database.persistent' => $config->getBoolean('database.persistent', true),
             ],
             // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
             'secondaries' => $config->getArray('database.secondaries', $config->getArray('database.slaves', [])),
