@@ -787,6 +787,7 @@ class SAML2
         $hasNewCert = false;
         if ($certInfo !== null) {
             $keys[] = [
+                'name' => $certInfo['name'] ?? null,
                 'type' => 'X509Certificate',
                 'signing' => true,
                 'encryption' => true,
@@ -799,6 +800,7 @@ class SAML2
         /** @var array $certInfo */
         $certInfo = $cryptoUtils->loadPublicKey($config, true);
         $keys[] = [
+            'name' => $certInfo['name'] ?? null,
             'type' => 'X509Certificate',
             'signing' => true,
             'encryption' => $hasNewCert === false,
@@ -810,6 +812,7 @@ class SAML2
             /** @var array $httpsCert */
             $httpsCert = $cryptoUtils->loadPublicKey($config, true, 'https.');
             $keys[] = [
+                'name' => $httpsCert['name'] ?? null,
                 'type' => 'X509Certificate',
                 'signing' => true,
                 'encryption' => false,
