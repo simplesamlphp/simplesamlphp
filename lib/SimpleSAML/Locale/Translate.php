@@ -37,13 +37,11 @@ class Translate
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string|null $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(Configuration $configuration, ?string $defaultDictionary = null)
+    public function __construct(Configuration $configuration)
     {
         $this->configuration = $configuration;
         $this->language = new Language($configuration);
-        $this->defaultDictionary = $defaultDictionary;
     }
 
 

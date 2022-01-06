@@ -228,7 +228,7 @@ class NameIDAttributeTest extends TestCase
             ],
             'saml:sp:NameID' => $nameId,
         ];
-        $this->processFilter(array(), $request);
+        $this->processFilter([], $request);
         $this->assertEquals("{$nameId->getFormat()}", Constants::NAMEID_UNSPECIFIED);
         $this->assertEquals("{$nameId->getNameQualifier()}", $idpId);
         $this->assertEquals("{$nameId->getSPNameQualifier()}", $spId);

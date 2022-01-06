@@ -33,42 +33,42 @@ class MultiAuthTest extends ClearStateTestCase
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
-        $this->sourceConfig = Configuration::loadFromArray(array(
-            'example-multi' => array(
+        $this->sourceConfig = Configuration::loadFromArray([
+            'example-multi' => [
                 'multiauth:MultiAuth',
 
                 /*
                  * The available authentication sources.
                  * They must be defined in this authsources.php file.
                  */
-                'sources' => array(
-                    'example-saml' => array(
-                        'text' => array(
+                'sources' => [
+                    'example-saml' => [
+                        'text' => [
                             'en' => 'Log in using a SAML SP',
                             'es' => 'Entrar usando un SP SAML',
-                        ),
+                        ],
                         'css-class' => 'SAML',
-                    ),
-                    'example-admin' => array(
-                        'text' => array(
+                    ],
+                    'example-admin' => [
+                        'text' => [
                             'en' => 'Log in using the admin password',
                             'es' => 'Entrar usando la contraseña de administrador',
-                        ),
-                    ),
-                ),
+                        ],
+                    ],
+                ],
                 'preselect' => 'example-saml',
-            ),
+            ],
 
-            'example-saml' => array(
+            'example-saml' => [
                 'saml:SP',
                 'entityId' => 'my-entity-id',
                 'idp' => 'my-idp',
-            ),
+            ],
 
-            'example-admin' => array(
+            'example-admin' => [
                 'core:AdminPassword',
-            ),
-        ));
+            ],
+        ]);
         Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
     }
 
@@ -79,11 +79,11 @@ class MultiAuthTest extends ClearStateTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The required "sources" config option was not found');
-        $sourceConfig = Configuration::loadFromArray(array(
-            'example-multi' => array(
+        $sourceConfig = Configuration::loadFromArray([
+            'example-multi' => [
                 'multiauth:MultiAuth',
-            ),
-        ));
+            ],
+        ]);
 
         Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
 
@@ -97,42 +97,42 @@ class MultiAuthTest extends ClearStateTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The optional "preselect" config option must be present in "sources"');
-        $sourceConfig = Configuration::loadFromArray(array(
-            'example-multi' => array(
+        $sourceConfig = Configuration::loadFromArray([
+            'example-multi' => [
                 'multiauth:MultiAuth',
 
                 /*
                  * The available authentication sources.
                  * They must be defined in this authsources.php file.
                  */
-                'sources' => array(
-                    'example-saml' => array(
-                        'text' => array(
+                'sources' => [
+                    'example-saml' => [
+                        'text' => [
                             'en' => 'Log in using a SAML SP',
                             'es' => 'Entrar usando un SP SAML',
-                        ),
+                        ],
                         'css-class' => 'SAML',
-                    ),
-                    'example-admin' => array(
-                        'text' => array(
+                    ],
+                    'example-admin' => [
+                        'text' => [
                             'en' => 'Log in using the admin password',
                             'es' => 'Entrar usando la contraseña de administrador',
-                        ),
-                    ),
-                ),
+                        ],
+                    ],
+                ],
                 'preselect' => 'other',
-            ),
+            ],
 
-            'example-saml' => array(
+            'example-saml' => [
                 'saml:SP',
                 'entityId' => 'my-entity-id',
                 'idp' => 'my-idp',
-            ),
+            ],
 
-            'example-admin' => array(
+            'example-admin' => [
                 'core:AdminPassword',
-            ),
-        ));
+            ],
+        ]);
 
         Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
         new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
@@ -143,41 +143,41 @@ class MultiAuthTest extends ClearStateTestCase
      */
     public function testPreselectIsOptional(): void
     {
-        $sourceConfig = Configuration::loadFromArray(array(
-            'example-multi' => array(
+        $sourceConfig = Configuration::loadFromArray([
+            'example-multi' => [
                 'multiauth:MultiAuth',
 
                 /*
                  * The available authentication sources.
                  * They must be defined in this authsources.php file.
                  */
-                'sources' => array(
-                    'example-saml' => array(
-                        'text' => array(
+                'sources' => [
+                    'example-saml' => [
+                        'text' => [
                             'en' => 'Log in using a SAML SP',
                             'es' => 'Entrar usando un SP SAML',
-                        ),
+                        ],
                         'css-class' => 'SAML',
-                    ),
-                    'example-admin' => array(
-                        'text' => array(
+                    ],
+                    'example-admin' => [
+                        'text' => [
                             'en' => 'Log in using the admin password',
                             'es' => 'Entrar usando la contraseña de administrador',
-                        ),
-                    ),
-                ),
-            ),
+                        ],
+                    ],
+                ],
+            ],
 
-            'example-saml' => array(
+            'example-saml' => [
                 'saml:SP',
                 'entityId' => 'my-entity-id',
                 'idp' => 'my-idp',
-            ),
+            ],
 
-            'example-admin' => array(
+            'example-admin' => [
                 'core:AdminPassword',
-            ),
-        ));
+            ],
+        ]);
 
         Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
 
