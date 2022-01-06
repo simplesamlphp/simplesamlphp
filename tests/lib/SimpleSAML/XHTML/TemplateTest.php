@@ -33,8 +33,8 @@ class TemplateTest extends TestCase
     public function testTemplateModuleNamespace(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
-        $t = new Template($c, 'core:login');
-        $this->assertEquals('core:login.twig', $t->getTemplateName());
+        $t = new Template($c, 'core:welcome');
+        $this->assertEquals('core:welcome.twig', $t->getTemplateName());
     }
 
     public function testGetEntityDisplayNameBasic(): void
