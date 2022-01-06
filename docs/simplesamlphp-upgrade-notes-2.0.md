@@ -29,9 +29,16 @@ Functional changes
 - The default encryption algorithm is set from `AES128_CBC` to `AES128_GCM`.
   It is possible to switch back via the `sharedkey_algorithm`. Note however that CBC is vulnerable to the Padding oracle attack.
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
-- Configuration options have been removed:
-  - languages[priorities]
-  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+
+Configuration changes
+---------------------
+Quite some options have been changed or removed. We recommend to start with a fresh
+template from `config-templates/` and migrate the settings you require to the new
+config file= manualy.
+
+Configuration options that have been removed:
+ - languages[priorities]
+ - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
 
 Changes relevant for (module) developers
 ----------------------------------------
@@ -44,7 +51,10 @@ processing filters or interface with the SimpleSAMLphp development API.
     guide here: https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates
 - The source was completely typehinted; if you have custom authsources or authproc filters, 
     make sure you change them to reflect the method signatures of the base classes.
-- If you're using the core:TargetedID authproc-filter, note that the `attributename` setting has been renamed to `identifyingAttribute`.
+- Some hooks are no longer called:
+  - `frontpage`: replace with `configpage`
+  - `htmlinject`: use a Twig template override instead.
+  - `metadata_hosted`: no replacement
 - The following classes have been migrated to non-static:
   + \SimpleSAML\Utils\Arrays
   + \SimpleSAML\Utils\Attributes
