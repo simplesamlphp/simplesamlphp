@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\SAMLBuilder;
+use SimpleSAML\Module\saml\Auth\Source\SP;
 
 /**
  * Class SAMLBuilderTest
@@ -14,6 +16,20 @@ use SimpleSAML\Metadata\SAMLBuilder;
  */
 class SAMLBuilderTest extends TestCase
 {
+    /**
+     */
+    protected function setUp(): void
+    {
+        Configuration::loadFromArray([], '', 'simplesaml');
+    }
+
+    /**
+     */
+    protected function tearDown(): void
+    {
+        Configuration::clearInternalState();
+    }
+
     /**
      * Test the requested attributes are valued correctly.
      */
@@ -369,5 +385,59 @@ class SAMLBuilderTest extends TestCase
         $sn = $second->getElementsByTagName("SurName");
         $this->assertEquals(1, $sn->length);
         $this->assertEquals("Doe", $sn->item(0)->nodeValue);
+    }
+
+    /*
+     * Test certificate data.
+     */
+    public function testCertificateData(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $metadata = [
+            'certificate' => __DIR__ . '/test-metadata/www.example.com.cert',
+            'privatekey' => __DIR__ . '/test-metadata/www.example.com.key',
+        ];
+
+        // Without a key name, it should have KeyDescriptors but no KeyNames.
+        $samlBuilder = new SAMLBuilder('default-sp');
+        $sp = new SP($info, $metadata);
+        $samlBuilder->addMetadataSP20($sp->getHostedMetadata());
+        $spDesc = $samlBuilder->getEntityDescriptor();
+
+        $this->assertEquals(2, $spDesc->getElementsByTagName("KeyDescriptor")->length);
+        $this->assertEquals(0, $spDesc->getElementsByTagName("KeyName")->length);
+
+        // Add key name.
+        $metadata['key_name'] = 'my-key-name';
+
+        // It should now also have 2 KeyNames.
+        $samlBuilder = new SAMLBuilder('default-sp');
+        $sp = new SP($info, $metadata);
+        $samlBuilder->addMetadataSP20($sp->getHostedMetadata());
+        $spDesc = $samlBuilder->getEntityDescriptor();
+
+        $this->assertEquals(2, $spDesc->getElementsByTagName("KeyDescriptor")->length);
+        $keyNames = $spDesc->getElementsByTagName("KeyName");
+        $this->assertEquals(2, $keyNames->length);
+        $this->assertEquals('my-key-name', $keyNames->item(0)->textContent);
+        $this->assertEquals('my-key-name', $keyNames->item(1)->textContent);
+
+        // Add rollover configuration.
+        $metadata['new_certificate'] = __DIR__ . '/test-metadata/www.example.com_new.cert';
+        $metadata['new_privatekey'] = __DIR__ . '/test-metadata/www.example.com_new.key';
+        $metadata['new_key_name'] = 'my-new-key-name';
+
+        // It should now have 3 KeyNames.
+        $samlBuilder = new SAMLBuilder('default-sp');
+        $sp = new SP($info, $metadata);
+        $samlBuilder->addMetadataSP20($sp->getHostedMetadata());
+        $spDesc = $samlBuilder->getEntityDescriptor();
+
+        $this->assertEquals(3, $spDesc->getElementsByTagName("KeyDescriptor")->length);
+        $keyNames = $spDesc->getElementsByTagName("KeyName");
+        $this->assertEquals(3, $keyNames->length);
+        $this->assertEquals('my-new-key-name', $keyNames->item(0)->textContent);
+        $this->assertEquals('my-new-key-name', $keyNames->item(1)->textContent);
+        $this->assertEquals('my-key-name', $keyNames->item(2)->textContent);
     }
 }

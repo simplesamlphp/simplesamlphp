@@ -274,6 +274,7 @@ class Crypto
                     chunk_split($certData, 64) .
                     "-----END CERTIFICATE-----\n";
                 return [
+                    'name'            => $key['name'] ?? null,
                     'certData'        => $certData,
                     'PEM'             => $pem,
                 ];

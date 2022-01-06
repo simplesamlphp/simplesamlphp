@@ -248,6 +248,9 @@ Options
 `IsPassive`
 :   IsPassive allows you to enable passive authentication by default for this SP.
 
+`key_name`
+:   The name of the certificate. It is possible the IDP requires your certificate to have a name.
+    If provided, it will be exposed in the SAML 2.0 metadata as `KeyName` inside the `KeyDescriptor`. This also requires a certificate to be provided.
 
 `name`
 :   The name of this SP.
