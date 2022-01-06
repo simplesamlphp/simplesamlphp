@@ -280,4 +280,94 @@ class SAMLBuilderTest extends TestCase
         $rt1 = $rt->item(0);
         $this->assertEquals($republishTargetContent, $rt1->textContent);
     }
+
+    /**
+     * Test adding contacts to metadata
+     */
+    public function testContacts(): void
+    {
+        $entityId = 'https://entity.example.com/id';
+
+        //  test SP20 array parsing, no friendly name
+        $set = 'saml20-sp-remote';
+        $metadata = [
+            'entityid'     => $entityId,
+            'name'         => ['en' => 'Test SP'],
+            'metadata-set' => $set,
+            'contacts' => [
+                [
+                   'contactType'       => 'other',
+                   'emailAddress'      => 'csirt@example.com',
+                   'surName'           => 'CSIRT',
+                   'telephoneNumber'   => '+31SECOPS',
+                   'company'           => 'Acme Inc',
+                   'attributes'        => [
+                       'xmlns:remd'        => 'http://refeds.org/metadata',
+                       'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+                   ],
+                ],
+                [
+                   'contactType'       => 'administrative',
+                   'emailAddress'      => 'j.doe@example.edu',
+                   'givenName'         => 'Jane',
+                   'surName'           => 'Doe',
+                ],
+            ],
+        ];
+
+        $samlBuilder = new SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @psalm-var \DOMNodeList $acs */
+        $contacts = $spDesc->getElementsByTagName("ContactPerson");
+        $this->assertEquals(2, $contacts->length);
+
+        /** @psalm-var \DOMElement $first */
+        $first = $contacts->item(0);
+        $this->assertTrue($first->hasAttribute("contactType"));
+        $this->assertEquals("other", $first->getAttribute("contactType"));
+        $this->assertTrue($first->hasAttribute("remd:contactType"));
+        $this->assertEquals(
+            "http://refeds.org/metadata/contactType/security",
+            $first->getAttribute("remd:contactType")
+        );
+        $mail = $first->getElementsByTagName("EmailAddress");
+        $this->assertEquals(1, $mail->length);
+        // Mailto: prefix added by builder
+        $this->assertEquals("mailto:csirt@example.com", $mail->item(0)->nodeValue);
+
+        $gn = $first->getElementsByTagName("GivenName");
+        $this->assertEquals(0, $gn->length);
+
+        $sn = $first->getElementsByTagName("SurName");
+        $this->assertEquals(1, $sn->length);
+        $this->assertEquals("CSIRT", $sn->item(0)->nodeValue);
+
+        $telnr = $first->getElementsByTagName("TelephoneNumber");
+        $this->assertEquals(1, $telnr->length);
+        $this->assertEquals("+31SECOPS", $telnr->item(0)->nodeValue);
+
+        $company = $first->getElementsByTagName("Company");
+        $this->assertEquals(1, $company->length);
+        $this->assertEquals("Acme Inc", $company->item(0)->nodeValue);
+
+        /** @psalm-var \DOMElement $second */
+        $second = $contacts->item(1);
+        $this->assertTrue($second->hasAttribute("contactType"));
+        $this->assertEquals("administrative", $second->getAttribute("contactType"));
+        $this->assertFalse($second->hasAttribute("remd:contactType"));
+        $mail = $second->getElementsByTagName("EmailAddress");
+        $this->assertEquals(1, $mail->length);
+        // Mailto: prefix added by builder
+        $this->assertEquals("mailto:j.doe@example.edu", $mail->item(0)->nodeValue);
+
+        $gn = $second->getElementsByTagName("GivenName");
+        $this->assertEquals(1, $gn->length);
+        $this->assertEquals("Jane", $gn->item(0)->nodeValue);
+
+        $sn = $second->getElementsByTagName("SurName");
+        $this->assertEquals(1, $sn->length);
+        $this->assertEquals("Doe", $sn->item(0)->nodeValue);
+    }
 }
