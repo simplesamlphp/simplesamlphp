@@ -16,6 +16,8 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
  */
 class SAMLBuilderTest extends TestCase
 {
+    private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
+
     /**
      */
     protected function setUp(): void
@@ -394,8 +396,8 @@ class SAMLBuilderTest extends TestCase
     {
         $info = ['AuthId' => 'default-sp'];
         $metadata = [
-            'certificate' => __DIR__ . '/test-metadata/www.example.com.cert',
-            'privatekey' => __DIR__ . '/test-metadata/www.example.com.key',
+            'certificate' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt',
+            'privatekey' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key',
         ];
 
         // Without a key name, it should have KeyDescriptors but no KeyNames.
@@ -423,8 +425,8 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals('my-key-name', $keyNames->item(1)->textContent);
 
         // Add rollover configuration.
-        $metadata['new_certificate'] = __DIR__ . '/test-metadata/www.example.com_new.cert';
-        $metadata['new_privatekey'] = __DIR__ . '/test-metadata/www.example.com_new.key';
+        $metadata['new_certificate'] = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.crt';
+        $metadata['new_privatekey'] = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.key';
         $metadata['new_key_name'] = 'my-new-key-name';
 
         // It should now have 3 KeyNames.
