@@ -183,7 +183,6 @@ class TemplateTranslationTest extends TestCase
             );
 
         foreach ($files as $file) {
-            /** @var \Symfony\Component\Finder\SplFileInfo $file */
             $twig->load($file->getRelativePathname());
         }
 
