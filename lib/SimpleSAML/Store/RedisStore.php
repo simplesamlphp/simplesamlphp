@@ -77,9 +77,10 @@ class RedisStore implements StoreInterface
      */
     public function get(string $type, string $key)
     {
+        /** @var string|null $result */
         $result = $this->redis->get("{$type}.{$key}");
 
-        if ($result === false || $result === null) {
+        if ($result === null) {
             return null;
         }
 
