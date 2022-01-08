@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use InvalidArgumentException;
 use SimpleSAML\Error;
 
 /**
@@ -35,14 +36,14 @@ class Attributes
         $attribute = $attributes[$expected];
 
         if (!is_array($attribute)) {
-            throw new \InvalidArgumentException('The attributes array is not normalized, values should be arrays.');
+            throw new InvalidArgumentException('The attributes array is not normalized, values should be arrays.');
         }
 
         if (count($attribute) === 0) {
             throw new Error\Exception("Empty attribute '" . $expected . "'.'");
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
-                throw new \SimpleSAML\Error\Exception(
+                throw new Error\Exception(
                     'More than one value found for the attribute, multiple values not allowed.'
                 );
             }
@@ -71,7 +72,9 @@ class Attributes
         $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
-                throw new \InvalidArgumentException('Invalid attribute name: "' . print_r($name, true) . '".');
+                /** @var string $name */
+                $name = print_r($name, true);
+                throw new InvalidArgumentException(sprintf('Invalid attribute name: "%s".', $name));
             }
 
             $arrayUtils = new Arrays();
@@ -79,8 +82,10 @@ class Attributes
 
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    throw new \InvalidArgumentException(
-                        'Invalid attribute value for attribute ' . $name . ': "' . print_r($value, true) . '".'
+                    /** @var string $value */
+                    $value = print_r($value, true);
+                    throw new InvalidArgumentException(
+                        sprintf('Invalid attribute value for attribute %s: "%s".', $name, $value)
                     );
                 }
             }
