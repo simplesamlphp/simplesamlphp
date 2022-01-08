@@ -204,7 +204,7 @@ class External extends Auth\Source
          * match the string we used in the saveState-call above.
          */
         /** @var array $state */
-        $state = Auth\State::loadState($request->get('State'), 'exampleauth:External');
+        $state = Auth\State::loadState($request->query->get('State'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication

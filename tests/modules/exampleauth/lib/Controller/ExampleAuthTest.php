@@ -58,7 +58,7 @@ class ExampleAuthTest extends TestCase
     {
         $request = Request::create(
             '/authpage',
-            'GET',
+            'POST',
             ['NoReturnTo' => 'Limbo'],
         );
 
@@ -80,7 +80,7 @@ class ExampleAuthTest extends TestCase
     {
         $request = Request::create(
             '/authpage',
-            'GET',
+            'POST',
             ['ReturnTo' => 'SomeBogusValue'],
         );
 
@@ -102,7 +102,7 @@ class ExampleAuthTest extends TestCase
     {
         $request = Request::create(
             '/authpage',
-            'GET',
+            'POST',
             ['ReturnTo' => 'State=/'],
         );
 

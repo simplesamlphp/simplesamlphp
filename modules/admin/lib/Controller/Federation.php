@@ -466,11 +466,11 @@ class Federation
     {
         $this->authUtils->requireAdmin();
 
-        $set = $request->get('set');
-        $prefix = $request->get('prefix', '');
+        $set = $request->query->get('set');
+        $prefix = $request->query->get('prefix', '');
 
         if ($set === 'saml20-sp-hosted') {
-            $sourceID = $request->get('source');
+            $sourceID = $request->query->get('source');
             /**
              * The second argument ensures non-nullable return-value
              * @var \SimpleSAML\Module\saml\Auth\Source\SP $source
@@ -478,7 +478,7 @@ class Federation
             $source = $this->authSource::getById($sourceID, Module\saml\Auth\Source\SP::class);
             $mdconfig = $source->getMetadata();
         } else {
-            $entityID = $request->get('entity');
+            $entityID = $request->query->get('entity');
             $mdconfig = $this->mdHandler->getMetaDataConfig($entityID, $set);
         }
 
@@ -509,8 +509,8 @@ class Federation
     {
         $this->authUtils->requireAdmin();
 
-        $entityId = $request->get('entityid');
-        $set = $request->get('set');
+        $entityId = $request->query->get('entityid');
+        $set = $request->query->get('set');
 
         $metadata = $this->mdHandler->getMetaData($entityId, $set);
 

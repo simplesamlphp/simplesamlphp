@@ -98,7 +98,7 @@ class DiscoController
     public function discovery(Request $request)
     {
         // Retrieve the authentication state
-        $authStateId = $request->get('AuthState', null);
+        $authStateId = $request->query->get('AuthState', null);
         if (is_null($authStateId)) {
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
@@ -114,7 +114,7 @@ class DiscoController
             $as = Auth\Source::getById($authId);
         }
 
-        $source = $request->get('source', null);
+        $source = $request->query->get('source', null);
 
         if ($source !== null) {
             if ($as !== null) {

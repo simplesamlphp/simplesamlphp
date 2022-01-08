@@ -60,7 +60,7 @@ class Exception
      */
     public function cardinality(Request $request): Response
     {
-        $stateId = $request->get('StateId', false);
+        $stateId = $request->query->get('StateId', false);
         if ($stateId === false) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
@@ -95,7 +95,7 @@ class Exception
      */
     public function nocookie(Request $request): Response
     {
-        $retryURL = $request->get('retryURL', null);
+        $retryURL = $request->query->get('retryURL', null);
         if ($retryURL !== null) {
             $httpUtils = new Utils\HTTP();
             $retryURL = $httpUtils->checkURLAllowed(strval($retryURL));
@@ -121,7 +121,7 @@ class Exception
      */
     public function shortSsoInterval(Request $request): Response
     {
-        $stateId = $request->get('StateId', false);
+        $stateId = $request->query->get('StateId', false);
         if ($stateId === false) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
@@ -129,7 +129,7 @@ class Exception
         /** @var array $state */
         $state = Auth\State::loadState($stateId, 'core:short_sso_interval');
 
-        $continue = $request->get('continue', false);
+        $continue = $request->query->get('continue', false);
         if ($continue !== false) {
             // The user has pressed the continue/retry-button
             Auth\ProcessingChain::resumeProcessing($state);

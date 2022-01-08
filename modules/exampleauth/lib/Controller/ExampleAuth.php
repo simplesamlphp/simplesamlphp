@@ -88,7 +88,7 @@ class ExampleAuth
          * Note that we don't actually validate the user in this example. This page
          * just serves to make the example work out of the box.
          */
-        $returnTo = $request->get('ReturnTo');
+        $returnTo = $request->request->get('ReturnTo');
         if ($returnTo === null) {
             throw new Error\Exception('Missing ReturnTo parameter.');
         }
@@ -137,8 +137,8 @@ class ExampleAuth
         // time to handle login responses; since this is a dummy example, we accept any data
         $badUserPass = false;
         if ($request->getMethod() === 'POST') {
-            $username = $request->get('username');
-            $password = $request->get('password');
+            $username = $request->request->get('username');
+            $password = $request->request->get('password');
 
             if (!isset($users[$username]) || $users[$username]['password'] !== $password) {
                 $badUserPass = true;
@@ -180,7 +180,7 @@ class ExampleAuth
         /**
          * Request handler for redirect filter test.
          */
-        $stateId = $request->get('StateId');
+        $stateId = $request->query->get('StateId');
         if ($stateId === null) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }

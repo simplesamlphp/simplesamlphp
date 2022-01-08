@@ -168,7 +168,7 @@ class Login
         $auth = $this->factory->create($as);
         $as = urlencode($as);
 
-        if ($request->get(Auth\State::EXCEPTION_PARAM, false) !== false) {
+        if ($request->request->get(Auth\State::EXCEPTION_PARAM, false) !== false) {
             // This is just a simple example of an error
 
             /** @var array $state */
@@ -236,7 +236,7 @@ class Login
         }
 
         // Find where we should go now.
-        $returnTo = $request->get('ReturnTo', false);
+        $returnTo = $request->request->get('ReturnTo', false);
         if ($returnTo !== false) {
             $returnTo = $httpUtils->checkURLAllowed($returnTo);
         } else {
