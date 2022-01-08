@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
@@ -15,5 +17,6 @@ function cron_hook_configpage(Template &$template): void
         'href' => Module::getModuleURL('cron/info'),
         'text' => Translate::noop('Cron module information page'),
     ];
+
     $template->getLocalization()->addModuleDomain('cron');
 }
