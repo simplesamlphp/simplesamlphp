@@ -11,7 +11,7 @@ use SimpleSAML\XHTML\Template;
  */
 function cron_hook_configpage(Template &$template): void
 {
-    $template->data['links']['cron'] = [
+    $template->data['links'][] = [
         'href' => Module::getModuleURL('cron/info'),
         'text' => Translate::noop('Cron module information page'),
     ];
