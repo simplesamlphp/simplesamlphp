@@ -24,9 +24,6 @@ msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörer
 msgid "{core:no_state:cause_backforward}"
 msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Metadata för enehten hittades inte:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logga in som administratör"
 
@@ -118,11 +115,6 @@ msgstr "Du är inloggad som administratör"
 msgid "{core:frontpage:auth}"
 msgstr "Autentisering"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Om du är en användare och fick detta fel när du klickade på en länk bör "
-"du rapportera felet till den som hanterar webbplatsen med länken."
-
 msgid "{core:no_state:description}"
 msgstr "Hittar inte tillståndsinformationen för aktuell förfrågan."
 
@@ -139,16 +131,8 @@ msgstr ""
 "hittar länkar till exempel, diagnostik och metadata men även länkar till "
 "relevant dokumentation."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadata saknas"
-
 msgid "{core:frontpage:required}"
 msgstr "Obligatoriskt"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Detta beror oftast på ett konfigurationsfel antingen i "
-"tjänsteleverantören eller identitetsutgivaren."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -196,12 +180,6 @@ msgstr ""
 "information om <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp på Feide RnD "
 "blogg</a> hos <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Om du är en utvecklare som driftsätter en lösning med single-on har du "
-"problem med metadatakonfigurationen. Kontrollera att metadata är korrekt "
-"konfigurerade både i identitetsutgivare och tjänsteleverantören."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nyttiga länkar gällande installationen"
@@ -300,9 +278,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
-
-msgid "Metadata not found"
-msgstr "Metadata saknas"
 
 msgid "Missing cookie"
 msgstr "Saknar webbläsarkaka (cookie)"
@@ -423,9 +398,6 @@ msgstr "OpenID Provider sida - Alfa version (testkod)"
 
 msgid "Required for Radius"
 msgstr "Obligatoriskt för Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Metadata för enehten hittades inte:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP exempel - testinloggning med SAML 2.0 via din IdP"

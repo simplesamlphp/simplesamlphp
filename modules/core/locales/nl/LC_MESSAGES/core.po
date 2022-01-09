@@ -24,9 +24,6 @@ msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders.
 msgid "{core:no_state:cause_backforward}"
 msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "De metadata voor de volgende entity kon niet gevonden worden:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
 
@@ -134,12 +131,6 @@ msgstr "Je bent ingelogd als beheerder"
 msgid "{core:frontpage:auth}"
 msgstr "Authenticatie"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Als u een eindgebruiker bent die deze foutmelding kreeg na het volgen van"
-" een link op een site, dan kunt u deze fout melden bij de eigenaar van "
-"die site."
-
 msgid "{core:no_state:description}"
 msgstr ""
 "Wij waren niet in staat om de toestand informatie te vinden voor het "
@@ -158,16 +149,8 @@ msgstr ""
 "voorbeelden, test-pagina's, analyses, metadata en ook naar relevante "
 "documentatie."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadata niet gevonden"
-
 msgid "{core:frontpage:required}"
 msgstr "Vereist"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Dit is waarschijnlijk een configuratieprobleem bij ofwel de "
-"serviceprovider ofwel de identiteitsverstrekker."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -220,13 +203,6 @@ msgstr ""
 "vinden? Je kan meer informatie over <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp</a> vinden op de"
 " Feide RnD blog van <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Als u een ontwikkelaar bent die een single sign-on oplossing aan het "
-"implementeren is, heeft u een probleem met de metadataconfiguratie. "
-"Controleer of de metadata correct is geconfigureerd zowel bij de "
-"identiteitsverstrekker als bij de service provider."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nuttige links"
@@ -331,9 +307,6 @@ msgstr ""
 "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo "
 "snel mogelijk te upgraden naar <a href=\"https://simplesamlphp.org/download\">de meest recente "
 "versie</a>."
-
-msgid "Metadata not found"
-msgstr "Metadata niet gevonden"
 
 msgid "Missing cookie"
 msgstr "Cookie ontbreekt"
@@ -457,9 +430,6 @@ msgstr "OpenID Provider site - Alpha versie (test code)"
 
 msgid "Required for Radius"
 msgstr "Vereist voor Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "De metadata voor de volgende entity kon niet gevonden worden:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP voorbeeld - test inloggen via je IdP"

@@ -27,9 +27,6 @@ msgstr "ここにアクセスするために使用するリンクが不正でし
 msgid "{core:no_state:cause_backforward}"
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "メタデータの実体を見つけることが出来ませんでした:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "管理者としてログイン"
 
@@ -149,9 +146,6 @@ msgstr "認証"
 msgid "{core:frontpage:logout}"
 msgstr "ログアウト"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
-
 msgid "{core:no_state:description}"
 msgstr "現在のリクエストから状態情報を特定することが出来ませんでした。"
 
@@ -166,14 +160,8 @@ msgstr ""
 "<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
 "テスト、診断、メタデータや関連するドキュメントへのリンクを見つけることができるでしょう。"
 
-msgid "{core:no_metadata:header}"
-msgstr "メタデータが見つかりません"
-
 msgid "{core:frontpage:required}"
 msgstr "必須"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -216,9 +204,6 @@ msgstr "SimpleSAMLphpについて"
 msgid "{core:frontpage:about_text}"
 msgstr ""
 "SimpleSAMLphpは素晴らしいものです。詳細についてお探しですか？<a href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphpのWEBページ</a>で更なる情報を見つけることが出来ます。"
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題が有ります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "設定に便利なリンク集"
@@ -311,9 +296,6 @@ msgstr "SimpleSAMLphp IdPと連携するShibboleth SP 1.3として設定"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
-
-msgid "Metadata not found"
-msgstr "メタデータが見つかりません"
 
 msgid "Missing cookie"
 msgstr "クッキーが見つかりません"
@@ -423,9 +405,6 @@ msgstr "OpenID プロバイダサイト - アルファバージョン (テスト
 
 msgid "Required for Radius"
 msgstr "Radiusのために必須"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "メタデータの実体を見つけることが出来ませんでした:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP example - IdP 経由でテストログイン"

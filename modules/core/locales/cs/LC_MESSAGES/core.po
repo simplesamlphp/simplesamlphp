@@ -25,9 +25,6 @@ msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."
 msgid "{core:no_state:cause_backforward}"
 msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Nebyla nalezena metadata pro entitu:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Příhlásit se jako administrátor"
 
@@ -119,11 +116,6 @@ msgstr "Jste přihlášen jako administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Autentizace"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Pokud jste uživatel, který obdržel chybu po následování odkazu na webové "
-"stránce, měli byste o této chybě informovat vlastníka této stránky. "
-
 msgid "{core:no_state:description}"
 msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
 
@@ -139,16 +131,8 @@ msgstr ""
 "Toto je startovací stránka vaší instalace, kde najde linky na testovací "
 "ukázky, diagnostiku, metadata a relevantní literaturu."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadata nebyla nalezena"
-
 msgid "{core:frontpage:required}"
 msgstr "Požadováno"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Toto je pravděpodobně konfigurační problém na straně poskytovatele služby"
-" nebo poskytovatele identity."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -195,12 +179,6 @@ msgstr ""
 "více? Další informace o SimpleSAMLphp získáte <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">na blogu Feide RnD</a> na <a "
 "href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Pokud jste vývojář nasazující řešení jednotného přihlašování, máte "
-"problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována "
-"správně jak u poskytovatele identity tak u poskytovatele služby."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Linky pro vaši instalaci"
@@ -299,9 +277,6 @@ msgstr "Konfigurace Shibboleth 1.3 SP pro práci s SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
-
-msgid "Metadata not found"
-msgstr "Metadata nebyla nalezena"
 
 msgid "Missing cookie"
 msgstr "Chybějící cookie"
@@ -423,9 +398,6 @@ msgstr "Stránka OpenID poskytovatele - alfa version (testovací kód)"
 
 msgid "Required for Radius"
 msgstr "Požadováno pro Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Nebyla nalezena metadata pro entitu:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP úkázka - testovací přihlášení pomocí vaší IdP"

@@ -25,9 +25,6 @@ msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
 msgid "{core:no_state:cause_backforward}"
 msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Metadati šai entītijai nav atrasti:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Pieslēgties kā administrators"
 
@@ -114,11 +111,6 @@ msgstr "Jūs esat pieslēdzies kā administrators"
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikācija"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā interneta "
-"lapā, Jums jāziņo par šo kļūdu lapas īpašniekam."
-
 msgid "{core:no_state:description}"
 msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
 
@@ -134,16 +126,8 @@ msgstr ""
 "SimpleSAMLphp.Šī ir Jūsu instalācijas sākuma lapa, kur varat atrast "
 "saites uz testu piemēriem, diagnostiku, metadatiem un dokumentāciju."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadati nav atrasti"
-
 msgid "{core:frontpage:required}"
 msgstr "Obligāts"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai "
-"identitātes piegādātāja."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -190,12 +174,6 @@ msgstr ""
 "informācijas ir <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp Feide RnD "
 "blogā</a> pie <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu "
-"konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, "
-"gan pie servisa piegādātāja."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Derīgas saites instalācijai"
@@ -290,9 +268,6 @@ msgstr "Konfigurēt Shibboleth 1.3 SP strādāt ar SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
-
-msgid "Metadata not found"
-msgstr "Metadati nav atrasti"
 
 msgid "Missing cookie"
 msgstr "Trūkst sīkdatnes"
@@ -412,9 +387,6 @@ msgstr "OpenID piegādātāja vietne - Alfa versija (testa kods)"
 
 msgid "Required for Radius"
 msgstr "Obligāts priekš Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Metadati šai entītijai nav atrasti:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP piemērs - testa pieslēgšanās caur Jūsu IDP"

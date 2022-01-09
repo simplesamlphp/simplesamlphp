@@ -14,23 +14,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Bona ke bothata bo ka kgonahalang ka ho fetisisa ho mofani wa tshebeletso"
-" kapa mofani wa tshebeletso."
-
 msgid "{core:no_state:description}"
 msgstr ""
 "Ha re kgone ho fumana tlhahisoleseding ka provenseng bakeng sa kopo ya ha"
 " jwale."
-
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le "
-"setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
-
-msgid "Metadata not found"
-msgstr "Metadata ha e a fumanwa"
 
 msgid "{core:cardinality:cardinality_text}"
 msgstr ""
@@ -75,9 +62,6 @@ msgstr ""
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "O butse sebadi sa webe ka di-tab tse bolokilweng sesheneng e fetileng."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Ha re a kgona ho fumana metadata bakeng sa setheo:"
-
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Makgabane a Fosahetseng"
 
@@ -103,20 +87,11 @@ msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi
 msgid "{core:no_state:report_header}"
 msgstr "Tlaleha phoso ena"
 
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le "
-"bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho"
-" nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
-
 msgid "State information lost"
 msgstr "Tlhahisoleseding ya provense e lahlehile"
 
 msgid "Incorrect Attributes"
 msgstr "Makgabane a Fosahetseng"
-
-msgid "{core:no_metadata:header}"
-msgstr "Metadata ha e a fumanwa"
 
 msgid "{core:no_state:cause_nocookie}"
 msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
@@ -150,9 +125,6 @@ msgstr "Ho sebedisa dikonopo tsa pele le morao sebading sa webo."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Ha re a kgona ho fumana metadata bakeng sa setheo:"
 
 msgid "{core:no_state:header}"
 msgstr "Tlhahisoleseding ya provense e lahlehile"

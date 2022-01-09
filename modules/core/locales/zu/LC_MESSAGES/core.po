@@ -19,12 +19,6 @@ msgstr ""
 "Isici esisodwa noma ngaphezulu esinikezwe umhlinzeki wakho kamazisi "
 "asizange siqukathe inani lezinombolo ezilindelwe."
 
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Uma ungunjiniyela osebenzisa isixazululo sokusayinela ukungena esisodwa, "
-"unenkinga ngomiso lwemethadatha. Qinisekisa ukuthi imethadatha imiswe "
-"ngendlela efanele kokubili kumhlinzeki womazisi nomhlinzeki wesevisi."
-
 msgid "Retry"
 msgstr "Zama futhi"
 
@@ -46,21 +40,8 @@ msgstr "Asikwazanga ukuthola ulwazi lwesifunda lwesicelo samanje."
 msgid "{core:no_state:report_text}"
 msgstr "Uma le nkinga iphikelela, ungayibika kubalawuli besistimu."
 
-msgid "{core:no_metadata:header}"
-msgstr "Imethadatha ayitholakali"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Lokhu kungenzeka ukuthi kubangelwa inkinga yomiso yomhlinzeki wesevisi "
-"noma umhlinzeki kamazisi."
-
 msgid "{core:no_state:header}"
 msgstr "Ulwazi lwesifunda lulahlekile"
-
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Uma ungumsebenzisi othole leli phutha ngemva kokulandela ilinki "
-"ekusayithi, kufanele ubike leli phutha kumnikazi waleyo sayithi."
 
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Izici Ezingalungile"
@@ -69,9 +50,6 @@ msgid "{core:no_state:cause_openbrowser}"
 msgstr ""
 "Kuvulwe isiphequluli sewebhu ngamathebhu alondolozwe kuseshini "
 "yangaphambilini."
-
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Asikwazanga ukuthola imethadatha yenhlangano:"
 
 msgid "{core:cardinality:got_want}"
 msgstr "uthole amanani angu-%GOT%, ufuna %WANT%"

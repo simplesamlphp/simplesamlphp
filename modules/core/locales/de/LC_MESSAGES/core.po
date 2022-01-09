@@ -26,9 +26,6 @@ msgstr ""
 msgid "{core:no_state:cause_backforward}"
 msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Für folgende Entität konnten keine Metadaten gefunden werden:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Als Administrator anmelden"
 
@@ -118,11 +115,6 @@ msgstr "Sie sind als Administrator angemeldet"
 msgid "{core:frontpage:auth}"
 msgstr "Authentifizierung"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, "
-"sollten Sie diesen Fehler den Betreibern der Website melden."
-
 msgid "{core:no_state:description}"
 msgstr ""
 "Wir konnten die Statusinformationen für die aktuelle Anfrage nicht "
@@ -141,16 +133,8 @@ msgstr ""
 "Links zu Testbeispielen, Diagnose, Metadaten und anderer relevanten "
 "Dokumentation."
 
-msgid "{core:no_metadata:header}"
-msgstr "Keine Metadaten gefunden"
-
 msgid "{core:frontpage:required}"
 msgstr "Erforderlich"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service "
-"Providers oder des Identity Providers."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -200,12 +184,6 @@ msgstr ""
 " darüber lesen? Sie finden mehr Informationen über <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp auf dem Feide "
 "RnD blog</a> auf <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den "
-"benutzten Metadaten etwas nicht. Überprüfen Sie die Metadaten des "
-"Identity Providers und des Service Providers."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nützliche Links für ihre Installation"
@@ -306,9 +284,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
-
-msgid "Metadata not found"
-msgstr "Keine Metadaten gefunden"
 
 msgid "Missing cookie"
 msgstr "Cookie fehlt"
@@ -432,9 +407,6 @@ msgstr "OpenID Provider Seite - Alpha Version (Testcode)"
 
 msgid "Required for Radius"
 msgstr "Erforderlich für Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Für folgende Entität konnten keine Metadaten gefunden werden:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP Beispiel - Anmelden über ihren IdP testen"

@@ -19,13 +19,6 @@ msgstr ""
 "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho "
 "aluqulethanga inani lamaxabiso alindelekileyo."
 
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Ukuba ungumvelisi osebenzisa isisombululo sokusayina ungene kanye, "
-"unengxaki nolungiselelo lwe-metadata. Qinisekisa ukuba i-metadata "
-"ilungiselelwe ngokuchanekileyo kuzo zombini umbonelei wesazisi "
-"nomboneleli wenkonzo."
-
 msgid "Retry"
 msgstr "Zama kwakhona"
 
@@ -47,30 +40,14 @@ msgstr "Asikwazanga ukufumana inkcazelo yobume yesicelo sangoku."
 msgid "{core:no_state:report_text}"
 msgstr "Ukuba le ngxaki iyaqhubeka, ungayichaza kubalawuli besistim."
 
-msgid "{core:no_metadata:header}"
-msgstr "I-Metadata ayifunyenwanga"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Kusenokwenzeka yingxaki yolungiselelo kumboneleli wenkonzo okanye "
-"umboneleli wesazisi."
-
 msgid "{core:no_state:header}"
 msgstr "Inkcazelo yobume ilahlekile"
-
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Ukuba ngaba ungumsebenzisi ofumene le mpazamo emva kokulandela ilinki "
-"kwisayithi, ufanele uchaze le mpazamo kumnini walo sayithi."
 
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Iimpawu Ezingachanekanga"
 
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo."
-
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Asikwazanga ukufumana imetadata ye-entithi:"
 
 msgid "{core:cardinality:got_want}"
 msgstr "kukho amaxabiso e-%GOT%, sifuna %WANT%"

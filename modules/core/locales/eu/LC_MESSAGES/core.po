@@ -26,9 +26,6 @@ msgstr ""
 msgid "{core:no_state:cause_backforward}"
 msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Ezinezkoa izan da erakunde honentzat metadaturik aurkitzea: "
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Sartu administratzaile bezala"
 
@@ -120,11 +117,6 @@ msgstr "Administratzaile bezala sartu zara"
 msgid "{core:frontpage:auth}"
 msgstr "Kautotzea"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile "
-"bat bazara,  guneko jabeari eman behar diozu errorearen berri."
-
 msgid "{core:no_state:description}"
 msgstr "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat."
 
@@ -140,16 +132,8 @@ msgstr ""
 " instalazioaren hasiera orria da, hemen, aurkituko dituzu loturak froga, "
 "metadatu edo dokumentu garrantzitsuetan sartzeko."
 
-msgid "{core:no_metadata:header}"
-msgstr "Ez da aurkitu metadaturik"
-
 msgid "{core:frontpage:required}"
 msgstr "Beharrezkoa"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean "
-"edota identitate hornitzailean. "
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -199,13 +183,6 @@ msgstr ""
 "informazio gehiago honen inguruan? <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp Feideren I+G "
 "blogeko <a href=\"http://uninett.no\">UNINETT</a>n."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, "
-"arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu "
-"metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta "
-"zerbitzu hornitzailean."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Instalaziorako lotura erabilgarriak"
@@ -306,9 +283,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
-
-msgid "Metadata not found"
-msgstr "Ez da aurkitu metadaturik"
 
 msgid "Missing cookie"
 msgstr "Cookie-a falta da"
@@ -432,9 +406,6 @@ msgstr "OpenID hornitzailearen gunea - Alfa bertsioa (proba kodea)"
 
 msgid "Required for Radius"
 msgstr "RADIUSentzat beharrezkoa"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Ezinezkoa izan da erakunde honentzat metadaturik aurkitzea: "
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"

@@ -25,9 +25,6 @@ msgstr "Dacă problema persistă, anunțați administratorii de sistem."
 msgid "{core:no_state:cause_backforward}"
 msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Nu am găsit metadate pentru următoarea entitate:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Autentificare ca adminstrator"
 
@@ -123,12 +120,6 @@ msgstr "V-ați autentificat ca administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Autentificare"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Dacă sunteți un utilizator care a primit acest mesaj de eroare în urma "
-"utilizării unui link din alt sit, vă rugăm să anunțați această eroare "
-"deținătorului sitului respectiv."
-
 msgid "{core:no_state:description}"
 msgstr ""
 "Nu a fost posibilă localizarea informațiilor de stare pentru cererea "
@@ -146,16 +137,8 @@ msgstr ""
 "Aceasta este pagina de start unde găsiți link-uri către exemple, "
 "diagnosticări, metadate, documentație."
 
-msgid "{core:no_metadata:header}"
-msgstr "Nu au fost găsite metadate"
-
 msgid "{core:frontpage:required}"
 msgstr "Necesar"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Probabil există o problemă de configurare, fie la furnizorul de servicii "
-"fie la furnizorul de identitate."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -206,13 +189,6 @@ msgstr ""
 " Puteți găsi mai multe informații despre <a "
 "href=\"http://rnd.feide.no/simplesamlphp\"> la blog-ul Feide despre "
 "SimpleSAMLphp</a> de la <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Dacă sunteți dezvoltator care implementează o soluție <i>single sign-"
-"on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să "
-"verificați configurarea corectă a metadatelor, atât la furnizorul de "
-"identitate cât și la furnizorul de servicii."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Link-uri utile pentru instalare"
@@ -317,9 +293,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
-
-msgid "Metadata not found"
-msgstr "Nu au fost găsite metadate"
 
 msgid "Missing cookie"
 msgstr "<i>Cookie</i> lipsă"
@@ -445,9 +418,6 @@ msgstr "Furnizor OpenID - versiune alpha (cod de test)"
 
 msgid "Required for Radius"
 msgstr "Necesar pentru RADIUS"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Nu am găsit metadate pentru următoarea entitate:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr ""

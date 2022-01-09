@@ -26,9 +26,6 @@ msgstr ""
 msgid "{core:no_state:cause_backforward}"
 msgstr "Usando los botones atrás y adelante de su navegador web."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Fue imposible localizar los metadatos para la entidad:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Entrar como administrador"
 
@@ -132,11 +129,6 @@ msgstr "Ha entrado como administrador"
 msgid "{core:frontpage:auth}"
 msgstr "Autenticación"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Si usted es un usuario que recibe este error luego de seguir un vínculo "
-"en un sitio, debe reportar el error al dueño del sitio."
-
 msgid "{core:no_state:description}"
 msgstr "No podemos encontrar la información de estado para la solicitud actual"
 
@@ -154,16 +146,8 @@ msgstr ""
 "prueba, diagn&oacute;sticos, metadatos e incluso enlaces a la "
 "documentaci&oacute;n pertinente."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadatos no encontrados"
-
 msgid "{core:frontpage:required}"
 msgstr "Necesario"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Esto es posiblemente un problema de configuración en el proveedor de "
-"servicios o en el proveedor de identidad."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -213,13 +197,6 @@ msgstr ""
 "informaci&oacute;n en la <a "
 "href=\"https://simplesamlphp.org/\">p&aacute;gina web de "
 "SimpleSAMLphp</a>, en <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Si usted es un desarrollador que está desplegando una solución de inicio "
-"único, tiene un problema con la configuración de sus metadatos. Verifique"
-" que los metadatos están configurados correctamente en el proveedor de "
-"identidad y en el proveedor de servicios"
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Enlaces &uacute;tiles para su instalaci&oacute;n"
@@ -326,9 +303,6 @@ msgstr ""
 "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por "
 "favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima "
 "versi&oacute;n</a> lo antes posible."
-
-msgid "Metadata not found"
-msgstr "Metadatos no encontrados"
 
 msgid "Missing cookie"
 msgstr "No se encuentra cookie"
@@ -454,9 +428,6 @@ msgstr "Sitio del proveedor OpenID - Versión Alfa (código de prueba)"
 
 msgid "Required for Radius"
 msgstr "Necesario para RADIUS"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Fue imposible localizar los metadatos para la entidad:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "Ejemplo de SP con SAML 2.0 - Prueba a acceder empleando tu IdP"

@@ -27,9 +27,6 @@ msgstr "The link used to get here was bad, perhaps a bookmark."
 msgid "{core:no_state:cause_backforward}"
 msgstr "Using the back and forward buttons in the web browser."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "We were unable to locate the metadata for the entity:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login as administrator"
 
@@ -157,11 +154,6 @@ msgstr "Authentication"
 msgid "{core:frontpage:logout}"
 msgstr "Logout"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"If you are an user who received this error after following a link on a "
-"site, you should report this error to the owner of that site."
-
 msgid "{core:no_state:description}"
 msgstr "We were unable to locate the state information for the current request."
 
@@ -178,16 +170,8 @@ msgstr ""
 "will find links to test examples, diagnostics, metadata and even links to"
 " relevant documentation."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metadata not found"
-
 msgid "{core:frontpage:required}"
 msgstr "Required"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"This is most likely a configuration problem on either the service "
-"provider or identity provider."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -236,12 +220,6 @@ msgstr ""
 "You can find more information about it at the <a "
 "href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
 "<a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"If you are a developer who is deploying a single sign-on solution, you "
-"have a problem with the metadata configuration. Verify that metadata is "
-"configured correctly on both the identity provider and service provider."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Useful links for your installation"
@@ -346,9 +324,6 @@ msgid ""
 msgstr ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"
 " href=\"https://simplesamlphp.org/download\">the latest version</a> as soon as possible."
-
-msgid "Metadata not found"
-msgstr "Metadata not found"
 
 msgid "Missing cookie"
 msgstr "Missing cookie"
@@ -470,9 +445,6 @@ msgstr "OpenID Provider site - Alpha version (test code)"
 
 msgid "Required for Radius"
 msgstr "Required for Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "We were unable to locate the metadata for the entity:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP example - test logging in through your IdP"

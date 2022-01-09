@@ -26,9 +26,6 @@ msgstr ""
 msgid "{core:no_state:cause_backforward}"
 msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Είσοδος ως διαχειριστής"
 
@@ -134,11 +131,6 @@ msgstr "Συνδεδεμένος ως διαχειριστής"
 msgid "{core:frontpage:auth}"
 msgstr "Ταυτοποίηση"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, "
-"θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
-
 msgid "{core:no_state:description}"
 msgstr ""
 "Δεν ήταν δυνατό να εντοπιστούν πληροφορίες κατάστασης για το τρέχον "
@@ -157,16 +149,8 @@ msgstr ""
 "βρείτε συνδέσμους σε διαγνωστικά, μεταδεδομένα, παραδείγματα ρυθμίσεων "
 "για δοκιμή, καθώς και τη σχετική τεκμηρίωση."
 
-msgid "{core:no_metadata:header}"
-msgstr "Δεν βρέθηκαν μεταδεδομένα"
-
 msgid "{core:frontpage:required}"
 msgstr "Απαιτείται"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών "
-"είτε του παρόχου ταυτότητας."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -219,13 +203,6 @@ msgstr ""
 " αυτό; Μπορείτε να βρείτε περισσότερες πληροφορίες στον <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">ιστότοπο του SimpleSAMLphp</a>"
 " που φιλοξενείται από το <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, "
-"τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. "
-"Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο "
-"ταυτότητας όσο και στον πάροχο υπηρεσιών."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Χρήσιμοι σύνδεσμοι για την εγκατάστασή σας"
@@ -332,9 +309,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
-
-msgid "Metadata not found"
-msgstr "Δεν βρέθηκαν μεταδεδομένα"
 
 msgid "Missing cookie"
 msgstr "Πρόβλημα λειτουργίας cookie"
@@ -465,9 +439,6 @@ msgstr "Σελίδα Παρόχου OpenID - Έκδοση Alpha (δοκιμασ�
 
 msgid "Required for Radius"
 msgstr "Απαιτείται για υποστήριξη RADIUS"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr ""

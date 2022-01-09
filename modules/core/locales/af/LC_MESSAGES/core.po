@@ -15,38 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Ons was nie in staat om die metadata vir die entiteit op te spoor nie:"
-
 msgid "{core:short_sso_interval:warning}"
 msgstr ""
 "Ons het ontdek dat daar slegs 'n paar sekondes was sedert jy laas "
 "geverifieer het met die diensverskaffer en neem dus aan dat daar 'n "
 "probleem is met hierdie SP."
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf "
-"hierdie fout ontvang het, moet jy hierdie fout aan die eienaar van die "
-"webwerf aan stuur."
-
 msgid "{core:short_sso_interval:warning_header}"
 msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure."
-
-msgid "{core:no_metadata:header}"
-msgstr "Metadata nie gevind nie"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Dié is waarskynlik 'n probleem met die konfigurasie by die "
-"diensverskaffer óf die identiteit verskaffer."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"As jy 'n programmeerder is wat die 'single sign-on' oplossing "
-"implementeer, het jy 'n probleem met die metadata opset. Bevestig dat die"
-" metadata korrek ingestel is op beide die identiteit verskaffer en "
-"diensverskaffer."
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Probeer weer aanmeld"
@@ -60,9 +36,6 @@ msgid ""
 msgstr ""
 "Dié is waarskynlik 'n probleem met die konfigurasie by die "
 "diensverskaffer óf die identiteit verskaffer."
-
-msgid "Metadata not found"
-msgstr "Metadata nie gevind nie"
 
 msgid "Missing cookie"
 msgstr "Verlore cookie"
@@ -84,9 +57,6 @@ msgstr ""
 "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf "
 "hierdie fout ontvang het, moet jy hierdie fout aan die eienaar van die "
 "webwerf aan stuur."
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Ons was nie in staat om die metadata vir die entiteit op te spoor nie:"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

@@ -25,9 +25,6 @@ msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
 msgid "{core:no_state:cause_backforward}"
 msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Metapodatkov za to entiteto ni bilo moč najti."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavi se kot administrator"
 
@@ -114,11 +111,6 @@ msgstr "Prijavljeni ste v vlogi administratorja"
 msgid "{core:frontpage:auth}"
 msgstr "Avtentikacija"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Če ste na to težavo naleteli po kliku povezave te spletne strani, "
-"prijavite težavo skrbniku te spletne strani."
-
 msgid "{core:no_state:description}"
 msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
 
@@ -134,16 +126,8 @@ msgstr ""
 "strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, "
 "metapodatkov in s tem povezane dokumentacije."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metapodatkov ni bilo moč najti."
-
 msgid "{core:frontpage:required}"
 msgstr "Zahtevano"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP)"
-" bodisi ponudnika identitet (IdP)."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -194,12 +178,6 @@ msgstr ""
 "Dodatne informacije se nahajajo na <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp Feide RnD "
 "blogu</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve "
-"metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na "
-"strani ponudnika storitve (SP)."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Uporabne povezave"
@@ -294,9 +272,6 @@ msgstr "Nastavi Shibboleth 1.3 SP za delo s SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
-
-msgid "Metadata not found"
-msgstr "Metapodatkov ni bilo moč najti."
 
 msgid "Missing cookie"
 msgstr "Piškotek (\"cookie\") ne obstaja!"
@@ -419,9 +394,6 @@ msgstr "OpenID Provider lokacija - Alpha različica (v razvoju)"
 
 msgid "Required for Radius"
 msgstr "Zahtevano za RADIUS"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Metapodatkov za to entiteto ni bilo moč najti."
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP primer - preveri prijavo preko svojega IdP"

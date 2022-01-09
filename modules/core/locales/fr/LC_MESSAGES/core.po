@@ -26,9 +26,6 @@ msgstr ""
 msgid "{core:no_state:cause_backforward}"
 msgstr "Utilisation des boutons avance et retour dans le navigateur."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Nous ne trouvons pas les métadonnées de l'entité :"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Connexion en tant qu'administrateur"
 
@@ -117,12 +114,6 @@ msgstr "Vous êtes connecté en tant qu'administrateur"
 msgid "{core:frontpage:auth}"
 msgstr "Authentification"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Si vous êtes un usager qui reçoit cette erreur après avoir suivi un lien "
-"sur un site, vous devriez remonter cette erreur au propriétaire de ce "
-"site."
-
 msgid "{core:no_state:description}"
 msgstr "Nous ne pouvons pas trouver l'information d'état pour la demande courante."
 
@@ -139,16 +130,8 @@ msgstr ""
 "vers des exemples de configurations, outils de diagnostics, métadonnées, "
 "ainsi que des liens vers la documentation."
 
-msgid "{core:no_metadata:header}"
-msgstr "Métadonnées non trouvées"
-
 msgid "{core:frontpage:required}"
 msgstr "Obligatoire"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Cela ressemble à un problème de configuration soit du fournisseur de "
-"service ou du fournisseur d'identité."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -200,13 +183,6 @@ msgstr ""
 " sujet? Vous trouverez plus d'informations sur <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp sur le blog de "
 "la R&amp;D de Feide</a> sur <a href=\"http://uninett.no\">UNINETT</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Si vous êtes un développeur qui déploie une solution de single sign-on, "
-"vous avez un problème avec la configuration des métadonnées. Vérifiez que"
-" ces métadonnées sont correctement configurées sur le fournisseur "
-"d'identité et le fournisseur de service "
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Liens utiles pour votre installation"
@@ -307,9 +283,6 @@ msgstr "Configurer un SP Shibboleth 1.3 pour fonctionner avec l'IdP SimpleSAMLph
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Utilisation des boutons avance et retour dans le navigateur."
-
-msgid "Metadata not found"
-msgstr "Métadonnées non trouvées"
 
 msgid "Missing cookie"
 msgstr "Cookie introuvable"
@@ -435,9 +408,6 @@ msgstr "Site fournisseur d'OpenID - version alpha (code de test)"
 
 msgid "Required for Radius"
 msgstr "Obligatoire pour Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Nous ne trouvons pas les métadonnées de l'entité :"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SP SAML 2.0 d'exemple - tester l'identification via votre IdP"

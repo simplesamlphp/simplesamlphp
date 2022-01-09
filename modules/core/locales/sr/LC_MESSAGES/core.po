@@ -29,9 +29,6 @@ msgstr ""
 "Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u "
 "web pretraživaču."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Ne mogu pronaći metapodatke za entitet:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavite se kao administrator"
 
@@ -125,11 +122,6 @@ msgstr "Prijavljeni ste kao administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikacija"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web "
-"stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
-
 msgid "{core:no_state:description}"
 msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
 
@@ -145,16 +137,8 @@ msgstr ""
 " početna stranica na kojoj možete pronaći primere, dijagnostiku, "
 "metapodatke i linkove na relevantnu dokumentaciju."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metapodaci nisu pronađeni"
-
 msgid "{core:frontpage:required}"
 msgstr "Obavezno"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca "
-"identiteta."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -205,12 +189,6 @@ msgstr ""
 "informacija o SimpleSAMLphp-u možete pronaći na <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp stranici Feide "
 "RnD bloga</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator "
-"sistema, proverite da li metapodaci ispravno uneseni na strani davaoca "
-"servisa i davaoca identiteta."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Korisni linkovi"
@@ -315,9 +293,6 @@ msgid "Using the back and forward buttons in the web browser."
 msgstr ""
 "Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u "
 "web pretraživaču."
-
-msgid "Metadata not found"
-msgstr "Metapodaci nisu pronađeni"
 
 msgid "Missing cookie"
 msgstr "Nedostaje kolačić (cookie)"
@@ -442,9 +417,6 @@ msgstr "Davalac OpenID digitalnih identiteta - razvojna verzija (test)"
 
 msgid "Required for Radius"
 msgstr "Obavezno za Radius"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Ne mogu pronaći metapodatke za entitet:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP primer - testirajte autentifikaciju kroz vaš Davalac Identieta"

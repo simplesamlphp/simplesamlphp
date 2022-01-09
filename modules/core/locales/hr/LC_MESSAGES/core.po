@@ -29,9 +29,6 @@ msgstr ""
 "Korištenjem gumba za prethodnu (back) i sljedeću (forward) stranicu u web"
 " pregledniku."
 
-msgid "{core:no_metadata:not_found_for}"
-msgstr "Ne mogu pronaći metapodatke za entitet:"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavite se kao administrator"
 
@@ -127,12 +124,6 @@ msgstr "Prijavljeni ste kao administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikacija"
 
-msgid "{core:no_metadata:suggestion_user_link}"
-msgstr ""
-"Ako se ova greška pojavila nakon što ste slijedili poveznicu na nekoj web"
-" stranici, onda biste grešku trebali prijaviti vlasniku navedene "
-"stranice."
-
 msgid "{core:no_state:description}"
 msgstr "Ne možemo pronaći podatak o stanju aktualnog zahtjeva."
 
@@ -148,16 +139,8 @@ msgstr ""
 "je početna stranica na kojoj možete pronaći primjere, dijagnostiku i "
 "metapodatke, kao i poveznice na relevantnu dokumentaciju."
 
-msgid "{core:no_metadata:header}"
-msgstr "Metapodaci nisu pronađeni"
-
 msgid "{core:frontpage:required}"
 msgstr "Obavezno"
-
-msgid "{core:no_metadata:config_problem}"
-msgstr ""
-"Najvjerojatnije je problem u konfiguraciji na strani davatelja usluge ili"
-" u konfiguraciji autentifikacijskog servisa."
 
 msgid "{core:frontpage:warnings_suhosin_url_length}"
 msgstr ""
@@ -212,13 +195,6 @@ msgstr ""
 "Više informacija o programskom alatu SimpleSAMLphp možete pronaći na <a "
 "href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp stranici Feide "
 "RnD bloga</a>."
-
-msgid "{core:no_metadata:suggestion_developer}"
-msgstr ""
-"Ako ste programer koji postavlja sustav jedinstvene autentifikacije "
-"(Single Sign-On sustav), tada imate problema s konfiguracijom "
-"metapodataka. Provjerite jesu li metapodaci ispravno uneseni i na strani "
-"davatelja usluge i u konfiguraciji autentifikacijskog servisa."
 
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Korisne poveznice"
@@ -323,9 +299,6 @@ msgid "Using the back and forward buttons in the web browser."
 msgstr ""
 "Korištenjem gumba za prethodnu (back) i sljedeću (forward) stranicu u web"
 " pregledniku."
-
-msgid "Metadata not found"
-msgstr "Metapodaci nisu pronađeni"
 
 msgid "Missing cookie"
 msgstr "Nedostaje kolačić (cookie)"
@@ -452,9 +425,6 @@ msgstr "Davatelj OpenID elektroničkih identiteta - razvojna verzija (test)"
 
 msgid "Required for Radius"
 msgstr "Obavezno za RADIUS"
-
-msgid "We were unable to locate the metadata for the entity:"
-msgstr "Ne mogu pronaći metapodatke za entitet:"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP primjer - isprobajte autentifikaciju kroz vaš IdP"
