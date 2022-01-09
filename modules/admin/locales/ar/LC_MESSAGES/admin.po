@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "محلل البيانات الوصفية/الميتاداتا"
+
+msgid "Deprecated"
+msgstr "استنكار"

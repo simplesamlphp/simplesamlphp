@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "מנתח מטא-מידע"
+
+msgid "Deprecated"
+msgstr "פג תוקף"

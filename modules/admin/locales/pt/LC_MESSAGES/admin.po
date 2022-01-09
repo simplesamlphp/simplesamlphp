@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Conversor de Metadados"
+
+msgid "Deprecated"
+msgstr "Descontinuado"

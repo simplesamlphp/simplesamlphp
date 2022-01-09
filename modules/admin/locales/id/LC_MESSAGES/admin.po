@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Parser metadata"
+
+msgid "Deprecated"
+msgstr "Usang"

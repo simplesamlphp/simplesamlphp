@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Metaandmete parsija"
+
+msgid "Deprecated"
+msgstr "Vananenud"

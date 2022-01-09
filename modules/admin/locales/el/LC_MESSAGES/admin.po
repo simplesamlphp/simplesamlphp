@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Αναλυτής (parser) μεταδεδομένων"
+
+msgid "Deprecated"
+msgstr "Υπό απόσυρση"

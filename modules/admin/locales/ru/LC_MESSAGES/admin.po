@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Средство синтаксического анализа метаданных"
+
+msgid "Deprecated"
+msgstr "Устаревшие"

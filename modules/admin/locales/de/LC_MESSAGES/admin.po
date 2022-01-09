@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Metadatenparser"
+
+msgid "Deprecated"
+msgstr "Veraltet"

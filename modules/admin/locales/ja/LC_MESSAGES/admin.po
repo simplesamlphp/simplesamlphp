@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "メタデータパーサ"
+
+msgid "Deprecated"
+msgstr "非推奨"

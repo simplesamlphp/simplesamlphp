@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Metaduomenų analizatorius"
+
+msgid "Deprecated"
+msgstr "Nebepalaikoma"

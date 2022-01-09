@@ -21,7 +21,7 @@
             <dd>EntityID: <code>{{ set.entityid }}</code></dd>
             {%- if set.deprecated is defined and set.deprecated %}
 
-              <dd><span class="entity-deprecated">Deprecated</span></dd>
+              <dd><span class="entity-deprecated">{{ 'Deprecated'|trans }}</span></dd>
             {%- endif %}
             {% set index = attribute(set, 'metadata-index')|default(false) %}
             {%- if index and set.entityid != index %}

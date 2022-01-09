@@ -16,3 +16,6 @@ msgstr ""
 
 msgid "Metadata parser"
 msgstr "Parser Metadata"
+
+msgid "Deprecated"
+msgstr "Descontinuado"
