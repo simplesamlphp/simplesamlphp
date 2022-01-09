@@ -15,17 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdPメタデータ"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr "ユーザー名またはパスワードが間違っています。ユーザー名、パスワードを確認して再度試してください。"
 
 msgid "{logout:failed}"
 msgstr "ログアウトに失敗しました"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0サービスプロバイダ(リモート)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "認証失敗: あなたのブラウザは証明書を送信しませんでした"
@@ -41,9 +35,6 @@ msgstr "ユーザー名"
 
 msgid "{errors:title_METADATA}"
 msgstr "メタデータの読み込み中にエラーが発生しました"
-
-msgid "{admin:metaconv_title}"
-msgstr "メタデータパーサ"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "エラーは見つかりませんでした。"
@@ -615,9 +606,6 @@ msgstr "組織番号"
 msgid "Password not set"
 msgstr "パスワードが設定されていません"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdPメタデータ"
-
 msgid "Post office box"
 msgstr "オフィスボックスポスト"
 
@@ -905,9 +893,6 @@ msgstr "WS-Federationサービスプロバイダ(ホスト)"
 
 msgid "Preferred language"
 msgstr "言語"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0サービスプロバイダ(リモート)"
 
 msgid "Surname"
 msgstr "姓"
@@ -1206,9 +1191,6 @@ msgid ""
 msgstr ""
 "ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。"
 "組織のヘルプデスクに相談してください。"
-
-msgid "Metadata parser"
-msgstr "メタデータパーサ"
 
 msgid "Choose your home organization"
 msgstr "あなたの組織を選択してください"

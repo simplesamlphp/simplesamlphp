@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Uitloggen mislukt"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (Remote)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Authenticatie niet gelukt: uw browser stuurde geen certificaat"
@@ -46,9 +40,6 @@ msgstr "Terug"
 
 msgid "{errors:title_METADATA}"
 msgstr "Fout bij het laden van metadata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadata parser"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Geen fouten gevonden."
@@ -744,9 +735,6 @@ msgstr "Organisatie nummer"
 msgid "Password not set"
 msgstr "Wachtwoord niet ingevuld"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "Post office box"
 msgstr "Postbus"
 
@@ -1088,9 +1076,6 @@ msgstr "Onthoud gebruikersnaam"
 
 msgid "Preferred language"
 msgstr "Voorkeurstaal"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (Remote)"
 
 msgid "Surname"
 msgstr "Achternaam"
@@ -1453,9 +1438,6 @@ msgid ""
 msgstr ""
 "Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en "
 "dus niet gebruikmaken van deze dienst."
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "ADFS Service Provider (Remote)"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Μεταδεδομένα Παρόχου Ταυτότητας SAML 2.0"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Ο συνδυασμός ονόματος χρήστη και κωδικού πρόσβασης δεν είναι σωστός. "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Η αποσύνδεση απέτυχε"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Απομακρυσμένος)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -45,9 +39,6 @@ msgstr "Όνομα Χρήστη"
 
 msgid "{errors:title_METADATA}"
 msgstr "Σφάλμα κατά τη φόρτωση μεταδεδομένων"
-
-msgid "{admin:metaconv_title}"
-msgstr "Αναλυτής (parser) μεταδεδομένων"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Δεν εντοπίστηκαν λάθη."
@@ -761,9 +752,6 @@ msgstr "Αριθμός οικείου οργανισμού"
 msgid "Password not set"
 msgstr "Σφάλμα κωδικού πρόσβασης"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Μεταδεδομένα Παρόχου Ταυτότητας SAML 2.0"
-
 msgid "Post office box"
 msgstr "Ταχυδρομική θυρίδα"
 
@@ -1094,9 +1082,6 @@ msgstr "Να θυμάσαι το όνομα χρήστη"
 
 msgid "Preferred language"
 msgstr "Προτιμώμενη γλώσσα"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Απομακρυσμένος)"
 
 msgid "Surname"
 msgstr "Επώνυμο"
@@ -1469,9 +1454,6 @@ msgstr ""
 "Λυπούμαστε. Χωρίς το όνομα χρήστη και τον κωδικό σας, δεν μπορείτε να "
 "ταυτοποιηθείτε ώστε να αποκτήσετε πρόσβαση στην υπηρεσία. Συμβουλευτείτε "
 "την υπηρεσία αρωγής χρηστών (help desk) του οργανισμού σας."
-
-msgid "Metadata parser"
-msgstr "Αναλυτής (parser) μεταδεδομένων"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "Πάροχος Υπηρεσιών ADFS (Απομακρυσμένος)"

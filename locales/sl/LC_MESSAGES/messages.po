@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metapodatki"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je "
@@ -27,9 +24,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Odjava je spodletela."
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 SP (Oddaljeni)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -47,9 +41,6 @@ msgstr "Uporabniško ime"
 
 msgid "{errors:title_METADATA}"
 msgstr "Napaka pri nalaganju metapodatkov"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metapodatkovna sintaktična analiza (parser)"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ni napak"
@@ -680,9 +671,6 @@ msgstr "Organizacijska številka"
 msgid "Password not set"
 msgstr "Geslo ni nastavljeno"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metapodatki"
-
 msgid "Post office box"
 msgstr "Poštni predal"
 
@@ -985,9 +973,6 @@ msgstr "WS-Fedration SP (Lokalni)"
 
 msgid "Preferred language"
 msgstr "Želen jezik"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 SP (Oddaljeni)"
 
 msgid "Surname"
 msgstr "Priimek"
@@ -1312,9 +1297,6 @@ msgid ""
 msgstr ""
 "Žal se brez uporabniškega imena in gesla ne morete prijaviti in "
 "uporabljati storitev."
-
-msgid "Metadata parser"
-msgstr "Metapodatkovna sintaktična analiza (parser)"
 
 msgid "Choose your home organization"
 msgstr "Izberite vašo domačo organizacijo"

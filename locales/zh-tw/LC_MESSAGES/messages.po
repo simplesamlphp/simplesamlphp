@@ -15,17 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr "找不到您所提供的使用者名稱之使用者，或您給了錯誤密碼。請檢查使用者並再試一次。"
 
 msgid "{logout:failed}"
 msgstr "登出失敗"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 服務提供者(遠端)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "認證錯誤：您的瀏覽器並未送出任何憑證"
@@ -41,9 +35,6 @@ msgstr "帳號"
 
 msgid "{errors:title_METADATA}"
 msgstr "錯誤載入詮釋資料"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadata 解析"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "沒有錯誤。"
@@ -947,9 +938,6 @@ msgstr "記住我的使用者名稱"
 msgid "Preferred language"
 msgstr "喜好語言"
 
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 服務提供者(遠端)"
-
 msgid "Surname"
 msgstr "姓"
 
@@ -1262,9 +1250,6 @@ msgid ""
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr "喔喔！如果您的帳號和密碼錯誤，系統將無法提供相關服務！"
-
-msgid "Metadata parser"
-msgstr "Metadata 解析"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "ADFS 服務提供者(遠端)"

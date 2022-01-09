@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Falha ao sair do serviço"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (Remoto)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -46,9 +40,6 @@ msgstr "Usuário"
 
 msgid "{errors:title_METADATA}"
 msgstr "Erro ao carregar a metadata."
-
-msgid "{admin:metaconv_title}"
-msgstr "Parser Metadata"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Não foram encontrados erros."
@@ -704,9 +695,6 @@ msgstr "Número Organizacional"
 msgid "Password not set"
 msgstr "Senha não definida"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "Post office box"
 msgstr "Caixa Postal"
 
@@ -1011,9 +999,6 @@ msgstr "Lembrar meu nome de usuário"
 
 msgid "Preferred language"
 msgstr "Linguagem preferida"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (Remoto)"
 
 msgid "Surname"
 msgstr "Sobrenome"
@@ -1351,9 +1336,6 @@ msgstr ""
 "Muito mal! - Sem o seu nome de usuário e a senha você não pode "
 "autenticar-se para acessar o serviço. Pode haver alguém que possa lhe "
 "ajudar. Consulte a central de dúvidas!"
-
-msgid "Metadata parser"
-msgstr "Parser Metadata"
 
 msgid "Choose your home organization"
 msgstr "Escolha a sua organização principal"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadatuak  "
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Ez dago erabiltzailerik adierazitako identifikadorearekin, edo "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Saioa ixteko prozesuak huts egin du"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Zerbitzu hornitzailea (Urrunekoa)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Kautotze okerra: zure nabigatzaileak ez du bidali ziurtagiririk "
@@ -44,9 +38,6 @@ msgstr "Erabiltzaile-izena"
 
 msgid "{errors:title_METADATA}"
 msgstr "Errorea metadatuak kargatzean"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadatuak aztertu"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ez da errorerik aurkitu"
@@ -696,9 +687,6 @@ msgstr "Erakundearen zenbakia"
 msgid "Password not set"
 msgstr "Pasahitzik ez da ezarrii"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadatuak  "
-
 msgid "Post office box"
 msgstr "Posta-bulegoko ontzia"
 
@@ -1005,9 +993,6 @@ msgstr "WS-Federation Zerbitzu hornitzailea (Anfitrioia)"
 
 msgid "Preferred language"
 msgstr "Hizkuntza lehenetsia"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Zerbitzu hornitzailea (Urrunekoa)"
 
 msgid "Surname"
 msgstr "Abizenak"
@@ -1345,9 +1330,6 @@ msgstr ""
 "Zeinen txarto! - Zure erabiltziale-izena eta pasahitza gabe ezin zara "
 "identifikatu ezta zerbitzuan sartu ere. Agian bada norbait lagun "
 "diezazukeena. Jar zaitez harremanetan erakundeko laguntza zentroarekin!"
-
-msgid "Metadata parser"
-msgstr "Metadatuak aztertu"
 
 msgid "Choose your home organization"
 msgstr "Hautatu zure jatorrizko erakundea"

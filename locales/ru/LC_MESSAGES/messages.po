@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Метаданные провайдера идентификации SAML 2.0 IdP"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Либо не существует пользователя с данным именем, либо неверный "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Выход завершен неудачно"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Сервис провайдер SAML 2.0 (удаленное размещение)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Ошибка при аутентификации: ваш браузер не выслал сертификат"
@@ -44,9 +38,6 @@ msgstr "Имя пользователя"
 
 msgid "{errors:title_METADATA}"
 msgstr "Ошибка загрузки метаданных"
-
-msgid "{admin:metaconv_title}"
-msgstr "Средство синтаксического анализа метаданных"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ошибок не обнаружено."
@@ -729,9 +720,6 @@ msgstr "Номер организации"
 msgid "Password not set"
 msgstr "Пароль не установлен"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Метаданные провайдера идентификации SAML 2.0 IdP"
-
 msgid "Post office box"
 msgstr "Абонементный почтовый ящик"
 
@@ -1045,9 +1033,6 @@ msgstr "Запомнить моё имя пользователя"
 
 msgid "Preferred language"
 msgstr "Предпочитаемый язык"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Сервис провайдер SAML 2.0 (удаленное размещение)"
 
 msgid "Surname"
 msgstr "Фамилия"
@@ -1399,9 +1384,6 @@ msgstr ""
 "подтвердить ваше право на доступ к службе. Может быть есть кто-нибудь, "
 "кто сможет помочь вам. Проконсультируйтесь со своей службой поддержки в "
 "вашем университете!"
-
-msgid "Metadata parser"
-msgstr "Средство синтаксического анализа метаданных"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "Сервис провайдер ADFS (удаленное размещение)"

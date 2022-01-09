@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadaten"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Abmeldung fehlgeschlagen"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (entfernt)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Authentifizierung fehlgeschlagen: Ihr Browser hat kein Zertifikat gesendet"
@@ -44,9 +38,6 @@ msgstr "Benutzername"
 
 msgid "{errors:title_METADATA}"
 msgstr "Fehler beim Laden der Metadaten"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadaten-Parser"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Keine Fehler gefunden."
@@ -724,9 +715,6 @@ msgstr "Firmennummer nach dem Norwegischen Firmenregister"
 msgid "Password not set"
 msgstr "Passwort ist nicht gesetzt"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadaten"
-
 msgid "Post office box"
 msgstr "Postfach"
 
@@ -1048,9 +1036,6 @@ msgstr "WS-Federation Service Provider (gehosted)"
 
 msgid "Preferred language"
 msgstr "Bevorzugte Sprache"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (entfernt)"
 
 msgid "Surname"
 msgstr "Nachname"
@@ -1397,9 +1382,6 @@ msgstr ""
 "somit den Dienst nicht nutzen. Möglicherweise kann Ihnen jemand in Ihrer "
 "Einrichtung helfen. Kontaktieren Sie dazu einen Ansprechpartner oder den "
 "Helpdesk Ihrer Einrichtung."
-
-msgid "Metadata parser"
-msgstr "Metadatenparser"
 
 msgid "Choose your home organization"
 msgstr "Wählen Sie die Einrichtung, von der Sie Ihre Zugangsdaten beziehen"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Antingen finns det ingen användare med angiven användaridentitet eller så"
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Utloggning misslyckades"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (Fjärr)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Inloggning mislyckades: Din webbläsare skickade inget certifikat"
@@ -43,9 +37,6 @@ msgstr "Användarnamn"
 
 msgid "{errors:title_METADATA}"
 msgstr "Fel vi laddandet av metadata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadataanalyserare"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Inga fel funna."
@@ -707,9 +698,6 @@ msgstr "Organisationsnummer"
 msgid "Password not set"
 msgstr "Lösenord är inte satt"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "Post office box"
 msgstr "Box"
 
@@ -1022,9 +1010,6 @@ msgstr "WS-Federation Service Provider (Värd)"
 
 msgid "Preferred language"
 msgstr "Önskvärt språk"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (Fjärr)"
 
 msgid "Surname"
 msgstr "Efternamn"
@@ -1364,9 +1349,6 @@ msgstr ""
 "Tyvärr kan du inte logga in i tjänsten om du inte har ditt användarnamn "
 "och ditt lösenord. Ta kontakt med din organisations support eller "
 "helpdesk för att få hjälp."
-
-msgid "Metadata parser"
-msgstr "Metadataanalyserare"
 
 msgid "Choose your home organization"
 msgstr "Välj vilken organisation du kommer ifrån"

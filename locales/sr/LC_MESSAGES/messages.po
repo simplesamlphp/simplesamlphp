@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP metapodaci"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Korisnik s navedenim korisničkim imenom ne može biti pronađen ili je "
@@ -27,9 +24,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Odjava nije uspela"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Davalac Servisa (udaljeni)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -47,9 +41,6 @@ msgstr "Korisničko ime"
 
 msgid "{errors:title_METADATA}"
 msgstr "Greška prilikom učitavanja metapodataka"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadata analizator"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nije pronađena nijedna greška."
@@ -708,9 +699,6 @@ msgstr "Jedinstveni brojni identifikator institucije"
 msgid "Password not set"
 msgstr "Lozinka nije postavljena"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP metapodaci"
-
 msgid "Post office box"
 msgstr "Broj poštanskog sandučeta"
 
@@ -1022,9 +1010,6 @@ msgstr "WS-Federation Davalac Servisa (lokalni)"
 
 msgid "Preferred language"
 msgstr "Preferirani jezik"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Davalac Servisa (udaljeni)"
 
 msgid "Surname"
 msgstr "Prezime"
@@ -1364,9 +1349,6 @@ msgstr ""
 "Šteta! - Bez ispravnog korisničkog imena i lozinke ne možete pristupiti "
 "servisu. Da biste saznali vaše korisničko ime i lozinku obratite se vašoj"
 " matičnoj instituciji."
-
-msgid "Metadata parser"
-msgstr "Metadata analizator"
 
 msgid "Choose your home organization"
 msgstr "Izaberite vašu matičnu instituciju"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Utlogging feila"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (Remote)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Feil autentisering: din browser sender ikkje sertifikat"
@@ -43,9 +37,6 @@ msgstr "Brukarnamn"
 
 msgid "{errors:title_METADATA}"
 msgstr "Feil under lasting av metadata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Parser for metadata"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Fann ingen feil"
@@ -275,9 +266,6 @@ msgstr ""
 
 msgid "{admin:metadata_xmlformat}"
 msgstr "På SAML 2.0 metadata XML-format"
-
-msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
-msgstr "SAML 2.0 Identity Provider (Remote)"
 
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Identity Provider (Hosted)"
@@ -709,9 +697,6 @@ msgstr "Organisasjonsnummer"
 msgid "Password not set"
 msgstr "Finn ikkje passord"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "Post office box"
 msgstr "Postboks"
 
@@ -800,9 +785,6 @@ msgstr "Postadresse heime"
 
 msgid "WS-Fed SP Demo Example"
 msgstr "Demonstrasjon av WS-Federation SP"
-
-msgid "SAML 2.0 Identity Provider (Remote)"
-msgstr "SAML 2.0 Identity Provider (Remote)"
 
 msgid "Error processing the Logout Request"
 msgstr "Feil under prosessering av utloggingsspørsmål"
@@ -1357,9 +1339,6 @@ msgid ""
 msgstr ""
 "Synd! - Utan riktig brukarnamn og passord kan du ikkje autentisera deg.  "
 "Ta kontakt med brukarstøtte hos din organisasjon."
-
-msgid "Metadata parser"
-msgstr "Parser for metadata"
 
 msgid "Choose your home organization"
 msgstr "Vel vertsorganisasjon"

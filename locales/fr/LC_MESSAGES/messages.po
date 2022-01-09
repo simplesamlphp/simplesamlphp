@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Métadonnées d'IdP SAML 2.0"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Utilisateur inexistant, ou mot de passe incorrect. Vérifiez le nom "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Échec de la déconnexion"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Fournisseur de service SAML 2.0 distant"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -45,9 +39,6 @@ msgstr "Identifiant"
 
 msgid "{errors:title_METADATA}"
 msgstr "Erreur lors du chargement des métadonnées (metadata)"
-
-msgid "{admin:metaconv_title}"
-msgstr "Analyseur de métadonnées"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Aucune erreur."
@@ -717,9 +708,6 @@ msgstr "Immatriculation de l'institution"
 msgid "Password not set"
 msgstr "Le mot de passe n'a pas été renseigné"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Métadonnées d'IdP SAML 2.0"
-
 msgid "Post office box"
 msgstr "Boite postale"
 
@@ -1034,9 +1022,6 @@ msgstr "Fournisseur de service WS-federation local"
 
 msgid "Preferred language"
 msgstr "Langue préférée"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Fournisseur de service SAML 2.0 distant"
 
 msgid "Surname"
 msgstr "Nom"
@@ -1381,9 +1366,6 @@ msgstr ""
 "Pas de chance! Sans votre identifiant et votre mot de passe vous ne "
 "pouvez pas vous authentifier et accéder au service. Il y a peut-être "
 "quelqu'un pour vous aider.  Contactez le help desk de votre université!"
-
-msgid "Metadata parser"
-msgstr "Analyseur de métadonnées"
 
 msgid "Choose your home organization"
 msgstr "Choisissez votre fournisseur."

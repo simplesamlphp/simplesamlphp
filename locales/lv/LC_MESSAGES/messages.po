@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP metadati"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Vai nu nav lietotāja ar norādīto lietotāja vārdu, vai parole norādīta "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Atslēgšanās neizdevās"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 servisa piegādātājs (attālināts)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -46,9 +40,6 @@ msgstr "Lietotāja vārds"
 
 msgid "{errors:title_METADATA}"
 msgstr "Metadatu ielādes kļūda"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadatu parsētājs"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Kļūdas nav atrastas."
@@ -683,9 +674,6 @@ msgstr "Organizācijas reģistrācijas numurs"
 msgid "Password not set"
 msgstr "Parole nav uzstādīta"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP metadati"
-
 msgid "Post office box"
 msgstr "Pasta kaste"
 
@@ -990,9 +978,6 @@ msgstr "WS-Federation servisa piegādātājs (hostēts)"
 
 msgid "Preferred language"
 msgstr "Vēlamā valoda"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 servisa piegādātājs (attālināts)"
 
 msgid "Surname"
 msgstr "Uzvārds"
@@ -1320,9 +1305,6 @@ msgstr ""
 "Bez lietotāja vārda un paroles Jūs nevarat autentificēties un nevarat "
 "izmantot servisu. Iespējams, ir kāds, kas var Jums palīdzēt. Vaicājiet "
 "savas universitātes palīdzības dienestam."
-
-msgid "Metadata parser"
-msgstr "Metadatu parsētājs"
 
 msgid "Choose your home organization"
 msgstr "Izvēlieties organizāciju"

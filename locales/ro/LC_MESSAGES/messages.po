@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Metadate furnizor de identitate (IdP) SAML 2.0"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Nu a fost găsit niciun utilizator cu numele de utilizator specificat, sau"
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Deautentificarea a eșuat"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Furnizor de servicii SAML 2.0 (distant)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -46,9 +40,6 @@ msgstr "Nume de utilizator"
 
 msgid "{errors:title_METADATA}"
 msgstr "Eroare la încărcarea metadatelor"
-
-msgid "{admin:metaconv_title}"
-msgstr "Analizor de metadate"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nu au fost depistate erori."
@@ -719,9 +710,6 @@ msgstr "Număr organizațional"
 msgid "Password not set"
 msgstr "Parola nu este configurată"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Metadate furnizor de identitate (IdP) SAML 2.0"
-
 msgid "Post office box"
 msgstr "Cutie poștală"
 
@@ -1037,9 +1025,6 @@ msgstr "Furnizor de servicii federație WS (găzduit)"
 
 msgid "Preferred language"
 msgstr "Limba preferată"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Furnizor de servicii SAML 2.0 (distant)"
 
 msgid "Surname"
 msgstr "Nume de familie"
@@ -1380,9 +1365,6 @@ msgstr ""
 "Din păcate fără nume de utilizator și parolă nu vă puteți autentifica "
 "pentru accesul la acest serviciu. Contactați echipa de suport tehnic de "
 "la universitatea dumneavoastră."
-
-msgid "Metadata parser"
-msgstr "Analizor de metadate"
 
 msgid "Choose your home organization"
 msgstr "Alegeți instituția de origine"

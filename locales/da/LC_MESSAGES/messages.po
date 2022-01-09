@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 identitetsudbyders metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Enten kunne brugeren ikke findes eller også var kodeordet forkert. Prøv "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Logout fejlede"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 tjenesteudbyder (remote)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Login fejlede - din browser sendte ikke noget certifikat"
@@ -43,9 +37,6 @@ msgstr "Brugernavn"
 
 msgid "{errors:title_METADATA}"
 msgstr "Fejl i læsning af metadata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadata parser"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ingen fejl"
@@ -703,9 +694,6 @@ msgstr "CVR-nummer"
 msgid "Password not set"
 msgstr "Password er ikke sat"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 identitetsudbyders metadata"
-
 msgid "Post office box"
 msgstr "Postboks"
 
@@ -1014,9 +1002,6 @@ msgstr "Husk mit brugernavn"
 
 msgid "Preferred language"
 msgstr "Foretrukket sprog (evt. flere)"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 tjenesteudbyder (remote)"
 
 msgid "Surname"
 msgstr "Efternavn"
@@ -1354,9 +1339,6 @@ msgid ""
 msgstr ""
 "Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til "
 "tjenesten. Måske kan help-desk på din hjemmeinstitution hjælpe dig!"
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "ADFS tjenesteudbyder (remote)"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Metadatos IdP SAML 2.0"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "No existe un usuario con el identificador indicado, o la contraseña "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Proceso de desconexión fallido"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Proveedor de Servicio SAML 2.0 (remoto)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Fallo de autenticación: su navegador no envió ningún certificado"
@@ -44,9 +38,6 @@ msgstr "Nombre de usuario"
 
 msgid "{errors:title_METADATA}"
 msgstr "Error al cargar los metadatos"
-
-msgid "{admin:metaconv_title}"
-msgstr "Analizar metadatos"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "No se han encontrado errores"
@@ -755,9 +746,6 @@ msgstr "Número de la organización"
 msgid "Password not set"
 msgstr "No ha establecido una clave de acceso"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Metadatos IdP SAML 2.0"
-
 msgid "Post office box"
 msgstr "Código postal"
 
@@ -1080,9 +1068,6 @@ msgstr "Recordar mi nombre de usuario"
 
 msgid "Preferred language"
 msgstr "Idioma preferido"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Proveedor de Servicio SAML 2.0 (remoto)"
 
 msgid "Surname"
 msgstr "Apellidos"
@@ -1441,9 +1426,6 @@ msgstr ""
 "se puede identificar y acceder al servicio. A lo mejor hay alguien que "
 "puede ayudarle. &iexcl;P&oacute;ngase en contacto con el centro de ayuda "
 "de su universidad!"
-
-msgid "Metadata parser"
-msgstr "Analizar metadatos"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "Proveedor de Servicio ADFS (remoto)"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 metapodaci o autentifikacijskom servisu"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Korisnik s navedenom korisničkom oznakom ne može biti pronađen ili je "
@@ -27,9 +24,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Odjava nije uspjela"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 davatelj usluge (udaljeni)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -47,9 +41,6 @@ msgstr "Korisnička oznaka"
 
 msgid "{errors:title_METADATA}"
 msgstr "Greška prilikom učitavanja metapodataka"
-
-msgid "{admin:metaconv_title}"
-msgstr "Analizator metapodataka"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nije pronađena niti jedna greška."
@@ -712,9 +703,6 @@ msgstr "Brojčani identifikator ustanove"
 msgid "Password not set"
 msgstr "Zaporka nije postavljena"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 metapodaci o autentifikacijskom servisu"
-
 msgid "Post office box"
 msgstr "Broj poštanskog pretinca"
 
@@ -1024,9 +1012,6 @@ msgstr "WS-Federation davatelj usluge (lokalni)"
 
 msgid "Preferred language"
 msgstr "Primarni jezik"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 davatelj usluge (udaljeni)"
 
 msgid "Surname"
 msgstr "Prezime"
@@ -1367,9 +1352,6 @@ msgstr ""
 "Šteta! - Bez ispravne korisničke oznake i zaporke ne možete pristupiti "
 "aplikaciji. Da biste saznali vašu zaporku kontaktirajte administratora "
 "elektroničkog (LDAP) imenika vaše ustanove."
-
-msgid "Metadata parser"
-msgstr "Analizator metapodataka"
 
 msgid "Choose your home organization"
 msgstr "Odaberite vašu matičnu ustanovu"

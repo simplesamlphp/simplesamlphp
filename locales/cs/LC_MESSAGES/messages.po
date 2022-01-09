@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Uživatel buď nebyl nalezen, nebo jste zadal špatné heslo. Prosím "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Odhlášení selhalo"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.O Service Provider (Remote - vzdálený)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Přihlášení neproběhlo: Váš prohlížeč neodeslal žádný certifikát"
@@ -44,9 +38,6 @@ msgstr "Uživatel"
 
 msgid "{errors:title_METADATA}"
 msgstr "Chyba nahrávání metadat"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metadata parser"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nenalezeny žádné chyby"
@@ -677,9 +668,6 @@ msgstr "Číslo organizace"
 msgid "Password not set"
 msgstr "Heslo nebylo zadáno."
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metadata"
-
 msgid "Post office box"
 msgstr "Postbox"
 
@@ -982,9 +970,6 @@ msgstr "WS-Federation Service Provider (Hosted - lokální)"
 
 msgid "Preferred language"
 msgstr "Preferovaný jazyk"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.O Service Provider (Remote - vzdálený)"
 
 msgid "Surname"
 msgstr "Příjmení"
@@ -1309,9 +1294,6 @@ msgid ""
 msgstr ""
 "Bez jména a hesla se nemůžete identifikovat. Zkuste "
 "kontaktovat helpdesk své organizace."
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
 
 msgid "Choose your home organization"
 msgstr "Zvolte svou organizaci"

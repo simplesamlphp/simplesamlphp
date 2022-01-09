@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP metaandmed"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Kas sellise kasutajatunnusega kasutajat ei leitud või pole sinu poolt "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Välja logimine ebaõnnestus"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 teenusepakkuja (kaug)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentimine ei õnnestunud: brauser ei saatnud ühtegi sertifikaati"
@@ -44,9 +38,6 @@ msgstr "Kasutajatunnus"
 
 msgid "{errors:title_METADATA}"
 msgstr "Metaandmete laadimise tõrge"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metaandmete parsija"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Tõrkeid ei leitud"
@@ -687,9 +678,6 @@ msgstr "Registrikood"
 msgid "Password not set"
 msgstr "Parool määramata"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP metaandmed"
-
 msgid "Post office box"
 msgstr "Postkast"
 
@@ -995,9 +983,6 @@ msgstr "WS-Federation teenusepakkuja (hostitud)"
 
 msgid "Preferred language"
 msgstr "Eelistatud keel"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 teenusepakkuja (kaug)"
 
 msgid "Surname"
 msgstr "Perekonnanimi"
@@ -1327,9 +1312,6 @@ msgstr ""
 "Paha lugu! Ilma kasutajatunnust ja parooli teadmata pole võimalik seda "
 "teenust kasutada. Loodetavasti saab sind keegi aidata. Võta ühendust oma "
 "ülikooli kasutajatoeteenusega!"
-
-msgid "Metadata parser"
-msgstr "Metaandmete parsija"
 
 msgid "Choose your home organization"
 msgstr "Vali oma koduorganisatsioon"

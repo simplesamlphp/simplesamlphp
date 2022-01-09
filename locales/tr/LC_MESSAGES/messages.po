@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Üstveri (Metadata)"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Ya bu kullanıcı adında bir kullanıcı bulunamadı, yada şifreniz yanlış. "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Çıkış başarılamadı"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Servis Sağlayıcı (Uzak sistemde sunulan)"
 
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Kimlik sağlayıcıdan gelen cevabı işlerken hata"
@@ -37,9 +31,6 @@ msgstr "Kullanıcı adı"
 
 msgid "{errors:title_METADATA}"
 msgstr "Üstveri (metadata) yüklenmesinde hata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Üstveri (metadata) çözümleyici"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Hata bulunmadı."
@@ -626,9 +617,6 @@ msgstr "Kurumsal numara"
 msgid "Password not set"
 msgstr "Şifre atanmadı"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Üstveri (Metadata)"
-
 msgid "Post office box"
 msgstr "Posta kutusu"
 
@@ -909,9 +897,6 @@ msgstr "WS-Federasyon Servis Sağlayıcı (Bu sistemde sunulan)"
 
 msgid "Preferred language"
 msgstr "Tercih edilen dil"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Servis Sağlayıcı (Uzak sistemde sunulan)"
 
 msgid "Surname"
 msgstr "Soyadı"
@@ -1210,9 +1195,6 @@ msgstr ""
 "Çok kötü! - Kullanıcı adınız ve şifreniz olmadan bu servisi "
 "kullanamazsınız. Size yardımcı olabilecek birileri olabilir. Kuruluşunuza"
 " danışın. "
-
-msgid "Metadata parser"
-msgstr "Üstveri (metadata) çözümleyici"
 
 msgid "Choose your home organization"
 msgstr "Organizasyonunuzu seçiniz"

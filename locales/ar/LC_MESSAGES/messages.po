@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "البيانات الوصفية ل SAML 2.0 IdP"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "اما انه لم  نتمكن من التعرف علي اسم المستخدم او ان كلمة السر خطا. راجع "
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "تسجيل خروج فاشل"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "مقدم خدمة SAML 2.0 البعيد"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "فشل التوثيق لان متصفحك لم يرسل شهادات"
@@ -44,9 +38,6 @@ msgstr "اسم المستخدم"
 
 msgid "{errors:title_METADATA}"
 msgstr "خطا بتحميل البيانات الوصفية/ الميتاداتا "
-
-msgid "{admin:metaconv_title}"
-msgstr "محلل البيانات الوصفية/الميتاداتا"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "لا توجد أخطاء "
@@ -666,9 +657,6 @@ msgstr "الرقم بالمنظمة"
 msgid "Password not set"
 msgstr "لم تقم بتحديد كلمة السر"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "البيانات الوصفية ل SAML 2.0 IdP"
-
 msgid "Post office box"
 msgstr "الصندوق البريدي"
 
@@ -967,9 +955,6 @@ msgstr "مقدم خدمة WS-الفدرالية المستضاف "
 
 msgid "Preferred language"
 msgstr "اللغة المفضلة"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "مقدم خدمة SAML 2.0 البعيد"
 
 msgid "Surname"
 msgstr "اسم العائله"
@@ -1289,9 +1274,6 @@ msgstr ""
 "لسوء الحظ لا يمكننا التوثق من هويتك بدون اسم المستخدم و كلمة السر "
 "وبالتالي لا يمكنك استخدام الخدمة. للمساعدة اتصل بالموظف المسؤول بصفحة "
 "المساعدة بجامعتك"
-
-msgid "Metadata parser"
-msgstr "محلل البيانات الوصفية/الميتاداتا"
 
 msgid "Choose your home organization"
 msgstr "اختار جهتك الام"

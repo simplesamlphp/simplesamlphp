@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP - Metadane"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Nie istnieje użytkownik o tej nazwie, lub podano złe hasło. Sprawdź nazwę"
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Wystąpił bład podczas wylogowania"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Dostawca Serwisu (Zdalny)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Nie powiodło się uwierzytelnienie: przeglądarka nie przesłała certyfikatu"
@@ -44,9 +38,6 @@ msgstr "Nazwa użytkownika"
 
 msgid "{errors:title_METADATA}"
 msgstr "Błąd ładowania metadanych"
-
-msgid "{admin:metaconv_title}"
-msgstr "Parser metadanych"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nie znaleziono błędów."
@@ -663,9 +654,6 @@ msgstr "Numer organizacji"
 msgid "Password not set"
 msgstr "Nieustawione hasło"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP - Metadane"
-
 msgid "Post office box"
 msgstr "Skrzynka pocztowa (Post office box)"
 
@@ -967,9 +955,6 @@ msgstr "WS-Federation Dostawca Serwisu (Lokalny)"
 msgid "Preferred language"
 msgstr "Preferowany język (Preferred language)"
 
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Dostawca Serwisu (Zdalny)"
-
 msgid "Surname"
 msgstr "Nazwisko (Surname)"
 
@@ -1270,9 +1255,6 @@ msgstr ""
 "Niedobrze! - Bez nazwy użytkownika i/lub hasła nie możesz zostać "
 "uwierzytelniony dla tego serwisu. Może jest ktoś, kto może Ci pomóc. "
 "Skonsultuj się z działem pomocy technicznej na Twojej uczelni."
-
-msgid "Metadata parser"
-msgstr "Parser metadanych"
 
 msgid "Choose your home organization"
 msgstr "Wybierz swoją domową organizację"

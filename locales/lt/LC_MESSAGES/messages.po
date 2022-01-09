@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metaduomenys"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte"
@@ -26,9 +23,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Atsijungimas nepavyko"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Paslaugos teikėjas (nutolęs)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentikacija nepavyko: Jūsų naršyklė neišsiuntė jokio sertifikato"
@@ -44,9 +38,6 @@ msgstr "Prisijungimo vardas"
 
 msgid "{errors:title_METADATA}"
 msgstr "Klaida siunčiant metaduomenis"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metaduomenų analizatorius"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Klaidų nerasta."
@@ -693,9 +684,6 @@ msgstr "Organizacijos numeris"
 msgid "Password not set"
 msgstr "Nepateiktas slaptažodis"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metaduomenys"
-
 msgid "Post office box"
 msgstr "Pašto dėžutės nr."
 
@@ -1003,9 +991,6 @@ msgstr "WS-Federacijos Paslaugos teikėjas (vietinis)"
 
 msgid "Preferred language"
 msgstr "Kalba"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Paslaugos teikėjas (nutolęs)"
 
 msgid "Surname"
 msgstr "Pavardė"
@@ -1336,9 +1321,6 @@ msgstr ""
 "Blogai - be prisijungimo vardo ir slaptažodžio negalėsite autentikuotis "
 "ir patekti į reikiamą paslaugą. Galbūt yra kas Jums galėtų padėti. "
 "Susisiekite su savo universiteto vartotojų aptarnavimo specialistais."
-
-msgid "Metadata parser"
-msgstr "Metaduomenų analizatorius"
 
 msgid "Choose your home organization"
 msgstr "Pasirinkite savo organizaciją"

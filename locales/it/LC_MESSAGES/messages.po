@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Metadati SAML 2.0 IdP"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "L'utente fornito non è stato trovato, oppure la password fornita era "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Disconnessione fallita"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 Service Provider (Remoto)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr ""
@@ -45,9 +39,6 @@ msgstr "Nome utente"
 
 msgid "{errors:title_METADATA}"
 msgstr "Errore nel caricamento dei metadati"
-
-msgid "{admin:metaconv_title}"
-msgstr "Parser dei metadati"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nessun errore trovato."
@@ -713,9 +704,6 @@ msgstr "Numero organizzativo"
 msgid "Password not set"
 msgstr "Password non impostata"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Metadati SAML 2.0 IdP"
-
 msgid "Post office box"
 msgstr "Casella postale"
 
@@ -1034,9 +1022,6 @@ msgstr "WS-Federation Service Provider (Hosted)"
 
 msgid "Preferred language"
 msgstr "Lingua preferita"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (Remoto)"
 
 msgid "Surname"
 msgstr "Cognome"
@@ -1378,9 +1363,6 @@ msgstr ""
 "Senza il nome utente e la password, non è possibile effettuare "
 "l'autenticazione al servizio. C'è probabilmente qualcuno che può fornire "
 "aiuto. Consultare il proprio help desk."
-
-msgid "Metadata parser"
-msgstr "Parser dei metadati"
 
 msgid "Choose your home organization"
 msgstr "Selezionare la propria organizzazione"

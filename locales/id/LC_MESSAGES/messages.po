@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Metadata SAML 2.0 IdP"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "Username yang diberikan tidak dapat ditemukan, atau password yang Anda "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "Log out gagal"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Service Provider SAML 2.0 (Remote)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentifikasi gagal: Browser anada tidak mengirim sertifikat"
@@ -43,9 +37,6 @@ msgstr "Username"
 
 msgid "{errors:title_METADATA}"
 msgstr "Error meload metadata"
-
-msgid "{admin:metaconv_title}"
-msgstr "Parser metadata"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Tidak ada error yang ditemukan"
@@ -701,9 +692,6 @@ msgstr "Nomor Organisasi"
 msgid "Password not set"
 msgstr "Password tidak diset"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Metadata SAML 2.0 IdP"
-
 msgid "Post office box"
 msgstr "PO Box"
 
@@ -1009,9 +997,6 @@ msgstr "Servide Provider WS-Federation (Hosted)"
 
 msgid "Preferred language"
 msgstr "Pilihan Bahasa"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Service Provider SAML 2.0 (Remote)"
 
 msgid "Surname"
 msgstr "Nama Keluaga"
@@ -1351,9 +1336,6 @@ msgstr ""
 "Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan "
 "autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang "
 "dapat menolong Anda. Hubungi help desk pada universitas Anda."
-
-msgid "Metadata parser"
-msgstr "Parser metadata"
 
 msgid "Choose your home organization"
 msgstr "Pilih Basis Organisasi Anda"

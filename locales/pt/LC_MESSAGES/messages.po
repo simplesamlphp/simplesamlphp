@@ -15,17 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "Metadados SAML 2.0 IdP"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr "O utilizador ou senha fornecidos são incorrectos. Por favor tente de novo."
 
 msgid "{logout:failed}"
 msgstr "Saída falhada"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
 
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Erro ao processar a resposta do fornecedor de identidade (IdP)"
@@ -35,9 +29,6 @@ msgstr "Nome de utilizador"
 
 msgid "{errors:title_METADATA}"
 msgstr "Erro na leitura dos metadados"
-
-msgid "{admin:metaconv_title}"
-msgstr "Conversor de Metadados"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Não foram encontrados erros."
@@ -628,9 +619,6 @@ msgstr "Número de Organização"
 msgid "Password not set"
 msgstr "Password inalterada"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "Metadados SAML 2.0 IdP"
-
 msgid "Post office box"
 msgstr "Apartado"
 
@@ -908,9 +896,6 @@ msgstr "Fornecedor de serviço (SP) WS-Federation (Local)"
 
 msgid "Preferred language"
 msgstr "Idioma"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
 
 msgid "Surname"
 msgstr "Nome de família"
@@ -1222,9 +1207,6 @@ msgstr ""
 "Sem o seu nome de utilizador e senha não se pode autenticar para acesso "
 "ao serviço. Para obter ajuda, consulte o seu serviço de apoio ao "
 "utilizador."
-
-msgid "Metadata parser"
-msgstr "Conversor de Metadados"
 
 msgid "Choose your home organization"
 msgstr "Escolha a sua organização de origem"

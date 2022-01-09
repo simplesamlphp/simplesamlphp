@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "מטא-מידע של סז מסוג SAML 2.0 "
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
 "או שלא נמצא משתמש בשם זה, או שהסיסמה לא הייתה נכונה. בדוק בבקשה את שם "
@@ -25,9 +22,6 @@ msgstr ""
 
 msgid "{logout:failed}"
 msgstr "התנתקות נכשלה"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "ספק שירות מרוחק מסוג SAML 2.0"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "ההיזדהות נכשלה: הדפדפן לא שלח תעודה"
@@ -43,9 +37,6 @@ msgstr "שם משתמש"
 
 msgid "{errors:title_METADATA}"
 msgstr "שגיאה בטעינת המטא-מידע"
-
-msgid "{admin:metaconv_title}"
-msgstr "מנתח מטא-מידע"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "לא נמצאו שגיאות."
@@ -660,9 +651,6 @@ msgstr "מספר אירגוני"
 msgid "Password not set"
 msgstr "סיסמה לא מוגדרת"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "מטא-מידע של סז מסוג SAML 2.0 "
-
 msgid "Post office box"
 msgstr "תא דואר"
 
@@ -958,9 +946,6 @@ msgstr "ספק שירות מקומי מסוג איחוד-WS"
 
 msgid "Preferred language"
 msgstr "שפה מועדפת"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "ספק שירות מרוחק מסוג SAML 2.0"
 
 msgid "Surname"
 msgstr "שם משפחה"
@@ -1277,9 +1262,6 @@ msgid ""
 msgstr ""
 "חבל! - בלי שם המשתמש והסיסמה שלך אתה לא יכול להזדהות בכדי לגשת לשירות. "
 "יכול להיות שיש מישהו שיכול לעזור לך. פנה לתמיכה הטכנית באוניברסיטה שלך!"
-
-msgid "Metadata parser"
-msgstr "מנתח מטא-מידע"
 
 msgid "Choose your home organization"
 msgstr "בחר את אירגון הבית שלך"

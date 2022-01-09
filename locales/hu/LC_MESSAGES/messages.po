@@ -15,17 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP Metaadatok"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!"
 
 msgid "{logout:failed}"
 msgstr "Kijelentkezés nem sikerült"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 alkalmazásszolgáltató (távoli)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "Azonosítási hiba: a böngésző nem küldött tanúsítványt."
@@ -41,9 +35,6 @@ msgstr "Felhasználónév"
 
 msgid "{errors:title_METADATA}"
 msgstr "Metaadat betöltési hiba"
-
-msgid "{admin:metaconv_title}"
-msgstr "Metaadat értelmező"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nincs hiba."
@@ -689,9 +680,6 @@ msgstr "Szervezeti szám"
 msgid "Password not set"
 msgstr "Jelszó nincs beállítva"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP Metaadatok"
-
 msgid "Post office box"
 msgstr "Postafiók"
 
@@ -995,9 +983,6 @@ msgstr "Emlékezzen a felhasználónevemre"
 
 msgid "Preferred language"
 msgstr "Elsődleges nyelv"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 alkalmazásszolgáltató (távoli)"
 
 msgid "Surname"
 msgstr "Vezetéknév"
@@ -1328,9 +1313,6 @@ msgstr ""
 "Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát,"
 " így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud "
 "önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!"
-
-msgid "Metadata parser"
-msgstr "Metaadat értelmező"
 
 msgid "Choose your home organization"
 msgstr "Válassza ki az ön szervezetét"

@@ -15,17 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_saml20-idp}"
-msgstr "SAML 2.0 IdP 元信息"
-
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr "如果不是给定的用户名没有找到就是给定的密码错误，请再次检查用户名和密码"
 
 msgid "{logout:failed}"
 msgstr "退出失败"
-
-msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
-msgstr "SAML 2.0 服务提供者 (远程)"
 
 msgid "{errors:descr_NOCERT}"
 msgstr "认证失败，你的浏览器没有发送任何证书"
@@ -41,9 +35,6 @@ msgstr "用户名"
 
 msgid "{errors:title_METADATA}"
 msgstr "载入元信息时发生错误"
-
-msgid "{admin:metaconv_title}"
-msgstr "元信息分析器"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "没有发现错误"
@@ -617,9 +608,6 @@ msgstr "组织号码"
 msgid "Password not set"
 msgstr "没有设置密码"
 
-msgid "SAML 2.0 IdP Metadata"
-msgstr "SAML 2.0 IdP 元信息"
-
 msgid "Post office box"
 msgstr "邮政信箱"
 
@@ -902,9 +890,6 @@ msgstr "WS-Federation 服务提供者（本地）"
 
 msgid "Preferred language"
 msgstr "首选语言"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 服务提供者 (远程)"
 
 msgid "Surname"
 msgstr "姓"
@@ -1203,9 +1188,6 @@ msgid ""
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服务，也许有人能够帮助你，请咨询你所在大学的服务台"
-
-msgid "Metadata parser"
-msgstr "元信息分析器"
 
 msgid "Choose your home organization"
 msgstr "选择你的组织"
