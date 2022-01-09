@@ -128,9 +128,6 @@ msgstr "SimpleSAMLphp 設定確認"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp 設定ページ"
 
-msgid "{core:no_cookie:header}"
-msgstr "クッキーが見つかりません"
-
 msgid "{core:frontpage:warnings}"
 msgstr "警告"
 
@@ -240,9 +237,6 @@ msgstr "ツール"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "ログインを再試行"
-
-msgid "{core:no_cookie:description}"
-msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "非推奨"

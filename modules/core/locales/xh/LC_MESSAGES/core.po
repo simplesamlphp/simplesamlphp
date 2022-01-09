@@ -29,11 +29,6 @@ msgstr ""
 msgid "Retry"
 msgstr "Zama kwakhona"
 
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Ubonakala uzenze azasebenza iikhuki kwibhrawuza yakho. Nceda ujonge "
-"iisetingi ezikwibhrawuza yakho, uzame kwakhona."
-
 msgid "{core:cardinality:problematic_attributes}"
 msgstr "Iimpawu eziyingxaki zezi:"
 
@@ -76,9 +71,6 @@ msgstr "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo."
 
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Asikwazanga ukufumana imetadata ye-entithi:"
-
-msgid "{core:no_cookie:header}"
-msgstr "Ikhuki engekhoyo"
 
 msgid "{core:cardinality:got_want}"
 msgstr "kukho amaxabiso e-%GOT%, sifuna %WANT%"

@@ -101,9 +101,6 @@ msgstr "SimpleSAMLphp seadistuste kontroll"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp paigalduslehekülg"
 
-msgid "{core:no_cookie:header}"
-msgstr "Küpsis puudub"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Hoiatused"
 
@@ -221,11 +218,6 @@ msgstr "Tööriistad"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Proovi uuesti logida"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri"
-" seadistusi ja proovi seejärel uuesti."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Vananenud"

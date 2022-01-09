@@ -77,9 +77,6 @@ msgstr "SimpleSAMLphp:n ylläpito ja asetusten määrittely"
 msgid "{core:frontpage:link_configcheck}"
 msgstr "SimpleSAMLphp asetusten tarkastus"
 
-msgid "{core:no_cookie:header}"
-msgstr "Puuttuva eväste"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Varoituksia"
 
@@ -153,11 +150,6 @@ msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
 
 msgid "{core:frontpage:tools}"
 msgstr "Työkalut"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Näyttää, että olet kieltänyt evästeiden käytön selaimessasi. Ole hyvä ja "
-"salli evästeet selaimestasi ja yritä uudelleen."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Vanhentunut"

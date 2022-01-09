@@ -98,9 +98,6 @@ msgstr "בדיקת הגדרות SimpleSAMLphp "
 msgid "{core:frontpage:page_title}"
 msgstr "דף ההתקנה של SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "חסרה עוגייה"
-
 msgid "{core:frontpage:warnings}"
 msgstr "אזהרות"
 
@@ -213,11 +210,6 @@ msgstr "כלים"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "נסה שוב להתחבר"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה "
-"שנית. "
 
 msgid "{core:frontpage:deprecated}"
 msgstr "פג תוקף"

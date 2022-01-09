@@ -24,9 +24,6 @@ msgstr ""
 "geverifieer het met die diensverskaffer en neem dus aan dat daar 'n "
 "probleem is met hierdie SP."
 
-msgid "{core:no_cookie:header}"
-msgstr "Verlore cookie"
-
 msgid "{core:no_metadata:suggestion_user_link}"
 msgstr ""
 "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf "
@@ -53,11 +50,6 @@ msgstr ""
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Probeer weer aanmeld"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief"
-" die stellings in jou webblaaier na en probeer weer."
 
 msgid "Retry login"
 msgstr "Probeer weer aanmeld"

@@ -101,9 +101,6 @@ msgstr "مراجعة ترتيب SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "صفحة تركيب SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "ألكوكيز المفقودة"
-
 msgid "{core:frontpage:warnings}"
 msgstr "تحذير"
 
@@ -216,11 +213,6 @@ msgstr "الأدوات "
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "اعد تسجيل الدخول"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول"
-" مرة اخري"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "استنكار"

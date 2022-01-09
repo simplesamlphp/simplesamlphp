@@ -119,9 +119,6 @@ msgstr "Έλεγχος ρυθμίσεων SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Σελίδα εγκατάστασης SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Πρόβλημα λειτουργίας cookie"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Προειδοποιήσεις"
 
@@ -247,12 +244,6 @@ msgstr "Εργαλεία"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Επανάληψη σύνδεσης"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν "
-"απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και "
-"δοκιμάστε ξανά."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Υπό απόσυρση"

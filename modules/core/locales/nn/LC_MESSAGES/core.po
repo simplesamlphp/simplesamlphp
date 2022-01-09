@@ -101,9 +101,6 @@ msgstr "SimpleSAMLphp konfigurasjonssjekk"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installasjons-side"
 
-msgid "{core:no_cookie:header}"
-msgstr "Manglar informasjonskapsel"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Åtvaring"
 
@@ -224,11 +221,6 @@ msgstr "Verktøy"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Prøv å logge inn på nytt"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Det ser ut til at informasjonskapslar er avslått i nettlesaren din. Vær "
-"vennleg og sjekk instillingane i nettlesaren din, og prøv på nytt."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Utfasa"

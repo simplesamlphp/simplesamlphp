@@ -108,9 +108,6 @@ msgstr "SimpleSAMLphp konfigurationscheck"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installationsside"
 
-msgid "{core:no_cookie:header}"
-msgstr "Mangler cookie"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Advarsler"
 
@@ -226,11 +223,6 @@ msgstr "Værktøjer"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Login igen"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Det ser ud til at du har slået cookies fra i din browser. Tjek dine "
-"browserindstillinger og prøv igen."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Under udfasning"

@@ -99,9 +99,6 @@ msgstr "SimpleSAMLphp konfigurācijas pārbaude"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp instalācijas lapa"
 
-msgid "{core:no_cookie:header}"
-msgstr "Trūkst sīkdatnes"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Brīdinājumi"
 
@@ -217,11 +214,6 @@ msgstr "Rīki"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Mēģināt pieslēgties vēlreiz"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu "
-"pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Atcelts"

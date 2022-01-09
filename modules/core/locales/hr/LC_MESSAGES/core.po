@@ -110,9 +110,6 @@ msgstr "Provjera SimpleSAMLphp konfiguracije"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp instalacijska stranica"
 
-msgid "{core:no_cookie:header}"
-msgstr "Nedostaje kolačić (cookie)"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Upozorenja"
 
@@ -240,11 +237,6 @@ msgstr "Alati"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Pokušaj se prijaviti ponovo"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Izgleda da ste onemogućili kolačiće (cookies) u vašem web pregledniku. "
-"Molimo provjerite postavke vašeg web preglednika i pokušajte ponovo."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zastarjelo"

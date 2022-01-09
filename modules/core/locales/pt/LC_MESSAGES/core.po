@@ -86,9 +86,6 @@ msgstr "Configuração e manutenção do SimpleSAMLphp"
 msgid "{core:frontpage:link_configcheck}"
 msgstr "Teste da configuração do SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie não encontrado"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Avisos"
 
@@ -171,11 +168,6 @@ msgstr "Ferramentas"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Tentar de novo"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Provavelmente desligou o suporte de cookies no seu browser. Por favor "
-"verifique se tem o suporte de cookies ligado e tente de novo."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Descontinuado"

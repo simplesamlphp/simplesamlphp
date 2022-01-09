@@ -99,9 +99,6 @@ msgstr "Preveri SimpleSAMLphp nastavitve"
 msgid "{core:frontpage:page_title}"
 msgstr "Namestitvena stran SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Piškotek (\"cookie\") ne obstaja!"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Opozorila"
 
@@ -221,11 +218,6 @@ msgstr "Orodja"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Ponovna prijava"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite "
-"to nastavitev in poskusite ponovno."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Neustrezen"

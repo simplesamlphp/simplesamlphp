@@ -102,9 +102,6 @@ msgstr "SimpleSAMLphp 設定檢查"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp 安裝頁面"
 
-msgid "{core:no_cookie:header}"
-msgstr "遺失 cookie"
-
 msgid "{core:frontpage:warnings}"
 msgstr "警告"
 
@@ -212,9 +209,6 @@ msgstr "工具"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "重試登入"
-
-msgid "{core:no_cookie:description}"
-msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "棄置"

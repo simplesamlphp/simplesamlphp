@@ -104,9 +104,6 @@ msgstr "Test konfigurace SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Instalační stránka SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Chybějící cookie"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Varování"
 
@@ -222,11 +219,6 @@ msgstr "Nástroje"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Přihlašte se znovu."
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, "
-"zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zastaralé"

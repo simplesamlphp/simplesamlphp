@@ -101,9 +101,6 @@ msgstr "Pemeriksaan konfigurasi SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Halaman instalasi SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie hilang"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Peringatan-Peringatan"
 
@@ -230,11 +227,6 @@ msgstr "Peralatan"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Coba login kembali"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  "
-"pengaturan pada browser anda, dan coba lagi."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Usang"

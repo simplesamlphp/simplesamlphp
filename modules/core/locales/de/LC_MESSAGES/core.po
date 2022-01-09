@@ -103,9 +103,6 @@ msgstr "SimpleSAMLphp Konfigurationsprüfung"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp Installationsseite"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie fehlt"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Warnungen"
 
@@ -227,12 +224,6 @@ msgstr "Werkzeuge"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Versuche Anmeldung erneut"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte "
-"überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es "
-"erneut."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Veraltet"

@@ -103,9 +103,6 @@ msgstr "Sjekk av SimpleSAMLphp konfigurasjonsfiler"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installasjonsside"
 
-msgid "{core:no_cookie:header}"
-msgstr "Mangler informasjonskapsel"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Advarsler"
 
@@ -225,11 +222,6 @@ msgstr "Verktøy"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Forsøk å logge inn på nytt"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Du ser ut til å ha deaktivert informasjonskapsler. Kontroller "
-"innstillingene i nettleseren din og prøv igjen."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Utdatert"

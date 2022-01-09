@@ -102,9 +102,6 @@ msgstr "Test de configuration de SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Page d'installation de SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie introuvable"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Avertissements"
 
@@ -228,11 +225,6 @@ msgstr "Outils"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Ré-essayez de vous connecter"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Il semble que votre navigateur refuse les cookies. Merci de vérifier les "
-"réglages de votre navigateur, puis de ré-essayer."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Obsolète"

@@ -96,9 +96,6 @@ msgstr "检查SimpleSAMLphp配置"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp安装页面"
 
-msgid "{core:no_cookie:header}"
-msgstr "cookie丢失"
-
 msgid "{core:frontpage:warnings}"
 msgstr "警告"
 
@@ -201,9 +198,6 @@ msgstr "工具"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "重新尝试登陆"
-
-msgid "{core:no_cookie:description}"
-msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "已经超时"

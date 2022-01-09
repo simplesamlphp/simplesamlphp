@@ -134,9 +134,6 @@ msgstr "SimpleSAMLphp configuration check"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installation page"
 
-msgid "{core:no_cookie:header}"
-msgstr "Missing cookie"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Warnings"
 
@@ -263,11 +260,6 @@ msgstr "Tools"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Retry login"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"You appear to have disabled cookies in your browser. Please check the "
-"settings in your browser, and try again."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Deprecated"

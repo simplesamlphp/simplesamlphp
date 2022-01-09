@@ -110,9 +110,6 @@ msgstr "SimpleSAMLphp configuratie check"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installatiepagina"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie ontbreekt"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Waarschuwingen"
 
@@ -248,11 +245,6 @@ msgstr "Gereedschap"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Inloggen opnieuw proberen"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. "
-"Controleer de browserinstellingen en probeer het opnieuw."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Verouderd"

@@ -101,9 +101,6 @@ msgstr "Konfigurationskontroll av SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Installationssida för SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "Saknar webbläsarkaka (cookie)"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Varningar"
 
@@ -223,11 +220,6 @@ msgstr "Verktyg"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Försök med inloggningen igen"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Det verkar som om du har stängt av möjligheten till kakor (cookies) i din"
-" webbläsare. Kontrollera inställningarna i webbläsaren och försök igen."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Ej längre giltig"

@@ -105,9 +105,6 @@ msgstr "SimpleSAMLphp-en konfigurazioa egiaztatzea"
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp instalatzeko orria"
 
-msgid "{core:no_cookie:header}"
-msgstr "Cookie-a falta da"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Oharrak"
 
@@ -227,11 +224,6 @@ msgstr "Tresnak"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Saiatu berriro kautotzen"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, "
-"berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zaharkitua"

@@ -106,9 +106,6 @@ msgstr "Verificarea configurației SimpleSAMLphp"
 msgid "{core:frontpage:page_title}"
 msgstr "Pagina de instalare a SimpleSAMLphp"
 
-msgid "{core:no_cookie:header}"
-msgstr "<i>Cookie</i> lipsă"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Atenționări"
 
@@ -234,11 +231,6 @@ msgstr "Unelte"
 
 msgid "{core:short_sso_interval:retry}"
 msgstr "Încercați din nou"
-
-msgid "{core:no_cookie:description}"
-msgstr ""
-"<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm "
-"să verificați configurarea browser-ului după care încercați din nou."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Depreciate"
