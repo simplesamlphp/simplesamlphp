@@ -859,7 +859,7 @@ $config = [
     ],
 
     /**
-     * Set to a full URL if you want to rediret users that land on SimpleSAMLphp's
+     * Set to a full URL if you want to redirect users that land on SimpleSAMLphp's
      * front page to somewhere more useful. If left unset, a basic welcome message
      * is shown.
      */
