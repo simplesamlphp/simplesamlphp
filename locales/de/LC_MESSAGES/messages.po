@@ -75,12 +75,6 @@ msgstr ""
 msgid "{admin:cfg_check_back}"
 msgstr "Gehe zurück zur Dateiliste"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking-ID "
-"mit, wodurch es dem Administrator möglich ist, Ihre Sitzung in den "
-"Logs zu finden:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Eine andere Einrichtung, von der Sie Zugangsdaten erhalten, auswählen"
 

@@ -51,12 +51,6 @@ msgstr ""
 msgid "{disco:previous_auth}"
 msgstr "Jy het voorheen gekies om te verifieer deur:"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'/verwysings"
-" nommer wat dit moontlik maak vir die sisteem administrateur om jou "
-"sessie in die logs op te spoor:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Verander jou tuisorganisasie"
 

@@ -70,12 +70,6 @@ msgstr "Varem oled valinud autentida, kasutades"
 msgid "{admin:cfg_check_back}"
 msgstr "Mine tagasi failide nimekirja"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Kui rapoteerid sellest tõrkest, siis teata kindlasti ka jälgimisnumber, "
-"mis võimaldab süsteemiadministraatoril logifailidest sinu sessiooniga "
-"seotud infot leida:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Muuda oma koduorganisatsiooni"
 

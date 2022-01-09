@@ -71,12 +71,6 @@ msgstr "Anksčiau pasirinkote autentikuotis"
 msgid "{admin:cfg_check_back}"
 msgstr "Grįžti į failų sąrašą"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Jei pranešate apie šią klaidą, neužmirškite pateikti šios klaidos ID, "
-"kurio dėka sistemos administratorius galės surasti Jūsų sesijos metu "
-"atliktus veiksmus atliktų veiksmų istorijoje:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Pakeisti savo organizaciją"
 

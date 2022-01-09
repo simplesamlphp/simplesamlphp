@@ -60,12 +60,6 @@ msgstr ""
 msgid "{admin:cfg_check_back}"
 msgstr "Dosya listesine geri dön"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Bu hatayı bildirirseniz, lütfen, sistem yöneticisi tarafından incelebilen"
-" kayıtlardan oturumunuzun belirlenebilmesini sağlayan izleme ID'sini de "
-"bildirin."
-
 msgid "{login:change_home_org_title}"
 msgstr "Organizasyonunuzu değiştirin"
 

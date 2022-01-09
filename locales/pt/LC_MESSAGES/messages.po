@@ -59,12 +59,6 @@ msgstr "Escolheu autenticar-se anteriormente em"
 msgid "{admin:cfg_check_back}"
 msgstr "Voltar à lista de ficheiros"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Se comunicar este erro ao administrador de sistemas inclua o seguinte "
-"identificador que possibilita a localização da sua sessão nos registos do"
-" serviço:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Alterar a sua organização de origem"
 

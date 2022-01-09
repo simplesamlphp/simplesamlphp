@@ -70,11 +70,6 @@ msgstr "Poprzednio wybrałeś"
 msgid "{admin:cfg_check_back}"
 msgstr "Powrót do listy plików"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Jeśli zgłaszasz ten bląd, podaj także ID zdarzenia, który umożliwi "
-"administratorowi zlokalizować Twoją sesje w logach:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Zmień swoją domową organizację"
 

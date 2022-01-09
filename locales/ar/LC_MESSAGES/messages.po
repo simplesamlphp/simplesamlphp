@@ -68,11 +68,6 @@ msgstr "قمت سابقا بالتصديق في"
 msgid "{admin:cfg_check_back}"
 msgstr "عد لقائمة الملفات"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"اذا قمت برفع تقرير عن هذا الخطأ قم رجاءاً بإدراج رقم المتابعة أدناه كيما "
-"نستطيع تحديد فترة دخولك بملفات المشرف علي الموقع"
-
 msgid "{login:change_home_org_title}"
 msgstr "غيرالجهة الام"
 

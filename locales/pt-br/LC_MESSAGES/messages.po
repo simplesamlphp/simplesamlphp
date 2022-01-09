@@ -73,12 +73,6 @@ msgstr "Você já escolheu para autenticar a"
 msgid "{admin:cfg_check_back}"
 msgstr "Voltar a lista de arquivos"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Se informar sobre esse erro, por favor, também informe este ID do "
-"relatório de monitoramento que torna possível localizar a sua sessão nos "
-"registros disponíveis para o administrador do sistema:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Mudar a organização principal"
 

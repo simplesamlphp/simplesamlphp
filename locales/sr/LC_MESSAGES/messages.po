@@ -74,12 +74,6 @@ msgstr "Prethodno ste izabrali da se autentifikujete kroz"
 msgid "{admin:cfg_check_back}"
 msgstr "Vrati se natrag na listu fajlova"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Ako prijavite ovu grešku, molimo Vas da takođe pošaljete i ovaj "
-"identifikator koji će omogućiti da se Vaša sesija locira u logovima "
-"dostupnim adminstratoru sistema:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Promenite izbor za vašu matičnu instituciju"
 

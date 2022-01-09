@@ -68,11 +68,6 @@ msgstr "Du har tidligere valgt at logge ind hos"
 msgid "{admin:cfg_check_back}"
 msgstr "Tilbage til listen over filer"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Hvis du vil rapportere denne fejl, så medsend venligst dette sporings-ID."
-" Den gør det muligt for teknikerne at finde fejlen."
-
 msgid "{login:change_home_org_title}"
 msgstr "Skift hjemmeinstitution"
 

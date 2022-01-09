@@ -353,12 +353,6 @@ msgstr ""
 msgid "{errors:title_CONFIG}"
 msgstr "Impazamo yolungiselelo"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Ukuba ngaba uchaza le mpazamo, nceda kananjalo uchaze le nombolo "
-"yolandelelo eyenza kube lula ukufumana iseshoni yakho kwiincwadi "
-"ezifumaneka kumlawuli wesistim:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Tshintsha umbutho wakho wekhaya"
 

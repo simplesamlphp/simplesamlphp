@@ -68,13 +68,6 @@ msgstr "Korábban ezt a személyazonosság-szolgáltatót (IdP) választotta: "
 msgid "{admin:cfg_check_back}"
 msgstr "Vissza az fájlok listájához"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Ha bejelentést küld a hibával kapcsolatban, kérjük, küldje el ezt az "
-"azonosítót, mert csak ennek segítségével tudja a rendszeradminisztrátor a"
-" naplóállományokból azokat az adatokat megtalálni, amelyek ehhez a "
-"munkamenethez tartoznak."
-
 msgid "{login:change_home_org_title}"
 msgstr "Válasszon másik szervezetet"
 

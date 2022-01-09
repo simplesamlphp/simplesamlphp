@@ -65,9 +65,6 @@ msgstr "前回選択した認証: "
 msgid "{admin:cfg_check_back}"
 msgstr "ファイルリストに戻る"
 
-msgid "{errors:report_trackid}"
-msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定するために、トラッキング番号を報告してください。"
-
 msgid "{login:change_home_org_title}"
 msgstr "あなたの組織を変更してください"
 

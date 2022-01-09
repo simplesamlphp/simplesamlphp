@@ -67,11 +67,6 @@ msgstr "בעבר בחרת להזדהות ב-"
 msgid "{admin:cfg_check_back}"
 msgstr "חזור אל רשימת הקבצים"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"אם אתה מדווח על התקלה, אנא דווח גם את מספר המעקב המאפשר לאתר את השיחה שלך"
-" ביומנים העומדים לרשות מנהל המערכת: "
-
 msgid "{login:change_home_org_title}"
 msgstr "החלף את אירגון הבית שלך"
 

@@ -69,12 +69,6 @@ msgstr "Du har tidlegare logga inn ved"
 msgid "{admin:cfg_check_back}"
 msgstr "Gå tilbake til filoversikten"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Send med sporingsnummeret dersom du vil rapportera feilen. "
-"Sporingsnummeret gjer det enklare for systemadministratorane å finna ut "
-"kva som er problemet:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Endra vertsorganisasjon"
 

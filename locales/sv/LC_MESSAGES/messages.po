@@ -69,11 +69,6 @@ msgstr "Du har  tidigare valt att logga in med"
 msgid "{admin:cfg_check_back}"
 msgstr "Gå tillbaka till fillistan"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Om du rapporterar felet bör du också skicka med detta spårnings-ID. Det "
-"gör det enklare för den som sköter systemet att felsöka problemet:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Ändra vilken organisation du kommer ifrån"
 

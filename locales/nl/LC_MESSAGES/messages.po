@@ -73,12 +73,6 @@ msgstr "Je hebt eerder gekozen voor authenticatie bij"
 msgid "{admin:cfg_check_back}"
 msgstr "Ga terug naar de lijst van files."
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Wanneer je deze fout rapporteert, geef dan AUB ook de volgende tracking "
-"ID door, waarmee het mogelijk is om jouw sessie in de logs terug te "
-"vinden:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Verander je organisatie"
 

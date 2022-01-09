@@ -60,9 +60,6 @@ msgstr "你先前选择的认证"
 msgid "{admin:cfg_check_back}"
 msgstr "返回至文件列表"
 
-msgid "{errors:report_trackid}"
-msgstr "如果你报告了这个错误，那么请你也报告这个追踪号码，系统管理员有可能根据这个号码在日志中定位你的SESSION"
-
 msgid "{login:change_home_org_title}"
 msgstr "改变你的家庭组织"
 

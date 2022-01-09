@@ -24,12 +24,6 @@ msgstr "Benotzernumm"
 msgid "{errors:title_METADATA}"
 msgstr "Fehler beim Lueden vun den Meta Données"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID "
-"mat. Dei ennerstëtzt den System Administrator aer Session an den Logs "
-"erëmzefannen:"
-
 msgid "{errors:report_text}"
 msgstr ""
 "Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator "

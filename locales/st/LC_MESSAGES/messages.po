@@ -801,12 +801,6 @@ msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
 msgid "{status:header_diagnostics}"
 msgstr "Dimanollo tsa SimpleSAMLphp"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Haeba o tlaleha phoso ena, ka kopo tlaleha hape nomoro ena ya ho sala "
-"morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts "
-"efumanehang ho sistimi ya motsamaisi:"
-
 msgid "Bad request received"
 msgstr "Kopo e mpe e amohetswe"
 

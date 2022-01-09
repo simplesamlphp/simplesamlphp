@@ -73,12 +73,6 @@ msgstr "Precedentemente si è scelto di autenticarsi con"
 msgid "{admin:cfg_check_back}"
 msgstr "Tornare indietro alla lista dei file"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Se inoltri questo errore, per favore riporta anche questo tracking ID, "
-"esso render&agrave; possibile all'amministratore del sistema il "
-"tracciamento della tua sessione nei log:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Cambiare la propria organizzazione"
 

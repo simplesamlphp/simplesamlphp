@@ -71,11 +71,6 @@ msgstr "Iepriekš Jūs autentificējāties pie"
 msgid "{admin:cfg_check_back}"
 msgstr "Iet atpakaļ uz sarakstu"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Kad ziņojat par kļūdu, lūdzu norādiet šo atsekošanas numuru, kas "
-"administratoram palīdz atrast šo sesiju sistēmas ierakstos."
-
 msgid "{login:change_home_org_title}"
 msgstr "Mainīt organizāciju"
 

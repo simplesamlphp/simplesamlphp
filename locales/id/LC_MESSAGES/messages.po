@@ -70,12 +70,6 @@ msgstr "Sebelumnya anda telah memilih untuk melakukan autentifikasi di "
 msgid "{admin:cfg_check_back}"
 msgstr "Kembali ke daftar file"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan "
-"sehingga memungkinkan untuk lokasi session anda pada log tersedia untuk "
-"system administrator:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Ubah basis organisasi anda"
 

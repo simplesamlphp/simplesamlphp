@@ -74,12 +74,6 @@ msgstr "Anterior ați ales să vă autentificați la"
 msgid "{admin:cfg_check_back}"
 msgstr "Mergeți înapoi la lista de fișiere"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Dacă raportați această eroare, vă rugăm să includeți următorul număr de "
-"înregistrare care va permite localizarea sesiunii dumneavoastră în "
-"jurnalele de sistem:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Modificați instituția de origine"
 

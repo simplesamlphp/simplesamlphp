@@ -43,12 +43,6 @@ msgstr ""
 msgid "{disco:previous_auth}"
 msgstr "Olet aikaisemmin valinnut identiteettilähteeksesi"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Mikäli ilmoitat virheestä, ole hyvä ja sisällä tämä seurantanumero "
-"raporttiin. Seurantanumerolla ylläpitäjä löytää istuntosi lokeista "
-"helpommin."
-
 msgid "{login:change_home_org_title}"
 msgstr "Muuta kotiorganisaatiotasi"
 

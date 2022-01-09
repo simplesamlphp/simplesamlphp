@@ -70,12 +70,6 @@ msgstr "Previamente solicitó autenticarse en"
 msgid "{admin:cfg_check_back}"
 msgstr "Volver al listado de archivos"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Por favor, si informa de este error, mantenga el <em>tracking ID</em>"
-" que permite encontrar su sesi&oacute;n en los registros de que dispone "
-"el administrador del sistema:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Cambiar su organización origen"
 

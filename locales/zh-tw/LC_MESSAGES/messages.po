@@ -62,9 +62,6 @@ msgstr "您先前已選擇認證於"
 msgid "{admin:cfg_check_back}"
 msgstr "回到檔案清單"
 
-msgid "{errors:report_trackid}"
-msgstr "如果您回報這個錯誤，請同時回報這個追蹤數字，讓系統管理員可以藉由它在記錄裡找到您的連線："
-
 msgid "{login:change_home_org_title}"
 msgstr "變更您的預設組織"
 

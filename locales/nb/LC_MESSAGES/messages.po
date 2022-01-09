@@ -68,12 +68,6 @@ msgstr "Du har tidligere valg å autentisere deg hos"
 msgid "{admin:cfg_check_back}"
 msgstr "Gå tilbake til fil-listen"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Hvis vil rapportere denne feilen, send også med dette sporingsnummeret. "
-"Det gjør det enklere for systemadministratorene å finne ut hva som gikk "
-"galt:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Endre din vertsorganisasjon"
 

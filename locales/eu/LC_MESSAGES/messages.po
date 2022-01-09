@@ -69,12 +69,6 @@ msgstr "Lehenago, hemen kautotzea hautatu duzu"
 msgid "{admin:cfg_check_back}"
 msgstr "Itzuli fitxategien zerrendara"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Mesedez, errore honen berri ematen baduzu, mantendu ezazu jarraipen "
-"zenbaki hau, honek sistemaren administratzaileak dituen erregistroetan "
-"zure saioa aurkitzea ahalbidetzen baitu:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Zure jatorrizko erakundea aldatu"
 

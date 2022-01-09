@@ -73,12 +73,6 @@ msgstr "Précédemment, vous aviez choisi de vous authentifier sur"
 msgid "{admin:cfg_check_back}"
 msgstr "Retour à la liste des fichiers"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Si vous signalez cette erreur, veuillez aussi signaler l'identifiant de "
-"suivi qui permet de trouver votre session dans les logs accessibles à "
-"l'administrateur système :"
-
 msgid "{login:change_home_org_title}"
 msgstr "Changez votre fournisseur"
 

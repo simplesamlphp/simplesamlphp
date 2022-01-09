@@ -69,12 +69,6 @@ msgstr "Predhodnje ste se prijavljali že pri"
 msgid "{admin:cfg_check_back}"
 msgstr "Vrnite se na seznam datotek"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Če boste prijavili to napako, priložite tudi ID seje, preko katere bo "
-"lažje najti vaše zapise v dnevniških datotekah, ki so na voljo skrbniku "
-"sistema."
-
 msgid "{login:change_home_org_title}"
 msgstr "Izberite vašo domačo organizacijo."
 

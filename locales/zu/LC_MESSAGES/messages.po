@@ -358,12 +358,6 @@ msgstr ""
 msgid "{errors:title_CONFIG}"
 msgstr "Iphutha lomiso"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Uma ubika leli phutha, sicela futhi ubike le nombolo yokulandelela eyenza"
-" kube nokwenzeka ukuthola iseshini yakho kumalogi atholakalayo kumlawuli "
-"wesistimu:"
-
 msgid "{login:change_home_org_title}"
 msgstr "Shintsha inhlangano yakho yasekhaya"
 

@@ -69,12 +69,6 @@ msgstr "Dříve jste zvolil(a) ověření u"
 msgid "{admin:cfg_check_back}"
 msgstr "Zpátky na seznam souborů"
 
-msgid "{errors:report_trackid}"
-msgstr ""
-"Pokud budete reportovat tuto chybu, prosím zašlete také toto ID, které "
-"umožní najít vaši session v logu, který je dostupný systémovým "
-"administrátorem：  "
-
 msgid "{login:change_home_org_title}"
 msgstr "Změňte svou organizaci"
 
