@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Prisijungti administratoriaus teisėmis"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp naudojimas kaip paslaugos teikėją"
 
@@ -417,9 +414,6 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr ""
 "Vietinio Shibboleth 1.3 tapatybės teikėjo (IdP) metaduomenys (sugeneruoti"
 " automatiškai)"
-
-msgid "Login as administrator"
-msgstr "Prisijungti administratoriaus teisėmis"
 
 msgid "Report this error"
 msgstr "Pranešti apie šią klaidą"

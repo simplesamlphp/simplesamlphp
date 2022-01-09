@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "以管理員身分登入"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "使用 SimpleSAMLphp 做為服務提供者"
 
@@ -401,9 +398,6 @@ msgstr ""
 "<strong>目前設定檔使用預設的雜湊參數(salt)</strong> - 在您上線運作前請確認您已於 simpleSAML "
 "設定頁中修改預設的 'secretsalt'。[<a href=\"https://simplesamlphp.org/docs/stable"
 "/simplesamlphp-install\">閱讀更多關於 SimpleSAMLphp 設定值</a> ]"
-
-msgid "Login as administrator"
-msgstr "以管理員身分登入"
 
 msgid "Report this error"
 msgstr "回報這個錯誤"

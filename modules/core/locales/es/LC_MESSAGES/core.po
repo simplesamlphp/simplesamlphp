@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Entrar como administrador"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Empleo de SimpleSAMLphp como Service Provider"
 
@@ -452,9 +449,6 @@ msgstr ""
 "configuraci&oacute;n 'secretsalt' en entornos de producci&oacute;n. [<a "
 "href=\"https://simplesamlphp.org/docs/devel/simplesamlphp-install\">Leer "
 "m&aacute;s sobre la configuraci&oacute;n de SimpleSAMLphp</a>]"
-
-msgid "Login as administrator"
-msgstr "Entrar como administrador"
 
 msgid "Report this error"
 msgstr "Informar de este error"

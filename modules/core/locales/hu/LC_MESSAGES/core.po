@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Bejelentkezés adminisztrátorként"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp használata mint alkalmazásszolgáltató(SP)"
 
@@ -417,9 +414,6 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr ""
 "Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató "
 "(IdP) metaadat (automatikusan generált)"
-
-msgid "Login as administrator"
-msgstr "Bejelentkezés adminisztrátorként"
 
 msgid "Report this error"
 msgstr "A hiba jelentése"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Logi sisse administraatorina"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp kasutamine teenusepakkujana"
 
@@ -409,9 +406,6 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr ""
 "Hostitud Shibboleth 2.0 identiteedipakkuja metaandmed (automaatselt "
 "genereeritud) "
-
-msgid "Login as administrator"
-msgstr "Logi sisse administraatorina"
 
 msgid "Report this error"
 msgstr "Teavita sellest tõrkest"

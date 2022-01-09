@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Login como Administrador"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Usando o SimpleSAMLphp como Provedor de Serviços"
 
@@ -345,7 +342,3 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr ""
 "Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado "
 "automaticamente)"
-
-msgid "Login as administrator"
-msgstr "Login como Administrador"
-

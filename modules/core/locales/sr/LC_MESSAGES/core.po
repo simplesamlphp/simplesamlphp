@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Prijavite se kao administrator"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr ""
 "Kako iskoristiti SimpleSAMLphp kao autentifikacioni modul kod Davaoca "
@@ -427,9 +424,6 @@ msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated
 msgstr ""
 "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski "
 "generisani)"
-
-msgid "Login as administrator"
-msgstr "Prijavite se kao administrator"
 
 msgid "Report this error"
 msgstr "Prijavite ovu grešku"

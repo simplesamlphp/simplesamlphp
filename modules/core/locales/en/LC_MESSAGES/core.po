@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Login as administrator"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Using SimpleSAMLphp as a Service Provider"
 
@@ -467,9 +464,6 @@ msgstr ""
 "configuration in production environments. [<a "
 "href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read"
 " more about SimpleSAMLphp configuration</a> ]"
-
-msgid "Login as administrator"
-msgstr "Login as administrator"
 
 msgid "Report this error"
 msgstr "Report this error"

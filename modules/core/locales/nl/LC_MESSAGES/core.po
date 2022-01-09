@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:login_as_admin}"
-msgstr "Login als beheerder"
-
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
@@ -451,9 +448,6 @@ msgstr ""
 "productieomgevingen. [<a href=\"https://simplesamlphp.org/docs/stable"
 "/simplesamlphp-install\">Lees meer over het configureren van "
 "SimpleSAMLphp</a> ]"
-
-msgid "Login as administrator"
-msgstr "Login als beheerder"
 
 msgid "Report this error"
 msgstr "Meld deze error"
