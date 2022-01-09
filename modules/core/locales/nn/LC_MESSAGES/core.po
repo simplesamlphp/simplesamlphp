@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_phpinfo}"
-msgstr "PHPinfo"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Innlogga som administrator"
 
@@ -201,9 +198,6 @@ msgstr "Dokumentasjon"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)"
-
-msgid "PHP info"
-msgstr "PHPinfo"
 
 msgid "About SimpleSAMLphp"
 msgstr "Om SimpleSAMLphp"

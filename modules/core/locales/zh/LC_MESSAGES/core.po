@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_phpinfo}"
-msgstr "PHP信息"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "作为管理员登录"
 
@@ -186,9 +183,6 @@ msgstr "文档"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "存储的 Shibboleth 1.3 Service Provider Metadata（自动生成）"
-
-msgid "PHP info"
-msgstr "PHP信息"
 
 msgid "About SimpleSAMLphp"
 msgstr "关于SimpleSAMLphp"
