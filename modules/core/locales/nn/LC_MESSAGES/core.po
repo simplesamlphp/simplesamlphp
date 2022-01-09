@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "Bruk SimpleSAMLphp som Service Provider"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)"
 
@@ -358,9 +355,6 @@ msgstr "Naudsynt for Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP eksempel - testinnlogging med SAML 2.0 via din IdP"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "Bruk SimpleSAMLphp som Service Provider"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

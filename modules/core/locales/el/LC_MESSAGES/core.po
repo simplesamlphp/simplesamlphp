@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "Χρήση SimpleSAMLphp για Παρόχους Υπηρεσιών"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr ""
 "Μεταδεδομένα φιλοξενούμενου Παρόχου Υπηρεσιών SAML 2.0 (παράγονται "
@@ -393,9 +390,6 @@ msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr ""
 "Παράδειγμα Παρόχου Υπηρεσιών SAML 2.0 - δοκιμή εισόδου μέσω του Παρόχου "
 "Ταυτότητάς σας"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "Χρήση SimpleSAMLphp για Παρόχους Υπηρεσιών"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

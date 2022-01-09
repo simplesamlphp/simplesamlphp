@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "SimpleSAMLphp'i Servis Sağlayıcı (SP) olarak kullanmak"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr ""
 "Sunulan SAML 2.0 Servis Sağlayıcı Üstverisi (metadata) (otomatik olarak "
@@ -290,9 +287,6 @@ msgstr "Radius için gerekli"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP örneği - IdP'nizden giriş yaparak test edin"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "SimpleSAMLphp'i Servis Sağlayıcı (SP) olarak kullanmak"
 
 msgid "Recommended"
 msgstr "Tavsiye edilen"

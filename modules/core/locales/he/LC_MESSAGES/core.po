@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "שימוש ב SimpleSAMLphp כספק שרותים"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "מטא-הנתונים של ספק השירותים מסוג SAML 2.0 המאורח (נוצר אוטומטית)"
 
@@ -345,9 +342,6 @@ msgstr "דרוש עבור Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "דוגמא לס\"ש מסוג SAML 2.0 - בחן כניסה למערכת דרך הס\"ז שלך"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "שימוש ב SimpleSAMLphp כספק שרותים"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "Gebruik SimpleSAMLphp als Service Provider"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "Lokale SAML 2.0 Service Provider Metadata (automatisch gegenereerd)"
 
@@ -383,9 +380,6 @@ msgstr "Vereist voor Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP voorbeeld - test inloggen via je IdP"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "Gebruik SimpleSAMLphp als Service Provider"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

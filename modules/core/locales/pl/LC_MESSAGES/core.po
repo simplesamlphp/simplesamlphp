@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "Użycie SimpleSAMLphp jako Dostawca Serwisu"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "Metadane - Lokalny SAML 2.0 Dostawca Serwisu (generowane automatycznie)"
 
@@ -275,9 +272,6 @@ msgstr "Wymagane dla Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP - przykład - test logowania przez Twoje IdP"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "Użycie SimpleSAMLphp jako Dostawca Serwisu"
 
 msgid "Recommended"
 msgstr "Rekomendowane"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "SimpleSAMLphp palveluntarjoajana"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "Isännöidyn SAML 2.0 palveluntarjoajan Metadata (automaattisesti luotu)"
 
@@ -293,9 +290,6 @@ msgstr "Pakollinen Radiusta varten"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP esimerkki - testikirjautuminen IdP:si kautta"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "SimpleSAMLphp palveluntarjoajana"
 
 msgid "Recommended"
 msgstr "Suositellaan"

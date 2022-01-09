@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "SimpleSAMLphpをサービスプロバイダとして使用する"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "ホスト SAML 2.0 サービスプロバイダメタデータ(自動生成)"
 
@@ -363,9 +360,6 @@ msgstr "Radiusのために必須"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP example - IdP 経由でテストログイン"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "SimpleSAMLphpをサービスプロバイダとして使用する"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

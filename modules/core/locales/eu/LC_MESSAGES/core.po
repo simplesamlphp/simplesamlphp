@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_sp}"
-msgstr "SimpleSAMLphp erabili Identificadore hornitzaile moduan"
-
 msgid "{core:frontpage:link_meta_saml2sphosted}"
 msgstr "SP SAML 2.0ren ostatatutako metadatuak (automatikoki sortuak)"
 
@@ -362,9 +359,6 @@ msgstr "RADIUSentzat beharrezkoa"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"
-
-msgid "Using SimpleSAMLphp as a Service Provider"
-msgstr "SimpleSAMLphp erabili Identificadore hornitzaile moduan"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "
