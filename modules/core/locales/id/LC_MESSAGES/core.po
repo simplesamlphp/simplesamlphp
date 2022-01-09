@@ -18,14 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:no_state:report_text}"
-msgstr ""
-"Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system "
-"administrator."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Menggunakan tombol back dan forward pada browser web."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login sebagai administrator"
 
@@ -43,9 +35,6 @@ msgstr "Instalasi SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostik pada hostname, port dan protokol"
-
-msgid "{core:no_state:causes}"
-msgstr "Error ini mungkin disebabkan oleh:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Metadata Identity Provider SAML 2.0 Hosted (secara otomatis digenerate)"
@@ -77,9 +66,6 @@ msgstr "Selamat Datang"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Mengkonfigurasi Shibboleth 1.3 SP untuk bekerja dengan SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "Informasi kondisi/state hilang"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadata"
 
@@ -106,9 +92,6 @@ msgstr "Anda login sebagai administrator"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikasi"
-
-msgid "{core:no_state:description}"
-msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Perlihatkan metadata"
@@ -144,25 +127,14 @@ msgstr "Federasi"
 msgid "{core:frontpage:required_radius}"
 msgstr "Diperlukan untuk Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr ""
-"Membuka web browser dengan tab-tab yang telah disimpan dari session "
-"sebelumnya."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Memerika instalasi PHP Anda"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Menggunakan SimpleSAMLphp sebagai Identity Provider"
 
-msgid "{core:no_state:report_header}"
-msgstr "Laporkan error ini"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "Contoh SAML 2.0 SP - Tes login melalui Idp Anda"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Cookie mungkin dinonaktifkan pada web browser ini."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Tentang SimpleSAMLphp"

@@ -18,12 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:no_state:report_text}"
-msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
 
@@ -44,9 +38,6 @@ msgstr "Installatie van SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Inspectie op hostnaam, poort en protocol"
-
-msgid "{core:no_state:causes}"
-msgstr "Deze error is waarschijnlijk veroorzaakt door:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Lokale SAML 2.0 Identity Provider Metadata (automatisch gegenereerd)"
@@ -86,9 +77,6 @@ msgstr "Welkom"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Configureer een Shibboleth 1.3 SP voor de SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "Toestand informatie verloren"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadata"
 
@@ -125,11 +113,6 @@ msgstr "Je bent ingelogd als beheerder"
 msgid "{core:frontpage:auth}"
 msgstr "Authenticatie"
 
-msgid "{core:no_state:description}"
-msgstr ""
-"Wij waren niet in staat om de toestand informatie te vinden voor het "
-"huidige verzoek."
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "Toon metadata"
 
@@ -164,26 +147,14 @@ msgstr "Federatie"
 msgid "{core:frontpage:required_radius}"
 msgstr "Vereist voor Radius"
 
-msgid "{core:no_state:cause_badlink}"
-msgstr "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer)."
-
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Test de PHP-installatie"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Gebruik SimpleSAMLphp als Identity Provider"
 
-msgid "{core:no_state:report_header}"
-msgstr "Meld deze error"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP voorbeeld - test inloggen via je IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Cookies kunnen uitgeschakeld zijn in de web browser."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Over SimpleSAMLphp"

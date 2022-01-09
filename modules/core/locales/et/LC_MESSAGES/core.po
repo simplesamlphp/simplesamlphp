@@ -18,12 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "Teave PHP kohta"
 
-msgid "{core:no_state:report_text}"
-msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "brauseri edasi-tagasi nuppude kasutamisest"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logi sisse administraatorina"
 
@@ -41,9 +35,6 @@ msgstr "SimpleSAMLphp paigaldamine"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Serverinime, pordi ja protokolli diagnostika"
-
-msgid "{core:no_state:causes}"
-msgstr "See tõrge võib olla põhjustatud:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
@@ -77,9 +68,6 @@ msgstr "Tere tulemast"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Shibboleth 1.3 SP seadistamine koostööks SimpleSAMLphp IdP-ga"
 
-msgid "{core:no_state:header}"
-msgstr "Olekuinfo on kadunud"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metaandmed"
 
@@ -106,9 +94,6 @@ msgstr "Oled sisselogitud administraatorina"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentimine"
-
-msgid "{core:no_state:description}"
-msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Näita metaandmeid"
@@ -141,23 +126,14 @@ msgstr "Federeerimine"
 msgid "{core:frontpage:required_radius}"
 msgstr "Nõutav Radiusele"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "PHP paigalduse kontrollimine"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphp kasutamine identiteedipakkujana"
 
-msgid "{core:no_state:report_header}"
-msgstr "Teavita sellest tõrkest"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP näide - sisselogimine sinu IdP kaudu"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "küpsiste keelamisest brauseris"
 
 msgid "{core:frontpage:about_header}"
 msgstr "Teave SimpleSAMLphp kohta"

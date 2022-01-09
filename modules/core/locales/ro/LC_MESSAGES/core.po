@@ -19,12 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "Informații despre PHP"
 
-msgid "{core:no_state:report_text}"
-msgstr "Dacă problema persistă, anunțați administratorii de sistem."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Autentificare ca adminstrator"
 
@@ -42,9 +36,6 @@ msgstr "Se instalează SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostic despre numele de host, port și protocol"
-
-msgid "{core:no_state:causes}"
-msgstr "Această eroare poate fi cauzată de:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
@@ -82,9 +73,6 @@ msgstr ""
 "Configurare furnizor de servicii Shibboleth 1.3 care să funcționeze cu "
 "furnizor de identitate SimpleSAMLphp"
 
-msgid "{core:no_state:header}"
-msgstr "Informațiile de stare au fost pierdute"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadate"
 
@@ -113,11 +101,6 @@ msgstr "V-ați autentificat ca administrator"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentificare"
-
-msgid "{core:no_state:description}"
-msgstr ""
-"Nu a fost posibilă localizarea informațiilor de stare pentru cererea "
-"curentă."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vizualizare metadate"
@@ -151,25 +134,16 @@ msgstr "Federație"
 msgid "{core:frontpage:required_radius}"
 msgstr "Necesar pentru RADIUS"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Verificarea instalării PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Utilizarea SimpleSAMLphp ca furnizor de identitate"
 
-msgid "{core:no_state:report_header}"
-msgstr "Vă rugăm să anunțați această eroare"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr ""
 "Exemplu furnizor de servicii SAML 2.0 - testarea autentificării prin "
 "furnizorul dumneavoastră de identitate"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Browser-ul are deactivate <i>cookies</i>."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Despre SimpleSAMLphp"

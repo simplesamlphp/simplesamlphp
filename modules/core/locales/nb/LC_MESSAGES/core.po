@@ -18,12 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:no_state:report_text}"
-msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login som administrator"
 
@@ -41,9 +35,6 @@ msgstr "Installerer SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostiser hostnavn, port og protokoll"
-
-msgid "{core:no_state:causes}"
-msgstr "Denne feilen kan være forårsaket av:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)"
@@ -79,9 +70,6 @@ msgstr ""
 "Konfigurer Shibboleth 1.3 SP for å fungere sammen med SimpleSAMLphp "
 "identitetstjeneste"
 
-msgid "{core:no_state:header}"
-msgstr "Tilstandsinformasjon tapt"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadata"
 
@@ -108,9 +96,6 @@ msgstr "Du er logget inn som administrator"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentisering"
-
-msgid "{core:no_state:description}"
-msgstr "Vi kunne ikke finne tilstandsinformasjonen for denne forespørselen."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vis metadata"
@@ -145,23 +130,14 @@ msgstr "Føderasjon"
 msgid "{core:frontpage:required_radius}"
 msgstr "Påkrevd for Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Starte nettleseren med faner lagret fra forrige gang."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Sjekker din PHP installasjon"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Bruk SimpleSAMLphp som identitetstjeneste"
 
-msgid "{core:no_state:report_header}"
-msgstr "Rapporter denne feilen"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "At informasjonskapsler ikke er aktivert i nettleseren."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Om SimpleSAMLphp"

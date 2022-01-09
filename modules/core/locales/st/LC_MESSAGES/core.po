@@ -14,11 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-msgid "{core:no_state:description}"
-msgstr ""
-"Ha re kgone ho fumana tlhahisoleseding ka provenseng bakeng sa kopo ya ha"
-" jwale."
-
 msgid "{core:cardinality:cardinality_text}"
 msgstr ""
 "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa "
@@ -34,9 +29,6 @@ msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Ho sebedisa dikonopo tsa pele le morao sebading sa webo."
-
-msgid "{core:no_state:causes}"
-msgstr "Phoso ena e ka bakwa ke:"
 
 msgid ""
 "This is most likely a configuration problem on either the service "
@@ -59,14 +51,8 @@ msgstr ""
 "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le "
 "setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "O butse sebadi sa webe ka di-tab tse bolokilweng sesheneng e fetileng."
-
 msgid "{core:cardinality:cardinality_header}"
 msgstr "Makgabane a Fosahetseng"
-
-msgid "{core:no_state:report_text}"
-msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi."
 
 msgid "The problematic attribute(s) are:"
 msgstr "Makgabane a nang le mathata ke:"
@@ -84,17 +70,11 @@ msgstr ""
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi."
 
-msgid "{core:no_state:report_header}"
-msgstr "Tlaleha phoso ena"
-
 msgid "State information lost"
 msgstr "Tlhahisoleseding ya provense e lahlehile"
 
 msgid "Incorrect Attributes"
 msgstr "Makgabane a Fosahetseng"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
 
 msgid "Close the web browser, and try again."
 msgstr "Kwala sebadi sa webe, ebe o leka hape."
@@ -120,14 +100,8 @@ msgstr "o fumane dipalo tse %GOT%, o batla tse %WANT%"
 msgid "Retry"
 msgstr "Khukhi e siyo"
 
-msgid "{core:no_state:cause_backforward}"
-msgstr "Ho sebedisa dikonopo tsa pele le morao sebading sa webo."
-
 msgid "Cookies may be disabled in the web browser."
 msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
-
-msgid "{core:no_state:header}"
-msgstr "Tlhahisoleseding ya provense e lahlehile"
 
 msgid "Missing cookie"
 msgstr "Khukhi e siyo"

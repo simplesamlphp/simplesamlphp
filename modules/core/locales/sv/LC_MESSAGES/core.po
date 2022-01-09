@@ -18,12 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:no_state:report_text}"
-msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörerna."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logga in som administratör"
 
@@ -41,9 +35,6 @@ msgstr "Installerar SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnosera värdnamn, port och protokoll"
-
-msgid "{core:no_state:causes}"
-msgstr "Detta fel kan bero på:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Lokala SAML 2.0 Identity Provider Metadata (automatiskt genererat)"
@@ -77,9 +68,6 @@ msgstr ""
 "Konfigurera Shibboleth 1.3 SP för att fungera tillsammans med "
 "SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "Tillståndsinformation är förlorad"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadata"
 
@@ -108,9 +96,6 @@ msgstr "Du är inloggad som administratör"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentisering"
-
-msgid "{core:no_state:description}"
-msgstr "Hittar inte tillståndsinformationen för aktuell förfrågan."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Visa metadata"
@@ -144,23 +129,14 @@ msgstr "Federation"
 msgid "{core:frontpage:required_radius}"
 msgstr "Obligatoriskt för Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Öppnande av webbläsaren med sparade flikar från tidigare användning."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Kontrollerar PHP-installationen"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Använda SimpleSAMLphp som Identity Provider"
 
-msgid "{core:no_state:report_header}"
-msgstr "Rapportera detta fel"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP exempel - testinloggning med SAML 2.0 via din IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Webbkakor (Cookies) är avstängt i webbläsaren."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Om SimpleSAMLphp"

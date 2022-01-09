@@ -18,14 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "Πληροφορίες PHP"
 
-msgid "{core:no_state:report_text}"
-msgstr ""
-"Αν το πρόβλημα εξακολουθεί να υφίσταται, μπορείτε να το αναφέρετε στους "
-"διαχειριστές του συστήματος."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Είσοδος ως διαχειριστής"
 
@@ -47,9 +39,6 @@ msgid "{core:frontpage:link_diagnostics}"
 msgstr ""
 "Διαγνωστικά σχετικά με ρυθμίσεις ονόματος διακομιστή, θύρας και "
 "πρωτοκόλλου"
-
-msgid "{core:no_state:causes}"
-msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
@@ -95,9 +84,6 @@ msgstr ""
 "Ρυθμίσεις Παρόχου Υπηρεσιών Shibboleth 1.3 Shibboleth 1.3 για συμβατότητα"
 " με Πάροχο Ταυτότητας SimpleSAMLphp"
 
-msgid "{core:no_state:header}"
-msgstr "Δεν βρέθηκαν πληροφορίες κατάστασης"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Μεταδεδομένα"
 
@@ -124,11 +110,6 @@ msgstr "Συνδεδεμένος ως διαχειριστής"
 
 msgid "{core:frontpage:auth}"
 msgstr "Ταυτοποίηση"
-
-msgid "{core:no_state:description}"
-msgstr ""
-"Δεν ήταν δυνατό να εντοπιστούν πληροφορίες κατάστασης για το τρέχον "
-"αίτημα."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Εμφάνιση μεταδεδομένων"
@@ -163,27 +144,16 @@ msgstr "Ομοσπονδία"
 msgid "{core:frontpage:required_radius}"
 msgstr "Απαιτείται για υποστήριξη RADIUS"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr ""
-"Ανοίξατε το πρόγραμμα περιήγησης ιστού και επαναφέρατε καρτέλες "
-"προηγούμενης συνεδρίας."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Έλεγχος εγκατάστασης PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Χρήση SimpleSAMLphp για Παρόχους Ταυτότητας"
 
-msgid "{core:no_state:report_header}"
-msgstr "Αναφορά σφάλματος"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr ""
 "Παράδειγμα Παρόχου Υπηρεσιών SAML 2.0 - δοκιμή εισόδου μέσω του Παρόχου "
 "Ταυτότητάς σας"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Η λειτουργία cookie είναι απενεργοποιημένη στο πρόγραμμα περιήγησης ιστού."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Σχετικά με το SimpleSAMLphp"

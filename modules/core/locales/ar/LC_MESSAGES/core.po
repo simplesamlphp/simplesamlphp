@@ -19,12 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "معلومات PHP"
 
-msgid "{core:no_state:report_text}"
-msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "سجل دخول المشرف"
 
@@ -42,9 +36,6 @@ msgstr "ركب SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "تشخيص اسم المضيف، المنفذ، الطريقة"
-
-msgid "{core:no_state:causes}"
-msgstr "سبب حدوث هذا الخطأ قد يكون:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
@@ -78,9 +69,6 @@ msgstr "مرحباً"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "رتب Shibboleth 1.3 SP للعمل مع SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "حدد المعلومات المفقودة"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "البيانات الوصفية/الميتاداتا "
 
@@ -108,9 +96,6 @@ msgstr "لقد سجلت الدخول كمشرف علي الموقعح"
 msgid "{core:frontpage:auth}"
 msgstr " التوثيق"
 
-msgid "{core:no_state:description}"
-msgstr "لم نستطع تحديد المعلومات المفقودة للطلب الحالي"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "اظهر البيانات الوصفية/ الميتاداتا"
 
@@ -135,23 +120,14 @@ msgstr "الدخول الموحد"
 msgid "{core:frontpage:required_radius}"
 msgstr "مطلوب ل Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "تاكد من إنزال PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "استخدام SimpleSAMLphp كمقدم هوية"
 
-msgid "{core:no_state:report_header}"
-msgstr "بلغ عن هذا الخطأ "
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "مثال SAML 2.0 SP- اختبر تسجيل الدخول مستخدماً هوية IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "الكوكيز غير منشطة بمتصفحك"
 
 msgid "{core:frontpage:about_header}"
 msgstr "عن SimpleSAMLphp"

@@ -19,12 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:no_state:report_text}"
-msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavi se kot administrator"
 
@@ -42,9 +36,6 @@ msgstr "Namestitev SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostika strežnika, vrata in protokol"
-
-msgid "{core:no_state:causes}"
-msgstr "Vzrok za to napako je lahko:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Metapodatki za SAML 2.0 IdP (samodejno generirani)"
@@ -76,9 +67,6 @@ msgstr "Dobrodošli"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Nastavi Shibboleth 1.3 SP za delo s SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "Informacije o stanju zahtevka niso na voljo."
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metapodatki"
 
@@ -105,9 +93,6 @@ msgstr "Prijavljeni ste v vlogi administratorja"
 
 msgid "{core:frontpage:auth}"
 msgstr "Avtentikacija"
-
-msgid "{core:no_state:description}"
-msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
@@ -141,25 +126,14 @@ msgstr "Federacija"
 msgid "{core:frontpage:required_radius}"
 msgstr "Zahtevano za RADIUS"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr ""
-"Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje"
-" seje."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Preverjanje namestitve PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Uporabi SimpleSAMLphp za IdP"
 
-msgid "{core:no_state:report_header}"
-msgstr "Prijavite to napako"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP primer - preveri prijavo preko svojega IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
 
 msgid "{core:frontpage:about_header}"
 msgstr "O SimpleSAMLphp"

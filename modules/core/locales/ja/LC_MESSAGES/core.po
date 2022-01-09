@@ -18,15 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:no_state:report_text}"
-msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"
-
-msgid "{core:no_state:cause_badlink}"
-msgstr "ここにアクセスするために使用するリンクが不正でした、おそらくブックマークに登録されているリンクが原因でしょう。"
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "管理者としてログイン"
 
@@ -69,9 +60,6 @@ msgstr "SimpleSAMLphpセットアップのサニティーチェック"
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "ホストネームやポート、プロトコルを確認"
 
-msgid "{core:no_state:causes}"
-msgstr "このエラーの原因:"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "ホスト SAML 2.0 アイデンティティプロバイダメタデータ(自動生成)"
 
@@ -107,9 +95,6 @@ msgstr "ようこそ"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "SimpleSAMLphp IdPと連携するShibboleth SP 1.3として設定"
 
-msgid "{core:no_state:header}"
-msgstr "状態情報が無くなりました。"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "メタデータ"
 
@@ -143,9 +128,6 @@ msgstr "認証"
 msgid "{core:frontpage:logout}"
 msgstr "ログアウト"
 
-msgid "{core:no_state:description}"
-msgstr "現在のリクエストから状態情報を特定することが出来ませんでした。"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "メタデータを表示"
 
@@ -174,23 +156,14 @@ msgstr "連携"
 msgid "{core:frontpage:required_radius}"
 msgstr "Radiusのために必須"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "ブラウザに保存されたタブにより、以前のセッションが開かれました。"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "PHPの設定を確認"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphpをアイデンティティプロバイダとして使用する"
 
-msgid "{core:no_state:report_header}"
-msgstr "このエラーをレポート"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP example - IdP経由でテストログイン"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "このWEBブラウザではクッキーが無効化されています。"
 
 msgid "{core:frontpage:about_header}"
 msgstr "SimpleSAMLphpについて"

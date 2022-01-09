@@ -18,14 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:no_state:report_text}"
-msgstr ""
-"Si ce problème persiste, vous pouvez le remonter vers l'administrateur "
-"système."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Utilisation des boutons avance et retour dans le navigateur."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Connexion en tant qu'administrateur"
 
@@ -43,9 +35,6 @@ msgstr "Installation de SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics sur le nom d'hôte, le port et le protocole"
-
-msgid "{core:no_state:causes}"
-msgstr "Cette erreur peut être causée par :"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Métadonnées du fournisseur d'identités SAML 2.0 (générées automatiquement)"
@@ -79,9 +68,6 @@ msgstr "Bienvenue"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Configurer un SP Shibboleth 1.3 pour fonctionner avec l'IdP SimpleSAMLphp"
 
-msgid "{core:no_state:header}"
-msgstr "Information d'état perdue"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Métadonnées"
 
@@ -108,9 +94,6 @@ msgstr "Vous êtes connecté en tant qu'administrateur"
 
 msgid "{core:frontpage:auth}"
 msgstr "Authentification"
-
-msgid "{core:no_state:description}"
-msgstr "Nous ne pouvons pas trouver l'information d'état pour la demande courante."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Afficher les métadonnées"
@@ -146,25 +129,14 @@ msgstr "Fédération"
 msgid "{core:frontpage:required_radius}"
 msgstr "Obligatoire pour Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr ""
-"Ouvert le navigateur avec des onglets sauvegardés lors de la session "
-"précédente."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Vérification de votre installation de PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Utilisation de SimpleSAMLphp comme fournisseur d'identités"
 
-msgid "{core:no_state:report_header}"
-msgstr "Remontez cette erreur"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SP SAML 2.0 d'exemple - tester l'identification via votre IdP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Les cookies sont peut-être déactivés dans le navigateur."
 
 msgid "{core:frontpage:about_header}"
 msgstr "À propos de SimpleSAMLphp"

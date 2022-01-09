@@ -19,12 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHP info"
 
-msgid "{core:no_state:report_text}"
-msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Pieslēgties kā administrators"
 
@@ -42,9 +36,6 @@ msgstr "Instalē SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Saimniekdatora vārda, porta un protokola diagnostika"
-
-msgid "{core:no_state:causes}"
-msgstr "Kļūdu radījis:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Hostēta SAML 2.0 identitātes piegādātāja metadati (ģenerēti automātiski)"
@@ -76,9 +67,6 @@ msgstr "Laipni lūdzam"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Konfigurēt Shibboleth 1.3 SP strādāt ar SimpleSAMLphp IdP"
 
-msgid "{core:no_state:header}"
-msgstr "Stāvokļa informācija ir pazaudēta"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadati"
 
@@ -105,9 +93,6 @@ msgstr "Jūs esat pieslēdzies kā administrators"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikācija"
-
-msgid "{core:no_state:description}"
-msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Rādīt metadatus"
@@ -139,23 +124,14 @@ msgstr "Federācija"
 msgid "{core:frontpage:required_radius}"
 msgstr "Obligāts priekš Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Interneta pārlūka atvēršana ar saglabātām cilnēm no iepriekšējās sesijas."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Pārbauda Jūsu PHP instalāciju"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Izmanto SimpleSAMLphp kā identitātes piegādātāju"
 
-msgid "{core:no_state:report_header}"
-msgstr "Ziņojiet par šo kļūdu"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP piemērs - testa pieslēgšanās caur Jūsu IDP"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Iespējams, interneta pārlūkā ir aizliegtas sīkdatnes."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Par SimpleSAMLphp"

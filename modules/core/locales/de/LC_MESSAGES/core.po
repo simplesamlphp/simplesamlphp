@@ -18,14 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:no_state:report_text}"
-msgstr ""
-"Wenn das Problem weiter besteht, kannst du diesen Fehler den "
-"Systemadministratoren melden."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Als Administrator anmelden"
 
@@ -43,9 +35,6 @@ msgstr "SimpleSAMLphp installieren"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnose des Hostnamen, Ports und Protokolls"
-
-msgid "{core:no_state:causes}"
-msgstr "Dieser Fehler könnte durch folgendes verursacht werden:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Hosted SAML 2.0 Identity Provider Metadaten (automatisch generiert)"
@@ -79,9 +68,6 @@ msgstr ""
 "Shibboleth 1.3 SP für die Zusammenarbeit mit einem SimpleSAMLphp IdP "
 "konfigurieren"
 
-msgid "{core:no_state:header}"
-msgstr "Statusinformationen verloren"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadaten"
 
@@ -108,11 +94,6 @@ msgstr "Sie sind als Administrator angemeldet"
 
 msgid "{core:frontpage:auth}"
 msgstr "Authentifizierung"
-
-msgid "{core:no_state:description}"
-msgstr ""
-"Wir konnten die Statusinformationen für die aktuelle Anfrage nicht "
-"lokalisieren."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Metadaten zeigen"
@@ -148,23 +129,14 @@ msgstr "Föderation"
 msgid "{core:frontpage:required_radius}"
 msgstr "Erforderlich für Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Das Öffnen des Web-Browser mit gespeicherten Tabs aus der letzten Sitzung."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Überprüfen der PHP Installation"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphp als Identitiy Provider benutzen"
 
-msgid "{core:no_state:report_header}"
-msgstr "Diesen Fehler melden"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP Beispiel - Anmelden über ihren IdP testen"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr "Cookies könnten im Web-Browser deaktiviert sein."
 
 msgid "{core:frontpage:about_header}"
 msgstr "Über SimpleSAMLphp"

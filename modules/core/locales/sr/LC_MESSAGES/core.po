@@ -19,16 +19,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "Informacije o PHP instalaciji"
 
-msgid "{core:no_state:report_text}"
-msgstr ""
-"Ako se ova greška bude i dalje pojavljivala, možete je prijaviti "
-"administratorima."
-
-msgid "{core:no_state:cause_backforward}"
-msgstr ""
-"Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u "
-"web pretraživaču."
-
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavite se kao administrator"
 
@@ -48,9 +38,6 @@ msgstr "Instalacija SimpleSAMLphp-a"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Dijagnostika vezana za naziv servera (hostname), port i protokol "
-
-msgid "{core:no_state:causes}"
-msgstr "Ova greška može biti uzrokovana:"
 
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Metapodaci za lokalni SAML 2.0 Davalac Identiteta (automatski generisani) "
@@ -84,9 +71,6 @@ msgstr "Dobrodošli"
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Podesite Shibboleth 1.3 SP za rad sa SimpleSAMLphp Davaocem Identeteta"
 
-msgid "{core:no_state:header}"
-msgstr "Informacije o stanju su izgubljene"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Medapodaci"
 
@@ -115,9 +99,6 @@ msgstr "Prijavljeni ste kao administrator"
 
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikacija"
-
-msgid "{core:no_state:description}"
-msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
@@ -151,25 +132,14 @@ msgstr "Federacija"
 msgid "{core:frontpage:required_radius}"
 msgstr "Obavezno za Radius"
 
-msgid "{core:no_state:cause_openbrowser}"
-msgstr "Otvaranjem web pretraživača sa stranicama sačuvanim iz prethodne sesije."
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Provera vaše PHP instalacije"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Kako iskoristiti SimpleSAMLphp za implementaciju Davaoca Identiteta"
 
-msgid "{core:no_state:report_header}"
-msgstr "Prijavite ovu grešku"
-
 msgid "{core:frontpage:link_saml2example}"
 msgstr "SAML 2.0 SP primer - testirajte autentifikaciju kroz vaš Davalac Identieta"
-
-msgid "{core:no_state:cause_nocookie}"
-msgstr ""
-"Moguće da je podrška za kolačiće (\"cookies\") isključena u web "
-"pretraživaču."
 
 msgid "{core:frontpage:about_header}"
 msgstr "O SimpleSAMLphp-u"
