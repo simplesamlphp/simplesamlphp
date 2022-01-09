@@ -27,9 +27,6 @@ msgstr "使用浏览器中的前进后退按钮"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "作为管理员登录"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr "我们检测到从你上一次连接到该服务提供者到本次连接中间间隔仅仅数秒的时间，我们猜测该SP可能有问题"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "正在使用SimpleSAMLphp作为服务提供者"
 
@@ -114,9 +111,6 @@ msgstr "我们无法定位当前请求的状态信息"
 msgid "{core:frontpage:show_metadata}"
 msgstr "显示元信息"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "单点登录事件之间间隔太短了"
-
 msgid "{core:frontpage:intro}"
 msgstr "<strong>恭喜你！</strong>,你已成功安装SimpleSAMLphp。这是你的开始页面,你在这里可以发现测试样例/诊断工具/元信息/甚至是相关文档的链接"
 
@@ -180,9 +174,6 @@ msgstr "SimpleSAMLphp作为Google Apps for Education的IdP"
 
 msgid "{core:frontpage:tools}"
 msgstr "工具"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "重新尝试登陆"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "已经超时"

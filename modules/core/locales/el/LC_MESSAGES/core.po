@@ -29,12 +29,6 @@ msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικ�
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Είσοδος ως διαχειριστής"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που "
-"συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να "
-"υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Χρήση SimpleSAMLphp για Παρόχους Υπηρεσιών"
 
@@ -139,9 +133,6 @@ msgstr ""
 msgid "{core:frontpage:show_metadata}"
 msgstr "Εμφάνιση μεταδεδομένων"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Συγχαρητήρια</strong>, έχετε εγκαταστήσει με επιτυχία το "
@@ -218,9 +209,6 @@ msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Googl
 
 msgid "{core:frontpage:tools}"
 msgstr "Εργαλεία"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Επανάληψη σύνδεσης"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Υπό απόσυρση"

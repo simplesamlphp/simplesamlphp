@@ -30,12 +30,6 @@ msgstr "Login als beheerder"
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"We hebben waargenomen dat u slechts een paar seconden geleden al "
-"aangemeld bent bij deze serviceprovider, daarom nemen we aan dat er een "
-"probleem is met deze SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Gebruik SimpleSAMLphp als Service Provider"
 
@@ -139,9 +133,6 @@ msgstr ""
 msgid "{core:frontpage:show_metadata}"
 msgstr "Toon metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Te kort interval tussen single sign on pogingen"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Gefeliciteerd</strong>, SimpleSAMLphp is succesvol geïnstalleerd."
@@ -218,9 +209,6 @@ msgstr "SimpleSAMLphp als een Identity Provider voor Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Gereedschap"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Inloggen opnieuw proberen"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Verouderd"

@@ -29,12 +29,6 @@ msgstr "Menggunakan tombol back dan forward pada browser web."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login sebagai administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi "
-"yang anda lakukan pada service provider ini, dan oleh karena itu "
-"diasumsikan ada masalah dengan SP ini"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Menggunakan SimpleSAMLphp sebagai Service Provider"
 
@@ -119,9 +113,6 @@ msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini
 msgid "{core:frontpage:show_metadata}"
 msgstr "Perlihatkan metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Interval yang terlalu pendek antara event single sign on."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Selamat</strong>, Anda telah berhasil melakukan instalasi "
@@ -200,9 +191,6 @@ msgstr "SimpleSAMLphp sebagai IdP untuk Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Peralatan"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Coba login kembali"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Usang"

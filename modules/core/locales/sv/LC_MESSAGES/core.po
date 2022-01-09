@@ -27,12 +27,6 @@ msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logga in som administratör"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Vi har upptäckt att det bara vara några få sekunder sedan du senast "
-"loggade in mot denna tjänst (service provider) och därför antar vi att "
-"det är ett problem med denna tjänst."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Använda SimpleSAMLphp som Service Provider"
 
@@ -121,9 +115,6 @@ msgstr "Hittar inte tillståndsinformationen för aktuell förfrågan."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Visa metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "För kort intervall mellan inloggningar."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Gratulerar</strong>, du har framgångsrikt installerat "
@@ -195,9 +186,6 @@ msgstr "SimpleSAMLphp som IdP för Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Verktyg"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Försök med inloggningen igen"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Ej längre giltig"

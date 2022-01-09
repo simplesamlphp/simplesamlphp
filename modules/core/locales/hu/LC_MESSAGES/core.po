@@ -29,12 +29,6 @@ msgstr "Használja a böngésző előre, ill. vissza gombjait"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Bejelentkezés adminisztrátorként"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi "
-"azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma "
-"lépett fel az SP-nél."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp használata mint alkalmazásszolgáltató(SP)"
 
@@ -123,9 +117,6 @@ msgstr "Nem lehet beazonosítani a kéréshez tartozó állapotinformációt."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Mutasd a metaadatokat"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Túl kevés idő telt el a belépési kísérletek között."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Gratulálunk</strong>, a SimpleSAMLphp sikeresen települt. Ez a "
@@ -197,9 +188,6 @@ msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 
 msgid "{core:frontpage:tools}"
 msgstr "Eszközök"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Újbóli belépés"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Kivezetés alatt álló opció - használata ellenjavallt"

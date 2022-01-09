@@ -15,18 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Ons het ontdek dat daar slegs 'n paar sekondes was sedert jy laas "
-"geverifieer het met die diensverskaffer en neem dus aan dat daar 'n "
-"probleem is met hierdie SP."
-
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure."
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Probeer weer aanmeld"
-
 msgid "Retry login"
 msgstr "Probeer weer aanmeld"
 

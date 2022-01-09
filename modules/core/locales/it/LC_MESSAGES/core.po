@@ -29,12 +29,6 @@ msgstr "Utilizzo i pulsanti avanti ed indietro del browser web."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Accedi come amministratore"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima "
-"autenticazione con questo fornitore di servizio, quindi si può assumere "
-"che ci sia un problema con il Service Provider."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Usare SimpleSAMLphp come Service Provider"
 
@@ -123,9 +117,6 @@ msgstr ""
 msgid "{core:frontpage:show_metadata}"
 msgstr "Mostra metadati"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "L'intervallo tra le autenticazioni è troppo breve."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Congratulazioni</strong>, hai installato SimpleSAMLphp con "
@@ -201,9 +192,6 @@ msgstr "SimpleSAMLphp come IdP per Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Strumenti"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Riprovare a connettersi"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Deprecato"

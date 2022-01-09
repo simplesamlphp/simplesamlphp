@@ -29,12 +29,6 @@ msgstr "Usando los botones atrás y adelante de su navegador web."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Entrar como administrador"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Se ha detectado que han transcurrido solo unos segundos desde que fue "
-"autenticado por última vez en este servicio, por lo que se asumirá que "
-"existe un problema con este SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Empleo de SimpleSAMLphp como Service Provider"
 
@@ -135,9 +129,6 @@ msgstr "No podemos encontrar la información de estado para la solicitud actual"
 msgid "{core:frontpage:show_metadata}"
 msgstr "Ver metadatos"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>&iexcl;Felicidades!</strong>, ha instalado SimpleSAMLphp con "
@@ -212,9 +203,6 @@ msgstr "SimpleSAMLphp como IdP para Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Herramientas"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Reintente autenticación"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Obsoleto"

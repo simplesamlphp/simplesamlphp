@@ -29,11 +29,6 @@ msgstr "Utilisation des boutons avance et retour dans le navigateur."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Connexion en tant qu'administrateur"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Il ne s'est écoulé que quelques secondes depuis votre authentification "
-"précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Utilisation de SimpleSAMLphp comme fournisseur de service"
 
@@ -120,9 +115,6 @@ msgstr "Nous ne pouvons pas trouver l'information d'état pour la demande couran
 msgid "{core:frontpage:show_metadata}"
 msgstr "Afficher les métadonnées"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Connexions uniques trop proches dans le temps."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Félicitations</strong>, vous avez installé SimpleSAMLphp. Cette "
@@ -198,9 +190,6 @@ msgstr "SimpleSAMLphp comme IdP pour les <i>Google Apps for Education</i>"
 
 msgid "{core:frontpage:tools}"
 msgstr "Outils"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Ré-essayez de vous connecter"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Obsolète"

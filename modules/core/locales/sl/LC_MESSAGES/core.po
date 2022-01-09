@@ -28,11 +28,6 @@ msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavi se kot administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le "
-"nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Uporabi SimpleSAMLphp za SP"
 
@@ -117,9 +112,6 @@ msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Prekratek interval med dogodki enotne prijave."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Čestitamo!</strong> Uspešno ste namestili SimpleSAMLphp. Na tej "
@@ -193,9 +185,6 @@ msgstr "SimpleSAMLphp IdP za Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Orodja"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Ponovna prijava"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Neustrezen"

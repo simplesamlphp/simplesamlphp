@@ -28,12 +28,6 @@ msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Příhlásit se jako administrátor"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení "
-"pomocí service providera a proto předpokládáme, že nastala chyba v tom "
-"SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Použití SimpleSAMLphp jako SP"
 
@@ -122,9 +116,6 @@ msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Zobraz metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Blahopřejeme</strong>, máte správně nainstalovan SimpleSAMLphp. "
@@ -194,9 +185,6 @@ msgstr "SimpleSAMLphp jako IdP pro Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Nástroje"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Přihlašte se znovu."
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zastaralé"

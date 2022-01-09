@@ -29,12 +29,6 @@ msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Als Administrator anmelden"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem "
-"Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir "
-"davon aus, dass es ein Problem mit diesem Anbieter gibt."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp als Service Provider benutzen"
 
@@ -123,9 +117,6 @@ msgstr ""
 msgid "{core:frontpage:show_metadata}"
 msgstr "Metadaten zeigen"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Glückwunsch</strong>, Sie haben erfolgreich SimpleSAMLphp "
@@ -199,9 +190,6 @@ msgstr "SimpleSAMLphp als IdP für Google Apps für Education verwernden"
 
 msgid "{core:frontpage:tools}"
 msgstr "Werkzeuge"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Versuche Anmeldung erneut"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Veraltet"

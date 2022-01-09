@@ -30,12 +30,6 @@ msgstr "Using the back and forward buttons in the web browser."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login as administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"We have detected that there is only a few seconds since you last "
-"authenticated with this service provider, and therefore assume that there"
-" is a problem with this SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Using SimpleSAMLphp as a Service Provider"
 
@@ -160,9 +154,6 @@ msgstr "We were unable to locate the state information for the current request."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Show metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Too short interval between single sign on events."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Congratulations</strong>, you have successfully installed "
@@ -235,9 +226,6 @@ msgstr "SimpleSAMLphp as an IdP for Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Tools"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Retry login"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Deprecated"

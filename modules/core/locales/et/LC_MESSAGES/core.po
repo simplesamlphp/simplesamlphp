@@ -27,12 +27,6 @@ msgstr "brauseri edasi-tagasi nuppude kasutamisest"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Logi sisse administraatorina"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on "
-"möödunud ainult mõned sekundid ja seepärast arvame, et sellega "
-"teenusepakkujaga on probleeme."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp kasutamine teenusepakkujana"
 
@@ -119,9 +113,6 @@ msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Näita metaandmeid"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Palju õnne!</strong> Oled edukalt paigaldanud SimpleSAMLphp. See "
@@ -192,9 +183,6 @@ msgstr "SimpleSAMLphp IdP-na Google Apps for Educationis"
 
 msgid "{core:frontpage:tools}"
 msgstr "Tööriistad"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Proovi uuesti logida"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Vananenud"

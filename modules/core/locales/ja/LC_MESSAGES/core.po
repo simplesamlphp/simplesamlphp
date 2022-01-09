@@ -30,9 +30,6 @@ msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "管理者としてログイン"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphpをサービスプロバイダとして使用する"
 
@@ -152,9 +149,6 @@ msgstr "現在のリクエストから状態情報を特定することが出来
 msgid "{core:frontpage:show_metadata}"
 msgstr "メタデータを表示"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
@@ -219,9 +213,6 @@ msgstr "SimpleSAMLphpをGoogle Apps for Educationの為のIdPとして設定"
 
 msgid "{core:frontpage:tools}"
 msgstr "ツール"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "ログインを再試行"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "非推奨"

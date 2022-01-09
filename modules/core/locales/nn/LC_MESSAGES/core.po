@@ -27,12 +27,6 @@ msgstr "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Innlogga som administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Vi har merka at det kun er nokon få sekund sidan du sist vart logga inn "
-"på denne tenesta, og derfor trur vi at det er eit problem med oppsettet "
-"av denne tjenesta."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Bruk SimpleSAMLphp som Service Provider"
 
@@ -121,9 +115,6 @@ msgstr "Vi kunne ikkje finne tilstandsinformasjonen for denne forespørselen."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vis metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "For kort intervall mellom innloggingsforespørslar"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Gratulerer</strong>, du har installert SimpleSAMLphp. Dette er "
@@ -196,9 +187,6 @@ msgstr "SimpleSAMLphp som IdP for Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Verktøy"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Prøv å logge inn på nytt"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Utfasa"

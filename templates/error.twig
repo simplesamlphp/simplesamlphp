@@ -16,7 +16,7 @@
     {%- endif %}
 
     <div class="message-box">
-        <p>{{ '{errors:report_trackid}' | trans }}</p>
+        <p>{{ 'If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:' | trans }}</p>
         <div class="pure-button-group two-elements" role="group">
             <label class="pure-button hollow" disabled><pre id="trackid">{{ error.trackId }}</pre></label>
             <button data-clipboard-target="#trackid" id="btntrackid" class="pure-button clipboard-btn copy">

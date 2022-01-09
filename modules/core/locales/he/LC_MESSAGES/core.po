@@ -27,11 +27,6 @@ msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "כנס כמנהל מערכת"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, "
-"ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "שימוש ב SimpleSAMLphp כספק שרותים"
 
@@ -116,9 +111,6 @@ msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכח�
 msgid "{core:frontpage:show_metadata}"
 msgstr "הראה מטא-נתונים"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>מזל טוב</strong>,SimpleSAMLphp. התקנת הבהצלחה את זה דף ההתחלה של "
@@ -188,9 +180,6 @@ msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 
 msgid "{core:frontpage:tools}"
 msgstr "כלים"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "נסה שוב להתחבר"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "פג תוקף"

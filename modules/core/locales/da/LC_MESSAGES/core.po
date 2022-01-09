@@ -29,12 +29,6 @@ msgstr "Brug frem- og tilbage-knappen i browseren."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login som administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Vi har opdaget at det kun er få sekunder siden du sidst autentificerede "
-"dig op mod denne service. Vi antager derfor at der er et problem med "
-"services."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp som en tjenesteudbyder (SP)"
 
@@ -126,9 +120,6 @@ msgstr "Tilstandsinformation for igangværende request kan ikke findes"
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vis metadata"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "For kort interval mellem single sign on hændelse."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Tillykke</strong>, du har nu installeret SimpleSAMLphp. Dette er "
@@ -198,9 +189,6 @@ msgstr "SimpleSAMLphp som en IdP for Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Værktøjer"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Login igen"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Under udfasning"

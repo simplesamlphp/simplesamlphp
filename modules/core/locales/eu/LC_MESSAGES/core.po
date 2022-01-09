@@ -29,12 +29,6 @@ msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Sartu administratzaile bezala"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu "
-"besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat "
-"dagoela hartuko dugu. "
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp erabili Identificadore hornitzaile moduan"
 
@@ -123,9 +117,6 @@ msgstr "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Ikusi metadatuak"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>&iexcl;Zorionak!</strong> SimpleSAMLphp zuzen instalatu duzu. Hau"
@@ -198,9 +189,6 @@ msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 
 msgid "{core:frontpage:tools}"
 msgstr "Tresnak"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Saiatu berriro kautotzen"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zaharkitua"

@@ -27,9 +27,6 @@ msgstr "於網頁瀏覽器使用上一頁及下一頁。"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "以管理員身分登入"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr "我們偵測到距離您最後一次驗證於這個服務提供者只有短短幾秒，而這可能是 SP 有點問題。"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "使用 SimpleSAMLphp 做為服務提供者"
 
@@ -120,9 +117,6 @@ msgstr "我們無法找到關於這個請求的狀態資訊。"
 msgid "{core:frontpage:show_metadata}"
 msgstr "顯示詮釋資料"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "單一簽入事件間隔過短。"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>恭喜你</strong>，您已經成功的安裝 "
@@ -191,9 +185,6 @@ msgstr "SimpleSAMLphp 做為 Google Apps 教育版的 IdP"
 
 msgid "{core:frontpage:tools}"
 msgstr "工具"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "重試登入"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "棄置"

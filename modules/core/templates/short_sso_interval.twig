@@ -2,15 +2,15 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h1>{{ '{core:short_sso_interval:warning_header}'|trans }}</h1>
-    <form style="display: inline; margin: 0px; padding: 0px" action="{{ moduleURL('core/short_sso_interval.php') }}">
+    <h1>{{ 'Too short interval between single sign on events.'|trans }}</h1>
+    <form style="display: inline; margin: 0px; padding: 0px" action="{{ moduleURL('core/short_sso_interval') }}">
         {% for name, value in params %}
             <input type="hidden" name="{{ name|escape('html') }}" value="{{ value|escape('html') }}">
         {% endfor %}
-        <p>{{ '{core:short_sso_interval:warning}'|trans }}</p>
+        <p>{{ 'We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP.'|trans }}</p>
         <div class="trackidtext">
-            <p>{{ '{errors:report_trackid}'|trans }}<span class="trackid">{{ trackId }}</span></p>
+            <p>{{ 'If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:'|trans }}<span class="trackid">{{ trackId }}</span></p>
         </div>
-        <input type="submit" name="continue" id="contbutton" value="'{core:short_sso_interval:retry}'|trans|escape('html') }}" autofocus>
+        <input type="submit" name="continue" id="contbutton" value="'Retry login'|trans|escape('html') }}" autofocus>
     </form>
 {% endblock %}

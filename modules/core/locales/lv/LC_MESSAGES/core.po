@@ -28,11 +28,6 @@ msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Pieslēgties kā administrators"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, "
-"iespējams, ir problēma ar servisa piegādātāju."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Izmanto SimpleSAMLphp kā servisa piegādātāju"
 
@@ -117,9 +112,6 @@ msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Rādīt metadatus"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Apsveicu</strong>, Jūs esat veiksmīgi uzinstalējis "
@@ -189,9 +181,6 @@ msgstr "SimpleSAMLphp kā IdP priekš Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Rīki"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Mēģināt pieslēgties vēlreiz"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Atcelts"

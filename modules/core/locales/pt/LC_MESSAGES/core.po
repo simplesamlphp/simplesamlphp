@@ -21,11 +21,6 @@ msgstr "PHP info"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Entrar como administrador"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Foi detectada uma repetição de autenticação neste serviço em poucos "
-"segundos. Este SP pode ter um problema."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Usar o SimpleSAMLphp como um fornecedor de serviço (SP)"
 
@@ -104,9 +99,6 @@ msgstr "Autenticação"
 msgid "{core:frontpage:show_metadata}"
 msgstr "Mostrar meta-dados"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Intervalo entre eventos de single sign on demasiado curto."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Parabéns</strong>, o software SimpleSAMLphp foi instalado com "
@@ -165,9 +157,6 @@ msgstr ""
 
 msgid "{core:frontpage:tools}"
 msgstr "Ferramentas"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Tentar de novo"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Descontinuado"

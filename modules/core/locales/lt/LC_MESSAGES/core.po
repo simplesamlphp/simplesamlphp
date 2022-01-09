@@ -30,12 +30,6 @@ msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršykl�
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prisijungti administratoriaus teisėmis"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo "
-"patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su"
-" SP."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp naudojimas kaip paslaugos teikėją"
 
@@ -120,9 +114,6 @@ msgstr "Nepavyko nustatyti būsenos informacijos šiai užklausai."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Parodyti metaduomenis"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Sveikiname</strong>, Jūs sėkmingai įdiegėte SimpleSAMLphp. Tai "
@@ -197,9 +188,6 @@ msgstr "SimpleSAMLphp kaip IdP skirtas \"Google Apps for Education\""
 
 msgid "{core:frontpage:tools}"
 msgstr "Įrankiai"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Prisijunkite iš naujo"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Nebepalaikoma"

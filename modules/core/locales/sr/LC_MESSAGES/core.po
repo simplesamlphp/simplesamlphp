@@ -32,12 +32,6 @@ msgstr ""
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Prijavite se kao administrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za "
-"pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod "
-"davaoca servisa."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr ""
 "Kako iskoristiti SimpleSAMLphp kao autentifikacioni modul kod Davaoca "
@@ -128,9 +122,6 @@ msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Čestitamo</strong>, uspešno ste instalirali SimpleSAMLphp. Ovo je"
@@ -204,9 +195,6 @@ msgstr "SimpleSAMLphp kao autentifikacioni servis za Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Alati"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Pokušaj se prijaviti ponovo"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zastarelo"

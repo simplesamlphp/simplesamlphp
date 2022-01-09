@@ -28,12 +28,6 @@ msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Autentificare ca adminstrator"
 
-msgid "{core:short_sso_interval:warning}"
-msgstr ""
-"A fost detectat faptul că v-ați autentificat în urmă cu doar câteva "
-"secunde cu acest furnizor de servicii, se va considera că există o "
-"problemă cu acest furnizor de servicii."
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "Utilizarea SimpleSAMLphp ca furnizor de servicii"
 
@@ -128,9 +122,6 @@ msgstr ""
 msgid "{core:frontpage:show_metadata}"
 msgstr "Vizualizare metadate"
 
-msgid "{core:short_sso_interval:warning_header}"
-msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Felciitări</strong>, ați instalat cu succes SimpleSAMLphp. "
@@ -204,9 +195,6 @@ msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
 
 msgid "{core:frontpage:tools}"
 msgstr "Unelte"
-
-msgid "{core:short_sso_interval:retry}"
-msgstr "Încercați din nou"
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Depreciate"
