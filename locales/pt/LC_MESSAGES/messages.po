@@ -24,9 +24,6 @@ msgstr "O utilizador ou senha fornecidos são incorrectos. Por favor tente de no
 msgid "{logout:failed}"
 msgstr "Saída falhada"
 
-msgid "{status:attributes_header}"
-msgstr "Os seus atributos"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
 
@@ -148,9 +145,6 @@ msgstr "Verificação da configuração"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Enviar mensagem"
-
-msgid "{status:logout}"
-msgstr "Sair"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

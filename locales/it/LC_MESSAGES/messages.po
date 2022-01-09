@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Disconnessione fallita"
 
-msgid "{status:attributes_header}"
-msgstr "I tuoi attributi"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (Remoto)"
 
@@ -170,9 +167,6 @@ msgstr "Verifica della configurazione"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Invio messaggio"
-
-msgid "{status:logout}"
-msgstr "Disconnessione"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."

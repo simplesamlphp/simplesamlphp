@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Utlogging feilet"
 
-msgid "{status:attributes_header}"
-msgstr "Dine attributter"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Tjenesteleverandør (ekstern)"
 
@@ -163,9 +160,6 @@ msgstr "Sjekker konfigurasjonen"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Send melding"
-
-msgid "{status:logout}"
-msgstr "Logg ut"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametere sendt til discovery-tjenesten var ikke i korrekt format."

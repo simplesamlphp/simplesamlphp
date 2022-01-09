@@ -28,9 +28,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Odjava nije uspela"
 
-msgid "{status:attributes_header}"
-msgstr "Vaši atributi"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Davalac Servisa (udaljeni)"
 
@@ -172,9 +169,6 @@ msgstr "Provera podešavanja"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Pošalji poruku"
-
-msgid "{status:logout}"
-msgstr "Odjava"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."

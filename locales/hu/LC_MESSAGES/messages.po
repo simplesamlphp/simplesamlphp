@@ -24,9 +24,6 @@ msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, prób�
 msgid "{logout:failed}"
 msgstr "Kijelentkezés nem sikerült"
 
-msgid "{status:attributes_header}"
-msgstr "Az ön attribútumai"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 alkalmazásszolgáltató (távoli)"
 
@@ -162,9 +159,6 @@ msgstr "Beállítások ellenőrzése"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Üzenet küldése"
-
-msgid "{status:logout}"
-msgstr "Kilépés"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

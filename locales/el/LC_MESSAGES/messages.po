@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Η αποσύνδεση απέτυχε"
 
-msgid "{status:attributes_header}"
-msgstr "Πληροφορίες"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Απομακρυσμένος)"
 
@@ -176,9 +173,6 @@ msgstr "Έλεγχος ρυθμίσεων"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Υποβολή μηνύματος"
-
-msgid "{status:logout}"
-msgstr "Αποσύνδεση"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

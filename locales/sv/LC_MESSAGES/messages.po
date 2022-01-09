@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Utloggning misslyckades"
 
-msgid "{status:attributes_header}"
-msgstr "Dina attribut"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (Fjärr)"
 
@@ -168,9 +165,6 @@ msgstr "Konfigurationskontroll"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Skicka meddelande"
-
-msgid "{status:logout}"
-msgstr "Logga ut"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

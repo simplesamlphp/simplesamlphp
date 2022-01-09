@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Çıkış başarılamadı"
 
-msgid "{status:attributes_header}"
-msgstr "Bilgileriniz"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Servis Sağlayıcı (Uzak sistemde sunulan)"
 
@@ -152,9 +149,6 @@ msgstr "Konfigürasyon kontrolü"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Mesaj gönder"
-
-msgid "{status:logout}"
-msgstr "Çıkış"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."

@@ -18,9 +18,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Uloskirjautuminen epäonnistunut"
 
-msgid "{status:attributes_header}"
-msgstr "Attribuuttisi"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Identiteetintarjoan vastauksen käsittely epäonnistui."
 
@@ -112,9 +109,6 @@ msgstr "Valitse kotiorganisaatiosi"
 
 msgid "{logout:hold}"
 msgstr "Odota"
-
-msgid "{status:logout}"
-msgstr "Uloskirjautuminen"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."

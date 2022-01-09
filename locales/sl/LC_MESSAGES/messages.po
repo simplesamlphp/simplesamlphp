@@ -28,9 +28,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Odjava je spodletela."
 
-msgid "{status:attributes_header}"
-msgstr "Vaši atributi"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 SP (Oddaljeni)"
 
@@ -159,9 +156,6 @@ msgstr "Preverjanje konfiguracije"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Pošlji sporočilo"
-
-msgid "{status:logout}"
-msgstr "Odjava"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

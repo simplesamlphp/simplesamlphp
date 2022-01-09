@@ -24,9 +24,6 @@ msgstr "找不到您所提供的使用者名稱之使用者，或您給了錯誤
 msgid "{logout:failed}"
 msgstr "登出失敗"
 
-msgid "{status:attributes_header}"
-msgstr "您的屬性值"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 服務提供者(遠端)"
 
@@ -148,9 +145,6 @@ msgstr "設定檢查"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "提交訊息"
-
-msgid "{status:logout}"
-msgstr "登出"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "傳遞至搜尋服務的參數並非按照規格所訂。"

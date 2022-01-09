@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Deautentificarea a eșuat"
 
-msgid "{status:attributes_header}"
-msgstr "Atributele dumneavoastră"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "Furnizor de servicii SAML 2.0 (distant)"
 
@@ -171,9 +168,6 @@ msgstr "Verificarea configurației"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Trimite mesajul"
-
-msgid "{status:logout}"
-msgstr "Deautentificare"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

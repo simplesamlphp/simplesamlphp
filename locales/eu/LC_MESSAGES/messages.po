@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Saioa ixteko prozesuak huts egin du"
 
-msgid "{status:attributes_header}"
-msgstr "Atributuak"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Zerbitzu hornitzailea (Urrunekoa)"
 
@@ -167,9 +164,6 @@ msgstr "Konfigurazioa egiaztatu"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Mezua bidali"
-
-msgid "{status:logout}"
-msgstr "Irten"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Abmeldung fehlgeschlagen"
 
-msgid "{status:attributes_header}"
-msgstr "Ihre Attribute"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (entfernt)"
 
@@ -173,9 +170,6 @@ msgstr "Konfigurationsprüfung"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Nachricht senden"
-
-msgid "{status:logout}"
-msgstr "Abmelden"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

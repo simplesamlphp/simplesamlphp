@@ -24,9 +24,6 @@ msgstr "如果不是给定的用户名没有找到就是给定的密码错误，
 msgid "{logout:failed}"
 msgstr "退出失败"
 
-msgid "{status:attributes_header}"
-msgstr "你的属性"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 服务提供者 (远程)"
 
@@ -140,9 +137,6 @@ msgstr "配置检查"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "提交信息"
-
-msgid "{status:logout}"
-msgstr "退出"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "发送给搜寻服务的参数不符合规范"

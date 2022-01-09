@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Wystąpił bład podczas wylogowania"
 
-msgid "{status:attributes_header}"
-msgstr "Twoje atrybuty"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Dostawca Serwisu (Zdalny)"
 
@@ -162,9 +159,6 @@ msgstr "Sprawdzenie konfiguracji"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Wyślij wiadomość"
-
-msgid "{status:logout}"
-msgstr "Wyloguj"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"

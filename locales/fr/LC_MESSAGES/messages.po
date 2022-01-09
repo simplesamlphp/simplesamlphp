@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Échec de la déconnexion"
 
-msgid "{status:attributes_header}"
-msgstr "Vos attributs"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "Fournisseur de service SAML 2.0 distant"
 
@@ -171,9 +168,6 @@ msgstr "Vérification de la configuration"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Envoi du message"
-
-msgid "{status:logout}"
-msgstr "Déconnexion"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

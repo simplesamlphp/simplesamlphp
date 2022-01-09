@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Välja logimine ebaõnnestus"
 
-msgid "{status:attributes_header}"
-msgstr "Sinu atribuudid"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 teenusepakkuja (kaug)"
 
@@ -164,9 +161,6 @@ msgstr "Seadistuste kontroll"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Saada teade"
-
-msgid "{status:logout}"
-msgstr "Logi välja"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."

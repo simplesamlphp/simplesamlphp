@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "התנתקות נכשלה"
 
-msgid "{status:attributes_header}"
-msgstr "התכונות שלך"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "ספק שירות מרוחק מסוג SAML 2.0"
 
@@ -157,9 +154,6 @@ msgstr "בדיקת הגדרות"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "שלח הודעה"
-
-msgid "{status:logout}"
-msgstr "התנתקות"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."

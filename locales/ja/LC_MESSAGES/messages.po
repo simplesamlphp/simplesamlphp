@@ -24,9 +24,6 @@ msgstr "ユーザー名またはパスワードが間違っています。ユー
 msgid "{logout:failed}"
 msgstr "ログアウトに失敗しました"
 
-msgid "{status:attributes_header}"
-msgstr "属性"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0サービスプロバイダ(リモート)"
 
@@ -147,9 +144,6 @@ msgstr "設定確認"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "メッセージを送信"
-
-msgid "{status:logout}"
-msgstr "ログアウト"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"

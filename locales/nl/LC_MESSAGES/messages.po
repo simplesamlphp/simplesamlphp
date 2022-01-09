@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Uitloggen mislukt"
 
-msgid "{status:attributes_header}"
-msgstr "Uw attributen"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (Remote)"
 
@@ -174,9 +171,6 @@ msgstr "Configuratie-validatie"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Verstuur bericht"
-
-msgid "{status:logout}"
-msgstr "Logout"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

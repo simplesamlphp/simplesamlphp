@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Atslēgšanās neizdevās"
 
-msgid "{status:attributes_header}"
-msgstr "Atribūti"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 servisa piegādātājs (attālināts)"
 
@@ -162,9 +159,6 @@ msgstr "Konfigurācijas pārbaude"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Sūtīt ziņu"
-
-msgid "{status:logout}"
-msgstr "Atslēgties"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."

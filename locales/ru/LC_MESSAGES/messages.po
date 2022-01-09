@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Выход завершен неудачно"
 
-msgid "{status:attributes_header}"
-msgstr "Ваши атрибуты"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "Сервис провайдер SAML 2.0 (удаленное размещение)"
 
@@ -174,9 +171,6 @@ msgstr "Проверка конфигурации"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Отправить сообщение"
-
-msgid "{status:logout}"
-msgstr "Выйти"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

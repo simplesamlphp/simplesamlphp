@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Atsijungimas nepavyko"
 
-msgid "{status:attributes_header}"
-msgstr "Jūsų atributai"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Paslaugos teikėjas (nutolęs)"
 
@@ -165,9 +162,6 @@ msgstr "Konfigūracijos patikrinimas"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Patvirtinti pranešimą"
-
-msgid "{status:logout}"
-msgstr "Atsijungti"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."

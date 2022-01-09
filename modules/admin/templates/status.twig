@@ -14,7 +14,7 @@
         } %}Your session is valid for %remaining% seconds from now.{% endtrans %}</p>
     {% endif %}
 
-    <h2>{{ '{status:attributes_header}'|trans }}</h2>
+    <h2>{{ 'Your attributes'|trans }}</h2>
 
     {% set items = attributes %}
 
@@ -96,7 +96,7 @@
     {%- if logouturl %}
 
     <div class="center">
-      <a class="pure-button pure-button-red" href="{{ logouturl }}">{{ '{status:logout}'|trans }}</a>
+      <a class="pure-button pure-button-red" href="{{ logouturl }}">{{ 'Logout'|trans }}</a>
     </div>
     {%- endif %}
 {% endblock %}

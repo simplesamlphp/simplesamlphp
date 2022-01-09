@@ -313,9 +313,6 @@ msgstr ""
 msgid "{login:change_home_org_button}"
 msgstr "Khetha umbutho wekhaya"
 
-msgid "{status:logout}"
-msgstr "Phuma"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Iphaswedi ekulungiselelo (auth.adminpassword) ayitshintshwanga ukusuka "
@@ -401,9 +398,6 @@ msgstr "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle."
 
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Isicelo esibi kwinkonzo yofumaniso"
-
-msgid "{status:attributes_header}"
-msgstr "Iimpawu zakho"
 
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""

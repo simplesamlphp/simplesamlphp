@@ -68,9 +68,6 @@ msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
 msgid "No access"
 msgstr "Ha ho phihlello"
 
-msgid "{status:logout}"
-msgstr "Ho tswa"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "O fihletse tshebeletsano ya SingleLogoutService, empa ha o a fana ka SAML"
@@ -352,9 +349,6 @@ msgstr ""
 "LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho "
 "ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong "
 "lena."
-
-msgid "{status:attributes_header}"
-msgstr "Makgabane a hao"
 
 msgid "{errors:report_email}"
 msgstr "Aterese ya imeile:"

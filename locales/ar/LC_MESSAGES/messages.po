@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "تسجيل خروج فاشل"
 
-msgid "{status:attributes_header}"
-msgstr "السمات"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "مقدم خدمة SAML 2.0 البعيد"
 
@@ -157,9 +154,6 @@ msgstr "مراجعة الترتيب"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "سلم الرسالة"
-
-msgid "{status:logout}"
-msgstr "تسجيل الخروج"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"

@@ -26,9 +26,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Logout fejlede"
 
-msgid "{status:attributes_header}"
-msgstr "Dine oplysninger"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 tjenesteudbyder (remote)"
 
@@ -165,9 +162,6 @@ msgstr "Undersøgelse af konfiguration"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Send besked"
-
-msgid "{status:logout}"
-msgstr "Log ud"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "De afsendte værdier overholder ikke Discovery Servicens' krav"

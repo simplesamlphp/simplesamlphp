@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Falha ao sair do serviço"
 
-msgid "{status:attributes_header}"
-msgstr "Seus atributos"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (Remoto)"
 
@@ -170,9 +167,6 @@ msgstr "Verificar configuração"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Enviar mensagem"
-
-msgid "{status:logout}"
-msgstr "Desconectar"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""

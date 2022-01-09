@@ -27,9 +27,6 @@ msgstr ""
 msgid "{logout:failed}"
 msgstr "Odhlášení selhalo"
 
-msgid "{status:attributes_header}"
-msgstr "Vaše atributy"
-
 msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.O Service Provider (Remote - vzdálený)"
 
@@ -159,9 +156,6 @@ msgstr "Verifikace konfigurace"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Poslat zprávu"
-
-msgid "{status:logout}"
-msgstr "Odhlášení"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
