@@ -162,7 +162,7 @@ class Cron
             $t->data['time'] = $time;
             $t->data['url'] = $url;
             $t->data['mail_required'] = isset($mail);
-            $t->data['mail_sent'] = !isset($e);
+            $t->data['mail_exception'] = $e ?? null;
             $t->data['summary'] = $summary;
             return $t;
         }

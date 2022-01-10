@@ -27,9 +27,11 @@ Tag: {{ tag }}
 </code>
 </div>
 
-{% if mail_required == true and mail_sent == false %}
+{% if mail_required == true and mail_exception %}
 <div class="message-box error">
-Cron-report was not emailed due to an error.
+Cron-report was not emailed due to an error:
+
+<pre>{{ mail_exception.getMessage() }}</pre>
 </div>
 {% endif %}
 {% endblock %}
