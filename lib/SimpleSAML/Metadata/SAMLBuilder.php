@@ -51,34 +51,12 @@ class SAMLBuilder
 
 
     /**
-     * The maximum time in seconds the metadata should be cached.
-     *
-     * @var int|null
-     */
-    private ?int $maxCache = null;
-
-
-    /**
-     * The maximum time in seconds since the current time that this metadata should be considered valid.
-     *
-     * @var int|null
-     */
-    private ?int $maxDuration = null;
-
-
-    /**
      * Initialize the SAML builder.
      *
      * @param string   $entityId The entity id of the entity.
-     * @param int|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
-     * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
-     * to null.
      */
-    public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
+    public function __construct(string $entityId)
     {
-        $this->maxCache = $maxCache;
-        $this->maxDuration = $maxDuration;
-
         $this->entityDescriptor = new EntityDescriptor();
         $this->entityDescriptor->setEntityID($entityId);
     }
@@ -89,17 +67,11 @@ class SAMLBuilder
      */
     private function setExpiration(array $metadata): void
     {
-        if (array_key_exists('expire', $metadata)) {
-            if ($metadata['expire'] - time() < $this->maxDuration) {
-                $this->maxDuration = $metadata['expire'] - time();
-            }
+        if (array_key_exists('cacheDuration', $metadata)) {
+            $this->entityDescriptor->setCacheDuration('PT' . $metadata['cacheDuration'] . 'S');
         }
-
-        if ($this->maxCache !== null) {
-            $this->entityDescriptor->setCacheDuration('PT' . $this->maxCache . 'S');
-        }
-        if ($this->maxDuration !== null) {
-            $this->entityDescriptor->setValidUntil(time() + $this->maxDuration);
+        if (array_key_exists('validUntil', $metadata)) {
+            $this->entityDescriptor->setValidUntil($metadata['validUntil']);
         }
     }
 
@@ -497,6 +469,8 @@ class SAMLBuilder
     {
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
+
+        $this->setExpiration($metadata);
 
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 

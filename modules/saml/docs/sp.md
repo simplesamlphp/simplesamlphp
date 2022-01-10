@@ -252,6 +252,12 @@ Options
 :   The name of the certificate. It is possible the IDP requires your certificate to have a name.
     If provided, it will be exposed in the SAML 2.0 metadata as `KeyName` inside the `KeyDescriptor`. This also requires a certificate to be provided.
 
+`validUntil`
+:   validUntil allows you to set the `validUntil` in the SP's metadata. It's an integer representing the amount of seconds since current time.
+
+`cacheDuration`
+:   cacheDuration allows you to set the `cacheDuration` in the SP's metadata. It's an integer representing the amount of seconds.
+
 `name`
 :   The name of this SP.
     Will be added to the generated metadata, in an AttributeConsumingService element.

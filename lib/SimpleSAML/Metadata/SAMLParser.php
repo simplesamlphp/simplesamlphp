@@ -546,9 +546,11 @@ class SAMLParser
         // we currently only look at the first SPDescriptor which supports SAML 2.0
         $spd = $spd[0];
 
-        // add expire time to metadata
-        if (array_key_exists('expire', $spd)) {
-            $ret['expire'] = $spd['expire'];
+        if (array_key_exists('validUntil', $spd)) {
+            $ret['validUntil'] = $spd['validUntil'];
+        }
+        if (array_key_exists('cacheDuration', $spd)) {
+            $ret['cacheDuration'] = $spd['cacheDuration'];
         }
 
         // find the assertion consumer service endpoints
