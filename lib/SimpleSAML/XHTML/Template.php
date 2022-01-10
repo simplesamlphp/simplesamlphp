@@ -491,6 +491,15 @@ class Template extends Response
         $this->data['header'] = $this->configuration->getValue('theme.header', 'SimpleSAMLphp');
     }
 
+    /**
+     * Helper function for locale extraction: just compile but not display
+     * this template. This is not generally useful, getContents() will normally
+     * compile and display the template in one step.
+     */
+    public function compile(): void
+    {
+        $this->twig->load($this->twig_template);
+    }
 
     /**
      * Get the contents produced by this template.
