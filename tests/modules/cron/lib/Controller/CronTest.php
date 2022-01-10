@@ -84,6 +84,14 @@ class CronTest extends TestCase
         $response = $c->info();
 
         $this->assertTrue($response->isSuccessful());
+        $expect = [
+            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret',
+            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret/xhtml',
+            'tag' => 'daily',
+            'int' => '02 0 * * *',
+        ];
+        $this->assertCount(1, $response->data['urls']);
+        $this->assertEquals($expect, $response->data['urls'][0]);
     }
 
 
@@ -97,5 +105,10 @@ class CronTest extends TestCase
         $response = $c->run('daily', 'secret');
 
         $this->assertTrue($response->isSuccessful());
+        $this->assertEquals('daily', $response->data['tag']);
+        $this->assertFalse($response->data['mail_required']);
+        $this->assertArrayHasKey('time', $response->data);
+        $this->assertCount(1, $response->data['summary']);
+        $this->assertEquals('Cron did run tag [daily] at ' . $response->data['time'], $response->data['summary'][0]);
     }
 }
