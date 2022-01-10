@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_openidprovider}"
-msgstr "Σελίδα Παρόχου OpenID - Έκδοση Alpha (δοκιμαστικός κώδικας)"
-
 msgid "{core:frontpage:link_doc_install}"
 msgstr "Εγκατάσταση SimpleSAMLphp"
 
@@ -369,9 +366,6 @@ msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
 msgstr ""
 "Μεταδεδομένα φιλοξενούμενου Παρόχου Ταυτότητας SAML 2.0 (παράγονται "
 "αυτόματα)"
-
-msgid "OpenID Provider site - Alpha version (test code)"
-msgstr "Σελίδα Παρόχου OpenID - Έκδοση Alpha (δοκιμαστικός κώδικας)"
 
 msgid "Required for Radius"
 msgstr "Απαιτείται για υποστήριξη RADIUS"

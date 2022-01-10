@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_openidprovider}"
-msgstr "OpenID piegādātāja vietne - Alfa versija (testa kods)"
-
 msgid "{core:frontpage:link_doc_install}"
 msgstr "Instalē SimpleSAMLphp"
 
@@ -328,9 +325,6 @@ msgstr "Stāvokļa informācija ir pazaudēta"
 
 msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
 msgstr "Hostēta SAML 2.0 identitātes piegādātāja metadati (ģenerēti automātiski)"
-
-msgid "OpenID Provider site - Alpha version (test code)"
-msgstr "OpenID piegādātāja vietne - Alfa versija (testa kods)"
 
 msgid "Required for Radius"
 msgstr "Obligāts priekš Radius"

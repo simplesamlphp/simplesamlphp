@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_openidprovider}"
-msgstr "OpenID Provider lokacija - Alpha različica (v razvoju)"
-
 msgid "{core:frontpage:link_doc_install}"
 msgstr "Namestitev SimpleSAMLphp"
 
@@ -333,9 +330,6 @@ msgstr "Informacije o stanju zahtevka niso na voljo."
 
 msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
 msgstr "Metapodatki za SAML 2.0 IdP (samodejno generirani)"
-
-msgid "OpenID Provider site - Alpha version (test code)"
-msgstr "OpenID Provider lokacija - Alpha različica (v razvoju)"
 
 msgid "Required for Radius"
 msgstr "Zahtevano za RADIUS"

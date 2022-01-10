@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_openidprovider}"
-msgstr "OpenID Privider Sait - Alpha versioun (Test Code)"
-
 msgid "{core:frontpage:link_doc_install}"
 msgstr "SimpleSAMLphp installéiren"
 
@@ -198,9 +195,6 @@ msgstr "SimpleSAMLphp als IdP fir Google Apps for Education"
 
 msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
 msgstr "Hosted SAML 2.0 Identity Provider Meta Données (automatesch erstallt)"
-
-msgid "OpenID Provider site - Alpha version (test code)"
-msgstr "OpenID Privider Sait - Alpha versioun (Test Code)"
 
 msgid "Required for Radius"
 msgstr "Néideg fir RADIUS"
