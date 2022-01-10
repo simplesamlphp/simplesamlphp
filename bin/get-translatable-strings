@@ -1,0 +1,29 @@
+#!/usr/bin/php -q
+<?php
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+
+// This is the base directory of the SimpleSAMLphp installation
+$baseDir = dirname(dirname(__FILE__));
+
+// Add library autoloader
+require_once($baseDir . '/lib/_autoload.php');
+
+$transUtils = new Utils\Translate();
+$sysUtils = new Utils\System();
+$tempDirBase = $sysUtils->getTempDir() . "/temptemplatestemp";
+$outputSuffix = '/locales/en/LC_MESSAGES';
+
+$modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
+
+foreach($modules as $module) {
+    $tempDir = $tempDirBase . "/" . $module;
+    $transUtils->compileAllTemplates($module, $tempDir);
+    $domain = $module ?: 'messages';
+
+    $outputDir = $baseDir . ($module === '' ? '' : '/modules/' . $module) . $outputSuffix;
+    print `xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --no-location -ktrans -L PHP $tempDir/*/*.php`;
+}
+
+// TODO: clean up workdir before/after run
+// TODO: merge new strings into translated languages catalogs
