@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Hostitud SAML 2.0. teenusepakkuja metaandmed (automaatselt genereeritud)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID pakkuja lehekülg - alfaversioon (testkood)"
 
@@ -191,9 +188,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Teave SimpleSAMLphp kohta"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Hostitud SAML 2.0. teenusepakkuja metaandmed (automaatselt genereeritud)"
 
 msgid "Retry login"
 msgstr "Proovi uuesti logida"

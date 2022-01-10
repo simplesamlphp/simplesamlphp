@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "מטא-הנתונים של ספק השירותים מסוג SAML 2.0 המאורח (נוצר אוטומטית)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "אתר ספק OpenID - גירסת אלפא (קוד בדיקה("
 
@@ -186,9 +183,6 @@ msgstr "מטא-הנתונים של ספק השירותים מסוג Shibboleth 1
 
 msgid "About SimpleSAMLphp"
 msgstr "אודות SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "מטא-הנתונים של ספק השירותים מסוג SAML 2.0 המאורח (נוצר אוטומטית)"
 
 msgid "Retry login"
 msgstr "נסה שוב להתחבר"

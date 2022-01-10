@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Lokale SAML 2.0 Service Provider Metadata (automatisch gegenereerd)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID Provider site - Alpha versie (test code)"
 
@@ -210,9 +207,6 @@ msgstr "Lokale Shibboleth 1.3 Service Provider Metadata (automatisch gegenereerd
 
 msgid "About SimpleSAMLphp"
 msgstr "Over SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Lokale SAML 2.0 Service Provider Metadata (automatisch gegenereerd)"
 
 msgid "Retry login"
 msgstr "Inloggen opnieuw proberen"

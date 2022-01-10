@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Metadata Service Provider SAML 2.0 Hosted (secara otomatis digenerate)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "Situs Provider OpenID - Versi Alpa (Kode untuk tes)"
 
@@ -197,9 +194,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Tentang SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Metadata Service Provider SAML 2.0 Hosted (secara otomatis digenerate)"
 
 msgid "Retry login"
 msgstr "Coba login kembali"

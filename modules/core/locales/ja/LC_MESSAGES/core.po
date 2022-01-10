@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "ホスト SAML 2.0 サービスプロバイダメタデータ(自動生成)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID プロバイダサイト - アルファバージョン (テストコード)"
 
@@ -216,9 +213,6 @@ msgstr "ホスト Shibboleth 1.3 サービスプロバイダメタデータ(自�
 
 msgid "About SimpleSAMLphp"
 msgstr "SimpleSAMLphpについて"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "ホスト SAML 2.0 サービスプロバイダメタデータ(自動生成)"
 
 msgid "Retry login"
 msgstr "ログインを再試行"

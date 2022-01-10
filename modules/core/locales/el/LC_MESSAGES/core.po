@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr ""
-"Μεταδεδομένα φιλοξενούμενου Παρόχου Υπηρεσιών SAML 2.0 (παράγονται "
-"αυτόματα)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "Σελίδα Παρόχου OpenID - Έκδοση Alpha (δοκιμαστικός κώδικας)"
 
@@ -215,11 +210,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Σχετικά με το SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr ""
-"Μεταδεδομένα φιλοξενούμενου Παρόχου Υπηρεσιών SAML 2.0 (παράγονται "
-"αυτόματα)"
 
 msgid "Retry login"
 msgstr "Επανάληψη σύνδεσης"

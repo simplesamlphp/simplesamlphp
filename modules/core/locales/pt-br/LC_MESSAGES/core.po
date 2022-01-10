@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID Provider site - Versão Alpha (Código de Teste)"
 
@@ -182,9 +179,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Sobre o SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)"
 
 msgid "Required for LDAP"
 msgstr "Requerido para o LDAP"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Vietinio SAML 2.0 SP metaduomenys (sugeneruoti automatiškai)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID tiekėjo puslapis - alfa versija (bandomasis kodas)"
 
@@ -194,9 +191,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Apie SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Vietinio SAML 2.0 SP metaduomenys (sugeneruoti automatiškai)"
 
 msgid "Retry login"
 msgstr "Prisijunkite iš naujo"

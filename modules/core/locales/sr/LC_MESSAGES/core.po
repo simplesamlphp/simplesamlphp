@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Metapodaci za lokalni SAML 2.0 Davalac Servisa (automatski generisani)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "Davalac OpenID digitalnih identiteta - razvojna verzija (test)"
 
@@ -199,9 +196,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "O SimpleSAMLphp-u"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Metapodaci za lokalni SAML 2.0 Davalac Servisa (automatski generisani)"
 
 msgid "Retry login"
 msgstr "Pokušaj se prijaviti ponovo"

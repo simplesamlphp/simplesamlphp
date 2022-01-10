@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "存储的 SAML 2.0 Service Provider Metadata（自动生成）"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID 提供站点 - Alpha 版本 （测试代码）"
 
@@ -180,9 +177,6 @@ msgstr "存储的 Shibboleth 1.3 Service Provider Metadata（自动生成）"
 
 msgid "About SimpleSAMLphp"
 msgstr "关于SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "存储的 SAML 2.0 Service Provider Metadata（自动生成）"
 
 msgid "Retry login"
 msgstr "重新尝试登陆"

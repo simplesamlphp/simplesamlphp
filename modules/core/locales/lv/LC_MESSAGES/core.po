@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2sphosted}"
-msgstr "Hostēta SAML 2.0 servisa piegādātāja metadati (ģenerēti automātiski)"
-
 msgid "{core:frontpage:link_openidprovider}"
 msgstr "OpenID piegādātāja vietne - Alfa versija (testa kods)"
 
@@ -187,9 +184,6 @@ msgstr "Hostēta Shibboleth 1.3 servisa piegādātāja metadati (ģenerēti auto
 
 msgid "About SimpleSAMLphp"
 msgstr "Par SimpleSAMLphp"
-
-msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
-msgstr "Hostēta SAML 2.0 servisa piegādātāja metadati (ģenerēti automātiski)"
 
 msgid "Retry login"
 msgstr "Mēģināt pieslēgties vēlreiz"
