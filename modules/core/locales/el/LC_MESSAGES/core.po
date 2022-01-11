@@ -160,9 +160,6 @@ msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Googl
 msgid "{core:frontpage:tools}"
 msgstr "Εργαλεία"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Υπό απόσυρση"
-
 msgid "You are logged in as administrator"
 msgstr "Συνδεδεμένος ως διαχειριστής"
 
@@ -264,9 +261,6 @@ msgstr ""
 "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν "
 "απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και "
 "δοκιμάστε ξανά."
-
-msgid "Deprecated"
-msgstr "Υπό απόσυρση"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

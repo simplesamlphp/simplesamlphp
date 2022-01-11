@@ -142,9 +142,6 @@ msgstr "SimpleSAMLphp IdP-na Google Apps for Educationis"
 msgid "{core:frontpage:tools}"
 msgstr "Tööriistad"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Vananenud"
-
 msgid "You are logged in as administrator"
 msgstr "Oled sisselogitud administraatorina"
 
@@ -235,9 +232,6 @@ msgid ""
 msgstr ""
 "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri"
 " seadistusi ja proovi seejärel uuesti."
-
-msgid "Deprecated"
-msgstr "Vananenud"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

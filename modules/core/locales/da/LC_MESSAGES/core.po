@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp som en IdP for Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Værktøjer"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Under udfasning"
-
 msgid "You are logged in as administrator"
 msgstr "Du er logget ind som administrator"
 
@@ -239,9 +236,6 @@ msgid ""
 msgstr ""
 "Det ser ud til at du har slået cookies fra i din browser. Tjek dine "
 "browserindstillinger og prøv igen."
-
-msgid "Deprecated"
-msgstr "Under udfasning"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp som IdP for Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Verktøy"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Utfasa"
-
 msgid "You are logged in as administrator"
 msgstr "Du er logga inn som administrator"
 
@@ -241,9 +238,6 @@ msgid ""
 msgstr ""
 "Det ser ut til at informasjonskapslar er avslått i nettlesaren din. Vær "
 "vennleg og sjekk instillingane i nettlesaren din, og prøv på nytt."
-
-msgid "Deprecated"
-msgstr "Utfasa"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

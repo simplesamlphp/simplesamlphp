@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp kao autentifikacioni servis za Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Alati"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Zastarelo"
-
 msgid "You are logged in as administrator"
 msgstr "Prijavljeni ste kao administrator"
 
@@ -249,9 +246,6 @@ msgid ""
 msgstr ""
 "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. "
 "Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
-
-msgid "Deprecated"
-msgstr "Zastarelo"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

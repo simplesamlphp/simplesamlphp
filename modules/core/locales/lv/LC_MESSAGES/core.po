@@ -140,9 +140,6 @@ msgstr "SimpleSAMLphp kā IdP priekš Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Rīki"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Atcelts"
-
 msgid "You are logged in as administrator"
 msgstr "Jūs esat pieslēdzies kā administrators"
 
@@ -231,9 +228,6 @@ msgid ""
 msgstr ""
 "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu "
 "pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
-
-msgid "Deprecated"
-msgstr "Atcelts"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

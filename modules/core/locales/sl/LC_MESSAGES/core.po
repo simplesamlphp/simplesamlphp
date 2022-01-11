@@ -142,9 +142,6 @@ msgstr "SimpleSAMLphp IdP za Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Orodja"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Neustrezen"
-
 msgid "You are logged in as administrator"
 msgstr "Prijavljeni ste v vlogi administratorja"
 
@@ -235,9 +232,6 @@ msgid ""
 msgstr ""
 "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite "
 "to nastavitev in poskusite ponovno."
-
-msgid "Deprecated"
-msgstr "Neustrezen"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

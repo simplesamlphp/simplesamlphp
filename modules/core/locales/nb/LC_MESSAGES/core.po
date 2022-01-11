@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp som identitetstjeneste for Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Verktøy"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Utdatert"
-
 msgid "You are logged in as administrator"
 msgstr "Du er logget inn som administrator"
 
@@ -241,9 +238,6 @@ msgid ""
 msgstr ""
 "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller "
 "innstillingene i nettleseren din og prøv igjen."
-
-msgid "Deprecated"
-msgstr "Utdatert"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

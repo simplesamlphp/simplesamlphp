@@ -131,9 +131,6 @@ msgstr "SimpleSAMLphp jako Dostawca Tożsamości dla Google Apps dla szkolnictwa
 msgid "{core:frontpage:tools}"
 msgstr "Narzędzia"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Przestarzałe"
-
 msgid "You are logged in as administrator"
 msgstr "Jesteś zalogowany jako administrator"
 
@@ -180,9 +177,6 @@ msgstr "Konfiguruj Shibboleth 1.3 SP do współpracy z SimpleSAMLphp IdP"
 
 msgid "Tools"
 msgstr "Narzędzia"
-
-msgid "Deprecated"
-msgstr "Przestarzałe"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

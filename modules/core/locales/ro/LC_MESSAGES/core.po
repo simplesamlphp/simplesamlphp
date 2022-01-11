@@ -152,9 +152,6 @@ msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
 msgid "{core:frontpage:tools}"
 msgstr "Unelte"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Depreciate"
-
 msgid "You are logged in as administrator"
 msgstr "V-ați autentificat ca administrator"
 
@@ -253,9 +250,6 @@ msgid ""
 msgstr ""
 "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm "
 "să verificați configurarea browser-ului după care încercați din nou."
-
-msgid "Deprecated"
-msgstr "Depreciate"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

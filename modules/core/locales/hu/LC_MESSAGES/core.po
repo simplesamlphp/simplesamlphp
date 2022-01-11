@@ -143,9 +143,6 @@ msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 msgid "{core:frontpage:tools}"
 msgstr "Eszközök"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Kivezetés alatt álló opció - használata ellenjavallt"
-
 msgid "You are logged in as administrator"
 msgstr "Bejelentkezve adminisztrátorként"
 
@@ -238,9 +235,6 @@ msgid ""
 msgstr ""
 "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) "
 "használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
-
-msgid "Deprecated"
-msgstr "Kivezetés alatt álló opció - használata ellenjavallt"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

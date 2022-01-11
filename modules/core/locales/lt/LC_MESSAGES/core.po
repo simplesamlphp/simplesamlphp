@@ -143,9 +143,6 @@ msgstr "SimpleSAMLphp kaip IdP skirtas \"Google Apps for Education\""
 msgid "{core:frontpage:tools}"
 msgstr "Įrankiai"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Nebepalaikoma"
-
 msgid "You are logged in as administrator"
 msgstr "Jūs prisijungėte administratoriaus teisėmis"
 
@@ -240,9 +237,6 @@ msgid ""
 msgstr ""
 "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus"
 " ir bandykite dar kartą."
-
-msgid "Deprecated"
-msgstr "Nebepalaikoma"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

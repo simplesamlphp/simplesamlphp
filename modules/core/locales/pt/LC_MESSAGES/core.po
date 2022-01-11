@@ -138,9 +138,6 @@ msgstr ""
 msgid "{core:frontpage:tools}"
 msgstr "Ferramentas"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Descontinuado"
-
 msgid "You are logged in as administrator"
 msgstr "Está autenticado como administrador"
 
@@ -205,9 +202,6 @@ msgid ""
 msgstr ""
 "Provavelmente desligou o suporte de cookies no seu browser. Por favor "
 "verifique se tem o suporte de cookies ligado e tente de novo."
-
-msgid "Deprecated"
-msgstr "Descontinuado"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

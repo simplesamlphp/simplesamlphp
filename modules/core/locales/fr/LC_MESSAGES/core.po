@@ -145,9 +145,6 @@ msgstr "SimpleSAMLphp comme IdP pour les <i>Google Apps for Education</i>"
 msgid "{core:frontpage:tools}"
 msgstr "Outils"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Obsolète"
-
 msgid "You are logged in as administrator"
 msgstr "Vous êtes connecté en tant qu'administrateur"
 
@@ -244,9 +241,6 @@ msgid ""
 msgstr ""
 "Il semble que votre navigateur refuse les cookies. Merci de vérifier les "
 "réglages de votre navigateur, puis de ré-essayer."
-
-msgid "Deprecated"
-msgstr "Obsolète"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

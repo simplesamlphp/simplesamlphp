@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 msgid "{core:frontpage:tools}"
 msgstr "Tresnak"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Zaharkitua"
-
 msgid "You are logged in as administrator"
 msgstr "Administratzaile bezala sartu zara"
 
@@ -243,9 +240,6 @@ msgid ""
 msgstr ""
 "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, "
 "berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
-
-msgid "Deprecated"
-msgstr "Zaharkitua"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

@@ -163,9 +163,6 @@ msgstr "SimpleSAMLphp als een Identity Provider voor Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Gereedschap"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Verouderd"
-
 msgid "You are logged in as administrator"
 msgstr "Je bent ingelogd als beheerder"
 
@@ -264,9 +261,6 @@ msgid ""
 msgstr ""
 "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. "
 "Controleer de browserinstellingen en probeer het opnieuw."
-
-msgid "Deprecated"
-msgstr "Verouderd"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

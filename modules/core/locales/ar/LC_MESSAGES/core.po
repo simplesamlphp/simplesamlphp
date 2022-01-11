@@ -135,9 +135,6 @@ msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعل
 msgid "{core:frontpage:tools}"
 msgstr "الأدوات "
 
-msgid "{core:frontpage:deprecated}"
-msgstr "استنكار"
-
 msgid "You are logged in as administrator"
 msgstr "لقد سجلت الدخول كمشرف علي الموقعح"
 
@@ -226,9 +223,6 @@ msgid ""
 msgstr ""
 "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول"
 " مرة اخري"
-
-msgid "Deprecated"
-msgstr "استنكار"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

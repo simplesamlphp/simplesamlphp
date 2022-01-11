@@ -139,9 +139,6 @@ msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 msgid "{core:frontpage:tools}"
 msgstr "כלים"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "פג תוקף"
-
 msgid "You are logged in as administrator"
 msgstr "אתה מחובר כמנהל מערכת"
 
@@ -228,9 +225,6 @@ msgid ""
 msgstr ""
 "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה "
 "שנית. "
-
-msgid "Deprecated"
-msgstr "פג תוקף"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

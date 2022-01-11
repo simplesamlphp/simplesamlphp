@@ -146,9 +146,6 @@ msgstr "SimpleSAMLphp sebagai IdP untuk Google Apps for Education"
 msgid "{core:frontpage:tools}"
 msgstr "Peralatan"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Usang"
-
 msgid "You are logged in as administrator"
 msgstr "Anda login sebagai administrator"
 
@@ -243,9 +240,6 @@ msgid ""
 msgstr ""
 "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  "
 "pengaturan pada browser anda, dan coba lagi."
-
-msgid "Deprecated"
-msgstr "Usang"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

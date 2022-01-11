@@ -133,9 +133,6 @@ msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
 msgid "{core:frontpage:tools}"
 msgstr "Työkalut"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Vanhentunut"
-
 msgid "You are logged in as administrator"
 msgstr "Olet kirjautunut ylläpitäjänä"
 
@@ -197,9 +194,6 @@ msgid ""
 msgstr ""
 "Näyttää, että olet kieltänyt evästeiden käytön selaimessasi. Ole hyvä ja "
 "salli evästeet selaimestasi ja yritä uudelleen."
-
-msgid "Deprecated"
-msgstr "Vanhentunut"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

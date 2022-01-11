@@ -144,9 +144,6 @@ msgstr "SimpleSAMLphp 做為 Google Apps 教育版的 IdP"
 msgid "{core:frontpage:tools}"
 msgstr "工具"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "棄置"
-
 msgid "You are logged in as administrator"
 msgstr "你已經登入成為管理員"
 
@@ -231,9 +228,6 @@ msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
 msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
-
-msgid "Deprecated"
-msgstr "棄置"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

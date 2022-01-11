@@ -139,9 +139,6 @@ msgstr "SimpleSAMLphp como um IdP para o Google Apps Educacional"
 msgid "{core:frontpage:tools}"
 msgstr "Ferramentas"
 
-msgid "{core:frontpage:deprecated}"
-msgstr "Depreciado"
-
 msgid "You are logged in as administrator"
 msgstr "Você está logado como Administrador"
 
@@ -195,9 +192,6 @@ msgstr "Configurando o Shibboleth 1.3 SP para trabalhar com o SimpleSAMLphp Idp"
 
 msgid "Tools"
 msgstr "Ferramentas"
-
-msgid "Deprecated"
-msgstr "Depreciado"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "
