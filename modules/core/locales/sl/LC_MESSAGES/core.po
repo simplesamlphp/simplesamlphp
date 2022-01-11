@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Namestitev SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostika strežnika, vrata in protokol"
 
@@ -238,9 +235,6 @@ msgid ""
 msgstr ""
 "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite "
 "to nastavitev in poskusite ponovno."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Namestitev SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Neustrezen"

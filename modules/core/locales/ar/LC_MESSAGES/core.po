@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "ركب SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "تشخيص اسم المضيف، المنفذ، الطريقة"
 
@@ -229,9 +226,6 @@ msgid ""
 msgstr ""
 "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول"
 " مرة اخري"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "ركب SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "استنكار"

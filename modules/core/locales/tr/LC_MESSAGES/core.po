@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphp kuruluyor"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Bilgisayar adı, port ve protokol üzerine kontroller"
 
@@ -193,9 +190,6 @@ msgstr "Araçlar"
 
 msgid "Test configured authentication sources "
 msgstr "Düzenlenmiş kimlik doğrulama kaynaklarını test et"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphp kuruluyor"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

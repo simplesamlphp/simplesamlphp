@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphp paigaldamine"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Serverinime, pordi ja protokolli diagnostika"
 
@@ -238,9 +235,6 @@ msgid ""
 msgstr ""
 "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri"
 " seadistusi ja proovi seejärel uuesti."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphp paigaldamine"
 
 msgid "Deprecated"
 msgstr "Vananenud"

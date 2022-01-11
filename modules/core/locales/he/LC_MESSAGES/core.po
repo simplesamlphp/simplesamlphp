@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "התקנת SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "איבחון על שם מחשב, פורט ופרוטוקול"
 
@@ -231,9 +228,6 @@ msgid ""
 msgstr ""
 "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה "
 "שנית. "
-
-msgid "Installing SimpleSAMLphp"
-msgstr "התקנת SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "פג תוקף"

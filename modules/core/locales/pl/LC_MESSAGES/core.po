@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Instalowanie SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostyka na hoście, port i protokół"
 
@@ -183,9 +180,6 @@ msgstr "Konfiguruj Shibboleth 1.3 SP do współpracy z SimpleSAMLphp IdP"
 
 msgid "Tools"
 msgstr "Narzędzia"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Instalowanie SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Przestarzałe"

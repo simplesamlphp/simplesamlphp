@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphp installéiren"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diognose vum Hostname, Port an Protokoll"
 
@@ -133,9 +130,6 @@ msgstr "Néideg fir LDAP"
 
 msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
 msgstr "Shibboleth 1.3 SP anstellen fir mam SimpleSAMLphp Idp ze funktionnéiren"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphp installéiren"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

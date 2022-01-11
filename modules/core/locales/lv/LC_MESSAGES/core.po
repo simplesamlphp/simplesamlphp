@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Instalē SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Saimniekdatora vārda, porta un protokola diagnostika"
 
@@ -234,9 +231,6 @@ msgid ""
 msgstr ""
 "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu "
 "pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Instalē SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Atcelts"

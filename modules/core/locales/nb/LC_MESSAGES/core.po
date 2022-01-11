@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Installerer SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostiser hostnavn, port og protokoll"
 
@@ -244,9 +241,6 @@ msgid ""
 msgstr ""
 "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller "
 "innstillingene i nettleseren din og prøv igjen."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Installerer SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Utdatert"

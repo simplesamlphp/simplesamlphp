@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Instalasi SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostik pada hostname, port dan protokol"
 
@@ -246,9 +243,6 @@ msgid ""
 msgstr ""
 "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  "
 "pengaturan pada browser anda, dan coba lagi."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Instalasi SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Usang"

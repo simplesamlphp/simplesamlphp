@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphp-en instalakuntza"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Host, ataka eta protokoloen gaineko diagnostikoa"
 
@@ -246,9 +243,6 @@ msgid ""
 msgstr ""
 "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, "
 "berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphp-en instalakuntza"
 
 msgid "Deprecated"
 msgstr "Zaharkitua"

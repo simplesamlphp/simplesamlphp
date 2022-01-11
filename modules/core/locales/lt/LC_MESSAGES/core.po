@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Diegiamas SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Serverio vardo, porto ir protokolo diagnostika"
 
@@ -243,9 +240,6 @@ msgid ""
 msgstr ""
 "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus"
 " ir bandykite dar kartą."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Diegiamas SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Nebepalaikoma"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Instalace SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnoza jména počítače, portu a protokolu"
 
@@ -238,9 +235,6 @@ msgid ""
 msgstr ""
 "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, "
 "zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Instalace SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Zastaralé"

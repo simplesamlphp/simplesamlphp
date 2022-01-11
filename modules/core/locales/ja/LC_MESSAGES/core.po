@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphpのインストール"
-
 msgid "{core:frontpage:link_consentAdmin}"
 msgstr "Consent Administration"
 
@@ -259,9 +256,6 @@ msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
 msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphpのインストール"
 
 msgid "Deprecated"
 msgstr "非推奨"

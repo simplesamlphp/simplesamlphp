@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Установка SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Диагностика имени хоста, порта и протокола"
 
@@ -248,9 +245,6 @@ msgid ""
 msgstr ""
 "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, "
 "проверьте настройки вашего браузера и повторите попытку."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Установка SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Устаревшие"

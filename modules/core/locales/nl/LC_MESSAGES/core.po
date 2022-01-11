@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Installatie van SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Inspectie op hostnaam, poort en protocol"
 
@@ -267,9 +264,6 @@ msgid ""
 msgstr ""
 "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. "
 "Controleer de browserinstellingen en probeer het opnieuw."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Installatie van SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Verouderd"

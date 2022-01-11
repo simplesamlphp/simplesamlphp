@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "正在安装SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "诊断主机名/端口/协议"
 
@@ -223,9 +220,6 @@ msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
 msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
-
-msgid "Installing SimpleSAMLphp"
-msgstr "正在安装SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "已经超时"

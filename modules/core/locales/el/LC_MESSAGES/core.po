@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "Εγκατάσταση SimpleSAMLphp"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr ""
 "Διαγνωστικά σχετικά με ρυθμίσεις ονόματος διακομιστή, θύρας και "
@@ -267,9 +264,6 @@ msgstr ""
 "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν "
 "απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και "
 "δοκιμάστε ξανά."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "Εγκατάσταση SimpleSAMLphp"
 
 msgid "Deprecated"
 msgstr "Υπό απόσυρση"

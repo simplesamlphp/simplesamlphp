@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_install}"
-msgstr "SimpleSAMLphp telepítése"
-
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Port és protokoll diagnosztika"
 
@@ -241,9 +238,6 @@ msgid ""
 msgstr ""
 "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) "
 "használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
-
-msgid "Installing SimpleSAMLphp"
-msgstr "SimpleSAMLphp telepítése"
 
 msgid "Deprecated"
 msgstr "Kivezetés alatt álló opció - használata ellenjavallt"
