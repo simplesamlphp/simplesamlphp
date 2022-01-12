@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_oauth}"
-msgstr "OAuth ユーザー登録"
-
 msgid "{core:frontpage:link_cron}"
 msgstr "cronモジュール情報ページ"
 
