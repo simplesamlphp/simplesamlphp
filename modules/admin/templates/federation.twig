@@ -101,7 +101,7 @@
       {% for entityid, entity in set %}
 
         <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
-            {{ entity | entityDisplayName }}
+            {{- entity | entityDisplayName -}}
           </a>
           {% if entity.expire is defined %}
             {% if entity.expire < date().timestamp %}
