@@ -1,6 +1,17 @@
 #!/usr/bin/php -q
 <?php
-
+/**
+ * Find translatable strings in Twig templates and the PHP library
+ * and merge them into the English PO file.
+ *
+ * It should be invoked from the root of a SimpleSAMLphp installation
+ * and can work on:
+ * - A specific module name given on the command line
+ * - The main product and the standard modules, when invoked with '--main'.
+ *
+ * It will search all Twig templates for occurences of the trans()
+ * function, and all PHP code under lib/ for the noop() function.
+ */
 declare(strict_types=1);
 
 use SimpleSAML\Module;
@@ -13,6 +24,17 @@ $baseDir = dirname(dirname(__FILE__));
 // Add library autoloader
 require_once($baseDir . '/lib/_autoload.php');
 
+if($argc != 2) {
+    echo "Usage: $argv[0] (<module>|--main)\n";
+    exit(1);
+}
+
+if($argv[1] === '--main') {
+    $modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
+} else {
+    $modules = [$argv[1]];
+}
+
 $transUtils = new Utils\Translate();
 $sysUtils = new Utils\System();
 $filesystem = new Filesystem();
@@ -23,7 +45,6 @@ $filesystem->remove($tempDirBase);
 
 $outputSuffix = '/locales/en/LC_MESSAGES';
 
-$modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
 
 foreach($modules as $module) {
     $tempDir = $tempDirBase . "/" . $module;
