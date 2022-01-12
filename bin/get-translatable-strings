@@ -30,8 +30,10 @@ foreach($modules as $module) {
     $transUtils->compileAllTemplates($module, $tempDir);
     $domain = $module ?: 'messages';
 
-    $outputDir = $baseDir . ($module === '' ? '' : '/modules/' . $module) . $outputSuffix;
-    print `xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --no-location -ktrans -L PHP $tempDir/*/*.php`;
+    $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
+    $moduleLibDir = $moduleDir . '/lib/';
+    $outputDir = $moduleDir . $outputSuffix;
+    print `find $tempDir $moduleLibDir -name \*.php | xargs xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --omit-header --no-location -ktrans -knoop -L PHP`;
 }
 
 $filesystem->remove($tempDirBase);
