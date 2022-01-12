@@ -6,12 +6,12 @@ msgstr ""
 "POT-Creation-Date: 2016-10-12 09:31+0200\n"
 "PO-Revision-Date: 2022-01-09 12:14+0200\n"
 "Last-Translator: Tim van Dijen <tvdijen@gmail.com\n"
-"Language: da\n"
 "Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "Generated-By: Babel 2.3.4\n"
 
 msgid "Metadata parser"
@@ -19,3 +19,142 @@ msgstr "Metadata parser"
 
 msgid "Deprecated"
 msgstr "Under udfasning"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp installationsside"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "Configuration"
+msgstr "Konfiguration"
+
+msgid "Checking your PHP installation"
+msgstr "Checker din PHP-installation"
+
+msgid "required"
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "XML metadata"
+msgstr "XML metadata"
+
+msgid "or select a file:"
+msgstr ""
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "Parse"
+
+msgid "Converted metadata"
+msgstr "Konverteret metadata"
+
+msgid "An error occured"
+msgstr ""
+
+msgid "Test Authentication Sources"
+msgstr ""
+
+msgid "Hosted entities"
+msgstr ""
+
+msgid "Trusted entities"
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "expires"
+msgstr ""
+
+msgid "Tools"
+msgstr "Værktøjer"
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "EntityID"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "I SAML 2.0 metadata xml-format:"
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr ""
+
+msgid "Certificates"
+msgstr "Certifikater"
+
+msgid "new"
+msgstr ""
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diagnosticér hostnavn, port og protokol"
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
+"session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to "
+"your session."
+msgstr ""
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Du har %remaining% tilbage af din session"
+
+msgid "Your attributes"
+msgstr "Dine oplysninger"
+
+msgid "Technical information"
+msgstr ""
+
+msgid "SAML Subject"
+msgstr "SAML emne"
+
+msgid "not set"
+msgstr "ikke angivet"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Logout"
+msgstr "Log ud"
+
+msgid "Content of jpegPhoto attribute"
+msgstr ""
