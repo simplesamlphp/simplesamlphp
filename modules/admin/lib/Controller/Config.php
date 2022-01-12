@@ -431,17 +431,6 @@ class Config
             );
         }
 
-        // check for URL limitations
-        if (extension_loaded('suhosin')) {
-            $len = ini_get('suhosin.get.max_value_length');
-            if (empty($len) || $len < 2048) {
-                $warnings[] = Translate::noop(
-                    'The length of query parameters is limited by the PHP Suhosin extension. Please increase the ' .
-                    '<code>suhosin.get.max_value_length</code> option in your php.ini to at least 2048 bytes.'
-                );
-            }
-        }
-
         /*
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.

@@ -299,12 +299,6 @@ msgstr ""
 "SimpleSAMLphp</a>."
 
 msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the <code>suhosin.get.max_value_length</code> option in your "
-"php.ini to at least 2048 bytes."
-msgstr ""
-
-msgid ""
 "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
 msgstr ""
 "De cURL-extensie mist in PHP. Kan niet controleren op updates."
