@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_consentAdmin}"
-msgstr "Consent Administration"
-
 msgid "{core:frontpage:link_memcacheMonitor}"
 msgstr "MemCache ステータス"
 
