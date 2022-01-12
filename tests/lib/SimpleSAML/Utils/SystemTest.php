@@ -16,7 +16,7 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\System.
  *
- * @covers \SimpleSAML\Utils\Random
+ * @covers \SimpleSAML\Utils\System
  */
 class SystemTest extends TestCase
 {

@@ -22,9 +22,9 @@ class Translate
     {
         $config = Configuration::loadFromArray(['template.cache' => $outputDir, 'module.enable' => [$module => true]]);
         $baseDir = $config->getBaseDir();
-        $tplSuffix = '/templates/';
+        $tplSuffix = DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR;
 
-        $tplDir = $baseDir . ($module === '' ? '' : 'modules/' . $module) . $tplSuffix;
+        $tplDir = $baseDir . ($module === '' ? '' : 'modules' . DIRECTORY_SEPARATOR . $module) . $tplSuffix;
         $templateprefix = ($module === '' ? '' : $module . ":");
 
         foreach (
