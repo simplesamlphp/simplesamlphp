@@ -5,8 +5,6 @@
     <h2>{{ 'Missing cookie'|trans }}</h2>
     <p>{{ 'You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again.'|trans }}</p>
     {% if retryURL is not null %}
-    <ul>
-        <li><a href="{{ retryURL|escape('html') }}" id="retry">{{ 'Retry'|trans }}</a></li>
-    </ul>
+    <p><a href="{{ retryURL|escape('html') }}" class="pure-button pure-button-red" id="retry">{{ 'Retry'|trans }}</a></p>
     {% endif %}
 {% endblock %}
