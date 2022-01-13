@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_statistics}"
-msgstr "ステータス情報を表示"
-
 msgid "{core:frontpage:link_statistics_metadata}"
 msgstr "ステータスメタデータを表示"
 
