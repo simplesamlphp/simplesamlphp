@@ -128,7 +128,7 @@
     <form action="{{ moduleURL('admin/federation/show') }}" method="get" class="pure-form">
       <fieldset class="fancyfieldset">
         <legend>{% trans %}Look up metadata for entity:{% endtrans %}</legend>
-        <select name="set">
+        <select name="set" aria-labelledby="lookupbutton">
           {%- if entries.remote %}
             {%- for key, set in entries.remote %}
 
@@ -138,7 +138,7 @@
 
         </select>
         <input type="text" name="entityid" placeholder="{% trans %}EntityID{% endtrans %}">
-        <button class="pure-button pure-button-red" type="submit">{% trans %}Search{% endtrans %}</button>
+        <button class="pure-button pure-button-red" type="submit" id="lookupbutton">{% trans %}Search{% endtrans %}</button>
       </fieldset>
     </form>
 {% endblock %}
