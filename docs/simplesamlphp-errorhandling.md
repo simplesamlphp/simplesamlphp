@@ -14,7 +14,7 @@ This document describes the way errors and exceptions are handled in authenticat
 The basic goal is to be able to throw an exception during authentication, and then have that exception transported back to the SP in a way that the SP understands.
 
 This means that internal SimpleSAMLphp exceptions must be mapped to transport specific error codes for the various transports that are supported by SimpleSAMLphp.
-E.g.: When a `\SimpleSAML\Error\NoPassive` error is thrown by an authentication processing filter in a SAML 2.0 IdP, we want to map that exception to the `urn:oasis:names:tc:SAML:2.0:status:NoPassive` status code.
+E.g.: When a `\SAML2\Exception\Protocol\NoPassiveException` error is thrown by an authentication processing filter in a SAML 2.0 IdP, we want to map that exception to the `urn:oasis:names:tc:SAML:2.0:status:NoPassive` status code.
 That status code should then be returned to the SP.
 
 
@@ -61,7 +61,7 @@ Returning specific SAML 2 errors
 
 By default, all thrown exceptions will be converted to a generic SAML 2 error.
 In some cases, you may want to convert the exception to a specific SAML 2 status code.
-For example, the `\SimpleSAML\Error\NoPassive` exception should be converted to a SAML 2 status code with the following properties:
+For example, the `\SAML2\Exception\Protocol\NoPassiveException` exception should be converted to a SAML 2 status code with the following properties:
 
 * The top-level status code should be `urn:oasis:names:tc:SAML:2.0:status:Responder`.
 * The second-level status code should be `urn:oasis:names:tc:SAML:2.0:status:NoPassive`.
@@ -97,7 +97,7 @@ This is handled by the `toException()` method in `\SimpleSAML\Module\saml\Error`
 The assertion consumer script of the SAML 2 authentication source (`modules/saml2/sp/acs.php`) uses this method.
 The result is that generic exceptions are thrown from that authentication source.
 
-For example, `NoPassive` errors will be converted back to instances of `\SimpleSAML\Error\NoPassive`.
+For example, `NoPassive` errors will be converted back to instances of `\SAML2\Exception\Protocol\NoPassiveException`.
 
 
 Other protocols

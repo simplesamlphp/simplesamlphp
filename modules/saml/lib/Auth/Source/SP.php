@@ -7,6 +7,9 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants;
+use SAML2\Exception\Protocol\NoAvailableIDPException;
+use SAML2\Exception\Protocol\NoPassiveException;
+use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
@@ -732,16 +735,14 @@ class SP extends \SimpleSAML\Auth\Source
 
             if (empty($matchedEntities)) {
                 // all requested IdPs are unknown
-                throw new Module\saml\Error\NoSupportedIDP(
-                    Constants::STATUS_REQUESTER,
+                throw new NoSupportedIDPException(
                     'None of the IdPs requested are supported by this proxy.'
                 );
             }
 
             if (!is_null($idp) && !array_key_exists($idp, $matchedEntities)) {
                 // the IdP is enforced but not in the IDPList
-                throw new Module\saml\Error\NoAvailableIDP(
-                    Constants::STATUS_REQUESTER,
+                throw new NoAvailableIDPException(
                     'None of the IdPs requested are available to this proxy.'
                 );
             }
@@ -802,8 +803,7 @@ class SP extends \SimpleSAML\Auth\Source
 
             if (empty($intersection)) {
                 // all requested IdPs are unknown
-                throw new Module\saml\Error\NoSupportedIDP(
-                    Constants::STATUS_REQUESTER,
+                throw new NoSupportedIDP(
                     'None of the IdPs requested are supported by this proxy.'
                 );
             }
@@ -815,8 +815,7 @@ class SP extends \SimpleSAML\Auth\Source
              */
             if (!is_null($this->idp) && !in_array($this->idp, $intersection, true)) {
                 // an IdP is enforced but not requested
-                throw new Module\saml\Error\NoAvailableIDP(
-                    Constants::STATUS_REQUESTER,
+                throw new NoAvailableIDPException(
                     'None of the IdPs requested are available to this proxy.'
                 );
             }
@@ -855,7 +854,7 @@ class SP extends \SimpleSAML\Auth\Source
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
-     * @throws \SimpleSAML\Module\saml\Error\NoPassive In case the authentication request was passive.
+     * @throws \SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state): void
     {
@@ -866,9 +865,8 @@ class SP extends \SimpleSAML\Auth\Source
 
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
-            throw new Module\saml\Error\NoPassive(
-                Constants::STATUS_REQUESTER,
-                'Reauthentication required'
+            throw new NoPassiveException(
+                Constants::STATUS_REQUESTER . ':  Reauthentication required'
             );
         }
 

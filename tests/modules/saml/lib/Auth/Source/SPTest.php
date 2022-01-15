@@ -8,13 +8,13 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
+use SAML2\Exception\Protocol\NoAvailableIDPException;
+use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
 use SAML2\Utils;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Module\saml\Error\NoAvailableIDP;
-use SimpleSAML\Module\saml\Error\NoSupportedIDP;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\ExitTestException;
@@ -287,7 +287,7 @@ class SPTest extends ClearStateTestCase
      */
     public function testIdpListWithNoMatchingMetadata(): void
     {
-        $this->expectException(NoSupportedIDP::class);
+        $this->expectException(NoSupportedIDPException::class);
         $state = [
             'saml:IDPList' => ['noSuchIdp']
         ];
@@ -304,7 +304,7 @@ class SPTest extends ClearStateTestCase
      */
     public function testIdpListWithExplicitIdpNotMatch(): void
     {
-        $this->expectException(NoAvailableIDP::class);
+        $this->expectException(NoAvailableIDPException::class);
         $entityId = "https://example.com";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
         $c = [
