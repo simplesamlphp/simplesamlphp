@@ -162,7 +162,7 @@ class SessionHandlerPHP extends SessionHandler
     {
         if ($this->hasSessionCookie()) {
             session_regenerate_id(false);
-            $session_id = session_id();
+            $sessionId = session_id();
         } else {
             // generate new (secure) session id
             $sid_length = intval(ini_get('session.sid_length'));

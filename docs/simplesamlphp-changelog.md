@@ -6,9 +6,37 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.19.2
+## Version 1.19.5
 
 Released TBD
+
+  * Fix composer-file to prevent warnings
+
+## Version 1.19.4
+
+Released 13-12-2021
+
+### core
+  * Fix translations for included templates (i.e. metadata not found error)
+
+### ldap
+  * Added the possibility to escape the additional search filters that were introduced in 1.19.2
+
+### saml2 library
+  * The library has been quick-fixed to support PHP 8.1 (#1545)
+
+### metarefresh
+  * Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
+
+## Version 1.19.3
+
+Released 2021-10-28
+
+  * Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
+
+## Version 1.19.2
+
+Released 2021-10-27
 
   * Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
   * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
@@ -21,6 +49,7 @@ Released TBD
   * Fix statistics being logged despire a configured loglevel that excludes statistics.
   * Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
   * Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
+  * Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
 
 ### adfs
   * Fixed several issues that rendered the old UI useless for this module (v0.9.8)

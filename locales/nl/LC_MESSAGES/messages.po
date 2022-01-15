@@ -1346,9 +1346,6 @@ msgstr "ADFS Identity Provider (Hosted)"
 msgid "Error when communicating with the CAS server."
 msgstr "Fout tijdens communicatie met de CAS server."
 
-msgid "No SAML message provided"
-msgstr "Geen SAML bericht gevonden"
-
 msgid "Help! I don't remember my password."
 msgstr "Help! Ik weet mijn wachtwoord niet meer."
 

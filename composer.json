@@ -5,7 +5,7 @@
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
     "license": "LGPL-2.1-or-later",
-    "version": "v1.19.2",
+    "version": "v1.19.4",
     "authors": [
         {
             "name": "Andreas Åkre Solberg",
@@ -47,7 +47,7 @@
         "phpmailer/phpmailer": "^6.1",
         "robrichards/xmlseclibs": "^3.1",
         "simplesamlphp/assert": "^0.0.13",
-        "simplesamlphp/saml2": "4.2.3",
+        "simplesamlphp/saml2": "^4.2.5",
         "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^0.9",
@@ -66,7 +66,7 @@
         "simplesamlphp/simplesamlphp-module-ldap": "^0.9 | ^1.0",
         "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
         "simplesamlphp/simplesamlphp-module-memcachemonitor": "^0.9",
-        "simplesamlphp/simplesamlphp-module-metarefresh": "^1.0",
+        "simplesamlphp/simplesamlphp-module-metarefresh": "^0.9",
         "simplesamlphp/simplesamlphp-module-negotiate": "^0.9",
         "simplesamlphp/simplesamlphp-module-oauth": "^0.9.3",
         "simplesamlphp/simplesamlphp-module-preprodwarning": "^0.9",
@@ -110,5 +110,11 @@
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
         "source": "https://github.com/simplesamlphp/simplesamlphp"
+    },
+    "config": {
+        "allow-plugins": {
+            "simplesamlphp/composer-module-installer": true,
+            "composer/package-versions-deprecated": true
+        }
     }
 }

@@ -575,6 +575,13 @@ $config = [
      * the RFC6265bis SameSite cookie attribute. If set to null, no SameSite
      * attribute will be sent.
      *
+     * A value of "None" is required to properly support cross-domain POST
+     * requests which are used by different SAML bindings. Because some older
+     * browsers do not support this value, the canSetSameSiteNone function
+     * can be called to only set it for compatible browsers.
+     *
+     * You must also set the 'session.cookie.secure' value above to true.
+     *
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
