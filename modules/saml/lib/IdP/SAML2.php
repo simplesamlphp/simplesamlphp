@@ -354,12 +354,7 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
-            try {
-                $binding = Binding::getCurrentBinding();
-            } catch (Exception $e) {
-                header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
-                exit;
-            }
+            $binding = Binding::getCurrentBinding();
             $request = $binding->receive();
 
             if (!($request instanceof AuthnRequest)) {

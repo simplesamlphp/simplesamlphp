@@ -10,7 +10,7 @@
 
 require_once('../../_include.php');
 
-use Exception;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -32,11 +32,7 @@ $idp = IdP::getById('saml2:' . $idpEntityId);
 
 try {
     Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
-} catch (Exception $e) {
-    if ($e->getMessage() === "Unable to find the current binding.") {
-        throw new Error\Error('SSOPARAMS', $e, 400);
-    } else {
-        throw $e; // do not ignore other exceptions!
-    }
+} catch (UnsupportedBindingException $e) {
+    throw new Error\Error('SSOPARAMS', $e, 400);
 }
 Assert::true(false);

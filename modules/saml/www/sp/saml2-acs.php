@@ -6,6 +6,7 @@
 
 use SAML2\Binding;
 use SAML2\Assertion;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
 use SAML2\Response;
 use SimpleSAML\Assert\Assert;
@@ -30,16 +31,8 @@ $source = Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\S
 $spMetadata = $source->getMetadata();
 try {
     $b = Binding::getCurrentBinding();
-} catch (Exception $e) {
-    // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
-    // a specific exception when the binding is unknown, and we should capture that here
-    if ($e->getMessage() === 'Unable to find the current binding.') {
-        throw new Error\Error('ACSPARAMS', $e, 400);
-    } else {
-        // do not ignore other exceptions!
-        throw $e;
-    }
+} catch (UnsupportedBindingException $e) {
+    throw new Error\Error('ACSPARAMS', $e, 400);
 }
 
 if ($b instanceof HTTPArtifact) {
@@ -48,7 +41,7 @@ if ($b instanceof HTTPArtifact) {
 
 $response = $b->receive();
 if (!($response instanceof Response)) {
-    throw new Error\BadRequest('Invalid message received to AssertionConsumerService endpoint.');
+    throw new Error\BadRequest('Invalid message received at AssertionConsumerService endpoint.');
 }
 
 $issuer = $response->getIssuer();

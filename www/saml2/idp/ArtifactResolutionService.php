@@ -9,7 +9,7 @@
 
 require_once('../../_include.php');
 
-use Exception;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;
 use SAML2\DOMDocumentFactory;
@@ -44,16 +44,8 @@ if ($store === false) {
 $binding = new SOAP();
 try {
     $request = $binding->receive();
-} catch (Exception $e) {
-    // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
-    // an specific exception when the binding is unknown, and we should capture that here. Also note that the exception
-    // message here is bogus!
-    if ($e->getMessage() === 'Invalid message received to AssertionConsumerService endpoint.') {
+} catch (UnsupportedBindingException $e) {
         throw new Error\Error('ARSPARAMS', $e, 400);
-    } else {
-        throw $e; // do not ignore other exceptions!
-    }
 }
 if (!($request instanceof ArtifactResolve)) {
     throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');

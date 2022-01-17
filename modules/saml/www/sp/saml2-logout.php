@@ -9,6 +9,7 @@
 use Exception;
 use SAML2\Binding;
 use SAML2\Constants;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\LogoutResponse;
 use SAML2\LogoutRequest;
 use SAML2\SOAP;
@@ -36,15 +37,8 @@ if ($source === null) {
 
 try {
     $binding = Binding::getCurrentBinding();
-} catch (Exception $e) {
-    // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
-    // an specific exception when the binding is unknown, and we should capture that here
-    if ($e->getMessage() === 'Unable to find the current binding.') {
-        throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
-    } else {
-        throw $e; // do not ignore other exceptions!
-    }
+} catch (UnsupportedBindingException $e) {
+    throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
 }
 $message = $binding->receive();
 

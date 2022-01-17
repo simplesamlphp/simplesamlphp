@@ -9,7 +9,7 @@
 
 require_once('../../_include.php');
 
-use Exception;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -36,17 +36,8 @@ if (isset($_REQUEST['ReturnTo'])) {
 } else {
     try {
         Module\saml\IdP\SAML2::receiveLogoutMessage($idp);
-    } catch (Exception $e) {
-        // TODO: look for a specific exception
-        /*
-         * This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should
-         * throw an specific exception when the binding is unknown, and we should capture that here
-         */
-        if ($e->getMessage() === 'Unable to find the current binding.') {
-            throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
-        } else {
-            throw $e; // do not ignore other exceptions!
-        }
+    } catch (UnsupportedBindingException $e) {
+        throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
     }
 }
 Assert::true(false);
