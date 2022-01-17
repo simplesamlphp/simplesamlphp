@@ -48,7 +48,7 @@
         "robrichards/xmlseclibs": "^3.1",
         "simplesamlphp/assert": "^0.0.13",
         "simplesamlphp/saml2": "^4.2.5",
-        "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
+        "simplesamlphp/simplesamlphp-module-adfs": "^1.0",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^0.9",
         "simplesamlphp/simplesamlphp-module-authorize": "^0.9",
