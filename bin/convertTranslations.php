@@ -1,6 +1,12 @@
+#!/usr/bin/php -q
 <?php
+/**
+ * Converts PO files with old-style translation tags into regular gettext
+ * po files as used by current SimpleSAMLphp.
+ */
+declare(strict_types=1);
 
-function mergeWithSource($sourcePairs, $destPairs)
+function mergeWithSource(array $sourcePairs, array $destPairs): array
 {
     $mergedPairs = [];
 
@@ -15,7 +21,7 @@ function mergeWithSource($sourcePairs, $destPairs)
     return $mergedPairs;
 }
 
-function codifyWithSource($sourcePairs, $destPairs)
+function codifyWithSource(array $sourcePairs, array $destPairs): array
 {
     $mergedPairs = [];
 
@@ -30,7 +36,7 @@ function codifyWithSource($sourcePairs, $destPairs)
     return $mergedPairs;
 }
 
-function dissectFile($fileInputRaw)
+function dissectFile(array $fileInputRaw): array
 {
     $pairs = [];
 // create an array with MSGID => MSGSTR
@@ -47,7 +53,10 @@ function dissectFile($fileInputRaw)
             // multiple lines itself
             $msgStr = $fileInputRaw[$nextLineCountMsgId];
             $nextLineCountMsgStr = $nextLineCountMsgId + 1;
-            while (isset($fileInputRaw[$nextLineCountMsgStr]) && substr($fileInputRaw[$nextLineCountMsgStr], 0, 1) === '"') {
+            while (
+                isset($fileInputRaw[$nextLineCountMsgStr]) &&
+                substr($fileInputRaw[$nextLineCountMsgStr], 0, 1) === '"'
+            ) {
                 $msgStr .= $fileInputRaw[$nextLineCountMsgStr];
                 $nextLineCountMsgStr = $nextLineCountMsgStr + 1;
             }
@@ -83,7 +92,7 @@ switch ($argv[1]) {
         fwrite(STDERR, "Will merge two language into one .po file based on identical msgIds.\n");
         break;
     case "CODIFY":
-        fwrite(STDERR, "Will create .po file with codes as msgIds and dest langauge translations as msgStr.\n");
+        fwrite(STDERR, "Will create .po file with codes as msgIds and dest language translations as msgStr.\n");
         break;
     case "SOURCEONLY":
         fwrite(STDERR, "Will create .po file with source lang msgid and empty msgstr.\n");
@@ -96,7 +105,7 @@ switch ($argv[1]) {
 $sourceLangRaw = file($argv[2]);
 $destLangRaw = file($argv[3]);
 
-if ($sourceLangRaw === FALSE || $destLangRaw === FALSE) {
+if ($sourceLangRaw === false || $destLangRaw === false) {
     fwrite(STDERR, "At least one input file was not readable!\n");
     exit(1);
 }
@@ -106,18 +115,30 @@ $destPairs = dissectFile($destLangRaw);
 
 switch ($argv[1]) {
     case "SOURCEONLY":
-        fwrite(STDERR, "Merging (for nullify) " . count($sourcePairs) . " entries from source language (destination language has " . count($destPairs) . " already.\n");
+        fwrite(
+            STDERR, "Merging (for nullify) " . count($sourcePairs) .
+            " entries from source language (destination language has " .
+            count($destPairs) . " already.\n"
+        );
         $outputPairs = mergeWithSource($sourcePairs, $destPairs);
         foreach ($outputPairs as $key => $value) {
             $outputPairs[$key] = "msgstr \"\"\n";
         }
         break;
     case "MERGE":
-        fwrite(STDERR, "Merging " . count($sourcePairs) . " entries from source language (destination language has " . count($destPairs) . " already.\n");
+        fwrite(STDERR,
+            "Merging " . count($sourcePairs) .
+            " entries from source language (destination language has " .
+            count($destPairs) . " already.\n"
+        );
         $outputPairs = mergeWithSource($sourcePairs, $destPairs);
         break;
     case "CODIFY":
-        fwrite(STDERR, "Codifying " . count($sourcePairs) . " entries from destination language (pool has " . count($destPairs) . " candidates).\n");
+        fwrite(STDERR,
+            "Codifying " . count($sourcePairs) .
+            " entries from destination language (pool has " .
+            count($destPairs) . " candidates).\n"
+        );
         $outputPairs = codifyWithSource($sourcePairs, $destPairs);
         break;
 }
