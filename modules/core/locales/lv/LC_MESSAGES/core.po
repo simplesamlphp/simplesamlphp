@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Saimniekdatora vārda, porta un protokola diagnostika"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Hostēta SAML 2.0 identitātes piegādātāja metadati (ģenerēti automātiski)"
 
@@ -262,9 +259,6 @@ msgstr "Mēģināt vēlreiz"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp uzturēšana un konfigurēšana"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Saimniekdatora vārda, porta un protokola diagnostika"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

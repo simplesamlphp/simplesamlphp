@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Diagnose des Hostnamen, Ports und Protokolls"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Hosted SAML 2.0 Identity Provider Metadaten (automatisch generiert)"
 
@@ -277,9 +274,6 @@ msgstr "Erneut versuchen"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "Verwaltung und Konfiguration von SimpleSAMLphp"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Diagnose des Hostnamen, Ports und Protokolls"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

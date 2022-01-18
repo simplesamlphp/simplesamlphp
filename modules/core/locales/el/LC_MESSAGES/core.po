@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr ""
-"Διαγνωστικά σχετικά με ρυθμίσεις ονόματος διακομιστή, θύρας και "
-"πρωτοκόλλου"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
 "Μεταδεδομένα φιλοξενούμενου Παρόχου Ταυτότητας SAML 2.0 (παράγονται "
@@ -297,11 +292,6 @@ msgstr "Δοκιμάστε ξανά"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "Συντήρηση και διαμόρφωση του SimpleSAMLphp"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr ""
-"Διαγνωστικά σχετικά με ρυθμίσεις ονόματος διακομιστή, θύρας και "
-"πρωτοκόλλου"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

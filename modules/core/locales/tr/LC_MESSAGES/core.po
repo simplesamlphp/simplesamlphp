@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Bilgisayar adı, port ve protokol üzerine kontroller"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
 "Sunulan SAML 2.0 Kimlik Sağlayıcı Üstverisi (metadata) (otomatik olarak "
@@ -220,9 +217,6 @@ msgstr "Üstveri (Metadata)"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp Bakım ve Düzenleme"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Bilgisayar adı, port ve protokol üzerine kontroller"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphp'i Kimlik Sağlayıcı (IdP) olarak kullanmak"

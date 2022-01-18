@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "诊断主机名/端口/协议"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "存储的 Hosted SAML 2.0 Identity Provider Metadata（自动生成）"
 
@@ -247,9 +244,6 @@ msgstr "重试"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp维护和配置"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "诊断主机名/端口/协议"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

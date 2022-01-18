@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Diagnostyka na hoście, port i protokół"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Metadane - Lokalny SAML 2.0 Dostawca Tożsamości (generowane automatycznie)"
 
@@ -207,9 +204,6 @@ msgstr "Metadane"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "Konfiguracja i Prace administracyjne "
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Diagnostyka na hoście, port i protokół"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "Użycie SimpleSAMLphp jako Dostawca Tożsamości"

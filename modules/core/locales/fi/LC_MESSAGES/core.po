@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Isäntänimen, portin ja protokollan diagnostiikka"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Isännöidyn SAML 2.0 identiteetintarjoajan Metadata (automaattisesti luotu)"
 
@@ -225,9 +222,6 @@ msgstr "Uudestaan"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp:n ylläpito ja asetusten määrittely"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Isäntänimen, portin ja protokollan diagnostiikka"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphp identiteetintarjoajana"

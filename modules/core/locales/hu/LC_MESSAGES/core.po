@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Port és protokoll diagnosztika"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr ""
 "Ezen a gépen futó (hosted) SAML 2.0 személyazonosság-szolgáltató (IdP) "
@@ -270,9 +267,6 @@ msgstr "Újra"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp karbantartása és beállítása"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Port és protokoll diagnosztika"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

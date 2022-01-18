@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Diagnosera värdnamn, port och protokoll"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Lokala SAML 2.0 Identity Provider Metadata (automatiskt genererat)"
 
@@ -272,9 +269,6 @@ msgstr "Försök igen"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp skötsel och konfiguration"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Diagnosera värdnamn, port och protokoll"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

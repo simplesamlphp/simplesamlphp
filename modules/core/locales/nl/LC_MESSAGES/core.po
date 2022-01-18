@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_diagnostics}"
-msgstr "Inspectie op hostnaam, poort en protocol"
-
 msgid "{core:frontpage:link_meta_saml2idphosted}"
 msgstr "Lokale SAML 2.0 Identity Provider Metadata (automatisch gegenereerd)"
 
@@ -298,9 +295,6 @@ msgstr "Opnieuw"
 
 msgid "SimpleSAMLphp Maintenance and Configuration"
 msgstr "SimpleSAMLphp Onderhoud en Configuratie"
-
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Inspectie op hostnaam, poort en protocol"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

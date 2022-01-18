@@ -123,7 +123,7 @@ msgid "new"
 msgstr ""
 
 msgid "Diagnostics on hostname, port and protocol"
-msgstr ""
+msgstr "Diagnostics on hostname, port and protocol"
 
 msgid ""
 "Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
