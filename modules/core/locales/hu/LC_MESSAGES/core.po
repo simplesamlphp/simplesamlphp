@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:optional}"
-msgstr "Opcionális"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentáció"
 
@@ -272,9 +269,6 @@ msgstr ""
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)"
-
-msgid "Optional"
-msgstr "Opcionális"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Javaslat a probléma elhárítására:"

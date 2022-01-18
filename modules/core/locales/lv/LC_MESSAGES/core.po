@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:optional}"
-msgstr "Neobligāts"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentācija"
 
@@ -266,9 +263,6 @@ msgstr ""
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "Izmanto SimpleSAMLphp kā identitātes piegādātāju"
-
-msgid "Optional"
-msgstr "Neobligāts"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Ieteikumi problēmas atrisināšanai:"

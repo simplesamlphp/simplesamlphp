@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:optional}"
-msgstr "可选的"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "文档"
 
@@ -249,9 +246,6 @@ msgstr "如果你是点击一个网站上的链接后收到该错误的用户，
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "正在使用SimpleSAMLphp作为身份提供者"
-
-msgid "Optional"
-msgstr "可选的"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "关于解决该问题的建议"

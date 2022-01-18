@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:optional}"
-msgstr "Opciono"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentacija"
 
@@ -285,9 +282,6 @@ msgstr ""
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "Kako iskoristiti SimpleSAMLphp za implementaciju Davaoca Identiteta"
-
-msgid "Optional"
-msgstr "Opciono"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Preporuke za rešavanje ovog problema:"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:optional}"
-msgstr "İsteğe bağlı"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokümantasyon"
 
@@ -215,9 +212,6 @@ msgstr "SimpleSAMLphp Bakım ve Düzenleme"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphp'i Kimlik Sağlayıcı (IdP) olarak kullanmak"
-
-msgid "Optional"
-msgstr "İsteğe bağlı"
 
 msgid ""
 "This SimpleSAMLphp thing is pretty cool, where can I read more about it? "

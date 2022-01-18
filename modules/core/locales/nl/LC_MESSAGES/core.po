@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:optional}"
-msgstr "Optioneel"
-
 msgid "{core:frontpage:doc_header}"
 msgstr "Documentatie"
 
@@ -303,9 +300,6 @@ msgstr ""
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "Gebruik SimpleSAMLphp als Identity Provider"
-
-msgid "Optional"
-msgstr "Optioneel"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Suggesties om dit probleem op te lossen:"
