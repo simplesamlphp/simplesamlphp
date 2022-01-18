@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:doc_header}"
-msgstr "Documentatie"
-
 msgid "{core:frontpage:link_doc_advanced}"
 msgstr "SimpleSAMLphp Geavanceerde Functies"
 
@@ -180,9 +177,6 @@ msgstr "Vereist"
 
 msgid "Warnings"
 msgstr "Waarschuwingen"
-
-msgid "Documentation"
-msgstr "Documentatie"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Lokale Shibboleth 1.3 Service Provider Metadata (automatisch gegenereerd)"

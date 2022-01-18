@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:doc_header}"
-msgstr "Documentação"
-
 msgid "{core:frontpage:link_doc_advanced}"
 msgstr "Funcionalidades avançadas do SimpleSAMLphp"
 
@@ -149,9 +146,6 @@ msgstr "Necessário"
 
 msgid "Warnings"
 msgstr "Avisos"
-
-msgid "Documentation"
-msgstr "Documentação"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr ""
