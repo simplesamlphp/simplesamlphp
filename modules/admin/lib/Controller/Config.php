@@ -137,6 +137,7 @@ class Config
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
             'logouturl' => $this->authUtils->getAdminLogoutURL(),
+            'modulelist' => $this->getModuleList(),
         ];
 
         Module::callHooks('configpage', $t);
@@ -144,6 +145,15 @@ class Config
         return $this->menu->insert($t);
     }
 
+    protected function getModuleList(): array
+    {
+        $modules = Module::getModules();
+        $modulestates = [];
+        foreach ($modules as $module) {
+            $modulestates[$module] = Module::isModuleEnabled($module);
+        }
+        return $modulestates;
+    }
 
     /**
      * Display the output of phpinfo().
