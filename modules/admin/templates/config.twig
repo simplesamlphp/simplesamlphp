@@ -24,11 +24,20 @@
     </div>
     <h2>{% trans %}Configuration{% endtrans %}</h2>
     <div class="enablebox mini">
-      <table>
+      <table class="pure-table">
+        <thead><tr><th>{% trans %}Module/function{% endtrans %}</th><th>{% trans %}Enabled?{% endtrans %}</th></tr></thead>
+        <tbody>
         <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
           <td>SAML 2.0 IdP</td>
-          <td><i class="fa fa-{%- if enablematrix.saml20idp %}check{% else %}ban{% endif %}"></i></td>
+          <td><i class="fa fa-{%- if enablematrix.saml20idp %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i></td>
         </tr>
+        {% for module, enabled in modulelist %}
+        <tr class="{%- if enabled %}enabled{% else %}disabled{% endif -%}">
+          <td>{{ module }}</td>
+          <td><i class="fa fa-{%- if enabled %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i></td>
+        </tr>
+        {% endfor %}
+        </tbody>
       </table>
     </div>
     <ul>
