@@ -36,6 +36,7 @@ try {
     $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $metaArray, 'SAML 2 IdP');
 
     header('Content-Type: application/samlmetadata+xml');
+    header('Content-Disposition: attachment; filename="idp-metadata.xml"');
 
     echo $metaxml;
     exit(0);

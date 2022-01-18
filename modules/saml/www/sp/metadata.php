@@ -47,4 +47,5 @@ $xml = $metaBuilder->getEntityDescriptorText();
 $xml = Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 header('Content-Type: application/samlmetadata+xml');
+header('Content-Disposition: attachment; filename="' . basename($sourceId) . '.xml"');
 echo($xml);
