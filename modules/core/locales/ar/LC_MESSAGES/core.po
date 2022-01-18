@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr ""
-"البيانات الوصفية/الميتاداتا لهوية مقدم SAML 2.0 الضيف (تم تجهيزها "
-"اتوماتيكياً)"
-
 msgid "{core:frontpage:optional}"
 msgstr "اختياري"
 
@@ -298,11 +293,6 @@ msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعل
 
 msgid "State information lost"
 msgstr "حدد المعلومات المفقودة"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr ""
-"البيانات الوصفية/الميتاداتا لهوية مقدم SAML 2.0 الضيف (تم تجهيزها "
-"اتوماتيكياً)"
 
 msgid "Required for Radius"
 msgstr "مطلوب ل Radius"

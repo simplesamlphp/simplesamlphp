@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr "存储的 Hosted SAML 2.0 Identity Provider Metadata（自动生成）"
-
 msgid "{core:frontpage:optional}"
 msgstr "可选的"
 
@@ -287,9 +284,6 @@ msgstr "SimpleSAMLphp作为Google Apps for Education的IdP"
 
 msgid "State information lost"
 msgstr "状态信息丢失"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr "存储的 Hosted SAML 2.0 Identity Provider Metadata（自动生成）"
 
 msgid "Required for Radius"
 msgstr "对Radius的需求"

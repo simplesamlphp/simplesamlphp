@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr "Hosted SAML 2.0 Identity Provider Meta Données (automatesch erstallt)"
-
 msgid "{core:frontpage:optional}"
 msgstr "Optional"
 
@@ -180,9 +177,6 @@ msgstr "Shibboleth 1.3 SP Beispill - probeier dech iwer dain Shib IdP anzeloggen
 
 msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr "SimpleSAMLphp als IdP fir Google Apps for Education"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr "Hosted SAML 2.0 Identity Provider Meta Données (automatesch erstallt)"
 
 msgid "Required for Radius"
 msgstr "Néideg fir RADIUS"

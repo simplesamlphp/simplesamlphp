@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr ""
-"Sunulan SAML 2.0 Kimlik Sağlayıcı Üstverisi (metadata) (otomatik olarak "
-"üretilmiştir)"
-
 msgid "{core:frontpage:optional}"
 msgstr "İsteğe bağlı"
 
@@ -248,11 +243,6 @@ msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr ""
 "\"Google Apps for Education\" için kimlik sağlayıcı (IdP) olarak "
 "SimpleSAMLphp "
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr ""
-"Sunulan SAML 2.0 Kimlik Sağlayıcı Üstverisi (metadata) (otomatik olarak "
-"üretilmiştir)"
 
 msgid "Required for Radius"
 msgstr "Radius için gerekli"

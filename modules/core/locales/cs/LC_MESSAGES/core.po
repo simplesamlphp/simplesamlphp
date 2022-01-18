@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr ""
-"Metada lookálního (hosted) SAML 2.0 poskytovatele identity (IdP) "
-"(automaticky generované)"
-
 msgid "{core:frontpage:optional}"
 msgstr "Volitelné"
 
@@ -308,11 +303,6 @@ msgstr "SimpleSAMLphp jako IdP pro Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Stavová informace ztracena"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr ""
-"Metada lookálního (hosted) SAML 2.0 poskytovatele identity (IdP) "
-"(automaticky generované)"
 
 msgid "Required for Radius"
 msgstr "Požadováno pro Radius"

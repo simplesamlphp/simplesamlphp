@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr "מטא-הנתונים של ספק הזהויות מסוג SAML 2.0 המאורח (נוצר אוטומטית)"
-
 msgid "{core:frontpage:optional}"
 msgstr "נתון לבחירה"
 
@@ -303,9 +300,6 @@ msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 
 msgid "State information lost"
 msgstr "מידע המצב אבד"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr "מטא-הנתונים של ספק הזהויות מסוג SAML 2.0 המאורח (נוצר אוטומטית)"
 
 msgid "Required for Radius"
 msgstr "דרוש עבור Radius"

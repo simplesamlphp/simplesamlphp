@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr "Hosted SAML 2.0 identitetsudbyder metadata (automatisk genereret)"
-
 msgid "{core:frontpage:optional}"
 msgstr "Valgfrit"
 
@@ -314,9 +311,6 @@ msgstr "SimpleSAMLphp som en IdP for Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Tilstandsinformation forsvundet"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr "Hosted SAML 2.0 identitetsudbyder metadata (automatisk genereret)"
 
 msgid "Required for Radius"
 msgstr "Påkrævet for RADIUS"

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr ""
-"Ezen a gépen futó (hosted) SAML 2.0 személyazonosság-szolgáltató (IdP) "
-"metaadat (automatikusan generált)"
-
 msgid "{core:frontpage:optional}"
 msgstr "Opcionális"
 
@@ -314,11 +309,6 @@ msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 
 msgid "State information lost"
 msgstr "Elvezett az állapotinformácó"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr ""
-"Ezen a gépen futó (hosted) SAML 2.0 személyazonosság-szolgáltató (IdP) "
-"metaadat (automatikusan generált)"
 
 msgid "Required for Radius"
 msgstr "Szükséges a Radius támogatáshoz"

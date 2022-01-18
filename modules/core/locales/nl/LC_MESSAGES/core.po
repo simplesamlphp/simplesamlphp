@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_meta_saml2idphosted}"
-msgstr "Lokale SAML 2.0 Identity Provider Metadata (automatisch gegenereerd)"
-
 msgid "{core:frontpage:optional}"
 msgstr "Optioneel"
 
@@ -341,9 +338,6 @@ msgstr "SimpleSAMLphp als een Identity Provider voor Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Toestand informatie verloren"
-
-msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
-msgstr "Lokale SAML 2.0 Identity Provider Metadata (automatisch gegenereerd)"
 
 msgid "Required for Radius"
 msgstr "Vereist voor Radius"
