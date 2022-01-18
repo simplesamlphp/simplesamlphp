@@ -289,6 +289,12 @@ The following options can be set:
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
+`skipEndpointValidationWhenSigned`
+:   Whether to skip validating that the AssertionConsumerServiceURL sent in authentication
+    requests exist in SP metadata.  Only allowed for signed requests.
+    This option must be a simple boolean (true/false - although a value of false essentially has
+    no effect) or a callable.  When used as a callable, the static class method must accept the 
+    SP metadata config as a parameter and return a boolean.
 
 ### Encrypting assertions
 

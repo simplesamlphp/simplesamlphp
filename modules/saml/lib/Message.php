@@ -192,6 +192,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should check the signature on.
+     * @return bool Whether or not the message was validated.
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
      */
@@ -199,7 +200,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ): void {
+    ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
             $enabled = $srcMetadata->getBoolean('validate.logout', null);
@@ -228,12 +229,13 @@ class Message
         }
 
         if (!$enabled) {
-            return;
+            return false;
         } elseif (!self::checkSign($srcMetadata, $message)) {
             throw new SSP_Error\Exception(
                 'Validation of received messages enabled, but no signature found on message.'
             );
         }
+        return true;
     }
 
 
