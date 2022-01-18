@@ -51,7 +51,9 @@ $data['directory'] = dirname(dirname(__FILE__));
 if ($config->getBoolean('errorreporting', true)) {
     $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
     $mail->setData($data);
-    $mail->addReplyTo($email);
+    if ($email) {
+        $mail->addReplyTo($email);
+    }
     $mail->setText($text);
     $mail->send();
     SimpleSAML\Logger::error('Report with id ' . $reportId . ' sent');
