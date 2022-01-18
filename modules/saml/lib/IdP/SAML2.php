@@ -254,7 +254,7 @@ class SAML2
         }
 
         $skipEndpointValidation = false;
-        if ($authnRequestSigned === true) {         
+        if ($authnRequestSigned === true) {
             $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
             if (is_bool($skipEndpointValidationWhenSigned) === true) {
                 $skipEndpointValidation = $skipEndpointValidationWhenSigned;
@@ -268,11 +268,12 @@ class SAML2
 
         if (($AssertionConsumerServiceURL !== null) && ($skipEndpointValidation === true)) {
             Logger::info(
-                'AssertionConsumerService specified in AuthnRequest not in metadata, using anyway because AuthnRequest signed and skipEndpointValidationWhenSigned was true'
+                'AssertionConsumerService specified in AuthnRequest not in metadata, ' .
+                'using anyway because AuthnRequest signed and skipEndpointValidationWhenSigned was true'
             );
             return ['Location' => $AssertionConsumerServiceURL, 'Binding' => $ProtocolBinding];
         }
-        
+
         Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
         if ($AssertionConsumerServiceURL !== null) {
             Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, true));
@@ -315,7 +316,7 @@ class SAML2
         }
 
         $authnRequestSigned = false;
-        
+
         if (isset($_REQUEST['spentityid']) || isset($_REQUEST['providerId'])) {
             /* IdP initiated authentication. */
 
