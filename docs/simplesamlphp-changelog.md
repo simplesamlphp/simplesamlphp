@@ -11,6 +11,13 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
   * Fix composer-file to prevent warnings
+  * Fix database persistency (#1555)
+
+### adfs
+  * Bump the module version to the 1.0.x branch;  the 0.9 branch only works with versions before 1.19
+
+### saml2 library
+  * Fix an issue with PHP 7.x support that was introduced in 1.19.4 (#1559)
 
 ## Version 1.19.4
 
