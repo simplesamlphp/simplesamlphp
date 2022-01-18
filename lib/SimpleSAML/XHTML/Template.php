@@ -633,7 +633,7 @@ class Template extends Response
      * Search through entity metadata to find the best value for a
      * specific property. It will search in order for the current language, default
      * language and fallback language; it will return the property value (which
-     * can be a string, array or other type allowed in metadta, if not found it
+     * can be a string, array or other type allowed in metadata, if not found it
      * returns null.
      */
     public function getEntityPropertyTranslation(string $property, array $data)
