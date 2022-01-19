@@ -91,12 +91,14 @@ class IdP
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 
-            try {
-                // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
-                $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-                $this->associationGroup = 'saml2:' . $saml2EntityId;
-            } catch (\Exception $e) {
-                // probably no SAML 2 IdP configured for this host. Ignore the error
+            if ($globalConfig->getBoolean('enable.saml20-idp', false)) {
+                try {
+                    // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
+                    $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+                    $this->associationGroup = 'saml2:' . $saml2EntityId;
+                } catch (\Exception $e) {
+                    // probably no SAML 2 IdP configured for this host. Ignore the error
+                }
             }
         } else {
             throw new \Exception("Protocol not implemented.");
