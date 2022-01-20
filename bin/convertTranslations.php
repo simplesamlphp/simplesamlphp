@@ -1,9 +1,11 @@
 #!/usr/bin/php -q
 <?php
+
 /**
  * Converts PO files with old-style translation tags into regular gettext
  * po files as used by current SimpleSAMLphp.
  */
+
 declare(strict_types=1);
 
 function mergeWithSource(array $sourcePairs, array $destPairs): array
@@ -77,11 +79,10 @@ This script needs three arguments:
 
 2) filename of the .po with codes as msgStr and the source language (typically English) as msgStr
 
-3) in case of 
+3) in case of
    - MERGE, SOURCEONLY: filename of the .po with codes as msgStr and the destination language as msgStr
    - CODIFY: filename of the .po file with source language as msgId and destination language as msgStr
      (i.e. the input to CODIFY is the result of a previous MERGE)
-   
 
 ");
     exit(1);
@@ -116,7 +117,8 @@ $destPairs = dissectFile($destLangRaw);
 switch ($argv[1]) {
     case "SOURCEONLY":
         fwrite(
-            STDERR, "Merging (for nullify) " . count($sourcePairs) .
+            STDERR,
+            "Merging (for nullify) " . count($sourcePairs) .
             " entries from source language (destination language has " .
             count($destPairs) . " already.\n"
         );
@@ -126,7 +128,8 @@ switch ($argv[1]) {
         }
         break;
     case "MERGE":
-        fwrite(STDERR,
+        fwrite(
+            STDERR,
             "Merging " . count($sourcePairs) .
             " entries from source language (destination language has " .
             count($destPairs) . " already.\n"
@@ -134,7 +137,8 @@ switch ($argv[1]) {
         $outputPairs = mergeWithSource($sourcePairs, $destPairs);
         break;
     case "CODIFY":
-        fwrite(STDERR,
+        fwrite(
+            STDERR,
             "Codifying " . count($sourcePairs) .
             " entries from destination language (pool has " .
             count($destPairs) . " candidates).\n"
