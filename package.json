@@ -19,7 +19,6 @@
     "es6-shim": "^0.35.6",
     "highlight.js": "^10.7.0",
     "jquery": "^3.6.0",
-    "jquery-ui": "^1.13.0",
     "minimum-node-version": "^3.0.0",
     "purecss": "^2.0.6",
     "reset-css": "^5.0.1",
