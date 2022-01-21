@@ -6,6 +6,10 @@ import php from "highlight.js/lib/languages/php";
 import json from "highlight.js/lib/languages/json";
 
 $(document).ready(function () {
+    $('#language-selector').on('change', function () {
+        $("#language-form").submit();
+    });
+
     // side menu
     $('#menuLink').click(function (e) {
         e.preventDefault();
