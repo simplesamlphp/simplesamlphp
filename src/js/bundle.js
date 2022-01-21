@@ -1,26 +1,11 @@
 import "es6-shim";
 import ClipboardJS from "clipboard/dist/clipboard";
-import "selectize/dist/js/selectize";
 import hljs from  "highlight.js/lib/core";
 import xml from "highlight.js/lib/languages/xml";
 import php from "highlight.js/lib/languages/php";
 import json from "highlight.js/lib/languages/json";
 
 $(document).ready(function () {
-    // get available languages
-    let languages = $.map($('#language-selector option'), function (option) {
-        return option.text.toLowerCase();
-    });
-
-    // initialize selectize
-    $('#language-selector').selectize({
-        onChange: function () {
-            if (-1 !== $.inArray($('#language-selector-selectized').prev().text().toLowerCase(), languages)) {
-                $('#language-form').submit();
-            }
-        },
-    });
-
     // side menu
     $('#menuLink').click(function (e) {
         e.preventDefault();
