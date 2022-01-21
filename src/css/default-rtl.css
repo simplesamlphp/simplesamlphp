@@ -93,15 +93,8 @@ fieldset.fancyfieldset legend {
     margin-right: auto;
 }
 
-/*selectize elements*/
 div .item{
     float: right;
-}
-.selectize-input{
-    padding-right:8px;
-}
-.selectize-input:after{
-    transform: translate(-8px, 0);
 }
 
 /*purecss elements*/

@@ -55,7 +55,7 @@
             <input type="hidden" name="{{ name }}">
               {% endif %}
             {% endfor %}
-            <select  class="pure-input-1-4 language-menu selectize" name="language" id="language-selector">
+            <select  class="pure-input-1-4 language-menu" name="language" id="language-selector">
             {% for key, lang in languageBar %}
               {% if key == currentLanguage %}
               <option value="{{ key }}" selected="selected">&#xf0ac;  {{ lang.name }}</option>
