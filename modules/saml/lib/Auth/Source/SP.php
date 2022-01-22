@@ -803,7 +803,7 @@ class SP extends \SimpleSAML\Auth\Source
 
             if (empty($intersection)) {
                 // all requested IdPs are unknown
-                throw new NoSupportedIDP(
+                throw new NoSupportedIDPException(
                     'None of the IdPs requested are supported by this proxy.'
                 );
             }
