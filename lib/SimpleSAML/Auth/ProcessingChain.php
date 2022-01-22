@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
+use SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -289,7 +290,7 @@ class ProcessingChain
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
                 $filter->process($state);
-            } catch (SAML2\Exception\Protocol\NoPassiveException $e) {
+            } catch (NoPassiveException $e) {
                 // Ignore \SAML2\Exception\Protocol\NoPassiveException exceptions
             }
         }
