@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Fonctionnalités avancées de SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Obligatoire pour LDAP"
 
@@ -333,9 +330,6 @@ msgstr ""
 "vous avez un problème avec la configuration des métadonnées. Vérifiez que"
 " ces métadonnées sont correctement configurées sur le fournisseur "
 "d'identité et le fournisseur de service "
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Fonctionnalités avancées de SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "Connexions uniques trop proches dans le temps."

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp advancētās iespējas"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Obligāts priekš LDAP"
 
@@ -315,9 +312,6 @@ msgstr ""
 "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu "
 "konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, "
 "gan pie servisa piegādātāja."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp advancētās iespējas"
 
 msgid "Too short interval between single sign on events."
 msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."

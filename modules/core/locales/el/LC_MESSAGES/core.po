@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Προηγμένα χαρακτηριστικά του SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Απαιτείται για υποστήριξη LDAP"
 
@@ -352,9 +349,6 @@ msgstr ""
 "τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. "
 "Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο "
 "ταυτότητας όσο και στον πάροχο υπηρεσιών."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Προηγμένα χαρακτηριστικά του SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Recursos avançados do SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Requerido para o LDAP"
 
@@ -262,9 +259,6 @@ msgstr ""
 " um problema com a configuração de metadados. Verifique se os metadados "
 "estão configurados corretamente no provedor de identidade e no provedor "
 "de serviços."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Recursos avançados do SimpleSAMLphp"
 
 msgid "Checking your PHP installation"
 msgstr "Checando sua instalação do PHP"

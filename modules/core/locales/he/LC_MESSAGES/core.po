@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "תכונות מתקדמות של SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "דרוש עבור LDAP"
 
@@ -313,9 +310,6 @@ msgid ""
 msgstr ""
 "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. "
 "בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "תכונות מתקדמות של SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."

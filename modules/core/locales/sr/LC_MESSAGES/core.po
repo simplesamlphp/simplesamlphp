@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Napredne mogućnosti SimpleSAMLphp-a"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Obavezno za LDAP"
 
@@ -337,9 +334,6 @@ msgstr ""
 "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator "
 "sistema, proverite da li metapodaci ispravno uneseni na strani davaoca "
 "servisa i davaoca identiteta."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Napredne mogućnosti SimpleSAMLphp-a"
 
 msgid "Too short interval between single sign on events."
 msgstr "Prekratak interval između uzastopnih SSO prijava."

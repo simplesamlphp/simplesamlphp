@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Zaawansowane właściwości SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Wymagane dla LDAP"
 
@@ -227,9 +224,6 @@ msgstr "SAML 2.0 SP - przykład - test logowania przez Twoje IdP"
 
 msgid "Recommended"
 msgstr "Rekomendowane"
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Zaawansowane właściwości SimpleSAMLphp"
 
 msgid "Checking your PHP installation"
 msgstr "Sprawdzanie instalacji PHP"

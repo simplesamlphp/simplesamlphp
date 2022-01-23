@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "Fitur Lanjutan SimpleSAMLphp"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Diperlukan untuk LDAP"
 
@@ -330,9 +327,6 @@ msgstr ""
 "masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah "
 "dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi"
 " service provider."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Fitur Lanjutan SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "Interval yang terlalu pendek antara event single sign on."

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp lisafunktsioonid"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Nõutav LDAP-ile"
 
@@ -320,9 +317,6 @@ msgstr ""
 "siis on probleemi põhjuseks metaandmete seadistused. Kontrolli, et "
 "metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui "
 "teenusepakkuja poolel."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp lisafunktsioonid"
 
 msgid "Too short interval between single sign on events."
 msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."

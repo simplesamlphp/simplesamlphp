@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp avancerade funktioner"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Obligatoriskt för LDAP"
 
@@ -326,9 +323,6 @@ msgstr ""
 "Om du är en utvecklare som driftsätter en lösning med single-on har du "
 "problem med metadatakonfigurationen. Kontrollera att metadata är korrekt "
 "konfigurerade både i identitetsutgivare och tjänsteleverantören."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp avancerade funktioner"
 
 msgid "Too short interval between single sign on events."
 msgstr "För kort intervall mellan inloggningar."

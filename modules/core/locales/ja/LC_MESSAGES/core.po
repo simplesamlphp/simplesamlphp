@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphpの高度な機能"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "LDAPに必要"
 
@@ -303,9 +300,6 @@ msgid ""
 "have a problem with the metadata configuration. Verify that metadata is "
 "configured correctly on both the identity provider and service provider."
 msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphpの高度な機能"
 
 msgid "Too short interval between single sign on events."
 msgstr "シングルサインオンイベントの間隔が短すぎます。"

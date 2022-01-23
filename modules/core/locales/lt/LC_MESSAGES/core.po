@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp papildomos galimybės"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Būtinas LDAP serveriui"
 
@@ -332,9 +329,6 @@ msgstr ""
 " susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys "
 "teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo "
 "pusėse."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp papildomos galimybės"
 
 msgid "Too short interval between single sign on events."
 msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."

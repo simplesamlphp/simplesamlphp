@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "تطبيقات SimpleSAMLphp المتقدمة"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "مطلوب ل LDAP"
 
@@ -307,9 +304,6 @@ msgstr ""
 " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول "
 "لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات"
 " الوصفية صحيح بكل من محدد الهوية و المخدم  "
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "تطبيقات SimpleSAMLphp المتقدمة"
 
 msgid "Too short interval between single sign on events."
 msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "

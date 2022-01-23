@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp Geavanceerde Functies"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Vereist voor LDAP"
 
@@ -354,9 +351,6 @@ msgstr ""
 "implementeren is, heeft u een probleem met de metadataconfiguratie. "
 "Controleer of de metadata correct is geconfigureerd zowel bij de "
 "identiteitsverstrekker als bij de service provider."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp Geavanceerde Functies"
 
 msgid "Too short interval between single sign on events."
 msgstr "Te kort interval tussen single sign on pogingen"

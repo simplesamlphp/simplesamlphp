@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp további tulajdonságai"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Szükséges az LDAP támogatáshoz"
 
@@ -323,9 +320,6 @@ msgid ""
 msgstr ""
 "Ha ön az oldal üzemeltetője, úgy javasoljuk, ellenőrizze a metaadat "
 "beállításokat mint IdP-, mind SP oldalon."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp további tulajdonságai"
 
 msgid "Too short interval between single sign on events."
 msgstr "Túl kevés idő telt el a belépési kísérletek között."

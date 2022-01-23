@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp高级功能"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "对LDAP的需求"
 
@@ -293,9 +290,6 @@ msgid ""
 "have a problem with the metadata configuration. Verify that metadata is "
 "configured correctly on both the identity provider and service provider."
 msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp高级功能"
 
 msgid "Too short interval between single sign on events."
 msgstr "单点登录事件之间间隔太短了"

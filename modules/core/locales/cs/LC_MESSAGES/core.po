@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_advanced}"
-msgstr "SimpleSAMLphp nadstandartní vlastnosti"
-
 msgid "{core:frontpage:required_ldap}"
 msgstr "Požadováno pro LDAP"
 
@@ -318,9 +315,6 @@ msgstr ""
 "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte "
 "problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována "
 "správně jak u poskytovatele identity tak u poskytovatele služby."
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "SimpleSAMLphp nadstandartní vlastnosti"
 
 msgid "Too short interval between single sign on events."
 msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
