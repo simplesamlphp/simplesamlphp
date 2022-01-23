@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_secretsalt}"
-msgstr ""
-"<strong>デフォルトのシークレットソルトが使われています</strong> - プロダクションでsimpleSAMLを使用される場合はデフォルトの「secretsalt」オプションを必ず変更してください。"
-"[<a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">SimpleSAMLphpの設定についてはこちら</a> ]"
-
 msgid "{core:frontpage:authtest}"
 msgstr "設定されている認証元をテスト"
 

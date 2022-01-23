@@ -15,13 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_secretsalt}"
-msgstr ""
-"<strong>Opsætningen benytter standard 'secret salt'</strong> - sørg for "
-"at ændre standard indstillingen for 'secretsalt' i simpleSAML opsætningen"
-" i produktionssystemer. [<a href=\"https://simplesamlphp.org/docs/stable"
-"/simplesamlphp-install\">Læs mere om SimpleSAMLphp opsætning.</a> ]"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Test konfigureret autentificeringskilde"
 
@@ -340,18 +333,6 @@ msgstr "Konfiguration"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "Hosted Shibboleth 1.3 identitetsudbyder metadata (automatisk genereret)"
-
-msgid ""
-"<strong>The configuration uses the default secret salt</strong> - make "
-"sure you modify the default 'secretsalt' option in the simpleSAML "
-"configuration in production environments. [<a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read"
-" more about SimpleSAMLphp configuration</a> ]"
-msgstr ""
-"<strong>Opsætningen benytter standard 'secret salt'</strong> - sørg for "
-"at ændre standard indstillingen for 'secretsalt' i simpleSAML opsætningen"
-" i produktionssystemer. [<a href=\"https://simplesamlphp.org/docs/stable"
-"/simplesamlphp-install\">Læs mere om SimpleSAMLphp opsætning.</a> ]"
 
 msgid "Report this error"
 msgstr "Rapporter denne fejl"

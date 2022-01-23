@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_secretsalt}"
-msgstr ""
-"<strong>目前設定檔使用預設的雜湊參數(salt)</strong> - 在您上線運作前請確認您已於 simpleSAML "
-"設定頁中修改預設的 'secretsalt'。[<a href=\"https://simplesamlphp.org/docs/stable"
-"/simplesamlphp-install\">閱讀更多關於 SimpleSAMLphp 設定值</a> ]"
-
 msgid "{core:frontpage:authtest}"
 msgstr "測試設定好的認證來源"
 
@@ -321,17 +315,6 @@ msgstr "設定"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "託管Shibboleth 1.3 驗證提供者詮釋資料(自動產生)"
-
-msgid ""
-"<strong>The configuration uses the default secret salt</strong> - make "
-"sure you modify the default 'secretsalt' option in the simpleSAML "
-"configuration in production environments. [<a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read"
-" more about SimpleSAMLphp configuration</a> ]"
-msgstr ""
-"<strong>目前設定檔使用預設的雜湊參數(salt)</strong> - 在您上線運作前請確認您已於 simpleSAML "
-"設定頁中修改預設的 'secretsalt'。[<a href=\"https://simplesamlphp.org/docs/stable"
-"/simplesamlphp-install\">閱讀更多關於 SimpleSAMLphp 設定值</a> ]"
 
 msgid "Report this error"
 msgstr "回報這個錯誤"
