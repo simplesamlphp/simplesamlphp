@@ -62,9 +62,6 @@ msgstr "You are logged in as administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Authentication"
 
-msgid "{core:frontpage:logout}"
-msgstr "Logout"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "Show metadata"
 

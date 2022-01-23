@@ -60,9 +60,6 @@ msgstr "管理者でログインしています"
 msgid "{core:frontpage:auth}"
 msgstr "認証"
 
-msgid "{core:frontpage:logout}"
-msgstr "ログアウト"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "メタデータを表示"
 
