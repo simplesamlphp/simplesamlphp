@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "对LDAP的需求"
-
 msgid "{core:frontpage:authtest}"
 msgstr "测试已经配置的认证源"
 
@@ -153,9 +150,6 @@ msgstr "关于SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "重新尝试登陆"
-
-msgid "Required for LDAP"
-msgstr "对LDAP的需求"
 
 msgid "Close the web browser, and try again."
 msgstr "关闭浏览器并重试"

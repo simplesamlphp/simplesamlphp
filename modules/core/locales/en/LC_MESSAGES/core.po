@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Required for LDAP"
-
 msgid "{core:frontpage:warnings_secretsalt}"
 msgstr ""
 "<strong>The configuration uses the default secret salt</strong> - make "
@@ -178,9 +175,6 @@ msgstr "About SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Retry login"
-
-msgid "Required for LDAP"
-msgstr "Required for LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Close the web browser, and try again."

@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:logout}"
 msgstr "Uitloggen"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Vereist voor LDAP"
-
 msgid "{core:frontpage:warnings_secretsalt}"
 msgstr ""
 "<strong>De configuratie bevat de sandaard secret salt</strong> - verander"
@@ -183,9 +180,6 @@ msgstr "Over SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Inloggen opnieuw proberen"
-
-msgid "Required for LDAP"
-msgstr "Vereist voor LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Sluit de web browser, en probeer opnieuw."

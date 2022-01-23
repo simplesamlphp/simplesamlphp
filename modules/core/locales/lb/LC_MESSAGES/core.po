@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Néideg fir LDAP"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Iwwersicht vun den Meta Données fir aer Installatioun. Diagnosizéiert aer"
@@ -106,9 +103,6 @@ msgstr "Hosted Shibboleth 1.3 Service Provider Meta Données (automatesch erstal
 
 msgid "About SimpleSAMLphp"
 msgstr "Iwwert SimpleSAMLphp"
-
-msgid "Required for LDAP"
-msgstr "Néideg fir LDAP"
 
 msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
 msgstr "Shibboleth 1.3 SP anstellen fir mam SimpleSAMLphp Idp ze funktionnéiren"

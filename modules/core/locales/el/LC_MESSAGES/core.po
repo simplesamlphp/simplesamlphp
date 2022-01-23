@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Απαιτείται για υποστήριξη LDAP"
-
 msgid "{core:frontpage:warnings_secretsalt}"
 msgstr ""
 "<strong>Χρησιμοποιείτε την προεπιλεγμένη τιμή του μυστικού κλειδιού "
@@ -182,9 +179,6 @@ msgstr "Σχετικά με το SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Επανάληψη σύνδεσης"
-
-msgid "Required for LDAP"
-msgstr "Απαιτείται για υποστήριξη LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Κλείστε το πρόγραμμα περιήγησης ιστού (web browser) και προσπαθήστε ξανά"

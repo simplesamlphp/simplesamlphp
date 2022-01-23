@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Obligāts priekš LDAP"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Testēt konfigurētos autentifikācijas avotus"
 
@@ -160,9 +157,6 @@ msgstr "Par SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Mēģināt pieslēgties vēlreiz"
-
-msgid "Required for LDAP"
-msgstr "Obligāts priekš LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Aizveriet interneta pārlūku un mēģiniet vēlreiz."

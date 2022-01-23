@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Zahtevano za LDAP"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Preveri izbrani avtentikacijski mehanizem "
 
@@ -162,9 +159,6 @@ msgstr "O SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Ponovna prijava"
-
-msgid "Required for LDAP"
-msgstr "Zahtevano za LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Zaprite spletni brskalnik in poskusite znova."

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Obligatoire pour LDAP"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Tester les sources d'authentification configurées"
 
@@ -171,9 +168,6 @@ msgstr "À propos de SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Ré-essayez de vous connecter"
-
-msgid "Required for LDAP"
-msgstr "Obligatoire pour LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Fermez le navigateur, essayez à nouveau."

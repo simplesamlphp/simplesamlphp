@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Requerido para o LDAP"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "Metadados para sua instalação. Diagnosticar seus arquivos metadados"
 
@@ -152,9 +149,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "Sobre o SimpleSAMLphp"
-
-msgid "Required for LDAP"
-msgstr "Requerido para o LDAP"
 
 msgid "Federation"
 msgstr "Federação"

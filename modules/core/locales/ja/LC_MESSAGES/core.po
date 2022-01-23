@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "LDAPに必要"
-
 msgid "{core:frontpage:warnings_secretsalt}"
 msgstr ""
 "<strong>デフォルトのシークレットソルトが使われています</strong> - プロダクションでsimpleSAMLを使用される場合はデフォルトの「secretsalt」オプションを必ず変更してください。"
@@ -165,9 +162,6 @@ msgstr "SimpleSAMLphpについて"
 
 msgid "Retry login"
 msgstr "ログインを再試行"
-
-msgid "Required for LDAP"
-msgstr "LDAPのために必須"
 
 msgid "Close the web browser, and try again."
 msgstr "WEBブラウザを閉じて、再度試してください。"

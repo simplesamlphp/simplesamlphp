@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Szükséges az LDAP támogatáshoz"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Azonosítási (autentikációs) beállítások tesztelése"
 
@@ -165,9 +162,6 @@ msgstr "A SimpleSAMLphp-ról bővebben"
 
 msgid "Retry login"
 msgstr "Újbóli belépés"
-
-msgid "Required for LDAP"
-msgstr "Szükséges az LDAP támogatáshoz"
 
 msgid "Close the web browser, and try again."
 msgstr "Zárja be böngészőjét, majd próbálja újra."

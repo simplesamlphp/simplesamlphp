@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Nõutav LDAP-ile"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Testi seadistatud autentimisallikaid"
 
@@ -162,9 +159,6 @@ msgstr "Teave SimpleSAMLphp kohta"
 
 msgid "Retry login"
 msgstr "Proovi uuesti logida"
-
-msgid "Required for LDAP"
-msgstr "Nõutav LDAP-ile"
 
 msgid "Close the web browser, and try again."
 msgstr "Sulge brauser ja proovi uuesti."

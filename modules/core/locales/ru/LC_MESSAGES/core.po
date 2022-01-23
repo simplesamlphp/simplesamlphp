@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "Обязательный для LDAP"
-
 msgid "{core:frontpage:warnings_secretsalt}"
 msgstr ""
 "<strong>Конфигурация использует секретную соль по-умолчанию</strong> - "
@@ -172,9 +169,6 @@ msgstr "О SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Повторить попытку входа"
-
-msgid "Required for LDAP"
-msgstr "Обязательный для LDAP"
 
 msgid "Close the web browser, and try again."
 msgstr "Закрыть веб браузер и попробовать снова."

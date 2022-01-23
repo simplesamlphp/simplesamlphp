@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_ldap}"
-msgstr "LDAP için gerekli"
-
 msgid "{core:frontpage:authtest}"
 msgstr "Düzenlenmiş kimlik doğrulama kaynaklarını test et"
 
@@ -152,9 +149,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "SimpleSAMLphp hakkında"
-
-msgid "Required for LDAP"
-msgstr "LDAP için gerekli"
 
 msgid "Federation"
 msgstr "Federasyon"
