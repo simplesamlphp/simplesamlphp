@@ -274,7 +274,7 @@ class Config
         // check object-oriented external libraries and extensions
         $libs = [
             [
-                'classes' => ['\Predis\Predis'],
+                'classes' => ['\Predis\Client'],
                 'required' => $store === 'redis' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('predis/predis (required if the redis data store is used)'),
