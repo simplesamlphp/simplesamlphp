@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f99626478bef98f7c3d984ba550237a",
+    "content-hash": "1bb688da676c19d233b6e66fc7f79a31",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -607,16 +607,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.3.1",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "809265e4ff7e1dc39df115828ffddfb486a3199e"
+                "reference": "f3b13417deb45f882f676108c250143f994eb2a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/809265e4ff7e1dc39df115828ffddfb486a3199e",
-                "reference": "809265e4ff7e1dc39df115828ffddfb486a3199e",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/f3b13417deb45f882f676108c250143f994eb2a4",
+                "reference": "f3b13417deb45f882f676108c250143f994eb2a4",
                 "shasum": ""
             },
             "require": {
@@ -659,22 +659,22 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.3.1"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.4.0"
             },
-            "time": "2022-01-18T12:30:27+00:00"
+            "time": "2022-01-20T17:38:13+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "ea91184efbba36b0b76fe4dbe38b8eca02edc699"
+                "reference": "fe810201312684adb62b5dfcb0bbb1b16f66abcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/ea91184efbba36b0b76fe4dbe38b8eca02edc699",
-                "reference": "ea91184efbba36b0b76fe4dbe38b8eca02edc699",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/fe810201312684adb62b5dfcb0bbb1b16f66abcb",
+                "reference": "fe810201312684adb62b5dfcb0bbb1b16f66abcb",
                 "shasum": ""
             },
             "require": {
@@ -711,7 +711,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2022-01-17T21:22:48+00:00"
+            "time": "2022-01-17T22:25:52+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authcrypt",
@@ -4959,16 +4959,16 @@
         },
         {
             "name": "composer/package-versions-deprecated",
-            "version": "1.11.99.4",
+            "version": "1.11.99.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/package-versions-deprecated.git",
-                "reference": "b174585d1fe49ceed21928a945138948cb394600"
+                "reference": "b4f54f74ef3453349c24a845d22392cd31e65f1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/b174585d1fe49ceed21928a945138948cb394600",
-                "reference": "b174585d1fe49ceed21928a945138948cb394600",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/b4f54f74ef3453349c24a845d22392cd31e65f1d",
+                "reference": "b4f54f74ef3453349c24a845d22392cd31e65f1d",
                 "shasum": ""
             },
             "require": {
@@ -5012,7 +5012,7 @@
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
             "support": {
                 "issues": "https://github.com/composer/package-versions-deprecated/issues",
-                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.4"
+                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.5"
             },
             "funding": [
                 {
@@ -5028,7 +5028,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T08:41:34+00:00"
+            "time": "2022-01-17T14:14:24+00:00"
         },
         {
             "name": "composer/semver",

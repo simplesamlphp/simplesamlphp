@@ -8,10 +8,11 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.5
 
-Released TBD
+Released 24-01-2021
 
   * Fix composer-file to prevent warnings
   * Fix database persistency (#1555)
+  * Dropped dependency on jquery-ui and selectize
 
 ### adfs
   * Bump the module version to the 1.0.x branch;  the 0.9 branch only works with versions before 1.19
