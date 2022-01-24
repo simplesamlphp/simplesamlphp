@@ -206,7 +206,7 @@ abstract class Source
     /**
      * Register a logout callback to be called after the consumer of this authentication source is logged out.
      *
-     * @param $callback Callback structure ([CLASS_NAME, STATIC_FUNCTION_NAME]).
+     * @param callable $callback Callback structure ([CLASS_NAME, STATIC_FUNCTION_NAME]).
      *        Static function has to have following signature: ($param1, ..., $paramN, string $returnUrl) with
      *        $param1-N being members of $params.
      *        If callback does not return directly (i.e. redirect) it has to make sure that $returnUrl is called after
@@ -214,10 +214,7 @@ abstract class Source
      * @param array $params Arbitrary parameters.
      * @throws \Exception
      */
-    public function registerAsConsumerLogoutCallback($callback, $params = []) {
-        assert(is_callable($callback));
-        assert(is_array($params));
-
+    public function registerAsConsumerLogoutCallback(callable $callback, array $params = []): void {
         $session = Session::getSessionFromRequest();
 
         $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
@@ -261,10 +258,8 @@ abstract class Source
      * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect. Make sure to include the id parameter to recover state after processing.
      * @throws \Exception
      */
-    public function callAsConsumerLogoutCallbacks(string $returnToUrl)
+    public function callAsConsumerLogoutCallbacks(string $returnToUrl): void
     {
-        assert(is_string($returnToUrl));
-
         $state = [];
         $state['asConsumerLogoutCallbacks:returnTo'] = $returnToUrl;
         $state['asConsumerLogoutCallbacks:authId'] = $this->getAuthId();
@@ -276,12 +271,11 @@ abstract class Source
     /**
      * Handle authentication source consumer logout callbacks.
      *
-     * @param $state
+     * @param array $state
      * @throws \Exception
      */
-    public static function handleAsConsumerLogoutCallbacks($state)
+    public static function handleAsConsumerLogoutCallbacks(array $state): void
     {
-        assert(is_array($state));
         assert(array_key_exists('asConsumerLogoutCallbacks:returnTo', $state));
         assert(array_key_exists('asConsumerLogoutCallbacks:authId', $state));
 

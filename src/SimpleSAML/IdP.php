@@ -419,12 +419,16 @@ class IdP
         }
     }
 
-
+    /**
+     * Callback function to be called when proxy mode logout (e.g. from an SP) is triggered.
+     *
+     * @param string $idpId The IdP entity id to be logged out.
+     * @param string $returnToUrl The URL to which the code should return to once it has finished processing.
+     * @return void
+     * @throws \Exception
+     */
     public static function asConsumerLogoutCallback(string $idpId, string $returnToUrl): void
     {
-        assert(is_string($idpId));
-        assert(is_string($returnToUrl));
-
         // Get active associations for this IdP
         $session = Session::getSessionFromRequest();
         $activeAssociations = $session->getAssociations($idpId);
