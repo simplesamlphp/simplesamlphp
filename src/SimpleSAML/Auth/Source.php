@@ -285,16 +285,16 @@ abstract class Source
             $id = State::saveState($state, 'asConsumerLogoutCallbacks:resume');
             $returnToUrl = Module::getModuleURL('core/source/as_logout_resume.php', ['id' => $id]);
 
-            foreach ($callbacks as $cb) { // FIXME: use loop variable or get rid of it!
+            while (sizeof($callbacks) > 0) {
                 $callback = array_shift($callbacks);
 
-                $cb = $callback[0];
+                $callbackFn = $callback[0];
                 $params = $callback[1];
                 $params[] = $returnToUrl; // append returnToUrl to params to get back to this handler after logout callback completes
 
                 // save remaining callbacks
                 $session->setData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId, $callbacks);
-                call_user_func_array($cb, $params);
+                call_user_func_array($callbackFn, $params);
             }
         }
 
