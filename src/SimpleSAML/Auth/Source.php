@@ -243,9 +243,6 @@ abstract class Source
     {
         $session = Session::getSessionFromRequest();
         $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
-        if ($callbacks === null) {
-            return false;
-        }
 
         return !empty($callbacks);
     }
