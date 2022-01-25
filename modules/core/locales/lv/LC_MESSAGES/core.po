@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_overview}"
-msgstr "Metadatu pārskats Jūsu instalācijā. Diagnosticēt metadatu failus"
-
 msgid "{core:frontpage:configuration}"
 msgstr "Konfigurācija"
 
@@ -133,9 +130,6 @@ msgstr "Laipni lūdzam"
 
 msgid "SimpleSAMLphp configuration check"
 msgstr "SimpleSAMLphp konfigurācijas pārbaude"
-
-msgid "Metadata overview for your installation. Diagnose your metadata files"
-msgstr "Metadatu pārskats Jūsu instalācijā. Diagnosticēt metadatu failus"
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML uz SimpleSAMLphp metadatu konvertors"

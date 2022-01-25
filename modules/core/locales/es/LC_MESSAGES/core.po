@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_meta_overview}"
-msgstr ""
-"Vista general de los metadatos de tu instalación. Comprueba tus ficheros "
-"de metadatos"
-
 msgid "{core:frontpage:configuration}"
 msgstr "Configuración"
 
@@ -147,11 +142,6 @@ msgstr "Bienvenido"
 
 msgid "SimpleSAMLphp configuration check"
 msgstr "Comprobación de la configuración de SimpleSAMLphp"
-
-msgid "Metadata overview for your installation. Diagnose your metadata files"
-msgstr ""
-"Vista general de los metadatos de tu instalación. Comprueba tus ficheros "
-"de metadatos"
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Conversor de XML a metadatos de SimpleSAMLphp"
