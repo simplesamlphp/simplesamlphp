@@ -30,7 +30,7 @@ msgid "You are running version <kbd>%version%</kbd>."
 msgstr ""
 
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 msgid "Checking your PHP installation"
 msgstr ""

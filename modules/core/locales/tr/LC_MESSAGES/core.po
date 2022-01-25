@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:configuration}"
-msgstr "Konfigurasyon"
-
 msgid "{core:frontpage:welcome}"
 msgstr "Hoşgeldiniz"
 
@@ -221,9 +218,6 @@ msgstr "PHP kurulumunuz kontrol ediliyor"
 
 msgid "Useful links for your installation"
 msgstr "Kurulumunuz için faydalı linkler"
-
-msgid "Configuration"
-msgstr "Konfigurasyon"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

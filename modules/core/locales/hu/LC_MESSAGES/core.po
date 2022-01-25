@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:configuration}"
-msgstr "Beállítások"
-
 msgid "{core:frontpage:welcome}"
 msgstr "Üdvözöljük"
 
@@ -320,9 +317,6 @@ msgstr ""
 
 msgid "Useful links for your installation"
 msgstr "Hasznos linkek"
-
-msgid "Configuration"
-msgstr "Beállítások"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""
