@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Konfiguruj Shibboleth 1.3 SP do współpracy z SimpleSAMLphp IdP"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadane"
 
@@ -135,9 +132,6 @@ msgstr "Federacja"
 
 msgid "Delete my choices of IdP in the IdP discovery services"
 msgstr "Usuń mój wybór domyślnych IdP w Discovery Services"
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Konfiguruj Shibboleth 1.3 SP do współpracy z SimpleSAMLphp IdP"
 
 msgid "Tools"
 msgstr "Narzędzia"

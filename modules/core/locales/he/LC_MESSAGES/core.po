@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "הגדר ס\"ש מסוג Shibboleth 1.3 כך שיעבוד עם ס\"ז של SimpleSAMLphp"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "מטא-נתונים"
 
@@ -158,9 +155,6 @@ msgid ""
 "This is most likely a configuration problem on either the service "
 "provider or identity provider."
 msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "הגדר ס\"ש מסוג Shibboleth 1.3 כך שיעבוד עם ס\"ז של SimpleSAMLphp"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "שימוש בכפתורי הבא והקודם בדפדפן."

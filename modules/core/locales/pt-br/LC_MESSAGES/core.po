@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Configurando o Shibboleth 1.3 SP para trabalhar com o SimpleSAMLphp Idp"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadata"
 
@@ -150,9 +147,6 @@ msgid ""
 msgstr ""
 "Isso é possivelmente um problema de configuração do provedor de serviços "
 "ou do provedor de identidade."
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Configurando o Shibboleth 1.3 SP para trabalhar com o SimpleSAMLphp Idp"
 
 msgid "Tools"
 msgstr "Ferramentas"

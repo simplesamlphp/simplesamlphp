@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Shibboleth 1.3 SP'yi SimpleSAMLphp IdP ile çalışması için düzenle"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Üstveri (Metadata)"
 
@@ -136,9 +133,6 @@ msgstr "Federasyon"
 
 msgid "Delete my choices of IdP in the IdP discovery services"
 msgstr "IdP tanıtım servisleri arasındaki IdP seçimlerimi sil"
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Shibboleth 1.3 SP'yi SimpleSAMLphp IdP ile çalışması için düzenle"
 
 msgid "Tools"
 msgstr "Araçlar"

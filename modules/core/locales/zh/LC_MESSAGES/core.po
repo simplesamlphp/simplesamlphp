@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "配置Shibboleth 1.3 SP以便和SimpleSAMLphp IdP协同工作"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "元信息"
 
@@ -152,9 +149,6 @@ msgid ""
 "This is most likely a configuration problem on either the service "
 "provider or identity provider."
 msgstr "这可能是服务提供者或者身份提供者的配置问题"
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "配置Shibboleth 1.3 SP以便和SimpleSAMLphp IdP协同工作"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "使用浏览器中的前进后退按钮"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Configurar um SP Shibboleth 1.3 para funcionar com um IdP SimpleSAMLphp"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metadados"
 
@@ -138,9 +135,6 @@ msgstr "Federação"
 
 msgid "Delete my choices of IdP in the IdP discovery services"
 msgstr "Remover as minhas escolhas de IdP nos serviços de descoberta de IdP"
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Configurar um SP Shibboleth 1.3 para funcionar com um IdP SimpleSAMLphp"
 
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"

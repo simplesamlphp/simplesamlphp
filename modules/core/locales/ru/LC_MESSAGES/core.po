@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Сконфигурировать Shibboleth 1.3 SP для работы с SimpleSAMLphp IdP"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Метаданные"
 
@@ -165,9 +162,6 @@ msgid ""
 msgstr ""
 "Скорее всего, это проблема конфигурации поставщика услуг или провайдера "
 "подлинности."
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Сконфигурировать Shibboleth 1.3 SP для работы с SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."

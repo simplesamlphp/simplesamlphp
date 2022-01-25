@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr ""
-"Ρυθμίσεις Παρόχου Υπηρεσιών Shibboleth 1.3 Shibboleth 1.3 για συμβατότητα"
-" με Πάροχο Ταυτότητας SimpleSAMLphp"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Μεταδεδομένα"
 
@@ -173,11 +168,6 @@ msgid ""
 msgstr ""
 "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών "
 "είτε του παρόχου ταυτότητας."
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr ""
-"Ρυθμίσεις Παρόχου Υπηρεσιών Shibboleth 1.3 Shibboleth 1.3 για συμβατότητα"
-" με Πάροχο Ταυτότητας SimpleSAMLphp"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."

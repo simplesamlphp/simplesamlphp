@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_shibsp}"
-msgstr "Shibboleth 1.3 SP konfigūravimas darbui su SimpleSAMLphp IdP"
-
 msgid "{core:frontpage:metadata_header}"
 msgstr "Metaduomenys"
 
@@ -168,9 +165,6 @@ msgid ""
 msgstr ""
 "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių"
 " teikėjo pusėje."
-
-msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
-msgstr "Shibboleth 1.3 SP konfigūravimas darbui su SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
