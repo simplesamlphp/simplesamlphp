@@ -11,7 +11,7 @@ See the upgrade notes for specific information about upgrading.
 Released 24-01-2021
 
   * Fix composer-file to prevent warnings
-  * Fix database persistency (#1555)
+  * Fix database persistence (#1555)
   * Dropped dependency on jquery-ui and selectize
 
 ### adfs
@@ -54,7 +54,7 @@ Released 2021-10-27
   * Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
   * Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
   * Fix unsolicited response with no RelayState (#1473)
-  * Fix statistics being logged despire a configured loglevel that excludes statistics.
+  * Fix statistics being logged despite a configured loglevel that excludes statistics.
   * Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
   * Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
   * Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
@@ -67,7 +67,7 @@ Released 2021-10-27
   * Fix displayed metadata for hosted entities differing from actual metadata.
 
 ### consent
-  * Add posibility to set the sameSite flag on cookies set by this module (v0.9.7)
+  * Add possibility to set the sameSite flag on cookies set by this module (v0.9.7)
 
 ### discopower
   * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
@@ -80,7 +80,6 @@ Released 2021-10-27
 
 ### sqlauth
   * Fixed a bug that rendered the module useless due to missing use-statements.
-
 
 ## Version 1.19.1
 
