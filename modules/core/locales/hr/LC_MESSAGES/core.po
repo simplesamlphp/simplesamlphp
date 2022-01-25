@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Isprobajte iskonfigurirane autentifikacijske servise"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Pregled metapodataka o vašoj instalaciji. Provjerite ispravnost sadržaja "
@@ -218,9 +215,6 @@ msgstr ""
 
 msgid "Tools"
 msgstr "Alati"
-
-msgid "Test configured authentication sources "
-msgstr "Isprobajte iskonfigurirane autentifikacijske servise"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

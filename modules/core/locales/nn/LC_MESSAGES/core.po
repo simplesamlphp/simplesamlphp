@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Autentiseringskjelder sett opp for testing"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene "
@@ -204,9 +201,6 @@ msgstr "Starte nettlesaren med faner lagret fra forrige gong."
 
 msgid "Tools"
 msgstr "Verktøy"
-
-msgid "Test configured authentication sources "
-msgstr "Autentiseringskjelder sett opp for testing"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

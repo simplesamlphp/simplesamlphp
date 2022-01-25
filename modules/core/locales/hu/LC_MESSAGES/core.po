@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Azonosítási (autentikációs) beállítások tesztelése"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "Metaadat áttekintés. Vizsgálja át metaadat állományait"
 
@@ -199,9 +196,6 @@ msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
 
 msgid "Tools"
 msgstr "Eszközök"
-
-msgid "Test configured authentication sources "
-msgstr "Azonosítási (autentikációs) beállítások tesztelése"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

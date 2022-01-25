@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Tester les sources d'authentification configurées"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Aperçu des métadonnées de votre installation. Diagnostic de vos fichiers "
@@ -207,9 +204,6 @@ msgstr ""
 
 msgid "Tools"
 msgstr "Outils"
-
-msgid "Test configured authentication sources "
-msgstr "Tester les sources d'authentification configurées"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

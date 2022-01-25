@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Memerika sumber autentifikasi yang telah dikonfigurasi"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "Ringkasan Metadata dari instalasi Anda. Memeriksa file metadata Anda"
 
@@ -206,9 +203,6 @@ msgstr ""
 
 msgid "Tools"
 msgstr "Peralatan"
-
-msgid "Test configured authentication sources "
-msgstr "Memerika sumber autentifikasi yang telah dikonfigurasi"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

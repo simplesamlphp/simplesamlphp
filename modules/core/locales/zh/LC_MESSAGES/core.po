@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "测试已经配置的认证源"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "元信息概览，诊断你的元信息文件"
 
@@ -185,9 +182,6 @@ msgstr "从先前的session保存的选项卡打开Web浏览器"
 
 msgid "Tools"
 msgstr "工具"
-
-msgid "Test configured authentication sources "
-msgstr "测试已经配置的认证源"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

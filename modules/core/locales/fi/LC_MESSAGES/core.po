@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Testaa määritettyjä tunnistuslähteitä"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "Asennuksesi metadatan yleiskataus. Tarkasta metadatatiedostojasi"
 
@@ -160,9 +157,6 @@ msgstr "Puuttuva eväste"
 
 msgid "Tools"
 msgstr "Työkalut"
-
-msgid "Test configured authentication sources "
-msgstr "Testaa määritettyjä tunnistuslähteitä"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

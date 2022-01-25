@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Testuoti nustatytus autentifikavimo šaltinius"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "Diegimo metaduomenų peržiūra. Galite analizuoti savo metaduomenis"
 
@@ -203,9 +200,6 @@ msgstr ""
 
 msgid "Tools"
 msgstr "Įrankiai"
-
-msgid "Test configured authentication sources "
-msgstr "Testuoti nustatytus autentifikavimo šaltinius"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

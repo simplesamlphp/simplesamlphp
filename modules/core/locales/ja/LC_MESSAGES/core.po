@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "設定されている認証元をテスト"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "メタデータの概要。メタデータファイルを診断します。"
 
@@ -189,9 +186,6 @@ msgstr "ブラウザに保存されたタブにより、以前のセッション
 
 msgid "Tools"
 msgstr "ツール"
-
-msgid "Test configured authentication sources "
-msgstr "設定されている認証元をテスト"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

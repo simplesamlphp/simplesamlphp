@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "測試設定好的認證來源"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "您安裝的詮釋資料概觀。診斷您的詮釋資料檔案"
 
@@ -190,9 +187,6 @@ msgstr "您使用網頁瀏覽器儲存標籤開啟了上一次的連線。"
 
 msgid "Tools"
 msgstr "工具"
-
-msgid "Test configured authentication sources "
-msgstr "測試設定好的認證來源"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

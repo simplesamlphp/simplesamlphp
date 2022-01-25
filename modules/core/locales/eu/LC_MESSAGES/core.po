@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Frogatu kautotzeko jada konfiguratuak dauden iturriak"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Zure instalazioko metadatuen ikuspegi orokorra. Egiaztatu zure metadatu "
@@ -206,9 +203,6 @@ msgstr "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duz
 
 msgid "Tools"
 msgstr "Tresnak"
-
-msgid "Test configured authentication sources "
-msgstr "Frogatu kautotzeko jada konfiguratuak dauden iturriak"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

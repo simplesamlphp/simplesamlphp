@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "اختبر ترتيب مصادر التوثيق"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr "منظر بياناتك الوصفية/الميتاداتا. شخص/ عالج ملفات الميتاداتا خاصتك"
 
@@ -187,9 +184,6 @@ msgstr "فتح متصفحك مستخدما معلومات محفوظة من ال
 
 msgid "Tools"
 msgstr "الأدوات "
-
-msgid "Test configured authentication sources "
-msgstr "اختبر ترتيب مصادر التوثيق"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

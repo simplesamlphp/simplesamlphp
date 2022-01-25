@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Düzenlenmiş kimlik doğrulama kaynaklarını test et"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Kurulumunuz için üstveri (metadata) bilgisi. Üstveri dosyalarınızı "
@@ -161,9 +158,6 @@ msgstr "Shibboleth 1.3 SP'yi SimpleSAMLphp IdP ile çalışması için düzenle"
 
 msgid "Tools"
 msgstr "Araçlar"
-
-msgid "Test configured authentication sources "
-msgstr "Düzenlenmiş kimlik doğrulama kaynaklarını test et"
 
 msgid ""
 "<strong>Congratulations</strong>, you have successfully installed "

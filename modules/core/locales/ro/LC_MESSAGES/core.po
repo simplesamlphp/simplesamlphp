@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:authtest}"
-msgstr "Surse de autentificare configurate pentru teste"
-
 msgid "{core:frontpage:link_meta_overview}"
 msgstr ""
 "Privire de ansamblu a metadatelor pentru instalarea dumneavoastră. "
@@ -214,9 +211,6 @@ msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
 
 msgid "Tools"
 msgstr "Unelte"
-
-msgid "Test configured authentication sources "
-msgstr "Surse de autentificare configurate pentru teste"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
