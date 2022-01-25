@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:welcome}"
-msgstr "ברוך-הבא"
-
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "הגדר ס\"ש מסוג Shibboleth 1.3 כך שיעבוד עם ס\"ז של SimpleSAMLphp"
 

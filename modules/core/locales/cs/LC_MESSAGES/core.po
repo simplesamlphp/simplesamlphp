@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:welcome}"
-msgstr "Vítejte"
-
 msgid "{core:frontpage:link_doc_shibsp}"
 msgstr "Konfigurace Shibboleth 1.3 SP pro práci s SimpleSAMLphp IdP"
 
