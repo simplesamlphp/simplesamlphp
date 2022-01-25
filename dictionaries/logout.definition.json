@@ -42,7 +42,7 @@
 		"en": "No, only %SP%"
 	},
 	"incapablesps": {
-		"en": "One or more of the services you are logged into <i>do not support logout<\/i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser<\/i>."
+		"en": "One or more of the services you are logged into <i>do not support logout<\/i>. To ensure that all your sessions are closed, you are encouraged to <i>close your web browser<\/i>."
 	},
 	"no": {
 		"en": "No"
@@ -51,6 +51,6 @@
 		"en": "Logging out of the following services:"
 	},
 	"failedsps": {
-		"en": "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser<\/i>."
+		"en": "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your web browser<\/i>."
 	}
 }
