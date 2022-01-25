@@ -214,7 +214,8 @@ abstract class Source
      * @param array $params Arbitrary parameters.
      * @throws \Exception
      */
-    public function registerAsConsumerLogoutCallback(callable $callback, array $params = []): void {
+    public function registerAsConsumerLogoutCallback(callable $callback, array $params = []): void
+    {
         $session = Session::getSessionFromRequest();
 
         $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
@@ -252,7 +253,8 @@ abstract class Source
      * Calls all registered logout callbacks for consumers of this source.
      * This function might not return directly, so a $returnToUrl has to be specified.
      *
-     * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect. Make sure to include the id parameter to recover state after processing.
+     * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect.
+     *   Make sure to include the id parameter to recover state after processing.
      * @throws \Exception
      */
     public function callAsConsumerLogoutCallbacks(string $returnToUrl): void
