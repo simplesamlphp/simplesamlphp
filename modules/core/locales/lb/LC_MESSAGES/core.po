@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_maintenance}"
-msgstr "SimpleSAMLphp Maintenance an Konfiguratioun"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Warnungen"
 
@@ -114,9 +111,6 @@ msgstr ""
 
 msgid "Metadata"
 msgstr "Meta Données"
-
-msgid "SimpleSAMLphp Maintenance and Configuration"
-msgstr "SimpleSAMLphp Maintenance an Konfiguratioun"
 
 msgid "Using SimpleSAMLphp as an Identity Provider"
 msgstr "SimpleSAMLphp als Identity Provider benotzen"

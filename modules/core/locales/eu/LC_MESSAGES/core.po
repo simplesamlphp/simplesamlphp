@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_maintenance}"
-msgstr "SimpleSAMLphp-en mantentzea eta konfigurazioa"
-
 msgid "{core:frontpage:link_configcheck}"
 msgstr "SimpleSAMLphp-en konfigurazioa egiaztatzea"
 
@@ -214,9 +211,6 @@ msgstr "Metadatuak"
 
 msgid "Retry"
 msgstr "Saiatu berriro"
-
-msgid "SimpleSAMLphp Maintenance and Configuration"
-msgstr "SimpleSAMLphp-en mantentzea eta konfigurazioa"
 
 msgid ""
 "If you are an user who received this error after following a link on a "
