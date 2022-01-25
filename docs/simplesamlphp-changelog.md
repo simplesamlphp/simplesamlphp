@@ -224,7 +224,7 @@ Released 2019-11-20
 
 ### consentAdmin
 
-  * Fixed an issue with CSS and Javascript not loading for the module in the new user
+  * Fixed an issue with CSS and JavaScript not loading for the module in the new user
     interface.
 
 ## Version 1.17.7
@@ -335,10 +335,10 @@ Released 2019-03-07
   * The SAML2 library now uses getters/setters to manipulate objects properties.
 
 ### authfacebook
-  * Fix facebook compatibility (query parameters).
+  * Fix Facebook compatibility (query parameters).
 
 ### authorize
-  * Add the possibility to configure a custom rejecttion message.
+  * Add the possibility to configure a custom rejection message.
 
 ### consent
   * The module is now disabled by default.
@@ -435,7 +435,7 @@ Released 2018-09-06
   * New option `search.scope` for LDAP authsources.
   * Add support for the DiscoHints IPHint metadata property.
   * Add support to specify metadata XML in config with the `xml` parameter,
-    next to the exising `file` and `url` options.
+    next to the existing `file` and `url` options.
   * Also support CGI/RewriteRule setups that set the `REDIRECT_SIMPLESAMLPHP_CONFIG_DIR`
     environment variable next to regular `SIMPLESAMLPHP_CONFIG_DIR`.
   * Support creating an AuthSource via factory, for example useful in tests.
@@ -570,7 +570,7 @@ Released 2017-11-20
     It can be disabled via the new setting `admin.checkforupdates`.
   * Added a warning when there's a probable misconfiguration of PHP sessions.
   * Added ability to define additional attributes on ContactPerson elements
-    in metatada, e.g. for use in Sirtfi contacts.
+    in metadata, e.g. for use in Sirtfi contacts.
   * Added option to set a secure flag also on the language cookie.
   * Added option to specify the base URL for the application protected.
   * Added support for PHP Memcached extension next to Memcache extension.
@@ -1007,7 +1007,7 @@ Released 2014-03-24.
   * New SimpleSAML_Configuration::getEndpointPrioritizedByBinding() function.
   * PHP 5.3 or newer required.
   * Started using Composer as dependency manager.
-  * Detached the basic SAML2 library and moved to a standalone library in github.
+  * Detached the basic SAML2 library and moved to a standalone library in GitHub.
   * Added support for exporting shibmd:Scope metadata with regular expressions.
   * Remember me option in the IdP.
   * New SimpleSAML_Utilities::setCookie wrapper.
@@ -1284,10 +1284,10 @@ Released 2012-06-13.
   * A prototype for a new statistics logging core. Provides more structured logging of events, and support for multiple storage backends.
   * Support for arbitrary namespace-prefixed attributes in md:EndpointType-elements.
   * Fix invalid HTML for login pages where username is set.
-  * Remove unecessary check for PHP version >= 5.2 when setting cookies.
+  * Remove unnecessary check for PHP version >= 5.2 when setting cookies.
   * Better error message when a module is missing a default-enable or default-disable file.
   * Support for validating RSA-SHA256 signatures.
-  * Fixes for session exipration handling.
+  * Fixes for session expiration handling.
 
 ### `aselect`
 
@@ -1888,7 +1888,7 @@ Released 2009-11-05. Revision 1937.
 
   * Extended Google chart encoding... Add option of alternative compare plot in graph...
   * Added support for Ratio type reports in the statistics module..
-  * Changed default rule to sso.
+  * Changed default rule to SSO.
   * Added incremental aggregation, independent time resolution from rule def, combined coldefs and more.
   * Add DST support in date handler. Added summary columns per delimiter. Added pie chart. +++
   * Log first SSO to a service during a session.
@@ -1901,7 +1901,7 @@ Released 2009-03-12. Revision 1405.
 Updates to `config.php`. Please check for updates in your local modified configuration.
 
   * Language updates
-  * Documentation update. New authencation source API now default and documented.
+  * Documentation update. New authentication source API now default and documented.
   * New authentication source (new API):
     * LDAP
     * LDAPMulti  
@@ -1921,7 +1921,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in SimpleSAMLphp allowing you to run it locally.
   * New module: Simple Consent Amdin module that have one button to remove all consent for one user.
   * New module: Consent Administration. Contribution from Wayf.
-  * We also have a consent adminstration module that we use in Feide that is not checked in to subversion.
+  * We also have a consent administration module that we use in Feide that is not checked in to subversion.
   * New module: logpeek. Lets administrator lookup loglines matching a TRackID.
   * New module: PreprodWarning: Adding a warning to users that access a preprod system.
   * New module: CAS Server
@@ -1934,7 +1934,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Added support for IdP initiated SSO.
   * Added support for IdP-initiated SLO with iFrame type logout.
   * Major updates to iFrame AJAX SLO. Improved user experience.
-  * iFrame AJAX SLO is not safe against simulanous update of the session.
+  * iFrame AJAX SLO is not safe against simultaneous update of the session.
   * Added support for bookmarking login pages. By adding enough information in the URL to be able to bootstrap a new IdP-initiated SSO and sending.
   * Major updates to the infocard module.
   * Added some handling of isPassive with authentication processing filters.
@@ -1943,7 +1943,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Tabbed frontpage. Restructured.
   * Simplifications to the theming and updated documentation on theming SimpleSAMLphp.
   * Attribute presentation hook allows you to tweak attributes before presentation in the attribute viewers. Used by Feide to group orgUnit information in a hieararchy.
-  * Verification of the Receipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
+  * Verification of the Recipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
   * Added hook to let modules tell about themself moduleinfo hook.
   * Improved cron mails
   * Improved sanity check exception handling
@@ -1953,7 +1953,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Support limiting size of attribute retrieved from LDAP.
   * Added notes about how to aggregate and consume metadata. Just a start.
   * Large improvements to Configuration class, and config helper functions.
-  * STAT logging is moved into separate authenticaion processing filter.
+  * STAT logging is moved into separate authentication processing filter.
   * Fix for NoPassive responses to Google Apps with alternative NameIDFormats.  
   * LDAP module allows to search multiple searchbases.
   * All documentation is converted from docbook to markdown format.
@@ -1963,8 +1963,8 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Improvements to Exception handler in LDAP class, and better logging.
   * LDAP class supports turning on LDAP-debug logging.
   * Much improvements to SAML 2.0 Metadata generation and parsing.
-  * Adding more recent jquery library.
-  * Generic interface for including jquery dependencies in template headers.
+  * Adding more recent jQuery library.
+  * Generic interface for including jQuery dependencies in template headers.
   * Improved UI on default theme
   * Fix for session duration in the Conditions element in the Assertion (SAML 2.0).
   * Updated with new Feide IdP metadata in metadata-templates
@@ -1984,7 +1984,7 @@ Configuration file `config.php` should not include significant changes, except o
     dialects.
   * Consent "module" modified. Now added support for preselecting the
     checkbox by a configuration parameter. Consent module supports
-    including attributs values (possible to configure).
+    including attributes values (possible to configure).
   * CSS and look changed. Removed transparency to fix problem for some
     browsers.
   * The login-admin authentication module does not ask for username any
@@ -1999,7 +1999,7 @@ Configuration file `config.php` should not include significant changes, except o
   * Improved e-mails sent from SimpleSAMLphp. Now both plain text and
     html.
   * Configuration class may return information about what version.
-  * iFrame AJAX SLO improved. Now with non-javascript failback
+  * iFrame AJAX SLO improved. Now with non-JavaScript fallback
     handling.
 
 ### Bug fixes
@@ -2025,7 +2025,7 @@ There are also some changes to the templates. If you have any custom templates, 
   * Experimental support for modules. Currently modules can contain
     custom authentication sources, authentication processing filters
     and themes.
-  * An generic SQL autentication module added for those who store their
+  * An generic SQL authentication module added for those who store their
     users in an SQL database.
   * Limited support for validating against a CA root certificate. The
     current implementation only supports cases where the certificate is
@@ -2035,7 +2035,7 @@ There are also some changes to the templates. If you have any custom templates, 
   * Shibboleth 1.3 authentication for Auth MemCookie.
   * Support for link to privacy policy on consent-pages.
   * Customizable initial focus on consent-page.
-  * Almost all pages should be translateable.
+  * Almost all pages should be translatable.
   * Allow SAML 2.0 SP to handle error replies from IdP.
   * PostgreSQL support for consent storage.
   * Add support for encrypted private keys.
@@ -2185,7 +2185,7 @@ templates to understand the new format.
 Released 2007-09-14. Revision X.
 
   * Improved documentation
-  * Authentication plugin API. Only LDAP authenticaiton plugin is
+  * Authentication plugin API. Only LDAP authentication plugin is
     included, but it is now easier to implement your own plugin.
   * Added support for SAML 2.0 IdP to work with Google Apps for
     Education. Tested.
@@ -2194,8 +2194,8 @@ Released 2007-09-14. Revision X.
   * Added support for bridging SAML 2.0 to SAML 2.0.
   * Added some time skew offset to the NotBefore timestamp on the
     assertion, to allow some time skew between the SP and IdP.
-  * Fixed Browser/POST page to automaticly submit, and have fall back
-    functionality for user agents with no javascript support.
+  * Fixed Browser/POST page to automatically submit, and have fall back
+    functionality for user agents with no JavaScript support.
   * Fixed some bug with warning traversing Shibboleth 1.3 Assertions.
   * Fixed tabindex on the login page of the LDAP authentication module
     to allow you to tab from username, to password and then to submit.
