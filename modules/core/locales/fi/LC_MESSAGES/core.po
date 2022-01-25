@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata_header}"
-msgstr "Metadata"
-
 msgid "{core:frontpage:link_doc_maintenance}"
 msgstr "SimpleSAMLphp:n ylläpito ja asetusten määrittely"
 

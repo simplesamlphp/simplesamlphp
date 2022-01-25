@@ -45,7 +45,7 @@ msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 msgid "Copy to clipboard"
 msgstr ""
