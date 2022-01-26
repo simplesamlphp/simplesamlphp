@@ -275,11 +275,11 @@ abstract class Source
      */
     public static function handleAsConsumerLogoutCallbacks(array $state): void
     {
-        assert(array_key_exists('asConsumerLogoutCallbacks:returnTo', $state));
-        assert(array_key_exists('asConsumerLogoutCallbacks:authId', $state));
+        Assert::keyExists($state, 'asConsumerLogoutCallbacks:returnTo');
+        Assert::keyExists($state, 'asConsumerLogoutCallbacks:authId');
 
         $authId = $state['asConsumerLogoutCallbacks:authId'];
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId);
 
         if (!empty($callbacks)) {
