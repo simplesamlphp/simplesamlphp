@@ -108,7 +108,7 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
-        $this->proxyLogoutEnabled = $this->metadata->getBoolean('proxyLogoutEnable', false);
+        $this->proxyLogoutEnabled = $this->metadata->getOptionalBoolean('proxyLogoutEnable', false);
     }
 
 
