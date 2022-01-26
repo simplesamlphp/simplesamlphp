@@ -433,7 +433,11 @@ class IdP
         $session = Session::getSessionFromRequest();
         $activeAssociations = $session->getAssociations($idpId);
 
-        Logger::debug('saml:IdP - ASConsumerLogoutCallback: Active associations for ' . var_export($idpId, true) . ': ' . var_export($activeAssociations, true));
+        Logger::debug(sprintf(
+            'saml:IdP - ASConsumerLogoutCallback: Active associations for %s: %s',
+            var_export($idpId, true),
+            var_export($activeAssociations, true)
+        ));
 
         // If we still have active associations, log them out
         if (!empty($activeAssociations)) {
