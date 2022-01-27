@@ -28,8 +28,8 @@ msgstr "Select an authentication source"
 
 msgid ""
 "The selected authentication source will be used to authenticate you and "
-"and to create a valid session."
+"to create a valid session."
 msgstr ""
 "The selected authentication source will be used to authenticate you and "
-"and to create a valid session."
+"to create a valid session."
 
