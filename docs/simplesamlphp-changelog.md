@@ -10,7 +10,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Fix several translations (#1572, #1573, #1577)
+  * Fix several translations (#1572, #1573, #1577, #1578)
 
 ## Version 1.19.5
 
