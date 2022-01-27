@@ -321,7 +321,7 @@ class Simple
             $returnTo = $httpUtils->getSelfURL();
         }
 
-        $login = Module::getModuleURL('core/as_login.php', [
+        $login = Module::getModuleURL('core/login/' . urlencode($this->authSource, [
             'AuthId'   => $this->authSource,
             'ReturnTo' => $returnTo,
         ]);
