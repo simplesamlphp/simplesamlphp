@@ -197,17 +197,28 @@ class Session implements \Serializable, Utils\ClearableState
         self::$config = $config;
     }
 
-
     /**
      * Serialize this session object.
      *
      * This method will be invoked by any calls to serialize().
      *
      * @return string The serialized representation of this session object.
+     * @deprecated This method will be removed in SSP 2.0.
      */
-    public function serialize()
+    public function serialize() {
+        return serialize($this->__serialize());
+    }
+
+    /**
+     * Serialize this session object.
+     *
+     * This method will be invoked by any calls to serialize().
+     *
+     * @return array The serialized representation of this session object.
+     */
+    public function __serialize()
     {
-        return serialize(get_object_vars($this));
+        return get_object_vars($this);
     }
 
     /**
@@ -217,14 +228,25 @@ class Session implements \Serializable, Utils\ClearableState
      * be serializable in its original form (e.g.: DOM objects).
      *
      * @param string $serialized The serialized representation of a session that we want to restore.
+     * @deprecated This method will be removed in SSP 2.0.
      */
     public function unserialize($serialized)
     {
-        $session = unserialize($serialized);
-        if (is_array($session)) {
-            foreach ($session as $k => $v) {
-                $this->$k = $v;
-            }
+        $this->__unserialize(unserialize($serialized));
+    }
+
+    /**
+     * Unserialize a session object and load it..
+     *
+     * This method will be invoked by any calls to unserialize(), allowing us to restore any data that might not
+     * be serializable in its original form (e.g.: DOM objects).
+     *
+     * @param array $session The session that we want to restore.
+     */
+    public function __unserialize($session)
+    {
+        foreach ($session as $k => $v) {
+            $this->$k = $v;
         }
         self::$config = Configuration::getInstance();
 
