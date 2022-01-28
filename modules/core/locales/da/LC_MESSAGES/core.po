@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp installationsside"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Advarsler"
 
@@ -232,9 +229,6 @@ msgstr ""
 
 msgid "Authentication"
 msgstr "Autentificering"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp installationsside"
 
 msgid "Show metadata"
 msgstr "Vis metadata"

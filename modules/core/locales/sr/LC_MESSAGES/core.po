@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp instalaciona stranica"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Upozorenja"
 
@@ -246,9 +243,6 @@ msgstr ""
 
 msgid "Authentication"
 msgstr "Autentifikacija"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp instalaciona stranica"
 
 msgid "Show metadata"
 msgstr "Prikaži metapodatke"

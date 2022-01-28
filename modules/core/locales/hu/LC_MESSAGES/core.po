@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp adminisztrációs felület"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Figyelmeztetések"
 
@@ -237,9 +234,6 @@ msgstr ""
 
 msgid "Authentication"
 msgstr "Azonosítás (autentikáció)"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp adminisztrációs felület"
 
 msgid "Show metadata"
 msgstr "Mutasd a metaadatokat"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp diegimo puslapis"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Įspėjimai"
 
@@ -244,9 +241,6 @@ msgstr ""
 
 msgid "Authentication"
 msgstr "Autentifikavimas"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp diegimo puslapis"
 
 msgid "Show metadata"
 msgstr "Parodyti metaduomenis"

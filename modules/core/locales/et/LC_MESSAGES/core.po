@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp paigalduslehekülg"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Hoiatused"
 
@@ -232,9 +229,6 @@ msgstr "Shibboleth 1.3 SP näide - sisselogimine sinu Shib IdP kaudu"
 
 msgid "Authentication"
 msgstr "Autentimine"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp paigalduslehekülg"
 
 msgid "Show metadata"
 msgstr "Näita metaandmeid"

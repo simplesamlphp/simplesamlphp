@@ -21,7 +21,7 @@ msgid "Deprecated"
 msgstr "Deprecated"
 
 msgid "SimpleSAMLphp installation page"
-msgstr ""
+msgstr "SimpleSAMLphp installation page"
 
 msgid "SimpleSAMLphp is installed in:"
 msgstr ""

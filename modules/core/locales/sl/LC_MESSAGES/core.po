@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "Namestitvena stran SimpleSAMLphp"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Opozorila"
 
@@ -234,9 +231,6 @@ msgstr "Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP"
 
 msgid "Authentication"
 msgstr "Avtentikacija"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "Namestitvena stran SimpleSAMLphp"
 
 msgid "Show metadata"
 msgstr "Prikaži metapodatke"

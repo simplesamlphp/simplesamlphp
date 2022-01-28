@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "SimpleSAMLphp instalācijas lapa"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Brīdinājumi"
 
@@ -229,9 +226,6 @@ msgstr "Shibboleth 1.3 SP piemērs - testa pieslēgšanās caur Jūsu Shib IDP"
 
 msgid "Authentication"
 msgstr "Autentifikācija"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp instalācijas lapa"
 
 msgid "Show metadata"
 msgstr "Rādīt metadatus"

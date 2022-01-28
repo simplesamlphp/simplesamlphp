@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:page_title}"
-msgstr "صفحة تركيب SimpleSAMLphp"
-
 msgid "{core:frontpage:warnings}"
 msgstr "تحذير"
 
@@ -221,9 +218,6 @@ msgstr "مثال Shibboleth 1.3 SP- اختبر تسجيل الدخول مستخ�
 
 msgid "Authentication"
 msgstr " التوثيق"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "صفحة تركيب SimpleSAMLphp"
 
 msgid "Show metadata"
 msgstr "اظهر البيانات الوصفية/ الميتاداتا"
