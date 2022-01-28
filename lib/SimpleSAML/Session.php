@@ -222,7 +222,7 @@ class Session implements Serializable, Utils\ClearableState
      *
      * Cannot typehint param as string due to upstream restrictions
      */
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
         $session = unserialize($serialized);
         if (is_array($session)) {
