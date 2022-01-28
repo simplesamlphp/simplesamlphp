@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_configcheck}"
-msgstr "Sjekk av SimpleSAMLphp konfigurasjonsfiler"
-
 msgid "{core:frontpage:page_title}"
 msgstr "SimpleSAMLphp installasjonsside"
 
@@ -114,9 +111,6 @@ msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratoren
 
 msgid "Welcome"
 msgstr "Velkommen"
-
-msgid "SimpleSAMLphp configuration check"
-msgstr "Sjekk av SimpleSAMLphp konfigurasjonsfiler"
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML til SimpleSAMLphp metadata-oversetter"

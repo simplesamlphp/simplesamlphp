@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_configcheck}"
-msgstr "בדיקת הגדרות SimpleSAMLphp "
-
 msgid "{core:frontpage:page_title}"
 msgstr "דף ההתקנה של SimpleSAMLphp"
 
@@ -111,9 +108,6 @@ msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למ
 
 msgid "Welcome"
 msgstr "ברוך-הבא"
-
-msgid "SimpleSAMLphp configuration check"
-msgstr "בדיקת הגדרות SimpleSAMLphp "
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "ממיר XML למטא-מידע של SimpleSAMLphp"

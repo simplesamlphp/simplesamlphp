@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_configcheck}"
-msgstr "SimpleSAMLphp asetusten tarkastus"
-
 msgid "{core:frontpage:warnings}"
 msgstr "Varoituksia"
 
@@ -97,9 +94,6 @@ msgstr "Olet kirjautunut ylläpitäjänä"
 
 msgid "Welcome"
 msgstr "Tervetuloa"
-
-msgid "SimpleSAMLphp configuration check"
-msgstr "SimpleSAMLphp asetusten tarkastus"
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML:stä SimpleSAMLphp metadata:aan kääntäjä"
