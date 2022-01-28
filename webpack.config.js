@@ -83,7 +83,7 @@ module.exports = environment => {
             new CopyWebpackPlugin({
                 patterns: [
                     {
-                        from: path.resolve(__dirname + '/node_modules/\@fortawesome/fontawesome-free/webfonts/*'),
+                        from: path.resolve(__dirname + '/node_modules/\@fortawesome/fontawesome-free/webfonts/fa-solid*'),
                         to: 'fonts/[name][ext]'
                     }
                 ]
