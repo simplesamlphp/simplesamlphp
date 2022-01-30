@@ -40,12 +40,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Diperlukan"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"Panjang parameter quert dibatasi oleh ekstensi Suhosin PHP. Tolong "
-"tingkatkan opsi suhosin.get.max_value_length setidaknya menjadi 2048 "
-"byte. "
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Anda tidak menggunakan HTTPS</strong> - komunikasi yang "
@@ -276,15 +270,6 @@ msgstr "Interval yang terlalu pendek antara event single sign on."
 
 msgid "Checking your PHP installation"
 msgstr "Memerika instalasi PHP Anda"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"Panjang parameter quert dibatasi oleh ekstensi Suhosin PHP. Tolong "
-"tingkatkan opsi suhosin.get.max_value_length setidaknya menjadi 2048 "
-"byte. "
 
 msgid "Useful links for your installation"
 msgstr "Link-Link yang bermanfaat untuk membantu proses instalasi Anda"

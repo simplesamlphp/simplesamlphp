@@ -47,12 +47,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Necesario"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"El número de parámetros de la petición está limitado por la extensión "
-"Suhosin de PHP. Por favor, incremente el valor de la opción "
-"suhosin.get.max_value_length a al menos 2048 bytes."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>No está usando HTTPS</strong> - comunicaciones cifradas con el "
@@ -289,15 +283,6 @@ msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
 
 msgid "Checking your PHP installation"
 msgstr "Verificaci&oacute;n de su instalaci&oacute;n de PHP"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"El número de parámetros de la petición está limitado por la extensión "
-"Suhosin de PHP. Por favor, incremente el valor de la opción "
-"suhosin.get.max_value_length a al menos 2048 bytes."
 
 msgid "Useful links for your installation"
 msgstr "Enlaces &uacute;tiles para su instalaci&oacute;n"

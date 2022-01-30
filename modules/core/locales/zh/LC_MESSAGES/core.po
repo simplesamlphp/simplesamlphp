@@ -36,9 +36,6 @@ msgstr "<strong>恭喜你！</strong>,你已成功安装SimpleSAMLphp。这是�
 msgid "{core:frontpage:required}"
 msgstr "需求"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr "请求参数的长度被PHP Suhosin扩展限制了，请增大suhosin.get.max_value_length选项至最少2048字节"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>你没有使用HTTPS</strong> - 和用户加密的通信。HTTP在测试目的下很好,但生产环境请使用HTTPS. [ <a "
@@ -239,12 +236,6 @@ msgstr "单点登录事件之间间隔太短了"
 
 msgid "Checking your PHP installation"
 msgstr "正检测你的PHP"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr "请求参数的长度被PHP Suhosin扩展限制了，请增大suhosin.get.max_value_length选项至最少2048字节"
 
 msgid "Useful links for your installation"
 msgstr "对你有用的一些链接"

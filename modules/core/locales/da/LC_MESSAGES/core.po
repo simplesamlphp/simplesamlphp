@@ -39,11 +39,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Påkrævet"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"Længden af query parametrene er begrænset af PHPs Suhosin udvidelse. "
-"Forøg suhosin.get.max_value_length option til mindst 2048 bytes."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Du benytter ikke HTTPS</strong>-krypteret kommunikation med "
@@ -265,14 +260,6 @@ msgstr "For kort interval mellem single sign on hændelse."
 
 msgid "Checking your PHP installation"
 msgstr "Checker din PHP-installation"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"Længden af query parametrene er begrænset af PHPs Suhosin udvidelse. "
-"Forøg suhosin.get.max_value_length option til mindst 2048 bytes."
 
 msgid "Useful links for your installation"
 msgstr "Nyttige links"

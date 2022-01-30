@@ -39,12 +39,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Szükséges"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"A http kérés paramétereinek hossza meghaladta a PHP Suhosin kiterjesztés "
-"határértékét. Növelje meg a suhosin.get.max_value_length opciót legalább "
-"2048 byte-ra."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Nem HTTPS protokollt használ</strong> - nem titkosított a "
@@ -269,15 +263,6 @@ msgstr "Túl kevés idő telt el a belépési kísérletek között."
 
 msgid "Checking your PHP installation"
 msgstr "PHP beállítások ellenőrzése"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"A http kérés paramétereinek hossza meghaladta a PHP Suhosin kiterjesztés "
-"határértékét. Növelje meg a suhosin.get.max_value_length opciót legalább "
-"2048 byte-ra."
 
 msgid "Useful links for your installation"
 msgstr "Hasznos linkek"

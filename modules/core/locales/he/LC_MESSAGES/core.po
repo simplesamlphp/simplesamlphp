@@ -39,11 +39,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "דרוש"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"אורך הפרמטרים בבקשה מוגבל ע\"י PHP Suhosin extension. אנא הגדל את ערך "
-"המשתנה suhosin.get.max_value_length ללפחות 2048 בתים."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>אתה לא משתמש ב- HTTPS </strong> - התקשרות מוצפנת עם המשתמש. HTTP "
@@ -259,14 +254,6 @@ msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
 
 msgid "Checking your PHP installation"
 msgstr "בודק את התקנת ה- PHP שלך"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"אורך הפרמטרים בבקשה מוגבל ע\"י PHP Suhosin extension. אנא הגדל את ערך "
-"המשתנה suhosin.get.max_value_length ללפחות 2048 בתים."
 
 msgid "Useful links for your installation"
 msgstr "קישורים שימושיים להתקנה שלך"

@@ -41,11 +41,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Būtinas"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"Užklausos parametrų ilgis ribojamas PHP Suhosin plėtinio. Prašome "
-"padidinti suhosin.get.max_value_length rekšmę bent iki 2048 baitų."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Jūs nenaudojate HTTPS</strong> - šifruotos komunikacijos su "
@@ -278,14 +273,6 @@ msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
 
 msgid "Checking your PHP installation"
 msgstr "Tikrinamas Jūsų PHP diegimas"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"Užklausos parametrų ilgis ribojamas PHP Suhosin plėtinio. Prašome "
-"padidinti suhosin.get.max_value_length rekšmę bent iki 2048 baitų."
 
 msgid "Useful links for your installation"
 msgstr "Naudingos nuorodos diegimui"

@@ -40,12 +40,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Requerido"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"O tamanho dos parâmetros enviados é limitado pela extensão PHP Suhosin. "
-"Por favor, aumente a opção suhosin.get.max_value_length para pelo menos "
-"2048 bytes."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Você não está utilizando HTTPS</strong> - comunicação encriptada "
@@ -211,15 +205,6 @@ msgstr ""
 
 msgid "Checking your PHP installation"
 msgstr "Checando sua instalação do PHP"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"O tamanho dos parâmetros enviados é limitado pela extensão PHP Suhosin. "
-"Por favor, aumente a opção suhosin.get.max_value_length para pelo menos "
-"2048 bytes."
 
 msgid "Useful links for your installation"
 msgstr "Endereços úteis para sua instalação."

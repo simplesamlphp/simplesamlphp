@@ -42,12 +42,6 @@ msgstr ""
 msgid "{core:frontpage:required}"
 msgstr "Obavezno"
 
-msgid "{core:frontpage:warnings_suhosin_url_length}"
-msgstr ""
-"Veličina polja s parametrima ograničena je Suhosin PHP ekstenzijom. "
-"Podesite da vrednost parametra suhosin.get.max_value_length bude najmanje"
-" 2048 bajtova."
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Ne koristite HTTPS</strong> - kriptovanu komunikaciju s "
@@ -279,15 +273,6 @@ msgstr "Prekratak interval između uzastopnih SSO prijava."
 
 msgid "Checking your PHP installation"
 msgstr "Provera vaše PHP instalacije"
-
-msgid ""
-"The length of query parameters is limited by the PHP Suhosin extension. "
-"Please increase the suhosin.get.max_value_length option to at least 2048 "
-"bytes."
-msgstr ""
-"Veličina polja s parametrima ograničena je Suhosin PHP ekstenzijom. "
-"Podesite da vrednost parametra suhosin.get.max_value_length bude najmanje"
-" 2048 bajtova."
 
 msgid "Useful links for your installation"
 msgstr "Korisni linkovi"
