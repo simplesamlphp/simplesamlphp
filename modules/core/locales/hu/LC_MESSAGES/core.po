@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Metaadatok konvertálása SAML2 XML-ből SimpleSAMLphp-ba "
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Felejtse el a kiválasztott IdP-ket"
 
@@ -100,9 +97,6 @@ msgstr ""
 
 msgid "Welcome"
 msgstr "Üdvözöljük"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Metaadatok konvertálása SAML2 XML-ből SimpleSAMLphp-ba "
 
 msgid "Required"
 msgstr "Szükséges"

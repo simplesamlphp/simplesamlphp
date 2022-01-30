@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XMLをSimpleSAMLphpメタデータに変換"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "IdPディスカバリサービス内のIdPの選択を削除"
 
@@ -95,9 +92,6 @@ msgstr "この問題が継続して起こる場合、システム管理者に報
 
 msgid "Welcome"
 msgstr "ようこそ"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XMLをSimpleSAMLphpメタデータに変換"
 
 msgid "Required"
 msgstr "必須"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML till SimpleSAMLphp metadataöversättare"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr ""
 "Ta bort mina val av identitetsleverantör i listan över "
@@ -100,9 +97,6 @@ msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörer
 
 msgid "Welcome"
 msgstr "Välkommen"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML till SimpleSAMLphp metadataöversättare"
 
 msgid "Required"
 msgstr "Obligatoriskt"

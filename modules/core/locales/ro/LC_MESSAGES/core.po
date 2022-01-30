@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Convertor metadate din XML în SimpleSAMLphp"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr ""
 "Șterge furnizorii de identitate aleși de mine din serviciile de căutare a"
@@ -103,9 +100,6 @@ msgstr "Dacă problema persistă, anunțați administratorii de sistem."
 
 msgid "Welcome"
 msgstr "Bine ați venit"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Convertor metadate din XML în SimpleSAMLphp"
 
 msgid "Required"
 msgstr "Necesar"

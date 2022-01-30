@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML uz SimpleSAMLphp metadatu konvertors"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Dzēst manas IdP izvēles IdP discovery servisos"
 
@@ -98,9 +95,6 @@ msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
 
 msgid "Welcome"
 msgstr "Laipni lūdzam"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML uz SimpleSAMLphp metadatu konvertors"
 
 msgid "Required"
 msgstr "Obligāts"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Konverze XML metadat do simpleSAMLPHP"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Zapomenout moje volby poskytovatelů identit a výběru poskytovatelů identit"
 
@@ -98,9 +95,6 @@ msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."
 
 msgid "Welcome"
 msgstr "Vítejte"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Konverze XML metadat do simpleSAMLPHP"
 
 msgid "Required"
 msgstr "Požadováno"

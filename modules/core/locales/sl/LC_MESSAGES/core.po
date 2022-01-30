@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML v SimpleSAMLphp pretvornik metapodatkov"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Razveljavi privzeti IdP"
 
@@ -99,9 +96,6 @@ msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
 
 msgid "Welcome"
 msgstr "Dobrodošli"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML v SimpleSAMLphp pretvornik metapodatkov"
 
 msgid "Required"
 msgstr "Zahtevano"

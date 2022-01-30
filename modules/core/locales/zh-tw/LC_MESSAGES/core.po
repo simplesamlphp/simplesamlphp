@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML 至 SimpleSAMLphp 詮釋資料翻譯器"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "刪除我選擇的 IdP 於 IdP 搜尋服務"
 
@@ -96,9 +93,6 @@ msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。
 
 msgid "Welcome"
 msgstr "歡迎"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML 至 SimpleSAMLphp 詮釋資料翻譯器"
 
 msgid "Required"
 msgstr "請求"

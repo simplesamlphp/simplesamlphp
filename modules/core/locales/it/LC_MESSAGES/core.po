@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Convertitore di metadati dal formato XML al formato SimpleSAMLphp "
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Dimentica la mia scelta di IdP di default"
 
@@ -102,9 +99,6 @@ msgstr ""
 
 msgid "Welcome"
 msgstr "Benvenuto"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Convertitore di metadati dal formato XML al formato SimpleSAMLphp "
 
 msgid "Required"
 msgstr "Obbligatorio"

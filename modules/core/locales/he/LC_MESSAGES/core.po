@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "ממיר XML למטא-מידע של SimpleSAMLphp"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "מחק את בחירת ס\"ז משירות האיתור לס\"ז"
 
@@ -97,9 +94,6 @@ msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למ
 
 msgid "Welcome"
 msgstr "ברוך-הבא"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "ממיר XML למטא-מידע של SimpleSAMLphp"
 
 msgid "Required"
 msgstr "דרוש"

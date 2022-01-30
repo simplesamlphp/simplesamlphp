@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Oversetter fra XML til SimpleSAMLphp metadata"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr ""
 "La meg velja kvar eg kjem ifrå på nytt.  Slett mitt val av "
@@ -101,9 +98,6 @@ msgstr "Om problemet vedvarar, kan du rapportere det til systemadministratorane.
 
 msgid "Welcome"
 msgstr "Velkomen"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Oversetter fra XML til SimpleSAMLphp metadata"
 
 msgid "Required"
 msgstr "Naudsynt"

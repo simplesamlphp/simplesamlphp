@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "حول البيانات الوصفية من صيغة XML الي SimpleSAMLphp"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "احذف خياراتي ل IdP بمستكشف خدمات IdP"
 
@@ -91,9 +88,6 @@ msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا ب
 
 msgid "Welcome"
 msgstr "مرحباً"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "حول البيانات الوصفية من صيغة XML الي SimpleSAMLphp"
 
 msgid "Required"
 msgstr "مطلوب"

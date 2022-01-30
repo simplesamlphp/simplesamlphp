@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML-ist SimpleSAMLphp metaandmeteks teisendaja"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Eemalda mu eelistused IdP tuvastusteenustes"
 
@@ -98,9 +95,6 @@ msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."
 
 msgid "Welcome"
 msgstr "Tere tulemast"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML-ist SimpleSAMLphp metaandmeteks teisendaja"
 
 msgid "Required"
 msgstr "Nõutav"

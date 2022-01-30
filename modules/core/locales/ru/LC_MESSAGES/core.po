@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "Конвертор XML в метаданные SimpleSAMLphp"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Удалить мой подбор IdP в IdP discovery services"
 
@@ -100,9 +97,6 @@ msgstr "Если проблема остается, сообщить об это
 
 msgid "Welcome"
 msgstr "Добро пожаловать"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Конвертор XML в метаданные SimpleSAMLphp"
 
 msgid "Required"
 msgstr "Обязательный"

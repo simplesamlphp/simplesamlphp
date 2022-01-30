@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML zu SimpleSAMLphp Meta Données Emwandler"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Haerzleche Glëckwonsch</strong>, d'SimpleSAMLphp Installatioun "
@@ -66,9 +63,6 @@ msgstr "Recommendéiert"
 
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp als IdP fir Google Apps for Education"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML zu SimpleSAMLphp Meta Données Emwandler"
 
 msgid "Required"
 msgstr "Néideg"

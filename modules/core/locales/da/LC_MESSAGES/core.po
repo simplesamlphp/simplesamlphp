@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_xmlconvert}"
-msgstr "XML til SimpleSAMLphp metadata oversætter"
-
 msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "Slet mit valg i listen af identitetsudbydere"
 
@@ -99,9 +96,6 @@ msgstr ""
 
 msgid "Welcome"
 msgstr "Velkommen"
-
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML til SimpleSAMLphp metadata oversætter"
 
 msgid "Required"
 msgstr "Påkrævet"
