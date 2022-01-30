@@ -10,6 +10,7 @@ use SAML2\Constants;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoPassiveException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
+use SAML2\Exception\ProtocolViolationException;
 use SAML2\LogoutRequest;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
@@ -1136,6 +1137,15 @@ class SP extends \SimpleSAML\Auth\Source
         $source->addLogoutCallback($idp, $state);
 
         $state['Attributes'] = $authProcState['Attributes'];
+
+        $config = Configuration::getInstance();
+        $allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', false);
+
+        Assert::true(
+            $allowUnsolicited,
+            'Received an unsolicited response, which is against SAML2INT specification.',
+            ProtocolViolationException::class,
+        );
 
         if (isset($state['saml:sp:isUnsolicited']) && (bool) $state['saml:sp:isUnsolicited']) {
             if (!empty($state['saml:sp:RelayState'])) {

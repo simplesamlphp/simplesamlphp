@@ -7,6 +7,7 @@
 use SAML2\Binding;
 use SAML2\Assertion;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
+use SAML2\Exception\ProtocolViolationException;
 use SAML2\HTTPArtifact;
 use SAML2\Response;
 use SimpleSAML\Assert\Assert;
@@ -94,10 +95,23 @@ if (!empty($stateId)) {
         $state = Auth\State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
-        Logger::warning('Could not load state specified by InResponseTo: ' . $e->getMessage() .
-            ' Processing response as unsolicited.');
+        Logger::warning(
+            sprintf(
+                'Could not load state specified by InResponseTo: %s Processing response as unsolicited.',
+                $e->getMessage(),
+            ),
+        );
     }
 }
+
+$config = Configuration::getInstance();
+$allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', false);
+
+Assert::true(
+    $allowUnsolicited,
+    'Received an unsolicited response, which is against SAML2INT specification.',
+    ProtocolViolationException::class,
+);
 
 if ($state) {
     // check that the authentication source is correct
@@ -151,12 +165,12 @@ $expire = null;
 $attributes = [];
 $foundAuthnStatement = false;
 
-foreach ($assertions as $assertion) {
-    // check for duplicate assertion (replay attack)
-    $config = Configuration::getInstance();
-    $storeType = $config->getString('store.type', 'phpsession');
+// check for duplicate assertion (replay attack)
+$storeType = $config->getString('store.type', 'phpsession');
 
-    $store = StoreFactory::getInstance($storeType);
+$store = StoreFactory::getInstance($storeType);
+
+foreach ($assertions as $assertion) {
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {
