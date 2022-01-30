@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings}"
-msgstr "警告"
-
 msgid "{core:frontpage:link_xmlconvert}"
 msgstr "将XML转化为SimpleSAMLphp元信息的转换器"
 
@@ -105,9 +102,6 @@ msgstr "将XML转化为SimpleSAMLphp元信息的转换器"
 
 msgid "Required"
 msgstr "需求"
-
-msgid "Warnings"
-msgstr "警告"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "存储的 Shibboleth 1.3 Service Provider Metadata（自动生成）"

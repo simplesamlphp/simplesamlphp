@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings}"
-msgstr "Oharrak"
-
 msgid "{core:frontpage:link_xmlconvert}"
 msgstr "XML-tik SimpleSAMLphp metadatuetara bihurgailua"
 
@@ -116,9 +113,6 @@ msgstr "XML-tik SimpleSAMLphp metadatuetara bihurgailua"
 
 msgid "Required"
 msgstr "Beharrezkoa"
-
-msgid "Warnings"
-msgstr "Oharrak"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "SP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"

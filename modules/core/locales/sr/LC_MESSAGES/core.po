@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings}"
-msgstr "Upozorenja"
-
 msgid "{core:frontpage:link_xmlconvert}"
 msgstr "Pretvaranje metapodataka iz XML formata u SimpleSAMLphp format"
 
@@ -118,9 +115,6 @@ msgstr "Pretvaranje metapodataka iz XML formata u SimpleSAMLphp format"
 
 msgid "Required"
 msgstr "Obavezno"
-
-msgid "Warnings"
-msgstr "Upozorenja"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr ""

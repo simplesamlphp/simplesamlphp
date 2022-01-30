@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings}"
-msgstr "Waarschuwingen"
-
 msgid "{core:frontpage:link_xmlconvert}"
 msgstr "XML naar SimpleSAMLphp metadata vertaling"
 
