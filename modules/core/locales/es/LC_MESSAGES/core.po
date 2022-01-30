@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_outdated}"
-msgstr ""
-"Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por "
-"favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima "
-"versi&oacute;n</a> lo antes posible."
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Ha entrado como administrador"
 

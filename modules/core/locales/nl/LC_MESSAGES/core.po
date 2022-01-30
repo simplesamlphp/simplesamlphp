@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_outdated}"
-msgstr ""
-"Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo "
-"snel mogelijk te upgraden naar <a href=\"https://simplesamlphp.org/download\">de meest recente "
-"versie</a>."
-
 msgid "{core:frontpage:warnings_curlmissing}"
 msgstr "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor SimpleSAMLphp."
 

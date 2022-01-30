@@ -293,6 +293,8 @@ msgid ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a "
 "href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
+"You are running an outdated version of SimpleSAMLphp. Please update to <a "
+"href=\"%latest%\">the latest version</a> as soon as possible."
 
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML to SimpleSAMLphp metadata converter"
