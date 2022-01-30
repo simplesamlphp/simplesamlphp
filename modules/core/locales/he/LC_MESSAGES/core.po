@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "אתה מחובר כמנהל מערכת"
-
 msgid "{core:frontpage:auth}"
 msgstr "אימות"
 
@@ -79,9 +76,6 @@ msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 
 msgid "{core:frontpage:tools}"
 msgstr "כלים"
-
-msgid "You are logged in as administrator"
-msgstr "אתה מחובר כמנהל מערכת"
 
 msgid "Go back to the previous page and try again."
 msgstr "חזור לדף הקודם ונסה שוב."

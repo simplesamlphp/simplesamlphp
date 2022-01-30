@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Du är inloggad som administratör"
-
 msgid "{core:frontpage:auth}"
 msgstr "Autentisering"
 
@@ -80,9 +77,6 @@ msgstr "SimpleSAMLphp som IdP för Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Verktyg"
-
-msgid "You are logged in as administrator"
-msgstr "Du är inloggad som administratör"
 
 msgid "Go back to the previous page and try again."
 msgstr "Gå tillbaka till föregående sida och försök igen."

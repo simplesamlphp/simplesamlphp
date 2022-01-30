@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Yönetici olarak girdiniz"
-
 msgid "{core:frontpage:auth}"
 msgstr "Kimlik Doğrulama"
 
@@ -83,9 +80,6 @@ msgstr ""
 
 msgid "{core:frontpage:tools}"
 msgstr "Araçlar"
-
-msgid "You are logged in as administrator"
-msgstr "Yönetici olarak girdiniz"
 
 msgid "Welcome"
 msgstr "Hoşgeldiniz"

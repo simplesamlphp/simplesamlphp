@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Olet kirjautunut ylläpitäjänä"
-
 msgid "{core:frontpage:auth}"
 msgstr "Tunnistautuminen"
 
@@ -79,9 +76,6 @@ msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
 
 msgid "{core:frontpage:tools}"
 msgstr "Työkalut"
-
-msgid "You are logged in as administrator"
-msgstr "Olet kirjautunut ylläpitäjänä"
 
 msgid "Welcome"
 msgstr "Tervetuloa"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Está autenticado como administrador"
-
 msgid "{core:frontpage:auth}"
 msgstr "Autenticação"
 
@@ -82,9 +79,6 @@ msgstr ""
 
 msgid "{core:frontpage:tools}"
 msgstr "Ferramentas"
-
-msgid "You are logged in as administrator"
-msgstr "Está autenticado como administrador"
 
 msgid "Welcome"
 msgstr "Bem vindo"

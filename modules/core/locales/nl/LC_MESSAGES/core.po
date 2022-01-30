@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:warnings_curlmissing}"
 msgstr "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor SimpleSAMLphp."
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Je bent ingelogd als beheerder"
-
 msgid "{core:frontpage:auth}"
 msgstr "Authenticatie"
 
@@ -85,9 +82,6 @@ msgstr "SimpleSAMLphp als een Identity Provider voor Google Apps for Education"
 
 msgid "{core:frontpage:tools}"
 msgstr "Gereedschap"
-
-msgid "You are logged in as administrator"
-msgstr "Je bent ingelogd als beheerder"
 
 msgid "Go back to the previous page and try again."
 msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."

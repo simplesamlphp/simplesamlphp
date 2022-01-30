@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Jūs prisijungėte administratoriaus teisėmis"
-
 msgid "{core:frontpage:auth}"
 msgstr "Autentifikavimas"
 
@@ -83,9 +80,6 @@ msgstr "SimpleSAMLphp kaip IdP skirtas \"Google Apps for Education\""
 
 msgid "{core:frontpage:tools}"
 msgstr "Įrankiai"
-
-msgid "You are logged in as administrator"
-msgstr "Jūs prisijungėte administratoriaus teisėmis"
 
 msgid "Go back to the previous page and try again."
 msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."

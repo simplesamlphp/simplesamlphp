@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Συνδεδεμένος ως διαχειριστής"
-
 msgid "{core:frontpage:auth}"
 msgstr "Ταυτοποίηση"
 
@@ -83,9 +80,6 @@ msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Googl
 
 msgid "{core:frontpage:tools}"
 msgstr "Εργαλεία"
-
-msgid "You are logged in as administrator"
-msgstr "Συνδεδεμένος ως διαχειριστής"
 
 msgid "Go back to the previous page and try again."
 msgstr "Επιστρέψτε στην προηγούμενη σελίδα και προσπαθήστε ξανά."

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Administratzaile bezala sartu zara"
-
 msgid "{core:frontpage:auth}"
 msgstr "Kautotzea"
 
@@ -81,9 +78,6 @@ msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 
 msgid "{core:frontpage:tools}"
 msgstr "Tresnak"
-
-msgid "You are logged in as administrator"
-msgstr "Administratzaile bezala sartu zara"
 
 msgid "Go back to the previous page and try again."
 msgstr "Itzul zaitez aurreko orrira eta saiatu berriro"

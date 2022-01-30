@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "Bejelentkezve adminisztrátorként"
-
 msgid "{core:frontpage:auth}"
 msgstr "Azonosítás (autentikáció)"
 
@@ -80,9 +77,6 @@ msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 
 msgid "{core:frontpage:tools}"
 msgstr "Eszközök"
-
-msgid "You are logged in as administrator"
-msgstr "Bejelentkezve adminisztrátorként"
 
 msgid "Go back to the previous page and try again."
 msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."

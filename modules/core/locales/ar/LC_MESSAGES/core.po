@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:loggedin_as_admin}"
-msgstr "لقد سجلت الدخول كمشرف علي الموقعح"
-
 msgid "{core:frontpage:auth}"
 msgstr " التوثيق"
 
@@ -73,9 +70,6 @@ msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعل
 
 msgid "{core:frontpage:tools}"
 msgstr "الأدوات "
-
-msgid "You are logged in as administrator"
-msgstr "لقد سجلت الدخول كمشرف علي الموقعح"
 
 msgid "Go back to the previous page and try again."
 msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
