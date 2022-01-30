@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Hapus pilihan IdP saya di IdP penemuan layanan"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Anda login sebagai administrator"
 
@@ -125,9 +122,6 @@ msgstr "Federasi"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Hapus pilihan IdP saya di IdP penemuan layanan"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

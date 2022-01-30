@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Remover as minhas escolhas de IdP nos serviços de descoberta de IdP"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Está autenticado como administrador"
 
@@ -108,9 +105,6 @@ msgstr "Tentar de novo"
 
 msgid "Federation"
 msgstr "Federação"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Remover as minhas escolhas de IdP nos serviços de descoberta de IdP"
 
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"

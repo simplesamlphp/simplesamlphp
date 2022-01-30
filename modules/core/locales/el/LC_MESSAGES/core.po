@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Διαγραφή αποθηκευμένης επιλογής Παρόχου Ταυτότητας"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Συνδεδεμένος ως διαχειριστής"
 
@@ -125,9 +122,6 @@ msgid "We were unable to locate the state information for the current request."
 msgstr ""
 "Δεν ήταν δυνατό να εντοπιστούν πληροφορίες κατάστασης για το τρέχον "
 "αίτημα."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Διαγραφή αποθηκευμένης επιλογής Παρόχου Ταυτότητας"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

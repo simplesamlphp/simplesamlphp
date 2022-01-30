@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "刪除我選擇的 IdP 於 IdP 搜尋服務"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "你已經登入成為管理員"
 
@@ -114,9 +111,6 @@ msgstr "聯盟"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "我們無法找到關於這個請求的狀態資訊。"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "刪除我選擇的 IdP 於 IdP 搜尋服務"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Dimentica la mia scelta di IdP di default"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Sei connesso come amministratore"
 
@@ -124,9 +121,6 @@ msgid "We were unable to locate the state information for the current request."
 msgstr ""
 "Non è stato possibile localizzare le informazioni di stato per la "
 "richiesta corrente."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Dimentica la mia scelta di IdP di default"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

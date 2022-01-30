@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Slett mitt valg av IdP i IdP discovery tjenestene"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Du er logget inn som administrator"
 
@@ -117,9 +114,6 @@ msgstr "Føderasjon"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Vi kunne ikke finne tilstandsinformasjonen for denne forespørselen."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Slett mitt valg av IdP i IdP discovery tjenestene"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

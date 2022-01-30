@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Usuń mój wybór domyślnych IdP w Discovery Services"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Jesteś zalogowany jako administrator"
 
@@ -105,9 +102,6 @@ msgstr "O SimpleSAMLphp"
 
 msgid "Federation"
 msgstr "Federacja"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Usuń mój wybór domyślnych IdP w Discovery Services"
 
 msgid "Tools"
 msgstr "Narzędzia"

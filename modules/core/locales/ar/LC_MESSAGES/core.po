@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "احذف خياراتي ل IdP بمستكشف خدمات IdP"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "لقد سجلت الدخول كمشرف علي الموقعح"
 
@@ -111,9 +108,6 @@ msgstr "الدخول الموحد"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "لم نستطع تحديد المعلومات المفقودة للطلب الحالي"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "احذف خياراتي ل IdP بمستكشف خدمات IdP"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

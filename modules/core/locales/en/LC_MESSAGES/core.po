@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Delete my choices of IdP in the IdP discovery services"
-
 msgid "{core:frontpage:warnings_outdated}"
 msgstr ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"
@@ -122,9 +119,6 @@ msgstr "Federation"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "We were unable to locate the state information for the current request."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Delete my choices of IdP in the IdP discovery services"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

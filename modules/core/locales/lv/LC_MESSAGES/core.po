@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Dzēst manas IdP izvēles IdP discovery servisos"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Jūs esat pieslēdzies kā administrators"
 
@@ -116,9 +113,6 @@ msgstr "Federācija"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Dzēst manas IdP izvēles IdP discovery servisos"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

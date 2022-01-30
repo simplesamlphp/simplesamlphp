@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "IdP tanıtım servisleri arasındaki IdP seçimlerimi sil"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Yönetici olarak girdiniz"
 
@@ -106,9 +103,6 @@ msgstr "SimpleSAMLphp hakkında"
 
 msgid "Federation"
 msgstr "Federasyon"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "IdP tanıtım servisleri arasındaki IdP seçimlerimi sil"
 
 msgid "Tools"
 msgstr "Araçlar"

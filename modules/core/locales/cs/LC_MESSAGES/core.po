@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Zapomenout moje volby poskytovatelů identit a výběru poskytovatelů identit"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Jste přihlášen jako administrator"
 
@@ -118,9 +115,6 @@ msgstr "Federace"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Zapomenout moje volby poskytovatelů identit a výběru poskytovatelů identit"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

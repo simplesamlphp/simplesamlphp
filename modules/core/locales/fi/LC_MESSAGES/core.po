@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Poista IdP valintani IdP discoverypalvelusta"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Olet kirjautunut ylläpitäjänä"
 
@@ -102,9 +99,6 @@ msgstr "SimpleSAMLphp:stä"
 
 msgid "Federation"
 msgstr "Federaatio"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Poista IdP valintani IdP discoverypalvelusta"
 
 msgid "Missing cookie"
 msgstr "Puuttuva eväste"

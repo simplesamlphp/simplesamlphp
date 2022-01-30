@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "Eemalda mu eelistused IdP tuvastusteenustes"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Oled sisselogitud administraatorina"
 
@@ -118,9 +115,6 @@ msgstr "Federeerimine"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "Eemalda mu eelistused IdP tuvastusteenustes"
 
 msgid ""
 "This is most likely a configuration problem on either the service "

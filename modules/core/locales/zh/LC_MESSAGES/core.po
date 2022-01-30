@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_cleardiscochoices}"
-msgstr "在IdP搜索服务中删除我的关于IdP的选择"
-
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "你已经作为管理员登录了"
 
@@ -111,9 +108,6 @@ msgstr "联盟"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "我们无法定位当前请求的状态信息"
-
-msgid "Delete my choices of IdP in the IdP discovery services"
-msgstr "在IdP搜索服务中删除我的关于IdP的选择"
 
 msgid ""
 "This is most likely a configuration problem on either the service "
