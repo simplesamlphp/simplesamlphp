@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:show_metadata}"
-msgstr "Mostrar meta-dados"
-
 msgid "{core:frontpage:intro}"
 msgstr ""
 "<strong>Parabéns</strong>, o software SimpleSAMLphp foi instalado com "
@@ -155,9 +152,6 @@ msgstr ""
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
-
-msgid "Show metadata"
-msgstr "Mostrar meta-dados"
 
 msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr ""
