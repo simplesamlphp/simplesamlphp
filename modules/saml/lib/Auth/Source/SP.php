@@ -1139,7 +1139,7 @@ class SP extends \SimpleSAML\Auth\Source
         $state['Attributes'] = $authProcState['Attributes'];
 
         $config = Configuration::getInstance();
-        $allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', false);
+        $allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', true);
 
         Assert::true(
             $allowUnsolicited,

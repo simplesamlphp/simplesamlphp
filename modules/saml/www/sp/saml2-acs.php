@@ -105,7 +105,7 @@ if (!empty($stateId)) {
 }
 
 $config = Configuration::getInstance();
-$allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', false);
+$allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', true);
 
 Assert::true(
     $allowUnsolicited,
