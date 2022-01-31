@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federação"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Necessário para Radius"
 
@@ -69,9 +66,6 @@ msgstr "Sobre o SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Tentar de novo"
-
-msgid "Federation"
-msgstr "Federação"
 
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"

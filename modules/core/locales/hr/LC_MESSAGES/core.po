@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federacija"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Obavezno za RADIUS"
 
@@ -79,9 +76,6 @@ msgstr "Pokušaj se prijaviti ponovo"
 
 msgid "Close the web browser, and try again."
 msgstr "Zatvorite web preglednik i pokušajte ponovno."
-
-msgid "Federation"
-msgstr "Federacija"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Ne možemo pronaći podatak o stanju aktualnog zahtjeva."

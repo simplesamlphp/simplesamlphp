@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federație"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Necesar pentru RADIUS"
 
@@ -80,9 +77,6 @@ msgstr "Încercați din nou"
 
 msgid "Close the web browser, and try again."
 msgstr "Închideți browser-ul și încercați din nou."
-
-msgid "Federation"
-msgstr "Federație"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr ""

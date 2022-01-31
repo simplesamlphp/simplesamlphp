@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federasi"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Diperlukan untuk Radius"
 
@@ -82,9 +79,6 @@ msgstr "Coba login kembali"
 
 msgid "Close the web browser, and try again."
 msgstr "Tutup browser, dan coba lagi."
-
-msgid "Federation"
-msgstr "Federasi"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini."

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federacja"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Wymagane dla Radius"
 
@@ -66,9 +63,6 @@ msgstr ""
 
 msgid "About SimpleSAMLphp"
 msgstr "O SimpleSAMLphp"
-
-msgid "Federation"
-msgstr "Federacja"
 
 msgid "Tools"
 msgstr "Narzędzia"

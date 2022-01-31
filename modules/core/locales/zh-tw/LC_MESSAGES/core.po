@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "聯盟"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "需要 Radius"
 
@@ -75,9 +72,6 @@ msgstr "重試登入"
 
 msgid "Close the web browser, and try again."
 msgstr "關閉網頁瀏覽器，並再試一次。"
-
-msgid "Federation"
-msgstr "聯盟"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "我們無法找到關於這個請求的狀態資訊。"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Föderation"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Erforderlich für Radius"
 
@@ -77,9 +74,6 @@ msgstr "Versuche Anmeldung erneut"
 
 msgid "Close the web browser, and try again."
 msgstr "Schließe den Web-Browser und versuche es erneut."
-
-msgid "Federation"
-msgstr "Föderation"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr ""

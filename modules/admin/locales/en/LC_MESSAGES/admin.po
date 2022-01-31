@@ -166,7 +166,7 @@ msgid "Test"
 msgstr ""
 
 msgid "Federation"
-msgstr ""
+msgstr "Federation"
 
 msgid "Information on your PHP installation"
 msgstr ""

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federace"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "Požadováno pro Radius"
 
@@ -78,9 +75,6 @@ msgstr "Přihlašte se znovu."
 
 msgid "Close the web browser, and try again."
 msgstr "Zavřít webový prohlížeč a zkusit znovu."
-
-msgid "Federation"
-msgstr "Federace"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."

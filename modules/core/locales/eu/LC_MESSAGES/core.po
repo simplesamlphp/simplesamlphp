@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:federation}"
-msgstr "Federazioa"
-
 msgid "{core:frontpage:required_radius}"
 msgstr "RADIUSentzat beharrezkoa"
 
@@ -77,9 +74,6 @@ msgstr "Saiatu berriro kautotzen"
 
 msgid "Close the web browser, and try again."
 msgstr "Nabigatzailea itxi eta saiatu berriro"
-
-msgid "Federation"
-msgstr "Federazioa"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat."
