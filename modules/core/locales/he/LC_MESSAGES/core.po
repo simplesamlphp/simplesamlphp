@@ -15,13 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_https}"
-msgstr ""
-"<strong>אתה לא משתמש ב- HTTPS </strong> - התקשרות מוצפנת עם המשתמש. HTTP "
-"עובד בסדר למטרות בדיקה, אולם למערכות אמיתיות, כדי להשתמש ה HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\"> קרא עוד על תחזוק SimpleSAMLphp </a> ]"
-
 msgid "{core:frontpage:federation}"
 msgstr "איחוד"
 
@@ -118,18 +111,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
-
-msgid ""
-"<strong>You are not using HTTPS</strong> - encrypted communication with "
-"the user. HTTP works fine for test purposes, but in a production "
-"environment, you should use HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
-"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
-msgstr ""
-"<strong>אתה לא משתמש ב- HTTPS </strong> - התקשרות מוצפנת עם המשתמש. HTTP "
-"עובד בסדר למטרות בדיקה, אולם למערכות אמיתיות, כדי להשתמש ה HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\"> קרא עוד על תחזוק SimpleSAMLphp </a> ]"
 
 msgid "Metadata"
 msgstr "מטא-נתונים"

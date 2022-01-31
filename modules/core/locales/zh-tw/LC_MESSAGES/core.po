@@ -15,13 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_https}"
-msgstr ""
-"<strong>您不是使用 HTTPS </strong>-於使用的傳輸過程中加密。HTTP "
-"可以正常的利用於測試，但是在上線環境裡，您還是需要使用 HTTPS。[ <a href=\"http://rnd.feide.no/content"
-"/simplesamlphp-maintenance-and-configuration\">閱讀更多有關於 SimpleSAMLphp "
-"的維護方式</a> ]"
-
 msgid "{core:frontpage:federation}"
 msgstr "聯盟"
 
@@ -116,18 +109,6 @@ msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，�
 
 msgid "This error may be caused by:"
 msgstr "這個錯誤可能是因為："
-
-msgid ""
-"<strong>You are not using HTTPS</strong> - encrypted communication with "
-"the user. HTTP works fine for test purposes, but in a production "
-"environment, you should use HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
-"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
-msgstr ""
-"<strong>您不是使用 HTTPS </strong>-於使用的傳輸過程中加密。HTTP "
-"可以正常的利用於測試，但是在上線環境裡，您還是需要使用 HTTPS。[ <a href=\"http://rnd.feide.no/content"
-"/simplesamlphp-maintenance-and-configuration\">閱讀更多有關於 SimpleSAMLphp "
-"的維護方式</a> ]"
 
 msgid "Metadata"
 msgstr "詮釋資料"

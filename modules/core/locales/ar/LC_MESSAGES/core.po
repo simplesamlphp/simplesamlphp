@@ -16,13 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:warnings_https}"
-msgstr ""
-"<strong>انت لا تستخدم HTTPS</strong> - محادثة مشفرة مع المستخدم. HTTP جيد"
-" للاختبارات لكن في بيئة النظام المبدئي ينبغي استخدام HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\">read more about SimpleSAMLphp maintenance</a>]"
-
 msgid "{core:frontpage:federation}"
 msgstr "الدخول الموحد"
 
@@ -120,18 +113,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "سبب حدوث هذا الخطأ قد يكون:"
-
-msgid ""
-"<strong>You are not using HTTPS</strong> - encrypted communication with "
-"the user. HTTP works fine for test purposes, but in a production "
-"environment, you should use HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
-"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
-msgstr ""
-"<strong>انت لا تستخدم HTTPS</strong> - محادثة مشفرة مع المستخدم. HTTP جيد"
-" للاختبارات لكن في بيئة النظام المبدئي ينبغي استخدام HTTPS. [ <a "
-"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance"
-"\">read more about SimpleSAMLphp maintenance</a>]"
 
 msgid "Metadata"
 msgstr "البيانات الوصفية/الميتاداتا "
