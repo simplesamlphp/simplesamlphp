@@ -106,9 +106,6 @@ msgstr ""
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Using the back and forward buttons in the web browser."
 
-msgid "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
-msgstr "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
-
 msgid ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"
 " href=\"https://simplesamlphp.org/download\">the latest version</a> as soon as possible."
