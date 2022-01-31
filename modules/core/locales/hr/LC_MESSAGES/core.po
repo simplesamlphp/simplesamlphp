@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:auth}"
-msgstr "Autentifikacija"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "Prikaži metapodatke"
 
@@ -207,9 +204,6 @@ msgstr ""
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP primjer - isprobajte autentifikaciju kroz vaš Shib IdP"
-
-msgid "Authentication"
-msgstr "Autentifikacija"
 
 msgid "Show metadata"
 msgstr "Prikaži metapodatke"

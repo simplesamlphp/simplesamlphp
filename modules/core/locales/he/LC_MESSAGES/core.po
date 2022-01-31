@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:auth}"
-msgstr "אימות"
-
 msgid "{core:frontpage:show_metadata}"
 msgstr "הראה מטא-נתונים"
 
@@ -193,9 +190,6 @@ msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr ""
 "דוגמא לס\"ש מסוג Shibboleth 1.3 - בוחן כניסה למערכת דרך ס\"ז מסוג - "
 "Shibboleth"
-
-msgid "Authentication"
-msgstr "אימות"
 
 msgid "Show metadata"
 msgstr "הראה מטא-נתונים"
