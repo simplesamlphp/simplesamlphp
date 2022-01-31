@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "مطلوب ل Radius"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "تاكد من إنزال PHP"
 
@@ -145,9 +142,6 @@ msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعل
 
 msgid "State information lost"
 msgstr "حدد المعلومات المفقودة"
-
-msgid "Required for Radius"
-msgstr "مطلوب ل Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "مثال SAML 2.0 SP- اختبر تسجيل الدخول مستخدماً هوية IdP"

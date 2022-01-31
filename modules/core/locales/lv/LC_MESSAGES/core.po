@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "Obligāts priekš Radius"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Pārbauda Jūsu PHP instalāciju"
 
@@ -147,9 +144,6 @@ msgstr "SimpleSAMLphp kā IdP priekš Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Stāvokļa informācija ir pazaudēta"
-
-msgid "Required for Radius"
-msgstr "Obligāts priekš Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP piemērs - testa pieslēgšanās caur Jūsu IDP"

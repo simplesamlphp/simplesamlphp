@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "RADIUSentzat beharrezkoa"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Zure PHP instalaziooa egiazatzen"
 
@@ -150,9 +147,6 @@ msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 
 msgid "State information lost"
 msgstr "Egoeraren informazioa galdu da"
-
-msgid "Required for Radius"
-msgstr "RADIUSentzat beharrezkoa"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"

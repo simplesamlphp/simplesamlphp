@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "Obavezno za Radius"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Provera vaše PHP instalacije"
 
@@ -157,9 +154,6 @@ msgstr "SimpleSAMLphp kao autentifikacioni servis za Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Informacije o stanju su izgubljene"
-
-msgid "Required for Radius"
-msgstr "Obavezno za Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "SAML 2.0 SP primer - testirajte autentifikaciju kroz vaš Davalac Identieta"

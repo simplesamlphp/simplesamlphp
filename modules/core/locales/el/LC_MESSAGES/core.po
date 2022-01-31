@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "Απαιτείται για υποστήριξη RADIUS"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Έλεγχος εγκατάστασης PHP"
 
@@ -159,9 +156,6 @@ msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Googl
 
 msgid "State information lost"
 msgstr "Δεν βρέθηκαν πληροφορίες κατάστασης"
-
-msgid "Required for Radius"
-msgstr "Απαιτείται για υποστήριξη RADIUS"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr ""

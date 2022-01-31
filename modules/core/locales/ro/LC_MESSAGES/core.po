@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "Necesar pentru RADIUS"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "Verificarea instalării PHP"
 
@@ -156,9 +153,6 @@ msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
 
 msgid "State information lost"
 msgstr "Informațiile de stare au fost pierdute"
-
-msgid "Required for Radius"
-msgstr "Necesar pentru RADIUS"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr ""

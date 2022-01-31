@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required_radius}"
-msgstr "דרוש עבור Radius"
-
 msgid "{core:frontpage:checkphp}"
 msgstr "בודק את התקנת ה- PHP שלך"
 
@@ -146,9 +143,6 @@ msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 
 msgid "State information lost"
 msgstr "מידע המצב אבד"
-
-msgid "Required for Radius"
-msgstr "דרוש עבור Radius"
 
 msgid "SAML 2.0 SP example - test logging in through your IdP"
 msgstr "דוגמא לס\"ש מסוג SAML 2.0 - בחן כניסה למערכת דרך הס\"ז שלך"
