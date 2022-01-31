@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required}"
-msgstr "Obavezno"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Ne koristite HTTPS</strong> - kriptiranu komunikaciju s "
@@ -78,9 +75,6 @@ msgstr ""
 
 msgid "Welcome"
 msgstr "Dobrodošli"
-
-msgid "Required"
-msgstr "Obavezno"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metapodaci za lokalni Shibboleth 1.3 SP (automatski generirani)"

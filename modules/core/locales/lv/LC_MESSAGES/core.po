@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required}"
-msgstr "Obligāts"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Jūs neizmantojat HTTPS</strong> - šifrētu komunikāciju ar "
@@ -74,9 +71,6 @@ msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
 
 msgid "Welcome"
 msgstr "Laipni lūdzam"
-
-msgid "Required"
-msgstr "Obligāts"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hostēta Shibboleth 1.3 servisa piegādātāja metadati (ģenerēti automātiski)"

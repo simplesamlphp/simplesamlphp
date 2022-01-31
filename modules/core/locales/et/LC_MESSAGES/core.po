@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required}"
-msgstr "Nõutav"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Sa ei kasuta andmete vahetamiseks HTTPS krüpteeritud "
@@ -74,9 +71,6 @@ msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."
 
 msgid "Welcome"
 msgstr "Tere tulemast"
-
-msgid "Required"
-msgstr "Nõutav"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr ""

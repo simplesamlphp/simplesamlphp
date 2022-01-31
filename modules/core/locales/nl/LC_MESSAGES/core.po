@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required}"
-msgstr "Vereist"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "<strong>Je gebruikt geen HTTPS</strong> - versleutelde communicatie met "
@@ -75,9 +72,6 @@ msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders.
 
 msgid "Welcome"
 msgstr "Welkom"
-
-msgid "Required"
-msgstr "Vereist"
 
 msgid "Warnings"
 msgstr "Waarschuwingen"

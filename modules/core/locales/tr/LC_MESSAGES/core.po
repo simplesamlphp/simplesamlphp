@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:required}"
-msgstr "Gerekli"
-
 msgid "{core:frontpage:warnings_https}"
 msgstr ""
 "Kullanıcıyla şifreli iletişim -<strong>HTTPS kullanmıyorsunuz</strong>. "
@@ -70,9 +67,6 @@ msgstr "Araçlar"
 
 msgid "Welcome"
 msgstr "Hoşgeldiniz"
-
-msgid "Required"
-msgstr "Gerekli"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr ""
