@@ -7,7 +7,6 @@
 use SAML2\Binding;
 use SAML2\Assertion;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
-use SAML2\Exception\ProtocolViolationException;
 use SAML2\HTTPArtifact;
 use SAML2\Response;
 use SimpleSAML\Assert\Assert;
@@ -109,8 +108,8 @@ $allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', true);
 
 Assert::true(
     $allowUnsolicited,
-    'Received an unsolicited response, which is against SAML2INT specification.',
-    ProtocolViolationException::class,
+    'Unsolicited responses are denied by configuration.',
+    Error\BadRequest::class,
 );
 
 if ($state) {
