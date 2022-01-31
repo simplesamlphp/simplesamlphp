@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:intro}"
-msgstr ""
-"<strong>恭喜你</strong>，您已經成功的安裝 "
-"SimpleSAMLphp。這是安裝的開始頁面，在這裡您可以找到測試範本、診斷工具、詮釋資料及各種相關文件的連結。"
-
 msgid "{core:frontpage:required}"
 msgstr "請求"
 
@@ -124,15 +119,6 @@ msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
 msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
-
-msgid ""
-"<strong>Congratulations</strong>, you have successfully installed "
-"SimpleSAMLphp. This is the start page of your installation, where you "
-"will find links to test examples, diagnostics, metadata and even links to"
-" relevant documentation."
-msgstr ""
-"<strong>恭喜你</strong>，您已經成功的安裝 "
-"SimpleSAMLphp。這是安裝的開始頁面，在這裡您可以找到測試範本、診斷工具、詮釋資料及各種相關文件的連結。"
 
 msgid "This error may be caused by:"
 msgstr "這個錯誤可能是因為："

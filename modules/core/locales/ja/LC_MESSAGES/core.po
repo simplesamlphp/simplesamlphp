@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:intro}"
-msgstr ""
-"<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
-"テスト、診断、メタデータや関連するドキュメントへのリンクを見つけることができるでしょう。"
-
 msgid "{core:frontpage:required}"
 msgstr "必須"
 
@@ -120,15 +115,6 @@ msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
 "settings in your browser, and try again."
 msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
-
-msgid ""
-"<strong>Congratulations</strong>, you have successfully installed "
-"SimpleSAMLphp. This is the start page of your installation, where you "
-"will find links to test examples, diagnostics, metadata and even links to"
-" relevant documentation."
-msgstr ""
-"<strong>おめでとう</strong>、あなたはSimpleSAMLphpのインストールに成功しました。このページは設定を行うためのスタートページです。"
-"テスト、診断、メタデータや関連するドキュメントへのリンクを見つけることができるでしょう。"
 
 msgid "This error may be caused by:"
 msgstr "このエラーの原因:"

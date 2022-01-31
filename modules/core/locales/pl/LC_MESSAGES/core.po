@@ -16,13 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:intro}"
-msgstr ""
-"<strong>Gratulacje</strong>, instalacja SimpleSAMLphp przebiegła "
-"pomyślnie. To jest strona startowa Twojej instalacji, na której "
-"znajdziesz odnośniki do przykładów, narzędzi do diagnozowania, metadane a"
-" nawet linki do dokumentacji."
-
 msgid "{core:frontpage:required}"
 msgstr "Wymagane"
 
@@ -93,17 +86,6 @@ msgstr "Federacja"
 
 msgid "Tools"
 msgstr "Narzędzia"
-
-msgid ""
-"<strong>Congratulations</strong>, you have successfully installed "
-"SimpleSAMLphp. This is the start page of your installation, where you "
-"will find links to test examples, diagnostics, metadata and even links to"
-" relevant documentation."
-msgstr ""
-"<strong>Gratulacje</strong>, instalacja SimpleSAMLphp przebiegła "
-"pomyślnie. To jest strona startowa Twojej instalacji, na której "
-"znajdziesz odnośniki do przykładów, narzędzi do diagnozowania, metadane a"
-" nawet linki do dokumentacji."
 
 msgid ""
 "<strong>You are not using HTTPS</strong> - encrypted communication with "
