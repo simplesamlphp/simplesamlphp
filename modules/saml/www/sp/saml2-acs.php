@@ -94,23 +94,17 @@ if (!empty($stateId)) {
         $state = Auth\State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
-        Logger::warning(
-            sprintf(
-                'Could not load state specified by InResponseTo: %s Processing response as unsolicited.',
-                $e->getMessage(),
-            ),
-        );
+        Logger::warning(sprintf(
+            'Could not load state specified by InResponseTo: %s Processing response as unsolicited.',
+            $e->getMessage(),
+        ));
     }
 }
 
-$config = Configuration::getInstance();
-$allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', true);
-
-Assert::true(
-    $allowUnsolicited,
-    'Unsolicited responses are denied by configuration.',
-    Error\BadRequest::class,
-);
+$disableUnsolicited = $spMetadata->getBoolean('disable_unsolicited', false);
+if ($state === null && $disableUnsolicited === true) {
+    throw new Error\BadRequest('Unsolicited responses are denied by configuration.');
+}
 
 if ($state) {
     // check that the authentication source is correct
@@ -165,6 +159,7 @@ $attributes = [];
 $foundAuthnStatement = false;
 
 // check for duplicate assertion (replay attack)
+$config = Configuration::getInstance();
 $storeType = $config->getString('store.type', 'phpsession');
 
 $store = StoreFactory::getInstance($storeType);

@@ -30,7 +30,7 @@ Functional changes
   It is possible to switch back via the `sharedkey_algorithm`.
   Note however that CBC is vulnerable to the Padding oracle attack.
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
-- Unsolicited responses can denied by disabling it by setting `enable.saml20-unsolicited` to `false`.
+- Unsolicited responses can denied by disabling it by setting `disable_unsolicited` to `true` in the SP authsource.
 
 Configuration changes
 ---------------------

@@ -1137,21 +1137,19 @@ class SP extends \SimpleSAML\Auth\Source
 
         $state['Attributes'] = $authProcState['Attributes'];
 
-        $config = Configuration::getInstance();
-        $allowUnsolicited = $config->getBoolean('enable.saml20-unsolicited', true);
-
-        Assert::true(
-            $allowUnsolicited,
-            'Unsolicited responsed are denied by configuration.',
-            Error\BadRequest::class,
-        );
-
         if (isset($state['saml:sp:isUnsolicited']) && (bool) $state['saml:sp:isUnsolicited']) {
+            $spMetadata = $source->getMetadata();
+            $disableUnsolicited = $spMetadata->getBoolean('disable_unsolicited', false);
+            if ($disableUnsolicited === true) {
+                throw new Error\BadRequest('Unsolicited responses are denied by configuration.');
+            }
+
             if (!empty($state['saml:sp:RelayState'])) {
                 $redirectTo = $state['saml:sp:RelayState'];
             } else {
                 $redirectTo = $source->getMetadata()->getString('RelayState', '/');
             }
+
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
         }
 
