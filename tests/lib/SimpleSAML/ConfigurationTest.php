@@ -252,9 +252,9 @@ class ConfigurationTest extends ClearStateTestCase
             'true_opt' => true,
             'false_opt' => false,
         ]);
-        $this->assertEquals($c->getBoolean('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getBoolean('true_opt', '--missing--'), true);
-        $this->assertEquals($c->getBoolean('false_opt', '--missing--'), false);
+        $this->assertEquals($c->getBoolean('true_opt', null), true);
+        $this->assertEquals($c->getBoolean('false_opt', null), false);
+        $this->assertNull($c->getBoolean('--missing--', null));
     }
 
 
@@ -265,7 +265,7 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([]);
-        $c->getBoolean('missing_opt');
+        $x = $c->getBoolean('missing_opt');
     }
 
 

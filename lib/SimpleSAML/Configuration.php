@@ -549,17 +549,17 @@ class Configuration implements Utils\ClearableState
      * An exception will be thrown if this option isn't a boolean, or if this option isn't found, and no default value
      * is given.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string     $name The name of the option.
+     * @param bool|null  $default A default value which will be returned if the option isn't found. The option will be
+     *                     required if this parameter isn't given. The default value can be null or a boolean.
      *
-     * @return boolean|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
+     * @psalm-return     ($default is set ? ($default is bool ? bool : null) : bool)
+     *                   The option with the given name, or $default if the option isn't found and $default is
+     *                     specified.
      *
-     * @throws \Exception If the option is not boolean.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not boolean.
      */
-    public function getBoolean(string $name, $default = self::REQUIRED_OPTION)
+    public function getBoolean(string $name, ?bool $default = null): ?bool
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
@@ -568,12 +568,10 @@ class Configuration implements Utils\ClearableState
             return $ret;
         }
 
-        if (!is_bool($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid boolean value.'
-            );
-        }
+        Assert::boolean(
+            $ret,
+            sprintf('%s: The option %s is not a valid boolean value.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
     }
