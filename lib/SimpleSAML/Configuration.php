@@ -355,18 +355,17 @@ class Configuration implements Utils\ClearableState
      *
      * @return mixed The configuration option with name $name, or $default if the option was not found.
      *
-     * @throws \Exception If the required option cannot be retrieved.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the required option cannot be retrieved.
      */
     public function getValue(string $name, $default = null)
     {
         // return the default value if the option is unset
         if (!array_key_exists($name, $this->configuration)) {
-            if ($default === self::REQUIRED_OPTION) {
-                throw new \Exception(
-                    $this->location . ': Could not retrieve the required option ' .
-                    var_export($name, true)
-                );
-            }
+            Assert::false(
+                (func_num_args() === 1),
+                sprintf('%s: Could not retrieve the required option %s.', $this->location, var_export($name, true)),
+            );
+
             return $default;
         }
 
@@ -562,7 +561,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getBoolean(string $name, $default = self::REQUIRED_OPTION)
     {
-        $ret = $this->getValue($name, $default);
+        $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
@@ -598,7 +597,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getString(string $name, $default = self::REQUIRED_OPTION)
     {
-        $ret = $this->getValue($name, $default);
+        $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
@@ -634,7 +633,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getInteger(string $name, $default = self::REQUIRED_OPTION)
     {
-        $ret = $this->getValue($name, $default);
+        $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value

@@ -68,25 +68,26 @@ class ConfigurationTest extends ClearStateTestCase
             'exists_true' => true,
             'exists_null' => null,
         ]);
-        $this->assertEquals($c->getValue('missing'), null);
-        $this->assertEquals($c->getValue('missing', true), true);
-        $this->assertEquals($c->getValue('missing', true), true);
-
         $this->assertEquals($c->getValue('exists_true'), true);
 
         $this->assertEquals($c->getValue('exists_null'), null);
         $this->assertEquals($c->getValue('exists_null', false), null);
+
+        $this->assertEquals($c->getValue('missing', true), true);
+
+        $this->expectException(AssertionFailedException::class);
+        $c->getValue('missing');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getValue(), REQUIRED_OPTION flag.
+     * Test \SimpleSAML\Configuration::getValue(), required option.
      */
     public function testGetValueRequired(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([]);
-        $c->getValue('missing', Configuration::REQUIRED_OPTION);
+        $c->getValue('missing');
     }
 
 
@@ -261,7 +262,7 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testGetBooleanMissing(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([]);
         $c->getBoolean('missing_opt');
     }
@@ -298,7 +299,7 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testGetStringMissing(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([]);
         $c->getString('missing_opt');
     }
@@ -335,7 +336,7 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testGetIntegerMissing(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([]);
         $c->getInteger('missing_opt');
     }
