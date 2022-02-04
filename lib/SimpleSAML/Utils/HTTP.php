@@ -821,7 +821,7 @@ class HTTP
              */
 
             /** @var \SimpleSAML\Configuration $appcfg */
-            $appcfg = $cfg->getConfigItem('application');
+            $appcfg = $cfg->getConfigItem('application', []);
             $appurl = $appcfg->getString('baseURL', '');
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);

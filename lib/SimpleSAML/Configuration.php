@@ -854,9 +854,9 @@ class Configuration implements Utils\ClearableState
      * @return \SimpleSAML\Configuration|null The option with the given name,
      *   or $default if the option isn't found and $default is specified.
      *
-     * @throws \Exception If the option is not an array.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
-    public function getConfigItem(string $name, $default = []): ?Configuration
+    public function getConfigItem(string $name, ?array $default = []): ?Configuration
     {
         $ret = $this->getValue($name, $default);
 
@@ -866,12 +866,10 @@ class Configuration implements Utils\ClearableState
             return null;
         }
 
-        if (!is_array($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not an array.'
-            );
-        }
+        Assert::isArray(
+            $ret,
+            sprintf('%s: The option %s is not an array.', $this->location, var_export($name, true)),
+        );
 
         return self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
     }
