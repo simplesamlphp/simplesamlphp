@@ -710,29 +710,26 @@ class Configuration implements Utils\ClearableState
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is given.
      *
-     * @throws \Exception If the option does not have any of the allowed values.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option does not have any of the allowed values.
      */
-    public function getValueValidate(string $name, array $allowedValues, $default = self::REQUIRED_OPTION)
+    public function getValueValidate(string $name, array $allowedValues, $default = null)
     {
-        $ret = $this->getValue($name, $default);
+        $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
+
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
-        if (!in_array($ret, $allowedValues, true)) {
-            $strValues = [];
-            foreach ($allowedValues as $av) {
-                $strValues[] = var_export($av, true);
-            }
-            $strValues = implode(', ', $strValues);
-
-            throw new \Exception(
-                $this->location . ': Invalid value given for the option ' .
-                var_export($name, true) . '. It should have one of the following values: ' .
-                $strValues . '; but it had the following value: ' . var_export($ret, true)
-            );
-        }
+        Assert::inArray(
+            $ret,
+            $allowedValues,
+            sprintf(
+                '%s: Invalid value given for option %s. It should have one of: %2$s; but got: %%s.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
         return $ret;
     }
