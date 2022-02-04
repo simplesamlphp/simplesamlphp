@@ -429,7 +429,7 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'opt' => ['a', 'b', 'c'],
         ]);
-        $this->assertEquals($c->getArray('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getArray('missing_opt', null), null);
         $this->assertEquals($c->getArray('opt'), ['a', 'b', 'c']);
     }
 
@@ -457,7 +457,7 @@ class ConfigurationTest extends ClearStateTestCase
             'opt_int' => 42,
             'opt_str' => 'string',
         ]);
-        $this->assertEquals($c->getArrayize('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getArrayize('missing_opt', null), null);
         $this->assertEquals($c->getArrayize('opt'), ['a', 'b', 'c']);
         $this->assertEquals($c->getArrayize('opt_int'), [42]);
         $this->assertEquals($c->getArrayize('opt_str'), ['string']);
@@ -473,7 +473,7 @@ class ConfigurationTest extends ClearStateTestCase
             'opt' => ['a', 'b', 'c'],
             'opt_str' => 'string',
         ]);
-        $this->assertEquals($c->getArrayizeString('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getArrayizeString('missing_opt', null), null);
         $this->assertEquals($c->getArrayizeString('opt'), ['a', 'b', 'c']);
         $this->assertEquals($c->getArrayizeString('opt_str'), ['string']);
     }
