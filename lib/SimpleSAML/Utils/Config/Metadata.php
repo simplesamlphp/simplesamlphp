@@ -280,8 +280,9 @@ class Metadata
                 'Format'      => $nameIdPolicy_cf->getString('Format', Constants::NAMEID_TRANSIENT),
                 'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
             ];
-            $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
-            if ($spNameQualifier !== false) {
+
+            $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', null);
+            if ($spNameQualifier !== null) {
                 $policy['SPNameQualifier'] = $spNameQualifier;
             }
         } elseif ($nameIdPolicy === null) {

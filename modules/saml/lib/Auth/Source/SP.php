@@ -441,7 +441,7 @@ class SP extends \SimpleSAML\Auth\Source
         $arrayUtils = new Utils\Arrays();
 
         $accr = null;
-        if ($idpMetadata->getString('AuthnContextClassRef', false)) {
+        if ($idpMetadata->getString('AuthnContextClassRef', null) !== null) {
             $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
@@ -449,7 +449,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         if ($accr !== null) {
             $comp = Constants::COMPARISON_EXACT;
-            if ($idpMetadata->getString('AuthnContextComparison', false)) {
+            if ($idpMetadata->getString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])

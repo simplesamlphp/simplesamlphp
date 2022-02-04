@@ -137,9 +137,9 @@ class Template extends Response
         $this->localization = new Localization($configuration);
 
         // check if we need to attach a theme controller
-        $controller = $this->configuration->getString('theme.controller', false);
+        $controller = $this->configuration->getString('theme.controller', null);
         if (
-            $controller
+            $controller !== null
             && class_exists($controller)
             && in_array(TemplateControllerInterface::class, class_implements($controller))
         ) {
@@ -266,7 +266,7 @@ class Template extends Response
     private function setupTwig(): Environment
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
-        $cache = $this->configuration->getString('template.cache', false);
+        $cache = $this->configuration->getString('template.cache', null);
 
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
@@ -287,7 +287,7 @@ class Template extends Response
         // set up translation
         $options = [
             'auto_reload' => $auto_reload,
-            'cache' => $cache,
+            'cache' => $cache ?? false,
             'strict_variables' => true,
         ];
 

@@ -585,17 +585,16 @@ class Configuration implements Utils\ClearableState
      * An exception will be thrown if this option isn't a string, or if this option isn't found, and no default value
      * is given.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string       $name The name of the option.
+     * @param string|null  $default A default value which will be returned if the option isn't found.
+     *                       The default value can be null or a string.
+     * @psalm-return       ($default is set ? ($default is string ? string : null) : string)
+     *                     The option with the given name, or $default if the option isn't found
+     *                       and $default is specified.
      *
-     * @return string|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
-     *
-     * @throws \Exception If the option is not a string.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
      */
-    public function getString(string $name, $default = self::REQUIRED_OPTION)
+    public function getString(string $name, ?string $default = null): ?string
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
@@ -604,12 +603,10 @@ class Configuration implements Utils\ClearableState
             return $ret;
         }
 
-        if (!is_string($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid string value.'
-            );
-        }
+        Assert::string(
+            $ret,
+            sprintf('%s: The option %s is not a valid string value.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
     }
@@ -623,8 +620,7 @@ class Configuration implements Utils\ClearableState
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     *                  required if this parameter isn't given. The default value can be any value, including null.
      *
      * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
      * specified.

@@ -937,8 +937,8 @@ class SAML2
         }
 
         $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getString('technicalcontact_email', false);
-        if ($email && $email !== 'na@example.org') {
+        $email = $globalConfig->getString('technicalcontact_email', 'na@example.org');
+        if ($email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
                 'givenName' => $globalConfig->getString('technicalcontact_name', null),

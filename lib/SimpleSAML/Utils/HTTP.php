@@ -460,8 +460,8 @@ class HTTP
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
             }
-            $proxy_auth = $config->getString('proxy.auth', false);
-            if ($proxy_auth !== false) {
+            $proxy_auth = $config->getString('proxy.auth', null);
+            if ($proxy_auth !== null) {
                 $context['http']['header'] = "Proxy-Authorization: Basic " . base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {

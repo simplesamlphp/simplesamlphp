@@ -6,6 +6,7 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use SAML2\Constants;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\TestUtils\ClearStateTestCase;
@@ -310,7 +311,7 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testGetStringWrong(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AssertionFailedException::class);
         $c = Configuration::loadFromArray([
             'wrong' => false,
         ]);
