@@ -327,8 +327,8 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'int_opt' => 42,
         ]);
-        $this->assertEquals($c->getInteger('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getInteger('int_opt', '--missing--'), 42);
+        $this->assertEquals($c->getInteger('missing_opt', 10), 10);
+        $this->assertEquals($c->getInteger('int_opt'), 42);
     }
 
 
@@ -364,7 +364,7 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'int_opt' => 42,
         ]);
-        $this->assertEquals($c->getIntegerRange('missing_opt', 0, 100, '--missing--'), '--missing--');
+        $this->assertEquals($c->getIntegerRange('missing_opt', 0, 100, null), null);
         $this->assertEquals($c->getIntegerRange('int_opt', 0, 100), 42);
     }
 

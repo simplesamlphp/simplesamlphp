@@ -616,16 +616,17 @@ class Configuration implements Utils\ClearableState
      * An exception will be thrown if this option isn't an integer, or if this option isn't found, and no default value
      * is given.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including null.
+     * @param string    $name The name of the option.
+     * @param int|null  $default A default value which will be returned if the option isn't found. The option will be
+     *                    required if this parameter isn't given. The default value can be null or an integer.
      *
-     * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
-     * specified.
+     * @psalm-return    ($default is set ? ($default is int ? int : null) : int)
+     *                  The option with the given name, or $default if the option isn't found and $default is
+     *                    specified.
      *
-     * @throws \Exception If the option is not an integer.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an integer.
      */
-    public function getInteger(string $name, $default = self::REQUIRED_OPTION)
+    public function getInteger(string $name, ?int $default = null): ?int
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
@@ -634,12 +635,10 @@ class Configuration implements Utils\ClearableState
             return $ret;
         }
 
-        if (!is_int($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid integer value.'
-            );
-        }
+        Assert::integer(
+            $ret,
+            sprintf('%s: The option %s is not a valid integer value.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
     }
@@ -653,34 +652,40 @@ class Configuration implements Utils\ClearableState
      * - the option isn't found, and no default value is given
      * - the value is outside of the allowed range
      *
-     * @param string $name The name of the option.
-     * @param int    $minimum The smallest value which is allowed.
-     * @param int    $maximum The largest value which is allowed.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string    $name The name of the option.
+     * @param int       $minimum The smallest value which is allowed.
+     * @param int       $maximum The largest value which is allowed.
+     * @param int|null  $default A default value which will be returned if the option isn't found. The option will be
+     *                     required if this parameter isn't given. The default value can be null or an integer.
      *
-     * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
+     * @psalm-return ($default is set ? ($default is int ? int : null) : int)
+     *               The option with the given name, or $default if the option isn't found and $default is specified.
      *
-     * @throws \Exception If the option is not in the range specified.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not in the range specified.
      */
-    public function getIntegerRange(string $name, int $minimum, int $maximum, $default = self::REQUIRED_OPTION)
+    public function getIntegerRange(string $name, int $minimum, int $maximum, ?int $default = null): ?int
     {
-        $ret = $this->getInteger($name, $default);
+        if (func_num_args() === 3) {
+            $ret = $this->getInteger($name, $minimum, $maximum);
+        } else {
+            $ret = $this->getInteger($name, $minimum, $maximum, $default);
+        }
 
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
-        if ($ret < $minimum || $ret > $maximum) {
-            throw new \Exception(
-                $this->location . ': Value of option ' . var_export($name, true) .
-                ' is out of range. Value is ' . $ret . ', allowed range is ['
-                . $minimum . ' - ' . $maximum . ']'
-            );
-        }
+        Assert::range(
+            $ret,
+            $minimum,
+            $maximum,
+            sprintf(
+                '%s: Value of option %s is out of range. Value is %%s, allowed range is [%%2$s - %%3$s]',
+                $this->location,
+                var_export($name, true)
+            ),
+        );
 
         return $ret;
     }
