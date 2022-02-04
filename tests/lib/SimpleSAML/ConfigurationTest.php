@@ -860,7 +860,7 @@ class ConfigurationTest extends ClearStateTestCase
                 'no' => 'Hei Verden!',
             ],
         ]);
-        $this->assertEquals($c->getLocalizedString('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getLocalizedString('missing_opt', null), null);
         $this->assertEquals($c->getLocalizedString('str_opt'), ['en' => 'Hello World!']);
         $this->assertEquals($c->getLocalizedString('str_array'), ['en' => 'Hello World!', 'no' => 'Hei Verden!']);
     }

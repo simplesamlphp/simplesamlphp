@@ -1077,17 +1077,19 @@ class Configuration implements Utils\ClearableState
      *
      * The default language returned is always 'en'.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default The default value. If no default is given, and the option isn't found, an exception will
-     *     be thrown.
+     * @param string      $name The name of the option.
+     * @param array|null  $default The default value. If no default is given, and the option isn't found,
+     *                      an exception will be thrown.
      *
-     * @return mixed Associative array with language => string pairs, or the provided default value.
+     * @psalm-return      ($default is set ? ($default is array ? array : null) : array)
+     *                    Associative array with language => string pairs, or the provided default value.
      *
-     * @throws \Exception If the translation is not an array or a string, or its index or value are not strings.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     *   If the translation is not an array or a string, or its index or value are not strings.
      */
-    public function getLocalizedString(string $name, $default = self::REQUIRED_OPTION)
+    public function getLocalizedString(string $name, ?array $default = []): ?array
     {
-        $ret = $this->getValue($name, $default);
+        $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
@@ -1099,17 +1101,11 @@ class Configuration implements Utils\ClearableState
             $ret = ['en' => $ret];
         }
 
-        if (!is_array($ret)) {
-            throw new \Exception($loc . ': Must be an array or a string.');
-        }
+        Assert::isArray($ret, sprintf('%s: Must be an array or a string', $loc));
 
         foreach ($ret as $k => $v) {
-            if (!is_string($k)) {
-                throw new \Exception($loc . ': Invalid language code: ' . var_export($k, true));
-            }
-            if (!is_string($v)) {
-                throw new \Exception($loc . '[' . var_export($v, true) . ']: Must be a string.');
-            }
+            Assert::string($k, sprintf('%s: Invalid language code: %s', $loc, var_export($k, true)));
+            Assert::string($v, sprintf('%s[%s]: Must be a string.', $loc, var_export($v, true)));
         }
 
         return $ret;
