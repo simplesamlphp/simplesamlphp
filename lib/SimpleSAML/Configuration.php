@@ -665,11 +665,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getIntegerRange(string $name, int $minimum, int $maximum, ?int $default = null): ?int
     {
-        if (func_num_args() === 3) {
-            $ret = $this->getInteger($name, $minimum, $maximum);
-        } else {
-            $ret = $this->getInteger($name, $minimum, $maximum, $default);
-        }
+        $ret = (func_num_args() === 3) ? $this->getInteger($name) : $this->getInteger($name, $default);
 
         if ($ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
