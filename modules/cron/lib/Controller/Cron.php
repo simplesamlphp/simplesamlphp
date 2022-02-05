@@ -85,8 +85,8 @@ class Cron
     {
         $this->authUtils->requireAdmin();
 
-        $key = $this->cronconfig->getValue('key', 'secret');
-        $tags = $this->cronconfig->getValue('allowed_tags', []);
+        $key = $this->cronconfig->getOptionalString('key', 'secret');
+        $tags = $this->cronconfig->getOptionalArray('allowed_tags', []);
 
         $def = [
             'weekly' => "22 0 * * 0",
@@ -127,7 +127,7 @@ class Cron
      */
     public function run(string $tag, string $key, string $output = 'xhtml'): Response
     {
-        $configKey = $this->cronconfig->getValue('key', 'secret');
+        $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
             Logger::error('Cron - Wrong key provided. Cron will not run.');
             exit;
@@ -146,7 +146,7 @@ class Cron
         $croninfo = $cron->runTag($tag);
         $summary = $croninfo['summary'];
 
-        if ($this->cronconfig->getValue('sendemail', true) && count($summary) > 0) {
+        if ($this->cronconfig->getOptionalBoolean('sendemail', true) && count($summary) > 0) {
             $mail = new Utils\EMail('SimpleSAMLphp cron report');
             $mail->setData(['url' => $url, 'tag' => $croninfo['tag'], 'summary' => $croninfo['summary']]);
             try {

@@ -229,7 +229,7 @@ class EMail
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(
             $config->getOptionalString('mail.transport.method', 'mail'),
-            $config->getArrayize('mail.transport.options', [])
+            $config->getOptionalArrayize('mail.transport.options', [])
         );
 
         return $EMail;

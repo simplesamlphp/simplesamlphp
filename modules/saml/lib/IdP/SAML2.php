@@ -876,7 +876,7 @@ class SAML2
         // add organization information
         if ($config->hasValue('OrganizationName')) {
             $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
-            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+            $metadata['OrganizationDisplayName'] = $config->getOptionalLocalizedString(
                 'OrganizationDisplayName',
                 $metadata['OrganizationName']
             );

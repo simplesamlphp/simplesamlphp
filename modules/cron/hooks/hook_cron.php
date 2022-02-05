@@ -15,7 +15,7 @@ function cron_hook_cron(array &$croninfo): void
 
     $cronconfig = Configuration::getConfig('module_cron.php');
 
-    if ($cronconfig->getValue('debug_message', true)) {
+    if ($cronconfig->getOptionalBoolean('debug_message', true)) {
         $croninfo['summary'][] = 'Cron did run tag [' . $croninfo['tag'] . '] at ' . date(DATE_RFC822);
     }
 }

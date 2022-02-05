@@ -155,8 +155,8 @@ class Language
         $this->availableLanguages = $this->getInstalledLanguages();
         $this->defaultLanguage = $this->configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
         $this->languageParameterName = $this->configuration->getOptionalString('language.parameter.name', 'language');
-        $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
-        $this->rtlLanguages = $this->configuration->getArray('language.rtl', []);
+        $this->customFunction = $this->configuration->getOptionalArray('language.get_language_function', null);
+        $this->rtlLanguages = $this->configuration->getOptionalArray('language.rtl', []);
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
@@ -173,7 +173,10 @@ class Language
      */
     private function getInstalledLanguages(): array
     {
-        $configuredAvailableLanguages = $this->configuration->getArray('language.available', [self::FALLBACKLANGUAGE]);
+        $configuredAvailableLanguages = $this->configuration->getOptionalArray(
+            'language.available',
+            [self::FALLBACKLANGUAGE]
+        );
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
             if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
@@ -403,7 +406,7 @@ class Language
     public static function getLanguageCookie(): ?string
     {
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
+        $availableLanguages = $config->getOptionalArray('language.available', [self::FALLBACKLANGUAGE]);
         $name = $config->getOptionalString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
@@ -426,7 +429,7 @@ class Language
     {
         $language = strtolower($language);
         $config = Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
+        $availableLanguages = $config->getOptionalArray('language.available', [self::FALLBACKLANGUAGE]);
 
         if (!in_array($language, $availableLanguages, true) || headers_sent()) {
             return;

@@ -180,7 +180,7 @@ class Session implements Utils\ClearableState
             $this->markDirty();
 
             // initialize data for session check function if defined
-            $checkFunction = self::$config->getValue('session.check_function', null);
+            $checkFunction = self::$config->getOptionalValue('session.check_function', null);
             if (is_callable($checkFunction)) {
                 call_user_func($checkFunction, $this, true);
             }
@@ -371,7 +371,7 @@ class Session implements Utils\ClearableState
             }
 
             // run session check function if defined
-            $checkFunction = $globalConfig->getValue('session.check_function', null);
+            $checkFunction = $globalConfig->getOptionalValue('session.check_function', null);
             if (is_callable($checkFunction)) {
                 $check = call_user_func($checkFunction, $session);
                 if ($check !== true) {

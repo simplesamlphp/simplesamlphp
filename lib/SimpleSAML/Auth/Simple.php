@@ -26,8 +26,8 @@ class Simple
      */
     protected string $authSource;
 
-    /** @var \SimpleSAML\Configuration|null */
-    protected ?Configuration $app_config;
+    /** @var \SimpleSAML\Configuration */
+    protected Configuration $app_config;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;
@@ -46,7 +46,7 @@ class Simple
             $config = Configuration::getInstance();
         }
         $this->authSource = $authSource;
-        $this->app_config = $config->getOptionalConfigItem('application', null);
+        $this->app_config = $config->getOptionalConfigItem('application', []);
 
         if ($session === null) {
             $session = Session::getSessionFromRequest();

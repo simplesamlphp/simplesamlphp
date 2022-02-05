@@ -406,10 +406,10 @@ class HTTP
 
             $self_host = $this->getSelfHostWithNonStandardPort();
 
-            $trustedRegex = Configuration::getInstance()->getOptionalString('trusted.url.regex', null);
+            $trustedRegex = Configuration::getInstance()->getOptionalValue('trusted.url.regex', null);
 
             $trusted = false;
-            if ($trustedRegex !== null) {
+            if (!in_array($trustedRegex, [null, false])) {
                 // add self host to the white list
                 $trustedSites[] = preg_quote($self_host);
                 foreach ($trustedSites as $regex) {
@@ -802,10 +802,9 @@ class HTTP
              * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
              * for this case in the configuration. First, check if that's the case.
              */
-
-            /** @var \SimpleSAML\Configuration $appcfg */
             $appcfg = $cfg->getOptionalConfigItem('application', null);
-            $appurl = $appcfg ?: $appcfg->getOptionalString('baseURL', null);
+            $appurl = ($appcfg !== null) ? $appcfg->getOptionalString('baseURL', null) : null;
+
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);
                 $hostname = parse_url($appurl, PHP_URL_HOST);

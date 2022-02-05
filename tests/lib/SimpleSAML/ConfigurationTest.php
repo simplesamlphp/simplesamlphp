@@ -494,11 +494,12 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertEquals($c->getOptionalValueValidate('opt', ['a', 'b', 'c'], 'f'), 'b');
 
         // Missing option
-        $this->assertEquals($c->getOptionalValueValidate('missing_opt', ['a', 'b', 'c'], 'f'), 'f');
+        $this->assertEquals($c->getOptionalValueValidate('missing_opt', ['a', 'b', 'c'], 'b'), 'b');
 
         // Value not allowed
         $this->expectException(AssertionFailedException::class);
         $c->getOptionalValueValidate('opt', ['d', 'e', 'f'], 'c');
+        $c->getOptionalValueValidate('missing_opt', ['d', 'e', 'f'], 'c');
     }
 
 
@@ -1011,9 +1012,11 @@ class ConfigurationTest extends ClearStateTestCase
                 'no' => 'Hei Verden!',
             ],
         ]);
-        $this->assertEquals($c->getLocalizedString('missing_opt', '--missing--'), '--missing--');
         $this->assertEquals($c->getLocalizedString('str_opt'), ['en' => 'Hello World!']);
         $this->assertEquals($c->getLocalizedString('str_array'), ['en' => 'Hello World!', 'no' => 'Hei Verden!']);
+
+        $this->expectException(AssertionFailedException::class);
+        $c->getLocalizedString('missing_opt');
     }
 
 

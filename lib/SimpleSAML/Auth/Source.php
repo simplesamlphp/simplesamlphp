@@ -344,7 +344,7 @@ abstract class Source
         // for now - load and parse config file
         $config = Configuration::getConfig('authsources.php');
 
-        $authConfig = $config->getArray($authId, null);
+        $authConfig = $config->getOptionalArray($authId, null);
         if ($authConfig === null) {
             if ($type !== null) {
                 throw new Error\Exception(

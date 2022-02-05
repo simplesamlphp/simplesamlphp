@@ -442,7 +442,7 @@ class Config
         }
 
         // make sure we have a secret salt set
-        if ($this->config->getValue('secretsalt') === 'defaultsecretsalt') {
+        if ($this->config->getString('secretsalt') === 'defaultsecretsalt') {
             $warnings[] = Translate::noop(
                 '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>' .
                 'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a ' .
@@ -469,7 +469,7 @@ class Config
                     curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
                     curl_setopt($ch, CURLOPT_TIMEOUT, 2);
                     curl_setopt($ch, CURLOPT_PROXY, $this->config->getOptionalString('proxy', null));
-                    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getValue('proxy.auth', null));
+                    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getOptionalValue('proxy.auth', null));
                     $response = curl_exec($ch);
 
                     if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200) {

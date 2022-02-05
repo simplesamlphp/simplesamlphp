@@ -200,7 +200,7 @@ class Exception extends \Exception
     protected function logBacktrace(int $level = Logger::DEBUG): void
     {
         // Do nothing if backtraces have been disabled in config.
-        $debug = Configuration::getInstance()->getArray('debug', ['backtraces' => true]);
+        $debug = Configuration::getInstance()->getOptionalArray('debug', ['backtraces' => true]);
         if (array_key_exists('backtraces', $debug) && $debug['backtraces'] === false) {
             return;
         }

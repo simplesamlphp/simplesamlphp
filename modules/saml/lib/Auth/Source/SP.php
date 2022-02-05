@@ -151,7 +151,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add attributes
-        $name = $this->metadata->getLocalizedString('name', null);
+        $name = $this->metadata->getOptionalLocalizedString('name', null);
         $attributes = $this->metadata->getOptionalArray('attributes', []);
         if ($name !== null) {
             if (!empty($attributes)) {
@@ -176,11 +176,11 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add organization info
-        $org = $this->metadata->getLocalizedString('OrganizationName', null);
+        $org = $this->metadata->getOptionalLocalizedString('OrganizationName', null);
         if ($org !== null) {
             $metadata['OrganizationName'] = $org;
-            $metadata['OrganizationDisplayName'] = $this->metadata->getLocalizedString('OrganizationDisplayName', $org);
-            $metadata['OrganizationURL'] = $this->metadata->getLocalizedString('OrganizationURL', null);
+            $metadata['OrganizationDisplayName'] = $this->metadata->getOptionalLocalizedString('OrganizationDisplayName', $org);
+            $metadata['OrganizationURL'] = $this->metadata->getOptionalLocalizedString('OrganizationURL', null);
             if ($metadata['OrganizationURL'] === null) {
                 throw new Error\Exception(
                     'If OrganizationName is set, OrganizationURL must also be set.'

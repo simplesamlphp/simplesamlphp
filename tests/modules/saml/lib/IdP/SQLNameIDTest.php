@@ -86,15 +86,15 @@ class SQLNameIDTest extends TestCase
     {
         $config = [
             'database.dsn'         => 'sqlite::memory:',
-            'database.username'    => '',
-            'database.password'    => '',
+            'database.username'    => null,
+            'database.password'    => null,
             'database.prefix'      => 'phpunit_',
             'database.persistent'  => true,
             'database.secondaries' => [
                 [
                     'dsn'      => 'sqlite::memory:',
-                    'username' => '',
-                    'password' => '',
+                    'username' => null,
+                    'password' => null,
                 ],
             ],
         ];

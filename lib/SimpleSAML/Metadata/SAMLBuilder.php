@@ -417,7 +417,7 @@ class SAMLBuilder
         Configuration $metadata
     ): void {
         $attributes = $metadata->getOptionalArray('attributes', []);
-        $name = $metadata->getLocalizedString('name', null);
+        $name = $metadata->getOptionalLocalizedString('name', null);
 
         if ($name === null || count($attributes) == 0) {
             // we cannot add an AttributeConsumingService without name and attributes
@@ -434,11 +434,11 @@ class SAMLBuilder
         $attributeconsumer->setIndex($metadata->getOptionalInteger('attributes.index', 0));
 
         if ($metadata->hasValue('attributes.isDefault')) {
-            $attributeconsumer->setIsDefault($metadata->getBoolean('attributes.isDefault', false));
+            $attributeconsumer->setIsDefault($metadata->getOptionalBoolean('attributes.isDefault', false));
         }
 
         $attributeconsumer->setServiceName($name);
-        $attributeconsumer->setServiceDescription($metadata->getLocalizedString('description', []));
+        $attributeconsumer->setServiceDescription($metadata->getOptionalLocalizedString('description', []));
 
         $nameFormat = $metadata->getOptionalString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
         foreach ($attributes as $friendlyName => $attribute) {

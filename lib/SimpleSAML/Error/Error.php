@@ -262,7 +262,7 @@ class Error extends Exception
             }
         }
 
-        $show_function = $config->getArray('errors.show_function', null);
+        $show_function = $config->getOptionalArray('errors.show_function', null);
         if (isset($show_function)) {
             Assert::isCallable($show_function);
             $this->setHTTPCode();
