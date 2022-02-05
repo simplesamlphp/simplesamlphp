@@ -160,7 +160,7 @@ class Language
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
-                $this->configuration->getBoolean('language.parameter.setcookie', true)
+                $this->configuration->getOptionalBoolean('language.parameter.setcookie', true)
             );
         }
     }
@@ -437,8 +437,8 @@ class Language
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
             'domain'   => ($config->getString('language.cookie.domain', '')),
             'path'     => ($config->getString('language.cookie.path', '/')),
-            'secure'   => ($config->getBoolean('language.cookie.secure', false)),
-            'httponly' => ($config->getBoolean('language.cookie.httponly', false)),
+            'secure'   => ($config->getOptionalBoolean('language.cookie.secure', false)),
+            'httponly' => ($config->getOptionalBoolean('language.cookie.httponly', false)),
             'samesite' => ($config->getString('language.cookie.samesite', null)),
         ];
 

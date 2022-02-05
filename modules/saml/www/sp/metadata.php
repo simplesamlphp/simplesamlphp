@@ -13,7 +13,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $config = Configuration::getInstance();
-if ($config->getBoolean('admin.protectmetadata', false)) {
+if ($config->getOptionalBoolean('admin.protectmetadata', false)) {
     $authUtils = new Utils\Auth();
     $authUtils->requireAdmin();
 }

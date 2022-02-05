@@ -97,21 +97,21 @@ class Message
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
+            $signingEnabled = $srcMetadata->getOptionalBoolean('sign.logout', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
+                $signingEnabled = $dstMetadata->getOptionalBoolean('sign.logout', null);
             }
         } elseif ($message instanceof AuthnRequest) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
+            $signingEnabled = $srcMetadata->getOptionalBoolean('sign.authnrequest', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
+                $signingEnabled = $dstMetadata->getOptionalBoolean('sign.authnrequest', null);
             }
         }
 
         if ($signingEnabled === null) {
-            $signingEnabled = $dstMetadata->getBoolean('redirect.sign', null);
+            $signingEnabled = $dstMetadata->getOptionalBoolean('redirect.sign', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $srcMetadata->getBoolean('redirect.sign', false);
+                $signingEnabled = $srcMetadata->getOptionalBoolean('redirect.sign', false);
             }
         }
         if (!$signingEnabled) {
@@ -203,14 +203,14 @@ class Message
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
-            $enabled = $srcMetadata->getBoolean('validate.logout', null);
+            $enabled = $srcMetadata->getOptionalBoolean('validate.logout', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('validate.logout', null);
+                $enabled = $dstMetadata->getOptionalBoolean('validate.logout', null);
             }
         } elseif ($message instanceof AuthnRequest) {
-            $enabled = $srcMetadata->getBoolean('validate.authnrequest', null);
+            $enabled = $srcMetadata->getOptionalBoolean('validate.authnrequest', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('validate.authnrequest', null);
+                $enabled = $dstMetadata->getOptionalBoolean('validate.authnrequest', null);
             }
         }
 
@@ -222,9 +222,9 @@ class Message
         ) {
             $enabled = true;
         } elseif ($enabled === null) {
-            $enabled = $srcMetadata->getBoolean('redirect.validate', null);
+            $enabled = $srcMetadata->getOptionalBoolean('redirect.validate', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('redirect.validate', false);
+                $enabled = $dstMetadata->getOptionalBoolean('redirect.validate', false);
             }
         }
 
@@ -349,9 +349,9 @@ class Message
         Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
-            $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
+            $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
             if ($encryptAssertion === null) {
-                $encryptAssertion = $dstMetadata->getBoolean('assertion.encryption', false);
+                $encryptAssertion = $dstMetadata->getOptionalBoolean('assertion.encryption', false);
             }
             if ($encryptAssertion) {
                 /* The assertion was unencrypted, but we have encryption enabled. */
@@ -480,8 +480,8 @@ class Message
             $ar->setNameIdPolicy($policy);
         }
 
-        $ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', false));
-        $ar->setIsPassive($spMetadata->getBoolean('IsPassive', false));
+        $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
+        $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
 
         $protbind = $spMetadata->getValueValidate('ProtocolBinding', [
             Constants::BINDING_HTTP_POST,
@@ -702,9 +702,9 @@ class Message
             }
 
             // is SSO with HoK enabled? IdP remote metadata overwrites SP metadata configuration
-            $hok = $idpMetadata->getBoolean('saml20.hok.assertion', null);
+            $hok = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', null);
             if ($hok === null) {
-                $hok = $spMetadata->getBoolean('saml20.hok.assertion', false);
+                $hok = $spMetadata->getOptionalBoolean('saml20.hok.assertion', false);
             }
             if ($method === Constants::CM_BEARER && $hok) {
                 $lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
@@ -824,7 +824,7 @@ class Message
         // as far as we can tell, the assertion is valid
 
         // maybe we need to base64 decode the attributes in the assertion?
-        if ($idpMetadata->getBoolean('base64attributes', false)) {
+        if ($idpMetadata->getOptionalBoolean('base64attributes', false)) {
             $attributes = $assertion->getAttributes();
             $newAttributes = [];
             foreach ($attributes as $name => $values) {

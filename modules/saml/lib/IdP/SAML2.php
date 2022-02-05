@@ -255,7 +255,7 @@ class SAML2
 
         $skipEndpointValidation = false;
         if ($authnRequestSigned === true) {
-            $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
+            $skipEndpointValidationWhenSigned = $spMetadata->getOptionalValue('skipEndpointValidationWhenSigned', false);
             if (is_bool($skipEndpointValidationWhenSigned) === true) {
                 $skipEndpointValidation = $skipEndpointValidationWhenSigned;
             } elseif (is_callable($skipEndpointValidationWhenSigned) === true) {
@@ -305,13 +305,13 @@ class SAML2
         $httpUtils = new Utils\HTTP();
 
         $supportedBindings = [Constants::BINDING_HTTP_POST];
-        if ($idpMetadata->getBoolean('saml20.sendartifact', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.sendartifact', false)) {
             $supportedBindings[] = Constants::BINDING_HTTP_ARTIFACT;
         }
-        if ($idpMetadata->getBoolean('saml20.hok.assertion', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.hok.assertion', false)) {
             $supportedBindings[] = Constants::BINDING_HOK_SSO;
         }
-        if ($idpMetadata->getBoolean('saml20.ecp', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.ecp', false)) {
             $supportedBindings[] = Constants::BINDING_PAOS;
         }
 
@@ -462,7 +462,7 @@ class SAML2
         }
 
         if (!$forceAuthn) {
-            $forceAuthn = $spMetadata->getBoolean('ForceAuthn', false);
+            $forceAuthn = $spMetadata->getOptionalBoolean('ForceAuthn', false);
         }
 
         $sessionLostParams = [
@@ -844,7 +844,7 @@ class SAML2
         $metadata['keys'] = $keys;
 
         // add ArtifactResolutionService endpoint, if enabled
-        if ($config->getBoolean('saml20.sendartifact', false)) {
+        if ($config->getOptionalBoolean('saml20.sendartifact', false)) {
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
@@ -853,7 +853,7 @@ class SAML2
         }
 
         // add Holder of Key, if enabled
-        if ($config->getBoolean('saml20.hok.assertion', false)) {
+        if ($config->getOptionalBoolean('saml20.hok.assertion', false)) {
             array_unshift(
                 $metadata['SingleSignOnService'],
                 [
@@ -865,7 +865,7 @@ class SAML2
         }
 
         // add ECP profile, if enabled
-        if ($config->getBoolean('saml20.ecp', false)) {
+        if ($config->getOptionalBoolean('saml20.ecp', false)) {
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
@@ -1001,9 +1001,9 @@ class SAML2
         Configuration $spMetadata,
         array $attributes
     ): array {
-        $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
+        $base64Attributes = $spMetadata->getOptionalBoolean('base64attributes', null);
         if ($base64Attributes === null) {
-            $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
+            $base64Attributes = $idpMetadata->getOptionalBoolean('base64attributes', false);
         }
 
         if ($base64Attributes) {
@@ -1129,9 +1129,9 @@ class SAML2
         $httpUtils = new Utils\HTTP();
         $now = time();
 
-        $signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', null);
+        $signAssertion = $spMetadata->getOptionalBoolean('saml20.sign.assertion', null);
         if ($signAssertion === null) {
-            $signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', true);
+            $signAssertion = $idpMetadata->getOptionalBoolean('saml20.sign.assertion', true);
         }
 
         $config = Configuration::getInstance();
@@ -1190,7 +1190,7 @@ class SAML2
             $hokAssertion = true;
         }
         if ($hokAssertion === null) {
-            $hokAssertion = $idpMetadata->getBoolean('saml20.hok.assertion', false);
+            $hokAssertion = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', false);
         }
 
         if ($hokAssertion) {
@@ -1238,7 +1238,7 @@ class SAML2
         $a->setSubjectConfirmation([$sc]);
 
         // add attributes
-        if ($spMetadata->getBoolean('simplesaml.attributes', true)) {
+        if ($spMetadata->getOptionalBoolean('simplesaml.attributes', true)) {
             $attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
             $a->setAttributeNameFormat($attributeNameFormat);
             $attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
@@ -1293,9 +1293,9 @@ class SAML2
 
         $a->setNameId($nameId);
 
-        $encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
@@ -1324,9 +1324,9 @@ class SAML2
         Configuration $spMetadata,
         Assertion $assertion
     ) {
-        $encryptAssertion = $spMetadata->getBoolean('assertion.encryption', null);
+        $encryptAssertion = $spMetadata->getOptionalBoolean('assertion.encryption', null);
         if ($encryptAssertion === null) {
-            $encryptAssertion = $idpMetadata->getBoolean('assertion.encryption', false);
+            $encryptAssertion = $idpMetadata->getOptionalBoolean('assertion.encryption', false);
         }
         if (!$encryptAssertion) {
             // we are _not_ encrypting this assertion, and are therefore done
@@ -1403,9 +1403,9 @@ class SAML2
         }
         $lr->setNotOnOrAfter(time() + $assertionLifetime);
 
-        $encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
@@ -1429,9 +1429,9 @@ class SAML2
         Configuration $spMetadata,
         string $consumerURL
     ): Response {
-        $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
+        $signResponse = $spMetadata->getOptionalBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
-            $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);
+            $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
         $r = new Response();

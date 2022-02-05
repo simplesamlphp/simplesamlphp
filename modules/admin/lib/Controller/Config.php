@@ -132,7 +132,7 @@ class Config
                 ]
             ],
             'enablematrix' => [
-                'saml20idp' => $this->config->getBoolean('enable.saml20-idp', false),
+                'saml20idp' => $this->config->getOptionalBoolean('enable.saml20-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
             'logouturl' => $this->authUtils->getAdminLogoutURL(),
@@ -267,7 +267,7 @@ class Config
                 ]
             ],
             'curl_init' => [
-                'required' => $this->config->getBoolean('admin.checkforupdates', true) ? 'required' : 'optional',
+                'required' => $this->config->getOptionalBoolean('admin.checkforupdates', true) ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
                         'cURL (might be required by some modules)'
@@ -366,7 +366,7 @@ class Config
         $cryptoUtils = new Utils\Crypto();
 
         // perform some sanity checks on the configured certificates
-        if ($this->config->getBoolean('enable.saml20-idp', false) !== false) {
+        if ($this->config->getOptionalBoolean('enable.saml20-idp', false) !== false) {
             $handler = MetaDataStorageHandler::getMetadataHandler();
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
@@ -401,7 +401,7 @@ class Config
             }
         }
 
-        if ($this->config->getBoolean('metadata.sign.enable', false) !== false) {
+        if ($this->config->getOptionalBoolean('metadata.sign.enable', false) !== false) {
             $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
             $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
             $matrix[] = [
@@ -455,7 +455,7 @@ class Config
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.
          */
-        if ($this->config->getBoolean('admin.checkforupdates', true) && $this->config->getVersion() !== 'master') {
+        if ($this->config->getOptionalBoolean('admin.checkforupdates', true) && $this->config->getVersion() !== 'master') {
             if (!function_exists('curl_init')) {
                 $warnings[] = Translate::noop(
                     'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.'

@@ -287,13 +287,13 @@ class SessionHandlerPHP extends SessionHandler
                 'You cannot set both the session.phpsession.limitedpath and session.cookie.path options.'
             );
         } elseif ($config->hasValue('session.phpsession.limitedpath')) {
-            $ret['path'] = $config->getBoolean(
+            $ret['path'] = $config->getOptionalBoolean(
                 'session.phpsession.limitedpath',
                 false
             ) ? $config->getBasePath() : '/';
         }
 
-        $ret['httponly'] = $config->getBoolean('session.phpsession.httponly', true);
+        $ret['httponly'] = $config->getOptionalBoolean('session.phpsession.httponly', true);
 
         return $ret;
     }

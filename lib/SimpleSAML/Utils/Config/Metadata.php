@@ -278,7 +278,7 @@ class Metadata
             $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
             $policy = [
                 'Format'      => $nameIdPolicy_cf->getString('Format', Constants::NAMEID_TRANSIENT),
-                'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
+                'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
             ];
             $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
             if ($spNameQualifier !== false) {

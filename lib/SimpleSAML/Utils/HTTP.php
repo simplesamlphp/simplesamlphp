@@ -688,7 +688,7 @@ class HTTP
     public function getPOSTRedirectURL(string $destination, array $data): string
     {
         $config = Configuration::getInstance();
-        $allowed = $config->getBoolean('enable.http_post', false);
+        $allowed = $config->getOptionalBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
@@ -1181,7 +1181,7 @@ class HTTP
         }
 
         $config = Configuration::getInstance();
-        $allowed = $config->getBoolean('enable.http_post', false);
+        $allowed = $config->getOptionalBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP

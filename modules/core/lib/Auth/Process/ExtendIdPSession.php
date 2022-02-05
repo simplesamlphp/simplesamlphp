@@ -46,7 +46,7 @@ class ExtendIdPSession extends Auth\ProcessingFilter
         if (
             !empty($state['RememberMe'])
             && $rememberMeExpire !== null
-            && $globalConfig->getBoolean('session.rememberme.enable', false)
+            && $globalConfig->getOptionalBoolean('session.rememberme.enable', false)
         ) {
             $session->setRememberMeExpire();
             return;

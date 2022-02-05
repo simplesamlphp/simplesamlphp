@@ -265,7 +265,7 @@ class Template extends Response
      */
     private function setupTwig(): Environment
     {
-        $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
+        $auto_reload = $this->configuration->getOptionalBoolean('template.auto_reload', true);
         $cache = $this->configuration->getString('template.cache', false);
 
         // set up template paths
@@ -312,7 +312,7 @@ class Template extends Response
         }
         $twig->addGlobal('queryParams', $queryParams);
         $twig->addGlobal('templateId', str_replace('.twig', '', $this->normalizeTemplateName($this->template)));
-        $twig->addGlobal('isProduction', $this->configuration->getBoolean('production', true));
+        $twig->addGlobal('isProduction', $this->configuration->getOptionalBoolean('production', true));
         $twig->addGlobal('baseurlpath', ltrim($this->configuration->getBasePath(), '/'));
 
         // add a filter for translations out of arrays

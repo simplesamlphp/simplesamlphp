@@ -123,9 +123,9 @@ class Federation
             'remote' => [
                 'saml20-idp-remote' => !empty($hostedSPs)
                     ? $this->mdHandler->getList('saml20-idp-remote', true) : [],
-                'saml20-sp-remote' => $this->config->getBoolean('enable.saml20-idp', false) === true
+                'saml20-sp-remote' => $this->config->getOptionalBoolean('enable.saml20-idp', false) === true
                     ? $this->mdHandler->getList('saml20-sp-remote', true) : [],
-                'adfs-sp-remote' => ($this->config->getBoolean('enable.adfs-idp', false) === true) &&
+                'adfs-sp-remote' => ($this->config->getOptionalBoolean('enable.adfs-idp', false) === true) &&
                     Module::isModuleEnabled('adfs') ? $this->mdHandler->getList('adfs-sp-remote', true) : [],
             ],
         ];
@@ -190,7 +190,7 @@ class Federation
         $entities = [];
 
         // SAML 2
-        if ($this->config->getBoolean('enable.saml20-idp', false)) {
+        if ($this->config->getOptionalBoolean('enable.saml20-idp', false)) {
             try {
                 $idps = $this->mdHandler->getList('saml20-idp-hosted');
                 $saml2entities = [];
@@ -230,7 +230,7 @@ class Federation
         }
 
         // ADFS
-        if ($this->config->getBoolean('enable.adfs-idp', false) && Module::isModuleEnabled('adfs')) {
+        if ($this->config->getOptionalBoolean('enable.adfs-idp', false) && Module::isModuleEnabled('adfs')) {
             try {
                 $idps = $this->mdHandler->getList('adfs-idp-hosted');
                 $adfsentities = [];

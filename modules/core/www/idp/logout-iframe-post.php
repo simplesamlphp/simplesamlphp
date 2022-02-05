@@ -36,9 +36,9 @@ if ($assertionLifetime === null) {
 }
 $lr->setNotOnOrAfter(time() + $assertionLifetime);
 
-$encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+$encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
 if ($encryptNameId === null) {
-    $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+    $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
 }
 if ($encryptNameId) {
     $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));

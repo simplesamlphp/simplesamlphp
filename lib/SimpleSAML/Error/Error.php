@@ -230,7 +230,7 @@ class Error extends Exception
         $config = Configuration::getInstance();
 
         $data = [];
-        $data['showerrors'] = $config->getBoolean('showerrors', true);
+        $data['showerrors'] = $config->getOptionalBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
         $data['parameters'] = $this->parameters;
@@ -242,7 +242,7 @@ class Error extends Exception
 
         // check if there is a valid technical contact email address
         if (
-            $config->getBoolean('errorreporting', true)
+            $config->getOptionalBoolean('errorreporting', true)
             && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting

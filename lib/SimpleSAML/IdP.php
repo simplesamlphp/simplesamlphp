@@ -81,12 +81,12 @@ class IdP
         $globalConfig = Configuration::getInstance();
 
         if (substr($id, 0, 6) === 'saml2:') {
-            if (!$globalConfig->getBoolean('enable.saml20-idp', false)) {
+            if (!$globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
                 throw new Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
-            if (!$globalConfig->getBoolean('enable.adfs-idp', false)) {
+            if (!$globalConfig->getOptionalBoolean('enable.adfs-idp', false)) {
                 throw new Error\Exception('enable.adfs-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');

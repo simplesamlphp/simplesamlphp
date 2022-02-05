@@ -310,7 +310,7 @@ class Module
             'max_age' => strval($cacheConfig->getInteger('max_age', 86400))
         ]);
         $response->setAutoLastModified();
-        if ($cacheConfig->getBoolean('etag', false)) {
+        if ($cacheConfig->getOptionalBoolean('etag', false)) {
             $response->setAutoEtag();
         }
         $response->isNotModified($request);

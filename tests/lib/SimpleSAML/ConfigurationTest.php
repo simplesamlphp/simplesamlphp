@@ -256,34 +256,48 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'true_opt' => true,
             'false_opt' => false,
+            'wrong_opt' => 'true',
         ]);
-        $this->assertEquals($c->getBoolean('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getBoolean('true_opt', '--missing--'), true);
-        $this->assertEquals($c->getBoolean('false_opt', '--missing--'), false);
-    }
 
+        // Normal use
+        $this->assertTrue($c->getBoolean('true_opt'));
+        $this->assertFalse($c->getBoolean('false_opt'));
 
-    /**
-     * Test \SimpleSAML\Configuration::getBoolean() missing option
-     */
-    public function testGetBooleanMissing(): void
-    {
-        $this->expectException(Exception::class);
-        $c = Configuration::loadFromArray([]);
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
         $c->getBoolean('missing_opt');
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getBoolean('wrong_opt');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getBoolean() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalBoolean()
      */
-    public function testGetBooleanWrong(): void
+    public function testGetOptionalBoolean(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'wrong' => 'true',
+            'true_opt' => true,
+            'false_opt' => false,
+            'wrong_opt' => 'true',
         ]);
-        $c->getBoolean('wrong');
+
+        // Normal use
+        $this->assertTrue($c->getOptionalBoolean('true_opt', true));
+        $this->assertTrue($c->getOptionalBoolean('true_opt', false));
+        $this->assertFalse($c->getOptionalBoolean('false_opt', false));
+        $this->assertFalse($c->getOptionalBoolean('false_opt', true));
+
+        // Missing option
+        $this->assertEquals($c->getOptionalBoolean('missing_opt', null), null);
+        $this->assertEquals($c->getOptionalBoolean('missing_opt', false), false);
+        $this->assertEquals($c->getOptionalBoolean('missing_opt', true), true);
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalBoolean('wrong_opt', null);
     }
 
 

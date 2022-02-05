@@ -136,7 +136,7 @@ class Database
                 'database.username'   => $config->getString('database.username', null),
                 'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
-                'database.persistent' => $config->getBoolean('database.persistent', true),
+                'database.persistent' => $config->getOptionalBoolean('database.persistent', true),
             ],
 
             // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.

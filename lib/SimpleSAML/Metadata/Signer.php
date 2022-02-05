@@ -144,7 +144,7 @@ class Signer
             return $entityMetadata['metadata.sign.enable'];
         }
 
-        return $config->getBoolean('metadata.sign.enable', false);
+        return $config->getOptionalBoolean('metadata.sign.enable', false);
     }
 
 

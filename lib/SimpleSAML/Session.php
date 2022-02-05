@@ -653,7 +653,7 @@ class Session implements Utils\ClearableState
             !$this->transient
             && (!empty($data['RememberMe'])
             || $this->rememberMeExpire !== null)
-            && self::$config->getBoolean('session.rememberme.enable', false)
+            && self::$config->getOptionalBoolean('session.rememberme.enable', false)
         ) {
             $this->setRememberMeExpire();
         } else {
