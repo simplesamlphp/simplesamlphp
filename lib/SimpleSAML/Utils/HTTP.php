@@ -804,8 +804,8 @@ class HTTP
              */
 
             /** @var \SimpleSAML\Configuration $appcfg */
-            $appcfg = $cfg->getConfigItem('application');
-            $appurl = $appcfg->getOptionalString('baseURL', null);
+            $appcfg = $cfg->getOptionalConfigItem('application', null);
+            $appurl = $appcfg ?: $appcfg->getOptionalString('baseURL', null);
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);
                 $hostname = parse_url($appurl, PHP_URL_HOST);

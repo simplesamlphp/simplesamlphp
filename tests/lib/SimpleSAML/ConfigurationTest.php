@@ -647,25 +647,30 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'opt' => ['a' => 42],
         ]);
-        $this->assertNull($c->getConfigItem('missing_opt', null));
+
         $opt = $c->getConfigItem('opt');
-        $notOpt = $c->getConfigItem('notOpt');
         $this->assertInstanceOf(Configuration::class, $opt);
-        $this->assertInstanceOf(Configuration::class, $notOpt);
-        $this->assertEquals($opt->getValue('a'), 42);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getConfigItem('missing_opt');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getConfigItem() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalConfigItem()
      */
-    public function testGetConfigItemWrong(): void
+    public function testGetOptionalConfigItem(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => 'not_an_array',
+            'opt' => ['a' => 42],
         ]);
-        $c->getConfigItem('opt');
+
+        $opt = $c->getOptionalConfigItem('opt', null);
+        $this->assertInstanceOf(Configuration::class, $opt);
+
+        // Missing option
+        $this->assertNull($c->getOptionalConfigItem('missing_opt', null));
     }
 
 

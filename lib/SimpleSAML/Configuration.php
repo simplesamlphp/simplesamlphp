@@ -972,41 +972,51 @@ class Configuration implements Utils\ClearableState
     /**
      * Retrieve an array as a \SimpleSAML\Configuration object.
      *
-     * This function will load the value of an option into a \SimpleSAML\Configuration object. The option must contain
-     * an array.
+     * This function will load the value of an option into a \SimpleSAML\Configuration object.
+     *   The option must contain an array.
      *
-     * An exception will be thrown if this option isn't an array, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
      *
      * @param string $name The name of the option.
-     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
-     *                        object will be returned if this parameter isn't given and the option doesn't exist.
-     *                        This function will only return null if $default is set to null and the option
-     *                        doesn't exist.
+     * @return \SimpleSAML\Configuration The option with the given name,
      *
-     * @return \SimpleSAML\Configuration|null The option with the given name,
-     *   or $default if the option isn't found and $default is specified.
-     *
-     * @throws \Exception If the option is not an array.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
-    public function getConfigItem(string $name, $default = []): ?Configuration
+    public function getConfigItem(string $name): Configuration
     {
-        $ret = $this->getValue($name, $default);
-
-        if ($ret === null) {
-            // the option wasn't found, or it is explicitly null
-            // do not instantiate a new Configuration instance, but just return null
-            return null;
-        }
-
-        if (!is_array($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not an array.'
-            );
-        }
+        $ret = $this->getArray($name);
 
         return self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
+    }
+
+
+
+    /**
+     * Retrieve an optional array as a \SimpleSAML\Configuration object.
+     *
+     * This function will load the optional value of an option into a \SimpleSAML\Configuration object.
+     *   The option must contain an array.
+     *
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
+     *
+     * @param string     $name The name of the option.
+     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
+     *                     object will be returned if this parameter isn't given and the option doesn't exist.
+     *                     This function will only return null if $default is set to null and the option doesn't exist.
+     *
+     * @return \SimpleSAML\Configuration|null The option with the given name,
+     *   or $default, converted into a Configuration object.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailed\Exception If the option is not an array.
+     */
+    public function getOptionalConfigItem(string $name, ?array $default): ?Configuration
+    {
+        if (!$this->hasValue($name)) {
+            // the option wasn't found, or it matches the default value. In any case, return this value
+            return $default;
+        }
+
+        return $this->getConfigItem($name);
     }
 
 
