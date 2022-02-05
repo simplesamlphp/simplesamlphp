@@ -877,7 +877,7 @@ class Configuration implements Utils\ClearableState
      *
      * @param string $name The name of the option.
      *
-     * @return mixed The option with the given name.
+     * @return array The option with the given name.
      */
     public function getArrayize(string $name): array
     {
@@ -896,11 +896,11 @@ class Configuration implements Utils\ClearableState
      *
      * If the configuration option isn't an array, it will be converted to an array.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found.
+     * @param string      $name The name of the option.
+     * @param array|null  $default A default value which will be returned if the option isn't found.
      *                       The default value can be null or an array.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return array|null The option with the given name.
      */
     public function getOptionalArrayize(string $name, $default): ?array
     {
@@ -924,33 +924,48 @@ class Configuration implements Utils\ClearableState
      * If the configuration option is a string, it will be converted to an array with a single string
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
+     * @return string[] The option with the given name.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
-     *
-     * @throws \Exception If the option is not a string or an array of strings.
+     * @throws \SimpleSAML\Assert\AssertFailedException If the option is not a string or an array of strings.
      */
-    public function getArrayizeString(string $name, $default = self::REQUIRED_OPTION)
+    public function getArrayizeString(string $name): array
     {
-        $ret = $this->getArrayize($name, $default);
+        $ret = $this->getArrayize($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
-
-        foreach ($ret as $value) {
-            if (!is_string($value)) {
-                throw new \Exception(
-                    $this->location . ': The option ' . var_export($name, true) .
-                    ' must be a string or an array of strings.'
-                );
-            }
-        }
+        Assert::allString(
+            $ret,
+            sprintf(
+                '%s: The option %s must be a string or an array of strings.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
         return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional configuration option with a string or an array of strings.
+     *
+     * If the configuration option is a string, it will be converted to an array with a single string
+     *
+     * @param string         $name The name of the option.
+     * @param string[]|null  $default A default value which will be returned if the option isn't found.
+     *                         The default value can be null or an array of strings.
+     *
+     * @return string[]|null The option with the given name, or $default if the option isn't found and $default is specified.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string or an array of strings.
+     */
+    public function getOptionalArrayizeString(string $name, ?array $default): ?array
+    {
+        if (!$this->hasValue($name)) {
+            // the option wasn't found, or it matches the default value. In any case, return this value
+            return $default;
+        }
+
+        return $this->getArrayizeString($name, $allowedValues);
     }
 
 

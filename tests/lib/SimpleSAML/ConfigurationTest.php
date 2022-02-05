@@ -557,10 +557,36 @@ class ConfigurationTest extends ClearStateTestCase
             'opt_int' => 42,
             'opt_str' => 'string',
         ]);
-        $this->assertEquals($c->getArrayize('missing_opt', '--missing--'), '--missing--');
+
+        // Normal use
         $this->assertEquals($c->getArrayize('opt'), ['a', 'b', 'c']);
         $this->assertEquals($c->getArrayize('opt_int'), [42]);
         $this->assertEquals($c->getArrayize('opt_str'), ['string']);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getArrayize('missing_opt');
+    }
+
+
+    /**
+     * Test \SimpleSAML\Configuration::getOptionalArrayize()
+     */
+    public function testGetOptionalArrayize(): void
+    {
+        $c = Configuration::loadFromArray([
+            'opt' => ['a', 'b', 'c'],
+            'opt_int' => 42,
+            'opt_str' => 'string',
+        ]);
+
+        // Normal use
+        $this->assertEquals($c->getOptionalArrayize('opt', ['d']), ['a', 'b', 'c']);
+        $this->assertEquals($c->getOptionalArrayize('opt_int', [1]), [42]);
+        $this->assertEquals($c->getOptionalArrayize('opt_str', ['test']), ['string']);
+
+        // Missing option
+        $this->assertEquals($c->getOptionalArrayize('missing_opt', ['test']), ['test']);
     }
 
 
@@ -572,24 +598,44 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'opt' => ['a', 'b', 'c'],
             'opt_str' => 'string',
+            'opt_wrong' => 4,
         ]);
-        $this->assertEquals($c->getArrayizeString('missing_opt', '--missing--'), '--missing--');
+
+        // Normale use
         $this->assertEquals($c->getArrayizeString('opt'), ['a', 'b', 'c']);
         $this->assertEquals($c->getArrayizeString('opt_str'), ['string']);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getArrayizeString('missing_opt');
+
+        // Wrong option
+        $this->expectException(AssertionFailedException::class);
+        $c->getArrayizeString('opt_wrong');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getArrayizeString() option
-     * with an array that contains something that isn't a string.
+     * Test \SimpleSAML\Configuration::getOptionalArrayizeString()
      */
-    public function testGetArrayizeStringWrongValue(): void
+    public function testGetOptionalArrayizeString(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => ['a', 'b', 42],
+            'opt' => ['a', 'b', 'c'],
+            'opt_str' => 'string',
+            'opt_wrong' => 4,
         ]);
-        $c->getArrayizeString('opt');
+
+        // Normale use
+        $this->assertEquals($c->getOptionalArrayizeString('opt', ['d']), ['a', 'b', 'c']);
+        $this->assertEquals($c->getOptionalArrayizeString('opt_str', ['test']), ['string']);
+
+        // Missing option
+        $this->assertEquals($c->getOptionalArrayizeString('missing_opt', ['test']), ['test']);
+
+        // Wrong option
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalArrayizeString('opt_wrong', ['test']);
     }
 
 
