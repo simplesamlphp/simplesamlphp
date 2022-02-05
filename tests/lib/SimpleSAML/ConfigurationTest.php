@@ -6,6 +6,7 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use SAML2\Constants;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\TestUtils\ClearStateTestCase;
@@ -68,25 +69,31 @@ class ConfigurationTest extends ClearStateTestCase
             'exists_true' => true,
             'exists_null' => null,
         ]);
-        $this->assertEquals($c->getValue('missing'), null);
-        $this->assertEquals($c->getValue('missing', true), true);
-        $this->assertEquals($c->getValue('missing', true), true);
 
-        $this->assertEquals($c->getValue('exists_true'), true);
+        // Normal use
+        $this->assertTrue($c->getValue('exists_true'));
+        $this->assertNull($c->getValue('exists_null'));
 
-        $this->assertEquals($c->getValue('exists_null'), null);
-        $this->assertEquals($c->getValue('exists_null', false), null);
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getValue('missing');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getValue(), REQUIRED_OPTION flag.
+     * Test \SimpleSAML\Configuration::getOptionalValue().
      */
-    public function testGetValueRequired(): void
+    public function testGetOptionalValue(): void
     {
-        $this->expectException(Exception::class);
-        $c = Configuration::loadFromArray([]);
-        $c->getValue('missing', Configuration::REQUIRED_OPTION);
+        $c = Configuration::loadFromArray([
+            'exists_true' => true,
+        ]);
+
+        // Normal use
+        $this->assertTrue($c->getOptionalValue('exists_true', 'something else'));
+
+        // Missing option
+        $this->assertNull($c->getOptionalValue('missing', null));
     }
 
 
@@ -426,22 +433,41 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $c = Configuration::loadFromArray([
             'opt' => ['a', 'b', 'c'],
+            'wrong_opt' => false,
         ]);
-        $this->assertEquals($c->getArray('missing_opt', '--missing--'), '--missing--');
+
+        // Normal use
         $this->assertEquals($c->getArray('opt'), ['a', 'b', 'c']);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getArray('missing_opt');
+
+        // Value not allowed
+        $this->expectException(AssertionFailedException::class);
+        $c->getArray('wrong_opt');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getArray() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalArray()
      */
-    public function testGetArrayWrong(): void
+    public function testGetOptionalArray(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => 'not_an_array',
+            'opt' => ['a', 'b', 'c'],
+            'wrong_opt' => false,
         ]);
-        $c->getArray('opt');
+
+        // Normal use
+        $this->assertEquals($c->getOptionalArray('opt', ['d', 'e', 'f']), ['a', 'b', 'c']);
+
+        // Missing option
+        $this->assertEquals($c->getOptionalArray('missing_opt', ['d', 'e', 'f']), ['d', 'e', 'f']);
+
+        // Value not allowed
+        $this->expectException(AssertionFailedException::class);
+        $c->getArray('wrong_opt');
     }
 
 
@@ -924,7 +950,7 @@ class ConfigurationTest extends ClearStateTestCase
         $virtualFile = 'nonexistent-preload.php';
         Configuration::setPreLoadedConfig($c, $virtualFile);
         $nc = Configuration::getConfig($virtualFile);
-        $this->assertEquals('value', $nc->getValue('key', null));
+        $this->assertEquals('value', $nc->getOptionalValue('key', null));
     }
 
 
@@ -940,10 +966,10 @@ class ConfigurationTest extends ClearStateTestCase
         ];
         // test loading a custom instance
         Configuration::loadFromArray($c, '', 'dummy');
-        $this->assertEquals('value', Configuration::getInstance('dummy')->getValue('key', null));
+        $this->assertEquals('value', Configuration::getInstance('dummy')->getOptionalValue('key', null));
 
         // test loading the default instance
         Configuration::loadFromArray($c, '', 'simplesaml');
-        $this->assertEquals('value', Configuration::getInstance()->getValue('key', null));
+        $this->assertEquals('value', Configuration::getInstance()->getOptionalValue('key', null));
     }
 }

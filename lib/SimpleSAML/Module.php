@@ -117,7 +117,7 @@ class Module
     public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', self::$core_modules));
+        return self::isModuleEnabledWithConf($module, $config->getOptionalArray('module.enable', self::$core_modules));
     }
 
 
@@ -522,7 +522,7 @@ class Module
     public static function callHooks(string $hook, &$data = null): void
     {
         $modules = self::getModules();
-        $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
+        $config = Configuration::getOptionalConfig()->getOptionalArray('module.enable', []);
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {

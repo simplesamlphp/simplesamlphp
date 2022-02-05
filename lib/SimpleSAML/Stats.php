@@ -56,7 +56,7 @@ class Stats
     private static function initOutputs(): void
     {
         $config = Configuration::getInstance();
-        $outputCfgs = $config->getArray('statistics.out', []);
+        $outputCfgs = $config->getOptionalArray('statistics.out', []);
 
         self::$outputs = [];
         foreach ($outputCfgs as $cfg) {

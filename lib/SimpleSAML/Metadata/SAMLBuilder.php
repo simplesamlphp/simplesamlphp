@@ -416,7 +416,7 @@ class SAMLBuilder
         SPSSODescriptor $spDesc,
         Configuration $metadata
     ): void {
-        $attributes = $metadata->getArray('attributes', []);
+        $attributes = $metadata->getOptionalArray('attributes', []);
         $name = $metadata->getLocalizedString('name', null);
 
         if ($name === null || count($attributes) == 0) {
@@ -424,7 +424,7 @@ class SAMLBuilder
             return;
         }
 
-        $attributesrequired = $metadata->getArray('attributes.required', []);
+        $attributesrequired = $metadata->getOptionalArray('attributes.required', []);
 
         /*
          * Add an AttributeConsumingService element with information as name and description and list
@@ -534,7 +534,7 @@ class SAMLBuilder
 
         $this->entityDescriptor->addRoleDescriptor($e);
 
-        foreach ($metadata->getArray('contacts', []) as $contact) {
+        foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
@@ -582,7 +582,7 @@ class SAMLBuilder
 
         $this->entityDescriptor->addRoleDescriptor($e);
 
-        foreach ($metadata->getArray('contacts', []) as $contact) {
+        foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
@@ -604,7 +604,7 @@ class SAMLBuilder
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new AttributeAuthorityDescriptor();
-        $e->setProtocolSupportEnumeration($metadata->getArray('protocols', [Constants::NS_SAMLP]));
+        $e->setProtocolSupportEnumeration($metadata->getOptionalArray('protocols', [Constants::NS_SAMLP]));
 
         $this->addExtensions($metadata, $e);
         $this->addCertificate($e, $metadata);

@@ -152,7 +152,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         // add attributes
         $name = $this->metadata->getLocalizedString('name', null);
-        $attributes = $this->metadata->getArray('attributes', []);
+        $attributes = $this->metadata->getOptionalArray('attributes', []);
         if ($name !== null) {
             if (!empty($attributes)) {
                 $metadata['name'] = $name;
@@ -189,7 +189,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add contacts
-        $contacts = $this->metadata->getArray('contacts', []);
+        $contacts = $this->metadata->getOptionalArray('contacts', []);
         foreach ($contacts as $contact) {
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
@@ -343,7 +343,7 @@ class SP extends \SimpleSAML\Auth\Source
             $default[] = Constants::BINDING_HOK_SSO;
         }
 
-        $bindings = $this->metadata->getArray('acs.Bindings', $default);
+        $bindings = $this->metadata->getOptionalArray('acs.Bindings', $default);
         $index = 0;
         foreach ($bindings as $service) {
             switch ($service) {
@@ -390,7 +390,7 @@ class SP extends \SimpleSAML\Auth\Source
         $storeType = $config->getString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
-        $bindings = $this->metadata->getArray(
+        $bindings = $this->metadata->getOptionalArray(
             'SingleLogoutServiceBinding',
             [
                 Constants::BINDING_HTTP_REDIRECT,
@@ -560,8 +560,8 @@ class SP extends \SimpleSAML\Auth\Source
         $ar->setIDPList(
             array_unique(
                 array_merge(
-                    $this->metadata->getArray('IDPList', []),
-                    $idpMetadata->getArray('IDPList', []),
+                    $this->metadata->getOptionalArray('IDPList', []),
+                    $idpMetadata->getOptionalArray('IDPList', []),
                     (array) $IDPList
                 )
             )
@@ -573,7 +573,7 @@ class SP extends \SimpleSAML\Auth\Source
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
         if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
             $ar->setExtensions($state['saml:Extensions']);
-        } elseif ($this->metadata->getArray('saml:Extensions', null) !== null) {
+        } elseif ($this->metadata->getOptionalArray('saml:Extensions', null) !== null) {
             $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
         }
 
@@ -990,7 +990,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
             $lr->setExtensions($state['saml:logout:Extensions']);
-        } elseif ($this->metadata->getArray('saml:logout:Extensions', null) !== null) {
+        } elseif ($this->metadata->getOptionalArray('saml:logout:Extensions', null) !== null) {
             $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
         }
 

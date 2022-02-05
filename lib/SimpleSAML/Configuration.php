@@ -348,25 +348,37 @@ class Configuration implements Utils\ClearableState
     /**
      * Retrieve a configuration option set in config.php.
      *
-     * @param string $name Name of the configuration option.
-     * @param mixed  $default Default value of the configuration option. This parameter will default to null if not
-     *                        specified. This can be set to \SimpleSAML\Configuration::REQUIRED_OPTION, which will
-     *                        cause an exception to be thrown if the option isn't found.
+     * @param string $name  Name of the configuration option.
+     * @return mixed        The configuration option with name $name.
      *
-     * @return mixed The configuration option with name $name, or $default if the option was not found.
-     *
-     * @throws \Exception If the required option cannot be retrieved.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the required option cannot be retrieved.
      */
-    public function getValue(string $name, $default = null)
+    public function getValue(string $name)
+    {
+        Assert::true(
+            $this->hasValue($name),
+            sprintf('%s: Could not retrieve the required option %s.', $this->location, var_export($name, true)),
+        );
+
+        return $this->configuration[$name];
+    }
+
+
+    /**
+     * Retrieve an optional configuration option set in config.php.
+     *
+     * @param string $name     Name of the configuration option.
+     * @param mixed  $default  Default value of the configuration option.
+                               This parameter will default to null if not specified.
+     *
+     * @return mixed           The configuration option with name $name, or $default if the option was not found.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the required option cannot be retrieved.
+     */
+    public function getOptionalValue(string $name, $default)
     {
         // return the default value if the option is unset
-        if (!array_key_exists($name, $this->configuration)) {
-            if ($default === self::REQUIRED_OPTION) {
-                throw new \Exception(
-                    $this->location . ': Could not retrieve the required option ' .
-                    var_export($name, true)
-                );
-            }
+        if (!$this->hasValue($name)) {
             return $default;
         }
 
@@ -743,33 +755,48 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves an array configuration option.
      *
-     * An exception will be thrown if this option isn't an array, or if this option isn't found, and no
-     * default value is given.
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
+     * @return array The option with the given name.
      *
-     * @return array|mixed The option with the given name, or $default if the option isn't found and $default is
-     * specified.
-     *
-     * @throws \Exception If the option is not an array.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
-    public function getArray(string $name, $default = self::REQUIRED_OPTION)
+    public function getArray(string $name): array
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
-
-        if (!is_array($ret)) {
-            throw new \Exception($this->location . ': The option ' . var_export($name, true) . ' is not an array.');
-        }
+        Assert::isArray(
+            $ret,
+            sprintf('%s: The option %s is not an array.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional array configuration option.
+     *
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
+     *
+     * @param string     $name     The name of the option.
+     * @param array|null $default  A default value which will be returned if the option isn't found.
+     *                               The default value can be null or an array.
+     *
+     * @return array|null The option with the given name, or $default if the option isn't found and $default is
+     * specified.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
+     */
+    public function getOptionalArray(string $name, ?array $default): ?array
+    {
+        if (!$this->hasValue($name)) {
+            // the option wasn't found, or it matches the default value. In any case, return this value
+            return $default;
+        }
+
+        return $this->getArray($name);
     }
 
 

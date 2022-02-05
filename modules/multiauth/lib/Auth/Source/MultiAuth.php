@@ -108,7 +108,7 @@ class MultiAuth extends Auth\Source
                 $css_class = $info['css-class'];
             } else {
                 // Use the authtype as the css class
-                $authconfig = $authsources->getArray($source, null);
+                $authconfig = $authsources->getOptionalArray($source, null);
                 if (!array_key_exists(0, $authconfig) || !is_string($authconfig[0])) {
                     $css_class = "";
                 } else {

@@ -320,9 +320,9 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata
     ): array {
-        $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
+        $blacklist = $srcMetadata->getOptionalArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
-            $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
+            $blacklist = $dstMetadata->getOptionalArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
         }
         return $blacklist;
     }

@@ -84,8 +84,8 @@ class Database
      */
     private function __construct(Configuration $config)
     {
-        $driverOptions = $config->getArray('database.driver_options', []);
-        if ($config->getBoolean('database.persistent', true)) {
+        $driverOptions = $config->getOptionalArray('database.driver_options', []);
+        if ($config->getOptionalBoolean('database.persistent', true)) {
             $driverOptions[PDO::ATTR_PERSISTENT] = true;
         }
 
@@ -98,14 +98,14 @@ class Database
         );
 
         // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-        if ($config->getArray('database.slaves', null) !== null) {
+        if ($config->getOptionalArray('database.slaves', null) !== null) {
             Logger::warning(
                 'The "database.slaves" config option is deprecated. ' .
                 'Please update your configuration to use "database.secondaries".'
             );
         }
         // connect to any configured secondaries, preserving legacy config option
-        $secondaries = $config->getArray('database.secondaries', $config->getArray('database.slaves', []));
+        $secondaries = $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', []));
         foreach ($secondaries as $secondary) {
             array_push(
                 $this->dbSecondaries,
@@ -138,8 +138,9 @@ class Database
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', true),
             ],
+
             // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-            'secondaries' => $config->getArray('database.secondaries', $config->getArray('database.slaves', [])),
+            'secondaries' => $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', [])),
         ];
 
         return sha1(serialize($assembledConfig));

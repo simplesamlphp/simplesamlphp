@@ -1012,8 +1012,8 @@ class SAML2
             $defaultEncoding = 'string';
         }
 
-        $srcEncodings = $idpMetadata->getArray('attributeencodings', []);
-        $dstEncodings = $spMetadata->getArray('attributeencodings', []);
+        $srcEncodings = $idpMetadata->getOptionalArray('attributeencodings', []);
+        $dstEncodings = $spMetadata->getOptionalArray('attributeencodings', []);
 
         /*
          * Merge the two encoding arrays. Encodings specified in the target metadata
@@ -1146,7 +1146,7 @@ class SAML2
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
-        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
         $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
