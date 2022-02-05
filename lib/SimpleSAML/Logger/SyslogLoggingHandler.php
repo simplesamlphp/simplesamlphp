@@ -27,7 +27,7 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
      */
     public function __construct(Configuration $config)
     {
-        $facility = $config->getInteger('logging.facility', defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER);
+        $facility = $config->getOptionalInteger('logging.facility', defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER);
 
         // Remove any non-printable characters before storing
         $processname = preg_replace(

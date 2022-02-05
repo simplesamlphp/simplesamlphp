@@ -30,9 +30,9 @@ $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetad
 $lr->setSessionIndex($association['saml:SessionIndex']);
 $lr->setNameId($association['saml:NameID']);
 
-$assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+$assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
 if ($assertionLifetime === null) {
-    $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+    $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
 }
 $lr->setNotOnOrAfter(time() + $assertionLifetime);
 

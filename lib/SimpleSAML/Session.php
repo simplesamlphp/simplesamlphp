@@ -575,7 +575,7 @@ class Session implements Utils\ClearableState
     public function setRememberMeExpire(int $lifetime = null): void
     {
         if ($lifetime === null) {
-            $lifetime = self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
+            $lifetime = self::$config->getOptionalInteger('session.rememberme.lifetime', 14 * 86400);
         }
         $this->rememberMeExpire = time() + $lifetime;
 
@@ -611,7 +611,7 @@ class Session implements Utils\ClearableState
             $data['AuthnInstant'] = time();
         }
 
-        $maxSessionExpire = time() + self::$config->getInteger('session.duration', 8 * 60 * 60);
+        $maxSessionExpire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
         if (!isset($data['Expire']) || $data['Expire'] > $maxSessionExpire) {
             // unset, or beyond our session lifetime. Clamp it to our maximum session lifetime
             $data['Expire'] = $maxSessionExpire;
@@ -809,7 +809,7 @@ class Session implements Utils\ClearableState
         $this->markDirty();
 
         if ($expire === null) {
-            $expire = time() + self::$config->getInteger('session.duration', 8 * 60 * 60);
+            $expire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
         }
 
         $this->authData[$authority]['Expire'] = $expire;
@@ -884,7 +884,7 @@ class Session implements Utils\ClearableState
 
         if ($timeout === null) {
             // use the default timeout
-            $timeout = self::$config->getInteger('session.datastore.timeout', null);
+            $timeout = self::$config->getOptionalInteger('session.datastore.timeout', null);
             if ($timeout !== null) {
                 if ($timeout <= 0) {
                     throw new \Exception(

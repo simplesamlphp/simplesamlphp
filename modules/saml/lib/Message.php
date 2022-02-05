@@ -495,8 +495,12 @@ class Message
         $issuer = new Issuer();
         $issuer->setValue($spMetadata->getString('entityid'));
         $ar->setIssuer($issuer);
-        $ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', null));
-        $ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', null));
+        $ar->setAssertionConsumerServiceIndex(
+            $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
+        );
+        $ar->setAttributeConsumingServiceIndex(
+            $spMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null)
+        );
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
@@ -652,7 +656,7 @@ class Message
 
         // check various properties of the assertion
         $config = Configuration::getInstance();
-        $allowed_clock_skew = $config->getInteger('assertion.allowed_clock_skew', 180);
+        $allowed_clock_skew = $config->getOptionalInteger('assertion.allowed_clock_skew', 180);
         $options = [
             'options' => [
                 'default' => 180,

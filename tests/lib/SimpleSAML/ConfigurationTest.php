@@ -354,33 +354,42 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $c = Configuration::loadFromArray([
             'int_opt' => 42,
+            'wrong_opt' => 'test',
         ]);
-        $this->assertEquals($c->getInteger('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getInteger('int_opt', '--missing--'), 42);
-    }
 
+        // Normal use
+        $this->assertEquals($c->getInteger('int_opt'), 42);
 
-    /**
-     * Test \SimpleSAML\Configuration::getInteger() missing option
-     */
-    public function testGetIntegerMissing(): void
-    {
-        $this->expectException(Exception::class);
-        $c = Configuration::loadFromArray([]);
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
         $c->getInteger('missing_opt');
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getInteger('wrong_opt');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getInteger() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalInteger()
      */
-    public function testGetIntegerWrong(): void
+    public function testGetOptionalInteger(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'wrong' => '42',
+            'int_opt' => 42,
+            'wrong_opt' => 'test',
         ]);
-        $c->getInteger('wrong');
+
+
+        // Normal use
+        $this->assertEquals($c->getOptionalInteger('int_opt', 42), 42);
+
+        // Missing option
+        $this->assertEquals($c->getOptionalInteger('missing_opt', 32), 32);
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalInteger('wrong_opt', 10);
     }
 
 
@@ -390,36 +399,63 @@ class ConfigurationTest extends ClearStateTestCase
     public function testGetIntegerRange(): void
     {
         $c = Configuration::loadFromArray([
-            'int_opt' => 42,
+            'min_opt' => 0,
+            'max_opt' => 100,
+            'wrong_opt' => 'test',
         ]);
-        $this->assertEquals($c->getIntegerRange('missing_opt', 0, 100, '--missing--'), '--missing--');
-        $this->assertEquals($c->getIntegerRange('int_opt', 0, 100), 42);
+
+        // Normal use
+        $this->assertEquals($c->getIntegerRange('min_opt', 0, 100), 0);
+        $this->assertEquals($c->getIntegerRange('max_opt', 0, 100), 100);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getIntegerRange('missing_opt', 0, 100);
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getIntegerRange('wrong_opt', 0, 100);
+
+        // Below range
+        $this->expectException(AssertionFailedException::class);
+        $c->getIntegerRange('min_opt', 1, 100);
+
+        // Above range
+        $this->expectException(AssertionFailedException::class);
+        $c->getIntegerRange('max_opt', 0, 99);
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getIntegerRange() below limit
+     * Test \SimpleSAML\Configuration::getOptionalIntegerRange()
      */
-    public function testGetIntegerRangeBelow(): void
+    public function testGetOptionalIntegerRange(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'int_opt' => 9,
+            'min_opt' => 0,
+            'max_opt' => 100,
+            'wrong_opt' => 'test',
         ]);
-        $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
-    }
 
 
-    /**
-     * Test \SimpleSAML\Configuration::getIntegerRange() above limit
-     */
-    public function testGetIntegerRangeAbove(): void
-    {
-        $this->expectException(Exception::class);
-        $c = Configuration::loadFromArray([
-            'int_opt' => 101,
-        ]);
-        $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
+        // Normal use
+        $this->assertEquals($c->getOptionalIntegerRange('min_opt', 0, 100, 50), 0);
+        $this->assertEquals($c->getOptionalIntegerRange('max_opt', 0, 100, 50), 100);
+
+        // Missing option
+        $this->assertEquals($c->getOptionalIntegerRange('missing_opt', 0, 100, 50), 50);
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalIntegerRange('wrong_opt', 0, 100, null);
+
+        // Below range
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalIntegerRange('min_opt', 1, 100, null);
+
+        // Above range
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalIntegerRange('max_opt', 0, 99, null);
     }
 
 

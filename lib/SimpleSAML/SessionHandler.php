@@ -158,7 +158,7 @@ abstract class SessionHandler
         $config = Configuration::getInstance();
 
         return [
-            'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
+            'lifetime' => $config->getOptionalInteger('session.cookie.lifetime', 0),
             'path'     => $config->getOptionalString('session.cookie.path', '/'),
             'domain'   => $config->getOptionalString('session.cookie.domain', null),
             'secure'   => $config->getOptionalBoolean('session.cookie.secure', false),

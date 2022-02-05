@@ -434,7 +434,7 @@ class Language
 
         $name = $config->getOptionalString('language.cookie.name', 'language');
         $params = [
-            'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
+            'lifetime' => ($config->getOptionalInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
             'domain'   => ($config->getOptionalString('language.cookie.domain', '')),
             'path'     => ($config->getOptionalString('language.cookie.path', '/')),
             'secure'   => ($config->getOptionalBoolean('language.cookie.secure', false)),

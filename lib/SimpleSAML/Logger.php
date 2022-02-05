@@ -449,7 +449,7 @@ class Logger
         $config = Configuration::getInstance();
 
         // setting minimum log_level
-        self::$logLevel = $config->getInteger('logging.level', self::INFO);
+        self::$logLevel = $config->getOptionalInteger('logging.level', self::INFO);
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {

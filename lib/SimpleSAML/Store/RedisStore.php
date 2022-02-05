@@ -36,10 +36,10 @@ class RedisStore implements StoreInterface
             $config = Configuration::getInstance();
 
             $host = $config->getOptionalString('store.redis.host', 'localhost');
-            $port = $config->getInteger('store.redis.port', 6379);
+            $port = $config->getOptionalInteger('store.redis.port', 6379);
             $prefix = $config->getOptionalString('store.redis.prefix', 'SimpleSAMLphp');
             $password = $config->getOptionalString('store.redis.password', null);
-            $database = $config->getInteger('store.redis.database', 0);
+            $database = $config->getOptionalInteger('store.redis.database', 0);
 
             $redis = new Client(
                 [

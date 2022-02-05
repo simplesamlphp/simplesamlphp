@@ -458,7 +458,7 @@ class SAML2
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
         if ($ProxyCount === null) {
-            $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
+            $ProxyCount = $spMetadata->getOptionalInteger('ProxyCount', null);
         }
 
         if (!$forceAuthn) {
@@ -1151,9 +1151,9 @@ class SAML2
 
         $a->setNotBefore($now - 30);
 
-        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
-            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+            $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
         $a->setNotOnOrAfter($now + $assertionLifetime);
 
@@ -1171,7 +1171,7 @@ class SAML2
             $sessionStart = $state['AuthnInstant'];
         }
 
-        $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
+        $sessionLifetime = $config->getOptionalInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
         $randomUtils = new Utils\Random();
@@ -1397,9 +1397,9 @@ class SAML2
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
 
-        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
-            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+            $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
         $lr->setNotOnOrAfter(time() + $assertionLifetime);
 

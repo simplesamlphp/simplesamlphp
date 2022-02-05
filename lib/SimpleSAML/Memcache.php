@@ -375,7 +375,7 @@ class Memcache
         $config = Configuration::getInstance();
 
         // get the expire-value from the configuration
-        $expire = $config->getInteger('memcache_store.expires', 0);
+        $expire = $config->getOptionalInteger('memcache_store.expires', 0);
 
         // it must be a positive integer
         if ($expire < 0) {
