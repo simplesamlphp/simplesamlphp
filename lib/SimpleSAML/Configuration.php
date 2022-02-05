@@ -563,9 +563,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::boolean(
@@ -596,9 +596,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::string(
@@ -630,9 +630,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::integer(
@@ -667,9 +667,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 3) ? $this->getInteger($name) : $this->getInteger($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::range(
@@ -712,9 +712,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::inArray(
@@ -751,9 +751,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         Assert::isArray(
@@ -782,9 +782,9 @@ class Configuration implements Utils\ClearableState
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         if (!is_array($ret)) {
@@ -823,9 +823,9 @@ class Configuration implements Utils\ClearableState
             ),
         );
 
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         return $ret;
@@ -1086,9 +1086,9 @@ class Configuration implements Utils\ClearableState
     public function getLocalizedString(string $name, ?array $default = []): ?array
     {
         $ret = (func_num_args() === 1) ? $this->getValue($name) : $this->getValue($name, $default);
-        if ($ret === $default) {
+        if ($ret === null || $ret === $default) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
         $loc = $this->location . '[' . var_export($name, true) . ']';
