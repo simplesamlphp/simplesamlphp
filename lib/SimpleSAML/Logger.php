@@ -91,7 +91,7 @@ class Logger
      * general the options are:
      *
      * - %date{<format>}: the date and time, with its format specified inside the brackets. See the PHP documentation
-     *   of the strftime() function for more information on the format. If the brackets are omitted, the standard
+     *   of the date() function for more information on the format. If the brackets are omitted, the standard
      *   format is applied. This can be useful if you just want to control the placement of the date, but don't care
      *   about the format.
      *
@@ -113,7 +113,7 @@ class Logger
      *
      * @var string The format of the log line.
      */
-    private static string $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
+    private static string $format = '%date{M j H:i:s} %process %level %stat[%trackid] %msg';
 
     /**
      * This variable tells if we have a shutdown function registered or not.
