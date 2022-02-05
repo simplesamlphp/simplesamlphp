@@ -483,7 +483,7 @@ class Message
         $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
         $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
 
-        $protbind = $spMetadata->getValueValidate('ProtocolBinding', [
+        $protbind = $spMetadata->getOptionalValueValidate('ProtocolBinding', [
             Constants::BINDING_HTTP_POST,
             Constants::BINDING_HOK_SSO,
             Constants::BINDING_HTTP_ARTIFACT,
@@ -504,7 +504,7 @@ class Message
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getValueValidate('AuthnContextComparison', [
+            $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
                 Constants::COMPARISON_EXACT,
                 Constants::COMPARISON_MINIMUM,
                 Constants::COMPARISON_MAXIMUM,

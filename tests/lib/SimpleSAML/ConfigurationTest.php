@@ -467,21 +467,38 @@ class ConfigurationTest extends ClearStateTestCase
         $c = Configuration::loadFromArray([
             'opt' => 'b',
         ]);
-        $this->assertEquals($c->getValueValidate('missing_opt', ['a', 'b', 'c'], '--missing--'), '--missing--');
+
+        // Normal use
         $this->assertEquals($c->getValueValidate('opt', ['a', 'b', 'c']), 'b');
+
+        // Value not allowed
+        $this->expectException(AssertionFailedException::class);
+        $c->getValueValidate('opt', ['d', 'e', 'f']);
+
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
+        $c->getValueValidate('missing_opt', ['a', 'b', 'c']);
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getValueValidate() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalValueValidate()
      */
-    public function testGetValueValidateWrong(): void
+    public function testGetOptionalValueValidate(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => 'd',
+            'opt' => 'b',
         ]);
-        $c->getValueValidate('opt', ['a', 'b', 'c']);
+
+        // Normal use
+        $this->assertEquals($c->getOptionalValueValidate('opt', ['a', 'b', 'c'], 'f'), 'b');
+
+        // Missing option
+        $this->assertEquals($c->getOptionalValueValidate('missing_opt', ['a', 'b', 'c'], 'f'), 'f');
+
+        // Value not allowed
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalValueValidate('opt', ['d', 'e', 'f'], 'c');
     }
 
 

@@ -767,44 +767,58 @@ class Configuration implements Utils\ClearableState
      * This will check that the configuration option matches one of the given values. The match will use
      * strict comparison. An exception will be thrown if it does not match.
      *
-     * The option can be mandatory or optional. If no default value is given, it will be considered to be
-     * mandatory, and an exception will be thrown if it isn't provided. If a default value is given, it
-     * is considered to be optional, and the default value is returned. The default value is automatically
-     * included in the list of allowed values.
+     * The option is mandatory and an exception will be thrown if it isn't provided.
      *
-     * @param string $name The name of the option.
-     * @param array  $allowedValues The values the option is allowed to take, as an array.
-     * @param mixed  $default The default value which will be returned if the option isn't found. If this parameter
-     *                  isn't given, the option will be considered to be mandatory. The default value can be
-     *                  any value, including null.
+     * @param string $name           The name of the option.
+     * @param array  $allowedValues  The values the option is allowed to take, as an array.
+     *
+     * @return mixed The option with the given name.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option does not have any of the allowed values.
+     */
+    public function getValueValidate(string $name, array $allowedValues)
+    {
+        $ret = $this->getValue($name);
+
+        Assert::oneOf(
+            $ret,
+            $allowedValues,
+            sprintf(
+                '%s: Invalid value given for option %s. It should have one of: %2$s; but got: %%s.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
+
+        return $ret;
+    }
+
+
+    /**
+     * Retrieve an optional configuration option with one of the given values.
+     *
+     * This will check that the configuration option matches one of the given values. The match will use
+     * strict comparison. An exception will be thrown if it does not match.
+     *
+     * The option is optional. The default value is automatically included in the list of allowed values.
+     *
+     * @param string $name           The name of the option.
+     * @param array  $allowedValues  The values the option is allowed to take, as an array.
+     * @param mixed  $default        The default value which will be returned if the option isn't found.
+     *                               The default value can be any value, including null.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is given.
      *
-     * @throws \Exception If the option does not have any of the allowed values.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option does not have any of the allowed values.
      */
-    public function getValueValidate(string $name, array $allowedValues, $default = self::REQUIRED_OPTION)
+    public function getOptionalValueValidate(string $name, array $allowedValues, $default)
     {
-        $ret = $this->getValue($name, $default);
-        if ($ret === $default) {
+        if (!$this->hasValue($name)) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
-        if (!in_array($ret, $allowedValues, true)) {
-            $strValues = [];
-            foreach ($allowedValues as $av) {
-                $strValues[] = var_export($av, true);
-            }
-            $strValues = implode(', ', $strValues);
-
-            throw new \Exception(
-                $this->location . ': Invalid value given for the option ' .
-                var_export($name, true) . '. It should have one of the following values: ' .
-                $strValues . '; but it had the following value: ' . var_export($ret, true)
-            );
-        }
-
-        return $ret;
+        return $this->getValueValidate($name, $allowedValues);
     }
 
 
