@@ -876,21 +876,40 @@ class Configuration implements Utils\ClearableState
      * If the configuration option isn't an array, it will be converted to an array.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
+     *
+     * @return mixed The option with the given name.
+     */
+    public function getArrayize(string $name): array
+    {
+        $ret = $this->getValue($name);
+
+        if (!is_array($ret)) {
+            $ret = [$ret];
+        }
+
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an array configuration option.
+     *
+     * If the configuration option isn't an array, it will be converted to an array.
+     *
+     * @param string $name The name of the option.
+     * @param mixed  $default A default value which will be returned if the option isn't found.
+     *                       The default value can be null or an array.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
      */
-    public function getArrayize(string $name, $default = self::REQUIRED_OPTION)
+    public function getOptionalArrayize(string $name, $default): ?array
     {
-        $ret = $this->getValue($name, $default);
-
-        if ($ret === $default) {
+        if (!$this->hasValue($name)) {
             // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+            return $default;
         }
 
+        $ret = $this->getValue($name);
         if (!is_array($ret)) {
             $ret = [$ret];
         }

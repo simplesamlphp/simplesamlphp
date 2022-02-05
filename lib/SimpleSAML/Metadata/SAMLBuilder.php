@@ -518,10 +518,10 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
-        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
+        foreach ($metadata->getOptionalArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
             $endpoints[] = [
                 'Binding'  => Constants::BINDING_HTTP_ARTIFACT,
                 'Location' => $acs,
@@ -575,7 +575,7 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $e->setSingleSignOnService(self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false));
 
@@ -614,7 +614,7 @@ class SAMLBuilder
             false
         ));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $this->entityDescriptor->addRoleDescriptor($e);
     }

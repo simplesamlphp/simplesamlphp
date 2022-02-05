@@ -456,7 +456,7 @@ class SAML2
             throw new Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
         }
 
-        $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
+        $IDPList = array_unique(array_merge($IDPList, $spMetadata->getOptionalArrayizeString('IDPList', [])));
         if ($ProxyCount === null) {
             $ProxyCount = $spMetadata->getOptionalInteger('ProxyCount', null);
         }
@@ -796,7 +796,7 @@ class SAML2
             'entityid' => $entityid,
             'SingleSignOnService' => $sso,
             'SingleLogoutService' => $slo,
-            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
+            'NameIDFormat' => $config->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
         ];
 
         $cryptoUtils = new Utils\Crypto();
@@ -1254,9 +1254,11 @@ class SAML2
 
         if ($nameIdFormat === null || !isset($state['saml:NameID'][$nameIdFormat])) {
             // either not set in request, or not set to a format we supply. Fall back to old generation method
-            $nameIdFormat = current($spMetadata->getArrayizeString('NameIDFormat', []));
+            $nameIdFormat = current($spMetadata->getOptionalArrayizeString('NameIDFormat', []));
             if ($nameIdFormat === false) {
-                $nameIdFormat = current($idpMetadata->getArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]));
+                $nameIdFormat = current(
+                    $idpMetadata->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT])
+                );
             }
         }
 
