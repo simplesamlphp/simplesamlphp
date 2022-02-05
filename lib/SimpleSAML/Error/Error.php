@@ -243,7 +243,7 @@ class Error extends Exception
         // check if there is a valid technical contact email address
         if (
             $config->getOptionalBoolean('errorreporting', true)
-            && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
+            && $config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
             $httpUtils = new Utils\HTTP();

@@ -75,7 +75,7 @@ class System
         $globalConfig = Configuration::getInstance();
 
         $tempDir = rtrim(
-            $globalConfig->getString(
+            $globalConfig->getOptionalString(
                 'tempdir',
                 sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'simplesaml'
             ),

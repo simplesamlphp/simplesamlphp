@@ -153,8 +153,8 @@ class Language
     {
         $this->configuration = $configuration;
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $this->configuration->getString('language.default', self::FALLBACKLANGUAGE);
-        $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
+        $this->defaultLanguage = $this->configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+        $this->languageParameterName = $this->configuration->getOptionalString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
         $this->rtlLanguages = $this->configuration->getArray('language.rtl', []);
         if (isset($_GET[$this->languageParameterName])) {
@@ -404,7 +404,7 @@ class Language
     {
         $config = Configuration::getInstance();
         $availableLanguages = $config->getArray('language.available', [self::FALLBACKLANGUAGE]);
-        $name = $config->getString('language.cookie.name', 'language');
+        $name = $config->getOptionalString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
             $language = strtolower((string) $_COOKIE[$name]);
@@ -432,14 +432,14 @@ class Language
             return;
         }
 
-        $name = $config->getString('language.cookie.name', 'language');
+        $name = $config->getOptionalString('language.cookie.name', 'language');
         $params = [
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
-            'domain'   => ($config->getString('language.cookie.domain', '')),
-            'path'     => ($config->getString('language.cookie.path', '/')),
+            'domain'   => ($config->getOptionalString('language.cookie.domain', '')),
+            'path'     => ($config->getOptionalString('language.cookie.path', '/')),
             'secure'   => ($config->getOptionalBoolean('language.cookie.secure', false)),
             'httponly' => ($config->getOptionalBoolean('language.cookie.httponly', false)),
-            'samesite' => ($config->getString('language.cookie.samesite', null)),
+            'samesite' => ($config->getOptionalString('language.cookie.samesite', null)),
         ];
 
         $httpUtils = new Utils\HTTP();

@@ -62,8 +62,8 @@ class Signer
         }
 
         // then we look for default values in the global configuration
-        $privatekey = $config->getString('metadata.sign.privatekey', null);
-        $certificate = $config->getString('metadata.sign.certificate', null);
+        $privatekey = $config->getOptionalString('metadata.sign.privatekey', null);
+        $certificate = $config->getOptionalString('metadata.sign.certificate', null);
         if ($privatekey !== null || $certificate !== null) {
             if ($privatekey === null || $certificate === null) {
                 throw new \Exception(
@@ -75,7 +75,7 @@ class Signer
             }
             $ret = ['privatekey' => $privatekey, 'certificate' => $certificate];
 
-            $privatekey_pass = $config->getString('metadata.sign.privatekey_pass', null);
+            $privatekey_pass = $config->getOptionalString('metadata.sign.privatekey_pass', null);
             if ($privatekey_pass !== null) {
                 $ret['privatekey_pass'] = $privatekey_pass;
             }
@@ -178,7 +178,7 @@ class Signer
             }
             $alg = $entityMetadata['metadata.sign.algorithm'];
         } else {
-            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA256);
+            $alg = $config->getOptionalString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $supported_algs = [

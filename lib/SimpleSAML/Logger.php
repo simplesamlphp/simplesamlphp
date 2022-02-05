@@ -453,7 +453,7 @@ class Logger
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
-            $handler = $config->getString(
+            $handler = $config->getOptionalString(
                 'logging.handler',
                 php_sapi_name() === 'cli' || defined('STDIN') ? 'stderr' : 'syslog'
             );
@@ -473,7 +473,7 @@ class Logger
             $handler = $known_handlers[$handler];
         }
 
-        self::$format = $config->getString('logging.format', self::$format);
+        self::$format = $config->getOptionalString('logging.format', self::$format);
 
         try {
             /** @var \SimpleSAML\Logger\LoggingHandlerInterface */

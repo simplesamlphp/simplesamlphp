@@ -45,7 +45,6 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $globalConfig = Configuration::getInstance();
 
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
-var_dump($config);
         $this->directory = $cfgHelp->getString('directory');
 
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is

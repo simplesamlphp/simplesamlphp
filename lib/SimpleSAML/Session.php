@@ -355,7 +355,7 @@ class Session implements Utils\ClearableState
             $globalConfig = Configuration::getInstance();
 
             if ($session->authToken !== null) {
-                $authTokenCookieName = $globalConfig->getString(
+                $authTokenCookieName = $globalConfig->getOptionalString(
                     'session.authtoken.cookiename',
                     'SimpleSAMLAuthToken'
                 );
@@ -660,7 +660,7 @@ class Session implements Utils\ClearableState
             $httpUtils = new Utils\HTTP();
             try {
                 $httpUtils->setCookie(
-                    self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                    self::$config->getOptionalString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                     $this->authToken,
                     $sessionHandler->getCookieParams()
                 );
@@ -790,7 +790,7 @@ class Session implements Utils\ClearableState
         if ($this->authToken !== null) {
             $httpUtils = new Utils\HTTP();
             $httpUtils->setCookie(
-                self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                self::$config->getOptionalString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params
             );

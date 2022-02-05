@@ -308,33 +308,42 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $c = Configuration::loadFromArray([
             'str_opt' => 'Hello World!',
+            'wrong_opt' => true,
         ]);
-        $this->assertEquals($c->getString('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getString('str_opt', '--missing--'), 'Hello World!');
-    }
 
+        // Normal use
+        $this->assertEquals($c->getString('str_opt'), 'Hello World!');
 
-    /**
-     * Test \SimpleSAML\Configuration::getString() missing option
-     */
-    public function testGetStringMissing(): void
-    {
-        $this->expectException(Exception::class);
-        $c = Configuration::loadFromArray([]);
+        // Missing option
+        $this->expectException(AssertionFailedException::class);
         $c->getString('missing_opt');
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getString('wrong_opt');
     }
 
 
     /**
-     * Test \SimpleSAML\Configuration::getString() wrong option
+     * Test \SimpleSAML\Configuration::getOptionalString() missing option
      */
-    public function testGetStringWrong(): void
+    public function testGetOptionalString(): void
     {
-        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
-            'wrong' => false,
+            'str_opt' => 'Hello World!',
+            'wrong_opt' => true,
         ]);
-        $c->getString('wrong');
+
+        // Normal use
+        $this->assertEquals($c->getOptionalString('str_opt', 'Hello World!'), 'Hello World!');
+        $this->assertEquals($c->getOptionalString('str_opt', 'something else'), 'Hello World!');
+
+        // Missing option
+        $this->assertEquals($c->getOptionalString('missing_opt', 'Hello World!'), 'Hello World!');
+
+        // Invalid option type
+        $this->expectException(AssertionFailedException::class);
+        $c->getOptionalString('wrong_opt', 'Hello World!');
     }
 
 

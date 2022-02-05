@@ -94,8 +94,8 @@ class SP extends \SimpleSAML\Auth\Source
             'authsources[' . var_export($this->authId, true) . ']'
         );
         $this->entityId = $this->metadata->getString('entityID');
-        $this->idp = $this->metadata->getString('idp', null);
-        $this->discoURL = $this->metadata->getString('discoURL', null);
+        $this->idp = $this->metadata->getOptionalString('idp', null);
+        $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
     }
 
@@ -141,7 +141,7 @@ class SP extends \SimpleSAML\Auth\Source
         if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getValue('NameIDPolicy');
             if (is_array($format)) {
-                $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getString(
+                $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getOptionalString(
                     'Format',
                     Constants::NAMEID_TRANSIENT
                 );
@@ -196,11 +196,11 @@ class SP extends \SimpleSAML\Auth\Source
 
         // add technical contact
         $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getString('technicalcontact_email', 'na@example.org');
-        if ($email && $email !== 'na@example.org') {
+        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getString('technicalcontact_name', null),
+                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -339,7 +339,7 @@ class SP extends \SimpleSAML\Auth\Source
             Constants::BINDING_HTTP_POST,
             Constants::BINDING_HTTP_ARTIFACT,
         ];
-        if ($this->metadata->getString('ProtocolBinding', '') === Constants::BINDING_HOK_SSO) {
+        if ($this->metadata->getOptionalString('ProtocolBinding', null) === Constants::BINDING_HOK_SSO) {
             $default[] = Constants::BINDING_HOK_SSO;
         }
 
@@ -387,7 +387,7 @@ class SP extends \SimpleSAML\Auth\Source
     private function getSLOEndpoints(): array
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getOptionalArray(
@@ -398,7 +398,7 @@ class SP extends \SimpleSAML\Auth\Source
             ]
         );
         $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
-        $location = $this->metadata->getString('SingleLogoutServiceLocation', $defaultLocation);
+        $location = $this->metadata->getOptionalString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
         foreach ($bindings as $binding) {
@@ -441,7 +441,7 @@ class SP extends \SimpleSAML\Auth\Source
         $arrayUtils = new Utils\Arrays();
 
         $accr = null;
-        if ($idpMetadata->getString('AuthnContextClassRef', false)) {
+        if ($idpMetadata->getOptionalString('AuthnContextClassRef', null) !== null) {
             $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
@@ -449,7 +449,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         if ($accr !== null) {
             $comp = Constants::COMPARISON_EXACT;
-            if ($idpMetadata->getString('AuthnContextComparison', false)) {
+            if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
@@ -577,7 +577,7 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
         }
 
-        $providerName = $this->metadata->getString("ProviderName", null);
+        $providerName = $this->metadata->getOptionalString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
         }
@@ -1141,7 +1141,7 @@ class SP extends \SimpleSAML\Auth\Source
             if (!empty($state['saml:sp:RelayState'])) {
                 $redirectTo = $state['saml:sp:RelayState'];
             } else {
-                $redirectTo = $source->getMetadata()->getString('RelayState', '/');
+                $redirectTo = $source->getMetadata()->getOptionalString('RelayState', '/');
             }
 
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);

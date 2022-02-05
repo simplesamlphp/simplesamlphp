@@ -56,7 +56,7 @@ class Time
 
         $globalConfig = Configuration::getInstance();
 
-        $timezone = $globalConfig->getString('timezone', null);
+        $timezone = $globalConfig->getOptionalString('timezone', null);
         if ($timezone !== null) {
             if (!date_default_timezone_set($timezone)) {
                 throw new Error\Exception('Invalid timezone set in the "timezone" option in config.php.');

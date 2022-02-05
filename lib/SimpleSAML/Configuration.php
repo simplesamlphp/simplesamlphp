@@ -428,7 +428,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getBasePath(): string
     {
-        $baseURL = $this->getString('baseurlpath', 'simplesaml/');
+        $baseURL = $this->getOptionalString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
             // we have a full url, we need to strip the path
@@ -453,7 +453,7 @@ class Configuration implements Utils\ClearableState
             $c['baseurlpath'] = $httpUtils->guessBasePath();
             throw new Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "' .
-                $this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
+                $this->getOptionalString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
                 ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
                 $this->filename,
                 $c
@@ -527,7 +527,7 @@ class Configuration implements Utils\ClearableState
     public function getBaseDir(): string
     {
         // check if a directory is configured in the configuration file
-        $dir = $this->getString('basedir', null);
+        $dir = $this->getOptionalString('basedir', null);
         if ($dir !== null) {
             // add trailing slash if it is missing
             if (substr($dir, -1) !== DIRECTORY_SEPARATOR) {
@@ -606,36 +606,47 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves a string configuration option.
      *
-     * An exception will be thrown if this option isn't a string, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't a string, or if this option isn't found.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string $name  The name of the option.
+     * @return string       The option with the given name.
      *
-     * @return string|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
-     *
-     * @throws \Exception If the option is not a string.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
      */
-    public function getString(string $name, $default = self::REQUIRED_OPTION)
+    public function getString(string $name): string
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
-
-        if (!is_string($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid string value.'
-            );
-        }
+        Assert::string(
+            $ret,
+            sprintf('%s: The option %s is not a valid string value.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional string configuration option.
+     *
+     * An exception will be thrown if this option isn't a string.
+     *
+     * @param string       $name     The name of the option.
+     * @param string|null  $default  A default value which will be returned if the option isn't found.
+     *                               The default value can be null or a string.
+     *
+     * @return string|null The option with the given name, or $default if the option isn't found.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
+     */
+    public function getOptionalString(string $name, ?string $default): ?string
+    {
+        if (!$this->hasValue($name)) {
+            // the option wasn't found, or it matches the default value. In any case, return this value
+            return $default;
+        }
+
+        return $this->getString($name);
     }
 
 
@@ -1009,7 +1020,7 @@ class Configuration implements Utils\ClearableState
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
                 ];
-                $responseLocation = $this->getString($endpointType . 'Response', null);
+                $responseLocation = $this->getOptionalString($endpointType . 'Response', null);
                 if ($responseLocation !== null) {
                     $ep['ResponseLocation'] = $responseLocation;
                 }
@@ -1191,7 +1202,7 @@ class Configuration implements Utils\ClearableState
         } elseif ($this->hasValue($prefix . 'certData')) {
             $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
-            $keyName = $this->getString($prefix . 'key_name', null);
+            $keyName = $this->getOptionalString($prefix . 'key_name', null);
             return [
                 [
                     'name'            => $keyName,
@@ -1222,7 +1233,7 @@ class Configuration implements Utils\ClearableState
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);
-            $keyName = $this->getString($prefix . 'key_name', null);
+            $keyName = $this->getOptionalString($prefix . 'key_name', null);
 
             return [
                 [

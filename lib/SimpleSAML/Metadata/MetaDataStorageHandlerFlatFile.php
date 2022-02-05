@@ -52,7 +52,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         if (array_key_exists('directory', $config)) {
             $this->directory = $config['directory'] ?: 'metadata/';
         } else {
-            $this->directory = $globalConfig->getString('metadatadir', 'metadata/');
+            $this->directory = $globalConfig->getOptionalString('metadatadir', 'metadata/');
         }
 
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is

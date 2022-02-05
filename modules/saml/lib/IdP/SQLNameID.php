@@ -159,7 +159,7 @@ class SQLNameID
     private static function getStore(): Store\SQLStore
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         Assert::isInstanceOf(

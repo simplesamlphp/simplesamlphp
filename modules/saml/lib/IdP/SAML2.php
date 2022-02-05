@@ -662,7 +662,7 @@ class SAML2
                 'idpEntityID' => $idpMetadata->getString('entityid'),
             ]);
 
-            $spStatsId = $spMetadata->getString('core:statistics-id', $spEntityId);
+            $spStatsId = $spMetadata->getOptionalString('core:statistics-id', $spEntityId);
             Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
 
             $state = [
@@ -937,11 +937,11 @@ class SAML2
         }
 
         $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getString('technicalcontact_email', false);
-        if ($email && $email !== 'na@example.org') {
+        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getString('technicalcontact_name', null),
+                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -965,9 +965,9 @@ class SAML2
         Configuration $spMetadata,
         array &$state
     ): ?string {
-        $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
+        $attribute = $spMetadata->getOptionalString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
-            $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
+            $attribute = $idpMetadata->getOptionalString('simplesaml.nameidattribute', null);
             if ($attribute === null) {
                 Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
                 return null;
@@ -1083,21 +1083,21 @@ class SAML2
         Configuration $spMetadata
     ): string {
         // try SP metadata first
-        $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
+        $attributeNameFormat = $spMetadata->getOptionalString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
-        $attributeNameFormat = $spMetadata->getString('AttributeNameFormat', null);
+        $attributeNameFormat = $spMetadata->getOptionalString('AttributeNameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
 
         // look in IdP metadata
-        $attributeNameFormat = $idpMetadata->getString('attributes.NameFormat', null);
+        $attributeNameFormat = $idpMetadata->getOptionalString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
-        $attributeNameFormat = $idpMetadata->getString('AttributeNameFormat', null);
+        $attributeNameFormat = $idpMetadata->getOptionalString('AttributeNameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
@@ -1264,7 +1264,7 @@ class SAML2
             $nameId = $state['saml:NameID'][$nameIdFormat];
             $nameId->setFormat($nameIdFormat);
         } else {
-            $spNameQualifier = $spMetadata->getString('SPNameQualifier', null);
+            $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
                 $spNameQualifier = $spMetadata->getString('entityid');
             }
@@ -1334,12 +1334,12 @@ class SAML2
         }
 
 
-        $sharedKey = $spMetadata->getString('sharedkey', null);
+        $sharedKey = $spMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
-            $algo = $spMetadata->getString('sharedkey_algorithm', null);
+            $algo = $spMetadata->getOptionalString('sharedkey_algorithm', null);
             if ($algo === null) {
                 // If no algorithm is configured, use a sane default
-                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                $algo = $idpMetadata->getOptionalString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
             }
 
             $key = new XMLSecurityKey($algo);

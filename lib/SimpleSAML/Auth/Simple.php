@@ -385,7 +385,7 @@ class Simple
             $port = '';
         }
 
-        $base = trim($this->app_config->getString(
+        $base = trim($this->app_config->getOptionalString(
             'baseURL',
             $scheme . '://' . $host . $port
         ), '/');

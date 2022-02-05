@@ -34,7 +34,7 @@ $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 $metaArray20 = $source->getHostedMetadata();
 
-$storeType = $config->getString('store.type', 'phpsession');
+$storeType = $config->getOptionalString('store.type', 'phpsession');
 $store = StoreFactory::getInstance($storeType);
 
 $metaBuilder = new Metadata\SAMLBuilder($entityId);

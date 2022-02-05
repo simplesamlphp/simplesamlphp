@@ -70,7 +70,7 @@ class MetaDataStorageHandler implements ClearableState
 
         // for backwards compatibility, and to provide a default configuration
         if ($sourcesConfig === null) {
-            $type = $config->getString('metadata.handler', 'flatfile');
+            $type = $config->getOptionalString('metadata.handler', 'flatfile');
             $sourcesConfig = [['type' => $type]];
         }
 

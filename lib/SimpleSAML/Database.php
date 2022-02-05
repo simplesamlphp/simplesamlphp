@@ -92,8 +92,8 @@ class Database
         // connect to the primary
         $this->dbPrimary = $this->connect(
             $config->getString('database.dsn'),
-            $config->getString('database.username', null),
-            $config->getString('database.password', null),
+            $config->getOptionalString('database.username', null),
+            $config->getOptionalString('database.password', null),
             $driverOptions
         );
 
@@ -117,7 +117,7 @@ class Database
                 )
             );
         }
-        $this->tablePrefix = $config->getString('database.prefix', '');
+        $this->tablePrefix = $config->getOptionalString('database.prefix', '');
     }
 
 
@@ -133,9 +133,9 @@ class Database
         $assembledConfig = [
             'primary' => [
                 'database.dsn'        => $config->getString('database.dsn'),
-                'database.username'   => $config->getString('database.username', null),
-                'database.password'   => $config->getString('database.password', null),
-                'database.prefix'     => $config->getString('database.prefix', ''),
+                'database.username'   => $config->getOptionalString('database.username', null),
+                'database.password'   => $config->getOptionalString('database.password', null),
+                'database.prefix'     => $config->getOptionalString('database.prefix', ''),
                 'database.persistent' => $config->getOptionalBoolean('database.persistent', true),
             ],
 

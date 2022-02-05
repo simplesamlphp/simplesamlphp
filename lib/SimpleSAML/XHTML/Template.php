@@ -129,7 +129,7 @@ class Template extends Response
 
         // parse config to find theme and module theme is in, if any
         list($this->theme['module'], $this->theme['name']) = $this->findModuleAndTemplateName(
-            $this->configuration->getString('theme.use', 'default')
+            $this->configuration->getOptionalString('theme.use', 'default')
         );
 
         // initialize internationalization system
@@ -137,9 +137,9 @@ class Template extends Response
         $this->localization = new Localization($configuration);
 
         // check if we need to attach a theme controller
-        $controller = $this->configuration->getString('theme.controller', false);
+        $controller = $this->configuration->getOptionalString('theme.controller', null);
         if (
-            $controller
+            $controller !== null
             && class_exists($controller)
             && in_array(TemplateControllerInterface::class, class_implements($controller))
         ) {
@@ -266,7 +266,7 @@ class Template extends Response
     private function setupTwig(): Environment
     {
         $auto_reload = $this->configuration->getOptionalBoolean('template.auto_reload', true);
-        $cache = $this->configuration->getString('template.cache', false);
+        $cache = $this->configuration->getOptionalString('template.cache', null);
 
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
@@ -287,7 +287,7 @@ class Template extends Response
         // set up translation
         $options = [
             'auto_reload' => $auto_reload,
-            'cache' => $cache,
+            'cache' => $cache ?? false,
             'strict_variables' => true,
         ];
 
@@ -299,7 +299,7 @@ class Template extends Response
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
         // initialize some basic context
-        $langParam = $this->configuration->getString('language.parameter.name', 'language');
+        $langParam = $this->configuration->getOptionalString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
@@ -488,7 +488,7 @@ class Template extends Response
 
         $this->data['year'] = date('Y');
 
-        $this->data['header'] = $this->configuration->getValue('theme.header', 'SimpleSAMLphp');
+        $this->data['header'] = $this->configuration->getOptionalString('theme.header', 'SimpleSAMLphp');
     }
 
     /**

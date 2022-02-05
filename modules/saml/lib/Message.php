@@ -43,7 +43,7 @@ class Message
         Configuration $dstMetadata,
         SignedElement $element
     ): void {
-        $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
+        $dstPrivateKey = $dstMetadata->getOptionalString('signature.privatekey', null);
         $cryptoUtils = new Utils\Crypto();
 
         if ($dstPrivateKey !== null) {
@@ -56,9 +56,9 @@ class Message
             $certArray = $cryptoUtils->loadPublicKey($srcMetadata, false);
         }
 
-        $algo = $dstMetadata->getString('signature.algorithm', null);
+        $algo = $dstMetadata->getOptionalString('signature.algorithm', null);
         if ($algo === null) {
-            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
+            $algo = $srcMetadata->getOptionalString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $privateKey = new XMLSecurityKey($algo, ['type' => 'private']);
@@ -254,15 +254,15 @@ class Message
         Configuration $dstMetadata,
         $encryptionMethod = null
     ): array {
-        $sharedKey = $srcMetadata->getString('sharedkey', null);
+        $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
             if ($encryptionMethod !== null) {
                 $algo = $encryptionMethod->getAlgorithm();
             } else {
-                $algo = $srcMetadata->getString('sharedkey_algorithm', null);
+                $algo = $srcMetadata->getOptionalString('sharedkey_algorithm', null);
                 if ($algo === null) {
                     // If no algorithm is supplied or configured, use a sane default as a last resort
-                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                    $algo = $dstMetadata->getOptionalString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
                 }
             }
 
@@ -880,7 +880,7 @@ class Message
      */
     public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {
-        $sharedKey = $metadata->getString('sharedkey', null);
+        $sharedKey = $metadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
             $key->loadKey($sharedKey);

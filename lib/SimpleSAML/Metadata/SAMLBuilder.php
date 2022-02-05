@@ -437,7 +437,7 @@ class SAMLBuilder
         $attributeconsumer->setServiceName($name);
         $attributeconsumer->setServiceDescription($metadata->getLocalizedString('description', []));
 
-        $nameFormat = $metadata->getString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
+        $nameFormat = $metadata->getOptionalString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
         foreach ($attributes as $friendlyName => $attribute) {
             $t = new RequestedAttribute();
             $t->setName($attribute);

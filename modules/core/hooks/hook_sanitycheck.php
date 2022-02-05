@@ -18,13 +18,13 @@ function core_hook_sanitycheck(array &$hookinfo): void
 
     $config = Configuration::getInstance();
 
-    if ($config->getString('auth.adminpassword', '123') === '123') {
+    if ($config->getOptionalString('auth.adminpassword', '123') === '123') {
         $hookinfo['errors'][] = '[core] Password in config.php is not set properly';
     } else {
         $hookinfo['info'][] = '[core] Password in config.php is set properly';
     }
 
-    if ($config->getString('technicalcontact_email', 'na@example.org') === 'na@example.org') {
+    if ($config->getOptionalString('technicalcontact_email', 'na@example.org') === 'na@example.org') {
         $hookinfo['errors'][] = '[core] In config.php technicalcontact_email is not set properly';
     } else {
         $hookinfo['info'][] = '[core] In config.php technicalcontact_email is set properly';

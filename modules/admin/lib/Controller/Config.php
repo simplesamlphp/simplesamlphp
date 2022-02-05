@@ -202,7 +202,7 @@ class Config
                 'enabled' => version_compare(phpversion(), '7.4', '>=')
             ]
         ];
-        $store = $this->config->getString('store.type', '');
+        $store = $this->config->getOptionalString('store.type', null);
 
         // check dependencies used via normal functions
         $functions = [
@@ -354,13 +354,13 @@ class Config
         $matrix[] = [
             'required' => 'optional',
             'descr' => Translate::noop('The <code>technicalcontact_email</code> configuration option should be set'),
-            'enabled' => $this->config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org',
+            'enabled' => $this->config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org',
         ];
 
         $matrix[] = [
             'required' => 'required',
             'descr' => Translate::noop('The auth.adminpassword configuration option must be set'),
-            'enabled' => $this->config->getString('auth.adminpassword', '123') !== '123',
+            'enabled' => $this->config->getOptionalString('auth.adminpassword', '123') !== '123',
         ];
 
         $cryptoUtils = new Utils\Crypto();
@@ -468,7 +468,7 @@ class Config
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
                     curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-                    curl_setopt($ch, CURLOPT_PROXY, $this->config->getString('proxy', null));
+                    curl_setopt($ch, CURLOPT_PROXY, $this->config->getOptionalString('proxy', null));
                     curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getValue('proxy.auth', null));
                     $response = curl_exec($ch);
 

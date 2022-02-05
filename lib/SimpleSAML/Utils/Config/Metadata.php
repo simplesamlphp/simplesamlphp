@@ -277,11 +277,11 @@ class Metadata
             // handle current configurations specifying an array in the NameIDPolicy config option
             $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
             $policy = [
-                'Format'      => $nameIdPolicy_cf->getString('Format', Constants::NAMEID_TRANSIENT),
+                'Format'      => $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT),
                 'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
             ];
-            $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
-            if ($spNameQualifier !== false) {
+            $spNameQualifier = $nameIdPolicy_cf->getOptionalString('SPNameQualifier', null);
+            if ($spNameQualifier !== null) {
                 $policy['SPNameQualifier'] = $spNameQualifier;
             }
         } elseif ($nameIdPolicy === null) {

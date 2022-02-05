@@ -29,7 +29,7 @@ class Log extends \SimpleSAML\Stats\Output
      */
     public function __construct(Configuration $config)
     {
-        $logLevel = $config->getString('level', 'notice');
+        $logLevel = $config->getOptionalString('level', 'notice');
         $this->logger = [Logger::class, $logLevel];
         if (!is_callable($this->logger)) {
             throw new \Exception('Invalid log level: ' . var_export($logLevel, true));

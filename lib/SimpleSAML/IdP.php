@@ -423,7 +423,7 @@ class IdP
     public function getLogoutHandler(): LogoutHandlerInterface
     {
         // find the logout handler
-        $logouttype = $this->getConfig()->getString('logouttype', 'traditional');
+        $logouttype = $this->getConfig()->getOptionalString('logouttype', 'traditional');
         switch ($logouttype) {
             case 'traditional':
                 $handler = TraditionalLogoutHandler::class;

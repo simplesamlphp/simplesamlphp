@@ -80,7 +80,7 @@ class MultiAuth extends Auth\Source
         }
 
         $globalConfiguration = Configuration::getInstance();
-        $defaultLanguage = $globalConfiguration->getString('language.default', 'en');
+        $defaultLanguage = $globalConfiguration->getOptionalString('language.default', 'en');
         $authsources = Configuration::getConfig('authsources.php');
         $this->sources = [];
 

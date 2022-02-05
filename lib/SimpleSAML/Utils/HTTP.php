@@ -406,10 +406,10 @@ class HTTP
 
             $self_host = $this->getSelfHostWithNonStandardPort();
 
-            $trustedRegex = Configuration::getInstance()->getValue('trusted.url.regex', false);
+            $trustedRegex = Configuration::getInstance()->getOptionalString('trusted.url.regex', null);
 
             $trusted = false;
-            if ($trustedRegex) {
+            if ($trustedRegex !== null) {
                 // add self host to the white list
                 $trustedSites[] = preg_quote($self_host);
                 foreach ($trustedSites as $regex) {
@@ -455,13 +455,13 @@ class HTTP
     {
         $config = Configuration::getInstance();
 
-        $proxy = $config->getString('proxy', null);
+        $proxy = $config->getOptionalString('proxy', null);
         if ($proxy !== null) {
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
             }
-            $proxy_auth = $config->getString('proxy.auth', false);
-            if ($proxy_auth !== false) {
+            $proxy_auth = $config->getOptionalString('proxy.auth', null);
+            if ($proxy_auth !== null) {
                 $context['http']['header'] = "Proxy-Authorization: Basic " . base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {
@@ -638,7 +638,7 @@ class HTTP
     public function getBaseURL(): string
     {
         $globalConfig = Configuration::getInstance();
-        $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
+        $baseURL = $globalConfig->getOptionalString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
@@ -805,7 +805,7 @@ class HTTP
 
             /** @var \SimpleSAML\Configuration $appcfg */
             $appcfg = $cfg->getConfigItem('application');
-            $appurl = $appcfg->getString('baseURL', '');
+            $appurl = $appcfg->getOptionalString('baseURL', null);
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);
                 $hostname = parse_url($appurl, PHP_URL_HOST);

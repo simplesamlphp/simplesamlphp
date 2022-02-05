@@ -48,7 +48,7 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->cookie_name = $config->getString(
+        $this->cookie_name = $config->getOptionalString(
             'session.phpsession.cookiename',
             ini_get('session.name') ?: 'PHPSESSID'
         );
@@ -92,7 +92,7 @@ class SessionHandlerPHP extends SessionHandler
             ]);
         }
 
-        $savepath = $config->getString('session.phpsession.savepath', null);
+        $savepath = $config->getOptionalString('session.phpsession.savepath', null);
         if (!empty($savepath)) {
             session_save_path($savepath);
         }

@@ -268,7 +268,7 @@ class Localization
     {
         $this->addDomain($this->localeDir, 'attributes');
 
-        list($theme,) = explode(':', $this->configuration->getString('theme.use', 'default'));
+        list($theme,) = explode(':', $this->configuration->getOptionalString('theme.use', 'default'));
         if ($theme !== 'default') {
             $this->addModuleDomain($theme, null, 'attributes');
         }
