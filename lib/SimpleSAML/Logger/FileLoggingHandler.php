@@ -112,13 +112,13 @@ class FileLoggingHandler implements LoggingHandlerInterface
 
             $matches = [];
             if (preg_match('/%date(?:\{([^\}]+)\})?/', $this->format, $matches)) {
-                $format = "%b %d %H:%M:%S";
+                $format = "M j H:i:s";
                 if (isset($matches[1])) {
                     $format = $matches[1];
                 }
 
                 array_push($formats, $matches[0]);
-                array_push($replacements, strftime($format));
+                array_push($replacements, date($format));
             }
 
             $string = str_replace($formats, $replacements, $string);
