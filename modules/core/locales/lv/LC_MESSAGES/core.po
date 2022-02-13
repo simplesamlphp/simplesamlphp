@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "Derīgas saites instalācijai"
-
 msgid "{core:frontpage:metadata}"
 msgstr "Metadati"
 
@@ -130,9 +127,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
-
-msgid "Useful links for your installation"
-msgstr "Derīgas saites instalācijai"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

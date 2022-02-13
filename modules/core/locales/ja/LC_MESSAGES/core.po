@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "設定に便利なリンク集"
-
 msgid "{core:frontpage:metadata}"
 msgstr "メタデータ"
 
@@ -118,9 +115,6 @@ msgstr "もしあなたが開発者でシングルサインオンシステムの
 
 msgid "Too short interval between single sign on events."
 msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
-msgid "Useful links for your installation"
-msgstr "設定に便利なリンク集"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "ホスト Shibboleth 1.3 アイデンティティプロバイダメタデータ (自動生成)"

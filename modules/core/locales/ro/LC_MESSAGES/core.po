@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "Link-uri utile pentru instalare"
-
 msgid "{core:frontpage:metadata}"
 msgstr "Metadate"
 
@@ -139,9 +136,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
-
-msgid "Useful links for your installation"
-msgstr "Link-uri utile pentru instalare"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

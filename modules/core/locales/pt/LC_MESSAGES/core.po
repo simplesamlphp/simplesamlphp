@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "Ligações úteis da sua instalação"
-
 msgid "{core:frontpage:metadata}"
 msgstr "Metadados"
 
@@ -85,9 +82,6 @@ msgstr "Funcionalidades avançadas do SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "Intervalo entre eventos de single sign on demasiado curto."
-
-msgid "Useful links for your installation"
-msgstr "Ligações úteis da sua instalação"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

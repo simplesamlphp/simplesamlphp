@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "对你有用的一些链接"
-
 msgid "{core:frontpage:metadata}"
 msgstr "元信息"
 
@@ -118,9 +115,6 @@ msgstr "如果你是部署这个单点登录系统的开发人员，那么你的
 
 msgid "Too short interval between single sign on events."
 msgstr "单点登录事件之间间隔太短了"
-
-msgid "Useful links for your installation"
-msgstr "对你有用的一些链接"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "存储的 Shibboleth 1.3 Identity Provider Metadata（自动生成）"

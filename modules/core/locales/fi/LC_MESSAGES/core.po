@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:useful_links_header}"
-msgstr "Asennuksesi käytännöllisiä linkkejä"
-
 msgid "{core:frontpage:metadata}"
 msgstr "Metatiedot"
 
@@ -64,9 +61,6 @@ msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
 
 msgid "Recommended"
 msgstr "Suositellaan"
-
-msgid "Useful links for your installation"
-msgstr "Asennuksesi käytännöllisiä linkkejä"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""
