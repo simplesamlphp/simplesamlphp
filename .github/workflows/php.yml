@@ -23,6 +23,7 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
           tools: composer:v2
+          ini-values: error_reporting=E_ALL
           coverage: xdebug
 
       - name: Setup problem matchers for PHP
