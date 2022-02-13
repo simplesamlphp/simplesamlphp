@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "PHPの設定を確認"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphpをアイデンティティプロバイダとして使用する"
@@ -151,9 +147,6 @@ msgstr "もしあなたが開発者でシングルサインオンシステムの
 
 msgid "Too short interval between single sign on events."
 msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
-msgid "Checking your PHP installation"
-msgstr "PHPの設定を確認"
 
 msgid "Useful links for your installation"
 msgstr "設定に便利なリンク集"

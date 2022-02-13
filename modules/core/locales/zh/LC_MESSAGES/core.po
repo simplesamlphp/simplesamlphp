@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "正检测你的PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "正在使用SimpleSAMLphp作为身份提供者"
@@ -158,9 +154,6 @@ msgstr "如果你是部署这个单点登录系统的开发人员，那么你的
 
 msgid "Too short interval between single sign on events."
 msgstr "单点登录事件之间间隔太短了"
-
-msgid "Checking your PHP installation"
-msgstr "正检测你的PHP"
 
 msgid "Useful links for your installation"
 msgstr "对你有用的一些链接"

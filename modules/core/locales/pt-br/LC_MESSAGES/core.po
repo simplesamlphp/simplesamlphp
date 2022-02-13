@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Checando sua instalação do PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Usando o SimpleSAMLphp como Provedor de Identidade"
@@ -115,9 +111,6 @@ msgstr ""
 " um problema com a configuração de metadados. Verifique se os metadados "
 "estão configurados corretamente no provedor de identidade e no provedor "
 "de serviços."
-
-msgid "Checking your PHP installation"
-msgstr "Checando sua instalação do PHP"
 
 msgid "Useful links for your installation"
 msgstr "Endereços úteis para sua instalação."

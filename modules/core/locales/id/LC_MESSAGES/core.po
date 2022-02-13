@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Memerika instalasi PHP Anda"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Menggunakan SimpleSAMLphp sebagai Identity Provider"
@@ -178,9 +174,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Interval yang terlalu pendek antara event single sign on."
-
-msgid "Checking your PHP installation"
-msgstr "Memerika instalasi PHP Anda"
 
 msgid "Useful links for your installation"
 msgstr "Link-Link yang bermanfaat untuk membantu proses instalasi Anda"

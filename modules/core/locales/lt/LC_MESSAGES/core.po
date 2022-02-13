@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -15,9 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Tikrinamas Jūsų PHP diegimas"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphp naudojimas kaip tapatybės teikėją"
@@ -183,9 +179,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
-
-msgid "Checking your PHP installation"
-msgstr "Tikrinamas Jūsų PHP diegimas"
 
 msgid "Useful links for your installation"
 msgstr "Naudingos nuorodos diegimui"

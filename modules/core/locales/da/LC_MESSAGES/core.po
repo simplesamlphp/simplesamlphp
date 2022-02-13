@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Checker din PHP-installation"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphp som en identitetsudbyder (IdP)"
@@ -170,9 +166,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "For kort interval mellem single sign on hændelse."
-
-msgid "Checking your PHP installation"
-msgstr "Checker din PHP-installation"
 
 msgid "Useful links for your installation"
 msgstr "Nyttige links"

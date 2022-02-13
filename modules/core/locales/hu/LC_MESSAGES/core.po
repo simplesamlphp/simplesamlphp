@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,9 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "PHP beállítások ellenőrzése"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)"
@@ -175,9 +171,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Túl kevés idő telt el a belépési kísérletek között."
-
-msgid "Checking your PHP installation"
-msgstr "PHP beállítások ellenőrzése"
 
 msgid "Useful links for your installation"
 msgstr "Hasznos linkek"

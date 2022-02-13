@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -15,9 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Sprawdzanie instalacji PHP"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr "Użycie SimpleSAMLphp jako Dostawca Tożsamości"
@@ -92,9 +88,6 @@ msgstr "SAML 2.0 SP - przykład - test logowania przez Twoje IdP"
 
 msgid "Recommended"
 msgstr "Rekomendowane"
-
-msgid "Checking your PHP installation"
-msgstr "Sprawdzanie instalacji PHP"
 
 msgid "Useful links for your installation"
 msgstr "Przydatne linki dla Twojej instalacji"

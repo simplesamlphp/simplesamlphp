@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -15,9 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-
-msgid "{core:frontpage:checkphp}"
-msgstr "Provjera vaše PHP instalacije"
 
 msgid "{core:frontpage:link_doc_idp}"
 msgstr ""
@@ -183,9 +179,6 @@ msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "Checking your PHP installation"
-msgstr "Provjera vaše PHP instalacije"
 
 msgid "Useful links for your installation"
 msgstr "Korisne poveznice"

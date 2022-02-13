@@ -33,7 +33,7 @@ msgid "Configuration"
 msgstr "Configuration"
 
 msgid "Checking your PHP installation"
-msgstr ""
+msgstr "Checking your PHP installation"
 
 msgid "required"
 msgstr ""
