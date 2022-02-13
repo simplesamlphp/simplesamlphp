@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_header}"
-msgstr "O programskom alatu SimpleSAMLphp"
-
 msgid "{core:frontpage:about_text}"
 msgstr ""
 "Više informacija o programskom alatu SimpleSAMLphp možete pronaći na <a "
@@ -52,9 +49,6 @@ msgstr "Dobrodošli"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metapodaci za lokalni Shibboleth 1.3 SP (automatski generirani)"
-
-msgid "About SimpleSAMLphp"
-msgstr "O programskom alatu SimpleSAMLphp"
 
 msgid "Retry login"
 msgstr "Pokušaj se prijaviti ponovo"

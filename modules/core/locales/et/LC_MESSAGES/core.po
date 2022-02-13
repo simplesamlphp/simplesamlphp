@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_header}"
-msgstr "Teave SimpleSAMLphp kohta"
-
 msgid "{core:frontpage:about_text}"
 msgstr ""
 "See SimpleSAMLphp on päris äge! Kust ma saaks selle kohta täpsemalt "
@@ -52,9 +49,6 @@ msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)
 msgstr ""
 "Hostitud Shibboleth 1.3 identiteedipakkuja metaandmed (automaatselt "
 "genereeritud) "
-
-msgid "About SimpleSAMLphp"
-msgstr "Teave SimpleSAMLphp kohta"
 
 msgid "Retry login"
 msgstr "Proovi uuesti logida"

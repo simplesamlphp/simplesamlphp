@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_header}"
-msgstr "A SimpleSAMLphp-ról bővebben"
-
 msgid "{core:frontpage:about_text}"
 msgstr ""
 "Ez a SimpleSAMLphp-dolog nagyon hasznos, hol olvashatnék többet róla? "
@@ -54,9 +51,6 @@ msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)
 msgstr ""
 "Ezen a gépen futó (hosted) Shibboleth 1.3 alkalmazásszolgáltató (SP) "
 "metaadat (automatikusan generált)"
-
-msgid "About SimpleSAMLphp"
-msgstr "A SimpleSAMLphp-ról bővebben"
 
 msgid "Retry login"
 msgstr "Újbóli belépés"

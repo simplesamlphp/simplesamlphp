@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_header}"
-msgstr "Iwwert SimpleSAMLphp"
-
 msgid "{core:frontpage:about_text}"
 msgstr ""
 "Desen SimpleSAMLphp system as nach ewëll dëcken Gas, wou kann ech méi "
@@ -35,9 +32,6 @@ msgstr "SimpleSAMLphp als IdP fir Google Apps for Education"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hosted Shibboleth 1.3 Service Provider Meta Données (automatesch erstallt)"
-
-msgid "About SimpleSAMLphp"
-msgstr "Iwwert SimpleSAMLphp"
 
 msgid "Metadata"
 msgstr "Meta Données"
