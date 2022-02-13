@@ -23,15 +23,6 @@ msgstr ""
 msgid "Retry"
 msgstr "Zama kwakhona"
 
-msgid "{core:cardinality:problematic_attributes}"
-msgstr "Iimpawu eziyingxaki zezi:"
-
-msgid "{core:cardinality:cardinality_header}"
-msgstr "Iimpawu Ezingachanekanga"
-
-msgid "{core:cardinality:got_want}"
-msgstr "kukho amaxabiso e-%GOT%, sifuna %WANT%"
-
 msgid "This error may be caused by:"
 msgstr "Le mpazamo isenokuba ibangelwe:"
 

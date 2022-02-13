@@ -45,9 +45,6 @@ msgstr ""
 "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le "
 "setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
 
-msgid "{core:cardinality:cardinality_header}"
-msgstr "Makgabane a Fosahetseng"
-
 msgid "The problematic attribute(s) are:"
 msgstr "Makgabane a nang le mathata ke:"
 
@@ -76,9 +73,6 @@ msgstr "Kwala sebadi sa webe, ebe o leka hape."
 msgid "Go back to the previous page and try again."
 msgstr "Kgutlela leqepheng le fetileng ebe o leka hape."
 
-msgid "{core:cardinality:problematic_attributes}"
-msgstr "Makgabane a nang le mathata ke:"
-
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "
 "have a problem with the metadata configuration. Verify that metadata is "
@@ -87,9 +81,6 @@ msgstr ""
 "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le "
 "bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho"
 " nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
-
-msgid "{core:cardinality:got_want}"
-msgstr "o fumane dipalo tse %GOT%, o batla tse %WANT%"
 
 msgid "Retry"
 msgstr "Khukhi e siyo"
