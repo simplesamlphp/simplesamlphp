@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43ea3a0324379058b3dc25d87cbcc8ae",
+    "content-hash": "c2176427956e72c623e660394ffd6404",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -6634,15 +6634,16 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.4 || ^8.0",
-        "ext-spl": "*",
-        "ext-zlib": "*",
-        "ext-pcre": "*",
-        "ext-openssl": "*",
-        "ext-dom": "*",
         "ext-date": "*",
+        "ext-dom": "*",
         "ext-hash": "*",
+        "ext-intl": "*",
         "ext-json": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "ext-pcre": "*",
+        "ext-spl": "*",
+        "ext-zlib": "*"
     },
     "platform-dev": {
         "ext-curl": "*",
