@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Tööriistad"
-
 msgid "Go back to the previous page and try again."
 msgstr "Mine tagasi eelmisele leheküljele ja proovi uuesti."
 
@@ -58,9 +55,6 @@ msgstr "küpsiste keelamisest brauseris"
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
-
-msgid "Tools"
-msgstr "Tööriistad"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

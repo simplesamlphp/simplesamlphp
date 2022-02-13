@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Įrankiai"
-
 msgid "Go back to the previous page and try again."
 msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."
 
@@ -63,9 +60,6 @@ msgid "Opened the web browser with tabs saved from the previous session."
 msgstr ""
 "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstesnės "
 "sesijos."
-
-msgid "Tools"
-msgstr "Įrankiai"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "الأدوات "
-
 msgid "Go back to the previous page and try again."
 msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
 
@@ -57,9 +54,6 @@ msgstr "الكوكيز غير منشطة بمتصفحك"
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
-
-msgid "Tools"
-msgstr "الأدوات "
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

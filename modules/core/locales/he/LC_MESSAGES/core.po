@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "כלים"
-
 msgid "Go back to the previous page and try again."
 msgstr "חזור לדף הקודם ונסה שוב."
 
@@ -54,9 +51,6 @@ msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
-
-msgid "Tools"
-msgstr "כלים"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

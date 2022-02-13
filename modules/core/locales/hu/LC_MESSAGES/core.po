@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Eszközök"
-
 msgid "Go back to the previous page and try again."
 msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."
 
@@ -60,9 +57,6 @@ msgstr "Talán a böngészőben nincsenek engedélyezve a sütik (cookie)."
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
-
-msgid "Tools"
-msgstr "Eszközök"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

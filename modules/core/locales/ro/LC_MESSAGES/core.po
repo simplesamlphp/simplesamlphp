@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Unelte"
-
 msgid "Go back to the previous page and try again."
 msgstr "Accesați pagina anterioară și încercați din nou."
 
@@ -61,9 +58,6 @@ msgstr "Browser-ul are deactivate <i>cookies</i>."
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
-
-msgid "Tools"
-msgstr "Unelte"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

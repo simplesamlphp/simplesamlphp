@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Ferramentas"
-
 msgid "Welcome"
 msgstr "Bem vindo"
 
@@ -30,9 +27,6 @@ msgstr "Tentar de novo"
 
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"
-
-msgid "Tools"
-msgstr "Ferramentas"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Outils"
-
 msgid "Go back to the previous page and try again."
 msgstr "Retournez à la page précédente et réessayez."
 
@@ -62,9 +59,6 @@ msgid "Opened the web browser with tabs saved from the previous session."
 msgstr ""
 "Ouvert le navigateur avec des onglets sauvegardés lors de la session "
 "précédente."
-
-msgid "Tools"
-msgstr "Outils"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

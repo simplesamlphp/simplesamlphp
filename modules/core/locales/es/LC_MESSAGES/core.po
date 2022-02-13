@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Herramientas"
-
 msgid "Go back to the previous page and try again."
 msgstr "Regrese a la página anterior y pruebe de nuevo"
 
@@ -66,9 +63,6 @@ msgstr "Las cookies pueden estar deshabilitadas en el navegador"
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
-
-msgid "Tools"
-msgstr "Herramientas"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

@@ -87,7 +87,7 @@ msgid "expires"
 msgstr ""
 
 msgid "Tools"
-msgstr ""
+msgstr "Tools"
 
 msgid "Look up metadata for entity:"
 msgstr ""

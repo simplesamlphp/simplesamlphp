@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Araçlar"
-
 msgid "Welcome"
 msgstr "Hoşgeldiniz"
 
@@ -24,9 +21,6 @@ msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)
 msgstr ""
 "Sunulan Shibboleth 1.3 Servis Sağlayıcı Üstverisi (metadata) (otomatik "
 "olarak üretilmiştir)"
-
-msgid "Tools"
-msgstr "Araçlar"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP örneği - Shib IdP'nizden giriş yaparak test edin"

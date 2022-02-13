@@ -17,9 +17,6 @@ msgstr ""
 msgid "Retry"
 msgstr "Coba lagi"
 
-msgid "{core:frontpage:tools}"
-msgstr "Peralatan"
-
 msgid "Go back to the previous page and try again."
 msgstr "Kembali ke halaman sebelumnya dan coba lagi."
 
@@ -65,9 +62,6 @@ msgid "Opened the web browser with tabs saved from the previous session."
 msgstr ""
 "Membuka web browser dengan tab-tab yang telah disimpan dari session "
 "sebelumnya."
-
-msgid "Tools"
-msgstr "Peralatan"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

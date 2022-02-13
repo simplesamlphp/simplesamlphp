@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Ferramentas"
-
 msgid "Welcome"
 msgstr "Seja bem-vindo(a)"
 
@@ -31,9 +28,6 @@ msgid ""
 msgstr ""
 "Isso é possivelmente um problema de configuração do provedor de serviços "
 "ou do provedor de identidade."
-
-msgid "Tools"
-msgstr "Ferramentas"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

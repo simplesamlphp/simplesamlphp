@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Gereedschap"
-
 msgid "Go back to the previous page and try again."
 msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
 
@@ -69,9 +66,6 @@ msgstr "Cookies kunnen uitgeschakeld zijn in de web browser."
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
-
-msgid "Tools"
-msgstr "Gereedschap"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

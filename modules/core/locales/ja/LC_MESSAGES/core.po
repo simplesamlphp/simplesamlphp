@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "ツール"
-
 msgid "Go back to the previous page and try again."
 msgstr "前のページに戻り、再度試してください。"
 
@@ -54,9 +51,6 @@ msgstr "このWEBブラウザではクッキーが無効化されています。
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "ブラウザに保存されたタブにより、以前のセッションが開かれました。"
-
-msgid "Tools"
-msgstr "ツール"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

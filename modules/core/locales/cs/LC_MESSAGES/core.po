@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Nástroje"
-
 msgid "Go back to the previous page and try again."
 msgstr "Jít zpět na předchozí stránku a zkusit znovu."
 
@@ -59,9 +56,6 @@ msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
-
-msgid "Tools"
-msgstr "Nástroje"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "工具"
-
 msgid "Go back to the previous page and try again."
 msgstr "返回上一页并重新尝试"
 
@@ -54,9 +51,6 @@ msgstr "该浏览器上的cookie可能遭禁止"
 
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "从先前的session保存的选项卡打开Web浏览器"
-
-msgid "Tools"
-msgstr "工具"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "

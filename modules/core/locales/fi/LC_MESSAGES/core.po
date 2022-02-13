@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:tools}"
-msgstr "Työkalut"
-
 msgid "Welcome"
 msgstr "Tervetuloa"
 
@@ -27,9 +24,6 @@ msgstr ""
 
 msgid "Missing cookie"
 msgstr "Puuttuva eväste"
-
-msgid "Tools"
-msgstr "Työkalut"
 
 msgid ""
 "You appear to have disabled cookies in your browser. Please check the "
