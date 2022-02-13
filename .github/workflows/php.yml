@@ -200,7 +200,7 @@ jobs:
 
       - name: Psalm
         continue-on-error: true
-        run: php vendor/bin/psalm --show-info=true
+        run: php vendor/bin/psalm --show-info=true --shepherd
 
       - name: Psalter
         continue-on-error: false
