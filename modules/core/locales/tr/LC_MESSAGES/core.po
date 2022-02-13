@@ -14,11 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_googleapps}"
-msgstr ""
-"\"Google Apps for Education\" için kimlik sağlayıcı (IdP) olarak "
-"SimpleSAMLphp "
-
 msgid "{core:frontpage:tools}"
 msgstr "Araçlar"
 
@@ -35,11 +30,6 @@ msgstr "Araçlar"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP örneği - Shib IdP'nizden giriş yaparak test edin"
-
-msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
-msgstr ""
-"\"Google Apps for Education\" için kimlik sağlayıcı (IdP) olarak "
-"SimpleSAMLphp "
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

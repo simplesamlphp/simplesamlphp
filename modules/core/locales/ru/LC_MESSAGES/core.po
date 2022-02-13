@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_googleapps}"
-msgstr "SimpleSAMLphp в качестве IdP для Google Apps for Education"
-
 msgid "{core:frontpage:tools}"
 msgstr "Инструменты"
 
@@ -91,9 +88,6 @@ msgstr "Варианты решения проблемы:"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Пример Shibboleth 1.3 SP - тестовый вход в систему через ваш Shib IdP"
-
-msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
-msgstr "SimpleSAMLphp в качестве IdP для Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Информация о состоянии утеряна"
