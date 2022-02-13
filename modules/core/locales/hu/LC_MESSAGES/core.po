@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "Metaadatok"
-
 msgid "{core:frontpage:recommended}"
 msgstr "Ajánlott"
 
@@ -82,9 +79,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "Az alábbi hibát okozhatta:"
-
-msgid "Metadata"
-msgstr "Metaadat"
 
 msgid "Retry"
 msgstr "Újra"

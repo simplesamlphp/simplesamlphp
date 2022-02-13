@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "メタデータ"
-
 msgid "{core:frontpage:recommended}"
 msgstr "推奨"
 
@@ -74,9 +71,6 @@ msgstr "ブラウザのクッキーが無効化されている可能性があり
 
 msgid "This error may be caused by:"
 msgstr "このエラーの原因:"
-
-msgid "Metadata"
-msgstr "メタデータ"
 
 msgid "Retry"
 msgstr "再試行"

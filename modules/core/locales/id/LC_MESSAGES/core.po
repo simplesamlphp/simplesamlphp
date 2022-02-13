@@ -17,9 +17,6 @@ msgstr ""
 msgid "Retry"
 msgstr "Coba lagi"
 
-msgid "{core:frontpage:metadata}"
-msgstr "Metadata"
-
 msgid "{core:frontpage:recommended}"
 msgstr "Direkomendasikan"
 
@@ -87,9 +84,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "Error ini mungkin disebabkan oleh:"
-
-msgid "Metadata"
-msgstr "Metadata"
 
 msgid ""
 "If you are an user who received this error after following a link on a "

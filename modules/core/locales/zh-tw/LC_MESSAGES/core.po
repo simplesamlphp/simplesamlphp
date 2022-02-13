@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "詮釋資料"
-
 msgid "{core:frontpage:recommended}"
 msgstr "建議"
 
@@ -74,9 +71,6 @@ msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，�
 
 msgid "This error may be caused by:"
 msgstr "這個錯誤可能是因為："
-
-msgid "Metadata"
-msgstr "詮釋資料"
 
 msgid "Retry"
 msgstr "重試"

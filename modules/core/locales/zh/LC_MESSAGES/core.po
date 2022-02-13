@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "元信息"
-
 msgid "{core:frontpage:recommended}"
 msgstr "推荐的"
 
@@ -74,9 +71,6 @@ msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后
 
 msgid "This error may be caused by:"
 msgstr "该错误可能是以下原因导致的："
-
-msgid "Metadata"
-msgstr "元信息"
 
 msgid "Retry"
 msgstr "重试"

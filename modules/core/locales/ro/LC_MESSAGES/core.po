@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "Metadate"
-
 msgid "{core:frontpage:recommended}"
 msgstr "Recomandat"
 
@@ -83,9 +80,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "Această eroare poate fi cauzată de:"
-
-msgid "Metadata"
-msgstr "Metadate"
 
 msgid "Retry"
 msgstr "Încearcă din nou"

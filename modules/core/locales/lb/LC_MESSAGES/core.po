@@ -23,9 +23,6 @@ msgstr "SimpleSAMLphp als IdP fir Google Apps for Education"
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hosted Shibboleth 1.3 Service Provider Meta Données (automatesch erstallt)"
 
-msgid "Metadata"
-msgstr "Meta Données"
-
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP Beispill - probeier dech iwer dain Shib IdP anzeloggen"
 

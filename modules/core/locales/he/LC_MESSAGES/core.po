@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "מטא-נתונים"
-
 msgid "{core:frontpage:recommended}"
 msgstr "רצוי"
 
@@ -76,9 +73,6 @@ msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
-
-msgid "Metadata"
-msgstr "מטא-נתונים"
 
 msgid "Retry"
 msgstr "נסה שנית"

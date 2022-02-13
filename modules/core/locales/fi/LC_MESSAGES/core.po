@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:metadata}"
-msgstr "Metatiedot"
-
 msgid "{core:frontpage:recommended}"
 msgstr "Suositellaan"
 
@@ -46,9 +43,6 @@ msgid ""
 msgstr ""
 "Näyttää, että olet kieltänyt evästeiden käytön selaimessasi. Ole hyvä ja "
 "salli evästeet selaimestasi ja yritä uudelleen."
-
-msgid "Metadata"
-msgstr "Metadata"
 
 msgid "Retry"
 msgstr "Uudestaan"
