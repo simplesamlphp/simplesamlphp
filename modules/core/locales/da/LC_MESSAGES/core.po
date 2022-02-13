@@ -14,11 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_text}"
-msgstr ""
-"Yes, det er cool! Hvor kan jeg læse mere om det? Gå til <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp's hjemmeside</a>"
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Nyttige links"
 
@@ -104,15 +99,6 @@ msgstr ""
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Løsningsforslag til problemet:"
-
-msgid ""
-"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
-"You can find more information about it at the <a "
-"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
-"<a href=\"http://uninett.no\">UNINETT</a>."
-msgstr ""
-"Yes, det er cool! Hvor kan jeg læse mere om det? Gå til <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp's hjemmeside</a>"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr ""

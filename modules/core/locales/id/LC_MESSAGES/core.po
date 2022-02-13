@@ -14,13 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_text}"
-msgstr ""
-"SimpleSAMLphp sangat menarik, dimana Saya bisa membaca lebih jauh tentang"
-" hal ini ? Anda dapat mencari informasi lebih jauh tentang <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp pada blog Feide "
-"RnD</a> ke arah <a href=\"http://uninett.no\">UNINETT</a>."
-
 msgid "Retry"
 msgstr "Coba lagi"
 
@@ -111,17 +104,6 @@ msgstr ""
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Saran untuk memperbaiki masalah ini:"
-
-msgid ""
-"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
-"You can find more information about it at the <a "
-"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
-"<a href=\"http://uninett.no\">UNINETT</a>."
-msgstr ""
-"SimpleSAMLphp sangat menarik, dimana Saya bisa membaca lebih jauh tentang"
-" hal ini ? Anda dapat mencari informasi lebih jauh tentang <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp pada blog Feide "
-"RnD</a> ke arah <a href=\"http://uninett.no\">UNINETT</a>."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Contoh Shibboleth 1.3 SP  - Tes login melalui IdP Shib Anda"

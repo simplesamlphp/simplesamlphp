@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:about_text}"
-msgstr ""
-"Pode encontrar mais informação sobre o <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp no blog da Feide"
-" RnD</a> em <a href=\"http://uninett.no\">UNINETT</a>."
-
 msgid "{core:frontpage:useful_links_header}"
 msgstr "Ligações úteis da sua instalação"
 
@@ -66,16 +60,6 @@ msgstr "Metadados"
 
 msgid "Retry"
 msgstr "Tentar de novo"
-
-msgid ""
-"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
-"You can find more information about it at the <a "
-"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
-"<a href=\"http://uninett.no\">UNINETT</a>."
-msgstr ""
-"Pode encontrar mais informação sobre o <a "
-"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp no blog da Feide"
-" RnD</a> em <a href=\"http://uninett.no\">UNINETT</a>."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
