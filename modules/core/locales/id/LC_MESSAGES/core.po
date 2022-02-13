@@ -17,9 +17,6 @@ msgstr ""
 msgid "Retry"
 msgstr "Coba lagi"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Direkomendasikan"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp sebagai IdP untuk Google Apps for Education"
 
@@ -113,9 +110,6 @@ msgstr ""
 "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi "
 "yang anda lakukan pada service provider ini, dan oleh karena itu "
 "diasumsikan ada masalah dengan SP ini"
-
-msgid "Recommended"
-msgstr "Direkomendasikan"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

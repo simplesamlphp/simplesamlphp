@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Anbefalet"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp som en IdP for Google Apps for Education"
 
@@ -110,9 +107,6 @@ msgstr ""
 "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede "
 "dig op mod denne service. Vi antager derfor at der er et problem med "
 "services."
-
-msgid "Recommended"
-msgstr "Anbefalet"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

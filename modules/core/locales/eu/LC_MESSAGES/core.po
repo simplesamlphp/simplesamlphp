@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Gomendatua"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 
@@ -110,9 +107,6 @@ msgstr ""
 "Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu "
 "besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat "
 "dagoela hartuko dugu. "
-
-msgid "Recommended"
-msgstr "Gomendatua"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

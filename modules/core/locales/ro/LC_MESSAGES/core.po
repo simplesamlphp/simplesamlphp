@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Recomandat"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
 
@@ -114,9 +111,6 @@ msgstr ""
 "A fost detectat faptul că v-ați autentificat în urmă cu doar câteva "
 "secunde cu acest furnizor de servicii, se va considera că există o "
 "problemă cu acest furnizor de servicii."
-
-msgid "Recommended"
-msgstr "Recomandat"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

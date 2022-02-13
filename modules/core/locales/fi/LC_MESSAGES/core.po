@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Suositellaan"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
 
@@ -52,9 +49,6 @@ msgstr "Shibboleth 1.3 SP esimerkki - testikirjautuminen Shib IdP:si kautta"
 
 msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr "SimpleSAMLphp Google Apps for Education identiteetintarjoajana"
-
-msgid "Recommended"
-msgstr "Suositellaan"
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr ""

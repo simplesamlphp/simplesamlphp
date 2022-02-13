@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Recomendado"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp como um IdP para o Google Apps Educacional"
 
@@ -53,9 +50,6 @@ msgstr "Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP"
 
 msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr "SimpleSAMLphp como um IdP para o Google Apps Educacional"
-
-msgid "Recommended"
-msgstr "Recomendado"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

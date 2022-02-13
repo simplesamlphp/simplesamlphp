@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Anbefalt"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp som identitetstjeneste for Google Apps for Education"
 
@@ -109,9 +106,6 @@ msgstr ""
 "Vi har detektert at det er bare noen få sekunder siden du sist ble "
 "autentisert på denne tjenesten, og derfor antar vi at det er et problem "
 "med oppsettet av denne tjenesten."
-
-msgid "Recommended"
-msgstr "Anbefalt"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

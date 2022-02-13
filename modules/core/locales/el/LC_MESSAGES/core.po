@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Προτείνεται"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Google Apps"
 
@@ -117,9 +114,6 @@ msgstr ""
 "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που "
 "συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να "
 "υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
-
-msgid "Recommended"
-msgstr "Προτείνεται"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

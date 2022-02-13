@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "موصي به"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعليمية"
 
@@ -109,9 +106,6 @@ msgid ""
 msgstr ""
 "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني "
 "القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
-
-msgid "Recommended"
-msgstr "موصي به"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

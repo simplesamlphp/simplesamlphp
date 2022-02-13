@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Preporučeno"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp kao autentifikacioni servis za Google Apps for Education"
 
@@ -117,9 +114,6 @@ msgstr ""
 "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za "
 "pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod "
 "davaoca servisa."
-
-msgid "Recommended"
-msgstr "Preporučeno"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

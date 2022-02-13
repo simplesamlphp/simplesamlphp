@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Ajánlott"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 
@@ -112,9 +109,6 @@ msgstr ""
 "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi "
 "azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma "
 "lépett fel az SP-nél."
-
-msgid "Recommended"
-msgstr "Ajánlott"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

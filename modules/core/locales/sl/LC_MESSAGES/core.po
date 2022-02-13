@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Priporočljivo"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp IdP za Google Apps for Education"
 
@@ -108,9 +105,6 @@ msgid ""
 msgstr ""
 "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le "
 "nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
-
-msgid "Recommended"
-msgstr "Priporočljivo"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "

@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "Recomendado"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr ""
 "Configurar o SimpleSAMLphp  para funcionar como um IdP para o Google Apps"
@@ -67,9 +64,6 @@ msgid ""
 msgstr ""
 "Foi detectada uma repetição de autenticação neste serviço em poucos "
 "segundos. Este SP pode ter um problema."
-
-msgid "Recommended"
-msgstr "Recomendado"
 
 msgid "SimpleSAMLphp Advanced Features"
 msgstr "Funcionalidades avançadas do SimpleSAMLphp"

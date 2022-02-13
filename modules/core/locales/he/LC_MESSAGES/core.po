@@ -14,9 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:recommended}"
-msgstr "רצוי"
-
 msgid "{core:frontpage:link_doc_googleapps}"
 msgstr "SimpleSAMLphp כס\"ז לשירותי גוגל להשכלה"
 
@@ -105,9 +102,6 @@ msgid ""
 msgstr ""
 "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, "
 "ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
-
-msgid "Recommended"
-msgstr "רצוי"
 
 msgid ""
 "If you are a developer who is deploying a single sign-on solution, you "
