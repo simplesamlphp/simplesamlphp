@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "استخدام SimpleSAMLphp كمقدم هوية"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "مثال SAML 2.0 SP- اختبر تسجيل الدخول مستخدماً هوية IdP"
-
 msgid "{core:frontpage:about_header}"
 msgstr "عن SimpleSAMLphp"
 
@@ -114,9 +108,6 @@ msgstr ""
 "ان تعرضت لهذا الاشكال بعيد اتباعك  لرابط بموقع ما, ينبغي عليك الابلاغ عن "
 "هذا الاشكال لمالك  الموقع المعني"
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "استخدام SimpleSAMLphp كمقدم هوية"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "اقتراحات لحل المشكلة "
 
@@ -138,9 +129,6 @@ msgstr "استخدام SimpleSAMLphp ك IdP لتطبيقات قوقل التعل
 
 msgid "State information lost"
 msgstr "حدد المعلومات المفقودة"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "مثال SAML 2.0 SP- اختبر تسجيل الدخول مستخدماً هوية IdP"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

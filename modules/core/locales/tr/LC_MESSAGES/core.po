@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp'i Kimlik Sağlayıcı (IdP) olarak kullanmak"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP örneği - IdP'nizden giriş yaparak test edin"
-
 msgid "{core:frontpage:about_header}"
 msgstr "SimpleSAMLphp hakkında"
 
@@ -64,9 +58,6 @@ msgstr "Araçlar"
 msgid "Metadata"
 msgstr "Üstveri (Metadata)"
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp'i Kimlik Sağlayıcı (IdP) olarak kullanmak"
-
 msgid ""
 "This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
 "You can find more information about it at the <a "
@@ -85,9 +76,6 @@ msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr ""
 "\"Google Apps for Education\" için kimlik sağlayıcı (IdP) olarak "
 "SimpleSAMLphp "
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP örneği - IdP'nizden giriş yaparak test edin"
 
 msgid "Recommended"
 msgstr "Tavsiye edilen"

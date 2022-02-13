@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "Utilizarea SimpleSAMLphp ca furnizor de identitate"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr ""
-"Exemplu furnizor de servicii SAML 2.0 - testarea autentificării prin "
-"furnizorul dumneavoastră de identitate"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Despre SimpleSAMLphp"
 
@@ -122,9 +114,6 @@ msgstr ""
 "utilizării unui link din alt sit, vă rugăm să anunțați această eroare "
 "deținătorului sitului respectiv."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "Utilizarea SimpleSAMLphp ca furnizor de identitate"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Sugestii pentru rezolvarea acestei probleme:"
 
@@ -149,11 +138,6 @@ msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
 
 msgid "State information lost"
 msgstr "Informațiile de stare au fost pierdute"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr ""
-"Exemplu furnizor de servicii SAML 2.0 - testarea autentificării prin "
-"furnizorul dumneavoastră de identitate"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

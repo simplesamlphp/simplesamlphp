@@ -14,14 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "Χρήση SimpleSAMLphp για Παρόχους Ταυτότητας"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr ""
-"Παράδειγμα Παρόχου Υπηρεσιών SAML 2.0 - δοκιμή εισόδου μέσω του Παρόχου "
-"Ταυτότητάς σας"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Σχετικά με το SimpleSAMLphp"
 
@@ -125,9 +117,6 @@ msgstr ""
 "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, "
 "θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "Χρήση SimpleSAMLphp για Παρόχους Ταυτότητας"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
 
@@ -152,11 +141,6 @@ msgstr "Το SimpleSAMLphp ως Πάροχος Ταυτότητας για Googl
 
 msgid "State information lost"
 msgstr "Δεν βρέθηκαν πληροφορίες κατάστασης"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr ""
-"Παράδειγμα Παρόχου Υπηρεσιών SAML 2.0 - δοκιμή εισόδου μέσω του Παρόχου "
-"Ταυτότητάς σας"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

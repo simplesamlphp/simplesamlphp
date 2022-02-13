@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp kasutamine identiteedipakkujana"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP näide - sisselogimine sinu IdP kaudu"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Teave SimpleSAMLphp kohta"
 
@@ -116,9 +110,6 @@ msgstr ""
 "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates, "
 "siis peaksid sellest tõrkest veebilehe omanikku teavitama."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp kasutamine identiteedipakkujana"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Nõuanded selle probleemi lahendamiseks:"
 
@@ -141,9 +132,6 @@ msgstr "SimpleSAMLphp IdP-na Google Apps for Educationis"
 
 msgid "State information lost"
 msgstr "Olekuinfo on kadunud"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP näide - sisselogimine sinu IdP kaudu"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

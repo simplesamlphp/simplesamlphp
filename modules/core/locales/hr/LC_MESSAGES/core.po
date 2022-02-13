@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr ""
-"Kako iskoristiti SimpleSAMLphp za implementaciju autentifikacijskog "
-"servisa (IdP)"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP primjer - isprobajte autentifikaciju kroz vaš IdP"
-
 msgid "{core:frontpage:about_header}"
 msgstr "O programskom alatu SimpleSAMLphp"
 
@@ -125,11 +117,6 @@ msgstr ""
 " stranici, onda biste grešku trebali prijaviti vlasniku navedene "
 "stranice."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr ""
-"Kako iskoristiti SimpleSAMLphp za implementaciju autentifikacijskog "
-"servisa (IdP)"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Preporuke za rješavanje ovog problema:"
 
@@ -151,9 +138,6 @@ msgstr "SimpleSAMLphp kao autentifikacijski servis za Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Podatak o stanju je izgubljen"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP primjer - isprobajte autentifikaciju kroz vaš IdP"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

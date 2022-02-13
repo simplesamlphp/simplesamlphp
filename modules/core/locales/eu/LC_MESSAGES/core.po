@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp erabili Identifikadore Hornitzaile moduan"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"
-
 msgid "{core:frontpage:about_header}"
 msgstr "SimpleSAMLphp-ari buruz"
 
@@ -116,9 +110,6 @@ msgstr ""
 "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile "
 "bat bazara,  guneko jabeari eman behar diozu errorearen berri."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp erabili Identifikadore Hornitzaile moduan"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Arazo hau konpontzeko iradokizunak:"
 
@@ -143,9 +134,6 @@ msgstr "SimpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan"
 
 msgid "State information lost"
 msgstr "Egoeraren informazioa galdu da"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

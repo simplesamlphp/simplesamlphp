@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "Usar o SimpleSAMLphp como um fornecedor de identidade (IdP)"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Sobre o SimpleSAMLphp"
 
@@ -79,9 +73,6 @@ msgstr "Metadados"
 msgid "Retry"
 msgstr "Tentar de novo"
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "Usar o SimpleSAMLphp como um fornecedor de identidade (IdP)"
-
 msgid ""
 "This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
 "You can find more information about it at the <a "
@@ -99,9 +90,6 @@ msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
 msgstr ""
 "Configurar o SimpleSAMLphp  para funcionar como um IdP para o Google Apps"
 " for Education"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

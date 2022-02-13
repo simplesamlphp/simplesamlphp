@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp naudojimas kaip tapatybės teikėją"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP pavyzdys - testinis prisijungimas per Jūsų IdP"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Apie SimpleSAMLphp"
 
@@ -123,9 +117,6 @@ msgstr ""
 "tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią "
 "klaidą."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp naudojimas kaip tapatybės teikėją"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Pasiūlymai spręsti šią problemą:"
 
@@ -151,9 +142,6 @@ msgstr "SimpleSAMLphp kaip IdP skirtas \"Google Apps for Education\""
 
 msgid "State information lost"
 msgstr "Būsenos informacia prarasta"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP pavyzdys - testinis prisijungimas per Jūsų IdP"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

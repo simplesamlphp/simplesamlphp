@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP példa - teszt bejelentkezés saját IdP keresztül"
-
 msgid "{core:frontpage:about_header}"
 msgstr "A SimpleSAMLphp-ról bővebben"
 
@@ -118,9 +112,6 @@ msgstr ""
 "Amennyiben ön, mint felhasználó keveredett erre az oldalra, úgy kérjük, a"
 " hibával keresse az oldal adminisztrátorát."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Javaslat a probléma elhárítására:"
 
@@ -145,9 +136,6 @@ msgstr "SimpleSAMLphp mint IdP a Google Apps for Education programok számára"
 
 msgid "State information lost"
 msgstr "Elvezett az állapotinformácó"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP példa - teszt bejelentkezés saját IdP keresztül"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

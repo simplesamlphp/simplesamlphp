@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "Uporabi SimpleSAMLphp za IdP"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP primer - preveri prijavo preko svojega IdP"
-
 msgid "{core:frontpage:about_header}"
 msgstr "O SimpleSAMLphp"
 
@@ -117,9 +111,6 @@ msgstr ""
 "Če ste na to težavo naleteli po kliku povezave te spletne strani, "
 "prijavite težavo skrbniku te spletne strani."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "Uporabi SimpleSAMLphp za IdP"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Predloga za razrešitev nastale težave:"
 
@@ -142,9 +133,6 @@ msgstr "SimpleSAMLphp IdP za Google Apps for Education"
 
 msgid "State information lost"
 msgstr "Informacije o stanju zahtevka niso na voljo."
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP primer - preveri prijavo preko svojega IdP"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "

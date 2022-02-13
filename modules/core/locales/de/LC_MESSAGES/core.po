@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{core:frontpage:link_doc_idp}"
-msgstr "SimpleSAMLphp als Identitiy Provider benutzen"
-
-msgid "{core:frontpage:link_saml2example}"
-msgstr "SAML 2.0 SP Beispiel - Anmelden über ihren IdP testen"
-
 msgid "{core:frontpage:about_header}"
 msgstr "Über SimpleSAMLphp"
 
@@ -119,9 +113,6 @@ msgstr ""
 "Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, "
 "sollten Sie diesen Fehler den Betreibern der Website melden."
 
-msgid "Using SimpleSAMLphp as an Identity Provider"
-msgstr "SimpleSAMLphp als Identitiy Provider benutzen"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Empfehlungen um dieses Problem zu lösen:"
 
@@ -144,9 +135,6 @@ msgstr "SimpleSAMLphp als IdP für Google Apps für Education verwernden"
 
 msgid "State information lost"
 msgstr "Statusinformationen verloren"
-
-msgid "SAML 2.0 SP example - test logging in through your IdP"
-msgstr "SAML 2.0 SP Beispiel - Anmelden über ihren IdP testen"
 
 msgid ""
 "We have detected that there is only a few seconds since you last "
