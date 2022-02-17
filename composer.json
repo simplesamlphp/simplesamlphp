@@ -47,7 +47,7 @@
         "phpmailer/phpmailer": "^6.1",
         "robrichards/xmlseclibs": "^3.1",
         "simplesamlphp/assert": "^0.0.13",
-        "simplesamlphp/saml2": "^4.3",
+        "simplesamlphp/saml2": "^4.5",
         "simplesamlphp/simplesamlphp-module-adfs": "^1.0",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^0.9",
