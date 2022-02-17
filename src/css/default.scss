@@ -315,15 +315,6 @@ This styles the menu heading.
   text-transform: none;
 }
 
-.frontpage-menu .pure-menu-item {
-  border-bottom: 1px solid lightgrey;
-}
-
-.frontpage-menu .pure-menu-selected {
-  border-bottom: 1px solid black;
-  font-weight: bold;
-}
-
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
 /*
@@ -715,80 +706,15 @@ MEDIA QUERIES
   }
 }
 
-/*************************************************
- * Specifics for modules/core/frontpage*
- ************************************************/
-
-.float-r {
-  float: right;
-}
-
-.enablebox table {
-  border: 1px solid #eee;
-
-  margin-left: 1em;
-}
-
-.enablebox.mini table {
-  float: right;
-}
-
-.enablebox tr td {
-  padding: .5px 1em 1px .5em;
-  margin: 0;
-}
-
-.enablebox {
-  font-size: 85%;
-}
-
-.enablebox tr.enabled td {
-  background: #eee;
-}
-
-.enablebox tr.disabled td {
-  background: #ccc;
-}
-
-fieldset.fancyfieldset {
-  padding-left: 1.5em;
-  //margin: 2em 1em 1em 0;
-  //border: 1px solid #bbb;
-}
-
-fieldset.fancyfieldset legend {
-  //margin-left: 2em;
-  padding: 3px 2em 3px 0;
-  //border: 1px solid #bbb;
-  width: 100%;
-}
-
-dt {
-  font-weight: bold;
-}
-
-.frontpage-menu {
-  margin-bottom: 1em;
-}
-
-.entity-name, .entity-deprecated, .entity-expired {
-  font-weight: bold;
-}
-
-.entity-expired {
-  color: #500;
-}
+/*********
+ * Utils *
+ *********/
 
 div.preferredidp {
   border: 1px dashed #ccc;
   background: #eee;
   padding: 2px 2em 2px 2em;
 }
-
-
-/*********
- * Utils *
- *********/
 
 .clear {
   clear: both;

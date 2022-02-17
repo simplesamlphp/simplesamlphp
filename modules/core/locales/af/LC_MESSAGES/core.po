@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""

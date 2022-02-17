@@ -76,7 +76,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'http://example.org/simplesaml/module.php/core/login',
+            'http://example.org/simplesaml/module.php/core/welcome',
             $resp['headers']['Location']
         );
 
@@ -89,7 +89,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'https://example.org/module.php/core/login',
+            'https://example.org/module.php/core/welcome',
             $resp['headers']['Location']
         );
 
@@ -102,11 +102,28 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'http://' . $this->server_addr . '/simplesaml/module.php/core/login',
+            'http://' . $this->server_addr . '/simplesaml/module.php/core/welcome',
             $resp['headers']['Location']
         );
     }
 
+    /**
+     * Test the frontpage.redirect config option
+     */
+    public function testRedirectionFrontpageRedirectOption(): void
+    {
+        $this->updateConfig([
+                'frontpage.redirect' => 'https://www.example.edu/'
+        ]);
+        $resp = $this->server->get('/index.php', [], [
+            CURLOPT_FOLLOWLOCATION => 0,
+        ]);
+        $this->assertEquals('303', $resp['code']);
+        $this->assertEquals(
+            'https://www.example.edu/',
+            $resp['headers']['Location']
+        );
+    }
 
     /**
      * The tear down method that is executed after all tests in this class.

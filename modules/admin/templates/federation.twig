@@ -2,6 +2,10 @@
 {% set frontpage_section = 'federation' %}
 {% extends "base.twig" %}
 
+{% block preload %}
+<link rel="stylesheet" href="{{ asset('css/admin.css', 'admin') }}">
+{% endblock %}
+
 {% block content %}
     {%- include "@admin/includes/menu.twig" %}
     {%- if entries.hosted is iterable %}
