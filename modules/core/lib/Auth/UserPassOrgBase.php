@@ -51,7 +51,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.username.enabled
-     * loginuserpass.php and loginuserpassorg.php pages/templates use this option to
+     * /loginuserpass and /loginuserpassorg pages/templates use this option to
      * present users with a checkbox to save their username for the next login request.
      *
      * @var bool
@@ -60,7 +60,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.username.checked
-     * loginuserpass.php and loginuserpassorg.php pages/templates use this option
+     * /loginuserpass and /loginuserpassorg pages/templates use this option
      * to default the remember username checkbox to checked or not.
      *
      * @var bool
@@ -69,7 +69,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.organization.enabled
-     * loginuserpassorg.php page/template use this option to present users
+     * /loginuserpassorg page/template use this option to present users
      * with a checkbox to save their organization choice for the next login request.
      *
      * @var bool
@@ -78,7 +78,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.organization.checked
-     * loginuserpassorg.php page/template use this option to
+     * /loginuserpassorg page/template use this option to
      * default the remember organization checkbox to checked or not.
      *
      * @var bool
@@ -214,7 +214,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
         $id = Auth\State::saveState($state, self::STAGEID);
 
-        $url = Module::getModuleURL('core/loginuserpassorg.php');
+        $url = Module::getModuleURL('core/loginuserpassorg');
         $params = ['AuthState' => $id];
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, $params);
@@ -254,7 +254,7 @@ abstract class UserPassOrgBase extends Auth\Source
     /**
      * Handle login request.
      *
-     * This function is used by the login form (core/www/loginuserpassorg.php) when the user
+     * This function is used by the login form (core/loginuserpassorg) when the user
      * enters a username and password. On success, it will not return. On wrong
      * username/password failure, and other errors, it will throw an exception.
      *
