@@ -161,7 +161,10 @@ class Login
             }
 
             if ($source->getRememberUsernameEnabled()) {
-                if ($request->request->has('remember_username') && ($request->request->get('remember_username') === 'Yes')) {
+                if (
+                    $request->request->has('remember_username')
+                    && ($request->request->get('remember_username') === 'Yes')
+                ) {
                     $expire = time() + 31536000;
                 } else {
                     $expire = time() - 300;
