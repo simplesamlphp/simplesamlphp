@@ -28,7 +28,7 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class Session implements Serializable, Utils\ClearableState
+class Session implements Utils\ClearableState
 {
     /**
      * This is a timeout value for setData, which indicates that the data
@@ -200,15 +200,15 @@ class Session implements Serializable, Utils\ClearableState
 
 
     /**
-     * Serialize this session object.
+     * Serialize this XML chunk.
      *
      * This method will be invoked by any calls to serialize().
      *
-     * @return string The serialized representation of this session object.
+     * @return array The serialized representation of this XML object.
      */
-    public function serialize(): string
+    public function __serialize(): array
     {
-        return serialize(get_object_vars($this));
+        return get_object_vars($this);
     }
 
 
@@ -218,17 +218,12 @@ class Session implements Serializable, Utils\ClearableState
      * This method will be invoked by any calls to unserialize(), allowing us to restore any data that might not
      * be serializable in its original form (e.g.: DOM objects).
      *
-     * @param string $serialized The serialized representation of a session that we want to restore.
-     *
-     * Cannot typehint param as string due to upstream restrictions
+     * @param array $serialized The serialized representation of a session that we want to restore.
      */
-    public function unserialize($serialized): void
+    public function __unserialize($serialized): void
     {
-        $session = unserialize($serialized);
-        if (is_array($session)) {
-            foreach ($session as $k => $v) {
-                $this->$k = $v;
-            }
+        foreach ($serialized as $k => $v) {
+            $this->$k = $v;
         }
         self::$config = Configuration::getInstance();
 
