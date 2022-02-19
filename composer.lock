@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac7d8b37e73b4def8e512af988306095",
+    "content-hash": "c2176427956e72c623e660394ffd6404",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -163,16 +163,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.5.3",
+            "version": "v6.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "baeb7cde6b60b1286912690ab0693c7789a31e71"
+                "reference": "c0d9f7dd3c2aa247ca44791e9209233829d82285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/baeb7cde6b60b1286912690ab0693c7789a31e71",
-                "reference": "baeb7cde6b60b1286912690ab0693c7789a31e71",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/c0d9f7dd3c2aa247ca44791e9209233829d82285",
+                "reference": "c0d9f7dd3c2aa247ca44791e9209233829d82285",
                 "shasum": ""
             },
             "require": {
@@ -185,10 +185,10 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "doctrine/annotations": "^1.2",
                 "php-parallel-lint/php-console-highlighter": "^0.5.0",
-                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "php-parallel-lint/php-parallel-lint": "^1.3.1",
                 "phpcompatibility/php-compatibility": "^9.3.5",
                 "roave/security-advisories": "dev-latest",
-                "squizlabs/php_codesniffer": "^3.6.0",
+                "squizlabs/php_codesniffer": "^3.6.2",
                 "yoast/phpunit-polyfills": "^1.0.0"
             },
             "suggest": {
@@ -229,7 +229,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.5.3"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.5.4"
             },
             "funding": [
                 {
@@ -237,7 +237,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-25T16:34:11+00:00"
+            "time": "2022-02-17T08:19:04+00:00"
         },
         {
             "name": "psr/cache",
@@ -480,16 +480,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v0.2.11",
+            "version": "v0.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "f3a240905f3ce39c95835bf1e6aa2896743aacf7"
+                "reference": "72a16329cf95b148717aadd258fbe36ac96cf004"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/f3a240905f3ce39c95835bf1e6aa2896743aacf7",
-                "reference": "f3a240905f3ce39c95835bf1e6aa2896743aacf7",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/72a16329cf95b148717aadd258fbe36ac96cf004",
+                "reference": "72a16329cf95b148717aadd258fbe36ac96cf004",
                 "shasum": ""
             },
             "require": {
@@ -528,22 +528,22 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v0.2.11"
+                "source": "https://github.com/simplesamlphp/assert/tree/v0.2.13"
             },
-            "time": "2022-01-05T21:49:22+00:00"
+            "time": "2022-02-17T21:38:59+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.4.1",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "267584be957d5797a6b3e17f5dca9123911b0000"
+                "reference": "d98020c3d7f7331409959eab286ca3a010e5a868"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/267584be957d5797a6b3e17f5dca9123911b0000",
-                "reference": "267584be957d5797a6b3e17f5dca9123911b0000",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/d98020c3d7f7331409959eab286ca3a010e5a868",
+                "reference": "d98020c3d7f7331409959eab286ca3a010e5a868",
                 "shasum": ""
             },
             "require": {
@@ -586,9 +586,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.4.1"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.5.0"
             },
-            "time": "2022-01-26T09:12:55+00:00"
+            "time": "2022-02-17T15:46:12+00:00"
         },
         {
             "name": "symfony/cache",
@@ -1824,14 +1824,14 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "Resources/functions.php"
+                ],
                 "psr-4": {
                     "Symfony\\Component\\Intl\\": ""
                 },
                 "classmap": [
                     "Resources/stubs"
-                ],
-                "files": [
-                    "Resources/functions.php"
                 ],
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -4629,16 +4629,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.10",
+            "version": "9.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d5850aaf931743067f4bfc1ae4cbd06468400687"
+                "reference": "665a1ac0a763c51afc30d6d130dac0813092b17f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d5850aaf931743067f4bfc1ae4cbd06468400687",
-                "reference": "d5850aaf931743067f4bfc1ae4cbd06468400687",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/665a1ac0a763c51afc30d6d130dac0813092b17f",
+                "reference": "665a1ac0a763c51afc30d6d130dac0813092b17f",
                 "shasum": ""
             },
             "require": {
@@ -4694,7 +4694,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.10"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.11"
             },
             "funding": [
                 {
@@ -4702,7 +4702,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-05T09:12:13+00:00"
+            "time": "2022-02-18T12:46:09+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4947,16 +4947,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.13",
+            "version": "9.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "597cb647654ede35e43b137926dfdfef0fb11743"
+                "reference": "1883687169c017d6ae37c58883ca3994cfc34189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/597cb647654ede35e43b137926dfdfef0fb11743",
-                "reference": "597cb647654ede35e43b137926dfdfef0fb11743",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1883687169c017d6ae37c58883ca3994cfc34189",
+                "reference": "1883687169c017d6ae37c58883ca3994cfc34189",
                 "shasum": ""
             },
             "require": {
@@ -5034,7 +5034,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.13"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.14"
             },
             "funding": [
                 {
@@ -5046,7 +5046,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-24T07:33:35+00:00"
+            "time": "2022-02-18T12:54:07+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -5554,16 +5554,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "5.0.4",
+            "version": "5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "19c519631c5a511b7ed0ad64a6713fdb3fd25fe4"
+                "reference": "0ca8db5a5fc9c8646244e629625ac486fa286bf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/19c519631c5a511b7ed0ad64a6713fdb3fd25fe4",
-                "reference": "19c519631c5a511b7ed0ad64a6713fdb3fd25fe4",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/0ca8db5a5fc9c8646244e629625ac486fa286bf2",
+                "reference": "0ca8db5a5fc9c8646244e629625ac486fa286bf2",
                 "shasum": ""
             },
             "require": {
@@ -5606,7 +5606,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/global-state/issues",
-                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.4"
+                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.5"
             },
             "funding": [
                 {
@@ -5614,7 +5614,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-10T07:01:19+00:00"
+            "time": "2022-02-14T08:28:10+00:00"
         },
         {
             "name": "sebastian/lines-of-code",
@@ -6056,12 +6056,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "27683be4eb1f67eb584dd5955d29efc7ba869f14"
+                "reference": "3bf9c489ef47b8a3884af4c6341ad0e608b99f85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/27683be4eb1f67eb584dd5955d29efc7ba869f14",
-                "reference": "27683be4eb1f67eb584dd5955d29efc7ba869f14",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/3bf9c489ef47b8a3884af4c6341ad0e608b99f85",
+                "reference": "3bf9c489ef47b8a3884af4c6341ad0e608b99f85",
                 "shasum": ""
             },
             "require": {
@@ -6099,7 +6099,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2022-02-13T15:03:20+00:00"
+            "time": "2022-02-13T20:08:00+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
@@ -6160,26 +6160,26 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v0.8.4",
+            "version": "v0.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "cd3693252cbe1848a9b163273190eb980ce6bb5a"
+                "reference": "de0bdbd52c0f7545b659308b08a37fd8655e6b42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/cd3693252cbe1848a9b163273190eb980ce6bb5a",
-                "reference": "cd3693252cbe1848a9b163273190eb980ce6bb5a",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/de0bdbd52c0f7545b659308b08a37fd8655e6b42",
+                "reference": "de0bdbd52c0f7545b659308b08a37fd8655e6b42",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-spl": "*",
                 "php": ">=7.4 || ^8.0",
-                "simplesamlphp/assert": "~0.2.10"
+                "simplesamlphp/assert": "~0.2.11"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.1.4"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.1.5"
             },
             "type": "project",
             "autoload": {
@@ -6214,20 +6214,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2022-01-05T20:17:08+00:00"
+            "time": "2022-02-17T22:50:21+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v0.4.1",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "43661145a5b68d16512182caceeb4a0d0d1cad78"
+                "reference": "f6640954363b94beb59b0001110b647dcb3a8fa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/43661145a5b68d16512182caceeb4a0d0d1cad78",
-                "reference": "43661145a5b68d16512182caceeb4a0d0d1cad78",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/f6640954363b94beb59b0001110b647dcb3a8fa3",
+                "reference": "f6640954363b94beb59b0001110b647dcb3a8fa3",
                 "shasum": ""
             },
             "require": {
@@ -6236,11 +6236,11 @@
                 "ext-spl": "*",
                 "php": ">= 7.4 || ^8.0",
                 "robrichards/xmlseclibs": "^3.1.1",
-                "simplesamlphp/assert": "~0.2.11",
-                "simplesamlphp/xml-common": "^0.8.4"
+                "simplesamlphp/assert": "~0.2.12",
+                "simplesamlphp/xml-common": "^0.8.5"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.1.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.1.6"
             },
             "type": "library",
             "autoload": {
@@ -6274,9 +6274,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v0.4.1"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v0.4.2"
             },
-            "time": "2022-01-16T11:29:57+00:00"
+            "time": "2022-02-16T17:17:35+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
