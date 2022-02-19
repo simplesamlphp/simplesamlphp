@@ -38,7 +38,7 @@
     <p>{{ 'A service has requested you to authenticate yourself. Please enter your username and password in the form below.'|trans }}</p>
     <br>
     <div class="center">
-        <form class="pure-form pure-form-aligned center-form" action="{{ '?AuthState' ~ AuthState }}" method="post" name="f">
+        <form class="pure-form pure-form-aligned center-form" action="{{ '?AuthState=' ~ AuthState }}" method="post" name="f">
             <div class="form-align">
 
                 <div class="pure-control-group">
