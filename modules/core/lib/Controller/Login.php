@@ -36,6 +36,18 @@ class Login
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /**
+     * @var \SimpleSAML\Auth\Source|string
+     * @psalm-var \SimpleSAML\Auth\Source|class-string
+     */
+    protected $authSource = Auth\Source::class;
+
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
+    protected $authState = Auth\State::class;
+
 
     /**
      * Controller constructor.
@@ -50,6 +62,28 @@ class Login
         Configuration $config
     ) {
         $this->config = $config;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\Source dependency.
+     *
+     * @param \SimpleSAML\Auth\Source $authSource
+     */
+    public function setAuthSource(Auth\Source $authSource): void
+    {
+        $this->authSource = $authSource;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
     }
 
 
@@ -79,10 +113,10 @@ class Login
         $authStateId = $request->query->get('AuthState');
 
         /** @var array $state */
-        $state = Auth\State::loadState($authStateId, UserPassBase::STAGEID);
+        $state = $this->authState::loadState($authStateId, UserPassBase::STAGEID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
-        $source = Auth\Source::getById($state[UserPassBase::AUTHID]);
+        $source = $this->authSource::getById($state[UserPassBase::AUTHID]);
         if ($source === null) {
             throw new Exception(
                 'Could not find authentication source with id ' . $state[UserPassBase::AUTHID]
@@ -234,10 +268,10 @@ class Login
         $authStateId = $request->query->get('AuthState');
 
         /** @var array $state */
-        $state = Auth\State::loadState($authStateId, UserPassOrgBase::STAGEID);
+        $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
-        $source = Auth\Source::getById($state[UserPassOrgBase::AUTHID]);
+        $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
         if ($source === null) {
             throw new Exception(
                 'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID]
