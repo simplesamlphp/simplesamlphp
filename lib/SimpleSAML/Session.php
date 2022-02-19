@@ -200,11 +200,11 @@ class Session implements Utils\ClearableState
 
 
     /**
-     * Serialize this XML chunk.
+     * Serialize this Session.
      *
      * This method will be invoked by any calls to serialize().
      *
-     * @return array The serialized representation of this XML object.
+     * @return array The serialized representation of this Session.
      */
     public function __serialize(): array
     {
