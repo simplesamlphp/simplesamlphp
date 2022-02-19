@@ -211,7 +211,7 @@ class Login
         }
 
         $t = new Template($this->config, 'core:loginuserpass.twig');
-        $t->data['stateparams'] = ['AuthState' => $authStateId];
+        $t->data['AuthState'] = $authStateId;
 
         if (array_key_exists('forcedUsername', $state)) {
             $t->data['username'] = $state['forcedUsername'];
@@ -399,7 +399,7 @@ class Login
         }
 
         $t = new Template($this->config, 'core:loginuserpass.twig');
-        $t->data['stateparams'] = ['AuthState' => $authStateId];
+        $t->data['AuthState'] = $authStateId;
         $t->data['username'] = $username;
         $t->data['forceUsername'] = false;
         $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();

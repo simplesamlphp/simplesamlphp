@@ -38,7 +38,7 @@
     <p>{{ 'A service has requested you to authenticate yourself. Please enter your username and password in the form below.'|trans }}</p>
     <br>
     <div class="center">
-        <form class="pure-form pure-form-aligned center-form" action="?" method="post" name="f">
+        <form class="pure-form pure-form-aligned center-form" action="{{ '?AuthState' ~ AuthState }}" method="post" name="f">
             <div class="form-align">
 
                 <div class="pure-control-group">
@@ -104,10 +104,6 @@
 
             </div> <!-- form-align-->
             <br><br>
-            {%- for name, value in stateparams %}
-
-            <input type="hidden" name="{{ name }}" value="{{ value }}">
-            {%- endfor %}
 
             <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button"
                     type="submit" tabindex="6" data-processing="{% trans %}Processing...{% endtrans %}">

@@ -272,7 +272,7 @@ class LoginTest extends ClearStateTestCase
         $response = $c->loginuserpassorg($request);
 
         $this->assertInstanceOf(Template::class, $response);
-        $this->assertEquals('core:loginuserpassorg.twig', $response->getTemplateName());
+        $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
      */
 >>>>>>> 051532a60 (Add some unit tests)
