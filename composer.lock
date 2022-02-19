@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2176427956e72c623e660394ffd6404",
+    "content-hash": "499ed983a7e8abed35ed5ab324abc681",
     "packages": [
         {
             "name": "gettext/gettext",
-            "version": "v4.8.6",
+            "version": "4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-gettext/Gettext.git",
-                "reference": "bbeb8f4d3077663739aecb4551b22e720c0e9efe"
+                "reference": "3e7460f8d9c90174824e3f39240bd578bb3d376a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/bbeb8f4d3077663739aecb4551b22e720c0e9efe",
-                "reference": "bbeb8f4d3077663739aecb4551b22e720c0e9efe",
+                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/3e7460f8d9c90174824e3f39240bd578bb3d376a",
+                "reference": "3e7460f8d9c90174824e3f39240bd578bb3d376a",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +69,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/oscarotero/Gettext/issues",
-                "source": "https://github.com/php-gettext/Gettext/tree/v4.8.6"
+                "source": "https://github.com/php-gettext/Gettext/tree/4.x"
             },
             "funding": [
                 {
@@ -85,7 +85,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-10-19T10:44:53+00:00"
+            "time": "2022-02-17T10:14:02+00:00"
         },
         {
             "name": "gettext/languages",
@@ -6628,6 +6628,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "gettext/gettext": 20,
         "simplesamlphp/simplesamlphp-module-adfs": 5
     },
     "prefer-stable": false,
