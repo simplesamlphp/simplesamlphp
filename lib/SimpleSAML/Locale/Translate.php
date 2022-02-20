@@ -99,11 +99,11 @@ class Translate
      *
      * @param string|null $original The string before translation.
      * @param string $plural
-     * @param string $value
+     * @param int $value
      *
      * @return string The translated string.
      */
-    public static function translatePluralGettext(?string $original, string $plural, string $value): string
+    public static function translatePluralGettext(?string $original, string $plural, int $value): string
     {
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
