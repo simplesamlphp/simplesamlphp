@@ -243,7 +243,7 @@ class Localization
         if (file_exists($poPath) && is_readable($poPath)) {
             $poLoader = new PoLoader();
             $translations = $poLoader->loadFile($poPath);
-            $this->translator->createFromTranslations($translations);
+            $this->translator = Translator::createFromTranslations($translations);
         } else {
             $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
             Logger::debug($_SERVER['PHP_SELF'] . ' - ' . $error);
