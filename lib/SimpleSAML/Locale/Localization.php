@@ -87,6 +87,15 @@ class Localization
 
 
     /**
+     * @return \GetText\Translator
+     */
+    public function getTranslator(): Translator
+    {
+        return $this->translator;
+    }
+
+
+    /**
      * Dump the default locale directory
      *
      * @return string
