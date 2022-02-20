@@ -219,8 +219,8 @@ Options
     in the IdP-remote metadata overrides this the option in the SP
     configuration.
 
-`disable_unsolicited`
-:    Whether this SP will refuse to process unsolicited responses. The default value is `false`.
+`enable_unsolicited`
+:    Whether this SP is willing to process unsolicited responses. The default value is `true`.
 
 `discoURL`
 :   Set which IdP discovery service this SP should use.

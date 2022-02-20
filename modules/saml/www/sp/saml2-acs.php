@@ -101,8 +101,8 @@ if (!empty($stateId)) {
     }
 }
 
-$disableUnsolicited = $spMetadata->getBoolean('disable_unsolicited', false);
-if ($state === null && $disableUnsolicited === true) {
+$enableUnsolicited = $spMetadata->getBoolean('enable_unsolicited', true);
+if ($state === null && $enableUnsolicited === false) {
     throw new Error\BadRequest('Unsolicited responses are denied by configuration.');
 }
 
@@ -158,13 +158,13 @@ $expire = null;
 $attributes = [];
 $foundAuthnStatement = false;
 
-// check for duplicate assertion (replay attack)
 $config = Configuration::getInstance();
 $storeType = $config->getString('store.type', 'phpsession');
 
 $store = StoreFactory::getInstance($storeType);
 
 foreach ($assertions as $assertion) {
+    // check for duplicate assertion (replay attack)
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {
