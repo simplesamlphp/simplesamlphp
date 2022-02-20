@@ -81,7 +81,8 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $text = Translator::$current->gettext($original);
+        $loc = new Localization(Configuration::getInstance());
+        $text = $loc->getTranslator()->gettext($original);
 
         if (func_num_args() === 1) {
             return $text;
@@ -107,7 +108,8 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $text = Translator::$current->ngettext($original, $plural, $value);
+        $loc = new Localization(Configuration::getInstance());
+        $text = $loc->getTranslator()->ngettext($original, $plural, $value);
 
         if (func_num_args() === 3) {
             return $text;
