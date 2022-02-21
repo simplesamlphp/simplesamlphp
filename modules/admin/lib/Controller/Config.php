@@ -238,6 +238,12 @@ class Config
                     'required' => Translate::noop('Regular expression support'),
                 ]
             ],
+            'intl_get_error_code' => [
+                'required' => 'required',
+                'descr' => [
+                    'required' => Translate::noop('PHP intl extension'),
+                ]
+            ],
             'json_decode' => [
                 'required' => 'required',
                 'descr' => [
