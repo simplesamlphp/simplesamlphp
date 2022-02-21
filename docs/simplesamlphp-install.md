@@ -1,14 +1,6 @@
 SimpleSAMLphp Installation and Configuration
 ============================================
 
-<!-- 
-This file is written in Markdown syntax. 
-For more information about how to use the Markdown syntax, read here:
-http://daringfireball.net/projects/markdown/syntax
--->
-
-
-
 <!-- {{TOC}} -->
 
 
@@ -332,15 +324,19 @@ Prior to SSP V2 you could enable or disable modules by setting empty files with 
 `default-enable`) in the module's root directory. You need to now use the `module.enable` config option.
 
 
-The SimpleSAMLphp installation web page
----------------------------------------
+The SimpleSAMLphp admin interface
+---------------------------------
 
-After installing SimpleSAMLphp, you can access the homepage of your installation, which contains some information and
-a few links to the test services. The URL of an installation can be e.g.:
+After installing SimpleSAMLphp, you can access the homepage of your installation, which by default does
+not show much information:
 
     https://service.example.org/simplesaml/
 
 The exact URL depends on how you set it up with your web server, and of course on your hostname.
+If this works, you can now also acceas the admin module by adding `admin/` to your base URL:
+
+    https://service.example.org/simplesaml/admin/
+
 
 **Warning**: before you can actually use SimpleSAMLphp for something useful, you need to configure it either as a 
 Service Provider or as an Identity Provider, depending on your use case.
@@ -351,7 +347,7 @@ Here is an example screenshot of what the SimpleSAMLphp page looks like:
 
 ### Check your PHP environment
 
-At the bottom of the installation page there are some green lights. SimpleSAMLphp runs some tests to see whether the 
+At the bottom of the admin page there are some green lights. SimpleSAMLphp runs some tests to see whether the
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 
