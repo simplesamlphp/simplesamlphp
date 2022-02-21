@@ -1,13 +1,6 @@
 SimpleSAMLphp Service Provider QuickStart
 =========================================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
 <!-- {{TOC}} -->
 
 This guide will describe how to configure SimpleSAMLphp as a service provider (SP). You should previously have installed SimpleSAMLphp as described in [the SimpleSAMLphp installation instructions](simplesamlphp-install).
@@ -128,8 +121,8 @@ Test the SP
 -----------------------------
 
 After the metadata is configured on the IdP, you should be able to test the configuration.
-The installation page of SimpleSAMLphp has a link to test authentication sources.
-When you click the link, you should receive a list of authentication sources, including the one you have created for the SP.
+The admin module of SimpleSAMLphp has a tab to test authentication sources.
+There you should a list of authentication sources, including the one you have created for the SP.
 
 After you click the link for that authentication source, you will be redirected to the IdP.
 After entering your credentials, you should be redirected back to the test page.
@@ -137,8 +130,7 @@ The test page should contain a list of your attributes:
 
 ![Screenshot of the status page after a user has succesfully authenticated](resources/simplesamlphp-sp/screenshot-example.png)
 
-For a better looking, more advanced Discovery Service with tabs and live search, you may want to use the `discopower` module
-contained in the SimpleSAMLphp distribution.
+For a better looking, more advanced Discovery Service with tabs and live search, you may want to use the `discopower` module.
 
 Integrating authentication with your own application
 ----------------------------------------------------
@@ -148,13 +140,9 @@ The API is documented in [the SP API reference](simplesamlphp-sp-api).
 For those web resources you want to protect, you must add a few
 lines of PHP code:
 
--   Register the SimpleSAMLphp classes with the PHP autoloader.
-
--  
-    Require authentication of the user for those places it is required.
-
--  
-    Access the users attributes.
+- Register the SimpleSAMLphp classes with the PHP autoloader.
+- Require authentication of the user for those places it is required.
+- Access the users attributes.
 
 Example code:
 
