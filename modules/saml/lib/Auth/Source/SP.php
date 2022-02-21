@@ -1138,8 +1138,6 @@ class SP extends \SimpleSAML\Auth\Source
         $state['Attributes'] = $authProcState['Attributes'];
 
         if (isset($state['saml:sp:isUnsolicited']) && (bool) $state['saml:sp:isUnsolicited']) {
-            $spMetadata = $source->getMetadata();
-
             if (!empty($state['saml:sp:RelayState'])) {
                 $redirectTo = $state['saml:sp:RelayState'];
             } else {
