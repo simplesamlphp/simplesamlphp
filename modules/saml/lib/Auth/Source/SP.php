@@ -1143,6 +1143,7 @@ class SP extends \SimpleSAML\Auth\Source
             } else {
                 $redirectTo = $source->getMetadata()->getString('RelayState', '/');
             }
+
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
         }
 

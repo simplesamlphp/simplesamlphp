@@ -219,6 +219,9 @@ Options
     in the IdP-remote metadata overrides this the option in the SP
     configuration.
 
+`enable_unsolicited`
+:    Whether this SP is willing to process unsolicited responses. The default value is `true`.
+
 `discoURL`
 :   Set which IdP discovery service this SP should use.
     If this is unset, the IdP discovery service specified in the global option `idpdisco.url.saml20` in `config/config.php` will be used.

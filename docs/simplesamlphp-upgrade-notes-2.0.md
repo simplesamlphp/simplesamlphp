@@ -27,7 +27,8 @@ Functional changes
   validated if present and requests not passing validation will be refused.
 - In the  core:TargetedID authproc-filter, the `attributename` setting has been renamed to `identifyingAttribute`.
 - The default encryption algorithm is set from `AES128_CBC` to `AES128_GCM`.
-  It is possible to switch back via the `sharedkey_algorithm`. Note however that CBC is vulnerable to the Padding oracle attack.
+  It is possible to switch back via the `sharedkey_algorithm`.
+  Note however that CBC is vulnerable to the Padding oracle attack.
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
 
 Configuration changes
