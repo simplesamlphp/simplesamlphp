@@ -34,11 +34,11 @@ abstract class SessionHandler
      * The session handler will be instantiated if this is the first call
      * to this function.
      *
-     * @return \SimpleSAML\SessionHandler The current session handler.
+     * @return null|self The current session handler.
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    public static function getSessionHandler(): SessionHandler
+    public static function getSessionHandler(): ?self
     {
         if (self::$sessionHandler === null) {
             self::createSessionHandler();

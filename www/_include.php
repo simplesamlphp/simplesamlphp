@@ -4,7 +4,7 @@
 require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 
 // show error page on unhandled exceptions
-function SimpleSAML_exception_handler($exception)
+function SimpleSAML_exception_handler($exception): void
 {
     \SimpleSAML\Module::callHooks('exception_handler', $exception);
 
@@ -22,13 +22,16 @@ function SimpleSAML_exception_handler($exception)
 set_exception_handler('SimpleSAML_exception_handler');
 
 // log full backtrace on errors and warnings
+/**
+ * @return false
+ */
 function SimpleSAML_error_handler(
     $errno,
     $errstr,
     $errfile = null,
     $errline = 0,
     /** @scrutinizer ignore-unused */ $errcontext = null
-) {
+): bool {
     if (\SimpleSAML\Logger::isErrorMasked($errno)) {
         // masked error
         return false;

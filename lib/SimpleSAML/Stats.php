@@ -71,6 +71,7 @@ class Stats
      * @param string $event The event.
      * @param array  $data Event data. Optional.
      *
+     * @return false|null
      */
     public static function log(string $event, array $data = [])
     {

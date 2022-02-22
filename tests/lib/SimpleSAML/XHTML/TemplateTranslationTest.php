@@ -34,7 +34,7 @@ class TemplateTranslationTest extends TestCase
             'test 2' => [1, 2],
         ];
 
-        $getContent = function () {
+        $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
@@ -57,7 +57,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['rememberMeEnabled'] = false;
         $t->data['stateparams'] = [];
 
-        $getContent = function () {
+        $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
@@ -91,7 +91,7 @@ class TemplateTranslationTest extends TestCase
             ],
         ];
 
-        $getContent = function () {
+        $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };
@@ -112,7 +112,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['trackid'] = '';
         $t->data['authData'] = false;
 
-        $getContent = function () {
+        $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */
             return $this->getContents();
         };

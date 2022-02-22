@@ -64,7 +64,7 @@ class TranslateTest extends TestCase
         $this->filesystem->remove($this->tempdir);
     }
 
-    protected function checkAllFilesAreCompiledTemplates(string $dir)
+    protected function checkAllFilesAreCompiledTemplates(string $dir): void
     {
         $finder = new Finder();
         $finder->files()->in($dir);

@@ -61,7 +61,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test the most basic functionality
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
@@ -78,7 +78,7 @@ class TargetedIDTest extends TestCase
      * Test with src and dst entityIds.
      * Make sure to overwrite any present eduPersonTargetedId
      */
-    public function testWithSrcDst()
+    public function testWithSrcDst(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
@@ -107,7 +107,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test with nameId config option set.
      */
-    public function testNameIdGeneration()
+    public function testNameIdGeneration(): void
     {
         $nameid = new NameID();
         $nameid->setFormat(Constants::NAMEID_PERSISTENT);
@@ -151,7 +151,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test the outcome to make sure the algorithm remains unchanged
      */
-    public function testOutcome()
+    public function testOutcome(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
@@ -167,7 +167,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test the outcome when multiple values are given
      */
-    public function testOutcomeMultipleValues()
+    public function testOutcomeMultipleValues(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
@@ -183,7 +183,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test that Id is the same for subsequent invocations with same input.
      */
-    public function testIdIsPersistent()
+    public function testIdIsPersistent(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [
@@ -216,7 +216,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test that Id is different for two different usernames and two different sp's
      */
-    public function testIdIsUnique()
+    public function testIdIsUnique(): void
     {
         $config = ['identifyingAttribute' => 'uid'];
         $request = [

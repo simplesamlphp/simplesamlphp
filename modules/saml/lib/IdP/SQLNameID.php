@@ -85,7 +85,7 @@ class SQLNameID
     /**
      * @param array $config
      */
-    private static function create(array $config = [])
+    private static function create(array $config = []): void
     {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
@@ -134,7 +134,7 @@ class SQLNameID
      * @param string $table  The table name.
      * @param array $config
      */
-    private static function createTable(string $table, array $config = [])
+    private static function createTable(string $table, array $config = []): void
     {
         $query = 'CREATE TABLE ' . $table . ' (
             _idp VARCHAR(256) NOT NULL,

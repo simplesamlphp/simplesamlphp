@@ -8,7 +8,7 @@ use SimpleSAML\Auth;
  *
  * @param array &$data  Some data
  */
-function unittest_hook_valid(array &$data)
+function unittest_hook_valid(array &$data): void
 {
     $data['summary'][] = 'success';
 }
