@@ -260,6 +260,7 @@ class State
      * @throws \Exception If the stage of the state is invalid and there's no URL defined to redirect to.
      *
      * @return array|null  State information, or NULL if the state is missing and $allowMissing is true.
+     * @psalm-return ($allowMissing is true ? array|null : array)
      */
     public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {
