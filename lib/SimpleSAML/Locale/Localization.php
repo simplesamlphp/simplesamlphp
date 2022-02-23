@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Exception;
+use Gettext\Generator\ArrayGenerator;
 use Gettext\Loader\PoLoader;
 use Gettext\Translations;
 use Gettext\Translator;
@@ -250,8 +251,7 @@ class Localization
 
         $file = new File($langPath . $domain . '.po');
         if ($this->fileSystem->exists($file->getRealPath()) && $file->isReadable()) {
-            $poLoader = new PoLoader();
-            $translations = $poLoader->loadFile($file);
+            $translations = (new PoLoader())->loadFile($file);
             $arrayGenerator = new ArrayGenerator();
             $this->translator->addTranslations(
                 $arrayGenerator->generateArray($translations)
