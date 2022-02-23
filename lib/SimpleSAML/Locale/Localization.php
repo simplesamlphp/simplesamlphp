@@ -11,8 +11,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Exception;
+use Gettext\Loader\PoLoader;
 use Gettext\Translations;
 use Gettext\Translator;
+use Gettext\TranslatorFunctions;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use Symfony\Component\Filesystem\Filesystem;
@@ -90,6 +92,15 @@ class Localization
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
         $this->setupL10N();
+    }
+
+
+    /**
+     * @return \GetText\Translator
+     */
+    public function getTranslator(): Translator
+    {
+        return $this->translator;
     }
 
 
@@ -205,7 +216,7 @@ class Localization
     private function setupTranslator(): void
     {
         $this->translator = new Translator();
-        $this->translator->register();
+        TranslatorFunctions::register($this->translator);
     }
 
 
@@ -239,8 +250,12 @@ class Localization
 
         $file = new File($langPath . $domain . '.po');
         if ($this->fileSystem->exists($file->getRealPath()) && $file->isReadable()) {
-            $translations = Translations::fromPoFile($file->getRealPath());
-            $this->translator->loadTranslations($translations);
+            $poLoader = new PoLoader();
+            $translations = $poLoader->loadFile($file);
+            $arrayGenerator = new ArrayGenerator();
+            $this->translator->addTranslations(
+                $arrayGenerator->generateArray($translations)
+            );
         } else {
             Logger::debug(sprintf(
                 "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
