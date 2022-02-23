@@ -21,5 +21,5 @@ if (empty($password)) {
     exit(1);
 }
 
-$cryptoUtils = new SimpleSAML\Utils\Crypt();
+$cryptoUtils = new SimpleSAML\Utils\Crypto();
 echo "\n  " . $cryptoUtils->pwHash($password) . "\n\n";
