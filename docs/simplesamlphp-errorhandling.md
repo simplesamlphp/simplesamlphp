@@ -1,13 +1,6 @@
 Exception and error handling in SimpleSAMLphp
 =============================================
 
-<!--
-	This file is written in Markdown syntax.
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
 <!-- {{TOC}} -->
 
 This document describes the way errors and exceptions are handled in authentication sources and authentication processing filters.
@@ -25,7 +18,8 @@ How you throw an exception depends on where you want to throw it from.
 The simplest case is if you want to throw it during the `authenticate()`-method in an authentication module or during the `process()`-method in a processing filter.
 In those methods, you can just throw an exception:
 
-    public function process(&$state) {
+    public function process(array &$state): void
+    {
         if ($state['something'] === false) {
             throw new \SimpleSAML\Error\Exception('Something is wrong...');
         }
@@ -40,7 +34,6 @@ If you want to throw an exception outside of those methods, i.e. after you have 
     $state = \SimpleSAML\Auth\State::loadState($id, 'somestage...');
     \SimpleSAML\Auth\State::throwException($state,
         new \SimpleSAML\Error\Exception('Something is wrong...'));
-    ?>
 
 The `\SimpleSAML\Auth\State::throwException` function will then transfer your exception to the appropriate error handler.
 
@@ -222,8 +215,9 @@ Optional custom error show function, called from \SimpleSAML\Error\Error::show, 
 
 Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
 
-    public static function show(\SimpleSAML\Configuration $config, array $data) {
-        $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
+    public static function show(\SimpleSAML\Configuration $config, array $data)
+    {
+        $t = new \SimpleSAML\XHTML\Template($config, 'error.twig', 'errors');
         $t->data = array_merge($t->data, $data);
         $t->send();
         exit;
