@@ -10,10 +10,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use Gettext\Loader\PoLoader;
 use Gettext\Translations;
 use Gettext\Translator;
-use Gettext\TranslatorFunctions;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 
@@ -83,15 +81,6 @@ class Localization
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
         $this->setupL10N();
-    }
-
-
-    /**
-     * @return \GetText\Translator
-     */
-    public function getTranslator(): Translator
-    {
-        return $this->translator;
     }
 
 
@@ -207,7 +196,7 @@ class Localization
     private function setupTranslator(): void
     {
         $this->translator = new Translator();
-        TranslatorFunctions::register($this->translator);
+        $this->translator->register();
     }
 
 
@@ -241,9 +230,8 @@ class Localization
         $poFile = $domain . '.po';
         $poPath = $langPath . $poFile;
         if (file_exists($poPath) && is_readable($poPath)) {
-            $poLoader = new PoLoader();
-            $translations = $poLoader->loadFile($poPath);
-            $this->translator = Translator::createFromTranslations($translations);
+            $translations = Translations::fromPoFile($poPath);
+            $this->translator->loadTranslations($translations);
         } else {
             $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
             Logger::debug($_SERVER['PHP_SELF'] . ' - ' . $error);
