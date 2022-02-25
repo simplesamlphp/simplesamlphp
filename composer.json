@@ -57,6 +57,7 @@
         "symfony/config": "^5.4",
         "symfony/console": "^5.4",
         "symfony/dependency-injection": "^5.4",
+        "symfony/filesystem": "^5.4",
         "symfony/finder": "^5.4",
         "symfony/framework-bundle": "^5.4",
         "symfony/http-foundation": "^5.4",
@@ -94,8 +95,9 @@
     },
     "config": {
         "allow-plugins": {
+            "composer/package-versions-deprecated": true,
             "simplesamlphp/composer-module-installer": true,
-            "composer/package-versions-deprecated": true
+            "muglug/package-versions-56": true
         }
     }
 }
