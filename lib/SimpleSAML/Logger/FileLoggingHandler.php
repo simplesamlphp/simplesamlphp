@@ -133,11 +133,20 @@ class FileLoggingHandler implements LoggingHandlerInterface
                 array_push($replacements, date($format));
             }
 
-            $this->fileSystem->appendToFile(
-                $this->logFile,
-                str_replace($formats, $replacements, $string) . \PHP_EOL,
-                false,
-            );
+            if (preg_match('/^php:\/\//', $this->logFile)) {
+                // Dirty hack to get unit tests for Windows working.. Symfony doesn't deal well with them.
+                file_put_contents(
+                    $this->logFile,
+                    str_replace($formats, $replacements, $string) . \PHP_EOL,
+                    FILE_APPEND,
+                );
+            } else {
+                $this->fileSystem->appendToFile(
+                    $this->logFile,
+                    str_replace($formats, $replacements, $string) . \PHP_EOL,
+                    false,
+                );
+            }
         }
     }
 }

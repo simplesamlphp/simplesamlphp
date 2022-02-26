@@ -8,6 +8,7 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
+use Symfony\Component\Filesystem\Path;
 
 /**
  * @covers \SimpleSAML\Module
@@ -31,8 +32,8 @@ class ModuleTest extends TestCase
     {
         // test for the most basic functionality
         $this->assertEquals(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/modules/module',
-            Module::getModuleDir('module')
+            Path::canonicalize(dirname(dirname(dirname(dirname(__FILE__)))) . '/modules/module'),
+            Path::canonicalize(Module::getModuleDir('module')),
         );
     }
 
@@ -121,7 +122,7 @@ class ModuleTest extends TestCase
         $hooks = Module::getModuleHooks('cron');
         $this->assertArrayHasKey('configpage', $hooks);
         $this->assertEquals('cron_hook_configpage', $hooks['configpage']['func']);
-        $expectedFile = dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php';
+        $expectedFile = Path::canonicalize(dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php');
         $this->assertEquals($expectedFile, $hooks['configpage']['file']);
     }
 

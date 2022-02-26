@@ -505,7 +505,7 @@ class Module
         }
 
         $hooks = [];
-        $hook_dir = dirname(dirname(dirname(__FILE__))) . '/modules/' . $module . '/hooks';
+        $hook_dir = Path::canonicalize(dirname(dirname(dirname(__FILE__))) . '/modules/' . $module . '/hooks');
         if ((new Filesystem())->exists($hook_dir)) {
             $finder = new Finder();
             $finder->files()->in($hook_dir)->depth(0);
