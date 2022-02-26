@@ -28,7 +28,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @var array<int, string>
      */
-    private static $levelNames = [
+    private static array $levelNames = [
         Logger::EMERG   => 'EMERGENCY',
         Logger::ALERT   => 'ALERT',
         Logger::CRIT    => 'CRITICAL',
