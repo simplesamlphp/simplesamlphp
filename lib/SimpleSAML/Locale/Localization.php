@@ -10,10 +10,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
+use Exception;
 use Gettext\Translations;
 use Gettext\Translator;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 
 class Localization
 {
@@ -66,6 +69,11 @@ class Localization
      */
     private string $langcode;
 
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    private Filesystem $fileSystem;
+
 
     /**
      * Constructor
@@ -74,6 +82,7 @@ class Localization
      */
     public function __construct(Configuration $configuration)
     {
+        $this->fileSystem = new Filesystem();
         $this->configuration = $configuration;
         /** @var string $locales */
         $locales = $this->configuration->resolvePath('locales');
@@ -186,7 +195,7 @@ class Localization
         // Locale for default language missing even, error out
         $error = "Localization directory '$langPath' missing/broken for langcode '$langcode' and domain '$domain'";
         Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
-        throw new \Exception($error);
+        throw new Exception($error);
     }
 
 
@@ -217,7 +226,7 @@ class Localization
     ): void {
         try {
             $langPath = $this->getLangPath($domain);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $error = "Something went wrong when trying to get path to language file, cannot load domain '$domain'.";
             Logger::debug($_SERVER['PHP_SELF'] . ' - ' . $error);
             if ($catchException) {
@@ -227,14 +236,18 @@ class Localization
                 throw $e;
             }
         }
-        $poFile = $domain . '.po';
-        $poPath = $langPath . $poFile;
-        if (file_exists($poPath) && is_readable($poPath)) {
-            $translations = Translations::fromPoFile($poPath);
+
+        $file = new File($langPath . $domain . '.po');
+        if ($this->fileSystem->exists($file->getRealPath()) && $file->isReadable()) {
+            $translations = Translations::fromPoFile($file->getRealPath());
             $this->translator->loadTranslations($translations);
         } else {
-            $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
-            Logger::debug($_SERVER['PHP_SELF'] . ' - ' . $error);
+            Logger::debug(sprintf(
+                "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
+                $_SERVER['PHP_SELF'],
+                $file->getfileName(),
+                $langPath,
+            ));
         }
     }
 
