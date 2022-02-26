@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Logger;
 
 use SimpleSAML\Configuration;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * A logging handler that outputs all messages to standard error.
@@ -22,12 +23,15 @@ class StandardErrorLoggingHandler extends FileLoggingHandler
      */
     public function __construct(Configuration $config)
     {
+        $this->fileSystem = new Filesystem();
+
         // Remove any non-printable characters before storing
         $this->processname = preg_replace(
             '/[\x00-\x1F\x7F\xA0]/u',
             '',
             $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
         );
+
         $this->logFile = 'php://stderr';
     }
 }
