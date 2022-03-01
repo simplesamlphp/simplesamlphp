@@ -5,7 +5,7 @@
  *
  * This is a helper class for signing XML documents.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
 
 declare(strict_types=1);
@@ -15,10 +15,15 @@ namespace SimpleSAML\XML;
 use DOMComment;
 use DOMElement;
 use DOMText;
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+
+use function array_key_exists;
 
 class Signer
 {
@@ -37,11 +42,15 @@ class Signer
      */
     private string $certificate = '';
 
-
     /**
      * @var array Extra certificates which should be included in the response.
      */
     private array $extraCertificates = [];
+
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    private Filesystem $fileSystem;
 
 
     /**
@@ -62,6 +71,8 @@ class Signer
      */
     public function __construct(array $options = [])
     {
+        $this->fileSystem = new Filesystem();
+
         if (array_key_exists('privatekey', $options)) {
             $pass = null;
             if (array_key_exists('privatekey_pass', $options)) {
@@ -131,12 +142,14 @@ class Signer
             $keyFile = $file;
         }
 
-        if (!file_exists($keyFile)) {
-            throw new \Exception('Could not find private key file "' . $keyFile . '".');
+        if (!$this->fileSystem->exists($keyFile)) {
+            throw new Exception('Could not find private key file "' . $keyFile . '".');
         }
-        $keyData = file_get_contents($keyFile);
+
+        $file = new File($keyFile);
+        $keyData = $file->getContent();
         if ($keyData === false) {
-            throw new \Exception('Unable to read private key file "' . $keyFile . '".');
+            throw new Exception('Unable to read private key file "' . $keyFile . '".');
         }
 
         $privatekey = ['PEM' => $keyData];
@@ -160,7 +173,7 @@ class Signer
     {
         if (!array_key_exists('PEM', $publickey)) {
             // We have a public key with only a fingerprint
-            throw new \Exception('Tried to add a certificate fingerprint in a signature.');
+            throw new Exception('Tried to add a certificate fingerprint in a signature.');
         }
 
         // For now, we only assume that the public key is an X509 certificate
@@ -189,13 +202,14 @@ class Signer
             $certFile = $file;
         }
 
-        if (!file_exists($certFile)) {
-            throw new \Exception('Could not find certificate file "' . $certFile . '".');
+        if (!$this->fileSystem->exists($certFile)) {
+            throw new Exception('Could not find certificate file "' . $certFile . '".');
         }
 
-        $cert = file_get_contents($certFile);
+        $file = new File($certFile);
+        $cert = $file->getContent();
         if ($cert === false) {
-            throw new \Exception('Unable to read certificate file "' . $certFile . '".');
+            throw new Exception('Unable to read certificate file "' . $certFile . '".');
         }
         $this->certificate = $cert;
     }
@@ -232,13 +246,14 @@ class Signer
             $certFile = $file;
         }
 
-        if (!file_exists($certFile)) {
-            throw new \Exception('Could not find extra certificate file "' . $certFile . '".');
+        if (!$this->fileSystem->exists($certFile)) {
+            throw new Exception('Could not find extra certificate file "' . $certFile . '".');
         }
 
-        $certificate = file_get_contents($certFile);
+        $file = new File($certFile);
+        $certificate = $file->getContent();
         if ($certificate === false) {
-            throw new \Exception('Unable to read extra certificate file "' . $certFile . '".');
+            throw new Exception('Unable to read extra certificate file "' . $certFile . '".');
         }
 
         $this->extraCertificates[] = $certificate;
@@ -263,7 +278,7 @@ class Signer
 
         $privateKey = $this->privateKey;
         if ($privateKey === false) {
-            throw new \Exception('Private key not set.');
+            throw new Exception('Private key not set.');
         }
 
 
