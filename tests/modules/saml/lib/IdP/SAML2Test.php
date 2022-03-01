@@ -780,6 +780,6 @@ EOT;
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('"contactType" is mandatory and must be one of');
-        $md = $this->idpMetadataHandlerHelper($config);
+        $this->idpMetadataHandlerHelper($config);
     }
 }
