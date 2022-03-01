@@ -42,6 +42,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function __construct(array $config)
     {
+        parent::__construct();
+
         $globalConfig = Configuration::getInstance();
 
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');

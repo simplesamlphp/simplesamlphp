@@ -13,7 +13,6 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;
@@ -57,12 +56,6 @@ class MDQ extends MetaDataStorageSource
     private int $cacheLength;
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
-     */
-    private Filesystem $fileSystem;
-
-
-    /**
      * This function initializes the dynamic XML metadata source.
      *
      * Options:
@@ -79,6 +72,8 @@ class MDQ extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
+        parent::__construct($config);
+
         if (!array_key_exists('server', $config)) {
             throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
         } else {
@@ -97,8 +92,6 @@ class MDQ extends MetaDataStorageSource
         } else {
             $this->cacheLength = 86400;
         }
-
-        $this->fileSystem = new Filesystem();
     }
 
 
