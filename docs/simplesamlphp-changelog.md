@@ -10,7 +10,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Fix several translations (#1572, #1573, #1577, #1578)
+  * Fix several translations (#1572, #1573, #1577, #1578, #1603)
   * Fix HTTP status code for error pages (#1585)
 
 ## Version 1.19.5
