@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+
+use function array_key_exists;
+use function is_array;
 
 /**
  * This file defines a flat file metadata source.
@@ -45,6 +49,8 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
+        parent::__construct();
+
         // get the configuration
         $globalConfig = Configuration::getInstance();
 
@@ -79,7 +85,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
     {
         $metadatasetfile = $this->directory . $set . '.php';
 
-        if (!file_exists($metadatasetfile)) {
+        if (!$this->fileSystem->exists($metadatasetfile)) {
             return null;
         }
 
@@ -89,7 +95,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         include($metadatasetfile);
 
         if (!is_array($metadata)) {
-            throw new \Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
+            throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
         }
 
         return $metadata;
