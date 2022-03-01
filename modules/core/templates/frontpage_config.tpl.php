@@ -56,7 +56,7 @@ foreach ($this->data['links_config'] as $link) {
 if (array_key_exists('warnings', $this->data) && is_array($this->data['warnings']) && !empty($this->data['warnings'])) {
     echo '<h2>'.$this->t('{core:frontpage:warnings}').'</h2>';
     foreach ($this->data['warnings'] as $warning) {
-        echo '<div class="caution">'.$warning.'</div>';
+        echo '<div class="caution">'.$this->t($warning).'</div>';
     }
 }
 
