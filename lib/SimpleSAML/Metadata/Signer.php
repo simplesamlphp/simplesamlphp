@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+
+use function array_key_exists;
+use function hash;
+use function in_array;
+use function is_bool;
+use function is_string;
 
 /**
  * This class implements a helper function for signing of metadata.
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
 
 class Signer
@@ -41,7 +50,7 @@ class Signer
                 !array_key_exists('metadata.sign.privatekey', $entityMetadata)
                 || !array_key_exists('metadata.sign.certificate', $entityMetadata)
             ) {
-                throw new \Exception(
+                throw new Exception(
                     'Missing either the "metadata.sign.privatekey" or the' .
                     ' "metadata.sign.certificate" configuration option in the metadata for' .
                     ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". If one of' .
@@ -66,7 +75,7 @@ class Signer
         $certificate = $config->getOptionalString('metadata.sign.certificate', null);
         if ($privatekey !== null || $certificate !== null) {
             if ($privatekey === null || $certificate === null) {
-                throw new \Exception(
+                throw new Exception(
                     'Missing either the "metadata.sign.privatekey" or the' .
                     ' "metadata.sign.certificate" configuration option in the global' .
                     ' configuration. If one of these options is specified, then the other' .
@@ -92,7 +101,7 @@ class Signer
                 !array_key_exists('privatekey', $entityMetadata)
                 || !array_key_exists('certificate', $entityMetadata)
             ) {
-                throw new \Exception(
+                throw new Exception(
                     'Both the "privatekey" and the "certificate" option must' .
                     ' be set in the metadata for the ' . $type . ' "' .
                     $entityMetadata['entityid'] . '" before it is possible to sign metadata' .
@@ -112,7 +121,7 @@ class Signer
             return $ret;
         }
 
-        throw new \Exception(
+        throw new Exception(
             'Could not find what key & certificate should be used to sign the metadata' .
             ' for the ' . $type . ' "' . $entityMetadata['entityid'] . '".'
         );
@@ -134,7 +143,7 @@ class Signer
         // first check the metadata for the entity
         if (array_key_exists('metadata.sign.enable', $entityMetadata)) {
             if (!is_bool($entityMetadata['metadata.sign.enable'])) {
-                throw new \Exception(
+                throw new Exception(
                     'Invalid value for the "metadata.sign.enable" configuration option for' .
                     ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". This option' .
                     ' should be a boolean.'
@@ -237,27 +246,30 @@ class Signer
         $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
         $keyFile = $configUtils->getCertPath($keyCertFiles['privatekey']);
-        if (!file_exists($keyFile)) {
-            throw new \Exception(
+        $fileSystem = new Filesystem();
+        if (!$fileSystem->exists($keyFile)) {
+            throw new Exception(
                 'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
             );
         }
-        $keyData = file_get_contents($keyFile);
+
+        $key = new File($keyFile);
+        $keyData = $key->getContent();
 
         $certFile = $configUtils->getCertPath($keyCertFiles['certificate']);
-        if (!file_exists($certFile)) {
-            throw new \Exception(
+        $cert = new File($certFile);
+        if (!$fileSystem->exists($certFile)) {
+            throw new Exception(
                 'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'
             );
         }
-        $certData = file_get_contents($certFile);
-
+        $certData = $cert->getContent();
 
         // convert the metadata to a DOM tree
         try {
             $xml = DOMDocumentFactory::fromString($metadataString);
-        } catch (\Exception $e) {
-            throw new \Exception('Error parsing self-generated metadata.');
+        } catch (Exception $e) {
+            throw new Exception('Error parsing self-generated metadata.');
         }
 
         $signature_cf = self::getMetadataSigningAlgorithm($config, $entityMetadata, $type);
