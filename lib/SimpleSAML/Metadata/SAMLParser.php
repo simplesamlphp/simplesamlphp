@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use DOMDocument;
 use DOMElement;
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Constants;
@@ -38,6 +39,15 @@ use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+
+use function array_diff;
+use function array_intersect;
+use function array_key_exists;
+use function array_map;
+use function array_merge;
+use function count;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.
@@ -161,6 +171,11 @@ class SAMLParser
      */
     private string $entityDescriptor;
 
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    protected Filesystem $fileSystem;
+
 
     /**
      * This is the constructor for the SAMLParser class.
@@ -177,6 +192,7 @@ class SAMLParser
         array $validators = [],
         array $parentExtensions = []
     ) {
+        $this->fileSystem = new Filesystem();
         $this->spDescriptors = [];
         $this->idpDescriptors = [];
 
@@ -236,8 +252,8 @@ class SAMLParser
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to read XML from file: ' . $file);
+        } catch (Exception $e) {
+            throw new Exception('Failed to read XML from file: ' . $file);
         }
 
         return self::parseDocument($doc);
@@ -256,8 +272,8 @@ class SAMLParser
     {
         try {
             $doc = DOMDocumentFactory::fromString($metadata);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to parse XML string.');
+        } catch (Exception $e) {
+            throw new Exception('Failed to parse XML string.');
         }
 
         return self::parseDocument($doc);
@@ -307,7 +323,7 @@ class SAMLParser
     public static function parseDescriptorsFile(string $file): array
     {
         if (empty($file)) {
-            throw new \Exception('Cannot open file; file name not specified.');
+            throw new Exception('Cannot open file; file name not specified.');
         }
 
         /** @var string $data */
@@ -316,8 +332,8 @@ class SAMLParser
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to read XML from file: ' . $file);
+        } catch (Exception $e) {
+            throw new Exception('Failed to read XML from file: ' . $file);
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -339,8 +355,8 @@ class SAMLParser
     {
         try {
             $doc = DOMDocumentFactory::fromString($string);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to parse XML string.');
+        } catch (Exception $e) {
+            throw new Exception('Failed to parse XML string.');
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -361,7 +377,7 @@ class SAMLParser
     public static function parseDescriptorsElement(DOMElement $element = null): array
     {
         if ($element === null) {
-            throw new \Exception('Document was empty.');
+            throw new Exception('Document was empty.');
         }
 
         $xmlUtils = new Utils\XML();
@@ -370,7 +386,7 @@ class SAMLParser
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntitiesDescriptor($element));
         } else {
-            throw new \Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
+            throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }
     }
 
@@ -1247,7 +1263,7 @@ class SAMLParser
 
         $xmlUtils = new Utils\XML();
         if ($xmlUtils->isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
-            throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
+            throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
         return new EntityDescriptor($ed);
@@ -1270,12 +1286,13 @@ class SAMLParser
         foreach ($certificates as $cert) {
             Assert::string($cert);
             $certFile = $configUtils->getCertPath($cert);
-            if (!file_exists($certFile)) {
-                throw new \Exception(
+            if (!$this->fileSystem->exists($certFile)) {
+                throw new Exception(
                     'Could not find certificate file [' . $certFile . '], which is needed to validate signature'
                 );
             }
-            $certData = file_get_contents($certFile);
+            $file = new File($certFile);
+            $certData = $file->getContent();
 
             foreach ($this->validators as $validator) {
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
@@ -1284,7 +1301,7 @@ class SAMLParser
                     if ($validator->validate($key)) {
                         return true;
                     }
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     // this certificate did not sign this element, skip
                 }
             }
