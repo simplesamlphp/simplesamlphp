@@ -123,24 +123,8 @@ class Login
             );
         }
 
-        if ($request->request->has('username')) {
-            $username = $request->request->get('username');
-        } elseif (
-            $source->getRememberUsernameEnabled()
-            && $request->cookies->has($source->getAuthId() . '-username')
-        ) {
-            $username = $request->cookies->get($source->getAuthId() . '-username');
-        } elseif (isset($state['core:username'])) {
-            $username = (string) $state['core:username'];
-        } else {
-            $username = '';
-        }
-
-        if ($request->request->has('password')) {
-            $password = $request->request->get('password');
-        } else {
-            $password = '';
-        }
+        $username = $this->getUsernameFromRequest($request, $source, $state);
+        $password = $this->getPasswordFromRequest($request);
 
         $errorCode = null;
         $errorParams = null;
@@ -154,8 +138,9 @@ class Login
 
         $cookie = null;
         if (!empty($request->request->get('username')) || !empty($password)) {
-            // Either username or password set - attempt to log in
+            $httpUtils = new Utils\HTTP();
 
+            // Either username or password set - attempt to log in
             if (array_key_exists('forcedUsername', $state)) {
                 $username = $state['forcedUsername'];
             }
@@ -170,14 +155,16 @@ class Login
                     $expire = time() - 300;
                 }
 
-                $cookie = new Cookie(
+                $cookie = $this->renderCookie(
                     $source->getAuthId() . '-username',
-                    $username, // value
-                    $expire, // expire
-                    '/', // path
-                    '', // domain
-                    true, // secure
-                    true, // httponly
+                    $username,
+                    $expire,
+                    '/',   // path
+                    null,  // domain
+                    null,  // secure
+                    true,  // httponly
+                    false, // raw
+                    $httpUtils->canSetSameSiteNone() ? Cookie::SAMESITE_NONE : null,
                 );
             }
 
@@ -282,38 +269,9 @@ class Login
         }
 
         $organizations = UserPassOrgBase::listOrganizations($authStateId);
-
-        if ($request->request->has('username')) {
-            $username = $request->request->get('username');
-        } elseif (
-            $source->getRememberUsernameEnabled()
-            && $request->cookies->has($source->getAuthId() . '-username')
-        ) {
-            $username = $request->cookies->get($source->getAuthId() . '-username');
-        } elseif (isset($state['core:username'])) {
-            $username = (string) $state['core:username'];
-        } else {
-            $username = '';
-        }
-
-        if ($request->request->has('password')) {
-            $password = $request->request->get('password');
-        } else {
-            $password = '';
-        }
-
-        if ($request->request->has('organization')) {
-            $organization = $request->request->get('organization');
-        } elseif (
-            $source->getRememberOrganizationEnabled()
-            && $request->cookies->has($source->getAuthId() . '-organization')
-        ) {
-            $organization = $request->cookies->get($source->getAuthId() . '-organization');
-        } elseif (isset($state['core:organization'])) {
-            $organization = (string) $state['core:organization'];
-        } else {
-            $organization = '';
-        }
+        $username = $this->getUsernameFromRequest($request, $source, $state);
+        $password = $this->getPasswordFromRequest($request);
+        $organization = $this->getOrganizationFromRequest($request, $source, $state);
 
         $errorCode = null;
         $errorParams = null;
@@ -325,8 +283,9 @@ class Login
             $queryParams = ['AuthState' => $authStateId];
         }
 
-        $username_cookie = $org_cookie = null;
+        $cookies = [];
         if ($organizations === null || $organization !== '') {
+            $httpUtils = new Utils\HTTP();
             if (!empty($username) || !empty($password)) {
                 if ($source->getRememberUsernameEnabled()) {
                     if (
@@ -338,14 +297,16 @@ class Login
                         $expire = time() - 300;
                     }
 
-                    $username_cookie = new Cookie(
+                    $cookies[] = $this->renderCookie(
                         $source->getAuthId() . '-username',
-                        $username, // value
-                        $expire, // expire
-                        '/', // path
-                        '', // domain
-                        true, // secure
-                        true, // httponly
+                        $username,
+                        $expire,
+                        '/',   // path
+                        null,  // domain
+                        null,  // secure
+                        true,  // httponly
+                        false, // raw
+                        $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null,
                     );
                 }
 
@@ -359,14 +320,16 @@ class Login
                         $expire = time() - 300;
                     }
 
-                    $org_cookie = new Cookie(
+                    $cookies[] = $this->renderCookie(
                         $source->getAuthId() . '-organization',
-                        $organization, // value
-                        $expire, // expire
-                        '/', // path
-                        '', // domain
-                        true, // secure
-                        true, // httponly
+                        $organization,
+                        $expire,
+                        '/',   // path
+                        null,  // domain
+                        null,  // secure
+                        true,  // httponly
+                        false, // raw
+                        $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null,
                     );
                 }
 
@@ -437,15 +400,110 @@ class Login
             $t->data['SPMetadata'] = null;
         }
 
-        if ($username_cookie !== null) {
-            $t->headers->setCookie($username_cookie);
-        }
-
-        if ($org_cookie !== null) {
-            $t->headers->setCookie($org_cookie);
+        foreach ($cookies as $cookie) {
+            $t->headers->setCookie($cookie);
         }
 
         return $t;
+    }
+
+
+    /**
+     * @param string $name     The name for the cookie
+     * @param string $value    The value for the cookie
+     * @param int $expire      The expiration in seconds
+     * @param string $path     The path for the cookie
+     * @param string $domain   The domain for the cookie
+     * @param bool $secure     Whether this cookie must have the secure-flag
+     * @param bool $httponly   Whether this cookie must have the httponly-flag
+     * @param bool $raw        Whether this cookie must be sent without urlencoding
+     * @param string $sameSite The value for the sameSite-flag
+     * @return \Symfony\Component\HttpFoundation\Cookie
+     */
+    private function renderCookie(
+        string $name,
+        ?string $value,
+        int $expire = 0,
+        string $path = '/',
+        ?string $domain = null,
+        ?bool $secure = null,
+        bool $httponly = true,
+        bool $raw = false,
+        ?string $sameSite = 'none'
+    ): Cookie {
+        return new Cookie($name, $value, $expire, $path, $domain, $secure, $httponly, $raw, $sameSite);
+    }
+
+
+    /**
+     * Retrieve the username from the request, a cookie or the state
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \SimpleSAML\Auth\Source $source
+     * @param array $config
+     * @return string
+     */
+    private function getUsernameFromRequest(Request $request, Auth\Source $source, array $state): string
+    {
+        $username = '';
+
+        if ($request->request->has('username')) {
+            $username = $request->request->get('username');
+        } elseif (
+            $source->getRememberUsernameEnabled()
+            && $request->cookies->has($source->getAuthId() . '-username')
+        ) {
+            $username = $request->cookies->get($source->getAuthId() . '-username');
+        } elseif (isset($state['core:username'])) {
+            $username = strval($state['core:username']);
+        }
+
+        return $username;
+    }
+
+
+    /**
+     * Retrieve the password from the request
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return string
+     */
+    private function getPasswordFromRequest(Request $request): string
+    {
+        $password = '';
+
+        if ($request->request->has('password')) {
+            $password = $request->request->get('password');
+        }
+
+        return $password;
+    }
+
+
+    /**
+     * Retrieve the organization from the request, a cookie or the state
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \SimpleSAML\Auth\Source $source
+     * @param array $config
+     * @return string
+     */
+    private function getOrganizationFromRequest(Request $request, Auth\Source $source, array $state): string
+    {
+        $organization = '';
+
+        if ($request->request->has('organization')) {
+            $organization = $request->request->get('organization');
+        } elseif (
+            $source->getRememberOrganizationEnabled()
+            && $request->cookies->has($source->getAuthId() . '-organization')
+        ) {
+            $organization = $request->cookies->get($source->getAuthId() . '-organization');
+        } elseif (isset($state['core:organization'])) {
+            $organization = strval($state['core:organization']);
+        }
+
+        return $organization;
     }
 
 
