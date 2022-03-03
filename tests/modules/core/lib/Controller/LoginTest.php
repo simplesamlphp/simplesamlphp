@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
+use Exception;
 use ReflectionClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -81,6 +82,8 @@ class LoginTest extends ClearStateTestCase
             'GET',
             [],
         );
+
+        $c = new Controller\Login($this->config);
         $response = $c->logout($request, 'example-authsource');
 
         $this->assertInstanceOf(RunnableResponse::class, $response);
@@ -275,5 +278,4 @@ class LoginTest extends ClearStateTestCase
         $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
      */
->>>>>>> 051532a60 (Add some unit tests)
 }
