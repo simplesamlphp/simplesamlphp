@@ -128,12 +128,10 @@ class Login
 
         $errorCode = null;
         $errorParams = null;
-        $queryParams = [];
 
         if (isset($state['error'])) {
             $errorCode = $state['error']['code'];
             $errorParams = $state['error']['params'];
-            $queryParams = ['AuthState' => $authStateId];
         }
 
         $cookie = null;
@@ -189,7 +187,6 @@ class Login
                     'params' => $errorParams
                 ];
                 $authStateId = Auth\State::saveState($state, UserPassBase::STAGEID);
-                $queryParams = ['AuthState' => $authStateId];
             }
 
             if (isset($state['error'])) {
@@ -223,9 +220,6 @@ class Login
         $t->data['errorcode'] = $errorCode;
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
-        if (!empty($queryParams)) {
-            $t->data['queryParams'] = $queryParams;
-        }
 
         if (isset($state['SPMetadata'])) {
             $t->data['SPMetadata'] = $state['SPMetadata'];
@@ -275,12 +269,10 @@ class Login
 
         $errorCode = null;
         $errorParams = null;
-        $queryParams = [];
 
         if (isset($state['error'])) {
             $errorCode = $state['error']['code'];
             $errorParams = $state['error']['params'];
-            $queryParams = ['AuthState' => $authStateId];
         }
 
         $cookies = [];
@@ -352,7 +344,6 @@ class Login
                         $state,
                         UserPassOrgBase::STAGEID
                     );
-                    $queryParams = ['AuthState' => $authStateId];
                 }
 
                 if (isset($state['error'])) {
@@ -384,10 +375,6 @@ class Login
         $t->data['errorcode'] = $errorCode;
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
-
-        if (!empty($queryParams)) {
-            $t->data['queryParams'] = $queryParams;
-        }
 
         if ($organizations !== null) {
             $t->data['selectedOrg'] = $organization;
