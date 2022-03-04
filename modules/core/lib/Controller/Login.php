@@ -18,7 +18,6 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
 use function substr;
@@ -443,26 +442,6 @@ class Login
 
 
     /**
-     * Log the user out of a given authentication source.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $as The name of the auth source.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse A runnable response which will actually perform logout.
-     *
-     * @throws \SimpleSAML\Error\CriticalConfigurationError
-     */
-    public function logout(Request $request, string $as): RunnableResponse
-    {
-        $auth = new Auth\Simple($as);
-        $returnTo = $this->getReturnPath($request);
-        return new RunnableResponse(
-            [$auth, 'logout'],
-            [$returnTo]
-        );
-    }
-
-    /**
      * Searches for a valid and allowed ReturnTo URL parameter,
      * otherwise give the base installation page as a return point.
      */
@@ -479,6 +458,7 @@ class Login
         }
         return $returnTo;
     }
+
 
     /**
      * This clears the user's IdP discovery choices.

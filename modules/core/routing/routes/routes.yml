@@ -4,9 +4,6 @@ core-welcome:
 core-account-disco-clearchoices:
     path:       /account/disco/clearchoices
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:cleardiscochoices' }
-core-logout:
-    path:       /logout/{as}
-    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:logout' }
 core-loginuserpass:
     path:       /loginuserpass
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:loginuserpass' }
@@ -37,3 +34,18 @@ core-legacy-auth:
 core-legacy-federation:
     path:       /frontpage_federation.php
     defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /admin/federation, permanent: true }
+core-logout:
+    path:       /logout/{as}
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout:logout' }
+core-logout-resume:
+    path:       /logout/resume
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout:logoutResume' }
+core-logout-iframe:
+    path:       /logout/iframe
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout:logoutIframe' }
+core-logout-iframe-done:
+    path:       /logout/iframe-done
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout:logoutIframeDone' }
+core-logout-iframe-post:
+    path:       /logout/iframe-post
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout:logoutIframePost' }

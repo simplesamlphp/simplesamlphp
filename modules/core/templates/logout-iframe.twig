@@ -7,7 +7,7 @@
     {%- if type != "init" %}
       {%- set content = '2' %}
       {%- if remaining_services|length == 0 %}
-        {%- set content = '0; url=logout-iframe-done.php?id=' ~ auth_state %}
+        {%- set content = '0; url=module.php/core/logout/iframe-done?id=' ~ auth_state %}
       {%- endif %}
 
     <meta http-equiv="refresh" content="{{ content }}">
