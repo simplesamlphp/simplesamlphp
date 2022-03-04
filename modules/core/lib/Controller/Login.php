@@ -123,6 +123,29 @@ class Login
             );
         }
 
+        return $this->handleLogin($request, $source, $state);
+    }
+
+
+    /**
+     * This method handles the generic part for both loginuserpass and loginuserpassorg
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \SimpleSAML\Auth\Source $source
+     * @param array $state
+     * @return \SimpleSAML\XHTML\Template
+     */
+    private function handleLogin(Request $request, Auth\Source $source, array $state): Template
+    {
+        Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
+        $authStateId = $request->query->get('AuthState');
+
+        $organizations = $organization = null;
+        if ($source instanceof UserPassOrgBase) {
+            $organizations = UserPassOrgBase::listOrganizations($authStateId);
+            $organization = $this->getOrganizationFromRequest($request, $source, $state);
+        }
+
         $username = $this->getUsernameFromRequest($request, $source, $state);
         $password = $this->getPasswordFromRequest($request);
 
@@ -134,70 +157,104 @@ class Login
             $errorParams = $state['error']['params'];
         }
 
-        $cookie = null;
-        if (!empty($request->request->get('username')) || !empty($password)) {
-            $httpUtils = new Utils\HTTP();
+        $cookies = [];
+        if ($organizations === null || $organization !== '') {
+            if (!empty($username) || !empty($password)) {
+                $httpUtils = new Utils\HTTP();
+                $sameSiteNone = $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null;
 
-            // Either username or password set - attempt to log in
-            if (array_key_exists('forcedUsername', $state)) {
-                $username = $state['forcedUsername'];
-            }
-
-            if ($source->getRememberUsernameEnabled()) {
-                if (
-                    $request->request->has('remember_username')
-                    && ($request->request->get('remember_username') === 'Yes')
-                ) {
-                    $expire = time() + 31536000;
-                } else {
-                    $expire = time() - 300;
+                // Either username or password set - attempt to log in
+                if (array_key_exists('forcedUsername', $state) && ($state['forcedUsername'] !== false)) {
+                    $username = $state['forcedUsername'];
                 }
 
-                $cookie = $this->renderCookie(
-                    $source->getAuthId() . '-username',
-                    $username,
-                    $expire,
-                    '/',   // path
-                    null,  // domain
-                    null,  // secure
-                    true,  // httponly
-                    false, // raw
-                    $httpUtils->canSetSameSiteNone() ? Cookie::SAMESITE_NONE : null,
-                );
-            }
+                if ($source->getRememberUsernameEnabled()) {
+                    if (
+                        $request->request->has('remember_username')
+                        && ($request->request->get('remember_username') === 'Yes')
+                    ) {
+                        $expire = time() + 3153600;
+                    } else {
+                        $expire = time() - 300;
+                    }
 
-            if ($source->isRememberMeEnabled()) {
-                if ($request->request->has('remember_me') && ($request->request->get('remember_me') === 'Yes')) {
-                    $state['RememberMe'] = true;
-                    $authStateId = Auth\State::saveState(
-                        $state,
-                        UserPassBase::STAGEID
+                    $cookies[] = $this->renderCookie(
+                        $source->getAuthId() . '-username',
+                        $username,
+                        $expire,
+                        '/',   // path
+                        null,  // domain
+                        null,  // secure
+                        true,  // httponly
+                        false, // raw
+                        $sameSiteNone,
                     );
                 }
-            }
 
-            try {
-                UserPassBase::handleLogin($authStateId, $username, $password);
-            } catch (Error\Error $e) {
-                // Login failed. Extract error code and parameters, to display the error
-                $errorCode = $e->getErrorCode();
-                $errorParams = $e->getParameters();
-                $state['error'] = [
-                    'code' => $errorCode,
-                    'params' => $errorParams
-                ];
-                $authStateId = Auth\State::saveState($state, UserPassBase::STAGEID);
-            }
+                if (($source instanceof UserPassBase) && $source->isRememberMeEnabled()) {
+                    if ($request->request->has('remember_me') && ($request->request->get('remember_me') === 'Yes')) {
+                        $state['RememberMe'] = true;
+                        $authStateId = Auth\State::saveState($state, UserPassBase::STAGEID);
+                    }
+                }
 
-            if (isset($state['error'])) {
-                unset($state['error']);
+                if (($source instanceof UserPassOrgBase) && $source->getRememberOrganizationEnabled()) {
+                    if (
+                        $request->request->has('remember_organization')
+                        && ($request->request->get('remember_organization') === 'Yes')
+                    ) {
+                        $expire = time() + 3153600;
+                    } else {
+                        $expire = time() - 300;
+                    }
+
+                    $cookies[] = $this->renderCookie(
+                        $source->getAuthId() . '-organization',
+                        $organization,
+                        $expire,
+                        '/',   // path
+                        null,  // domain
+                        null,  // secure
+                        true,  // httponly
+                        false, // raw
+                        $sameSiteNone,
+                    );
+                }
+
+                try {
+                    if ($source instanceof UserPassOrgBase) {
+                        UserPassBase::handleLogin($authStateId, $username, $password);
+                    } else {
+                        UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+                    }
+                } catch (Error\Error $e) {
+                    // Login failed. Extract error code and parameters, to display the error
+                    $errorCode = $e->getErrorCode();
+                    $errorParams = $e->getParameters();
+                    $state['error'] = [
+                        'code' => $errorCode,
+                        'params' => $errorParams
+                    ];
+                    $authStateId = Auth\State::saveState($state, $source::STAGEID);
+                }
+
+                if (isset($state['error'])) {
+                    unset($state['error']);
+                }
             }
         }
 
         $t = new Template($this->config, 'core:loginuserpass.twig');
         $t->data['AuthState'] = $authStateId;
 
-        if (array_key_exists('forcedUsername', $state)) {
+        if ($source instanceof UserPassOrgBase) {
+            $t->data['username'] = $username;
+            $t->data['forceUsername'] = false;
+            $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
+            $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
+            $t->data['rememberMeEnabled'] = false;
+            $t->data['rememberMeChecked'] = false;
+        } elseif (array_key_exists('forcedUsername', $state)) {
             $t->data['username'] = $state['forcedUsername'];
             $t->data['forceUsername'] = true;
             $t->data['rememberUsernameEnabled'] = false;
@@ -211,12 +268,32 @@ class Login
             $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
             $t->data['rememberMeEnabled'] = $source->isRememberMeEnabled();
             $t->data['rememberMeChecked'] = $source->isRememberMeChecked();
+
             if ($request->cookies->has($source->getAuthId() . '-username')) {
                 $t->data['rememberUsernameChecked'] = true;
             }
         }
 
-        $t->data['links'] = $source->getLoginLinks();
+        if ($source instanceof UserPassOrgBase) {
+            if ($request->request->has($source->getAuthId() . '-username')) {
+                $t->data['rememberUsernameChecked'] = true;
+            }
+
+            $t->data['rememberOrganizationEnabled'] = $source->getRememberOrganizationEnabled();
+            $t->data['rememberOrganizationChecked'] = $source->getRememberOrganizationChecked();
+
+            if ($request->request->has($source->getAuthId() . '-organization')) {
+                $t->data['rememberOrganizationChecked'] = true;
+            }
+
+            if ($organizations !== null) {
+                $t->data['selectedOrg'] = $organization;
+                $t->data['organizations'] = $organizations;
+            }
+        } else {
+            $t->data['links'] = $source->getLoginLinks();
+        }
+
         $t->data['errorcode'] = $errorCode;
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
@@ -227,7 +304,7 @@ class Login
             $t->data['SPMetadata'] = null;
         }
 
-        if ($cookie !== null) {
+        foreach ($cookies as $cookie) {
             $t->headers->setCookie($cookie);
         }
 
@@ -262,136 +339,7 @@ class Login
             );
         }
 
-        $organizations = UserPassOrgBase::listOrganizations($authStateId);
-        $username = $this->getUsernameFromRequest($request, $source, $state);
-        $password = $this->getPasswordFromRequest($request);
-        $organization = $this->getOrganizationFromRequest($request, $source, $state);
-
-        $errorCode = null;
-        $errorParams = null;
-
-        if (isset($state['error'])) {
-            $errorCode = $state['error']['code'];
-            $errorParams = $state['error']['params'];
-        }
-
-        $cookies = [];
-        if ($organizations === null || $organization !== '') {
-            $httpUtils = new Utils\HTTP();
-            if (!empty($username) || !empty($password)) {
-                if ($source->getRememberUsernameEnabled()) {
-                    if (
-                        $request->request->has('remember_username')
-                        && ($request->request->get('remember_username') === 'Yes')
-                    ) {
-                        $expire = time() + 3153600;
-                    } else {
-                        $expire = time() - 300;
-                    }
-
-                    $cookies[] = $this->renderCookie(
-                        $source->getAuthId() . '-username',
-                        $username,
-                        $expire,
-                        '/',   // path
-                        null,  // domain
-                        null,  // secure
-                        true,  // httponly
-                        false, // raw
-                        $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null,
-                    );
-                }
-
-                if ($source->getRememberOrganizationEnabled()) {
-                    if (
-                        $request->request->has('remember_organization')
-                        && ($request->request->get('remember_organization') === 'Yes')
-                    ) {
-                        $expire = time() + 3153600;
-                    } else {
-                        $expire = time() - 300;
-                    }
-
-                    $cookies[] = $this->renderCookie(
-                        $source->getAuthId() . '-organization',
-                        $organization,
-                        $expire,
-                        '/',   // path
-                        null,  // domain
-                        null,  // secure
-                        true,  // httponly
-                        false, // raw
-                        $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null,
-                    );
-                }
-
-                try {
-                    UserPassOrgBase::handleLogin(
-                        $authStateId,
-                        $username,
-                        $password,
-                        $organization
-                    );
-                } catch (Error\Error $e) {
-                    // Login failed. Extract error code and parameters, to display the error
-                    $errorCode = $e->getErrorCode();
-                    $errorParams = $e->getParameters();
-                    $state['error'] = [
-                        'code' => $errorCode,
-                        'params' => $errorParams
-                    ];
-                    $authStateId = Auth\State::saveState(
-                        $state,
-                        UserPassOrgBase::STAGEID
-                    );
-                }
-
-                if (isset($state['error'])) {
-                    unset($state['error']);
-                }
-            }
-        }
-
-        $t = new Template($this->config, 'core:loginuserpass.twig');
-        $t->data['AuthState'] = $authStateId;
-        $t->data['username'] = $username;
-        $t->data['forceUsername'] = false;
-        $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
-        $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
-        $t->data['rememberMeEnabled'] = false;
-        $t->data['rememberMeChecked'] = false;
-
-        if ($request->request->has($source->getAuthId() . '-username')) {
-            $t->data['rememberUsernameChecked'] = true;
-        }
-
-        $t->data['rememberOrganizationEnabled'] = $source->getRememberOrganizationEnabled();
-        $t->data['rememberOrganizationChecked'] = $source->getRememberOrganizationChecked();
-
-        if ($request->request->has($source->getAuthId() . '-organization')) {
-            $t->data['rememberOrganizationChecked'] = true;
-        }
-
-        $t->data['errorcode'] = $errorCode;
-        $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
-        $t->data['errorparams'] = $errorParams;
-
-        if ($organizations !== null) {
-            $t->data['selectedOrg'] = $organization;
-            $t->data['organizations'] = $organizations;
-        }
-
-        if (isset($state['SPMetadata'])) {
-            $t->data['SPMetadata'] = $state['SPMetadata'];
-        } else {
-            $t->data['SPMetadata'] = null;
-        }
-
-        foreach ($cookies as $cookie) {
-            $t->headers->setCookie($cookie);
-        }
-
-        return $t;
+        return $this->handleLogin($request, $source, $state);
     }
 
 
