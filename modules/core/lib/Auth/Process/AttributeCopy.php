@@ -15,11 +15,11 @@ use SimpleSAML\Auth;
  *
  * You just follow the 'source' => 'destination' schema. In this example user's  * cn will be the user's displayName.
  *
- *    5 => array(
+ *    5 => [
  *        'class' => 'core:AttributeCopy',
  *        'cn' => 'displayName',
  *        'uid' => 'username',
- *         ),
+ *    ],
  *
  */
 class AttributeCopy extends Auth\ProcessingFilter
