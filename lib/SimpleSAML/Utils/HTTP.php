@@ -676,23 +676,6 @@ class HTTP
 
 
     /**
-     * Retrieve the first element of the URL path.
-     *
-     * @param boolean $leadingSlash Whether to add a leading slash to the element or not. Defaults to true.
-     *
-     * @return string The first element of the URL path, with an optional, leading slash.
-     *
-     */
-    public function getFirstPathElement(bool $leadingSlash = true): string
-    {
-        if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
-            return ($leadingSlash ? '/' : '') . $matches[1];
-        }
-        return '';
-    }
-
-
-    /**
      * Create a link which will POST data.
      *
      * @param string $destination The destination URL.

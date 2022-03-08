@@ -96,7 +96,6 @@ class Config
                 'getSelfURLHost()' => [$this->httpUtils->getSelfURLHost()],
                 'getSelfURLNoQuery()' => [$this->httpUtils->getSelfURLNoQuery()],
                 'getSelfHostWithPath()' => [$this->httpUtils->getSelfHostWithPath()],
-                'getFirstPathElement()' => [$this->httpUtils->getFirstPathElement()],
                 'getSelfURL()' => [$this->httpUtils->getSelfURL()],
             ],
         ];

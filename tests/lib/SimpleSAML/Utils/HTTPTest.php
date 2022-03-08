@@ -444,20 +444,6 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     */
-    public function testGetFirstPathElement(): void
-    {
-        $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
-
-        $_SERVER['SCRIPT_NAME'] = '/test/tmp.php';
-        $this->assertEquals($httpUtils->getFirstPathElement(), '/test');
-        $this->assertEquals($httpUtils->getFirstPathElement(false), 'test');
-        $_SERVER = $original;
-    }
-
-
-    /**
      * @runInSeparateProcess
      * @requires extension xdebug
      */
