@@ -298,10 +298,9 @@ class Module
             }
         }
 
-        /** @psalm-var \SimpleSAML\Configuration $assetConfig */
-        $assetConfig = $config->getOptionalConfigItem('assets', null);
-        /** @psalm-var \SimpleSAML\Configuration $cacheConfig */
-        $cacheConfig = $assetConfig ?: $assetConfig->getOptionalConfigItem('caching', null);
+
+        $assetConfig = $config->getConfigItem('assets');
+        $cacheConfig = $assetConfig->getConfigItem('caching');
         $response = new BinaryFileResponse($path);
         $response->setCache([
             // "public" allows response caching even if the request was authenticated,
