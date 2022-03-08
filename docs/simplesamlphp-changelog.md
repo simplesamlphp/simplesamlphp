@@ -12,6 +12,7 @@ Released TBD
 
   * Fix several translations (#1572, #1573, #1577, #1578, #1603)
   * Fix HTTP status code for error pages (#1585)
+  * \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
 
 ## Version 1.19.5
 

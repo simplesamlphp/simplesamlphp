@@ -732,6 +732,7 @@ class HTTP
      *
      * @return string The first element of the URL path, with an optional, leading slash.
      *
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
     public static function getFirstPathElement($leadingSlash = true)
