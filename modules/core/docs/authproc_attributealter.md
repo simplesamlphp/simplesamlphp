@@ -38,6 +38,11 @@ Parameters
 :   Indicates that the whole value of the attribute should be removed completely if there is a match.
     If no other values exist, the attribute will be removed completely.
     This parameter is OPTIONAL.
+
+`merge`
+:   A boolean indicating whether the altered values must be merged with the
+    target attribute values, or if the target attribute should be overwritten.
+    Defaults to `false`.
     
 Examples
 --------

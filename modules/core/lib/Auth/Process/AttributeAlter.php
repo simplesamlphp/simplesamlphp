@@ -53,6 +53,12 @@ class AttributeAlter extends Auth\ProcessingFilter
      */
     private string $target = '';
 
+    /**
+     * Should the altered value be merged with target values
+     * @var bool
+     */
+    private bool $merge = false;
+
 
     /**
      * Initialize this filter.
@@ -89,6 +95,9 @@ class AttributeAlter extends Auth\ProcessingFilter
             } elseif ($name === 'target') {
                 // Set target
                 $this->target = $value;
+            } elseif ($name === 'merge') {
+                // Set the  merging strategy
+                $this->merge = $value;
             }
         }
     }
@@ -155,6 +164,8 @@ class AttributeAlter extends Auth\ProcessingFilter
 
                     if ($this->subject === $this->target) {
                         $value = $new_value;
+                    } else if ($this->merge === true) {
+                        $attributes[$this->target][$value] = $new_value;
                     } else {
                         $attributes[$this->target] = [$new_value];
                     }
@@ -183,8 +194,7 @@ class AttributeAlter extends Auth\ProcessingFilter
                     $attributes[$this->subject]
                 );
             } else {
-                /** @psalm-suppress InvalidArgument */
-                $attributes[$this->target] = array_diff(
+                $diff = array_diff(
                     preg_replace(
                         $this->pattern,
                         $this->replacement,
@@ -192,6 +202,14 @@ class AttributeAlter extends Auth\ProcessingFilter
                     ),
                     $attributes[$this->subject]
                 );
+
+                if ($this->merge === true) {
+                    /** @psalm-suppress InvalidArgument */
+                    $attributes[$this->target] = array_merge($diff, $attributes[$this->target] ?? []);
+                } else {
+                    /** @psalm-suppress InvalidArgument */
+                    $attributes[$this->target] = $diff;
+                }
             }
         }
     }
