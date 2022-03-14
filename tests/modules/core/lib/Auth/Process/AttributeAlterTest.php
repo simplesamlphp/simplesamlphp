@@ -82,6 +82,34 @@ class AttributeAlterTest extends TestCase
 
 
     /**
+     * Test the most basic functionality with merging strategy.
+     */
+    public function testMergeWithTarget(): void
+    {
+        $config = [
+            'subject' => 'test',
+            'target' => 'test2',
+            'pattern' => '/wrong/',
+            'replacement' => 'right',
+            '%merge'
+        ];
+
+        $request = [
+            'Attributes' => [
+                 'test' => ['wrong'],
+                 'test2' => ['somethingelse'],
+             ],
+        ];
+
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test2', $attributes);
+        $this->assertEquals($attributes['test'], ['wrong']);
+        $this->assertEquals($attributes['test2'], ['right', 'somethingelse']);
+    }
+
+
+    /**
      * Module is a no op if subject attribute is not present.
      */
     public function testNomatch(): void
@@ -152,6 +180,31 @@ class AttributeAlterTest extends TestCase
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertEquals($attributes['test'], ['right']);
+    }
+
+
+    /**
+     * Test replacing attribute value with merging strategy.
+     */
+    public function testReplaceMergeMatchWithTarget(): void
+    {
+        $config = [
+            'subject' => 'source',
+            'pattern' => '/wrong/',
+            'replacement' => 'right',
+            'target' => 'test',
+            '%replace',
+            '%merge',
+        ];
+        $request = [
+            'Attributes' => [
+                'source' => ['wrong'],
+                'test'   => ['wrong', 'somethingelse'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertEquals($attributes['test'], ['somethingelse', 'right']);
     }
 
 
