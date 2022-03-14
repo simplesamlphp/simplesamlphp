@@ -79,6 +79,8 @@ class AttributeAlter extends Auth\ProcessingFilter
                     $this->replace = true;
                 } elseif ($value === '%remove') {
                     $this->remove = true;
+                } elseif ($value === '%merge') {
+                    $this->merge = true;
                 } else {
                     throw new Error\Exception('Unknown flag : ' . var_export($value, true));
                 }
@@ -95,9 +97,6 @@ class AttributeAlter extends Auth\ProcessingFilter
             } elseif ($name === 'target') {
                 // Set target
                 $this->target = $value;
-            } elseif ($name === 'merge') {
-                // Set the  merging strategy
-                $this->merge = $value;
             }
         }
     }

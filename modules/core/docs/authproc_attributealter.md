@@ -39,10 +39,10 @@ Parameters
     If no other values exist, the attribute will be removed completely.
     This parameter is OPTIONAL.
 
-`merge`
-:   A boolean indicating whether the altered values must be merged with the
-    target attribute values, or if the target attribute should be overwritten.
-    Defaults to `false`.
+`%merge`
+:   Indicates whether the altered values must be merged with the target attribute values. The default
+    behaviour is to overwrite the target attribute completely.
+    This parameter is OPTIONAL.
     
 Examples
 --------
