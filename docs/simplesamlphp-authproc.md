@@ -1,13 +1,6 @@
 Authentication Processing Filters in SimpleSAMLphp
 ==================================================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
 <!-- {{TOC}} -->
 
 
@@ -17,17 +10,17 @@ Authentication processing filters postprocess authentication information receive
 
 Examples of neat things to do using Authentication Processing Filters:
 
-  * Filter out a subset of available attributes that are sent to a SP.
-  * Modify the name of attributes.
-  * Generate new attributes that are composed of others, for example eduPersonTargetedID.
-  * Ask the user for consent, before the user is sent back to a service.
-  * Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+* Filter out a subset of available attributes that are sent to a SP.
+* Modify the name of attributes.
+* Generate new attributes that are composed of others, for example eduPersonTargetedID.
+* Ask the user for consent, before the user is sent back to a service.
+* Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
 
 Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
 
-  * `attributemap`
-  * `attributealter`
-  * `attribute filter`
+* `attributemap`
+* `attributealter`
+* `attribute filter`
 
 Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
 
@@ -36,11 +29,11 @@ How to configure Auth Proc Filters
 
 *Auth Proc Filters* can be set globally, or to be specific for only one SP or one IdP. That means there are five locations where you can configure *Auth Proc Filters*:
 
-  * Globally in `config.php`
-  * On the SP: Specific for only the SP in `authsources.php`
-  * On the SP: Specific for only one remote IdP in `saml20-idp-remote`
-  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
-  * On the IdP: Specific for only one remote SP in `saml20-sp-remote`
+* Globally in `config.php`
+* On the SP: Specific for only the SP in `authsources.php`
+* On the SP: Specific for only one remote IdP in `saml20-idp-remote`
+* On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
+* On the IdP: Specific for only one remote SP in `saml20-sp-remote`
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 
@@ -93,8 +86,8 @@ Global *Auth Proc Filters* are configured in the `config.php` file. You will see
 
 There are two config parameters:
 
-  * `authproc.idp` and
-  * `authproc.sp`
+* `authproc.idp` and
+* `authproc.sp`
 
 The filters in `authproc.idp` will be executed at the IdP side regardless of which IdP and SP entity that is involved.
 
