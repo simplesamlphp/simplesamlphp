@@ -389,7 +389,6 @@ class State
             $id = $_REQUEST[self::EXCEPTION_PARAM];
         }
 
-        /** @var array $state */
         $state = self::loadState($id, self::EXCEPTION_STAGE);
         Assert::keyExists($state, self::EXCEPTION_DATA);
 

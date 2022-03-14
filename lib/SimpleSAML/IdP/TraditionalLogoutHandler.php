@@ -107,7 +107,6 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
             throw new Error\Exception('RelayState lost during logout.');
         }
 
-        /** @psalm-var array $state */
         $state = Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {

@@ -270,7 +270,6 @@ abstract class UserPassOrgBase extends Auth\Source
         string $organization
     ): void {
         /* Retrieve the authentication state. */
-        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
@@ -330,7 +329,6 @@ abstract class UserPassOrgBase extends Auth\Source
     public static function listOrganizations(string $authStateId): ?array
     {
         /* Retrieve the authentication state. */
-        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */

@@ -72,7 +72,6 @@ class Attributes
         $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
-                /** @var string $name */
                 $name = print_r($name, true);
                 throw new InvalidArgumentException(sprintf('Invalid attribute name: "%s".', $name));
             }
@@ -82,7 +81,6 @@ class Attributes
 
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    /** @var string $value */
                     $value = print_r($value, true);
                     throw new InvalidArgumentException(
                         sprintf('Invalid attribute value for attribute %s: "%s".', $name, $value)

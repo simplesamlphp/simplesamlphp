@@ -203,7 +203,6 @@ class External extends Auth\Source
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
-        /** @var array $state */
         $state = Auth\State::loadState($request->query->get('State'), 'exampleauth:External');
 
         /*

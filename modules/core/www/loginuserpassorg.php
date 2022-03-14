@@ -14,7 +14,6 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 }
 $authStateId = $_REQUEST['AuthState'];
 
-/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core\Auth\UserPassOrgBase::STAGEID);
 
 /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */

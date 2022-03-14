@@ -284,7 +284,6 @@ abstract class UserPassBase extends Auth\Source
     public static function handleLogin(string $authStateId, string $username, string $password): void
     {
         // Here we retrieve the state array we saved in the authenticate-function.
-        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         // Retrieve the authentication source we are executing.

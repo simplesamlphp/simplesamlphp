@@ -18,7 +18,6 @@ if ($type !== 'embed') {
     \SimpleSAML\Stats::log('core:idp:logout-iframe:page', ['type' => $type]);
 }
 
-/** @psalm-var array $state */
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = \SimpleSAML\IdP::getByState($state);
 $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();

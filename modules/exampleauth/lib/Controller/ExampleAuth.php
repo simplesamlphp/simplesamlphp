@@ -185,7 +185,6 @@ class ExampleAuth
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
 
-        /** @var array $state */
         $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');
         $state['Attributes']['RedirectTest2'] = ['OK'];
 

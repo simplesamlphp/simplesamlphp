@@ -65,9 +65,7 @@ class Exception
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
 
-        /** @var array $state */
         $state = Auth\State::loadState($stateId, 'core:cardinality');
-
         Logger::stats(
             'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
             ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
@@ -126,7 +124,6 @@ class Exception
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
 
-        /** @var array $state */
         $state = Auth\State::loadState($stateId, 'core:short_sso_interval');
 
         $continue = $request->query->get('continue', false);

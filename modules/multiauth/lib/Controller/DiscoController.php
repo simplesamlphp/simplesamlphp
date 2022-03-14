@@ -103,7 +103,6 @@ class DiscoController
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
 
-        /** @var array $state */
         $state = $this->authState::loadState($authStateId, MultiAuth::STAGEID);
 
         $as = null;

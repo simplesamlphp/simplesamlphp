@@ -16,7 +16,6 @@ if (!array_key_exists('idpentityid', $_REQUEST)) {
     throw new Error\BadRequest('Missing idpentityid to discovery service response handler');
 }
 
-/** @var array $state */
 $state = Auth\State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
 
 // Find authentication source
