@@ -8,7 +8,7 @@ Scoping
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 Scoping allows a service provider to specify a list of identity providers in an
 authnRequest to a proxying identity provider. This is an indication to the 

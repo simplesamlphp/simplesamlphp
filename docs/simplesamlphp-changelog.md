@@ -1,7 +1,7 @@
 SimpleSAMLphp changelog
 =======================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.

@@ -1,7 +1,7 @@
 Authentication Processing Filters in SimpleSAMLphp
 ==================================================
 
-<!-- {{TOC}} -->
+[TOC]
 
 
 In SimpleSAMLphp, there is an API where you can *do stuff* at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successful Authentication Response from the IdP and before you are sent back to the SP application.

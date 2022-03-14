@@ -1,7 +1,7 @@
 IdP remote metadata reference
 =============================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for metadata options available for `metadata/saml20-idp-remote.php`. The file has the following format:
 

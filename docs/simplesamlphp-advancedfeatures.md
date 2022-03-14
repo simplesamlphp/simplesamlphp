@@ -9,7 +9,7 @@ SimpleSAMLphp Advanced Features
 
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 SimpleSAMLphp documentation
 ---------------------------

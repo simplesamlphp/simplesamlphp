@@ -4,7 +4,7 @@ Implementing custom username/password authentication
 This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource) for SimpleSAMLphp.
 An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
 
-<!-- {{TOC}} -->
+[TOC]
 
 Create a custom module
 ----------------------

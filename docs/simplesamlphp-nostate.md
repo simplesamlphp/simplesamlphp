@@ -8,7 +8,7 @@ SimpleSAMLphp. Unfortunately, it is also a generic error that can have many
 possible causes. This document will attempt to describe what this error
 actually means, and some of the situations that can cause it.
 
-<!-- {{TOC}} -->
+[TOC]
 
 What is "state information"?
 ----------------------------

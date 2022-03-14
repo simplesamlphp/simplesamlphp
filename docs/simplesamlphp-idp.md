@@ -8,7 +8,7 @@ SimpleSAMLphp Identity Provider QuickStart
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 This guide will describe how to configure SimpleSAMLphp as an identity provider (IdP). You should previously have installed SimpleSAMLphp as described in [the SimpleSAMLphp installation instructions](simplesamlphp-install)
 

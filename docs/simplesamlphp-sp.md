@@ -1,7 +1,7 @@
 SimpleSAMLphp Service Provider QuickStart
 =========================================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This guide will describe how to configure SimpleSAMLphp as a service provider (SP). You should previously have installed SimpleSAMLphp as described in [the SimpleSAMLphp installation instructions](simplesamlphp-install).
 

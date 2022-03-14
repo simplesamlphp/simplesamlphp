@@ -8,7 +8,7 @@ SimpleSAMLphp modules
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 This document describes how the module system in SimpleSAMLphp
 works. It descibes what types of modules there are, how they are

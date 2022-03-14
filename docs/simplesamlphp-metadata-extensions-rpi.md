@@ -9,7 +9,7 @@ SAML V2.0 Metadata Extensions for Registration and Publication Information
 
   * Author: Jaime Perez [jaime.perez@uninett.no](mailto:jaime.perez@uninett.no)
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for the SimpleSAMLphp implementation of the [SAML
 V2.0 Metadata Extensions for Registration and Publication Information](http://docs.oasis-open.org/security/saml/Post2.0/saml-metadata-rpi/v1.0/saml-metadata-rpi-v1.0.html)

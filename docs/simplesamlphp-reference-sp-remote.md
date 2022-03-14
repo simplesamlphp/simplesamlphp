@@ -1,7 +1,7 @@
 SP remote metadata reference
 ============================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
 Both files have the following format:

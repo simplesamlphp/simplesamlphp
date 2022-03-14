@@ -7,7 +7,7 @@ SimpleSAMLphp Translation Portal
     http://daringfireball.net/projects/markdown/syntax
 -->
 
-<!-- {{TOC}} -->
+[TOC]
 
 ## How translated terms are referred from a template
 

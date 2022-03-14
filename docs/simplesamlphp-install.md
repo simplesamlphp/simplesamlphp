@@ -1,7 +1,7 @@
 SimpleSAMLphp Installation and Configuration
 ============================================
 
-<!-- {{TOC}} -->
+[TOC]
 
 
 This document is part of the SimpleSAMLphp documentation suite.

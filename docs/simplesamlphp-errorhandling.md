@@ -1,7 +1,7 @@
 Exception and error handling in SimpleSAMLphp
 =============================================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This document describes the way errors and exceptions are handled in authentication sources and authentication processing filters.
 The basic goal is to be able to throw an exception during authentication, and then have that exception transported back to the SP in a way that the SP understands.

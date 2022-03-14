@@ -8,7 +8,7 @@ Theming the user interface in SimpleSAMLphp
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
 

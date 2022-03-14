@@ -9,7 +9,7 @@ SAML V2.0 Metadata Extensions for Login and Discovery User Interface
 
   * Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for the SimpleSAMLphp implementation of the [SAML
 V2.0 Metadata Extensions for Login and Discovery User Interface](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/sstc-saml-metadata-ui-v1.0.pdf)

@@ -3,7 +3,7 @@
 
 These guidelines briefly explain how to contribute to SimpleSAMLphp effectively and consistently, making sure to keep high quality standards and making it easier for you to contribute.
 
-<!-- {{TOC}} -->
+[TOC]
 
 ## Team members
 Currently, the core team members are:

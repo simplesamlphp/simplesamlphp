@@ -1,7 +1,7 @@
 SimpleSAMLphp SP API reference
 ==============================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.

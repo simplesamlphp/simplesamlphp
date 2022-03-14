@@ -8,7 +8,7 @@ Cron
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 Introduction
 ------------

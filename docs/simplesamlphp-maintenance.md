@@ -8,7 +8,7 @@ SimpleSAMLphp Maintenance
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 SimpleSAMLphp news and documentation
 ------------------------------------

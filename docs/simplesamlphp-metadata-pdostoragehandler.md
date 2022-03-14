@@ -8,7 +8,7 @@ PDO Metadata Storage Handler
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 Introduction
 ------------

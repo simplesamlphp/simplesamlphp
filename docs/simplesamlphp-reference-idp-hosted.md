@@ -1,7 +1,7 @@
 IdP hosted metadata reference
 =============================
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for the metadata file `metadata/saml20-idp-hosted.php`.
 Both files have the following format:

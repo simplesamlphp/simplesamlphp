@@ -8,7 +8,7 @@ SimpleSAML\Database
 -->
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 Purpose
 -------

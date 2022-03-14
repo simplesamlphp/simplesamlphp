@@ -9,7 +9,7 @@ Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / 
 
 
 
-<!-- {{TOC}} -->
+[TOC]
 
 SimpleSAMLphp news and documentation
 ------------------------------------

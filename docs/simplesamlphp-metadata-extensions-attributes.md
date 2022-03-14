@@ -7,7 +7,7 @@ SAML V2.0 Metadata Attribute Extensions
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-<!-- {{TOC}} -->
+[TOC]
 
 This is a reference for the SimpleSAMLphp implementation of the [SAML
 V2.0 Attribute Extensions](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-attribute-ext.pdf)
