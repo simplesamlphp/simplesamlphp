@@ -1,14 +1,7 @@
 SimpleSAMLphp Identity Provider Advanced Topics
 ===============================================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
-<!-- {{TOC}} -->
+[TOC]
 
 AJAX iFrame Single Log-Out
 --------------------------
