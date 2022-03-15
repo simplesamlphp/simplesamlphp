@@ -10,19 +10,23 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
 
 Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
 
-    session_start();
-    // ...
-    $auth = new \SimpleSAML\Auth\Simple('default-sp');
-    $auth->isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
-    // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
-    SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
-    // Save to our session
-    $_SESSION['key'] = 'value';
+```php
+session_start();
+// ...
+$auth = new \SimpleSAML\Auth\Simple('default-sp');
+$auth->isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
+// $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
+SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
+// Save to our session
+$_SESSION['key'] = 'value';
+```
 
 Constructor
 -----------
 
-    new \SimpleSAML\Auth\Simple(string $authSource)
+```php
+new \SimpleSAML\Auth\Simple(string $authSource)
+```
 
 The constructor initializes a \SimpleSAML\Auth\Simple object.
 
@@ -33,29 +37,36 @@ This authentication source must exist in `config/authsources.php`.
 
 ### Example
 
-    $auth = new \SimpleSAML\Auth\Simple('default-sp');
-
+```php
+$auth = new \SimpleSAML\Auth\Simple('default-sp');
+```
 
 `isAuthenticated`
 -----------------
 
-    bool isAuthenticated()
+```php
+bool isAuthenticated()
+```
 
 Check whether the user is authenticated with this authentication source.
 `TRUE` is returned if the user is authenticated, `FALSE` if not.
 
 ### Example
 
-    if (!$auth->isAuthenticated()) {
-        SimpleSAML_Session::getSessionFromRequest()->cleanup();
-        /* Show login link. */
-        print('<a href="/login">Login</a>');
-    }
+```php
+if (!$auth->isAuthenticated()) {
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
+    /* Show login link. */
+    print('<a href="/login">Login</a>');
+}
+```
 
 `requireAuth`
 -------------
 
-    void requireAuth(array $params = [])
+```php
+void requireAuth(array $params = [])
+```
 
 Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -69,28 +80,33 @@ See the documentation for the `login`-function for a description of the paramete
 
 ### Example 1
 
-    $auth->requireAuth();
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
-    print("Hello, authenticated user!");
+```php
+$auth->requireAuth();
+SimpleSAML_Session::getSessionFromRequest()->cleanup();
+print("Hello, authenticated user!");
+```
 
 ### Example 2
 
-    /*
-     * Return the user to the frontpage after authentication, don't post
-     * the current POST data.
-     */
-    $auth->requireAuth([
-        'ReturnTo' => 'https://sp.example.org/',
-        'KeepPost' => FALSE,
-    ]);
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
-    print("Hello, authenticated user!");
-
+```php
+/*
+ * Return the user to the frontpage after authentication, don't post
+ * the current POST data.
+ */
+$auth->requireAuth([
+    'ReturnTo' => 'https://sp.example.org/',
+    'KeepPost' => FALSE,
+]);
+SimpleSAML_Session::getSessionFromRequest()->cleanup();
+print("Hello, authenticated user!");
+```
 
 `login`
 -------------
 
-    void login(array $params = [])
+```php
+void login(array $params = [])
+```
 
 Start a login operation.
 This function will always start a new authentication process.
@@ -122,17 +138,21 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 
 ### Example
 
-    # Send a passive authentication request.
-    $auth->login([
-        'isPassive' => TRUE,
-        'ErrorURL' => 'https://.../error_handler.php',
-    ]);
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```php
+# Send a passive authentication request.
+$auth->login([
+    'isPassive' => TRUE,
+     'ErrorURL' => 'https://.../error_handler.php',
+ ]);
+ SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```
 
 `logout`
 --------
 
-    void logout(mixed $params = NULL)
+```php
+void logout(mixed $params = NULL)
+```
 
 Log the user out.
 After logging out, the user will either be redirected to another page, or a function will be called.
@@ -158,64 +178,75 @@ This function never returns.
 
 Logout, and redirect to the specified URL.
 
-    $auth->logout('https://sp.example.org/logged_out.php');
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```php
+$auth->logout('https://sp.example.org/logged_out.php');
+SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```
 
 ### Example 2
 
 Same as the previous, but check the result of the logout operation afterwards.
 
-    $auth->logout([
-        'ReturnTo' => 'https://sp.example.org/logged_out.php',
-        'ReturnStateParam' => 'LogoutState',
-        'ReturnStateStage' => 'MyLogoutState',
-    ]);
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```php
+$auth->logout([
+    'ReturnTo' => 'https://sp.example.org/logged_out.php',
+    'ReturnStateParam' => 'LogoutState',
+    'ReturnStateStage' => 'MyLogoutState',
+]);
+SimpleSAML_Session::getSessionFromRequest()->cleanup();
+```
 
 And in logged_out.php:
 
-    $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
-    $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
-    if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
-        /* Successful logout. */
-        echo("You have been logged out.");
-    } else {
-        /* Logout failed. Tell the user to close the browser. */
-        echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
-    }
-
+```php
+$state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+$ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
+if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
+    /* Successful logout. */
+    echo("You have been logged out.");
+} else {
+    /* Logout failed. Tell the user to close the browser. */
+    echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
+}
+```
 
 `getAttributes`
 ---------------
 
-    array getAttributes()
+```php
+array getAttributes()
+```
 
 Retrieve the attributes of the current user.
 If the user isn't authenticated, an empty array will be returned.
 
 The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 
-    [
-        'uid' => ['testuser'],
-        'eduPersonAffiliation' => ['student', 'member'],
-    ]
-
+```php
+[
+    'uid' => ['testuser'],
+    'eduPersonAffiliation' => ['student', 'member'],
+]
+```
 
 ### Example
 
-    $attrs = $auth->getAttributes();
-    if (!isset($attrs['displayName'][0])) {
-        throw new Exception('displayName attribute missing.');
-    }
-    $name = $attrs['displayName'][0];
+```php
+$attrs = $auth->getAttributes();
+if (!isset($attrs['displayName'][0])) {
+    throw new Exception('displayName attribute missing.');
+}
+$name = $attrs['displayName'][0];
 
-    print('Hello, ' . htmlspecialchars($name));
-
+print('Hello, ' . htmlspecialchars($name));
+```
 
 `getAuthData`
 ---------------
 
-    mixed getAuthData(string $name)
+```php
+mixed getAuthData(string $name)
+```
 
 Retrieve the specified authentication data for the current session.
 NULL is returned if the user isn't authenticated.
@@ -225,15 +256,18 @@ See the [`saml:SP`](./saml:sp) reference for information about available SAML au
 
 ### Example
 
-    $idp = $auth->getAuthData('saml:sp:IdP');
-    $nameID = $auth->getAuthData('saml:sp:NameID')->getValue();
-    printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
-
+```php
+$idp = $auth->getAuthData('saml:sp:IdP');
+$nameID = $auth->getAuthData('saml:sp:NameID')->getValue();
+printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
+```
 
 `getLoginURL`
 -------------
 
-    string getLoginURL(string $returnTo = NULL)
+```php
+string getLoginURL(string $returnTo = NULL)
+```
 
 Retrieve a URL that can be used to start authentication.
 
@@ -246,9 +280,11 @@ Retrieve a URL that can be used to start authentication.
 
 ### Example
 
-    $url = $auth->getLoginURL();
+```php
+$url = $auth->getLoginURL();
 
-    print('<a href="' . htmlspecialchars($url) . '">Login</a>');
+print('<a href="' . htmlspecialchars($url) . '">Login</a>');
+```
 
 ### Note
 
@@ -262,7 +298,9 @@ The URL should be:
 `getLogoutURL`
 --------------
 
-    string getLogoutURL(string $returnTo = NULL)
+```php
+string getLogoutURL(string $returnTo = NULL)
+```
 
 Retrieve a URL that can be used to trigger logout.
 
@@ -275,9 +313,11 @@ Retrieve a URL that can be used to trigger logout.
 
 ### Example
 
-    $url = $auth->getLogoutURL();
+```php
+$url = $auth->getLogoutURL();
 
-    print('<a href="' . htmlspecialchars($url) . '">Logout</a>');
+print('<a href="' . htmlspecialchars($url) . '">Logout</a>');
+```
 
 ### Note
 
