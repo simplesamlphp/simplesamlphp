@@ -5,7 +5,7 @@
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
     "license": "LGPL-2.1-or-later",
-    "version": "v1.18.8",
+    "version": "v1.18.9",
     "authors": [
         {
             "name": "Andreas Åkre Solberg",
