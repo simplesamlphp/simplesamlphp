@@ -7,6 +7,12 @@ core-account-disco-clearchoices:
 core-logout:
     path:       /logout/{as}
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:logout' }
+core-loginuserpass:
+    path:       /loginuserpass
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:loginuserpass' }
+core-loginuserpassorg:
+    path:       /loginuserpassorg
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login:loginuserpassorg' }
 core-error-nocookie:
     path:       /error/nocookie
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Exception:nocookie' }

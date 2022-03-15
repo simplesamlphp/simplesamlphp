@@ -53,7 +53,7 @@ abstract class UserPassBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.username.enabled
-     * loginuserpass.php and loginuserpassorg.php pages/templates use this option to
+     * /loginuserpass and /loginuserpassorg pages/templates use this option to
      * present users with a checkbox to save their username for the next login request.
      *
      * @var bool
@@ -62,7 +62,7 @@ abstract class UserPassBase extends Auth\Source
 
     /**
      * Storage for authsource config option remember.username.checked
-     * loginuserpass.php and loginuserpassorg.php pages/templates use this option
+     * /loginuserpass and /loginuserpassorg pages/templates use this option
      * to default the remember username checkbox to checked or not.
      *
      * @var bool
@@ -71,7 +71,7 @@ abstract class UserPassBase extends Auth\Source
 
     /**
      * Storage for general config option session.rememberme.enable.
-     * loginuserpass.php page/template uses this option to present
+     * /loginuserpass page/template uses this option to present
      * users with a checkbox to keep their session alive across
      * different browser sessions (that is, closing and opening the
      * browser again).
@@ -82,7 +82,7 @@ abstract class UserPassBase extends Auth\Source
 
     /**
      * Storage for general config option session.rememberme.checked.
-     * loginuserpass.php page/template uses this option to default
+     * /loginuserpass page/template uses this option to default
      * the "remember me" checkbox to checked or not.
      *
      * @var bool
@@ -244,7 +244,7 @@ abstract class UserPassBase extends Auth\Source
          * Redirect to the login form. We include the identifier of the saved
          * state array as a parameter to the login form.
          */
-        $url = Module::getModuleURL('core/loginuserpass.php');
+        $url = Module::getModuleURL('core/loginuserpass');
         $params = ['AuthState' => $id];
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, $params);
@@ -273,7 +273,7 @@ abstract class UserPassBase extends Auth\Source
     /**
      * Handle login request.
      *
-     * This function is used by the login form (core/www/loginuserpass.php) when the user
+     * This function is used by the login form (core/loginuserpass) when the user
      * enters a username and password. On success, it will not return. On wrong
      * username/password failure, and other errors, it will throw an exception.
      *
