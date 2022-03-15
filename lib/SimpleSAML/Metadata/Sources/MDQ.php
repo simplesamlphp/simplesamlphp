@@ -149,7 +149,7 @@ class MDQ extends MetaDataStorageSource
             return null;
         }
 
-        $file = new file($cacheFileName);
+        $file = new File($cacheFileName);
         if (!$file->isReadable()) {
             throw new Exception(sprintf('%s: could not read cache file for entity [%s]', strval($file), __CLASS__));
         }
@@ -208,11 +208,8 @@ class MDQ extends MetaDataStorageSource
 
         $cacheFileName = $this->getCacheFilename($set, $entityId);
         $file = new File($cacheFileName);
-        if (!$file->isWritable()) {
-            throw new Exception(sprintf('%s: could not write cache file for entity [%s]', __CLASS__, strval($file)));
-        }
-        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
 
+        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
         $this->fileSystem->appendToFile(strval($file), serialize($data), true);
     }
 
