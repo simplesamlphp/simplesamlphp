@@ -32,10 +32,10 @@ class Config
     protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var \SimpleSAML\Utils\HTTP */
-    protected $httpUtils;
+    protected Utils\HTTP $httpUtils;
 
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
@@ -144,6 +144,10 @@ class Config
         return $this->menu->insert($t);
     }
 
+
+    /**
+     * @return array
+     */
     protected function getModuleList(): array
     {
         $modules = Module::getModules();
@@ -153,6 +157,7 @@ class Config
         }
         return $modulestates;
     }
+
 
     /**
      * Display the output of phpinfo().

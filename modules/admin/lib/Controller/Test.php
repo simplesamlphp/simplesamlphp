@@ -33,7 +33,7 @@ class Test
     /**
      * @var \SimpleSAML\Utils\Auth
      */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /**
      * @var \SimpleSAML\Auth\Simple|string

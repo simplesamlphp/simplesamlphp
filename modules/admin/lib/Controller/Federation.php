@@ -43,10 +43,10 @@ class Federation
     protected $authSource = Auth\Source::class;
 
     /** @var \SimpleSAML\Utils\Auth */
-    protected $authUtils;
+    protected Utils\Auth $authUtils;
 
     /** @var \SimpleSAML\Utils\Crypto */
-    protected $cryptoUtils;
+    protected Utils\Crypto $cryptoUtils;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
