@@ -249,7 +249,7 @@ class Localization
             }
         }
 
-        $file = new File($langPath . $domain . '.po');
+        $file = new File($langPath . $domain . '.po', false);
         if ($this->fileSystem->exists($file->getRealPath()) && $file->isReadable()) {
             $translations = (new PoLoader())->loadFile($file->getRealPath());
             $arrayGenerator = new ArrayGenerator();
