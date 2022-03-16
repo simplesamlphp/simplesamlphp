@@ -60,7 +60,7 @@ class ScopeAttribute extends Auth\ProcessingFilter
         $this->scopeAttribute = $cfg->getString('scopeAttribute');
         $this->sourceAttribute = $cfg->getString('sourceAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
-        $this->onlyIfEmpty = $cfg->getBoolean('onlyIfEmpty', false);
+        $this->onlyIfEmpty = $cfg->getOptionalBoolean('onlyIfEmpty', false);
     }
 
 

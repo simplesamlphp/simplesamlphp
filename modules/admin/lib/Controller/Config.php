@@ -132,7 +132,7 @@ class Config
                 ]
             ],
             'enablematrix' => [
-                'saml20idp' => $this->config->getBoolean('enable.saml20-idp', false),
+                'saml20idp' => $this->config->getOptionalBoolean('enable.saml20-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
             'logouturl' => $this->authUtils->getAdminLogoutURL(),
@@ -202,7 +202,7 @@ class Config
                 'enabled' => version_compare(phpversion(), '7.4', '>=')
             ]
         ];
-        $store = $this->config->getString('store.type', '');
+        $store = $this->config->getOptionalString('store.type', null);
 
         // check dependencies used via normal functions
         $functions = [
@@ -267,7 +267,7 @@ class Config
                 ]
             ],
             'curl_init' => [
-                'required' => $this->config->getBoolean('admin.checkforupdates', true) ? 'required' : 'optional',
+                'required' => $this->config->getOptionalBoolean('admin.checkforupdates', true) ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
                         'cURL (might be required by some modules)'
@@ -354,19 +354,19 @@ class Config
         $matrix[] = [
             'required' => 'optional',
             'descr' => Translate::noop('The <code>technicalcontact_email</code> configuration option should be set'),
-            'enabled' => $this->config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org',
+            'enabled' => $this->config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org',
         ];
 
         $matrix[] = [
             'required' => 'required',
             'descr' => Translate::noop('The auth.adminpassword configuration option must be set'),
-            'enabled' => $this->config->getString('auth.adminpassword', '123') !== '123',
+            'enabled' => $this->config->getOptionalString('auth.adminpassword', '123') !== '123',
         ];
 
         $cryptoUtils = new Utils\Crypto();
 
         // perform some sanity checks on the configured certificates
-        if ($this->config->getBoolean('enable.saml20-idp', false) !== false) {
+        if ($this->config->getOptionalBoolean('enable.saml20-idp', false) !== false) {
             $handler = MetaDataStorageHandler::getMetadataHandler();
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
@@ -401,7 +401,7 @@ class Config
             }
         }
 
-        if ($this->config->getBoolean('metadata.sign.enable', false) !== false) {
+        if ($this->config->getOptionalBoolean('metadata.sign.enable', false) !== false) {
             $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
             $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
             $matrix[] = [
@@ -442,7 +442,7 @@ class Config
         }
 
         // make sure we have a secret salt set
-        if ($this->config->getValue('secretsalt') === 'defaultsecretsalt') {
+        if ($this->config->getString('secretsalt') === 'defaultsecretsalt') {
             $warnings[] = Translate::noop(
                 '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>' .
                 'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a ' .
@@ -455,7 +455,7 @@ class Config
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.
          */
-        if ($this->config->getBoolean('admin.checkforupdates', true) && $this->config->getVersion() !== 'master') {
+        if ($this->config->getOptionalBoolean('admin.checkforupdates', true) && $this->config->getVersion() !== 'master') {
             if (!function_exists('curl_init')) {
                 $warnings[] = Translate::noop(
                     'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.'
@@ -468,8 +468,8 @@ class Config
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
                     curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-                    curl_setopt($ch, CURLOPT_PROXY, $this->config->getString('proxy', null));
-                    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getValue('proxy.auth', null));
+                    curl_setopt($ch, CURLOPT_PROXY, $this->config->getOptionalString('proxy', null));
+                    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getOptionalValue('proxy.auth', null));
                     $response = curl_exec($ch);
 
                     if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200) {

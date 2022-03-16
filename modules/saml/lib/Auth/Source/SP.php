@@ -94,9 +94,9 @@ class SP extends \SimpleSAML\Auth\Source
             'authsources[' . var_export($this->authId, true) . ']'
         );
         $this->entityId = $this->metadata->getString('entityID');
-        $this->idp = $this->metadata->getString('idp', null);
-        $this->discoURL = $this->metadata->getString('discoURL', null);
-        $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
+        $this->idp = $this->metadata->getOptionalString('idp', null);
+        $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
+        $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
     }
 
 
@@ -141,7 +141,7 @@ class SP extends \SimpleSAML\Auth\Source
         if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getValue('NameIDPolicy');
             if (is_array($format)) {
-                $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getString(
+                $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getOptionalString(
                     'Format',
                     Constants::NAMEID_TRANSIENT
                 );
@@ -151,8 +151,8 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add attributes
-        $name = $this->metadata->getLocalizedString('name', null);
-        $attributes = $this->metadata->getArray('attributes', []);
+        $name = $this->metadata->getOptionalLocalizedString('name', null);
+        $attributes = $this->metadata->getOptionalArray('attributes', []);
         if ($name !== null) {
             if (!empty($attributes)) {
                 $metadata['name'] = $name;
@@ -176,11 +176,11 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add organization info
-        $org = $this->metadata->getLocalizedString('OrganizationName', null);
+        $org = $this->metadata->getOptionalLocalizedString('OrganizationName', null);
         if ($org !== null) {
             $metadata['OrganizationName'] = $org;
-            $metadata['OrganizationDisplayName'] = $this->metadata->getLocalizedString('OrganizationDisplayName', $org);
-            $metadata['OrganizationURL'] = $this->metadata->getLocalizedString('OrganizationURL', null);
+            $metadata['OrganizationDisplayName'] = $this->metadata->getOptionalLocalizedString('OrganizationDisplayName', $org);
+            $metadata['OrganizationURL'] = $this->metadata->getOptionalLocalizedString('OrganizationURL', null);
             if ($metadata['OrganizationURL'] === null) {
                 throw new Error\Exception(
                     'If OrganizationName is set, OrganizationURL must also be set.'
@@ -189,18 +189,18 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add contacts
-        $contacts = $this->metadata->getArray('contacts', []);
+        $contacts = $this->metadata->getOptionalArray('contacts', []);
         foreach ($contacts as $contact) {
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
 
         // add technical contact
         $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getString('technicalcontact_email', 'na@example.org');
-        if ($email && $email !== 'na@example.org') {
+        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getString('technicalcontact_name', null),
+                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -339,11 +339,11 @@ class SP extends \SimpleSAML\Auth\Source
             Constants::BINDING_HTTP_POST,
             Constants::BINDING_HTTP_ARTIFACT,
         ];
-        if ($this->metadata->getString('ProtocolBinding', '') === Constants::BINDING_HOK_SSO) {
+        if ($this->metadata->getOptionalString('ProtocolBinding', null) === Constants::BINDING_HOK_SSO) {
             $default[] = Constants::BINDING_HOK_SSO;
         }
 
-        $bindings = $this->metadata->getArray('acs.Bindings', $default);
+        $bindings = $this->metadata->getOptionalArray('acs.Bindings', $default);
         $index = 0;
         foreach ($bindings as $service) {
             switch ($service) {
@@ -387,10 +387,10 @@ class SP extends \SimpleSAML\Auth\Source
     private function getSLOEndpoints(): array
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
-        $bindings = $this->metadata->getArray(
+        $bindings = $this->metadata->getOptionalArray(
             'SingleLogoutServiceBinding',
             [
                 Constants::BINDING_HTTP_REDIRECT,
@@ -398,7 +398,7 @@ class SP extends \SimpleSAML\Auth\Source
             ]
         );
         $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
-        $location = $this->metadata->getString('SingleLogoutServiceLocation', $defaultLocation);
+        $location = $this->metadata->getOptionalString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
         foreach ($bindings as $binding) {
@@ -441,7 +441,7 @@ class SP extends \SimpleSAML\Auth\Source
         $arrayUtils = new Utils\Arrays();
 
         $accr = null;
-        if ($idpMetadata->getString('AuthnContextClassRef', false)) {
+        if ($idpMetadata->getOptionalString('AuthnContextClassRef', null) !== null) {
             $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
@@ -449,7 +449,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         if ($accr !== null) {
             $comp = Constants::COMPARISON_EXACT;
-            if ($idpMetadata->getString('AuthnContextComparison', false)) {
+            if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
@@ -532,17 +532,17 @@ class SP extends \SimpleSAML\Auth\Source
         $requesterID = [];
 
         /* Only check for real info for Scoping element if we are going to send Scoping element */
-        if ($this->disable_scoping !== true && $idpMetadata->getBoolean('disable_scoping', false) !== true) {
+        if ($this->disable_scoping !== true && $idpMetadata->getOptionalBoolean('disable_scoping', false) !== true) {
             if (isset($state['saml:IDPList'])) {
                 $IDPList = $state['saml:IDPList'];
             }
 
             if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
                 $ar->setProxyCount($state['saml:ProxyCount']);
-            } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
-                $ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
-            } elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
-                $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
+            } elseif ($idpMetadata->hasValue('ProxyCount')) {
+                $ar->setProxyCount($idpMetadata->getInteger('ProxyCount'));
+            } elseif ($this->metadata->hasValue('ProxyCount')) {
+                $ar->setProxyCount($this->metadata->getInteger('ProxyCount'));
             }
 
             $requesterID = [];
@@ -560,8 +560,8 @@ class SP extends \SimpleSAML\Auth\Source
         $ar->setIDPList(
             array_unique(
                 array_merge(
-                    $this->metadata->getArray('IDPList', []),
-                    $idpMetadata->getArray('IDPList', []),
+                    $this->metadata->getOptionalArray('IDPList', []),
+                    $idpMetadata->getOptionalArray('IDPList', []),
                     (array) $IDPList
                 )
             )
@@ -573,11 +573,11 @@ class SP extends \SimpleSAML\Auth\Source
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
         if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
             $ar->setExtensions($state['saml:Extensions']);
-        } elseif ($this->metadata->getArray('saml:Extensions', null) !== null) {
+        } elseif ($this->metadata->getOptionalArray('saml:Extensions', null) !== null) {
             $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
         }
 
-        $providerName = $this->metadata->getString("ProviderName", null);
+        $providerName = $this->metadata->getOptionalString("ProviderName", null);
         if ($providerName !== null) {
             $ar->setProviderName($providerName);
         }
@@ -990,13 +990,13 @@ class SP extends \SimpleSAML\Auth\Source
 
         if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
             $lr->setExtensions($state['saml:logout:Extensions']);
-        } elseif ($this->metadata->getArray('saml:logout:Extensions', null) !== null) {
+        } elseif ($this->metadata->getOptionalArray('saml:logout:Extensions', null) !== null) {
             $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
         }
 
-        $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $this->metadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $this->metadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $lr->encryptNameId(Module\saml\Message::getEncryptionKey($idpMetadata));
@@ -1141,7 +1141,7 @@ class SP extends \SimpleSAML\Auth\Source
             if (!empty($state['saml:sp:RelayState'])) {
                 $redirectTo = $state['saml:sp:RelayState'];
             } else {
-                $redirectTo = $source->getMetadata()->getString('RelayState', '/');
+                $redirectTo = $source->getMetadata()->getOptionalString('RelayState', '/');
             }
 
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);

@@ -52,7 +52,7 @@ class XML
         }
 
         // see if debugging is enabled for XML validation
-        $debug = Configuration::getInstance()->getArray('debug', ['validatexml' => false]);
+        $debug = Configuration::getInstance()->getOptionalArray('debug', ['validatexml' => false]);
 
         if (
             !(
@@ -100,7 +100,7 @@ class XML
         }
 
         // see if debugging is enabled for SAML messages
-        $debug = Configuration::getInstance()->getArray('debug', ['saml' => false]);
+        $debug = Configuration::getInstance()->getOptionalArray('debug', ['saml' => false]);
 
         if (
             !(

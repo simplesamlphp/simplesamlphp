@@ -255,7 +255,7 @@ class SAML2
 
         $skipEndpointValidation = false;
         if ($authnRequestSigned === true) {
-            $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
+            $skipEndpointValidationWhenSigned = $spMetadata->getOptionalValue('skipEndpointValidationWhenSigned', false);
             if (is_bool($skipEndpointValidationWhenSigned) === true) {
                 $skipEndpointValidation = $skipEndpointValidationWhenSigned;
             } elseif (is_callable($skipEndpointValidationWhenSigned) === true) {
@@ -305,13 +305,13 @@ class SAML2
         $httpUtils = new Utils\HTTP();
 
         $supportedBindings = [Constants::BINDING_HTTP_POST];
-        if ($idpMetadata->getBoolean('saml20.sendartifact', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.sendartifact', false)) {
             $supportedBindings[] = Constants::BINDING_HTTP_ARTIFACT;
         }
-        if ($idpMetadata->getBoolean('saml20.hok.assertion', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.hok.assertion', false)) {
             $supportedBindings[] = Constants::BINDING_HOK_SSO;
         }
-        if ($idpMetadata->getBoolean('saml20.ecp', false)) {
+        if ($idpMetadata->getOptionalBoolean('saml20.ecp', false)) {
             $supportedBindings[] = Constants::BINDING_PAOS;
         }
 
@@ -456,13 +456,13 @@ class SAML2
             throw new Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
         }
 
-        $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
+        $IDPList = array_unique(array_merge($IDPList, $spMetadata->getOptionalArrayizeString('IDPList', [])));
         if ($ProxyCount === null) {
-            $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
+            $ProxyCount = $spMetadata->getOptionalInteger('ProxyCount', null);
         }
 
         if (!$forceAuthn) {
-            $forceAuthn = $spMetadata->getBoolean('ForceAuthn', false);
+            $forceAuthn = $spMetadata->getOptionalBoolean('ForceAuthn', false);
         }
 
         $sessionLostParams = [
@@ -662,7 +662,7 @@ class SAML2
                 'idpEntityID' => $idpMetadata->getString('entityid'),
             ]);
 
-            $spStatsId = $spMetadata->getString('core:statistics-id', $spEntityId);
+            $spStatsId = $spMetadata->getOptionalString('core:statistics-id', $spEntityId);
             Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
 
             $state = [
@@ -796,7 +796,7 @@ class SAML2
             'entityid' => $entityid,
             'SingleSignOnService' => $sso,
             'SingleLogoutService' => $slo,
-            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
+            'NameIDFormat' => $config->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
         ];
 
         $cryptoUtils = new Utils\Crypto();
@@ -844,7 +844,7 @@ class SAML2
         $metadata['keys'] = $keys;
 
         // add ArtifactResolutionService endpoint, if enabled
-        if ($config->getBoolean('saml20.sendartifact', false)) {
+        if ($config->getOptionalBoolean('saml20.sendartifact', false)) {
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
@@ -853,7 +853,7 @@ class SAML2
         }
 
         // add Holder of Key, if enabled
-        if ($config->getBoolean('saml20.hok.assertion', false)) {
+        if ($config->getOptionalBoolean('saml20.hok.assertion', false)) {
             array_unshift(
                 $metadata['SingleSignOnService'],
                 [
@@ -865,7 +865,7 @@ class SAML2
         }
 
         // add ECP profile, if enabled
-        if ($config->getBoolean('saml20.ecp', false)) {
+        if ($config->getOptionalBoolean('saml20.ecp', false)) {
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
@@ -876,7 +876,7 @@ class SAML2
         // add organization information
         if ($config->hasValue('OrganizationName')) {
             $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
-            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+            $metadata['OrganizationDisplayName'] = $config->getOptionalLocalizedString(
                 'OrganizationDisplayName',
                 $metadata['OrganizationName']
             );
@@ -937,11 +937,11 @@ class SAML2
         }
 
         $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getString('technicalcontact_email', false);
-        if ($email && $email !== 'na@example.org') {
+        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getString('technicalcontact_name', null),
+                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -965,9 +965,9 @@ class SAML2
         Configuration $spMetadata,
         array &$state
     ): ?string {
-        $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
+        $attribute = $spMetadata->getOptionalString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
-            $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
+            $attribute = $idpMetadata->getOptionalString('simplesaml.nameidattribute', null);
             if ($attribute === null) {
                 Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
                 return null;
@@ -1001,9 +1001,9 @@ class SAML2
         Configuration $spMetadata,
         array $attributes
     ): array {
-        $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
+        $base64Attributes = $spMetadata->getOptionalBoolean('base64attributes', null);
         if ($base64Attributes === null) {
-            $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
+            $base64Attributes = $idpMetadata->getOptionalBoolean('base64attributes', false);
         }
 
         if ($base64Attributes) {
@@ -1012,8 +1012,8 @@ class SAML2
             $defaultEncoding = 'string';
         }
 
-        $srcEncodings = $idpMetadata->getArray('attributeencodings', []);
-        $dstEncodings = $spMetadata->getArray('attributeencodings', []);
+        $srcEncodings = $idpMetadata->getOptionalArray('attributeencodings', []);
+        $dstEncodings = $spMetadata->getOptionalArray('attributeencodings', []);
 
         /*
          * Merge the two encoding arrays. Encodings specified in the target metadata
@@ -1083,21 +1083,21 @@ class SAML2
         Configuration $spMetadata
     ): string {
         // try SP metadata first
-        $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
+        $attributeNameFormat = $spMetadata->getOptionalString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
-        $attributeNameFormat = $spMetadata->getString('AttributeNameFormat', null);
+        $attributeNameFormat = $spMetadata->getOptionalString('AttributeNameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
 
         // look in IdP metadata
-        $attributeNameFormat = $idpMetadata->getString('attributes.NameFormat', null);
+        $attributeNameFormat = $idpMetadata->getOptionalString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
-        $attributeNameFormat = $idpMetadata->getString('AttributeNameFormat', null);
+        $attributeNameFormat = $idpMetadata->getOptionalString('AttributeNameFormat', null);
         if ($attributeNameFormat !== null) {
             return $attributeNameFormat;
         }
@@ -1129,9 +1129,9 @@ class SAML2
         $httpUtils = new Utils\HTTP();
         $now = time();
 
-        $signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', null);
+        $signAssertion = $spMetadata->getOptionalBoolean('saml20.sign.assertion', null);
         if ($signAssertion === null) {
-            $signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', true);
+            $signAssertion = $idpMetadata->getOptionalBoolean('saml20.sign.assertion', true);
         }
 
         $config = Configuration::getInstance();
@@ -1146,14 +1146,14 @@ class SAML2
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
-        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getArray('audience', []));
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
         $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
 
-        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
-            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+            $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
         $a->setNotOnOrAfter($now + $assertionLifetime);
 
@@ -1171,7 +1171,7 @@ class SAML2
             $sessionStart = $state['AuthnInstant'];
         }
 
-        $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
+        $sessionLifetime = $config->getOptionalInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
         $randomUtils = new Utils\Random();
@@ -1190,7 +1190,7 @@ class SAML2
             $hokAssertion = true;
         }
         if ($hokAssertion === null) {
-            $hokAssertion = $idpMetadata->getBoolean('saml20.hok.assertion', false);
+            $hokAssertion = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', false);
         }
 
         if ($hokAssertion) {
@@ -1238,7 +1238,7 @@ class SAML2
         $a->setSubjectConfirmation([$sc]);
 
         // add attributes
-        if ($spMetadata->getBoolean('simplesaml.attributes', true)) {
+        if ($spMetadata->getOptionalBoolean('simplesaml.attributes', true)) {
             $attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
             $a->setAttributeNameFormat($attributeNameFormat);
             $attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
@@ -1254,9 +1254,11 @@ class SAML2
 
         if ($nameIdFormat === null || !isset($state['saml:NameID'][$nameIdFormat])) {
             // either not set in request, or not set to a format we supply. Fall back to old generation method
-            $nameIdFormat = current($spMetadata->getArrayizeString('NameIDFormat', []));
+            $nameIdFormat = current($spMetadata->getOptionalArrayizeString('NameIDFormat', []));
             if ($nameIdFormat === false) {
-                $nameIdFormat = current($idpMetadata->getArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]));
+                $nameIdFormat = current(
+                    $idpMetadata->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT])
+                );
             }
         }
 
@@ -1264,7 +1266,7 @@ class SAML2
             $nameId = $state['saml:NameID'][$nameIdFormat];
             $nameId->setFormat($nameIdFormat);
         } else {
-            $spNameQualifier = $spMetadata->getString('SPNameQualifier', null);
+            $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
                 $spNameQualifier = $spMetadata->getString('entityid');
             }
@@ -1293,9 +1295,9 @@ class SAML2
 
         $a->setNameId($nameId);
 
-        $encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
@@ -1324,9 +1326,9 @@ class SAML2
         Configuration $spMetadata,
         Assertion $assertion
     ) {
-        $encryptAssertion = $spMetadata->getBoolean('assertion.encryption', null);
+        $encryptAssertion = $spMetadata->getOptionalBoolean('assertion.encryption', null);
         if ($encryptAssertion === null) {
-            $encryptAssertion = $idpMetadata->getBoolean('assertion.encryption', false);
+            $encryptAssertion = $idpMetadata->getOptionalBoolean('assertion.encryption', false);
         }
         if (!$encryptAssertion) {
             // we are _not_ encrypting this assertion, and are therefore done
@@ -1334,12 +1336,12 @@ class SAML2
         }
 
 
-        $sharedKey = $spMetadata->getString('sharedkey', null);
+        $sharedKey = $spMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
-            $algo = $spMetadata->getString('sharedkey_algorithm', null);
+            $algo = $spMetadata->getOptionalString('sharedkey_algorithm', null);
             if ($algo === null) {
                 // If no algorithm is configured, use a sane default
-                $algo = $idpMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                $algo = $idpMetadata->getOptionalString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
             }
 
             $key = new XMLSecurityKey($algo);
@@ -1397,15 +1399,15 @@ class SAML2
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
 
-        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
-            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+            $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
         $lr->setNotOnOrAfter(time() + $assertionLifetime);
 
-        $encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
@@ -1429,9 +1431,9 @@ class SAML2
         Configuration $spMetadata,
         string $consumerURL
     ): Response {
-        $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
+        $signResponse = $spMetadata->getOptionalBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
-            $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);
+            $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
         $r = new Response();

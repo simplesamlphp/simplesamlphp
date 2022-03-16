@@ -6,6 +6,7 @@ namespace SimpleSAML;
 
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
 
@@ -348,29 +349,41 @@ class Configuration implements Utils\ClearableState
     /**
      * Retrieve a configuration option set in config.php.
      *
-     * @param string $name Name of the configuration option.
-     * @param mixed  $default Default value of the configuration option. This parameter will default to null if not
-     *                        specified. This can be set to \SimpleSAML\Configuration::REQUIRED_OPTION, which will
-     *                        cause an exception to be thrown if the option isn't found.
+     * @param string $name  Name of the configuration option.
+     * @return mixed        The configuration option with name $name.
      *
-     * @return mixed The configuration option with name $name, or $default if the option was not found.
-     *
-     * @throws \Exception If the required option cannot be retrieved.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the required option cannot be retrieved.
      */
-    public function getValue(string $name, $default = null)
+    public function getValue(string $name)
+    {
+        Assert::true(
+            $this->hasValue($name),
+            sprintf('%s: Could not retrieve the required option %s.', $this->location, var_export($name, true)),
+        );
+
+        return $this->configuration[$name];
+    }
+
+
+    /**
+     * Retrieve an optional configuration option set in config.php.
+     *
+     * @param string $name     Name of the configuration option.
+     * @param mixed  $default  Default value of the configuration option.
+                               This parameter will default to null if not specified.
+     *
+     * @return mixed           The configuration option with name $name, or $default if the option was not found.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the required option cannot be retrieved.
+     */
+    public function getOptionalValue(string $name, $default)
     {
         // return the default value if the option is unset
-        if (!array_key_exists($name, $this->configuration)) {
-            if ($default === self::REQUIRED_OPTION) {
-                throw new \Exception(
-                    $this->location . ': Could not retrieve the required option ' .
-                    var_export($name, true)
-                );
-            }
+        if (!$this->hasValue($name)) {
             return $default;
         }
 
-        return $this->configuration[$name];
+        return $this->configuration[$name] ?? $default;
     }
 
 
@@ -416,7 +429,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getBasePath(): string
     {
-        $baseURL = $this->getString('baseurlpath', 'simplesaml/');
+        $baseURL = $this->getOptionalString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
             // we have a full url, we need to strip the path
@@ -441,7 +454,7 @@ class Configuration implements Utils\ClearableState
             $c['baseurlpath'] = $httpUtils->guessBasePath();
             throw new Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "' .
-                $this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
+                $this->getOptionalString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
                 ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
                 $this->filename,
                 $c
@@ -515,7 +528,7 @@ class Configuration implements Utils\ClearableState
     public function getBaseDir(): string
     {
         // check if a directory is configured in the configuration file
-        $dir = $this->getString('basedir', null);
+        $dir = $this->getOptionalString('basedir', null);
         if ($dir !== null) {
             // add trailing slash if it is missing
             if (substr($dir, -1) !== DIRECTORY_SEPARATOR) {
@@ -547,34 +560,52 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves a boolean configuration option.
      *
-     * An exception will be thrown if this option isn't a boolean, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't a boolean, or if this option isn't found.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string   $name The name of the option.
+     * @return boolean       The option with the given name.
      *
-     * @return boolean|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
-     *
-     * @throws \Exception If the option is not boolean.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not boolean.
      */
-    public function getBoolean(string $name, $default = self::REQUIRED_OPTION)
+    public function getBoolean(string $name): bool
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::boolean(
+            $ret,
+            sprintf('%s: The option %s is not a valid boolean value.', $this->location, var_export($name, true)),
+        );
 
-        if (!is_bool($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid boolean value.'
-            );
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves a boolean configuration option.
+     *
+     * An exception will be thrown if this option isn't a boolean.
+     *
+     * @param string    $name     The name of the option.
+     * @param bool|null $default  A default value which will be returned if the option isn't found.
+     *                            The default value can be null or a boolean.
+     *
+     * @return bool|null          The option with the given name, or $default.
+     * @psalm-return              ($default is null ? null : bool)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not boolean.
+     */
+    public function getOptionalBoolean(string $name, ?bool $default): ?bool
+    {
+        $ret = $this->getOptionalValue($name, $default);
+
+        Assert::nullOrBoolean(
+            $ret,
+            sprintf(
+                '%s: The option %s is not a valid boolean value or null.',
+                $this->location,
+                var_export($name, true)
+            ),
+        );
 
         return $ret;
     }
@@ -583,34 +614,52 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves a string configuration option.
      *
-     * An exception will be thrown if this option isn't a string, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't a string, or if this option isn't found.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string $name  The name of the option.
+     * @return string       The option with the given name.
      *
-     * @return string|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
-     *
-     * @throws \Exception If the option is not a string.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
      */
-    public function getString(string $name, $default = self::REQUIRED_OPTION)
+    public function getString(string $name): string
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::string(
+            $ret,
+            sprintf('%s: The option %s is not a valid string value.', $this->location, var_export($name, true)),
+        );
 
-        if (!is_string($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid string value.'
-            );
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional string configuration option.
+     *
+     * An exception will be thrown if this option isn't a string.
+     *
+     * @param string       $name     The name of the option.
+     * @param string|null  $default  A default value which will be returned if the option isn't found.
+     *                               The default value can be null or a string.
+     *
+     * @return string|null The option with the given name, or $default if the option isn't found.
+     * @psalm-return       ($default is null ? null : string)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
+     */
+    public function getOptionalString(string $name, ?string $default): ?string
+    {
+        $ret = $this->getOptionalValue($name, $default);
+
+        Assert::nullOrString(
+            $ret,
+            sprintf(
+                '%s: The option %s is not a valid string value or null.',
+                $this->location,
+                var_export($name, true)
+            ),
+        );
 
         return $ret;
     }
@@ -619,34 +668,52 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves an integer configuration option.
      *
-     * An exception will be thrown if this option isn't an integer, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't an integer, or if this option isn't found.
      *
-     * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
+     * @param string $name  The name of the option.
+     * @return int          The option with the given name.
      *
-     * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
-     * specified.
-     *
-     * @throws \Exception If the option is not an integer.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an integer.
      */
-    public function getInteger(string $name, $default = self::REQUIRED_OPTION)
+    public function getInteger(string $name): int
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::integer(
+            $ret,
+            sprintf('%s: The option %s is not a valid integer value.', $this->location, var_export($name, true)),
+        );
 
-        if (!is_int($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not a valid integer value.'
-            );
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional integer configuration option.
+     *
+     * An exception will be thrown if this option isn't an integer.
+     *
+     * @param string $name     The name of the option.
+     * @param mixed  $default  A default value which will be returned if the option isn't found.
+     *                         The default value can be null or an integer.
+     *
+     * @return int|null The option with the given name, or $default if the option isn't found.
+     * @psalm-return           ($default is null ? null : int)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an integer.
+     */
+    public function getOptionalInteger(string $name, ?int $default): ?int
+    {
+        $ret = $this->getOptionalValue($name, $default);
+
+        Assert::nullOrInteger(
+            $ret,
+            sprintf(
+                '%s: The option %s is not a valid integer value or null.',
+                $this->location,
+                var_export($name, true)
+            ),
+        );
 
         return $ret;
     }
@@ -663,31 +730,63 @@ class Configuration implements Utils\ClearableState
      * @param string $name The name of the option.
      * @param int    $minimum The smallest value which is allowed.
      * @param int    $maximum The largest value which is allowed.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                  required if this parameter isn't given. The default value can be any value, including
-     *                  null.
      *
-     * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
+     * @return int The option with the given name.
      *
-     * @throws \Exception If the option is not in the range specified.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not in the range specified.
      */
-    public function getIntegerRange(string $name, int $minimum, int $maximum, $default = self::REQUIRED_OPTION)
+    public function getIntegerRange(string $name, int $minimum, int $maximum): int
     {
-        $ret = $this->getInteger($name, $default);
+        $ret = $this->getInteger($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::range(
+            $ret,
+            $minimum,
+            $maximum,
+            sprintf(
+                '%s: Value of option %s is out of range. Value is %%s, allowed range is [%%2$s - %%3$s]',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
-        if ($ret < $minimum || $ret > $maximum) {
-            throw new \Exception(
-                $this->location . ': Value of option ' . var_export($name, true) .
-                ' is out of range. Value is ' . $ret . ', allowed range is ['
-                . $minimum . ' - ' . $maximum . ']'
-            );
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional integer configuration option where the value must be in the specified range.
+     *
+     * An exception will be thrown if:
+     * - the option isn't an integer
+     * - the value is outside of the allowed range
+     *
+     * @param string    $name    The name of the option.
+     * @param int       $minimum The smallest value which is allowed.
+     * @param int       $maximum The largest value which is allowed.
+     * @param int|null  $default A default value which will be returned if the option isn't found.
+     *                             The default value can be null or an integer.
+     *
+     * @return int|null The option with the given name, or $default if the option isn't found and $default is
+     *     specified.
+     * @psalm-return    ($default is null ? null : int)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not in the range specified.
+     */
+    public function getOptionalIntegerRange(string $name, int $minimum, int $maximum, ?int $default): ?int
+    {
+        $ret = $this->getOptionalInteger($name, $default);
+
+        Assert::nullOrRange(
+            $ret,
+            $minimum,
+            $maximum,
+            sprintf(
+                '%s: Value of option %s is out of range. Value is %%s, allowed range is [%%2$s - %%3$s] or null.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
         return $ret;
     }
@@ -699,42 +798,63 @@ class Configuration implements Utils\ClearableState
      * This will check that the configuration option matches one of the given values. The match will use
      * strict comparison. An exception will be thrown if it does not match.
      *
-     * The option can be mandatory or optional. If no default value is given, it will be considered to be
-     * mandatory, and an exception will be thrown if it isn't provided. If a default value is given, it
-     * is considered to be optional, and the default value is returned. The default value is automatically
-     * included in the list of allowed values.
+     * The option is mandatory and an exception will be thrown if it isn't provided.
      *
-     * @param string $name The name of the option.
-     * @param array  $allowedValues The values the option is allowed to take, as an array.
-     * @param mixed  $default The default value which will be returned if the option isn't found. If this parameter
-     *                  isn't given, the option will be considered to be mandatory. The default value can be
-     *                  any value, including null.
+     * @param string $name           The name of the option.
+     * @param array  $allowedValues  The values the option is allowed to take, as an array.
+     *
+     * @return mixed The option with the given name.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option does not have any of the allowed values.
+     */
+    public function getValueValidate(string $name, array $allowedValues)
+    {
+        $ret = $this->getValue($name);
+
+        Assert::oneOf(
+            $ret,
+            $allowedValues,
+            sprintf(
+                '%s: Invalid value given for option %s. It should have one of: %%2$s; but got: %%s.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
+
+        return $ret;
+    }
+
+
+    /**
+     * Retrieve an optional configuration option with one of the given values.
+     *
+     * This will check that the configuration option matches one of the given values. The match will use
+     * strict comparison. An exception will be thrown if it does not match.
+     *
+     * The option is optional. The default value is automatically included in the list of allowed values.
+     *
+     * @param string $name           The name of the option.
+     * @param array  $allowedValues  The values the option is allowed to take, as an array.
+     * @param mixed  $default        The default value which will be returned if the option isn't found.
+     *                               The default value can be any value, including null.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is given.
      *
-     * @throws \Exception If the option does not have any of the allowed values.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option does not have any of the allowed values.
      */
-    public function getValueValidate(string $name, array $allowedValues, $default = self::REQUIRED_OPTION)
+    public function getOptionalValueValidate(string $name, array $allowedValues, $default)
     {
-        $ret = $this->getValue($name, $default);
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        $ret = $this->getOptionalValue($name, $default);
 
-        if (!in_array($ret, $allowedValues, true)) {
-            $strValues = [];
-            foreach ($allowedValues as $av) {
-                $strValues[] = var_export($av, true);
-            }
-            $strValues = implode(', ', $strValues);
-
-            throw new \Exception(
-                $this->location . ': Invalid value given for the option ' .
-                var_export($name, true) . '. It should have one of the following values: ' .
-                $strValues . '; but it had the following value: ' . var_export($ret, true)
-            );
-        }
+        Assert::nullOrOneOf(
+            $ret,
+            $allowedValues,
+            sprintf(
+                '%s: Invalid value given for option %s. It should have one of: %%2$s or null; but got: %%s.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
         return $ret;
     }
@@ -743,31 +863,49 @@ class Configuration implements Utils\ClearableState
     /**
      * This function retrieves an array configuration option.
      *
-     * An exception will be thrown if this option isn't an array, or if this option isn't found, and no
-     * default value is given.
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
+     * @return array The option with the given name.
      *
-     * @return array|mixed The option with the given name, or $default if the option isn't found and $default is
-     * specified.
-     *
-     * @throws \Exception If the option is not an array.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
-    public function getArray(string $name, $default = self::REQUIRED_OPTION)
+    public function getArray(string $name): array
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::isArray(
+            $ret,
+            sprintf('%s: The option %s is not an array.', $this->location, var_export($name, true)),
+        );
 
-        if (!is_array($ret)) {
-            throw new \Exception($this->location . ': The option ' . var_export($name, true) . ' is not an array.');
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional array configuration option.
+     *
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
+     *
+     * @param string      $name     The name of the option.
+     * @param array|null  $default  A default value which will be returned if the option isn't found.
+     *                                The default value can be null or an array.
+     *
+     * @return array|null The option with the given name, or $default if the option isn't found and $default is
+     * specified.
+     * @psalm-return      ($default is null ? null : array)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
+     */
+    public function getOptionalArray(string $name, ?array $default): ?array
+    {
+        $ret = $this->getOptionalValue($name, $default);
+
+        Assert::nullOrIsArray(
+            $ret,
+            sprintf('%s: The option %s is not an array or null.', $this->location, var_export($name, true)),
+        );
 
         return $ret;
     }
@@ -779,20 +917,36 @@ class Configuration implements Utils\ClearableState
      * If the configuration option isn't an array, it will be converted to an array.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return array The option with the given name.
      */
-    public function getArrayize(string $name, $default = self::REQUIRED_OPTION)
+    public function getArrayize(string $name): array
     {
-        $ret = $this->getValue($name, $default);
+        $ret = $this->getValue($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+        if (!is_array($ret)) {
+            $ret = [$ret];
         }
+
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional array configuration option.
+     *
+     * If the configuration option isn't an array, it will be converted to an array.
+     *
+     * @param string      $name The name of the option.
+     * @param array|null  $default A default value which will be returned if the option isn't found.
+     *                       The default value can be null or an array.
+     *
+     * @return array|null The option with the given name.
+     * @psalm-return      ($default is null ? null : array)
+     */
+    public function getOptionalArrayize(string $name, $default): ?array
+    {
+        $ret = $this->getOptionalValue($name, $default);
 
         if (!is_array($ret)) {
             $ret = [$ret];
@@ -808,31 +962,53 @@ class Configuration implements Utils\ClearableState
      * If the configuration option is a string, it will be converted to an array with a single string
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                       required if this parameter isn't given. The default value can be any value, including
-     *                       null.
+     * @return string[] The option with the given name.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
-     *
-     * @throws \Exception If the option is not a string or an array of strings.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string or an array of strings.
      */
-    public function getArrayizeString(string $name, $default = self::REQUIRED_OPTION)
+    public function getArrayizeString(string $name): array
     {
-        $ret = $this->getArrayize($name, $default);
+        $ret = $this->getArrayize($name);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        Assert::allString(
+            $ret,
+            sprintf(
+                '%s: The option %s must be a string or an array of strings.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
-        foreach ($ret as $value) {
-            if (!is_string($value)) {
-                throw new \Exception(
-                    $this->location . ': The option ' . var_export($name, true) .
-                    ' must be a string or an array of strings.'
-                );
-            }
-        }
+        return $ret;
+    }
+
+
+    /**
+     * This function retrieves an optional configuration option with a string or an array of strings.
+     *
+     * If the configuration option is a string, it will be converted to an array with a single string
+     *
+     * @param string         $name The name of the option.
+     * @param string[]|null  $default A default value which will be returned if the option isn't found.
+     *                         The default value can be null or an array of strings.
+     *
+     * @return string[]|null The option with the given name, or $default if the option isn't found and $default is specified.
+     * @psalm-return         ($default is null ? null : array)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string or an array of strings.
+     */
+    public function getOptionalArrayizeString(string $name, ?array $default): ?array
+    {
+        $ret = $this->getOptionalArrayize($name, $default);
+
+        Assert::nullOrAllString(
+            $ret,
+            sprintf(
+                '%s: The option %s must be null, a string or an array of strings.',
+                $this->location,
+                var_export($name, true),
+            ),
+        );
 
         return $ret;
     }
@@ -841,41 +1017,49 @@ class Configuration implements Utils\ClearableState
     /**
      * Retrieve an array as a \SimpleSAML\Configuration object.
      *
-     * This function will load the value of an option into a \SimpleSAML\Configuration object. The option must contain
-     * an array.
+     * This function will load the value of an option into a \SimpleSAML\Configuration object.
+     *   The option must contain an array.
      *
-     * An exception will be thrown if this option isn't an array, or if this option isn't found, and no default value
-     * is given.
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
      *
      * @param string $name The name of the option.
-     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
-     *                        object will be returned if this parameter isn't given and the option doesn't exist.
-     *                        This function will only return null if $default is set to null and the option
-     *                        doesn't exist.
+     * @return \SimpleSAML\Configuration The option with the given name,
      *
-     * @return \SimpleSAML\Configuration|null The option with the given name,
-     *   or $default if the option isn't found and $default is specified.
-     *
-     * @throws \Exception If the option is not an array.
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
-    public function getConfigItem(string $name, $default = []): ?Configuration
+    public function getConfigItem(string $name): Configuration
     {
-        $ret = $this->getValue($name, $default);
-
-        if ($ret === null) {
-            // the option wasn't found, or it is explicitly null
-            // do not instantiate a new Configuration instance, but just return null
-            return null;
-        }
-
-        if (!is_array($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not an array.'
-            );
-        }
+        $ret = $this->getArray($name);
 
         return self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
+    }
+
+
+
+    /**
+     * Retrieve an optional array as a \SimpleSAML\Configuration object.
+     *
+     * This function will load the optional value of an option into a \SimpleSAML\Configuration object.
+     *   The option must contain an array.
+     *
+     * An exception will be thrown if this option isn't an array, or if this option isn't found.
+     *
+     * @param string     $name The name of the option.
+     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
+     *                     object will be returned if this parameter isn't given and the option doesn't exist.
+     *                     This function will only return null if $default is set to null and the option doesn't exist.
+     *
+     * @return \SimpleSAML\Configuration|null The option with the given name,
+     *   or $default, converted into a Configuration object.
+     * @psalm-return     ($default is null ? null : \SimpleSAML\Configuration)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
+     */
+    public function getOptionalConfigItem(string $name, ?array $default): ?Configuration
+    {
+        $ret = $this->getOptionalArray($name, $default);
+
+        return ($ret === null) ? null : self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
     }
 
 
@@ -971,7 +1155,7 @@ class Configuration implements Utils\ClearableState
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
                 ];
-                $responseLocation = $this->getString($endpointType . 'Response', null);
+                $responseLocation = $this->getOptionalString($endpointType . 'Response', null);
                 if ($responseLocation !== null) {
                     $ep['ResponseLocation'] = $responseLocation;
                 }
@@ -1082,41 +1266,54 @@ class Configuration implements Utils\ClearableState
      * The default language returned is always 'en'.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default The default value. If no default is given, and the option isn't found, an exception will
-     *     be thrown.
+     * @param array  $default The default value.
      *
-     * @return mixed Associative array with language => string pairs, or the provided default value.
+     * @return array Associative array with language => string pairs.
      *
-     * @throws \Exception If the translation is not an array or a string, or its index or value are not strings.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     *   If the translation is not an array or a string, or its index or value are not strings.
      */
-    public function getLocalizedString(string $name, $default = self::REQUIRED_OPTION)
+    public function getLocalizedString(string $name): array
     {
-        $ret = $this->getValue($name, $default);
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
-
-        $loc = $this->location . '[' . var_export($name, true) . ']';
+        $ret = $this->getValue($name);
 
         if (is_string($ret)) {
             $ret = ['en' => $ret];
         }
 
-        if (!is_array($ret)) {
-            throw new \Exception($loc . ': Must be an array or a string.');
-        }
+        Assert::isArray($ret, sprintf('%s: Must be an array or a string.', $this->location));
 
         foreach ($ret as $k => $v) {
-            if (!is_string($k)) {
-                throw new \Exception($loc . ': Invalid language code: ' . var_export($k, true));
-            }
-            if (!is_string($v)) {
-                throw new \Exception($loc . '[' . var_export($v, true) . ']: Must be a string.');
-            }
+            Assert::string($k, sprintf('%s: Invalid language code: %s', $this->location, var_export($k, true)));
+            Assert::string($v, sprintf('%s[%s]: Must be a string.', $this->location, var_export($v, true)));
         }
 
         return $ret;
+    }
+
+
+    /**
+     * Retrieve an optional string which may be localized into many languages.
+     *
+     * The default language returned is always 'en'.
+     *
+     * @param string $name The name of the option.
+     * @param mixed  $default The default value.
+     *
+     * @return array|null Associative array with language => string pairs, or the provided default value.
+     * @psalm-return ($default is null ? null : array)
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     *   If the translation is not an array or a string, or its index or value are not strings.
+     */
+    public function getOptionalLocalizedString(string $name, ?array $default): ?array
+    {
+        if (!$this->hasValue($name)) {
+            // the option wasn't found, or it matches the default value. In any case, return this value
+            return $default;
+        }
+
+        return $this->getLocalizedString($name);
     }
 
 
@@ -1153,7 +1350,7 @@ class Configuration implements Utils\ClearableState
         } elseif ($this->hasValue($prefix . 'certData')) {
             $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
-            $keyName = $this->getString($prefix . 'key_name', null);
+            $keyName = $this->getOptionalString($prefix . 'key_name', null);
             return [
                 [
                     'name'            => $keyName,
@@ -1184,7 +1381,7 @@ class Configuration implements Utils\ClearableState
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);
-            $keyName = $this->getString($prefix . 'key_name', null);
+            $keyName = $this->getOptionalString($prefix . 'key_name', null);
 
             return [
                 [

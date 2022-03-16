@@ -66,11 +66,11 @@ class MetaDataStorageHandler implements ClearableState
     {
         $config = Configuration::getInstance();
 
-        $sourcesConfig = $config->getArray('metadata.sources', null);
+        $sourcesConfig = $config->getOptionalArray('metadata.sources', null);
 
         // for backwards compatibility, and to provide a default configuration
         if ($sourcesConfig === null) {
-            $type = $config->getString('metadata.handler', 'flatfile');
+            $type = $config->getOptionalString('metadata.handler', 'flatfile');
             $sourcesConfig = [['type' => $type]];
         }
 

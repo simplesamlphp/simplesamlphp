@@ -61,7 +61,7 @@ class ProcessingChain
     public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
         $config = Configuration::getInstance();
-        $configauthproc = $config->getArray('authproc.' . $mode, null);
+        $configauthproc = $config->getOptionalArray('authproc.' . $mode, null);
 
         if (!empty($configauthproc)) {
             $configfilters = self::parseFilterList($configauthproc);

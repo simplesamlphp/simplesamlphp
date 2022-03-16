@@ -43,7 +43,7 @@ class Message
         Configuration $dstMetadata,
         SignedElement $element
     ): void {
-        $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
+        $dstPrivateKey = $dstMetadata->getOptionalString('signature.privatekey', null);
         $cryptoUtils = new Utils\Crypto();
 
         if ($dstPrivateKey !== null) {
@@ -56,9 +56,9 @@ class Message
             $certArray = $cryptoUtils->loadPublicKey($srcMetadata, false);
         }
 
-        $algo = $dstMetadata->getString('signature.algorithm', null);
+        $algo = $dstMetadata->getOptionalString('signature.algorithm', null);
         if ($algo === null) {
-            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
+            $algo = $srcMetadata->getOptionalString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $privateKey = new XMLSecurityKey($algo, ['type' => 'private']);
@@ -97,21 +97,21 @@ class Message
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
+            $signingEnabled = $srcMetadata->getOptionalBoolean('sign.logout', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
+                $signingEnabled = $dstMetadata->getOptionalBoolean('sign.logout', null);
             }
         } elseif ($message instanceof AuthnRequest) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
+            $signingEnabled = $srcMetadata->getOptionalBoolean('sign.authnrequest', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
+                $signingEnabled = $dstMetadata->getOptionalBoolean('sign.authnrequest', null);
             }
         }
 
         if ($signingEnabled === null) {
-            $signingEnabled = $dstMetadata->getBoolean('redirect.sign', null);
+            $signingEnabled = $dstMetadata->getOptionalBoolean('redirect.sign', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $srcMetadata->getBoolean('redirect.sign', false);
+                $signingEnabled = $srcMetadata->getOptionalBoolean('redirect.sign', false);
             }
         }
         if (!$signingEnabled) {
@@ -203,14 +203,14 @@ class Message
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
-            $enabled = $srcMetadata->getBoolean('validate.logout', null);
+            $enabled = $srcMetadata->getOptionalBoolean('validate.logout', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('validate.logout', null);
+                $enabled = $dstMetadata->getOptionalBoolean('validate.logout', null);
             }
         } elseif ($message instanceof AuthnRequest) {
-            $enabled = $srcMetadata->getBoolean('validate.authnrequest', null);
+            $enabled = $srcMetadata->getOptionalBoolean('validate.authnrequest', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('validate.authnrequest', null);
+                $enabled = $dstMetadata->getOptionalBoolean('validate.authnrequest', null);
             }
         }
 
@@ -222,9 +222,9 @@ class Message
         ) {
             $enabled = true;
         } elseif ($enabled === null) {
-            $enabled = $srcMetadata->getBoolean('redirect.validate', null);
+            $enabled = $srcMetadata->getOptionalBoolean('redirect.validate', null);
             if ($enabled === null) {
-                $enabled = $dstMetadata->getBoolean('redirect.validate', false);
+                $enabled = $dstMetadata->getOptionalBoolean('redirect.validate', false);
             }
         }
 
@@ -254,15 +254,15 @@ class Message
         Configuration $dstMetadata,
         $encryptionMethod = null
     ): array {
-        $sharedKey = $srcMetadata->getString('sharedkey', null);
+        $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
             if ($encryptionMethod !== null) {
                 $algo = $encryptionMethod->getAlgorithm();
             } else {
-                $algo = $srcMetadata->getString('sharedkey_algorithm', null);
+                $algo = $srcMetadata->getOptionalString('sharedkey_algorithm', null);
                 if ($algo === null) {
                     // If no algorithm is supplied or configured, use a sane default as a last resort
-                    $algo = $dstMetadata->getString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
+                    $algo = $dstMetadata->getOptionalString('sharedkey_algorithm', XMLSecurityKey::AES128_GCM);
                 }
             }
 
@@ -320,9 +320,9 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata
     ): array {
-        $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
+        $blacklist = $srcMetadata->getOptionalArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
-            $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
+            $blacklist = $dstMetadata->getOptionalArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
         }
         return $blacklist;
     }
@@ -349,9 +349,9 @@ class Message
         Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
-            $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
+            $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
             if ($encryptAssertion === null) {
-                $encryptAssertion = $dstMetadata->getBoolean('assertion.encryption', false);
+                $encryptAssertion = $dstMetadata->getOptionalBoolean('assertion.encryption', false);
             }
             if ($encryptAssertion) {
                 /* The assertion was unencrypted, but we have encryption enabled. */
@@ -480,10 +480,10 @@ class Message
             $ar->setNameIdPolicy($policy);
         }
 
-        $ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', false));
-        $ar->setIsPassive($spMetadata->getBoolean('IsPassive', false));
+        $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
+        $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
 
-        $protbind = $spMetadata->getValueValidate('ProtocolBinding', [
+        $protbind = $spMetadata->getOptionalValueValidate('ProtocolBinding', [
             Constants::BINDING_HTTP_POST,
             Constants::BINDING_HOK_SSO,
             Constants::BINDING_HTTP_ARTIFACT,
@@ -495,12 +495,16 @@ class Message
         $issuer = new Issuer();
         $issuer->setValue($spMetadata->getString('entityid'));
         $ar->setIssuer($issuer);
-        $ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', null));
-        $ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', null));
+        $ar->setAssertionConsumerServiceIndex(
+            $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
+        );
+        $ar->setAttributeConsumingServiceIndex(
+            $spMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null)
+        );
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getValueValidate('AuthnContextComparison', [
+            $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
                 Constants::COMPARISON_EXACT,
                 Constants::COMPARISON_MINIMUM,
                 Constants::COMPARISON_MAXIMUM,
@@ -652,7 +656,7 @@ class Message
 
         // check various properties of the assertion
         $config = Configuration::getInstance();
-        $allowed_clock_skew = $config->getInteger('assertion.allowed_clock_skew', 180);
+        $allowed_clock_skew = $config->getOptionalInteger('assertion.allowed_clock_skew', 180);
         $options = [
             'options' => [
                 'default' => 180,
@@ -702,9 +706,9 @@ class Message
             }
 
             // is SSO with HoK enabled? IdP remote metadata overwrites SP metadata configuration
-            $hok = $idpMetadata->getBoolean('saml20.hok.assertion', null);
+            $hok = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', null);
             if ($hok === null) {
-                $hok = $spMetadata->getBoolean('saml20.hok.assertion', false);
+                $hok = $spMetadata->getOptionalBoolean('saml20.hok.assertion', false);
             }
             if ($method === Constants::CM_BEARER && $hok) {
                 $lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
@@ -824,7 +828,7 @@ class Message
         // as far as we can tell, the assertion is valid
 
         // maybe we need to base64 decode the attributes in the assertion?
-        if ($idpMetadata->getBoolean('base64attributes', false)) {
+        if ($idpMetadata->getOptionalBoolean('base64attributes', false)) {
             $attributes = $assertion->getAttributes();
             $newAttributes = [];
             foreach ($attributes as $name => $values) {
@@ -880,7 +884,7 @@ class Message
      */
     public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {
-        $sharedKey = $metadata->getString('sharedkey', null);
+        $sharedKey = $metadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
             $key->loadKey($sharedKey);

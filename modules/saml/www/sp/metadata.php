@@ -13,7 +13,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $config = Configuration::getInstance();
-if ($config->getBoolean('admin.protectmetadata', false)) {
+if ($config->getOptionalBoolean('admin.protectmetadata', false)) {
     $authUtils = new Utils\Auth();
     $authUtils->requireAdmin();
 }
@@ -34,7 +34,7 @@ $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 $metaArray20 = $source->getHostedMetadata();
 
-$storeType = $config->getString('store.type', 'phpsession');
+$storeType = $config->getOptionalString('store.type', 'phpsession');
 $store = StoreFactory::getInstance($storeType);
 
 $metaBuilder = new Metadata\SAMLBuilder($entityId);

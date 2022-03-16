@@ -375,7 +375,7 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = Configuration::getInstance()->getValue('trusted.url.domains', []);
+            $trustedSites = Configuration::getInstance()->getOptionalArray('trusted.url.domains', []);
         }
 
         // validates the URL's host is among those allowed
@@ -406,10 +406,10 @@ class HTTP
 
             $self_host = $this->getSelfHostWithNonStandardPort();
 
-            $trustedRegex = Configuration::getInstance()->getValue('trusted.url.regex', false);
+            $trustedRegex = Configuration::getInstance()->getOptionalValue('trusted.url.regex', null);
 
             $trusted = false;
-            if ($trustedRegex) {
+            if (!in_array($trustedRegex, [null, false])) {
                 // add self host to the white list
                 $trustedSites[] = preg_quote($self_host);
                 foreach ($trustedSites as $regex) {
@@ -455,13 +455,13 @@ class HTTP
     {
         $config = Configuration::getInstance();
 
-        $proxy = $config->getString('proxy', null);
+        $proxy = $config->getOptionalString('proxy', null);
         if ($proxy !== null) {
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
             }
-            $proxy_auth = $config->getString('proxy.auth', false);
-            if ($proxy_auth !== false) {
+            $proxy_auth = $config->getOptionalString('proxy.auth', null);
+            if ($proxy_auth !== null) {
                 $context['http']['header'] = "Proxy-Authorization: Basic " . base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {
@@ -638,7 +638,7 @@ class HTTP
     public function getBaseURL(): string
     {
         $globalConfig = Configuration::getInstance();
-        $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
+        $baseURL = $globalConfig->getOptionalString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
@@ -688,7 +688,7 @@ class HTTP
     public function getPOSTRedirectURL(string $destination, array $data): string
     {
         $config = Configuration::getInstance();
-        $allowed = $config->getBoolean('enable.http_post', false);
+        $allowed = $config->getOptionalBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
@@ -802,10 +802,9 @@ class HTTP
              * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
              * for this case in the configuration. First, check if that's the case.
              */
+            $appcfg = $cfg->getOptionalConfigItem('application', null);
+            $appurl = ($appcfg !== null) ? $appcfg->getOptionalString('baseURL', null) : null;
 
-            /** @var \SimpleSAML\Configuration $appcfg */
-            $appcfg = $cfg->getConfigItem('application');
-            $appurl = $appcfg->getString('baseURL', '');
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);
                 $hostname = parse_url($appurl, PHP_URL_HOST);
@@ -1181,7 +1180,7 @@ class HTTP
         }
 
         $config = Configuration::getInstance();
-        $allowed = $config->getBoolean('enable.http_post', false);
+        $allowed = $config->getOptionalBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP

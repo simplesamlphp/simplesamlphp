@@ -214,7 +214,7 @@ class LogoutStore
         }
 
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
@@ -253,7 +253,7 @@ class LogoutStore
     public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         if ($store === false) {

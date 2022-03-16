@@ -416,32 +416,31 @@ class SAMLBuilder
         SPSSODescriptor $spDesc,
         Configuration $metadata
     ): void {
-        $attributes = $metadata->getArray('attributes', []);
-        $name = $metadata->getLocalizedString('name', null);
+        $attributes = $metadata->getOptionalArray('attributes', []);
+        $name = $metadata->getOptionalLocalizedString('name', null);
 
         if ($name === null || count($attributes) == 0) {
             // we cannot add an AttributeConsumingService without name and attributes
             return;
         }
 
-        $attributesrequired = $metadata->getArray('attributes.required', []);
+        $attributesrequired = $metadata->getOptionalArray('attributes.required', []);
 
         /*
          * Add an AttributeConsumingService element with information as name and description and list
          * of requested attributes
          */
         $attributeconsumer = new AttributeConsumingService();
-
-        $attributeconsumer->setIndex($metadata->getInteger('attributes.index', 0));
+        $attributeconsumer->setIndex($metadata->getOptionalInteger('attributes.index', 0));
 
         if ($metadata->hasValue('attributes.isDefault')) {
-            $attributeconsumer->setIsDefault($metadata->getBoolean('attributes.isDefault', false));
+            $attributeconsumer->setIsDefault($metadata->getOptionalBoolean('attributes.isDefault', false));
         }
 
         $attributeconsumer->setServiceName($name);
-        $attributeconsumer->setServiceDescription($metadata->getLocalizedString('description', []));
+        $attributeconsumer->setServiceDescription($metadata->getOptionalLocalizedString('description', []));
 
-        $nameFormat = $metadata->getString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
+        $nameFormat = $metadata->getOptionalString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
         foreach ($attributes as $friendlyName => $attribute) {
             $t = new RequestedAttribute();
             $t->setName($attribute);
@@ -519,10 +518,10 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
-        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
+        foreach ($metadata->getOptionalArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
             $endpoints[] = [
                 'Binding'  => Constants::BINDING_HTTP_ARTIFACT,
                 'Location' => $acs,
@@ -534,7 +533,7 @@ class SAMLBuilder
 
         $this->entityDescriptor->addRoleDescriptor($e);
 
-        foreach ($metadata->getArray('contacts', []) as $contact) {
+        foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
@@ -576,13 +575,13 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $e->setSingleSignOnService(self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false));
 
         $this->entityDescriptor->addRoleDescriptor($e);
 
-        foreach ($metadata->getArray('contacts', []) as $contact) {
+        foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact(Utils\Config\Metadata::getContact($contact));
             }
@@ -604,7 +603,7 @@ class SAMLBuilder
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new AttributeAuthorityDescriptor();
-        $e->setProtocolSupportEnumeration($metadata->getArray('protocols', [Constants::NS_SAMLP]));
+        $e->setProtocolSupportEnumeration($metadata->getOptionalArray('protocols', [Constants::NS_SAMLP]));
 
         $this->addExtensions($metadata, $e);
         $this->addCertificate($e, $metadata);
@@ -615,7 +614,7 @@ class SAMLBuilder
             false
         ));
 
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
+        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
 
         $this->entityDescriptor->addRoleDescriptor($e);
     }

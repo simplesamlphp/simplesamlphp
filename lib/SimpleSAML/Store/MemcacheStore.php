@@ -29,7 +29,7 @@ class MemcacheStore implements StoreInterface
     public function __construct()
     {
         $config = Configuration::getInstance();
-        $this->prefix = $config->getString('memcache_store.prefix', 'simpleSAMLphp');
+        $this->prefix = $config->getOptionalString('memcache_store.prefix', 'simpleSAMLphp');
     }
 
 

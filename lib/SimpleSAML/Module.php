@@ -117,7 +117,7 @@ class Module
     public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', self::$core_modules));
+        return self::isModuleEnabledWithConf($module, $config->getOptionalArray('module.enable', self::$core_modules));
     }
 
 
@@ -298,19 +298,18 @@ class Module
             }
         }
 
-        /** @psalm-var \SimpleSAML\Configuration $assetConfig */
+
         $assetConfig = $config->getConfigItem('assets');
-        /** @psalm-var \SimpleSAML\Configuration $cacheConfig */
         $cacheConfig = $assetConfig->getConfigItem('caching');
         $response = new BinaryFileResponse($path);
         $response->setCache([
             // "public" allows response caching even if the request was authenticated,
             // which is exactly what we want for static resources
             'public' => true,
-            'max_age' => strval($cacheConfig->getInteger('max_age', 86400))
+            'max_age' => strval($cacheConfig->getOptionalInteger('max_age', 86400))
         ]);
         $response->setAutoLastModified();
-        if ($cacheConfig->getBoolean('etag', false)) {
+        if ($cacheConfig->getOptionalBoolean('etag', false)) {
             $response->setAutoEtag();
         }
         $response->isNotModified($request);
@@ -522,7 +521,7 @@ class Module
     public static function callHooks(string $hook, &$data = null): void
     {
         $modules = self::getModules();
-        $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
+        $config = Configuration::getOptionalConfig()->getOptionalArray('module.enable', []);
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {

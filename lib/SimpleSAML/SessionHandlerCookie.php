@@ -45,7 +45,7 @@ abstract class SessionHandlerCookie extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.cookie.name', 'SimpleSAMLSessionID');
+        $this->cookie_name = $config->getOptionalString('session.cookie.name', 'SimpleSAMLSessionID');
     }
 
 

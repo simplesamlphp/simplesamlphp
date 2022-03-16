@@ -79,7 +79,7 @@ class SessionHandlerStore extends SessionHandlerCookie
         $sessionId = $session->getSessionId();
 
         $config = Configuration::getInstance();
-        $sessionDuration = $config->getInteger('session.duration', 8 * 60 * 60);
+        $sessionDuration = $config->getOptionalInteger('session.duration', 8 * 60 * 60);
         $expire = time() + $sessionDuration;
 
         $this->store->set('session', $sessionId, $session, $expire);

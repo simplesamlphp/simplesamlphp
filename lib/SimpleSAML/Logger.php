@@ -449,11 +449,11 @@ class Logger
         $config = Configuration::getInstance();
 
         // setting minimum log_level
-        self::$logLevel = $config->getInteger('logging.level', self::INFO);
+        self::$logLevel = $config->getOptionalInteger('logging.level', self::INFO);
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
-            $handler = $config->getString(
+            $handler = $config->getOptionalString(
                 'logging.handler',
                 php_sapi_name() === 'cli' || defined('STDIN') ? 'stderr' : 'syslog'
             );
@@ -473,7 +473,7 @@ class Logger
             $handler = $known_handlers[$handler];
         }
 
-        self::$format = $config->getString('logging.format', self::$format);
+        self::$format = $config->getOptionalString('logging.format', self::$format);
 
         try {
             /** @var \SimpleSAML\Logger\LoggingHandlerInterface */

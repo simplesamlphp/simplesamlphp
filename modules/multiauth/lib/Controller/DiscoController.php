@@ -129,7 +129,7 @@ class DiscoController
 
         $t = new Template($this->config, 'multiauth:selectsource.twig');
 
-        $defaultLanguage = $this->config->getString('language.default', 'en');
+        $defaultLanguage = $this->config->getOptionalString('language.default', 'en');
         $language = $t->getTranslator()->getLanguage()->getLanguage();
 
         $sources = $state[MultiAuth::SOURCESID];

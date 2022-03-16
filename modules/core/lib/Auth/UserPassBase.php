@@ -120,8 +120,8 @@ abstract class UserPassBase extends Auth\Source
 
         // get the "remember me" config options
         $sspcnf = Configuration::getInstance();
-        $this->rememberMeEnabled = $sspcnf->getBoolean('session.rememberme.enable', false);
-        $this->rememberMeChecked = $sspcnf->getBoolean('session.rememberme.checked', false);
+        $this->rememberMeEnabled = $sspcnf->getOptionalBoolean('session.rememberme.enable', false);
+        $this->rememberMeChecked = $sspcnf->getOptionalBoolean('session.rememberme.checked', false);
     }
 
 

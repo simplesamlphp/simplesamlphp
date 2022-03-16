@@ -101,7 +101,7 @@ if (!empty($stateId)) {
     }
 }
 
-$enableUnsolicited = $spMetadata->getBoolean('enable_unsolicited', true);
+$enableUnsolicited = $spMetadata->getOptionalBoolean('enable_unsolicited', true);
 if ($state === null && $enableUnsolicited === false) {
     throw new Error\BadRequest('Unsolicited responses are denied by configuration.');
 }
@@ -119,7 +119,7 @@ if ($state) {
     Assert::keyExists($state, 'ExpectedIssuer');
     if ($state['ExpectedIssuer'] !== $issuer) {
         $idpMetadata = $source->getIdPMetadata($issuer);
-        $idplist = $idpMetadata->getArrayize('IDPList', []);
+        $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
         if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
             Logger::warning(
                 'The issuer of the response not match to the identity provider we sent the request to.'
@@ -128,7 +128,7 @@ if ($state) {
     }
 } else {
     // this is an unsolicited response
-    $relaystate = $spMetadata->getString('RelayState', $response->getRelayState());
+    $relaystate = $spMetadata->getOptionalString('RelayState', $response->getRelayState());
     $state = [
         'saml:sp:isUnsolicited' => true,
         'saml:sp:AuthId'        => $sourceId,
@@ -159,7 +159,7 @@ $attributes = [];
 $foundAuthnStatement = false;
 
 $config = Configuration::getInstance();
-$storeType = $config->getString('store.type', 'phpsession');
+$storeType = $config->getOptionalString('store.type', 'phpsession');
 
 $store = StoreFactory::getInstance($storeType);
 

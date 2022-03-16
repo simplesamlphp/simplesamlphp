@@ -32,7 +32,7 @@ class StoreFactoryTest extends TestCase
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         /** @var false $store */
         $store = StoreFactory::getInstance($storeType);
@@ -66,7 +66,7 @@ class StoreFactoryTest extends TestCase
     public function memcacheStore(): void
     {
         Configuration::loadFromArray([
-            'store.type'                    => 'memcache',
+            'store.type' => 'memcache',
         ], '[ARRAY]', 'simplesaml');
 
         $config = Configuration::getInstance();
@@ -166,7 +166,7 @@ class StoreFactoryTest extends TestCase
     protected function tearDown(): void
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         /** @var \SimpleSAML\Store\StoreInterface $store */
         $store = StoreFactory::getInstance($storeType);

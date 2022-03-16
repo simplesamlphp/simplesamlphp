@@ -96,3 +96,17 @@ processing filters or interface with the SimpleSAMLphp development API.
     - lib/SimpleSAML/Store/Memcache.php has been renamed to lib/SimpleSAML/Store/MemcacheStore.php
     - lib/SimpleSAML/Store/Redis.php has been renamed to lib/SimpleSAML/Store/RedisStore.php
 
+- The following methods have had their signature changed:
+  - Configuration::getValue
+  - Configuration::getBoolean
+  - Configuration::getString
+  - Configuration::getInteger
+  - Configuration::getIntegerRange
+  - Configuration::getValueValidate
+  - Configuration::getArray
+  - Configuration::getArrayize
+  - Configuration::getArrayizeString
+  - Configuration::getConfigItem
+  - Configuration::getLocalizedString
+
+  All of these methods no longer accept a default as their last parameter. Use their getOptional* counterparts instead.

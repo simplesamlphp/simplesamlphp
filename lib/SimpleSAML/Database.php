@@ -84,28 +84,28 @@ class Database
      */
     private function __construct(Configuration $config)
     {
-        $driverOptions = $config->getArray('database.driver_options', []);
-        if ($config->getBoolean('database.persistent', true)) {
+        $driverOptions = $config->getOptionalArray('database.driver_options', []);
+        if ($config->getOptionalBoolean('database.persistent', true)) {
             $driverOptions[PDO::ATTR_PERSISTENT] = true;
         }
 
         // connect to the primary
         $this->dbPrimary = $this->connect(
             $config->getString('database.dsn'),
-            $config->getString('database.username', null),
-            $config->getString('database.password', null),
+            $config->getOptionalString('database.username', null),
+            $config->getOptionalString('database.password', null),
             $driverOptions
         );
 
         // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-        if ($config->getArray('database.slaves', null) !== null) {
+        if ($config->getOptionalArray('database.slaves', null) !== null) {
             Logger::warning(
                 'The "database.slaves" config option is deprecated. ' .
                 'Please update your configuration to use "database.secondaries".'
             );
         }
         // connect to any configured secondaries, preserving legacy config option
-        $secondaries = $config->getArray('database.secondaries', $config->getArray('database.slaves', []));
+        $secondaries = $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', []));
         foreach ($secondaries as $secondary) {
             array_push(
                 $this->dbSecondaries,
@@ -117,7 +117,7 @@ class Database
                 )
             );
         }
-        $this->tablePrefix = $config->getString('database.prefix', '');
+        $this->tablePrefix = $config->getOptionalString('database.prefix', '');
     }
 
 
@@ -133,13 +133,14 @@ class Database
         $assembledConfig = [
             'primary' => [
                 'database.dsn'        => $config->getString('database.dsn'),
-                'database.username'   => $config->getString('database.username', null),
-                'database.password'   => $config->getString('database.password', null),
-                'database.prefix'     => $config->getString('database.prefix', ''),
-                'database.persistent' => $config->getBoolean('database.persistent', true),
+                'database.username'   => $config->getOptionalString('database.username', null),
+                'database.password'   => $config->getOptionalString('database.password', null),
+                'database.prefix'     => $config->getOptionalString('database.prefix', ''),
+                'database.persistent' => $config->getOptionalBoolean('database.persistent', true),
             ],
+
             // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-            'secondaries' => $config->getArray('database.secondaries', $config->getArray('database.slaves', [])),
+            'secondaries' => $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', [])),
         ];
 
         return sha1(serialize($assembledConfig));

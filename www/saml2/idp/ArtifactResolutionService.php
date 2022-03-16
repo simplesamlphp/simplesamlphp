@@ -23,7 +23,7 @@ use SimpleSAML\Metadata;
 use SimpleSAML\Store\StoreFactory;
 
 $config = Configuration::getInstance();
-if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+if (!$config->getOptionalBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
     throw new Error\Error('NOACCESS', null, 403);
 }
 
@@ -31,11 +31,11 @@ $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
-if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
+if (!$idpMetadata->getOptionalBoolean('saml20.sendartifact', false)) {
     throw new Error\Error('NOACCESS');
 }
 
-$storeType = $config->getString('store.type', 'phpsession');
+$storeType = $config->getOptionalString('store.type', 'phpsession');
 $store = StoreFactory::getInstance($storeType);
 if ($store === false) {
     throw new Exception('Unable to send artifact without a datastore configured.');

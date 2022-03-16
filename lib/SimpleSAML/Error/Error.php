@@ -230,7 +230,7 @@ class Error extends Exception
         $config = Configuration::getInstance();
 
         $data = [];
-        $data['showerrors'] = $config->getBoolean('showerrors', true);
+        $data['showerrors'] = $config->getOptionalBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
         $data['parameters'] = $this->parameters;
@@ -242,8 +242,8 @@ class Error extends Exception
 
         // check if there is a valid technical contact email address
         if (
-            $config->getBoolean('errorreporting', true)
-            && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
+            $config->getOptionalBoolean('errorreporting', true)
+            && $config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
             $httpUtils = new Utils\HTTP();
@@ -262,7 +262,7 @@ class Error extends Exception
             }
         }
 
-        $show_function = $config->getArray('errors.show_function', null);
+        $show_function = $config->getOptionalArray('errors.show_function', null);
         if (isset($show_function)) {
             Assert::isCallable($show_function);
             $this->setHTTPCode();

@@ -50,7 +50,7 @@ class AdminPassword extends UserPassBase
     protected function login(string $username, string $password): array
     {
         $config = Configuration::getInstance();
-        $adminPassword = $config->getString('auth.adminpassword', '123');
+        $adminPassword = $config->getOptionalString('auth.adminpassword', '123');
         if ($adminPassword === '123') {
             // We require that the user changes the password
             throw new Error\Error('NOTSET');

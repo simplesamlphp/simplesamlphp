@@ -28,7 +28,7 @@ class ExtendIdPSession extends Auth\ProcessingFilter
         $delta = $state['Expire'] - $now;
 
         $globalConfig = Configuration::getInstance();
-        $sessionDuration = $globalConfig->getInteger('session.duration', 28800); // 8*60*60
+        $sessionDuration = $globalConfig->getOptionalInteger('session.duration', 28800); // 8*60*60
 
         // Extend only if half of session duration already passed
         if ($delta >= ($sessionDuration * 0.5)) {
@@ -46,7 +46,7 @@ class ExtendIdPSession extends Auth\ProcessingFilter
         if (
             !empty($state['RememberMe'])
             && $rememberMeExpire !== null
-            && $globalConfig->getBoolean('session.rememberme.enable', false)
+            && $globalConfig->getOptionalBoolean('session.rememberme.enable', false)
         ) {
             $session->setRememberMeExpire();
             return;

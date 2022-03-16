@@ -46,8 +46,7 @@ class Simple
             $config = Configuration::getInstance();
         }
         $this->authSource = $authSource;
-        /** @psalm-var \SimpleSAML\Configuration $this->app_config */
-        $this->app_config = $config->getConfigItem('application');
+        $this->app_config = $config->getOptionalConfigItem('application', []);
 
         if ($session === null) {
             $session = Session::getSessionFromRequest();
@@ -385,7 +384,7 @@ class Simple
             $port = '';
         }
 
-        $base = trim($this->app_config->getString(
+        $base = trim($this->app_config->getOptionalString(
             'baseURL',
             $scheme . '://' . $host . $port
         ), '/');

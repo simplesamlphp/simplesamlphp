@@ -48,7 +48,7 @@ $data['version'] = $config->getVersion();
 $data['hostname'] = php_uname('n');
 $data['directory'] = dirname(dirname(__FILE__));
 
-if ($config->getBoolean('errorreporting', true)) {
+if ($config->getOptionalBoolean('errorreporting', true)) {
     $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
     $mail->setData($data);
     if ($email) {

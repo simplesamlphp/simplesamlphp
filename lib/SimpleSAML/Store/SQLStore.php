@@ -55,10 +55,10 @@ class SQLStore implements StoreInterface
         $config = Configuration::getInstance();
 
         $dsn = $config->getString('store.sql.dsn');
-        $username = $config->getString('store.sql.username', null);
-        $password = $config->getString('store.sql.password', null);
-        $options = $config->getArray('store.sql.options', null);
-        $this->prefix = $config->getString('store.sql.prefix', 'simpleSAMLphp');
+        $username = $config->getOptionalString('store.sql.username', null);
+        $password = $config->getOptionalString('store.sql.password', null);
+        $options = $config->getOptionalArray('store.sql.options', null);
+        $this->prefix = $config->getOptionalString('store.sql.prefix', 'simpleSAMLphp');
         try {
             $this->pdo = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $e) {

@@ -203,7 +203,7 @@ class Crypto
         string $prefix = '',
         bool $full_path = false
     ): ?array {
-        $file = $metadata->getString($prefix . 'privatekey', null);
+        $file = $metadata->getOptionalString($prefix . 'privatekey', null);
         if ($file === null) {
             // no private key found
             if ($required) {
@@ -225,7 +225,7 @@ class Crypto
 
         $ret = [
             'PEM' => $data,
-            'password' => $metadata->getString($prefix . 'privatekey_pass', null),
+            'password' => $metadata->getOptionalString($prefix . 'privatekey_pass', null),
         ];
 
         return $ret;

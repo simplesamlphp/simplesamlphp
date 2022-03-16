@@ -9,12 +9,12 @@ use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 
 $config = Configuration::getInstance();
-if (!$config->getBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+if (!$config->getOptionalBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
     throw new Error\Error('NOACCESS', null, 403);
 }
 
 // check if valid local session exists
-if ($config->getBoolean('admin.protectmetadata', false)) {
+if ($config->getOptionalBoolean('admin.protectmetadata', false)) {
     $authUtils = new Utils\Auth();
     $authUtils->requireAdmin();
 }

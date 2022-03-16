@@ -136,7 +136,7 @@ abstract class SessionHandler
     private static function createSessionHandler(): void
     {
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', 'phpsession');
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
@@ -158,11 +158,11 @@ abstract class SessionHandler
         $config = Configuration::getInstance();
 
         return [
-            'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
-            'path'     => $config->getString('session.cookie.path', '/'),
-            'domain'   => $config->getString('session.cookie.domain', null),
-            'secure'   => $config->getBoolean('session.cookie.secure', false),
-            'samesite' => $config->getString('session.cookie.samesite', null),
+            'lifetime' => $config->getOptionalInteger('session.cookie.lifetime', 0),
+            'path'     => $config->getOptionalString('session.cookie.path', '/'),
+            'domain'   => $config->getOptionalString('session.cookie.domain', null),
+            'secure'   => $config->getOptionalBoolean('session.cookie.secure', false),
+            'samesite' => $config->getOptionalString('session.cookie.samesite', null),
             'httponly' => true,
         ];
     }

@@ -243,7 +243,7 @@ class IdPDisco
             return null;
         }
 
-        if (!$this->config->getBoolean('idpdisco.validate', true)) {
+        if (!$this->config->getOptionalBoolean('idpdisco.validate', true)) {
             return $idp;
         }
 
@@ -308,7 +308,7 @@ class IdPDisco
      */
     protected function getSavedIdP(): ?string
     {
-        if (!$this->config->getBoolean('idpdisco.enableremember', false)) {
+        if (!$this->config->getOptionalBoolean('idpdisco.enableremember', false)) {
             // saving of IdP choices is disabled
             return null;
         }
@@ -402,7 +402,7 @@ class IdPDisco
      */
     protected function saveIdP(): bool
     {
-        if (!$this->config->getBoolean('idpdisco.enableremember', false)) {
+        if (!$this->config->getOptionalBoolean('idpdisco.enableremember', false)) {
             // saving of IdP choices is disabled
             return false;
         }
@@ -513,7 +513,7 @@ class IdPDisco
         $httpUtils = new Utils\HTTP();
         $idp = $this->getTargetIdP();
         if ($idp !== null) {
-            $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
+            $extDiscoveryStorage = $this->config->getOptionalString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
                 $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
@@ -576,7 +576,7 @@ class IdPDisco
          * Make use of an XHTML template to present the select IdP choice to the user. Currently the supported options
          * is either a drop down menu or a list view.
          */
-        switch ($this->config->getString('idpdisco.layout', 'links')) {
+        switch ($this->config->getOptionalString('idpdisco.layout', 'links')) {
             case 'dropdown':
                 $templateFile = 'selectidp-dropdown.twig';
                 break;
@@ -618,8 +618,8 @@ class IdPDisco
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
         $t->data['urlpattern'] = htmlspecialchars($httpUtils->getSelfURLNoQuery());
-        $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
-        $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
+        $t->data['rememberenabled'] = $this->config->getOptionalBoolean('idpdisco.enableremember', false);
+        $t->data['rememberchecked'] = $this->config->getOptionalBoolean('idpdisco.rememberchecked', false);
         $t->send();
     }
 }

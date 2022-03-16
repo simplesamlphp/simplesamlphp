@@ -65,7 +65,7 @@ class EMail
     public function getDefaultMailAddress(): string
     {
         $config = Configuration::getInstance();
-        $address = $config->getString('technicalcontact_email', 'na@example.org');
+        $address = $config->getOptionalString('technicalcontact_email', 'na@example.org');
         $address = preg_replace('/^mailto:/i', '', $address);
         if ('na@example.org' === $address) {
             throw new \Exception('technicalcontact_email must be changed from the default value');
@@ -228,8 +228,8 @@ class EMail
     {
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(
-            $config->getString('mail.transport.method', 'mail'),
-            $config->getArrayize('mail.transport.options', [])
+            $config->getOptionalString('mail.transport.method', 'mail'),
+            $config->getOptionalArrayize('mail.transport.options', [])
         );
 
         return $EMail;

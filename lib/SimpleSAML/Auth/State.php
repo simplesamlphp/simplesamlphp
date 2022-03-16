@@ -181,7 +181,7 @@ class State
     {
         if (self::$stateTimeout === null) {
             $globalConfig = Configuration::getInstance();
-            self::$stateTimeout = $globalConfig->getInteger('session.state.timeout', 60 * 60);
+            self::$stateTimeout = $globalConfig->getOptionalInteger('session.state.timeout', 60 * 60);
         }
 
         return self::$stateTimeout;
