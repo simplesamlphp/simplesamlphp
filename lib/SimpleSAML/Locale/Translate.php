@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Gettext\Translator;
+use Gettext\TranslatorFunctions;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
@@ -81,8 +82,7 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $loc = new Localization(Configuration::getInstance());
-        $text = $loc->getTranslator()->gettext($original);
+        $text = TranslatorFunctions::getTranslator()->gettext($original);
 
         if (func_num_args() === 1) {
             return $text;
@@ -108,8 +108,7 @@ class Translate
         // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
         $original = $original ?? 'undefined variable';
 
-        $loc = new Localization(Configuration::getInstance());
-        $text = $loc->getTranslator()->ngettext($original, $plural, $value);
+        $text = TranslatorFunctions::getTranslator()->ngettext($original, $plural, $value);
 
         if (func_num_args() === 3) {
             return $text;
