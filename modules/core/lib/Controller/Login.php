@@ -223,9 +223,9 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        UserPassBase::handleLogin($authStateId, $username, $password);
-                    } else {
                         UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+                    } else {
+                        UserPassBase::handleLogin($authStateId, $username, $password);
                     }
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
