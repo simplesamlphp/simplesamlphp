@@ -175,10 +175,10 @@ class Template extends Response
             $this->controller = new $controller();
         }
 
-        $this->twig = $this->setupTwig();
-
-        $this->charset = 'UTF-8';
         $this->fileSystem = new Filesystem();
+        $this->twig = $this->setupTwig();
+        $this->charset = 'UTF-8';
+
         parent::__construct();
     }
 
