@@ -2,7 +2,8 @@
 <psalm
     name="SimpleSAMLphp"
     useDocblockTypes="true"
-    totallyTyped="false"
+    errorLevel="2"
+    reportMixedIssues="false"
     hideExternalErrors="true"
     allowStringToStandInForClass="true"
 >
