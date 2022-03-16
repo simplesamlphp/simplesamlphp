@@ -9,6 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Attribute filter for renaming attributes.
@@ -93,7 +94,8 @@ class AttributeMap extends Auth\ProcessingFilter
             $filePath = $attributenamemapdir . $fileName . '.php';
         }
 
-        if (!file_exists($filePath)) {
+        $fileSystem = new Filesystem();
+        if (!$fileSystem->exists($filePath)) {
             throw new Exception('Could not find attribute map file: ' . $filePath);
         }
 

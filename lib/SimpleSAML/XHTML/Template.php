@@ -10,8 +10,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use Exception;
+use InvalidArgumentException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Locale\Translate;
@@ -20,11 +23,31 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use Twig\Error\RuntimeError;
+use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+
+use function class_exists;
+use function count;
+use function date;
+use function explode;
+use function hash;
+use function htmlspecialchars;
+use function in_array;
+use function is_null;
+use function key;
+use function ksort;
+use function strripos;
+use function strtolower;
+use function strval;
+use function substr;
 
 /**
  * The content-property is set upstream, but this is not recognized by Psalm
@@ -110,6 +133,11 @@ class Template extends Response
      */
     private array $theme = ['module' => null, 'name' => 'default'];
 
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    private Filesystem $fileSystem;
+
 
     /**
      * Constructor
@@ -150,6 +178,7 @@ class Template extends Response
         $this->twig = $this->setupTwig();
 
         $this->charset = 'UTF-8';
+        $this->fileSystem = new Filesystem();
         parent::__construct();
     }
 
@@ -173,14 +202,15 @@ class Template extends Response
             $path = Module::getModuleUrl($module . '/assets/' . $asset);
         }
 
-        if (!file_exists($file)) {
+        if (!$this->fileSystem->exists($file)) {
             // don't be too harsh if an asset is missing, just pretend it's there...
             return $path;
         }
+        $file = new File($file);
 
         $tag = $this->configuration->getVersion();
         if ($tag === 'master') {
-            $tag = strval(filemtime($file));
+            $tag = strval($file->getMtime());
         }
         $tag = substr(hash('md5', $tag), 0, 5);
 
@@ -240,7 +270,7 @@ class Template extends Response
                 $templateDirs[] = [
                     $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
                 ];
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
         }
@@ -273,7 +303,7 @@ class Template extends Response
 
         // abort if twig template does not exist
         if (!$loader->exists($this->twig_template)) {
-            throw new \Exception('Template-file \"' . $this->getTemplateName() . '\" does not exist.');
+            throw new Exception('Template-file \"' . $this->getTemplateName() . '\" does not exist.');
         }
 
         // load extra i18n domains
@@ -294,7 +324,7 @@ class Template extends Response
         $twig = new Environment($loader, $options);
         $twigTranslator = new TwigTranslator([Translate::class, 'translateSingularGettext']);
         $twig->addExtension(new TranslationExtension($twigTranslator));
-        $twig->addExtension(new \Twig\Extra\Intl\IntlExtension());
+        $twig->addExtension(new IntlExtension());
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
@@ -356,28 +386,30 @@ class Template extends Response
 
         // setup directories & namespaces
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
-        $subdirs = @scandir($themeDir);
-        if (empty($subdirs)) {
+
+        if (!$this->fileSystem->exists($themeDir)) {
             Logger::warning(
-                sprintf(
-                    'Theme directory for theme "%s" (%s) is not readable or is empty.',
-                    $this->theme['name'],
-                    $themeDir
-                )
+                sprintf('Theme directory for theme "%s" (%s) does not exist.', $this->theme['name'], $themeDir),
             );
             return [];
         }
 
-        $themeTemplateDirs = [];
-        foreach ($subdirs as $entry) {
-            // discard anything that's not a directory. Expression is negated to profit from lazy evaluation
-            if (!($entry !== '.' && $entry !== '..' && is_dir($themeDir . '/' . $entry))) {
-                continue;
-            }
+        $finder = new Finder();
+        $finder->directories()->in($themeDir)->depth(0);
+        if (!$finder->hasResults()) {
+            Logger::warning(sprintf(
+                'Theme directory for theme "%s" (%s) is not readable or is empty.',
+                $this->theme['name'],
+                $themeDir,
+            ));
+            return [];
+        }
 
+        $themeTemplateDirs = [];
+        foreach ($finder as $entry) {
             // set correct name for the default namespace
-            $ns = ($entry === 'default') ? FilesystemLoader::MAIN_NAMESPACE : $entry;
-            $themeTemplateDirs[] = [$ns => $themeDir . '/' . $entry];
+            $ns = ($entry->getFileName() === 'default') ? FilesystemLoader::MAIN_NAMESPACE : $entry->getFileName();
+            $themeTemplateDirs[] = [$ns => strval($entry)];
         }
         return $themeTemplateDirs;
     }
@@ -394,15 +426,16 @@ class Template extends Response
     private function getModuleTemplateDir(string $module): string
     {
         if (!Module::isModuleEnabled($module)) {
-            throw new \InvalidArgumentException('The module \'' . $module . '\' is not enabled.');
+            throw new InvalidArgumentException('The module \'' . $module . '\' is not enabled.');
         }
         $moduledir = Module::getModuleDir($module);
         // check if module has a /templates dir, if so, append
-        $templatedir = $moduledir . '/templates';
-        if (!is_dir($templatedir)) {
-            throw new \InvalidArgumentException('The module \'' . $module . '\' has no templates directory.');
+        $templateDir = $moduledir . '/templates';
+        $file = new File($templateDir);
+        if (!$file->isDir()) {
+            throw new InvalidArgumentException('The module \'' . $module . '\' has no templates directory.');
         }
-        return $templatedir;
+        return $templateDir;
     }
 
 
@@ -515,8 +548,8 @@ class Template extends Response
         }
         try {
             return $this->twig->render($this->twig_template, $this->data);
-        } catch (\Twig\Error\RuntimeError $e) {
-            throw new \SimpleSAML\Error\Exception(substr($e->getMessage(), 0, -1) . ' in ' . $this->template, 0, $e);
+        } catch (RuntimeError $e) {
+            throw new Error\Exception(substr($e->getMessage(), 0, -1) . ' in ' . $this->template, 0, $e);
         }
     }
 

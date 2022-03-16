@@ -4,21 +4,35 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata\Sources;
 
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\File\File;
+
+use function array_key_exists;
+use function error_get_last;
+use function is_array;
+use function serialize;
+use function sha1;
+use function sprintf;
+use function strval;
+use function time;
+use function unserialize;
+use function urlencode;
 
 /**
  * This class implements SAML Metadata Query Protocol
  *
- * @package SimpleSAMLphp
+ * @package simplesamlphp/simplesamlphp
  */
 
-class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
+class MDQ extends MetaDataStorageSource
 {
     /**
      * The URL of MDQ server (url:port)
@@ -34,14 +48,12 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     private ?string $cacheDir;
 
-
     /**
      * The maximum cache length, in seconds.
      *
      * @var integer
      */
     private int $cacheLength;
-
 
     /**
      * This function initializes the dynamic XML metadata source.
@@ -60,8 +72,10 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
+        parent::__construct($config);
+
         if (!array_key_exists('server', $config)) {
-            throw new \Exception(__CLASS__ . ": the 'server' configuration option is not set.");
+            throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
         } else {
             $this->server = $config['server'];
         }
@@ -120,7 +134,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param string $set The metadata set this entity belongs to.
      * @param string $entityId The entity id of this entity.
      *
-     * @return array|NULL  The associative array with the metadata for this entity, or NULL
+     * @return array|null  The associative array with the metadata for this entity, or NULL
      *                     if the entity could not be found.
      * @throws \Exception If an error occurs while loading metadata from cache.
      */
@@ -130,41 +144,47 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             return null;
         }
 
-        $cachefilename = $this->getCacheFilename($set, $entityId);
-        if (!file_exists($cachefilename)) {
+        $cacheFileName = $this->getCacheFilename($set, $entityId);
+        if (!$this->fileSystem->exists($cacheFileName)) {
             return null;
         }
-        if (!is_readable($cachefilename)) {
-            throw new \Exception(__CLASS__ . ': could not read cache file for entity [' . $cachefilename . ']');
+
+        $file = new File($cacheFileName);
+        if (!$file->isReadable()) {
+            throw new Exception(sprintf('%s: could not read cache file for entity [%s]', strval($file), __CLASS__));
         }
-        Logger::debug(__CLASS__ . ': reading cache [' . $entityId . '] => [' . $cachefilename . ']');
+        Logger::debug(sprintf('%s: reading cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
 
         /* Ensure that this metadata isn't older that the cachelength option allows. This
          * must be verified based on the file, since this option may be changed after the
          * file is written.
          */
-        $stat = stat($cachefilename);
-        if ($stat['mtime'] + $this->cacheLength <= time()) {
-            Logger::debug(__CLASS__ . ': cache file older that the cachelength option allows.');
+        if (($file->getMtime() + $this->cacheLength) <= time()) {
+            Logger::debug(sprintf('%s: cache file older that the cachelength option allows.', __CLASS__));
             return null;
         }
 
-        $rawData = file_get_contents($cachefilename);
+        $rawData = $file->getContent();
         if (empty($rawData)) {
             /** @var array $error */
             $error = error_get_last();
-            throw new \Exception(
-                __CLASS__ . ': error reading metadata from cache file "' . $cachefilename . '": ' . $error['message']
-            );
+            throw new Exception(sprintf(
+                '%s: error reading metadata from cache file "%s": %s',
+                __CLASS__,
+                strval($file),
+                $error['message'],
+            ));
         }
 
         $data = unserialize($rawData);
         if ($data === false) {
-            throw new \Exception(__CLASS__ . ': error unserializing cached data from file "' . $cachefilename . '".');
+            throw new Exception(
+                sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file))
+            );
         }
 
         if (!is_array($data)) {
-            throw new \Exception(__CLASS__ . ': Cached metadata from "' . $cachefilename . '" wasn\'t an array.');
+            throw new Exception(sprintf('%s: Cached metadata from "%s" wasn\'t an array.', __CLASS__, strval($file)));
         }
 
         return $data;
@@ -186,12 +206,11 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             return;
         }
 
-        $cachefilename = $this->getCacheFilename($set, $entityId);
-        if (!is_writable(dirname($cachefilename))) {
-            throw new \Exception(__CLASS__ . ': could not write cache file for entity [' . $cachefilename . ']');
-        }
-        Logger::debug(__CLASS__ . ': Writing cache [' . $entityId . '] => [' . $cachefilename . ']');
-        file_put_contents($cachefilename, serialize($data));
+        $cacheFileName = $this->getCacheFilename($set, $entityId);
+        $file = new File($cacheFileName);
+
+        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
+        $this->fileSystem->appendToFile(strval($file), serialize($data), true);
     }
 
 
@@ -201,7 +220,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param \SimpleSAML\Metadata\SAMLParser $entity A SAML2Parser representing an entity.
      * @param string                         $set The metadata set we are looking for.
      *
-     * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
+     * @return array|null  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
     private static function getParsedSet(SAMLParser $entity, string $set): ?array
@@ -214,7 +233,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             case 'attributeauthority-remote':
                 return $entity->getAttributeAuthorities();
             default:
-                Logger::warning(__CLASS__ . ': unknown metadata set: \'' . $set . '\'.');
+                Logger::warning(sprintf('%s: unknown metadata set: \'%s\'.', __CLASS__, $set));
         }
 
         return null;
@@ -241,12 +260,12 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     public function getMetaData(string $entityId, string $set): ?array
     {
-        Logger::info(__CLASS__ . ': loading metadata entity [' . $entityId . '] from [' . $set . ']');
+        Logger::info(sprintf('%s: loading metadata entity [%s] from [%s]', __CLASS__, $entityId, $set));
 
         // read from cache if possible
         try {
             $data = $this->getFromCache($set, $entityId);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Logger::error($e->getMessage());
             // proceed with fetching metadata even if the cache is broken
             $data = null;
@@ -259,45 +278,49 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         if (isset($data)) {
             // metadata found in cache and not expired
-            Logger::debug(__CLASS__ . ': using cached metadata for: ' . $entityId . '.');
+            Logger::debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));
             return $data;
         }
 
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
         $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
-        Logger::debug(__CLASS__ . ': downloading metadata for "' . $entityId . '" from [' . $mdq_url . ']');
+        Logger::debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
         $httpUtils = new Utils\HTTP();
         try {
             $xmldata = $httpUtils->fetch($mdq_url);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Avoid propagating the exception, make sure we can handle the error later
             $xmldata = false;
         }
 
         if (empty($xmldata)) {
             $error = error_get_last();
-            Logger::info('Unable to fetch metadata for "' . $entityId . '" from ' . $mdq_url . ': ' .
-                (is_array($error) ? $error['message'] : 'no error available'));
+            Logger::info(sprintf(
+                'Unable to fetch metadata for "%s" from %s: %s',
+                $entityId,
+                $mdq_url,
+                (is_array($error) ? $error['message'] : 'no error available')
+            ));
             return null;
         }
 
         /** @var string $xmldata */
         $entity = SAMLParser::parseString($xmldata);
-        Logger::debug(__CLASS__ . ': completed parsing of [' . $mdq_url . ']');
+        Logger::debug(sprintf('%s: completed parsing of [%s]', __CLASS__, $mdq_url));
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
-            throw new \Exception(
-                __CLASS__ . ': no metadata for set "' . $set . '" available from "' . $entityId . '".'
+            throw new Exception(
+                sprintf('%s: no metadata for set "%s" available from "%s".', __CLASS__, $set, $entityId)
             );
         }
 
         try {
             $this->writeToCache($set, $entityId, $data);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Proceed without writing to cache
-            Logger::error('Error writing MDQ result to cache: ' . $e->getMessage());
+            Logger::error(sprintf('Error writing MDQ result to cache: %s', $e->getMessage()));
         }
 
         return $data;

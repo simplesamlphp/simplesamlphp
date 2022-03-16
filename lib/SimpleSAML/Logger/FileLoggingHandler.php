@@ -7,6 +7,9 @@ namespace SimpleSAML\Logger;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * A logging handler that dumps logs to files.
@@ -45,6 +48,11 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /** @var string */
     protected string $format = "%b %d %H:%M:%S";
 
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    protected Filesystem $fileSystem;
+
 
     /**
      * Build a new logging handler based on files.
@@ -52,6 +60,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
      */
     public function __construct(Configuration $config)
     {
+        $this->fileSystem = new Filesystem();
+
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getOptionalString('logging.logfile', 'simplesamlphp.log');
@@ -63,17 +73,19 @@ class FileLoggingHandler implements LoggingHandlerInterface
             $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
         );
 
-        if (@file_exists($this->logFile)) {
-            if (!@is_writeable($this->logFile)) {
-                throw new \Exception("Could not write to logfile: " . $this->logFile);
-            }
-        } else {
-            if (!@touch($this->logFile)) {
-                throw new \Exception(
-                    "Could not create logfile: " . $this->logFile .
-                    " The logging directory is not writable for the web server user."
+        $file = new File($this->logFile);
+        // Suppress E_WARNING if not exists
+        if (@$this->fileSystem->exists($this->logFile)) {
+            if (!$file->isWritable()) {
+                throw new CannotWriteFileException(
+                    sprintf("Could not write to logfile: %s", $this->logFile),
                 );
             }
+        } elseif (!$this->fileSystem->touch($this->logFile)) {
+            throw new CannotWriteFileException(sprintf(
+                "The logging directory is not writable for the web server user. Could not create logfile: %s",
+                $this->logFile,
+            ));
         }
 
         $timeUtils = new Utils\Time();
@@ -121,8 +133,20 @@ class FileLoggingHandler implements LoggingHandlerInterface
                 array_push($replacements, date($format));
             }
 
-            $string = str_replace($formats, $replacements, $string);
-            file_put_contents($this->logFile, $string . \PHP_EOL, FILE_APPEND);
+            if (preg_match('/^php:\/\//', $this->logFile)) {
+                // Dirty hack to get unit tests for Windows working.. Symfony doesn't deal well with them.
+                file_put_contents(
+                    $this->logFile,
+                    str_replace($formats, $replacements, $string) . \PHP_EOL,
+                    FILE_APPEND,
+                );
+            } else {
+                $this->fileSystem->appendToFile(
+                    $this->logFile,
+                    str_replace($formats, $replacements, $string) . \PHP_EOL,
+                    false,
+                );
+            }
         }
     }
 }

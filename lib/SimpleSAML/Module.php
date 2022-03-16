@@ -9,12 +9,40 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Path;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use function array_filter;
+use function array_key_exists;
+use function class_exists;
+use function count;
+use function dirname;
+use function explode;
+use function function_exists;
+use function in_array;
+use function is_bool;
+use function is_callable;
+use function is_dir;
+use function is_file;
+use function is_null;
+use function is_subclass_of;
+use function mb_strtolower;
+use function mime_content_type;
+use function preg_match;
+use function rtrim;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function strval;
+use function substr;
 
 /**
  * Helper class for accessing information about modules.
@@ -233,11 +261,12 @@ class Module
         }
 
         $path = $moduleDir . $url;
+        $fileSystem = new Filesystem();
 
         if ($path[strlen($path) - 1] === '/') {
             // path ends with a slash - directory reference. Attempt to find index file in directory
             foreach (self::$indexFiles as $if) {
-                if (file_exists($path . $if)) {
+                if ($fileSystem->exists($path . $if)) {
                     $path .= $if;
                     break;
                 }
@@ -251,7 +280,7 @@ class Module
             throw new Error\NotFound('Directory listing not available.');
         }
 
-        if (!file_exists($path)) {
+        if (!$fileSystem->exists($path)) {
             // file not found
             Logger::info('Could not find file \'' . $path . '\'.');
             throw new Error\NotFound('The URL wasn\'t found in the module.');
@@ -373,21 +402,11 @@ class Module
 
         $path = self::getModuleDir('.');
 
-        $dh = scandir($path);
-        if ($dh === false) {
-            throw new Exception('Unable to open module directory "' . $path . '".');
-        }
+        $finder = new Finder();
+        $finder->directories()->in($path)->depth(0);
 
-        foreach ($dh as $f) {
-            if ($f[0] === '.') {
-                continue;
-            }
-
-            if (!is_dir($path . '/' . $f)) {
-                continue;
-            }
-
-            self::$modules[] = $f;
+        foreach ($finder as $module) {
+            self::$modules[] = $module->getFileName();
         }
 
         return self::$modules;
@@ -485,25 +504,21 @@ class Module
             return self::$modules[$module]['hooks'];
         }
 
-        $hook_dir = self::getModuleDir($module) . '/hooks';
-        if (!is_dir($hook_dir)) {
-            return [];
-        }
-
         $hooks = [];
-        $files = scandir($hook_dir);
-        foreach ($files as $file) {
-            if ($file[0] === '.') {
-                continue;
-            }
+        $hook_dir = Path::canonicalize(dirname(dirname(dirname(__FILE__))) . '/modules/' . $module . '/hooks');
+        if ((new Filesystem())->exists($hook_dir)) {
+            $finder = new Finder();
+            $finder->files()->in($hook_dir)->depth(0);
 
-            if (!preg_match('/^hook_(\w+)\.php$/', $file, $matches)) {
-                continue;
+            foreach ($finder as $file) {
+                if (preg_match('/^hook_(\w+)\.php$/', $file->getFileName(), $matches)) {
+                    $hook_name = $matches[1];
+                    $hook_func = $module . '_hook_' . $hook_name;
+                    $hooks[$hook_name] = ['file' => Path::canonicalize(strval($file)), 'func' => $hook_func];
+                }
             }
-            $hook_name = $matches[1];
-            $hook_func = $module . '_hook_' . $hook_name;
-            $hooks[$hook_name] = ['file' => $hook_dir . '/' . $file, 'func' => $hook_func];
         }
+
         return $hooks;
     }
 

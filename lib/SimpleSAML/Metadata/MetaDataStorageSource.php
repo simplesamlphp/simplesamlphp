@@ -8,6 +8,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * This abstract class defines an interface for metadata storage sources.
@@ -21,6 +22,21 @@ use SimpleSAML\Utils;
 
 abstract class MetaDataStorageSource
 {
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem;
+     */
+    protected Filesystem $fileSystem;
+
+
+    /**
+     * This function initializes an XML metadata source.
+     */
+    protected function __construct()
+    {
+        $this->fileSystem = new Filesystem();
+    }
+
+
     /**
      * Parse array with metadata sources.
      *

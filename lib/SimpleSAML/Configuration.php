@@ -4,11 +4,33 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
+use ParseError;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Filesystem;
+
+use function array_key_exists;
+use function array_keys;
+use function dirname;
+use function implode;
+use function interface_exists;
+use function in_array;
+use function is_array;
+use function is_bool;
+use function is_int;
+use function is_string;
+use function ob_end_clean;
+use function ob_get_length;
+use function ob_start;
+use function preg_match;
+use function preg_replace;
+use function rtrim;
+use function substr;
+use function var_export;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -106,7 +128,8 @@ class Configuration implements Utils\ClearableState
             return self::$loadedConfigs[$filename];
         }
 
-        if (file_exists($filename)) {
+        $fileSystem = new Filesystem();
+        if ($fileSystem->exists($filename)) {
             /** @psalm-var mixed $config */
             $config = 'UNINITIALIZED';
 
@@ -115,7 +138,7 @@ class Configuration implements Utils\ClearableState
             if (interface_exists('Throwable', false)) {
                 try {
                     require($filename);
-                } catch (\ParseError $e) {
+                } catch (ParseError $e) {
                     self::$loadedConfigs[$filename] = self::loadFromArray([], '[ARRAY]', 'simplesaml');
                     throw new Error\ConfigurationError($e->getMessage(), $filename, []);
                 }
@@ -204,7 +227,7 @@ class Configuration implements Utils\ClearableState
     ): void {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
+                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
             }
@@ -232,7 +255,7 @@ class Configuration implements Utils\ClearableState
     ): Configuration {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
+                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 $configUtils = new Utils\Config();
                 self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
@@ -262,7 +285,7 @@ class Configuration implements Utils\ClearableState
     ): Configuration {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
+                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 $configUtils = new Utils\Config();
                 self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
@@ -1113,7 +1136,7 @@ class Configuration implements Utils\ClearableState
             case 'saml20-idp-remote:ArtifactResolutionService':
                 return Constants::BINDING_SOAP;
             default:
-                throw new \Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
+                throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }
     }
 
@@ -1142,7 +1165,7 @@ class Configuration implements Utils\ClearableState
             // for backwards-compatibility
             $eps = [$eps];
         } elseif (!is_array($eps)) {
-            throw new \Exception($loc . ': Expected array or string.');
+            throw new Exception($loc . ': Expected array or string.');
         }
 
 
@@ -1160,32 +1183,32 @@ class Configuration implements Utils\ClearableState
                     $ep['ResponseLocation'] = $responseLocation;
                 }
             } elseif (!is_array($ep)) {
-                throw new \Exception($iloc . ': Expected a string or an array.');
+                throw new Exception($iloc . ': Expected a string or an array.');
             }
 
             if (!array_key_exists('Location', $ep)) {
-                throw new \Exception($iloc . ': Missing Location.');
+                throw new Exception($iloc . ': Missing Location.');
             }
             if (!is_string($ep['Location'])) {
-                throw new \Exception($iloc . ': Location must be a string.');
+                throw new Exception($iloc . ': Location must be a string.');
             }
 
             if (!array_key_exists('Binding', $ep)) {
-                throw new \Exception($iloc . ': Missing Binding.');
+                throw new Exception($iloc . ': Missing Binding.');
             }
             if (!is_string($ep['Binding'])) {
-                throw new \Exception($iloc . ': Binding must be a string.');
+                throw new Exception($iloc . ': Binding must be a string.');
             }
 
             if (array_key_exists('ResponseLocation', $ep)) {
                 if (!is_string($ep['ResponseLocation'])) {
-                    throw new \Exception($iloc . ': ResponseLocation must be a string.');
+                    throw new Exception($iloc . ': ResponseLocation must be a string.');
                 }
             }
 
             if (array_key_exists('index', $ep)) {
                 if (!is_int($ep['index'])) {
-                    throw new \Exception($iloc . ': index must be an integer.');
+                    throw new Exception($iloc . ': index must be an integer.');
                 }
             }
         }
@@ -1223,7 +1246,7 @@ class Configuration implements Utils\ClearableState
 
         if ($default === self::REQUIRED_OPTION) {
             $loc = $this->location . '[' . var_export($endpointType, true) . ']:';
-            throw new \Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
+            throw new Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
         }
 
         return $default;
@@ -1253,7 +1276,7 @@ class Configuration implements Utils\ClearableState
 
         if ($default === self::REQUIRED_OPTION) {
             $loc = $this->location . '[' . var_export($endpointType, true) . ']:';
-            throw new \Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
+            throw new Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
         }
 
         return $default;
@@ -1368,7 +1391,7 @@ class Configuration implements Utils\ClearableState
             $data = @file_get_contents($file);
 
             if ($data === false) {
-                throw new \Exception(
+                throw new Exception(
                     $this->location . ': Unable to load certificate/public key from file "' . $file . '".'
                 );
             }
@@ -1376,7 +1399,7 @@ class Configuration implements Utils\ClearableState
             // extract certificate data (if this is a certificate)
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
-                throw new \SimpleSAML\Error\Exception(
+                throw new Error\Exception(
                     $this->location . ': Could not find PEM encoded certificate in "' . $file . '".'
                 );
             }
@@ -1393,7 +1416,7 @@ class Configuration implements Utils\ClearableState
                 ],
             ];
         } elseif ($required === true) {
-            throw new \SimpleSAML\Error\Exception($this->location . ': Missing certificate in metadata.');
+            throw new Error\Exception($this->location . ': Missing certificate in metadata.');
         } else {
             return [];
         }

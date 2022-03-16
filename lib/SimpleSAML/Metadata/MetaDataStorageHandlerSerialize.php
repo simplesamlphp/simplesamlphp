@@ -8,6 +8,18 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Path;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
+
+use function array_key_exists;
+use function rawurlencode;
+use function serialize;
+use function strlen;
+use function substr;
+use function unserialize;
+use function var_export;
 
 /**
  * Class for handling metadata files in serialized format.
@@ -42,8 +54,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function __construct(array $config)
     {
-        $globalConfig = Configuration::getInstance();
+        parent::__construct();
 
+        $globalConfig = Configuration::getInstance();
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
         $this->directory = $cfgHelp->getString('directory');
 
@@ -78,34 +91,21 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         $ret = [];
 
-        $dh = @opendir($this->directory);
-        if ($dh === false) {
+        $loc = new File($this->directory, false);
+        if (!$this->fileSystem->exists($this->directory) || !$loc->isReadable()) {
             Logger::warning(
                 'Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, true)
             );
             return $ret;
         }
 
-        while (($entry = readdir($dh)) !== false) {
-            if ($entry[0] === '.') {
-                // skip '..', '.' and hidden files
-                continue;
-            }
+        $finder = new Finder();
+        $finder->directories()->name(sprintf('/%s$/' . self::EXTENSION))->in($this->directory);
 
-            $path = $this->directory . '/' . $entry;
-
-            if (!is_dir($path)) {
-                Logger::warning(
-                    'Serialize metadata handler: Metadata directory contained a file where only directories should ' .
-                    'exist: ' . var_export($path, true)
-                );
-                continue;
-            }
-
-            $ret[] = rawurldecode($entry);
+        $ret = [];
+        foreach ($finder as $file) {
+            $ret[] = rawurlencode($file->getPathName());
         }
-
-        closedir($dh);
 
         return $ret;
     }
@@ -122,32 +122,23 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         $ret = [];
 
-        $dir = $this->directory . '/' . rawurlencode($set);
-        if (!is_dir($dir)) {
-            // probably some code asked for a metadata set which wasn't available
-            return $ret;
-        }
-
-        $dh = @opendir($dir);
-        if ($dh === false) {
-            Logger::warning(
-                'Serialize metadata handler: Unable to open directory: ' . var_export($dir, true)
-            );
+        $loc = new File(Path::canonicalize($this->directory . '/' . rawurlencode($set)), false);
+        if (!$this->fileSystem->exists($loc) || !$loc->isReadable()) {
+            Logger::warning(sprintf(
+                'Serialize metadata handler: Unable to open directory: %s',
+                var_export($loc->getPathName(), true),
+            ));
             return $ret;
         }
 
         $extLen = strlen(self::EXTENSION);
 
-        while (($file = readdir($dh)) !== false) {
-            if (strlen($file) <= $extLen) {
-                continue;
-            }
+        $finder = new Finder();
+        $finder->directories()->name(sprintf('/%s/$', self::EXTENSION))->in($this->directory);
 
-            if (substr($file, -$extLen) !== self::EXTENSION) {
-                continue;
-            }
-
-            $entityId = substr($file, 0, -$extLen);
+        $ret = [];
+        foreach ($finder as $file) {
+            $entityId = substr($file->getPathName(), 0, -$extLen);
             $entityId = rawurldecode($entityId);
 
             $md = $this->getMetaData($entityId, $set);
@@ -155,8 +146,6 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
                 $ret[$entityId] = $md;
             }
         }
-
-        closedir($dh);
 
         return $ret;
     }
@@ -175,17 +164,15 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         $filePath = $this->getMetadataPath($entityId, $set);
 
-        if (!file_exists($filePath)) {
+        if (!$this->fileSystem->exists($filePath)) {
             return null;
         }
 
-        $data = @file_get_contents($filePath);
-        if ($data === false) {
-            /** @var array $error */
-            $error = error_get_last();
-            Logger::warning(
-                'Error reading file ' . $filePath . ': ' . $error['message']
-            );
+        $file = new File($filePath);
+        try {
+            $data = $file->getContent();
+        } catch (IOException $e) {
+            Logger::warning('Error reading file ' . $filePath . ': ' . $e->getMessage());
             return null;
         }
 
@@ -214,38 +201,37 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function saveMetadata(string $entityId, string $set, array $metadata): bool
     {
-        $filePath = $this->getMetadataPath($entityId, $set);
-        $newPath = $filePath . '.new';
+        $old = new File($this->getMetadataPath($entityId, $set), false);
+        $new = new File($old->getPathName() . '.new', false);
 
-        $dir = dirname($filePath);
-        if (!is_dir($dir)) {
-            Logger::info('Creating directory: ' . $dir);
-            $res = @mkdir($dir, 0777, true);
-            if ($res === false) {
-                /** @var array $error */
-                $error = error_get_last();
-                Logger::error('Failed to create directory ' . $dir . ': ' . $error['message']);
+        $loc = new File($old->getPath(), false);
+        if (!$loc->isDir()) {
+            Logger::info('Creating directory: ' . $loc);
+            try {
+                $this->fileSystem->mkdir($loc, 0777);
+            } catch (IOException $e) {
+                Logger::error('Failed to create directory ' . $loc . ': ' . $e->getMessage());
                 return false;
             }
         }
 
         $data = serialize($metadata);
 
-        Logger::debug('Writing: ' . $newPath);
+        Logger::debug('Writing: ' . $new->getPathName());
 
-        $res = file_put_contents($newPath, $data);
-        if ($res === false) {
-            /** @var array $error */
-            $error = error_get_last();
-            Logger::error('Error saving file ' . $newPath . ': ' . $error['message']);
+        try {
+            $this->fileSystem->appendToFile($new->getPathName(), $data);
+        } catch (IOException $e) {
+            Logger::error('Error saving file ' . $new->getPathName() . ': ' . $e->getMessage());
             return false;
         }
 
-        $res = rename($newPath, $filePath);
-        if ($res === false) {
-            /** @var array $error */
-            $error = error_get_last();
-            Logger::error('Error renaming ' . $newPath . ' to ' . $filePath . ': ' . $error['message']);
+        try {
+            $this->fileSystem->rename($new->getPathName(), $old->getPathName(), true);
+        } catch (IOException $e) {
+            Logger::error(
+                sprintf('Error renaming %s to %s: %s', $new->getPathName(), $old->getPathName(), $e->getMessage())
+            );
             return false;
         }
 
@@ -263,7 +249,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         $filePath = $this->getMetadataPath($entityId, $set);
 
-        if (!file_exists($filePath)) {
+        if (!$this->fileSystem->exists($filePath)) {
             Logger::warning(
                 'Attempted to erase nonexistent metadata entry ' .
                 var_export($entityId, true) . ' in set ' . var_export($set, true) . '.'
@@ -271,14 +257,14 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
             return;
         }
 
-        $res = unlink($filePath);
-        if ($res === false) {
-            /** @var array $error */
-            $error = error_get_last();
-            Logger::error(
-                'Failed to delete file ' . $filePath .
-                ': ' . $error['message']
-            );
+        try {
+            $this->fileSystem->remove($filePath);
+        } catch (IOException $e) {
+            Logger::error(sprintf(
+                'Failed to delete file %s: %s',
+                $filePath,
+                $e->getMessage(),
+            ));
         }
     }
 
