@@ -6,15 +6,18 @@ SP remote metadata reference
 This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
 Both files have the following format:
 
-    <?php
-    /* The index of the array is the entity ID of this SP. */
-    $metadata['entity-id-1'] = [
-        /* Configuration options for the first SP. */
-    ];
-    $metadata['entity-id-2'] = [
-        /* Configuration options for the second SP. */
-    ];
-    /* ... */
+
+```php
+<?php
+/* The index of the array is the entity ID of this SP. */
+$metadata['entity-id-1'] = [
+    /* Configuration options for the first SP. */
+];
+$metadata['entity-id-2'] = [
+    /* Configuration options for the second SP. */
+];
+/* ... */
+```
 
 
 Common options
@@ -114,9 +117,9 @@ The following options can be set:
     the actual value used is fetched from metadata by the following
     priority:
 
-:   1.  SP Remote Metadata
-
-    2.  IdP Hosted Metadata
+:  
+    1. SP Remote Metadata
+    2. IdP Hosted Metadata
 
 :   The default value is:
     `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
@@ -124,13 +127,9 @@ The following options can be set:
 :   Some examples of values specified in the SAML 2.0 Core
     Specification:
 
-:   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
-
-    -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-        in Shibboleth 2.0, mandatory as per SAML2INT)
-
-    -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
-        default in Sun Access Manager)
+:   - `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
+:   - `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default in Shibboleth 2.0, mandatory as per SAML2INT)
+:   - `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The default in Sun Access Manager)
 
 :   You can also define your own value.
 
@@ -174,7 +173,8 @@ The following options can be set:
 
 :   The three most commonly used values are:
 
-:   1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
+:  
+    1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
     2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
     3.  `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
 
@@ -213,12 +213,12 @@ The following options can be set:
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 :   Possible values:
 
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+:    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
        *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
       The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `signature.privatekey`
 :   Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
@@ -276,9 +276,9 @@ The following options can be set:
 :   Whether we require signatures on authentication requests sent from this SP.
     Set it to:
 
-    true: authnrequest must be signed (and signature will be validated)
-    null: authnrequest may be signed, if it is, signature will be validated
-    false: authnrequest signature is never checked
+:   - true: authnrequest must be signed (and signature will be validated)
+:   - null: authnrequest may be signed, if it is, signature will be validated
+:   - false: authnrequest signature is never checked
 
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
@@ -323,12 +323,12 @@ of the SP.
 `sharedkey_algorithm`
 :   Algorithm which should be used for encryption. Possible values are:
 
-    * http://www.w3.org/2001/04/xmlenc#aes128-cbc
-    * http://www.w3.org/2001/04/xmlenc#aes192-cbc
-    * http://www.w3.org/2001/04/xmlenc#aes256-cbc
-    * http://www.w3.org/2009/xmlenc11#aes128-gcm
-    * http://www.w3.org/2009/xmlenc11#aes192-gcm
-    * http://www.w3.org/2009/xmlenc11#aes256-gcm
+:    * `http://www.w3.org/2001/04/xmlenc#aes128-cbc`
+:    * `http://www.w3.org/2001/04/xmlenc#aes192-cbc`
+:    * `http://www.w3.org/2001/04/xmlenc#aes256-cbc`
+:    * `http://www.w3.org/2009/xmlenc11#aes128-gcm`
+:    * `http://www.w3.org/2009/xmlenc11#aes192-gcm`
+:    * `http://www.w3.org/2009/xmlenc11#aes256-gcm`
 
 ### Fields for signing and validating messages
 
