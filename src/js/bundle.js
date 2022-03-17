@@ -1,3 +1,4 @@
+import "es5-shim";
 import "es6-shim";
 import ClipboardJS from "clipboard/dist/clipboard";
 import hljs from  "highlight.js/lib/core";
