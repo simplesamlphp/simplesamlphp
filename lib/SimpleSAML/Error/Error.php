@@ -279,6 +279,7 @@ class Error extends Exception
                 }
             }
 
+            $t->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
             $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
             $t->send();
