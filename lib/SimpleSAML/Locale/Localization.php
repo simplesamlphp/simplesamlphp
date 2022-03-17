@@ -97,7 +97,7 @@ class Localization
 
 
     /**
-     * @return \GetText\Translator
+     * @return \Gettext\Translator
      */
     public function getTranslator(): Translator
     {
