@@ -1,6 +1,10 @@
 {% set pagetitle = 'Authentication status'|trans %}
 {% extends 'base.twig' %}
 
+{% block preload %}
+    <link rel="preload" href="{{ asset('js/main.js') }}" as="script">
+{% endblock %}
+
 {% block content %}
 <h2>{{ pagetitle }}</h2>
 
@@ -116,3 +120,7 @@
     </div>
 {% endif %}
 {% endblock %}
+{% block postload %}
+    <script src="{{ asset('js/bundle.js') }}"></script>
+{% endblock %}
+

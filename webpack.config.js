@@ -18,7 +18,6 @@ module.exports = environment => {
     return {
         entry: {
             bundle: './src/js/bundle',
-            expander: './src/js/expander',
             logout: './src/js/logout/main',
             stylesheet: './src/js/style'
         },
