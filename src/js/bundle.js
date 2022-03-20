@@ -7,14 +7,16 @@ import php from "highlight.js/lib/languages/php";
 import json from "highlight.js/lib/languages/json";
 
 window.readyHandlers = [];
-window.ready = function ready(handler) {
+window.ready = function ready(handler)
+{
     window.readyHandlers.push(handler);
     handleState();
 };
 
-window.handleState = function handleState () {
+window.handleState = function handleState()
+{
     if (document.readyState === 'interactive' || document.readyState === "complete") {
-        while(window.readyHandlers.length > 0) {
+        while (window.readyHandlers.length > 0) {
             (window.readyHandlers.shift())();
         }
     }
@@ -25,7 +27,7 @@ document.onreadystatechange = window.handleState;
 ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
-    languageSelector.onchange = function() {
+    languageSelector.onchange = function () {
         let languageForm = document.getElementById("language-form");
         languageForm.submit();
         return true;
@@ -34,7 +36,7 @@ ready(function () {
 
     // Side menu
     var menuLink = document.getElementById("menuLink");
-    menuLink.onclick = function(e) {
+    menuLink.onclick = function (e) {
         e.preventDefault();
 
         let layout = document.getElementById("layout");
@@ -62,16 +64,17 @@ ready(function () {
     // Expander boxes
     var expandable = document.querySelectorAll('.expandable > .expander');
     expandable.forEach(function (currentValue, index, arr) {
-        currentValue.onclick = function(e) {
+        currentValue.onclick = function (e) {
             e.preventDefault();
-            var parent = e.currentTarget.parentNode;
 
-                if (parent.className.match(/(?:^|\s)expanded(?!\S)/)) {
-                    parent.className = parent.className.replace(/(?:^|\s)expanded(?!\S)/g , '');
-                } else {
-                    parent.className += " expanded";
-                }
-                e.currentTarget.blur();
+            var parent = e.currentTarget.parentNode;
+            if (parent.className.match(/(?:^|\s)expanded(?!\S)/)) {
+                parent.className = parent.className.replace(/(?:^|\s)expanded(?!\S)/g , '');
+            } else {
+                parent.className += " expanded";
+            }
+
+            e.currentTarget.blur();
         }
     });
 
