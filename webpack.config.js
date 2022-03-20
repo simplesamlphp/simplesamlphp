@@ -58,24 +58,11 @@ module.exports = environment => {
                             }
                         }
                     ]
-                },
-                {
-                    // expose jquery for use outside webpack bundle
-                    test: require.resolve('jquery'),
-                    loader: "expose-loader",
-                    options: {
-                        exposes: ["$", "jQuery"],
-                    }
                 }
             ]
         },
         devtool: 'source-map',
         plugins: [
-            // Provides jQuery for other JS bundled with Webpack
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery'
-            }),
             new MiniCssExtractPlugin({
                 filename: localConfig['css_filename'],
                 ignoreOrder: true
