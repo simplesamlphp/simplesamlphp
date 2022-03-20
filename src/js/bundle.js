@@ -26,24 +26,25 @@ ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
     languageSelector.onchange = function() {
-        var languageForm = document.getElementById("language-form");
+        let languageForm = document.getElementById("language-form");
         languageForm.submit();
         return true;
     };
+
 
     // Side menu
     var menuLink = document.getElementById("menuLink");
     menuLink.onclick = function(e) {
         e.preventDefault();
 
-        var layout = document.getElementById("layout");
+        let layout = document.getElementById("layout");
         if (layout.className.match(/(?:^|\s)active(?!\S)/)) {
             layout.className = layout.className.replace(/(?:^|\s)active(?!\S)/g , '');
         } else {
             layout.className += " active";
         }
 
-        var foot = document.getElementById("foot");
+        let foot = document.getElementById("foot");
         if (foot.className.match(/(?:^|\s)active(?!\S)/)) {
             foot.className = foot.className.replace(/(?:^|\s)active(?!\S)/g , '');
         } else {
@@ -56,27 +57,37 @@ ready(function () {
             menuLink.className += " active";
         }
     };
-});
 
 
-$(document).ready(function () {
-    // expander boxes
-    $('.expandable > .expander').on('click', function (e) {
-        e.preventDefault();
-        let target = $(e.currentTarget);
-        target.parents('.expandable').toggleClass('expanded');
-        target.blur();
+    // Expander boxes
+    var expandable = document.querySelectorAll('.expandable > .expander');
+    expandable.forEach(function (currentValue, index, arr) {
+        currentValue.onclick = function(e) {
+            e.preventDefault();
+            var parent = e.currentTarget.parentNode;
+
+                if (parent.className.match(/(?:^|\s)expanded(?!\S)/)) {
+                    parent.className = parent.className.replace(/(?:^|\s)expanded(?!\S)/g , '');
+                } else {
+                    parent.className += " expanded";
+                }
+                e.currentTarget.blur();
+        }
     });
 
-    // syntax highlight
+
+    // Syntax highlight
     hljs.registerLanguage('xml', xml);
     hljs.registerLanguage('php', php);
     hljs.registerLanguage('json', json);
-    $('.code-box-content.xml, .code-box-content.php, .code-box-content.json').each(function (i, block) {
-        hljs.highlightBlock(block)
+
+    var codeBoxes = document.querySelectorAll('.code-box-content.xml, .code-box-content.php, .code-box-content.json');
+    codeBoxes.forEach(function (currentValue, index, arr) {
+        hljs.highlightElement(currentValue);
     });
 
-    // clipboard
+
+    // Clipboard
     let clipboard = new ClipboardJS('.copy');
     clipboard.on('success', function (e) {
         setTimeout(function () {
