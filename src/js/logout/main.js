@@ -1,3 +1,5 @@
+"use strict";
+
 import SimpleSAMLLogout from './logout.js';
 
 $(document).ready(function () {

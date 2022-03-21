@@ -1,3 +1,5 @@
+"use strict";
+
 import ClipboardJS from "clipboard/dist/clipboard";
 import hljs from  "highlight.js/lib/core";
 import xml from "highlight.js/lib/languages/xml";

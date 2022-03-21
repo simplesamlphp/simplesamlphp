@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This class is used for the logout page.
  *
