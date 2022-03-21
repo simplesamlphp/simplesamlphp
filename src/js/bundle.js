@@ -34,7 +34,7 @@ ready(function () {
 
 
     // Clipboard
-    let clipboard = new ClipboardJS('.copy');
+    var clipboard = new ClipboardJS('.copy');
     clipboard.on('success', function (e) {
         setTimeout(function () {
             e.clearSelection();

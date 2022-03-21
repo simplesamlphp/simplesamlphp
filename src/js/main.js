@@ -21,7 +21,7 @@ ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
     languageSelector.onchange = function() {
-        let languageForm = document.getElementById("language-form");
+        var languageForm = document.getElementById("language-form");
         languageForm.submit();
         return true;
     };
@@ -32,14 +32,14 @@ ready(function () {
     menuLink.onclick = function(e) {
         e.preventDefault();
 
-        let layout = document.getElementById("layout");
+        var layout = document.getElementById("layout");
         if (layout.className.match(/(?:^|\s)active(?!\S)/)) {
             layout.className = layout.className.replace(/(?:^|\s)active(?!\S)/g , '');
         } else {
             layout.className += " active";
         }
 
-        let foot = document.getElementById("foot");
+        var foot = document.getElementById("foot");
         if (foot.className.match(/(?:^|\s)active(?!\S)/)) {
             foot.className = foot.className.replace(/(?:^|\s)active(?!\S)/g , '');
         } else {
