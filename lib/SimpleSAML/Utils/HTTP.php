@@ -90,7 +90,7 @@ class HTTP
         $cryptoUtils = new Crypto();
         $info = base64_encode($cryptoUtils->aesEncrypt($session_id . ':' . $id));
 
-        $url = Module::getModuleURL('core/postredirect.php', ['RedirInfo' => $info]);
+        $url = Module::getModuleURL('core/postredirect', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);
     }
 
@@ -697,7 +697,7 @@ class HTTP
             // post the data directly
             $session = Session::getSessionFromRequest();
             $id = $this->savePOSTData($session, $destination, $data);
-            $url = Module::getModuleURL('core/postredirect.php', ['RedirId' => $id]);
+            $url = Module::getModuleURL('core/postredirect', ['RedirId' => $id]);
         }
 
         return $url;

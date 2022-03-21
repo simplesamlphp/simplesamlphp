@@ -65,8 +65,8 @@ class Redirection
      */
     public function postredirect(Request $request): Response
     {
-        $redirId = $request->request->get('RedirId', false);
-        $redirInfo = $request->request->get('RedirInfo', false);
+        $redirId = $request->query->get('RedirId', false);
+        $redirInfo = $request->query->get('RedirInfo', false);
         if ($redirId !== false) {
             $postId = $redirId;
         } elseif ($redirInfo !== false) {
