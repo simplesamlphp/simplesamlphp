@@ -1,24 +1,3 @@
-"use strict";
-
-import "es5-shim";
-import "es6-shim";
-
-window.readyHandlers = [];
-window.ready = function ready(handler) {
-    window.readyHandlers.push(handler);
-    handleState();
-};
-
-window.handleState = function handleState () {
-    if (document.readyState === 'interactive' || document.readyState === "complete") {
-        while(window.readyHandlers.length > 0) {
-            (window.readyHandlers.shift())();
-        }
-    }
-};
-
-document.onreadystatechange = window.handleState;
-
 ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
@@ -54,19 +33,4 @@ ready(function () {
             menuLink.className += " active";
         }
     };
-
-
-    // Expander boxes
-    var expandable = document.querySelectorAll('.expandable > .expander');
-    for (var i = 0; i < expandable.length; i++) {
-        expandable[i].currentValue.onclick = function (e) {
-            var parent = e.currentTarget.parentNode;
-            if (parent.className.match(/(?:^|\s)expanded(?!\S)/)) {
-                parent.className = parent.className.replace(/(?:^|\s)expanded(?!\S)/g , '');
-            } else {
-                parent.className += " expanded";
-            }
-            e.currentTarget.blur();
-        };
-    }
 });

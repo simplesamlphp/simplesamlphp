@@ -4,7 +4,6 @@
 
 {% block preload %}
 <link rel="stylesheet" href="{{ asset('css/admin.css', 'admin') }}">
-<link rel="preload" href="{{ asset('js/bundle.js') }}" as="script">
 {% endblock %}
 
 {% block content %}
@@ -147,7 +146,3 @@
       </fieldset>
     </form>
 {% endblock %}
-{% block postload %}
-    <script src="{{ asset('js/bundle.js') }}"></script>
-{% endblock %}
-

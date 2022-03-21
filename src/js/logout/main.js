@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import SimpleSAMLLogout from './logout.js';
 

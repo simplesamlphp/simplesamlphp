@@ -1,5 +1,3 @@
-"use strict";
-
 ready(function () {
     var button = document.getElementById("submit_button");
     button.onclick = function () {
@@ -11,3 +9,4 @@ ready(function () {
         return true;
     };
 });
+

@@ -17,7 +17,7 @@ module.exports = environment => {
     const secondaryBackground = env.hasOwnProperty('secondaryBackground') ? env.secondaryBackground : '#e8410c';
     return {
         entry: {
-            bundle: './src/js/bundle',
+            bundle: './src/js/bundle/main',
             logout: './src/js/logout/main',
             stylesheet: './src/js/style'
         },
