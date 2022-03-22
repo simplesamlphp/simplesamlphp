@@ -14,6 +14,9 @@ Released TBD
   * Fix HTTP status code for error pages (#1585)
   * \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
 
+### saml2 library
+  * A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
+
 ## Version 1.19.5
 
 Released 24-01-2021

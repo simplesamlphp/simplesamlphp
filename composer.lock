@@ -607,16 +607,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.5.0",
+            "version": "v4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "d98020c3d7f7331409959eab286ca3a010e5a868"
+                "reference": "88586eb071476a74cd92d50cb789ad45c0b62f1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/d98020c3d7f7331409959eab286ca3a010e5a868",
-                "reference": "d98020c3d7f7331409959eab286ca3a010e5a868",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/88586eb071476a74cd92d50cb789ad45c0b62f1e",
+                "reference": "88586eb071476a74cd92d50cb789ad45c0b62f1e",
                 "shasum": ""
             },
             "require": {
@@ -659,9 +659,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.5.0"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.5.1"
             },
-            "time": "2022-02-17T15:46:12+00:00"
+            "time": "2022-03-22T12:02:23+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
