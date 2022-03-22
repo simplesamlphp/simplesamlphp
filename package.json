@@ -9,7 +9,7 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "postinstall": "minimum-node-version",
+    "postinstall": "minimum-node-version || true",
     "clean": "rm -rf www/assets/css/* && rm -rf www/assets/js/*",
     "build": "webpack"
   },
