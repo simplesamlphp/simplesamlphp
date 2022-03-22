@@ -31,7 +31,7 @@
     "copy-webpack-plugin": "^9.1.0",
     "css-loader": "^5.2.7",
     "expose-loader": "^2.0.0",
-    "mini-css-extract-plugin": "^1.6.2",
+    "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.48.0",
     "sass-loader": "^12.4.0",
     "style-loader": "^2.0.0",
