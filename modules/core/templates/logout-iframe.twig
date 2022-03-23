@@ -7,7 +7,7 @@
     {%- if type != "init" %}
       {%- set content = '2' %}
       {%- if remaining_services|length == 0 %}
-        {%- set content = '0; url=module.php/core/logout/iframe-done?id=' ~ auth_state %}
+        {%- set content = '0; url=' ~ moduleURL('core/logout/iframe-done', {'id': auth_state }) %}
       {%- endif %}
 
     <meta http-equiv="refresh" content="{{ content }}">
@@ -79,7 +79,7 @@
         {% trans %}Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>.{% endtrans %}
       </div>
     </div>
-    <form id="error-form" action="logout-iframe-done.php"
+    <form id="error-form" action="{{ moduleURL('core/logout-iframe-done') }}"
           {%- if (not failed or type == 'init') and remaining %} class="hidden"{% endif %}>
       <input type="hidden" name="id" value="{{ auth_state }}">
       <button type="submit" id="btn-continue" name="ok" class="pure-button pure-button-red">
@@ -89,7 +89,7 @@
     <div id="original-actions"{% if type != 'init' %} class="hidden"{% endif %}>
       <p>{% trans %}Do you want to logout from all the services above?{% endtrans %}</p>
       <div class="pure-button-group two-elements">
-        <form id="startform" action="logout-iframe.php">
+        <form id="startform" action="{{ moduleURL('core/logout-iframe') }}">
           <input type="hidden" name="id" value="{{ auth_state }}">
           <noscript>
             <input type="hidden" name="type" value="nojs" id="logout-type-selector">
@@ -98,7 +98,7 @@
             {%- trans %}Yes, all services{% endtrans -%}
           </button>
         </form>
-        <form action="logout-iframe-done.php">
+        <form action="{{ moduleURL('core/logout-iframe-done') }}">
           <input type="hidden" name="id" value="{{ auth_state }}">
           <input type="hidden" name="cancel" value="">
           <button id="btn-cancel" class="pure-button" type="submit">
@@ -111,7 +111,7 @@
       </div>
     </div>
   {%- else %}
-    <form id="error-form" action="logout-iframe-done.php">
+    <form id="error-form" action="{{ moduleURL('logout-iframe-done') }}">
       <input type="hidden" name="id" value="{{ auth_state }}">
       <button type="submit" id="btn-continue" name="ok" class="pure-button pure-button-red">
         {%- trans %}Continue{% endtrans -%}
