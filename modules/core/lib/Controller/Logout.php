@@ -41,6 +41,12 @@ class Logout
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
+    protected $authState = Auth\State::class;
+
 
     /**
      * Controller constructor.
@@ -53,6 +59,17 @@ class Logout
         Configuration $config
     ) {
         $this->config = $config;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
     }
 
 
@@ -110,7 +127,7 @@ class Logout
         $id = $request->query->get('id');
 
         /** @psalm-var array $state */
-        $state = Auth\State::loadState($id, 'core:Logout-IFrame');
+        $state = $this->authState::loadState($id, 'core:Logout-IFrame');
         $idp = IdP::getByState($state);
 
         $associations = $idp->getAssociations();
@@ -258,7 +275,7 @@ class Logout
         }
 
         /** @psalm-var array $state */
-        $state = Auth\State::loadState($id, 'core:Logout-IFrame');
+        $state = $this->authState::loadState($id, 'core:Logout-IFrame');
         $idp = IdP::getByState($state);
         $mdh = MetaDataStorageHandler::getMetadataHandler();
 
@@ -391,7 +408,7 @@ class Logout
         $id = $request->query->get('id');
 
         /** @psalm-var array $state */
-        $state = Auth\State::loadState($id, 'core:Logout:afterbridge');
+        $state = $this->authState::loadState($id, 'core:Logout:afterbridge');
         $idp = IdP::getByState($state);
 
         $assocId = $state['core:TerminatedAssocId'];

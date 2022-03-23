@@ -8,11 +8,8 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-//use SimpleSAML\Locale\Localization;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-//use SimpleSAML\XHTML\Template;
-//use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -43,6 +40,7 @@ class LogoutTest extends ClearStateTestCase
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
+                'enable.saml20-idp' => true,
             ],
             '[ARRAY]',
             'simplesaml'
@@ -104,5 +102,169 @@ class LogoutTest extends ClearStateTestCase
         $response = $c->logout($request, 'example-authsource');
         $this->assertInstanceOf(RunnableResponse::class, $response);
         $this->assertEquals('https://example.org/something', $response->getArguments()[0]);
+    }
+
+
+    public function testLogoutIframeDoneUnknownEntityThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-done',
+            'GET',
+            ['id' => 'someState'],
+        );
+
+        $c = new Controller\Logout($this->config);
+        $c->setAuthState(new class () extends Auth\State {
+            public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
+            {
+                return ['core:IdP' => 'saml2:something'];
+            }
+        });
+
+        $this->expectException(Error\MetadataNotFound::class);
+        $c->logoutIframeDone($request);
+    }
+
+
+    public function testLogoutIframeDoneWithoutStateThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-done',
+            'GET',
+            ['id' => 'someState'],
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\NoState::class);
+        $c->logoutIframeDone($request);
+    }
+
+
+    public function testLogoutIframeDoneWithoutIdThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-done',
+            'GET',
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\BadRequest::class);
+        $c->logoutIframeDone($request);
+    }
+
+
+    public function testLogoutIframePostWithoutIdpThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-post',
+            'GET',
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\BadRequest::class);
+        $c->logoutIframePost($request);
+    }
+
+
+    public function testLogoutIframePostUnknownEntityThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-post',
+            'GET',
+            ['idp' => 'saml2:something'],
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\MetadataNotFound::class);
+        $c->logoutIframePost($request);
+    }
+
+
+    public function testLogoutIframeWithoutIdThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe',
+            'GET',
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\BadRequest::class);
+        $c->logoutIframe($request);
+    }
+
+
+    public function testLogoutIframeWithUnknownTypeThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe',
+            'GET',
+            ['id' => 'abc123', 'type' => 'foobar'],
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\BadRequest::class);
+        $c->logoutIframe($request);
+    }
+
+
+    public function testLogoutIframeUnknownEntityThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-iframe-post',
+            'GET',
+            ['id' => 'abc123', 'type' => 'nojs'],
+        );
+
+        $c = new Controller\Logout($this->config);
+        $c->setAuthState(new class () extends Auth\State {
+            public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
+            {
+                return ['core:IdP' => 'saml2:something'];
+            }
+        });
+
+        $this->expectException(Error\MetadataNotFound::class);
+        $c->logoutIframe($request);
+    }
+
+
+    public function testResumeLogoutWithoutIdThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-resume',
+            'GET',
+        );
+
+        $c = new Controller\Logout($this->config);
+
+        $this->expectException(Error\BadRequest::class);
+        $c->resumeLogout($request);
+    }
+
+
+    public function testResumeLogoutWithUnknownEntityThrowsException(): void
+    {
+        $request = Request::create(
+            '/logout-resume',
+            'GET',
+            ['id' => 'abc123'],
+        );
+
+        $c = new Controller\Logout($this->config);
+        $c->setAuthState(new class () extends Auth\State {
+            public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
+            {
+                return ['core:IdP' => 'saml2:something'];
+            }
+        });
+
+        $this->expectException(Error\MetadataNotFound::class);
+        $c->resumeLogout($request);
     }
 }
