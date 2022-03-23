@@ -18,7 +18,7 @@
 
     <h1>{{ pagetitle }}</h1>
   {%- if terminated_service %}
-    {%- set SP = terminated_service['name']|translateFromArray|default('the service'|trans)|e %}
+    {%- set SP = terminated_service|entityDisplayName %}
 
     <p>{% trans with {
         '%SP%': SP
@@ -36,7 +36,7 @@
       <ul class="fa-ul">
     {%- for key, sp in remaining_services %}
       {%- set timeout = 5 %}
-      {%- set name = sp['metadata']['name']|translateFromArray|default(sp['entityID']) %}
+      {%- set name = sp['metadata']|entityDisplayName %}
       {%- set icon = 'circle-o-notch'  %}
       {%- if sp['status'] == 'completed' %}
         {%- set icon = 'check-circle' %}
