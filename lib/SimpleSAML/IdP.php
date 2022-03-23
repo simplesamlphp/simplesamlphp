@@ -482,7 +482,7 @@ class IdP
 
         // terminate the local session
         $id = Auth\State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = Module::getModuleURL('core/logout-resume', ['id' => $id]);
+        $returnTo = Module::getModuleURL('core/logout/resume', ['id' => $id]);
 
         $this->authSource->logout($returnTo);
 

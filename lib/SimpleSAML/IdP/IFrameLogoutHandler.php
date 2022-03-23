@@ -48,6 +48,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function startLogout(array &$state, ?string $assocId): void
     {
+\SimpleSAML\Logger::debug("DEBUG");
         $associations = $this->idp->getAssociations();
 
         if (count($associations) === 0) {
