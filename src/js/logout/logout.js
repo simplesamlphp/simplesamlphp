@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * This class is used for the logout page.
  *
@@ -22,15 +20,18 @@ class SimpleSAMLLogout {
                 // all SPs completed logout, this was a reload
                 this.btncontinue.click();
             }
-            this.btnall.on('click', this.initLogout.bind(this));
+            this.btnall.onclick(function () {
+                this.initLogout.bind(this);
+                return true;
+            });
             window.addEventListener('message', this.clearAssociation.bind(this), false);
         } else if (page === 'IFrameLogoutHandler') { // iframe
-            let data = $('i[id="data"]');
-            let message = {
-                spId: $(data).data('spid')
+            var data = document.querySelector('i[id="data"]');
+            var message = {
+                spId: data.getAttribute('data-spid')
             };
-            if ($(data).data('error')) {
-                message.error = $(data).data('error');
+            if (data.hasAttribute('data-error')) {
+                message.error = data.getAttribute('data-error');
             }
 
             window.parent.postMessage(JSON.stringify(message), SimpleSAMLLogout.getOrigin());
@@ -49,7 +50,7 @@ class SimpleSAMLLogout {
             // we don't accept events from other origins
             return;
         }
-        let data = JSON.parse(event.data);
+        var data = JSON.parse(event.data);
         if (typeof data.error === 'undefined') {
             this.completed(data.spId);
         } else {
@@ -102,8 +103,9 @@ class SimpleSAMLLogout {
         }
 
         this.sps[id].element.addClass('error');
-        $(this.sps[id].icon).removeClass('fa-spin fa-circle-o-notch');
-        $(this.sps[id].icon).addClass('fa-exclamation-circle');
+        //var icon = document.getElementById(this.sps[id].icon);
+        this.sps[id].icon.removeClass('fa-spin fa-circle-o-notch');
+        this.sps[id].icon.addClass('fa-exclamation-circle');
 
         if (this.errmsg.hasClass('hidden')) {
             this.errmsg.removeClass('hidden');
@@ -151,7 +153,7 @@ class SimpleSAMLLogout {
      */
     static getOrigin()
     {
-        let origin = window.location.origin;
+        var origin = window.location.origin;
         if (!origin) {
             // IE < 11 does not support window.location.origin
             origin = window.location.protocol + "//" + window.location.hostname +
@@ -189,7 +191,7 @@ class SimpleSAMLLogout {
      */
     initTimeout()
     {
-        let timeout = 10;
+        var timeout = 10;
 
         for (const id in this.sps) {
             if (typeof id === 'undefined') {
@@ -201,7 +203,7 @@ class SimpleSAMLLogout {
             if (this.sps[id].status !== 'inprogress') {
                 continue;
             }
-            let now = ((new Date()).getTime() - this.sps[id].startTime) / 1000;
+            var now = ((new Date()).getTime() - this.sps[id].startTime) / 1000;
 
             if (this.sps[id].timeout <= now) {
                 this.failed(id, 'Timed out', window.document);
@@ -228,20 +230,20 @@ class SimpleSAMLLogout {
     populateData()
     {
         this.sps = {};
-        this.btnall = $('button[id="btn-all"]');
-        this.btncancel = $('button[id="btn-cancel"]');
-        this.btncontinue = $('button[id="btn-continue"]');
-        this.actions = $('div[id="original-actions"]');
-        this.errmsg = $('div[id="error-message"]');
-        this.errfrm = $('form[id="error-form"]');
+        this.btnall = document.querySelector('button[id="btn-all"]');
+        this.btncancel = document.querySelector('button[id="btn-cancel"]');
+        this.btncontinue = document.querySelector('button[id="btn-continue"]');
+        this.actions = document.querySelector('div[id="original-actions"]');
+        this.errmsg = document.querySelector('div[id="error-message"]');
+        this.errfrm = document.querySelector('form[id="error-form"]');
         this.nfailed = 0;
-        let that = this;
+        var that = this;
 
         // initialise SP status and timeout arrays
-        $('li[id^="sp-"]').each(function () {
-            let id = $(this).data('id');
-            let iframe = $('iframe[id="iframe-' + id + '"]');
-            let status = $(this).data('status');
+        document.querySelectorAll('li[id^="sp-"]').forEach(function (currentValue, index, arr) {
+            var id = currentValue.getAttribute('data-id');
+            var iframe = document.querySelector('iframe[id="iframe-' + id + '"]');
+            var status = currentValue.getAttribute('data-status');
 
             switch (status) {
                 case 'failed':
@@ -252,10 +254,10 @@ class SimpleSAMLLogout {
 
             that.sps[id] = {
                 status: status,
-                timeout: $(this).data('timeout'),
-                element: $(this),
+                timeout: currentValue.getAttribute('data-timeout'),
+                element: currentValue,
                 iframe: iframe,
-                icon: $('i[id="icon-' + id + '"]'),
+                icon: document.querySelector('i[id="icon-' + id + '"]'),
             };
         });
     }
