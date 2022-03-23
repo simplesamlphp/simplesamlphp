@@ -218,15 +218,15 @@ class Logout
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
 
-        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
-            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+            $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
         $lr->setNotOnOrAfter(time() + $assertionLifetime);
 
-        $encryptNameId = $spMetadata->getBoolean('nameid.encryption', null);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
             $lr->encryptNameId(Message::getEncryptionKey($spMetadata));
@@ -310,7 +310,7 @@ class Logout
                     if (method_exists($sp['Handler'], 'getAssociationConfig')) {
                         $assocIdP = IdP::getByState($sp);
                         $assocConfig = call_user_func([$sp['Handler'], 'getAssociationConfig'], $assocIdP, $sp);
-                        $sp['core:Logout-IFrame:Timeout'] = $assocConfig->getInteger('core:logout-timeout', 5) + time();
+                        $sp['core:Logout-IFrame:Timeout'] = $assocConfig->getOptionalInteger('core:logout-timeout', 5) + time();
                     } else {
                         $sp['core:Logout-IFrame:Timeout'] = time() + 5;
                     }
