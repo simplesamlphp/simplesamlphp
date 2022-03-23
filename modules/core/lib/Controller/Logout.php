@@ -126,7 +126,6 @@ class Logout
         }
         $id = $request->query->get('id');
 
-        /** @psalm-var array $state */
         $state = $this->authState::loadState($id, 'core:Logout-IFrame');
         $idp = IdP::getByState($state);
 
@@ -240,7 +239,6 @@ class Logout
 
         $bindings = [Constants::BINDING_HTTP_POST];
 
-        /** @var array $dst */
         $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
         $binding = Binding::getBinding($dst['Binding']);
         $lr->setDestination($dst['Location']);
@@ -274,7 +272,6 @@ class Logout
             Stats::log('core:idp:logout-iframe:page', ['type' => $type]);
         }
 
-        /** @psalm-var array $state */
         $state = $this->authState::loadState($id, 'core:Logout-IFrame');
         $idp = IdP::getByState($state);
         $mdh = MetaDataStorageHandler::getMetadataHandler();
@@ -407,7 +404,6 @@ class Logout
         }
         $id = $request->query->get('id');
 
-        /** @psalm-var array $state */
         $state = $this->authState::loadState($id, 'core:Logout:afterbridge');
         $idp = IdP::getByState($state);
 

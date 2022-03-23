@@ -64,7 +64,6 @@ class LoginTest extends ClearStateTestCase
     {
         $c = new Controller\Login($this->config);
 
-        /** @var \SimpleSAML\XHTML\Template $response */
         $response = $c->welcome();
 
         $this->assertInstanceOf(Template::class, $response);
@@ -132,7 +131,6 @@ class LoginTest extends ClearStateTestCase
             }
         });
 
-        /** @var \SimpleSAML\XHTML\Template $response */
         $response = $c->loginuserpass($request);
 
         $this->assertInstanceOf(Template::class, $response);
@@ -203,7 +201,6 @@ class LoginTest extends ClearStateTestCase
             }
         });
 
-        // @var \SimpleSAML\XHTML\Template $response
         $response = $c->loginuserpassorg($request);
 
         $this->assertInstanceOf(Template::class, $response);

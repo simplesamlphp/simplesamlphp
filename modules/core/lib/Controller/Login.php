@@ -111,7 +111,6 @@ class Login
         }
         $authStateId = $request->query->get('AuthState');
 
-        /** @var array $state */
         $state = $this->authState::loadState($authStateId, UserPassBase::STAGEID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
@@ -327,7 +326,6 @@ class Login
         }
         $authStateId = $request->query->get('AuthState');
 
-        /** @var array $state */
         $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
