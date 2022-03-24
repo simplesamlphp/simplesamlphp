@@ -3,8 +3,7 @@ import xml from "highlight.js/lib/languages/xml";
 import php from "highlight.js/lib/languages/php";
 import json from "highlight.js/lib/languages/json";
 
-ready(function () {
-    // Syntax highlight
+document.addEventListener("DOMContentLoaded", function(event) {
     hljs.registerLanguage('xml', xml);
     hljs.registerLanguage('php', php);
     hljs.registerLanguage('json', json);

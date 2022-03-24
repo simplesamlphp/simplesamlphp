@@ -1,7 +1,6 @@
 import ClipboardJS from "clipboard/dist/clipboard";
 
-ready(function () {
-    // Clipboard
+document.addEventListener("DOMContentLoaded", function(event) {
     var clipboard = new ClipboardJS('.copy');
     clipboard.on('success', function (e) {
         setTimeout(function () {
