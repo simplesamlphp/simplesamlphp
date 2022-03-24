@@ -20,10 +20,7 @@ class SimpleSAMLLogout {
                 // all SPs completed logout, this was a reload
                 this.btncontinue.click();
             }
-            this.btnall.onclick(function () {
-                this.initLogout.bind(this);
-                return true;
-            });
+            this.btnall.addEventListener("click", this.initLogout.bind(this));
             window.addEventListener('message', this.clearAssociation.bind(this), false);
         } else if (page === 'IFrameLogoutHandler') { // iframe
             var data = document.querySelector('i[id="data"]');
@@ -79,10 +76,10 @@ class SimpleSAMLLogout {
             return;
         }
 
-        this.sps[id].icon.removeClass('fa-spin');
-        this.sps[id].icon.removeClass('fa-circle-o-notch');
-        this.sps[id].icon.addClass('fa-check-circle');
-        this.sps[id].element.toggle();
+        this.sps[id].icon.classList.remove('fa-spin');
+        this.sps[id].icon.classList.remove('fa-circle-o-notch');
+        this.sps[id].icon.classList.add('fa-check-circle');
+        this.sps[id].element.style.display = "none";
         delete this.sps[id];
         this.finish();
     }
@@ -102,17 +99,12 @@ class SimpleSAMLLogout {
             return;
         }
 
-        this.sps[id].element.addClass('error');
-        //var icon = document.getElementById(this.sps[id].icon);
-        this.sps[id].icon.removeClass('fa-spin fa-circle-o-notch');
-        this.sps[id].icon.addClass('fa-exclamation-circle');
+        this.sps[id].element.classList.add('error');
+        this.sps[id].icon.classList.remove('fa-spin', 'fa-circle-o-notch');
+        this.sps[id].icon.classList.add('fa-exclamation-circle');
 
-        if (this.errmsg.hasClass('hidden')) {
-            this.errmsg.removeClass('hidden');
-        }
-        if (this.errfrm.hasClass('hidden')) {
-            this.errfrm.removeClass('hidden');
-        }
+        this.errmsg.classList.remove('hidden');
+        this.errfrm.classList.remove('hidden');
 
         delete this.sps[id];
         this.nfailed++;
@@ -139,9 +131,9 @@ class SimpleSAMLLogout {
         }
 
         if (this.nfailed > 0) { // some services failed to log out
-            this.errmsg.removeClass('hidden');
-            this.errfrm.removeClass('hidden');
-            this.actions.addClass('hidden');
+            this.errmsg.classList.remove('hidden');
+            this.errfrm.classList.remove('hidden');
+            this.actions.classList.add('hidden');
         } else { // all services done
             this.btncontinue.click();
         }
@@ -172,13 +164,16 @@ class SimpleSAMLLogout {
     {
         event.preventDefault();
 
-        this.btnall.prop('disabled', true);
-        this.btncancel.prop('disabled', true);
+        this.btnall.disabled = true;
+        this.btncancel.disabled = true;
+//        this.btnall.prop('disabled', true);
+//        this.btncancel.prop('disabled', true);
         Object.keys(this.sps).forEach((function (id) {
             this.sps[id].status = 'inprogress';
             this.sps[id].startTime = (new Date()).getTime();
-            this.sps[id].iframe.attr('src', this.sps[id].iframe.data('url'));
-            this.sps[id].icon.addClass('fa-spin');
+//            this.sps[id].iframe.attr('src', this.sps[id].iframe.data('url'));
+            this.sps[id].iframe.setAttribute('src', this.sps[id].iframe.getAttribute('data-url'));
+            this.sps[id].icon.classList.add('fa-spin');
         }).bind(this));
         this.initTimeout();
     }
