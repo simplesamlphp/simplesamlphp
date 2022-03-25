@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+ready(function () {
     var button = document.getElementById("submit_button");
     button.onclick = function () {
         this.innerHTML = button.getAttribute("data-processing");
@@ -8,10 +8,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
         form.submit();
         return true;
     };
-
-    button.focus();
-
-    var username = document.getElementById("username");
-    username.focus();
 });
 

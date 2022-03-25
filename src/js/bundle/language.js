@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
     languageSelector.onchange = function() {
@@ -14,11 +14,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
         e.preventDefault();
 
         var layout = document.getElementById("layout");
-        layout.classList.toggle('active');
+        if (layout.className.match(/(?:^|\s)active(?!\S)/)) {
+            layout.className = layout.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        } else {
+            layout.className += " active";
+        }
 
         var foot = document.getElementById("foot");
-        foot.classList.toggle('active');
+        if (foot.className.match(/(?:^|\s)active(?!\S)/)) {
+            foot.className = foot.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        } else {
+            foot.className += " active";
+        }
 
-        menuLink.classList.toggle('active');
+        if (menuLink.className.match(/(?:^|\s)active(?!\S)/)) {
+            menuLink.className = menuLink.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        } else {
+            menuLink.className += " active";
+        }
     };
 });

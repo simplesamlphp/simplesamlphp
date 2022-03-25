@@ -2,6 +2,6 @@
 
 import SimpleSAMLLogout from './logout.js';
 
-document.addEventListener("DOMContentLoaded", function(event) {
+ready(function () {
     new SimpleSAMLLogout(document.body.id);
 });
