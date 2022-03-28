@@ -91,6 +91,8 @@ abstract class MetaDataStorageSource
                 return new MetaDataStorageHandlerXML($sourceConfig);
             case 'serialize':
                 return new MetaDataStorageHandlerSerialize($sourceConfig);
+            case 'directory':
+                return new MetaDataStorageHandlerDirectoryOfFiles($sourceConfig);
             case 'mdx':
             case 'mdq':
                 return new Sources\MDQ($sourceConfig);
