@@ -124,9 +124,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Kopo e mpe bakeng sa tshebeletso ya tshibollo"
 
-msgid "{logout:failed}"
-msgstr "Ho tswa ho hlolehile"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Phoso ya Netefatso"
 

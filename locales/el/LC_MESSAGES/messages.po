@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Η αποσύνδεση απέτυχε"
-
 msgid "{errors:descr_NOCERT}"
 msgstr ""
 "Η ταυτοποίηση απέτυχε: Το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε "

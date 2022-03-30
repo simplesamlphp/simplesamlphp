@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Log out gagal"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentifikasi gagal: Browser anada tidak mengirim sertifikat"
 

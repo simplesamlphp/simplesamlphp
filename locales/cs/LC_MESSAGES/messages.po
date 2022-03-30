@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Odhlášení selhalo"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Přihlášení neproběhlo: Váš prohlížeč neodeslal žádný certifikát"
 

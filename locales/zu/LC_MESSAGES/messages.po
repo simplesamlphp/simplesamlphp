@@ -493,7 +493,7 @@ msgstr "Uphume ngemvume"
 msgid "{errors:report_explain}"
 msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
 
-msgid "{logout:failed}"
+msgid "Logout failed"
 msgstr "Ukuphuma kuhlulekile"
 
 msgid "{login:password}"

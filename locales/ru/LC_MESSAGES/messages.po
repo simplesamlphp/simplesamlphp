@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Выход завершен неудачно"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Ошибка при аутентификации: ваш браузер не выслал сертификат"
 

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "登出失敗"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "認證錯誤：您的瀏覽器並未送出任何憑證"
 

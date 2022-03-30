@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Odjava je spodletela."
-
 msgid "{errors:descr_NOCERT}"
 msgstr ""
 "Avtentikacija je spodletela: vaš spletni brskalnik ni posredoval "

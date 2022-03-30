@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Atsijungimas nepavyko"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentikacija nepavyko: Jūsų naršyklė neišsiuntė jokio sertifikato"
 

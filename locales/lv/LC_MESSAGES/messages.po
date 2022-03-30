@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Atslēgšanās neizdevās"
-
 msgid "{errors:descr_NOCERT}"
 msgstr ""
 "Autentifikācija neizdevās, jo Jūsu interneta pārlūks nav atsūtījis "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Abmeldung fehlgeschlagen"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Authentifizierung fehlgeschlagen: Ihr Browser hat kein Zertifikat gesendet"
 

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Välja logimine ebaõnnestus"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "Autentimine ei õnnestunud: brauser ei saatnud ühtegi sertifikaati"
 

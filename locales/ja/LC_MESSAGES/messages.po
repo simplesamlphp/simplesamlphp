@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "ログアウトに失敗しました"
-
 msgid "{errors:descr_NOCERT}"
 msgstr "認証失敗: あなたのブラウザは証明書を送信しませんでした"
 

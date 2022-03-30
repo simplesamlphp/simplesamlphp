@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:failed}"
-msgstr "Disconnessione fallita"
-
 msgid "{errors:descr_NOCERT}"
 msgstr ""
 "L'autenticazione è fallita perché il tuo browser non ha inviato alcun "
