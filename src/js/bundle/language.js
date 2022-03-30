@@ -1,7 +1,9 @@
+'use strict';
+
 ready(function () {
     // Language selector
     var languageSelector = document.getElementById("language-selector");
-    languageSelector.onchange = function() {
+    languageSelector.onchange = function () {
         var languageForm = document.getElementById("language-form");
         languageForm.submit();
         return true;
@@ -10,27 +12,27 @@ ready(function () {
 
     // Side menu
     var menuLink = document.getElementById("menuLink");
-    menuLink.onclick = function(e) {
+    menuLink.onclick = function (e) {
         e.preventDefault();
 
         var layout = document.getElementById("layout");
-        if (layout.className.match(/(?:^|\s)active(?!\S)/)) {
-            layout.className = layout.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        if (layout.classList.contains('active')) {
+            layout.classList.remove('active');
         } else {
-            layout.className += " active";
+            layout.classList.add('active');
         }
 
         var foot = document.getElementById("foot");
-        if (foot.className.match(/(?:^|\s)active(?!\S)/)) {
-            foot.className = foot.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        if (foot.classList.contains('active')) {
+            foot.classList.remove('active');
         } else {
-            foot.className += " active";
+            foot.classList.add('active');
         }
 
-        if (menuLink.className.match(/(?:^|\s)active(?!\S)/)) {
-            menuLink.className = menuLink.className.replace(/(?:^|\s)active(?!\S)/g , '');
+        if (menuLink.classList.contains('active')) {
+            menuLink.classList.remove('active');
         } else {
-            menuLink.className += " active";
+            menuLink.classList.add('active');
         }
     };
 });

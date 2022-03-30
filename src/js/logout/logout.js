@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * This class is used for the logout page.
  *
@@ -166,12 +168,9 @@ class SimpleSAMLLogout {
 
         this.btnall.disabled = true;
         this.btncancel.disabled = true;
-//        this.btnall.prop('disabled', true);
-//        this.btncancel.prop('disabled', true);
         Object.keys(this.sps).forEach((function (id) {
             this.sps[id].status = 'inprogress';
             this.sps[id].startTime = (new Date()).getTime();
-//            this.sps[id].iframe.attr('src', this.sps[id].iframe.data('url'));
             this.sps[id].iframe.setAttribute('src', this.sps[id].iframe.getAttribute('data-url'));
             this.sps[id].icon.classList.add('fa-spin');
         }).bind(this));

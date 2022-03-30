@@ -19,6 +19,7 @@ module.exports = environment => {
         entry: {
             bundle: './src/js/bundle/main',
             logout: './src/js/logout/main',
+            post: './src/js/post/main',
             stylesheet: './src/js/style'
         },
         output: {
@@ -30,9 +31,11 @@ module.exports = environment => {
             rules: [
                 {
                     test: /\.js$/,
-                    exclude: /\/node_modules\//,
                     use: {
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
                     }
                 },
                 {

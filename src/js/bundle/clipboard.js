@@ -1,3 +1,5 @@
+'use strict';
+
 import ClipboardJS from "clipboard/dist/clipboard";
 
 ready(function () {
