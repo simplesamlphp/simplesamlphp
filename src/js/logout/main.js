@@ -1,7 +1,6 @@
 'use strict';
 
-import * as ready from '../bundle/ready';
-import SimpleSAMLLogout from './logout';
+import SimpleSAMLLogout from './logout.js';
 
 ready(function () {
     new SimpleSAMLLogout(document.body.id);
