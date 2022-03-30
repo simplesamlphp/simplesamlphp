@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr "認證錯誤：您的瀏覽器並未送出任何憑證"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "從驗證提供者取得錯誤執行回應"
 

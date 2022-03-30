@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr "فشل التوثيق لان متصفحك لم يرسل شهادات"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "خطا بإجراءات معاملة إجابات مقدم الهوية"
 

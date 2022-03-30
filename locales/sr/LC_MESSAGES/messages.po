@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr ""
-"Neuspešna autentifikacija: vaš web pretraživač nije poslao digitalni "
-"sertifikat"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Greška pri obradi odgovora koji je poslao Davalac Identeteta"
 

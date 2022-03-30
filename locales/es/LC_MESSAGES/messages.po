@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr "Fallo de autenticación: su navegador no envió ningún certificado"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Error al procesar la respuesta procedente del IdP"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr ""
-"Η ταυτοποίηση απέτυχε: Το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε "
-"δεν έστειλε πιστοποιητικό."
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Εσφαλμένη απόκριση από τον πάροχο ταυτότητας"
 

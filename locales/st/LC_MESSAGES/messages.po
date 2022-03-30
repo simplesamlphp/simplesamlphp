@@ -393,9 +393,6 @@ msgstr "E, ditshebeletso tsohle"
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "SimpleSAMLphp e bonahala e hlophisitswe hampe."
 
-msgid "{errors:descr_NOCERT}"
-msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho"
-
 msgid "Password not set"
 msgstr "Phasewete ha e a setwa"
 

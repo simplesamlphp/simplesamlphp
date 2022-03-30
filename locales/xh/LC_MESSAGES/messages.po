@@ -443,7 +443,7 @@ msgstr ""
 "unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo "
 "yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
-msgid "{errors:descr_NOCERT}"
+msgid "Authentication failed: your browser did not send any certificate"
 msgstr ""
 "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na "
 "isatifikethi"

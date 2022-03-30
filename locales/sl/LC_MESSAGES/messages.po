@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOCERT}"
-msgstr ""
-"Avtentikacija je spodletela: vaš spletni brskalnik ni posredoval "
-"digitalnega potrdila!"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Pri obdelavi odgovora IdP-ja je prišlo do napake"
 

@@ -449,7 +449,7 @@ msgstr ""
 "awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule "
 "ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
 
-msgid "{errors:descr_NOCERT}"
+msgid "Authentication failed: your browser did not send any certificate"
 msgstr ""
 "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma "
 "yisiphi isitifiketi"
