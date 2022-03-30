@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Kas sellise kasutajatunnusega kasutajat ei leitud või pole sinu poolt "
-"sisestatud parool õige. Palun kontrolli kasutajatunnust ja parooli "
-"uuesti."
-
 msgid "{logout:failed}"
 msgstr "Välja logimine ebaõnnestus"
 

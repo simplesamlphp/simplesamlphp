@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!"
-
 msgid "{logout:failed}"
 msgstr "Kijelentkezés nem sikerült"
 

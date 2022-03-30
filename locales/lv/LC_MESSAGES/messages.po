@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Vai nu nav lietotāja ar norādīto lietotāja vārdu, vai parole norādīta "
-"kļūdaini. Lūdzu mēģiniet vēlreiz."
-
 msgid "{logout:failed}"
 msgstr "Atslēgšanās neizdevās"
 

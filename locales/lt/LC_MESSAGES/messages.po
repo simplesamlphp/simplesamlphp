@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte"
-" slaptažodį. Pasitikrinkite prisijungimo vardą ir bandykite dar kartą."
-
 msgid "{logout:failed}"
 msgstr "Atsijungimas nepavyko"
 

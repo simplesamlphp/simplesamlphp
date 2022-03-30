@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var "
-"feil.  Sjekk brukarnamn og prøv igjen."
-
 msgid "{logout:failed}"
 msgstr "Utlogging feila"
 

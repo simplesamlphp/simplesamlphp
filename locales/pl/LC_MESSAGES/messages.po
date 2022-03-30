@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Nie istnieje użytkownik o tej nazwie, lub podano złe hasło. Sprawdź nazwę"
-" użytkownika i ponów próbę."
-
 msgid "{logout:failed}"
 msgstr "Wystąpił bład podczas wylogowania"
 

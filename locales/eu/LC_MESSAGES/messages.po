@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Ez dago erabiltzailerik adierazitako identifikadorearekin, edo "
-"adierazitako pasahitza okerra da.  Mesedez, berrikusi ezazu erabiltzaile-"
-"identifikadorea eta saia zaiztez berriro."
-
 msgid "{logout:failed}"
 msgstr "Saioa ixteko prozesuak huts egin du"
 

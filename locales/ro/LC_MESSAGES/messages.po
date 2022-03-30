@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Nu a fost găsit niciun utilizator cu numele de utilizator specificat, sau"
-" parola introdusă este greșită. Vă rugăm să încercați din nou."
-
 msgid "{logout:failed}"
 msgstr "Deautentificarea a eșuat"
 

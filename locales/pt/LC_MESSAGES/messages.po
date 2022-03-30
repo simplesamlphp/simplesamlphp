@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr "O utilizador ou senha fornecidos são incorrectos. Por favor tente de novo."
-
 msgid "{logout:failed}"
 msgstr "Saída falhada"
 

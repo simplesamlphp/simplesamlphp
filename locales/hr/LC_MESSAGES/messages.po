@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Korisnik s navedenom korisničkom oznakom ne može biti pronađen ili je "
-"zaporka koju ste unijeli neispravna. Molimo provjerite korisničku oznaku "
-"i pokušajte ponovo."
-
 msgid "{logout:failed}"
 msgstr "Odjava nije uspjela"
 

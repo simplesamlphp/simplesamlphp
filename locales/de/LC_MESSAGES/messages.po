@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden "
-"werden oder das Passwort ist falsch. Überprüfen Sie die Zugangsdaten und "
-"probieren Sie es erneut."
-
 msgid "{logout:failed}"
 msgstr "Abmeldung fehlgeschlagen"
 

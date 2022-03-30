@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Korisnik s navedenim korisničkim imenom ne može biti pronađen ili je "
-"lozinka koju ste uneli neispravna. Molimo proverite korisničko ime i "
-"pokušajte ponovo."
-
 msgid "{logout:failed}"
 msgstr "Odjava nije uspela"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"או שלא נמצא משתמש בשם זה, או שהסיסמה לא הייתה נכונה. בדוק בבקשה את שם "
-"המשתמש ונסה שוב. "
-
 msgid "{logout:failed}"
 msgstr "התנתקות נכשלה"
 

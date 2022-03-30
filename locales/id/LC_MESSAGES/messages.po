@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Username yang diberikan tidak dapat ditemukan, atau password yang Anda "
-"berikan salah. Silahkan periksa username dan coba lagi."
-
 msgid "{logout:failed}"
 msgstr "Log out gagal"
 

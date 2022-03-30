@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Ya bu kullanıcı adında bir kullanıcı bulunamadı, yada şifreniz yanlış. "
-"Lütfen kullanıcı adını kontrol edin ve yeniden deneyin."
-
 msgid "{logout:failed}"
 msgstr "Çıkış başarılamadı"
 

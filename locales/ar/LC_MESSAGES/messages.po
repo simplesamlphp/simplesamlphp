@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"اما انه لم  نتمكن من التعرف علي اسم المستخدم او ان كلمة السر خطا. راجع "
-"اسم الدخول و حاول مرة اخري"
-
 msgid "{logout:failed}"
 msgstr "تسجيل خروج فاشل"
 

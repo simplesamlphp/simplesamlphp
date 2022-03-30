@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. "
-"Verifieer de gebruikersnaam en probeer het nogmaals."
-
 msgid "{logout:failed}"
 msgstr "Uitloggen mislukt"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Utilisateur inexistant, ou mot de passe incorrect. Vérifiez le nom "
-"d'utilisateur, et ré-essayez."
-
 msgid "{logout:failed}"
 msgstr "Échec de la déconnexion"
 

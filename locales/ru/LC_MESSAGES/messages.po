@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Либо не существует пользователя с данным именем, либо неверный "
-"пароль.Пожалуйста, проверьте имя пользователя и пробуйте снова."
-
 msgid "{logout:failed}"
 msgstr "Выход завершен неудачно"
 

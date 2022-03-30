@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr "找不到您所提供的使用者名稱之使用者，或您給了錯誤密碼。請檢查使用者並再試一次。"
-
 msgid "{logout:failed}"
 msgstr "登出失敗"
 

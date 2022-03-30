@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr "ユーザー名またはパスワードが間違っています。ユーザー名、パスワードを確認して再度試してください。"
-
 msgid "{logout:failed}"
 msgstr "ログアウトに失敗しました"
 

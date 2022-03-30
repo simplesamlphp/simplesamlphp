@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Enten kunne brugeren ikke findes eller også var kodeordet forkert. Prøv "
-"igen."
-
 msgid "{logout:failed}"
 msgstr "Logout fejlede"
 

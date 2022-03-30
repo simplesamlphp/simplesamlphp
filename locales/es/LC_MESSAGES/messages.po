@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"No existe un usuario con el identificador indicado, o la contraseña "
-"indicada es incorrecta. Por favor revise el identificador de usuario e "
-"inténtelo de nuevo."
-
 msgid "{logout:failed}"
 msgstr "Proceso de desconexión fallido"
 

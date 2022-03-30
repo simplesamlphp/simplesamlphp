@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha "
-"que você digitou está incorreta. Verifique o nome de usuário e tente "
-"novamente."
-
 msgid "{logout:failed}"
 msgstr "Falha ao sair do serviço"
 

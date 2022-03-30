@@ -583,12 +583,6 @@ msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
 msgid "{status:authData_header}"
 msgstr "AuthData"
 
-msgid "{errors:descr_WRONGUSERPASS}"
-msgstr ""
-"Ekaba mosebedisi wa lebitso la mosebedisi le fanweng ha a fumanwe, kapa "
-"phasewete eo o e fananeng e fosahetse. Ka kopo hlahloba lebitso la "
-"mosebedisi la hao, ebe o leka hape."
-
 msgid "Unknown certificate"
 msgstr "Setifikeiti se sa tsejweng"
 
