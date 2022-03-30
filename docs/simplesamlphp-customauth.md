@@ -270,7 +270,7 @@ The class follows:
             }
             $this->password = $config['password'];
             if (isset($config['options']) {
-                if (!is_array($config['options])) {
+                if (!is_array($config['options'])) {
                     throw new Exception('Missing or invalid options option in config.');
                 }
                 $this->options = $config['options'];
