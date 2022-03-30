@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Tõrge identiteedipakkuja vastuse töötlemisel"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Olekuinfo kadunud"
 

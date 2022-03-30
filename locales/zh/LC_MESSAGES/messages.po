@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "处理来自身份提供者的应答时出错"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "状态信息丢失"
 

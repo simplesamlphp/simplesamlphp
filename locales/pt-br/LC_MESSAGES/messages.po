@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Erro processando a resposta do Provedor de Identidade."
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Informações de estado perdidas"
 

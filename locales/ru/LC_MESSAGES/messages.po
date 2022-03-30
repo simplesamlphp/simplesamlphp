@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Ошибка при обработке отклика от провайдера идентификации"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Информация о состоянии утеряна"
 

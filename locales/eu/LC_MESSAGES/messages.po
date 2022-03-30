@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Errorea IdP-tik datorren erantzuna prozesatzean"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Egoera informazioa galdua"
 

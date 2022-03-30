@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Identiteetintarjoan vastauksen käsittely epäonnistui."
-
 msgid "{login:username}"
 msgstr "Tunnus"
 

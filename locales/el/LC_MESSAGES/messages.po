@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Εσφαλμένη απόκριση από τον πάροχο ταυτότητας"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Δεν βρέθηκαν πληροφορίες σχετικά με την κατάσταση του αιτήματος"
 

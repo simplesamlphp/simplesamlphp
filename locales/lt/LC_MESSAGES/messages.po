@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Klaida apdorojant užklausą iš tapatybių teikėjo"
-
 msgid "{errors:title_NOSTATE}"
 msgstr "Būsenos informacija prarasta"
 

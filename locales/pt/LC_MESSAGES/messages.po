@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Erro ao processar a resposta do fornecedor de identidade (IdP)"
-
 msgid "{login:username}"
 msgstr "Nome de utilizador"
 

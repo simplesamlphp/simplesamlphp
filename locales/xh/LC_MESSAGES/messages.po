@@ -134,7 +134,7 @@ msgstr "Khumbula ukhetho lwam"
 msgid "{general:remember}"
 msgstr "Khumbula"
 
-msgid "{errors:title_PROCESSASSERTION}"
+msgid "Error processing response from Identity Provider"
 msgstr "Impazamo iprosesa impendulo esuka kuMboneleli Wesazisi"
 
 msgid "{errors:descr_NOTFOUND}"
