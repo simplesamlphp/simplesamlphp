@@ -8,3 +8,6 @@ import * as expander from './expander';
 import * as clipboard from './clipboard';
 import * as highlight from './highlight';
 
+if (window.innerHeight < 600) {
+    document.getElementById('content').scrollIntoView(true)
+}
