@@ -34,7 +34,7 @@ Require at least one `givenName`, no more than two email addresses, and between 
         50 => [
             'class' => 'core:Cardinality',
             'givenName' => ['min' => 1],
-            'mail' => ['max' => 2[,
+            'mail' => ['max' => 2],
             'eduPersonScopedAffiliation' => ['min' => 2, 'max' => 4],
         ],
     ],
