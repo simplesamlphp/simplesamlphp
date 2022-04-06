@@ -211,6 +211,11 @@ class EMail
                 if (isset($transportOptions['autotls'])) {
                     $this->mail->SMTPAutoTLS = (bool)$transportOptions['autotls'];
                 }
+
+                // socket options for smtp TLS connection
+                if (isset($transportOptions['smtpOptions'])) {
+                    $this->mail->SMTPOptions = $transportOptions['smtpOptions'];
+                }
                 break;
             //mail transport method
             case 'mail':

@@ -96,6 +96,7 @@ $config = [
     //     'username' => 'user@example.org', // optional: if set, enables smtp authentication
     //     'password' => 'password', // optional: if set, enables smtp authentication
     //     'security' => 'tls', // optional: defaults to no smtp security
+    //     'smtpOptions' => [], // optional: passed to stream_context_create when connecting via SMTP
     // ],
     // // sendmail mail transport options
     // 'mail.transport.options' => [
