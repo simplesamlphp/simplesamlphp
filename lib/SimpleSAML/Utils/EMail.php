@@ -28,10 +28,10 @@ class EMail
     /** @var \PHPMailer\PHPMailer\PHPMailer The mailer instance */
     private PHPMailer $mail;
 
-    /** @var string $txt_template;
+    /** @var string */
     private string $txt_template;
 
-    /** @var string $html_template;
+    /** @var string */
     private string $html_template;
 
 
