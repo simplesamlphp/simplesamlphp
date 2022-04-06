@@ -248,11 +248,10 @@ class EMail
         $config = Configuration::getInstance();
 
         $t = new Template($config, $template);
-        $result = $t->getTwig()->render($template, [
-            'subject' => $this->mail->Subject,
-            'text' => $this->text,
-            'data' => $this->data
-        ]);
-        return $result;
+        $t->data['data'] = $this->data;
+        $t->data['subject'] = $this->mail->Subject;
+        $t->data['text'] = $this->text;
+
+        return $t->getContents();
     }
 }
