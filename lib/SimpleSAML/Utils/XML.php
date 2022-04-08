@@ -345,7 +345,7 @@ class XML
         if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
-            $schemaPath = $config->resolvePath('schemas');
+            $schemaPath = $config->resolvePath('vendor/simplesamlphp/saml2/schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
             libxml_set_external_entity_loader(
