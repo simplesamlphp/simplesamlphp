@@ -84,7 +84,7 @@ class Error extends \SimpleSAML\Error\Exception
                     get_class($exception) . ': ' . $exception->getMessage()
                 ),
                 $exception
-            );            $e = new self(
+            );
         }
 
         return $e;
