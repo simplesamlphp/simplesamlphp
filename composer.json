@@ -53,7 +53,7 @@
         "gettext/translator": "^1.0.1",
         "phpmailer/phpmailer": "^6.5",
         "simplesamlphp/assert": "^0.2.11",
-        "simplesamlphp/saml2": "^4.5",
+        "simplesamlphp/saml2": "^5.0.0-alpha.5",
         "symfony/cache": "^5.4",
         "symfony/config": "^5.4",
         "symfony/console": "^5.4",

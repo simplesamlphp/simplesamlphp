@@ -14,6 +14,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\Session;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use InvalidArgumentException;
-use SAML2\XML\Chunk;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\IdP;
@@ -13,6 +12,8 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * @covers \SimpleSAML\Module\saml\IdP\SAML2
@@ -542,7 +543,7 @@ EOT;
      */
     public function testMetadataHostedEntityExtensions(): void
     {
-        $dom = \SAML2\DOMDocumentFactory::create();
+        $dom = DOMDocumentFactory::create();
         $republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
         $republishTarget = $dom->createElementNS(
             'http://eduid.cz/schema/metadata/1.0',

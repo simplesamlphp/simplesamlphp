@@ -9,7 +9,7 @@ use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\SAML2\Constants;
-use SimpleSAML\Test\Utils\ClearStateTestCase;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Configuration
