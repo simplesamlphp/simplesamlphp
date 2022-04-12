@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{admin:cfg_check_back}"
-msgstr "Go back to the file list"
-
 msgid "{login:change_home_org_title}"
 msgstr "Change your home organization"
 

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_back}"
-msgstr "Επιστροφή στον κατάλογο αρχείων"
-
 msgid "{login:change_home_org_title}"
 msgstr "Αλλαγή οικείου φορέα"
 
