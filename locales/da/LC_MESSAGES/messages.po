@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_METADATA}"
-msgstr "Fejl i læsning af metadata"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ingen fejl"
 

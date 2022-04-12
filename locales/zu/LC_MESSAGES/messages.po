@@ -81,7 +81,7 @@ msgstr "Siza! Angiyikhumbuli iphasiwedi yami."
 msgid "{logout:return}"
 msgstr "Buyela kusevisi"
 
-msgid "{errors:title_METADATA}"
+msgid "Error loading metadata"
 msgstr "Iphutha lokulayisha imethadatha"
 
 msgid "{errors:title_LOGOUTREQUEST}"

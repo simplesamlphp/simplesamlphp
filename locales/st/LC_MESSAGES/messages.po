@@ -364,9 +364,6 @@ msgstr ""
 "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso"
 " e bile teng."
 
-msgid "{errors:title_METADATA}"
-msgstr "Phoso ya ho louta metadata"
-
 msgid "{errors:descr_NOTFOUND}"
 msgstr "Leqephe le fanweng ha le a fumanwa. URL e bile: %URL%"
 

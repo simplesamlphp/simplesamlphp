@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_METADATA}"
-msgstr "Metadatan lataaminen epäonnistui"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Uloskirjautumistiedot hävisivät. Sinun tulee palata siihen palveluun "

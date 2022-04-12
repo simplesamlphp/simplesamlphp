@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{errors:title_METADATA}"
-msgstr "Fout bij het laden van metadata"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Geen fouten gevonden."
 

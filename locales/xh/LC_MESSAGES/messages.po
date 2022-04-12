@@ -80,7 +80,7 @@ msgstr "Ncedani! Andiyikhumbuli iphaswedi yam."
 msgid "{logout:return}"
 msgstr "Buyela kwinkonzo"
 
-msgid "{errors:title_METADATA}"
+msgid "Error loading metadata"
 msgstr "Impazamo ilayisha imetadata"
 
 msgid "{errors:title_LOGOUTREQUEST}"

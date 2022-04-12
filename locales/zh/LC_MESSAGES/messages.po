@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_METADATA}"
-msgstr "载入元信息时发生错误"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "没有发现错误"
 

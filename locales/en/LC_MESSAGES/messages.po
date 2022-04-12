@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:title_METADATA}"
-msgstr "Error loading metadata"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "No errors found."
 

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_METADATA}"
-msgstr "Ошибка загрузки метаданных"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ошибок не обнаружено."
 
