@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:username}"
-msgstr "Nombre de usuario"
-
 msgid "{errors:title_METADATA}"
 msgstr "Error al cargar los metadatos"
 

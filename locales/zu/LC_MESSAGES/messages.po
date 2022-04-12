@@ -198,7 +198,7 @@ msgstr ""
 msgid "{logout:logout_only}"
 msgstr "Cha, ku-%SP% kuphela"
 
-msgid "{login:username}"
+msgid "Username"
 msgstr "Igama lomsebenzisi"
 
 msgid "{errors:error_header}"

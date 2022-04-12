@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:username}"
-msgstr "Nume de utilizator"
-
 msgid "{errors:title_METADATA}"
 msgstr "Eroare la încărcarea metadatelor"
 
