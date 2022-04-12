@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "沒有錯誤。"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "遺失正在登出的相關操作資訊，您可能要回到您準備登出的服務再登出一次。這個錯誤可能是因為登出資訊逾時。登出資訊僅能在有限的時間裡有效 - "

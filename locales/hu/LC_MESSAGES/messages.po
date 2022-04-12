@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Nincs hiba."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. "

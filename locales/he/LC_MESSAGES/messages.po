@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "לא נמצאו שגיאות."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "המידע על פעולת ההתנתקות הנוכחית אבד. אתה צריך לחזור לשירות ממנו ניסית "

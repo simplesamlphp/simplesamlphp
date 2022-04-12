@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Nije pronađena niti jedna greška."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Informacija o aktualnom zahtjevu za odjavljivanjem se izgubila. "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "No se han encontrado errores"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "La información sobre la operación de cierre de sesión se ha perdido. "

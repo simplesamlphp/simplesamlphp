@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Ez da errorerik aurkitu"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Saioa ixteko eragiketari buruzko informazioa galdu da. Irten nahi duzun "

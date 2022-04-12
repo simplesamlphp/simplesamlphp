@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Ingen feil funnet"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Informasjonen om den nåværende utloggingen har gått tapt. Du bør gå "

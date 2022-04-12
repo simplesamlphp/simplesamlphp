@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "No errors found."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "The information about the current logout operation has been lost. You "

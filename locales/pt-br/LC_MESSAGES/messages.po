@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Não foram encontrados erros."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "As informações sobre a operação de desconexão atual foram perdidas. Você "

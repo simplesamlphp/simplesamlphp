@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Tidak ada error yang ditemukan"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Informasi tentang operasi logout saat ini telah hilang. Anda harus "

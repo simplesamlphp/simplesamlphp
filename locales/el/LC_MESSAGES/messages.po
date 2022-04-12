@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "Δεν εντοπίστηκαν λάθη."
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Οι πληροφορίες σχετικά με την αποσύνδεση έχουν χαθεί. Θα πρέπει να "

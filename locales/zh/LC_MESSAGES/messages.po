@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "没有发现错误"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr "关于当前退出操作的相关信息丢失了，你应该返回服务中，重新尝试退出，这个错误可能是退出信息超时引起的。退出消息在有限的时间内存储，通常是几个小时，这比任何常规的退出时间所需的时间要长多了，所以这种错误可能是配置错误，如果问题依旧存在，联系你的服务提供商"
 

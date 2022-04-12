@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:cfg_check_noerrors}"
-msgstr "لا توجد أخطاء "
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "معلومات تسجيل الخروج الحالي مفقودة. عد لصفحة مقدم الخدمة و حاول تسجيل "
