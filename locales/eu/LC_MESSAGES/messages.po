@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Saioa ixteko eragiketari buruzko informazioa galdu da. Irten nahi duzun "
-"zerbitzura itzuli eta saioa berriz ixten saitu behar duzu. Saioa ixteko "
-"informazioa denbora mugatu batean gordetzen da, orokorrean saio ixteko "
-"eragiketak iraun beharko lukeen denbora baino gehiago, beraz errore hau "
-"konfigurazioan erroreren bat jazo delako gerta liteke. Errorea etengabea "
-"bada, jar zaitez harremanetan zerbitzuaren hornitzailearekin."
-
 msgid "{disco:previous_auth}"
 msgstr "Lehenago, hemen kautotzea hautatu duzu"
 

@@ -15,18 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Information de déconnexion perdue. Les informations afférentes à la "
-"procédure de déconnexion en cours ont été perdues. Tentez de retourner au"
-" service depuis lequel vous avez tenté de lancer la déconnexion, et "
-"essayez encore. Cette erreur peut être causée par un problème "
-"d'obsolescence des information de déconnexion, qui ne sont conservées que"
-" durant un temps limité, de l'ordre de quelques heures. Cette durée est "
-"bien plus longue qu'une opération de déconnexion typique, ce qui suggère "
-"une autre erreur dans la configuration. Si le problème persiste, "
-"contactez l'administrateur du fournisseur de service."
-
 msgid "{disco:previous_auth}"
 msgstr "Précédemment, vous aviez choisi de vous authentifier sur"
 

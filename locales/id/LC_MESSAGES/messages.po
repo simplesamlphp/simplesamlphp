@@ -15,17 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informasi tentang operasi logout saat ini telah hilang. Anda harus "
-"kembali ke layanan tempat Anda mencoba logout dan mencoba melakukan "
-"proses logout kembali. Error ini dapat disebabakan oleh informasi logout "
-"yang telah kadaluarsa. Informasi logout disimpan untuk waktu yang "
-"terbatas - biasanya dalam bilangan jam. Waktu ini lebih lama dari operasi"
-" logout normal umumnya, jadi error ini mungkin mengindikasikan beberapa "
-"erro lain pada konfigurasi. Jika masalah tetap terjadi, hubungi service "
-"provider Anda."
-
 msgid "{disco:previous_auth}"
 msgstr "Sebelumnya anda telah memilih untuk melakukan autentifikasi di "
 

@@ -15,14 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"A informação acerca da operação de logout foi perdida. Por favor, volte "
-"ao serviço de onde efectuou o logout e tente de novo esta operação. A "
-"informação de logout possui um tempo de expiração que é normalmente muito"
-" superior ao tempo normal de processamento desta operação. Se o problema "
-"persistir pode ser um erro de configuração e deverá ser comunicado."
-
 msgid "{disco:previous_auth}"
 msgstr "Escolheu autenticar-se anteriormente em"
 

@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Die inligting vir die huidige uiteken sessie is verlore. Jy moet "
-"terugkeer na die diens waarvan jy probeer afmeld het en probeer om weer "
-"af te meld. Dié fout kan voorkom weens verstreke afmelding inligting. Die"
-" afmelding inligting word gestoor vir 'n beperkte tydperk - gewoonlik 'n "
-"paar ure. Dit is langer as wat 'n normale afmelding sessie moet vat, so "
-"die fout mag 'n indikasie wees van 'n probleem met die stellings. Kontak "
-"jou diens verskaffer sou die probleem voortduur."
-
 msgid "{disco:previous_auth}"
 msgstr "Jy het voorheen gekies om te verifieer deur:"
 

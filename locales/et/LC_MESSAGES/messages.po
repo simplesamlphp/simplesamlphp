@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Teave aktiivse väljalogimisoperatsiooni kohta läks kaduma. Pöördu tagasi "
-"teenuse juurde, millest soovisid välja logida ja proovi uuesti. See tõrge"
-" võib olla põhjustatud väljalogimisinfo aegumisest. Väljalogimisinfo "
-"salvestatakse piiratud ajaks, tavaliselt mõneks tunniks. See on kauem kui"
-" tavaline väljalogimine peaks aega võtma, seega võib see tõrge anda märku"
-" ka mõnest teisest tõrkest seadistustes. Kui probleem ei kao, siis võta "
-"ühendust oma teenusepakkujaga."
-
 msgid "{disco:previous_auth}"
 msgstr "Varem oled valinud autentida, kasutades"
 

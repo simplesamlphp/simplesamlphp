@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste "
-"jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je "
-"posledica poteka veljavnosti seje."
-
 msgid "{disco:previous_auth}"
 msgstr "Predhodnje ste se prijavljali že pri"
 

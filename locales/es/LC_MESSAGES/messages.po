@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"La información sobre la operación de cierre de sesión se ha perdido. "
-"Debería volver al servicio del que intenta salir e intentar cerrar la "
-"sesión de nuevo. La información para cerrar la sesión se almacena durante"
-" un tiempo limitado, generalmente mucho más tiempo del que debería tardar"
-" la operación de cierre de sesión, de modo que este error puede deberse a"
-" algun error en la configuración. Si el problema persiste, contacte con "
-"el proveedor del servicio."
-
 msgid "{disco:previous_auth}"
 msgstr "Previamente solicitó autenticarse en"
 

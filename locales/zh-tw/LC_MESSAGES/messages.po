@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"遺失正在登出的相關操作資訊，您可能要回到您準備登出的服務再登出一次。這個錯誤可能是因為登出資訊逾時。登出資訊僅能在有限的時間裡有效 - "
-"通常是幾小時。這已經大於正常的登出操作所需的時間，所以這個錯誤也許說明有些其他的錯誤被設定。如果這個錯誤持續存在，請連絡您的服務提供者。"
-
 msgid "{disco:previous_auth}"
 msgstr "您先前已選擇認證於"
 

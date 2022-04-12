@@ -928,18 +928,6 @@ msgstr ""
 msgid "Remember me"
 msgstr "Nkgopole"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Tlhahisoleseding e mabapi le tshebetos ya ho tswa ya hajwale e lahlehile."
-" O tlameha ho kgutlela tshebeletsong eo o neng o leka ho tswa ho yona le "
-"ho leka ho tswa hape. Phoso ena e ka bakwa ke phelo nako ya "
-"tlhahisoleseding ya ho tswa. Tlhahisoleseding ya ho tswa e bolokwa nako e"
-" lekantsweng - ka tlwaelo ke palo ya dihora. Sena se setelele ho feta "
-"nako eo tshebetso efe kapa efe ya tlwaelo ya ho tswa e tlamehang ho e "
-"nka, ka hona phoso ena e ka nna ya bontsha phoso e nngwe ka tlhophiso "
-"esele. Haeba bothata bo phehella, ikopanye le mofani wa tshebeletso wa "
-"hao."
-
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Ha o a fana ka setifikeiti se nepahetseng."
 

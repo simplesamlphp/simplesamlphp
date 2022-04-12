@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informasjonen om den nåværende utloggingen har gått tapt. Du bør gå "
-"tilbake til den opprinnelige tjesesten og prøve å logge ut på nytt. "
-"Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - "
-"vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal "
-"ta, så denne feilen kan tyde på at noe er galt med oppsettet. Ta kontakt "
-"med tjenesteyteren hvis problemet gjentar seg."
-
 msgid "{disco:previous_auth}"
 msgstr "Du har tidligere valg å autentisere deg hos"
 

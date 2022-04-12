@@ -15,15 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Oplysningerne om logout er tabt. Du bør gå tilbage til tjenesten du "
-"ønskede at logge ud af og prøve igen. Fejlen kan skyldes at oplysningerne"
-" blev forældet, da de kun gemmes i kort tid, typisk et par timer. Dette "
-"er dog længere end hvad det burde tage at logge ud, så denne fejl kan "
-"indikere en konfigurationsfejl. Hvis fejlen genopstår, bedes du kontakte "
-"tjenesteudbyderen."
-
 msgid "{disco:previous_auth}"
 msgstr "Du har tidligere valgt at logge ind hos"
 

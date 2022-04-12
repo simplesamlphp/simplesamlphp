@@ -16,15 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informace o odhlašovací operaci byla ztracena. Můžete se vrátit do "
-"aplikace, ze které jste se odhlašovali a zkusit to znova. Tato chyba byla"
-" způsobena vypršením odhlašovacích informací. Ty jsou uloženy po omezený čas "
-"(jednotky hodin). To by mělo stačit na normální odhlášení a tato chyba "
-"může ukazovat na chyby v konfiguraci. Pokud problém přetrvává, "
-"kontaktujte administrátora."
-
 msgid "{disco:previous_auth}"
 msgstr "Dříve jste zvolil(a) ověření u"
 

@@ -16,16 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Utracono informację o przebiegu operacji wylogowania. Powróć do usługi, z"
-" której próbowałeś się wylogować i ponów próbę. Ten błąd może być "
-"spowodowany przeterminowaniem informacji o wylogowaniu. Informacja o "
-"wylogowaniu jest przechowywana przez określony czas, zwykle kilka godzin."
-" Jest to dłużej niż może zająć operacja wylogowania, więc błąd może mieć "
-"inną przyczynę, np. może oznaczać błędną konfigurację. Jeśli problem "
-"utrzymuje się, skontaktuj się z dostawcą usługi."
-
 msgid "{disco:previous_auth}"
 msgstr "Poprzednio wybrałeś"
 

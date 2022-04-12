@@ -15,18 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Le informazioni riguardo all'attuale operazione di disconnessione sono "
-"andate perse. Si dovrebbe tornare al servizio da cui si cercava di "
-"disconnettersi e provare di nuovo. Questo errore può essere causato dal "
-"termine della validità delle informazioni di disconnessione. Le "
-"informazioni per la disconnessione sono conservate per un breve arco "
-"temporale, in genere alcune ore. Questo è un tempo superiore a quello che"
-" una operazione di disconnessione dovrebbe richiedere, quindi questo "
-"errore può indicare un problema di configurazione di qualche altro tipo. "
-"Se il problema persiste, consultare il fornitore del service provider."
-
 msgid "{disco:previous_auth}"
 msgstr "Precedentemente si è scelto di autenticarsi con"
 

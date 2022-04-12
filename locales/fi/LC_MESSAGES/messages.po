@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Uloskirjautumistiedot hävisivät. Sinun tulee palata siihen palveluun "
-"mistä aloitit uloskirjautumisen ja yrittää uutta uloskirjautumista. Tämä "
-"virhe voi johtua uloskirjautumistietojen vanhenemisesta. "
-"Uloskirjautumistietoja talletetaan vain rajatun ajan - usein vain "
-"tunteja. Tämä on selvästi pidempään kuin uloskirjautumisen pitäisi "
-"kesttä, joten virhe voi olla oire asetusten virheistä. Ota yhteuttä "
-"ylläpitäjään mikäli ongelma jatkuu."
-
 msgid "{disco:previous_auth}"
 msgstr "Olet aikaisemmin valinnut identiteettilähteeksesi"
 

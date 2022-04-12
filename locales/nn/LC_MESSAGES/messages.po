@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informasjon om utlogginga di har blitt borte.  Du bør gå tilbake til "
-"tenesta du prøver å logga ut av, og prøva ein gong til.  Feilen kan vera "
-"fordi utlogginga gjekk ut på tid.  Utloggingsinformasjon er lagra i eit "
-"kort tidsrom (vanlegvis nokre få timar), og dersom utlogging tar lengre "
-"tid kan det vera feil i andre deler av konfigurasjonen på webstaden du "
-"var innlogga på.  Dersom problemet ikkje blir borte, ta kontakt med "
-"webstaden du var innlogga på."
-
 msgid "{disco:previous_auth}"
 msgstr "Du har tidlegare logga inn ved"
 

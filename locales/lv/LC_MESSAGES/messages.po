@@ -16,15 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informācija par atslēgšanās operāciju ir pazaudēta. Jums jāatgriežas pie "
-"servisa, no kura mēģinājāt atslēgties, un jāmēģina atslēgties vēlreiz. "
-"Kļūda var rasties, ja atslēgšanās norit pārāk ilgi. Informācija par "
-"atslēgšanos tiek glabāta vairākas stundas. Tas ir ilgāk nekā parasti "
-"norit atslēgšanās procedūra, tādēļ šī kļūda var norādīt uz kļūdu "
-"konfigurācijā. Ja problēma turpinās, sazinieties ar servisa piegādātāju."
-
 msgid "{disco:previous_auth}"
 msgstr "Iepriekš Jūs autentificējāties pie"
 

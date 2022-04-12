@@ -15,17 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. "
-"Kérjük, térjen vissza ahhoz a szolgáltatáshoz, ahonnan ki akart "
-"jelentkezni, és próbálja újra! Lehetséges, hogy a hibát az okozza, hogy a"
-" kijelentkezéshez szükséges információ elévült. A kijelentkezési "
-"információ csak korlátozott ideig érvényes - általában néhány óráig. Ez "
-"hosszabb, mint amennyi normális esetben a kijelentkezéshez szükséges, "
-"ezért ez a hibaüzenet konfigurációs hibát jelenthet. Ha a probléma "
-"továbbra is fennáll, kérjük, forduljon az alkalmazásszolgáltatóhoz (SP)!"
-
 msgid "{disco:previous_auth}"
 msgstr "Korábban ezt a személyazonosság-szolgáltatót (IdP) választotta: "
 

@@ -16,17 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informacija o aktualnom zahtjevu za odjavljivanjem se izgubila. "
-"Preporučamo da se vratite u aplikaciju iz koje ste se htjeli odjaviti i "
-"pokušate se odjaviti ponovo. Ova greška može biti uzrokovana istekom "
-"valjanosti zahtjeva za odjavom. Zahtjev se pohranjuje određeno vrijeme - "
-"u pravilu nekoliko sati. Obzirom da je to dulje nego što bi bilo koja "
-"operacija odjavljivanja trebala trajati, greška koja se pojavila može "
-"upućivati na grešku u konfiguraciji. Ako se problem nastavi, "
-"kontaktirajte administratora aplikacije. "
-
 msgid "{disco:previous_auth}"
 msgstr "Prethodno ste odabrali autentifikaciju kroz"
 

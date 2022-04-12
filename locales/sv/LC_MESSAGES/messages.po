@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informationen om aktuell utloggning har försvunnit. Du bör återvända till"
-" tjänsten som du försökte logga ut från och försöka logga ut på nytt. "
-"Detta fel kan inträffa om informationen om utloggningen är för gammal. "
-"Utloggningsinformationen sparas en begränsad tid, oftas några timmar. Det"
-" är längre än vad utloggning bör ta så felet kan indikera något fel med "
-"konfigurationen. Om problemet kvarstår kontakta leverantören för den "
-"tjänst du försökte logga ut från."
-
 msgid "{disco:previous_auth}"
 msgstr "Du har  tidigare valt att logga in med"
 

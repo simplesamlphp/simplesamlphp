@@ -15,16 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Yürürlükteki çıkış işlemi ile ilgili bilgi kayboldu. Çıkmak istediğiniz "
-"servise geri dönün ve yeniden çıkmayı denyin. Bu hata, çıkış bilgisinin "
-"süresi dolduğu için oluşmuş olabilir. Çıkış bilgisi belirli bir süre için"
-" tutulur - genellikle birkaç saat. Bu süre normal bir çıkış işleminin "
-"tutacağından daha fazla bir süredir; bu hata yapılandırma ile ilgili "
-"başka bir hatayı işaret ediyor olabilir. Eğer sorun devam ederse, servis "
-"sağlayıcınızla iletişime geçiniz."
-
 msgid "{admin:cfg_check_back}"
 msgstr "Dosya listesine geri dön"
 

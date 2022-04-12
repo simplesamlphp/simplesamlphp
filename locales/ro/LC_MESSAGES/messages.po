@@ -16,18 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informația de deautentificare pentru această operațiune a fost pierdută. "
-"Vă rugăm să vă întoarceți la serviciul din care ați încercat să vă "
-"deautentificați și să încercați din nou. Această eroare poate fi cauzată "
-"de expirarea informației de deautentificare. Informația de "
-"deautentificare este stocată pentru un timp limitat, dar de obicei câteva"
-" ore, ceea ce eate mai mult decât poate dura în mod obișnuit o operațiune"
-" de deautentificare. Prin urmare, mesajul poate indica o altă eroare de "
-"configurare. Dacă problema persistă, vă rugăm să contactați furnizorul de"
-" servicii."
-
 msgid "{disco:previous_auth}"
 msgstr "Anterior ați ales să vă autentificați la"
 

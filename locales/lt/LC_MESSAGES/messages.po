@@ -16,17 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LOGOUTINFOLOST}"
-msgstr ""
-"Informacija apie atsijungimo operaciją prarasta. Jūs turėtumėte sugrįžti "
-"į tą paslaugą, iš kurios bandėte atsijungti ir pabandyti atlikti tai dar "
-"kartą. Ši klaida galėjo būti sukelta, nes baigėsi atsijungimo "
-"informacijos galiojimo laikas. Informacija apie atsijungimą yra saugoma "
-"ribotą laiko tarpą - dažniausiai kelias valandas. Tai yra daugiau nei bet"
-" kokia normali atsijungimo informacija gali užtrukti, taigi ši klaida "
-"gali būti sukelta kitos klaidos, kuri įvyko dėl konfigūracijos. Jei "
-"problema tęsiasi, susisiekite su savo paslaugos teikėju."
-
 msgid "{disco:previous_auth}"
 msgstr "Anksčiau pasirinkote autentikuotis"
 
