@@ -484,7 +484,7 @@ msgstr "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
 
-msgid "{errors:title_NOSTATE}"
+msgid "State information lost"
 msgstr "Ulwazi lwesifunda lulahlekile"
 
 msgid "{logout:title}"

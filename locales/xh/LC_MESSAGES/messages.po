@@ -478,7 +478,7 @@ msgstr "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo"
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%"
 
-msgid "{errors:title_NOSTATE}"
+msgid "State information lost"
 msgstr "Inkcazelo yobume ilahlekile"
 
 msgid "{logout:title}"
