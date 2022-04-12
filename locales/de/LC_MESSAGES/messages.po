@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{disco:previous_auth}"
-msgstr ""
-"Sie haben sich zu einem früheren Zeitpunkt entschieden, sich zu "
-"authentifizieren bei "
-
 msgid "{admin:cfg_check_back}"
 msgstr "Gehe zurück zur Dateiliste"
 

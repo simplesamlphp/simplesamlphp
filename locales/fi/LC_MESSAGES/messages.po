@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{disco:previous_auth}"
-msgstr "Olet aikaisemmin valinnut identiteettilähteeksesi"
-
 msgid "{login:change_home_org_title}"
 msgstr "Muuta kotiorganisaatiotasi"
 

@@ -241,7 +241,7 @@ msgstr ""
 msgid "{login:remember_me}"
 msgstr "Ndikhumbule"
 
-msgid "{disco:previous_auth}"
+msgid "You have previously chosen to authenticate at"
 msgstr "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-"
 
 msgid "{general:yes_continue}"

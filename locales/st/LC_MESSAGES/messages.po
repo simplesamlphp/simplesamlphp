@@ -80,9 +80,6 @@ msgstr "Khampani"
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 
-msgid "{disco:previous_auth}"
-msgstr "O qadile ka ho kgetha netefatso ho"
-
 msgid "{logout:hold}"
 msgstr "Tshwarisitswe"
 

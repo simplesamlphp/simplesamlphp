@@ -244,7 +244,7 @@ msgstr ""
 msgid "{login:remember_me}"
 msgstr "Ngikhumbule"
 
-msgid "{disco:previous_auth}"
+msgid "You have previously chosen to authenticate at"
 msgstr "Ngaphambilini ukhethe ukuqinisekisa kokuthi"
 
 msgid "{general:yes_continue}"

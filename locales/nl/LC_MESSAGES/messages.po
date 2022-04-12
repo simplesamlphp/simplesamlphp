@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{disco:previous_auth}"
-msgstr "Je hebt eerder gekozen voor authenticatie bij"
-
 msgid "{admin:cfg_check_back}"
 msgstr "Ga terug naar de lijst van files."
 
