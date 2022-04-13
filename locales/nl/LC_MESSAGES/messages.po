@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"Je hebt <b>%HOMEORG%</b> gekozen als je organisatie. Als dit niet correct"
-" is kun je een andere keuze maken."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Fout in Service Provider request"
 

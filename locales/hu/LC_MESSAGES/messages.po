@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"A <b>%HOMEORG%</b> szervezetet választotta ki. Ha a választás nem volt "
-"helyes, kérem válasszon másikat."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Hibás SP üzenet"
 

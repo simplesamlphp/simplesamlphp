@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr "你选择了<b>%HOMEORG%</b>作为你的家庭组织。如果错了请选择其他的"
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "处理来自服务提供者的请求时出错"
 

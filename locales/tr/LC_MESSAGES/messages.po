@@ -18,11 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"<b>%HOMEORG%</b>'u organizasyonunuz olarak seçtiniz. Eğer yanlış ise, "
-"başka bir tanesini seçebilirsiniz."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Servis Sağlayıcı'dan gelen isteği işlerken hata"
 

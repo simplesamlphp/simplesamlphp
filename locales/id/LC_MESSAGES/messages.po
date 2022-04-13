@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"Anda telah memilih  <b>%HOMEORG%</b> sebagai basis organisasi anda. Jika "
-"ini salah anda dapat memilih yang lain."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Error memproses request dari Service Provider"
 

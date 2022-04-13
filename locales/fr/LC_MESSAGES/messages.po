@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"Vous avez choisi <b>%HOMEORG%</b> comme votre fournisseur. Si ce n'est "
-"pas correct, vous pouvez le changer."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Erreur lors du traitement de la requête du fournisseur d'identité"
 

@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"Ați ales ca instituție de origine<b>%HOMEORG%</b>. Dacă nu este corect vă"
-" rugăm să alegeți altă instituție."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Eroare la procesarea răspunsului primit de la furnizorul de servicii"
 

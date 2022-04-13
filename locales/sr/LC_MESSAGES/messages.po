@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"Odabrali ste <b>%HOMEORG%</b> kao vašu matičnu instituciju. Ako to nije "
-"tačno možete odabrati drugu instituciju."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Greška prilikom obrade zahteva koji je poslao Davalac Servisa"
 

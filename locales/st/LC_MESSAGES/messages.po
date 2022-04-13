@@ -957,11 +957,6 @@ msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
 msgid "You have previously chosen to authenticate at"
 msgstr "O qadile ka ho kgetha netefatso ho"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"O kgethile <b>%HOMEORG%</b> jwalo ka khampani ya lehae ya heno. Haeba "
-"sena se fosahetse o ka kgetha e nngwe hape."
-
 msgid "Choose home organization"
 msgstr "Kgetha khampani ya lehae"
 

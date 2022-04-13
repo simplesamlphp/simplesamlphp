@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_text}"
-msgstr ""
-"&Egrave; stata selezionata <b>%HOMEORG%</b> come propria organizzazione. Se è "
-"sbagliata, è possibile selezionarne un'altra."
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Errore nell'elaborazione della richiesta dal Service Provider"
 
