@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:descr_METADATANOTFOUND}"
-msgstr "Unable to locate metadata for %ENTITYID%"
-
 msgid "{admin:metadata_metadata}"
 msgstr "Metadata"
 

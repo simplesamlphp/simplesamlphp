@@ -977,9 +977,6 @@ msgstr "Kgetha khampani ya lehae"
 msgid "Error"
 msgstr "Phoso"
 
-msgid "{errors:descr_METADATANOTFOUND}"
-msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata ha e a fumanwa"
 

@@ -486,7 +486,7 @@ msgstr "Thumela i-imeyili edeskini losizo"
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
 
-msgid "{errors:descr_METADATANOTFOUND}"
+msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
 
 msgid "State information lost"

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATANOTFOUND}"
-msgstr "Ezin da aurkitu metadaturik %ENTITYID%-(a)rentzat"
-
 msgid "{admin:metadata_metadata}"
 msgstr "Metadatuak"
 

@@ -480,7 +480,7 @@ msgstr "Thumela i-imeyile kwidesika yoncedo"
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo"
 
-msgid "{errors:descr_METADATANOTFOUND}"
+msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%"
 
 msgid "State information lost"
