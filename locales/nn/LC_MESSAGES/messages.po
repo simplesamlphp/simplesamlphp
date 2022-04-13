@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_metadata}"
-msgstr "Metadata"
-
 msgid "{errors:report_text}"
 msgstr ""
 "Om du vil at hjelpetenesta skal kontakta deg i samband med denne feilen, "

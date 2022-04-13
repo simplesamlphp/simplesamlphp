@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{admin:metadata_metadata}"
-msgstr "Metadata"
-
 msgid "{errors:report_text}"
 msgstr ""
 "Optionally enter your email address, for the administrators to be able "

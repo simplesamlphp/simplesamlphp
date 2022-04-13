@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metadata_metadata}"
-msgstr "Metadaten"
-
 msgid "{errors:report_text}"
 msgstr ""
 "Geben Sie optional eine E-Mail-Adresse an, so dass der Administrator Sie "
