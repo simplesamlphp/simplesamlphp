@@ -26,11 +26,6 @@ msgstr ""
 "Institutionen har sendt en fejl. (Status koden i SAML responset var ikke "
 "succes)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til "
-"tjenesten. Måske kan help-desk på din hjemmeinstitution hjælpe dig!"
-
 msgid "{logout:default_link_text}"
 msgstr "Tilbage til SimpleSAMLphp installationssiden"
 

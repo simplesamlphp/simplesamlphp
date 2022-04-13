@@ -28,12 +28,6 @@ msgstr ""
 "O Provedor de Identidade respondeu com um erro. (O código de resposta do "
 "SAML não teve sucesso."
 
-msgid "{login:help_text}"
-msgstr ""
-"Muito mal! - Sem o seu nome de usuário e a senha você não pode "
-"autenticar-se para acessar o serviço. Pode haver alguém que possa lhe "
-"ajudar. Consulte a central de dúvidas!"
-
 msgid "{logout:default_link_text}"
 msgstr "Voltar a instalação do SimpleSAMLphp"
 

@@ -28,12 +28,6 @@ msgstr ""
 "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML contém"
 " um código de insucesso)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Sem o seu nome de utilizador e senha não se pode autenticar para acesso "
-"ao serviço. Para obter ajuda, consulte o seu serviço de apoio ao "
-"utilizador."
-
 msgid "{logout:default_link_text}"
 msgstr "Voltar à página de instalação do SimpleSAMLphp"
 

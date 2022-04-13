@@ -665,12 +665,6 @@ msgstr ""
 msgid "{general:yes_continue}"
 msgstr "E, tswela pele"
 
-msgid "{login:help_text}"
-msgstr ""
-"Ntle le lebitso l ahao la mosebedisi le phasewete o ke ke wa inetefatsa "
-"bakeng sa phihlello ho tshebeletso. Ho ka nna ha ba le motho ya ka o "
-"thusang. Ikopanye le ba deske ya thuso khampaning ya heno!"
-
 msgid "Next"
 msgstr "E latelang"
 

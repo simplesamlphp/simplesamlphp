@@ -27,12 +27,6 @@ msgstr ""
 "Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
 "atšķiras no veiksmīga"
 
-msgid "{login:help_text}"
-msgstr ""
-"Bez lietotāja vārda un paroles Jūs nevarat autentificēties un nevarat "
-"izmantot servisu. Iespējams, ir kāds, kas var Jums palīdzēt. Vaicājiet "
-"savas universitātes palīdzības dienestam."
-
 msgid "{logout:default_link_text}"
 msgstr "Iet atpakaļ uz SimpleSAMLphp instalācijas lapu"
 

@@ -23,12 +23,6 @@ msgstr ""
 "Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die "
 "SAML reaksie was onsuksesvol)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Jammer! - Sonder jou gebruikersnaam en wagwoord kan jy jouself nie vir "
-"toegang tot die diens identifiseer nie. Dalk is daar iemand wat jou kan "
-"help. Raadpleeg die hulplyn by jou organisasie!"
-
 msgid "{logout:default_link_text}"
 msgstr "Gaan terug na die SimpleSAMLphp installasie bladsy"
 

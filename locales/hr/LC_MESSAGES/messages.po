@@ -30,12 +30,6 @@ msgstr ""
 "pojavi greške. (Šifra statusa dostavljena u SAML odgovoru ne odgovara "
 "šifri uspješno obrađenog zahtjeva)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Šteta! - Bez ispravne korisničke oznake i zaporke ne možete pristupiti "
-"aplikaciji. Da biste saznali vašu zaporku kontaktirajte administratora "
-"elektroničkog (LDAP) imenika vaše ustanove."
-
 msgid "{logout:default_link_text}"
 msgstr "Natrag na početnu stranicu SimpleSAMLphp instalacije"
 

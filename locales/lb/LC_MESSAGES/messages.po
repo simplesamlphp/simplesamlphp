@@ -18,11 +18,6 @@ msgstr ""
 msgid "{errors:debuginfo_header}"
 msgstr "Debug Informatiounen"
 
-msgid "{login:help_text}"
-msgstr ""
-"Pesch gehaat! - Ouni aeren Benotzernumm an d'Passwuert kënn der aerch net"
-" authentifizéiren an op den Service zougraiffen."
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp Fehler"
 

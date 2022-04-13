@@ -28,11 +28,6 @@ msgstr ""
 "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
 "statuskode som varsla om feil)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Synd! - Utan riktig brukarnamn og passord kan du ikkje autentisera deg.  "
-"Ta kontakt med brukarstøtte hos din organisasjon."
-
 msgid "{logout:default_link_text}"
 msgstr "Gå tilbake til SimpleSAMLphp installasjonssida"
 

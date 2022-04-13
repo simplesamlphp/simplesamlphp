@@ -23,12 +23,6 @@ msgstr ""
 "Identiteetintarjoaja vastasi virheellä. ( Tilakoodi SAML vastauksessa oli"
 " epäonnistunut)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Pahus! - Ilman tunnusta ja salasanaa et voi kirjautua palveluun. Voi "
-"olla, että joku voi auttaa sinua. Ole hyvä ja ota yhteyttä korkeakoulusi "
-"tukeen!"
-
 msgid "{logout:default_link_text}"
 msgstr "Palaa SimpleSAMLphp asennussivulle"
 

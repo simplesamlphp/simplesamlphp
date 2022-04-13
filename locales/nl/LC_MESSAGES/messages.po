@@ -31,11 +31,6 @@ msgstr ""
 "De Identity Provider antwoordde met een fout. (De statuscode in de SAML "
 "Response was niet success)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en "
-"dus niet gebruikmaken van deze dienst."
-
 msgid "{logout:default_link_text}"
 msgstr "Ga terug naar de SimpleSAMLphp installatiepagina"
 

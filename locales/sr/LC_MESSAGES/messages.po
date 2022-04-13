@@ -30,12 +30,6 @@ msgstr ""
 "greške(Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri "
 "uspešno obrađenog zahteva)."
 
-msgid "{login:help_text}"
-msgstr ""
-"Šteta! - Bez ispravnog korisničkog imena i lozinke ne možete pristupiti "
-"servisu. Da biste saznali vaše korisničko ime i lozinku obratite se vašoj"
-" matičnoj instituciji."
-
 msgid "{logout:default_link_text}"
 msgstr "Natrag na početnu stranicu SimpleSAMLphp instalacije"
 

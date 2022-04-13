@@ -24,12 +24,6 @@ msgstr "Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalm
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Hiba történt az azonosító szervezet (IdP) oldalán. Ismeretlen állapotkód."
 
-msgid "{login:help_text}"
-msgstr ""
-"Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát,"
-" így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud "
-"önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!"
-
 msgid "{logout:default_link_text}"
 msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
 

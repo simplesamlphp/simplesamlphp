@@ -26,12 +26,6 @@ msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
 "réponse SAML n'indiquait pas le succès)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Pas de chance! Sans votre identifiant et votre mot de passe vous ne "
-"pouvez pas vous authentifier et accéder au service. Il y a peut-être "
-"quelqu'un pour vous aider.  Contactez le help desk de votre université!"
-
 msgid "{logout:default_link_text}"
 msgstr "Retournez à la page d'installation de SimpleSAML."
 

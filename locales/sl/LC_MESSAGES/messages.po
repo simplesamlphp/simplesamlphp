@@ -25,11 +25,6 @@ msgstr "Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošilj
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
 
-msgid "{login:help_text}"
-msgstr ""
-"Žal se brez uporabniškega imena in gesla ne morete prijaviti in "
-"uporabljati storitev."
-
 msgid "{logout:default_link_text}"
 msgstr "Nazaj na namestitveno stran SimpleSAMLphp"
 

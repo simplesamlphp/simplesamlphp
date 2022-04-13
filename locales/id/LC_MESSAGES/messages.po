@@ -28,12 +28,6 @@ msgstr ""
 "Identity Provider merespon dengan error. (Kode status di Response SAML "
 "adalah tidak berhasil)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan "
-"autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang "
-"dapat menolong Anda. Hubungi help desk pada universitas Anda."
-
 msgid "{logout:default_link_text}"
 msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
 

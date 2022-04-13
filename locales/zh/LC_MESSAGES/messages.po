@@ -24,9 +24,6 @@ msgstr "当你处在调试模式中时，你将看到你正在发送的消息的
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "身份提供者的应答存在错误（SAML应答状态码并没有成功）"
 
-msgid "{login:help_text}"
-msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服务，也许有人能够帮助你，请咨询你所在大学的服务台"
-
 msgid "{logout:default_link_text}"
 msgstr "返回SimpleSAMLphp安装页面"
 

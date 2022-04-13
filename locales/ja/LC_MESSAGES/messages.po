@@ -24,11 +24,6 @@ msgstr "現在はデバッグモードです。あなたは送信するメッセ
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
-msgid "{login:help_text}"
-msgstr ""
-"ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。"
-"組織のヘルプデスクに相談してください。"
-
 msgid "{logout:default_link_text}"
 msgstr "SimpleSAMLphpの設定ページに戻る"
 

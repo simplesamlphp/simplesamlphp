@@ -27,12 +27,6 @@ msgstr ""
 "Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme"
 " buvo nesėkmingas)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Blogai - be prisijungimo vardo ir slaptažodžio negalėsite autentikuotis "
-"ir patekti į reikiamą paslaugą. Galbūt yra kas Jums galėtų padėti. "
-"Susisiekite su savo universiteto vartotojų aptarnavimo specialistais."
-
 msgid "{logout:default_link_text}"
 msgstr "Grįžti atgal į SimpleSAMLphp diegimo puslapį"
 

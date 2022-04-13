@@ -28,13 +28,6 @@ msgstr ""
 "Der Identity Provider gab einen Fehler zurück (Der Statuscode in der "
 "SAML-Antwort war nicht \"Erfolg\")"
 
-msgid "{login:help_text}"
-msgstr ""
-"Ohne Benutzername und Passwort können Sie sich nicht authentifizieren und "
-"somit den Dienst nicht nutzen. Möglicherweise kann Ihnen jemand in Ihrer "
-"Einrichtung helfen. Kontaktieren Sie dazu einen Ansprechpartner oder den "
-"Helpdesk Ihrer Einrichtung."
-
 msgid "{logout:default_link_text}"
 msgstr "Zurück zur SimpleSAMLphp Installationsseite"
 

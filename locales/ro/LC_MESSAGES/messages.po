@@ -29,12 +29,6 @@ msgstr ""
 "Furnizorul de identitate a răspuns cu o eroare. (Codul de stare in "
 "răspunsul SAML a fost  încercare nereușită)"
 
-msgid "{login:help_text}"
-msgstr ""
-"Din păcate fără nume de utilizator și parolă nu vă puteți autentifica "
-"pentru accesul la acest serviciu. Contactați echipa de suport tehnic de "
-"la universitatea dumneavoastră."
-
 msgid "{logout:default_link_text}"
 msgstr "Mergeți înapoi la pagina de instalare a SimpleSAMLphp"
 
