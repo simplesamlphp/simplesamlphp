@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_title}"
-msgstr "變更您的預設組織"
-
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "無法找到詮釋資料於 %ENTITYID%"
 

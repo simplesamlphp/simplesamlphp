@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{login:change_home_org_title}"
-msgstr "Change your home organization"
-
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "Unable to locate metadata for %ENTITYID%"
 

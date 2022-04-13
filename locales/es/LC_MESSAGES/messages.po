@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_title}"
-msgstr "Cambiar su organización origen"
-
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "No se puede localizar los metadatos en %ENTITYID%"
 

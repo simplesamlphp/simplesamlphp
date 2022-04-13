@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:change_home_org_title}"
-msgstr "Izberite vašo domačo organizacijo."
-
 msgid "{errors:descr_METADATANOTFOUND}"
 msgstr "Metapodatkov za %ENTITYID% ni bilo moč najti"
 

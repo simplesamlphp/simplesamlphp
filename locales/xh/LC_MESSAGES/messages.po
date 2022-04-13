@@ -358,9 +358,6 @@ msgstr ""
 msgid "{errors:title_CONFIG}"
 msgstr "Impazamo yolungiselelo"
 
-msgid "{login:change_home_org_title}"
-msgstr "Tshintsha umbutho wakho wekhaya"
-
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Isatifikethi esingaziwayo"
 
