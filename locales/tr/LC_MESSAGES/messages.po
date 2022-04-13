@@ -18,9 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{errors:report_header}"
-msgstr "Hataları bildir"
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "<b>%HOMEORG%</b>'u organizasyonunuz olarak seçtiniz. Eğer yanlış ise, "

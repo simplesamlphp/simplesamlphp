@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "Laporakan error"
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "Anda telah memilih  <b>%HOMEORG%</b> sebagai basis organisasi anda. Jika "

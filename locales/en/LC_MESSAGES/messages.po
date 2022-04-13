@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:report_header}"
-msgstr "Report errors"
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "You have chosen <b>%HOMEORG%</b> as your home organization. If this is "

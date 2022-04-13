@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "Ziņot par kļūdām"
-
 msgid "{login:change_home_org_text}"
 msgstr "Jūs izvēlējāties <b>%HOMEORG%</b>. ja tas nav pareizi, izvēlieties citu."
 

@@ -337,7 +337,7 @@ msgstr "Iphutha lomthombo wokuqinisekisa"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Okuhlukile okungasingathiwe"
 
-msgid "{errors:report_header}"
+msgid "Report errors"
 msgstr "Amaphutha ombiko"
 
 msgid "{errors:descr_LOGOUTREQUEST}"

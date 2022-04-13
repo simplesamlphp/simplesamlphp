@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "Rapporter feil"
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "Du har vald <b>%HOMEORG%</b> som din vertsorganisasjon.  Dersom dette er "

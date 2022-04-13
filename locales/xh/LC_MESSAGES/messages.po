@@ -332,7 +332,7 @@ msgstr "Impazamo yomthombo wongqinisiso"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Isinxaxhi esingasingathwanga"
 
-msgid "{errors:report_header}"
+msgid "Report errors"
 msgstr "Chaza iimpazamo"
 
 msgid "{errors:descr_LOGOUTREQUEST}"

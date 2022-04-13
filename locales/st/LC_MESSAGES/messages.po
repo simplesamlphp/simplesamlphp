@@ -156,9 +156,6 @@ msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 msgid "Bad request to discovery service"
 msgstr "Kopo e mpe bakeng sa tshebeletso ya tshibollo"
 
-msgid "{errors:report_header}"
-msgstr "Tlaleha diphoso"
-
 msgid "Select"
 msgstr "Kgetha"
 

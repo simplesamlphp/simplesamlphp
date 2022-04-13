@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "Prijavi grešku"
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "Odabrali ste <b>%HOMEORG%</b> kao vašu matičnu instituciju. Ako to nije "

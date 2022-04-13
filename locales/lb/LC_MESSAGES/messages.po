@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "Fehler matdeelen"
-
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Fehler beim Bearbeschten vun der Unfro vum Service Provider"
 

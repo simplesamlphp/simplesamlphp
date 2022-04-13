@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_header}"
-msgstr "ارفع تقريراً عن الأخطاء "
-
 msgid "{login:change_home_org_text}"
 msgstr ""
 "لقد قمت باختيار <b>%HOMEORG%</b> كجهتك الام. ان كان هذا الاختيار غير صحيح"
