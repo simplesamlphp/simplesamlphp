@@ -18,12 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Durumunuz hakkında ileride ortaya çıkabilecek sorularla ilgili "
-"yöneticilerin iletişim kurabilmesi için, isteğe bağlı olarak e-posta "
-"adresinizi girin."
-
 msgid "{errors:report_header}"
 msgstr "Hataları bildir"
 

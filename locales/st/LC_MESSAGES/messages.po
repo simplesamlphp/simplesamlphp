@@ -150,12 +150,6 @@ msgstr ""
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Ha ho karabelo ya SAML e fanweng"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Ka boikgethelo o ka kenya aterse ya imeile ya hao, bakeng sa batsamaisi "
-"hore ba kgone ho ikopanya le wena mabapi le dipotso tse ding ka ditaba "
-"tsa hao:"
-
 msgid "Incorrect username or password"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 

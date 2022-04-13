@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Введите адрес вашей электронной почты, чтобы администратор мог связаться "
-"с вами для прояснения данной ситуации (необязательно):"
-
 msgid "{errors:report_header}"
 msgstr "Сообщение об ошибках"
 

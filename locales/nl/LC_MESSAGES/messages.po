@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Voeg desgewenst je e-mailadres toe, zodat de beheerders contact kunnen "
-"zoeken voor verder informatie over dit probleem:"
-
 msgid "{errors:report_header}"
 msgstr "Rapporteer fouten"
 

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_text}"
-msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行うために使用します。"
-
 msgid "{errors:report_header}"
 msgstr "エラーをレポート"
 

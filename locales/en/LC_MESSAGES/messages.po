@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Optionally enter your email address, for the administrators to be able "
-"contact you for further questions about your issue:"
-
 msgid "{errors:report_header}"
 msgstr "Report errors"
 

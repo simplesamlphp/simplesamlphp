@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator "
-"aerch fir weider Froen kontaktéieren kann:"
-
 msgid "{errors:report_header}"
 msgstr "Fehler matdeelen"
 

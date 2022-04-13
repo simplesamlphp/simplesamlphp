@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:report_text}"
-msgstr ""
-"Opsional, masukkan alamat email Anda, agar administrator dapat "
-"menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:"
-
 msgid "{errors:report_header}"
 msgstr "Laporakan error"
 
