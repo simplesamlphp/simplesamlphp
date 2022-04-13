@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "我们不接受来自身份提供者的应答"
-
 msgid "{errors:debuginfo_header}"
 msgstr "调试信息"
 

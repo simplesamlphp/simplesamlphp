@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "לא קיבלנו את התגובה שנשלחה מספק הזהות."
-
 msgid "{errors:debuginfo_header}"
 msgstr "מידע דבאג"
 

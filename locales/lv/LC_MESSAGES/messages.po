@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "Netiek akceptēta atbilde no identitātes piegādātāja."
-
 msgid "{errors:debuginfo_header}"
 msgstr "Atkļūdošanas infomācija"
 

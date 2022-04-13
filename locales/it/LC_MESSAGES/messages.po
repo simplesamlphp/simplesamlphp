@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "Non è stata accettata una risposta proveniente dall'Identity Provider."
-
 msgid "{errors:debuginfo_header}"
 msgstr "Informazioni di debug"
 

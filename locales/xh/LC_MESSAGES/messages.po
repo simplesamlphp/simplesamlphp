@@ -379,7 +379,7 @@ msgstr ""
 "i-SAML LogoutRequest okanye i-LogoutResponse. Nceda uqaphele ukuba le "
 "ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
-msgid "{errors:descr_PROCESSASSERTION}"
+msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi."
 
 msgid "{disco:selectidp_full}"

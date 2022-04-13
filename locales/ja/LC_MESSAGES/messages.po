@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "アイデンティティプロバイダから送信されたレスポンスを受け付けませんでした。"
-
 msgid "{errors:debuginfo_header}"
 msgstr "デバッグ情報"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επεξεργασία της απάντησης από τον πάροχο "
-"ταυτότητας."
-
 msgid "{errors:debuginfo_header}"
 msgstr "Πληροφορίες εντοπισμού σφαλμάτων"
 

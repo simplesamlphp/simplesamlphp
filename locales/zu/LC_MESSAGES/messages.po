@@ -384,7 +384,7 @@ msgstr ""
 "uhlinzeke nge-SAML LogoutRequest noma i-LogoutResponse. Sicela uphawule "
 "ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
 
-msgid "{errors:descr_PROCESSASSERTION}"
+msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
 
 msgid "{disco:selectidp_full}"

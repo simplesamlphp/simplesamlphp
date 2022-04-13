@@ -53,9 +53,6 @@ msgstr "Thuso! Ha ke hopole phasewete ya ka."
 msgid "{logout:title}"
 msgstr "O ntshitswe"
 
-msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso."
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Kopo e mpe e amohetswe"
 
