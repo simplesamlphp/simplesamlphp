@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "处理来自服务提供者的请求时出错"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "我们不接受来自身份提供者的应答"
 

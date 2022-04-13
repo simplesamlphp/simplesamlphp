@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Eroare la procesarea răspunsului primit de la furnizorul de servicii"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Răspunsul de la acest furnizor de identitate nu a fost acceptat."
 

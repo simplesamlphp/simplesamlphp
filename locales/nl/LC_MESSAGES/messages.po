@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Fout in Service Provider request"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Het antwoord van de Identity Provider is niet geaccepteerd."
 

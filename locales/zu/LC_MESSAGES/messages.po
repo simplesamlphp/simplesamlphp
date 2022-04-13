@@ -485,7 +485,7 @@ msgstr "Awukho umlayezo we-SAML onikeziwe"
 msgid "{login:help_desk_email}"
 msgstr "Thumela i-imeyili edeskini losizo"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
+msgid "Error processing request from Service Provider"
 msgstr "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
 
 msgid "Unable to locate metadata for %ENTITYID%"

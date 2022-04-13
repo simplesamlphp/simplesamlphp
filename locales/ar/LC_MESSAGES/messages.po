@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "خطا بمعاملة طلب مقدم الخدمة"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "لم نقبل إجابات مقدم الهوية"
 

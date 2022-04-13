@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Klaida siunčiant užklausą iš paslaugų teikėjo"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Mes nepriimame užklausos, siųstos iš tapatybių teikėjo."
 

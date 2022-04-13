@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Feil ved behandling av forespørsel fra SP"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Svaret mottatt fra innloggingstjenesten kan ikke aksepteres."
 

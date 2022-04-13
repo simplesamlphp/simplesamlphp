@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Error processing request from Service Provider"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "We did not accept the response sent from the Identity Provider."
 

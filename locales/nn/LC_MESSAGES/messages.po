@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Feil under handtering av svar frå tenesteleverandør (SP)"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Svaret frå IdP var ikkje akseptabelt for oss"
 

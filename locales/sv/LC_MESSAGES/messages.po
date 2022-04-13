@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Fel vid bearbetning av förfrågan från en tjänsteleverantör (Service "
-"Provider)"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Svaret från identitetshanteraren (Identity Provider) är inte accepterat."
 

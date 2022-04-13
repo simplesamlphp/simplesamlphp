@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Hibás SP üzenet"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr ""
 "Nem fogadtuk el a személyazonosság-szolgáltató (IdP) által küldött "

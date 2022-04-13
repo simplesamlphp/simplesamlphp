@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Fout in Diens Verskaffer versoek proses"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Die antwoord vanaf die Indentiteits Verskaffer is nie aanvaar nie."
 

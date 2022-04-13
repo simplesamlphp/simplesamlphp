@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Greška prilikom obrade autentifikacijskog zahtjeva"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Nije prihvaćen odgovor koji je poslao autentifikacijski servis."
 

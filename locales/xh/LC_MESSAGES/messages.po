@@ -479,7 +479,7 @@ msgstr "Akukho myalezo we-SAML unikelweyo"
 msgid "{login:help_desk_email}"
 msgstr "Thumela i-imeyile kwidesika yoncedo"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
+msgid "Error processing request from Service Provider"
 msgstr "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo"
 
 msgid "Unable to locate metadata for %ENTITYID%"

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Greška prilikom obrade zahteva koji je poslao Davalac Servisa"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Odgovor koji je poslao Davalac Identiteta nije prihvaćen."
 

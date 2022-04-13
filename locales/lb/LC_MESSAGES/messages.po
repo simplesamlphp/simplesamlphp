@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Fehler beim Bearbeschten vun der Unfro vum Service Provider"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr "Mer konnten d Aentwert vum Identity Provider net akzeptéiren"
 

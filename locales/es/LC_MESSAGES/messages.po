@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:title_PROCESSAUTHNREQUEST}"
-msgstr "Error al procesar la solicitud del proveedor de servicio"
-
 msgid "{errors:descr_PROCESSASSERTION}"
 msgstr ""
 "No ha sido posible aceptar la respuesta enviada por el proveedor de "
