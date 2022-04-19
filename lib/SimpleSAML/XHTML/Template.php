@@ -540,12 +540,14 @@ class Template extends Response
      * @return string The HTML rendered by this template, as a string.
      * @throws \Exception if the template cannot be found.
      */
-    protected function getContents(): string
+    public function getContents(): string
     {
         $this->twigDefaultContext();
+
         if ($this->controller) {
             $this->controller->display($this->data);
         }
+
         try {
             return $this->twig->render($this->twig_template, $this->data);
         } catch (RuntimeError $e) {

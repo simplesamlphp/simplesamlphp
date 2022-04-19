@@ -28,6 +28,12 @@ class EMail
     /** @var \PHPMailer\PHPMailer\PHPMailer The mailer instance */
     private PHPMailer $mail;
 
+    /** @var string */
+    private string $txt_template;
+
+    /** @var string */
+    private string $html_template;
+
 
     /**
      * Constructor
@@ -38,15 +44,25 @@ class EMail
      * @param string $subject The subject of the e-mail
      * @param string $from The from-address (both envelope and header)
      * @param string $to The recipient
+     * @param string $txt_template The template to use for plain text messages
+     * @param string $html_template The template to use for html messages
      *
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function __construct(string $subject, string $from = null, string $to = null)
-    {
+    public function __construct(
+        string $subject,
+        string $from = null,
+        string $to = null,
+        string $txt_template = 'mailtxt.twig',
+        string $html_template = 'mailhtml.twig'
+    ) {
         $this->mail = new PHPMailer(true);
         $this->mail->Subject = $subject;
         $this->mail->setFrom($from ?: $this->getDefaultMailAddress());
         $this->mail->addAddress($to ?: $this->getDefaultMailAddress());
+
+        $this->txt_template = $txt_template;
+        $this->html_template = $html_template;
 
         $this->initFromConfig($this);
     }
@@ -132,11 +148,11 @@ class EMail
     {
         if ($plainTextOnly) {
             $this->mail->isHTML(false);
-            $this->mail->Body = $this->generateBody('mailtxt.twig');
+            $this->mail->Body = $this->generateBody($this->txt_template);
         } else {
             $this->mail->isHTML(true);
-            $this->mail->Body = $this->generateBody('mailhtml.twig');
-            $this->mail->AltBody = $this->generateBody('mailtxt.twig');
+            $this->mail->Body = $this->generateBody($this->html_template);
+            $this->mail->AltBody = $this->generateBody($this->txt_template);
         }
 
         $this->mail->send();
@@ -195,6 +211,11 @@ class EMail
                 if (isset($transportOptions['autotls'])) {
                     $this->mail->SMTPAutoTLS = (bool)$transportOptions['autotls'];
                 }
+
+                // socket options for smtp TLS connection
+                if (isset($transportOptions['smtpOptions'])) {
+                    $this->mail->SMTPOptions = $transportOptions['smtpOptions'];
+                }
                 break;
             //mail transport method
             case 'mail':
@@ -248,11 +269,10 @@ class EMail
         $config = Configuration::getInstance();
 
         $t = new Template($config, $template);
-        $result = $t->getTwig()->render($template, [
-            'subject' => $this->mail->Subject,
-            'text' => $this->text,
-            'data' => $this->data
-        ]);
-        return $result;
+        $t->data['data'] = $this->data;
+        $t->data['subject'] = $this->mail->Subject;
+        $t->data['text'] = $this->text;
+
+        return $t->getContents();
     }
 }
