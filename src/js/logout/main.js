@@ -1,5 +1,7 @@
+'use strict';
+
 import SimpleSAMLLogout from './logout.js';
 
-$(document).ready(function () {
-    new SimpleSAMLLogout($('body').attr('id'));
+ready(function () {
+    new SimpleSAMLLogout(document.body.id);
 });

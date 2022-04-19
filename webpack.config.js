@@ -17,8 +17,9 @@ module.exports = environment => {
     const secondaryBackground = env.hasOwnProperty('secondaryBackground') ? env.secondaryBackground : '#e8410c';
     return {
         entry: {
-            bundle: './src/js/bundle',
+            bundle: './src/js/bundle/main',
             logout: './src/js/logout/main',
+            post: './src/js/post/main',
             stylesheet: './src/js/style'
         },
         output: {
@@ -30,9 +31,11 @@ module.exports = environment => {
             rules: [
                 {
                     test: /\.js$/,
-                    exclude: /\/node_modules\//,
                     use: {
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
                     }
                 },
                 {
@@ -58,24 +61,11 @@ module.exports = environment => {
                             }
                         }
                     ]
-                },
-                {
-                    // expose jquery for use outside webpack bundle
-                    test: require.resolve('jquery'),
-                    loader: "expose-loader",
-                    options: {
-                        exposes: ["$", "jQuery"],
-                    }
                 }
             ]
         },
         devtool: 'source-map',
         plugins: [
-            // Provides jQuery for other JS bundled with Webpack
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery'
-            }),
             new MiniCssExtractPlugin({
                 filename: localConfig['css_filename'],
                 ignoreOrder: true

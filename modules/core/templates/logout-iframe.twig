@@ -7,7 +7,7 @@
     {%- if type != "init" %}
       {%- set content = '2' %}
       {%- if remaining_services|length == 0 %}
-        {%- set content = '0; url=' ~ moduleURL('core/logout/iframe-done', {'id': auth_state }) %}
+        {%- set content = '0; url=' ~ moduleURL('core/logout-iframe-done', {'id': auth_state }) %}
       {%- endif %}
 
     <meta http-equiv="refresh" content="{{ content }}">
@@ -111,7 +111,7 @@
       </div>
     </div>
   {%- else %}
-    <form id="error-form" action="{{ moduleURL('logout-iframe-done') }}">
+    <form id="error-form" action="{{ moduleURL('core/logout-iframe-done') }}">
       <input type="hidden" name="id" value="{{ auth_state }}">
       <button type="submit" id="btn-continue" name="ok" class="pure-button pure-button-red">
         {%- trans %}Continue{% endtrans -%}
