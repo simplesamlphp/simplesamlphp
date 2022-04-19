@@ -45,6 +45,6 @@ class Disco
     public function disco(Request $request): RunnableResponse
     {
         $disco = new IdPDisco(['saml20-idp-remote'], 'saml');
-        return RunnableResponse([$disco, 'handleRequest']);
+        return new RunnableResponse([$disco, 'handleRequest']);
     }
 }
