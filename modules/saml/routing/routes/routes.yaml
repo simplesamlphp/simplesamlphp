@@ -1,0 +1,12 @@
+saml-invalidSession:
+    path:       /invalidSession
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Proxy::invalidSession' }
+saml-disco:
+    path:       /disco
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Disco::disco' }
+saml-discoResponse:
+    path:       /discoResponse
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse' }
+saml-wrongAuthnContextClassRef:
+    path:       /wrongAuthnContextClassRef
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef' }
