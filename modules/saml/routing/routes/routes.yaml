@@ -1,18 +1,21 @@
-saml-invalidSession:
-    path:       /invalidSession
+saml-proxy-invalidSession:
+    path:       /proxy/invalidSession
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Proxy::invalidSession' }
 saml-disco:
     path:       /disco
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Disco::disco' }
-saml-discoResponse:
-    path:       /discoResponse
+saml-sp-discoResponse:
+    path:       /sp/discoResponse
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse' }
-saml-wrongAuthnContextClassRef:
-    path:       /wrongAuthnContextClassRef
+saml-sp-wrongAuthnContextClassRef:
+    path:       /sp/wrongAuthnContextClassRef
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef' }
-saml-assertionConsumerService:
-    path:       /assertionConsumerService/{sourceId}
+saml-sp-assertionConsumerService:
+    path:       /sp/assertionConsumerService/{sourceId}
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService' }
-saml-singleLogoutService:
-    path:       /singleLogoutService/{sourceId}
+saml-sp-singleLogoutService:
+    path:       /sp/singleLogoutService/{sourceId}
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService' }
+saml-sp-metadata:
+    path:       /sp/metadata/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata' }

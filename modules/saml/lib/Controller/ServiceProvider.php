@@ -542,4 +542,63 @@ class ServiceProvider
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
     }
+
+
+    /**
+     * Metadata endpoint for SAML SP
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string $sourceId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function metadata(Request $request, string $sourceId): Response
+    {
+        if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
+            $authUtils = new Utils\Auth();
+            $authUtils->requireAdmin();
+        }
+
+        $source = Auth\Source::getById($sourceId);
+        if ($source === null) {
+            throw new Error\AuthSource($sourceId, 'Could not find authentication source.');
+        }
+
+        if (!($source instanceof SP)) {
+            throw new Error\AuthSource(
+                $sourceId,
+                'The authentication source is not a SAML Service Provider.'
+            );
+        }
+
+        $entityId = $source->getEntityId();
+        $spconfig = $source->getMetadata();
+        $metaArray20 = $source->getHostedMetadata();
+
+        $storeType = $config->getOptionalString('store.type', 'phpsession');
+        $store = StoreFactory::getInstance($storeType);
+
+        $metaBuilder = new Metadata\SAMLBuilder($entityId);
+        $metaBuilder->addMetadataSP20($metaArray20, $source->getSupportedProtocols());
+        $metaBuilder->addOrganizationInfo($metaArray20);
+
+        $xml = $metaBuilder->getEntityDescriptorText();
+
+        // sign the metadata if enabled
+        $metaxml = Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
+
+        // make sure to export only the md:EntityDescriptor
+        $i = strpos($metaxml, '<md:EntityDescriptor');
+        $metaxml = substr($metaxml, $i ? $i : 0);
+
+        // 22 = strlen('</md:EntityDescriptor>')
+        $i = strrpos($metaxml, '</md:EntityDescriptor>');
+        $metaxml = substr($metaxml, 0, $i ? $i + 22 : 0);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/samlmetadata+xml');
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . basename($sourceId) . '.xml"');
+        $response->setContent($metaxml);
+
+        return $response;
+    }
 }
