@@ -10,3 +10,6 @@ saml-discoResponse:
 saml-wrongAuthnContextClassRef:
     path:       /wrongAuthnContextClassRef
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef' }
+saml-assertionConsumerService:
+    path:       /assertionConsumerService/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService' }
