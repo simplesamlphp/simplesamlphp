@@ -190,7 +190,7 @@ class ServiceProvider
                 'Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.'
             );
             if (isset($prevAuth['redirect'])) {
-                return RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
+                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
             }
 
             Logger::info('No RelayState or ReturnURL available, cannot redirect.');
