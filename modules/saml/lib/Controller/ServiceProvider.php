@@ -13,6 +13,7 @@ use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
 use SAML2\Response;
 use SAML2\SOAP;
+use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
