@@ -13,3 +13,6 @@ saml-wrongAuthnContextClassRef:
 saml-assertionConsumerService:
     path:       /assertionConsumerService/{sourceId}
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService' }
+saml-singleLogoutService:
+    path:       /singleLogoutService/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService' }

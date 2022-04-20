@@ -209,7 +209,7 @@ class ServiceProviderTest extends TestCase
 
 
     /**
-     * Test that accessing the ACS-endpoint with SourceID results in an exception
+     * Test that accessing the ACS-endpoint with unknown SourceID results in an exception
      *
      * @return void
      */
@@ -313,5 +313,53 @@ class ServiceProviderTest extends TestCase
 //        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => '\'https://engine.test.surfconext.nl/authentication/idp/metadata\'')");
 
         $c->assertionConsumerService($request, 'phpunit');
+    }
+
+
+    /**
+     * Test that accessing the SLO-endpoint with unknown SourceID results in an exception
+     *
+     * @return void
+     */
+    public function testSLOWithUnknownSourceID(): void
+    {
+        $request = Request::create(
+            '/singleLogoutService/something',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage("No authentication source with id 'something' found.");
+
+        $c->singleLogoutService($request, 'something');
+    }
+
+
+    /**
+     * Test that accessing the SLO-endpoint without being able to determine the binding results in an exception
+     *
+     * @return void
+     */
+    public function testSLOWithUnkownBinding(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'PUT';
+        $_SERVER['QUERY_STRING'] = '';
+        unset($_GET['SAMLResponse']);
+        $request = Request::create(
+            '/singleLogoutService/phpunit',
+            'PUT',
+            [],
+            [],
+            [],
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\Error::class);
+        $this->expectExceptionMessage('SLOSERVICEPARAMS');
+
+        $c->singleLogoutService($request, 'phpunit');
     }
 }
