@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SAML2\Assertion;
 use SAML2\Binding;
+use SAML2\HTTPArtifact;
 use SAML2\Response;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
