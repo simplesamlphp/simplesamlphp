@@ -11,7 +11,7 @@ use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
-use SAML2\SAML2_Response;
+use SAML2\Response as SAML2_Response;
 use SAML2\SOAP;
 use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
