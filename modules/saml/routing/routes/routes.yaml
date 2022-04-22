@@ -24,7 +24,7 @@ saml-legacy-sp-assertionConsumerService:
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService', path: /saml/sp/assertionConsumerService, permanent: true }
 saml-legacy-sp-singleLogoutService:
     path:       /sp/saml2-logout.php/{sourceId}
-    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService' path: /saml/sp/singleLogoutService, permanent: true }
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService', path: /saml/sp/singleLogoutService, permanent: true }
 saml-legacy-sp-metadata:
     path:       /sp/metadata.php/{sourceId}
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata', path: /saml/sp/metadata, permanent: true }
