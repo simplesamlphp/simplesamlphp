@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SAML2\Assertion;
 use SAML2\Binding;
+use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
 use SAML2\LogoutRequest;
@@ -142,10 +143,9 @@ class ServiceProvider
 
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
      */
-    public function wrongAuthnContextClassRef(Request $request): Template
+    public function wrongAuthnContextClassRef(): Template
     {
         return new Template($this->config, 'saml:sp/wrong_authncontextclassref.twig');
     }
@@ -154,11 +154,10 @@ class ServiceProvider
     /**
      * Handler for the Assertion Consumer Service.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \SimpleSAML\Http\RunnableResponse
      */
-    public function assertionConsumerService(Request $request, string $sourceId): RunnableResponse
+    public function assertionConsumerService(string $sourceId): RunnableResponse
     {
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId, SP::class);
@@ -420,11 +419,10 @@ class ServiceProvider
      *
      * This endpoint handles both logout requests and logout responses.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \SimpleSAML\Http\RunnableResponse
      */
-    public function singleLogoutService(Request $request, string $sourceId): RunnableResponse
+    public function singleLogoutService(string $sourceId): RunnableResponse
     {
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
@@ -456,7 +454,6 @@ class ServiceProvider
 
         $spEntityId = $source->getEntityId();
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $source->getIdPMetadata($idpEntityId);
         $spMetadata = $source->getMetadata();
 
@@ -483,7 +480,7 @@ class ServiceProvider
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
-            Auth\Source::completeLogout($state);
+            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [$state]);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
             Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
@@ -554,7 +551,7 @@ class ServiceProvider
                 $lr->setDestination($dst['Location']);
             }
 
-            $binding->send($lr);
+            return new RunnableResponse([$binding, 'send'], [$lr]);
         } else {
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
@@ -564,11 +561,10 @@ class ServiceProvider
     /**
      * Metadata endpoint for SAML SP
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function metadata(Request $request, string $sourceId): Response
+    public function metadata(string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
@@ -589,9 +585,6 @@ class ServiceProvider
         $entityId = $source->getEntityId();
         $spconfig = $source->getMetadata();
         $metaArray20 = $source->getHostedMetadata();
-
-        $storeType = $this->config->getOptionalString('store.type', 'phpsession');
-        $store = StoreFactory::getInstance($storeType);
 
         $metaBuilder = new Metadata\SAMLBuilder($entityId);
         $metaBuilder->addMetadataSP20($metaArray20, $source->getSupportedProtocols());

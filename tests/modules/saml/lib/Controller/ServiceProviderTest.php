@@ -209,14 +209,9 @@ class ServiceProviderTest extends TestCase
      */
     public function testWrongAuthnContextClassRef(): void
     {
-        $request = Request::create(
-            '/wrongAuthnContextClassRef',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
-        $result = $c->wrongAuthnContextClassRef($request);
+        $result = $c->wrongAuthnContextClassRef();
         $this->assertInstanceOf(Template::class, $result);
     }
 
@@ -228,17 +223,12 @@ class ServiceProviderTest extends TestCase
      */
     public function testACSWithUnknownSourceID(): void
     {
-        $request = Request::create(
-            '/assertionConsumerService/something',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage("No authentication source with id 'something' found.");
 
-        $c->assertionConsumerService($request, 'something');
+        $c->assertionConsumerService('something');
     }
 
 
@@ -250,17 +240,13 @@ class ServiceProviderTest extends TestCase
     public function testACSWithUnkownBinding(): void
     {
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $request = Request::create(
-            '/assertionConsumerService/phpunit',
-            'GET',
-        );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Error::class);
         $this->expectExceptionMessage('ACSPARAMS');
 
-        $c->assertionConsumerService($request, 'phpunit');
+        $c->assertionConsumerService('phpunit');
     }
 
 
@@ -283,18 +269,12 @@ class ServiceProviderTest extends TestCase
         $_GET['RelayState'] = $q['RelayState'];
         $_GET['SAMLEncoding'] = $q['SAMLEncoding'];
 
-        $request = Request::create(
-            '/assertionConsumerService/phpunit',
-            'GET',
-            $q,
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Invalid message received at AssertionConsumerService endpoint.');
 
-        $c->assertionConsumerService($request, 'phpunit');
+        $c->assertionConsumerService('phpunit');
     }
 
 
@@ -313,19 +293,13 @@ class ServiceProviderTest extends TestCase
         $_SERVER['QUERY_STRING'] = http_build_query($q);
         $_GET['SAMLResponse'] = $q['SAMLResponse'];
 
-        $request = Request::create(
-            '/assertionConsumerService/phpunit',
-            'GET',
-            $q,
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\MetadataNotFound::class);
 // Breaks PHP 8.1 tests
 //        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => '\'https://engine.test.surfconext.nl/authentication/idp/metadata\'')");
 
-        $c->assertionConsumerService($request, 'phpunit');
+        $c->assertionConsumerService('phpunit');
     }
 
 
@@ -336,17 +310,12 @@ class ServiceProviderTest extends TestCase
      */
     public function testSLOWithUnknownSourceID(): void
     {
-        $request = Request::create(
-            '/singleLogoutService/something',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage("No authentication source with id 'something' found.");
 
-        $c->singleLogoutService($request, 'something');
+        $c->singleLogoutService('something');
     }
 
 
@@ -360,20 +329,13 @@ class ServiceProviderTest extends TestCase
         $_SERVER['REQUEST_METHOD'] = 'PUT';
         $_SERVER['QUERY_STRING'] = '';
         unset($_GET['SAMLResponse']);
-        $request = Request::create(
-            '/singleLogoutService/phpunit',
-            'PUT',
-            [],
-            [],
-            [],
-        );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Error::class);
         $this->expectExceptionMessage('SLOSERVICEPARAMS');
 
-        $c->singleLogoutService($request, 'phpunit');
+        $c->singleLogoutService('phpunit');
     }
 
 
@@ -420,19 +382,13 @@ XML;
         $_GET['RelayState'] = $q['RelayState'];
         $_GET['SAMLEncoding'] = $q['SAMLEncoding'];
 
-        $request = Request::create(
-            '/singleLogoutService/phpunit',
-            'GET',
-            $q,
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\MetadataNotFound::class);
 // Breaks PHP 8.1 tests
 //        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => '\'https://engine.test.surfconext.nl/authentication/idp/metadata\'')");
 
-        $c->singleLogoutService($request, 'phpunit');
+        $c->singleLogoutService('phpunit');
     }
 
 
@@ -444,14 +400,9 @@ XML;
      */
     public function testMetadataProtectedUnauthenticated(): void
     {
-        $request = Request::create(
-            '/metadata/phpunit',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
-        $result = $c->metadata($request, 'phpunit');
+        $result = $c->metadata('phpunit');
         $this->assertInstanceOf(RunnableResponse::class, $result);
     }
 
@@ -464,15 +415,10 @@ XML;
      */
     public function testMetadataProtectedAuthenticated(): void
     {
-        $request = Request::create(
-            '/metadata/phpunit',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
 
-        $result = $c->metadata($request, 'phpunit');
+        $result = $c->metadata('phpunit');
         $this->assertInstanceOf(Response::class, $result);
     }
 
@@ -495,14 +441,9 @@ XML;
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
-        $request = Request::create(
-            '/metadata/phpunit',
-            'GET',
-        );
-
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
-        $result = $c->metadata($request, 'phpunit');
+        $result = $c->metadata('phpunit');
         $this->assertInstanceOf(Response::class, $result);
     }
 }
