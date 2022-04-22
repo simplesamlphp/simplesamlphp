@@ -412,12 +412,12 @@ XML;
 
         $result = $c->metadata('phpunit');
 
-        if ($authenticated === false && $protected === true) {
-            $this->assertInstanceOf(RunnableResponse::class, $result);
-        } else {
+        if ($authenticated !== false && $protected !== true) {
             // ($authenticated === true) or ($protected === false)
             // Should lead to a Response
             $this->assertInstanceOf(Response::class, $result);
+        } else {
+            $this->assertInstanceOf(RunnableResponse::class, $result);
         }
     }
 
