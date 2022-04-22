@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use SimpleSAML\Configuration;
-use SimpleSAML\Http\RunnableResponse;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\XHTML\IdPDisco;
 use Symfony\Component\HttpFoundation\Request;
 

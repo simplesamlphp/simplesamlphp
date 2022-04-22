@@ -10,7 +10,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Http\RunnableResponse;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
