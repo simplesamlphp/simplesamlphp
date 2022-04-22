@@ -428,7 +428,7 @@ XML;
     public function provideMetadataAccess(): array
     {
         return [
-           /* [protected, authenticated] */
+           /* [authenticated, protected] */
            [true, true],
            [true, false],
            [false, true],
