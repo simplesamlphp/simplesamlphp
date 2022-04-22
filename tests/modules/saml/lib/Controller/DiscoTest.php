@@ -55,18 +55,13 @@ class DiscoTest extends TestCase
             'returnIDParam' => 'someParam',
             'IDPList' => 'a,b,c',
         ];
-        $request = Request::create(
-            '/disco',
-            'GET',
-            $params,
-        );
 
         $_GET = array_merge($_GET, $params);
         $_SERVER['REQUEST_URI'] = '/disco';
 
         $c = new Controller\Disco($this->config);
 
-        $result = $c->disco($request);
+        $result = $c->disco();
         $this->assertInstanceOf(RunnableResponse::class, $result);
     }
 }

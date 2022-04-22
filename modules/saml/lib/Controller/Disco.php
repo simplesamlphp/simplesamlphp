@@ -39,10 +39,9 @@ class Disco
     /**
      * Built-in IdP discovery service
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\Http\RunnableResponse
      */
-    public function disco(Request $request): RunnableResponse
+    public function disco(): RunnableResponse
     {
         $disco = new IdPDisco(['saml20-idp-remote'], 'saml');
         return new RunnableResponse([$disco, 'handleRequest']);
