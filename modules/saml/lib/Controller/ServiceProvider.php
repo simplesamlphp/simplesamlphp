@@ -11,7 +11,7 @@ use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
-use SAML2\Response;
+use SAML2\SAML2_Response;
 use SAML2\SOAP;
 use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
@@ -27,7 +27,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_merge;
 use function count;
@@ -160,7 +160,7 @@ class ServiceProvider
         }
 
         $response = $b->receive();
-        if (!($response instanceof Response)) {
+        if (!($response instanceof SAML2_Response)) {
             throw new Error\BadRequest('Invalid message received at AssertionConsumerService endpoint.');
         }
 
@@ -575,7 +575,7 @@ class ServiceProvider
         $spconfig = $source->getMetadata();
         $metaArray20 = $source->getHostedMetadata();
 
-        $storeType = $config->getOptionalString('store.type', 'phpsession');
+        $storeType = $this->config->getOptionalString('store.type', 'phpsession');
         $store = StoreFactory::getInstance($storeType);
 
         $metaBuilder = new Metadata\SAMLBuilder($entityId);
