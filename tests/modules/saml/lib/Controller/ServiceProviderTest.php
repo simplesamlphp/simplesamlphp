@@ -371,7 +371,8 @@ class ServiceProviderTest extends TestCase
      */
     public function testSLOWithCorrectMessageUnknownEntity(): void
     {
-$x = <<<XML
+        /** Note:  should be replaced by loading an xml-file once we can load that from saml2v5 */
+        $x = <<<XML
 <samlp:LogoutRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="_f987e7436c1103bcf89296303f780d853d7713a8ef" IssueInstant="2020-08-15T15:53:24Z">
   <saml:Issuer>TheIssuer</saml:Issuer>
   <saml:EncryptedID>
