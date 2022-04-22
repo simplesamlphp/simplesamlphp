@@ -60,6 +60,9 @@ class ServiceProvider
      */
     protected $authState = Auth\State::class;
 
+    /** @var \SimpleSAML\Utils\Auth */
+    protected Utils\Auth $authUtils;
+
 
     /**
      * Controller constructor.
@@ -75,6 +78,7 @@ class ServiceProvider
     ) {
         $this->config = $config;
         $this->session = $session;
+        $this->authUtils = new Utils\Auth();
     }
 
 
@@ -86,6 +90,17 @@ class ServiceProvider
     public function setAuthState(Auth\State $authState): void
     {
         $this->authState = $authState;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
     }
 
 
@@ -551,13 +566,12 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
      */
     public function metadata(Request $request, string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
-            $authUtils = new Utils\Auth();
-            $authUtils->requireAdmin();
+            return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
         $source = Auth\Source::getById($sourceId);

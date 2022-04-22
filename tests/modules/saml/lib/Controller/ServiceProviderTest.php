@@ -12,8 +12,10 @@ use SimpleSAML\Error;
 use SimpleSAML\Http\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -29,6 +31,9 @@ class ServiceProviderTest extends TestCase
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+    /** @var \SimpleSAML\Utils\Auth */
+    protected Utils\Auth $authUtils;
+
 
     /**
      * Set up for each test.
@@ -41,6 +46,7 @@ class ServiceProviderTest extends TestCase
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
+                'admin.protectmetadata' => true,
             ],
             '[ARRAY]',
             'simplesaml'
@@ -50,8 +56,8 @@ class ServiceProviderTest extends TestCase
         Configuration::setPreLoadedConfig(
             Configuration::loadFromArray(
                 [
+                    'admin' => ['core:AdminPassword'],
                     'phpunit' => ['saml:SP'],
-                    'fake' => ['core:AdminPassword'],
                 ],
                 '[ARRAY]',
                 'simplesaml'
@@ -59,6 +65,13 @@ class ServiceProviderTest extends TestCase
             'authsources.php',
             'simplesaml'
         );
+
+        $this->authUtils = new class () extends Utils\Auth {
+            public function requireAdmin(): void
+            {
+                // stub
+            }
+        };
     }
 
 
@@ -151,7 +164,7 @@ class ServiceProviderTest extends TestCase
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
                 return [
-                    'saml:sp:AuthId' => 'fake',
+                    'saml:sp:AuthId' => 'admin',
                 ];
             }
         });
@@ -420,5 +433,76 @@ XML;
 //        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => '\'https://engine.test.surfconext.nl/authentication/idp/metadata\'')");
 
         $c->singleLogoutService($request, 'phpunit');
+    }
+
+
+    /**
+     * Test that accessing the metadata-endpoint WITHOUT authentication
+     * and admin.protectmetadata set to TRUE leads to a redirect
+     *
+     * @return void
+     */
+    public function testMetadataProtectedUnauthenticated(): void
+    {
+        $request = Request::create(
+            '/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $result = $c->metadata($request, 'phpunit');
+        $this->assertInstanceOf(RunnableResponse::class, $result);
+    }
+
+
+    /**
+     * Test that accessing the metadata-endpoint WITH authentication
+     * and admin.protectmetadata set to TRUE leads to an XML-file
+     *
+     * @return void
+     */
+    public function testMetadataProtectedAuthenticated(): void
+    {
+        $request = Request::create(
+            '/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c->setAuthUtils($this->authUtils);
+
+        $result = $c->metadata($request, 'phpunit');
+        $this->assertInstanceOf(Response::class, $result);
+    }
+
+
+    /**
+     * Test that accessing the metadata-endpoint WITHOUT authentication
+     * and admin.protectmetadata set to FALSE leads to an XML-file
+     *
+     * @return void
+     */
+    public function testMetadataNotProtectedUnauthenticated(): void
+    {
+        $this->config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'admin.protectmetadata' => false,
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+        Configuration::setPreLoadedConfig($this->config, 'config.php');
+
+        $request = Request::create(
+            '/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $result = $c->metadata($request, 'phpunit');
+        $this->assertInstanceOf(Response::class, $result);
     }
 }
