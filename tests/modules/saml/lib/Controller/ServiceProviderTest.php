@@ -393,57 +393,46 @@ XML;
 
 
     /**
-     * Test that accessing the metadata-endpoint WITHOUT authentication
-     * and admin.protectmetadata set to TRUE leads to a redirect
+     * Test that accessing the metadata-endpoint with or without authentication
+     * and admin.protectmetadata set to true or false is handled properly
      *
+     * @dataProvider provideMetadataAccess
+     * @param bool $protected
+     * @param bool $authenticated
      * @return void
      */
-    public function testMetadataProtectedUnauthenticated(): void
+    public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
+        if ($authenticated === true || $protected === false) {
+            // Bypass authentication - mock being authenticated
+            $c->setAuthUtils($this->authUtils);
+        }
+
         $result = $c->metadata('phpunit');
-        $this->assertInstanceOf(RunnableResponse::class, $result);
+
+        if ($authenticated === false && $protected === true) {
+            $this->assertInstanceOf(RunnableResponse::class, $result);
+        } else {
+            // ($authenticated === true) or ($protected === false)
+            // Should lead to a Response
+            $this->assertInstanceOf(Response::class, $result);
+        }
     }
 
 
     /**
-     * Test that accessing the metadata-endpoint WITH authentication
-     * and admin.protectmetadata set to TRUE leads to an XML-file
-     *
-     * @return void
+     * @return array
      */
-    public function testMetadataProtectedAuthenticated(): void
+    public function provideMetadataAccess(): array
     {
-        $c = new Controller\ServiceProvider($this->config, $this->session);
-        $c->setAuthUtils($this->authUtils);
-
-        $result = $c->metadata('phpunit');
-        $this->assertInstanceOf(Response::class, $result);
-    }
-
-
-    /**
-     * Test that accessing the metadata-endpoint WITHOUT authentication
-     * and admin.protectmetadata set to FALSE leads to an XML-file
-     *
-     * @return void
-     */
-    public function testMetadataNotProtectedUnauthenticated(): void
-    {
-        $this->config = Configuration::loadFromArray(
-            [
-                'module.enable' => ['saml' => true],
-                'admin.protectmetadata' => false,
-            ],
-            '[ARRAY]',
-            'simplesaml'
-        );
-        Configuration::setPreLoadedConfig($this->config, 'config.php');
-
-        $c = new Controller\ServiceProvider($this->config, $this->session);
-
-        $result = $c->metadata('phpunit');
-        $this->assertInstanceOf(Response::class, $result);
+        return [
+           /* [protected, authenticated] */
+           [true, true],
+           [true, false],
+           [false, true],
+           [false, false],
+        ];
     }
 }
