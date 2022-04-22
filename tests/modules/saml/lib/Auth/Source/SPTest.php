@@ -1198,7 +1198,10 @@ class SPTest extends ClearStateTestCase
         $hok = $md['AssertionConsumerService'][2];
         $this->assertIsArray($hok);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser', $hok['Binding']);
-        $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/assertionConsumerService/' . $spId, $hok['Location']);
+        $this->assertEquals(
+            'http://localhost/simplesaml/module.php/saml/sp/assertionConsumerService/' . $spId,
+            $hok['Location']
+        );
         $this->assertEquals(2, $hok['index']);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect', $hok['hoksso:ProtocolBinding']);
     }

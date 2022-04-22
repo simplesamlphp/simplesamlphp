@@ -179,7 +179,10 @@ class SP extends \SimpleSAML\Auth\Source
         $org = $this->metadata->getOptionalLocalizedString('OrganizationName', null);
         if ($org !== null) {
             $metadata['OrganizationName'] = $org;
-            $metadata['OrganizationDisplayName'] = $this->metadata->getOptionalLocalizedString('OrganizationDisplayName', $org);
+            $metadata['OrganizationDisplayName'] = $this->metadata->getOptionalLocalizedString(
+                'OrganizationDisplayName',
+                $org
+            );
             $metadata['OrganizationURL'] = $this->metadata->getOptionalLocalizedString('OrganizationURL', null);
             if ($metadata['OrganizationURL'] === null) {
                 throw new Error\Exception(

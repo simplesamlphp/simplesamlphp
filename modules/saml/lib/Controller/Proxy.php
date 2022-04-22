@@ -80,7 +80,8 @@ class Proxy
             // try to get the state
             $state = $this->authState::loadState($stateId, 'saml:proxy:invalid_idp');
         } catch (Exception $e) {
-            // the user probably hit the back button after starting the logout, try to recover the state with another stage
+            // the user probably hit the back button after starting the logout,
+            // try to recover the state with another stage
             $state = $this->authState::loadState($stateId, 'core:Logout:afterbridge');
 
             // success! Try to continue with reauthentication, since we no longer have a valid session here

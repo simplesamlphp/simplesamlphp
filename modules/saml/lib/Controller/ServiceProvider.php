@@ -352,15 +352,16 @@ class ServiceProvider
             /*
              * No NameID provided, we can't logout from this IdP!
              *
-             * Even though interoperability profiles "require" a NameID, the SAML 2.0 standard does not require it to be present
-             * in assertions. That way, we could have a Subject with only a SubjectConfirmation, or even no Subject element at
-             * all.
+             * Even though interoperability profiles "require" a NameID, the SAML 2.0 standard does not require
+             * it to be present in assertions. That way, we could have a Subject with only a SubjectConfirmation,
+             * or even no Subject element at all.
              *
-             * In case we receive a SAML assertion with no NameID, we can be graceful and continue, but we won't be able to
-             * perform a Single Logout since the SAML logout profile mandates the use of a NameID to identify the individual we
-             * want to be logged out. In order to minimize the impact of this, we keep logout state information (without saving
-             * it to the store), marking the IdP as SAML 1.0, which does not implement logout. Then we can safely log the user
-             * out from the local session, skipping Single Logout upstream to the IdP.
+             * In case we receive a SAML assertion with no NameID, we can be graceful and continue, but we won't
+             * be able to perform a Single Logout since the SAML logout profile mandates the use of a NameID to
+             * identify the individual we want to be logged out. In order to minimize the impact of this, we keep
+             * logout state information (without saving it to the store), marking the IdP as SAML 1.0, which
+             * does not implement logout. Then we can safely log the user out from the local session, skipping
+             * Single Logout upstream to the IdP.
              */
             $logoutState = [
                 'saml:logout:Type'         => 'saml1',

@@ -60,7 +60,6 @@
         <MissingFile>
             <errorLevel type="suppress">
                 <file name="www/*.php" />
-                <file name="modules/saml/www/sp/*.php" />
             </errorLevel>
         </MissingFile>
 

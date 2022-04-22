@@ -105,7 +105,10 @@ class Database
             );
         }
         // connect to any configured secondaries, preserving legacy config option
-        $secondaries = $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', []));
+        $secondaries = $config->getOptionalArray(
+            'database.secondaries',
+            $config->getOptionalArray('database.slaves', [])
+        );
         foreach ($secondaries as $secondary) {
             array_push(
                 $this->dbSecondaries,
@@ -140,7 +143,10 @@ class Database
             ],
 
             // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-            'secondaries' => $config->getOptionalArray('database.secondaries', $config->getOptionalArray('database.slaves', [])),
+            'secondaries' => $config->getOptionalArray(
+                'database.secondaries',
+                $config->getOptionalArray('database.slaves', [])
+            ),
         ];
 
         return sha1(serialize($assembledConfig));
