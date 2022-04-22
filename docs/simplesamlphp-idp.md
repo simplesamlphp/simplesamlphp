@@ -191,8 +191,8 @@ This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for
 
     <?php
     $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
-        'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
-        'SingleLogoutService'      => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+        'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
+        'SingleLogoutService'      => 'https://sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp',
     ];
 
 Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.

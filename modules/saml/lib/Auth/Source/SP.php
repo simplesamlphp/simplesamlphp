@@ -350,19 +350,19 @@ class SP extends \SimpleSAML\Auth\Source
                 case Constants::BINDING_HTTP_POST:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_POST,
-                        'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
+                        'Location' => Module::getModuleURL('saml/sp/assertionConsumerService/' . $this->getAuthId()),
                     ];
                     break;
                 case Constants::BINDING_HTTP_ARTIFACT:
                     $acs = [
                         'Binding' => Constants::BINDING_HTTP_ARTIFACT,
-                        'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
+                        'Location' => Module::getModuleURL('saml/sp/assertionConsumerService/' . $this->getAuthId()),
                     ];
                     break;
                 case Constants::BINDING_HOK_SSO:
                     $acs = [
                         'Binding' => Constants::BINDING_HOK_SSO,
-                        'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
+                        'Location' => Module::getModuleURL('saml/sp/assertionConsumerService/' . $this->getAuthId()),
                         'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     ];
                     break;
@@ -397,7 +397,7 @@ class SP extends \SimpleSAML\Auth\Source
                 Constants::BINDING_SOAP,
             ]
         );
-        $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
+        $defaultLocation = Module::getModuleURL('saml/sp/singleLogoutService/' . $this->getAuthId());
         $location = $this->metadata->getOptionalString('SingleLogoutServiceLocation', $defaultLocation);
 
         $endpoints = [];
@@ -432,7 +432,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $ar = Module\saml\Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
-        $ar->setAssertionConsumerServiceURL(Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
+        $ar->setAssertionConsumerServiceURL(Module::getModuleURL('saml/sp/assertionConsumerService/' . $this->authId));
 
         if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
@@ -686,10 +686,10 @@ class SP extends \SimpleSAML\Auth\Source
         $discoURL = $this->discoURL;
         if ($discoURL === null) {
             // Fallback to internal discovery service
-            $discoURL = Module::getModuleURL('saml/disco.php');
+            $discoURL = Module::getModuleURL('saml/disco');
         }
 
-        $returnTo = Module::getModuleURL('saml/sp/discoresp.php', ['AuthID' => $id]);
+        $returnTo = Module::getModuleURL('saml/sp/discoResponse', ['AuthID' => $id]);
 
         $params = [
             'entityID' => $this->entityId,

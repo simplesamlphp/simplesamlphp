@@ -10,8 +10,8 @@
  * Example SimpleSAMLphp SAML 2.0 SP
  */
 $metadata['https://saml2sp.example.org'] = [
-    'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
-    'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+    'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
+    'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp',
 ];
 
 /*
