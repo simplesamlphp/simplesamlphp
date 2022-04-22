@@ -429,10 +429,10 @@ XML;
     {
         return [
            /* [authenticated, protected] */
-           [true, true],
-           [true, false],
-           [false, true],
            [false, false],
+           [false, true],
+           [true, false],
+           [true, true],
         ];
     }
 }
