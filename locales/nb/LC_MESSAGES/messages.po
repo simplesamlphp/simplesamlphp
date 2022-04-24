@@ -476,9 +476,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Vennligst velg hvilken identitetsleverandør du vil bruke for å logge inn:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "

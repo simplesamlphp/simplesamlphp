@@ -833,11 +833,6 @@ msgstr ""
 msgid "Help desk homepage"
 msgstr "Leqephe la lapeng la ba deske ya thuso"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Leqephe le fanweng ha le a fumanwa. Lebaka e bile: %LEBAKA%  URL e bile: "
-"%URL%"
-
 msgid "{errors:error_header}"
 msgstr "Phoso ya SimpleSAMLphp"
 

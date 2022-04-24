@@ -482,11 +482,6 @@ msgstr ""
 "Molimo vas odaberite davaoca identiteta kod koga se želite "
 "autentifikovati:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Tražena stranica nije pronađena. Razlog: %REASON% Adresa stranice je: "
-"%URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerisao za vas. Te "

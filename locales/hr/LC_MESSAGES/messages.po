@@ -483,11 +483,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Molimo odaberite servis preko kojeg se želite autentificirati:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Tražena stranica nije pronađena. Razlog: %REASON% Adresa stranice je: "
-"%URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerirao za vas. Te "

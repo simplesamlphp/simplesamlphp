@@ -276,7 +276,7 @@ msgstr ""
 "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / "
 "idesika yoncedo:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr ""
 "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: "
 "%URL%"

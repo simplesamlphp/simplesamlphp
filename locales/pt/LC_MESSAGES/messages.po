@@ -439,11 +439,6 @@ msgstr ""
 "Por favor, escolha o  fornecedor de identidade (IdP) que irá usar para se"
 " autenticar:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"A página não foi encontrada. A razão foi: %REASON% O URL fornecido foi: "
-"%URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "De seguida pode encontrar os metadados gerados pelo SimpleSAMLphp. Pode "

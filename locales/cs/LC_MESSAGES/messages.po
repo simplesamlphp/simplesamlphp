@@ -462,9 +462,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Stránka nenalezena. Důvod je: %REASON%  URL je: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "

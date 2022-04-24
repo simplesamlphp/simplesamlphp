@@ -426,9 +426,6 @@ msgstr "在这个身份提供者创建认证应答的时候发生了一个错误
 msgid "{disco:selectidp_full}"
 msgstr "选择你要认证的身份提供者"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "给定的页面没有找到，原因: %REASON%; URL: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
 

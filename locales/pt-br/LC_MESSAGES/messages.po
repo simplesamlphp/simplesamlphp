@@ -484,11 +484,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"A página determinada não foi encontrada. A razão foi: %REASON% A URL foi:"
-" %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "

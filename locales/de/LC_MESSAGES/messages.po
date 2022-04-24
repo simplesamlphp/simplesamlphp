@@ -495,11 +495,6 @@ msgstr ""
 "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren"
 " möchten:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Die gewünschte Seite konnte nicht gefunden werden. Der Grund ist: "
-"%REASON% Die aufgerufene URL war %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"

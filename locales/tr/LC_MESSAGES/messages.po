@@ -437,9 +437,6 @@ msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata o
 msgid "{disco:selectidp_full}"
 msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seçiniz: "
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Verilen sayfa bulunamadı. Nedeni %REASON% idi. URL %URL% idi."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp'nin sizin için ürettiği üstveri (metada). Bu üstveri "

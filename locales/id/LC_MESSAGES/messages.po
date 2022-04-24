@@ -478,11 +478,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Halaman yang diminta tidak ditemykan, Error-nya adalah: %REASON% URL-nya "
-"adalah: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk "

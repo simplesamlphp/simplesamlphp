@@ -446,11 +446,6 @@ msgstr ""
 "Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się "
 "uwierzytelnić:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Podana strona nie została znaleziona. Przyczyną było: %REASON% Adres "
-"strony: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "

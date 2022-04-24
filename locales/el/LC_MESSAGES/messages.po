@@ -521,9 +521,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε: %REASON%"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "

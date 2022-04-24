@@ -515,11 +515,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"De opgegeven pagina kon niet worden gevonden. De oorzaak is: %REASON%. De"
-" URL is: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "

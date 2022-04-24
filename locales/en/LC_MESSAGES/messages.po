@@ -505,9 +505,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Please select the identity provider where you want to authenticate:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Your session data cannot be retrieved right now due to technical "

@@ -471,11 +471,6 @@ msgstr ""
 msgid "{disco:selectidp_full}"
 msgstr "Prašome pasirinkite tapatybių tiekėją, kuriame norite autentikuotis:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Šis puslapis nerastas. Priežastis buvo: %REASON% Puslapio adresas buvo: "
-"%URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti "

@@ -457,9 +457,6 @@ msgstr " حدث خطا عند محاولة اجراء التوثيق"
 msgid "{disco:selectidp_full}"
 msgstr "اختر موقع الهوية الذي ترغب بدخوله"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "الصفحة غير موجودة. السبب %REASON% و العنوان %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"

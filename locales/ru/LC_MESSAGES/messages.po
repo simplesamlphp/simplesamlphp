@@ -501,9 +501,6 @@ msgstr ""
 "Пожалуйста, выберите identity provider, с помощью которого вы хотите "
 "пройти аутентификацию:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Запрашиваемая страница не найдена. Причина: %REASON%  Ссылка: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Метаданные, сгенерированные для вас с помощью SimpleSAMLphp. Вы можете "

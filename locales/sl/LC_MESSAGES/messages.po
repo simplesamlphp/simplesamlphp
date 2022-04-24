@@ -462,11 +462,6 @@ msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 msgid "{disco:selectidp_full}"
 msgstr "Izberite IdP, na katerem se boste avtenticirali:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr ""
-"Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil:"
-" %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "

@@ -490,9 +490,6 @@ msgstr ""
 "Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous "
 "authentifier :"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "La page demandée est introuvable. Motif : %REASON%  L'url était : %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Voici les métadonnées générées par SimpleSAMLphp. Vous pouvez les envoyer"

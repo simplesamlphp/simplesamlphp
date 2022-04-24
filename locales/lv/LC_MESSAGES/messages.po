@@ -467,9 +467,6 @@ msgstr ""
 "Lūdzu izvēlieties identitātes piegādātāju, pie kura vēlaties "
 "autentificēties:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Norādītā lapa nav atrasta. Iemesls: %REASON% Saite: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"

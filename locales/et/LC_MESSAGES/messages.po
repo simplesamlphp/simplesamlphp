@@ -467,9 +467,6 @@ msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastus
 msgid "{disco:selectidp_full}"
 msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
-msgstr "Seda lehekülge ei leitud. Põhjus oli %REASON%. Aadress oli: %URL%"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Need on SimpleSAMLphp poolt sulle genereeritud metaandmed. Võid saata "

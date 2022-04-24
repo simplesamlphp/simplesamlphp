@@ -279,7 +279,7 @@ msgstr ""
 "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / "
 "ideski losizo:"
 
-msgid "{errors:descr_NOTFOUNDREASON}"
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr ""
 "Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL "
 "ibithi: %URL%"
