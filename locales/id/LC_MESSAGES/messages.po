@@ -483,9 +483,6 @@ msgstr ""
 "Halaman yang diminta tidak ditemykan, Error-nya adalah: %REASON% URL-nya "
 "adalah: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Tidak ada sertifikat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk "

@@ -518,9 +518,6 @@ msgstr ""
 "La página que indicó no se encontró. El motivo es: %REASON% La URL es: "
 "%URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "No certificado"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aquí están los metadatos que SimpleSAMLphp ha generado. Puede enviar este"

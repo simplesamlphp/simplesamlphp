@@ -451,9 +451,6 @@ msgstr ""
 "Podana strona nie została znaleziona. Przyczyną było: %REASON% Adres "
 "strony: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Brak certyfikatu"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "

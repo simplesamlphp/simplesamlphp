@@ -480,9 +480,6 @@ msgstr "Vel innloggingsteneste (IdP) der du ønskjer å logga inn."
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Fann ikkje den aktuelle sida på grunn av %REASON%.  URLen var %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Manglar sertifikat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata generert av SimpleSAMLphp for deg.  Du kan senda dette "

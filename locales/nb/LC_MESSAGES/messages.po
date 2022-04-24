@@ -479,9 +479,6 @@ msgstr "Vennligst velg hvilken identitetsleverandør du vil bruke for å logge i
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Ikke noe sertifikat mottatt"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "

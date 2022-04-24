@@ -475,9 +475,6 @@ msgstr ""
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "%URL% oldal nem található, a következő ok miatt: %REASON% "
 
-msgid "{errors:title_NOCERT}"
-msgstr "Hiányzó tanúsítvány."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "

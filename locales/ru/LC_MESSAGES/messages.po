@@ -504,9 +504,6 @@ msgstr ""
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Запрашиваемая страница не найдена. Причина: %REASON%  Ссылка: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Сертификат отсутствует"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Метаданные, сгенерированные для вас с помощью SimpleSAMLphp. Вы можете "

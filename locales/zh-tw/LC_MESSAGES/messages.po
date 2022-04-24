@@ -455,9 +455,6 @@ msgstr "請選擇您所要前往認證的驗證提供者："
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "找不到您所要存取的頁面，原因：%REASON%；網址：%URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "無憑證"
-
 msgid "{admin:metadata_intro}"
 msgstr "這是 SimpleSAMLphp 產生給您的 Metadata，您可以傳送此 Metadata 文件給您信任的合作夥伴來建立可信任的聯盟。"
 

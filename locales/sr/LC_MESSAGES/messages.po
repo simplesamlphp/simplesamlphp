@@ -487,9 +487,6 @@ msgstr ""
 "Tražena stranica nije pronađena. Razlog: %REASON% Adresa stranice je: "
 "%URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Nema digitalnog sertifikata"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerisao za vas. Te "

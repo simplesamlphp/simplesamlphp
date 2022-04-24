@@ -493,9 +493,6 @@ msgstr ""
 "Pagina nu a fost găsită, motivul a fost următorul: %REASON%, URL-ul a "
 "fost: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Lipsește certificatul"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Acestea sunt metadate generate de SimpleSAMLphp. Metadatele pot fi "

@@ -493,9 +493,6 @@ msgstr "Si prega di selezionare l'identity provider con il quale autenticarsi:"
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "La pagina data non è stata trovata. Motivo: %REASON%, URL: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Nessun certificato"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Questi sono i metadati che SimpleSAMLphp ha generato e che possono essere"

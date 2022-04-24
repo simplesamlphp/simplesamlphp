@@ -369,9 +369,6 @@ msgstr ""
 "Die gegewe bladsy is nie gevind nie. Die rede was: %REASON%. Die URL was:"
 " %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Geen sertifikaat"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "

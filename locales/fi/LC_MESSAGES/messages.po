@@ -343,9 +343,6 @@ msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Sivua ei löytynyt. Syynä oli: %REASON% Osoite oli %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Ei sertifikaattia"
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

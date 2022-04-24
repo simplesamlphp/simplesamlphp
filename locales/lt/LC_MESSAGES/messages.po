@@ -476,9 +476,6 @@ msgstr ""
 "Šis puslapis nerastas. Priežastis buvo: %REASON% Puslapio adresas buvo: "
 "%URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Nėra sertifikato"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti "

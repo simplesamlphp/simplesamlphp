@@ -500,9 +500,6 @@ msgstr ""
 "Die gewünschte Seite konnte nicht gefunden werden. Der Grund ist: "
 "%REASON% Die aufgerufene URL war %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Kein Zertifikat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"

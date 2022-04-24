@@ -451,9 +451,6 @@ msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהו�
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "הדף הניתן לא נמצא. הסיבה הייתה %REASON% והכתובת הייתה %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "אין תעודה"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "

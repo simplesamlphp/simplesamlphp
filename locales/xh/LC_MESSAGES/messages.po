@@ -364,7 +364,7 @@ msgstr "Isatifikethi esingaziwayo"
 msgid "{general:no}"
 msgstr "Hayi"
 
-msgid "{errors:title_NOCERT}"
+msgid "No certificate"
 msgstr "Akukho satifikethi"
 
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"

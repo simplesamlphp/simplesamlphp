@@ -486,9 +486,6 @@ msgstr "Vælg institutionen (identitetsudbyderen) hvor du vil logge ind"
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Siden kunne ikke findes på grund af %REASON%. Url'en var %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Intet certifikat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "

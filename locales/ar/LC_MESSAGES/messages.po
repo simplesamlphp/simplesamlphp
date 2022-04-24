@@ -460,9 +460,6 @@ msgstr "اختر موقع الهوية الذي ترغب بدخوله"
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "الصفحة غير موجودة. السبب %REASON% و العنوان %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "الشهادات مفقودة"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"

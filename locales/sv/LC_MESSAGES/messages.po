@@ -488,9 +488,6 @@ msgstr "Välj vilken identitetsleverantör du vill logga in med:"
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Den angivna sidan finns inte. Orsak: %REASON% URL: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Inget certfikat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp har har genererat följande metadata. För att sätta upp en "

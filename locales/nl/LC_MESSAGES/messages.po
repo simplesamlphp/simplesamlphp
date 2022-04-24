@@ -520,9 +520,6 @@ msgstr ""
 "De opgegeven pagina kon niet worden gevonden. De oorzaak is: %REASON%. De"
 " URL is: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Geen certificaat"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "

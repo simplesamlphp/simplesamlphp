@@ -480,9 +480,6 @@ msgstr ""
 "Ez da aurkitu adierazi duzun orria. Arrazoia hau da: %REASON% URL hau da:"
 " %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Ziurtagiri gabe"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hona hemen SimpleSAMLphp-ak zuretzat sortu dituen metadatuak. Metadatuen "

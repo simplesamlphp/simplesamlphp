@@ -465,9 +465,6 @@ msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se př
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Stránka nenalezena. Důvod je: %REASON%  URL je: %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Chybí certifikát"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "

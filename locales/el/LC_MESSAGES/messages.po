@@ -524,9 +524,6 @@ msgstr "Επιλέξτε οικείο φορέα που μπορεί να πισ
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε: %REASON%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Δεν υπάρχει πιστοποιητικό"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "

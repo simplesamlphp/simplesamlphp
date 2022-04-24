@@ -467,9 +467,6 @@ msgstr ""
 "Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil:"
 " %URL%"
 
-msgid "{errors:title_NOCERT}"
-msgstr "Ni digitalnega potrdila"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "

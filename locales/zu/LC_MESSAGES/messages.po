@@ -369,7 +369,7 @@ msgstr "Isitifiketi esingaziwa"
 msgid "{general:no}"
 msgstr "Cha"
 
-msgid "{errors:title_NOCERT}"
+msgid "No certificate"
 msgstr "Asikho isitifiketi"
 
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
