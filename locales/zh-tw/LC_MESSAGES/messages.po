@@ -443,9 +443,6 @@ msgstr "下列資料找不到選擇性欄位"
 msgid "{logout:logout_only}"
 msgstr "不，只有 %SP%"
 
-msgid "{login:next}"
-msgstr "下一步"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "當這個驗證提供者嘗試建立一個驗證回應時，有個錯誤發生。"
 

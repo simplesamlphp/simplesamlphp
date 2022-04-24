@@ -467,9 +467,6 @@ msgstr "Field-field opsional berikut tidak dapat ditemukan"
 msgid "{logout:logout_only}"
 msgstr "Tidak, hanya %SP%"
 
-msgid "{login:next}"
-msgstr "Selanjutnya"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ketika identity provider ini mencoba untuk membuat response "

@@ -474,9 +474,6 @@ msgstr "Följande frivilliga alternativ hittades inte"
 msgid "{logout:logout_only}"
 msgstr "Nej, endast %SP%"
 
-msgid "{login:next}"
-msgstr "Nästa"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "När identitetshanteraren (Identity Provider) försökte skapa "

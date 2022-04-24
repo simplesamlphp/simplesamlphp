@@ -460,9 +460,6 @@ msgstr "Šie neprivalomi laukai nerasti"
 msgid "{logout:logout_only}"
 msgstr "Ne, tik %SP%"
 
-msgid "{login:next}"
-msgstr "Kitas"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko "

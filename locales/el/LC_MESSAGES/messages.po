@@ -510,9 +510,6 @@ msgstr "Τα παρακάτω προαιρετικά πεδία δεν βρέθ�
 msgid "{logout:logout_only}"
 msgstr "Όχι, μόνο από την υπηρεσία %SP%"
 
-msgid "{login:next}"
-msgstr "Επόμενο"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο "

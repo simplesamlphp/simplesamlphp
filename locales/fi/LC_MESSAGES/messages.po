@@ -329,9 +329,6 @@ msgstr "Et tarjonnut voimassaolevaa sertifikaattia"
 msgid "{logout:logout_only}"
 msgstr "Ei, vain %SP%"
 
-msgid "{login:next}"
-msgstr "Seuraava"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Virhe tapahtui kun identiteetintarjoaja pyrki luomaan vastauksen "

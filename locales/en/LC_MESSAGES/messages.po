@@ -494,9 +494,6 @@ msgstr "The following optional fields was not found"
 msgid "{logout:logout_only}"
 msgstr "No, only %SP%"
 
-msgid "{login:next}"
-msgstr "Next"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "When this identity provider tried to create an authentication response, "

@@ -428,9 +428,6 @@ msgstr "Şu isteğe bağlı alanlar bulunamadı"
 msgid "{logout:logout_only}"
 msgstr "Hayır, sadece %SP%"
 
-msgid "{login:next}"
-msgstr "Sıradaki"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata oluştu."
 

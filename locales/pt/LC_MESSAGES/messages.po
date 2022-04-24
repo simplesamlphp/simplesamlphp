@@ -426,9 +426,6 @@ msgstr "Os seguintes campos opcionais não foram encontrados"
 msgid "{logout:logout_only}"
 msgstr "Não, apenas %SP%"
 
-msgid "{login:next}"
-msgstr "Seguinte"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de"

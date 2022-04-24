@@ -488,9 +488,6 @@ msgstr "Следующие необязательные поля не найде
 msgid "{logout:logout_only}"
 msgstr "Нет, только для службы %SP%"
 
-msgid "{login:next}"
-msgstr "Далее"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "При попытке провайдера идентификации создать ответ по аутентификации "

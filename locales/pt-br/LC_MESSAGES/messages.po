@@ -473,9 +473,6 @@ msgstr "Os seguintes campos opcionais não foram encontrados"
 msgid "{logout:logout_only}"
 msgstr "Não, apenas de %SP%"
 
-msgid "{login:next}"
-msgstr "Próximo"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ocorreu um erro quando este servidor de identidade tentou criar uma "

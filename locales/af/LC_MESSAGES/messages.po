@@ -353,9 +353,6 @@ msgstr "Jy het nie 'n geldige sertifikaat gestuur nie."
 msgid "{logout:logout_only}"
 msgstr "Nee, net %SP%"
 
-msgid "{login:next}"
-msgstr "Volgende"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits "

@@ -465,9 +465,6 @@ msgstr "Følgende valgbare felt ble ikke funnet"
 msgid "{logout:logout_only}"
 msgstr "Nei, bare %SP%"
 
-msgid "{login:next}"
-msgstr "Fortsett"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "En feil oppsto da innloggingstjenesten prøvde å lage et svar på "

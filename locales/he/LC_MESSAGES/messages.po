@@ -439,9 +439,6 @@ msgstr "שדות הרשות הבאים לא נמצאו"
 msgid "{logout:logout_only}"
 msgstr "לא, רק %SP%"
 
-msgid "{login:next}"
-msgstr "הבא"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, אירעה שגיאה."
 

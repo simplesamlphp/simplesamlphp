@@ -454,9 +454,6 @@ msgstr "Nav atrasti neobligātie lauki"
 msgid "{logout:logout_only}"
 msgstr "Nē, tikai %SP%"
 
-msgid "{login:next}"
-msgstr "Tālāk"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Kad identitātes piegādātājs mēģināja izveigot autentifikācijas atbildi, "

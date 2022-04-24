@@ -482,9 +482,6 @@ msgstr "Die folgenden optionalen Felder wurden nicht gefunden"
 msgid "{logout:logout_only}"
 msgstr "Nein, nur %SP%"
 
-msgid "{login:next}"
-msgstr "Weiter"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Beim Versuch des Identity Providers eine Authentifikationsantwort zu "

@@ -451,9 +451,6 @@ msgstr "Následující volitelná pole nenalezena"
 msgid "{logout:logout_only}"
 msgstr "Ne, jen %SP%"
 
-msgid "{login:next}"
-msgstr "Další"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Při vytváření přihlašovací odpovědi tímto poskytovatelem identity "

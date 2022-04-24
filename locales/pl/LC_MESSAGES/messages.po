@@ -433,9 +433,6 @@ msgstr "Nastepujące pola opcjonalne nie zostały znalezione"
 msgid "{logout:logout_only}"
 msgstr "Nie, tylko %SP%"
 
-msgid "{login:next}"
-msgstr "Następny"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Wystapił bład podczas próby utworzenia przez Dostawcę Tożsamości "

@@ -472,9 +472,6 @@ msgstr "Nisu pronađena sljedeća opcionalna polja"
 msgid "{logout:logout_only}"
 msgstr "Ne, samo iz %SP%"
 
-msgid "{login:next}"
-msgstr "Dalje"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Došlo je do greške prilikom kreiranja odgovora na autentifikacijski "

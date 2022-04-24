@@ -558,9 +558,6 @@ msgstr ""
 "Phasewete ya tlhophiso (auth.adminpassword) ha e a fetolwa ho tswa palong"
 " ya tlwaelo. Ka kopo edita faele ya tlhophiso."
 
-msgid "{login:next}"
-msgstr "E latelang"
-
 msgid "Shibboleth demo"
 msgstr "Pontsho ya Shibboleth"
 

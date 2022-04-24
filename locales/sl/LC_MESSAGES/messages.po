@@ -453,9 +453,6 @@ msgstr "Naslednjih neobveznih polj ni bilo mogoče najti"
 msgid "{logout:logout_only}"
 msgstr "Ne, odjavi me samo z naslednjega %SP%"
 
-msgid "{login:next}"
-msgstr "Naprej"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 

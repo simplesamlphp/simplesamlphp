@@ -502,9 +502,6 @@ msgstr "Los siguientes datos opcionales no se han encontrado"
 msgid "{logout:logout_only}"
 msgstr "No, sólo %SPS"
 
-msgid "{login:next}"
-msgstr "Siguiente"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "El proveedor de identidad ha detectado un error al crear respuesta de "

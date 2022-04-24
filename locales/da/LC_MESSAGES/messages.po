@@ -474,9 +474,6 @@ msgstr "Følgende valgfrie felter kunne ikke findes"
 msgid "{logout:logout_only}"
 msgstr "Nej, kun %SP%"
 
-msgid "{login:next}"
-msgstr "Næste"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 

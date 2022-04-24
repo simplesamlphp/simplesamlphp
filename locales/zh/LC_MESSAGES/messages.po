@@ -417,9 +417,6 @@ msgstr "下列必需的选项区域没有找到"
 msgid "{logout:logout_only}"
 msgstr "不，仅%SP%"
 
-msgid "{login:next}"
-msgstr "下一步"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "在这个身份提供者创建认证应答的时候发生了一个错误"
 

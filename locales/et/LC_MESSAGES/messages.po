@@ -458,9 +458,6 @@ msgstr "Järgmisi lisavälju ei leitud"
 msgid "{logout:logout_only}"
 msgstr "Ei, ainult %SP%"
 
-msgid "{login:next}"
-msgstr "Edasi"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastust."
 

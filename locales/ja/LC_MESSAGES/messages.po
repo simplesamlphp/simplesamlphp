@@ -413,9 +413,6 @@ msgstr "以下の任意項目は見つかりませんでした"
 msgid "{logout:logout_only}"
 msgstr "いいえ、%SP% のみログアウトします"
 
-msgid "{login:next}"
-msgstr "次へ"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "アイデンティティプロバイダの認証レスポンスの生成時にエラーが発生しました。"
 
