@@ -479,9 +479,6 @@ msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "
 "tento dokument svým důvěryhodným partnerům a založit tak federaci."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certifikáty"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Přihlášení neproběhlo: certifikát, který odeslal Váš prohlížeč, nemohl být "

@@ -500,9 +500,6 @@ msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "
 "til dem du stoler i forbindelse med oprettelsen af en føderation."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certifikater"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Authentifikation fejlede: Certifikatet som din browser har sendt er "

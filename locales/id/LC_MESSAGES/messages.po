@@ -498,9 +498,6 @@ msgstr ""
 "Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang "
 "dipercayai untuk mensetup federasi terpercaya."
 
-msgid "{admin:metadata_cert}"
-msgstr "Sertifikat"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau "

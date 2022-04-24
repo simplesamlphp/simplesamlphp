@@ -502,9 +502,6 @@ msgstr ""
 "metapodatke možete poslati davaocima servisa ili davaocima identiteta u "
 "koje imate poverenja i sa kojima želite uspostaviti federaciju."
 
-msgid "{admin:metadata_cert}"
-msgstr "Sertifikati"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Neuspešna autentifikacija: digitalni sertifikat koji je poslao vaš web "

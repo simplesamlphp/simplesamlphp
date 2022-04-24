@@ -534,9 +534,6 @@ msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "
 "kunt deze metadata uitwisselen met uw federatiepartners."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certificaten"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Authenticatie niet gelukt: uw browser stuurde een certificaat dat "

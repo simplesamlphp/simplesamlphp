@@ -465,9 +465,6 @@ msgstr ""
 "הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "
 "המטא-מידע לשותפים מהימנים כדי ליצור איחוד מאובטח. "
 
-msgid "{admin:metadata_cert}"
-msgstr "תעודות"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "ההיזדהות נכשלה: התעודה שהדפדפן שלח לא חוקית או לא ניתנת לקריאה"
 

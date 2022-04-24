@@ -533,9 +533,6 @@ msgstr ""
 " documento de metadatos a sus socios de confianza para configurar una "
 "federación."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certificados"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Fallo de autenticación: El certificado enviado por su navegador es "

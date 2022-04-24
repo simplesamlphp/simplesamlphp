@@ -482,9 +482,6 @@ msgstr ""
 "pošljete zaupanja vrednim partnerjem, s katerimi boste ustvarili "
 "federacijo."
 
-msgid "{admin:metadata_cert}"
-msgstr "Digitalna potrdila"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval "

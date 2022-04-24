@@ -508,9 +508,6 @@ msgstr ""
 "trimise către parteneri de încredere pentru a configura o federație de "
 "încredere."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certificate"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "

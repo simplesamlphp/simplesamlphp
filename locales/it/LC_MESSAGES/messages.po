@@ -507,9 +507,6 @@ msgstr ""
 "Questi sono i metadati che SimpleSAMLphp ha generato e che possono essere"
 " inviati ai partner fidati per creare una federazione tra siti."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certificati"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "L'autenticazione è fallita perché il tuo browser ha inviato un "

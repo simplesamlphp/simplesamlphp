@@ -504,9 +504,6 @@ msgstr ""
 "identiteta u koje imate povjerenja i s kojima želite uspostaviti "
 "federaciju."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certifikati"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Neuspješna autentifikacija: digitalni certifikat koji je poslao vaš web "

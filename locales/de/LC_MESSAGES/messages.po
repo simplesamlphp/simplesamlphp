@@ -515,9 +515,6 @@ msgstr ""
 " können dieses Metadatendokument zu Partnern schicken, denen Sie "
 "vertrauen, um eine vertrauensbasierte Föderation aufzusetzen."
 
-msgid "{admin:metadata_cert}"
-msgstr "Zertifikate"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "

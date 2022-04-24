@@ -485,9 +485,6 @@ msgstr ""
 "need metaandmed usaldatavatele partneritele usaldatava föderatsiooni "
 "loomiseks."
 
-msgid "{admin:metadata_cert}"
-msgstr "Sertifikaadid"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Autentimine ei õnnestunud: brauseri poolt saadetud sertifikaat on vigane "

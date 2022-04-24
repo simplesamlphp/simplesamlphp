@@ -495,9 +495,6 @@ msgstr ""
 "dokumentu hau konfidantzazko zure kideei bidal diezaiekezu federazio bat "
 "konfiguratzeko."
 
-msgid "{admin:metadata_cert}"
-msgstr "Ziurtagiriak"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Kautotze okerra: Zure nabigatzaileak bidalitako ziurtagiria baliogabea da"

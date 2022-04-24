@@ -467,9 +467,6 @@ msgstr "SimpleSAMLphp 出現無效設定。"
 msgid "{admin:metadata_intro}"
 msgstr "這是 SimpleSAMLphp 產生給您的 Metadata，您可以傳送此 Metadata 文件給您信任的合作夥伴來建立可信任的聯盟。"
 
-msgid "{admin:metadata_cert}"
-msgstr "憑證"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "驗證失敗：您的瀏覽器傳送的憑證為無效或無法讀取"
 

@@ -441,9 +441,6 @@ msgstr "SimpleSAMLphp出现配置错误"
 msgid "{admin:metadata_intro}"
 msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
 
-msgid "{admin:metadata_cert}"
-msgstr "证书"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "认证失败：你的浏览器发送的证书无效或者不能读取"
 

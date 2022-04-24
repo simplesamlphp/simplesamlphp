@@ -503,9 +503,6 @@ msgstr ""
 "betrodd federation kan du skicka metadata till de parter du har "
 "förtroende för."
 
-msgid "{admin:metadata_cert}"
-msgstr "Certifikat"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Inloggning mislyckades: Certfikatet som din webbläsare skickade var "
