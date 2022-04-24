@@ -450,9 +450,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Pilihan Bahasa"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan "

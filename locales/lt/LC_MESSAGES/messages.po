@@ -443,9 +443,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Kalba"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "

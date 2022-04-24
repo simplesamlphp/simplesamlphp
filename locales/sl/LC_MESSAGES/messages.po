@@ -438,9 +438,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Želen jezik"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 

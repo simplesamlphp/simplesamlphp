@@ -436,9 +436,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Preferovaný jazyk"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Můžete poslat zprávu. Požijte tlačítko k pokračování."
 

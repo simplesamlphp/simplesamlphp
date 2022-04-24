@@ -465,9 +465,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Bevorzugte Sprache"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "

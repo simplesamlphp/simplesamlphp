@@ -462,9 +462,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Lingua preferita"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Si sta per inviare un messaggio. Premere il pulsante di invio per "

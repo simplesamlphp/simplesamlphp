@@ -493,9 +493,6 @@ msgstr "Μεταδεδομένα Παρόχου Ταυτότητας ADFS"
 msgid "{attributes:attribute_edupersonorcid}"
 msgstr "Αναγνωριστικά ερευνητή ORCID"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Προτιμώμενη γλώσσα"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "

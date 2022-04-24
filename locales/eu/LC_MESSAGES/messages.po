@@ -447,9 +447,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Hizkuntza lehenetsia"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" botoia "

@@ -458,9 +458,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Limba preferată"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mesajul este pregătit pentru a fi trimis. Apăsați butonul de trimitere "

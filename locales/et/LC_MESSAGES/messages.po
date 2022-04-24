@@ -443,9 +443,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Eelistatud keel"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
 

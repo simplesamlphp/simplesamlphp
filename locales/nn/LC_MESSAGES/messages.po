@@ -449,9 +449,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Førsteval for språk eller målform"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Du er i ferd med å senda ei melding.  Trykk på send-knappen for å gå "

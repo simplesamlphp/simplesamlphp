@@ -424,9 +424,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "שפה מועדפת"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליחה כדי להמשיך."
 

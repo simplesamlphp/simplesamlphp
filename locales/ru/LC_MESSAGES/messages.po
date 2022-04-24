@@ -471,9 +471,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Метаданные провайдера идентификации ADFS"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Предпочитаемый язык"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Вы собираетесь отправить сообщение. Кликните клавишу отправки сообщения "

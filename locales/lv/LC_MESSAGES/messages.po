@@ -439,9 +439,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Vēlamā valoda"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Jūs gatavojaties sūtīt ziņu. Spiediet pogu Sūtīt ziņu."
 

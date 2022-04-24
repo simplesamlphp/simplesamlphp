@@ -398,9 +398,6 @@ msgstr "与えられたページは見つかりませんでした。URLは: %URL
 msgid "{errors:howto_text}"
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "言語"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "メッセージを送信します。続けるにはメッセージ送信ボタンを押してください。"
 

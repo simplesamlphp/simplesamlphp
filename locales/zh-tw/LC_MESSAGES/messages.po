@@ -428,9 +428,6 @@ msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS 驗證提供者 Metadata"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "喜好語言"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
 

@@ -402,9 +402,6 @@ msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAM
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "首选语言"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "你准备发送一个消息，请点击提交按钮以继续"
 

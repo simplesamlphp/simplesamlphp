@@ -411,9 +411,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Tercih edilen dil"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna "

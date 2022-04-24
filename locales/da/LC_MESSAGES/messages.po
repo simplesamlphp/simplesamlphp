@@ -459,9 +459,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS identitetsudbyder metadata"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Foretrukket sprog (evt. flere)"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 

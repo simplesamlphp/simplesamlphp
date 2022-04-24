@@ -433,9 +433,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "اللغة المفضلة"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "انت علي وشك إرسال رسالة. اضغط علي الزر للمواصلة"
 
