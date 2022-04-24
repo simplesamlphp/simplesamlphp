@@ -298,9 +298,6 @@ msgstr ""
 "o Rometse se seng leqepheng la ho kena, empa ka lebaka le sa tsejweng "
 "phaewete ha e a romelwa. Ka kopo leka hape."
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp e bonahala e hlophisitswe hampe."
-
 msgid "Page not found"
 msgstr "Leqephe ha le a fumanwa"
 

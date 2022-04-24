@@ -494,9 +494,6 @@ msgstr "Inget certfikat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Utloggningsinformation är borta"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Det förfaller som SimpleSAMLphp är felkonfigurerat."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp har har genererat följande metadata. För att sätta upp en "

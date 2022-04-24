@@ -435,9 +435,6 @@ msgstr "无证书"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "丢失了退出消息"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp出现配置错误"
-
 msgid "{admin:metadata_intro}"
 msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
 

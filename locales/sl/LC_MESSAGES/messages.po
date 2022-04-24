@@ -473,9 +473,6 @@ msgstr "Ni digitalnega potrdila"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Odjavni (Logout) parametri niso na voljo."
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Nastavitve SimpleSAMLphp so napačne ali se med seboj izključujejo."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "

@@ -495,9 +495,6 @@ msgstr "Sem Certificado"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informações de desconexão perdidas"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp parece estar mal configurado."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "

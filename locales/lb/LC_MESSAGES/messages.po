@@ -192,9 +192,6 @@ msgstr "Dir hud keen gültegen Zertifikat"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp schéint falsch konfiguréiert ze sin."
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

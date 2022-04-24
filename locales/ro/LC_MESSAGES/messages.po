@@ -499,9 +499,6 @@ msgstr "Lipsește certificatul"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informația de deautentificare a fost pierdută"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Probleme la configurarea SimpleSAMLphp."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Acestea sunt metadate generate de SimpleSAMLphp. Metadatele pot fi "

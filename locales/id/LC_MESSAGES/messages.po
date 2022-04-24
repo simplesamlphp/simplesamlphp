@@ -489,9 +489,6 @@ msgstr "Tidak ada sertifikat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informasi logout hilang"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp sepertinya telah salah dikonfigurasi"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk "

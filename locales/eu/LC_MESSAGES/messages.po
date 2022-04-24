@@ -486,9 +486,6 @@ msgstr "Ziurtagiri gabe"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Saioa ixteko informazioa galdu da"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Badirudi errore bat jazo dela SimpleSAMLphp-en konfigurazioan"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hona hemen SimpleSAMLphp-ak zuretzat sortu dituen metadatuak. Metadatuen "

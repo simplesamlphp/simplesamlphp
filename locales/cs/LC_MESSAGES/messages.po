@@ -471,9 +471,6 @@ msgstr "Chybí certifikát"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Odhlašovací informace ztracena"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp je špatně nakonfigurovaný"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "

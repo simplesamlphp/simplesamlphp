@@ -443,9 +443,6 @@ msgstr "Verilen sayfa bulunamadı. Nedeni %REASON% idi. URL %URL% idi."
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Çıkış bilgisi kaybedildi"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp doğru yapılandırılmış gibi görünmüyor."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp'nin sizin için ürettiği üstveri (metada). Bu üstveri "

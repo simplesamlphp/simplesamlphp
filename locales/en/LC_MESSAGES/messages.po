@@ -514,9 +514,6 @@ msgstr "No certificate"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout information lost"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp appears to be misconfigured."
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Your session data cannot be retrieved right now due to technical "

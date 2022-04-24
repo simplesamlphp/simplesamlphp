@@ -481,9 +481,6 @@ msgstr "Hiányzó tanúsítvány."
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Elveszett kijelentkezési információk"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Valószínűleg helytelenül lett konfigurálva a SimpleSAMLphp"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "

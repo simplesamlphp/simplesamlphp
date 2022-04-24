@@ -526,9 +526,6 @@ msgstr "Geen certificaat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout informatie is verloren gegaan"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp is niet goed geconfigureerd."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "

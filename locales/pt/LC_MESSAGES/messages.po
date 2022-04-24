@@ -447,9 +447,6 @@ msgstr ""
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informação de logout perdida"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "O software SimpleSAMLphp tem um problema de configuração."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "De seguida pode encontrar os metadados gerados pelo SimpleSAMLphp. Pode "

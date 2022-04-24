@@ -524,9 +524,6 @@ msgstr "No certificado"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Se perdió la información para cerrar la sesión"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Parece que hay un error en la configuración de SimpleSAMLphp"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aquí están los metadatos que SimpleSAMLphp ha generado. Puede enviar este"

@@ -375,9 +375,6 @@ msgstr "Geen sertifikaat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Afmelding informasie verlore"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp is nie korrek ingestel nie"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "

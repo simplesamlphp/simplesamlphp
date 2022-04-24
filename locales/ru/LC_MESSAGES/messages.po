@@ -510,9 +510,6 @@ msgstr "Сертификат отсутствует"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Потеряна информация о выходе."
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Видимо, SimpleSAMLphp сконфигурирован неправильно."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Метаданные, сгенерированные для вас с помощью SimpleSAMLphp. Вы можете "

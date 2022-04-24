@@ -492,9 +492,6 @@ msgstr "Intet certifikat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Manglende logout-oplysninger"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp er tilsyneladende ikke Konfigureret korrekt"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "

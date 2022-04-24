@@ -476,9 +476,6 @@ msgstr "Nav sertifikāta"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atslēgšanās informācija zaudēta"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp nav pareizi nokonfigurēts."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"

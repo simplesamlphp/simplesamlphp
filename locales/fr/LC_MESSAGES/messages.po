@@ -499,9 +499,6 @@ msgstr "Aucun certificat présenté"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Information de déconnexion perdue"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Il semble que SimpleSAMLphp soit mal configuré."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Voici les métadonnées générées par SimpleSAMLphp. Vous pouvez les envoyer"

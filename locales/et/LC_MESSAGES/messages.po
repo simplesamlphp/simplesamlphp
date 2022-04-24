@@ -476,9 +476,6 @@ msgstr "Sertifikaat puudub"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Väljalogimisinfo läks kaotsi"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Paistab, et SimpleSAMLphp on vigaselt seadistatud."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Need on SimpleSAMLphp poolt sulle genereeritud metaandmed. Võid saata "

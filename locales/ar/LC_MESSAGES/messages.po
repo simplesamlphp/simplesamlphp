@@ -466,9 +466,6 @@ msgstr "الشهادات مفقودة"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "معلومات تسجيل الخروج مفقودة"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "يبدو ان ترتيب SimpleSAMLphp غير صحيح"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"

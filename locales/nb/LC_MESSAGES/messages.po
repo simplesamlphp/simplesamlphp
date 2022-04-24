@@ -485,9 +485,6 @@ msgstr "Ikke noe sertifikat mottatt"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informasjon om utlogging er tapt"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Det virker som det er en feil i oppsettet av SimpleSAMLphp."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "

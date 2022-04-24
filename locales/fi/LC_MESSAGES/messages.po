@@ -349,9 +349,6 @@ msgstr "Ei sertifikaattia"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Uloskirjautumistiedot hävisivät"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Vaikuttaa siltä, että SimpleSAMLphp:na asetuksissa on virhe."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

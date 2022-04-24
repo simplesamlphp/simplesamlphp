@@ -530,11 +530,6 @@ msgstr "Δεν υπάρχει πιστοποιητικό"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Σφάλμα αποσύνδεσης"
 
-msgid "{errors:descr_CONFIG}"
-msgstr ""
-"Παρουσιάστηκε σφάλμα ρυθμίσεων του SimpleSAMLphp. Επικοινωνήστε με τον "
-"διαχειριστή της υπηρεσίας."
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "

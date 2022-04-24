@@ -457,9 +457,6 @@ msgstr "אין תעודה"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "מידע ההתנתקות אבד"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "נראה ש SimpleSAMLphp לא מוגדר נכון"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "

@@ -486,9 +486,6 @@ msgstr "Manglar sertifikat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Mista utloggingsinformasjon"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp ser ut til å vera feilkonfigurert"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata generert av SimpleSAMLphp for deg.  Du kan senda dette "

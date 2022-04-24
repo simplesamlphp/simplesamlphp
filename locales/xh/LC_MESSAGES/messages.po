@@ -400,7 +400,7 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp"
 
-msgid "{errors:descr_CONFIG}"
+msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle."
 
 msgid "{errors:title_DISCOPARAMS}"

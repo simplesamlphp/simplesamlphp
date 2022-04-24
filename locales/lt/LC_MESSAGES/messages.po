@@ -482,9 +482,6 @@ msgstr "Nėra sertifikato"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atsijungimo informacija prarasta"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp tikriausiai klaidingai sukonfigūruotas."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti "

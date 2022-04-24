@@ -506,9 +506,6 @@ msgstr "Kein Zertifikat"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Abmeldeinformation verloren gegangen"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "SimpleSAMLphp scheint falsch konfiguriert zu sein."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"

@@ -494,9 +494,6 @@ msgstr "Nema digitalnog certifikata"
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informacija o odjavljivanju je izgubljena"
 
-msgid "{errors:descr_CONFIG}"
-msgstr "Čini se da je SimpleSAMLphp pogrešno iskonfiguriran."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerirao za vas. Te "
