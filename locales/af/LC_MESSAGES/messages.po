@@ -372,9 +372,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Geen sertifikaat"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Afmelding informasie verlore"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "

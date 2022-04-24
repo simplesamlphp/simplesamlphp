@@ -496,9 +496,6 @@ msgstr "La pagina data non è stata trovata. Motivo: %REASON%, URL: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Nessun certificato"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Informazioni di disconnessione smarrite."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Questi sono i metadati che SimpleSAMLphp ha generato e che possono essere"

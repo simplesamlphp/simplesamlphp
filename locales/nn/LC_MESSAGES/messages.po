@@ -483,9 +483,6 @@ msgstr "Fann ikkje den aktuelle sida på grunn av %REASON%.  URLen var %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Manglar sertifikat"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Mista utloggingsinformasjon"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata generert av SimpleSAMLphp for deg.  Du kan senda dette "

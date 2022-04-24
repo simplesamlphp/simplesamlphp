@@ -463,9 +463,6 @@ msgstr "الصفحة غير موجودة. السبب %REASON% و العنوان 
 msgid "{errors:title_NOCERT}"
 msgstr "الشهادات مفقودة"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "معلومات تسجيل الخروج مفقودة"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"

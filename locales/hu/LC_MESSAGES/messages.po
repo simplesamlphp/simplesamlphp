@@ -478,9 +478,6 @@ msgstr "%URL% oldal nem található, a következő ok miatt: %REASON% "
 msgid "{errors:title_NOCERT}"
 msgstr "Hiányzó tanúsítvány."
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Elveszett kijelentkezési információk"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "

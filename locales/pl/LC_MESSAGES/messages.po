@@ -454,9 +454,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Brak certyfikatu"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Utracono informację o wylogowaniu"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "

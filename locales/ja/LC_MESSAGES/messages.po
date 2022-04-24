@@ -428,9 +428,6 @@ msgstr "与えられたページは見つかりませんでした。理由は: %
 msgid "{errors:title_NOCERT}"
 msgstr "証明書がありません"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "ログアウト情報を失いました"
-
 msgid "{admin:metadata_intro}"
 msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
 

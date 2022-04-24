@@ -482,9 +482,6 @@ msgstr "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Ikke noe sertifikat mottatt"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Informasjon om utlogging er tapt"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "

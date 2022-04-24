@@ -936,9 +936,6 @@ msgstr ""
 "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho "
 "tloha hona jwale."
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
-
 msgid "You have previously chosen to authenticate at"
 msgstr "O qadile ka ho kgetha netefatso ho"
 

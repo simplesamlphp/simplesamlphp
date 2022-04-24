@@ -440,9 +440,6 @@ msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seç
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Verilen sayfa bulunamadı. Nedeni %REASON% idi. URL %URL% idi."
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Çıkış bilgisi kaybedildi"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp'nin sizin için ürettiği üstveri (metada). Bu üstveri "

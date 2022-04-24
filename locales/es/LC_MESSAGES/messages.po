@@ -521,9 +521,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "No certificado"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Se perdió la información para cerrar la sesión"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aquí están los metadatos que SimpleSAMLphp ha generado. Puede enviar este"

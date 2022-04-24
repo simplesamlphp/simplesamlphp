@@ -473,9 +473,6 @@ msgstr "Seda lehekülge ei leitud. Põhjus oli %REASON%. Aadress oli: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Sertifikaat puudub"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Väljalogimisinfo läks kaotsi"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Need on SimpleSAMLphp poolt sulle genereeritud metaandmed. Võid saata "

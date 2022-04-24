@@ -454,9 +454,6 @@ msgstr "הדף הניתן לא נמצא. הסיבה הייתה %REASON% והכת
 msgid "{errors:title_NOCERT}"
 msgstr "אין תעודה"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "מידע ההתנתקות אבד"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "

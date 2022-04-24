@@ -470,9 +470,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Ni digitalnega potrdila"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Odjavni (Logout) parametri niso na voljo."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "

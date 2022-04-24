@@ -468,9 +468,6 @@ msgstr "Stránka nenalezena. Důvod je: %REASON%  URL je: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Chybí certifikát"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Odhlašovací informace ztracena"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "

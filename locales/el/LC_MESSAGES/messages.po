@@ -527,9 +527,6 @@ msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% 
 msgid "{errors:title_NOCERT}"
 msgstr "Δεν υπάρχει πιστοποιητικό"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Σφάλμα αποσύνδεσης"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "

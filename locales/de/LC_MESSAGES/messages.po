@@ -503,9 +503,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Kein Zertifikat"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Abmeldeinformation verloren gegangen"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"

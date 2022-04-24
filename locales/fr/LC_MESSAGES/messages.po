@@ -496,9 +496,6 @@ msgstr "La page demandée est introuvable. Motif : %REASON%  L'url était : %URL
 msgid "{errors:title_NOCERT}"
 msgstr "Aucun certificat présenté"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Information de déconnexion perdue"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Voici les métadonnées générées par SimpleSAMLphp. Vous pouvez les envoyer"

@@ -423,7 +423,7 @@ msgstr ""
 msgid "{status:sessionsize}"
 msgstr "Usayizi weseshini: %SIZE%"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
+msgid "Logout information lost"
 msgstr "Ulwazi lokuphuma lulahlekile"
 
 msgid "{errors:title_NORELAYSTATE}"

@@ -473,9 +473,6 @@ msgstr "Norādītā lapa nav atrasta. Iemesls: %REASON% Saite: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Nav sertifikāta"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Atslēgšanās informācija zaudēta"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"

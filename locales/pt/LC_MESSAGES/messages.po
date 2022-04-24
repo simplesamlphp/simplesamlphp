@@ -444,9 +444,6 @@ msgstr ""
 "A página não foi encontrada. A razão foi: %REASON% O URL fornecido foi: "
 "%URL%"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Informação de logout perdida"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "De seguida pode encontrar os metadados gerados pelo SimpleSAMLphp. Pode "

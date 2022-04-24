@@ -523,9 +523,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Geen certificaat"
 
-msgid "{errors:title_LOGOUTINFOLOST}"
-msgstr "Logout informatie is verloren gegaan"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "
