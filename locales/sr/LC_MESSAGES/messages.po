@@ -510,9 +510,6 @@ msgstr ""
 "Neuspešna autentifikacija: digitalni sertifikat koji je poslao vaš web "
 "pretraživač nije ispravan ili se ne može pročitati"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth Demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Jedinstveni identifikator osobe"
 

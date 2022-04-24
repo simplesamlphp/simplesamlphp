@@ -515,9 +515,6 @@ msgstr ""
 "L'autenticazione è fallita perché il tuo browser ha inviato un "
 "certificato non valido o illegibile."
 
-msgid "{status:header_shib}"
-msgstr "Demo di Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "Nome identificativo (principal name) nella propria organizzazione"
 

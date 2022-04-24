@@ -501,9 +501,6 @@ msgstr ""
 "Autentisering feilet: sertifikatet nettleseren din sendte er ugyldig, og "
 "kan ikke leses"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth Demo"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

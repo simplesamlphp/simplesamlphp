@@ -503,9 +503,6 @@ msgstr ""
 "Kautotze okerra: Zure nabigatzaileak bidalitako ziurtagiria baliogabea da"
 " edo ezin da irakurri"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth Adibidea"
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

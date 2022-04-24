@@ -516,9 +516,6 @@ msgstr ""
 "Échec de l'authentification : le certificat présenté par votre navigateur"
 " est invalide ou illisible"
 
-msgid "{status:header_shib}"
-msgstr "Exemple de démonstration de Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
 

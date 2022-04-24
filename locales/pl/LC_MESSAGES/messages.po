@@ -470,9 +470,6 @@ msgstr ""
 "Nie powiodło się uwierzytelnienie: certyfikat przesłany przez "
 "przeglądarkę jest niepoprawny lub nie może zostać przeczytany"
 
-msgid "{status:header_shib}"
-msgstr "Demo Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "Główna nazwa użytkownika w instytucji macierzystej"
 

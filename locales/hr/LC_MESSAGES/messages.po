@@ -512,9 +512,6 @@ msgstr ""
 "Neuspješna autentifikacija: digitalni certifikat koji je poslao vaš web "
 "preglednik nije ispravan ili se ne može pročitati"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth primjer"
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

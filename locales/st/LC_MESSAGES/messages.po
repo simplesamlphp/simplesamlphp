@@ -495,9 +495,6 @@ msgstr ""
 "o Rometse se seng leqepheng la ho kena, empa ka lebaka le sa tsejweng "
 "phaewete ha e a romelwa. Ka kopo leka hape."
 
-msgid "{status:header_shib}"
-msgstr "Pontsho ya Shibboleth"
-
 msgid "Session size: %SIZE%"
 msgstr "Saese ya seshene: %SIZE%"
 

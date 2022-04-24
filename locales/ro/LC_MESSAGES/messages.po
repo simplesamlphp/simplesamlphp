@@ -516,9 +516,6 @@ msgstr ""
 "Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
 "este valid sau nu poate fi citit"
 
-msgid "{status:header_shib}"
-msgstr "Demo Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

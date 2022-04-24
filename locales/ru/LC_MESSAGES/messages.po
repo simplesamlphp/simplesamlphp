@@ -527,9 +527,6 @@ msgstr ""
 "Ошибка при аутентификации: ваш браузер выслал недействительный или "
 "нечитаемый сертификат"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth демо"
-
 msgid "Person's principal name at home organization"
 msgstr "Имя руководителя в главной организации"
 

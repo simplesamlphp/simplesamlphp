@@ -440,9 +440,6 @@ msgstr "SimpleSAMLphpが生成したメタデータです。このメタデー�
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "認証失敗: あなたのブラウザは無効か不正な証明書を送信しました。"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth デモ"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

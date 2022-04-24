@@ -447,9 +447,6 @@ msgstr "证书"
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "认证失败：你的浏览器发送的证书无效或者不能读取"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth演示"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

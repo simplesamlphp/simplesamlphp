@@ -523,9 +523,6 @@ msgstr ""
 "Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist ungültig oder kann nicht gelesen werden"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth Demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Persönliche ID bei der Heimorganisation"
 

@@ -456,9 +456,6 @@ msgstr ""
 "enviar este documento de metadados aos seus parceiros para configurar uma"
 " federação."
 
-msgid "{status:header_shib}"
-msgstr "Exemplo de demonstração do SP Shibboleth 1.3"
-
 msgid "Person's principal name at home organization"
 msgstr "Nome de utilizador na organização de origem"
 

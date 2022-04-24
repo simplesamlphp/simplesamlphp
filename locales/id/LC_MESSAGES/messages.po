@@ -506,9 +506,6 @@ msgstr ""
 "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau "
 "tidak dapat dibaca"
 
-msgid "{status:header_shib}"
-msgstr "Demo Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

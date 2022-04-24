@@ -352,9 +352,6 @@ msgstr "Uloskirjautumistiedot hävisivät"
 msgid "{errors:descr_CONFIG}"
 msgstr "Vaikuttaa siltä, että SimpleSAMLphp:na asetuksissa on virhe."
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth esimerkki"
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

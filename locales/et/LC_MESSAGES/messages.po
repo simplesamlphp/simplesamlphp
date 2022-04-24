@@ -493,9 +493,6 @@ msgstr ""
 "Autentimine ei õnnestunud: brauseri poolt saadetud sertifikaat on vigane "
 "või pole loetav"
 
-msgid "{status:header_shib}"
-msgstr "Shibbolethi demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

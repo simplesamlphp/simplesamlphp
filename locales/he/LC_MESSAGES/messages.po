@@ -471,9 +471,6 @@ msgstr "תעודות"
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "ההיזדהות נכשלה: התעודה שהדפדפן שלח לא חוקית או לא ניתנת לקריאה"
 
-msgid "{status:header_shib}"
-msgstr "הדגמה ל- Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "השם העיקרי באירגון הבית"
 

@@ -503,9 +503,6 @@ msgstr ""
 "Feil autentisering: sertifikatet frå browsaren din er ugyldig eller "
 "uleseleg"
 
-msgid "{status:header_shib}"
-msgstr "Demonstrasjon av Shibboleth"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 

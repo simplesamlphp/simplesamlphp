@@ -452,9 +452,6 @@ msgstr ""
 "dokümanını güvenilir bir federasyon kurmak için güvenilir paydaşlara "
 "gönderebilirsiniz."
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
 

@@ -509,9 +509,6 @@ msgstr ""
 "Falha na Autenticação: O certificado que seu navegador (browser) enviou é"
 " inválido ou não pode ser lido"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth Demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Diretor da organização principal"
 

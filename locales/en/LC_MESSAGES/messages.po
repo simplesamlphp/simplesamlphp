@@ -536,9 +536,6 @@ msgstr ""
 "Authentication failed: the certificate your browser sent is invalid or "
 "cannot be read"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

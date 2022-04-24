@@ -495,9 +495,6 @@ msgstr "Tanúsítványok."
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás."
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth próba"
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

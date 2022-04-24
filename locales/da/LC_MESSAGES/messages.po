@@ -508,9 +508,6 @@ msgstr ""
 "Authentifikation fejlede: Certifikatet som din browser har sendt er "
 "ugyldigt og kan ikke læses"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth-demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Bruger-ID hos hjemmeorganisationen"
 

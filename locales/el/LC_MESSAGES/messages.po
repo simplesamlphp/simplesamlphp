@@ -555,9 +555,6 @@ msgstr ""
 "περιήγησης ιστού που χρησιμοποιείτε δεν είναι έγκυρο ή δεν ήταν δυνατή η "
 "ανάγνωσή του."
 
-msgid "{status:header_shib}"
-msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών Shibboleth"
-
 msgid "Person's principal name at home organization"
 msgstr "Αναγνωριστικό χρήστη στον οικείο οργανισμό"
 

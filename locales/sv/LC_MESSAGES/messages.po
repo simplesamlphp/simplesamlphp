@@ -511,9 +511,6 @@ msgstr ""
 "Inloggning mislyckades: Certfikatet som din webbläsare skickade var "
 "felaktigt eller kunde inte läsas"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demoexempel"
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 

@@ -490,9 +490,6 @@ msgstr ""
 "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval "
 "neveljavno digitalno potrdilo ali pa ga ni moč prebrati!"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo primer"
-
 msgid "Person's principal name at home organization"
 msgstr "ID uporabnika na domači organizaciji"
 

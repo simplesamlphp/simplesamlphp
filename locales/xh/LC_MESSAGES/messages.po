@@ -65,7 +65,7 @@ msgstr "Kufunyenwe isicelo esibi"
 msgid "{login:login_button}"
 msgstr "Ngena"
 
-msgid "{status:header_shib}"
+msgid "Shibboleth demo"
 msgstr "Idemo ye-Shibboleth"
 
 msgid "{disco:icon_prefered_idp}"

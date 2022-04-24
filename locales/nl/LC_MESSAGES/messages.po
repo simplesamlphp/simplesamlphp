@@ -542,9 +542,6 @@ msgstr ""
 "Authenticatie niet gelukt: uw browser stuurde een certificaat dat "
 "ongeldig is of niet gelezen kon worden"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

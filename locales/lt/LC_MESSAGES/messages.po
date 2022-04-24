@@ -499,9 +499,6 @@ msgstr ""
 "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nevalidus"
 " arba negali būti perskaitytas"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demonstracinė versija"
-
 msgid "Person's principal name at home organization"
 msgstr "Asmens pagrindinis vardas organizacijoje"
 

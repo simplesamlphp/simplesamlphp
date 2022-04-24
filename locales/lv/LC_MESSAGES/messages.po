@@ -492,9 +492,6 @@ msgstr ""
 "Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis nederīgu "
 "vai nelasāmu sertifikātu"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

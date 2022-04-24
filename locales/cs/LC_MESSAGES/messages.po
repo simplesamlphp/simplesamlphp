@@ -487,9 +487,6 @@ msgstr ""
 "Přihlášení neproběhlo: certifikát, který odeslal Váš prohlížeč, nemohl být "
 "přečten"
 
-msgid "{status:header_shib}"
-msgstr "Shibboleth demo"
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 
