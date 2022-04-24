@@ -483,9 +483,6 @@ msgstr "فشل التوثيق لان متصفحك ارسل شهادات غير �
 msgid "{status:header_shib}"
 msgstr "استعراض Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "حلل"
-
 msgid "Person's principal name at home organization"
 msgstr "ألاسم بالمنظمة الام\\الموقع الام "
 

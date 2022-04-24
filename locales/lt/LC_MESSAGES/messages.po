@@ -502,9 +502,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demonstracinė versija"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Nagrinėti"
-
 msgid "Person's principal name at home organization"
 msgstr "Asmens pagrindinis vardas organizacijoje"
 

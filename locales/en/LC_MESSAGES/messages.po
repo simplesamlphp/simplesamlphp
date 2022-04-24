@@ -539,9 +539,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Parse"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

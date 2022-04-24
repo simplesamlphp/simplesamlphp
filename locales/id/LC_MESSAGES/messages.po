@@ -509,9 +509,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Demo Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Parse"
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

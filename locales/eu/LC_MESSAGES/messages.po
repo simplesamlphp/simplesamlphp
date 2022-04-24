@@ -506,9 +506,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth Adibidea"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Aztertu"
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

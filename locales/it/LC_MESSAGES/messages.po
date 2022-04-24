@@ -518,9 +518,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Demo di Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analisi"
-
 msgid "Person's principal name at home organization"
 msgstr "Nome identificativo (principal name) nella propria organizzazione"
 

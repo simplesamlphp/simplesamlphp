@@ -515,9 +515,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth primjer"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analiziraj"
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

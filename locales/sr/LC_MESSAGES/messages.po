@@ -513,9 +513,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth Demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analiziraj"
-
 msgid "Person's principal name at home organization"
 msgstr "Jedinstveni identifikator osobe"
 

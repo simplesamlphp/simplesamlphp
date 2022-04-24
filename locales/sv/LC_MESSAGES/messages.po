@@ -514,9 +514,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demoexempel"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analysera"
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 

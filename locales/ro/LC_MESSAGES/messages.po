@@ -519,9 +519,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Demo Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analizează"
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

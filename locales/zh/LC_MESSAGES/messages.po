@@ -450,9 +450,6 @@ msgstr "认证失败：你的浏览器发送的证书无效或者不能读取"
 msgid "{status:header_shib}"
 msgstr "Shibboleth演示"
 
-msgid "{admin:metaconv_parse}"
-msgstr "分析器"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

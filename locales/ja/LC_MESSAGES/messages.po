@@ -443,9 +443,6 @@ msgstr "認証失敗: あなたのブラウザは無効か不正な証明書を�
 msgid "{status:header_shib}"
 msgstr "Shibboleth デモ"
 
-msgid "{admin:metaconv_parse}"
-msgstr "パース"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

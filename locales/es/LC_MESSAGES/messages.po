@@ -544,9 +544,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Ejemplo Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analizar"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hola, mundo traducido!"
 

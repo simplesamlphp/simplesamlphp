@@ -498,9 +498,6 @@ msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás
 msgid "{status:header_shib}"
 msgstr "Shibboleth próba"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Értelmez"
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

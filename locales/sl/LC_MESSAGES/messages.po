@@ -493,9 +493,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo primer"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Sintaktična analiza (parse)"
-
 msgid "Person's principal name at home organization"
 msgstr "ID uporabnika na domači organizaciji"
 

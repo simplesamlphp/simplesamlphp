@@ -476,9 +476,6 @@ msgstr "驗證失敗：您的瀏覽器傳送的憑證為無效或無法讀取"
 msgid "{status:header_shib}"
 msgstr "老調的展示"
 
-msgid "{admin:metaconv_parse}"
-msgstr "解析"
-
 msgid "Person's principal name at home organization"
 msgstr "家庭的個人主要名字"
 

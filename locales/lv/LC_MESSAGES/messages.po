@@ -495,9 +495,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Parsēt"
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

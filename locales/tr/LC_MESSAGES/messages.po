@@ -455,9 +455,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Çözümle"
-
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
 

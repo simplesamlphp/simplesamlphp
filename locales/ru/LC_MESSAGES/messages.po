@@ -530,9 +530,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth демо"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Выполнить синтаксический анализ"
-
 msgid "Person's principal name at home organization"
 msgstr "Имя руководителя в главной организации"
 

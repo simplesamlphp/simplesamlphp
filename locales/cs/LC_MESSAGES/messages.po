@@ -490,9 +490,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Analýza"
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

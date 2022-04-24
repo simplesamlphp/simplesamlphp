@@ -504,9 +504,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibboleth Demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Pars"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

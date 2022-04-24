@@ -506,9 +506,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Demonstrasjon av Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Parser"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 

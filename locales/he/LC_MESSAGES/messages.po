@@ -474,9 +474,6 @@ msgstr "ההיזדהות נכשלה: התעודה שהדפדפן שלח לא ח�
 msgid "{status:header_shib}"
 msgstr "הדגמה ל- Shibboleth"
 
-msgid "{admin:metaconv_parse}"
-msgstr "נתח"
-
 msgid "Person's principal name at home organization"
 msgstr "השם העיקרי באירגון הבית"
 

@@ -496,9 +496,6 @@ msgstr ""
 msgid "{status:header_shib}"
 msgstr "Shibbolethi demo"
 
-msgid "{admin:metaconv_parse}"
-msgstr "Parsi"
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 
