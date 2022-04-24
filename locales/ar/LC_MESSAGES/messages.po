@@ -454,9 +454,6 @@ msgstr "التالي"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr " حدث خطا عند محاولة اجراء التوثيق"
 
-msgid "{disco:selectidp_full}"
-msgstr "اختر موقع الهوية الذي ترغب بدخوله"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"

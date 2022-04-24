@@ -481,9 +481,6 @@ msgstr ""
 "Ocorreu um erro quando este servidor de identidade tentou criar uma "
 "resposta de autenticação."
 
-msgid "{disco:selectidp_full}"
-msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "

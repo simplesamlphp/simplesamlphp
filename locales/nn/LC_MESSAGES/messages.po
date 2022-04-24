@@ -474,9 +474,6 @@ msgstr ""
 "Denne Identity Provider kunne ikkje laga svar på autentiseringsspørsmålet"
 " fordi det oppsto ein feilsituasjon."
 
-msgid "{disco:selectidp_full}"
-msgstr "Vel innloggingsteneste (IdP) der du ønskjer å logga inn."
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata generert av SimpleSAMLphp for deg.  Du kan senda dette "

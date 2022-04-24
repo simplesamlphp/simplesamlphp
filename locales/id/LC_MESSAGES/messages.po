@@ -475,9 +475,6 @@ msgstr ""
 "Ketika identity provider ini mencoba untuk membuat response "
 "autentifikasi, error terjadi."
 
-msgid "{disco:selectidp_full}"
-msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk "

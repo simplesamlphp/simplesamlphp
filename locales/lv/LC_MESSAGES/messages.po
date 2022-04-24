@@ -462,11 +462,6 @@ msgstr ""
 "Kad identitātes piegādātājs mēģināja izveigot autentifikācijas atbildi, "
 "radās kļūda."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Lūdzu izvēlieties identitātes piegādātāju, pie kura vēlaties "
-"autentificēties:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"

@@ -361,9 +361,6 @@ msgstr ""
 "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits "
 "Verskaffer."
 
-msgid "{disco:selectidp_full}"
-msgstr "Kies asb. jou identiteits verskaffer waar jy wil verifieer:"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "

@@ -490,11 +490,6 @@ msgstr ""
 "Beim Versuch des Identity Providers eine Authentifikationsantwort zu "
 "erstellen trat ein Fehler auf."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren"
-" möchten:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"

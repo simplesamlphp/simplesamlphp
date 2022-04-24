@@ -480,9 +480,6 @@ msgstr "Næste"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 
-msgid "{disco:selectidp_full}"
-msgstr "Vælg institutionen (identitetsudbyderen) hvor du vil logge ind"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "

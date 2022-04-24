@@ -473,9 +473,6 @@ msgstr ""
 "En feil oppsto da innloggingstjenesten prøvde å lage et svar på "
 "autentiserings-forespørselen."
 
-msgid "{disco:selectidp_full}"
-msgstr "Vennligst velg hvilken identitetsleverandør du vil bruke for å logge inn:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "

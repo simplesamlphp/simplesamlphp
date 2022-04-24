@@ -337,9 +337,6 @@ msgstr ""
 "Virhe tapahtui kun identiteetintarjoaja pyrki luomaan vastauksen "
 "tunnistautumiseen."
 
-msgid "{disco:selectidp_full}"
-msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

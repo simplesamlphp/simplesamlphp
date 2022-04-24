@@ -485,11 +485,6 @@ msgstr ""
 "Une erreur s'est produite lorsque ce fournisseur d'identité a essayé de "
 "créer une réponse d'authentification."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous "
-"authentifier :"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Voici les métadonnées générées par SimpleSAMLphp. Vous pouvez les envoyer"

@@ -441,11 +441,6 @@ msgstr ""
 "Wystapił bład podczas próby utworzenia przez Dostawcę Tożsamości "
 "odpowiedzi uwierzytelniania ."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się "
-"uwierzytelnić:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "

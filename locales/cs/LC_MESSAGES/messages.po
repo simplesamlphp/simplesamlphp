@@ -459,9 +459,6 @@ msgstr ""
 "Při vytváření přihlašovací odpovědi tímto poskytovatelem identity "
 "vznikla chyba."
 
-msgid "{disco:selectidp_full}"
-msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "

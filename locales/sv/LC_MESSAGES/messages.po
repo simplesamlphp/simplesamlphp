@@ -482,9 +482,6 @@ msgstr ""
 "När identitetshanteraren (Identity Provider) försökte skapa "
 "inloggingssvaret uppstod ett fel."
 
-msgid "{disco:selectidp_full}"
-msgstr "Välj vilken identitetsleverantör du vill logga in med:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp har har genererat följande metadata. För att sätta upp en "

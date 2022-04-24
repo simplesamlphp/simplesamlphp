@@ -467,11 +467,6 @@ msgstr "Következő"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol "
-"azonosítani kívánja magát:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "

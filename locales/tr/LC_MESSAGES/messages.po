@@ -434,9 +434,6 @@ msgstr "Sıradaki"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata oluştu."
 
-msgid "{disco:selectidp_full}"
-msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seçiniz: "
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "SimpleSAMLphp'nin sizin için ürettiği üstveri (metada). Bu üstveri "

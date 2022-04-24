@@ -472,9 +472,6 @@ msgstr ""
 "Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna "
 "sortzean."
 
-msgid "{disco:selectidp_full}"
-msgstr "Mesedez, non kautotu nahi duzun identifikazio hornitzailea hauta ezazu "
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hona hemen SimpleSAMLphp-ak zuretzat sortu dituen metadatuak. Metadatuen "

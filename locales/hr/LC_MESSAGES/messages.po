@@ -480,9 +480,6 @@ msgstr ""
 "Došlo je do greške prilikom kreiranja odgovora na autentifikacijski "
 "zahtjev."
 
-msgid "{disco:selectidp_full}"
-msgstr "Molimo odaberite servis preko kojeg se želite autentificirati:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerirao za vas. Te "

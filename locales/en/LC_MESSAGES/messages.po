@@ -502,9 +502,6 @@ msgstr ""
 "When this identity provider tried to create an authentication response, "
 "an error occurred."
 
-msgid "{disco:selectidp_full}"
-msgstr "Please select the identity provider where you want to authenticate:"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Your session data cannot be retrieved right now due to technical "

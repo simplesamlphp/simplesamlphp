@@ -512,9 +512,6 @@ msgstr ""
 "Tijdens het aanmaken van een authenticatie response door deze Identity "
 "Provider is er een fout opgetreden."
 
-msgid "{disco:selectidp_full}"
-msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "

@@ -459,9 +459,6 @@ msgstr "Naprej"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 
-msgid "{disco:selectidp_full}"
-msgstr "Izberite IdP, na katerem se boste avtenticirali:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "

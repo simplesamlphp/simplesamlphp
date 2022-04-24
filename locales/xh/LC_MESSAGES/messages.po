@@ -382,7 +382,7 @@ msgstr ""
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi."
 
-msgid "{disco:selectidp_full}"
+msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 
 msgid "{logout:failedsps}"

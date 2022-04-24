@@ -483,11 +483,6 @@ msgstr ""
 "A apărut o eroare când furnizorul de identitate încerca să creeze un "
 "răspuns de autentificare."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Vă rugăm să alegeți furnizorul de identitate pe care doriți să-l folosiți"
-" pentru autentificarea dumneavoastră:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Acestea sunt metadate generate de SimpleSAMLphp. Metadatele pot fi "

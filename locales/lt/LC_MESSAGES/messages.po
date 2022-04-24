@@ -468,9 +468,6 @@ msgstr ""
 "Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko "
 "klaida."
 
-msgid "{disco:selectidp_full}"
-msgstr "Prašome pasirinkite tapatybių tiekėją, kuriame norite autentikuotis:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti "

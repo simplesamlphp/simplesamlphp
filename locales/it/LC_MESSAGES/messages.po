@@ -487,9 +487,6 @@ msgstr ""
 "Si è verificato un errore durante la fase di creazione della risposta di "
 "autenticazione da parte dell'Identity Provider."
 
-msgid "{disco:selectidp_full}"
-msgstr "Si prega di selezionare l'identity provider con il quale autenticarsi:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Questi sono i metadati che SimpleSAMLphp ha generato e che possono essere"

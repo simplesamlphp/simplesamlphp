@@ -387,7 +387,7 @@ msgstr ""
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
 
-msgid "{disco:selectidp_full}"
+msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
 
 msgid "{logout:failedsps}"

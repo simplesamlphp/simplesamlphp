@@ -445,9 +445,6 @@ msgstr "הבא"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, אירעה שגיאה."
 
-msgid "{disco:selectidp_full}"
-msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "

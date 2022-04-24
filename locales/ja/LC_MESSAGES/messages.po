@@ -419,9 +419,6 @@ msgstr "次へ"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "アイデンティティプロバイダの認証レスポンスの生成時にエラーが発生しました。"
 
-msgid "{disco:selectidp_full}"
-msgstr "認証を行いたいアイデンティティプロバイダを選択してください:"
-
 msgid "{admin:metadata_intro}"
 msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
 

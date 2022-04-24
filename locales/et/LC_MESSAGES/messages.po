@@ -464,9 +464,6 @@ msgstr "Edasi"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastust."
 
-msgid "{disco:selectidp_full}"
-msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Need on SimpleSAMLphp poolt sulle genereeritud metaandmed. Võid saata "

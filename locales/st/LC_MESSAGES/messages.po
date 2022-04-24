@@ -399,9 +399,6 @@ msgstr "Netefatso e kgaoditswe ke mosebedisi"
 msgid "{logout:no}"
 msgstr "Tjhe"
 
-msgid "{disco:selectidp_full}"
-msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%"
 

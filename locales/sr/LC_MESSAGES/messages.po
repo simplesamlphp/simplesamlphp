@@ -477,11 +477,6 @@ msgstr ""
 "Desila se greška prilikom kreiranja autentifikacionog odgovora od strane "
 "ovog davaoca identiteta."
 
-msgid "{disco:selectidp_full}"
-msgstr ""
-"Molimo vas odaberite davaoca identiteta kod koga se želite "
-"autentifikovati:"
-
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Ovo su metapodaci koje je SimpleSAMLphp izgenerisao za vas. Te "
