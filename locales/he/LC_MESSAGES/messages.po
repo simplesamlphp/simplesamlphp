@@ -436,9 +436,6 @@ msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליח
 msgid "{admin:metaover_optional_not_found}"
 msgstr "שדות הרשות הבאים לא נמצאו"
 
-msgid "{logout:logout_only}"
-msgstr "לא, רק %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, אירעה שגיאה."
 

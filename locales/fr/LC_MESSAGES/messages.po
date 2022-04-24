@@ -474,9 +474,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Les champs optionnels suivants n'ont pas été trouvés"
 
-msgid "{logout:logout_only}"
-msgstr "Non, seulement de %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Une erreur s'est produite lorsque ce fournisseur d'identité a essayé de "

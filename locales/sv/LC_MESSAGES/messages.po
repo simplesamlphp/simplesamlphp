@@ -471,9 +471,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Följande frivilliga alternativ hittades inte"
 
-msgid "{logout:logout_only}"
-msgstr "Nej, endast %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "När identitetshanteraren (Identity Provider) försökte skapa "

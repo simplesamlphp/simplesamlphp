@@ -461,9 +461,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Hautazko datu hauek ez dira aurkitu"
 
-msgid "{logout:logout_only}"
-msgstr "Ez, %SPS bakarrik"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna "

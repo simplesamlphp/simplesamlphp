@@ -203,7 +203,7 @@ msgstr ""
 "Isevisi icele ukuthi uziqinisekise. Sicela ufake igama lakho lomsebenzisi"
 " nephasiwedi ngohlobo olungezansi."
 
-msgid "{logout:logout_only}"
+msgid "No, only %SP%"
 msgstr "Cha, ku-%SP% kuphela"
 
 msgid "Username"

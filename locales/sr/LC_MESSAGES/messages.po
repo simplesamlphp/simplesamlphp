@@ -466,9 +466,6 @@ msgstr "Kliknite na dugme \"Pošalji poruku\" da biste poslali poruku."
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Nisu pronađena sledeća opciona polja"
 
-msgid "{logout:logout_only}"
-msgstr "Ne, samo iz %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Desila se greška prilikom kreiranja autentifikacionog odgovora od strane "

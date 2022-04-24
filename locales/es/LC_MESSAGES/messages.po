@@ -499,9 +499,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Los siguientes datos opcionales no se han encontrado"
 
-msgid "{logout:logout_only}"
-msgstr "No, sólo %SPS"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "El proveedor de identidad ha detectado un error al crear respuesta de "

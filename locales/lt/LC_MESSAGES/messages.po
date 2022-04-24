@@ -457,9 +457,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Šie neprivalomi laukai nerasti"
 
-msgid "{logout:logout_only}"
-msgstr "Ne, tik %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko "

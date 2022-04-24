@@ -430,9 +430,6 @@ msgstr "Nie przedstawiłeś prawidłowego certyfikaty"
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Nastepujące pola opcjonalne nie zostały znalezione"
 
-msgid "{logout:logout_only}"
-msgstr "Nie, tylko %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Wystapił bład podczas próby utworzenia przez Dostawcę Tożsamości "

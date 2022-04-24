@@ -471,9 +471,6 @@ msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Følgende valgfrie felter kunne ikke findes"
 
-msgid "{logout:logout_only}"
-msgstr "Nej, kun %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 

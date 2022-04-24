@@ -414,9 +414,6 @@ msgstr "你准备发送一个消息，请点击提交按钮以继续"
 msgid "{admin:metaover_optional_not_found}"
 msgstr "下列必需的选项区域没有找到"
 
-msgid "{logout:logout_only}"
-msgstr "不，仅%SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "在这个身份提供者创建认证应答的时候发生了一个错误"
 

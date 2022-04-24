@@ -455,9 +455,6 @@ msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Järgmisi lisavälju ei leitud"
 
-msgid "{logout:logout_only}"
-msgstr "Ei, ainult %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastust."
 

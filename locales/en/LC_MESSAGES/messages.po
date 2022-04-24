@@ -491,9 +491,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "The following optional fields was not found"
 
-msgid "{logout:logout_only}"
-msgstr "No, only %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "When this identity provider tried to create an authentication response, "

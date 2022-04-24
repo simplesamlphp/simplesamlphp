@@ -476,9 +476,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "I seguenti campi, opzionali, non sono stati trovati"
 
-msgid "{logout:logout_only}"
-msgstr "No, solo da %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Si è verificato un errore durante la fase di creazione della risposta di "

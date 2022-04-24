@@ -501,9 +501,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "De volgende optionele velden konden niet worden gevonden"
 
-msgid "{logout:logout_only}"
-msgstr "Nee, alleen %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Tijdens het aanmaken van een authenticatie response door deze Identity "

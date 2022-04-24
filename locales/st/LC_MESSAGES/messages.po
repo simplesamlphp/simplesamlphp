@@ -532,9 +532,6 @@ msgstr ""
 "O kgethile <b>%HOMEORG%</b> jwalo ka khampani ya lehae ya heno. Haeba "
 "sena se fosahetse o ka kgetha e nngwe hape."
 
-msgid "{logout:logout_only}"
-msgstr "Tjhe, %SP% feela"
-
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
 

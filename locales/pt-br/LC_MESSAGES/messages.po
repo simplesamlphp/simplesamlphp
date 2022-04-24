@@ -470,9 +470,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Os seguintes campos opcionais não foram encontrados"
 
-msgid "{logout:logout_only}"
-msgstr "Não, apenas de %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ocorreu um erro quando este servidor de identidade tentou criar uma "

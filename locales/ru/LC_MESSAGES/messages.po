@@ -485,9 +485,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Следующие необязательные поля не найдены"
 
-msgid "{logout:logout_only}"
-msgstr "Нет, только для службы %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "При попытке провайдера идентификации создать ответ по аутентификации "

@@ -463,9 +463,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Fann ikkje følgjande valfrie felt"
 
-msgid "{logout:logout_only}"
-msgstr "Nei, logg berre ut frå %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Denne Identity Provider kunne ikkje laga svar på autentiseringsspørsmålet"

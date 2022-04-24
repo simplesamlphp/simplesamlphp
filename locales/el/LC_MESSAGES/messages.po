@@ -507,9 +507,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Τα παρακάτω προαιρετικά πεδία δεν βρέθηκαν"
 
-msgid "{logout:logout_only}"
-msgstr "Όχι, μόνο από την υπηρεσία %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο "

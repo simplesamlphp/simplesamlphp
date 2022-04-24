@@ -410,9 +410,6 @@ msgstr "メッセージを送信します。続けるにはメッセージ送信
 msgid "{admin:metaover_optional_not_found}"
 msgstr "以下の任意項目は見つかりませんでした"
 
-msgid "{logout:logout_only}"
-msgstr "いいえ、%SP% のみログアウトします"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "アイデンティティプロバイダの認証レスポンスの生成時にエラーが発生しました。"
 

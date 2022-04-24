@@ -472,9 +472,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Următoarele câmpuri opționale nu au fost găsite"
 
-msgid "{logout:logout_only}"
-msgstr "Nu, doar %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "A apărut o eroare când furnizorul de identitate încerca să creeze un "

@@ -440,9 +440,6 @@ msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
 msgid "{admin:metaover_optional_not_found}"
 msgstr "下列資料找不到選擇性欄位"
 
-msgid "{logout:logout_only}"
-msgstr "不，只有 %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "當這個驗證提供者嘗試建立一個驗證回應時，有個錯誤發生。"
 

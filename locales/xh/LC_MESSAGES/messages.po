@@ -200,7 +200,7 @@ msgstr ""
 "Inkonzo icele ukuba uzingqinisise. Nceda ungenise igama lomsebenzisi "
 "nephaswedi yakho kwifomu ngezantsi."
 
-msgid "{logout:logout_only}"
+msgid "No, only %SP%"
 msgstr "Hayi, kuphela %SP%"
 
 msgid "Username"

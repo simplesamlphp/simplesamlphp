@@ -458,9 +458,6 @@ msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatásh
 msgid "{admin:metaover_optional_not_found}"
 msgstr "A következő opcionális mezők nem találhatók"
 
-msgid "{logout:logout_only}"
-msgstr "Nem, csak innen: %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
 

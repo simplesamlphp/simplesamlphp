@@ -462,9 +462,6 @@ msgstr ""
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Følgende valgbare felt ble ikke funnet"
 
-msgid "{logout:logout_only}"
-msgstr "Nei, bare %SP%"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "En feil oppsto da innloggingstjenesten prøvde å lage et svar på "
