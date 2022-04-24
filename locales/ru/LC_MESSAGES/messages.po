@@ -468,7 +468,7 @@ msgstr ""
 "неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором "
 "этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
-msgid "{admin:metadata_adfs-idp}"
+msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 
 msgid "{admin:debug_sending_message_text_button}"

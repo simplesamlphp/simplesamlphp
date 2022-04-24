@@ -482,7 +482,7 @@ msgstr ""
 "administrador de este servicio de conexión y envíele el mensaje de error "
 "anterior."
 
-msgid "{admin:metadata_adfs-idp}"
+msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 
 msgid "{admin:debug_sending_message_text_button}"

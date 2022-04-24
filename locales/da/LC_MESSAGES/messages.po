@@ -456,7 +456,7 @@ msgstr ""
 "alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og "
 "rapportér så mange detaljer som muligt om fejlen"
 
-msgid "{admin:metadata_adfs-idp}"
+msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 
 msgid "{admin:debug_sending_message_text_button}"

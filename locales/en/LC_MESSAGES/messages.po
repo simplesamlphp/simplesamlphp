@@ -471,9 +471,6 @@ msgstr ""
 "misconfiguration of SimpleSAMLphp. Contact the administrator of this "
 "login service, and send them the error message above."
 
-msgid "{admin:metadata_adfs-idp}"
-msgstr "ADFS IdP Metadata"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "You are about to send a message. Hit the submit message button to "
