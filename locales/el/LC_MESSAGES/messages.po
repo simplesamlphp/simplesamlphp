@@ -490,9 +490,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Μεταδεδομένα Παρόχου Ταυτότητας ADFS"
 
-msgid "{attributes:attribute_edupersonorcid}"
-msgstr "Αναγνωριστικά ερευνητή ORCID"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "

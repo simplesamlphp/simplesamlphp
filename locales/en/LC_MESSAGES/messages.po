@@ -474,9 +474,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS IdP Metadata"
 
-msgid "{attributes:attribute_edupersonorcid}"
-msgstr "ORCID researcher identifiers"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "You are about to send a message. Hit the submit message button to "
