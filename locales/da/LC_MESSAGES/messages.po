@@ -468,9 +468,6 @@ msgstr "Du har ikke valgt et gyldigt certifikat"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Følgende valgfrie felter kunne ikke findes"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 

@@ -469,9 +469,6 @@ msgstr ""
 "Mesajul este pregătit pentru a fi trimis. Apăsați butonul de trimitere "
 "pentru a continua."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Următoarele câmpuri opționale nu au fost găsite"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "A apărut o eroare când furnizorul de identitate încerca să creeze un "

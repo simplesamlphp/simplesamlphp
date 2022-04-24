@@ -466,9 +466,6 @@ msgstr "Niste predočili valjani certifikat."
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na gumb \"Pošalji poruku\" da biste poslali poruku."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Nisu pronađena sljedeća opcionalna polja"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Došlo je do greške prilikom kreiranja odgovora na autentifikacijski "

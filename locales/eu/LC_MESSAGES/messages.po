@@ -458,9 +458,6 @@ msgstr ""
 "Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" botoia "
 "jarraitzeko."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Hautazko datu hauek ez dira aurkitu"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna "

@@ -461,9 +461,6 @@ msgstr ""
 "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan "
 "untuk melanjutkan."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Field-field opsional berikut tidak dapat ditemukan"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ketika identity provider ini mencoba untuk membuat response "

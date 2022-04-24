@@ -460,9 +460,6 @@ msgstr ""
 "Du er i ferd med å senda ei melding.  Trykk på send-knappen for å gå "
 "vidare"
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Fann ikkje følgjande valfrie felt"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Denne Identity Provider kunne ikkje laga svar på autentiseringsspørsmålet"

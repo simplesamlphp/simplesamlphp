@@ -454,9 +454,6 @@ msgstr ""
 "Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "
 "patvirtinimo mygtuką."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Šie neprivalomi laukai nerasti"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko "

@@ -448,9 +448,6 @@ msgstr "Jūs neesat norādījis derīgu sertifikātu."
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Jūs gatavojaties sūtīt ziņu. Spiediet pogu Sūtīt ziņu."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Nav atrasti neobligātie lauki"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Kad identitātes piegādātājs mēģināja izveigot autentifikācijas atbildi, "

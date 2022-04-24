@@ -433,9 +433,6 @@ msgstr "לא הצגת תעודה חוקית "
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליחה כדי להמשיך."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "שדות הרשות הבאים לא נמצאו"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, אירעה שגיאה."
 

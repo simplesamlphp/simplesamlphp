@@ -422,9 +422,6 @@ msgstr ""
 "Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna "
 "tıklayın."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Şu isteğe bağlı alanlar bulunamadı"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata oluştu."
 

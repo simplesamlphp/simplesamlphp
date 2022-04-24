@@ -459,9 +459,6 @@ msgstr ""
 "Du er i ferd med å sende en melding. Trykk knappen «Send melding» for å "
 "fortsette."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Følgende valgbare felt ble ikke funnet"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "En feil oppsto da innloggingstjenesten prøvde å lage et svar på "

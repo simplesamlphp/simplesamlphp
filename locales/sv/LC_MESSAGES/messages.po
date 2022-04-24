@@ -468,9 +468,6 @@ msgstr ""
 "Du är på väg att skicka ett meddelande. Klicka på skickaknappen för att "
 "fortsätta."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Följande frivilliga alternativ hittades inte"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "När identitetshanteraren (Identity Provider) försökte skapa "

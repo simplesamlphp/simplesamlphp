@@ -447,9 +447,6 @@ msgstr "Posredovan certifikat je neveljaven"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Naslednjih neobveznih polj ni bilo mogoče najti"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 

@@ -471,9 +471,6 @@ msgstr ""
 "Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour "
 "continuer."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Les champs optionnels suivants n'ont pas été trouvés"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Une erreur s'est produite lorsque ce fournisseur d'identité a essayé de "

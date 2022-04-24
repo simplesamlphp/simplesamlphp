@@ -463,9 +463,6 @@ msgstr "Niste dostavili validan setifikat."
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na dugme \"Pošalji poruku\" da biste poslali poruku."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Nisu pronađena sledeća opciona polja"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Desila se greška prilikom kreiranja autentifikacionog odgovora od strane "

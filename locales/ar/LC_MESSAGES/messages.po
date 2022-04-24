@@ -442,9 +442,6 @@ msgstr "لم تقدم شهادة صحيحة"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "انت علي وشك إرسال رسالة. اضغط علي الزر للمواصلة"
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "الحقول الاختيارية أدناه مفقودة"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr " حدث خطا عند محاولة اجراء التوثيق"
 

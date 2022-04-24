@@ -420,9 +420,6 @@ msgstr "Não foi apresentado um certificado válido."
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Está prestes a enviar uma mensagem. Carregue no botão para continuar."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Os seguintes campos opcionais não foram encontrados"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de"

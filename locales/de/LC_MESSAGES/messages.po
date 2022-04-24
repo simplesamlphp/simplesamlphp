@@ -476,9 +476,6 @@ msgstr ""
 "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
 "senden\"-Knopf um fortzufahren."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Die folgenden optionalen Felder wurden nicht gefunden"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Beim Versuch des Identity Providers eine Authentifikationsantwort zu "

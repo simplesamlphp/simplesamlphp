@@ -427,9 +427,6 @@ msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nie przedstawiłeś prawidłowego certyfikaty"
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "Nastepujące pola opcjonalne nie zostały znalezione"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Wystapił bład podczas próby utworzenia przez Dostawcę Tożsamości "

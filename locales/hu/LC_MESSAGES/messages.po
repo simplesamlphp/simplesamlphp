@@ -455,9 +455,6 @@ msgstr "Nem található hiteles tanúsítvány"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
 
-msgid "{admin:metaover_optional_not_found}"
-msgstr "A következő opcionális mezők nem találhatók"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
 
