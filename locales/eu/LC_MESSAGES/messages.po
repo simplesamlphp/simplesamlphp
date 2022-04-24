@@ -450,9 +450,6 @@ msgstr "Mugikorra"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Hizkuntza lehenetsia"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Ez duzu baliozko ziurtagiririk aurkeztu "
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" botoia "

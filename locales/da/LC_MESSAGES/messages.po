@@ -462,9 +462,6 @@ msgstr "ADFS identitetsudbyder metadata"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Foretrukket sprog (evt. flere)"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Du har ikke valgt et gyldigt certifikat"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 

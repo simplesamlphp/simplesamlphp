@@ -414,9 +414,6 @@ msgstr "Telemóvel"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Idioma"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Não foi apresentado um certificado válido."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Está prestes a enviar uma mensagem. Carregue no botão para continuar."
 

@@ -457,9 +457,6 @@ msgstr "Broj mobilnog telefona"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Preferirani jezik"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Niste dostavili validan setifikat."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na dugme \"Pošalji poruku\" da biste poslali poruku."
 

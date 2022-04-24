@@ -156,7 +156,7 @@ msgstr ""
 msgid "{status:subject_format}"
 msgstr "Ifomethi"
 
-msgid "{errors:descr_NOTVALIDCERT}"
+msgid "You did not present a valid certificate."
 msgstr "Awuzange wethule isitifiketi esilungile."
 
 msgid "{errors:title_NOTFOUND}"

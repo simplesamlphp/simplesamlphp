@@ -465,9 +465,6 @@ msgstr "Cellulare"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Lingua preferita"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Non hai fornito un certificato valido."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Si sta per inviare un messaggio. Premere il pulsante di invio per "

@@ -439,9 +439,6 @@ msgstr "Mobil"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Preferovaný jazyk"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Nepředložil jste validní certifikát."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Můžete poslat zprávu. Požijte tlačítko k pokračování."
 

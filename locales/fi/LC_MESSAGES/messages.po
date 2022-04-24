@@ -323,9 +323,6 @@ msgstr ""
 "asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä"
 " yllä oleva virheilmoitus."
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Et tarjonnut voimassaolevaa sertifikaattia"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr ""
 "Virhe tapahtui kun identiteetintarjoaja pyrki luomaan vastauksen "

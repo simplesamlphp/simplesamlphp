@@ -446,9 +446,6 @@ msgstr "Mobiil"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Eelistatud keel"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Sa ei esitanud kehtivat sertifikaati."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
 

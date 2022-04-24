@@ -490,9 +490,6 @@ msgstr "ADFS IdP Metadata"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Voorkeurstaal"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Je hebt geen geldig certificaat meegegeven"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "U gaat een bericht versturen. Klik op de Verstuur bericht knop om door te"

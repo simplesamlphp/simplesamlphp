@@ -186,9 +186,6 @@ msgstr ""
 "SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun "
 "dësem Login Service an schéckt him den Fehlerbericht"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Dir hud keen gültegen Zertifikat"
-
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert"
 

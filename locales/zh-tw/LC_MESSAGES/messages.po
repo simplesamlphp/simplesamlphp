@@ -431,9 +431,6 @@ msgstr "ADFS 驗證提供者 Metadata"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "喜好語言"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "您提供的憑證無效。"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
 

@@ -451,9 +451,6 @@ msgstr "Mobiltelefon"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Foretrukket språk"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Du presenterte ikke et gyldig sertifikat"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Du er i ferd med å sende en melding. Trykk knappen «Send melding» for å "

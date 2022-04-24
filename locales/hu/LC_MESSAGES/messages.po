@@ -449,9 +449,6 @@ msgstr "Mobil"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Elsődleges nyelv"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Nem található hiteles tanúsítvány"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
 

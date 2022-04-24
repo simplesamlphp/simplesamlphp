@@ -488,9 +488,6 @@ msgstr "Metadatos IdP ADFS"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Idioma preferido"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "No se ha podido validar el certificado recibido"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Se va a proceder a enviar un mensaje. Pulse el botón \"Enviar mensaje\" "

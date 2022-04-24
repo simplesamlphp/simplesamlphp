@@ -427,9 +427,6 @@ msgstr "נייד"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "שפה מועדפת"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "לא הצגת תעודה חוקית "
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליחה כדי להמשיך."
 

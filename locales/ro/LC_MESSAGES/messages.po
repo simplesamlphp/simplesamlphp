@@ -461,9 +461,6 @@ msgstr "Mobil"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Limba preferată"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Nu ați oferit un certificat valid."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mesajul este pregătit pentru a fi trimis. Apăsați butonul de trimitere "

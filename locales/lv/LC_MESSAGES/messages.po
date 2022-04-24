@@ -442,9 +442,6 @@ msgstr "Mobilais telefons"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Vēlamā valoda"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Jūs neesat norādījis derīgu sertifikātu."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Jūs gatavojaties sūtīt ziņu. Spiediet pogu Sūtīt ziņu."
 

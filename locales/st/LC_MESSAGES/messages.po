@@ -881,9 +881,6 @@ msgstr ""
 msgid "Remember me"
 msgstr "Nkgopole"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Ha o a fana ka setifikeiti se nepahetseng."
-
 msgid "State information lost, and no way to restart the request"
 msgstr ""
 "Tlhahisoleeding ya porofensi e lahlehile, mmeha ho tsela ya ho qala kopo "

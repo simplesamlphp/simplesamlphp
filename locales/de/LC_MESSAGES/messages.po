@@ -468,9 +468,6 @@ msgstr "Mobiltelefon"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Bevorzugte Sprache"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Sie haben kein gültiges Zertifikat benutzt."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "

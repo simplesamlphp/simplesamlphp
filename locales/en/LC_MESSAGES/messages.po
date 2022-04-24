@@ -480,9 +480,6 @@ msgstr "ORCID researcher identifiers"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Preferred language"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "You did not present a valid certificate."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "You are about to send a message. Hit the submit message button to "

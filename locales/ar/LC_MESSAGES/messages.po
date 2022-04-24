@@ -436,9 +436,6 @@ msgstr "رقم الهاتف السيار"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "اللغة المفضلة"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "لم تقدم شهادة صحيحة"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "انت علي وشك إرسال رسالة. اضغط علي الزر للمواصلة"
 

@@ -463,9 +463,6 @@ msgstr "Mobile"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Langue préférée"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Vous n'avez pas présenté de certificat valide"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour "

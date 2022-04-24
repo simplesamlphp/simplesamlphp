@@ -414,9 +414,6 @@ msgstr "Cep telefonu numarası"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Tercih edilen dil"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Geçerli bir sertifika sağlamadınız. "
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna "

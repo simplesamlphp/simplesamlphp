@@ -460,9 +460,6 @@ msgstr "Broj mobilnog telefona"
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Primarni jezik"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Niste predočili valjani certifikat."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na gumb \"Pošalji poruku\" da biste poslali poruku."
 

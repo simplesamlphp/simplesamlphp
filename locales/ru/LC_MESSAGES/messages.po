@@ -474,9 +474,6 @@ msgstr "Метаданные провайдера идентификации ADF
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Предпочитаемый язык"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "Вы не предоставили действительный сертификат."
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
 "Вы собираетесь отправить сообщение. Кликните клавишу отправки сообщения "

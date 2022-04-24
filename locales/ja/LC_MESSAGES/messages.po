@@ -401,9 +401,6 @@ msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの�
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "言語"
 
-msgid "{errors:descr_NOTVALIDCERT}"
-msgstr "正当な証明書が提示されませんでした。"
-
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "メッセージを送信します。続けるにはメッセージ送信ボタンを押してください。"
 
