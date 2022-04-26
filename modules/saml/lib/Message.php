@@ -257,7 +257,9 @@ class Message
         $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
             if ($encryptionMethod !== null) {
-                $algo = $encryptionMethod->getAlgorithm();
+                // @TODO: for saml2v5 replace this line
+                //$algo = $encryptionMethod->getAlgorithm();
+                $algo = $encryptionMethod;
             } else {
                 $algo = $srcMetadata->getOptionalString('sharedkey_algorithm', null);
                 if ($algo === null) {
