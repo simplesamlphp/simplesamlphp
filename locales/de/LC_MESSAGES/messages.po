@@ -423,9 +423,6 @@ msgstr "Metadatenüberblick"
 msgid "{errors:report_submit}"
 msgstr "Fehlerbericht absenden"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Ungültiges Zertifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

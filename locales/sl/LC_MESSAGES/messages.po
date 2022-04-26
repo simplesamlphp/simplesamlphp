@@ -401,9 +401,6 @@ msgstr "Pregled metapodatkov"
 msgid "{errors:report_submit}"
 msgstr "Pošlji poročilo o napaki"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Neveljavno digitalno potrdilo"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "

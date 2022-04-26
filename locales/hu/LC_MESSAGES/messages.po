@@ -408,9 +408,6 @@ msgstr "Metaadat áttekintés"
 msgid "{errors:report_submit}"
 msgstr "Hibabejelentés küldése"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Hibás tanúsítvány."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

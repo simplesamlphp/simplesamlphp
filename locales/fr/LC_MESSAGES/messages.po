@@ -421,9 +421,6 @@ msgstr "Vue d'ensemble des métadonnées"
 msgid "{errors:report_submit}"
 msgstr "Envoyer le rapport d'erreur"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Certificat invalide"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

@@ -415,9 +415,6 @@ msgstr "Pregled metapodataka"
 msgid "{errors:report_submit}"
 msgstr "Pošalji prijavu greške"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Neispravan digitalni sertifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

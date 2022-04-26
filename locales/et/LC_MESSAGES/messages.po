@@ -404,9 +404,6 @@ msgstr "Metaandmete ülevaade"
 msgid "{errors:report_submit}"
 msgstr "Saada tõrkeraport"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Vigane sertifikaat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

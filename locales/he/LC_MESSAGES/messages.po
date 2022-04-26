@@ -387,9 +387,6 @@ msgstr "סקירת מטא-מידע"
 msgid "{errors:report_submit}"
 msgstr "שלך דוח שגיאות"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "תעודה לא-חוקית"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

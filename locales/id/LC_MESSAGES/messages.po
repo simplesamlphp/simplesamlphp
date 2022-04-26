@@ -411,9 +411,6 @@ msgstr "Ikhtisar Metadata"
 msgid "{errors:report_submit}"
 msgstr "Kirim laporan error"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Sertifikat invalid"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

@@ -442,9 +442,6 @@ msgstr "Ver metadatos"
 msgid "{errors:report_submit}"
 msgstr "Envíe el informe de error"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Certificado inválido"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

@@ -418,9 +418,6 @@ msgstr "Prezentare generală a metadatelor"
 msgid "{errors:report_submit}"
 msgstr "Trimiteți raportul cu erorile observate"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Certificat nevalid"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

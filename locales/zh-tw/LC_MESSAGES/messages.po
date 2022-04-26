@@ -392,9 +392,6 @@ msgstr "Metadata 總覽"
 msgid "{errors:report_submit}"
 msgstr "傳送錯誤報告"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "無效憑證"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

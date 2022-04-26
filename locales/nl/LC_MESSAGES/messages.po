@@ -445,9 +445,6 @@ msgstr "Metadata-overzicht"
 msgid "{errors:report_submit}"
 msgstr "Verstuur het foutmeldingsrapport"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Ongeldig certificaat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

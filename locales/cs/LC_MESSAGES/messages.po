@@ -397,9 +397,6 @@ msgstr "Přehled metadat"
 msgid "{errors:report_submit}"
 msgstr "Odeslat zprávu o chybě"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Nesprávný certifikát"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

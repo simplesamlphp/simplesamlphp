@@ -113,7 +113,7 @@ msgstr "Ulwazi lokususwa kwephutha"
 msgid "{errors:title_NOACCESS}"
 msgstr "Akukho ukufinyelela"
 
-msgid "{errors:title_INVALIDCERT}"
+msgid "Invalid certificate"
 msgstr "Isifiketi esingalungile"
 
 msgid "{errors:title_WRONGUSERPASS}"

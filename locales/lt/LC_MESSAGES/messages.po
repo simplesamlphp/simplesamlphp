@@ -405,9 +405,6 @@ msgstr "Metaduomenų peržiūra"
 msgid "{errors:report_submit}"
 msgstr "Siųsti pranešimą apie klaidą"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Nevalidus sertifikatas"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

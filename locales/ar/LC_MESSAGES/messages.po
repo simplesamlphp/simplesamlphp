@@ -395,9 +395,6 @@ msgstr "نظرة عامة للبيانات الوصفية/ الميتاداتا"
 msgid "{errors:report_submit}"
 msgstr "ارسل تقريراً عن الخطأ "
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "شهادة غير صحيحة"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

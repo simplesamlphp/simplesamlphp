@@ -371,9 +371,6 @@ msgstr "メタデータの概要"
 msgid "{errors:report_submit}"
 msgstr "エラーレポートを送信"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "無効な証明書です"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

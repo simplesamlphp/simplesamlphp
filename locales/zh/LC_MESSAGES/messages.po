@@ -369,9 +369,6 @@ msgstr "元信息浏览"
 msgid "{errors:report_submit}"
 msgstr "发送错误报告"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "无效的证书"
-
 msgid "{logout:failedsps}"
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

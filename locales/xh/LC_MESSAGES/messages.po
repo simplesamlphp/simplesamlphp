@@ -110,7 +110,7 @@ msgstr "Inkcazelo yokulungisa"
 msgid "{errors:title_NOACCESS}"
 msgstr "Akukho fikelelo"
 
-msgid "{errors:title_INVALIDCERT}"
+msgid "Invalid certificate"
 msgstr "Isatifikethi esingasebenziyo"
 
 msgid "{errors:title_WRONGUSERPASS}"

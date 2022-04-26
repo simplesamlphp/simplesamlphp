@@ -430,9 +430,6 @@ msgstr "Краткое описание метаданных"
 msgid "{errors:report_submit}"
 msgstr "Выслать сообщение об ошибке "
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Недействительный сертификат"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

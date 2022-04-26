@@ -448,9 +448,6 @@ msgstr "Επισκόπηση μεταδεδομένων (metadata)"
 msgid "{errors:report_submit}"
 msgstr "Αποστολή αναφοράς"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Μη έγκυρο πιστοποιητικό"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

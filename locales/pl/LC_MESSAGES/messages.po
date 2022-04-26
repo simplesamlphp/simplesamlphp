@@ -394,9 +394,6 @@ msgstr "Przegląd metadanych"
 msgid "{errors:report_submit}"
 msgstr "Wyślij raport o błędzie"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Niepoprawny certyfikat"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

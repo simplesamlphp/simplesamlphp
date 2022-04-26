@@ -408,9 +408,6 @@ msgstr "Nkgopole"
 msgid "No SAML message provided"
 msgstr "Ha ho molaetsa wa SAML o fanweng"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Setifikeiti se sa nepahalang"
-
 msgid "AuthData"
 msgstr "AuthData"
 

@@ -294,9 +294,6 @@ msgstr "Pyynnön luonti epäonnistui"
 msgid "{errors:report_submit}"
 msgstr "Lähetä virheraportti"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Virheellinen sertifikaatti"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

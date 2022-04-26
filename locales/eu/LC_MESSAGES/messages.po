@@ -408,9 +408,6 @@ msgstr "Ikusi metadatuak"
 msgid "{errors:report_submit}"
 msgstr "Bidal ezazu errorearen txostena"
 
-msgid "{errors:title_INVALIDCERT}"
-msgstr "Ziurtagiri baliogabea"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "
