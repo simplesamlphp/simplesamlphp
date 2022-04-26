@@ -419,9 +419,6 @@ msgstr "Lae alla X509 sertifikaadid PEM kodeeringus failidena."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Teade"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Tundmatu sertifikaat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

@@ -448,9 +448,6 @@ msgstr "Сообщение"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "Провайдер идентификации ADFS (локальное размещение)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Неизвестный сертификат"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

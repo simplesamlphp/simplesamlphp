@@ -423,9 +423,6 @@ msgstr "X509 ziurtagiriak PEM formatuan deskargatu."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mezua"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Ziurtagiri ezezaguna"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

@@ -417,9 +417,6 @@ msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Ziņa"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Nepazīstams sertifikāts"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

@@ -433,9 +433,6 @@ msgstr "Você foi desconectado."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensagem"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Certificado Desconhecido"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "

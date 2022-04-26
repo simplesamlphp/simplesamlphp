@@ -438,9 +438,6 @@ msgstr "Die X509-Zertifikate als PEM-kodierte Dateien herunterladen."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Nachricht"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Unbekanntes Zertifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

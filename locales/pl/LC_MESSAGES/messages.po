@@ -406,9 +406,6 @@ msgstr "Zostałeś wylogowany. Dziękuję za skorzystanie z serwisu."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Wiadomość"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Nieznany certyfikat"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

@@ -358,7 +358,7 @@ msgstr ""
 msgid "{errors:title_CONFIG}"
 msgstr "Impazamo yolungiselelo"
 
-msgid "{errors:title_UNKNOWNCERT}"
+msgid "Unknown certificate"
 msgstr "Isatifikethi esingaziwayo"
 
 msgid "{general:no}"

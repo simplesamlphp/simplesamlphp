@@ -433,9 +433,6 @@ msgstr "Preuzmite X509 certifikate u PEM formatu."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Poruka"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Nepoznat digitalni certifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspjelo. Da biste bili "

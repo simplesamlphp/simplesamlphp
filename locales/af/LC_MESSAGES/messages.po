@@ -326,9 +326,6 @@ msgstr "Bladsy nie gevind nie"
 msgid "{logout:logged_out_text}"
 msgstr "Jy is afgemeld."
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Onbekende sertifikaat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

@@ -460,9 +460,6 @@ msgstr "Mensaje"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "Proveedor de Identidad ADFS (local)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Certificado desconocido"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

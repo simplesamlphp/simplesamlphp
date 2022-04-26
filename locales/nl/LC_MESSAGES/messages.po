@@ -463,9 +463,6 @@ msgstr "Bericht"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "ADFS Identity Provider (Hosted)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Onbekend certificaat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

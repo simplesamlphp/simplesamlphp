@@ -423,9 +423,6 @@ msgstr "PEM formátumú X509 tanúsítvány letöltése."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Üzenet"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Ismeretlen tanúsítvány"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

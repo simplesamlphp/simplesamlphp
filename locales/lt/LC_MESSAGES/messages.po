@@ -420,9 +420,6 @@ msgstr "Parsisiųsti X509 sertifikatus kaip PEM koduotės failus."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Pranešimas"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Nežinomas sertifikatas"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

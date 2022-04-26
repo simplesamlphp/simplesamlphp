@@ -303,9 +303,6 @@ msgstr "Sivua ei löytynyt"
 msgid "{logout:logged_out_text}"
 msgstr "Olet kirjautunut ulos"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Tuntematon sertifikaatti"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

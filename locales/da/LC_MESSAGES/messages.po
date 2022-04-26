@@ -436,9 +436,6 @@ msgstr "Besked"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "ADFS identitetsudbyder (hosted)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Ukendt certifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

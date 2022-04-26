@@ -451,9 +451,6 @@ msgstr "Message"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "ADFS Identity Provider (Hosted)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Unknown certificate"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

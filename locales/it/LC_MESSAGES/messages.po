@@ -438,9 +438,6 @@ msgstr "Scarica i certificati X509 come file PEM-encoded"
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Messaggio"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Certificato sconosciuto"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

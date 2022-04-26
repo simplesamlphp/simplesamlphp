@@ -424,9 +424,6 @@ msgstr "Last ned X509-sertifikatene som PEM-filer."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Melding"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Ukjent sertifikat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

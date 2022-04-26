@@ -426,9 +426,6 @@ msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Pesan"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Sertifikat tidak dikenal"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

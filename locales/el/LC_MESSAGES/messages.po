@@ -466,9 +466,6 @@ msgstr "Μήνυμα"
 msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
 msgstr "Πάροχος Ταυτότητας ADFS (Φιλοξενούμενος)"
 
-msgid "{errors:title_UNKNOWNCERT}"
-msgstr "Άγνωστο πιστοποιητικό"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

@@ -363,7 +363,7 @@ msgstr ""
 msgid "{errors:title_CONFIG}"
 msgstr "Iphutha lomiso"
 
-msgid "{errors:title_UNKNOWNCERT}"
+msgid "Unknown certificate"
 msgstr "Isitifiketi esingaziwa"
 
 msgid "{general:no}"
