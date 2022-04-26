@@ -372,7 +372,7 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Auth\Source $source
-     * @param array $config
+     * @param array $state
      * @return string
      */
     private function getUsernameFromRequest(Request $request, Auth\Source $source, array $state): string
@@ -417,7 +417,7 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Auth\Source $source
-     * @param array $config
+     * @param array $state
      * @return string
      */
     private function getOrganizationFromRequest(Request $request, Auth\Source $source, array $state): string
