@@ -439,9 +439,6 @@ msgstr "Foutmeldingsrapport verstuurd"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Fout bij nieuw request"
 
-msgid "{admin:metaover_header}"
-msgstr "Metadata-overzicht"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

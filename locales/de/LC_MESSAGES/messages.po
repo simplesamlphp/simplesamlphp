@@ -417,9 +417,6 @@ msgstr "Fehlerbericht gesendet"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Fehler beim Erzeugen der Anfrage"
 
-msgid "{admin:metaover_header}"
-msgstr "Metadatenüberblick"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

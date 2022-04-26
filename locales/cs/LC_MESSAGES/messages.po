@@ -391,9 +391,6 @@ msgstr "Zpráva o chybě odeslána"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Chyba při vytváření požadavku"
 
-msgid "{admin:metaover_header}"
-msgstr "Přehled metadat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

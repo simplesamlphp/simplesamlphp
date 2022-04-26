@@ -402,9 +402,6 @@ msgstr "Elküldött hibabejelentés"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Hiba történt"
 
-msgid "{admin:metaover_header}"
-msgstr "Metaadat áttekintés"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

@@ -417,9 +417,6 @@ msgstr "Rapporto dell'errore inviato"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Errore durante la generazione della richiesta"
 
-msgid "{admin:metaover_header}"
-msgstr "Visione generale dei metadati"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

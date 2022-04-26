@@ -388,9 +388,6 @@ msgstr "Raport o błędzie wysłany"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Błąd podczas wykonywania żądania."
 
-msgid "{admin:metaover_header}"
-msgstr "Przegląd metadanych"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

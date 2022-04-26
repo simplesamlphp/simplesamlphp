@@ -442,9 +442,6 @@ msgstr "Η αναφορά σφάλματος στάλθηκε"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Σφάλμα κατά τη δημιουργία αιτήματος"
 
-msgid "{admin:metaover_header}"
-msgstr "Επισκόπηση μεταδεδομένων (metadata)"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

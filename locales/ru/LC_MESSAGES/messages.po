@@ -424,9 +424,6 @@ msgstr "Сообщение об ошибке отправлено"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Ошибка при создании запроса"
 
-msgid "{admin:metaover_header}"
-msgstr "Краткое описание метаданных"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

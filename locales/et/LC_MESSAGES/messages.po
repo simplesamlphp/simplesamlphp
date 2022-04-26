@@ -398,9 +398,6 @@ msgstr "Tõrkeraport saadetud"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Tõrge päringu loomisel"
 
-msgid "{admin:metaover_header}"
-msgstr "Metaandmete ülevaade"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

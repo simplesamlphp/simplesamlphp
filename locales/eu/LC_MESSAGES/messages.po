@@ -402,9 +402,6 @@ msgstr "Errore txostena bidalita"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Errorea eskaera sortzean"
 
-msgid "{admin:metaover_header}"
-msgstr "Ikusi metadatuak"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

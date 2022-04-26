@@ -386,9 +386,6 @@ msgstr "錯誤報告送出"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "錯誤產生請求"
 
-msgid "{admin:metaover_header}"
-msgstr "Metadata 總覽"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

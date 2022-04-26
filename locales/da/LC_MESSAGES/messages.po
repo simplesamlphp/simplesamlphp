@@ -412,9 +412,6 @@ msgstr "Fejlrapportering sendt"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Fejl ved forespørgsel"
 
-msgid "{admin:metaover_header}"
-msgstr "Metadataoversigt"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

@@ -403,9 +403,6 @@ msgstr "Feilrapport sent"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Feil i laging av forespørselen"
 
-msgid "{admin:metaover_header}"
-msgstr "Oversikt over metadata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

@@ -436,9 +436,6 @@ msgstr "Informe de error enviado"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Error en la creaci&oacute;n de la solictud"
 
-msgid "{admin:metaover_header}"
-msgstr "Ver metadatos"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

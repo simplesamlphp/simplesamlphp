@@ -381,9 +381,6 @@ msgstr "נשלח דוח שגיאה"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "שגיאה ביצירת הבקשה"
 
-msgid "{admin:metaover_header}"
-msgstr "סקירת מטא-מידע"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

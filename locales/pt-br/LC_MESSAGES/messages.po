@@ -415,9 +415,6 @@ msgstr "Relatório de erro enviado"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Erro ao criar o pedido"
 
-msgid "{admin:metaover_header}"
-msgstr "Visão geral da metadata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "

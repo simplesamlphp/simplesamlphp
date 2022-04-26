@@ -399,9 +399,6 @@ msgstr "Pranešimas apie klaidą išsiųstas"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Klaida kuriant užklausą"
 
-msgid "{admin:metaover_header}"
-msgstr "Metaduomenų peržiūra"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

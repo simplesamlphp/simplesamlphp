@@ -405,9 +405,6 @@ msgstr "Laporan error dikirimkan"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Error membuat request."
 
-msgid "{admin:metaover_header}"
-msgstr "Ikhtisar Metadata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

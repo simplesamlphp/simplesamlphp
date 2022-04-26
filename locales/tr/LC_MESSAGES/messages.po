@@ -381,9 +381,6 @@ msgstr "Hata raporu gönderildi"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "İstek oluşturmada hata"
 
-msgid "{admin:metaover_header}"
-msgstr "Üstveri (metada) genel görünümü"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

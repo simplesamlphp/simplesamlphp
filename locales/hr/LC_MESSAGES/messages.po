@@ -412,9 +412,6 @@ msgstr "Prijava greške poslana"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Greška prilikom kreiranja zahtjeva"
 
-msgid "{admin:metaover_header}"
-msgstr "Pregled metapodataka"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspjelo. Da biste bili "

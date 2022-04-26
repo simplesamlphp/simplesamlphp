@@ -395,9 +395,6 @@ msgstr "Poročilo o napaki je bilo poslano"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Napaka pri ustvarjanju zahteve"
 
-msgid "{admin:metaover_header}"
-msgstr "Pregled metapodatkov"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "
