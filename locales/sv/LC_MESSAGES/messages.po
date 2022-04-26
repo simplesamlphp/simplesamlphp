@@ -406,9 +406,6 @@ msgstr "Logga in med"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Kunde inte skapa inloggingssvaret"
 
-msgid "{errors:errorreport_header}"
-msgstr "Felrapport skickad"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"

@@ -411,9 +411,6 @@ msgstr "Effettua il login con"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Impossibile generare una risposta di autenticazione"
 
-msgid "{errors:errorreport_header}"
-msgstr "Rapporto dell'errore inviato"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

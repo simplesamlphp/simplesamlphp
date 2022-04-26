@@ -390,9 +390,6 @@ msgstr "Pieslēgties pie"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Neizdevās izveidot autentifikācijas atbildi"
 
-msgid "{errors:errorreport_header}"
-msgstr "Kļūdas ziņojums nosūtīts"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

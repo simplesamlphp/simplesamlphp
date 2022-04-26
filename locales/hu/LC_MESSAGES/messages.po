@@ -396,9 +396,6 @@ msgstr "Belépés ide:"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Nem lehet az azonosítást végrehajtani"
 
-msgid "{errors:errorreport_header}"
-msgstr "Elküldött hibabejelentés"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

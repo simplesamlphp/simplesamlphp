@@ -393,9 +393,6 @@ msgstr "Prisijungti prie"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Nepavyko sukurti autentikacijos atsakymo"
 
-msgid "{errors:errorreport_header}"
-msgstr "Pranešimas apie klaidą išsiųstas"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

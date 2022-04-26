@@ -230,7 +230,7 @@ msgstr ""
 msgid "{login:contact_info}"
 msgstr "Ulwazi lokuxhumana:"
 
-msgid "{errors:errorreport_header}"
+msgid "Error report sent"
 msgstr "Umbiko wephutha uthunyelwe"
 
 msgid "{errors:title_USERABORTED}"

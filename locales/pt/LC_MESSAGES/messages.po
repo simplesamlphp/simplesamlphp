@@ -370,9 +370,6 @@ msgstr "Entrar em"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Não foi possível criar uma resposta de autenticação"
 
-msgid "{errors:errorreport_header}"
-msgstr "Relatório de erro enviado"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

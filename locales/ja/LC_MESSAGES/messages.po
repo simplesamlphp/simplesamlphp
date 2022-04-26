@@ -359,9 +359,6 @@ msgstr "ログイン: "
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "認証応答を生成出来ませんでした"
 
-msgid "{errors:errorreport_header}"
-msgstr "エラー報告を送信"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

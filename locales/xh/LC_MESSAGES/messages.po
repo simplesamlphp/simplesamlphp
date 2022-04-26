@@ -227,7 +227,7 @@ msgstr ""
 msgid "{login:contact_info}"
 msgstr "Inkcazelo yoqhagamshelwano:"
 
-msgid "{errors:errorreport_header}"
+msgid "Error report sent"
 msgstr "Ingxelo yempazamo ithunyelwe"
 
 msgid "{errors:title_USERABORTED}"

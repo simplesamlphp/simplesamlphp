@@ -308,9 +308,6 @@ msgstr "Meld aan by"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Kon nie 'n verifikasie versoek skep nie"
 
-msgid "{errors:errorreport_header}"
-msgstr "Foutmeldingsverslag gestuur"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

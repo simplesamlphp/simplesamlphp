@@ -436,9 +436,6 @@ msgstr "Είσοδος @"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Δεν ήταν δυνατή η δημιουργία απόκρισης στο αίτημα ταυτοποίησης"
 
-msgid "{errors:errorreport_header}"
-msgstr "Η αναφορά σφάλματος στάλθηκε"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

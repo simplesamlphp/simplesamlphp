@@ -406,9 +406,6 @@ msgstr "Login hos"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Kunne ikke generere single sign-on svar"
 
-msgid "{errors:errorreport_header}"
-msgstr "Fejlrapportering sendt"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

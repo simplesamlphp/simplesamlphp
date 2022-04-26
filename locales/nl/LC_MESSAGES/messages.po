@@ -433,9 +433,6 @@ msgstr "Inloggen bij"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Authenticatie response kon niet worden aangemaakt"
 
-msgid "{errors:errorreport_header}"
-msgstr "Foutmeldingsrapport verstuurd"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

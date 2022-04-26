@@ -382,9 +382,6 @@ msgstr "Zaloguj w"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Wystąpił problem z utworzeniem odpowiedzi uwierzytelniania"
 
-msgid "{errors:errorreport_header}"
-msgstr "Raport o błędzie wysłany"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

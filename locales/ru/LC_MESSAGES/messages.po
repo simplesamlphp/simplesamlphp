@@ -418,9 +418,6 @@ msgstr "Войти в"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Невозможно создать ответ по аутентификации"
 
-msgid "{errors:errorreport_header}"
-msgstr "Сообщение об ошибке отправлено"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

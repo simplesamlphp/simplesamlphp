@@ -430,9 +430,6 @@ msgstr "Identificarse en"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "No se pudo crear la respuesta de autenticaci&oacute;n"
 
-msgid "{errors:errorreport_header}"
-msgstr "Informe de error enviado"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

@@ -285,9 +285,6 @@ msgstr "Kirjaudu"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Autentikointivastauksen luonti epäonnistui"
 
-msgid "{errors:errorreport_header}"
-msgstr "Virheraportti lähetetty"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

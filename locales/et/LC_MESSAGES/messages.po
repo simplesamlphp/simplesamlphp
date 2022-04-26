@@ -392,9 +392,6 @@ msgstr "Logi sisse"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Autentimisvastuse loomine ei õnnestunud"
 
-msgid "{errors:errorreport_header}"
-msgstr "Tõrkeraport saadetud"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

@@ -389,9 +389,6 @@ msgstr "Prijavi se pri"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Odgovora za odjavo ni bilo mogoče ustvariti"
 
-msgid "{errors:errorreport_header}"
-msgstr "Poročilo o napaki je bilo poslano"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "

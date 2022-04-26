@@ -411,9 +411,6 @@ msgstr "Login bei"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Konnte keine Authentifikationsantwort erstellen"
 
-msgid "{errors:errorreport_header}"
-msgstr "Fehlerbericht gesendet"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

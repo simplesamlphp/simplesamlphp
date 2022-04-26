@@ -375,9 +375,6 @@ msgstr "כנס ל-"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "אין אפשרות ליצור תגובת הזדהות"
 
-msgid "{errors:errorreport_header}"
-msgstr "נשלח דוח שגיאה"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

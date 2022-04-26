@@ -409,9 +409,6 @@ msgstr "S'authentifier sur"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Ne peut pas créer une réponse d'authentification"
 
-msgid "{errors:errorreport_header}"
-msgstr "Rapport d'erreur envoyé"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

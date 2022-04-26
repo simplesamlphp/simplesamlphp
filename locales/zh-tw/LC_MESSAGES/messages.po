@@ -380,9 +380,6 @@ msgstr "登入至"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "無法建立認證回應"
 
-msgid "{errors:errorreport_header}"
-msgstr "錯誤報告送出"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

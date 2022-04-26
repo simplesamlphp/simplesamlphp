@@ -375,9 +375,6 @@ msgstr ""
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Kimlik doğrulama cevabı oluşturulamadı"
 
-msgid "{errors:errorreport_header}"
-msgstr "Hata raporu gönderildi"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

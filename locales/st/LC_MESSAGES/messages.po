@@ -759,9 +759,6 @@ msgstr ""
 "tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo "
 "mona."
 
-msgid "{errors:errorreport_header}"
-msgstr "Tlaleho ya phoso e rometswe"
-
 msgid "Logged out"
 msgstr "O ntshitswe"
 

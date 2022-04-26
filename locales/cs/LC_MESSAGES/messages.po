@@ -385,9 +385,6 @@ msgstr "Přihlášení k"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Nelze vytvořit odpověď"
 
-msgid "{errors:errorreport_header}"
-msgstr "Zpráva o chybě odeslána"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"
