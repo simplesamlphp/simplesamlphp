@@ -50,6 +50,7 @@
                 <file name="bin/*.php" />
                 <file name="lib/SimpleSAML/Module.php" />
                 <file name="lib/SimpleSAML/XHTML/Template.php" />
+                <file name="modules/core/lib/Auth/Process/AttributeMap.php" />
                 <file name="modules/*/bin/*.php" />
                 <file name="tests/bootstrap.php" />
                 <file name="tests/routers/configLoader.php" />
