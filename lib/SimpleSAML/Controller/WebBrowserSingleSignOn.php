@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\Controller;
+namespace SimpleSAML\Controller;
 
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\ArtifactResolve;

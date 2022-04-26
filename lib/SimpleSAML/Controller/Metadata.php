@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\Controller;
+namespace SimpleSAML\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Metadata;
+use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
@@ -35,7 +35,7 @@ class Metadata
 
     /**
      * Controller constructor.
-     *
+-     *
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
@@ -76,7 +76,7 @@ class Metadata
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = SSPMetadata\MetaDataStorageHandler::getMetadataHandler();
 
         try {
             if ($request->query->has('idpentityid')) {
@@ -86,14 +86,14 @@ class Metadata
             }
             $metaArray = SAML2_IdP::getHostedMetadata($idpentityid);
 
-            $metaBuilder = new Metadata\SAMLBuilder($idpentityid);
+            $metaBuilder = new SSPMetadata\SAMLBuilder($idpentityid);
             $metaBuilder->addMetadataIdP20($metaArray);
             $metaBuilder->addOrganizationInfo($metaArray);
 
             $metaxml = $metaBuilder->getEntityDescriptorText();
 
             // sign the metadata if enabled
-            $metaxml = Metadata\Signer::sign($metaxml, $metaArray, 'SAML 2 IdP');
+            $metaxml = SSPMetadata\Signer::sign($metaxml, $metaArray, 'SAML 2 IdP');
 
             // make sure to export only the md:EntityDescriptor
             $i = strpos($metaxml, '<md:EntityDescriptor');
