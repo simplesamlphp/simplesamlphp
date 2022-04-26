@@ -329,9 +329,6 @@ msgstr "Jy is afgemeld."
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Onbekende sertifikaat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Fout"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

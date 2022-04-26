@@ -391,9 +391,6 @@ msgstr "Saída efectuada com sucesso. Obrigado por ter usado este serviço."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensagem"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Erro de LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

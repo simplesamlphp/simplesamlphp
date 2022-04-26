@@ -441,9 +441,6 @@ msgstr "Messaggio"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Certificato sconosciuto"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Errore LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

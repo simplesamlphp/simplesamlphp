@@ -386,9 +386,6 @@ msgstr "メッセージ"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "不正な証明書です"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAPエラー"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

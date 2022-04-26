@@ -423,9 +423,6 @@ msgstr "Pranešimas"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nežinomas sertifikatas"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP klaida"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

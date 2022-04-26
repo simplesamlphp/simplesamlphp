@@ -420,9 +420,6 @@ msgstr "Ziņa"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nepazīstams sertifikāts"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP kļūda"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

@@ -436,9 +436,6 @@ msgstr "Mesaj"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Certificat necunoscut"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Eroare LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

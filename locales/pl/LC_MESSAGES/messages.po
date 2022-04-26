@@ -409,9 +409,6 @@ msgstr "Wiadomość"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nieznany certyfikat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Bład LDAP'a"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

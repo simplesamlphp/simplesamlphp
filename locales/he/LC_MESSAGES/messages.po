@@ -405,9 +405,6 @@ msgstr "הודעה"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "תעודה לא ידועה"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "שגיאת LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

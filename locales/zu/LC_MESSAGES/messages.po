@@ -90,7 +90,7 @@ msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
 msgid "{logout:hold}"
 msgstr "Imisiwe"
 
-msgid "{errors:title_LDAPERROR}"
+msgid "LDAP Error"
 msgstr "Iphutha le-LDAP"
 
 msgid "{errors:descr_AUTHSOURCEERROR}"

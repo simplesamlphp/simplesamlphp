@@ -463,9 +463,6 @@ msgstr "Proveedor de Identidad ADFS (local)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Certificado desconocido"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Error de LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

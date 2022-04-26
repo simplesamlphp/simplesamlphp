@@ -466,9 +466,6 @@ msgstr "ADFS Identity Provider (Hosted)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Onbekend certificaat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Fout"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

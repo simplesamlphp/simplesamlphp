@@ -89,7 +89,7 @@ msgstr "Impazamo iprosesa iSicelo Sokuphuma"
 msgid "{logout:hold}"
 msgstr "Ibanjiwe"
 
-msgid "{errors:title_LDAPERROR}"
+msgid "LDAP Error"
 msgstr "Impazamo ye-LDAP"
 
 msgid "{errors:descr_AUTHSOURCEERROR}"

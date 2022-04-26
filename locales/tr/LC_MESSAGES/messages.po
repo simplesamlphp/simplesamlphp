@@ -396,9 +396,6 @@ msgstr "Çıktınız"
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mesaj"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP hatası"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

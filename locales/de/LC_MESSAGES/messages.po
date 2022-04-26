@@ -441,9 +441,6 @@ msgstr "Nachricht"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Unbekanntes Zertifikat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Fehler"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

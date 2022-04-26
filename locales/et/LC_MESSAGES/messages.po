@@ -422,9 +422,6 @@ msgstr "Teade"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Tundmatu sertifikaat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP-tõrge"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

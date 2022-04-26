@@ -413,9 +413,6 @@ msgstr "رسالة"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "شهادة غير معلومة"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "خطا LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

@@ -439,9 +439,6 @@ msgstr "ADFS identitetsudbyder (hosted)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ukendt certifikat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP fejl"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

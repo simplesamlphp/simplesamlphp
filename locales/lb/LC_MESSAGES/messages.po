@@ -177,9 +177,6 @@ msgstr "Fehler beim Erstellen vun der Unfro"
 msgid "{errors:report_submit}"
 msgstr "Fehlerbericht schécken"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Fehler"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun "

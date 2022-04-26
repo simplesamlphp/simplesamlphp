@@ -436,9 +436,6 @@ msgstr "Poruka"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nepoznat digitalni certifikat"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP greška"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspjelo. Da biste bili "

@@ -419,9 +419,6 @@ msgstr "Sporočilo"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nepoznano digitalno potrdilo"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Napaka LDAP-a"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "

@@ -415,9 +415,6 @@ msgstr "Zpráva"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Neznámý certifikát"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP chyba"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

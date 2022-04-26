@@ -413,9 +413,6 @@ msgstr "ADFS 驗證提供者(主機)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "未知的憑證"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP 錯誤"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

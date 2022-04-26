@@ -426,9 +426,6 @@ msgstr "Üzenet"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ismeretlen tanúsítvány"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP hiba"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

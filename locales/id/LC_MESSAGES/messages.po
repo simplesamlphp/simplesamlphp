@@ -429,9 +429,6 @@ msgstr "Pesan"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Sertifikat tidak dikenal"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Error LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

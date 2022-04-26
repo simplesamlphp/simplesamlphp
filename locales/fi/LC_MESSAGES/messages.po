@@ -306,9 +306,6 @@ msgstr "Olet kirjautunut ulos"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Tuntematon sertifikaatti"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP-virhe"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

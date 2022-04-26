@@ -454,9 +454,6 @@ msgstr "ADFS Identity Provider (Hosted)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Unknown certificate"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Error"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

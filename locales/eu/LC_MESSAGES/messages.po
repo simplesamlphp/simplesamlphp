@@ -426,9 +426,6 @@ msgstr "Mezua"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ziurtagiri ezezaguna"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "LDAP Errorea"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

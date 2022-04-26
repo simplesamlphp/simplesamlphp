@@ -469,9 +469,6 @@ msgstr "Πάροχος Ταυτότητας ADFS (Φιλοξενούμενος)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Άγνωστο πιστοποιητικό"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Σφάλμα LDAP"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

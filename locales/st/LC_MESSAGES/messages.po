@@ -378,9 +378,6 @@ msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
 msgid "{errors:report_submit}"
 msgstr "Romela tlaleho ya phoso"
 
-msgid "{errors:title_LDAPERROR}"
-msgstr "Phoso ya LDAP"
-
 msgid "{logout:progress}"
 msgstr "E a tswa..."
 
