@@ -89,7 +89,10 @@ class EMailTest extends ClearStateTestCase
      */
     public static function mailTemplates(): array
     {
-        return [['mailtxt.twig'], ['mailhtml.twig']];
+        return [
+            'TXT template' => ['mailtxt.twig'],
+            'HTML template' => ['mailhtml.twig']
+        ];
     }
 
 

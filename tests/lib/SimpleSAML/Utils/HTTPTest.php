@@ -563,8 +563,8 @@ class HTTPTest extends ClearStateTestCase
     {
         // @codingStandardsIgnoreStart
         return [
-          [null, true],
-          ['some-new-browser', true],
+            [null, true],
+            ['some-new-browser', true],
             //Browsers that can handle 'None'
             // Chrome
             ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36', true],

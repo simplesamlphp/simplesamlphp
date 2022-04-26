@@ -104,14 +104,14 @@ class LoggerTest extends TestCase
     public function provideLogLevels(): array
     {
         return [
-           ['emergency', Logger::EMERG],
-           ['alert', Logger::ALERT],
-           ['critical', Logger::CRIT],
-           ['error', Logger::ERR],
-           ['warning', Logger::WARNING],
-           ['notice', Logger::NOTICE],
-           ['info', Logger::INFO],
-           ['debug', Logger::DEBUG],
+           'emergency' => ['emergency', Logger::EMERG],
+           'alert' => ['alert', Logger::ALERT],
+           'critical' => ['critical', Logger::CRIT],
+           'error' => ['error', Logger::ERR],
+           'warning' => ['warning', Logger::WARNING],
+           'notice' => ['notice', Logger::NOTICE],
+           'info' => ['info', Logger::INFO],
+           'debug' => ['debug', Logger::DEBUG],
         ];
     }
 
