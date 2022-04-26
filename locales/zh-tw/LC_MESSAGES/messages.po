@@ -407,9 +407,6 @@ msgstr "下載 PEM 格式之 X.509 憑證檔案"
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "訊息"
 
-msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
-msgstr "ADFS 驗證提供者(主機)"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

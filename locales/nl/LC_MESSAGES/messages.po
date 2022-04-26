@@ -460,9 +460,6 @@ msgstr "Download de X509-certificaten in PEM-formaat."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Bericht"
 
-msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
-msgstr "ADFS Identity Provider (Hosted)"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

@@ -457,9 +457,6 @@ msgstr "Descargar los certificados X509 en formato PEM."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensaje"
 
-msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
-msgstr "Proveedor de Identidad ADFS (local)"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

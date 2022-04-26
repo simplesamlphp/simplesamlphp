@@ -433,9 +433,6 @@ msgstr "Download X509 certifikaterne som PEM-indkodet filer."
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Besked"
 
-msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
-msgstr "ADFS identitetsudbyder (hosted)"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

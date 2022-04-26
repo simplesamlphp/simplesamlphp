@@ -463,9 +463,6 @@ msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίησ�
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Μήνυμα"
 
-msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
-msgstr "Πάροχος Ταυτότητας ADFS (Φιλοξενούμενος)"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "
