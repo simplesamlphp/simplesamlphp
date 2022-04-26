@@ -375,9 +375,6 @@ msgstr "无效的证书"
 msgid "{errors:title_NOTFOUND}"
 msgstr "页面没有找到"
 
-msgid "{logout:logged_out_text}"
-msgstr "你已经退出了"
-
 msgid "{logout:failedsps}"
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

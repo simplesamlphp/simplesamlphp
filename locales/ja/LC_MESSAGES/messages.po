@@ -377,9 +377,6 @@ msgstr "無効な証明書です"
 msgid "{errors:title_NOTFOUND}"
 msgstr "ページが見つかりません"
 
-msgid "{logout:logged_out_text}"
-msgstr "ログアウトしました。"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

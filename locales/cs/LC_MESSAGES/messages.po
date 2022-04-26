@@ -403,9 +403,6 @@ msgstr "Nesprávný certifikát"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Stránka nenalezena."
 
-msgid "{logout:logged_out_text}"
-msgstr "Jste odhlášen. Děkujeme za použití této služby."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

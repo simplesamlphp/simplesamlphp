@@ -424,9 +424,6 @@ msgstr "Certificat nevalid"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Pagina nu a fost găsită"
 
-msgid "{logout:logged_out_text}"
-msgstr "Ați fost deautentificat"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

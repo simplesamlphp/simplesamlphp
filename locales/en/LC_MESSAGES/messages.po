@@ -439,9 +439,6 @@ msgstr "Invalid certificate"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Page not found"
 
-msgid "{logout:logged_out_text}"
-msgstr "You have been logged out."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

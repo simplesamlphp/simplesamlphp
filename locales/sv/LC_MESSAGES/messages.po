@@ -424,9 +424,6 @@ msgstr "Felaktigt certifikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Sidan finns inte"
 
-msgid "{logout:logged_out_text}"
-msgstr "Du har blivit uloggad. Tack för att du använde denna tjänst."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"

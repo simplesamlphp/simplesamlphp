@@ -411,9 +411,6 @@ msgstr "Nevalidus sertifikatas"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Puslapis nerastas"
 
-msgid "{logout:logged_out_text}"
-msgstr "Jūs buvote atjungtas nuo sistemos."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

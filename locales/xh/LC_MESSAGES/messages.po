@@ -290,7 +290,7 @@ msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga."
 msgid "{login:error_header}"
 msgstr "Impazamo"
 
-msgid "{logout:logged_out_text}"
+msgid "You have been logged out."
 msgstr "Uphumile."
 
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"

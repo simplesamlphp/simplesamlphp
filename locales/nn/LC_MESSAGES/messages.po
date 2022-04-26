@@ -417,9 +417,6 @@ msgstr "Ugyldig sertifikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Fann ikkje sida"
 
-msgid "{logout:logged_out_text}"
-msgstr "Du har blitt logga ut.  Takk for at du brukte denne tenesta."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikkje å logge ut frå ein eller fleire tenester. For å sikre deg at"

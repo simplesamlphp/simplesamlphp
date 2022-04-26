@@ -451,9 +451,6 @@ msgstr "Ongeldig certificaat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Pagina niet gevonden"
 
-msgid "{logout:logged_out_text}"
-msgstr "U bent uitgelogd. Dank u voor het gebruiken van deze dienst."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

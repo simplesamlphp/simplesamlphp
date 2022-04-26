@@ -400,9 +400,6 @@ msgstr "Niepoprawny certyfikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Nie znaleziono strony"
 
-msgid "{logout:logged_out_text}"
-msgstr "Zostałeś wylogowany. Dziękuję za skorzystanie z serwisu."
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

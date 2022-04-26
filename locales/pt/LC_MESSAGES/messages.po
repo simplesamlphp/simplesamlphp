@@ -385,9 +385,6 @@ msgstr "Enviar o relatório de erro"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Página não encontrada"
 
-msgid "{logout:logged_out_text}"
-msgstr "Saída efectuada com sucesso. Obrigado por ter usado este serviço."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

@@ -390,9 +390,6 @@ msgstr "Hata raporu gönder"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Sayfa bulunamadı"
 
-msgid "{logout:logged_out_text}"
-msgstr "Çıktınız"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

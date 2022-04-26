@@ -429,9 +429,6 @@ msgstr "Ungültiges Zertifikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Seite nicht gefunden"
 
-msgid "{logout:logged_out_text}"
-msgstr "Sie wurden abgemeldet. Danke, dass Sie diesen Dienst verwendet haben."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

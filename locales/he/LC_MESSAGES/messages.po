@@ -393,9 +393,6 @@ msgstr "תעודה לא-חוקית"
 msgid "{errors:title_NOTFOUND}"
 msgstr "דף לא נמצא"
 
-msgid "{logout:logged_out_text}"
-msgstr "התנתקת מן המערכת"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

@@ -408,9 +408,6 @@ msgstr "Nederīgs sertifikāts"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Lapa nav atrasta"
 
-msgid "{logout:logged_out_text}"
-msgstr "Jūs esat izgājis no sistēmas."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

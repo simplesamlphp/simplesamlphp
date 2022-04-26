@@ -429,9 +429,6 @@ msgstr "Certificato non valido"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Pagina non trovata"
 
-msgid "{logout:logged_out_text}"
-msgstr "Sei stato disconnesso"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

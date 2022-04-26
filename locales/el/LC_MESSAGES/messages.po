@@ -454,9 +454,6 @@ msgstr "Μη έγκυρο πιστοποιητικό"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Η σελίδα δεν βρέθηκε"
 
-msgid "{logout:logged_out_text}"
-msgstr "Έχετε αποσυνδεθεί."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

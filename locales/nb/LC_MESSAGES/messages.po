@@ -415,9 +415,6 @@ msgstr "Ugyldig sertifikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Kan ikke finne siden"
 
-msgid "{logout:logged_out_text}"
-msgstr "Du er nå utlogget."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

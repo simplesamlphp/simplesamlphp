@@ -448,9 +448,6 @@ msgstr "Certificado inválido"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Página no encontrada"
 
-msgid "{logout:logged_out_text}"
-msgstr "Ha sido desconectado. Gracias por usar este servicio."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

@@ -417,9 +417,6 @@ msgstr "Sertifikat invalid"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Halaman tidak ditemukan"
 
-msgid "{logout:logged_out_text}"
-msgstr "Anda telah log out."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

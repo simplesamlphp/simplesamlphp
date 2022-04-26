@@ -436,9 +436,6 @@ msgstr "Недействительный сертификат"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Страница не найдена"
 
-msgid "{logout:logged_out_text}"
-msgstr "Вы успешно вышли из системы"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

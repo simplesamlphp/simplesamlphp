@@ -424,9 +424,6 @@ msgstr "Ugyldigt certifikat"
 msgid "{errors:title_NOTFOUND}"
 msgstr "Siden kunne ikke findes"
 
-msgid "{logout:logged_out_text}"
-msgstr "Du er blevet logget ud. Tak for fordi du brugte denne tjeneste."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

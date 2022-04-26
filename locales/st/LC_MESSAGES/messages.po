@@ -298,9 +298,6 @@ msgstr ""
 msgid "Page not found"
 msgstr "Leqephe ha le a fumanwa"
 
-msgid "{logout:logged_out_text}"
-msgstr "O ntshitswe."
-
 msgid "Error loading metadata"
 msgstr "Phoso ya ho louta metadata"
 

@@ -293,7 +293,7 @@ msgstr "Igama lomsebenzisi noma iphasiwedi engalungile."
 msgid "{login:error_header}"
 msgstr "Iphutha"
 
-msgid "{logout:logged_out_text}"
+msgid "You have been logged out."
 msgstr "Usuphumile."
 
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"

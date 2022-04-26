@@ -414,9 +414,6 @@ msgstr "Hibás tanúsítvány."
 msgid "{errors:title_NOTFOUND}"
 msgstr "Oldal nem található"
 
-msgid "{logout:logged_out_text}"
-msgstr "Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatást."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "
