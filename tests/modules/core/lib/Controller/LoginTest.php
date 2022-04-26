@@ -86,7 +86,8 @@ class LoginTest extends ClearStateTestCase
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage('URL not allowed: https://loeki.tv/asjemenou');
-        $response = $c->cleardiscochoices($request);
+
+        $c->cleardiscochoices($request);
     }
 
 
