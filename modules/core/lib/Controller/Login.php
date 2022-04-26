@@ -129,11 +129,11 @@ class Login
      * This method handles the generic part for both loginuserpass and loginuserpassorg
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \SimpleSAML\Auth\Source $source
+     * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
      * @return \SimpleSAML\XHTML\Template
      */
-    private function handleLogin(Request $request, Auth\Source $source, array $state): Template
+    private function handleLogin(Request $request, $source, array $state): Template
     {
         Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
         $authStateId = $request->query->get('AuthState');
