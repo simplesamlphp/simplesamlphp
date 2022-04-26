@@ -288,9 +288,6 @@ msgstr "Autentikointivastauksen luonti epäonnistui"
 msgid "{errors:errorreport_header}"
 msgstr "Virheraportti lähetetty"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Pyynnön luonti epäonnistui"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

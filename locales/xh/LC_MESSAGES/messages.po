@@ -370,7 +370,7 @@ msgstr "Akukho satifikethi"
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Isinxaxhi esingasingathwanga silahliwe."
 
-msgid "{errors:title_CREATEREQUEST}"
+msgid "Error creating request"
 msgstr "Impazamo nokuyila isicelo"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

@@ -436,9 +436,6 @@ msgstr "Authenticatie response kon niet worden aangemaakt"
 msgid "{errors:errorreport_header}"
 msgstr "Foutmeldingsrapport verstuurd"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Fout bij nieuw request"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

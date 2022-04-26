@@ -378,9 +378,6 @@ msgstr "אין אפשרות ליצור תגובת הזדהות"
 msgid "{errors:errorreport_header}"
 msgstr "נשלח דוח שגיאה"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "שגיאה ביצירת הבקשה"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

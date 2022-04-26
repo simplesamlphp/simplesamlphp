@@ -409,9 +409,6 @@ msgstr "Nu a fost posibilă crearea răspunsului de autentificare"
 msgid "{errors:errorreport_header}"
 msgstr "Raportul cu erori a fost trimis"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Eroare la crearea cererii"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

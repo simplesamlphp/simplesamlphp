@@ -396,9 +396,6 @@ msgstr "Nepavyko sukurti autentikacijos atsakymo"
 msgid "{errors:errorreport_header}"
 msgstr "Pranešimas apie klaidą išsiųstas"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Klaida kuriant užklausą"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

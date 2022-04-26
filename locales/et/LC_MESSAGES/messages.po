@@ -395,9 +395,6 @@ msgstr "Autentimisvastuse loomine ei õnnestunud"
 msgid "{errors:errorreport_header}"
 msgstr "Tõrkeraport saadetud"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Tõrge päringu loomisel"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

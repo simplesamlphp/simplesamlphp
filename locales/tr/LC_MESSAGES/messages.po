@@ -378,9 +378,6 @@ msgstr "Kimlik doğrulama cevabı oluşturulamadı"
 msgid "{errors:errorreport_header}"
 msgstr "Hata raporu gönderildi"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "İstek oluşturmada hata"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

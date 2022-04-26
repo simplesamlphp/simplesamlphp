@@ -171,9 +171,6 @@ msgstr "Jo"
 msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Et wor net méiglech eng Authenticatiounsaentwert ze erstellen"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Fehler beim Erstellen vun der Unfro"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun "

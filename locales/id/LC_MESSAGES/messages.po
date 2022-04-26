@@ -402,9 +402,6 @@ msgstr "Tidak dapat membuat respon autentifikasi"
 msgid "{errors:errorreport_header}"
 msgstr "Laporan error dikirimkan"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Error membuat request."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

@@ -406,9 +406,6 @@ msgstr "Autentifikacioni odgovor nije mogao biti kreiran"
 msgid "{errors:errorreport_header}"
 msgstr "Prijava greške poslata"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Greška pri kreiranju zahteva"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

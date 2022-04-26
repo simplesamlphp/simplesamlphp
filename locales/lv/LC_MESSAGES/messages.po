@@ -393,9 +393,6 @@ msgstr "Neizdevās izveidot autentifikācijas atbildi"
 msgid "{errors:errorreport_header}"
 msgstr "Kļūdas ziņojums nosūtīts"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Pieprasījuma veidošanas kļūda"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

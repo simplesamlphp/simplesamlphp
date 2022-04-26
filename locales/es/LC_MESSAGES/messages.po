@@ -433,9 +433,6 @@ msgstr "No se pudo crear la respuesta de autenticaci&oacute;n"
 msgid "{errors:errorreport_header}"
 msgstr "Informe de error enviado"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Error en la creaci&oacute;n de la solictud"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

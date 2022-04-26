@@ -414,9 +414,6 @@ msgstr "Konnte keine Authentifikationsantwort erstellen"
 msgid "{errors:errorreport_header}"
 msgstr "Fehlerbericht gesendet"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Fehler beim Erzeugen der Anfrage"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

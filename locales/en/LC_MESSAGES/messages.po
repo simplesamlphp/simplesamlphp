@@ -424,9 +424,6 @@ msgstr "Could not create authentication response"
 msgid "{errors:errorreport_header}"
 msgstr "Error report sent"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Error creating request"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

@@ -421,9 +421,6 @@ msgstr "Невозможно создать ответ по аутентифик
 msgid "{errors:errorreport_header}"
 msgstr "Сообщение об ошибке отправлено"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Ошибка при создании запроса"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

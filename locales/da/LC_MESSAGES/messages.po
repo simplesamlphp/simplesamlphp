@@ -409,9 +409,6 @@ msgstr "Kunne ikke generere single sign-on svar"
 msgid "{errors:errorreport_header}"
 msgstr "Fejlrapportering sendt"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Fejl ved forespørgsel"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

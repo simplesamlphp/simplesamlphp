@@ -399,9 +399,6 @@ msgstr "Nem lehet az azonosítást végrehajtani"
 msgid "{errors:errorreport_header}"
 msgstr "Elküldött hibabejelentés"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Hiba történt"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

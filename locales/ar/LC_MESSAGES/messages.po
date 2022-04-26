@@ -386,9 +386,6 @@ msgstr "لا يمكننا اجراء التوثيق"
 msgid "{errors:errorreport_header}"
 msgstr "تم إرسال التقرير عن الخطأ "
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "خطا بطلب التكوين"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

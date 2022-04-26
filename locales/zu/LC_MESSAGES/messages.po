@@ -375,7 +375,7 @@ msgstr "Asikho isitifiketi"
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Okuhlukile okungasingathiwe kulahliwe."
 
-msgid "{errors:title_CREATEREQUEST}"
+msgid "Error creating request"
 msgstr "Iphutha lokwakha isicelo"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

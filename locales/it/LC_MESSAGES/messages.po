@@ -414,9 +414,6 @@ msgstr "Impossibile generare una risposta di autenticazione"
 msgid "{errors:errorreport_header}"
 msgstr "Rapporto dell'errore inviato"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Errore durante la generazione della richiesta"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

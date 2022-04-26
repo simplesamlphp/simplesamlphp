@@ -439,9 +439,6 @@ msgstr "Δεν ήταν δυνατή η δημιουργία απόκρισης 
 msgid "{errors:errorreport_header}"
 msgstr "Η αναφορά σφάλματος στάλθηκε"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Σφάλμα κατά τη δημιουργία αιτήματος"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

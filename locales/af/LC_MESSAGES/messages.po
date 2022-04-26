@@ -311,9 +311,6 @@ msgstr "Kon nie 'n verifikasie versoek skep nie"
 msgid "{errors:errorreport_header}"
 msgstr "Foutmeldingsverslag gestuur"
 
-msgid "{errors:title_CREATEREQUEST}"
-msgstr "Fout met skepping van nuwe versoek"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "
