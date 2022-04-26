@@ -398,9 +398,6 @@ msgstr "ارسل تقريراً عن الخطأ "
 msgid "{errors:title_INVALIDCERT}"
 msgstr "شهادة غير صحيحة"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "الصفحة غير موجودة"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

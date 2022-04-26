@@ -424,9 +424,6 @@ msgstr "Envoyer le rapport d'erreur"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Certificat invalide"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Page introuvable"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

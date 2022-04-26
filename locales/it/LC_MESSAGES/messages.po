@@ -426,9 +426,6 @@ msgstr "Invia un rapporto di errore"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Certificato non valido"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Pagina non trovata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

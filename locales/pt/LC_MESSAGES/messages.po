@@ -382,9 +382,6 @@ msgstr "Vista geral dos metadados"
 msgid "{errors:report_submit}"
 msgstr "Enviar o relatório de erro"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Página não encontrada"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

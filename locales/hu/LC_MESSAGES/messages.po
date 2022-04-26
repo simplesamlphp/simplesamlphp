@@ -411,9 +411,6 @@ msgstr "Hibabejelentés küldése"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Hibás tanúsítvány."
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Oldal nem található"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

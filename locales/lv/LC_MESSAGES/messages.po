@@ -405,9 +405,6 @@ msgstr "Sūtīt ziņojumu par kļūdu"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Nederīgs sertifikāts"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Lapa nav atrasta"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

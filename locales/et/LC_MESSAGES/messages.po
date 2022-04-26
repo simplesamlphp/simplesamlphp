@@ -407,9 +407,6 @@ msgstr "Saada tõrkeraport"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Vigane sertifikaat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Lehekülge ei leitud"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

@@ -426,9 +426,6 @@ msgstr "Fehlerbericht absenden"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Ungültiges Zertifikat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Seite nicht gefunden"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

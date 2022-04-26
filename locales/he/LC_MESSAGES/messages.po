@@ -390,9 +390,6 @@ msgstr "שלך דוח שגיאות"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "תעודה לא-חוקית"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "דף לא נמצא"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

@@ -156,7 +156,7 @@ msgstr "Ufomatho"
 msgid "You did not present a valid certificate."
 msgstr "Awukhange uzise isatifikethi esisebenzayo."
 
-msgid "{errors:title_NOTFOUND}"
+msgid "Page not found"
 msgstr "Ikhasi alifunyenwanga"
 
 msgid "{logout:completed}"

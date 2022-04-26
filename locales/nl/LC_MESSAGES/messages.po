@@ -448,9 +448,6 @@ msgstr "Verstuur het foutmeldingsrapport"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Ongeldig certificaat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Pagina niet gevonden"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

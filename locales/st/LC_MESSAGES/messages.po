@@ -489,9 +489,6 @@ msgstr ""
 msgid "{general:no}"
 msgstr "Tjhe"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Leqephe ha le a fumanwa"
-
 msgid ""
 "You accessed the Single Sign On Service interface, but did not provide a "
 "SAML Authentication Request. Please note that this endpoint is not "

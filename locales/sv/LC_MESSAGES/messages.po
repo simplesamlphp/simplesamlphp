@@ -421,9 +421,6 @@ msgstr "Skicka felrapporten"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Felaktigt certifikat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Sidan finns inte"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"

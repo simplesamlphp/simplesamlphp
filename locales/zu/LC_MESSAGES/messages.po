@@ -159,7 +159,7 @@ msgstr "Ifomethi"
 msgid "You did not present a valid certificate."
 msgstr "Awuzange wethule isitifiketi esilungile."
 
-msgid "{errors:title_NOTFOUND}"
+msgid "Page not found"
 msgstr "Ikhasi alitholakali"
 
 msgid "{logout:completed}"

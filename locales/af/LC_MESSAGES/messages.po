@@ -320,9 +320,6 @@ msgstr "Stuur die fout verslag"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Ongeldige sertifikaat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Bladsy nie gevind nie"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

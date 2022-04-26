@@ -421,9 +421,6 @@ msgstr "Trimiteți raportul cu erorile observate"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Certificat nevalid"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Pagina nu a fost găsită"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

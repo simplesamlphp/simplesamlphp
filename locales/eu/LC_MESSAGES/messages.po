@@ -411,9 +411,6 @@ msgstr "Bidal ezazu errorearen txostena"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Ziurtagiri baliogabea"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Ez da orria aurkitu"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

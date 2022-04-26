@@ -408,9 +408,6 @@ msgstr "Siųsti pranešimą apie klaidą"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Nevalidus sertifikatas"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Puslapis nerastas"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

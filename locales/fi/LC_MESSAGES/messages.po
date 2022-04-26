@@ -297,9 +297,6 @@ msgstr "Lähetä virheraportti"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Virheellinen sertifikaatti"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Sivua ei löytynyt"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

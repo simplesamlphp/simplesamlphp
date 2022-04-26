@@ -397,9 +397,6 @@ msgstr "Wyślij raport o błędzie"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Niepoprawny certyfikat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Nie znaleziono strony"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

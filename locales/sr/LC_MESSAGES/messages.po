@@ -418,9 +418,6 @@ msgstr "Pošalji prijavu greške"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Neispravan digitalni sertifikat"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Stranica nije pronađena"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

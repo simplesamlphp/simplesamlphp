@@ -436,9 +436,6 @@ msgstr "Send error report"
 msgid "{errors:title_INVALIDCERT}"
 msgstr "Invalid certificate"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Page not found"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

@@ -387,9 +387,6 @@ msgstr "Üstveri (metada) genel görünümü"
 msgid "{errors:report_submit}"
 msgstr "Hata raporu gönder"
 
-msgid "{errors:title_NOTFOUND}"
-msgstr "Sayfa bulunamadı"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"
