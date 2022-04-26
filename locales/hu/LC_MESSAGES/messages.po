@@ -420,9 +420,6 @@ msgstr "Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatás
 msgid "{admin:metadata_cert_intro}"
 msgstr "PEM formátumú X509 tanúsítvány letöltése."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Üzenet"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

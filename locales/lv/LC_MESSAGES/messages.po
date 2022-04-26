@@ -414,9 +414,6 @@ msgstr "Jūs esat izgājis no sistēmas."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Ziņa"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

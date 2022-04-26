@@ -460,9 +460,6 @@ msgstr "Έχετε αποσυνδεθεί."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Μήνυμα"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

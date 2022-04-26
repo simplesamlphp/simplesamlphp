@@ -430,9 +430,6 @@ msgstr "Página não encontrada"
 msgid "{logout:logged_out_text}"
 msgstr "Você foi desconectado."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Mensagem"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "

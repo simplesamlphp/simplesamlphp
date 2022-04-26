@@ -445,9 +445,6 @@ msgstr "You have been logged out."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download the X509 certificates as PEM-encoded files."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Message"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

@@ -421,9 +421,6 @@ msgstr "Du er nå utlogget."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Last ned X509-sertifikatene som PEM-filer."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Melding"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

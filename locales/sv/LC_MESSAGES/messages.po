@@ -430,9 +430,6 @@ msgstr "Du har blivit uloggad. Tack för att du använde denna tjänst."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Hämta X509-certifikaten som PEM-kodade filer."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Meddelande"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"

@@ -442,9 +442,6 @@ msgstr "Вы успешно вышли из системы"
 msgid "{admin:metadata_cert_intro}"
 msgstr "Скачать сертификаты X509 в формате PEM файлов."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Сообщение"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

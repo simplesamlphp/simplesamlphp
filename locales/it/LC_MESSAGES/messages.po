@@ -435,9 +435,6 @@ msgstr "Sei stato disconnesso"
 msgid "{admin:metadata_cert_intro}"
 msgstr "Scarica i certificati X509 come file PEM-encoded"
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Messaggio"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

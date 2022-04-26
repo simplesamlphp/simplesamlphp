@@ -430,9 +430,6 @@ msgstr "Ați fost deautentificat"
 msgid "{admin:metadata_cert_intro}"
 msgstr "Descărcați certificatele X509 ca fișiere PEM."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Mesaj"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

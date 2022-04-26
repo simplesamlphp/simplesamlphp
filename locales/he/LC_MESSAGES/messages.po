@@ -399,9 +399,6 @@ msgstr "התנתקת מן המערכת"
 msgid "{admin:metadata_cert_intro}"
 msgstr "הורד את תעודות X509 כקבצי PEM-מקודד."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "הודעה"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

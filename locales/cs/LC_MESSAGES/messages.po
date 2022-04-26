@@ -409,9 +409,6 @@ msgstr "Jste odhlášen. Děkujeme za použití této služby."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Stáhněte certifikát X509 jako PEM-encoded soubor"
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Zpráva"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

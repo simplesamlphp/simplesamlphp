@@ -407,9 +407,6 @@ msgstr "لقدخروج لقد قمت بالخروج"
 msgid "{admin:metadata_cert_intro}"
 msgstr "حمل شهادات X509 كملفات بترميز PEM"
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "رسالة"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

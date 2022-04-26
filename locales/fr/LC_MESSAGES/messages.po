@@ -433,9 +433,6 @@ msgstr "Vous avez été déconnecté. Merci d'avoir utilisé ce service."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Télécharger les certificats X509 en tant que fichiers encodés PEM."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Message"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

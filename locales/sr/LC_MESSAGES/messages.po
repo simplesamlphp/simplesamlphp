@@ -427,9 +427,6 @@ msgstr "Uspešno ste se odjavili."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Preuzmite X509 sertifikate u PEM formatu."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Poruka"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

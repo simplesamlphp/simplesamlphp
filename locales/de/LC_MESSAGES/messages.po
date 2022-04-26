@@ -435,9 +435,6 @@ msgstr "Sie wurden abgemeldet. Danke, dass Sie diesen Dienst verwendet haben."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Die X509-Zertifikate als PEM-kodierte Dateien herunterladen."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Nachricht"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

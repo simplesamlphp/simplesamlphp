@@ -420,9 +420,6 @@ msgstr "Saioa itxi da."
 msgid "{admin:metadata_cert_intro}"
 msgstr "X509 ziurtagiriak PEM formatuan deskargatu."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Mezua"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

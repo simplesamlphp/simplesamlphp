@@ -393,9 +393,6 @@ msgstr "Sayfa bulunamadı"
 msgid "{logout:logged_out_text}"
 msgstr "Çıktınız"
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Mesaj"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

@@ -457,9 +457,6 @@ msgstr "U bent uitgelogd. Dank u voor het gebruiken van deze dienst."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download de X509-certificaten in PEM-formaat."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Bericht"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

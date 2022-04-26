@@ -430,9 +430,6 @@ msgstr "Du er blevet logget ud. Tak for fordi du brugte denne tjeneste."
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download X509 certifikaterne som PEM-indkodet filer."
 
-msgid "{admin:debug_sending_message_msg_title}"
-msgstr "Besked"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "
