@@ -11,3 +11,35 @@ add_trailing_slash:
     requirements:
         url: "[a-zA-Z0-9_-]+[^/]$"
     methods: [GET]
+
+websso-single-sign-on:
+    path:       /saml2/idp/singleSignOnService
+    defaults:   { _controller: 'SimpleSAML\Controller\WebBrowserSingleSignOn::singleSignOnService' }
+websso-artifact-resolution:
+    path:       /saml2/idp/artifactResolutionService
+    defaults:   { _controller: 'SimpleSAML\Controller\WebBrowserSingleSignOn::artifactResolutionService' }
+websso-metadata:
+    path:       /saml2/idp/metadata
+    defaults:   { _controller: 'SimpleSAML\Controller\Metadata::metadata' }
+websso-single-logout:
+    path:       /saml2/idp/singleLogout
+    defaults:   { _controller: 'SimpleSAML\Controller\SingleLogout::singleLogout' }
+websso-init-single-logout:
+    path:       /saml2/idp/initSingleLogout
+    defaults:   { _controller: 'SimpleSAML\Controller\SingleLogout::initSingleLogout' }
+
+websso-legacy-single-sign-on:
+    path:       /saml2/idp/SSOService.php
+    defaults:   { _controller: 'SimpleSAML\Controller\WebBrowserSingleSignOn::singleSignOnService', path: /saml2/idp/singleSignOnService, permanent: true }
+websso-legacy-artifact-resolution:
+    path:       /saml2/idp/ArtifactResolutionService.php
+    defaults:   { _controller: 'SimpleSAML\Controller\WebBrowserSingleSignOn::artifactResolutionService', path: /saml2/idp/artifactResolutionService, permanent: true }
+websso-legacy-metadata:
+    path:       /saml2/idp/metadata.php
+    defaults:   { _controller: 'SimpleSAML\Controller\Metadata::metadata', path: /saml2/idp/metadata, permanent: true }
+websso-legacy-single-logout:
+    path:       /saml2/idp/SingleLogoutService.php
+    defaults:   { _controller: 'SimpleSAML\Controller\SingleLogout::singleLogout', path: /saml2/idp/singleLogout, permanent: true }
+websso-legacy-init-single-logout:
+    path:       /saml2/idp/initSLO.php
+    defaults:   { _controller: 'SimpleSAML\Controller\SingleLogout::initSingleLogout', path: /saml2/idp/initSingleLogout, permanent: true }
