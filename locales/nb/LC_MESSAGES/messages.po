@@ -418,9 +418,6 @@ msgstr "Kan ikke finne siden"
 msgid "{logout:logged_out_text}"
 msgstr "Du er nå utlogget."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Last ned X509-sertifikatene som PEM-filer."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

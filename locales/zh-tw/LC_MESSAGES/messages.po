@@ -401,9 +401,6 @@ msgstr "找不到頁面"
 msgid "{logout:logged_out_text}"
 msgstr "您已登出"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "下載 PEM 格式之 X.509 憑證檔案"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

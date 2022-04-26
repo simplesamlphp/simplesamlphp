@@ -451,9 +451,6 @@ msgstr "Página no encontrada"
 msgid "{logout:logged_out_text}"
 msgstr "Ha sido desconectado. Gracias por usar este servicio."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Descargar los certificados X509 en formato PEM."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

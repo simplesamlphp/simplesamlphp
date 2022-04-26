@@ -411,9 +411,6 @@ msgstr "Lapa nav atrasta"
 msgid "{logout:logged_out_text}"
 msgstr "Jūs esat izgājis no sistēmas."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

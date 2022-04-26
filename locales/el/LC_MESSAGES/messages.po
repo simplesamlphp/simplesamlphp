@@ -457,9 +457,6 @@ msgstr "Η σελίδα δεν βρέθηκε"
 msgid "{logout:logged_out_text}"
 msgstr "Έχετε αποσυνδεθεί."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

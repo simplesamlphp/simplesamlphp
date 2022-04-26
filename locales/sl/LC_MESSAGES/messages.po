@@ -410,9 +410,6 @@ msgstr "Strani ni bilo mogoče najti."
 msgid "{logout:logged_out_text}"
 msgstr "Odjava je bila uspešna. Hvala, ker uporabljate to storitev."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Prenesi X509 digitalno potrdilo v PEM datoteki."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "

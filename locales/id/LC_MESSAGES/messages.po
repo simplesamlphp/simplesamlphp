@@ -420,9 +420,6 @@ msgstr "Halaman tidak ditemukan"
 msgid "{logout:logged_out_text}"
 msgstr "Anda telah log out."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

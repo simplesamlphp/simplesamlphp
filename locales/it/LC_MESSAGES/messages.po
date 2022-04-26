@@ -432,9 +432,6 @@ msgstr "Pagina non trovata"
 msgid "{logout:logged_out_text}"
 msgstr "Sei stato disconnesso"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Scarica i certificati X509 come file PEM-encoded"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

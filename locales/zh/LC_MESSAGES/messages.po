@@ -378,9 +378,6 @@ msgstr "页面没有找到"
 msgid "{logout:logged_out_text}"
 msgstr "你已经退出了"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "下载X509证书作为PEM编码的文件"
-
 msgid "{logout:failedsps}"
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

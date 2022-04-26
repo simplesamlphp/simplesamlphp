@@ -424,9 +424,6 @@ msgstr "Stranica nije pronađena"
 msgid "{logout:logged_out_text}"
 msgstr "Uspešno ste se odjavili."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Preuzmite X509 sertifikate u PEM formatu."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

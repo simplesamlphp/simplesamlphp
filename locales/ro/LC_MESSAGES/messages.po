@@ -427,9 +427,6 @@ msgstr "Pagina nu a fost găsită"
 msgid "{logout:logged_out_text}"
 msgstr "Ați fost deautentificat"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Descărcați certificatele X509 ca fișiere PEM."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

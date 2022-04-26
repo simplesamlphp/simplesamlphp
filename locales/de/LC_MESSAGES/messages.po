@@ -432,9 +432,6 @@ msgstr "Seite nicht gefunden"
 msgid "{logout:logged_out_text}"
 msgstr "Sie wurden abgemeldet. Danke, dass Sie diesen Dienst verwendet haben."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Die X509-Zertifikate als PEM-kodierte Dateien herunterladen."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

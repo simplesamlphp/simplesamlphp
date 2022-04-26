@@ -417,9 +417,6 @@ msgstr "Oldal nem található"
 msgid "{logout:logged_out_text}"
 msgstr "Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatást."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "PEM formátumú X509 tanúsítvány letöltése."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

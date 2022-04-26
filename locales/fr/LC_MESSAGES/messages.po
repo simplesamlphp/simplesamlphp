@@ -430,9 +430,6 @@ msgstr "Page introuvable"
 msgid "{logout:logged_out_text}"
 msgstr "Vous avez été déconnecté. Merci d'avoir utilisé ce service."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Télécharger les certificats X509 en tant que fichiers encodés PEM."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

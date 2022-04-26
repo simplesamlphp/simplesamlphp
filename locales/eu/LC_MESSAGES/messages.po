@@ -417,9 +417,6 @@ msgstr "Ez da orria aurkitu"
 msgid "{logout:logged_out_text}"
 msgstr "Saioa itxi da."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "X509 ziurtagiriak PEM formatuan deskargatu."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

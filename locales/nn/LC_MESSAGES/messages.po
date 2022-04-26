@@ -420,9 +420,6 @@ msgstr "Fann ikkje sida"
 msgid "{logout:logged_out_text}"
 msgstr "Du har blitt logga ut.  Takk for at du brukte denne tenesta."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Last ned X509-sertifikat som PEM-koda filer"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikkje å logge ut frå ein eller fleire tenester. For å sikre deg at"

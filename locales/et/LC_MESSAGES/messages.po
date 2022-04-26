@@ -413,9 +413,6 @@ msgstr "Lehekülge ei leitud"
 msgid "{logout:logged_out_text}"
 msgstr "Sa oled välja logitud."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Lae alla X509 sertifikaadid PEM kodeeringus failidena."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

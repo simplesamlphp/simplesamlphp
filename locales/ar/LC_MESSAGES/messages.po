@@ -404,9 +404,6 @@ msgstr "الصفحة غير موجودة"
 msgid "{logout:logged_out_text}"
 msgstr "لقدخروج لقد قمت بالخروج"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "حمل شهادات X509 كملفات بترميز PEM"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

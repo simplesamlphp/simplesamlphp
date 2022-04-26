@@ -414,9 +414,6 @@ msgstr "Puslapis nerastas"
 msgid "{logout:logged_out_text}"
 msgstr "Jūs buvote atjungtas nuo sistemos."
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "Parsisiųsti X509 sertifikatus kaip PEM koduotės failus."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

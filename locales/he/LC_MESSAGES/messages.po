@@ -396,9 +396,6 @@ msgstr "דף לא נמצא"
 msgid "{logout:logged_out_text}"
 msgstr "התנתקת מן המערכת"
 
-msgid "{admin:metadata_cert_intro}"
-msgstr "הורד את תעודות X509 כקבצי PEM-מקודד."
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"
