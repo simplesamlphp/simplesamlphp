@@ -447,9 +447,6 @@ msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "
 "sessioner er lukket <i>skal du lukke din browser</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Siden kunne ikke findes. Sidens URL var: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Denne fejl skyldes formentlig en fejlkonfiguration af SimpleSAMLphp - "

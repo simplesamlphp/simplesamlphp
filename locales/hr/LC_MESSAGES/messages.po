@@ -445,9 +445,6 @@ msgstr ""
 "sigurni da su sve vaše sjednice završene, preporučamo da <i>zatvorite web"
 " preglednik</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Tražena stranica nije pronađena. Adresa stranice je: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili "

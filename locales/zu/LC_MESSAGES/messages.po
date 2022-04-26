@@ -140,7 +140,7 @@ msgstr "Khumbula"
 msgid "Error processing response from Identity Provider"
 msgstr "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi"
 
-msgid "{errors:descr_NOTFOUND}"
+msgid "The given page was not found. The URL was: %URL%"
 msgstr "Ikhasi elinikeziwe alitholakalanga. I-URL ibithi: %URL%"
 
 msgid "{errors:descr_NOACCESS}"

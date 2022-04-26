@@ -449,9 +449,6 @@ msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "
 "chiudere tutte le sessioni si consiglia di <i>chiudere il browser</i>"
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "La pagina data non è stata trovata. URL della pagina: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Questo errore è probabilmente dovuto a qualche comportamento inatteso di "

@@ -472,9 +472,6 @@ msgstr ""
 "sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador "
 "web</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "La página que indicó no se encontró. La URL es: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Este error se debe probablemente a un comportamiento inesperado o a una "

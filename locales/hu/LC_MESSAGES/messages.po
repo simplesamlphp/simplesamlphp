@@ -434,9 +434,6 @@ msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "
 "lezárja a megkezdett munkamenetet, kérjük, <i>zárja be böngészőjét</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Az alábbi oldal nem található: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy "

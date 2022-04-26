@@ -399,9 +399,6 @@ msgstr "Mesaj"
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP hatası"
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Verilen sayfa bulunamadı. URL %URL% idi."
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

@@ -431,9 +431,6 @@ msgstr ""
 "olla kindel kõigi sessioonide lõpetamises soovitame <i>sulgeda kõik "
 "brauseri aknad</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Seda lehekülge ei leitud. Aadress oli: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "See tõrge ilmnes tõenäoliselt SimpleSAMLphp ootamatu käitumise või "

@@ -393,9 +393,6 @@ msgstr "LDAP错误"
 msgid "{logout:failedsps}"
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "没有找到给定的URL：%URL%"
-
 msgid "{errors:howto_text}"
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 

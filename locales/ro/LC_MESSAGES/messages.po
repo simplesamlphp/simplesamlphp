@@ -445,9 +445,6 @@ msgstr ""
 "Pentru a fi sigur că toate sesiunile sunt închise, vă rugăm să închideți "
 "<i>browser-ul</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Pagina nu a fost găsită, URL-ul a fost următorul: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Această eroare a apărut probabil din cauza unui comportament neașteptat "

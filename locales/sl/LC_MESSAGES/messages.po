@@ -427,9 +427,6 @@ msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "
 "<i>zaprete spletni brskalnik</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Strani ni bilo mogoče najti. Naveden URL strani je bil: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-"

@@ -314,9 +314,6 @@ msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"
 " web-selaimesi</i> varmistaaksesi, että kaikki istuntosi sulkeutuvat."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Sivua ei löytynyt. Osoite oli %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä "

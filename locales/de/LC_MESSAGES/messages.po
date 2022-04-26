@@ -450,11 +450,6 @@ msgstr ""
 "sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen "
 "empfohlen, <i>Ihren Webbrowser zu schließen</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr ""
-"Die gewünschte Seite konnte nicht gefunden werden, die aufgerufene URL "
-"war %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen "

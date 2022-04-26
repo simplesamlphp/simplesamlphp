@@ -436,9 +436,6 @@ msgstr ""
 "om at du blir logget ut, oppfordrer vi deg til å <i>lukke nettleseren "
 "din</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Den angitte siden finnes ike. URLen var: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp "

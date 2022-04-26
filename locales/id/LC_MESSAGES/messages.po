@@ -438,9 +438,6 @@ msgstr ""
 "semua session anda ditutup, anda disaranakan untuk <i>menutup web browser"
 " anda</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Halaman yang diminta tidak dapat ditemukan. URL nya adalah %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi"

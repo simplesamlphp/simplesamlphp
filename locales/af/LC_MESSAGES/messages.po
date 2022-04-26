@@ -338,9 +338,6 @@ msgstr ""
 "te wees dat al jou sessies afgesluit word, is dit beter om jou "
 "<i>webblaaier toe te maak</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Die bladsy bestaan nie. Die URL was: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte "

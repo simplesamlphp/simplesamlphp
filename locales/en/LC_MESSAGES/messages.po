@@ -462,9 +462,6 @@ msgstr ""
 "Unable to log out of one or more services. To ensure that all your "
 "sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "The given page was not found. The URL was: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "This error probably is due to some unexpected behaviour or to "

@@ -435,9 +435,6 @@ msgstr ""
 "itxi direla ziurtatzeko, <i>zure web nabigatzailea ixtea</i> gomendatzen "
 "da.  "
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Ez da aurkitu adierazi duzun orria. URLa hau da: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Errore hau jazo izana SimpleSAMLphp-en ezusteko jokaera edo konfigurazio "

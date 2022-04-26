@@ -424,9 +424,6 @@ msgstr ""
 " všechny vaše relace budou uzavřeny, doporučujeme <i>ukončit váš webový "
 "prohlížeč</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Stránka nenalezena. URL je: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Tato chyba pravděpodobně vznikla neočekávanou událostí, nebo chybou v "

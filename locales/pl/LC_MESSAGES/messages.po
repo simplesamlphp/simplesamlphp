@@ -412,9 +412,6 @@ msgstr "Nieznany certyfikat"
 msgid "{errors:title_LDAPERROR}"
 msgstr "Bład LDAP'a"
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Podana strona nie została znaleziona. Adres URL był: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

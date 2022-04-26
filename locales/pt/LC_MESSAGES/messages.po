@@ -399,9 +399,6 @@ msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "
 "suas sessões são fechadas, é recomendado <i>fechar o seu browser</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "A página não foi encontrada. O URL fornecido foi: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Este erro ocorreu provavelmente devido a um comportamento inesperado ou "

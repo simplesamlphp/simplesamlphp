@@ -392,9 +392,6 @@ msgstr "LDAPエラー"
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "与えられたページは見つかりませんでした。URLは: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 

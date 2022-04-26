@@ -475,9 +475,6 @@ msgstr ""
 " sessies te sluiten, raden wij u aan uw <i>webbrowser te af te "
 "sluiten</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Deze pagina bestaat niet. De URL was: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of "

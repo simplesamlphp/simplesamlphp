@@ -428,9 +428,6 @@ msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "
 "visas sesijas, <i>aizveriet savu interneta pārlūku</i>."
 
-msgid "{errors:descr_NOTFOUND}"
-msgstr "Norādītā lapa nav atrasta. Saite: %URL%"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas "
