@@ -415,9 +415,6 @@ msgstr "Eroare la crearea cererii"
 msgid "{admin:metaover_header}"
 msgstr "Prezentare generală a metadatelor"
 
-msgid "{errors:report_submit}"
-msgstr "Trimiteți raportul cu erorile observate"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

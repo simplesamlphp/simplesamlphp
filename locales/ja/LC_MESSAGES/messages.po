@@ -368,9 +368,6 @@ msgstr "リクエストの生成エラー"
 msgid "{admin:metaover_header}"
 msgstr "メタデータの概要"
 
-msgid "{errors:report_submit}"
-msgstr "エラーレポートを送信"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

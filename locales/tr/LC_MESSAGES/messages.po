@@ -384,9 +384,6 @@ msgstr "İstek oluşturmada hata"
 msgid "{admin:metaover_header}"
 msgstr "Üstveri (metada) genel görünümü"
 
-msgid "{errors:report_submit}"
-msgstr "Hata raporu gönder"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

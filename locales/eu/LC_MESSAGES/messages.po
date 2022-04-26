@@ -405,9 +405,6 @@ msgstr "Errorea eskaera sortzean"
 msgid "{admin:metaover_header}"
 msgstr "Ikusi metadatuak"
 
-msgid "{errors:report_submit}"
-msgstr "Bidal ezazu errorearen txostena"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

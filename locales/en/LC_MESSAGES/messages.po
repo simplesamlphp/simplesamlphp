@@ -430,9 +430,6 @@ msgstr "Error creating request"
 msgid "{admin:metaover_header}"
 msgstr "Metadata overview"
 
-msgid "{errors:report_submit}"
-msgstr "Send error report"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

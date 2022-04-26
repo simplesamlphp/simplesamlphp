@@ -415,9 +415,6 @@ msgstr "Fejl ved forespørgsel"
 msgid "{admin:metaover_header}"
 msgstr "Metadataoversigt"
 
-msgid "{errors:report_submit}"
-msgstr "Send fejlrapport"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

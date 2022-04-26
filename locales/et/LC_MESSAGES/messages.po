@@ -401,9 +401,6 @@ msgstr "Tõrge päringu loomisel"
 msgid "{admin:metaover_header}"
 msgstr "Metaandmete ülevaade"
 
-msgid "{errors:report_submit}"
-msgstr "Saada tõrkeraport"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

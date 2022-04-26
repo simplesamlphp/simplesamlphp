@@ -418,9 +418,6 @@ msgstr "Erreur lors de la création d'une requête"
 msgid "{admin:metaover_header}"
 msgstr "Vue d'ensemble des métadonnées"
 
-msgid "{errors:report_submit}"
-msgstr "Envoyer le rapport d'erreur"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

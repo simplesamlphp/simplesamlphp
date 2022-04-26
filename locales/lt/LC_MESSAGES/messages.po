@@ -402,9 +402,6 @@ msgstr "Klaida kuriant užklausą"
 msgid "{admin:metaover_header}"
 msgstr "Metaduomenų peržiūra"
 
-msgid "{errors:report_submit}"
-msgstr "Siųsti pranešimą apie klaidą"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

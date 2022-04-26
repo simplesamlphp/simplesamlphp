@@ -314,9 +314,6 @@ msgstr "Foutmeldingsverslag gestuur"
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Fout met skepping van nuwe versoek"
 
-msgid "{errors:report_submit}"
-msgstr "Stuur die fout verslag"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

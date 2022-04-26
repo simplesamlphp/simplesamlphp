@@ -399,9 +399,6 @@ msgstr "Pieprasījuma veidošanas kļūda"
 msgid "{admin:metaover_header}"
 msgstr "Metadatu pārskats"
 
-msgid "{errors:report_submit}"
-msgstr "Sūtīt ziņojumu par kļūdu"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

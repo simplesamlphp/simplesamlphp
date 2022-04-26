@@ -394,9 +394,6 @@ msgstr "Chyba při vytváření požadavku"
 msgid "{admin:metaover_header}"
 msgstr "Přehled metadat"
 
-msgid "{errors:report_submit}"
-msgstr "Odeslat zprávu o chybě"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

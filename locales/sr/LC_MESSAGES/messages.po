@@ -412,9 +412,6 @@ msgstr "Greška pri kreiranju zahteva"
 msgid "{admin:metaover_header}"
 msgstr "Pregled metapodataka"
 
-msgid "{errors:report_submit}"
-msgstr "Pošalji prijavu greške"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

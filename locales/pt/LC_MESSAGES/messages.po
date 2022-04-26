@@ -379,9 +379,6 @@ msgstr "Erro ao criar o pedido"
 msgid "{admin:metaover_header}"
 msgstr "Vista geral dos metadados"
 
-msgid "{errors:report_submit}"
-msgstr "Enviar o relatório de erro"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

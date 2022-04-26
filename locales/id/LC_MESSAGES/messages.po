@@ -408,9 +408,6 @@ msgstr "Error membuat request."
 msgid "{admin:metaover_header}"
 msgstr "Ikhtisar Metadata"
 
-msgid "{errors:report_submit}"
-msgstr "Kirim laporan error"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

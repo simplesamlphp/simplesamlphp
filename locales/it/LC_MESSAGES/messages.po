@@ -420,9 +420,6 @@ msgstr "Errore durante la generazione della richiesta"
 msgid "{admin:metaover_header}"
 msgstr "Visione generale dei metadati"
 
-msgid "{errors:report_submit}"
-msgstr "Invia un rapporto di errore"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

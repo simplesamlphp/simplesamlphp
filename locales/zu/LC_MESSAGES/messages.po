@@ -351,7 +351,7 @@ msgstr ""
 "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga "
 "zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa."
 
-msgid "{errors:report_submit}"
+msgid "Send error report"
 msgstr "Thumela umbiko wephutha"
 
 msgid "{logout:incapablesps}"

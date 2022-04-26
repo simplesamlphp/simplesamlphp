@@ -406,9 +406,6 @@ msgstr "Feil i laging av forespørselen"
 msgid "{admin:metaover_header}"
 msgstr "Oversikt over metadata"
 
-msgid "{errors:report_submit}"
-msgstr "Send feilrapport"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

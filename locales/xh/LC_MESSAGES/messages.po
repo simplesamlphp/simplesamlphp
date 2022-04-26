@@ -346,7 +346,7 @@ msgstr ""
 "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa "
 "yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa."
 
-msgid "{errors:report_submit}"
+msgid "Send error report"
 msgstr "Thumela ingxelo yempazamo"
 
 msgid "{logout:incapablesps}"

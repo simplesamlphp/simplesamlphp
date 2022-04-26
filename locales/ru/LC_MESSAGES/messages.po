@@ -427,9 +427,6 @@ msgstr "Ошибка при создании запроса"
 msgid "{admin:metaover_header}"
 msgstr "Краткое описание метаданных"
 
-msgid "{errors:report_submit}"
-msgstr "Выслать сообщение об ошибке "
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

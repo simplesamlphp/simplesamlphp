@@ -392,9 +392,6 @@ msgstr "خطا بطلب التكوين"
 msgid "{admin:metaover_header}"
 msgstr "نظرة عامة للبيانات الوصفية/ الميتاداتا"
 
-msgid "{errors:report_submit}"
-msgstr "ارسل تقريراً عن الخطأ "
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

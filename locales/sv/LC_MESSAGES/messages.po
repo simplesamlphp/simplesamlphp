@@ -415,9 +415,6 @@ msgstr "Fel vid skapandet av förfrågan"
 msgid "{admin:metaover_header}"
 msgstr "Metadataöversikt"
 
-msgid "{errors:report_submit}"
-msgstr "Skicka felrapporten"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"
