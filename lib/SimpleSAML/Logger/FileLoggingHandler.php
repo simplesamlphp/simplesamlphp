@@ -141,6 +141,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
                     FILE_APPEND,
                 );
             } else {
+                /** @psalm-suppress TooManyArguments */
                 $this->fileSystem->appendToFile(
                     $this->logFile,
                     str_replace($formats, $replacements, $string) . \PHP_EOL,
