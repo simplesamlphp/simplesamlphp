@@ -321,9 +321,7 @@ class MDQ extends MetaDataStorageSource
         Logger::debug(sprintf('%s: completed parsing of [%s]', __CLASS__, $mdq_url));
 
         if (!empty($this->validateCertificate)) {
-            if (!$entity->validateSignature(
-                $this->validateCertificate,
-            )) {
+            if (!$entity->validateSignature($this->validateCertificate)) {
                 throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $index . '".');
             }
         }
