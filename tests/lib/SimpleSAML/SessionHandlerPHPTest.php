@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Utils;
+namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\TestUtils\ClearStateTestCase;
