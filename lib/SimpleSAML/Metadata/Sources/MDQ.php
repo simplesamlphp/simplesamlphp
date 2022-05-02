@@ -42,11 +42,19 @@ class MDQ extends MetaDataStorageSource
     private string $server;
 
     /**
+     * The certificate(s) that may be used to sign the metadata. You don't need this option if you don't want to
+     * validate the signature on the metadata.
+     *
+     * @var array|null
+     */
+    private ?array $validateCertificate = null;
+
+    /**
      * The cache directory, or null if no cache directory is configured.
      *
      * @var string|null
      */
-    private ?string $cacheDir;
+    private ?string $cacheDir = null;
 
     /**
      * The maximum cache length, in seconds.
@@ -59,12 +67,13 @@ class MDQ extends MetaDataStorageSource
      * This function initializes the dynamic XML metadata source.
      *
      * Options:
-     * - 'server': URL of the MDQ server (url:port). Mandatory.
+     * - 'server':              URL of the MDQ server (url:port). Mandatory.
      *
-     * Optional.
-     * - 'cachedir':  Directory where metadata can be cached. Optional.
-     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
-     *                  hours (86400 seconds).
+     * Optional:
+     * - 'validateCertificate': The certificate(s) that may be used to sign the metadata.
+     *                          You don't need this option if you don't want to validate the signature on the metadata.
+     * - 'cachedir':            Directory where metadata can be cached. Optional.
+     * - 'cachelength':         Maximum time metadata cah be cached, in seconds. Default to 24 hours (86400 seconds).
      *
      * @param array $config The configuration for this instance of the XML metadata source.
      *
@@ -80,11 +89,13 @@ class MDQ extends MetaDataStorageSource
             $this->server = $config['server'];
         }
 
+        if (array_key_exists('validateCertificate', $config)) {
+            $this->validateCertificate = $config['validateCertificate'];
+        }
+
         if (array_key_exists('cachedir', $config)) {
             $globalConfig = Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
-        } else {
-            $this->cacheDir = null;
         }
 
         if (array_key_exists('cachelength', $config)) {
@@ -308,6 +319,14 @@ class MDQ extends MetaDataStorageSource
         /** @var string $xmldata */
         $entity = SAMLParser::parseString($xmldata);
         Logger::debug(sprintf('%s: completed parsing of [%s]', __CLASS__, $mdq_url));
+
+        if (!empty($this->validateCertificate)) {
+            if (!$entity->validateSignature(
+                $this->validateCertificate,
+            )) {
+                throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $index . '".');
+            }
+        }
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
