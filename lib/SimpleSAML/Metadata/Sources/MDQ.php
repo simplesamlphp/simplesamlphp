@@ -72,7 +72,7 @@ class MDQ extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
-        parent::__construct($config);
+        parent::__construct();
 
         if (!array_key_exists('server', $config)) {
             throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
