@@ -48,6 +48,8 @@
         <UnresolvableInclude>
             <errorLevel type="suppress">
                 <file name="bin/*.php" />
+                <file name="lib/SimpleSAML/Configuration.php" />
+                <file name="lib/SimpleSAML/Metadata/MetaDataStorageHandlerFlatFile.php" />
                 <file name="lib/SimpleSAML/Module.php" />
                 <file name="lib/SimpleSAML/XHTML/Template.php" />
                 <file name="modules/core/lib/Auth/Process/AttributeMap.php" />
