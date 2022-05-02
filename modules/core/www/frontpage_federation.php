@@ -114,26 +114,34 @@ $translators = [
 
 foreach ($metaentries['hosted'] as $index => $entity) {
     foreach ($translators as $old => $new) {
-        if (isset($entity[$old][$language])) {
-            $metaentries['hosted'][$index][$new] = $entity[$old][$language];
-        } elseif (isset($entity[$old][$defaultLanguage])) {
-            $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
-        } elseif (isset($entity[$old][$fallbackLanguage])) {
-            $metaentries['hosted'][$index][$new] = $entity[$old][$fallbackLanguage];
+        if (isset($entity[$old])) {
+            if (isset($entity[$old][$language])) {
+                $metaentries['hosted'][$index][$new] = $entity[$old][$language];
+            } elseif (isset($entity[$old][$defaultLanguage])) {
+                $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
+            } elseif (isset($entity[$old][$fallbackLanguage])) {
+                $metaentries['hosted'][$index][$new] = $entity[$old][$fallbackLanguage];
+            } elseif (is_array($entity[$old])) {
+                $metaentries['hosted'][$index][$new] = array_values($entity[$old])[0];
+            } else {
+                $metaentries['hosted'][$index][$new] = $entity[$old];
+            }
         }
     }
 }
 foreach ($metaentries['remote'] as $key => $set) {
     foreach ($set as $entityid => $entity) {
         foreach ($translators as $old => $new) {
-            if (isset($entity[$old][$language])) {
-                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$language];
-            } elseif (isset($entity[$old][$defaultLanguage])) {
-                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLanguage];
-            } elseif (isset($entity[$old][$fallbackLanguage])) {
-                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$fallbackLanguage];
-            } elseif (isset($metaentries['remote'][$key][$entityid][$old])) {
-                $metaentries['remote'][$key][$entityid][$new] = $metaentries['remote'][$key][$entityid][$old];
+            if (isset($entity[$old])) {
+                if (isset($entity[$old][$language])) {
+                    $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$language];
+                } elseif (isset($entity[$old][$defaultLanguage])) {
+                    $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLanguage];
+                } elseif (isset($entity[$old][$fallbackLanguage])) {
+                    $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$fallbackLanguage];
+                } elseif (isset($metaentries['remote'][$key][$entityid][$old])) {
+                    $metaentries['remote'][$key][$entityid][$new] = $metaentries['remote'][$key][$entityid][$old];
+                }
             }
         }
     }
