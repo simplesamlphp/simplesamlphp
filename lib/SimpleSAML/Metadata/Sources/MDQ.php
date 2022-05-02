@@ -322,7 +322,7 @@ class MDQ extends MetaDataStorageSource
 
         if (!empty($this->validateCertificate)) {
             if (!$entity->validateSignature($this->validateCertificate)) {
-                throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $index . '".');
+                throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $entityId . '".');
             }
         }
 
