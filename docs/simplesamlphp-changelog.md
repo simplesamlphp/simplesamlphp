@@ -18,6 +18,9 @@ Released TBD
 ### saml2 library
   * A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
 
+### metarefresh
+  * Added regex-template config keyword to apply a template to entityIDs matching a pattern. (v0.10)
+
 ## Version 1.19.5
 
 Released 24-01-2021
