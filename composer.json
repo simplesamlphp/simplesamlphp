@@ -21,9 +21,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\": "lib/SimpleSAML"
-        },
-        "files": ["lib/_autoload_modules.php"]
+            "SimpleSAML\\": "lib/SimpleSAML",
+            "SimpleSAML\\Module\\admin\\": "modules/admin/lib",
+            "SimpleSAML\\Module\\core\\": "modules/core/lib",
+            "SimpleSAML\\Module\\cron\\": "modules/cron/lib",
+            "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/lib",
+            "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/lib",
+            "SimpleSAML\\Module\\saml\\": "modules/saml/lib"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -34,8 +39,7 @@
             "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/lib/SimpleSAML/modules/exampleauth/lib"],
             "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/lib/SimpleSAML/modules/multiauth/lib"],
             "SimpleSAML\\Test\\Module\\saml\\": ["tests/lib/SimpleSAML/modules/saml/lib"]
-        },
-        "files": ["tests/_autoload_modules.php"]
+        }
     },
     "require": {
         "php": ">=7.4 || ^8.0",
