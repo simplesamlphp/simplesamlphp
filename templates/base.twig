@@ -13,6 +13,7 @@
     {% endif %}
     <meta name="robots" content="noindex, nofollow">
     <link rel="preload" href="{{ asset('js/bundle.js') }}" as="script">
+    {{ include('_head.twig', ignore_missing = true) }}
     {% block preload %}{% endblock %}
   </head>
   <body id="{{ templateId }}">
