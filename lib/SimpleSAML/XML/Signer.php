@@ -48,7 +48,7 @@ class Signer
     private array $extraCertificates = [];
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     private Filesystem $fileSystem;
 

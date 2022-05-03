@@ -23,7 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
 abstract class MetaDataStorageSource
 {
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
 

@@ -73,7 +73,7 @@ class Localization
     private string $langcode;
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     private Filesystem $fileSystem;
 

@@ -134,7 +134,7 @@ class Template extends Response
     private array $theme = ['module' => null, 'name' => 'default'];
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     private Filesystem $fileSystem;
 

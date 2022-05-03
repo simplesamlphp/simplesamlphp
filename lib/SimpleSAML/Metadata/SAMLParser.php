@@ -172,7 +172,7 @@ class SAMLParser
     private string $entityDescriptor;
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
 

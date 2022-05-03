@@ -49,7 +49,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
     protected string $format = "%b %d %H:%M:%S";
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem;
+     * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
 
