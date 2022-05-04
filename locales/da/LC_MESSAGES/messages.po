@@ -280,9 +280,6 @@ msgstr ""
 "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at "
 "sende et SAML Authentication Response"
 
-msgid "{status:some_error_occurred}"
-msgstr "En fejl opstod."
-
 msgid "{login:change_home_org_button}"
 msgstr "Vælg hjemmeinstitution"
 

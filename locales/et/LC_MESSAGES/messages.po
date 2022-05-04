@@ -272,9 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{status:some_error_occurred}"
-msgstr "Ilmnes mingi tõrge"
-
 msgid "{login:change_home_org_button}"
 msgstr "Vali koduorganisatsioon"
 

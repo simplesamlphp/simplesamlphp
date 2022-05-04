@@ -270,9 +270,6 @@ msgstr ""
 "Přistupujete k Assertion Consumer Service rozhraní, ale neposíláte SAML"
 " Authentication Response."
 
-msgid "{status:some_error_occurred}"
-msgstr "Chyba"
-
 msgid "{login:change_home_org_button}"
 msgstr "Zvolte domovskou organizaci"
 

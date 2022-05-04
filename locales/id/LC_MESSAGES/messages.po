@@ -277,9 +277,6 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
-msgid "{status:some_error_occurred}"
-msgstr "Beberapa error telah terjadi"
-
 msgid "{login:change_home_org_button}"
 msgstr "Pilih basis organisasi"
 

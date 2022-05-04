@@ -246,9 +246,6 @@ msgstr "这个端点没有启用，请在SimpleSAMLphp的配置选项中选中�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
 
-msgid "{status:some_error_occurred}"
-msgstr "某些错误发生了"
-
 msgid "{login:change_home_org_button}"
 msgstr "选择你的家庭组织"
 

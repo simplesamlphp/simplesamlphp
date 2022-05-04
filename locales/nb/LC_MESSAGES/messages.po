@@ -273,9 +273,6 @@ msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
 "AuthenticationResponse."
 
-msgid "{status:some_error_occurred}"
-msgstr "En feil har oppstått"
-
 msgid "{login:change_home_org_button}"
 msgstr "Velg vertsorganisasjon"
 

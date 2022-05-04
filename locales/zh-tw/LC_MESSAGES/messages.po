@@ -261,9 +261,6 @@ msgstr "這個端點並未啟用。核取啟用選項於您的 SimpleSAMLphp 設
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
 
-msgid "{status:some_error_occurred}"
-msgstr "有錯誤發生"
-
 msgid "{login:change_home_org_button}"
 msgstr "選擇預設組織"
 

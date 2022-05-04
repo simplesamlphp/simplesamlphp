@@ -273,9 +273,6 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
-msgid "{status:some_error_occurred}"
-msgstr "Hiba történt"
-
 msgid "{login:change_home_org_button}"
 msgstr "Válassza ki a szervezetét"
 

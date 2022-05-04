@@ -260,9 +260,6 @@ msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעל
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
 
-msgid "{status:some_error_occurred}"
-msgstr "התרחשה שגיאה"
-
 msgid "{login:change_home_org_button}"
 msgstr "החלף אירגון בית"
 

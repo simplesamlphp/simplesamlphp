@@ -274,9 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{status:some_error_occurred}"
-msgstr "Errore bat jazo da"
-
 msgid "{login:change_home_org_button}"
 msgstr "Jatorrizko erakundea hautatu"
 

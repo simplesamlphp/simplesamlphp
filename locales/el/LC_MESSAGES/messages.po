@@ -301,9 +301,6 @@ msgstr ""
 "Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{status:some_error_occurred}"
-msgstr "Συνέβη σφάλμα"
-
 msgid "{login:change_home_org_button}"
 msgstr "Επιλογή οικείου φορέα"
 

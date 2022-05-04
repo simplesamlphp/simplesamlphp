@@ -194,9 +194,6 @@ msgstr ""
 "Yritit Assertion Consumer Service-liittymään, mutta et tarjonnut SAML "
 "tunnistautumisvastausta."
 
-msgid "{status:some_error_occurred}"
-msgstr "Virhe"
-
 msgid "{login:change_home_org_button}"
 msgstr "Valitse kotiorganisaatiosi"
 

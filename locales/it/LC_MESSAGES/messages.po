@@ -287,9 +287,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza "
 "fornire un messaggio SAML di Authentication Response."
 
-msgid "{status:some_error_occurred}"
-msgstr "Si è verificato un errore"
-
 msgid "{login:change_home_org_button}"
 msgstr "Selezionare la propria organizzazione"
 

@@ -285,9 +285,6 @@ msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
 "aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
-msgid "{status:some_error_occurred}"
-msgstr "Es ist ein Fehler aufgetreten"
-
 msgid "{login:change_home_org_button}"
 msgstr "Einrichtung auswählen"
 

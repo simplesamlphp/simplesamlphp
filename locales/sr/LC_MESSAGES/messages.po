@@ -280,9 +280,6 @@ msgstr ""
 "Pristupili ste sistemu za obradu SAML potvrda, ali niste dostavili SAML "
 "autentikacioni odgovor."
 
-msgid "{status:some_error_occurred}"
-msgstr "Desila se greška"
-
 msgid "{login:change_home_org_button}"
 msgstr "Izaberite matičnu instituciju"
 

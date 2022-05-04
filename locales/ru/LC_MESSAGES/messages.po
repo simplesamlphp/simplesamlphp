@@ -292,9 +292,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
-msgid "{status:some_error_occurred}"
-msgstr "Произошла ошибка"
-
 msgid "{login:change_home_org_button}"
 msgstr "Выберите домашнюю организацию"
 

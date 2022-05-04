@@ -266,9 +266,6 @@ msgstr "هذه النقطة غير منشطة. راجع خيارات التنش�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم توفر استجابة توثيق SAML"
 
-msgid "{status:some_error_occurred}"
-msgstr "لقد حدث خطا ما"
-
 msgid "{login:change_home_org_button}"
 msgstr "اختار جهتك الام"
 

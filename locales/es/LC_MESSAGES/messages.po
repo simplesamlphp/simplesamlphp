@@ -298,9 +298,6 @@ msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
 " respuesta de autenticación SAML."
 
-msgid "{status:some_error_occurred}"
-msgstr "Se produjo un error"
-
 msgid "{login:change_home_org_button}"
 msgstr "Seleccionar la organización origen"
 

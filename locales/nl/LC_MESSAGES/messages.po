@@ -305,9 +305,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-msgid "{status:some_error_occurred}"
-msgstr "Er is een fout opgetreden"
-
 msgid "{login:change_home_org_button}"
 msgstr "Kies je organisatie"
 

@@ -254,9 +254,6 @@ msgstr ""
 "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
 "do tipo Authentication Response."
 
-msgid "{status:some_error_occurred}"
-msgstr "Ocorreu um erro"
-
 msgid "{login:change_home_org_button}"
 msgstr "Escolha a sua organização de origem"
 

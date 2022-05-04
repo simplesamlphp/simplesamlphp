@@ -293,9 +293,6 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
-msgid "{status:some_error_occurred}"
-msgstr "Some error occurred"
-
 msgid "{login:change_home_org_button}"
 msgstr "Choose home organization"
 

@@ -464,7 +464,7 @@ msgstr ""
 msgid "Cannot retrieve session data"
 msgstr "Ayikwazi ukubuyisela idatha yeseshini"
 
-msgid "{status:some_error_occurred}"
+msgid "Some error occurred"
 msgstr "Kuvele iphutha elithile"
 
 msgid "{errors:errorreport_text}"

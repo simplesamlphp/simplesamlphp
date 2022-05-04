@@ -277,9 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{status:some_error_occurred}"
-msgstr "Ein feilsituasjon oppsto"
-
 msgid "{login:change_home_org_button}"
 msgstr "Vel vertsorganisasjon"
 

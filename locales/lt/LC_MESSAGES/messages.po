@@ -269,9 +269,6 @@ msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
 "autentikacijos atsakymo."
 
-msgid "{status:some_error_occurred}"
-msgstr "Įvyko tam tikra klaida"
-
 msgid "{login:change_home_org_button}"
 msgstr "Pasirinkite organizaciją"
 

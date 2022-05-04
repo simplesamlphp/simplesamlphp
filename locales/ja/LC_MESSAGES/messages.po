@@ -247,9 +247,6 @@ msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "Assertion Consumer Serviceインターフェースへアクセスしましたが、SAML認証レスポンスが提供されませんでした。"
 
-msgid "{status:some_error_occurred}"
-msgstr "幾つかのエラーが発生しました"
-
 msgid "{login:change_home_org_button}"
 msgstr "組織の選択"
 

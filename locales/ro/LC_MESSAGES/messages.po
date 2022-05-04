@@ -281,9 +281,6 @@ msgstr ""
 "Ați accesat interfața <i>Assertion Consumer Service</i> dar nu ați "
 "furnizat răspunsul de autentificare SAML."
 
-msgid "{status:some_error_occurred}"
-msgstr "A apărut o eroare"
-
 msgid "{login:change_home_org_button}"
 msgstr "Alegeți instituția de origine"
 
