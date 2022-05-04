@@ -491,7 +491,7 @@ msgstr "Ulwazi lwesifunda lulahlekile"
 msgid "{logout:title}"
 msgstr "Uphume ngemvume"
 
-msgid "{errors:report_explain}"
+msgid "Explain what you did when this error occurred..."
 msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
 
 msgid "Logout failed"

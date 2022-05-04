@@ -281,9 +281,6 @@ msgstr "Όχι"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 
-msgid "{errors:report_explain}"
-msgstr "Περιγράψτε τις ενέργειές σας όταν συνέβη το σφάλμα..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή AssertionConsumerService"
 

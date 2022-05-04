@@ -290,9 +290,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Voorkeurskeuze]"
 
-msgid "{errors:report_explain}"
-msgstr "Leg uit wat je deed toen deze foutmelding optrad..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Geen SAML response gevonden"
 

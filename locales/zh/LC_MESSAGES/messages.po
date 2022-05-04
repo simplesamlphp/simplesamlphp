@@ -237,9 +237,6 @@ msgstr "不"
 msgid "{disco:icon_prefered_idp}"
 msgstr "首选选项"
 
-msgid "{errors:report_explain}"
-msgstr "说明一下，你正在做什么的时候发生了这个错误"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "没有提供SAML应答"
 

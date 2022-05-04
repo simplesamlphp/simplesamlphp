@@ -252,9 +252,6 @@ msgstr "取消"
 msgid "{disco:icon_prefered_idp}"
 msgstr "喜好選擇"
 
-msgid "{errors:report_explain}"
-msgstr "解釋當你發生錯誤時所做的事情..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML 無回應"
 

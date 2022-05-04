@@ -242,9 +242,6 @@ msgstr "Hayır"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Tercih edilen seçenek]"
 
-msgid "{errors:report_explain}"
-msgstr "Bu hatanın neden oluştuğunu açıklayın..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML cevabı verilmemiş"
 

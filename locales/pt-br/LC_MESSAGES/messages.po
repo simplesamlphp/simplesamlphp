@@ -269,9 +269,6 @@ msgstr "Não"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Opção preferida]"
 
-msgid "{errors:report_explain}"
-msgstr "Explique o que você estava fazendo quando aconteceu o erro..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Não fornecida a resposta SAML"
 

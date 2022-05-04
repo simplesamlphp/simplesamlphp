@@ -267,9 +267,6 @@ msgstr "Nej"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Foretrukket valg"
 
-msgid "{errors:report_explain}"
-msgstr "Forklar hvad du gjorde og hvordan fejlen opstod"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML response mangler"
 

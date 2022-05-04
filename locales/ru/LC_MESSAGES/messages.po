@@ -277,9 +277,6 @@ msgstr "Нет"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Предпочтительный выбор]"
 
-msgid "{errors:report_explain}"
-msgstr "Уточните ваши действия перед появлением ошибки... "
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Отсутствует SAML отклик"
 

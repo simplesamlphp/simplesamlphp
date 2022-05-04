@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferovaná volba]"
 
-msgid "{errors:report_explain}"
-msgstr "Vysvětlete, jak došlo k této chybě ..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nebyla zaslána SAML odpověď"
 

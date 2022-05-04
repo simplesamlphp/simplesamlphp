@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioritetna izbira"
 
-msgid "{errors:report_explain}"
-msgstr "Opišite, kako je prišlo do napake..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nobenega odgovora za SAML ni na voljo"
 

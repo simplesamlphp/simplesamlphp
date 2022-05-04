@@ -265,9 +265,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferirani izbor]"
 
-msgid "{errors:report_explain}"
-msgstr "Opišite šta ste radili kada se ova greška desila..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nije dostavljen SAML odgovor"
 

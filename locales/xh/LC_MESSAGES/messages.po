@@ -485,7 +485,7 @@ msgstr "Inkcazelo yobume ilahlekile"
 msgid "{logout:title}"
 msgstr "Uphumile"
 
-msgid "{errors:report_explain}"
+msgid "Explain what you did when this error occurred..."
 msgstr "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo..."
 
 msgid "Logout failed"

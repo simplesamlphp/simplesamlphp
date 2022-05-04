@@ -179,9 +179,6 @@ msgstr ""
 " LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya "
 "bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
-msgid "{errors:report_explain}"
-msgstr "Hlalosa seo o se entseng ha phoso ena e ne e hlaha..."
-
 msgid ""
 "If you report this error, please also report this tracking number which "
 "makes it possible to locate your session in the logs available to the "

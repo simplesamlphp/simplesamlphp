@@ -258,9 +258,6 @@ msgstr "Nem"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Kívánt választás]"
 
-msgid "{errors:report_explain}"
-msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történt..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nincs SAML válasz"
 

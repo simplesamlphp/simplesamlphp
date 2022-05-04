@@ -259,9 +259,6 @@ msgstr "Ei"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Eelistatud valik]"
 
-msgid "{errors:report_explain}"
-msgstr "Kirjelda, millega tegelesid, kui see tõrge ilmnes..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML-vastust ei pakutud"
 

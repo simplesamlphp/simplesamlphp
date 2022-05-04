@@ -255,9 +255,6 @@ msgstr "لا"
 msgid "{disco:icon_prefered_idp}"
 msgstr "اختياري المفضل"
 
-msgid "{errors:report_explain}"
-msgstr "اشرح ما فعلته عند حدوث الخطأ "
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "لا توجد استجابة SAML"
 

@@ -259,9 +259,6 @@ msgstr "Ez"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Aukera gogokoena]"
 
-msgid "{errors:report_explain}"
-msgstr "Azal ezazu zer egin duzun errore honetara iristeko..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML erantzuna falta da"
 

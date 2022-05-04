@@ -205,9 +205,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Verkies]"
 
-msgid "{errors:report_explain}"
-msgstr "Verduidelik wat jy gedoen het toe jy die probleem ervaar..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Geen SAML versoek gevind nie"
 

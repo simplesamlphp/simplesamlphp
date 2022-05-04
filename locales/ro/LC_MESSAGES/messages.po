@@ -266,9 +266,6 @@ msgstr "Nu"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Varianta preferată]"
 
-msgid "{errors:report_explain}"
-msgstr "Descrieți ce operațiuini executați când a apărut această eroare  ..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nu a fost furnizat răspunsul SAML"
 

@@ -257,9 +257,6 @@ msgstr "Nie"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Preferowany wybór"
 
-msgid "{errors:report_explain}"
-msgstr "Opisz, co zrobiłeś kiedy wystąpił błąd..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nie dostarczo odpowiedzi SAML"
 

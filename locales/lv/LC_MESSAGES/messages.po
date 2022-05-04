@@ -256,9 +256,6 @@ msgstr "Nē"
 msgid "{disco:icon_prefered_idp}"
 msgstr "(Mana labākā izvēle)"
 
-msgid "{errors:report_explain}"
-msgstr "Aprakstiet, ko Jūs darījāt, kad notika kļūda."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nav SAML atbildes"
 

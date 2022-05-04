@@ -102,9 +102,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Service Provider"
 
-msgid "{errors:report_explain}"
-msgstr "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Keng SAML Aentwert ungin"
 

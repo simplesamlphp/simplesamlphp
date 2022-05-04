@@ -272,9 +272,6 @@ msgstr "No"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Scelta preferita]"
 
-msgid "{errors:report_explain}"
-msgstr "Descrivi cosa stavi facendo al momento dell'errore"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nessuna risposta SAML fornita."
 

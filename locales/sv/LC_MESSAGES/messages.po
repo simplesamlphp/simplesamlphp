@@ -267,9 +267,6 @@ msgstr "Nej"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioriterat val"
 
-msgid "{errors:report_explain}"
-msgstr "Förklara hur felet uppstod..."
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Inget SAML-svar tillhandahölls"
 
