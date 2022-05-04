@@ -352,9 +352,6 @@ msgstr "שגיאת שהם"
 msgid "{login:user_pass_text}"
 msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש והסיסמה שלך בטופס מתחת."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "בקשה שגויה לשירות גילוי"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"

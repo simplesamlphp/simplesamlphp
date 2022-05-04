@@ -383,9 +383,6 @@ msgstr ""
 "En webbtjänst har begärt att du ska logga in. Detta betyder att du "
 "behöver ange ditt användarnamn och ditt lösenord i formuläret nedan."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Ogiltig förfrågan till lokaliseringstjänsten (Discovery Service)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "

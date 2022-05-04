@@ -380,9 +380,6 @@ msgstr ""
 "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "
 "indtaste dit brugernavn og kodeord herunder."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Fejlagtig forespørgsel til Discovery Service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp flat-file format - brug dette hvis du også bruger "

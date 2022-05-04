@@ -373,9 +373,6 @@ msgstr ""
 "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-"
 "izena eta pasahitza honako formulario honetan sartu itzazu."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Eskaera okerra aurkikuntza zerbitzuari"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formatuko fitxategi batean - beste muturrean SimpleSAMLphp "

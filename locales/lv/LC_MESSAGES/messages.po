@@ -367,9 +367,6 @@ msgstr ""
 "Serviss pieprasa autentifikāciju. Lūdzu ievadiet savu lietotāja vārdu un "
 "paroli."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Nepareizs pieprasījums discovery servisam"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp parasta faila formātā - lietojiet šo, ja izmantojat "

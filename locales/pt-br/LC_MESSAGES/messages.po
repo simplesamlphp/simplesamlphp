@@ -386,9 +386,6 @@ msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "
 "nome de usuário e senha no formulário abaixo."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Pedido incorreto para o serviço de descoberta"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Em formato de arquivo plano SimpleSAMLphp - use isso se você estiver "

@@ -270,9 +270,6 @@ msgstr ""
 "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "
 "salasanasi alla olevaan kaavakkeeseen."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Vääränlainen pyynti discovery-palveluun"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

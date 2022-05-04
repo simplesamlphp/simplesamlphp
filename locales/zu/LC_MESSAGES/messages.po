@@ -409,7 +409,7 @@ msgstr "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
 
-msgid "{errors:title_DISCOPARAMS}"
+msgid "Bad request to discovery service"
 msgstr "Isicelo esingalungile sesevisi yokuthola"
 
 msgid ""

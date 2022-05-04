@@ -383,9 +383,6 @@ msgstr ""
 "Aplikacija zahtjeva od vas da se autentificirate. Unesite vašu korisničku"
 " oznaku i zaporku u dolje navedena polja."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Lokacijskom servisu poslan je neispravan upit"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

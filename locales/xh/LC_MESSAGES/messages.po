@@ -403,7 +403,7 @@ msgstr "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp"
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle."
 
-msgid "{errors:title_DISCOPARAMS}"
+msgid "Bad request to discovery service"
 msgstr "Isicelo esibi kwinkonzo yofumaniso"
 
 msgid ""

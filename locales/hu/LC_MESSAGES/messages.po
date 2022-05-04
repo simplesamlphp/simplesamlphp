@@ -373,9 +373,6 @@ msgstr ""
 "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "
 "felhasználónevét és jelszavát az alábbi űrlapon."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Érvénytelen kérés érkezett a felfedező szolgáltatáshoz (discovery service)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon "

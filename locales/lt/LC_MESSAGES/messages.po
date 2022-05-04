@@ -370,9 +370,6 @@ msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"
 " slaptažodį."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Neteisinga užklausa kreipiantis į \"discovery\" servisą"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "

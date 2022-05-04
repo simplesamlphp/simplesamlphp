@@ -388,9 +388,6 @@ msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"
 " Sie daher unten Benutzername und Passwort ein."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Ungültige Anfrage an den Discovery Service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Im SimpleSAMLphp flat-file Format - verwenden Sie das, falls auf der "

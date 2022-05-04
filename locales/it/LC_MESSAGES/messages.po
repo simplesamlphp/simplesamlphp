@@ -388,9 +388,6 @@ msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "
 "proprie credenziali nella maschera di login sottostante."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Richiesta errata al discovery service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In formato flat per SimpleSAMLphp - da utilizzare se dall'altra parte c'è"

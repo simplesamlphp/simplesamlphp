@@ -386,9 +386,6 @@ msgstr ""
 "vous devez entrer votre identifiant et votre mot de passe dans le "
 "formulaire ci-dessous."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Mauvaise requête au service de découverte automatique (discovery service)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"

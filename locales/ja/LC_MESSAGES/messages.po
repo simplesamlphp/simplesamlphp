@@ -338,9 +338,6 @@ msgstr "CASエラー"
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "サービスディスカバリ中の不正なリクエスト"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 

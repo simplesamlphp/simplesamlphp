@@ -395,9 +395,6 @@ msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "
 "username and password in the form below."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Bad request to discovery service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In SimpleSAMLphp flat file format - use this if you are using a "

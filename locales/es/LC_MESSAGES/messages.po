@@ -404,9 +404,6 @@ msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "
 "su nombre de usuario y su clave de acceso en el siguiente formulario."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Solicitud err&oacute;nea al servicio de descubrimiento"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "En un fichero de formato SimpleSAMLphp - utilice esta opción si está "

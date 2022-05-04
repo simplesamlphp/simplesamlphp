@@ -112,9 +112,6 @@ msgstr ""
 "O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo"
 " mona."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Kopo e mpe bakeng sa tshebeletso ya tshibollo"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Phoso ya Netefatso"
 

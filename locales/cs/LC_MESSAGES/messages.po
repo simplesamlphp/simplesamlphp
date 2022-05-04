@@ -362,9 +362,6 @@ msgstr "CAS chyba"
 msgid "{login:user_pass_text}"
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Špatný požadavek pro prohledávací službu"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "

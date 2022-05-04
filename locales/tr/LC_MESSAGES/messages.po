@@ -355,9 +355,6 @@ msgstr ""
 "Bir servis kendinizi yetkilendirmenizi istedi. Lütfen aşağıdaki forma "
 "kullanıcı adınızı ve şifrenizi giriniz."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Tanıma servisine giden hatalı istek"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "

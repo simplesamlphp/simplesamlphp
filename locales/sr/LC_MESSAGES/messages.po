@@ -380,9 +380,6 @@ msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "
 "i lozinku u dole navedena polja."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Servisu za lociranje poslat je neispravan zahtev"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

@@ -366,9 +366,6 @@ msgstr ""
 "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos "
 "uporabniškega imena in gesla v spodnji polji."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Zahteva, ki je bila poslana \"Discovery service-u\" je napačna."
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "

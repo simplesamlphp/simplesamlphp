@@ -364,9 +364,6 @@ msgstr ""
 "Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "
 "nazwę uzytkownika oraz hasło."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "nieprawidłowe żadanie do listy serwisow"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

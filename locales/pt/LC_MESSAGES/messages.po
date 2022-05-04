@@ -347,9 +347,6 @@ msgstr ""
 "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
 "nome de utilizador e senha nos campos seguintes."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Pedido incorrecto efectuado ao serviço de descoberta de IdP"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "

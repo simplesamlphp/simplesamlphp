@@ -376,9 +376,6 @@ msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "
 "brukarnamnet ditt og passordet ditt for å autentisera deg."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Feilforma spørsmål til Discovery Service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "På flat fil for SimpleSAMLphp.  Bruk denne dersom du bruker SimpleSAMLphp"

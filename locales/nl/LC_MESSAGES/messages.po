@@ -407,9 +407,6 @@ msgstr ""
 "Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "
 "wachtwoord in onderstaand formulier."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Toegangsfout bij discovery service"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In SimpleSAMLphp flat file formaat - gebruik dit wanneer uw "

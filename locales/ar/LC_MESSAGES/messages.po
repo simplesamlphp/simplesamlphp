@@ -360,9 +360,6 @@ msgstr ""
 "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "
 "السر خاصتك بالاستمارة أدناه"
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "طلب سيء لخدمة استكشافية"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "بصيغة SimpleSAMLphp- استخدم هذه الصيغة ان كنت تستخدم وحدة SimpleSAMLphp "

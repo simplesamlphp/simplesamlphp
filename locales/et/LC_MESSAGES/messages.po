@@ -369,9 +369,6 @@ msgstr ""
 "Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "
 "kasutajatunnus ja parool."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Halb tuvastusteenuse päring"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "

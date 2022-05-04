@@ -374,9 +374,6 @@ msgstr ""
 "En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt "
 "brukernavn og passord for å autentisere deg."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Ugyldig forespørsel til SAML 2.0 Discovery-tjenesten"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "

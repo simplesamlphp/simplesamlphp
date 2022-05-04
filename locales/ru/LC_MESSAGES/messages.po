@@ -394,9 +394,6 @@ msgstr ""
 "Служба запрашивает авторизацию. Пожалуйста, введите имя пользователя и "
 "пароль."
 
-msgid "{errors:title_DISCOPARAMS}"
-msgstr "Неправильный запрос к службе обнаружения"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
 
