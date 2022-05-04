@@ -104,7 +104,7 @@ msgstr "Yebo, wonke amasevisi"
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
 
-msgid "{login:help_desk_link}"
+msgid "Help desk homepage"
 msgstr "Ikhasi lasekhaya ledeski losizo"
 
 msgid "{errors:debuginfo_header}"

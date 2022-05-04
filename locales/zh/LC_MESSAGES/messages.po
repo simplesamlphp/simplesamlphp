@@ -327,9 +327,6 @@ msgstr "选择你的身份提供者"
 msgid "{login:help_desk_email}"
 msgstr "发送Email给服务台"
 
-msgid "{login:help_desk_link}"
-msgstr "服务台的主页"
-
 msgid "{login:user_pass_text}"
 msgstr "一个服务需要你的认证，请在下面输入你的用户名和密码"
 

@@ -329,9 +329,6 @@ msgstr "アイデンティティプロバイダを選択してください"
 msgid "{login:help_desk_email}"
 msgstr "ヘルプデスクにメールする"
 
-msgid "{login:help_desk_link}"
-msgstr "ヘルプデスクページ"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

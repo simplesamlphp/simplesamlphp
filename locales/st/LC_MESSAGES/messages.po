@@ -608,9 +608,6 @@ msgstr "E latelang"
 msgid "Your attributes"
 msgstr "Makgabane a hao"
 
-msgid "{login:help_desk_link}"
-msgstr "Leqephe la lapeng la ba deske ya thuso"
-
 msgid "Logout failed"
 msgstr "Ho tswa ho hlolehile"
 

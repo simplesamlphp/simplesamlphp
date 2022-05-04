@@ -349,9 +349,6 @@ msgstr "اختار موقع هويتك"
 msgid "{login:help_desk_email}"
 msgstr "ارسل إيميل لصفحة المساعدة"
 
-msgid "{login:help_desk_link}"
-msgstr "صفحة المساعدة"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "

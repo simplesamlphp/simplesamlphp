@@ -259,9 +259,6 @@ msgstr "Valitse identiteettillähteesi"
 msgid "{login:help_desk_email}"
 msgstr "Lähetä sähköposti helpdeskille."
 
-msgid "{login:help_desk_link}"
-msgstr "Helpdeskin kotisivu"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "

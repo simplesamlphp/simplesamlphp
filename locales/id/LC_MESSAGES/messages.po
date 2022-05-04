@@ -365,9 +365,6 @@ msgstr "Pilih identity provider anda"
 msgid "{login:help_desk_email}"
 msgstr "Kirim e-mail ke help dek"
 
-msgid "{login:help_desk_link}"
-msgstr "Homepage Help desk"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan"

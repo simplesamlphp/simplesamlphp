@@ -374,9 +374,6 @@ msgstr "Sélectionnez votre fournisseur d'identité"
 msgid "{login:help_desk_email}"
 msgstr "Assistance technique par courriel"
 
-msgid "{login:help_desk_link}"
-msgstr "Page web de l'assistance technique"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que "

@@ -353,9 +353,6 @@ msgstr "Zvol svého poskytovatele identity (IdP)"
 msgid "{login:help_desk_email}"
 msgstr "Email helpdesku zaslán."
 
-msgid "{login:help_desk_link}"
-msgstr "Help desk"
-
 msgid "{login:user_pass_text}"
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 

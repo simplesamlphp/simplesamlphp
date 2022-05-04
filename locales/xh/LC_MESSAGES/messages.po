@@ -101,7 +101,7 @@ msgstr "Ewe, zonke iinkonzo"
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML."
 
-msgid "{login:help_desk_link}"
+msgid "Help desk homepage"
 msgstr "Ikhasi lekhaya ledesika yoncedo"
 
 msgid "{errors:debuginfo_header}"

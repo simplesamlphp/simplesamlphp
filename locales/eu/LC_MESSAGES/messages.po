@@ -362,9 +362,6 @@ msgstr "Hauta ezazu zure identitate hornitzailea"
 msgid "{login:help_desk_email}"
 msgstr "Bidali posta laguntza teknikoari "
 
-msgid "{login:help_desk_link}"
-msgstr "Laguntza teknikoaren orria "
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-"

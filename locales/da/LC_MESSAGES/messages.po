@@ -366,9 +366,6 @@ msgstr "Vælg institution (identitetsudbyder)"
 msgid "{login:help_desk_email}"
 msgstr "Send en e-mail til servicedesk"
 
-msgid "{login:help_desk_link}"
-msgstr "Servicedesk"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "

@@ -363,9 +363,6 @@ msgstr "Velg din identitetsleverandør"
 msgid "{login:help_desk_email}"
 msgstr "Send e-post til brukerstøtte"
 
-msgid "{login:help_desk_link}"
-msgstr "Hjemmesiden til brukerstøtte"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt "

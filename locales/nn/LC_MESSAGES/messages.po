@@ -365,9 +365,6 @@ msgstr "Vel innloggingsteneste"
 msgid "{login:help_desk_email}"
 msgstr "Send epost til brukarstøtte"
 
-msgid "{login:help_desk_link}"
-msgstr "Heimeside for brukarstøtte"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "

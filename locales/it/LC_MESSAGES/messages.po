@@ -377,9 +377,6 @@ msgstr "Selezionare il proprio identity provider"
 msgid "{login:help_desk_email}"
 msgstr "Invia una mail al servizio di assistenza"
 
-msgid "{login:help_desk_link}"
-msgstr "Homepage del servizio di assistenza"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "

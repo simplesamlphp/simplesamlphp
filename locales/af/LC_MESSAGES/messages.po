@@ -279,9 +279,6 @@ msgstr "Kies jou identiteits verskaffer"
 msgid "{login:help_desk_email}"
 msgstr "Stuur e-pos aan hulplyn"
 
-msgid "{login:help_desk_link}"
-msgstr "Hulplyn-tuisblad"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "

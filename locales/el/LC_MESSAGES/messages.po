@@ -395,9 +395,6 @@ msgstr "Επιλογή οικείου φορέα"
 msgid "{login:help_desk_email}"
 msgstr "Αποστολή email στην υπηρεσία αρωγής χρηστών"
 
-msgid "{login:help_desk_link}"
-msgstr "Σελίδα υπηρεσίας αρωγής χρηστών"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Μια υπηρεσία έχει ζητήσει την ταυτοποίησή σας. Παρακαλώ εισάγετε το όνομα"

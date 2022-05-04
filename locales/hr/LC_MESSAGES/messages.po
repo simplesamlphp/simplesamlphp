@@ -372,9 +372,6 @@ msgstr "Odaberite autentifikacijski servis"
 msgid "{login:help_desk_email}"
 msgstr "Pošaljite e-mail službi za podršku korisnicima"
 
-msgid "{login:help_desk_link}"
-msgstr "Stranice službe za podršku korisnicima"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Aplikacija zahtjeva od vas da se autentificirate. Unesite vašu korisničku"

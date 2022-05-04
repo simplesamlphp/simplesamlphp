@@ -359,9 +359,6 @@ msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
 msgid "{login:help_desk_email}"
 msgstr "Küldjön e-mailt az ügyfélszolgálatnak"
 
-msgid "{login:help_desk_link}"
-msgstr "Ügyfélszolgálat weboldala"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "

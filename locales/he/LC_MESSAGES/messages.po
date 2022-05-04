@@ -343,9 +343,6 @@ msgstr "בחר את ספק הזהות שלך"
 msgid "{login:help_desk_email}"
 msgstr "שלח דואל לתיכה הטכנית"
 
-msgid "{login:help_desk_link}"
-msgstr "תמיכה טכנית"
-
 msgid "{login:user_pass_text}"
 msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש והסיסמה שלך בטופס מתחת."
 

@@ -372,9 +372,6 @@ msgstr "Selecione seu provedor de identidade"
 msgid "{login:help_desk_email}"
 msgstr "Envie um e-mail para a Central de Ajuda."
 
-msgid "{login:help_desk_link}"
-msgstr "Central de Ajuda"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

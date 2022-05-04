@@ -390,9 +390,6 @@ msgstr "Seleccione su proveedor de identidad"
 msgid "{login:help_desk_email}"
 msgstr "Enviar correo electrónico al soporte técnico"
 
-msgid "{login:help_desk_link}"
-msgstr "Página de soporte técnico"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "
