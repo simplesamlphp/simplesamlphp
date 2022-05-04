@@ -14,6 +14,7 @@ Released TBD
   * Fix HTTP status code for error pages (#1585)
   * \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
   * Bumped twig and minimist dependencies due to known vulnerabilities (CVE-2022-23614 and CVE-2021-44906)
+  * Minor fixes to the old UI (#1632)
 
 ### saml2 library
   * A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
