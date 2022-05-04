@@ -406,9 +406,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Logado como"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Não foi possível criar a resposta da autenticação"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "

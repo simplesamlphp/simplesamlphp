@@ -430,9 +430,6 @@ msgstr "ADFS SP Metadata"
 msgid "{disco:login_at}"
 msgstr "Inloggen bij"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Authenticatie response kon niet worden aangemaakt"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

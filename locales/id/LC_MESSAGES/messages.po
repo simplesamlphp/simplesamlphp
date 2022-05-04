@@ -396,9 +396,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Login di"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Tidak dapat membuat respon autentifikasi"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

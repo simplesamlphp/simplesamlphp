@@ -403,9 +403,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Autentificare la"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Nu a fost posibilă crearea răspunsului de autentificare"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

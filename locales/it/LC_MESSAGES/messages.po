@@ -408,9 +408,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Effettua il login con"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Impossibile generare una risposta di autenticazione"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

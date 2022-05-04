@@ -372,9 +372,6 @@ msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "
 "SimpleSAMLphp dosya biçiminde bunu kullanın:"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Kimlik doğrulama cevabı oluşturulamadı"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"

@@ -387,9 +387,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Pieslēgties pie"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Neizdevās izveidot autentifikācijas atbildi"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

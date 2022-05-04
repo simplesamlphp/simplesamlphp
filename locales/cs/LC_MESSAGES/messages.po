@@ -382,9 +382,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Přihlášení k"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Nelze vytvořit odpověď"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

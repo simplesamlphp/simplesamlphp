@@ -408,9 +408,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Login bei"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Konnte keine Authentifikationsantwort erstellen"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "

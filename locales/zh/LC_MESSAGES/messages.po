@@ -354,9 +354,6 @@ msgstr "如果你想在其他网站使用的SimpleSAMLphp，那么你应该使�
 msgid "{disco:login_at}"
 msgstr "登录于"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "无法创建认证应答"
-
 msgid "{logout:failedsps}"
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

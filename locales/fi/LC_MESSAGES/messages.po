@@ -282,9 +282,6 @@ msgstr "Muista valintani"
 msgid "{disco:login_at}"
 msgstr "Kirjaudu"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Autentikointivastauksen luonti epäonnistui"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

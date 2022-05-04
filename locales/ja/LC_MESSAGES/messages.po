@@ -356,9 +356,6 @@ msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleS
 msgid "{disco:login_at}"
 msgstr "ログイン: "
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "認証応答を生成出来ませんでした"
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

@@ -296,7 +296,7 @@ msgstr "Iphutha"
 msgid "You have been logged out."
 msgstr "Usuphumile."
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
+msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukwakha impendulo yokuqinisekisa"
 
 msgid "{errors:descr_UNKNOWNCERT}"

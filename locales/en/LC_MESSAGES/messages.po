@@ -418,9 +418,6 @@ msgstr "ADFS SP Metadata"
 msgid "{disco:login_at}"
 msgstr "Login at"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Could not create authentication response"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

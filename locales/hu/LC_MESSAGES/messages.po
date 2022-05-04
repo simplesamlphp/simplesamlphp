@@ -393,9 +393,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Belépés ide:"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Nem lehet az azonosítást végrehajtani"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

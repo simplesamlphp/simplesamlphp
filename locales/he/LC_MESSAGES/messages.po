@@ -372,9 +372,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "כנס ל-"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "אין אפשרות ליצור תגובת הזדהות"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

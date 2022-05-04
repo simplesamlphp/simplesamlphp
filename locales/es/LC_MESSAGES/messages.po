@@ -427,9 +427,6 @@ msgstr "Metadatos SP ADFS"
 msgid "{disco:login_at}"
 msgstr "Identificarse en"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "No se pudo crear la respuesta de autenticaci&oacute;n"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

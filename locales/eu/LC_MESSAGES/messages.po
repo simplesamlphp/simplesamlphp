@@ -393,9 +393,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Non identifikatu"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Ezin izan da kautotze erantzuna sortu"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "

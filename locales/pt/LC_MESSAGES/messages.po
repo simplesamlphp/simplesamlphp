@@ -367,9 +367,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Entrar em"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Não foi possível criar uma resposta de autenticação"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

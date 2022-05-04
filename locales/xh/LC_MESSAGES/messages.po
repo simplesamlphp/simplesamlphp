@@ -293,7 +293,7 @@ msgstr "Impazamo"
 msgid "You have been logged out."
 msgstr "Uphumile."
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
+msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukuyila impendulo yongqinisiso"
 
 msgid "{errors:descr_UNKNOWNCERT}"

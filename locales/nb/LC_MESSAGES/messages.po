@@ -394,9 +394,6 @@ msgstr ""
 msgid "{disco:login_at}"
 msgstr "Logg inn hos"
 
-msgid "{errors:title_GENERATEAUTHNRESPONSE}"
-msgstr "Fikk ikke svart på autentiserings-forespørsel"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "
