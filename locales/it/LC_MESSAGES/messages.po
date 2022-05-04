@@ -342,9 +342,6 @@ msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "
 "specificare come proseguire dopo il login."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnostica di SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Salve, questa è la pagina di stato di SimpleSAMLphp. Qui è possiible "

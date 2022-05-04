@@ -336,9 +336,6 @@ msgstr ""
 "koji sadrži adresu na koju treba preusmeriti korisnikov web pretraživač "
 "nakon uspešne autentifikacije."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Dijagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Ovo je stranica s prikazom aktuelnog stanja vaše sesije. Na ovoj stranici"

@@ -297,9 +297,6 @@ msgstr "没有设置密码"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp 诊断"
-
 msgid "{status:intro}"
 msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您的会话超时，它持续多久，直到超时和连接到您的会话的所有属性。"
 

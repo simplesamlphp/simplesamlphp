@@ -360,9 +360,6 @@ msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "
 "om aan te geven wat de volgende bestemming is."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp controle"
-
 msgid "{status:intro}"
 msgstr ""
 "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw "

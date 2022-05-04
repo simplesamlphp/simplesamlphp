@@ -355,9 +355,6 @@ msgstr ""
 "El iniciador de esta solicitud no proporcion&oacute; el par&aacute;metro "
 "RelayState que indica donde ir a continuaci&oacute;n"
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnóstico SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver "

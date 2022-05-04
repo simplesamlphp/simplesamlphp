@@ -325,9 +325,6 @@ msgstr ""
 "Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "
 "kuhu edasi minna."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Tere! See on SimpleSAMLphp olekuteave. Siit on võimalik näha, kas su "

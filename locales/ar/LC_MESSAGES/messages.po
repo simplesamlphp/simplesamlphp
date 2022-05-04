@@ -317,9 +317,6 @@ msgstr "لم تقم بتحديد كلمة السر"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 
-msgid "{status:header_diagnostics}"
-msgstr "تشخيص SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك،"

@@ -233,9 +233,6 @@ msgstr "Salasanaa ei ole asetettu"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostiikka"
-
 msgid "{status:intro}"
 msgstr ""
 "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko"

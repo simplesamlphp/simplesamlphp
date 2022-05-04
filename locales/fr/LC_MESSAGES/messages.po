@@ -341,9 +341,6 @@ msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "
 "indiquant quelle page afficher ensuite."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnostics SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez "

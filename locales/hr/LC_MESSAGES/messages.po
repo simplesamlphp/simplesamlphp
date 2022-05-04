@@ -338,9 +338,6 @@ msgstr ""
 "parametar koji sadrži adresu na koju treba preusmjeriti korisnikov web "
 "preglednik nakon uspješne autentifikacije."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp dijagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Ovo je stranica s prikazom aktualnog stanja Single Sign-On sjednice. Na "

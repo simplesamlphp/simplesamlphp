@@ -332,9 +332,6 @@ msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "
 "Då veit vi ikke kvar vi skal, og det blir feil."
 
-msgid "{status:header_diagnostics}"
-msgstr "Feilsøking av SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen "

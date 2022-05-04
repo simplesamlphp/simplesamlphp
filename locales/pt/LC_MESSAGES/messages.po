@@ -304,9 +304,6 @@ msgstr ""
 "Este pedido foi iniciado sem o parâmetro RelayState necessário para "
 "continuar com o processamento."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnósticos do SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Está na página de status do SimpleSAMLphp. Aqui poderá consultar "

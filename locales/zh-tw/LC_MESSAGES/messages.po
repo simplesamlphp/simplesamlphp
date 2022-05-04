@@ -312,9 +312,6 @@ msgstr "密碼未設定"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下一個步驟。"
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp 診斷工具"
-
 msgid "{status:intro}"
 msgstr ""
 "嘿，這是 SimpleSAMLphp "

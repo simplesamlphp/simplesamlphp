@@ -329,9 +329,6 @@ msgstr ""
 "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "
 "RelayState parametroa"
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Diagnostikoa"
-
 msgid "{status:intro}"
 msgstr ""
 "Kaixo, hau SimpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure"

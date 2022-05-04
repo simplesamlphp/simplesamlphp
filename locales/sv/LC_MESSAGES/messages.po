@@ -337,9 +337,6 @@ msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "
 "medför att nästa plats inte är definierad."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostik "
-
 msgid "{status:intro}"
 msgstr ""
 "Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig "

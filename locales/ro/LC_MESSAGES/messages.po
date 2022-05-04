@@ -336,9 +336,6 @@ msgstr ""
 "Inițiatorul acestei cereri nu a furnizat parametrul <i>RelayState</i> "
 "care indică următorul pas."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnostic SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Aceasta este pagina de stare pentru SimpleSAMLphp. Aici puteți verifica "

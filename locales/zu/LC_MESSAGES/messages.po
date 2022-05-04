@@ -215,7 +215,7 @@ msgstr "Iphutha le-SimpleSAMLphp"
 msgid "{general:no_cancel}"
 msgstr "Cha, khansela"
 
-msgid "{status:header_diagnostics}"
+msgid "SimpleSAMLphp Diagnostics"
 msgstr "Ukuhlonzwa Kwe-SimpleSAMLphp"
 
 msgid ""

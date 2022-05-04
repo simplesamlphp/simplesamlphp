@@ -666,9 +666,6 @@ msgstr "Romela tlaleho ya phoso"
 msgid "Logout information lost"
 msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
 
-msgid "{status:header_diagnostics}"
-msgstr "Dimanollo tsa SimpleSAMLphp"
-
 msgid "Bad request received"
 msgstr "Kopo e mpe e amohetswe"
 

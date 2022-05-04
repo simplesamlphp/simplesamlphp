@@ -324,9 +324,6 @@ msgstr ""
 "Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "
 "kurp iet tālāk."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir "

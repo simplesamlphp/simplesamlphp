@@ -333,9 +333,6 @@ msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "
 "parameter, der hvilket hvor der skal fortsættes"
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostik"
-
 msgid "{status:intro}"
 msgstr ""
 "Dette er statussiden for SimpleSAMLphp. Du kan se om din session er "

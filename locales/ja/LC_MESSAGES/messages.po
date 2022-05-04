@@ -298,9 +298,6 @@ msgstr "パスワードが設定されていません"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp 診断"
-
 msgid "{status:intro}"
 msgstr ""
 "ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"

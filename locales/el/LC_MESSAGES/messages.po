@@ -359,9 +359,6 @@ msgstr ""
 "έγκυρη με αποτέλεσμα να μην είναι δυνατή η μετάβαση σε κάποιον πόρο του "
 "παρόχου υπηρεσιών0."
 
-msgid "{status:header_diagnostics}"
-msgstr "Διαγνωστικά SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Χαίρετε, αυτή είναι η σελίδα κατάστασης του SimpleSAMLphp. Εδώ μπορείτε "

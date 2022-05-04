@@ -320,9 +320,6 @@ msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "
 "gdzie przekazać zlecenie."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnostyka SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy "

@@ -346,9 +346,6 @@ msgstr ""
 "The initiator of this request did not provide a RelayState parameter "
 "indicating where to go next."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Diagnostics"
-
 msgid "{status:intro}"
 msgstr ""
 "Hi, this is the status page of SimpleSAMLphp. Here you can see if your "

@@ -326,9 +326,6 @@ msgstr ""
 "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "
 "határozza meg, hogy hová irányítsuk tovább."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp hibakeresés"
-
 msgid "{status:intro}"
 msgstr ""
 "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a "

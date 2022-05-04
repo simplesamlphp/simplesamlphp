@@ -323,9 +323,6 @@ msgstr "Geslo ni nastavljeno"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad "

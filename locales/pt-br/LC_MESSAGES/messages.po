@@ -339,9 +339,6 @@ msgstr ""
 "O promotor deste pedido não fornecer um parâmetro RelayState indicando o "
 "local para onde seguir."
 
-msgid "{status:header_diagnostics}"
-msgstr "Diagnósticos do SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "Olá, esta é a página de status SimpleSAMLphp. Aqui você pode ver é se a "

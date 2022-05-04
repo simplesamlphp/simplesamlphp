@@ -328,9 +328,6 @@ msgstr ""
 "Kilden til denne forespørselen har ikke angitt noen RelayState-parameter "
 "som angir hvor vi skal fortsette etterpå."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostikk"
-
 msgid "{status:intro}"
 msgstr ""
 "Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen "

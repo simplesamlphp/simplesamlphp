@@ -311,9 +311,6 @@ msgstr "סיסמה לא מוגדרת"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
 
-msgid "{status:header_diagnostics}"
-msgstr "איבחון SimpleSAMLphp"
-
 msgid "{status:intro}"
 msgstr ""
 "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה "

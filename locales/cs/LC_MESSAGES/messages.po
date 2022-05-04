@@ -321,9 +321,6 @@ msgstr "Heslo nebylo zadáno."
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam pokračovat."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp diagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, "

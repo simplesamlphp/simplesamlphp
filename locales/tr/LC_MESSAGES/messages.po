@@ -309,9 +309,6 @@ msgstr ""
 "Bu isteğin başlatıcısı, bir sonraki gidiş yerini bildiren RelayState "
 "parametresini sağlamamış."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Kontroller"
-
 msgid "{status:intro}"
 msgstr ""
 "Merhaba, bu SimpleSAMLphp durum sayfasıdır. Oturumunuzun süresinin dolup "

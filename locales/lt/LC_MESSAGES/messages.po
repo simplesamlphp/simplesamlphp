@@ -324,9 +324,6 @@ msgstr ""
 "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "
 "nusako kur toliau kreiptis."
 
-msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Diagnostika"
-
 msgid "{status:intro}"
 msgstr ""
 "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar "

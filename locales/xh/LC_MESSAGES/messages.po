@@ -212,7 +212,7 @@ msgstr "Impazamo ye-SimpleSAMLphp"
 msgid "{general:no_cancel}"
 msgstr "Hayi, rhoxisa"
 
-msgid "{status:header_diagnostics}"
+msgid "SimpleSAMLphp Diagnostics"
 msgstr "Uhlalutyo lwe-SimpleSAMLphp"
 
 msgid ""
