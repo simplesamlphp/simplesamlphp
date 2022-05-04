@@ -282,9 +282,6 @@ msgstr ""
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
 
-msgid "{login:organization}"
-msgstr "Organization"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Incorrect username or password"
 

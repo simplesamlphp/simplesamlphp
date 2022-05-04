@@ -240,9 +240,6 @@ msgstr "首选选项"
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "你访问了SingleLogoutService接口，但是并没有提供一个SAML的LogoutRequest或者LogoutResponse"
 
-msgid "{login:organization}"
-msgstr "组织"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "不正确的用户名或密码"
 

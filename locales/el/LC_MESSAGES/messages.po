@@ -288,9 +288,6 @@ msgstr ""
 " Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{login:organization}"
-msgstr "Οργανισμός"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος"
 

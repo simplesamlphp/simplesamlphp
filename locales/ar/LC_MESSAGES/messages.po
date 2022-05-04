@@ -260,9 +260,6 @@ msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
 "استجابة لطلب الخروج"
 
-msgid "{login:organization}"
-msgstr "الجهة "
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "اسم مستخدم او كلمة سر خطا "
 

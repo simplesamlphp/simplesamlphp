@@ -264,9 +264,6 @@ msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
 "LogoutRequest edo LogoutResponse mezurik"
 
-msgid "{login:organization}"
-msgstr "Erakundea"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Erabiltzaile-izena edo pasahitz okerra"
 

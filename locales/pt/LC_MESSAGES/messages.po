@@ -244,9 +244,6 @@ msgstr ""
 "Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
 "LogoutRequest ou LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organização"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Utilizador ou senha incorrecto"
 

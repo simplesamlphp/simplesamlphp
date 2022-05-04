@@ -65,9 +65,6 @@ msgstr ""
 msgid "Organization"
 msgstr "Khampani"
 
-msgid "{login:organization}"
-msgstr "Khampani"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 

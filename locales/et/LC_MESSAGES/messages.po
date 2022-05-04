@@ -264,9 +264,6 @@ msgstr ""
 "Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "
 "LogoutRequest või LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organisatsioon"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Kasutajatunnus või parool pole õige"
 

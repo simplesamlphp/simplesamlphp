@@ -266,9 +266,6 @@ msgstr ""
 "utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
 "LogoutResponse)"
 
-msgid "{login:organization}"
-msgstr "Organisasjon"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Feil brukarnamn eller passord"
 

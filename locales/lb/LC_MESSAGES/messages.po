@@ -107,9 +107,6 @@ msgstr ""
 "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "
 "oder LogoutResponse unginn."
 
-msgid "{login:organization}"
-msgstr "Organisatioun"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der "

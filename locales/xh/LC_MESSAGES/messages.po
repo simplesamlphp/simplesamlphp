@@ -435,7 +435,7 @@ msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 msgid "E-mail address:"
 msgstr "Idilesi ye-imeyile:"
 
-msgid "{login:organization}"
+msgid "Organization"
 msgstr "Umbutho"
 
 msgid "{errors:descr_ACSPARAMS}"

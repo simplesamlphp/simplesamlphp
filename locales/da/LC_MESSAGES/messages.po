@@ -272,9 +272,6 @@ msgstr ""
 "Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "
 "LogoutRequest eller LogoutResponse"
 
-msgid "{login:organization}"
-msgstr "Organisationsnavn"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Forkert brugernavn eller kodeord"
 

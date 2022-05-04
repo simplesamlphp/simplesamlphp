@@ -271,9 +271,6 @@ msgstr ""
 "Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "
 "cerere de deautentificare sau un răspuns de deautentificare SAML."
 
-msgid "{login:organization}"
-msgstr "Instituție"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Nume de utilizator incorect sau parolă incorectă"
 

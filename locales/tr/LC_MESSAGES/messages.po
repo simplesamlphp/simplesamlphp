@@ -247,9 +247,6 @@ msgstr ""
 "TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "
 "bir SAML Çıkışİsteği ya da ÇıkışCevabı sağlamadınız."
 
-msgid "{login:organization}"
-msgstr "Organizasyon"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Geçersiz kullanıcı adı yada şifre"
 

@@ -261,9 +261,6 @@ msgstr ""
 "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
 "LogoutRequest ar LogoutResponse užklausų."
 
-msgid "{login:organization}"
-msgstr "Organizacija"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Neteisingas prisijungimo vardas arba slaptažodis"
 

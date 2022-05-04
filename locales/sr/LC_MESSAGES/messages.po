@@ -270,9 +270,6 @@ msgstr ""
 "Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste "
 "poslali SAML <i>LogoutRequest</i> ili <i>LogoutResponse</i> poruku."
 
-msgid "{login:organization}"
-msgstr "Institucija"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Neispravno korisničko ime ili lozinka"
 

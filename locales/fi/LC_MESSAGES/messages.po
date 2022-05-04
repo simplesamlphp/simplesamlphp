@@ -184,9 +184,6 @@ msgstr ""
 "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML "
 "LogoutRequest:iä tai LogoutRespons:ia."
 
-msgid "{login:organization}"
-msgstr "Organisaatio"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Virheellinen käyttäjätunnus tai salasana"
 

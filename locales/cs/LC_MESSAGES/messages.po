@@ -262,9 +262,6 @@ msgstr ""
 "Přistupujete k SingleLogoutService rozhraní, ale nezadáváte SAML "
 "LogoutRequest ani LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organizace"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Špatné jméno a heslo."
 

@@ -277,9 +277,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di SingleLogoutService, ma senza fornire un "
 "messaggio SAML di LogoutRequest o LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organizzazione"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Nome utente o password non corretti"
 

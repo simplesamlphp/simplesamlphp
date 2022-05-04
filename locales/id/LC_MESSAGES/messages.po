@@ -267,9 +267,6 @@ msgstr ""
 "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "
 "LogoutRequest SAML atau LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organisasi"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Username atau password salah"
 

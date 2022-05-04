@@ -275,9 +275,6 @@ msgstr ""
 "Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "
 "keine SAML Abmeldeanfrage oder Abmeldeantwort bereitgestellt."
 
-msgid "{login:organization}"
-msgstr "Organisation"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Benutzername oder Passwort falsch."
 

@@ -24,9 +24,6 @@ msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
 msgid "{login:password}"
 msgstr "Beassansátni"
 
-msgid "{login:organization}"
-msgstr "Organisašuvdna"
-
 msgid "Person's principal name at home organization"
 msgstr "Feide-namma"
 

@@ -262,9 +262,6 @@ msgstr ""
 "Została wywołana usługa SingleLogoutService, ale nie dostarczono "
 "komunikatu SAML LogoutRequest lub LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organizacja"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Blędna nazwa użytkownika lub hasło"
 

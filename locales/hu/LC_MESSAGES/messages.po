@@ -263,9 +263,6 @@ msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
 "üzenetet kell megadni."
 
-msgid "{login:organization}"
-msgstr "Szervezet"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Hibás felhasználónév vagy jelszó"
 

@@ -441,7 +441,7 @@ msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
 msgid "E-mail address:"
 msgstr "Ikheli le-imeyili:"
 
-msgid "{login:organization}"
+msgid "Organization"
 msgstr "Inhlangano"
 
 msgid "{errors:descr_ACSPARAMS}"

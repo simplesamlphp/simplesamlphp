@@ -263,9 +263,6 @@ msgstr ""
 "Du brukte SingleLogoutService-grensesnittet uten å angi enten en SAML "
 "LogoutRequest eller en LogoutResponse."
 
-msgid "{login:organization}"
-msgstr "Organisasjon"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Feil brukernavn og passord"
 

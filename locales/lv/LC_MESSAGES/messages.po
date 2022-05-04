@@ -261,9 +261,6 @@ msgstr ""
 "Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "
 "atslēgšanās pieprasījumu vai atslēgšanās atbildi."
 
-msgid "{login:organization}"
-msgstr "Organizācija"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Nekorekts lietotāja vārds vai parole"
 

@@ -295,9 +295,6 @@ msgstr ""
 "Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"
 " LogoutRequest of LogoutResponse meegestuurd."
 
-msgid "{login:organization}"
-msgstr "Organisatie"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Incorrecte gebruikersnaam of wachtwoord"
 

@@ -255,9 +255,6 @@ msgstr "喜好選擇"
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "您連結單一簽出服務界面，但是沒有提供一個 SAML 登出請求或登出回應。"
 
-msgid "{login:organization}"
-msgstr "組織"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "帳號或密碼錯誤"
 

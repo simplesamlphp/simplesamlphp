@@ -282,9 +282,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу SingleLogoutService, но не предоставили "
 "SAML LogoutRequest или LogoutResponse утверждения."
 
-msgid "{login:organization}"
-msgstr "Организация"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Неправильное имя пользователя или пароль"
 

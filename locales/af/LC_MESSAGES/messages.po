@@ -210,9 +210,6 @@ msgstr ""
 "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'),"
 " maar het geen SAML LogoutRequest of LogoutResponse gestuur nie."
 
-msgid "{login:organization}"
-msgstr "Organisasie"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "Inkorrekte gebruikersnaam of wagwoord"
 

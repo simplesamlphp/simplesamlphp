@@ -254,9 +254,6 @@ msgstr ""
 "ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "
 "SAML."
 
-msgid "{login:organization}"
-msgstr "אירגון"
-
 msgid "{errors:title_WRONGUSERPASS}"
 msgstr "שם משתמש או סיסמה לא נכונים"
 
