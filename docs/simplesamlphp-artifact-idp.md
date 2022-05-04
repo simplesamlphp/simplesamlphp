@@ -68,12 +68,12 @@ In general, that should look something like:
     'AssertionConsumerService' => array (
         [
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
             'index' => 0,
         ],
         [
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
-            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
             'index' => 2,
         ],
     ),

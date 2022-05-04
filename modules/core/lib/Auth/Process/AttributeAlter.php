@@ -163,7 +163,7 @@ class AttributeAlter extends Auth\ProcessingFilter
 
                     if ($this->subject === $this->target) {
                         $value = $new_value;
-                    } else if ($this->merge === true) {
+                    } elseif ($this->merge === true) {
                         $attributes[$this->target] = array_values(
                             array_diff($attributes[$this->target], [$value])
                         );

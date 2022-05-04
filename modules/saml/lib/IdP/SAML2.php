@@ -255,7 +255,10 @@ class SAML2
 
         $skipEndpointValidation = false;
         if ($authnRequestSigned === true) {
-            $skipEndpointValidationWhenSigned = $spMetadata->getOptionalValue('skipEndpointValidationWhenSigned', false);
+            $skipEndpointValidationWhenSigned = $spMetadata->getOptionalValue(
+                'skipEndpointValidationWhenSigned',
+                false
+            );
             if (is_bool($skipEndpointValidationWhenSigned) === true) {
                 $skipEndpointValidation = $skipEndpointValidationWhenSigned;
             } elseif (is_callable($skipEndpointValidationWhenSigned) === true) {

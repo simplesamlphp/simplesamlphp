@@ -1015,7 +1015,8 @@ class Configuration implements Utils\ClearableState
      * @param string[]|null  $default A default value which will be returned if the option isn't found.
      *                         The default value can be null or an array of strings.
      *
-     * @return string[]|null The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return string[]|null The option with the given name, or $default if the option isn't found
+     *                         and $default is specified.
      * @psalm-return         ($default is set ? array|null : array)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string or an array of strings.
@@ -1082,7 +1083,10 @@ class Configuration implements Utils\ClearableState
     {
         $ret = $this->getOptionalArray($name, $default);
 
-        return ($ret === null) ? null : self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
+        if ($ret !== null) {
+            return self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
+        }
+        return null;
     }
 
 

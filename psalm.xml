@@ -63,7 +63,6 @@
         <MissingFile>
             <errorLevel type="suppress">
                 <file name="www/*.php" />
-                <file name="modules/*/www/*.php" />
             </errorLevel>
         </MissingFile>
 

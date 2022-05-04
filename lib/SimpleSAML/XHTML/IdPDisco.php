@@ -4,12 +4,26 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+
+use function array_fill_keys;
+use function array_intersect_key;
+use function array_intersect;
+use function array_key_exists;
+use function array_keys;
+use function array_merge;
+use function htmlspecialchars;
+use function preg_match;
+use function sizeof;
+use function strcasecmp;
+use function urldecode;
+use function usort;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP
@@ -128,7 +142,7 @@ class IdPDisco
 
         // standard discovery service parameters
         if (!array_key_exists('entityID', $_GET)) {
-            throw new \Exception('Missing parameter: entityID');
+            throw new Exception('Missing parameter: entityID');
         } else {
             $this->spEntityId = $_GET['entityID'];
         }
@@ -142,7 +156,7 @@ class IdPDisco
         $this->log('returnIdParam initially set to [' . $this->returnIdParam . ']');
 
         if (!array_key_exists('return', $_GET)) {
-            throw new \Exception('Missing parameter: return');
+            throw new Exception('Missing parameter: return');
         } else {
             $httpUtils = new Utils\HTTP();
             $this->returnURL = $httpUtils->checkURLAllowed($_GET['return']);
@@ -251,7 +265,7 @@ class IdPDisco
             try {
                 $this->metadata->getMetaData($idp, $metadataSet);
                 return $idp;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // continue
             }
         }
@@ -584,7 +598,7 @@ class IdPDisco
                 $templateFile = 'selectidp-links.twig';
                 break;
             default:
-                throw new \Exception('Invalid value for the \'idpdisco.layout\' option.');
+                throw new Exception('Invalid value for the \'idpdisco.layout\' option.');
         }
 
         $t = new Template($this->config, $templateFile);

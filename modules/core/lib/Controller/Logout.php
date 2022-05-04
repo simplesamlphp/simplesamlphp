@@ -310,7 +310,8 @@ class Logout
                     if (method_exists($sp['Handler'], 'getAssociationConfig')) {
                         $assocIdP = IdP::getByState($sp);
                         $assocConfig = call_user_func([$sp['Handler'], 'getAssociationConfig'], $assocIdP, $sp);
-                        $sp['core:Logout-IFrame:Timeout'] = $assocConfig->getOptionalInteger('core:logout-timeout', 5) + time();
+                        $timeout = $assocConfig->getOptionalInteger('core:logout-timeout', 5);
+                        $sp['core:Logout-IFrame:Timeout'] = $timeout + time();
                     } else {
                         $sp['core:Logout-IFrame:Timeout'] = time() + 5;
                     }

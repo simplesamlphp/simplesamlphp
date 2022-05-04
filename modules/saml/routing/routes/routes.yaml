@@ -1,0 +1,30 @@
+saml-proxy-invalidSession:
+    path:       /proxy/invalidSession
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Proxy::invalidSession' }
+saml-disco:
+    path:       /disco
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Disco::disco' }
+saml-sp-discoResponse:
+    path:       /sp/discoResponse
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse' }
+saml-sp-wrongAuthnContextClassRef:
+    path:       /sp/wrongAuthnContextClassRef
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef' }
+saml-sp-assertionConsumerService:
+    path:       /sp/assertionConsumerService/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService' }
+saml-sp-singleLogoutService:
+    path:       /sp/singleLogoutService/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService' }
+saml-sp-metadata:
+    path:       /sp/metadata/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata' }
+saml-legacy-sp-assertionConsumerService:
+    path:       /sp/saml2-acs.php/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService', path: /saml/sp/assertionConsumerService, permanent: true }
+saml-legacy-sp-singleLogoutService:
+    path:       /sp/saml2-logout.php/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService', path: /saml/sp/singleLogoutService, permanent: true }
+saml-legacy-sp-metadata:
+    path:       /sp/metadata.php/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata', path: /saml/sp/metadata, permanent: true }

@@ -16,10 +16,8 @@
     <file>www</file>
 
     <exclude-pattern>modules/adfs/*</exclude-pattern>
-    <exclude-pattern>www/assets/css/stylesheet.css</exclude-pattern>
-    <exclude-pattern>www/assets/js/bundle.js</exclude-pattern>
-    <exclude-pattern>www/assets/js/logout.js</exclude-pattern>
-    <exclude-pattern>www/assets/js/stylesheet.js</exclude-pattern>
+    <exclude-pattern>www/assets/css/*</exclude-pattern>
+    <exclude-pattern>www/assets/js/*</exclude-pattern>
 
     <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
@@ -34,6 +32,7 @@
         <!-- Exclude files with long lines that we cannot immediately fix -->
         <exclude-pattern>tests/lib/SimpleSAML/Metadata/MetaDataStorageSourceTest.php</exclude-pattern>
         <exclude-pattern>tests/lib/SimpleSAML/Metadata/SAMLParserTest.php</exclude-pattern>
+        <exclude-pattern>tests/modules/saml/lib/Controller/ServiceProviderTest.php</exclude-pattern>
     </rule>
 
     <!-- Ignore files with side effects that we cannot fix -->

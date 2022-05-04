@@ -331,7 +331,10 @@ class Federation
             // get the name
             $name = $source->getMetadata()->getOptionalLocalizedString(
                 'name',
-                $source->getMetadata()->getOptionalLocalizedString('OrganizationDisplayName', ['en' => $source->getAuthId()])
+                $source->getMetadata()->getOptionalLocalizedString(
+                    'OrganizationDisplayName',
+                    ['en' => $source->getAuthId()]
+                )
             );
 
             $builder = new SAMLBuilder($source->getEntityId());
