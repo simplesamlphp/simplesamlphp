@@ -262,9 +262,6 @@ msgstr "Tidak"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Pilihan yang disukai"
 
-msgid "{general:no_cancel}"
-msgstr "Tidak, batalkan"
-
 msgid "{login:user_pass_header}"
 msgstr "Masukkan username dan password Anda"
 

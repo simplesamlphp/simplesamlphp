@@ -290,9 +290,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Voorkeurskeuze]"
 
-msgid "{general:no_cancel}"
-msgstr "Nee, ik weiger"
-
 msgid "{login:user_pass_header}"
 msgstr "Geef je gebruikersnaam en wachtwoord"
 

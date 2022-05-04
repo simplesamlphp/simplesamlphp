@@ -212,7 +212,7 @@ msgstr "Igama lomsebenzisi"
 msgid "{errors:error_header}"
 msgstr "Iphutha le-SimpleSAMLphp"
 
-msgid "{general:no_cancel}"
+msgid "No, cancel"
 msgstr "Cha, khansela"
 
 msgid "SimpleSAMLphp Diagnostics"

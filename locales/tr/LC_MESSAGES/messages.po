@@ -242,9 +242,6 @@ msgstr "Hayır"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Tercih edilen seçenek]"
 
-msgid "{general:no_cancel}"
-msgstr "Hayır, iptal et"
-
 msgid "{login:user_pass_header}"
 msgstr "Kullanıcı adı ve şifrenizi giriniz"
 

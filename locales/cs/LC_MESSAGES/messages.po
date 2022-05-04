@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferovaná volba]"
 
-msgid "{general:no_cancel}"
-msgstr "Ne, neakceptuji"
-
 msgid "{login:user_pass_header}"
 msgstr "Vložte své jméno a heslo"
 

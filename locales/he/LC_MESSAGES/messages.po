@@ -249,9 +249,6 @@ msgstr "לא"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[בחירה מעודפת]"
 
-msgid "{general:no_cancel}"
-msgstr "לא, בטל"
-
 msgid "{login:user_pass_header}"
 msgstr "הכנס שם משתמש וסיסמה"
 

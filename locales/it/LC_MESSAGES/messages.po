@@ -272,9 +272,6 @@ msgstr "No"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Scelta preferita]"
 
-msgid "{general:no_cancel}"
-msgstr "No, cancellare"
-
 msgid "{login:user_pass_header}"
 msgstr "Inserire nome utente e password"
 

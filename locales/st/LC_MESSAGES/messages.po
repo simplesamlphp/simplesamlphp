@@ -115,9 +115,6 @@ msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
 msgid "{general:service_provider}"
 msgstr "Mofani wa Tshebeletso"
 
-msgid "{general:no_cancel}"
-msgstr "Tjhe, hlakola"
-
 msgid "{logout:logging_out_from}"
 msgstr "E tswa ditshebeletsong tse latelang:"
 

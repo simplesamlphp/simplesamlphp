@@ -256,9 +256,6 @@ msgstr "Nē"
 msgid "{disco:icon_prefered_idp}"
 msgstr "(Mana labākā izvēle)"
 
-msgid "{general:no_cancel}"
-msgstr "Nē, atcelt"
-
 msgid "{login:user_pass_header}"
 msgstr "Ievadiet savu lietotāja vārdu un paroli"
 

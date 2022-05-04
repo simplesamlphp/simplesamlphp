@@ -281,9 +281,6 @@ msgstr "Όχι"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 
-msgid "{general:no_cancel}"
-msgstr "Απόρριψη"
-
 msgid "{login:user_pass_header}"
 msgstr "Εισάγετε όνομα χρήστη και κωδικό πρόσβασης"
 

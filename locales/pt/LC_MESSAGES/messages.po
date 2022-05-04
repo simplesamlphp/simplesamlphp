@@ -239,9 +239,6 @@ msgstr "Não"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Escolha preferida"
 
-msgid "{general:no_cancel}"
-msgstr "Não aceito"
-
 msgid "{login:user_pass_header}"
 msgstr "Introduza o seu nome de utilizador e senha"
 

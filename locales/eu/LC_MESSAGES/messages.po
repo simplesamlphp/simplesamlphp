@@ -259,9 +259,6 @@ msgstr "Ez"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Aukera gogokoena]"
 
-msgid "{general:no_cancel}"
-msgstr "Ez, utzi"
-
 msgid "{login:user_pass_header}"
 msgstr "Sartu erabiltzaile-izena eta pasahitza"
 

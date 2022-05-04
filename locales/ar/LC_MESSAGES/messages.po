@@ -255,9 +255,6 @@ msgstr "لا"
 msgid "{disco:icon_prefered_idp}"
 msgstr "اختياري المفضل"
 
-msgid "{general:no_cancel}"
-msgstr "لا، الغ"
-
 msgid "{login:user_pass_header}"
 msgstr "ادخل اسم المستخدم و كلمة السر"
 

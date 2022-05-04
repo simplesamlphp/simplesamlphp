@@ -205,9 +205,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Verkies]"
 
-msgid "{general:no_cancel}"
-msgstr "Nee, kanselleer"
-
 msgid "{login:user_pass_header}"
 msgstr "Voer jou gebruikersnaam en wagwoord in"
 

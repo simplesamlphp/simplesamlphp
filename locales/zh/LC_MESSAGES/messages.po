@@ -237,9 +237,6 @@ msgstr "不"
 msgid "{disco:icon_prefered_idp}"
 msgstr "首选选项"
 
-msgid "{general:no_cancel}"
-msgstr "不，取消"
-
 msgid "{login:user_pass_header}"
 msgstr "输入你的用户名和密码"
 

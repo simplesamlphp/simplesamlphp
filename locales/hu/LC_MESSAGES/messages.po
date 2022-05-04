@@ -258,9 +258,6 @@ msgstr "Nem"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Kívánt választás]"
 
-msgid "{general:no_cancel}"
-msgstr "Nem, nem fogadom el"
-
 msgid "{login:user_pass_header}"
 msgstr "Felhasználónév és jelszó"
 

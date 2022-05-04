@@ -179,9 +179,6 @@ msgstr "Ei"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Oletusvalinta]"
 
-msgid "{general:no_cancel}"
-msgstr "ei"
-
 msgid "{login:user_pass_header}"
 msgstr "Syötä tunnuksesi ja salasanasi"
 

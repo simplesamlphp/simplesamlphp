@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioritetna izbira"
 
-msgid "{general:no_cancel}"
-msgstr "Ne, prekliči"
-
 msgid "{login:user_pass_header}"
 msgstr "Vnesite svoje uporabniško ime in geslo"
 

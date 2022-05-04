@@ -252,9 +252,6 @@ msgstr "取消"
 msgid "{disco:icon_prefered_idp}"
 msgstr "喜好選擇"
 
-msgid "{general:no_cancel}"
-msgstr "不，取消"
-
 msgid "{login:user_pass_header}"
 msgstr "請輸入您的帳號及密碼"
 

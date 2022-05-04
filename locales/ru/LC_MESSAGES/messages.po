@@ -277,9 +277,6 @@ msgstr "Нет"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Предпочтительный выбор]"
 
-msgid "{general:no_cancel}"
-msgstr "Нет, отменить"
-
 msgid "{login:user_pass_header}"
 msgstr "Введите имя пользователя и пароль"
 

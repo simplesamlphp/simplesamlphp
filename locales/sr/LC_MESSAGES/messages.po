@@ -265,9 +265,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferirani izbor]"
 
-msgid "{general:no_cancel}"
-msgstr "Ne, odustani"
-
 msgid "{login:user_pass_header}"
 msgstr "Unesite vaše korisničko ime i lozinku"
 

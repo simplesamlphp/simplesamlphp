@@ -266,9 +266,6 @@ msgstr "Nu"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Varianta preferată]"
 
-msgid "{general:no_cancel}"
-msgstr "Nu, renunț"
-
 msgid "{login:user_pass_header}"
 msgstr "Vă rugăm să completați numele de utilizator și parola"
 

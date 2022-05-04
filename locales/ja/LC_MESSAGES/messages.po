@@ -237,9 +237,6 @@ msgstr "いいえ"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[推奨する選択]"
 
-msgid "{general:no_cancel}"
-msgstr "いいえ、キャンセルします"
-
 msgid "{login:user_pass_header}"
 msgstr "ユーザー名とパスワードを入力してください"
 

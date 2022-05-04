@@ -259,9 +259,6 @@ msgstr "Ei"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Eelistatud valik]"
 
-msgid "{general:no_cancel}"
-msgstr "Ei, loobu"
-
 msgid "{login:user_pass_header}"
 msgstr "Sisesta oma kasutajatunnus ja parool"
 

@@ -267,9 +267,6 @@ msgstr "Nej"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioriterat val"
 
-msgid "{general:no_cancel}"
-msgstr "Nej"
-
 msgid "{login:user_pass_header}"
 msgstr "Ange ditt användarnamn och lösenord"
 
