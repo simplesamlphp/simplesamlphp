@@ -334,9 +334,6 @@ msgstr "Indirizzo di e-mail:"
 msgid "{errors:howto_header}"
 msgstr "Come ottenere aiuto"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Password non impostata"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "

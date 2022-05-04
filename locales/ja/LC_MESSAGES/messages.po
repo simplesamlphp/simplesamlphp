@@ -292,9 +292,6 @@ msgstr "Eメールアドレス:"
 msgid "{errors:howto_header}"
 msgstr "困ったときには"
 
-msgid "{errors:title_NOTSET}"
-msgstr "パスワードが設定されていません"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 

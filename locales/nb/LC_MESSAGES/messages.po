@@ -320,9 +320,6 @@ msgstr "E-postadresse:"
 msgid "{errors:howto_header}"
 msgstr "Hvordan få hjelp"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Passordet er ikke satt"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Kilden til denne forespørselen har ikke angitt noen RelayState-parameter "

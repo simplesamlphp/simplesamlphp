@@ -329,9 +329,6 @@ msgstr "E-mail adresa:"
 msgid "{errors:howto_header}"
 msgstr "Kome se obratiti za pomoć"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Zaporka nije postavljena"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Aplikacija koja je inicirala ovaj zahtjev nije poslala RelayState "

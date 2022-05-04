@@ -324,9 +324,6 @@ msgstr "Alamat E-mail:"
 msgid "{errors:howto_header}"
 msgstr "Bagaimana mendapatkan pertolongan"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Password tidak diset"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inisiator dari request ini tidak menyediakan parameter RelayState yang "

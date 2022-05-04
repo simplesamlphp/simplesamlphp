@@ -329,9 +329,6 @@ msgstr "E-postadress"
 msgid "{errors:howto_header}"
 msgstr "Hur får du hjälp"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Lösenord är inte satt"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "

@@ -350,9 +350,6 @@ msgstr "Email:"
 msgid "{errors:howto_header}"
 msgstr "Πώς να λάβετε βοήθεια"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Σφάλμα κωδικού πρόσβασης"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι "

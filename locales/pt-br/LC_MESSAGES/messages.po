@@ -331,9 +331,6 @@ msgstr "Endereço de e-mail:"
 msgid "{errors:howto_header}"
 msgstr "Como conseguir ajuda"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Senha não definida"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "O promotor deste pedido não fornecer um parâmetro RelayState indicando o "

@@ -185,9 +185,6 @@ msgstr ""
 " LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya "
 "bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
-msgid "{errors:title_NOTSET}"
-msgstr "Phasewete ha e a setwa"
-
 msgid "{errors:report_explain}"
 msgstr "Hlalosa seo o se entseng ha phoso ena e ne e hlaha..."
 

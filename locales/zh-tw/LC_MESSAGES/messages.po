@@ -306,9 +306,6 @@ msgstr "電子郵件:"
 msgid "{errors:howto_header}"
 msgstr "如何取得協助"
 
-msgid "{errors:title_NOTSET}"
-msgstr "密碼未設定"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下一個步驟。"
 

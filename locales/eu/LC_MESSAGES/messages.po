@@ -321,9 +321,6 @@ msgstr "E-posta:"
 msgid "{errors:howto_header}"
 msgstr "Laguntza nola eskuratu"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Pasahitzik ez da ezarrii"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "

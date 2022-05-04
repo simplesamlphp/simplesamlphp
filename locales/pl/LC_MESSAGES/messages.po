@@ -312,9 +312,6 @@ msgstr "Adres e-mail"
 msgid "{errors:howto_header}"
 msgstr "Jak otrzymać pomoc."
 
-msgid "{errors:title_NOTSET}"
-msgstr "Nieustawione hasło"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "

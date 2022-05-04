@@ -338,9 +338,6 @@ msgstr "E-mail address:"
 msgid "{errors:howto_header}"
 msgstr "How to get help"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Password not set"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "The initiator of this request did not provide a RelayState parameter "

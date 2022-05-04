@@ -325,9 +325,6 @@ msgstr "E-mailadresse:"
 msgid "{errors:howto_header}"
 msgstr "Hvordan kan jeg få hjælp"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Password er ikke sat"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "

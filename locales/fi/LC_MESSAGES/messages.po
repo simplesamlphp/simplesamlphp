@@ -227,9 +227,6 @@ msgstr "sähköpostiosoite:"
 msgid "{errors:howto_header}"
 msgstr "Miten saada apua"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Salasanaa ei ole asetettu"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 

@@ -324,9 +324,6 @@ msgstr "E-postadresse:"
 msgid "{errors:howto_header}"
 msgstr "Send feilrapport"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Finn ikkje passord"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "

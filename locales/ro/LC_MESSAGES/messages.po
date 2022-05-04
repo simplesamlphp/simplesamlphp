@@ -328,9 +328,6 @@ msgstr "Adresa e-mail:"
 msgid "{errors:howto_header}"
 msgstr "Cum obțineți ajutor/asistență"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Parola nu este configurată"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inițiatorul acestei cereri nu a furnizat parametrul <i>RelayState</i> "

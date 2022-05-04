@@ -253,9 +253,6 @@ msgstr "Epos adres:"
 msgid "{errors:howto_header}"
 msgstr "Hoe om hulp te verkry"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Wagwoord nie opgestel nie"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "

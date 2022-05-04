@@ -316,9 +316,6 @@ msgstr "E-pasta adrese:"
 msgid "{errors:howto_header}"
 msgstr "Kā atrast palīdzību"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Parole nav uzstādīta"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "

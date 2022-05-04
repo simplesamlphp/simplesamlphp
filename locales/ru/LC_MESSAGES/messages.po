@@ -339,9 +339,6 @@ msgstr "Адрес вашей электронной почты:"
 msgid "{errors:howto_header}"
 msgstr "Как получить помощь"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Пароль не установлен"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Инициатор данного запроса не предоставил параметр RelayState с указанием "

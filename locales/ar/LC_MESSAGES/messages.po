@@ -311,9 +311,6 @@ msgstr "عنوان الأميل"
 msgid "{errors:howto_header}"
 msgstr "للمساعدة"
 
-msgid "{errors:title_NOTSET}"
-msgstr "لم تقم بتحديد كلمة السر"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 

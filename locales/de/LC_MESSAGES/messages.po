@@ -334,9 +334,6 @@ msgstr "E-Mail-Adresse:"
 msgid "{errors:howto_header}"
 msgstr "Wie man Hilfe bekommt"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Passwort ist nicht gesetzt"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "

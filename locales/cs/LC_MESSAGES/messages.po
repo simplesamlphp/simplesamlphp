@@ -315,9 +315,6 @@ msgstr "Email"
 msgid "{errors:howto_header}"
 msgstr "Jak získat pomoc"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Heslo nebylo zadáno."
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam pokračovat."
 

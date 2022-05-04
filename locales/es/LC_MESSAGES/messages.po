@@ -347,9 +347,6 @@ msgstr "Correo-e:"
 msgid "{errors:howto_header}"
 msgstr "Cómo obtener asistencia"
 
-msgid "{errors:title_NOTSET}"
-msgstr "No ha establecido una clave de acceso"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "El iniciador de esta solicitud no proporcion&oacute; el par&aacute;metro "

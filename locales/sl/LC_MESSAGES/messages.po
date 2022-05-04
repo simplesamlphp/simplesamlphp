@@ -317,9 +317,6 @@ msgstr "Elektronski naslov:"
 msgid "{errors:howto_header}"
 msgstr "Kje lahko najdem pomoč?"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Geslo ni nastavljeno"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
 

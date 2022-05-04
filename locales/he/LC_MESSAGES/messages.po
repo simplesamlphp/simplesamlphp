@@ -305,9 +305,6 @@ msgstr "כתובת דואל:"
 msgid "{errors:howto_header}"
 msgstr "איך לקבל עזרה"
 
-msgid "{errors:title_NOTSET}"
-msgstr "סיסמה לא מוגדרת"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
 

@@ -291,9 +291,6 @@ msgstr "E-mail地址"
 msgid "{errors:howto_header}"
 msgstr "如何获取帮助"
 
-msgid "{errors:title_NOTSET}"
-msgstr "没有设置密码"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 

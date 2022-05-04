@@ -316,9 +316,6 @@ msgstr "El. pašto adresas:"
 msgid "{errors:howto_header}"
 msgstr "Kaip pasiekti pagalbą"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Nepateiktas slaptažodis"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "

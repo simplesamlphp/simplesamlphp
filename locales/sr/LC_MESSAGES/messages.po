@@ -327,9 +327,6 @@ msgstr "e-mail adresa:"
 msgid "{errors:howto_header}"
 msgstr "Kome se obratiti za pomoć"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Lozinka nije postavljena"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Servis koji je inicirao ovaj zahtjev nije poslao RelayState parametar "

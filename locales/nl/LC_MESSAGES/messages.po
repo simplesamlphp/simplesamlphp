@@ -352,9 +352,6 @@ msgstr "E-mailadres:"
 msgid "{errors:howto_header}"
 msgstr "Hoe kan ik hulp vragen"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Wachtwoord niet ingevuld"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "

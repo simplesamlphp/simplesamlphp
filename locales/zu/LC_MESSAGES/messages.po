@@ -195,7 +195,7 @@ msgstr "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi"
 msgid "Select your identity provider"
 msgstr "Khetha umhlinzeki wakho kamazisi"
 
-msgid "{errors:title_NOTSET}"
+msgid "Password not set"
 msgstr "Iphasiwedi ayisethiwe"
 
 msgid "{login:user_pass_text}"

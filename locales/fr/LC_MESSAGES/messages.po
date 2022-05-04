@@ -333,9 +333,6 @@ msgstr "Adresse de courriel :"
 msgid "{errors:howto_header}"
 msgstr "Envoyer le rapport d'erreur"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Le mot de passe n'a pas été renseigné"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "

@@ -192,7 +192,7 @@ msgstr "Impazamo efunyenwe kuMboneleli Wesazisi"
 msgid "Select your identity provider"
 msgstr "Khetha umboneleli wesazisi wakho"
 
-msgid "{errors:title_NOTSET}"
+msgid "Password not set"
 msgstr "Iphaswedi ayisetwanga"
 
 msgid "{login:user_pass_text}"

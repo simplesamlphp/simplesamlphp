@@ -141,9 +141,6 @@ msgstr "E-mail Adress"
 msgid "{errors:howto_header}"
 msgstr "Wéi een Hellëf kritt"
 
-msgid "{errors:title_NOTSET}"
-msgstr "Passwuert net angin"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
 
