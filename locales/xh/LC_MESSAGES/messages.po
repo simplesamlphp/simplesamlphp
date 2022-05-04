@@ -238,7 +238,7 @@ msgstr ""
 "Lo Mboneleli Wesazisi ufumene Isicelo Songqinisiso esisuka kuMboneleli "
 "Wenkonzo, kodwa kwenzeke impazamo xa kuzanywa ukuprosesa isicelo."
 
-msgid "{login:remember_me}"
+msgid "Remember me"
 msgstr "Ndikhumbule"
 
 msgid "You have previously chosen to authenticate at"

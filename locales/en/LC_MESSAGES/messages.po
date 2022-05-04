@@ -384,9 +384,6 @@ msgstr "Send e-mail to help desk"
 msgid "{login:help_desk_link}"
 msgstr "Help desk homepage"
 
-msgid "{login:remember_me}"
-msgstr "Remember me"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "

@@ -396,9 +396,6 @@ msgstr "Stuur een e-mail naar de helpdesk"
 msgid "{login:help_desk_link}"
 msgstr "Helpdesk homepage"
 
-msgid "{login:remember_me}"
-msgstr "Onthoud mij"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "

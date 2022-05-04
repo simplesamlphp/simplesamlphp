@@ -375,9 +375,6 @@ msgstr "Envie um e-mail para a Central de Ajuda."
 msgid "{login:help_desk_link}"
 msgstr "Central de Ajuda"
 
-msgid "{login:remember_me}"
-msgstr "Lembre-me"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

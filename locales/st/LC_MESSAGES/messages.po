@@ -393,9 +393,6 @@ msgstr "Tshwarisitswe"
 msgid "An unhandled exception was thrown."
 msgstr "Kgeloho e sa rarollwang e lahlilwe."
 
-msgid "{login:remember_me}"
-msgstr "Nkgopole"
-
 msgid "No SAML message provided"
 msgstr "Ha ho molaetsa wa SAML o fanweng"
 

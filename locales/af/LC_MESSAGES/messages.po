@@ -282,9 +282,6 @@ msgstr "Stuur e-pos aan hulplyn"
 msgid "{login:help_desk_link}"
 msgstr "Hulplyn-tuisblad"
 
-msgid "{login:remember_me}"
-msgstr "Onthou my"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "

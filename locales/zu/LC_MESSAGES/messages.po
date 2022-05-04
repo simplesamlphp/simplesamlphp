@@ -241,7 +241,7 @@ msgstr ""
 "Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki "
 "Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo."
 
-msgid "{login:remember_me}"
+msgid "Remember me"
 msgstr "Ngikhumbule"
 
 msgid "You have previously chosen to authenticate at"
