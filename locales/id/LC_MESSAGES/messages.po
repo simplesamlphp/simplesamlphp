@@ -267,9 +267,6 @@ msgstr ""
 "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "
 "LogoutRequest SAML atau LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi "

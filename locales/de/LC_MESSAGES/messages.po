@@ -275,9 +275,6 @@ msgstr ""
 "Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "
 "keine SAML Abmeldeanfrage oder Abmeldeantwort bereitgestellt."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Die folgenden notwendigen Felder wurden nicht gefunden"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die "

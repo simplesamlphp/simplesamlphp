@@ -264,9 +264,6 @@ msgstr ""
 "Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "
 "LogoutRequest või LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Järgmisi kohuslikke välju ei leitud"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "See lõpp-punkt pole lubatud. Kontrolli oma simpleSAMPphp seadistust."
 

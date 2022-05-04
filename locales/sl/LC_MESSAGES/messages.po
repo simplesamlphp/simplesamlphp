@@ -262,9 +262,6 @@ msgstr ""
 "Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili "
 "SAML LogoutRequest ali LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Naslednjih zahtevanih polj ni bilo mogoče najti"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v "

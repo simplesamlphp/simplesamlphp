@@ -241,9 +241,6 @@ msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "以下の必須項目は見つかりませんでした"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの設定でオプションを有効にしてください。"
 

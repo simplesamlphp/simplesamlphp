@@ -247,9 +247,6 @@ msgstr ""
 "TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "
 "bir SAML Çıkışİsteği ya da ÇıkışCevabı sağlamadınız."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Şu gerekli alanlar bulunamadı"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Bu kısım kullanımda değil. SimpleSAMLphp ayarlarınızın etkinleştirme "

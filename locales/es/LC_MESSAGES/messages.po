@@ -288,9 +288,6 @@ msgstr ""
 "Usted accedió a la interfaz SingleLogoutService pero no incluyó un "
 "mensaje SAML LogoutRequest o LogoutResponse"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Los siguientes datos obligatorios no se han encontrado"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Este punto de acceso no est&aacute; habilitado. Verifique las opciones de"

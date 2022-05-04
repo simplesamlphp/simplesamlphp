@@ -271,9 +271,6 @@ msgstr ""
 "Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "
 "cerere de deautentificare sau un răspuns de deautentificare SAML."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Următoarele câmpuri obligatorii nu au fost găsite"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Acest capăt/obiectiv nu este activat. Verificați opțiunile de activare în"

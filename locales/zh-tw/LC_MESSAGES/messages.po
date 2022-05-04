@@ -255,9 +255,6 @@ msgstr "喜好選擇"
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "您連結單一簽出服務界面，但是沒有提供一個 SAML 登出請求或登出回應。"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "下列資料找不到必要欄位"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "這個端點並未啟用。核取啟用選項於您的 SimpleSAMLphp 設定中。"
 

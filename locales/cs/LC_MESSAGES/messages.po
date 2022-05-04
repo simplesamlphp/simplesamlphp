@@ -262,9 +262,6 @@ msgstr ""
 "Přistupujete k SingleLogoutService rozhraní, ale nezadáváte SAML "
 "LogoutRequest ani LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Následující požadovaná pole nenalezena"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "Tento koncový bod není povolen. Zkontrolujte konfiguraci (zapněte volby)."
 

@@ -260,9 +260,6 @@ msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
 "استجابة لطلب الخروج"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "الحقول الإجبارية أدناه مفقودة"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "هذه النقطة غير منشطة. راجع خيارات التنشيط بترتيب SimpleSAMLphp"
 

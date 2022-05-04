@@ -264,9 +264,6 @@ msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
 "LogoutRequest edo LogoutResponse mezurik"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Derrigorrezko datu hauek ez dira aurkitu"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Sarbide puntu hau ez dago gaituta. Egiazta itzazu SimpleSAMLphp-aren "

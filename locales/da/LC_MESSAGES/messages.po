@@ -272,9 +272,6 @@ msgstr ""
 "Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "
 "LogoutRequest eller LogoutResponse"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Følgende obligatoriske felter kunne ikke findes "
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "Denne tjeneste er ikke tilsluttet. Check konfigurationen."
 

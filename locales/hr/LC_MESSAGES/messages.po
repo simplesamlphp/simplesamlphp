@@ -272,9 +272,6 @@ msgstr ""
 "autentifikacije, ali niste dostavili SAML LogoutRequest ili "
 "LogoutResponse poruku."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Nisu pronađena sljedeća obavezna polja"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Ova odredišna adresa nije omogućena. Provjerite dozvole u konfiguraciji "

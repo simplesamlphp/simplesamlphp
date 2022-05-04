@@ -254,9 +254,6 @@ msgstr ""
 "ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "
 "SAML."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "השדות הדרושים הבאים לא נמצאו"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעלה בהגדרות  SimpleSAMLphp שלך."
 

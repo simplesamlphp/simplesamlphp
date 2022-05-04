@@ -262,9 +262,6 @@ msgstr ""
 "Została wywołana usługa SingleLogoutService, ale nie dostarczono "
 "komunikatu SAML LogoutRequest lub LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Nastepujące wymagane pola nie zostały znalezione"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr "Brak uprawnień. Sprawdź opcję enable w konfiguracji SimpleSAMLphp."
 

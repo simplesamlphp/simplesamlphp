@@ -274,9 +274,6 @@ msgstr ""
 "Você acessou a interface do SingleLogoutService, mas não forneceu a SAML "
 "LogoutRequest ou LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Os seguintes campos requeridos não foram encontrados"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Este parâmetro não está ativado. Marque a opção habilitar na configuração"

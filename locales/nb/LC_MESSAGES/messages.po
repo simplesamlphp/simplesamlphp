@@ -263,9 +263,6 @@ msgstr ""
 "Du brukte SingleLogoutService-grensesnittet uten å angi enten en SAML "
 "LogoutRequest eller en LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Følgende obligatoriske felter ble ikke funnet"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt "

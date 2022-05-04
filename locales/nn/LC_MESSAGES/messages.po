@@ -266,9 +266,6 @@ msgstr ""
 "utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
 "LogoutResponse)"
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Fann ikkje følgjande nødvendige felt"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Endepunktet er ikkje skrudd på. Sjekk Enable Options i konfigurasjonen av"

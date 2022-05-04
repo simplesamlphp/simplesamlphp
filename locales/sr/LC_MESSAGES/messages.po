@@ -270,9 +270,6 @@ msgstr ""
 "Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste "
 "poslali SAML <i>LogoutRequest</i> ili <i>LogoutResponse</i> poruku."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Nisu pronađena sledeća opciona polja"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Pristup ovoj odredišnoj adresa nije omogućen. Proverite podešavanja "

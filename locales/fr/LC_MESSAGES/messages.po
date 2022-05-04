@@ -276,9 +276,6 @@ msgstr ""
 "Vous avez accédé à l'interface SingleLogoutService, mais vous n'avez pas "
 "fourni de LogoutRequest ou LogoutResponse SAML."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Les champs suivants n'existent pas et sont requis"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Cette terminaison (ou <i>endpoint</i>) n'est pas activée. Vérifiez les "

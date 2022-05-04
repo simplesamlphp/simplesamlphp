@@ -272,9 +272,6 @@ msgstr ""
 "Du har anroppat tjänsten för Single Sing-Out utan att skicka med någon "
 "SAML LogoutRequest eller LogoutResponse."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "Följande nödvändiga alternativ hittades inte"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Denna ändpunkt är inte aktiverad. Kontrollera aktiveringsinställningarna "

@@ -263,9 +263,6 @@ msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
 "üzenetet kell megadni."
 
-msgid "{admin:metaover_required_not_found}"
-msgstr "A következő kötelező mezők hiányoznak"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a SimpleSAMLphp "
