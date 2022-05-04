@@ -255,9 +255,6 @@ msgstr "لا"
 msgid "{disco:icon_prefered_idp}"
 msgstr "اختياري المفضل"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "لا توجد استجابة SAML"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "

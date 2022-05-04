@@ -253,7 +253,7 @@ msgstr "Yebo, qhubeka"
 msgid "{login:remember_username}"
 msgstr "Khumbula igama lami lomsebenzisi"
 
-msgid "{errors:title_ACSPARAMS}"
+msgid "No SAML response provided"
 msgstr "Ayikho impendulo ye-SAML enikeziwe"
 
 msgid "Enter your username and password"

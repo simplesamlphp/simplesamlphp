@@ -256,9 +256,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Rekomenduojame]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nepateiktas SAML atsakymas"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "

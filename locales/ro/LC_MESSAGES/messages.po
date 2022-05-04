@@ -266,9 +266,6 @@ msgstr "Nu"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Varianta preferată]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nu a fost furnizat răspunsul SAML"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "

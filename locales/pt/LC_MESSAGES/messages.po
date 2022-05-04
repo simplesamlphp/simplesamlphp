@@ -239,9 +239,6 @@ msgstr "Não"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Escolha preferida"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Mensagem SAML não fornecida"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "

@@ -265,9 +265,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferirani izbor]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nije dostavljen SAML odgovor"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste "

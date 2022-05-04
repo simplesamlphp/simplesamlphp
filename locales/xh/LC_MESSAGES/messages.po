@@ -250,7 +250,7 @@ msgstr "Ewe, qhubeka"
 msgid "{login:remember_username}"
 msgstr "Khumbula igama lomsebenzisi lam"
 
-msgid "{errors:title_ACSPARAMS}"
+msgid "No SAML response provided"
 msgstr "Akukho mpendulo ye-SAML inikelweyo"
 
 msgid "Enter your username and password"

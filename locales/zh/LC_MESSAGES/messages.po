@@ -237,9 +237,6 @@ msgstr "不"
 msgid "{disco:icon_prefered_idp}"
 msgstr "首选选项"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "没有提供SAML应答"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "你访问了SingleLogoutService接口，但是并没有提供一个SAML的LogoutRequest或者LogoutResponse"
 

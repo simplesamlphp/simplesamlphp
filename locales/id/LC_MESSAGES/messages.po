@@ -262,9 +262,6 @@ msgstr "Tidak"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Pilihan yang disukai"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Tidak ada response SAML yang disediakan"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "

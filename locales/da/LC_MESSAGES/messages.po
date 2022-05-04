@@ -267,9 +267,6 @@ msgstr "Nej"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Foretrukket valg"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAML response mangler"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "

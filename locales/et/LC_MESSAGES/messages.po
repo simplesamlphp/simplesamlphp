@@ -259,9 +259,6 @@ msgstr "Ei"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Eelistatud valik]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAML-vastust ei pakutud"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "

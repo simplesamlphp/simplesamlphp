@@ -205,9 +205,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Verkies]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Geen SAML versoek gevind nie"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'),"

@@ -260,9 +260,6 @@ msgstr "Nei"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Beste val"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Fann ikkje SAML-svar"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Du har bruk utloggingstenesta (SingleLogoutService), men har ikkje sendt "

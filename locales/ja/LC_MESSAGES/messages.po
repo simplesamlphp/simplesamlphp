@@ -237,9 +237,6 @@ msgstr "いいえ"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[推奨する選択]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAMLレスポンスがありません"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"

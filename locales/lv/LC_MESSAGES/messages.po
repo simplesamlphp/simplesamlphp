@@ -256,9 +256,6 @@ msgstr "Nē"
 msgid "{disco:icon_prefered_idp}"
 msgstr "(Mana labākā izvēle)"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nav SAML atbildes"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "

@@ -290,9 +290,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Voorkeurskeuze]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Geen SAML response gevonden"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"

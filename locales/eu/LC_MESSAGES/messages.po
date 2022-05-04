@@ -259,9 +259,6 @@ msgstr "Ez"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Aukera gogokoena]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAML erantzuna falta da"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "

@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioritetna izbira"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nobenega odgovora za SAML ni na voljo"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili "

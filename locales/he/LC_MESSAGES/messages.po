@@ -249,9 +249,6 @@ msgstr "לא"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[בחירה מעודפת]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "לא סופקה תגובת SAML"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "

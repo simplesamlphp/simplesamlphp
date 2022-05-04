@@ -123,9 +123,6 @@ msgstr ""
 "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se "
 "tsejwe"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Ha ho karabelo ya SAML e fanweng"
-
 msgid "Incorrect username or password"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 

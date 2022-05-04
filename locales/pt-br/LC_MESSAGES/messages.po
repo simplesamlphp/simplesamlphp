@@ -269,9 +269,6 @@ msgstr "Não"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Opção preferida]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Não fornecida a resposta SAML"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Você acessou a interface do SingleLogoutService, mas não forneceu a SAML "

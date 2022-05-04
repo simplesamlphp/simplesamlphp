@@ -270,9 +270,6 @@ msgstr "Nein"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Bevorzugte Auswahl]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Keine SAML-Antwort bereitgestellt"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "

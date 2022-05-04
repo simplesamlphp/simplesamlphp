@@ -102,9 +102,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Service Provider"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Keng SAML Aentwert ungin"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "

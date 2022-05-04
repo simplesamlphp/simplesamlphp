@@ -242,9 +242,6 @@ msgstr "Hayır"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Tercih edilen seçenek]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAML cevabı verilmemiş"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "

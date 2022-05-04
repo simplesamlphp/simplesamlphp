@@ -258,9 +258,6 @@ msgstr "Nem"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Kívánt választás]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Nincs SAML válasz"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "

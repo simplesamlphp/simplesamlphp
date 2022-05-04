@@ -283,9 +283,6 @@ msgstr "No"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Opción preference]"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "Falta la respuesta SAML"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Usted accedió a la interfaz SingleLogoutService pero no incluyó un "

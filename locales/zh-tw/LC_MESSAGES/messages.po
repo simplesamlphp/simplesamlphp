@@ -252,9 +252,6 @@ msgstr "取消"
 msgid "{disco:icon_prefered_idp}"
 msgstr "喜好選擇"
 
-msgid "{errors:title_ACSPARAMS}"
-msgstr "SAML 無回應"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "您連結單一簽出服務界面，但是沒有提供一個 SAML 登出請求或登出回應。"
 
