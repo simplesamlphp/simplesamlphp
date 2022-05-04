@@ -329,9 +329,6 @@ msgstr ""
 "Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia "
 "sesji i wszystkie atrybuty, które zostały załączone do sesji."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Nie znaleziono strony"
-
 msgid "{admin:metaover_intro}"
 msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 

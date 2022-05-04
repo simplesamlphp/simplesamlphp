@@ -364,9 +364,6 @@ msgstr ""
 "si su sesión ha caducado, cuanto queda hasta que lo haga y todos los "
 "atributos existentes en su sesión."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Página no encontrada"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Para ver los detalles de una entidad SAML, haga click en la cabecera de "

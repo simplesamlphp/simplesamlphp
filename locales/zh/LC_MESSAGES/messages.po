@@ -303,9 +303,6 @@ msgstr "SimpleSAMLphp 诊断"
 msgid "{status:intro}"
 msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您的会话超时，它持续多久，直到超时和连接到您的会话的所有属性。"
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "页面没有找到"
-
 msgid "{admin:metaover_intro}"
 msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 

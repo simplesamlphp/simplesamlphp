@@ -346,9 +346,6 @@ msgstr ""
 "expirarea sesiunii precum și toate atributele atașate sesiunii "
 "dumneavoastră."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Pagina nu a fost găsită"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "

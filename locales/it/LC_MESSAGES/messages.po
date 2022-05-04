@@ -351,9 +351,6 @@ msgstr ""
 "vedere se la sessione è scaduta, quanto è durata prima di scadere e tutti"
 " gli attributi ad essa collegati."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Pagina non trovata"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Per visualizzare i dettagli di una entità SAML, cliccare sull'header SAML"

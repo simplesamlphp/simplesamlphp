@@ -342,9 +342,6 @@ msgstr ""
 "udløbet, hvor lang tid der er til at den udløber, samt alle øvrige "
 "oplysninger om din session."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Siden kunne ikke findes"
-
 msgid "{admin:metaover_intro}"
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
 

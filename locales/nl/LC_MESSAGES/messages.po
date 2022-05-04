@@ -369,9 +369,6 @@ msgstr ""
 "sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u "
 "kunt alle attributen bekijken die aanwezig zijn in deze sessie."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Pagina niet gevonden"
-
 msgid "{admin:metaover_intro}"
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 

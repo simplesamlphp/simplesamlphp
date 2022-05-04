@@ -345,9 +345,6 @@ msgstr ""
 " možete videti je li vam je istekla sesija, koliko će još dugo vaša "
 "sesija trajati i sve atribute koji su vezani uz vašu sesiju."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Stranica nije pronađena"
-
 msgid "{admin:metaover_intro}"
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 

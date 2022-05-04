@@ -318,9 +318,6 @@ msgstr ""
 "dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm "
 "bilgileri buradan görebilirsiniz."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Sayfa bulunamadı"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Bir SAML elemanı hakkındaki detayları görmek için, SAML elemanı başlığına"

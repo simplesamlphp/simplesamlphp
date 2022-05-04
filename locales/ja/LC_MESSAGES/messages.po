@@ -305,9 +305,6 @@ msgid "{status:intro}"
 msgstr ""
 "ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "ページが見つかりません"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 

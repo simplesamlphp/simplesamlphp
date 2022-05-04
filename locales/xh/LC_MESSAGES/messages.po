@@ -429,9 +429,6 @@ msgstr "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?"
 msgid "{logout:loggedoutfrom}"
 msgstr "Ngoku uphume ngokuyimpumelelo kwi-%SP%."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Ikhasi alifunyenwanga"
-
 msgid "{errors:descr_USERABORTED}"
 msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 

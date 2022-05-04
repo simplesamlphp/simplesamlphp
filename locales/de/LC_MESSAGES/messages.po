@@ -351,9 +351,6 @@ msgstr ""
 "ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist "
 "und alle Attribute Ihrer Sitzung."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Seite nicht gefunden"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "

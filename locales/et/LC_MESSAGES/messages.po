@@ -334,9 +334,6 @@ msgstr ""
 "sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga "
 "seotud atribuute."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Lehekülge ei leitud"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
 

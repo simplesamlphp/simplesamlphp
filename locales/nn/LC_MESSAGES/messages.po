@@ -341,9 +341,6 @@ msgstr ""
 "din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir "
 "brukte i sesjonen din."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Fann ikkje sida"
-
 msgid "{admin:metaover_intro}"
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 

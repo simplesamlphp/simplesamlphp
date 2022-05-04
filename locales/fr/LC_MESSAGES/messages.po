@@ -350,9 +350,6 @@ msgstr ""
 "consulter ici le temps restant sur votre session, ainsi que les attributs"
 " qui y sont attachés."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Page introuvable"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 

@@ -335,9 +335,6 @@ msgstr ""
 "munkamenete, mikor lépett be utoljára és a munkamenethez tartozó "
 "attribútumokat."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Oldal nem található"
-
 msgid "{admin:metaover_intro}"
 msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 

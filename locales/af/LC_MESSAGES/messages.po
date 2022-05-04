@@ -261,9 +261,6 @@ msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "
 "parameter wat aandui waarheen om volgende te gaan nie."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Bladsy nie gevind nie"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "

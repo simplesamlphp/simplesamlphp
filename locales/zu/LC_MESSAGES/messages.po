@@ -435,9 +435,6 @@ msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
 msgid "{logout:loggedoutfrom}"
 msgstr "Usuphume ngempumelelo kokuthi %SP%."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Ikhasi alitholakali"
-
 msgid "{errors:descr_USERABORTED}"
 msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
 

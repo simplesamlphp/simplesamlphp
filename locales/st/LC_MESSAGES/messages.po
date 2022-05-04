@@ -322,9 +322,6 @@ msgstr ""
 "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso"
 " e bile teng."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Leqephe ha le a fumanwa"
-
 msgid "{disco:select}"
 msgstr "Kgetha"
 

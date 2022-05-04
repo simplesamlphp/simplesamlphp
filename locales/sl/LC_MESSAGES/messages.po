@@ -331,9 +331,6 @@ msgstr ""
 "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad "
 "trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
 
-msgid "{errors:title_NOTFOUNDREASON}"
-msgstr "Strani ni bilo mogoče najti."
-
 msgid "{admin:metaover_intro}"
 msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
 
