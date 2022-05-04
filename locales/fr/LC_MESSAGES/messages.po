@@ -403,9 +403,6 @@ msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"
 " SimpleSAMLphp sur la partie adverse :"
 
-msgid "{disco:login_at}"
-msgstr "S'authentifier sur"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossible de se déconnecter d'un ou plusieurs services. Pour être "

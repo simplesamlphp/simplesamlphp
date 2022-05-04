@@ -412,9 +412,6 @@ msgstr "Формат простого SimpleSAMLphp файла"
 msgid "{admin:metadata_adfs-sp}"
 msgstr "Метаданные сервис провайдера ADFS"
 
-msgid "{disco:login_at}"
-msgstr "Войти в"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "

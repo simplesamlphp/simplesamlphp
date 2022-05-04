@@ -386,9 +386,6 @@ msgstr ""
 "SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "
 "SimpleSAMLphp-d:"
 
-msgid "{disco:login_at}"
-msgstr "Logi sisse"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "

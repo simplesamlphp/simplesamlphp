@@ -390,9 +390,6 @@ msgstr ""
 "SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon "
 "SimpleSAMLphp van:"
 
-msgid "{disco:login_at}"
-msgstr "Belépés ide:"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "

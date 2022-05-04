@@ -427,9 +427,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-sp}"
 msgstr "ADFS SP Metadata"
 
-msgid "{disco:login_at}"
-msgstr "Inloggen bij"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

@@ -424,9 +424,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-sp}"
 msgstr "Metadatos SP ADFS"
 
-msgid "{disco:login_at}"
-msgstr "Identificarse en"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Imposible desconectarse de uno o más servicios. Para asegurar que todas "

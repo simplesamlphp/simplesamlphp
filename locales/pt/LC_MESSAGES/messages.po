@@ -364,9 +364,6 @@ msgstr ""
 "Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "
 "alternativa se usar uma entidade SimpleSAMLphp no outro extremo:"
 
-msgid "{disco:login_at}"
-msgstr "Entrar em"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "

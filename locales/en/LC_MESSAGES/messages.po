@@ -415,9 +415,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-sp}"
 msgstr "ADFS SP Metadata"
 
-msgid "{disco:login_at}"
-msgstr "Login at"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "

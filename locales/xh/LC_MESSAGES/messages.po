@@ -122,7 +122,7 @@ msgstr "Cofa ukuze ubone uNgqinisiso lweNgcombolo"
 msgid "{errors:howto_header}"
 msgstr "Indlela yokufumana uncedo"
 
-msgid "{disco:login_at}"
+msgid "Login at"
 msgstr "Ungeno ngo-"
 
 msgid "{disco:select}"

@@ -377,9 +377,6 @@ msgstr ""
 "بصيغة SimpleSAMLphp- استخدم هذه الصيغة ان كنت تستخدم وحدة SimpleSAMLphp "
 "بالاتجاه الاخر ايضاً"
 
-msgid "{disco:login_at}"
-msgstr "سجل دخولي علي"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "لم استطع تسجيل الخروج من واحدة او اكثر من الخدمات. للتأكد من ان جميع "

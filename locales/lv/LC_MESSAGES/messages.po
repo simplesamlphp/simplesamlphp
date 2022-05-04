@@ -384,9 +384,6 @@ msgstr ""
 "SimpleSAMLphp parasta faila formātā - lietojiet šo, ja izmantojat "
 "SimpleSAMLphp entītiju otrā galā:"
 
-msgid "{disco:login_at}"
-msgstr "Pieslēgties pie"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "

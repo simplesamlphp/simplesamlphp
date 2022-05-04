@@ -400,9 +400,6 @@ msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "
 "används i mottagende sida:"
 
-msgid "{disco:login_at}"
-msgstr "Logga in med"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan inte logga ut från eller flera tjänster. För att vara säker på att du"

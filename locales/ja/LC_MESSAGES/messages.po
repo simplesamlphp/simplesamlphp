@@ -353,9 +353,6 @@ msgstr "SAML 2.0サービスプロバイダ(ホスト)"
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 
-msgid "{disco:login_at}"
-msgstr "ログイン: "
-
 msgid "{logout:failedsps}"
 msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

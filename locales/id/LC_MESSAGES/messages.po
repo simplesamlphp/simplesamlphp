@@ -393,9 +393,6 @@ msgstr ""
 "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan"
 " entiti SimpleSAMLphp pada sisi lain:"
 
-msgid "{disco:login_at}"
-msgstr "Login di"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "

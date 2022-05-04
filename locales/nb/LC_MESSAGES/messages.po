@@ -391,9 +391,6 @@ msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "
 "den andre enden:"
 
-msgid "{disco:login_at}"
-msgstr "Logg inn hos"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "

@@ -400,9 +400,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-sp}"
 msgstr "ADFS tjenesteudbyder metadata"
 
-msgid "{disco:login_at}"
-msgstr "Login hos"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "

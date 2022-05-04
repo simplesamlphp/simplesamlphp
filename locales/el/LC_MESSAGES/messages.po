@@ -430,9 +430,6 @@ msgstr ""
 msgid "{admin:metadata_adfs-sp}"
 msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών ADFS"
 
-msgid "{disco:login_at}"
-msgstr "Είσοδος @"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "

@@ -374,9 +374,6 @@ msgstr "如果您需要於其他地方使用 SimpleSAMLphp 實體 - 請參閱 Si
 msgid "{admin:metadata_adfs-sp}"
 msgstr "ADFS 服務提供者 Metadata"
 
-msgid "{disco:login_at}"
-msgstr "登入至"
-
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 

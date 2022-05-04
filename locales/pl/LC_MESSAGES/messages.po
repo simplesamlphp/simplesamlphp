@@ -376,9 +376,6 @@ msgstr "Zapamiętaj mój wybór"
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Dostawca Serwisu (Lokalny)"
 
-msgid "{disco:login_at}"
-msgstr "Zaloguj w"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

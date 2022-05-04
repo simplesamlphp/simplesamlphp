@@ -405,9 +405,6 @@ msgstr ""
 "In formato flat per SimpleSAMLphp - da utilizzare se dall'altra parte c'è"
 " un'entità che utilizza SimpleSAMLphp"
 
-msgid "{disco:login_at}"
-msgstr "Effettua il login con"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "

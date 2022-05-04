@@ -379,9 +379,6 @@ msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "
 "potřebujete používat SimpleSAMLphp na druhé straně:"
 
-msgid "{disco:login_at}"
-msgstr "Přihlášení k"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"

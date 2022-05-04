@@ -540,9 +540,6 @@ msgstr ""
 msgid "{status:subject_notset}"
 msgstr "ha e a setwa"
 
-msgid "{disco:login_at}"
-msgstr "Kena ho"
-
 msgid "Could not create authentication response"
 msgstr "Ha e a kgona ho theha karabelo ya ntefatso"
 

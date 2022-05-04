@@ -387,9 +387,6 @@ msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "
 "SimpleSAMLphp kitoje esybėje:"
 
-msgid "{disco:login_at}"
-msgstr "Prisijungti prie"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"

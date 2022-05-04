@@ -125,7 +125,7 @@ msgstr "Qhafaza ukuze ubuke i-AuthData"
 msgid "{errors:howto_header}"
 msgstr "Indlela yokuthola usizo"
 
-msgid "{disco:login_at}"
+msgid "Login at"
 msgstr "Ngena kokuthi"
 
 msgid "{disco:select}"

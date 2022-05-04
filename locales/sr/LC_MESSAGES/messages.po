@@ -397,9 +397,6 @@ msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "
 "takođe nalazi SimpleSAMLphp entitet:"
 
-msgid "{disco:login_at}"
-msgstr "Prijavi se kroz"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjavljivanje iz jednog ili više servisa nije uspelo. Da biste bili "

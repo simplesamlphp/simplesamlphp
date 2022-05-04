@@ -369,9 +369,6 @@ msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"
 " בצד השני: "
 
-msgid "{disco:login_at}"
-msgstr "כנס ל-"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"

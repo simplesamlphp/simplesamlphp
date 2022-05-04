@@ -400,9 +400,6 @@ msgstr ""
 "În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "
 "în capătul celălalt folosiți o entitate SimpleSAMLphp:"
 
-msgid "{disco:login_at}"
-msgstr "Autentificare la"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "

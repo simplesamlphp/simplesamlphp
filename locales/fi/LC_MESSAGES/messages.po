@@ -279,9 +279,6 @@ msgstr "Kyllä"
 msgid "{disco:remember}"
 msgstr "Muista valintani"
 
-msgid "{disco:login_at}"
-msgstr "Kirjaudu"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

@@ -302,9 +302,6 @@ msgstr "Ja, voortgaan"
 msgid "{disco:remember}"
 msgstr "Onthou my keuse"
 
-msgid "{disco:login_at}"
-msgstr "Meld aan by"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

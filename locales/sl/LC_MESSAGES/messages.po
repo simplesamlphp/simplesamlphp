@@ -383,9 +383,6 @@ msgstr ""
 "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "
 "uporabljate SimpleSAMLphp entiteto na drugi strani:"
 
-msgid "{disco:login_at}"
-msgstr "Prijavi se pri"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "
