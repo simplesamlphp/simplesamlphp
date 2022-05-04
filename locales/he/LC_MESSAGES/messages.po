@@ -358,9 +358,6 @@ msgstr "בקשה שגויה לשירות גילוי"
 msgid "{general:yes_continue}"
 msgstr "כן, המשך"
 
-msgid "{disco:remember}"
-msgstr "זכור את הבחירה שלי"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"

@@ -276,9 +276,6 @@ msgstr "Vääränlainen pyynti discovery-palveluun"
 msgid "{general:yes_continue}"
 msgstr "Kyllä"
 
-msgid "{disco:remember}"
-msgstr "Muista valintani"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

@@ -370,9 +370,6 @@ msgstr "nieprawidłowe żadanie do listy serwisow"
 msgid "{general:yes_continue}"
 msgstr "Tak, akceptuję"
 
-msgid "{disco:remember}"
-msgstr "Zapamiętaj mój wybór"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

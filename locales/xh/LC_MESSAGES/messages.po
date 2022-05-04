@@ -128,7 +128,7 @@ msgstr "Ungeno ngo-"
 msgid "{disco:select}"
 msgstr "Khetha"
 
-msgid "{disco:remember}"
+msgid "Remember my choice"
 msgstr "Khumbula ukhetho lwam"
 
 msgid "{general:remember}"

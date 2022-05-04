@@ -382,9 +382,6 @@ msgstr "Feilforma spørsmål til Discovery Service"
 msgid "{general:yes_continue}"
 msgstr "Ja, fortsett"
 
-msgid "{disco:remember}"
-msgstr "Hugs mitt val"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "På flat fil for SimpleSAMLphp.  Bruk denne dersom du bruker SimpleSAMLphp"

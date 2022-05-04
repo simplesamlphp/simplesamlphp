@@ -368,9 +368,6 @@ msgstr "Špatný požadavek pro prohledávací službu"
 msgid "{general:yes_continue}"
 msgstr "Ano, akceptuji"
 
-msgid "{disco:remember}"
-msgstr "Zapamatuj moji volbu"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "

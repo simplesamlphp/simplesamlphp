@@ -382,9 +382,6 @@ msgstr "Request yang buruk ke layanan penemuan"
 msgid "{general:yes_continue}"
 msgstr "Yam lanjutkan"
 
-msgid "{disco:remember}"
-msgstr "Ingat pilihan saya"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan"

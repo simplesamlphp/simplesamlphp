@@ -299,9 +299,6 @@ msgstr "Toegangsfout by die ontdekkings diens"
 msgid "{general:yes_continue}"
 msgstr "Ja, voortgaan"
 
-msgid "{disco:remember}"
-msgstr "Onthou my keuse"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "

@@ -131,7 +131,7 @@ msgstr "Ngena kokuthi"
 msgid "{disco:select}"
 msgstr "Khetha"
 
-msgid "{disco:remember}"
+msgid "Remember my choice"
 msgstr "Khumbula ukukhetha kwami"
 
 msgid "{general:remember}"

@@ -376,9 +376,6 @@ msgstr "Neteisinga užklausa kreipiantis į \"discovery\" servisą"
 msgid "{general:yes_continue}"
 msgstr "Taip, tęsti"
 
-msgid "{disco:remember}"
-msgstr "Prisiminti pasirinkimą"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "

@@ -400,9 +400,6 @@ msgstr "Неправильный запрос к службе обнаружен
 msgid "{general:yes_continue}"
 msgstr "Да, продолжить"
 
-msgid "{disco:remember}"
-msgstr "Запомнить мой выбор"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
 

@@ -389,9 +389,6 @@ msgstr "Ogiltig förfrågan till lokaliseringstjänsten (Discovery Service)"
 msgid "{general:yes_continue}"
 msgstr "Ja"
 
-msgid "{disco:remember}"
-msgstr "Kom ihåg mitt val"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "

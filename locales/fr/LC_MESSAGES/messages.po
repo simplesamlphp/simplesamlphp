@@ -392,9 +392,6 @@ msgstr "Mauvaise requête au service de découverte automatique (discovery servi
 msgid "{general:yes_continue}"
 msgstr "Oui"
 
-msgid "{disco:remember}"
-msgstr "Retenir ce choix"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"

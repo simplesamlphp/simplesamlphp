@@ -389,9 +389,6 @@ msgstr "Cerere eronată către serviciul de căutare"
 msgid "{general:yes_continue}"
 msgstr "Da, continuă"
 
-msgid "{disco:remember}"
-msgstr "Memorează alegerea făcută"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "

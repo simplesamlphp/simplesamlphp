@@ -342,9 +342,6 @@ msgstr "错误的搜寻服务请求"
 msgid "{general:yes_continue}"
 msgstr "是的，继续"
 
-msgid "{disco:remember}"
-msgstr "记住我的选择"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "如果你想在其他网站使用的SimpleSAMLphp，那么你应该使用SimpleSAMLphp扁平的文件格式"
 

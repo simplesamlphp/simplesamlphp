@@ -386,9 +386,6 @@ msgstr "Servisu za lociranje poslat je neispravan zahtev"
 msgid "{general:yes_continue}"
 msgstr "Da, nastavi"
 
-msgid "{disco:remember}"
-msgstr "Zapamti moj izbor"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

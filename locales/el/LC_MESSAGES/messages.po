@@ -415,9 +415,6 @@ msgstr "Εσφαλμένο αίτημα προς την υπηρεσία ανε�
 msgid "{general:yes_continue}"
 msgstr "Αποδοχή"
 
-msgid "{disco:remember}"
-msgstr "Να θυμάσαι την επιλογή μού"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα "

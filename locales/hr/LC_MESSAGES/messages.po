@@ -389,9 +389,6 @@ msgstr "Lokacijskom servisu poslan je neispravan upit"
 msgid "{general:yes_continue}"
 msgstr "Da, nastavi"
 
-msgid "{disco:remember}"
-msgstr "Zapamti moj odabir"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

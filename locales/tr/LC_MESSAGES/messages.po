@@ -361,9 +361,6 @@ msgstr "Tanıma servisine giden hatalı istek"
 msgid "{general:yes_continue}"
 msgstr "Evet, devam et"
 
-msgid "{disco:remember}"
-msgstr "Seçimimi hatırla"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "

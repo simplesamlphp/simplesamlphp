@@ -380,9 +380,6 @@ msgstr "Ugyldig forespørsel til SAML 2.0 Discovery-tjenesten"
 msgid "{general:yes_continue}"
 msgstr "Ja, fortsett"
 
-msgid "{disco:remember}"
-msgstr "Husk mitt valg"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "

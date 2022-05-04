@@ -392,9 +392,6 @@ msgstr "Pedido incorreto para o serviço de descoberta"
 msgid "{general:yes_continue}"
 msgstr "Sim, Aceito"
 
-msgid "{disco:remember}"
-msgstr "Lembrar minha escolha"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Em formato de arquivo plano SimpleSAMLphp - use isso se você estiver "

@@ -344,9 +344,6 @@ msgstr "サービスディスカバリ中の不正なリクエスト"
 msgid "{general:yes_continue}"
 msgstr "はい、続けます"
 
-msgid "{disco:remember}"
-msgstr "選択を記憶する"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 

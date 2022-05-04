@@ -410,9 +410,6 @@ msgstr "Solicitud err&oacute;nea al servicio de descubrimiento"
 msgid "{general:yes_continue}"
 msgstr "Sí"
 
-msgid "{disco:remember}"
-msgstr "Recordar mi elección"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "En un fichero de formato SimpleSAMLphp - utilice esta opción si está "

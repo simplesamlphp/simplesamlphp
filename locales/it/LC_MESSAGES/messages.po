@@ -394,9 +394,6 @@ msgstr "Richiesta errata al discovery service"
 msgid "{general:yes_continue}"
 msgstr "Sì, continuare"
 
-msgid "{disco:remember}"
-msgstr "Ricorda la mia scelta"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In formato flat per SimpleSAMLphp - da utilizzare se dall'altra parte c'è"

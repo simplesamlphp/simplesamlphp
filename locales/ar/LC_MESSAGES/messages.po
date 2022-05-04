@@ -366,9 +366,6 @@ msgstr "طلب سيء لخدمة استكشافية"
 msgid "{general:yes_continue}"
 msgstr "نعم، واصل"
 
-msgid "{disco:remember}"
-msgstr "تذكر خياراتي"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "بصيغة SimpleSAMLphp- استخدم هذه الصيغة ان كنت تستخدم وحدة SimpleSAMLphp "

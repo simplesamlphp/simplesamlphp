@@ -372,9 +372,6 @@ msgstr "Zahteva, ki je bila poslana \"Discovery service-u\" je napačna."
 msgid "{general:yes_continue}"
 msgstr "Da, nadaljuj"
 
-msgid "{disco:remember}"
-msgstr "Shrani kot privzeto izbiro"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "
