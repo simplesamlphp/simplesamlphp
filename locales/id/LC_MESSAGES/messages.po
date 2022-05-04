@@ -368,9 +368,6 @@ msgstr "Kirim e-mail ke help dek"
 msgid "{login:help_desk_link}"
 msgstr "Homepage Help desk"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Error CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan"

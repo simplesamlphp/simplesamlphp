@@ -365,9 +365,6 @@ msgstr "Ügyfélszolgálat weboldala"
 msgid "{login:remember_me}"
 msgstr "Emlékezzen rám"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS hiba"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "

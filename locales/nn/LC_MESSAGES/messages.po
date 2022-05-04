@@ -368,9 +368,6 @@ msgstr "Send epost til brukarstøtte"
 msgid "{login:help_desk_link}"
 msgstr "Heimeside for brukarstøtte"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS-feil"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "

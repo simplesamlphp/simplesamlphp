@@ -352,9 +352,6 @@ msgstr "ارسل إيميل لصفحة المساعدة"
 msgid "{login:help_desk_link}"
 msgstr "صفحة المساعدة"
 
-msgid "{errors:title_CASERROR}"
-msgstr "خطا CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "

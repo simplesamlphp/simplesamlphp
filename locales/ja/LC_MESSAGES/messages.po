@@ -332,9 +332,6 @@ msgstr "ヘルプデスクにメールする"
 msgid "{login:help_desk_link}"
 msgstr "ヘルプデスクページ"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CASエラー"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

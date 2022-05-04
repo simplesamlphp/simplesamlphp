@@ -358,9 +358,6 @@ msgstr "Pošlji sporočilo tehnični podpori."
 msgid "{login:help_desk_link}"
 msgstr "Spletna stran tehnične podpore uporabnikom."
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS napaka"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos "

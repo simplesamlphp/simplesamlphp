@@ -372,9 +372,6 @@ msgstr "Pošalji e-mail službi za podršku korisnicima"
 msgid "{login:help_desk_link}"
 msgstr "Stranice službe za podršku korisnicima"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS greška"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "

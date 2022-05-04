@@ -378,9 +378,6 @@ msgstr "Central de Ajuda"
 msgid "{login:remember_me}"
 msgstr "Lembre-me"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Erro CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

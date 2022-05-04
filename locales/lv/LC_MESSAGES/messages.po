@@ -359,9 +359,6 @@ msgstr "Sūtīt e-pastu palīdzības dienestam"
 msgid "{login:help_desk_link}"
 msgstr "Palīdzības dienesta interneta lapa"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS kļūda"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serviss pieprasa autentifikāciju. Lūdzu ievadiet savu lietotāja vārdu un "

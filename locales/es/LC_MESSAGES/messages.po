@@ -396,9 +396,6 @@ msgstr "Página de soporte técnico"
 msgid "{login:remember_me}"
 msgstr "Recordarme"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Error del CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "

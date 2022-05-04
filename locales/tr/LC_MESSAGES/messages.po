@@ -347,9 +347,6 @@ msgstr "Yardım'a e-posta gönderin"
 msgid "{login:help_desk_link}"
 msgstr "Yardım anasayfası"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS Hatası"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Bir servis kendinizi yetkilendirmenizi istedi. Lütfen aşağıdaki forma "

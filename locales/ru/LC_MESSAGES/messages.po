@@ -386,9 +386,6 @@ msgstr "Домашняя страница службы поддержки"
 msgid "{login:remember_me}"
 msgstr "Запомнить меня"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Ошибка CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Служба запрашивает авторизацию. Пожалуйста, введите имя пользователя и "

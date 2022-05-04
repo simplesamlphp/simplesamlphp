@@ -262,7 +262,7 @@ msgstr "Iphuma kwezi nkonzo zilandelayo:"
 msgid "{general:yes}"
 msgstr "Ewe"
 
-msgid "{errors:title_CASERROR}"
+msgid "CAS Error"
 msgstr "Impazamo ye-CAS"
 
 msgid "{errors:descr_LDAPERROR}"

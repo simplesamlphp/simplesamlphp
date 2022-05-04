@@ -372,9 +372,6 @@ msgstr "Servicedesk"
 msgid "{login:remember_me}"
 msgstr "Husk mig"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS fejl"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "

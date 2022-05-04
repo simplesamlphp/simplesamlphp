@@ -377,9 +377,6 @@ msgstr "Assistance technique par courriel"
 msgid "{login:help_desk_link}"
 msgstr "Page web de l'assistance technique"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Erreur CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que "

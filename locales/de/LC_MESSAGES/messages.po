@@ -380,9 +380,6 @@ msgstr "E-Mail an den Helpdesk senden"
 msgid "{login:help_desk_link}"
 msgstr "Seite des Helpdesks"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS-Fehler"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"

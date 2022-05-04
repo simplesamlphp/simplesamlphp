@@ -362,9 +362,6 @@ msgstr "Siųsti el. laišką naudotojų aptarnavimo specialistams"
 msgid "{login:help_desk_link}"
 msgstr "Naudotojų aptarnavimo puslapis"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS klaida"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"

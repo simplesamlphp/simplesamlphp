@@ -346,9 +346,6 @@ msgstr "שלח דואל לתיכה הטכנית"
 msgid "{login:help_desk_link}"
 msgstr "תמיכה טכנית"
 
-msgid "{errors:title_CASERROR}"
-msgstr "שגיאת שהם"
-
 msgid "{login:user_pass_text}"
 msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש והסיסמה שלך בטופס מתחת."
 

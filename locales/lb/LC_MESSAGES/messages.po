@@ -153,9 +153,6 @@ msgstr "Ongültegen Zertifikat"
 msgid "{general:remember}"
 msgstr "Zoustëmmung verhalen"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS Fehler"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer "

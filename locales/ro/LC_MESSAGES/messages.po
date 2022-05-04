@@ -375,9 +375,6 @@ msgstr "Trimiteți un mesaj la echipa de suport tehnic"
 msgid "{login:help_desk_link}"
 msgstr "Pagina echipei de suport tehnic"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Eroare CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un serviciu a solicitat autentificarea dumneavoastră. Vă rugăm să "

@@ -549,9 +549,6 @@ msgstr ""
 "fana ka molaetsa wa SAML ArtifactResolve. Ka kopo lemoha hore ntlha ena "
 "ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
-msgid "{errors:title_CASERROR}"
-msgstr "Phoso ya CAS"
-
 msgid "SimpleSAMLphp error"
 msgstr "Phoso ya SimpleSAMLphp"
 

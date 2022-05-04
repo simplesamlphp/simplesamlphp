@@ -265,7 +265,7 @@ msgstr "Iyaphuma kumasevisi alandelayo:"
 msgid "{general:yes}"
 msgstr "Yebo"
 
-msgid "{errors:title_CASERROR}"
+msgid "CAS Error"
 msgstr "Iphutha Le-CAS"
 
 msgid "{errors:descr_LDAPERROR}"

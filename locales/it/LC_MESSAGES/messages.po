@@ -380,9 +380,6 @@ msgstr "Invia una mail al servizio di assistenza"
 msgid "{login:help_desk_link}"
 msgstr "Homepage del servizio di assistenza"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Errore CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "

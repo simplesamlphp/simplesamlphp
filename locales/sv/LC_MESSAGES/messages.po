@@ -375,9 +375,6 @@ msgstr "Skicka e-post till helpdesk"
 msgid "{login:help_desk_link}"
 msgstr "Hemsida för helpdesk"
 
-msgid "{errors:title_CASERROR}"
-msgstr "CAS-error"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En webbtjänst har begärt att du ska logga in. Detta betyder att du "

@@ -339,9 +339,6 @@ msgstr "Enviar um e-mail para o serviço de apoio ao utilizador"
 msgid "{login:help_desk_link}"
 msgstr "Página do serviço de apoio ao utilizador"
 
-msgid "{errors:title_CASERROR}"
-msgstr "Erro de CAS"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
