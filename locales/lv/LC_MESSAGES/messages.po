@@ -344,9 +344,6 @@ msgstr "Kļūda no identitātes piegādātāja"
 msgid "{admin:metaover_intro}"
 msgstr "Lai aplūkotu SAML vienuma detaļas, klikšķiniet uz vienuma galvenes."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Nederīgs sertifikāts"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serviss pieprasa autentifikāciju. Lūdzu ievadiet savu lietotāja vārdu un "

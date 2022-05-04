@@ -346,9 +346,6 @@ msgstr "Identiteedipakkujalt saadi tõrge"
 msgid "{admin:metaover_intro}"
 msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Vigane sertifikaat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "

@@ -353,9 +353,6 @@ msgstr "Feil frå vertsorganisasjonen (IdP)"
 msgid "{admin:metaover_intro}"
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Ugyldig sertifikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "

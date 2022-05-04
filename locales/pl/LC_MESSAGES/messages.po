@@ -341,9 +341,6 @@ msgstr "Dostawca tożsamości przesłał błąd"
 msgid "{admin:metaover_intro}"
 msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Nieprawidłowy certyfikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "

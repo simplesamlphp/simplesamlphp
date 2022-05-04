@@ -332,9 +332,6 @@ msgstr "從驗證提供者收到錯誤"
 msgid "{admin:metaover_intro}"
 msgstr "點選 SAML 物件標題，可檢視 SAML 物件詳細資訊。"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "無效憑證"
-
 msgid "{login:user_pass_text}"
 msgstr "請使用帳號密碼登入，以便進入系統。"
 

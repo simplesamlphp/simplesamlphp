@@ -378,9 +378,6 @@ msgstr ""
 "Para ver los detalles de una entidad SAML, haga click en la cabecera de "
 "la entidad."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certificado no válido"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "

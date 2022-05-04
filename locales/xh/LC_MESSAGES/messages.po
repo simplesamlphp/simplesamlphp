@@ -338,9 +338,6 @@ msgstr "Chaza iimpazamo"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Isatifikethi esingasebenziyo"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa "

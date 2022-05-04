@@ -635,9 +635,6 @@ msgstr "Kgetha khampani ya lehae ya hao"
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Setifikeiti se sa tshwaneleheng"
-
 msgid "Cannot retrieve session data"
 msgstr "Ha e a kgona ho fumana datha ya seshene"
 

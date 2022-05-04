@@ -317,9 +317,6 @@ msgstr "アイデンティティプロバイダからエラーを受信しまし
 msgid "{admin:metaover_intro}"
 msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "無効な証明書です"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

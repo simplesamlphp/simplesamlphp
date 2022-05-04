@@ -351,9 +351,6 @@ msgstr ""
 "For å se på detaljene i en SAML-entitet, klikk på SAML-entitet "
 "overskriften"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Ugyldig sertifikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt "

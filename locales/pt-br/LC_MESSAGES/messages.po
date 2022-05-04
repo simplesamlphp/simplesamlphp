@@ -360,9 +360,6 @@ msgstr "Erro recebido do Provedor de Identidade"
 msgid "{admin:metaover_intro}"
 msgstr "Para ver os detalhes da entidade SAML, clique "
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certificado inválido"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

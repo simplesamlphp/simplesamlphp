@@ -365,9 +365,6 @@ msgstr ""
 "Per visualizzare i dettagli di una entità SAML, cliccare sull'header SAML"
 " dell'entità."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certificato non valido"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "

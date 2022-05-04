@@ -369,9 +369,6 @@ msgstr ""
 "To look at the details for an SAML entity, click on the SAML entity "
 "header."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Invalid certificate"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "

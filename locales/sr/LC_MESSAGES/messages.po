@@ -357,9 +357,6 @@ msgstr "Davalac Identiteta je prijavio grešku"
 msgid "{admin:metaover_intro}"
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Neispravan sertifikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "

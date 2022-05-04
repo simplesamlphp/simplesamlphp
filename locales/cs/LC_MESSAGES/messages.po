@@ -341,9 +341,6 @@ msgstr "Chyba přijatá od poskytovatele identity"
 msgid "{admin:metaover_intro}"
 msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Špatný certifikát"
-
 msgid "{login:user_pass_text}"
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 

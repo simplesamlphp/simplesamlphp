@@ -360,9 +360,6 @@ msgstr "Autentifikacijski servis je prijavio grešku"
 msgid "{admin:metaover_intro}"
 msgstr "Da biste vidjeli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certifikat nije valjan"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Aplikacija zahtjeva od vas da se autentificirate. Unesite vašu korisničku"

@@ -343,9 +343,6 @@ msgstr "Amaphutha ombiko"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Isitifiketi esingalungile"
-
 msgid "{errors:descr_MEMCACHEDOWN}"
 msgstr ""
 "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga "

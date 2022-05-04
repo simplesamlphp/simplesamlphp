@@ -365,9 +365,6 @@ msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "
 "Kopfzeile der SAML-Entität."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Ungültiges Zertifikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"

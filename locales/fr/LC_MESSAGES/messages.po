@@ -362,9 +362,6 @@ msgstr "Erreur levée par le fournisseur d'identité"
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certificat invalide"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que "

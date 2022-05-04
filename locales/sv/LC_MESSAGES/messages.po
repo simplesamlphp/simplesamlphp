@@ -360,9 +360,6 @@ msgstr ""
 "För att titta på detaljer för en SAML-entitet klicka på rubriken för "
 "SAML-entiteten."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Felaktigt certifikat"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En webbtjänst har begärt att du ska logga in. Detta betyder att du "

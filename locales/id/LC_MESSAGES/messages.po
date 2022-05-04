@@ -353,9 +353,6 @@ msgstr "Error diterima dari Identity Provider"
 msgid "{admin:metaover_intro}"
 msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Sertifikat invalid"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan"

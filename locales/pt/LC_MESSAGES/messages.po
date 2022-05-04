@@ -324,9 +324,6 @@ msgstr "Erro recebido do Fornecedor de Identidade"
 msgid "{admin:metaover_intro}"
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 
-msgid "{errors:title_NOTVALIDCERT}"
-msgstr "Certificado inválido"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
