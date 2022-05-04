@@ -395,9 +395,6 @@ msgstr "Oui"
 msgid "{disco:remember}"
 msgstr "Retenir ce choix"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "Fournisseur de service SAML 2.0 local"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"

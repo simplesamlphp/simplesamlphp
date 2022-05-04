@@ -371,9 +371,6 @@ msgstr "Ano, akceptuji"
 msgid "{disco:remember}"
 msgstr "Zapamatuj moji volbu"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Service Provider (Hosted - lokální)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "

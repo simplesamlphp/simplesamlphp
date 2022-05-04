@@ -403,9 +403,6 @@ msgstr "Да, продолжить"
 msgid "{disco:remember}"
 msgstr "Запомнить мой выбор"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "Сервис провайдер SAML 2.0 (локальное размещение)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
 

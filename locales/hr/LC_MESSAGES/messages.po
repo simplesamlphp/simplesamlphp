@@ -392,9 +392,6 @@ msgstr "Da, nastavi"
 msgid "{disco:remember}"
 msgstr "Zapamti moj odabir"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 davatelj usluge (lokalni)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

@@ -375,9 +375,6 @@ msgstr "Da, nadaljuj"
 msgid "{disco:remember}"
 msgstr "Shrani kot privzeto izbiro"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 SP (Lokalni)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "

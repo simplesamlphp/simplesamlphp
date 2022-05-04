@@ -361,9 +361,6 @@ msgstr "כן, המשך"
 msgid "{disco:remember}"
 msgstr "זכור את הבחירה שלי"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "ספק שירות מקומי מסוג SAML 2.0"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"

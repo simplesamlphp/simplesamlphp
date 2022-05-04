@@ -404,9 +404,6 @@ msgstr "Yes, continue"
 msgid "{disco:remember}"
 msgstr "Remember my choice"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Service Provider (Hosted)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In SimpleSAMLphp flat file format - use this if you are using a "

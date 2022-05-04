@@ -364,9 +364,6 @@ msgstr "Evet, devam et"
 msgid "{disco:remember}"
 msgstr "Seçimimi hatırla"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Servis Sağlayıcı (Bu sistemde sunulan)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "

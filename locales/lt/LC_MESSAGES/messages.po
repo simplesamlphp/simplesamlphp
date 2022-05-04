@@ -379,9 +379,6 @@ msgstr "Taip, tęsti"
 msgid "{disco:remember}"
 msgstr "Prisiminti pasirinkimą"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Paslaugos teikėjas (vietinis)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "

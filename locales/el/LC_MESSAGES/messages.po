@@ -418,9 +418,6 @@ msgstr "Αποδοχή"
 msgid "{disco:remember}"
 msgstr "Να θυμάσαι την επιλογή μού"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Φιλοξενούμενος)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα "

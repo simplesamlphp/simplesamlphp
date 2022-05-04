@@ -365,9 +365,6 @@ msgstr "是，繼續"
 msgid "{disco:remember}"
 msgstr "記住我的選擇"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 服務提供者(主機)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "如果您需要於其他地方使用 SimpleSAMLphp 實體 - 請參閱 SimpleSAMLphp 平面文件格式："
 

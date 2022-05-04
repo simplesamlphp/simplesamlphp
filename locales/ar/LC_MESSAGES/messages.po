@@ -369,9 +369,6 @@ msgstr "نعم، واصل"
 msgid "{disco:remember}"
 msgstr "تذكر خياراتي"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "مقدم خدمة SAML 2.0 (المستضاف)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "بصيغة SimpleSAMLphp- استخدم هذه الصيغة ان كنت تستخدم وحدة SimpleSAMLphp "

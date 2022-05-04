@@ -389,9 +389,6 @@ msgstr "Ja, jeg accepterer"
 msgid "{disco:remember}"
 msgstr "Husk valget"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 tjenesteudbyder (hosted)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp flat-file format - brug dette hvis du også bruger "

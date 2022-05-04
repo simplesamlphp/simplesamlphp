@@ -392,9 +392,6 @@ msgstr "Ja"
 msgid "{disco:remember}"
 msgstr "Kom ihåg mitt val"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Service Provider (Värd)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "

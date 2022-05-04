@@ -385,9 +385,6 @@ msgstr "Yam lanjutkan"
 msgid "{disco:remember}"
 msgstr "Ingat pilihan saya"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "Service Provider SAML 2.0 (Hosted)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan"

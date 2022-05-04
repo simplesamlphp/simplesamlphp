@@ -382,9 +382,6 @@ msgstr "Bai, jarraitu"
 msgid "{disco:remember}"
 msgstr "Nire hautaketa gogoratu"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Zerbitzu hornitzailea (Anfitrioia)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formatuko fitxategi batean - beste muturrean SimpleSAMLphp "

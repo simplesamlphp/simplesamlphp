@@ -378,9 +378,6 @@ msgstr "Jah, jätka"
 msgid "{disco:remember}"
 msgstr "Jäta valik meelde"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 teenusepakkuja (hostitud)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "

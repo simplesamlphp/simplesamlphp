@@ -385,9 +385,6 @@ msgstr "Ja, fortsett"
 msgid "{disco:remember}"
 msgstr "Hugs mitt val"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 Service Provider (Hosted)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "På flat fil for SimpleSAMLphp.  Bruk denne dersom du bruker SimpleSAMLphp"

@@ -392,9 +392,6 @@ msgstr "Da, continuă"
 msgid "{disco:remember}"
 msgstr "Memorează alegerea făcută"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "Furnizor de servicii SAML 2.0 (găzduit)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "

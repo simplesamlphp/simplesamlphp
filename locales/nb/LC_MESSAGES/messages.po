@@ -383,9 +383,6 @@ msgstr "Ja, fortsett"
 msgid "{disco:remember}"
 msgstr "Husk mitt valg"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 tjenesteleverandør (intern)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "

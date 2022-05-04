@@ -376,9 +376,6 @@ msgstr "Jā, turpināt"
 msgid "{disco:remember}"
 msgstr "Atcerēties manu izvēli"
 
-msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
-msgstr "SAML 2.0 servisa piegādātājs (hostēts)"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp parasta faila formātā - lietojiet šo, ja izmantojat "
