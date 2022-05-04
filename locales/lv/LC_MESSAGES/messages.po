@@ -261,9 +261,6 @@ msgstr ""
 "Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "
 "atslēgšanās pieprasījumu vai atslēgšanās atbildi."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Nekorekts lietotāja vārds vai parole"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Nav atrasti obligātie lauki"
 

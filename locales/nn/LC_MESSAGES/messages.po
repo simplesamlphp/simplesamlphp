@@ -266,9 +266,6 @@ msgstr ""
 "utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
 "LogoutResponse)"
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Feil brukarnamn eller passord"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Fann ikkje følgjande nødvendige felt"
 

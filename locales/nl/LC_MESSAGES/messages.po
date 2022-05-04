@@ -295,9 +295,6 @@ msgstr ""
 "Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"
 " LogoutRequest of LogoutResponse meegestuurd."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Incorrecte gebruikersnaam of wachtwoord"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "De volgende verplichte velden konden niet worden gevonden"
 

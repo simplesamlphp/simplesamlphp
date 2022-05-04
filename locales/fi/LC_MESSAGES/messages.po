@@ -184,9 +184,6 @@ msgstr ""
 "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML "
 "LogoutRequest:iä tai LogoutRespons:ia."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Virheellinen käyttäjätunnus tai salasana"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Tämä pääte ei ole otettu käyttöön. Tarkasta enable-optiot SimpleSAMLphp:n"

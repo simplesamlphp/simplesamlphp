@@ -254,9 +254,6 @@ msgstr ""
 "ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "
 "SAML."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "שם משתמש או סיסמה לא נכונים"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "השדות הדרושים הבאים לא נמצאו"
 

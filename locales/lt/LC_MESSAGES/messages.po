@@ -261,9 +261,6 @@ msgstr ""
 "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
 "LogoutRequest ar LogoutResponse užklausų."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Neteisingas prisijungimo vardas arba slaptažodis"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Šie privalomi laukai nerasti"
 

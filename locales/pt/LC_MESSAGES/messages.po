@@ -244,9 +244,6 @@ msgstr ""
 "Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
 "LogoutRequest ou LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Utilizador ou senha incorrecto"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Os seguintes campos obrigatórios não foram encontrados"
 

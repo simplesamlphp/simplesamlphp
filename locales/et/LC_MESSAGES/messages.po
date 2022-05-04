@@ -264,9 +264,6 @@ msgstr ""
 "Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "
 "LogoutRequest või LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Kasutajatunnus või parool pole õige"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Järgmisi kohuslikke välju ei leitud"
 

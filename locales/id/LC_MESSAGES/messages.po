@@ -267,9 +267,6 @@ msgstr ""
 "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "
 "LogoutRequest SAML atau LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Username atau password salah"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
 

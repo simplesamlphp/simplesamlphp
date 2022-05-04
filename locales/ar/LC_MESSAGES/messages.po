@@ -260,9 +260,6 @@ msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
 "استجابة لطلب الخروج"
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "اسم مستخدم او كلمة سر خطا "
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "الحقول الإجبارية أدناه مفقودة"
 

@@ -282,9 +282,6 @@ msgstr ""
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Incorrect username or password"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "The following required fields was not found"
 

@@ -264,9 +264,6 @@ msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
 "LogoutRequest edo LogoutResponse mezurik"
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Erabiltzaile-izena edo pasahitz okerra"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Derrigorrezko datu hauek ez dira aurkitu"
 

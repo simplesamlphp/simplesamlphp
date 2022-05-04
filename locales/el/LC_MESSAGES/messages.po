@@ -288,9 +288,6 @@ msgstr ""
 " Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Τα παρακάτω υποχρεωτικά πεδία δε βρέθηκαν"
 

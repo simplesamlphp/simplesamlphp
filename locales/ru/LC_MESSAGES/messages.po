@@ -282,9 +282,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу SingleLogoutService, но не предоставили "
 "SAML LogoutRequest или LogoutResponse утверждения."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Неправильное имя пользователя или пароль"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Следующие обязательные поля не найдены"
 

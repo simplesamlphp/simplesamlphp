@@ -262,9 +262,6 @@ msgstr ""
 "Přistupujete k SingleLogoutService rozhraní, ale nezadáváte SAML "
 "LogoutRequest ani LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Špatné jméno a heslo."
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Následující požadovaná pole nenalezena"
 

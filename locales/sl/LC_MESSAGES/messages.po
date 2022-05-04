@@ -262,9 +262,6 @@ msgstr ""
 "Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili "
 "SAML LogoutRequest ali LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Napačno uporabniško ime ali geslo"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Naslednjih zahtevanih polj ni bilo mogoče najti"
 

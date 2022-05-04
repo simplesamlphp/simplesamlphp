@@ -116,7 +116,7 @@ msgstr "Akukho ukufinyelela"
 msgid "Invalid certificate"
 msgstr "Isifiketi esingalungile"
 
-msgid "{errors:title_WRONGUSERPASS}"
+msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
 
 msgid "{status:authData_summary}"

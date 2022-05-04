@@ -277,9 +277,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di SingleLogoutService, ma senza fornire un "
 "messaggio SAML di LogoutRequest o LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Nome utente o password non corretti"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "I seguenti campi, richiesti, non sono stati trovati"
 

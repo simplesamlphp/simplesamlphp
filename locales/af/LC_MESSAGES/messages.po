@@ -210,9 +210,6 @@ msgstr ""
 "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'),"
 " maar het geen SAML LogoutRequest of LogoutResponse gestuur nie."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Inkorrekte gebruikersnaam of wagwoord"
-
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset "

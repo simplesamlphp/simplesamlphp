@@ -241,9 +241,6 @@ msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "ユーザー名かパスワードが間違っています"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "以下の必須項目は見つかりませんでした"
 

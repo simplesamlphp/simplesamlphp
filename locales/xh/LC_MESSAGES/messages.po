@@ -113,7 +113,7 @@ msgstr "Akukho fikelelo"
 msgid "Invalid certificate"
 msgstr "Isatifikethi esingasebenziyo"
 
-msgid "{errors:title_WRONGUSERPASS}"
+msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga"
 
 msgid "{status:authData_summary}"

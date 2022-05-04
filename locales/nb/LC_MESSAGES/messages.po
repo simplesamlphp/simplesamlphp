@@ -263,9 +263,6 @@ msgstr ""
 "Du brukte SingleLogoutService-grensesnittet uten å angi enten en SAML "
 "LogoutRequest eller en LogoutResponse."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Feil brukernavn og passord"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Følgende obligatoriske felter ble ikke funnet"
 

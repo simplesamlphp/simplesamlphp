@@ -263,9 +263,6 @@ msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
 "üzenetet kell megadni."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Hibás felhasználónév vagy jelszó"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "A következő kötelező mezők hiányoznak"
 

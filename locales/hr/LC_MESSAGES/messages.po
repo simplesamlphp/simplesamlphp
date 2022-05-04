@@ -272,9 +272,6 @@ msgstr ""
 "autentifikacije, ali niste dostavili SAML LogoutRequest ili "
 "LogoutResponse poruku."
 
-msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Neispravna korisnička oznaka ili zaporka"
-
 msgid "{admin:metaover_required_not_found}"
 msgstr "Nisu pronađena sljedeća obavezna polja"
 
