@@ -374,9 +374,6 @@ msgstr "Zustimmung merken"
 msgid "{disco:selectidp}"
 msgstr "Wählen Sie Ihren Identity Provider"
 
-msgid "{login:help_desk_email}"
-msgstr "E-Mail an den Helpdesk senden"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"

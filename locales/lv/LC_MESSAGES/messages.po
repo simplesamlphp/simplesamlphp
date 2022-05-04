@@ -353,9 +353,6 @@ msgstr "Atcerēties"
 msgid "{disco:selectidp}"
 msgstr "Izvēlieties identitātes piegādātāju"
 
-msgid "{login:help_desk_email}"
-msgstr "Sūtīt e-pastu palīdzības dienestam"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serviss pieprasa autentifikāciju. Lūdzu ievadiet savu lietotāja vārdu un "

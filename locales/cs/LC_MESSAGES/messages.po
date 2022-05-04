@@ -350,9 +350,6 @@ msgstr "Zapamatuj"
 msgid "{disco:selectidp}"
 msgstr "Zvol svého poskytovatele identity (IdP)"
 
-msgid "{login:help_desk_email}"
-msgstr "Email helpdesku zaslán."
-
 msgid "{login:user_pass_text}"
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 

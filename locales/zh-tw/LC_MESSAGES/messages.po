@@ -341,9 +341,6 @@ msgstr "記住"
 msgid "{disco:selectidp}"
 msgstr "選擇你的識別提供者(idp)"
 
-msgid "{login:help_desk_email}"
-msgstr "傳送 e-mail 尋求協助"
-
 msgid "{login:user_pass_text}"
 msgstr "請使用帳號密碼登入，以便進入系統。"
 

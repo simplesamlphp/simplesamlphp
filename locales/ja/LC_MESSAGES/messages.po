@@ -326,9 +326,6 @@ msgstr "記憶する"
 msgid "{disco:selectidp}"
 msgstr "アイデンティティプロバイダを選択してください"
 
-msgid "{login:help_desk_email}"
-msgstr "ヘルプデスクにメールする"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

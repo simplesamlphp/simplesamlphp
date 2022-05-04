@@ -350,9 +350,6 @@ msgstr "Pamiętaj moją zgodę"
 msgid "{disco:selectidp}"
 msgstr "wybierz swojego Dostawcę Tożsamości."
 
-msgid "{login:help_desk_email}"
-msgstr "wyślij e-mail do helpdesku"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "

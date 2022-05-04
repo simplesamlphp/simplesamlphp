@@ -390,9 +390,6 @@ msgstr "Bewaar toestemming"
 msgid "{disco:selectidp}"
 msgstr "Kies je Identity Provider"
 
-msgid "{login:help_desk_email}"
-msgstr "Stuur een e-mail naar de helpdesk"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "

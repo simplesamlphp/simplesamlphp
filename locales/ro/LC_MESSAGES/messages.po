@@ -369,9 +369,6 @@ msgstr "Ține minte"
 msgid "{disco:selectidp}"
 msgstr "Alegeți furnizorul de identitate"
 
-msgid "{login:help_desk_email}"
-msgstr "Trimiteți un mesaj la echipa de suport tehnic"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un serviciu a solicitat autentificarea dumneavoastră. Vă rugăm să "

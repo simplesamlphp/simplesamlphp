@@ -476,7 +476,7 @@ msgstr "Ingxelo yempazamo ithunyelwe kubalawuli."
 msgid "No SAML message provided"
 msgstr "Akukho myalezo we-SAML unikelweyo"
 
-msgid "{login:help_desk_email}"
+msgid "Send e-mail to help desk"
 msgstr "Thumela i-imeyile kwidesika yoncedo"
 
 msgid "Error processing request from Service Provider"

@@ -346,9 +346,6 @@ msgstr "تذكرألغت ذكر"
 msgid "{disco:selectidp}"
 msgstr "اختار موقع هويتك"
 
-msgid "{login:help_desk_email}"
-msgstr "ارسل إيميل لصفحة المساعدة"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "

@@ -482,7 +482,7 @@ msgstr "Umbiko wephutha uthunyelwe kubalawuli."
 msgid "No SAML message provided"
 msgstr "Awukho umlayezo we-SAML onikeziwe"
 
-msgid "{login:help_desk_email}"
+msgid "Send e-mail to help desk"
 msgstr "Thumela i-imeyili edeskini losizo"
 
 msgid "Error processing request from Service Provider"

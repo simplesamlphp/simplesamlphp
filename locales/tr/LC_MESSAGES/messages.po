@@ -341,9 +341,6 @@ msgstr "Hatırla"
 msgid "{disco:selectidp}"
 msgstr "Kimlik sağlayıcınızı seçiniz."
 
-msgid "{login:help_desk_email}"
-msgstr "Yardım'a e-posta gönderin"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Bir servis kendinizi yetkilendirmenizi istedi. Lütfen aşağıdaki forma "

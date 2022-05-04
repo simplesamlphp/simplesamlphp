@@ -355,9 +355,6 @@ msgstr "Jäta meelde"
 msgid "{disco:selectidp}"
 msgstr "Vali oma identiteedipakkuja"
 
-msgid "{login:help_desk_email}"
-msgstr "Saada kasutajatoele e-kiri."
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "

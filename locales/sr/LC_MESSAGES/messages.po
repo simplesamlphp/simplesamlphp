@@ -366,9 +366,6 @@ msgstr "Zapamti moj izbor"
 msgid "{disco:selectidp}"
 msgstr "Odaberite vašeg davaoca identiteta"
 
-msgid "{login:help_desk_email}"
-msgstr "Pošalji e-mail službi za podršku korisnicima"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "

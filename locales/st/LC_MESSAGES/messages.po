@@ -127,9 +127,6 @@ msgstr "Tjhe, hlakola"
 msgid "{logout:logging_out_from}"
 msgstr "E tswa ditshebeletsong tse latelang:"
 
-msgid "{login:help_desk_email}"
-msgstr "Romela imeile ho ba deske ya thuso"
-
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr ""
 "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se "

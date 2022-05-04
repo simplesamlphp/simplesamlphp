@@ -356,9 +356,6 @@ msgstr "Įsiminti"
 msgid "{disco:selectidp}"
 msgstr "Pasirinkite savo tapatybių tiekėją"
 
-msgid "{login:help_desk_email}"
-msgstr "Siųsti el. laišką naudotojų aptarnavimo specialistams"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"

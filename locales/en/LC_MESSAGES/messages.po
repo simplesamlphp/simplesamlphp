@@ -378,9 +378,6 @@ msgstr "Remember"
 msgid "{disco:selectidp}"
 msgstr "Select your identity provider"
 
-msgid "{login:help_desk_email}"
-msgstr "Send e-mail to help desk"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "
