@@ -282,9 +282,6 @@ msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "
 "autentifikacijski odgovor."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "Kliknite na poveznicu \"Pošalji poruku\" da biste poslali poruku."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr ""
 "Došlo je do greške u autentifikacijskom modulu %AUTHSOURCE%. Razlog: "

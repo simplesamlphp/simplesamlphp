@@ -273,9 +273,6 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése linkre a folytatáshoz."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "A(z)  %AUTHSOURCE% azonosítási forrásban hiba van. A ok: %REASON%"
 

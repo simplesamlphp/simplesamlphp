@@ -292,11 +292,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Вы собираетесь отправить сообщение. Кликните ссылку отправки сообщения "
-"для продолжения."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Ошибка источника аутентификации %AUTHSOURCE%. Причина: %REASON%"
 

@@ -261,9 +261,6 @@ msgstr "這個端點並未啟用。核取啟用選項於您的 SimpleSAMLphp 設
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "您正在傳送一則訊息，請點選提交訊息連結來繼續。"
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "認證錯誤來自 %AUTHSOURCE% 。原因為： %REASON%"
 

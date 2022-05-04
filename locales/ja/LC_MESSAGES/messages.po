@@ -247,9 +247,6 @@ msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "Assertion Consumer Serviceインターフェースへアクセスしましたが、SAML認証レスポンスが提供されませんでした。"
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "メッセージを送信します。続けるにはメッセージ送信リンクを押してください。"
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "認証元: %AUTHSOURCE% でエラーが発生しました。理由: %REASON%"
 

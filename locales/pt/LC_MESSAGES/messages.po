@@ -254,9 +254,6 @@ msgstr ""
 "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
 "do tipo Authentication Response."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "Está prestes a enviar uma mensagem. Carregue na ligação para continuar."
-
 msgid "{status:some_error_occurred}"
 msgstr "Ocorreu um erro"
 

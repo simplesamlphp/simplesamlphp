@@ -246,9 +246,6 @@ msgstr "这个端点没有启用，请在SimpleSAMLphp的配置选项中选中�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "你准备发送一个消息，请点击提交链接以继续"
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "认证源%AUTHSOURCE%存在错误， 原因: %REASON%"
 

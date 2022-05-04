@@ -298,11 +298,6 @@ msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
 " respuesta de autenticación SAML."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Se va a proceder a enviar un mensaje. Pulse el enlace \"Enviar mensaje\" "
-"para continuar."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr ""
 "Error en la Autenticacion en el origen %AUTHSOURCE%. La razon fue: "

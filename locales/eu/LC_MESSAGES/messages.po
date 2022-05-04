@@ -274,11 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" lotura "
-"jarraitzeko."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Errorea kautotze jatorrian %AUTHSOURCE%. Arrazoia hau da: %REASON%"
 

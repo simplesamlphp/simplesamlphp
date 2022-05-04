@@ -277,11 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Du er i ferd med å senda ei melding.  Trykk på send-peikaren for å gå "
-"vidare"
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Innloggingsfeil knytta til %AUTHSOURCE% på grunn av %REASON%"
 

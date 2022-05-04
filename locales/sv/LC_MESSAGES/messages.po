@@ -282,11 +282,6 @@ msgstr ""
 "Du har anropat gränssnittet för Assertion Consumer Service utan att "
 "skicka med någon SAML Authentication Responce."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Du är på väg att skicka ett meddelande. Klicka på skickalänken för att "
-"fortsätta."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Fel i inloggningskällan %AUTHSOURCE%. Orsaken var:%REASON%"
 

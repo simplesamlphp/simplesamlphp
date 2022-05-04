@@ -272,9 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "Oled teadet saatmas. Jätkamiseks vajuta teateviidet."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Tõrge autentimisallikas %AUTHSOURCE%. Põhjus: %REASON%"
 

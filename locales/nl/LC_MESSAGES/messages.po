@@ -305,11 +305,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"U gaat een bericht versturen. Klik op de Verstuur bericht link om door te"
-" gaan."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Fout in authenticatiebron %AUTHSOURCE%. Als reden werd gegeven: %REASON%."
 

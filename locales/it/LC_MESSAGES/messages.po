@@ -287,11 +287,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza "
 "fornire un messaggio SAML di Authentication Response."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Si sta per inviare un messaggio. Premere il pulsante di invio per "
-"continuare."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione è $REASON%"
 

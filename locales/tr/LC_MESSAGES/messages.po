@@ -257,11 +257,6 @@ msgstr ""
 "Onay Alıcı Servis (Assertion Consumer Service) arayüzüne giriş yaptınız, "
 "ancak SAML Kimlik Doğrulama Cevabı sağlamadınız."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder linkine "
-"tıklayın."
-
 msgid "{status:some_error_occurred}"
 msgstr "Hata oluştu"
 

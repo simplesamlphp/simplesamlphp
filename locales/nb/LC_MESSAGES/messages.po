@@ -273,11 +273,6 @@ msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
 "AuthenticationResponse."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Du er i ferd med å sende en melding. Trykk på send melding knappen for å "
-"fortsette."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Feil i autentiseringskilden %AUTHSOURCE%. Feilen var: %REASON%"
 

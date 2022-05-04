@@ -272,9 +272,6 @@ msgstr ""
 "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "
 "zagotovili \"SAML Authentication Responsa\"."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Napaka v avtentikacijskem viru: %AUTHSOURCE%. Opis napake: %REASON%"
 

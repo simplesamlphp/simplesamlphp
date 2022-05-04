@@ -293,9 +293,6 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr "You are about to send a message. Hit the submit message link to continue."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 

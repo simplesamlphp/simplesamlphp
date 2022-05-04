@@ -277,11 +277,6 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Anda baru saja akan mengirim sebuah pesan. Tekan link submit pesan untuk "
-"melanjutkan."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
 

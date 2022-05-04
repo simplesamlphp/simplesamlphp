@@ -284,11 +284,6 @@ msgstr ""
 "Você acessou a interface do Assertion Consumer Service, mas não forneceu "
 "uma SAML Authentication Response."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Você está prestes a enviar uma mensagem. Clique no link enviar a mensagem"
-" para continuar."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Erro de autenticação na origem %AUTHSOURCE%. O motivo foi:%REASON%"
 

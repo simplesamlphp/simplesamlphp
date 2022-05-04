@@ -269,11 +269,6 @@ msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
 "autentikacijos atsakymo."
 
-msgid "{admin:debug_sending_message_text_link}"
-msgstr ""
-"Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "
-"patvirtinimo nuorodą."
-
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr "Autentikacijos klaida %AUTHSOURCE% šaltinyje. Priežastis: %REASON%"
 
