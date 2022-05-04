@@ -274,9 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{login:change_home_org_button}"
-msgstr "Jatorrizko erakundea hautatu"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Konfigurazio fitxategian soberan dauden aukerak"
 

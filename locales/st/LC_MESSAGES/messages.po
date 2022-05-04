@@ -649,9 +649,6 @@ msgstr ""
 "Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya "
 "SAML ha e a atleha)"
 
-msgid "{login:change_home_org_button}"
-msgstr "Kgetha khampani ya lehae"
-
 msgid "SAML 2.0 SP Demo Example"
 msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 

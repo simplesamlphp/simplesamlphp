@@ -272,9 +272,6 @@ msgstr ""
 "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "
 "zagotovili \"SAML Authentication Responsa\"."
 
-msgid "{login:change_home_org_button}"
-msgstr "Izberite domačo organizacijo."
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Odvečne nastavitve v konfiguracijski datoteki"
 

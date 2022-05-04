@@ -271,9 +271,6 @@ msgstr ""
 "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "
 "SAML autentifikācijas atbildi."
 
-msgid "{login:change_home_org_button}"
-msgstr "Izvēlēties organizāciju"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Sīkas (superfluous) opcijas konfigurācijas failā"
 

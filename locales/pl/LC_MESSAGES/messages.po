@@ -270,9 +270,6 @@ msgstr ""
 "Została wywołana usługa Assertion Consumer Service, ale nie dostarczono "
 "komunikatu SAML 'Authentication Response'"
 
-msgid "{login:change_home_org_button}"
-msgstr "Wybierz domową organizację"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Zbędne opcje w pliku konfiguracyjnym"
 

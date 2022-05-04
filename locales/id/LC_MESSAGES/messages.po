@@ -277,9 +277,6 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
-msgid "{login:change_home_org_button}"
-msgstr "Pilih basis organisasi"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Pilihan tak beguna di file konfigurasi"
 

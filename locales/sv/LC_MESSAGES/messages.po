@@ -282,9 +282,6 @@ msgstr ""
 "Du har anropat gränssnittet för Assertion Consumer Service utan att "
 "skicka med någon SAML Authentication Responce."
 
-msgid "{login:change_home_org_button}"
-msgstr "Ändra organisation"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Överflödiga alternativ i konfigurationsfilen"
 

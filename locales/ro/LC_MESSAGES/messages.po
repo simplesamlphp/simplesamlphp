@@ -281,9 +281,6 @@ msgstr ""
 "Ați accesat interfața <i>Assertion Consumer Service</i> dar nu ați "
 "furnizat răspunsul de autentificare SAML."
 
-msgid "{login:change_home_org_button}"
-msgstr "Alegeți instituția de origine"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opțiuni inutile în fișierul de configurare"
 

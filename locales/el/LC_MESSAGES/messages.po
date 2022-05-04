@@ -301,9 +301,6 @@ msgstr ""
 "Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{login:change_home_org_button}"
-msgstr "Επιλογή οικείου φορέα"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Περιττές επιλογές στο αρχείο ρυθμίσεων"
 

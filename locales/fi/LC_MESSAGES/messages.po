@@ -194,9 +194,6 @@ msgstr ""
 "Yritit Assertion Consumer Service-liittymään, mutta et tarjonnut SAML "
 "tunnistautumisvastausta."
 
-msgid "{login:change_home_org_button}"
-msgstr "Valitse kotiorganisaatiosi"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 

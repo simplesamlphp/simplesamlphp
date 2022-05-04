@@ -305,9 +305,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-msgid "{login:change_home_org_button}"
-msgstr "Kies je organisatie"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Teveel opties in de config file"
 

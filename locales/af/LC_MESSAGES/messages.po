@@ -220,9 +220,6 @@ msgstr ""
 "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service "
 "koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie."
 
-msgid "{login:change_home_org_button}"
-msgstr "Kies tuisorganisasie"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "

@@ -273,9 +273,6 @@ msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
 "AuthenticationResponse."
 
-msgid "{login:change_home_org_button}"
-msgstr "Velg vertsorganisasjon"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overføldig element i konfigurasjonsfilen"
 

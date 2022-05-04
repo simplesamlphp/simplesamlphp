@@ -320,7 +320,7 @@ msgstr ""
 "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho "
 "asivumelekile noma asikwazi ukufundwa"
 
-msgid "{login:change_home_org_button}"
+msgid "Choose home organization"
 msgstr "Khetha inhlangano yasekhaya"
 
 msgid "{errors:descr_NOTSET}"

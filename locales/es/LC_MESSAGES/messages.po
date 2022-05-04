@@ -298,9 +298,6 @@ msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
 " respuesta de autenticación SAML."
 
-msgid "{login:change_home_org_button}"
-msgstr "Seleccionar la organización origen"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opciones sobrantes en el fichero de configuración"
 

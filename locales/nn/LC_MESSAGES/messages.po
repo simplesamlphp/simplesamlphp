@@ -277,9 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{login:change_home_org_button}"
-msgstr "Vel vertsorganisasjon"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overflødig informasjon i konfigurasjonsfila"
 

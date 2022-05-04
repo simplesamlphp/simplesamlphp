@@ -273,9 +273,6 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
-msgid "{login:change_home_org_button}"
-msgstr "Válassza ki a szervezetét"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Felesleges opciók a konfigurációs állományban"
 

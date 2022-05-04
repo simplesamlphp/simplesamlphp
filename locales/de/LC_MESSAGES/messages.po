@@ -285,9 +285,6 @@ msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
 "aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
-msgid "{login:change_home_org_button}"
-msgstr "Einrichtung auswählen"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Überflüssige Optionen in der Konfigurationsdatei"
 

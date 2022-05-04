@@ -282,9 +282,6 @@ msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "
 "autentifikacijski odgovor."
 
-msgid "{login:change_home_org_button}"
-msgstr "Odaberite matičnu ustanovu"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Suvišni parametri u konfiguracijskoj datoteci"
 

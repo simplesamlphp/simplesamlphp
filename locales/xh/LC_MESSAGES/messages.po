@@ -315,7 +315,7 @@ msgstr ""
 "Ungqinisiso lusilele: isatifikethi esithunyelwe yibhrawuza yakho "
 "asisebenzi okanye asikwazi ukufundwa"
 
-msgid "{login:change_home_org_button}"
+msgid "Choose home organization"
 msgstr "Khetha umbutho wekhaya"
 
 msgid "{errors:descr_NOTSET}"

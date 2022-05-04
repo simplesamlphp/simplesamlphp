@@ -292,9 +292,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
-msgid "{login:change_home_org_button}"
-msgstr "Выберите домашнюю организацию"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Избыточные параметры в файле конфигурации"
 

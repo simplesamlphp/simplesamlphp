@@ -284,9 +284,6 @@ msgstr ""
 "Você acessou a interface do Assertion Consumer Service, mas não forneceu "
 "uma SAML Authentication Response."
 
-msgid "{login:change_home_org_button}"
-msgstr "Escolher uma organização principal"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opções supérfluas no arquivo de configuração"
 

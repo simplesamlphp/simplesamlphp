@@ -272,9 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{login:change_home_org_button}"
-msgstr "Vali koduorganisatsioon"
-
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Üleliigne seadistus seadistustefailis"
 
