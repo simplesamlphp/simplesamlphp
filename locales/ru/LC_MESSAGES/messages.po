@@ -362,9 +362,6 @@ msgstr "Страница не найдена"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Отправка сообщения"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "От провайдера идентификации получена ошибка"
-
 msgid "{admin:metaover_intro}"
 msgstr "Для просмотра подробностей записи SAML, кликните на заголовок записи SAML."
 

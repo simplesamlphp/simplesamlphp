@@ -186,7 +186,7 @@ msgstr ""
 msgid "{status:subject_notset}"
 msgstr "ayikasetwa"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
+msgid "Error received from Identity Provider"
 msgstr "Impazamo efunyenwe kuMboneleli Wesazisi"
 
 msgid "Select your identity provider"

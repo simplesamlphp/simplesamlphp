@@ -244,9 +244,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Sivua ei löytynyt"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Virhe vastaanotettu Identiteetintarjoajalta."
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "

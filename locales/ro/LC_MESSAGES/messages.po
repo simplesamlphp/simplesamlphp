@@ -352,9 +352,6 @@ msgstr "Pagina nu a fost găsită"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Se trimite mesajul"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Eroare primită de la furnizorul de identitate"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "

@@ -344,9 +344,6 @@ msgstr "Ez da orria aurkitu"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Mezua bidaltzen"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Errore bat jazo da IdP-aren aldetik"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua."
 

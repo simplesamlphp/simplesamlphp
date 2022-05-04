@@ -347,9 +347,6 @@ msgstr "Fann ikkje sida"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Sender melding"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Feil frå vertsorganisasjonen (IdP)"
-
 msgid "{admin:metaover_intro}"
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 

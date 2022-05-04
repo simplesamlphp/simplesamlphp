@@ -324,9 +324,6 @@ msgstr "Sayfa bulunamadı"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Mesaj gönderiliyor"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Kimlik Sağlayıcıdan hata alındı."
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Bir SAML elemanı hakkındaki detayları görmek için, SAML elemanı başlığına"

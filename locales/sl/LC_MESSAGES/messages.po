@@ -337,9 +337,6 @@ msgstr "Strani ni bilo mogoče najti."
 msgid "{admin:debug_sending_message_title}"
 msgstr "Pošiljanje sporočila"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Napaka na IdP"
-
 msgid "{admin:metaover_intro}"
 msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
 

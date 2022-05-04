@@ -357,9 +357,6 @@ msgstr "Seite nicht gefunden"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Sende Nachricht"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Fehlermeldung vom Identity Provider erhalten"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "

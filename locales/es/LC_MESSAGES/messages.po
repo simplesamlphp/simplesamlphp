@@ -370,9 +370,6 @@ msgstr "Página no encontrada"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Enviando mensaje"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Hubo un error por parte del IdP"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Para ver los detalles de una entidad SAML, haga click en la cabecera de "

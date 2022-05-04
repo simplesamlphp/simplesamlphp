@@ -375,9 +375,6 @@ msgstr "Pagina niet gevonden"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Bericht"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Foutmelding ontvangen van Identity Provider"
-
 msgid "{admin:metaover_intro}"
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 

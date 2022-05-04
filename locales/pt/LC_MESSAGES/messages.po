@@ -318,9 +318,6 @@ msgstr "Página não encontrada"
 msgid "{admin:debug_sending_message_title}"
 msgstr "A enviar a mensagem"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Erro recebido do Fornecedor de Identidade"
-
 msgid "{admin:metaover_intro}"
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 

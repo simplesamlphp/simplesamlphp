@@ -341,9 +341,6 @@ msgstr "Oldal nem található"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Üzenet küldése"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Hiba történt az azonosító szervezet (IdP) oldalán"
-
 msgid "{admin:metaover_intro}"
 msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 

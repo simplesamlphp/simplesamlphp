@@ -340,9 +340,6 @@ msgstr "Lehekülge ei leitud"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Teate saatmine"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Identiteedipakkujalt saadi tõrge"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
 

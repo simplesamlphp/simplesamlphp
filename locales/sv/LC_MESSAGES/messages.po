@@ -352,9 +352,6 @@ msgstr "Sidan finns inte"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Skickar meddelande"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Fel mottaget från IdP"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "För att titta på detaljer för en SAML-entitet klicka på rubriken för "

@@ -56,9 +56,6 @@ msgstr "O ntshitswe"
 msgid "{errors:title_BADREQUEST}"
 msgstr "Kopo e mpe e amohetswe"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
-
 msgid "No access"
 msgstr "Ha ho phihlello"
 

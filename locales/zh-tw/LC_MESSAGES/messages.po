@@ -326,9 +326,6 @@ msgstr "找不到頁面"
 msgid "{admin:debug_sending_message_title}"
 msgstr "傳送訊息"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "從驗證提供者收到錯誤"
-
 msgid "{admin:metaover_intro}"
 msgstr "點選 SAML 物件標題，可檢視 SAML 物件詳細資訊。"
 

@@ -356,9 +356,6 @@ msgstr "Page introuvable"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Envoi du message"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Erreur levée par le fournisseur d'identité"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 

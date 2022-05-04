@@ -335,9 +335,6 @@ msgstr "Nie znaleziono strony"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Wysyłanie wiadomości"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Dostawca tożsamości przesłał błąd"
-
 msgid "{admin:metaover_intro}"
 msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 

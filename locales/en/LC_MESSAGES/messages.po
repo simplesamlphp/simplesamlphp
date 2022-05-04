@@ -361,9 +361,6 @@ msgstr "Page not found"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Sending message"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Error received from Identity Provider"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "To look at the details for an SAML entity, click on the SAML entity "

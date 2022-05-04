@@ -339,9 +339,6 @@ msgstr "Puslapis nerastas"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Siunčiamas pranešimas"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Gautas klaidos pranešimas iš tapatybių teikėjo"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML"

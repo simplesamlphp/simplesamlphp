@@ -335,9 +335,6 @@ msgstr "Stránka nenalezena"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Posílám zprávu"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Chyba přijatá od poskytovatele identity"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
 

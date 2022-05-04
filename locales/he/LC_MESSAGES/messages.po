@@ -325,9 +325,6 @@ msgstr "דף לא נמצא"
 msgid "{admin:debug_sending_message_title}"
 msgstr "שולח הודעה"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "התקבלה שגיאה מספק הזיהות"
-
 msgid "{admin:metaover_intro}"
 msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כותרת ישות הSAML "
 

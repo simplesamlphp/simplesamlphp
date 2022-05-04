@@ -351,9 +351,6 @@ msgstr "Stranica nije pronađena"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Šaljem poruku"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Davalac Identiteta je prijavio grešku"
-
 msgid "{admin:metaover_intro}"
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 

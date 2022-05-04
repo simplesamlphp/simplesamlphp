@@ -348,9 +348,6 @@ msgstr "Siden kunne ikke findes"
 msgid "{admin:debug_sending_message_title}"
 msgstr "Sender besked"
 
-msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
-msgstr "Fejl modtaget fra institution"
-
 msgid "{admin:metaover_intro}"
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
 
