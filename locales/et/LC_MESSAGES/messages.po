@@ -337,9 +337,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Lehekülge ei leitud"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Teate saatmine"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
 

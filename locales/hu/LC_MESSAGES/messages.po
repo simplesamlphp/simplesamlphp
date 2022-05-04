@@ -338,9 +338,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Oldal nem található"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Üzenet küldése"
-
 msgid "{admin:metaover_intro}"
 msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 

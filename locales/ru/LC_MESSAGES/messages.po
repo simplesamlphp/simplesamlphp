@@ -359,9 +359,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Страница не найдена"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Отправка сообщения"
-
 msgid "{admin:metaover_intro}"
 msgstr "Для просмотра подробностей записи SAML, кликните на заголовок записи SAML."
 

@@ -349,9 +349,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Sidan finns inte"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Skickar meddelande"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "För att titta på detaljer för en SAML-entitet klicka på rubriken för "

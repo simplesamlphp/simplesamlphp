@@ -306,9 +306,6 @@ msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您�
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "页面没有找到"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "正在发送消息"
-
 msgid "{admin:metaover_intro}"
 msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 

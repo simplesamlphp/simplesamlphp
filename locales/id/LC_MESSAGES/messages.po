@@ -344,9 +344,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Halaman tidak ditemukan"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Mengirimpan pesan"
-
 msgid "{admin:metaover_intro}"
 msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
 

@@ -328,9 +328,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "الصفحة غير موجودة"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "ارسل رسالة"
-
 msgid "{admin:metaover_intro}"
 msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اضغط علي ترويسة  الوحدة "
 

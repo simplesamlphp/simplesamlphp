@@ -341,9 +341,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Ez da orria aurkitu"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Mezua bidaltzen"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua."
 

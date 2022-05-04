@@ -340,9 +340,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Kan ikke finne siden"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Sender melding"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "For å se på detaljene i en SAML-entitet, klikk på SAML-entitet "

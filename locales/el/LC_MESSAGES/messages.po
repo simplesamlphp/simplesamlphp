@@ -372,9 +372,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Η σελίδα δεν βρέθηκε"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Αποστολή αρχείου"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Για να δείτε τις λεπτομέρειες για μια οντότητα SAML, κάντε κλικ στην "

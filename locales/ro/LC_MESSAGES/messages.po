@@ -349,9 +349,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Pagina nu a fost găsită"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Se trimite mesajul"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "

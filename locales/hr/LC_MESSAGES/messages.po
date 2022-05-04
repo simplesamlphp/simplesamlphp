@@ -351,9 +351,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Stranica nije pronađena"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Šaljem poruku"
-
 msgid "{admin:metaover_intro}"
 msgstr "Da biste vidjeli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 

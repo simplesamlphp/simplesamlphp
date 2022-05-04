@@ -315,9 +315,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Página não encontrada"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "A enviar a mensagem"
-
 msgid "{admin:metaover_intro}"
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 

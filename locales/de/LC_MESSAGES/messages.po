@@ -354,9 +354,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Seite nicht gefunden"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Sende Nachricht"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "

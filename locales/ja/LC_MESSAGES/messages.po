@@ -308,9 +308,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "ページが見つかりません"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "メッセージを送信中"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 

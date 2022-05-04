@@ -353,9 +353,6 @@ msgstr ""
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Page introuvable"
 
-msgid "{admin:debug_sending_message_title}"
-msgstr "Envoi du message"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 
