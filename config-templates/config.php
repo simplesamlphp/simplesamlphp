@@ -1026,7 +1026,7 @@ $config = [
      * The MDQ metadata handler defines the following options:
      * - 'type': This is always 'mdq'.
      * - 'server': Base URL of the MDQ server. Mandatory.
-     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata. You don't need this
+     * - 'validateCertificate': The certificates file that may be used to sign the metadata. You don't need this
      *                          option if you don't want to validate the signature on the metadata. Optional.
      * - 'cachedir': Directory where metadata can be cached. Optional.
      * - 'cachelength': Maximum time metadata can be cached, in seconds. Defaults to 24
@@ -1062,6 +1062,10 @@ $config = [
      *      [
      *          'type' => 'mdq',
      *          'server' => 'http://mdq.server.com:8080',
+     *          'validateCertificate' => [
+     *              '/var/simplesamlphp/cert/metadata-key.new.crt',
+     *              '/var/simplesamlphp/cert/metadata-key.old.crt'
+     *          ],
      *          'cachedir' => '/var/simplesamlphp/mdq-cache',
      *          'cachelength' => 86400
      *      ]
