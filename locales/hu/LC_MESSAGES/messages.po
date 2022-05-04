@@ -273,9 +273,6 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "A(z)  %AUTHSOURCE% azonosítási forrásban hiba van. A ok: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Hiba történt"
 

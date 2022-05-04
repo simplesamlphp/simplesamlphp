@@ -89,7 +89,7 @@ msgstr "Ibanjiwe"
 msgid "LDAP Error"
 msgstr "Impazamo ye-LDAP"
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%"
 
 msgid "{logout:logout_all}"

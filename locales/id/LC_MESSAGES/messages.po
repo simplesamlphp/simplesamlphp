@@ -277,9 +277,6 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Beberapa error telah terjadi"
 

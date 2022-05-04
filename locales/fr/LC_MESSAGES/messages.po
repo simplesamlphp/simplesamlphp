@@ -286,11 +286,6 @@ msgstr ""
 "Vous avez accédé à l'interface du service de traitement des assertions, "
 "mais vous n'avez pas fourni de réponse d'authentification SAML."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr ""
-"Erreur d'authentification pour la source %AUTHSOURCE%. La raison était "
-"%REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Une erreur est survenue"
 

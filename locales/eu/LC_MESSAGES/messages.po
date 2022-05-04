@@ -274,9 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Errorea kautotze jatorrian %AUTHSOURCE%. Arrazoia hau da: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Errore bat jazo da"
 

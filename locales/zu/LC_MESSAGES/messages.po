@@ -90,7 +90,7 @@ msgstr "Imisiwe"
 msgid "LDAP Error"
 msgstr "Iphutha le-LDAP"
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr ""
 "Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: "
 "%REASON%"

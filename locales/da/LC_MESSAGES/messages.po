@@ -280,9 +280,6 @@ msgstr ""
 "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at "
 "sende et SAML Authentication Response"
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Autentificeringsfejl i %AUTHSOURCE%. Årsagen var: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "En fejl opstod."
 

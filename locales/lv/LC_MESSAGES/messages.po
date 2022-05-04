@@ -271,9 +271,6 @@ msgstr ""
 "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "
 "SAML autentifikācijas atbildi."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Autentifikācijas kļūda avotā %AUTHSOURCE%. Iemesls: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Notikusi kļūda"
 

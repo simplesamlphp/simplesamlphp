@@ -270,9 +270,6 @@ msgstr ""
 "Została wywołana usługa Assertion Consumer Service, ale nie dostarczono "
 "komunikatu SAML 'Authentication Response'"
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Błąd uwierzytelnienia dla źródła %AUTHSOURCE%. Przyczyną jest: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Wystapił jakiś błąd"
 

@@ -220,9 +220,6 @@ msgstr ""
 "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service "
 "koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%"
-
 msgid "{login:change_home_org_button}"
 msgstr "Kies tuisorganisasie"
 

@@ -301,11 +301,6 @@ msgstr ""
 "Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την πηγή ταυτοποίησης "
-"%AUTHSOURCE%: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Συνέβη σφάλμα"
 

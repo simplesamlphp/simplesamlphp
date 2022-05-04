@@ -287,9 +287,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza "
 "fornire un messaggio SAML di Authentication Response."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione è $REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Si è verificato un errore"
 

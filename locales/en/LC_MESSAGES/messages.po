@@ -293,9 +293,6 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Some error occurred"
 

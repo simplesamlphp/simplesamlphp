@@ -269,9 +269,6 @@ msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
 "autentikacijos atsakymo."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Autentikacijos klaida %AUTHSOURCE% šaltinyje. Priežastis: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Įvyko tam tikra klaida"
 

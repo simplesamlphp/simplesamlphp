@@ -277,9 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Innloggingsfeil knytta til %AUTHSOURCE% på grunn av %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Ein feilsituasjon oppsto"
 

@@ -273,9 +273,6 @@ msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
 "AuthenticationResponse."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Feil i autentiseringskilden %AUTHSOURCE%. Feilen var: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "En feil har oppstått"
 

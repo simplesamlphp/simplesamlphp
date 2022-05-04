@@ -272,9 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Tõrge autentimisallikas %AUTHSOURCE%. Põhjus: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Ilmnes mingi tõrge"
 

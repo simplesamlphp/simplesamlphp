@@ -282,11 +282,6 @@ msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "
 "autentifikacijski odgovor."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr ""
-"Došlo je do greške u autentifikacijskom modulu %AUTHSOURCE%. Razlog: "
-"%REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Pojavila se greška"
 

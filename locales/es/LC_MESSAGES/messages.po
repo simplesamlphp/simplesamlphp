@@ -298,11 +298,6 @@ msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
 " respuesta de autenticación SAML."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr ""
-"Error en la Autenticacion en el origen %AUTHSOURCE%. La razon fue: "
-"%REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Se produjo un error"
 

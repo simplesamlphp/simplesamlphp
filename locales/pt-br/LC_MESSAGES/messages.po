@@ -284,9 +284,6 @@ msgstr ""
 "Você acessou a interface do Assertion Consumer Service, mas não forneceu "
 "uma SAML Authentication Response."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr "Erro de autenticação na origem %AUTHSOURCE%. O motivo foi:%REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Ocorreu algum erro"
 

@@ -285,11 +285,6 @@ msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
 "aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
-msgid "{errors:descr_AUTHSOURCEERROR}"
-msgstr ""
-"Fehler in der Authentifizierungsquelle %AUTHSOURCE%. Der Grund hierfür "
-"ist: %REASON%"
-
 msgid "{status:some_error_occurred}"
 msgstr "Es ist ein Fehler aufgetreten"
 
