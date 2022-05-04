@@ -269,9 +269,6 @@ msgstr "Não"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Opção preferida]"
 
-msgid "{login:user_pass_header}"
-msgstr "Digite seu usuário e senha"
-
 msgid "{errors:report_explain}"
 msgstr "Explique o que você estava fazendo quando aconteceu o erro..."
 

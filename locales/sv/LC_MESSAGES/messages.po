@@ -267,9 +267,6 @@ msgstr "Nej"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Prioriterat val"
 
-msgid "{login:user_pass_header}"
-msgstr "Ange ditt användarnamn och lösenord"
-
 msgid "{errors:report_explain}"
 msgstr "Förklara hur felet uppstod..."
 

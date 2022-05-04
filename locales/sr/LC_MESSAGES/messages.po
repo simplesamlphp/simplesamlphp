@@ -265,9 +265,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferirani izbor]"
 
-msgid "{login:user_pass_header}"
-msgstr "Unesite vaše korisničko ime i lozinku"
-
 msgid "{errors:report_explain}"
 msgstr "Opišite šta ste radili kada se ova greška desila..."
 

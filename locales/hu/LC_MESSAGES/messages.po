@@ -258,9 +258,6 @@ msgstr "Nem"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Kívánt választás]"
 
-msgid "{login:user_pass_header}"
-msgstr "Felhasználónév és jelszó"
-
 msgid "{errors:report_explain}"
 msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történt..."
 

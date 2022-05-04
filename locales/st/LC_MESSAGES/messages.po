@@ -222,9 +222,6 @@ msgstr ""
 "Tshebeletso  e kopile hore o inetefatse. Ka kopo kenya lebitso la "
 "mosebedisi le phasewete ya hao foromong e ka tlase mona."
 
-msgid "{login:user_pass_header}"
-msgstr "Kenya lebitso la mosebedisi le phasewete"
-
 msgid ""
 "Either no user with the given username could be found, or the password "
 "you gave was wrong. Please check the username and try again."

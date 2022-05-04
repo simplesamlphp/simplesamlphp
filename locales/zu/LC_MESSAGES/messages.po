@@ -256,7 +256,7 @@ msgstr "Khumbula igama lami lomsebenzisi"
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Ayikho impendulo ye-SAML enikeziwe"
 
-msgid "{login:user_pass_header}"
+msgid "Enter your username and password"
 msgstr "Faka igama lakho lomsebenzisi nephasiwedi"
 
 msgid "{logout:logging_out_from}"

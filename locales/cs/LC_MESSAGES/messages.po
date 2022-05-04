@@ -257,9 +257,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Preferovaná volba]"
 
-msgid "{login:user_pass_header}"
-msgstr "Vložte své jméno a heslo"
-
 msgid "{errors:report_explain}"
 msgstr "Vysvětlete, jak došlo k této chybě ..."
 

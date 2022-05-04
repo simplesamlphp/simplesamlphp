@@ -259,9 +259,6 @@ msgstr "Ez"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Aukera gogokoena]"
 
-msgid "{login:user_pass_header}"
-msgstr "Sartu erabiltzaile-izena eta pasahitza"
-
 msgid "{errors:report_explain}"
 msgstr "Azal ezazu zer egin duzun errore honetara iristeko..."
 

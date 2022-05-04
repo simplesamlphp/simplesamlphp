@@ -255,9 +255,6 @@ msgstr "لا"
 msgid "{disco:icon_prefered_idp}"
 msgstr "اختياري المفضل"
 
-msgid "{login:user_pass_header}"
-msgstr "ادخل اسم المستخدم و كلمة السر"
-
 msgid "{errors:report_explain}"
 msgstr "اشرح ما فعلته عند حدوث الخطأ "
 

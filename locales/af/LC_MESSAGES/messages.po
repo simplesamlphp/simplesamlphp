@@ -205,9 +205,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Verkies]"
 
-msgid "{login:user_pass_header}"
-msgstr "Voer jou gebruikersnaam en wagwoord in"
-
 msgid "{errors:report_explain}"
 msgstr "Verduidelik wat jy gedoen het toe jy die probleem ervaar..."
 

@@ -262,9 +262,6 @@ msgstr "Tidak"
 msgid "{disco:icon_prefered_idp}"
 msgstr "Pilihan yang disukai"
 
-msgid "{login:user_pass_header}"
-msgstr "Masukkan username dan password Anda"
-
 msgid "{errors:report_explain}"
 msgstr "Jelaskan apa yang Anda lakukan ketika error ini terjadi..."
 

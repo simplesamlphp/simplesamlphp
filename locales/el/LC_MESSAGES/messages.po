@@ -281,9 +281,6 @@ msgstr "Όχι"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 
-msgid "{login:user_pass_header}"
-msgstr "Εισάγετε όνομα χρήστη και κωδικό πρόσβασης"
-
 msgid "{errors:report_explain}"
 msgstr "Περιγράψτε τις ενέργειές σας όταν συνέβη το σφάλμα..."
 

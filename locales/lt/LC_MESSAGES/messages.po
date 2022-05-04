@@ -256,9 +256,6 @@ msgstr "Ne"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Rekomenduojame]"
 
-msgid "{login:user_pass_header}"
-msgstr "Įveskite savo prisijungimo vardą ir slaptažodį"
-
 msgid "{errors:report_explain}"
 msgstr "Aprašykite kokius veiksmus atlikote, kuomet pasirodė ši klaida..."
 

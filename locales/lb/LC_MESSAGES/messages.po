@@ -102,9 +102,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Service Provider"
 
-msgid "{login:user_pass_header}"
-msgstr "Gid w.e.g Aeren Benotzernumm an d Passwuert an"
-
 msgid "{errors:report_explain}"
 msgstr "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen..."
 

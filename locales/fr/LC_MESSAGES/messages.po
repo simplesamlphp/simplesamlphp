@@ -271,9 +271,6 @@ msgstr "Non"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Choix préféré]"
 
-msgid "{login:user_pass_header}"
-msgstr "Entrez votre identifiant et votre mot de passe"
-
 msgid "{errors:report_explain}"
 msgstr "Expliquez ce que vous faisiez lorsque cette erreur est apparue..."
 

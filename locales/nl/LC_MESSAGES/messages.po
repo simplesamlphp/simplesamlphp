@@ -290,9 +290,6 @@ msgstr "Nee"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Voorkeurskeuze]"
 
-msgid "{login:user_pass_header}"
-msgstr "Geef je gebruikersnaam en wachtwoord"
-
 msgid "{errors:report_explain}"
 msgstr "Leg uit wat je deed toen deze foutmelding optrad..."
 

@@ -283,9 +283,6 @@ msgstr "No"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[Opción preference]"
 
-msgid "{login:user_pass_header}"
-msgstr "Indique su nombre de usuario y clave de acceso"
-
 msgid "{errors:report_explain}"
 msgstr "Explique lo que ha hecho para llegar a este error..."
 

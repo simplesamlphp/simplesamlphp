@@ -249,9 +249,6 @@ msgstr "לא"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[בחירה מעודפת]"
 
-msgid "{login:user_pass_header}"
-msgstr "הכנס שם משתמש וסיסמה"
-
 msgid "{errors:report_explain}"
 msgstr "הסבר מה עשית כשהתרחשה השגיאה..."
 

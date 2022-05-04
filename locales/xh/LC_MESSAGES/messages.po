@@ -253,7 +253,7 @@ msgstr "Khumbula igama lomsebenzisi lam"
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Akukho mpendulo ye-SAML inikelweyo"
 
-msgid "{login:user_pass_header}"
+msgid "Enter your username and password"
 msgstr "Ngenisa igama lomsebenzisi nephaswedi yakho"
 
 msgid "{logout:logging_out_from}"

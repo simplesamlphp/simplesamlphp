@@ -237,9 +237,6 @@ msgstr "いいえ"
 msgid "{disco:icon_prefered_idp}"
 msgstr "[推奨する選択]"
 
-msgid "{login:user_pass_header}"
-msgstr "ユーザー名とパスワードを入力してください"
-
 msgid "{errors:report_explain}"
 msgstr "何をした際にこのエラーが発生したかを教えてください。"
 
