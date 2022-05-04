@@ -131,7 +131,7 @@ msgstr "Khetha"
 msgid "Remember my choice"
 msgstr "Khumbula ukhetho lwam"
 
-msgid "{general:remember}"
+msgid "Remember"
 msgstr "Khumbula"
 
 msgid "Error processing response from Identity Provider"

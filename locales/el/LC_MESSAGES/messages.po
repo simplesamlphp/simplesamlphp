@@ -386,9 +386,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Μη έγκυρο πιστοποιητικό"
 
-msgid "{general:remember}"
-msgstr "Να θυμάσαι την επιλογή μου"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Μια υπηρεσία έχει ζητήσει την ταυτοποίησή σας. Παρακαλώ εισάγετε το όνομα"

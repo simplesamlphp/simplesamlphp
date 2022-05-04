@@ -360,9 +360,6 @@ msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Neispravan sertifikat"
 
-msgid "{general:remember}"
-msgstr "Zapamti moj izbor"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "

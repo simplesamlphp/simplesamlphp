@@ -353,9 +353,6 @@ msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua.
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ziurtagiri balio gabea"
 
-msgid "{general:remember}"
-msgstr "Onespena gogoratu"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-"

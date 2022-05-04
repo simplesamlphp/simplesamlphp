@@ -384,9 +384,6 @@ msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongeldig certificaat"
 
-msgid "{general:remember}"
-msgstr "Bewaar toestemming"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "

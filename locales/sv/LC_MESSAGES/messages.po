@@ -363,9 +363,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Felaktigt certifikat"
 
-msgid "{general:remember}"
-msgstr "Spara samtycke"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En webbtjänst har begärt att du ska logga in. Detta betyder att du "

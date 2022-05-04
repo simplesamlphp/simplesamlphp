@@ -381,9 +381,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificado no válido"
 
-msgid "{general:remember}"
-msgstr "Recordar el consentimiento"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "

@@ -150,9 +150,6 @@ msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongültegen Zertifikat"
 
-msgid "{general:remember}"
-msgstr "Zoustëmmung verhalen"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer "

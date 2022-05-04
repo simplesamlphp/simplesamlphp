@@ -350,9 +350,6 @@ msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Érvénytelen tanúsítvány"
 
-msgid "{general:remember}"
-msgstr "Emlékezzen a hozzájárulásra"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "

@@ -320,9 +320,6 @@ msgstr "SAMLエンティティの詳細を確認するためには、SAMLエン�
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "無効な証明書です"
 
-msgid "{general:remember}"
-msgstr "記憶する"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

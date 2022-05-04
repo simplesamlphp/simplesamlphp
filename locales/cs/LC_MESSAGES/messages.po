@@ -344,9 +344,6 @@ msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Špatný certifikát"
 
-msgid "{general:remember}"
-msgstr "Zapamatuj"
-
 msgid "{login:user_pass_text}"
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 

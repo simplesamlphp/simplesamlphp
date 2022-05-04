@@ -270,9 +270,6 @@ msgstr "Foutmelding ontvang vanaf die Identiteits Verskaffer"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ongeldige sertifikaat"
 
-msgid "{general:remember}"
-msgstr "Onthou"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "

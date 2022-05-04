@@ -368,9 +368,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ungültiges Zertifikat"
 
-msgid "{general:remember}"
-msgstr "Zustimmung merken"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"

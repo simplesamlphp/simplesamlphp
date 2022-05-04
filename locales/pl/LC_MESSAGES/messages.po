@@ -344,9 +344,6 @@ msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Nieprawidłowy certyfikat"
 
-msgid "{general:remember}"
-msgstr "Pamiętaj moją zgodę"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "

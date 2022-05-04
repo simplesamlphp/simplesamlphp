@@ -250,9 +250,6 @@ msgstr "Virhe vastaanotettu Identiteetintarjoajalta."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Epäkelvollinen sertifikaatti"
 
-msgid "{general:remember}"
-msgstr "Muista"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "

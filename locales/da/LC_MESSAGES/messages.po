@@ -357,9 +357,6 @@ msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headere
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ugyldigt Certifikat"
 
-msgid "{general:remember}"
-msgstr "Husk samtykke"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "

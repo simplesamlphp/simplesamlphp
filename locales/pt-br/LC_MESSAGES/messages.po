@@ -363,9 +363,6 @@ msgstr "Para ver os detalhes da entidade SAML, clique "
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificado inválido"
 
-msgid "{general:remember}"
-msgstr "Lembrar Consentimento"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

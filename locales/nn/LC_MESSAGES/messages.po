@@ -356,9 +356,6 @@ msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ugyldig sertifikat"
 
-msgid "{general:remember}"
-msgstr "Godta også for framtida"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "

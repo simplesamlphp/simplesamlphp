@@ -903,9 +903,6 @@ msgstr ""
 "hore ba kgone ho ikopanya le wena mabapi le dipotso tse ding ka ditaba "
 "tsa hao:"
 
-msgid "{general:remember}"
-msgstr "Hopola"
-
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
 

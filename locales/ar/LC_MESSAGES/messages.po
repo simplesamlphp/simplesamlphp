@@ -340,9 +340,6 @@ msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اض
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "شهادة غير صحيحة"
 
-msgid "{general:remember}"
-msgstr "تذكرألغت ذكر"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "

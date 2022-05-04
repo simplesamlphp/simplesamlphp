@@ -371,9 +371,6 @@ msgstr "Для просмотра подробностей записи SAML, к
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Недействительный сертификат"
 
-msgid "{general:remember}"
-msgstr "Запомнить"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Служба запрашивает авторизацию. Пожалуйста, введите имя пользователя и "

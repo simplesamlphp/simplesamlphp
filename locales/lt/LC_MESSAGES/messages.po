@@ -350,9 +350,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Neteisingas sertifikatas"
 
-msgid "{general:remember}"
-msgstr "Įsiminti"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"

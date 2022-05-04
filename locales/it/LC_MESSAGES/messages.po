@@ -368,9 +368,6 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificato non valido"
 
-msgid "{general:remember}"
-msgstr "Ricordare"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "
