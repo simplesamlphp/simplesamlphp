@@ -327,7 +327,7 @@ class MDQ extends MetaDataStorageSource
                 throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $entityId . '".');
             }
         } else {
-            Logger::notice('Not verifying signature because to certificates were configured.');
+            Logger::notice('Not verifying MDQ metadata signature because no certificates were configured.');
         }
 
         $data = self::getParsedSet($entity, $set);
