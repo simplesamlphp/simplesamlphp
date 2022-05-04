@@ -311,9 +311,6 @@ msgstr "Izberite domačo organizacijo."
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Odvečne nastavitve v konfiguracijski datoteki"
 
-msgid "{errors:report_email}"
-msgstr "Elektronski naslov:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
 

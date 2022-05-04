@@ -285,9 +285,6 @@ msgstr "选择你的家庭组织"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "配置文件中拥有过多的选项"
 
-msgid "{errors:report_email}"
-msgstr "E-mail地址"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 

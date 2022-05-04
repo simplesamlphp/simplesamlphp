@@ -327,9 +327,6 @@ msgstr "Choisissez votre fournisseur."
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Options superflues dans le fichier de configuration"
 
-msgid "{errors:report_email}"
-msgstr "Adresse de courriel :"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "

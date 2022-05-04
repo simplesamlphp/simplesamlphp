@@ -325,9 +325,6 @@ msgstr "Escolher uma organização principal"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opções supérfluas no arquivo de configuração"
 
-msgid "{errors:report_email}"
-msgstr "Endereço de e-mail:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "O promotor deste pedido não fornecer um parâmetro RelayState indicando o "

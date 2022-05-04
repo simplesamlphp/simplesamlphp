@@ -247,9 +247,6 @@ msgstr "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%"
 msgid "{login:change_home_org_button}"
 msgstr "Kies tuisorganisasie"
 
-msgid "{errors:report_email}"
-msgstr "Epos adres:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "

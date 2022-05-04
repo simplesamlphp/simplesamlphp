@@ -300,9 +300,6 @@ msgstr "選擇預設組織"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "多餘設定存在於設定檔"
 
-msgid "{errors:report_email}"
-msgstr "電子郵件:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下一個步驟。"
 

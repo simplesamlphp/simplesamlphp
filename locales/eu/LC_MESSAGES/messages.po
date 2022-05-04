@@ -315,9 +315,6 @@ msgstr "Jatorrizko erakundea hautatu"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Konfigurazio fitxategian soberan dauden aukerak"
 
-msgid "{errors:report_email}"
-msgstr "E-posta:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "

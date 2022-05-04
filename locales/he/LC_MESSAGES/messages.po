@@ -299,9 +299,6 @@ msgstr "החלף אירגון בית"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "אפשרויות מיותרות בקובץ ההגדרות"
 
-msgid "{errors:report_email}"
-msgstr "כתובת דואל:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
 

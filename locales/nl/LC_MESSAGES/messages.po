@@ -346,9 +346,6 @@ msgstr "Kies je organisatie"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Teveel opties in de config file"
 
-msgid "{errors:report_email}"
-msgstr "E-mailadres:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "

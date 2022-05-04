@@ -332,9 +332,6 @@ msgstr "Choose home organization"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Superfluous options in config file"
 
-msgid "{errors:report_email}"
-msgstr "E-mail address:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "The initiator of this request did not provide a RelayState parameter "

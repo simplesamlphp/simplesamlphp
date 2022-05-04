@@ -328,9 +328,6 @@ msgstr "Selezionare la propria organizzazione"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opzioni superflue nel file di configurazione"
 
-msgid "{errors:report_email}"
-msgstr "Indirizzo di e-mail:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "

@@ -319,9 +319,6 @@ msgstr "Vælg hjemmeinstitution"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overflødigt valg i konfigurationsfil"
 
-msgid "{errors:report_email}"
-msgstr "E-mailadresse:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "

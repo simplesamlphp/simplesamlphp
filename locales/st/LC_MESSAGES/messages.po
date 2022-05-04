@@ -296,9 +296,6 @@ msgstr ""
 "ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong "
 "lena."
 
-msgid "{errors:report_email}"
-msgstr "Aterese ya imeile:"
-
 msgid ""
 "The parameters sent to the discovery service were not according to "
 "specifications."

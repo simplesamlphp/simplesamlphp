@@ -333,9 +333,6 @@ msgstr "Выберите домашнюю организацию"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Избыточные параметры в файле конфигурации"
 
-msgid "{errors:report_email}"
-msgstr "Адрес вашей электронной почты:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Инициатор данного запроса не предоставил параметр RelayState с указанием "

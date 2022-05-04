@@ -286,9 +286,6 @@ msgstr "組織の選択"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "設定ファイルに不適切なオプションが在ります"
 
-msgid "{errors:report_email}"
-msgstr "Eメールアドレス:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 

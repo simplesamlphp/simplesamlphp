@@ -318,9 +318,6 @@ msgstr "Pilih basis organisasi"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Pilihan tak beguna di file konfigurasi"
 
-msgid "{errors:report_email}"
-msgstr "Alamat E-mail:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inisiator dari request ini tidak menyediakan parameter RelayState yang "

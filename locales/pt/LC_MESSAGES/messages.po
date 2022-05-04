@@ -290,9 +290,6 @@ msgstr "Escolha a sua organização de origem"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opções supérfluas do ficheiro de configuração"
 
-msgid "{errors:report_email}"
-msgstr "Endereço de email:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Este pedido foi iniciado sem o parâmetro RelayState necessário para "

@@ -432,7 +432,7 @@ msgstr "Ngoku uphume ngokuyimpumelelo kwi-%SP%."
 msgid "{errors:descr_USERABORTED}"
 msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 
-msgid "{errors:report_email}"
+msgid "E-mail address:"
 msgstr "Idilesi ye-imeyile:"
 
 msgid "{login:organization}"

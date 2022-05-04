@@ -328,9 +328,6 @@ msgstr "Einrichtung auswählen"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Überflüssige Optionen in der Konfigurationsdatei"
 
-msgid "{errors:report_email}"
-msgstr "E-Mail-Adresse:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "

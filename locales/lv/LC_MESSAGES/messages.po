@@ -310,9 +310,6 @@ msgstr "Izvēlēties organizāciju"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Sīkas (superfluous) opcijas konfigurācijas failā"
 
-msgid "{errors:report_email}"
-msgstr "E-pasta adrese:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "

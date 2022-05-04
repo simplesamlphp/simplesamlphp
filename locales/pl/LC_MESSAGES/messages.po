@@ -306,9 +306,6 @@ msgstr "Wybierz domową organizację"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Zbędne opcje w pliku konfiguracyjnym"
 
-msgid "{errors:report_email}"
-msgstr "Adres e-mail"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "

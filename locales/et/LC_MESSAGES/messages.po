@@ -311,9 +311,6 @@ msgstr "Vali koduorganisatsioon"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Üleliigne seadistus seadistustefailis"
 
-msgid "{errors:report_email}"
-msgstr "E-posti aadress:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "

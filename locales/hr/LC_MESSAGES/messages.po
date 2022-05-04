@@ -323,9 +323,6 @@ msgstr "Odaberite matičnu ustanovu"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Suvišni parametri u konfiguracijskoj datoteci"
 
-msgid "{errors:report_email}"
-msgstr "E-mail adresa:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Aplikacija koja je inicirala ovaj zahtjev nije poslala RelayState "

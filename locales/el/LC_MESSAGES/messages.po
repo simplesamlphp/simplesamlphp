@@ -344,9 +344,6 @@ msgstr "Επιλογή οικείου φορέα"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Περιττές επιλογές στο αρχείο ρυθμίσεων"
 
-msgid "{errors:report_email}"
-msgstr "Email:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι "

@@ -438,7 +438,7 @@ msgstr "Usuphume ngempumelelo kokuthi %SP%."
 msgid "{errors:descr_USERABORTED}"
 msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
 
-msgid "{errors:report_email}"
+msgid "E-mail address:"
 msgstr "Ikheli le-imeyili:"
 
 msgid "{login:organization}"

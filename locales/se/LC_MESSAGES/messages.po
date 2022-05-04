@@ -27,9 +27,6 @@ msgstr "Beassansátni"
 msgid "{login:organization}"
 msgstr "Organisašuvdna"
 
-msgid "{errors:report_email}"
-msgstr "Elektrovnnalaš poastačijuhus"
-
 msgid "Person's principal name at home organization"
 msgstr "Feide-namma"
 

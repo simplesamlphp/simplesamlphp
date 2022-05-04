@@ -309,9 +309,6 @@ msgstr "Zvolte domovskou organizaci"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Nadbytečné položky v konfiguračním souboru"
 
-msgid "{errors:report_email}"
-msgstr "Email"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam pokračovat."
 

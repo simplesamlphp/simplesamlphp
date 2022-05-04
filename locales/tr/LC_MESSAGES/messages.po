@@ -295,9 +295,6 @@ msgstr "Organizasyon seçiniz"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Config dosyasındaki gereksiz tercihler"
 
-msgid "{errors:report_email}"
-msgstr "E-posta adresi:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Bu isteğin başlatıcısı, bir sonraki gidiş yerini bildiren RelayState "

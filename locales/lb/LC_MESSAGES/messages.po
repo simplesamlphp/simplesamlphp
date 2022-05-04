@@ -135,9 +135,6 @@ msgstr ""
 "Der hud den Assertion Consumer Sercice Interface accédéiert mais keng "
 "SAML Authentication Aentwert unginn"
 
-msgid "{errors:report_email}"
-msgstr "E-mail Adress"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
 

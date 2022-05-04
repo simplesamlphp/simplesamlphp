@@ -312,9 +312,6 @@ msgstr "Válassza ki a szervezetét"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Felesleges opciók a konfigurációs állományban"
 
-msgid "{errors:report_email}"
-msgstr "E-mail címek:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "

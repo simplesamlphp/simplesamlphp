@@ -318,9 +318,6 @@ msgstr "Vel vertsorganisasjon"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overflødig informasjon i konfigurasjonsfila"
 
-msgid "{errors:report_email}"
-msgstr "E-postadresse:"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "

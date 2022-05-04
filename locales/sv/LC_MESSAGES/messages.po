@@ -323,9 +323,6 @@ msgstr "Ändra organisation"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Överflödiga alternativ i konfigurationsfilen"
 
-msgid "{errors:report_email}"
-msgstr "E-postadress"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "
