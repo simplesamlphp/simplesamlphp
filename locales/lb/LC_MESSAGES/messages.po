@@ -112,9 +112,6 @@ msgstr ""
 "Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der "
 "SimpleSAMLphp Konfiguratioun."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Keen SAML message unginn"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Der hud den Assertion Consumer Sercice Interface accédéiert mais keng "

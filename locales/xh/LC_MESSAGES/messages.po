@@ -41,9 +41,6 @@ msgstr "Akukho sicelo se-SAML sinikelweyo"
 msgid "{errors:descr_CASERROR}"
 msgstr "Impazamo xa kunxibelelwana neseva ye-CAS."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Akukho myalezo we-SAML unikelweyo"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Uthumele into kwikhasi lokungena, kodwa ngesizathu esithile iphaswedi "

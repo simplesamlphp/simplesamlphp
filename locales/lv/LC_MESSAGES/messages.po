@@ -266,9 +266,6 @@ msgstr ""
 "Šis beigu punkts nav iespējots. Pārbaudiet iespējošanas opcijas "
 "SimpleSAMLphp konfigurācijā."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Nav SAML ziņojuma"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "

@@ -279,9 +279,6 @@ msgstr ""
 "Este parâmetro não está ativado. Marque a opção habilitar na configuração"
 " do SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Não fornecida a mensagem SAML"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Você acessou a interface do Assertion Consumer Service, mas não forneceu "

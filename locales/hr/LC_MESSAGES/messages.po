@@ -277,9 +277,6 @@ msgstr ""
 "Ova odredišna adresa nije omogućena. Provjerite dozvole u konfiguraciji "
 "vaše instalacije programskog alata SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Nije dostavljena nikakva SAML poruka"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "

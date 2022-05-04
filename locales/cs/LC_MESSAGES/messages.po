@@ -265,9 +265,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "Tento koncový bod není povolen. Zkontrolujte konfiguraci (zapněte volby)."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Nebyla zaslána SAML zpráva"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Přistupujete k Assertion Consumer Service rozhraní, ale neposíláte SAML"

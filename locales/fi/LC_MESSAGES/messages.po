@@ -189,9 +189,6 @@ msgstr ""
 "Tämä pääte ei ole otettu käyttöön. Tarkasta enable-optiot SimpleSAMLphp:n"
 " asetuksissa."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "SAML-viesti puuttui"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Yritit Assertion Consumer Service-liittymään, mutta et tarjonnut SAML "

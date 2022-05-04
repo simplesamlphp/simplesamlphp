@@ -265,9 +265,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "Brak uprawnień. Sprawdź opcję enable w konfiguracji SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Nie dostarczono komunikatu SAML"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Została wywołana usługa Assertion Consumer Service, ale nie dostarczono "

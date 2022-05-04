@@ -264,9 +264,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "Baigties taškas neįjungtas. Patikrinkite savo SimpleSAMLphp konfigūraciją."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Nepateikta SAML žinutė"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "

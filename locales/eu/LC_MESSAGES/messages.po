@@ -269,9 +269,6 @@ msgstr ""
 "Sarbide puntu hau ez dago gaituta. Egiazta itzazu SimpleSAMLphp-aren "
 "konfigurazioan gaitze aukerak."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "SAML mezua falta da"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "

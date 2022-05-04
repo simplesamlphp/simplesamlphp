@@ -215,9 +215,6 @@ msgstr ""
 "Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset "
 "van SimpleSAMLphp na."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Geen SAML boodskap gevind nie"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service "

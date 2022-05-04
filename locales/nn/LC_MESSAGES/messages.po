@@ -271,9 +271,6 @@ msgstr ""
 "Endepunktet er ikkje skrudd på. Sjekk Enable Options i konfigurasjonen av"
 " SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Fann ikkje SAML-melding"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Du har brukt grensesnittet for mottak av meldingar (Assertion Consumer "

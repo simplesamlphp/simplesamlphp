@@ -267,9 +267,6 @@ msgstr ""
 "Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v "
 "konfiguraciji SimpleSAMLphp-ja."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "SAML sporočilo ni na voljo"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "

@@ -272,9 +272,6 @@ msgstr ""
 "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi "
 "SimpleSAMLphp Anda."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Tidak pesan SAML yang disediakan"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "

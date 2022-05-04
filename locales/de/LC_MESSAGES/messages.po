@@ -280,9 +280,6 @@ msgstr ""
 "Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die "
 "Aktivierungsoptionen in der SimpleSAMLphp-Konfiguration."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Keine SAML-Nachricht bereitgestellt"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "

@@ -281,9 +281,6 @@ msgstr ""
 "Cette terminaison (ou <i>endpoint</i>) n'est pas activée. Vérifiez les "
 "options d'activation dans la configuration de SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Aucun message SAML fourni"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Vous avez accédé à l'interface du service de traitement des assertions, "

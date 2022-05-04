@@ -257,9 +257,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעלה בהגדרות  SimpleSAMLphp שלך."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "לא סופקו הודעות SAML"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
 

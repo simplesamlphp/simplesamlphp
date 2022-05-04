@@ -293,9 +293,6 @@ msgstr ""
 "Este punto de acceso no est&aacute; habilitado. Verifique las opciones de"
 " habilitaci&oacute;n en la configuraci&oacute;n de SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Falta el mensaje SAML"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"

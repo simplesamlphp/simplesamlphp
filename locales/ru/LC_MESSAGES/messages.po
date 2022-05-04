@@ -287,9 +287,6 @@ msgstr ""
 "Данная конечная точка не активирована. Проверьте опции в конфигурации "
 "вашего SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Отсутствует утверждение SAML "
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "

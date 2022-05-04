@@ -267,9 +267,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "See lõpp-punkt pole lubatud. Kontrolli oma simpleSAMPphp seadistust."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "SAML-teade puudub"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "

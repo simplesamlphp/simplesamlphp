@@ -294,9 +294,6 @@ msgstr ""
 "είστε ο διαχειριστής της υπηρεσίας, ελέγξτε τις ρυθμίσεις του "
 "SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή SingleLogoutService"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Κατά την πρόσβασή σας στη διεπαφή AssertionConsumerService  παραλείψατε "

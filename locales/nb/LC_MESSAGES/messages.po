@@ -268,9 +268,6 @@ msgstr ""
 "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt "
 "SimpleSAMLphp-oppsett."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Ingen SAML-melding angitt"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "

@@ -287,9 +287,6 @@ msgstr ""
 "This endpoint is not enabled. Check the enable options in your "
 "configuration of SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "No SAML message provided"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "You accessed the Assertion Consumer Service interface, but did not "

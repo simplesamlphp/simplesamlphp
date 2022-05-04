@@ -92,9 +92,6 @@ msgstr ""
 msgid "Remember"
 msgstr "Hopola"
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Ha ho molaetsa wa SAML o fanweng"
-
 msgid "You have successfully logged out from all services listed above."
 msgstr ""
 "O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo"

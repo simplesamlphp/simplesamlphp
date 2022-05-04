@@ -42,9 +42,6 @@ msgstr "Asikho isicelo se-SAML esinikeziwe"
 msgid "{errors:descr_CASERROR}"
 msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Awukho umlayezo we-SAML onikeziwe"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Uthumele okuthile ekhasini lokungena, kodwa ngasizathu simbe iphasiwedi "

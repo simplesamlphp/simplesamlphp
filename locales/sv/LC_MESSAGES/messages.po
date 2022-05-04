@@ -277,9 +277,6 @@ msgstr ""
 "Denna ändpunkt är inte aktiverad. Kontrollera aktiveringsinställningarna "
 "i konfigurationen av SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Inget SAML-meddelande tillhandahölls"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Du har anropat gränssnittet för Assertion Consumer Service utan att "

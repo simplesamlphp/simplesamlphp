@@ -263,9 +263,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "هذه النقطة غير منشطة. راجع خيارات التنشيط بترتيب SimpleSAMLphp"
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "لم يتم تقديم رسالة SAML"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم توفر استجابة توثيق SAML"
 

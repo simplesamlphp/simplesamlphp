@@ -300,9 +300,6 @@ msgstr ""
 "Deze toegangsmogelijkheid is niet beschikbaar. Controleer de opties in de"
 " configuratie van SimpleSAMLphp."
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Geen SAML bericht gevonden"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "

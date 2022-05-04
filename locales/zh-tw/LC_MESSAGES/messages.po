@@ -258,9 +258,6 @@ msgstr "您連結單一簽出服務界面，但是沒有提供一個 SAML 登出
 msgid "{errors:descr_NOACCESS}"
 msgstr "這個端點並未啟用。核取啟用選項於您的 SimpleSAMLphp 設定中。"
 
-msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "無法提供 SAML 訊息"
-
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
 
