@@ -315,9 +315,6 @@ msgstr "Felesleges opciók a konfigurációs állományban"
 msgid "{errors:report_email}"
 msgstr "E-mail címek:"
 
-msgid "{errors:howto_header}"
-msgstr "Hogyan kaphat segítséget"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "

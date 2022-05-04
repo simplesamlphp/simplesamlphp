@@ -250,9 +250,6 @@ msgstr "Kies tuisorganisasie"
 msgid "{errors:report_email}"
 msgstr "Epos adres:"
 
-msgid "{errors:howto_header}"
-msgstr "Hoe om hulp te verkry"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "

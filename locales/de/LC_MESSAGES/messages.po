@@ -331,9 +331,6 @@ msgstr "Überflüssige Optionen in der Konfigurationsdatei"
 msgid "{errors:report_email}"
 msgstr "E-Mail-Adresse:"
 
-msgid "{errors:howto_header}"
-msgstr "Wie man Hilfe bekommt"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "

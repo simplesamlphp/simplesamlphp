@@ -322,9 +322,6 @@ msgstr "Overflødigt valg i konfigurationsfil"
 msgid "{errors:report_email}"
 msgstr "E-mailadresse:"
 
-msgid "{errors:howto_header}"
-msgstr "Hvordan kan jeg få hjælp"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "

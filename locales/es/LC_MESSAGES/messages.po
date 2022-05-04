@@ -344,9 +344,6 @@ msgstr "Opciones sobrantes en el fichero de configuración"
 msgid "{errors:report_email}"
 msgstr "Correo-e:"
 
-msgid "{errors:howto_header}"
-msgstr "Cómo obtener asistencia"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "El iniciador de esta solicitud no proporcion&oacute; el par&aacute;metro "

@@ -298,9 +298,6 @@ msgstr "Config dosyasındaki gereksiz tercihler"
 msgid "{errors:report_email}"
 msgstr "E-posta adresi:"
 
-msgid "{errors:howto_header}"
-msgstr "Nasıl yardım alınır"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Bu isteğin başlatıcısı, bir sonraki gidiş yerini bildiren RelayState "

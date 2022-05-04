@@ -309,9 +309,6 @@ msgstr "Zbędne opcje w pliku konfiguracyjnym"
 msgid "{errors:report_email}"
 msgstr "Adres e-mail"
 
-msgid "{errors:howto_header}"
-msgstr "Jak otrzymać pomoc."
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "

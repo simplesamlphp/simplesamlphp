@@ -119,7 +119,7 @@ msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga"
 msgid "{status:authData_summary}"
 msgstr "Cofa ukuze ubone uNgqinisiso lweNgcombolo"
 
-msgid "{errors:howto_header}"
+msgid "How to get help"
 msgstr "Indlela yokufumana uncedo"
 
 msgid "Login at"

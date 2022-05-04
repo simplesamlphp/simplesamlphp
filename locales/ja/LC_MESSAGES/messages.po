@@ -289,9 +289,6 @@ msgstr "設定ファイルに不適切なオプションが在ります"
 msgid "{errors:report_email}"
 msgstr "Eメールアドレス:"
 
-msgid "{errors:howto_header}"
-msgstr "困ったときには"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 

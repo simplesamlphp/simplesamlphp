@@ -321,9 +321,6 @@ msgstr "Pilihan tak beguna di file konfigurasi"
 msgid "{errors:report_email}"
 msgstr "Alamat E-mail:"
 
-msgid "{errors:howto_header}"
-msgstr "Bagaimana mendapatkan pertolongan"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inisiator dari request ini tidak menyediakan parameter RelayState yang "

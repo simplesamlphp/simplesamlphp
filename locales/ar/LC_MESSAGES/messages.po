@@ -308,9 +308,6 @@ msgstr "خيارات فائضة بملف الترتيب"
 msgid "{errors:report_email}"
 msgstr "عنوان الأميل"
 
-msgid "{errors:howto_header}"
-msgstr "للمساعدة"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 

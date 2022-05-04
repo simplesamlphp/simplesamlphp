@@ -302,9 +302,6 @@ msgstr "אפשרויות מיותרות בקובץ ההגדרות"
 msgid "{errors:report_email}"
 msgstr "כתובת דואל:"
 
-msgid "{errors:howto_header}"
-msgstr "איך לקבל עזרה"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
 

@@ -293,9 +293,6 @@ msgstr "Opções supérfluas do ficheiro de configuração"
 msgid "{errors:report_email}"
 msgstr "Endereço de email:"
 
-msgid "{errors:howto_header}"
-msgstr "Como obter ajuda"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Este pedido foi iniciado sem o parâmetro RelayState necessário para "

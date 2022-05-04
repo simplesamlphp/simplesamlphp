@@ -324,9 +324,6 @@ msgstr "Suvišni parametri u konfiguracionom fajlu"
 msgid "{errors:report_email}"
 msgstr "e-mail adresa:"
 
-msgid "{errors:howto_header}"
-msgstr "Kome se obratiti za pomoć"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Servis koji je inicirao ovaj zahtjev nije poslao RelayState parametar "

@@ -122,7 +122,7 @@ msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
 msgid "{status:authData_summary}"
 msgstr "Qhafaza ukuze ubuke i-AuthData"
 
-msgid "{errors:howto_header}"
+msgid "How to get help"
 msgstr "Indlela yokuthola usizo"
 
 msgid "Login at"

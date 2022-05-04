@@ -326,9 +326,6 @@ msgstr "Överflödiga alternativ i konfigurationsfilen"
 msgid "{errors:report_email}"
 msgstr "E-postadress"
 
-msgid "{errors:howto_header}"
-msgstr "Hur får du hjälp"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "

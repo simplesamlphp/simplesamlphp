@@ -314,9 +314,6 @@ msgstr "Üleliigne seadistus seadistustefailis"
 msgid "{errors:report_email}"
 msgstr "E-posti aadress:"
 
-msgid "{errors:howto_header}"
-msgstr "Kuidas saada abi"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "

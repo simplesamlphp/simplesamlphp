@@ -321,9 +321,6 @@ msgstr "Overflødig informasjon i konfigurasjonsfila"
 msgid "{errors:report_email}"
 msgstr "E-postadresse:"
 
-msgid "{errors:howto_header}"
-msgstr "Send feilrapport"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "

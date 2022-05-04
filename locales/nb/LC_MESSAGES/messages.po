@@ -317,9 +317,6 @@ msgstr "Overføldig element i konfigurasjonsfilen"
 msgid "{errors:report_email}"
 msgstr "E-postadresse:"
 
-msgid "{errors:howto_header}"
-msgstr "Hvordan få hjelp"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Kilden til denne forespørselen har ikke angitt noen RelayState-parameter "

@@ -349,9 +349,6 @@ msgstr "Teveel opties in de config file"
 msgid "{errors:report_email}"
 msgstr "E-mailadres:"
 
-msgid "{errors:howto_header}"
-msgstr "Hoe kan ik hulp vragen"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "

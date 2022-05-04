@@ -331,9 +331,6 @@ msgstr "Opzioni superflue nel file di configurazione"
 msgid "{errors:report_email}"
 msgstr "Indirizzo di e-mail:"
 
-msgid "{errors:howto_header}"
-msgstr "Come ottenere aiuto"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "

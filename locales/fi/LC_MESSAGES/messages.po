@@ -224,9 +224,6 @@ msgstr "Valitse kotiorganisaatiosi"
 msgid "{errors:report_email}"
 msgstr "sähköpostiosoite:"
 
-msgid "{errors:howto_header}"
-msgstr "Miten saada apua"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 

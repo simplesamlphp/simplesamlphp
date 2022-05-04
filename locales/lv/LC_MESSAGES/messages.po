@@ -313,9 +313,6 @@ msgstr "Sīkas (superfluous) opcijas konfigurācijas failā"
 msgid "{errors:report_email}"
 msgstr "E-pasta adrese:"
 
-msgid "{errors:howto_header}"
-msgstr "Kā atrast palīdzību"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "

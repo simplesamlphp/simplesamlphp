@@ -313,9 +313,6 @@ msgstr "Pertekliniai parametrai konfigūraciniame faile"
 msgid "{errors:report_email}"
 msgstr "El. pašto adresas:"
 
-msgid "{errors:howto_header}"
-msgstr "Kaip pasiekti pagalbą"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "

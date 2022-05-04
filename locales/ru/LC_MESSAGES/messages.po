@@ -336,9 +336,6 @@ msgstr "Избыточные параметры в файле конфигура
 msgid "{errors:report_email}"
 msgstr "Адрес вашей электронной почты:"
 
-msgid "{errors:howto_header}"
-msgstr "Как получить помощь"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Инициатор данного запроса не предоставил параметр RelayState с указанием "
