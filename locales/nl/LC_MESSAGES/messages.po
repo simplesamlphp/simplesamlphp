@@ -424,9 +424,6 @@ msgstr ""
 "In SimpleSAMLphp flat file formaat - gebruik dit wanneer uw "
 "federatiepartner ook SimpleSAMLphp gebruikt"
 
-msgid "{admin:metadata_adfs-sp}"
-msgstr "ADFS SP Metadata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"

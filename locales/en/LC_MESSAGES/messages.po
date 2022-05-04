@@ -412,9 +412,6 @@ msgstr ""
 "In SimpleSAMLphp flat file format - use this if you are using a "
 "SimpleSAMLphp entity on the other side:"
 
-msgid "{admin:metadata_adfs-sp}"
-msgstr "ADFS SP Metadata"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Unable to log out of one or more services. To ensure that all your "
