@@ -359,9 +359,6 @@ msgstr "Sertifikat invalid"
 msgid "{general:remember}"
 msgstr "Ingat"
 
-msgid "{disco:selectidp}"
-msgstr "Pilih identity provider anda"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan"

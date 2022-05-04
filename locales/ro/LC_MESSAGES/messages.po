@@ -366,9 +366,6 @@ msgstr "Certificat nevalid"
 msgid "{general:remember}"
 msgstr "Ține minte"
 
-msgid "{disco:selectidp}"
-msgstr "Alegeți furnizorul de identitate"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un serviciu a solicitat autentificarea dumneavoastră. Vă rugăm să "

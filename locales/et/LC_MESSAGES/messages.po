@@ -352,9 +352,6 @@ msgstr "Vigane sertifikaat"
 msgid "{general:remember}"
 msgstr "Jäta meelde"
 
-msgid "{disco:selectidp}"
-msgstr "Vali oma identiteedipakkuja"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "

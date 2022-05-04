@@ -368,9 +368,6 @@ msgstr "Certificat invalide"
 msgid "{general:remember}"
 msgstr "Se souvenir du consentement"
 
-msgid "{disco:selectidp}"
-msgstr "Sélectionnez votre fournisseur d'identité"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que "

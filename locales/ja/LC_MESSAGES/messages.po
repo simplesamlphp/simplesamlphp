@@ -323,9 +323,6 @@ msgstr "無効な証明書です"
 msgid "{general:remember}"
 msgstr "記憶する"
 
-msgid "{disco:selectidp}"
-msgstr "アイデンティティプロバイダを選択してください"
-
 msgid "{login:user_pass_text}"
 msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
 

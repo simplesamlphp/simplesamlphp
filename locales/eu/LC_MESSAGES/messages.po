@@ -356,9 +356,6 @@ msgstr "Ziurtagiri balio gabea"
 msgid "{general:remember}"
 msgstr "Onespena gogoratu"
 
-msgid "{disco:selectidp}"
-msgstr "Hauta ezazu zure identitate hornitzailea"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-"

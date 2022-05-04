@@ -189,7 +189,7 @@ msgstr "ayikasetwa"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Impazamo efunyenwe kuMboneleli Wesazisi"
 
-msgid "{disco:selectidp}"
+msgid "Select your identity provider"
 msgstr "Khetha umboneleli wesazisi wakho"
 
 msgid "{errors:title_NOTSET}"

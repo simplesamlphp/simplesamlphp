@@ -192,7 +192,7 @@ msgstr "akusethiwe"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi"
 
-msgid "{disco:selectidp}"
+msgid "Select your identity provider"
 msgstr "Khetha umhlinzeki wakho kamazisi"
 
 msgid "{errors:title_NOTSET}"

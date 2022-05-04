@@ -375,9 +375,6 @@ msgstr "Invalid certificate"
 msgid "{general:remember}"
 msgstr "Remember"
 
-msgid "{disco:selectidp}"
-msgstr "Select your identity provider"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "

@@ -353,9 +353,6 @@ msgstr "Érvénytelen tanúsítvány"
 msgid "{general:remember}"
 msgstr "Emlékezzen a hozzájárulásra"
 
-msgid "{disco:selectidp}"
-msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "

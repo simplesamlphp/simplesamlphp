@@ -387,9 +387,6 @@ msgstr "Ongeldig certificaat"
 msgid "{general:remember}"
 msgstr "Bewaar toestemming"
 
-msgid "{disco:selectidp}"
-msgstr "Kies je Identity Provider"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "

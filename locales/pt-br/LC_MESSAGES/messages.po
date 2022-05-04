@@ -366,9 +366,6 @@ msgstr "Certificado inválido"
 msgid "{general:remember}"
 msgstr "Lembrar Consentimento"
 
-msgid "{disco:selectidp}"
-msgstr "Selecione seu provedor de identidade"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um serviço que você pediu necessita que você se autentique. Digite seu "

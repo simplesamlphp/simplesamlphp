@@ -371,9 +371,6 @@ msgstr "Ungültiges Zertifikat"
 msgid "{general:remember}"
 msgstr "Zustimmung merken"
 
-msgid "{disco:selectidp}"
-msgstr "Wählen Sie Ihren Identity Provider"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"

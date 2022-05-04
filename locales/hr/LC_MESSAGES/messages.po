@@ -366,9 +366,6 @@ msgstr "Certifikat nije valjan"
 msgid "{general:remember}"
 msgstr "Zapamti moj odabir"
 
-msgid "{disco:selectidp}"
-msgstr "Odaberite autentifikacijski servis"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Aplikacija zahtjeva od vas da se autentificirate. Unesite vašu korisničku"

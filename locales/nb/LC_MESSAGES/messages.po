@@ -357,9 +357,6 @@ msgstr "Ugyldig sertifikat"
 msgid "{general:remember}"
 msgstr "Godta også for fremtiden"
 
-msgid "{disco:selectidp}"
-msgstr "Velg din identitetsleverandør"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt "

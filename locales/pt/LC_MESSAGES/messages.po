@@ -330,9 +330,6 @@ msgstr "Certificado inválido"
 msgid "{general:remember}"
 msgstr "Lembrar a minha escolha"
 
-msgid "{disco:selectidp}"
-msgstr "Escolha o seu fornecedor de identidade (IdP)"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "

@@ -363,9 +363,6 @@ msgstr "Neispravan sertifikat"
 msgid "{general:remember}"
 msgstr "Zapamti moj izbor"
 
-msgid "{disco:selectidp}"
-msgstr "Odaberite vašeg davaoca identiteta"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "

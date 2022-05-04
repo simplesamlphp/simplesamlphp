@@ -374,9 +374,6 @@ msgstr "Недействительный сертификат"
 msgid "{general:remember}"
 msgstr "Запомнить"
 
-msgid "{disco:selectidp}"
-msgstr "Выберите вашего identity provider"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Служба запрашивает авторизацию. Пожалуйста, введите имя пользователя и "

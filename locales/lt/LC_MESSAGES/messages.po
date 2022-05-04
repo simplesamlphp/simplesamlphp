@@ -353,9 +353,6 @@ msgstr "Neteisingas sertifikatas"
 msgid "{general:remember}"
 msgstr "Įsiminti"
 
-msgid "{disco:selectidp}"
-msgstr "Pasirinkite savo tapatybių tiekėją"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"

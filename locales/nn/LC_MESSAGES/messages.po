@@ -359,9 +359,6 @@ msgstr "Ugyldig sertifikat"
 msgid "{general:remember}"
 msgstr "Godta også for framtida"
 
-msgid "{disco:selectidp}"
-msgstr "Vel innloggingsteneste"
-
 msgid "{login:user_pass_text}"
 msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "

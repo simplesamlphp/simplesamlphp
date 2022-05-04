@@ -292,9 +292,6 @@ msgstr "Leqephe ha le a fumanwa"
 msgid "Error loading metadata"
 msgstr "Phoso ya ho louta metadata"
 
-msgid "{disco:selectidp}"
-msgstr "Kgetha mofani wa boitsebiso wa hao"
-
 msgid ""
 "This Identity Provider received an Authentication Request from a Service "
 "Provider, but an error occurred when trying to process the request."

@@ -338,9 +338,6 @@ msgstr "無效憑證"
 msgid "{general:remember}"
 msgstr "記住"
 
-msgid "{disco:selectidp}"
-msgstr "選擇你的識別提供者(idp)"
-
 msgid "{login:user_pass_text}"
 msgstr "請使用帳號密碼登入，以便進入系統。"
 
