@@ -244,7 +244,7 @@ msgstr "Ndikhumbule"
 msgid "You have previously chosen to authenticate at"
 msgstr "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-"
 
-msgid "{general:yes_continue}"
+msgid "Yes, continue"
 msgstr "Ewe, qhubeka"
 
 msgid "{login:remember_username}"

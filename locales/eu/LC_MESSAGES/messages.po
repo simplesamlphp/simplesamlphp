@@ -376,9 +376,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Eskaera okerra aurkikuntza zerbitzuari"
 
-msgid "{general:yes_continue}"
-msgstr "Bai, jarraitu"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formatuko fitxategi batean - beste muturrean SimpleSAMLphp "

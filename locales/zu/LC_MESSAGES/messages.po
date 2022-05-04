@@ -247,7 +247,7 @@ msgstr "Ngikhumbule"
 msgid "You have previously chosen to authenticate at"
 msgstr "Ngaphambilini ukhethe ukuqinisekisa kokuthi"
 
-msgid "{general:yes_continue}"
+msgid "Yes, continue"
 msgstr "Yebo, qhubeka"
 
 msgid "{login:remember_username}"

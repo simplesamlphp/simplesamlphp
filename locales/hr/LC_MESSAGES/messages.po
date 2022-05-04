@@ -386,9 +386,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Lokacijskom servisu poslan je neispravan upit"
 
-msgid "{general:yes_continue}"
-msgstr "Da, nastavi"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "

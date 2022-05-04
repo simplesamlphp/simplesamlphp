@@ -363,9 +363,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "طلب سيء لخدمة استكشافية"
 
-msgid "{general:yes_continue}"
-msgstr "نعم، واصل"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "بصيغة SimpleSAMLphp- استخدم هذه الصيغة ان كنت تستخدم وحدة SimpleSAMLphp "

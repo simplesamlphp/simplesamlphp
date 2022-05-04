@@ -410,9 +410,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Toegangsfout bij discovery service"
 
-msgid "{general:yes_continue}"
-msgstr "Ja, ik ga akkoord"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In SimpleSAMLphp flat file formaat - gebruik dit wanneer uw "

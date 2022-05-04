@@ -391,9 +391,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Ungültige Anfrage an den Discovery Service"
 
-msgid "{general:yes_continue}"
-msgstr "Ja, ich stimme zu"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Im SimpleSAMLphp flat-file Format - verwenden Sie das, falls auf der "

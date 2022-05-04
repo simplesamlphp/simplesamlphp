@@ -377,9 +377,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Ugyldig forespørsel til SAML 2.0 Discovery-tjenesten"
 
-msgid "{general:yes_continue}"
-msgstr "Ja, fortsett"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "

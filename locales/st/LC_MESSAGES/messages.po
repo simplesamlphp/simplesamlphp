@@ -611,9 +611,6 @@ msgstr ""
 "esele. Haeba bothata bo phehella, ikopanye le mofani wa tshebeletso wa "
 "hao."
 
-msgid "{general:yes_continue}"
-msgstr "E, tswela pele"
-
 msgid "Next"
 msgstr "E latelang"
 

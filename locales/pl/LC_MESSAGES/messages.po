@@ -367,9 +367,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "nieprawidłowe żadanie do listy serwisow"
 
-msgid "{general:yes_continue}"
-msgstr "Tak, akceptuję"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "

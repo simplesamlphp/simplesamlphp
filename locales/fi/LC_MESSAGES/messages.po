@@ -273,9 +273,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Vääränlainen pyynti discovery-palveluun"
 
-msgid "{general:yes_continue}"
-msgstr "Kyllä"
-
 msgid "{logout:failedsps}"
 msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"

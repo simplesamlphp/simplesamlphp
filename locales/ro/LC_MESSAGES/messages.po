@@ -386,9 +386,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Cerere eronată către serviciul de căutare"
 
-msgid "{general:yes_continue}"
-msgstr "Da, continuă"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "

@@ -365,9 +365,6 @@ msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a hesl
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Špatný požadavek pro prohledávací službu"
 
-msgid "{general:yes_continue}"
-msgstr "Ano, akceptuji"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "

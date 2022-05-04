@@ -412,9 +412,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Εσφαλμένο αίτημα προς την υπηρεσία ανεύρεσης παρόχου ταυτότητας"
 
-msgid "{general:yes_continue}"
-msgstr "Αποδοχή"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα "

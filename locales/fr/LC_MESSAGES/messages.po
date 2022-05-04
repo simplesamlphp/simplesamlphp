@@ -389,9 +389,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Mauvaise requête au service de découverte automatique (discovery service)"
 
-msgid "{general:yes_continue}"
-msgstr "Oui"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"

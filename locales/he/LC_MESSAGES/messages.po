@@ -355,9 +355,6 @@ msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "בקשה שגויה לשירות גילוי"
 
-msgid "{general:yes_continue}"
-msgstr "כן, המשך"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"

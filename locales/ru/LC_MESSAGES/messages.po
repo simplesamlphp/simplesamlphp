@@ -397,9 +397,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Неправильный запрос к службе обнаружения"
 
-msgid "{general:yes_continue}"
-msgstr "Да, продолжить"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
 

@@ -398,9 +398,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Bad request to discovery service"
 
-msgid "{general:yes_continue}"
-msgstr "Yes, continue"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "In SimpleSAMLphp flat file format - use this if you are using a "

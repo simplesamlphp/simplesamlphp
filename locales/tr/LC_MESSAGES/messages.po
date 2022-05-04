@@ -358,9 +358,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Tanıma servisine giden hatalı istek"
 
-msgid "{general:yes_continue}"
-msgstr "Evet, devam et"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "

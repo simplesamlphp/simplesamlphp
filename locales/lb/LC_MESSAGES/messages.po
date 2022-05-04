@@ -165,9 +165,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Falsch Unfro fir den Discovery Service"
 
-msgid "{general:yes_continue}"
-msgstr "Jo"
-
 msgid "{errors:howto_text}"
 msgstr ""
 "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun "

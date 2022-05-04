@@ -350,9 +350,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Pedido incorrecto efectuado ao serviço de descoberta de IdP"
 
-msgid "{general:yes_continue}"
-msgstr "Sim, Aceito"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "

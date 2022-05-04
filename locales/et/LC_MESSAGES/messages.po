@@ -372,9 +372,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Halb tuvastusteenuse päring"
 
-msgid "{general:yes_continue}"
-msgstr "Jah, jätka"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "

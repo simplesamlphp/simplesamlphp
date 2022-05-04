@@ -383,9 +383,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Fejlagtig forespørgsel til Discovery Service"
 
-msgid "{general:yes_continue}"
-msgstr "Ja, jeg accepterer"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I SimpleSAMLphp flat-file format - brug dette hvis du også bruger "

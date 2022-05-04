@@ -373,9 +373,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Neteisinga užklausa kreipiantis į \"discovery\" servisą"
 
-msgid "{general:yes_continue}"
-msgstr "Taip, tęsti"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "

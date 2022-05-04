@@ -386,9 +386,6 @@ msgstr ""
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Ogiltig förfrågan till lokaliseringstjänsten (Discovery Service)"
 
-msgid "{general:yes_continue}"
-msgstr "Ja"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "
