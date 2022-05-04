@@ -305,9 +305,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Teveel opties in de config file"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "

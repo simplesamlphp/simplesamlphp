@@ -292,9 +292,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Избыточные параметры в файле конфигурации"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Инициатор данного запроса не предоставил параметр RelayState с указанием "

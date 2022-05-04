@@ -281,9 +281,6 @@ msgstr ""
 "Ați accesat interfața <i>Assertion Consumer Service</i> dar nu ați "
 "furnizat răspunsul de autentificare SAML."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Opțiuni inutile în fișierul de configurare"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Inițiatorul acestei cereri nu a furnizat parametrul <i>RelayState</i> "

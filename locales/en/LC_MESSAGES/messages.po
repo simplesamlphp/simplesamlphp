@@ -293,9 +293,6 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Superfluous options in config file"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "The initiator of this request did not provide a RelayState parameter "

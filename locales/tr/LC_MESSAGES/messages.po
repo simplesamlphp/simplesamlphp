@@ -257,9 +257,6 @@ msgstr ""
 "Onay Alıcı Servis (Assertion Consumer Service) arayüzüne giriş yaptınız, "
 "ancak SAML Kimlik Doğrulama Cevabı sağlamadınız."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Config dosyasındaki gereksiz tercihler"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Bu isteğin başlatıcısı, bir sonraki gidiş yerini bildiren RelayState "

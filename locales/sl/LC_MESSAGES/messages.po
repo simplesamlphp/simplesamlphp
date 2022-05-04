@@ -272,9 +272,6 @@ msgstr ""
 "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "
 "zagotovili \"SAML Authentication Responsa\"."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Odvečne nastavitve v konfiguracijski datoteki"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
 

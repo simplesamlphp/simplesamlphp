@@ -272,9 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Üleliigne seadistus seadistustefailis"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "

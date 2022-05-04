@@ -287,9 +287,6 @@ msgstr ""
 "Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza "
 "fornire un messaggio SAML di Authentication Response."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Opzioni superflue nel file di configurazione"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "

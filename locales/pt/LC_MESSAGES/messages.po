@@ -254,9 +254,6 @@ msgstr ""
 "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
 "do tipo Authentication Response."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Opções supérfluas do ficheiro de configuração"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Este pedido foi iniciado sem o parâmetro RelayState necessário para "

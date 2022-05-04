@@ -285,9 +285,6 @@ msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
 "aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Überflüssige Optionen in der Konfigurationsdatei"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "

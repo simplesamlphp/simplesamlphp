@@ -301,9 +301,6 @@ msgstr ""
 "Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Περιττές επιλογές στο αρχείο ρυθμίσεων"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι "

@@ -246,9 +246,6 @@ msgstr "这个端点没有启用，请在SimpleSAMLphp的配置选项中选中�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "配置文件中拥有过多的选项"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 

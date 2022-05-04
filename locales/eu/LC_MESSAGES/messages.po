@@ -274,9 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Konfigurazio fitxategian soberan dauden aukerak"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "

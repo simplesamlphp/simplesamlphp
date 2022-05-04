@@ -280,9 +280,6 @@ msgstr ""
 "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at "
 "sende et SAML Authentication Response"
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Overflødigt valg i konfigurationsfil"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "

@@ -261,9 +261,6 @@ msgstr "這個端點並未啟用。核取啟用選項於您的 SimpleSAMLphp 設
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "多餘設定存在於設定檔"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下一個步驟。"
 

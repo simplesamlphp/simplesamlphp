@@ -277,9 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Overflødig informasjon i konfigurasjonsfila"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "

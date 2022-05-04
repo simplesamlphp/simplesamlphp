@@ -286,9 +286,6 @@ msgstr ""
 "Vous avez accédé à l'interface du service de traitement des assertions, "
 "mais vous n'avez pas fourni de réponse d'authentification SAML."
 
-msgid "{admin:cfg_check_superfluous}"
-msgstr "Options superflues dans le fichier de configuration"
-
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "
