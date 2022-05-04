@@ -282,15 +282,15 @@ class MDQ extends MetaDataStorageSource
             $data = null;
         }
 
-        if ($data !== null && array_key_exists('expires', $data) && $data['expires'] < time()) {
-            // metadata has expired
-            $data = null;
-        }
-
         if (isset($data)) {
-            // metadata found in cache and not expired
-            Logger::debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));
-            return $data;
+            if (array_key_exists('expires', $data) && $data['expires'] < time()) {
+                // metadata has expired
+                $data = null;
+            } else {
+                // metadata found in cache and not expired
+                Logger::debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));
+                return $data;
+            }
         }
 
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
