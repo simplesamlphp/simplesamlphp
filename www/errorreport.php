@@ -51,7 +51,7 @@ $data['directory'] = dirname(dirname(__FILE__));
 if ($config->getOptionalBoolean('errorreporting', true)) {
     $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
     $mail->setData($data);
-    if ($email) {
+    if (filter_var($email, FILTER_VALIDATE_EMAIL, FILTER_REQUIRE_SCALAR)) {
         $mail->addReplyTo($email);
     }
     $mail->setText($text);
