@@ -1,5 +1,8 @@
 <?php
 
+// initialize the autoloader
+require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+
 use SAML2\Compat\ContainerSingleton;
 use SimpleSAML\Compat\SspContainer;
 use SimpleSAML\Configuration;
