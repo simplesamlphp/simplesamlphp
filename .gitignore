@@ -1,7 +1,4 @@
 /log/
-/config/
-/metadata/
-/cert/
 /www/assets/fonts/*
 /www/assets/js/*.js
 /www/assets/js/*.js.LICENSE.txt
