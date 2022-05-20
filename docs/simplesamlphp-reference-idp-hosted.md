@@ -40,8 +40,7 @@ Common options
     the [authentication processing filter manual](simplesamlphp-authproc).
 
 `certificate`
-:   Certificate file which should be used by this IdP, in PEM format.
-    The filename is relative to the `cert/`-directory.
+:   Location of certificate data which should be used by this IdP, in PEM format.
 
 `contacts`
 :	Specify contacts in addition to the technical contact configured through config/config.php.
@@ -106,8 +105,7 @@ Common options
         ],
 
 `privatekey`
-:   Name of private key file for this IdP, in PEM format. The filename
-    is relative to the `cert/`-directory.
+:   Location of private key data for this IdP, in PEM format.
 
 `privatekey_pass`
 :   Passphrase for the private key. Leave this option out if the

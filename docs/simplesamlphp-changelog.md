@@ -17,6 +17,7 @@ See the upgrade notes for specific information about upgrading.
   * core:PairwiseID and core:SubjectID authprocs no longer support the 'scope' config-setting.
     Use 'scopeAttribute' instead to identify the attribute holding the scope.
   * Accepting unsolicited responses can be disabled by setting `enable_unsolicited` to `false` in the SP authsource.
+  * Certificates and private keys can now be retrieved from a database
 
 ## Version 1.19.1
 

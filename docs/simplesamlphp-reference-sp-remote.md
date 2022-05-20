@@ -144,7 +144,7 @@ The following options can be set:
 :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
 `certificate`
-:   Name of certificate file for this SP. The certificate is used to
+:   Location of certificate data for this SP. The certificate is used to
     verify the signature of messages received from the SP (if
     `redirect.validate`is set to `TRUE`), and to encrypting assertions
     (if `assertion.encryption` is set to TRUE and `sharedkey` is
@@ -221,7 +221,7 @@ The following options can be set:
 :    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `signature.privatekey`
-:   Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
+:   Location of private key data for this IdP, in PEM format.
 :   Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option `privatekey` in the IdP-hosted metadata.
 
 `signature.privatekey_pass`
@@ -229,7 +229,7 @@ The following options can be set:
 :   Note that this option only is used if `signature.privatekey` is present.
 
 `signature.certificate`
-:   Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
+:   Location of certificate data included by IdP for KeyInfo within the signature for the SP, in PEM format.
 :   If `signature.privatekey` is present and `signature.certificate` is left blank, X509Certificate will not be included with the signature.
 
 `sign.logout`

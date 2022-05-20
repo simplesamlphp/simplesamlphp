@@ -8,6 +8,7 @@ use SimpleSAML\Assert\Assert;
 use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Logger;
 
 /**
  * A class for cryptography-related functions.
@@ -176,7 +177,7 @@ class Crypto
      * Load a private key from metadata.
      *
      * This function loads a private key from a metadata array. It looks for the following elements:
-     * - 'privatekey': Name of a private key file in the cert-directory.
+     * - 'privatekey': Location of a private key
      * - 'privatekey_pass': Password for the private key.
      *
      * It returns an array with the following elements:
@@ -188,8 +189,8 @@ class Crypto
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
      * array. Defaults to ''.
-     * @param bool                      $full_path Whether the filename found in the configuration contains the
-     * full path to the private key or not. Default to false.
+     * @param bool                      $full_path Whether the location found in the configuration contains the
+     * full path to the private key or not (only relevant for file locations). Default to false.
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
@@ -203,8 +204,8 @@ class Crypto
         string $prefix = '',
         bool $full_path = false
     ): ?array {
-        $file = $metadata->getOptionalString($prefix . 'privatekey', null);
-        if ($file === null) {
+        $location = $metadata->getOptionalString($prefix . 'privatekey', null);
+        if ($location === null) {
             // no private key found
             if ($required) {
                 throw new Error\Exception('No private key found in metadata.');
@@ -213,14 +214,10 @@ class Crypto
             }
         }
 
-        if (!$full_path) {
-            $configUtils = new Config();
-            $file = $configUtils->getCertPath($file);
-        }
+        $data = $this->retrieveKey($location, $full_path);
 
-        $data = @file_get_contents($file);
-        if ($data === false) {
-            throw new Error\Exception('Unable to load private key from file "' . $file . '"');
+        if ($data === null) {
+            throw new Error\Exception('Unable to load private key from location "' . $location . '"');
         }
 
         $ret = [
@@ -239,7 +236,7 @@ class Crypto
      *
      * It will search for the following elements in the metadata:
      * - 'certData': The certificate as a base64-encoded string.
-     * - 'certificate': A file with a certificate or public key in PEM-format.
+     * - 'certificate': Location of a certificate or public key in PEM-format.
      *
      * This function will return an array with these elements:
      * - 'PEM': The public key/certificate in PEM-encoding.
@@ -376,5 +373,113 @@ class Crypto
             return true;
         }
         return $hash === $password;
+    }
+
+    /**
+     * Retrieve a certificate or private key from specified storage location
+     *
+     * @param string $data_type Type of data to retrieve, either "certificate" or "private_key"
+     * @param string $location Location of data to retrieve
+     * @param bool $full_path Whether the location found in the configuration contains the
+     *                        full path to the certificate or private key (only relevant to file locations)
+     *
+     * @return string The certificate or private key, or null if not found
+     *
+     */
+    private function retrieveCertOrKey(string $data_type, string $location, bool $full_path): ?string
+    {
+        if (strncmp($location, 'pdo://', 6) === 0) {
+            # Attempt to load data via pdo from database
+
+            $location = substr($location, 6);
+
+            $globalConfig = Configuration::getInstance();
+            $cert_table = $globalConfig->getOptionalString('cert.pdo.table', 'certificates');
+            $key_table = $globalConfig->getOptionalString('cert.pdo.keytable', 'private_keys');
+            $apply_prefix = $globalConfig->getOptionalBoolean('cert.pdo.apply_prefix', true);
+            $id_column = $globalConfig->getOptionalString('cert.pdo.id_column', 'id');
+            $data_column = $globalConfig->getOptionalString('cert.pdo.data_column', 'data');
+
+            try {
+                $db = \SimpleSAML\Database::getInstance();
+            } catch (\Exception $e) {
+                Logger::error('failed to instantiate database: ' . $e->getMessage());
+                return(null);
+            }
+
+            if ($apply_prefix) {
+                $cert_table = $db->applyPrefix($cert_table);
+                $key_table = $db->applyPrefix($key_table);
+            }
+
+            try {
+                $query = $db->read("select $data_column from " .
+                                    ($data_type == 'certificate' ? $cert_table : $key_table) .
+                                    " where $id_column = :id", ['id' => $location]);
+            } catch (\Exception $e) {
+                Logger::error('failed to query database: ' . $e->getMessage());
+                return(null);
+            }
+
+            $result = $query->fetch(\PDO::FETCH_NUM);
+
+            if ($result) {
+                return($result[0]);
+            }
+
+            return(null);
+        } elseif (strncmp($location, 'file://', 7) === 0) {
+            # For backwards compatibility, locations without a prefix are assumed to be file locations.
+            # So just remove prefix and fall through
+
+            $location = substr($location, 7);
+        }
+
+        # Attempt to load data from file
+        if (!$full_path) {
+            $configUtils = new Config();
+            $location = $configUtils->getCertPath($location);
+        }
+
+        $data = @file_get_contents($location);
+
+        if ($data === false) {
+            Logger::error("failed to read $data_type data from file $location");
+            return(null);
+        }
+
+        return($data);
+    }
+
+    /**
+     * Public wrapper around retrieveCertOrKey to retrieve a certificate
+     *
+     * @param string $location Location of certificate data to retrieve
+     * @param bool $full_path Whether the location found in the configuration contains the
+     *                        full path to the certificate (only relevant to file locations).
+     *                        Default to false.
+     *
+     * @return string The certificate or null if not found
+     *
+     */
+    public function retrieveCertificate(string $location, bool $full_path = false): ?string
+    {
+        return $this->retrieveCertOrKey('certificate', $location, $full_path);
+    }
+
+    /**
+     * Public wrapper around retrieveCertOrKey to retrieve a private key
+     *
+     * @param string $location Location of private key data to retrieve
+     * @param bool $full_path Whether the location found in the configuration contains the
+     *                        full path to the private key (only relevant to file locations).
+     *                        Default to false.
+     *
+     * @return string The private key or null if not found
+     *
+     */
+    public function retrieveKey(string $location, bool $full_path = false): ?string
+    {
+        return $this->retrieveCertOrKey('private_key', $location, $full_path);
     }
 }

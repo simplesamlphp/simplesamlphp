@@ -125,32 +125,23 @@ class Signer
      *
      * Will throw an exception if unable to load the private key.
      *
-     * @param string $file  The file which contains the private key. The path is assumed to be relative
-     *                      to the cert-directory.
+     * @param string $location  The location which contains the private key
      * @param string|null $pass  The passphrase on the private key. Pass no value or NULL if the private
      *                           key is unencrypted.
-     * @param bool $full_path  Whether the filename found in the configuration contains the
-     *                         full path to the private key or not. Default to false.
+     * @param bool $full_path  Whether the location found in the configuration contains the
+     *                         full path to the private key or not (only relevant to file locations).
+     *                         Default to false.
      * @throws \Exception
      */
-    public function loadPrivateKey(string $file, ?string $pass, bool $full_path = false): void
+    public function loadPrivateKey(string $location, ?string $pass, bool $full_path = false): void
     {
-        if (!$full_path) {
-            $configUtils = new Utils\Config();
-            $keyFile = $configUtils->getCertPath($file);
-        } else {
-            $keyFile = $file;
+        $cryptoUtils = new Utils\Crypto();
+        $keyData = $cryptoUtils->retrieveKey($location, $full_path);
+
+        if ($keyData === null) {
+            throw new Exception('Could not find private key location "' . $location . '".');
         }
 
-        if (!$this->fileSystem->exists($keyFile)) {
-            throw new Exception('Could not find private key file "' . $keyFile . '".');
-        }
-
-        $file = new File($keyFile);
-        $keyData = $file->getContent();
-        if ($keyData === false) {
-            throw new Exception('Unable to read private key file "' . $keyFile . '".');
-        }
 
         $privatekey = ['PEM' => $keyData];
         if ($pass !== null) {
@@ -232,31 +223,22 @@ class Signer
      * Extra certificates will be added to the certificate chain in the order they
      * are added.
      *
-     * @param string $file  The file which contains the certificate, relative to the cert-directory.
-     * @param bool $full_path  Whether the filename found in the configuration contains the
-     *                         full path to the private key or not. Default to false.
+     * @param string $location The location which contains the certificate
+     * @param bool $full_path  Whether the location found in the configuration contains the
+     *                         full path to the private key or not (only relevant to file locations).
+     *                         Default to false.
      * @throws \Exception
      */
-    public function addCertificate(string $file, bool $full_path = false): void
+    public function addCertificate(string $location, bool $full_path = false): void
     {
-        if (!$full_path) {
-            $configUtils = new Utils\Config();
-            $certFile = $configUtils->getCertPath($file);
-        } else {
-            $certFile = $file;
+        $cryptoUtils = new Utils\Crypto();
+        $certData = $cryptoUtils->retrieveCertificate($location, $full_path);
+
+        if ($certData === null) {
+            throw new Exception('Could not find extra certificate location "' . $location . '".');
         }
 
-        if (!$this->fileSystem->exists($certFile)) {
-            throw new Exception('Could not find extra certificate file "' . $certFile . '".');
-        }
-
-        $file = new File($certFile);
-        $certificate = $file->getContent();
-        if ($certificate === false) {
-            throw new Exception('Unable to read extra certificate file "' . $certFile . '".');
-        }
-
-        $this->extraCertificates[] = $certificate;
+        $this->extraCertificates[] = $certData;
     }
 
 

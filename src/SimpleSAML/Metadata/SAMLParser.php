@@ -1277,22 +1277,21 @@ class SAMLParser
      *                      to do a key rollover.
      *
      * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
-     * @throws \Exception If the certificate file cannot be found.
+     * @throws \Exception If the certificate location cannot be found.
      */
     public function validateSignature(array $certificates): bool
     {
-        $configUtils = new Utils\Config();
+        $cryptoUtils = new Utils\Crypto();
 
-        foreach ($certificates as $cert) {
-            Assert::string($cert);
-            $certFile = $configUtils->getCertPath($cert);
-            if (!$this->fileSystem->exists($certFile)) {
+        foreach ($certificates as $certLocation) {
+            Assert::string($certLocation);
+
+            $certData = $cryptoUtils->retrieveCertificate($certLocation);
+            if ($certData === null) {
                 throw new Exception(
-                    'Could not find certificate file [' . $certFile . '], which is needed to validate signature'
+                    'Could not find certificate location [' . $certLocation . '], which is needed to validate signature'
                 );
             }
-            $file = new File($certFile);
-            $certData = $file->getContent();
 
             foreach ($this->validators as $validator) {
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
