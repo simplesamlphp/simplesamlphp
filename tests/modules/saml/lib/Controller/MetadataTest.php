@@ -27,6 +27,9 @@ class MetadataTest extends TestCase
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+    /** @var \SimpleSAML\Utils\Auth */
+    protected Utils\Auth $authUtils;
+
 
     /**
      * Set up for each test.
