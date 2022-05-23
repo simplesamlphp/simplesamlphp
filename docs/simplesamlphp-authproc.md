@@ -22,7 +22,7 @@ Be aware that Authentication Proccessing Filters do replace some of the previous
 * `attributealter`
 * `attribute filter`
 
-Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
+Later in this document, we will describe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
 
 How to configure Auth Proc Filters
 ----------------------------------
