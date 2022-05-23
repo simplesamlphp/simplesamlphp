@@ -35,7 +35,7 @@ class Metadata
 
     /**
      * Controller constructor.
--     *
+     *
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
