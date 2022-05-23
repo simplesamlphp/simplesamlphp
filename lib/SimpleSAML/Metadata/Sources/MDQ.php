@@ -218,12 +218,11 @@ class MDQ extends MetaDataStorageSource
         }
 
         $cacheFileName = $this->getCacheFilename($set, $entityId);
-        $file = new File($cacheFileName);
 
-        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
+        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
         /** @psalm-suppress TooManyArguments */
-        $this->fileSystem->appendToFile(strval($file), serialize($data), true);
+        $this->fileSystem->appendToFile($cacheFileName, serialize($data), true);
     }
 
 
