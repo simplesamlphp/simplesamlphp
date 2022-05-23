@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Controller;
+namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
