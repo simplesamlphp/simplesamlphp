@@ -28,3 +28,18 @@ saml-legacy-sp-singleLogoutService:
 saml-legacy-sp-metadata:
     path:       /sp/metadata.php/{sourceId}
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata', path: /saml/sp/metadata, permanent: true }
+websso-single-sign-on:
+    path:       /idp/singleSignOnService
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::singleSignOnService' }
+websso-artifact-resolution:
+    path:       //idp/artifactResolutionService
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::artifactResolutionService' }
+websso-metadata:
+    path:       /idp/metadata
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\Metadata::metadata' }
+websso-single-logout:
+    path:       /idp/singleLogout
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::singleLogout' }
+websso-init-single-logout:
+    path:       /idp/initSingleLogout
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::initSingleLogout' }
