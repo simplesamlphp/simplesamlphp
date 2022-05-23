@@ -172,6 +172,7 @@ class MDQ extends MetaDataStorageSource
          */
         if (($file->getMtime() + $this->cacheLength) <= time()) {
             Logger::debug(sprintf('%s: cache file older that the cachelength option allows.', __CLASS__));
+            $this->fileSystem->remove($cacheFileName);
             return null;
         }
 
@@ -218,12 +219,11 @@ class MDQ extends MetaDataStorageSource
         }
 
         $cacheFileName = $this->getCacheFilename($set, $entityId);
-        $file = new File($cacheFileName);
 
-        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
+        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
         /** @psalm-suppress TooManyArguments */
-        $this->fileSystem->appendToFile(strval($file), serialize($data), true);
+        $this->fileSystem->appendToFile($cacheFileName, serialize($data), true);
     }
 
 
