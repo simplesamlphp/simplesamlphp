@@ -155,6 +155,7 @@ class Config
         foreach ($modules as $module) {
             $modulestates[$module] = Module::isModuleEnabled($module);
         }
+        ksort($modulestates);
         return $modulestates;
     }
 
