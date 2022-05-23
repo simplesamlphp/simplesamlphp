@@ -38,7 +38,7 @@ class CriticalConfigurationError extends ConfigurationError
         'logging.handler' => 'errorlog',
         'logging.level'  => Logger::DEBUG,
         'errorreporting' => false,
-        'debug'          => true,
+        'debug'          => [],
     ];
 
 
