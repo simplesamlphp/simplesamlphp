@@ -601,16 +601,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.6.0",
+            "version": "v4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "46d93daa9a96a1d896fe35cb75897a91e1795442"
+                "reference": "5e46819fdb76657f13e05a8f264d06efd9163c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/46d93daa9a96a1d896fe35cb75897a91e1795442",
-                "reference": "46d93daa9a96a1d896fe35cb75897a91e1795442",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5e46819fdb76657f13e05a8f264d06efd9163c3d",
+                "reference": "5e46819fdb76657f13e05a8f264d06efd9163c3d",
                 "shasum": ""
             },
             "require": {
@@ -653,9 +653,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.0"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.1"
             },
-            "time": "2022-04-08T13:47:36+00:00"
+            "time": "2022-05-23T20:49:55+00:00"
         },
         {
             "name": "symfony/cache",
@@ -3290,16 +3290,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ed19f4bf9d19c4ef920b5d8243910bd32e85b9ba"
+                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ed19f4bf9d19c4ef920b5d8243910bd32e85b9ba",
-                "reference": "ed19f4bf9d19c4ef920b5d8243910bd32e85b9ba",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e939eae92386b69b49cfa4599dd9bead6bf4a342",
+                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342",
                 "shasum": ""
             },
             "require": {
@@ -3350,7 +3350,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.4.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.4.1"
             },
             "funding": [
                 {
@@ -3362,7 +3362,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-15T06:25:28+00:00"
+            "time": "2022-05-17T05:48:52+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -6173,16 +6173,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "4ac69583df179b884ae1f916babce017b87a5f4e"
+                "reference": "70a601f41aebb00820b168c24f4b8177f414fc18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/4ac69583df179b884ae1f916babce017b87a5f4e",
-                "reference": "4ac69583df179b884ae1f916babce017b87a5f4e",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/70a601f41aebb00820b168c24f4b8177f414fc18",
+                "reference": "70a601f41aebb00820b168c24f4b8177f414fc18",
                 "shasum": ""
             },
             "require": {
@@ -6190,7 +6190,7 @@
                 "phpunit/phpunit": "^8.5|^9.5",
                 "squizlabs/php_codesniffer": "^3.6",
                 "symfony/phpunit-bridge": "^6.0",
-                "vimeo/psalm": "^4.20|^5.0.0-rc1"
+                "vimeo/psalm": "^4.20|^5.0.0-beta1"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -6226,7 +6226,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2022-05-15T10:30:51+00:00"
+            "time": "2022-05-15T10:37:25+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",

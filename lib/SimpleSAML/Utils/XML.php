@@ -15,6 +15,7 @@ use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DOMText;
+use SAML2\Constants as C;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
@@ -285,9 +286,9 @@ class XML
             // the defined shortcuts
             $shortcuts = [
                 '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
-                '@md'      => 'urn:oasis:names:tc:SAML:2.0:metadata',
-                '@saml2'   => 'urn:oasis:names:tc:SAML:2.0:assertion',
-                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol'
+                '@md'      => C::NS_MD,
+                '@saml2'   => C::NS_SAML,
+                '@saml2p'  => C::NS_SAMLP,
             ];
 
             // check if it is a valid shortcut
@@ -345,7 +346,7 @@ class XML
         if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
-            $schemaPath = $config->resolvePath('schemas');
+            $schemaPath = $config->resolvePath('vendor/simplesamlphp/saml2/schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
             libxml_set_external_entity_loader(
