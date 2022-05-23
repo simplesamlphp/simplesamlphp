@@ -172,6 +172,7 @@ class MDQ extends MetaDataStorageSource
          */
         if (($file->getMtime() + $this->cacheLength) <= time()) {
             Logger::debug(sprintf('%s: cache file older that the cachelength option allows.', __CLASS__));
+            $this->fileSystem->remove($cacheFileName);
             return null;
         }
 
