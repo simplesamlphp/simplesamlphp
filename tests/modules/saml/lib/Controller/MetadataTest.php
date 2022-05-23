@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Http\RunnableResponse;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
