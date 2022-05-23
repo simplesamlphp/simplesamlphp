@@ -26,24 +26,22 @@
           '%version%': version
       } %}You are running version <kbd>%version%</kbd>.{% endtrans %}
     </div>
-    <h2>{% trans %}Configuration{% endtrans %}</h2>
-    <div class="enablebox mini">
-      <table class="pure-table">
-        <thead><tr><th>{% trans %}Module/function{% endtrans %}</th><th>{% trans %}Enabled?{% endtrans %}</th></tr></thead>
-        <tbody>
-        <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
-          <td>SAML 2.0 IdP</td>
-          <td><i class="fa fa-{%- if enablematrix.saml20idp %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i></td>
-        </tr>
+    <h2>{% trans %}Modules{% endtrans %}</h2>
+    {% trans %}You have the following modules installed{% endtrans %} (<i class="fa fa-ban" title="{% trans %}disabled{% endtrans %}"></i> {% trans %} means the module is not enabled{% endtrans %}):
+    <ul class="modulelist">
+        <li>
+            <i class="fa fa-{%- if enablematrix.saml20idp %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i>
+            SAML 2.0 IdP
+        </li>
         {% for module, enabled in modulelist %}
-        <tr class="{%- if enabled %}enabled{% else %}disabled{% endif -%}">
-          <td>{{ module }}</td>
-          <td><i class="fa fa-{%- if enabled %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i></td>
-        </tr>
+        <li>
+            <i class="fa fa-{%- if enabled %}check" title="{% trans %}enabled{% endtrans %}"{% else %}ban" title="{% trans %}disabled{% endtrans %}"{% endif %}></i>
+            {{ module }}
+        </li>
         {% endfor %}
-        </tbody>
-      </table>
-    </div>
+    </ul>
+
+    <h2>{% trans %}Details{% endtrans %}</h2>
     <ul>
       {%- for key, link in links %}
 
@@ -51,7 +49,8 @@
       {%- endfor %}
 
     </ul>
-    <h2>{% trans %}Checking your PHP installation{% endtrans %}</h2>
+
+    <h2>{% trans %}Your PHP installation{% endtrans %}</h2>
     <div class="enablebox">
         <table>
         {%- for key, func in funcmatrix %}
@@ -77,4 +76,5 @@
 
         </table>
     </div>
+
 {% endblock %}
