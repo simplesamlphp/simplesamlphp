@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Http\RunnableResponse;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\XHTML\Template;
