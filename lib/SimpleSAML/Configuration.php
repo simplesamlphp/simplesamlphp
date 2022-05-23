@@ -406,7 +406,7 @@ class Configuration implements Utils\ClearableState
             return $default;
         }
 
-        return $this->configuration[$name] ?? $default;
+        return $this->configuration[$name];
     }
 
 
