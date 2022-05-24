@@ -10,7 +10,7 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-//use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -84,14 +84,19 @@ class MetadataTest extends TestCase
      */
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $request = Request::create(
+            '/idp/metadata',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($this->config, $this->session);
 
         if ($authenticated === true || $protected === false) {
             // Bypass authentication - mock being authenticated
             $c->setAuthUtils($this->authUtils);
         }
 
-        $result = $c->metadata('phpunit');
+        $result = $c->metadata($request);
 
         if ($authenticated !== false && $protected !== true) {
             // ($authenticated === true) or ($protected === false)
