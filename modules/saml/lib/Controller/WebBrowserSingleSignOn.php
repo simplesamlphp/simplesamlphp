@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
+use Exception;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;

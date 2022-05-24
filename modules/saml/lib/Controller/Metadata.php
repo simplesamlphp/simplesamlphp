@@ -13,6 +13,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function strpos;
 use function strrpos;
@@ -73,7 +74,7 @@ class Metadata
         }
 
         // check if valid local session exists
-        if ($config->getOptionalBoolean('admin.protectmetadata', false)) {
+        if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
