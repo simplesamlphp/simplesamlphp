@@ -55,7 +55,7 @@ class WebBrowserSingleSignOn
      */
     public function artifactResolutionService(): RunnableResponse
     {
-        if (!$this->config->getOptionalBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+        if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
         }
 
@@ -123,7 +123,7 @@ class WebBrowserSingleSignOn
     {
         Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
-        if (!$this->config->getOptionalBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+        if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
         }
 

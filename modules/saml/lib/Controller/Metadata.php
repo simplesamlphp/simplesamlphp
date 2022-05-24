@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
@@ -67,7 +68,7 @@ class Metadata
      */
     public function metadata(Request $request): RunnableResponse
     {
-        if (!$this->config->getOptionalBoolean('enable.saml20-idp', false) || !Module::isModuleEnabled('saml')) {
+        if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
         }
 
