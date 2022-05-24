@@ -89,7 +89,7 @@ class SingleLogout
     {
         Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
-        if ($this->config->getOptionalBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
+        if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
         }
 
