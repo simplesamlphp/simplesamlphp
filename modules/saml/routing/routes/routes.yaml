@@ -32,7 +32,7 @@ websso-single-sign-on:
     path:       /idp/singleSignOnService
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::singleSignOnService' }
 websso-artifact-resolution:
-    path:       //idp/artifactResolutionService
+    path:       /idp/artifactResolutionService
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::artifactResolutionService' }
 websso-metadata:
     path:       /idp/metadata
