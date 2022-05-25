@@ -10,6 +10,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
@@ -86,13 +87,17 @@ class IPSourceSelector extends AbstractSourceSelector
     {
         $netUtils = new Utils\Net();
 
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $source = $this->primarySource;
         foreach ($this->ipRanges as $range) {
-            if ($netUtils->ipCIDRcheck($range)) {
+            if ($netUtils->ipCIDRcheck($range, $ip)) {
                 // Client's IP is in one of the ranges for the secondary auth source
-                return $this->secondarySource;
+                $source = $this->secondarySource;
+                break;
             }
         }
 
-        return $this->primarySource;
+        Logger::info(sprintf("core:IPSourceSelector:  Selecting authsource `%s` based on client IP %s", $source, $ip));
+        return $source;
     }
 }
