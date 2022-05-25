@@ -68,12 +68,12 @@ class SingleLogout
                 [$idp, 'doLogoutRedirect'],
                 [$httpUtils->checkURLAllowed($request->request->get('ReturnTo'))]
             );
-        } else {
-            try {
-                return new RunnableResponse([Module\saml\IdP\SAML2::class, 'receiveLogoutMessage'], [$idp]);
-            } catch (UnsupportedBindingException $e) {
-                throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
-            }
+        }
+
+        try {
+            return new RunnableResponse([Module\saml\IdP\SAML2::class, 'receiveLogoutMessage'], [$idp]);
+        } catch (UnsupportedBindingException $e) {
+            throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
         }
         Assert::true(false);
     }
