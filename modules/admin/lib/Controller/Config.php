@@ -299,13 +299,6 @@ class Config
                     'required' => Translate::noop('LDAP extension'),
                 ]
             ],
-            'radius_auth_open' => [
-                'required' => Module::isModuleEnabled('radius') ? 'required' : 'optional',
-                'descr' => [
-                    'optional' => Translate::noop('Radius extension (required if a radius backend is used)'),
-                    'required' => Translate::noop('Radius extension'),
-                ]
-            ],
         ];
 
         foreach ($functions as $function => $description) {
