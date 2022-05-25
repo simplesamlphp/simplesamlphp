@@ -38,19 +38,16 @@ class IPSourceSelector extends AbstractSourceSelector
     public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\IPSourceSelector.SourceId';
 
     /**
-     * @param string  The name of the primary authsource
+     * @param string  The default authentication source to use when none of the zones match
      */
-    protected string $primarySource;
+    protected string $defaultSource;
 
     /**
-     * @param string  The name of the secondary authsource
+     * @param array  An array of zones. Each zone requires two keys;
+     *               'source' containing the authsource for the zone,
+     *               'subnet' containing an array of IP-ranges (CIDR notation).
      */
-    protected string $secondarySource;
-
-    /**
-     * @param array  The IP-ranges (CIDR notation) for the primary authsource
-     */
-    protected array $ipRanges;
+    protected array $zones = [];
 
 
     /**
@@ -64,16 +61,23 @@ class IPSourceSelector extends AbstractSourceSelector
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        Assert::keyExists($config, 'primarySource');
-        Assert::stringNotEmpty($config['primarySource']);
-        $this->primarySource = $config['primarySource'];
+        Assert::keyExists($config, 'zones');
+        Assert::keyExists($config['zones'], 'default');
+        Assert::stringNotEmpty($config['zones']['default']);
+        $this->defaultSource = $config['zones']['default'];
 
-        Assert::keyExists($config, 'secondarySource');
-        Assert::stringNotEmpty($config['secondarySource']);
-        $this->secondarySource = $config['secondarySource'];
+        unset($config['zones']['default']);
+        $zones = $config['zones'];
 
-        Assert::keyExists($config, 'secondarySourceRanges');
-        $this->ipRanges = $config['secondarySourceRanges'];
+        foreach ($zones as $key => $zone) {
+            if (!array_key_exists('source', $zone)) {
+                Logger::warning(sprintf('Discarding zone %s due to missing `source` key.', $key));
+            } elseif (!array_key_exists('subnet', $zone)) {
+                Logger::warning(sprintf('Discarding zone %s due to missing `subnet` key.', $key));
+            } else {
+                $this->zones[$key] = $zone;
+            }
+        }
     }
 
 
@@ -86,18 +90,24 @@ class IPSourceSelector extends AbstractSourceSelector
     protected function selectAuthSource(): string
     {
         $netUtils = new Utils\Net();
-
         $ip = $_SERVER['REMOTE_ADDR'];
-        $source = $this->primarySource;
-        foreach ($this->ipRanges as $range) {
-            if ($netUtils->ipCIDRcheck($range, $ip)) {
-                // Client's IP is in one of the ranges for the secondary auth source
-                $source = $this->secondarySource;
-                break;
+
+        $source = $this->defaultSource;
+        foreach ($this->zones as $name => $zone) {
+            foreach ($zone['subnet'] as $subnet) {
+                if ($netUtils->ipCIDRcheck($subnet, $ip)) {
+                    // Client's IP is in one of the ranges for the secondary auth source
+                    Logger::info(sprintf("core:IPSourceSelector:  Selecting zone `%s` based on client IP %s", $name, $ip));
+                    $source = $zone['source'];
+                    break;
+                }
             }
         }
 
-        Logger::info(sprintf("core:IPSourceSelector:  Selecting authsource `%s` based on client IP %s", $source, $ip));
+        if ($source === $this->defaultSource) {
+            Logger::info("core:IPSourceSelector:  no match on client IP; selecting default zone");
+        }
+
         return $source;
     }
 }

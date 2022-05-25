@@ -41,10 +41,15 @@ class IPSourceSelectorTest extends TestCase
             'selector' => [
                 'core:IPSourceSelector',
 
-                'primarySource' => 'external',
-                'secondarySource' => 'internal',
-                'secondarySourceRanges' => [
-                    '10.0.0.0/8',
+                'zones' => [
+                    'internal' => [
+                        'source' => 'internal',
+                        'subnet' => [
+                            '10.0.0.0/8',
+                        ],
+                    ],
+
+                    'default' => 'external',
                 ],
             ],
 
@@ -62,59 +67,18 @@ class IPSourceSelectorTest extends TestCase
 
     /**
      */
-    public function testPrimarySourceIsRequired(): void
+    public function testDefaultZoneIsRequired(): void
     {
         $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessage('Expected the key "primarySource" to exist.');
+        $this->expectExceptionMessage('Expected the key "default" to exist.');
 
         $sourceConfig = Configuration::loadFromArray([
             'selector' => [
                 'core:IPSourceSelector',
 
-                'secondarySource' => 'internal',
-                'secondarySourceRanges' => [],
-            ],
-        ]);
-        Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
-
-        new IPSourceSelector(['AuthId' => 'selector'], $sourceConfig->getArray('selector'));
-    }
-
-
-    /**
-     */
-    public function testSecondarySourceIsRequired(): void
-    {
-        $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessage('Expected the key "secondarySource" to exist.');
-
-        $sourceConfig = Configuration::loadFromArray([
-            'selector' => [
-                'core:IPSourceSelector',
-
-                'primarySource' => 'internal',
-                'secondarySourceRanges' => [],
-            ],
-        ]);
-        Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
-
-        new IPSourceSelector(['AuthId' => 'selector'], $sourceConfig->getArray('selector'));
-    }
-
-
-    /**
-     */
-    public function testSecondarySourceRangesIsRequired(): void
-    {
-        $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessage('Expected the key "secondarySourceRanges" to exist.');
-
-        $sourceConfig = Configuration::loadFromArray([
-            'selector' => [
-                'core:IPSourceSelector',
-
-                'primarySource' => 'internal',
-                'secondarySource' => 'internal',
+                'zones' => [
+                    'internal' => [],
+                ],
             ],
         ]);
         Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
