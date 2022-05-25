@@ -46,11 +46,24 @@ class IPSourceSelectorTest extends TestCase
                         'source' => 'internal',
                         'subnet' => [
                             '10.0.0.0/8',
+                            '2001:0DB8::/108',
+                        ],
+                    ],
+
+                    'other' => [
+                        'source' => 'other',
+                        'subnet' => [
+                            '172.16.0.0/12',
+                            '2002:1234::/108',
                         ],
                     ],
 
                     'default' => 'external',
                 ],
+            ],
+
+            'other' => [
+                'core:AdminPassword',
             ],
 
             'internal' => [
@@ -150,7 +163,10 @@ class IPSourceSelectorTest extends TestCase
         return [
             ['127.0.0.2', 'external'],
             ['10.4.13.2', 'internal'],
+            ['2001:0DB8:0000:0000:0000:0000:0000:0000', 'internal'],
             ['145.21.93.97', 'external'],
+            ['172.16.1.2', 'other'],
+            ['2002:1234:0000:0000:0000:0000:0000:0000', 'other'],
         ];
     }
 }
