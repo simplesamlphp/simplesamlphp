@@ -49,3 +49,6 @@ core-logout-iframe-done:
 core-logout-iframe-post:
     path:       /logout-iframe-post
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout::logoutIframePost' }
+core-error-report:
+    path:       /errorReport
+    defaults:   { _controller: '\SimpleSAML\Module\core\Controller\ErrorReport::main' }
