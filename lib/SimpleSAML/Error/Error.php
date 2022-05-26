@@ -248,7 +248,7 @@ class Error extends Exception
             // enable error reporting
             $httpUtils = new Utils\HTTP();
             $baseurl = $httpUtils->getBaseURL();
-            $data['errorReportAddress'] = $baseurl . 'errorreport.php';
+            $data['errorReportAddress'] = Module::getModuleURL('core/errorReport');
         }
 
         $data['email'] = '';
