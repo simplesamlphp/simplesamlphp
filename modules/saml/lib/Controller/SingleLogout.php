@@ -11,7 +11,7 @@ use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
-use SimpleSAML\Metadata;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +28,15 @@ class SingleLogout
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
+    protected MetaDataStorageHandler $mdHandler;
+
+    /**
+     * @var \SimpleSAML\IdP
+     * @psalm-var \SimpleSAML\IdP|class-string
+     */
+    protected IdP $idp;
+
 
     /**
      * Controller constructor.
@@ -40,6 +49,29 @@ class SingleLogout
         Configuration $config
     ) {
         $this->config = $config;
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\IdP dependency.
+     *
+     * @param \SimpleSAML\IdP $idp
+     */
+    public function setIdp(IdP $idp): void
+    {
+        $this->idp = $idp;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Metadata\MetaDataStorageHandler dependency.
+     *
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler $mdHandler
+     */
+    public function setMetadataStorageHandler(MetaDataStorageHandler $mdHandler): void
+    {
+        $this->mdHandler = $mdHandler;
     }
 
 
@@ -59,9 +91,8 @@ class SingleLogout
         }
 
         $httpUtils = new Utils\HTTP();
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = IdP::getById('saml2:' . $idpEntityId);
+        $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
+        $idp = $this->idp::getById('saml2:' . $idpEntityId);
 
         if ($request->request->has('ReturnTo')) {
             return new RunnableResponse(
@@ -75,7 +106,6 @@ class SingleLogout
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
         }
-        Assert::true(false);
     }
 
 
@@ -93,9 +123,8 @@ class SingleLogout
             throw new Error\Error('NOACCESS', null, 403);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = IdP::getById('saml2:' . $idpEntityId);
+        $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
+        $idp = $this->idp::getById('saml2:' . $idpEntityId);
 
         if (!$request->query->has('RelayState')) {
             throw new Error\Error('NORELAYSTATE');
