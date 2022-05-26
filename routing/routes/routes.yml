@@ -27,3 +27,6 @@ websso-legacy-single-logout:
 websso-legacy-init-single-logout:
     path:       /saml2/idp/initSLO.php
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::initSingleLogout', path: /saml2/idp/initSingleLogout, permanent: true }
+admin-legacy:
+    path:       /admin
+    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Config::main', path: /admin, permanent: true }
