@@ -55,7 +55,7 @@ class Test
 
 
     /**
-     * ConfigController constructor.
+     * TestController constructor.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
@@ -109,7 +109,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function main(Request $request, string $as = null)
+    public function main(Request $request, string $as = null): Response
     {
         $this->authUtils->requireAdmin();
         if (is_null($as)) {

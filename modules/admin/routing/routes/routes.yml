@@ -7,6 +7,9 @@ admin-diagnostics:
 admin-phpinfo:
     path:       /phpinfo
     defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Config::phpinfo' }
+admin-sandbox:
+    path:       /sandbox
+    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Sandbox::main' }
 admin-test:
     path:       /test/{as}
     defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Test::main', as: null }
