@@ -65,9 +65,9 @@ class Metadata
      * This endpoint will offer the SAML 2.0 IdP metadata.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function metadata(Request $request): RunnableResponse
+    public function metadata(Request $request): Response
     {
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
