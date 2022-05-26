@@ -280,7 +280,7 @@ class Error extends Exception
 
             $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
-            $t->send();
+            $t->show();
         }
 
         exit;
