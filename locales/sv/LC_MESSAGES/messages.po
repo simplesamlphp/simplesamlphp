@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Det finns något fel i konfigurationen i installation av SimpleSAMLphp. Om"
-" du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
-"metadata är rätt konfigurerad."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "

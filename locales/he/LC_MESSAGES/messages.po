@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "
-"שירות זה, כדי שתוודא שהגדרות מהמטא-מידע שלך נכונות."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."
 

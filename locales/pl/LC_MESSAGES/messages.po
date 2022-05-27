@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
-"tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
 

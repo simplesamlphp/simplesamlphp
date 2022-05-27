@@ -18,12 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"There is some misconfiguration of your SimpleSAMLphp installation. If you"
-" are the administrator of this service, you should make sure your "
-"metadata configuration is correctly setup."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "The parameters sent to the discovery service were not according to "

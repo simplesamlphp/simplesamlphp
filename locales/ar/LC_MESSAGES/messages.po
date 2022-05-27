@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
-"رجاءاً من ان ترتيب الميتاداتا صحيح"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 

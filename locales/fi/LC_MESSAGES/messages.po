@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "
-"palvelun ylläpitäjä tulee sinun varmistua metadatan oikeellisuudesta."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 

@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Postoji greška u podešavanjima SimpleSAMLphp-a. Ukoliko ste administrator"
-" ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
-"podešeni."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 

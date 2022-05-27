@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Existe uma má configuração desta instalação do SimpleSAMLphp. Se é o "
-"administrador deste serviço, verifique que a configuração dos metadados "
-"está correcta."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"

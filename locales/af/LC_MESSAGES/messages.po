@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Daar is fout met jou SimplSAMLphp installasie. Indien jy die "
-"administrateur is van dié diens moet jy verseker dat jou metadata "
-"konfigurasie korrek is."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die gestuurde parameters na die ontdekkings diens was not volgens die "

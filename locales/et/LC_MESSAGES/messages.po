@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Midagi on su SimpleSAMLphp paigalduses valesti seadistatud. Kui sa oled "
-"selle teenuse administraator, siis peaksid kontrollima, et metaandmete "
-"seadistused oleks korrektselt seadistatud."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
 

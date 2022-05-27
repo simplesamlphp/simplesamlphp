@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr "有一些錯誤設定在您所安裝的 SimpleSAMLphp。如果您是這個服務的管理員，您可能需要確認您的詮釋資料設定是否正確地設置。"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "傳遞至搜尋服務的參數並非按照規格所訂。"
 

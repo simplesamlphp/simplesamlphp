@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Υπάρχει κάποιο πρόβλημα στις ρυθμίσεις του SimpleSAMLphp. Εάν είστε ο "
-"διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
-"ρυθμιστεί σωστά."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Οι παράμετροι που στάλθηκαν στην υπηρεσία ανεύρεσης παρόχου ταυτότητας "

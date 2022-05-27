@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Konfigurazio erroreak daude zure SimpleSAMLphp-ren instalazioan. "
-"Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
-"konfigurazioa zuzena dela."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "

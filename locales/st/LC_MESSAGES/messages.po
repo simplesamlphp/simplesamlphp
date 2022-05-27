@@ -641,12 +641,6 @@ msgstr ""
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"Ho na le tlhophiso e fosahetseng ya kenyo ya ho instola SimpleSAMLphp ya "
-"hao. Haeba o motsamaisi wa tshebeletso ena, o tlameha ho etsa bonnete ba "
-"hore tlhophiso ya metadata ya hao e setilwe ka nepo."
-
 msgid "Yes, continue"
 msgstr "E"
 

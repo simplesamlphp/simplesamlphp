@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_METADATA}"
-msgstr ""
-"C'è qualche errore di configurazione in questa installazione "
-"SimpleSAMLphp. Se sei l'amministratore di sistema, assicurati che la "
-"configurazione dei metadati sia corretta."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 
