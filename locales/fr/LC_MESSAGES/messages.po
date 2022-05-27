@@ -23,9 +23,6 @@ msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
 "réponse SAML n'indiquait pas le succès)"
 
-msgid "{login:help_header}"
-msgstr "À l'aide!  Je ne me souviens plus de mon mot de passe."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "La base de données utilisateur est un annuaire LDAP, et quand vous "

@@ -25,9 +25,6 @@ msgstr ""
 "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. "
 "(Statusmeddelandet i SAML-svaret var ett felmeddelande)"
 
-msgid "{login:help_header}"
-msgstr "Hjälp! Jag kommer inte ihåg mitt lösenord."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP används som användardatabas och när du försöker logga måste LDAP-"

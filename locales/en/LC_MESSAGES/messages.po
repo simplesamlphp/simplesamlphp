@@ -28,9 +28,6 @@ msgstr ""
 "The Identity Provider responded with an error. (The status code in the "
 "SAML Response was not success)"
 
-msgid "{login:help_header}"
-msgstr "Help! I don't remember my password."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP is the user database, and when you try to login, we need to contact "

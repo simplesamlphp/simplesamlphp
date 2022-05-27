@@ -21,9 +21,6 @@ msgstr "当你处在调试模式中时，你将看到你正在发送的消息的
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "身份提供者的应答存在错误（SAML应答状态码并没有成功）"
 
-msgid "{login:help_header}"
-msgstr "帮助！我忘记我的密码了！"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr "LDAP是一个用户数据库，当你试图登录时，我们需要连接到LDAP数据库，然而这次我们试图链接时发生了一个错误"
 

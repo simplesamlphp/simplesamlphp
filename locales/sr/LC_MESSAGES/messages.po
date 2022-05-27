@@ -27,9 +27,6 @@ msgstr ""
 "greške(Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri "
 "uspešno obrađenog zahteva)."
 
-msgid "{login:help_header}"
-msgstr "Upomoć! Zaboravio/la sam svoju lozinku."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "Podaci o korisničkim nalozima čuvaju se u LDAP bazi, a kada pokušate da "

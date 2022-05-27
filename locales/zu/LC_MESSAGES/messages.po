@@ -77,7 +77,7 @@ msgstr "[Ukukhetha okuncanyelwayo]"
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%"
 
-msgid "{login:help_header}"
+msgid "Help! I don't remember my password."
 msgstr "Siza! Angiyikhumbuli iphasiwedi yami."
 
 msgid "{logout:return}"

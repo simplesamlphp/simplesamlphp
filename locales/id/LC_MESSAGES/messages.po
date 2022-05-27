@@ -25,9 +25,6 @@ msgstr ""
 "Identity Provider merespon dengan error. (Kode status di Response SAML "
 "adalah tidak berhasil)"
 
-msgid "{login:help_header}"
-msgstr "Tolong! Saya tidak ingat password saya"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu "

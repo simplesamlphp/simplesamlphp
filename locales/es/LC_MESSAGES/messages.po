@@ -25,9 +25,6 @@ msgstr ""
 "El IdP respondió a la solicitud con un error. (El código de estado en la "
 "respuesta SAML no fue exitoso)"
 
-msgid "{login:help_header}"
-msgstr "&iexcl;Socorro! Se me ha olvidado mi clave de acceso."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP es la base de datos de usuarios, es necesario contactar con ella "

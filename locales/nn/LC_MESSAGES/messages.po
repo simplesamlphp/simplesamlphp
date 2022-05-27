@@ -25,9 +25,6 @@ msgstr ""
 "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
 "statuskode som varsla om feil)"
 
-msgid "{login:help_header}"
-msgstr "Hjelp! Eg har gløymd passordet mitt"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP er brukardatabase din.  Når du prøver å logga inn må vi kontakta "

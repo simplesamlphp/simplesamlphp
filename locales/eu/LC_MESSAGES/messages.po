@@ -25,9 +25,6 @@ msgstr ""
 "Idp-ak errore batekin erantzun dio eskaerari. (SAML erantzunean egoera "
 "kodea ez da arrakastatsua izan)"
 
-msgid "{login:help_header}"
-msgstr "Lagundu! Ez dut nire pasahitza gogoratzen."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP erabiltzaileen datu basea da, eta sartzea erabakitzen duzunean "

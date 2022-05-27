@@ -23,9 +23,6 @@ msgstr ""
 "Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud "
 "positiivne)."
 
-msgid "{login:help_header}"
-msgstr "Appi! Ma ei mäleta parooli."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP on kasutajate andmebaas ja sisselogimisel püütakse  LDAP-andmebaasi "

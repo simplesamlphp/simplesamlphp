@@ -28,9 +28,6 @@ msgstr ""
 "Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "
 "başarılamadı)"
 
-msgid "{login:help_header}"
-msgstr "Yardım! Şifremi hatırlamıyorum."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP kullanıcı veritabanı ve siz giriş yapmaya çalışırken, LDAP "

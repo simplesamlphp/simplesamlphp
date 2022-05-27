@@ -399,9 +399,6 @@ msgstr "Setifikeiti se sa tsejweng"
 msgid "SimpleSAMLphp Diagnostics"
 msgstr "Dimanollo tsa SimpleSAMLphp"
 
-msgid "{login:help_header}"
-msgstr "Thuso! Ha ke hopole phasewete ya ka."
-
 msgid "Incorrect username or password."
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 

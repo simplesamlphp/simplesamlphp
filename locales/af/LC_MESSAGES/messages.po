@@ -20,9 +20,6 @@ msgstr ""
 "Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die "
 "SAML reaksie was onsuksesvol)"
 
-msgid "{login:help_header}"
-msgstr "Hulp! Ek het nie my wagwoord onthou nie."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP is die gebruikers databasis en waneer jy probeer inteken moet ons "

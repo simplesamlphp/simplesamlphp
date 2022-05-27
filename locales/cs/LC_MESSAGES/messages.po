@@ -22,9 +22,6 @@ msgstr "Pokud jste v debug módu, můžete vidět obsah zprávy, kterou posílá
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Poskytovatel identity odpověděl chybou. (Stavový kód v SAML nebyl úspěšný)"
 
-msgid "{login:help_header}"
-msgstr "Zapomněl jsem heslo."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP je databáze uživatelů, a když se chcete přihlásit, je potřeba se "

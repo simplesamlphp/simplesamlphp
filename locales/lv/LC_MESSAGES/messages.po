@@ -24,9 +24,6 @@ msgstr ""
 "Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
 "atšķiras no veiksmīga"
 
-msgid "{login:help_header}"
-msgstr "Palīdziet! Es neatceros paroli."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP ir lietotāju datu bāze. Pieslēdzoties pie tās ir jāspēj piekļūt. "

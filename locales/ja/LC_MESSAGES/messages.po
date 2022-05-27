@@ -21,9 +21,6 @@ msgstr "現在はデバッグモードです。あなたは送信するメッセ
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
-msgid "{login:help_header}"
-msgstr "たすけて! パスワードを思い出せません。"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr "あなたがログインを行う時、LDAPというユーザーデーターベースにアクセスします。この時エラーが発生しました。"
 

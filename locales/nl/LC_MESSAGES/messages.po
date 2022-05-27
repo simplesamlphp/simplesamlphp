@@ -28,9 +28,6 @@ msgstr ""
 "De Identity Provider antwoordde met een fout. (De statuscode in de SAML "
 "Response was niet success)"
 
-msgid "{login:help_header}"
-msgstr "Help! Ik weet mijn wachtwoord niet meer."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "De account database is in LDAP opgeslagen en bij het inloggen moet er "

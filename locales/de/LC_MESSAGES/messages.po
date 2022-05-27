@@ -25,9 +25,6 @@ msgstr ""
 "Der Identity Provider gab einen Fehler zurück (Der Statuscode in der "
 "SAML-Antwort war nicht \"Erfolg\")"
 
-msgid "{login:help_header}"
-msgstr "Hilfe, ich habe mein Passwort vergessen."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP ist die gewählte Benutzerdatenbank. Wenn Sie versuchen sich "
