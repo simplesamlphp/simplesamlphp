@@ -231,9 +231,6 @@ msgstr "Napaka pri komunikaciji s CAS strežnikom."
 msgid "{general:no}"
 msgstr "Ne"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metapodatki"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

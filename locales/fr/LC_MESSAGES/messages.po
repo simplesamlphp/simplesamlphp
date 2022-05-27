@@ -244,9 +244,6 @@ msgstr "Erreur de communication avec le serveur CAS"
 msgid "{general:no}"
 msgstr "Non"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "Métadonnées de SP SAML 2.0"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

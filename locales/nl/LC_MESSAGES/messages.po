@@ -262,9 +262,6 @@ msgstr "Fout tijdens communicatie met de CAS server."
 msgid "{general:no}"
 msgstr "Nee"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

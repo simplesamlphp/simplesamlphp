@@ -228,9 +228,6 @@ msgstr "當連線至 CAS 主機時錯誤。"
 msgid "{general:no}"
 msgstr "不，取消"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

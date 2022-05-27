@@ -232,9 +232,6 @@ msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
 msgid "{general:no}"
 msgstr "Nem"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metaadatok"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

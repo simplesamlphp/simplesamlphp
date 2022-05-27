@@ -244,9 +244,6 @@ msgstr "Fehler bei der Kommunikation mit dem CAS-Server."
 msgid "{general:no}"
 msgstr "Nein"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadaten"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

@@ -236,9 +236,6 @@ msgstr "Error ketika berkomunikasi dengans server CAS."
 msgid "{general:no}"
 msgstr "Tidak"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "Metadata SAML 2.0 SP"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

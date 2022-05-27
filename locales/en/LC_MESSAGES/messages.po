@@ -250,9 +250,6 @@ msgstr "Error when communicating with the CAS server."
 msgid "{general:no}"
 msgstr "No, cancel"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

@@ -241,9 +241,6 @@ msgstr "Ett fel uppstod vid kommunikation med CAS-servern."
 msgid "{general:no}"
 msgstr "Nej"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

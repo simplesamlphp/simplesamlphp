@@ -216,9 +216,6 @@ msgstr "CAS sunucusu ile iletişim kurarken hata"
 msgid "{general:no}"
 msgstr "Hayır"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Üstveri (Metadata)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

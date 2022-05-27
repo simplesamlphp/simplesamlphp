@@ -213,9 +213,6 @@ msgstr "Ocorreu um erro ao comunicar com o servidor CAS."
 msgid "{general:no}"
 msgstr "Não"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "Metadados SAML 2.0 SP"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

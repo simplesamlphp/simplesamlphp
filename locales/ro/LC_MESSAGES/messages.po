@@ -240,9 +240,6 @@ msgstr "Eroare de comunicare cu serverul CAS."
 msgid "{general:no}"
 msgstr "Nu"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "Metadate furnizor de servicii (SP) SAML 2.0"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

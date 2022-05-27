@@ -238,9 +238,6 @@ msgstr "Greška prilikom komunikacije sa CAS serverom."
 msgid "{general:no}"
 msgstr "Ne"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP metapodaci"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

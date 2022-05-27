@@ -231,9 +231,6 @@ msgstr "Feil under kommunikasjon med CAS-tenaren"
 msgid "{general:no}"
 msgstr "Nei"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

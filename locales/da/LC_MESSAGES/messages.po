@@ -240,9 +240,6 @@ msgstr "Der opstod en fejl ved kommunikationen med CAS serveren"
 msgid "{general:no}"
 msgstr "Nej"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 tjenesteudbyders metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

@@ -230,9 +230,6 @@ msgstr "Klaida bandant jungtis prie CAS serverio."
 msgid "{general:no}"
 msgstr "Ne"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP Metaduomenys"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

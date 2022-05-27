@@ -233,9 +233,6 @@ msgstr "CAS-serveriga suhtlemisel tekkis tõrge."
 msgid "{general:no}"
 msgstr "Ei"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP metaandmed"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "

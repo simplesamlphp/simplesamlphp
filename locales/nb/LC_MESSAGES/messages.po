@@ -232,9 +232,6 @@ msgstr "Feil i kommunikasjonen med CAS-tjeneren."
 msgid "{general:no}"
 msgstr "Nei"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SP metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

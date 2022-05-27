@@ -213,9 +213,6 @@ msgstr "CASサーバーとの通信中にエラーが発生しました。"
 msgid "{general:no}"
 msgstr "いいえ"
 
-msgid "{admin:metadata_saml20-sp}"
-msgstr "SAML 2.0 SPメタデータ"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 
