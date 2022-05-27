@@ -222,9 +222,6 @@ msgstr "SAML 2.0 SP Üstveri (Metadata)"
 msgid "{admin:metaconv_converted}"
 msgstr "Dönüştürülmüş üstveri (metadata)"
 
-msgid "{logout:completed}"
-msgstr "Tamamlandı"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

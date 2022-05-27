@@ -219,9 +219,6 @@ msgstr "Metadados SAML 2.0 SP"
 msgid "{admin:metaconv_converted}"
 msgstr "Resultado da conversão de Metadados"
 
-msgid "{logout:completed}"
-msgstr "Completa"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

@@ -261,9 +261,6 @@ msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών SAML 2.0"
 msgid "{admin:metaconv_converted}"
 msgstr "Μετατραπέντα μεταδεδομένα"
 
-msgid "{logout:completed}"
-msgstr "Ολοκληρώθηκε"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

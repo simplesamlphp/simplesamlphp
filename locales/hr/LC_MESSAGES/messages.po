@@ -245,9 +245,6 @@ msgstr "SAML 2.0 metapodaci o davatelju usluge"
 msgid "{admin:metaconv_converted}"
 msgstr "Pretvoreni metapodaci"
 
-msgid "{logout:completed}"
-msgstr "Završeno"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

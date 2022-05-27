@@ -185,9 +185,6 @@ msgstr "Fout tydens kommunikasie met die CAS bediener."
 msgid "{general:no}"
 msgstr "Nee"
 
-msgid "{logout:completed}"
-msgstr "Voltooid"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

@@ -246,9 +246,6 @@ msgstr "Metadate furnizor de servicii (SP) SAML 2.0"
 msgid "{admin:metaconv_converted}"
 msgstr "Metadate convertite"
 
-msgid "{logout:completed}"
-msgstr "Terminat"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

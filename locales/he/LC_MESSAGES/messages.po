@@ -229,9 +229,6 @@ msgstr "מטא-מידע של סש מסוג SAML 2.0 "
 msgid "{admin:metaconv_converted}"
 msgstr "מטא-מידע מומר"
 
-msgid "{logout:completed}"
-msgstr "הסתיים"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

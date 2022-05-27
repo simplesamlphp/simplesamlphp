@@ -237,9 +237,6 @@ msgstr "SAML 2.0 SP - Metadane"
 msgid "{admin:metaconv_converted}"
 msgstr "Skonwertowane metadane"
 
-msgid "{logout:completed}"
-msgstr "Zakończono"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

@@ -250,9 +250,6 @@ msgstr "SAML 2.0 SP Metadaten"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertierte Metadaten"
 
-msgid "{logout:completed}"
-msgstr "abgeschlossen"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

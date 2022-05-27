@@ -250,9 +250,6 @@ msgstr "Métadonnées de SP SAML 2.0"
 msgid "{admin:metaconv_converted}"
 msgstr "Métadonnées converties"
 
-msgid "{logout:completed}"
-msgstr "Fait"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

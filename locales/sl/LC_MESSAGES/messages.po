@@ -237,9 +237,6 @@ msgstr "SAML 2.0 SP Metapodatki"
 msgid "{admin:metaconv_converted}"
 msgstr "Pretvorjeni metapodatki"
 
-msgid "{logout:completed}"
-msgstr "Dokončano"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

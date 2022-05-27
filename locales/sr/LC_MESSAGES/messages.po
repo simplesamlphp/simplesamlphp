@@ -244,9 +244,6 @@ msgstr "SAML 2.0 SP metapodaci"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertovani metapodaci"
 
-msgid "{logout:completed}"
-msgstr "Završeno"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

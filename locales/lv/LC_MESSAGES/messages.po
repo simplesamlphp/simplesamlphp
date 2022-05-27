@@ -236,9 +236,6 @@ msgstr "SAML 2.0 SP metadati"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertētie metadati"
 
-msgid "{logout:completed}"
-msgstr "Pabeigts"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

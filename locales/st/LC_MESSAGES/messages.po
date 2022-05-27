@@ -357,9 +357,6 @@ msgstr "Taba ya SAML"
 msgid "{errors:title_NOACCESS}"
 msgstr "Ha ho phihlello"
 
-msgid "{logout:completed}"
-msgstr "E phethilwe"
-
 msgid ""
 "This endpoint is not enabled. Check the enable options in your "
 "configuration of SimpleSAMLphp."

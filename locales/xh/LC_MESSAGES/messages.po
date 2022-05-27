@@ -165,7 +165,7 @@ msgstr "Awukhange uzise isatifikethi esisebenzayo."
 msgid "Page not found"
 msgstr "Ikhasi alifunyenwanga"
 
-msgid "{logout:completed}"
+msgid "Completed"
 msgstr "Igqityiwe"
 
 msgid "{status:subject_header}"
