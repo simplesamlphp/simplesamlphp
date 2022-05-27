@@ -254,9 +254,6 @@ msgstr "La Autenticacion fue abortada por el usuario"
 msgid "{errors:descr_CASERROR}"
 msgstr "Error al tratar de comunicar con el servidor CAS"
 
-msgid "{general:no}"
-msgstr "No"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "

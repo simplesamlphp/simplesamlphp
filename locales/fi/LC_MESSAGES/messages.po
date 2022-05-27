@@ -159,9 +159,6 @@ msgstr "Olet onnistuneesti kirjautunut ulos kaikista yllä listatuista palveluis
 msgid "{errors:descr_CASERROR}"
 msgstr "CAS-palvelun kättelyvirhe"
 
-msgid "{general:no}"
-msgstr "ei"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "

@@ -228,9 +228,6 @@ msgstr "Innlogging blei avbroten av sluttbrukaren"
 msgid "{errors:descr_CASERROR}"
 msgstr "Feil under kommunikasjon med CAS-tenaren"
 
-msgid "{general:no}"
-msgstr "Nei"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

@@ -227,9 +227,6 @@ msgstr "Autentikacija nutraukė naudotojas"
 msgid "{errors:descr_CASERROR}"
 msgstr "Klaida bandant jungtis prie CAS serverio."
 
-msgid "{general:no}"
-msgstr "Ne"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

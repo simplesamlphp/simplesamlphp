@@ -375,9 +375,6 @@ msgstr "Iphutha lomiso"
 msgid "Unknown certificate"
 msgstr "Isitifiketi esingaziwa"
 
-msgid "{general:no}"
-msgstr "Cha"
-
 msgid "No certificate"
 msgstr "Asikho isitifiketi"
 

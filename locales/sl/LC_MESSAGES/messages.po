@@ -228,9 +228,6 @@ msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
 msgid "{errors:descr_CASERROR}"
 msgstr "Napaka pri komunikaciji s CAS strežnikom."
 
-msgid "{general:no}"
-msgstr "Ne"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

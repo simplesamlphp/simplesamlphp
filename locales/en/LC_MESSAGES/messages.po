@@ -247,9 +247,6 @@ msgstr "The authentication was aborted by the user"
 msgid "{errors:descr_CASERROR}"
 msgstr "Error when communicating with the CAS server."
 
-msgid "{general:no}"
-msgstr "No, cancel"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

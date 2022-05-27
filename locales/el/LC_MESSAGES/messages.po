@@ -252,9 +252,6 @@ msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστ�
 msgid "{errors:descr_CASERROR}"
 msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με τον εξυπηρετητή CAS."
 
-msgid "{general:no}"
-msgstr "Όχι"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

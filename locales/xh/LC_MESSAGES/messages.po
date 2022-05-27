@@ -370,9 +370,6 @@ msgstr "Impazamo yolungiselelo"
 msgid "Unknown certificate"
 msgstr "Isatifikethi esingaziwayo"
 
-msgid "{general:no}"
-msgstr "Hayi"
-
 msgid "No certificate"
 msgstr "Akukho satifikethi"
 

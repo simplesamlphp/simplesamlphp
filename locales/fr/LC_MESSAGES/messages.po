@@ -241,9 +241,6 @@ msgstr "L'authentification a été abandonnée par l'usager"
 msgid "{errors:descr_CASERROR}"
 msgstr "Erreur de communication avec le serveur CAS"
 
-msgid "{general:no}"
-msgstr "Non"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

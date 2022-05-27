@@ -233,9 +233,6 @@ msgstr "Kautotzea bertan behera utzi du erabiltzaileak"
 msgid "{errors:descr_CASERROR}"
 msgstr "Errorea CAS zerbitzariarekin komunikatzen saiatzean"
 
-msgid "{general:no}"
-msgstr "Ez"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"

@@ -210,9 +210,6 @@ msgstr "Observações"
 msgid "{errors:descr_CASERROR}"
 msgstr "Ocorreu um erro ao comunicar com o servidor CAS."
 
-msgid "{general:no}"
-msgstr "Não"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

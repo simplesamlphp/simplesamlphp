@@ -259,9 +259,6 @@ msgstr "De authenticatie is afgebroken door de gebruiker"
 msgid "{errors:descr_CASERROR}"
 msgstr "Fout tijdens communicatie met de CAS server."
 
-msgid "{general:no}"
-msgstr "Nee"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

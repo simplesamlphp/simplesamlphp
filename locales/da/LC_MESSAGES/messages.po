@@ -237,9 +237,6 @@ msgstr "Autentificering blev afbrudt af brugeren"
 msgid "{errors:descr_CASERROR}"
 msgstr "Der opstod en fejl ved kommunikationen med CAS serveren"
 
-msgid "{general:no}"
-msgstr "Nej"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

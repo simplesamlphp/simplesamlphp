@@ -229,9 +229,6 @@ msgstr "Az azonosítást a felhasználó megszakította"
 msgid "{errors:descr_CASERROR}"
 msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
 
-msgid "{general:no}"
-msgstr "Nem"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

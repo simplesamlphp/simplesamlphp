@@ -226,9 +226,6 @@ msgstr "تم إيقاف التوثيق بواسطة المستخدم"
 msgid "{errors:descr_CASERROR}"
 msgstr "خطا عند محاولة الاتصال بمقدم خدمة CAS"
 
-msgid "{general:no}"
-msgstr "لا"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

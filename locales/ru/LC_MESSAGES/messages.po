@@ -248,9 +248,6 @@ msgstr "Аутентификация прервана пользователем
 msgid "{errors:descr_CASERROR}"
 msgstr "Произошла ошибка при обмене данными с сервером CAS."
 
-msgid "{general:no}"
-msgstr "Нет"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

@@ -225,9 +225,6 @@ msgstr "使用者中斷認證"
 msgid "{errors:descr_CASERROR}"
 msgstr "當連線至 CAS 主機時錯誤。"
 
-msgid "{general:no}"
-msgstr "不，取消"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

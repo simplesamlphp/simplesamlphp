@@ -381,9 +381,6 @@ msgstr ""
 " seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e "
 "fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
 
-msgid "{general:no}"
-msgstr "Tjhe"
-
 msgid ""
 "You accessed the Single Sign On Service interface, but did not provide a "
 "SAML Authentication Request. Please note that this endpoint is not "

@@ -213,9 +213,6 @@ msgstr "Notlar"
 msgid "{errors:descr_CASERROR}"
 msgstr "CAS sunucusu ile iletişim kurarken hata"
 
-msgid "{general:no}"
-msgstr "Hayır"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

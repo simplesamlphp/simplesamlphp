@@ -235,9 +235,6 @@ msgstr "Korisnik je prekinuo proces autentifikacie"
 msgid "{errors:descr_CASERROR}"
 msgstr "Greška prilikom komunikacije sa CAS serverom."
 
-msgid "{general:no}"
-msgstr "Ne"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

@@ -228,9 +228,6 @@ msgstr "Přihlášení bylo přerušeno uživatelem"
 msgid "{errors:descr_CASERROR}"
 msgstr "Chyba při komunikaci s CAS serverem."
 
-msgid "{general:no}"
-msgstr "Ne"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

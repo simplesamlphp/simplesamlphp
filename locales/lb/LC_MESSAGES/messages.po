@@ -91,9 +91,6 @@ msgstr "En Fehler as geschit beim Bearbeschten vun der Logout Unfro"
 msgid "{errors:descr_CASERROR}"
 msgstr "Fehler beim Kommunizeiren mam CAS Server"
 
-msgid "{general:no}"
-msgstr "Nee"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net "

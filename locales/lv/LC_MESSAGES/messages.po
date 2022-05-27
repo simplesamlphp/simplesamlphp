@@ -227,9 +227,6 @@ msgstr "Autentifikāciju pārtraucis lietotājs"
 msgid "{errors:descr_CASERROR}"
 msgstr "Kļūda komunicējot ar CAS serveri."
 
-msgid "{general:no}"
-msgstr "Nē"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

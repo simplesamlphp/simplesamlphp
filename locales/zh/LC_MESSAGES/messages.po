@@ -210,9 +210,6 @@ msgstr "认证被用户中止"
 msgid "{errors:descr_CASERROR}"
 msgstr "在和CAS服务器的通讯中发生了错误"
 
-msgid "{general:no}"
-msgstr "没有"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 

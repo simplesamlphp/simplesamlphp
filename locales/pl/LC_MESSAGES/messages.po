@@ -228,9 +228,6 @@ msgstr "Uwierzytelnienie zostało przerwane przez użytkownika"
 msgid "{errors:descr_CASERROR}"
 msgstr "Błąd podczas komunikacji z serwerem CAS"
 
-msgid "{general:no}"
-msgstr "Nie"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

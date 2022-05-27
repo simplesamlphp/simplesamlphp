@@ -210,9 +210,6 @@ msgstr "認証はユーザーによって中断されました"
 msgid "{errors:descr_CASERROR}"
 msgstr "CASサーバーとの通信中にエラーが発生しました。"
 
-msgid "{general:no}"
-msgstr "いいえ"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 

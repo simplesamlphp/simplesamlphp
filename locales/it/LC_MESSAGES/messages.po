@@ -242,9 +242,6 @@ msgstr "L'autenticazione è stata interrotta dall'utente"
 msgid "{errors:descr_CASERROR}"
 msgstr "Errore nella comunicazione con il server CAS."
 
-msgid "{general:no}"
-msgstr "No"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "
