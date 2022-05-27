@@ -33,9 +33,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "SAML-pyynnin luonnissa tapahtui virhe virhe virhe virhe"
-
 msgid "{logout:return}"
 msgstr "Palaa palveluun"
 

@@ -42,9 +42,6 @@ msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "
 "specifikationen."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Ett fel har inträffat vid försöket att skapa en SAML-förfrågan."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Frivilliga alternativ"
 

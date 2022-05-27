@@ -40,9 +40,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Si è verificato un errore durante la creazione della richiesta SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Campi opzionali"
 

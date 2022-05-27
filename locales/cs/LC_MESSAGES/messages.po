@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Chyba vznikla při vytváření SAML požadavku."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Volitelná pole"
 

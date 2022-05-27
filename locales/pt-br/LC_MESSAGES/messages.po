@@ -42,9 +42,6 @@ msgstr ""
 "Os parâmetros enviados para o serviço de descoberta não estão de acordo "
 "com as especificações."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Um erro ocorreu ao tentar criar o pedido do SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Campos opcionais"
 

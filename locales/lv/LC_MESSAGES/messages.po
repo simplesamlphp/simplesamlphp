@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Veidojot SAML pieprasījumu radās kļūda."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Neobligātie lauki"
 

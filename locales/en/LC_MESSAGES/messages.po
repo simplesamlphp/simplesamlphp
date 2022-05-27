@@ -44,9 +44,6 @@ msgstr ""
 "The parameters sent to the discovery service were not according to "
 "specifications."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "An error occurred when trying to create the SAML request."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Optional fields"
 

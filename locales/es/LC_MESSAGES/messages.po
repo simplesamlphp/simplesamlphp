@@ -42,9 +42,6 @@ msgstr ""
 "Los parametros enviados al servicio de descubrimiento no se ajustan a la "
 "especificaci&oacute;n."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Se ha producido un error al tratar de crear la petici&oacute;n SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Datos opcionales"
 

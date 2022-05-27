@@ -42,9 +42,6 @@ msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
 " nicht der Spezifikation."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Ein Fehler beim Erzeugen der SAML-Anfrage ist aufgetreten."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Optionale Felder"
 

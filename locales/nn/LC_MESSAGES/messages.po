@@ -41,9 +41,6 @@ msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "
 "spesifikasjon."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Ein feil oppsto i prosessen med laging av SAML-spørsmålet"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Valfrie felt"
 

@@ -38,9 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametere sendt til discovery-tjenesten var ikke i korrekt format."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "En feil oppstod da SAML-forespørselen skulle lages."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Valgbart felt"
 

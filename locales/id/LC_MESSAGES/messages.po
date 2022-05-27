@@ -42,9 +42,6 @@ msgstr ""
 "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai "
 "dengan spesifikasi"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Sebuah error telah terjadi ketika membuat request SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Field-field opsional"
 

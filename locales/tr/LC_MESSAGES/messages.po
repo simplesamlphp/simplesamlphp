@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "SAML isteği oluşturmaya çalışırken bir hata meydana geldi"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "İsteğe bağlı alanlar"
 

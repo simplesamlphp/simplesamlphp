@@ -689,9 +689,6 @@ msgstr "Metadata ha e a fumanwa"
 msgid "{logout:return}"
 msgstr "E kgutlela tshebeletsong"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Phoso e hlahile ha o leka ho theha kopo ya SAML."
-
 msgid "Unhandled exception"
 msgstr "Mokgelo o sa rarollwang"
 

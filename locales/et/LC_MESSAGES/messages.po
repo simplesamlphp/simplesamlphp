@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "SAML päringu loomisel ilmnes tõrge."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Lisaväljad"
 

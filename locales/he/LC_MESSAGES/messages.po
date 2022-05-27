@@ -34,9 +34,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "שגיאה אירעה בניסיון ליצור את בקשת ה- SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "שדות רשות"
 

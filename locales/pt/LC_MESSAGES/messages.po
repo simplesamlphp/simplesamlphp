@@ -39,9 +39,6 @@ msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"
 " as especificações."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Ocorreu um erro ao tentar criar o pedido SAML"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Campos opcionais"
 

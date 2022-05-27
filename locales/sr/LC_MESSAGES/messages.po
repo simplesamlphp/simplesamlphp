@@ -42,9 +42,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Desila se greška prilikom pokušaja kreiranja SAML zahteva."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Opciona polja"
 

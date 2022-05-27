@@ -103,7 +103,7 @@ msgstr ""
 msgid "{logout:logout_all}"
 msgstr "Yebo, wonke amasevisi"
 
-msgid "{errors:descr_CREATEREQUEST}"
+msgid "An error occurred when trying to create the SAML request."
 msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
 
 msgid "Help desk homepage"

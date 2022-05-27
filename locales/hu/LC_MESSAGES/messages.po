@@ -37,9 +37,6 @@ msgstr ""
 "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "
 "amelyek nem felelnek meg a specifikációnak."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Hiba történt a SAML kérés létrehozása közben."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Opcionális mező"
 

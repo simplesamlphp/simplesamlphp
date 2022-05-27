@@ -47,9 +47,6 @@ msgstr ""
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Er is een fout opgetreden bij het aanmaken van een SAML request."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Optionele velden"
 

@@ -37,9 +37,6 @@ msgstr ""
 "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo "
 "specifikaciji."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Pri ustvarjanju SAML zahteve je prišlo do napake."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Neobvezna polja"
 

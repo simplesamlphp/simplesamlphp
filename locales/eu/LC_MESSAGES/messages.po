@@ -42,9 +42,6 @@ msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "
 "doitzen."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Errore bat jazo da SAML eskaera sortzen saiatzean."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Hautazko datuak"
 

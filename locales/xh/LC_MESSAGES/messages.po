@@ -100,7 +100,7 @@ msgstr "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%"
 msgid "{logout:logout_all}"
 msgstr "Ewe, zonke iinkonzo"
 
-msgid "{errors:descr_CREATEREQUEST}"
+msgid "An error occurred when trying to create the SAML request."
 msgstr "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML."
 
 msgid "Help desk homepage"

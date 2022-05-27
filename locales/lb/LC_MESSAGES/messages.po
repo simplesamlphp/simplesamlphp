@@ -31,9 +31,6 @@ msgstr ""
 "D'Parameter fir den Disovery Service woren net korrekt par rapport zur "
 "Specifikatioun"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Beim Erstellen vun der SAML Unfro as en Fehler geschitt."
-
 msgid "{login:login_button}"
 msgstr "Login"
 

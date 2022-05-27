@@ -41,9 +41,6 @@ msgstr ""
 "Οι παράμετροι που στάλθηκαν στην υπηρεσία ανεύρεσης παρόχου ταυτότητας "
 "ήταν εσφαλμένες."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του αιτήματος SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Προαιρετικά πεδία"
 

@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "حدث خطا عند محاولة تكوين طلب SAML"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "حقل اختياري"
 

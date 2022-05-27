@@ -42,9 +42,6 @@ msgstr ""
 "Les paramètres envoyés au service de découverte automatique (discovery "
 "service) ne respectent pas les spécifications."
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Une erreur s'est produite lors de la tentative de créer la requête SAML."
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Champs optionnels"
 

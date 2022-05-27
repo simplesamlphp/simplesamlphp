@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "De afsendte værdier overholder ikke Discovery Servicens' krav"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "Fejl ved generering af SAML-forespørgsel"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "Valgfrie felter"
 

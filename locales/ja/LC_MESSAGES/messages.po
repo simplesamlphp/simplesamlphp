@@ -30,9 +30,6 @@ msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたが�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "SAMLリクエストの生成中にエラーが発生しました。"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "任意項目"
 

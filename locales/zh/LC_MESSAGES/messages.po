@@ -30,9 +30,6 @@ msgstr "你的SimpleSAMLphp配置错误，如果你是该服务的管理员，�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "发送给搜寻服务的参数不符合规范"
 
-msgid "{errors:descr_CREATEREQUEST}"
-msgstr "在创建SAML请求中发生了一个错误"
-
 msgid "{admin:metaover_optional_found}"
 msgstr "选项区域"
 
