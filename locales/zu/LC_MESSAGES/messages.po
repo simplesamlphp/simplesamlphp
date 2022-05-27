@@ -542,7 +542,7 @@ msgstr ""
 "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi "
 "ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
 
-msgid "{logout:progress}"
+msgid "Logging out..."
 msgstr "Iyaphuma..."
 
 msgid "Choose your home organization"

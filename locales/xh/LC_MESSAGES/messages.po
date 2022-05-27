@@ -537,7 +537,7 @@ msgstr ""
 "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi "
 "ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:"
 
-msgid "{logout:progress}"
+msgid "Logging out..."
 msgstr "Iyaphuma..."
 
 msgid "Choose your home organization"

@@ -48,9 +48,6 @@ msgstr ""
 "\"Debug\" modunu global SimpleSAMLphp konfigürasyon dosyasında "
 "<tt>config/config.php</tt> kapatabilirsiniz."
 
-msgid "{logout:progress}"
-msgstr "Çıkıyor"
-
 msgid "{login:error_wrongpassword}"
 msgstr "Kullanıcı adı ve/veya şifre yanlış."
 

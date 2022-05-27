@@ -42,9 +42,6 @@ msgstr ""
 "Silumisrežiimi on võimalik välja lülitada SimpleSAMLphp "
 "seadistustefailist <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Välja logimine..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Kasutajatunnus või parool pole õige."
 

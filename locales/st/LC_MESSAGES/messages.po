@@ -262,9 +262,6 @@ msgstr "Netefatso e kgaoditswe ke mosebedisi"
 msgid "Error processing response from Identity Provider"
 msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
 
-msgid "{logout:progress}"
-msgstr "E a tswa..."
-
 msgid "Report errors"
 msgstr "Tlaleha diphoso"
 

@@ -47,9 +47,6 @@ msgstr ""
 "Puede desactivar el modo de depuración en el fichero de configuración "
 "global de SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Desconectando..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Nombre de usuario o contraseña erróneos"
 

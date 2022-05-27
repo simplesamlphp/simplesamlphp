@@ -36,9 +36,6 @@ msgstr ""
 "Die gestuurde parameters na die ontdekkings diens was not volgens die "
 "korrekte spesifikasies nie."
 
-msgid "{logout:progress}"
-msgstr "Besig om af te meld?"
-
 msgid "{login:error_wrongpassword}"
 msgstr "Verkeerde gebruikersnaam of wagwoord."
 

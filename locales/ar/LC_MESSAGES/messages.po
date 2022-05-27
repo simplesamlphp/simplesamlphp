@@ -40,9 +40,6 @@ msgstr ""
 "يمكنك إغلاق حالة التصحيح بملف ترتيب "
 "SimpleSAMLphp<tt>config/config.php</tt>"
 
-msgid "{logout:progress}"
-msgstr "تسجيل الخروج"
-
 msgid "{login:error_wrongpassword}"
 msgstr " اسم مستخدم او كلمة سر خطا"
 

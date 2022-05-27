@@ -47,9 +47,6 @@ msgstr ""
 "Вы можете отключить режим отладки в файле конфигурации global "
 "SimpleSAMLphp -<tt>config/config.php</tt>. "
 
-msgid "{logout:progress}"
-msgstr "Выход из системы..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Неправильное имя пользователя или пароль."
 

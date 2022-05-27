@@ -47,9 +47,6 @@ msgstr ""
 "Você pode desligar o modo de debug no arquivo de configuração global do "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Saindo do serviço..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Nome de usuário ou senha incorretos."
 

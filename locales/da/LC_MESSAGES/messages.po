@@ -40,9 +40,6 @@ msgstr ""
 "Du kan slå debug-mode fra i den globale SimpleSAMLphp-konfigurationsfil "
 "<tt>config/config.php</tt>"
 
-msgid "{logout:progress}"
-msgstr "Logger ud..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Forkert brugernavn eller kodeord."
 

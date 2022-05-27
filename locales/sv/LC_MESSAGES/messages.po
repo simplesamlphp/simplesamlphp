@@ -47,9 +47,6 @@ msgstr ""
 "Du kan stänga av debugläget i SimpleSAMLphps globala konfigurationsfil "
 "<tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Loggar ut..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Fel användarnamn eller lösenord."
 

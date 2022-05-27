@@ -47,9 +47,6 @@ msgstr ""
 "Anda dapat menonaktifkan mode debuh pada file konfigurasi global "
 "simpleSAMLhphp  <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Log out..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Username atau password salah"
 

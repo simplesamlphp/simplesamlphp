@@ -42,9 +42,6 @@ msgstr ""
 "Jūs varat izslēgt atkļūdošanas režīmu globālajā SimpleSAMLphp "
 "konfigurācijas failā <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Atslēgšanās..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Nekorekts lietotāja vārds vai parole."
 

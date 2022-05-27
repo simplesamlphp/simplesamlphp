@@ -45,9 +45,6 @@ msgstr ""
 "&Egrave; possibile disabilitare la modalità di debug nel file di configurazione"
 " globale di SimpleSAMLphp, <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Disconnessione..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Nome utente o password errati."
 

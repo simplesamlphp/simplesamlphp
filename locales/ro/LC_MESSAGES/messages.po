@@ -47,9 +47,6 @@ msgstr ""
 "Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "
 "<tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "Deautentificare ..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "Nume de utilizator incorect sau parola incorectă."
 

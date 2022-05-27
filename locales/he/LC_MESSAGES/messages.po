@@ -39,9 +39,6 @@ msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{logout:progress}"
-msgstr "מתנתק מהמערכת..."
-
 msgid "{login:error_wrongpassword}"
 msgstr "סיסמה או שם משתמש לא נכונים."
 
