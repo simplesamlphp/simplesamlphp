@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{general:yes}"
-msgstr "Ja"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Configuratie fout"
 

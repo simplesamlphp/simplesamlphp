@@ -63,9 +63,6 @@ msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "
 "podršku korisnicima:"
 
-msgid "{general:yes}"
-msgstr "Da"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Greška u konfiguraciji"
 

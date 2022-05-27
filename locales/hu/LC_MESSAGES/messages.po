@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{general:yes}"
-msgstr "Igen"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Beállítási hiba"
 

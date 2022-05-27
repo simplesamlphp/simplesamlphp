@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{general:yes}"
-msgstr "Ja"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfigurasjonsfeil"
 

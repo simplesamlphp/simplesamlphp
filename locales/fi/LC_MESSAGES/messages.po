@@ -48,9 +48,6 @@ msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "
 "helpdeskiä:"
 
-msgid "{general:yes}"
-msgstr "Kyllä"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Virhe asetuksissa"
 

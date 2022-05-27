@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{general:yes}"
-msgstr "Ja"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Instellings fout"
 

@@ -61,9 +61,6 @@ msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"
 " sistema o il supporto utenti:"
 
-msgid "{general:yes}"
-msgstr "Sì"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Errore di configurazione"
 

@@ -56,9 +56,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 
-msgid "{general:yes}"
-msgstr "Taip"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfigūracijos klaida"
 

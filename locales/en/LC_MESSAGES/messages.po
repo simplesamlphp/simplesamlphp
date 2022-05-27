@@ -64,9 +64,6 @@ msgstr ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
 
-msgid "{general:yes}"
-msgstr "Yes, continue"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Configuration error"
 

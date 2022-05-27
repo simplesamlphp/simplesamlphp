@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{general:yes}"
-msgstr "Sim"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Erro na configuração"
 

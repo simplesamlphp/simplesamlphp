@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{general:yes}"
-msgstr "Da"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Eroare de configurare"
 

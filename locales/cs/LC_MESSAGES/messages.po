@@ -53,9 +53,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
 
-msgid "{general:yes}"
-msgstr "Ano"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Chyba konfigurace"
 

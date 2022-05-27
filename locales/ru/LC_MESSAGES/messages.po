@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{general:yes}"
-msgstr "да"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Ошибка конфигурации"
 

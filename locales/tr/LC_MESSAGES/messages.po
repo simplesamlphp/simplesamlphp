@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{general:yes}"
-msgstr "Evet"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Yapılandırma hatası"
 

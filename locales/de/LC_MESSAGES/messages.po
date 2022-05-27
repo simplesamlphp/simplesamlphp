@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{general:yes}"
-msgstr "Ja"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfigurationsfehler"
 

@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{general:yes}"
-msgstr "Jah"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfiguratsioonitõrge"
 

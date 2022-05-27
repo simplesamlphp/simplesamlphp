@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{general:yes}"
-msgstr "Oui"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Erreur dans la configuration"
 

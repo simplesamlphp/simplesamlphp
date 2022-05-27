@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{general:yes}"
-msgstr "Sí"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Error de configuración"
 

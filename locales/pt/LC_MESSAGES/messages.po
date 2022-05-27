@@ -57,9 +57,6 @@ msgstr ""
 "A informação de debug abaixo pode ter interesse para o administrador / "
 "apoio ao utilizador:"
 
-msgid "{general:yes}"
-msgstr "Sim"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Erro de configuração"
 

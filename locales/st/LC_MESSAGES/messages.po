@@ -26,9 +26,6 @@ msgstr ""
 msgid "Return to service"
 msgstr "E kgutlela tshebeletsong"
 
-msgid "{general:yes}"
-msgstr "E"
-
 msgid ""
 "One or more of the services you are logged into <i>do not support "
 "logout</i>. To ensure that all your sessions are closed, you are "

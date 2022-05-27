@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 
-msgid "{general:yes}"
-msgstr "Iya nih"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Error konfigurasi"
 

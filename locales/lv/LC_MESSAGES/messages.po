@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{general:yes}"
-msgstr "Jā"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfigurācijas kļūda"
 

@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{general:yes}"
-msgstr "Ja"
-
 msgid "{errors:title_CONFIG}"
 msgstr "Konfigurationsfel"
 

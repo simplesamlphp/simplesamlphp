@@ -270,9 +270,6 @@ msgstr "Faka igama lakho lomsebenzisi nephasiwedi"
 msgid "Logging out of the following services:"
 msgstr "Iyaphuma kumasevisi alandelayo:"
 
-msgid "{general:yes}"
-msgstr "Yebo"
-
 msgid "CAS Error"
 msgstr "Iphutha Le-CAS"
 

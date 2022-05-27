@@ -267,9 +267,6 @@ msgstr "Ngenisa igama lomsebenzisi nephaswedi yakho"
 msgid "Logging out of the following services:"
 msgstr "Iphuma kwezi nkonzo zilandelayo:"
 
-msgid "{general:yes}"
-msgstr "Ewe"
-
 msgid "CAS Error"
 msgstr "Impazamo ye-CAS"
 
