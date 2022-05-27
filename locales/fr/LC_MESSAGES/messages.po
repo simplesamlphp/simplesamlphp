@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Erreur sur la source d'authentification"
-
 msgid "{login:select_home_org}"
 msgstr "Choisissez votre fournisseur."
 

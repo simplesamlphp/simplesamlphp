@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Błąd źródła uwierzytelnienia"
-
 msgid "{login:select_home_org}"
 msgstr "Wybierz swoją domową organizację"
 

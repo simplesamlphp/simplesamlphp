@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Napaka v avtentikacijskem viru"
-
 msgid "{login:select_home_org}"
 msgstr "Izberite vašo domačo organizacijo"
 

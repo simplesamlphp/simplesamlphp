@@ -39,9 +39,6 @@ msgstr ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Authentication source error"
-
 msgid "{login:select_home_org}"
 msgstr "Choose your home organization"
 

@@ -31,9 +31,6 @@ msgstr ""
 "administrateur is van dié diens moet jy verseker dat jou metadata "
 "konfigurasie korrek is."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Fout in verifikasie bron"
-
 msgid "{login:select_home_org}"
 msgstr "Kies jou tuisorganisasie"
 

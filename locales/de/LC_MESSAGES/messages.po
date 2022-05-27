@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Fehler in der Authentifizierungsquelle"
-
 msgid "{login:select_home_org}"
 msgstr "Wählen Sie die Einrichtung, von der Sie Ihre Zugangsdaten beziehen"
 

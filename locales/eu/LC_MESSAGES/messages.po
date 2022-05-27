@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Errorea kautotze jatorrian"
-
 msgid "{login:select_home_org}"
 msgstr "Hautatu zure jatorrizko erakundea"
 

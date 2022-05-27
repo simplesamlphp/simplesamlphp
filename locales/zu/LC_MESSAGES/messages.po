@@ -341,7 +341,7 @@ msgstr ""
 "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani "
 "elizenzakalelayo. Sicela uhlele ifayela lomiso."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
+msgid "Authentication source error"
 msgstr "Iphutha lomthombo wokuqinisekisa"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"

@@ -40,9 +40,6 @@ msgstr ""
 "administrator ovog servisa, provjerite jesu li svi metapodaci u "
 "konfiguraciji ispravni."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Greška u autentifikacijskom modulu"
-
 msgid "{login:select_home_org}"
 msgstr "Odaberite vašu matičnu ustanovu"
 

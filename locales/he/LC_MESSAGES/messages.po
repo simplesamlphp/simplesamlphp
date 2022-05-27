@@ -31,9 +31,6 @@ msgstr ""
 "ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "
 "שירות זה, כדי שתוודא שהגדרות מהמטא-מידע שלך נכונות."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "שגיאה במקור ההזדהות"
-
 msgid "{login:select_home_org}"
 msgstr "בחר את אירגון הבית שלך"
 

@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Innloggingsfeil: autentisering"
-
 msgid "{login:select_home_org}"
 msgstr "Vel vertsorganisasjon"
 

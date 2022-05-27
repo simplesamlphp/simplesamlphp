@@ -32,9 +32,6 @@ msgstr ""
 "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
 "رجاءاً من ان ترتيب الميتاداتا صحيح"
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "خطا بمصدر التوثيق"
-
 msgid "{login:select_home_org}"
 msgstr "اختار جهتك الام"
 

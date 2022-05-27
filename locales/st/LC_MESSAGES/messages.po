@@ -116,9 +116,6 @@ msgstr "Ha ho RelayState"
 msgid "Password"
 msgstr "Phasewete"
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Phoso ya netefatso ya mohlodi"
-
 msgid "Debug information"
 msgstr "Tlhahisoleseding ya debug"
 

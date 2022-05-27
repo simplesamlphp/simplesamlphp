@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Autentifikācijas avota kļūda"
-
 msgid "{login:select_home_org}"
 msgstr "Izvēlieties organizāciju"
 

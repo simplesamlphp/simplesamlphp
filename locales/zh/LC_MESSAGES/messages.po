@@ -27,9 +27,6 @@ msgstr "LDAP是一个用户数据库，当你试图登录时，我们需要连�
 msgid "{errors:descr_METADATA}"
 msgstr "你的SimpleSAMLphp配置错误，如果你是该服务的管理员，那么请确认你的配置是正确的"
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "认证源错误"
-
 msgid "{login:select_home_org}"
 msgstr "选择你的组织"
 

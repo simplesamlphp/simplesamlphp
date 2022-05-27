@@ -336,7 +336,7 @@ msgstr ""
 "Iphaswedi ekulungiselelo (auth.adminpassword) ayitshintshwanga ukusuka "
 "kwixabiso lesiseko. Nceda uhlele ifayile yolungiselelo."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
+msgid "Authentication source error"
 msgstr "Impazamo yomthombo wongqinisiso"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"

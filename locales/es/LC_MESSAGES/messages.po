@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Error en la Autenticacion de origen"
-
 msgid "{login:select_home_org}"
 msgstr "Seleccione su organización origen"
 

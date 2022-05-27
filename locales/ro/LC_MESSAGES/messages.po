@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Eroare sursă de autentificare"
-
 msgid "{login:select_home_org}"
 msgstr "Alegeți instituția de origine"
 

@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Authentication source fejl"
-
 msgid "{login:select_home_org}"
 msgstr "Vælg din hjemmeinstitution"
 

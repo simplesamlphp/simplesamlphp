@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Σφάλμα με την πηγή ταυτοποίησης"
-
 msgid "{login:select_home_org}"
 msgstr "Επιλογή οικείου φορέα"
 

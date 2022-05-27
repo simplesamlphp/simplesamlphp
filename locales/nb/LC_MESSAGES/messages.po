@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Autentiseringskildefeil"
-
 msgid "{login:select_home_org}"
 msgstr "Velg vertsorganisasjon"
 
