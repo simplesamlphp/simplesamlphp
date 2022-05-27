@@ -63,9 +63,6 @@ msgstr ""
 "ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo "
 "kwiseshoni yakho."
 
-msgid "{status:authData_header}"
-msgstr "Ungqinisiso lweNgcombolo"
-
 msgid "Bad request received"
 msgstr "Kufunyenwe isicelo esibi"
 

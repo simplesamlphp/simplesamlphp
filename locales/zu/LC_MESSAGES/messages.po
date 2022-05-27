@@ -64,9 +64,6 @@ msgstr ""
 "eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke "
 "izici ezihambisana neseshini yakho."
 
-msgid "{status:authData_header}"
-msgstr "I-AuthData"
-
 msgid "Bad request received"
 msgstr "Kutholwe umlayezo ongalungile"
 

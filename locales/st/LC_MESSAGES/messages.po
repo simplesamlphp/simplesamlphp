@@ -320,9 +320,6 @@ msgstr ""
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
 
-msgid "{status:authData_header}"
-msgstr "AuthData"
-
 msgid "Unknown certificate"
 msgstr "Setifikeiti se sa tsejweng"
 
