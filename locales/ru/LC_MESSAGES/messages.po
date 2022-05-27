@@ -26,9 +26,6 @@ msgstr ""
 "Провайдер идентификации сообщает об ошибке. (Код статус в отклике SAML "
 "сообщает о неуспешной попытке)"
 
-msgid "{logout:default_link_text}"
-msgstr "Вернуться на страницу установки SimpleSAMLphp"
-
 msgid "{errors:error_header}"
 msgstr "Ошибка SimpleSAMLphp"
 

@@ -23,9 +23,6 @@ msgstr ""
 "Institutionen har sendt en fejl. (Status koden i SAML responset var ikke "
 "succes)"
 
-msgid "{logout:default_link_text}"
-msgstr "Tilbage til SimpleSAMLphp installationssiden"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp fejl"
 

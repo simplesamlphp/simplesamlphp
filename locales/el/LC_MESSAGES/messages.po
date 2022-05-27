@@ -25,9 +25,6 @@ msgstr ""
 "Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
 "υποδεικνύει σφάλμα."
 
-msgid "{logout:default_link_text}"
-msgstr "Επιστροφή στην αρχική σελίδα"
-
 msgid "{errors:error_header}"
 msgstr "Σφάλμα του SimpleSAMLphp"
 

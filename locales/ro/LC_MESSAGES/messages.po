@@ -26,9 +26,6 @@ msgstr ""
 "Furnizorul de identitate a răspuns cu o eroare. (Codul de stare in "
 "răspunsul SAML a fost  încercare nereușită)"
 
-msgid "{logout:default_link_text}"
-msgstr "Mergeți înapoi la pagina de instalare a SimpleSAMLphp"
-
 msgid "{errors:error_header}"
 msgstr "Eroare SimpleSAMLphp"
 

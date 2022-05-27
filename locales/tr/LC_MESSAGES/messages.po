@@ -28,9 +28,6 @@ msgstr ""
 "Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "
 "başarılamadı)"
 
-msgid "{logout:default_link_text}"
-msgstr "SimpleSAMLphp kurulum sayfasına geri dön"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp hatası"
 

@@ -25,9 +25,6 @@ msgstr ""
 "Idp-ak errore batekin erantzun dio eskaerari. (SAML erantzunean egoera "
 "kodea ez da arrakastatsua izan)"
 
-msgid "{logout:default_link_text}"
-msgstr "Itzuli SimpleSAMLphp instalazio orrira "
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-en errorea"
 

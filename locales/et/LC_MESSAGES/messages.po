@@ -23,9 +23,6 @@ msgstr ""
 "Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud "
 "positiivne)."
 
-msgid "{logout:default_link_text}"
-msgstr "Mine tagasi SimpleSAMLphp paigaldusleheküljele"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp tõrge"
 

@@ -21,9 +21,6 @@ msgstr "當您在除錯模式，您可以看到您所傳遞的訊息內容："
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "驗證提供者回應一個錯誤。(在 SAML 回應裡的狀態碼為不成功)"
 
-msgid "{logout:default_link_text}"
-msgstr "回到 SimpleSAMLphp 安裝頁面"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp 異常"
 

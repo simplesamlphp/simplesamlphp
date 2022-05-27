@@ -23,9 +23,6 @@ msgstr ""
 "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-"
 "svaret var noe annet enn OK)"
 
-msgid "{logout:default_link_text}"
-msgstr "Gå tilbake til SimpleSAMLphp installasjonen sin startside."
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-feil"
 

@@ -23,9 +23,6 @@ msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
 "réponse SAML n'indiquait pas le succès)"
 
-msgid "{logout:default_link_text}"
-msgstr "Retournez à la page d'installation de SimpleSAML."
-
 msgid "{errors:error_header}"
 msgstr "erreur de SimpleSAMLphp"
 

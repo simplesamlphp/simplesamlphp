@@ -28,9 +28,6 @@ msgstr ""
 "The Identity Provider responded with an error. (The status code in the "
 "SAML Response was not success)"
 
-msgid "{logout:default_link_text}"
-msgstr "Go back to SimpleSAMLphp installation page"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp error"
 

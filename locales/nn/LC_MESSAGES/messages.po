@@ -25,9 +25,6 @@ msgstr ""
 "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
 "statuskode som varsla om feil)"
 
-msgid "{logout:default_link_text}"
-msgstr "Gå tilbake til SimpleSAMLphp installasjonssida"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp feil"
 

@@ -24,9 +24,6 @@ msgstr ""
 "Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
 "atšķiras no veiksmīga"
 
-msgid "{logout:default_link_text}"
-msgstr "Iet atpakaļ uz SimpleSAMLphp instalācijas lapu"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp kļūda"
 

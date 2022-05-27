@@ -24,9 +24,6 @@ msgstr ""
 "Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme"
 " buvo nesėkmingas)"
 
-msgid "{logout:default_link_text}"
-msgstr "Grįžti atgal į SimpleSAMLphp diegimo puslapį"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp klaida"
 

@@ -22,9 +22,6 @@ msgstr "Pokud jste v debug módu, můžete vidět obsah zprávy, kterou posílá
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Poskytovatel identity odpověděl chybou. (Stavový kód v SAML nebyl úspěšný)"
 
-msgid "{logout:default_link_text}"
-msgstr "Zpátky na SimpleSAMLphp instalační stránku"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp chyba"
 

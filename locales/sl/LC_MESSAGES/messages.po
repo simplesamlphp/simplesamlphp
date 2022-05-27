@@ -22,9 +22,6 @@ msgstr "Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošilj
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
 
-msgid "{logout:default_link_text}"
-msgstr "Nazaj na namestitveno stran SimpleSAMLphp"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp napaka"
 

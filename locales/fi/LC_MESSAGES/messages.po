@@ -20,9 +20,6 @@ msgstr ""
 "Identiteetintarjoaja vastasi virheellä. ( Tilakoodi SAML vastauksessa oli"
 " epäonnistunut)"
 
-msgid "{logout:default_link_text}"
-msgstr "Palaa SimpleSAMLphp asennussivulle"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp virhe"
 

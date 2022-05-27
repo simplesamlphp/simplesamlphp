@@ -25,9 +25,6 @@ msgstr ""
 "El IdP respondió a la solicitud con un error. (El código de estado en la "
 "respuesta SAML no fue exitoso)"
 
-msgid "{logout:default_link_text}"
-msgstr "Volver a la página de instalación de SimpleSAMLphp"
-
 msgid "{errors:error_header}"
 msgstr "Error de SimpleSAMLphp"
 

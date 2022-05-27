@@ -728,9 +728,6 @@ msgstr "Ha ho karabelo ya SAML e fanweng"
 msgid "Click to view AuthData"
 msgstr "Tlelika ho sheba AuthData"
 
-msgid "{logout:default_link_text}"
-msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
-
 msgid "Logout"
 msgstr "Ho tswa"
 

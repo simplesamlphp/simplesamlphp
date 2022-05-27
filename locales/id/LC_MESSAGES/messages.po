@@ -25,9 +25,6 @@ msgstr ""
 "Identity Provider merespon dengan error. (Kode status di Response SAML "
 "adalah tidak berhasil)"
 
-msgid "{logout:default_link_text}"
-msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
-
 msgid "{errors:error_header}"
 msgstr "Error simpelSAMLphp"
 

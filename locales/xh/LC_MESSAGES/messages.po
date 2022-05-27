@@ -405,7 +405,7 @@ msgstr ""
 "Uye wakhetha u-<b>%HOMEORG%</b> njengombutho wakho wekhaya. Ukuba oku "
 "akuchanekanga usenokukhetha omnye."
 
-msgid "{logout:default_link_text}"
+msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp"
 
 msgid "SimpleSAMLphp appears to be misconfigured."
