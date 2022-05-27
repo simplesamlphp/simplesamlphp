@@ -257,9 +257,6 @@ msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "
 "arquivo de configuração."
 
-msgid "{general:service_provider}"
-msgstr "Provedor de Serviços"
-
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"
 

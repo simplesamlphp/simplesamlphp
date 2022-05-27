@@ -245,9 +245,6 @@ msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "
 "poprawić konfigurację."
 
-msgid "{general:service_provider}"
-msgstr "Dostawca serwisu"
-
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"
 

@@ -247,9 +247,6 @@ msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "
 "muuda seadistustefaili."
 
-msgid "{general:service_provider}"
-msgstr "Teenusepakkuja"
-
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 

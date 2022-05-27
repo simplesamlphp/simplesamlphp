@@ -225,9 +225,6 @@ msgstr "完成"
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 
-msgid "{general:service_provider}"
-msgstr "服务提供者"
-
 msgid "[Preferred choice]"
 msgstr "首选选项"
 

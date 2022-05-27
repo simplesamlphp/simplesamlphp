@@ -260,9 +260,6 @@ msgstr ""
 "stata cambiata dal valore di default. Si prega di modificare il file di "
 "configurazione."
 
-msgid "{general:service_provider}"
-msgstr "Fornitore di servizi"
-
 msgid "[Preferred choice]"
 msgstr "[Scelta preferita]"
 

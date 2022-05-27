@@ -99,9 +99,6 @@ msgstr ""
 "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net "
 "geännertgin. W.e.g aennert daat an der Konfiguratioun."
 
-msgid "{general:service_provider}"
-msgstr "Service Provider"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "

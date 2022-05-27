@@ -317,7 +317,7 @@ msgstr ""
 "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-"
 "SAML ayizange iphumelele)"
 
-msgid "{general:service_provider}"
+msgid "Service Provider"
 msgstr "Umhlinzeki Wesevisi"
 
 msgid "{errors:descr_DISCOPARAMS}"

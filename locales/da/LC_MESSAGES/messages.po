@@ -255,9 +255,6 @@ msgstr ""
 "(auth.adminpassword). Opdater konfigurationen med et nyt password, der er"
 " forskelligt fra stadardpasswordet."
 
-msgid "{general:service_provider}"
-msgstr "Tjenesteudbyder"
-
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 

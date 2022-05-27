@@ -271,9 +271,6 @@ msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "
 "ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero"
 
-msgid "{general:service_provider}"
-msgstr "Proveedor de servicio"
-
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"
 

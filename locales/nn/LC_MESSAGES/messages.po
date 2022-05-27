@@ -246,9 +246,6 @@ msgstr ""
 "opprinneleg verdi, dette er usikkert.  Gå inn i konfigurasjonen og bytt "
 "passord."
 
-msgid "{general:service_provider}"
-msgstr "Tenesteleverandør"
-
 msgid "[Preferred choice]"
 msgstr "Beste val"
 

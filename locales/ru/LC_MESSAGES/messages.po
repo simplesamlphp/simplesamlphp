@@ -265,9 +265,6 @@ msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "
 "по умолчанию. Пожалуйста, отредактируйте файл конфигурации."
 
-msgid "{general:service_provider}"
-msgstr "Поставщик услуг"
-
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
 

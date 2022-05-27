@@ -246,9 +246,6 @@ msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "
 "konfigurációs fájlban, kérjük, változtassa meg most! "
 
-msgid "{general:service_provider}"
-msgstr "Alkalmazásszolgáltató"
-
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
 

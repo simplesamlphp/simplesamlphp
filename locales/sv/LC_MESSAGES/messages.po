@@ -255,9 +255,6 @@ msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "
 "standardvärdet. Uppdatera kongiruationen med ett nytt lösenord!"
 
-msgid "{general:service_provider}"
-msgstr "Tjänsteleverantör"
-
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"
 

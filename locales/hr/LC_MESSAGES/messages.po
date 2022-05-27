@@ -254,9 +254,6 @@ msgstr ""
 "auth.adminpassword) u konfiguraciji nije promjenjena. Molimo promjenite "
 "administratorsku zaporku u konfiguracijskoj datoteci."
 
-msgid "{general:service_provider}"
-msgstr "Davatelj usluge"
-
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 

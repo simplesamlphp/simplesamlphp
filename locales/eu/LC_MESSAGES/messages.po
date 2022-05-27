@@ -247,9 +247,6 @@ msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"
 " balio lehenetsia. Mesedez, edita ezazu fitxategia"
 
-msgid "{general:service_provider}"
-msgstr "Zerbitzu hornitzailea"
-
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
 

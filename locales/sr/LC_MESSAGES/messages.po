@@ -253,9 +253,6 @@ msgstr ""
 "<i>auth.adminpassword</i>) i dalje ima izvornu vrednost. Molimo Vas "
 "izmenite konfiguracioni fajl."
 
-msgid "{general:service_provider}"
-msgstr "Davalac Servisa"
-
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"
 

@@ -254,9 +254,6 @@ msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"
 " rugăm să o modificați."
 
-msgid "{general:service_provider}"
-msgstr "Furnizor de servicii"
-
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
 

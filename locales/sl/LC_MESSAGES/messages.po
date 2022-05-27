@@ -245,9 +245,6 @@ msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"
 " na začetno vrednost. Spremenite ga!"
 
-msgid "{general:service_provider}"
-msgstr "Ponudnik storitev"
-
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
 

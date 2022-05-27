@@ -170,9 +170,6 @@ msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "
 "oletusarvosta. Ole hyvä ja muokkaa asetustiedostoa."
 
-msgid "{general:service_provider}"
-msgstr "Palveluntarjoaja"
-
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"
 

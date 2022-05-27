@@ -243,9 +243,6 @@ msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "
 "قم بتحرير ملف الترتيب"
 
-msgid "{general:service_provider}"
-msgstr "مقدم خدمات"
-
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 

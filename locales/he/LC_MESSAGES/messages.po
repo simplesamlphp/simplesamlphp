@@ -237,9 +237,6 @@ msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "
 "קובץ ההגדרות."
 
-msgid "{general:service_provider}"
-msgstr "ספק שירות"
-
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 

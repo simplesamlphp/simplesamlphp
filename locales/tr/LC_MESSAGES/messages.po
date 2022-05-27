@@ -230,9 +230,6 @@ msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "
 "değişmedi. Lütfen yapılandırma dosyasını düzeltin."
 
-msgid "{general:service_provider}"
-msgstr "Servis Sağlayıcı"
-
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 

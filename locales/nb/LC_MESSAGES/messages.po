@@ -246,9 +246,6 @@ msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "
 "noe annet enn default verdien. Bytt passord i config.php."
 
-msgid "{general:service_provider}"
-msgstr "Tjenesteleverandør"
-
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"
 

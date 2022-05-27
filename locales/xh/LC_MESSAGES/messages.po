@@ -312,7 +312,7 @@ msgstr ""
 "Umboneleli Wesazisi uphendule ngempazamo. (Ikhowudi yobume kwiMpendulo "
 "ye-SAML ayiphumelelanga)"
 
-msgid "{general:service_provider}"
+msgid "Service Provider"
 msgstr "Umboneleli Wenkonzo"
 
 msgid "{errors:descr_DISCOPARAMS}"

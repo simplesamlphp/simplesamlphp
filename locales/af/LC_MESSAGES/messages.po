@@ -193,9 +193,6 @@ msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "
 "nie. Redigeer asb die konfigurasie leër."
 
-msgid "{general:service_provider}"
-msgstr "Diens Verskaffer"
-
 msgid "[Preferred choice]"
 msgstr "[Verkies]"
 

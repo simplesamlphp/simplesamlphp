@@ -276,9 +276,6 @@ msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "
 "aangepast; pas de configuratie aan aub."
 
-msgid "{general:service_provider}"
-msgstr "Service Provider"
-
 msgid "[Preferred choice]"
 msgstr "[Voorkeurskeuze]"
 

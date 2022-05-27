@@ -264,9 +264,6 @@ msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "
 "from the default value. Please edit the configuration file."
 
-msgid "{general:service_provider}"
-msgstr "Service Provider"
-
 msgid "[Preferred choice]"
 msgstr "[Preferred choice]"
 

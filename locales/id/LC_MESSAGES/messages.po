@@ -250,9 +250,6 @@ msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "
 "default. Silahkan edit file konfigurasi."
 
-msgid "{general:service_provider}"
-msgstr "Service Provider"
-
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
 

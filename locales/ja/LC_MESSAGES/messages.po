@@ -225,9 +225,6 @@ msgstr "完了しました"
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 
-msgid "{general:service_provider}"
-msgstr "サービスプロバイダ"
-
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
 

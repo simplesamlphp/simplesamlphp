@@ -245,9 +245,6 @@ msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "
 "ho."
 
-msgid "{general:service_provider}"
-msgstr "Poskytovatel služby"
-
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 

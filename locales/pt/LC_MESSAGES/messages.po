@@ -227,9 +227,6 @@ msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "
 "omissão. Por favor altere esta password no ficheiro de configuração."
 
-msgid "{general:service_provider}"
-msgstr "Fornecedor de Serviço (SP)"
-
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"
 

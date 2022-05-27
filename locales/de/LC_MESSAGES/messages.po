@@ -258,9 +258,6 @@ msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "
 "Konfiguration (auth.adminpassword)."
 
-msgid "{general:service_provider}"
-msgstr "Service Provider"
-
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"
 
