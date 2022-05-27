@@ -345,11 +345,6 @@ msgstr ""
 "Se va a proceder a enviar un mensaje. Pulse el botón \"Enviar mensaje\" "
 "para continuar."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"El proveedor de identidad ha detectado un error al crear respuesta de "
-"autenticaci&oacute;n."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hola, mundo traducido!"
 

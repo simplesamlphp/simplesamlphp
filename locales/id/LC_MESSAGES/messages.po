@@ -321,11 +321,6 @@ msgstr ""
 "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan "
 "untuk melanjutkan."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Ketika identity provider ini mencoba untuk membuat response "
-"autentifikasi, error terjadi."
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

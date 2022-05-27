@@ -329,11 +329,6 @@ msgstr ""
 "Mesajul este pregătit pentru a fi trimis. Apăsați butonul de trimitere "
 "pentru a continua."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"A apărut o eroare când furnizorul de identitate încerca să creeze un "
-"răspuns de autentificare."
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

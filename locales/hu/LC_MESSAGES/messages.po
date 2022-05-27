@@ -314,9 +314,6 @@ msgstr "Mobil"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

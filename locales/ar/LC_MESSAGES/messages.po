@@ -304,9 +304,6 @@ msgstr "رقم الهاتف السيار"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "انت علي وشك إرسال رسالة. اضغط علي الزر للمواصلة"
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr " حدث خطا عند محاولة اجراء التوثيق"
-
 msgid "Person's principal name at home organization"
 msgstr "ألاسم بالمنظمة الام\\الموقع الام "
 

@@ -333,11 +333,6 @@ msgstr ""
 "Si sta per inviare un messaggio. Premere il pulsante di invio per "
 "continuare."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Si è verificato un errore durante la fase di creazione della risposta di "
-"autenticazione da parte dell'Identity Provider."
-
 msgid "Person's principal name at home organization"
 msgstr "Nome identificativo (principal name) nella propria organizzazione"
 

@@ -290,9 +290,6 @@ msgstr "ADFS 驗證提供者 Metadata"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "當這個驗證提供者嘗試建立一個驗證回應時，有個錯誤發生。"
-
 msgid "Person's principal name at home organization"
 msgstr "家庭的個人主要名字"
 

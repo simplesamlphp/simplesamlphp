@@ -347,11 +347,6 @@ msgstr ""
 "Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "
 "συνεχίσετε."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο "
-"ταυτότητας."
-
 msgid "Person's principal name at home organization"
 msgstr "Αναγνωριστικό χρήστη στον οικείο οργανισμό"
 

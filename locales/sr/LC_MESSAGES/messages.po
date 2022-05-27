@@ -323,11 +323,6 @@ msgstr "Broj mobilnog telefona"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na dugme \"Pošalji poruku\" da biste poslali poruku."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Desila se greška prilikom kreiranja autentifikacionog odgovora od strane "
-"ovog davaoca identiteta."
-
 msgid "Person's principal name at home organization"
 msgstr "Jedinstveni identifikator osobe"
 

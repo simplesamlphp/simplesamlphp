@@ -318,11 +318,6 @@ msgstr ""
 "Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" botoia "
 "jarraitzeko."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna "
-"sortzean."
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

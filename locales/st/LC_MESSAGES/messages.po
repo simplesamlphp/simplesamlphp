@@ -84,11 +84,6 @@ msgstr ""
 msgid "{login:contact_info}"
 msgstr "Tlhahisoleseding ya boikopanyo:"
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso"
-" e bile teng."
-
 msgid "Remember"
 msgstr "Hopola"
 

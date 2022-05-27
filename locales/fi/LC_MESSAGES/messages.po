@@ -218,11 +218,6 @@ msgstr ""
 "asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä"
 " yllä oleva virheilmoitus."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Virhe tapahtui kun identiteetintarjoaja pyrki luomaan vastauksen "
-"tunnistautumiseen."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

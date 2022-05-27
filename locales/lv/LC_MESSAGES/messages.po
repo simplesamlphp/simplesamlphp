@@ -310,11 +310,6 @@ msgstr "Mobilais telefons"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Jūs gatavojaties sūtīt ziņu. Spiediet pogu Sūtīt ziņu."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Kad identitātes piegādātājs mēģināja izveigot autentifikācijas atbildi, "
-"radās kļūda."
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

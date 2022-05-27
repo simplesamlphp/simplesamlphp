@@ -242,11 +242,6 @@ msgstr ""
 "instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die"
 " aanmeld diens en stuur die bostaande fout boodskap aan."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Daar was 'n fout tydens die verifikasie skepping deur die Identiteits "
-"Verskaffer."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

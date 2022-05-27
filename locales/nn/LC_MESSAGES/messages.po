@@ -320,11 +320,6 @@ msgstr ""
 "Du er i ferd med å senda ei melding.  Trykk på send-knappen for å gå "
 "vidare"
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Denne Identity Provider kunne ikkje laga svar på autentiseringsspørsmålet"
-" fordi det oppsto ein feilsituasjon."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 

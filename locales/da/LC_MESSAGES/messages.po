@@ -321,9 +321,6 @@ msgstr "ADFS identitetsudbyder metadata"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
-
 msgid "Person's principal name at home organization"
 msgstr "Bruger-ID hos hjemmeorganisationen"
 

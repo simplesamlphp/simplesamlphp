@@ -346,11 +346,6 @@ msgstr ""
 "U gaat een bericht versturen. Klik op de Verstuur bericht knop om door te"
 " gaan."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Tijdens het aanmaken van een authenticatie response door deze Identity "
-"Provider is er een fout opgetreden."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

@@ -309,9 +309,6 @@ msgstr "Mobilni telefon"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
-
 msgid "Person's principal name at home organization"
 msgstr "ID uporabnika na domači organizaciji"
 

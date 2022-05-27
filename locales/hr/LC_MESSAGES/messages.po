@@ -326,11 +326,6 @@ msgstr "Broj mobilnog telefona"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Kliknite na gumb \"Pošalji poruku\" da biste poslali poruku."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Došlo je do greške prilikom kreiranja odgovora na autentifikacijski "
-"zahtjev."
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

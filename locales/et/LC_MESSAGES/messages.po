@@ -314,9 +314,6 @@ msgstr "Mobiil"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastust."
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

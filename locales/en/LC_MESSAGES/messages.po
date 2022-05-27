@@ -335,11 +335,6 @@ msgstr ""
 "You are about to send a message. Hit the submit message button to "
 "continue."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"When this identity provider tried to create an authentication response, "
-"an error occurred."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

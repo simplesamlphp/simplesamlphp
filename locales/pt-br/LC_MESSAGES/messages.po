@@ -327,11 +327,6 @@ msgstr ""
 "Você está prestes a enviar uma mensagem. Aperte o botão enviar mensagem "
 "para continuar."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Ocorreu um erro quando este servidor de identidade tentou criar uma "
-"resposta de autenticação."
-
 msgid "Person's principal name at home organization"
 msgstr "Diretor da organização principal"
 

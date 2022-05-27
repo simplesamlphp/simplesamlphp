@@ -331,11 +331,6 @@ msgstr ""
 "Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour "
 "continuer."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Une erreur s'est produite lorsque ce fournisseur d'identité a essayé de "
-"créer une réponse d'authentification."
-
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
 

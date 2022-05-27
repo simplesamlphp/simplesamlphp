@@ -307,11 +307,6 @@ msgstr "Mobil"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Můžete poslat zprávu. Požijte tlačítko k pokračování."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Při vytváření přihlašovací odpovědi tímto poskytovatelem identity "
-"vznikla chyba."
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

@@ -319,11 +319,6 @@ msgstr ""
 "Du er i ferd med å sende en melding. Trykk knappen «Send melding» for å "
 "fortsette."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"En feil oppsto da innloggingstjenesten prøvde å lage et svar på "
-"autentiserings-forespørselen."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

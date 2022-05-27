@@ -294,11 +294,6 @@ msgstr "Telemóvel"
 msgid "{admin:debug_sending_message_text_button}"
 msgstr "Está prestes a enviar uma mensagem. Carregue no botão para continuar."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de"
-" identidade."
-
 msgid "Person's principal name at home organization"
 msgstr "Nome de utilizador na organização de origem"
 

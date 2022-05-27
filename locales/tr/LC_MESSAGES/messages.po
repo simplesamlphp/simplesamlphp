@@ -297,9 +297,6 @@ msgstr ""
 "Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna "
 "tıklayın."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata oluştu."
-
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
 

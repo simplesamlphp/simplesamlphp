@@ -332,11 +332,6 @@ msgstr ""
 "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
 "senden\"-Knopf um fortzufahren."
 
-msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
-msgstr ""
-"Beim Versuch des Identity Providers eine Authentifikationsantwort zu "
-"erstellen trat ein Fehler auf."
-
 msgid "Person's principal name at home organization"
 msgstr "Persönliche ID bei der Heimorganisation"
 
