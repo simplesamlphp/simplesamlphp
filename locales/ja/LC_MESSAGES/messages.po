@@ -275,9 +275,6 @@ msgstr "メッセージを送信します。続けるにはメッセージ送信
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "アイデンティティプロバイダの認証レスポンスの生成時にエラーが発生しました。"
 
-msgid "{admin:metadata_intro}"
-msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

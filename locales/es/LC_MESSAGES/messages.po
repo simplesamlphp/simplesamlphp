@@ -350,12 +350,6 @@ msgstr ""
 "El proveedor de identidad ha detectado un error al crear respuesta de "
 "autenticaci&oacute;n."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Aquí están los metadatos que SimpleSAMLphp ha generado. Puede enviar este"
-" documento de metadatos a sus socios de confianza para configurar una "
-"federación."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hola, mundo traducido!"
 

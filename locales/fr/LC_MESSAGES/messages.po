@@ -336,12 +336,6 @@ msgstr ""
 "Une erreur s'est produite lorsque ce fournisseur d'identité a essayé de "
 "créer une réponse d'authentification."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Voici les métadonnées générées par SimpleSAMLphp. Vous pouvez les envoyer"
-" à vos partenaires de confiances pour construire une fédération "
-"d'identité."
-
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
 

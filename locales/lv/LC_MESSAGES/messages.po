@@ -315,11 +315,6 @@ msgstr ""
 "Kad identitātes piegādātājs mēģināja izveigot autentifikācijas atbildi, "
 "radās kļūda."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"
-" lai izveidotu uzticamu federāciju."
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

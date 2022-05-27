@@ -325,12 +325,6 @@ msgstr ""
 "Denne Identity Provider kunne ikkje laga svar på autentiseringsspørsmålet"
 " fordi det oppsto ein feilsituasjon."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Her er metadata generert av SimpleSAMLphp for deg.  Du kan senda dette "
-"metadata-dokumentet til dine partnarar, slik at de kan setja opp ein "
-"tillitsføderasjon."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 

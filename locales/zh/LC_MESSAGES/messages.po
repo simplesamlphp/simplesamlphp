@@ -276,9 +276,6 @@ msgstr "你准备发送一个消息，请点击提交按钮以继续"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "在这个身份提供者创建认证应答的时候发生了一个错误"
 
-msgid "{admin:metadata_intro}"
-msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

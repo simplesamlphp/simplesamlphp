@@ -324,11 +324,6 @@ msgstr "Tryk på 'send' for at fortsætte med at sende beskeden"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "
-"til dem du stoler i forbindelse med oprettelsen af en føderation."
-
 msgid "Person's principal name at home organization"
 msgstr "Bruger-ID hos hjemmeorganisationen"
 

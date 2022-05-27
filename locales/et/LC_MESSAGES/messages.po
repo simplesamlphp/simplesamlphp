@@ -317,12 +317,6 @@ msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Tõrge tekkis, kui see identiteedipakkuja püüdis luua autentimisvastust."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Need on SimpleSAMLphp poolt sulle genereeritud metaandmed. Võid saata "
-"need metaandmed usaldatavatele partneritele usaldatava föderatsiooni "
-"loomiseks."
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

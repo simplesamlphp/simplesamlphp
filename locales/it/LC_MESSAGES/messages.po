@@ -338,11 +338,6 @@ msgstr ""
 "Si è verificato un errore durante la fase di creazione della risposta di "
 "autenticazione da parte dell'Identity Provider."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Questi sono i metadati che SimpleSAMLphp ha generato e che possono essere"
-" inviati ai partner fidati per creare una federazione tra siti."
-
 msgid "Person's principal name at home organization"
 msgstr "Nome identificativo (principal name) nella propria organizzazione"
 

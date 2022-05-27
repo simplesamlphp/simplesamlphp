@@ -331,13 +331,6 @@ msgstr ""
 "Došlo je do greške prilikom kreiranja odgovora na autentifikacijski "
 "zahtjev."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Ovo su metapodaci koje je SimpleSAMLphp izgenerirao za vas. Te "
-"metapodatke možete poslati davateljima usluga ili elektroničkih "
-"identiteta u koje imate povjerenja i s kojima želite uspostaviti "
-"federaciju."
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

@@ -298,11 +298,6 @@ msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליח
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, אירעה שגיאה."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"הנה המטא-מידע ש SimpleSAMLphp ייצר עבורך. אתה יכול לשלוח את מסמך "
-"המטא-מידע לשותפים מהימנים כדי ליצור איחוד מאובטח. "
-
 msgid "Person's principal name at home organization"
 msgstr "השם העיקרי באירגון הבית"
 

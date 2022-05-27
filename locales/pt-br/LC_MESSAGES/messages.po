@@ -332,12 +332,6 @@ msgstr ""
 "Ocorreu um erro quando este servidor de identidade tentou criar uma "
 "resposta de autenticação."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "
-"enviar este documento metadata para parceiros confiáveis para a "
-"configuração de uma federação confiável."
-
 msgid "Person's principal name at home organization"
 msgstr "Diretor da organização principal"
 

@@ -317,11 +317,6 @@ msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatásh
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "
-"küldheti el föderációs partnerei számára."
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

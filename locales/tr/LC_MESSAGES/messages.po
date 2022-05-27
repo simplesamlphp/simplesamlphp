@@ -300,12 +300,6 @@ msgstr ""
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Bu kimlik sağlayıcı bir kimlik doğrulama cevabı oluşturuken hata oluştu."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"SimpleSAMLphp'nin sizin için ürettiği üstveri (metada). Bu üstveri "
-"dokümanını güvenilir bir federasyon kurmak için güvenilir paydaşlara "
-"gönderebilirsiniz."
-
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
 

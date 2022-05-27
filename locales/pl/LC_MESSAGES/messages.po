@@ -303,11 +303,6 @@ msgstr ""
 "Wystapił bład podczas próby utworzenia przez Dostawcę Tożsamości "
 "odpowiedzi uwierzytelniania ."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "
-"wysłać zaufanym partnerom w celu stworzenia zaufanej federacji."
-
 msgid "Person's principal name at home organization"
 msgstr "Główna nazwa użytkownika w instytucji macierzystej"
 

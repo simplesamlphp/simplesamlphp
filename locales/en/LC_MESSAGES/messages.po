@@ -345,12 +345,6 @@ msgstr ""
 "Your session data cannot be retrieved right now due to technical "
 "difficulties. Please try again in a few minutes."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Here is the metadata that SimpleSAMLphp has generated for you. You may "
-"send this metadata document to trusted partners to setup a trusted "
-"federation."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

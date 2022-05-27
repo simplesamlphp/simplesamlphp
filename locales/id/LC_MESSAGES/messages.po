@@ -326,12 +326,6 @@ msgstr ""
 "Ketika identity provider ini mencoba untuk membuat response "
 "autentifikasi, error terjadi."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk "
-"Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang "
-"dipercayai untuk mensetup federasi terpercaya."
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

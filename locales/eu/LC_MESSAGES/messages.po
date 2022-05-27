@@ -323,12 +323,6 @@ msgstr ""
 "Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna "
 "sortzean."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Hona hemen SimpleSAMLphp-ak zuretzat sortu dituen metadatuak. Metadatuen "
-"dokumentu hau konfidantzazko zure kideei bidal diezaiekezu federazio bat "
-"konfiguratzeko."
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

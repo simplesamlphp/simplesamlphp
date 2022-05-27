@@ -328,12 +328,6 @@ msgstr ""
 "Desila se greška prilikom kreiranja autentifikacionog odgovora od strane "
 "ovog davaoca identiteta."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Ovo su metapodaci koje je SimpleSAMLphp izgenerisao za vas. Te "
-"metapodatke možete poslati davaocima servisa ili davaocima identiteta u "
-"koje imate poverenja i sa kojima želite uspostaviti federaciju."
-
 msgid "Person's principal name at home organization"
 msgstr "Jedinstveni identifikator osobe"
 

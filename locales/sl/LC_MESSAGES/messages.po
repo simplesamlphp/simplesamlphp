@@ -312,12 +312,6 @@ msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko "
-"pošljete zaupanja vrednim partnerjem, s katerimi boste ustvarili "
-"federacijo."
-
 msgid "Person's principal name at home organization"
 msgstr "ID uporabnika na domači organizaciji"
 

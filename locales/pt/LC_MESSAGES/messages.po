@@ -299,12 +299,6 @@ msgstr ""
 "Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de"
 " identidade."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"De seguida pode encontrar os metadados gerados pelo SimpleSAMLphp. Pode "
-"enviar este documento de metadados aos seus parceiros para configurar uma"
-" federação."
-
 msgid "Person's principal name at home organization"
 msgstr "Nome de utilizador na organização de origem"
 

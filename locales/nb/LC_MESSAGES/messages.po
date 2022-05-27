@@ -324,11 +324,6 @@ msgstr ""
 "En feil oppsto da innloggingstjenesten prøvde å lage et svar på "
 "autentiserings-forespørselen."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "
-"metadata med de partene du stoler på for å sette opp en føderasjon."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

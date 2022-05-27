@@ -334,12 +334,6 @@ msgstr ""
 "A apărut o eroare când furnizorul de identitate încerca să creeze un "
 "răspuns de autentificare."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Acestea sunt metadate generate de SimpleSAMLphp. Metadatele pot fi "
-"trimise către parteneri de încredere pentru a configura o federație de "
-"încredere."
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

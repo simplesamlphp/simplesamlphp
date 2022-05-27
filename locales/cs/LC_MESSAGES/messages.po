@@ -312,11 +312,6 @@ msgstr ""
 "Při vytváření přihlašovací odpovědi tímto poskytovatelem identity "
 "vznikla chyba."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "
-"tento dokument svým důvěryhodným partnerům a založit tak federaci."
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

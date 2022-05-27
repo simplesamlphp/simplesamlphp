@@ -351,11 +351,6 @@ msgstr ""
 "Tijdens het aanmaken van een authenticatie response door deze Identity "
 "Provider is er een fout opgetreden."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"Dit is de metadata die automatisch is gegenereerd door SimpleSAMLphp. U "
-"kunt deze metadata uitwisselen met uw federatiepartners."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

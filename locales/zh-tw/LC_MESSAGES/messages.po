@@ -293,9 +293,6 @@ msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
 msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
 msgstr "當這個驗證提供者嘗試建立一個驗證回應時，有個錯誤發生。"
 
-msgid "{admin:metadata_intro}"
-msgstr "這是 SimpleSAMLphp 產生給您的 Metadata，您可以傳送此 Metadata 文件給您信任的合作夥伴來建立可信任的聯盟。"
-
 msgid "Person's principal name at home organization"
 msgstr "家庭的個人主要名字"
 

@@ -333,12 +333,6 @@ msgstr ""
 "När identitetshanteraren (Identity Provider) försökte skapa "
 "inloggingssvaret uppstod ett fel."
 
-msgid "{admin:metadata_intro}"
-msgstr ""
-"SimpleSAMLphp har har genererat följande metadata. För att sätta upp en "
-"betrodd federation kan du skicka metadata till de parter du har "
-"förtroende för."
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 
