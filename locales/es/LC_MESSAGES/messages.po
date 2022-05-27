@@ -21,11 +21,6 @@ msgstr "Proveedor de Identidad SAML 2.0 (remoto)"
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Usted accedió a la interfaz SingleLogoutService pero no incluyó un "
-"mensaje SAML LogoutRequest o LogoutResponse"
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

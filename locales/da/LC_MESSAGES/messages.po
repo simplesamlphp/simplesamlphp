@@ -21,11 +21,6 @@ msgstr "SAML 2.0 identitetsudbyder (remote)"
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "
-"LogoutRequest eller LogoutResponse"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

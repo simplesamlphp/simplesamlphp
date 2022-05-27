@@ -24,11 +24,6 @@ msgstr "SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "
-"bir SAML Çıkışİsteği ya da ÇıkışCevabı sağlamadınız."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

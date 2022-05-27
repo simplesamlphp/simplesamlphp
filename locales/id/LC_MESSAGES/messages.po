@@ -21,11 +21,6 @@ msgstr "Identity Provider SAML 2.0 (Remote)"
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "
-"LogoutRequest SAML atau LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

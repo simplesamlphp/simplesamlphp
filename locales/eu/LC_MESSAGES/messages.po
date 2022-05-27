@@ -21,11 +21,6 @@ msgstr "SAML 2.0 Identitate hornitzailea (Urrunekoa)"
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
-"LogoutRequest edo LogoutResponse mezurik"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

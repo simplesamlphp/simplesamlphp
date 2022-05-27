@@ -21,11 +21,6 @@ msgstr "SAML 2.0 Identity Provider (Fjärr)"
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Du har anroppat tjänsten för Single Sing-Out utan att skicka med någon "
-"SAML LogoutRequest eller LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

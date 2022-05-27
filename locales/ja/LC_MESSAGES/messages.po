@@ -21,10 +21,6 @@ msgstr "SAML 2.0アイデンティティプロバイダ(リモート)"
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

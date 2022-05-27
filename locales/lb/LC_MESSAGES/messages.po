@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "
-"oder LogoutResponse unginn."
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

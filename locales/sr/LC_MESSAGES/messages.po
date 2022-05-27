@@ -22,11 +22,6 @@ msgstr "SAML 2.0 Davalac Identiteta (udaljeni)"
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste "
-"poslali SAML <i>LogoutRequest</i> ili <i>LogoutResponse</i> poruku."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

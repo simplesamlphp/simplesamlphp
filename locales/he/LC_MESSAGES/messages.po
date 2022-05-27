@@ -21,11 +21,6 @@ msgstr "ספק זהות מרוחק מסוג SAML 2.0"
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "
-"SAML."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

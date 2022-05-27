@@ -21,12 +21,6 @@ msgstr "Back"
 msgid "[Preferred choice]"
 msgstr "[Preferred choice]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"You accessed the SingleLogoutService interface, but did not provide a "
-"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
-"not intended to be accessed directly."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

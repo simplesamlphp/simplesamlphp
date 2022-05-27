@@ -21,9 +21,6 @@ msgstr "SAML 2.0 驗證提供者(遠端)"
 msgid "[Preferred choice]"
 msgstr "喜好選擇"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr "您連結單一簽出服務界面，但是沒有提供一個 SAML 登出請求或登出回應。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 

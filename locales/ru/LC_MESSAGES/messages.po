@@ -22,11 +22,6 @@ msgstr "Провайдер идентификации SAML 2.0 (удаленно
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Вы получили доступ к интерфейсу SingleLogoutService, но не предоставили "
-"SAML LogoutRequest или LogoutResponse утверждения."
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

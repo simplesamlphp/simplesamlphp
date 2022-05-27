@@ -27,11 +27,6 @@ msgstr "SAML 2.0 Identity Provider (Remote)"
 msgid "[Preferred choice]"
 msgstr "[Voorkeurskeuze]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"
-" LogoutRequest of LogoutResponse meegestuurd."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

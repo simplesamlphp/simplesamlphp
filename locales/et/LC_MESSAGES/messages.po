@@ -21,11 +21,6 @@ msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "
-"LogoutRequest või LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

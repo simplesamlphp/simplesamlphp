@@ -18,11 +18,6 @@ msgstr ""
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML "
-"LogoutRequest:iä tai LogoutRespons:ia."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

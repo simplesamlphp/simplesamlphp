@@ -21,9 +21,6 @@ msgstr "SAML 2.0 身份提供者（远程）"
 msgid "[Preferred choice]"
 msgstr "首选选项"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr "你访问了SingleLogoutService接口，但是并没有提供一个SAML的LogoutRequest或者LogoutResponse"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 

@@ -21,13 +21,6 @@ msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένο
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Κατά την πρόσβασή σας στη διεπαφή SingleLogoutService παραλείψατε να "
-"συμπεριλάβετε μήνυμα LogoutRequest ή LogoutResponse του πρωτοκόλλου SAML."
-" Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
-"άμεσα προσβάσιμο."
-
 msgid "Person's principal name at home organization"
 msgstr "Αναγνωριστικό χρήστη στον οικείο οργανισμό"
 

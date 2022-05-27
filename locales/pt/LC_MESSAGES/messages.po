@@ -21,11 +21,6 @@ msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
-"LogoutRequest ou LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

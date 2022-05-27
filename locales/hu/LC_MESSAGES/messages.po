@@ -21,11 +21,6 @@ msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
-"üzenetet kell megadni."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

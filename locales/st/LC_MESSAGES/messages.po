@@ -44,12 +44,6 @@ msgstr "Thuso! Ha ke hopole phasewete ya ka."
 msgid "No access"
 msgstr "Ha ho phihlello"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"O fihletse tshebeletsano ya SingleLogoutService, empa ha o a fana ka SAML"
-" LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya "
-"bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
-
 msgid "Organization"
 msgstr "Khampani"
 

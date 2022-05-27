@@ -18,12 +18,6 @@ msgstr ""
 msgid "[Preferred choice]"
 msgstr "Beste val"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Du har bruk utloggingstenesta (SingleLogoutService), men har ikkje sendt "
-"utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
-"LogoutResponse)"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

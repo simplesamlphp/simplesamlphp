@@ -22,11 +22,6 @@ msgstr "SAML 2.0 Tapatybių teikėjas (nutolęs)"
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
-"LogoutRequest ar LogoutResponse užklausų."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

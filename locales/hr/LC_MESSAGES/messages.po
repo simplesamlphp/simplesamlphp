@@ -22,12 +22,6 @@ msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Pristupili ste sučelju za odjavljivanje iz sustava jedinstvene "
-"autentifikacije, ali niste dostavili SAML LogoutRequest ili "
-"LogoutResponse poruku."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

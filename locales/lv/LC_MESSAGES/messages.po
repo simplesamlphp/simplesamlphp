@@ -22,11 +22,6 @@ msgstr "SAML 2.0 identitātes piegādātājs (attālināts)"
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "
-"atslēgšanās pieprasījumu vai atslēgšanās atbildi."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

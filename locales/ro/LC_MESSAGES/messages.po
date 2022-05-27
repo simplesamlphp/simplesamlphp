@@ -22,11 +22,6 @@ msgstr "Furnizor de identitate SAML 2.0 (distant)"
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "
-"cerere de deautentificare sau un răspuns de deautentificare SAML."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

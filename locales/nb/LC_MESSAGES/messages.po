@@ -21,11 +21,6 @@ msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Du brukte SingleLogoutService-grensesnittet uten å angi enten en SAML "
-"LogoutRequest eller en LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

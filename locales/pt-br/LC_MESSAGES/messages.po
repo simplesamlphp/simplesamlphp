@@ -21,11 +21,6 @@ msgstr "SAML 2.0 Identity Provider (Remoto)"
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"Você acessou a interface do SingleLogoutService, mas não forneceu a SAML "
-"LogoutRequest ou LogoutResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Celular"
 

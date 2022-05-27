@@ -25,11 +25,6 @@ msgstr "مقدم هوية SAML 2.0 البعيد"
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 
-msgid "{errors:descr_SLOSERVICEPARAMS}"
-msgstr ""
-"لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
-"استجابة لطلب الخروج"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 
