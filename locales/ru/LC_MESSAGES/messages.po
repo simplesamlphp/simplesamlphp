@@ -26,9 +26,6 @@ msgstr ""
 "Провайдер идентификации сообщает об ошибке. (Код статус в отклике SAML "
 "сообщает о неуспешной попытке)"
 
-msgid "{errors:error_header}"
-msgstr "Ошибка SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Помогите! Я не помню свой пароль."
 

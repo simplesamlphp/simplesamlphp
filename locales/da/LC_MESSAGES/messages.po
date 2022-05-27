@@ -23,9 +23,6 @@ msgstr ""
 "Institutionen har sendt en fejl. (Status koden i SAML responset var ikke "
 "succes)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp fejl"
-
 msgid "{login:help_header}"
 msgstr "Hjælp! Jeg har glemt mit kodeord."
 

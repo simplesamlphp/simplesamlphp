@@ -21,9 +21,6 @@ msgstr "Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalm
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Hiba történt az azonosító szervezet (IdP) oldalán. Ismeretlen állapotkód."
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp hiba"
-
 msgid "{login:help_header}"
 msgstr "Segítség! Elfelejtettem a jelszavam."
 

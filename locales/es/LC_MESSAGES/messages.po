@@ -25,9 +25,6 @@ msgstr ""
 "El IdP respondió a la solicitud con un error. (El código de estado en la "
 "respuesta SAML no fue exitoso)"
 
-msgid "{errors:error_header}"
-msgstr "Error de SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "&iexcl;Socorro! Se me ha olvidado mi clave de acceso."
 

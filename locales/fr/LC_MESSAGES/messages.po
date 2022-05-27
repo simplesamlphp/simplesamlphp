@@ -23,9 +23,6 @@ msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
 "réponse SAML n'indiquait pas le succès)"
 
-msgid "{errors:error_header}"
-msgstr "erreur de SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "À l'aide!  Je ne me souviens plus de mon mot de passe."
 

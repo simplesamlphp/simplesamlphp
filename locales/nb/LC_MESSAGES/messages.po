@@ -23,9 +23,6 @@ msgstr ""
 "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-"
 "svaret var noe annet enn OK)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp-feil"
-
 msgid "{login:help_header}"
 msgstr "Hjelp! Jeg har glemt passordet mitt."
 

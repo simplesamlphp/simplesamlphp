@@ -27,9 +27,6 @@ msgstr ""
 "pojavi greške. (Šifra statusa dostavljena u SAML odgovoru ne odgovara "
 "šifri uspješno obrađenog zahtjeva)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp greška"
-
 msgid "{login:help_header}"
 msgstr "Upomoć! Zaboravio/la sam svoju zaporku."
 

@@ -25,9 +25,6 @@ msgstr ""
 "O Provedor de Identidade respondeu com um erro. (O código de resposta do "
 "SAML não teve sucesso."
 
-msgid "{errors:error_header}"
-msgstr "Erro do SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Ajude-me! Não lembro minha senha."
 

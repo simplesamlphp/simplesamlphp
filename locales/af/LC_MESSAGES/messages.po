@@ -20,9 +20,6 @@ msgstr ""
 "Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die "
 "SAML reaksie was onsuksesvol)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp-fout"
-
 msgid "{login:help_header}"
 msgstr "Hulp! Ek het nie my wagwoord onthou nie."
 

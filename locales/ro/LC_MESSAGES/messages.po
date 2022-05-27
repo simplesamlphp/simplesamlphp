@@ -26,9 +26,6 @@ msgstr ""
 "Furnizorul de identitate a răspuns cu o eroare. (Codul de stare in "
 "răspunsul SAML a fost  încercare nereușită)"
 
-msgid "{errors:error_header}"
-msgstr "Eroare SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Nu mai știu parola."
 

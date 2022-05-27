@@ -20,9 +20,6 @@ msgstr ""
 "Identiteetintarjoaja vastasi virheellä. ( Tilakoodi SAML vastauksessa oli"
 " epäonnistunut)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp virhe"
-
 msgid "{login:help_header}"
 msgstr "Apua! En muista salasanaani"
 

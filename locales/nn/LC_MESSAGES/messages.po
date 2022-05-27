@@ -25,9 +25,6 @@ msgstr ""
 "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
 "statuskode som varsla om feil)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp feil"
-
 msgid "{login:help_header}"
 msgstr "Hjelp! Eg har gløymd passordet mitt"
 

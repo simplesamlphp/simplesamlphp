@@ -217,7 +217,7 @@ msgstr "Cha, ku-%SP% kuphela"
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
-msgid "{errors:error_header}"
+msgid "SimpleSAMLphp error"
 msgstr "Iphutha le-SimpleSAMLphp"
 
 msgid "No, cancel"

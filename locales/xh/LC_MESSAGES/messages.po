@@ -214,7 +214,7 @@ msgstr "Hayi, kuphela %SP%"
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
-msgid "{errors:error_header}"
+msgid "SimpleSAMLphp error"
 msgstr "Impazamo ye-SimpleSAMLphp"
 
 msgid "No, cancel"

@@ -22,9 +22,6 @@ msgstr "يمكنك رؤية محتوي الرسالة طالما كنت في ح�
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "مقدم الهوية استجاب بخطأ. (رمز الحالة باستجابة SAML فاشل)"
 
-msgid "{errors:error_header}"
-msgstr "خطا ب SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "ساعدني! لا اذكر كلمة السر"
 

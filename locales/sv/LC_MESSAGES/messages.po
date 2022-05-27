@@ -25,9 +25,6 @@ msgstr ""
 "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. "
 "(Statusmeddelandet i SAML-svaret var ett felmeddelande)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp fel"
-
 msgid "{login:help_header}"
 msgstr "Hjälp! Jag kommer inte ihåg mitt lösenord."
 

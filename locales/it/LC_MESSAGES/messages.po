@@ -25,9 +25,6 @@ msgstr ""
 "L'Identity Provider ha risposto con un errore. (Il codice di stato nel "
 "messaggio SAML Response non indicava un successo)"
 
-msgid "{errors:error_header}"
-msgstr "Errore di SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Aiuto! Non ricordo la mia password."
 

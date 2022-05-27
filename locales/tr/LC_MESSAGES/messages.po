@@ -28,9 +28,6 @@ msgstr ""
 "Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "
 "başarılamadı)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp hatası"
-
 msgid "{login:help_header}"
 msgstr "Yardım! Şifremi hatırlamıyorum."
 

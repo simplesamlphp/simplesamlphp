@@ -21,9 +21,6 @@ msgstr ""
 "Odpowiedź dostawcy tożsamości oznacza błąd (kod stanu w odpowiedzi SAML "
 "nie oznacza sukcesu)"
 
-msgid "{errors:error_header}"
-msgstr "błąd SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Pomocy! Nie pamiętam hasła."
 

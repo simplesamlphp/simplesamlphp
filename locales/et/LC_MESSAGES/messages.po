@@ -23,9 +23,6 @@ msgstr ""
 "Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud "
 "positiivne)."
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp tõrge"
-
 msgid "{login:help_header}"
 msgstr "Appi! Ma ei mäleta parooli."
 

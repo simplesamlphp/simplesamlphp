@@ -21,9 +21,6 @@ msgstr "現在はデバッグモードです。あなたは送信するメッセ
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphpエラー"
-
 msgid "{login:help_header}"
 msgstr "たすけて! パスワードを思い出せません。"
 

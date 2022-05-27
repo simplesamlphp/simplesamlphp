@@ -21,9 +21,6 @@ msgstr "כיוון שאתה במצב מבדיקת באגים, אתה רואה א
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "ספק הזיהות החזיר שגיאה. (קוד המצב בתגובת ה SAML שונה מהצלחה)"
 
-msgid "{errors:error_header}"
-msgstr "שגיאה ב SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "הצילו! שכחתי את הסיסמה."
 

@@ -619,9 +619,6 @@ msgstr ""
 msgid "Help desk homepage"
 msgstr "Leqephe la lapeng la ba deske ya thuso"
 
-msgid "{errors:error_header}"
-msgstr "Phoso ya SimpleSAMLphp"
-
 msgid ""
 "The password in the configuration (auth.adminpassword) is not changed "
 "from the default value. Please edit the configuration file."

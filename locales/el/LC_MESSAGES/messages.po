@@ -25,9 +25,6 @@ msgstr ""
 "Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
 "υποδεικνύει σφάλμα."
 
-msgid "{errors:error_header}"
-msgstr "Σφάλμα του SimpleSAMLphp"
-
 msgid "{login:help_header}"
 msgstr "Βοήθεια! Δε θυμάμαι τον κωδικό μου."
 

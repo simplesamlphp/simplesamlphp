@@ -24,9 +24,6 @@ msgstr ""
 "Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme"
 " buvo nesėkmingas)"
 
-msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp klaida"
-
 msgid "{login:help_header}"
 msgstr "Pagalbos! Nepamenu savo slaptažodžio."
 
