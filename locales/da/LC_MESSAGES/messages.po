@@ -45,9 +45,6 @@ msgstr ""
 "Denne IdP har modtaget en anmodning om single sign-on fra en tjeneste "
 "udbyder, men der opstod en fejl under behandlingen af denne anmodning."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ingen Adgang"
-
 msgid "{login:error_nopassword}"
 msgstr "Dit kodeord blev ikke sendt - prøv igen."
 

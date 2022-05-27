@@ -49,9 +49,6 @@ msgstr ""
 "Ocorreu um erro ao processar o pedido de autenticação emitido pelo "
 "fornecedor de serviço."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Acesso negado"
-
 msgid "{login:error_nopassword}"
 msgstr "A senha não foi enviada no seu pedido. Por favor tente de novo."
 

@@ -51,9 +51,6 @@ msgstr ""
 "parte di un Service Provider, ma si è verificato un errore durante "
 "l'elaborazione di quest'ultima"
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Nessun accesso"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Sono state inviate delle informazioni alla pagina di login, ma per "

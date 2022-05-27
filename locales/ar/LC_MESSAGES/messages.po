@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
 
-msgid "{errors:title_NOACCESS}"
-msgstr "ممنوع الدخول"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "لقد قمت بإرسال معلومات لصفحة الدخول لكن كلمة السر غير مرفقة. رجاءاً اعد "

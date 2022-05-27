@@ -42,9 +42,6 @@ msgstr ""
 "Diens Verskaffer maar 'n fout het voorgekom tydens die verwerking van die"
 " versoek."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Geen toegang"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "

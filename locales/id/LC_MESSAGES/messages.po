@@ -52,9 +52,6 @@ msgstr ""
 "Identity Provider ini menerima Request Autentifikasi dari sebuah Service "
 "Provider, tetapi error terjadi ketika memproses request."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Tiaak ada akses"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan "

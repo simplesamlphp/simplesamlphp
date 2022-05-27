@@ -47,9 +47,6 @@ msgstr ""
 "Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során "
 "hiba történt."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Hozzáférés megtagadva"
-
 msgid "{login:error_nopassword}"
 msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
 

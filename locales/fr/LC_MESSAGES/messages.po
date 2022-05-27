@@ -53,9 +53,6 @@ msgstr ""
 "fournisseur d'identité, mais une erreur s'est produite lors du traitement"
 " de cette requête."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Pas d'accès"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Vous avez envoyé quelque chose sur la page d'identification mais pour une"

@@ -42,9 +42,6 @@ msgstr ""
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "ספק זהות זה קיבל בקשת הזדהות מספק שירות, אולם קרתה שגיאה בזמן עיבוד הבקשה."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "אין גישה"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "שלחת משהו לדף הכניסה למערכת, אבל בגלל סיבה כל שהיא הסיסמה לא נשלחה. בבקשה"

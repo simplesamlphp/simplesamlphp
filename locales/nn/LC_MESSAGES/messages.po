@@ -52,9 +52,6 @@ msgstr ""
 "ein tenesteleverandør (SP), men det oppsto ein feil under handteringa av "
 "meldinga"
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ingen tilgang"
-
 msgid "{login:error_nopassword}"
 msgstr "Passordet blei ikkje sendt. Prøv på nytt."
 

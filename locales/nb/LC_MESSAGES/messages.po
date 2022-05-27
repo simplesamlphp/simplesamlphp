@@ -48,9 +48,6 @@ msgstr ""
 "Innloggingstjenesten mottok en autentiserings-forespørsel fra en "
 "tjeneste, men en feil oppsto i behandling av forespørselen."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ingen tilgang"
-
 msgid "{login:error_nopassword}"
 msgstr "Du kontaktet loginsiden, men passordet ble ikke sendt med. Forsøk igjen."
 

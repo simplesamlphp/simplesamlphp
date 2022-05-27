@@ -112,7 +112,7 @@ msgstr "Ikhasi lasekhaya ledeski losizo"
 msgid "Debug information"
 msgstr "Ulwazi lokususwa kwephutha"
 
-msgid "{errors:title_NOACCESS}"
+msgid "No access"
 msgstr "Akukho ukufinyelela"
 
 msgid "Invalid certificate"

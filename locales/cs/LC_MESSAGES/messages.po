@@ -45,9 +45,6 @@ msgstr ""
 "Tento poskytovatel identity přijal požadavek od poskytovatele služby, ale"
 " při jeho provádění vznikla chyba."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Nemáte přístup"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Odeslal jste data do přihlašovací stránky, ale z nějakého důvodu nebylo "

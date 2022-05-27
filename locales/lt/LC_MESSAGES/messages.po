@@ -48,9 +48,6 @@ msgstr ""
 "Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos "
 "teikėjo, tačiau apdorojant pranešimą įvyko klaida."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Prieigos nėra"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių "

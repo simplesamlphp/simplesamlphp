@@ -53,9 +53,6 @@ msgstr ""
 "Bu Kimlik Sağlayıcı bir Servis Sağlayıcı'dan kimlik doğrulama isteği "
 "aldı, ancak bu isteği işlemeye çalışırken bir hata oluştu."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Giriş yok"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Giriş sayfasına birşeyler gönderdiniz, fakat bazı nedenlerden dolayı "

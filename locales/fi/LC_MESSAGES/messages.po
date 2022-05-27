@@ -38,9 +38,6 @@ msgstr ""
 "Identiteetintarjoaja sai tunnistautumispyynnön palveluntarjoajalta, mutta"
 " pyynnin käsittelyssä tapahtui virhe."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ei oikeutta"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei "

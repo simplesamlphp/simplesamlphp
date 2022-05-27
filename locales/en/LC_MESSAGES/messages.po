@@ -54,9 +54,6 @@ msgstr ""
 "This Identity Provider received an Authentication Request from a Service "
 "Provider, but an error occurred when trying to process the request."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "No access"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "You sent something to the login page, but for some reason the password "

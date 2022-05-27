@@ -53,9 +53,6 @@ msgstr ""
 "inloggningsförfrågan från en tjänsteleverantör (Service Provider) men ett"
 " fel uppstod vid bearbetningen av förfrågan."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ingen åtkomst"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Du skicka in en inloggningsförfrågan men det verkar som om ditt lösenord "

@@ -53,9 +53,6 @@ msgstr ""
 "Service Provider erhalten, aber es ist ein Fehler beim Bearbeiten dieser "
 "Anfrage aufgetreten."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Kein Zugriff"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Sie haben etwas an die Anmeldeseite geschickt, aber aus irgendeinem Grund"

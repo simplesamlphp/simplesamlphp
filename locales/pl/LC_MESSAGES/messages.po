@@ -45,9 +45,6 @@ msgstr ""
 "Dostawca tożsamości otrzymał od dostawcy usługi zlecenie "
 "uwierzytelnienia, ale wystąpił błąd podczas przetwarzania zlecenia."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Brak dostępu"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Wysłałeś \"coś\" do strony logowania, ale z jakiś powodów hasło nie "

@@ -47,9 +47,6 @@ msgstr ""
 "Identiteedipakkuja sai teenusepakkujalt autentimispäringu, kui päringu "
 "töötlemisel tekkis tõrge."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Ligipääs puudub"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Sa saatsid midagi sisselogimislehele, kuid miskipärast parooli ei "

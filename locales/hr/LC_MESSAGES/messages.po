@@ -53,9 +53,6 @@ msgstr ""
 "Autentifikacijski servis je dobio zahtjev od davatelja usluge, ali se "
 "pojavila greška prilikom obrade zahtjeva."
 
-msgid "{errors:title_NOACCESS}"
-msgstr "Pristup nije dozvoljen"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Iz nekog razloga autentifikacijskom servisu nije proslijeđena vaša "

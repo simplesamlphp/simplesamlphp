@@ -109,7 +109,7 @@ msgstr "Ikhasi lekhaya ledesika yoncedo"
 msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
 
-msgid "{errors:title_NOACCESS}"
+msgid "No access"
 msgstr "Akukho fikelelo"
 
 msgid "Invalid certificate"
