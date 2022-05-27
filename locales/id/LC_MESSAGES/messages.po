@@ -37,9 +37,6 @@ msgstr ""
 "Jika Anda adalah administrator dari layanan ini, Anda harus memastikan "
 "konfigurasi metdata Anda telah disetup dengan benar. "
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Request buruk diterima"
-
 msgid "{status:sessionsize}"
 msgstr "Ukuran session: %SIZE%"
 

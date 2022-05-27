@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Otrzymano nieprawidłowe żadanie"
-
 msgid "{status:sessionsize}"
 msgstr "Rozmiar sesji: %SIZE%"
 

@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Feil forespørsel motatt"
-
 msgid "{status:sessionsize}"
 msgstr "Sesjons størrelse: %SIZE%"
 

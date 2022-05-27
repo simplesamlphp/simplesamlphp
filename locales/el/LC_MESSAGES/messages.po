@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Εσφαλμένο αίτημα"
-
 msgid "{status:sessionsize}"
 msgstr "Μέγεθος συνεδρίας: %SIZE%"
 

@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Dobijeni zahtev nije ispravan"
-
 msgid "{status:sessionsize}"
 msgstr "Veličina sesije: %SIZE%"
 

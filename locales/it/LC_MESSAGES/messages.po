@@ -37,9 +37,6 @@ msgstr ""
 "SimpleSAMLphp. Se sei l'amministratore di sistema, assicurati che la "
 "configurazione dei metadati sia corretta."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "&Egrave; stata ricevuta una richiesta erronea."
-
 msgid "{status:sessionsize}"
 msgstr "Dimensione della sessione: %SIZE%"
 

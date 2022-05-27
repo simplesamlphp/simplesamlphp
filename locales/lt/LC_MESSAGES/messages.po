@@ -35,9 +35,6 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Gauta neteisinga užklausa"
-
 msgid "{status:sessionsize}"
 msgstr "Sesijos trukmė: %SIZE%"
 

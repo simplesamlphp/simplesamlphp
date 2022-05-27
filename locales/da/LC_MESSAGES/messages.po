@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Fejlagtig forespørgsel"
-
 msgid "{status:sessionsize}"
 msgstr "Sessionsstørrelse: %SIZE%"
 

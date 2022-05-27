@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Ungültige Anfrage"
-
 msgid "{status:sessionsize}"
 msgstr "Größe der Sitzung: %SIZE%"
 

@@ -61,7 +61,7 @@ msgstr ""
 msgid "{status:authData_header}"
 msgstr "Ungqinisiso lweNgcombolo"
 
-msgid "{errors:title_BADREQUEST}"
+msgid "Bad request received"
 msgstr "Kufunyenwe isicelo esibi"
 
 msgid "{login:login_button}"

@@ -30,9 +30,6 @@ msgstr ""
 "SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "
 "palvelun ylläpitäjä tulee sinun varmistua metadatan oikeellisuudesta."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Vääränlainen pyyntö vastaanotettu"
-
 msgid "{status:sessionsize}"
 msgstr "Istunnon koko: %SIZE%"
 

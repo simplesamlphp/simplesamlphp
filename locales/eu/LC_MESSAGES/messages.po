@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Eskaera oker bat jaso da."
-
 msgid "{status:sessionsize}"
 msgstr "Saioaren tamaina: %SIZE%"
 

@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Feil spørsmål mottatt"
-
 msgid "{status:sessionsize}"
 msgstr "Sesjonsstorleik: %SIZE%"
 

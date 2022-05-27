@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "S-a primit o cerere incorectă"
-
 msgid "{status:sessionsize}"
 msgstr "Dimensiunea sesiunii: %SIZE%"
 

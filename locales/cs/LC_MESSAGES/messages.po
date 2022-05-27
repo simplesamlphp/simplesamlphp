@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Zaslán špatný požadavek"
-
 msgid "{status:sessionsize}"
 msgstr "Velikost sezeni: %SIZE%"
 

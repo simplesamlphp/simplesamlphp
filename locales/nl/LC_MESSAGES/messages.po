@@ -39,9 +39,6 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Incorrecte request ontvangen"
-
 msgid "{status:sessionsize}"
 msgstr "Sessiegrootte: %SIZE%"
 

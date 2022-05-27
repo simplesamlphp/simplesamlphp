@@ -31,9 +31,6 @@ msgstr ""
 "administrateur is van dié diens moet jy verseker dat jou metadata "
 "konfigurasie korrek is."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Foutiewe versoek ontvang"
-
 msgid "{logout:title}"
 msgstr "Afgemeld"
 

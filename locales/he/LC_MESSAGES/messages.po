@@ -31,9 +31,6 @@ msgstr ""
 "ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "
 "שירות זה, כדי שתוודא שהגדרות מהמטא-מידע שלך נכונות."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "התקבלה בקשה לא חוקית"
-
 msgid "{status:sessionsize}"
 msgstr "גודל שיחה: %SIZE%"
 

@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Requête invalide"
-
 msgid "{status:sessionsize}"
 msgstr "Taille de la session : %SIZE%"
 

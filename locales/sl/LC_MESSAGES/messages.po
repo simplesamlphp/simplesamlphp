@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Napaka v prejetem zahtevku."
-
 msgid "{status:sessionsize}"
 msgstr "Velikost seje: %SIZE% bajtov"
 

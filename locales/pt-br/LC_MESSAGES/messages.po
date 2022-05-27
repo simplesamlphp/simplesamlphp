@@ -37,9 +37,6 @@ msgstr ""
 "deste seriço, você deve certificar-se que a sua configuração de metadata "
 "está definida corretamente."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "A solicitação recebida é inválida"
-
 msgid "{status:sessionsize}"
 msgstr "Tamanho da sessão: %SIZE%"
 

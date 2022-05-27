@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Pedido inválido recebido"
-
 msgid "{status:sessionsize}"
 msgstr "Tamanho da sessão: %SIZE%"
 

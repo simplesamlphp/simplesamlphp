@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Hatalı istek alındı"
-
 msgid "{status:sessionsize}"
 msgstr "Oturum büyüklüğü: %SIZE%"
 

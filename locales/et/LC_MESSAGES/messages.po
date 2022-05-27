@@ -34,9 +34,6 @@ msgstr ""
 "selle teenuse administraator, siis peaksid kontrollima, et metaandmete "
 "seadistused oleks korrektselt seadistatud."
 
-msgid "{errors:title_BADREQUEST}"
-msgstr "Saabus halb päring"
-
 msgid "{status:sessionsize}"
 msgstr "Sessiooni suurus: %SIZE%"
 
