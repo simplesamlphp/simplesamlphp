@@ -317,11 +317,6 @@ msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "
 "tento dokument svým důvěryhodným partnerům a založit tak federaci."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Přihlášení neproběhlo: certifikát, který odeslal Váš prohlížeč, nemohl být "
-"přečten"
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

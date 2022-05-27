@@ -279,9 +279,6 @@ msgstr "在这个身份提供者创建认证应答的时候发生了一个错误
 msgid "{admin:metadata_intro}"
 msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr "认证失败：你的浏览器发送的证书无效或者不能读取"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

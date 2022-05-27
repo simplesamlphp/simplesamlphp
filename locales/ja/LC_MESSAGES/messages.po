@@ -278,9 +278,6 @@ msgstr "アイデンティティプロバイダの認証レスポンスの生成
 msgid "{admin:metadata_intro}"
 msgstr "SimpleSAMLphpが生成したメタデータです。このメタデータドキュメントを信頼できるパートナーに送信して、信頼できる連携を設定できます。"
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr "認証失敗: あなたのブラウザは無効か不正な証明書を送信しました。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

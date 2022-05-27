@@ -322,9 +322,6 @@ msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "
 "küldheti el föderációs partnerei számára."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás."
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

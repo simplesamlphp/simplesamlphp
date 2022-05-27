@@ -339,11 +339,6 @@ msgstr ""
 "betrodd federation kan du skicka metadata till de parter du har "
 "förtroende för."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Inloggning mislyckades: Certfikatet som din webbläsare skickade var "
-"felaktigt eller kunde inte läsas"
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 

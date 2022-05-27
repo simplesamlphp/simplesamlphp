@@ -329,11 +329,6 @@ msgstr ""
 "Her er metadata som SimpleSAMLphp har generert for deg. Du må utveksle "
 "metadata med de partene du stoler på for å sette opp en føderasjon."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Autentisering feilet: sertifikatet nettleseren din sendte er ugyldig, og "
-"kan ikke leses"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

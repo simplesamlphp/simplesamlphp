@@ -351,11 +351,6 @@ msgstr ""
 "send this metadata document to trusted partners to setup a trusted "
 "federation."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Authentication failed: the certificate your browser sent is invalid or "
-"cannot be read"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

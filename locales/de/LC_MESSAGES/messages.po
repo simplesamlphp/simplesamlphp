@@ -343,11 +343,6 @@ msgstr ""
 " können dieses Metadatendokument zu Partnern schicken, denen Sie "
 "vertrauen, um eine vertrauensbasierte Föderation aufzusetzen."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
-"Zertifikat ist ungültig oder kann nicht gelesen werden"
-
 msgid "Person's principal name at home organization"
 msgstr "Persönliche ID bei der Heimorganisation"
 

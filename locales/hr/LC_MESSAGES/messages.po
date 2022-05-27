@@ -338,11 +338,6 @@ msgstr ""
 "identiteta u koje imate povjerenja i s kojima želite uspostaviti "
 "federaciju."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Neuspješna autentifikacija: digitalni certifikat koji je poslao vaš web "
-"preglednik nije ispravan ili se ne može pročitati"
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

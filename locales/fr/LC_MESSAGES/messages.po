@@ -342,11 +342,6 @@ msgstr ""
 " à vos partenaires de confiances pour construire une fédération "
 "d'identité."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Échec de l'authentification : le certificat présenté par votre navigateur"
-" est invalide ou illisible"
-
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
 

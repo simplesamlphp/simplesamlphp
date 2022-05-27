@@ -332,11 +332,6 @@ msgstr ""
 "Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang "
 "dipercayai untuk mensetup federasi terpercaya."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau "
-"tidak dapat dibaca"
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

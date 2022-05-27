@@ -329,11 +329,6 @@ msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "
 "til dem du stoler i forbindelse med oprettelsen af en føderation."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Authentifikation fejlede: Certifikatet som din browser har sendt er "
-"ugyldigt og kan ikke læses"
-
 msgid "Person's principal name at home organization"
 msgstr "Bruger-ID hos hjemmeorganisationen"
 

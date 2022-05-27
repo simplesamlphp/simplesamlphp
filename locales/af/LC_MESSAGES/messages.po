@@ -247,11 +247,6 @@ msgstr ""
 "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits "
 "Verskaffer."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte "
-"sertifikaat gestuur"
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

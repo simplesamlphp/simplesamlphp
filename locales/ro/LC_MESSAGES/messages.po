@@ -340,11 +340,6 @@ msgstr ""
 "trimise către parteneri de încredere pentru a configura o federație de "
 "încredere."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
-"este valid sau nu poate fi citit"
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

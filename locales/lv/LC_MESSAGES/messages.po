@@ -320,11 +320,6 @@ msgstr ""
 "Šeit ir SimpleSAMLphp ģenerētie metadati. Jūs varat tos sūtīt partneriem,"
 " lai izveidotu uzticamu federāciju."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis nederīgu "
-"vai nelasāmu sertifikātu"
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

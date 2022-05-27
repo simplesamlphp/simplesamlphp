@@ -308,11 +308,6 @@ msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "
 "wysłać zaufanym partnerom w celu stworzenia zaufanej federacji."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Nie powiodło się uwierzytelnienie: certyfikat przesłany przez "
-"przeglądarkę jest niepoprawny lub nie może zostać przeczytany"
-
 msgid "Person's principal name at home organization"
 msgstr "Główna nazwa użytkownika w instytucji macierzystej"
 

@@ -356,11 +356,6 @@ msgstr ""
 " documento de metadatos a sus socios de confianza para configurar una "
 "federación."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Fallo de autenticación: El certificado enviado por su navegador es "
-"inválido o no puede ser leído"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hola, mundo traducido!"
 

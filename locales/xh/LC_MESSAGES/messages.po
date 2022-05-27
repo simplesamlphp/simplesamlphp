@@ -310,7 +310,9 @@ msgstr "Iipharamitha ezithunyelwe kwinkonzo yofumaniso azihambelani neenkcukacha
 msgid "{status:header_saml20_sp}"
 msgstr "Umzekelo weDemo we-SAML 2.0 SP"
 
-msgid "{errors:descr_INVALIDCERT}"
+msgid ""
+"Authentication failed: the certificate your browser sent is invalid or "
+"cannot be read"
 msgstr ""
 "Ungqinisiso lusilele: isatifikethi esithunyelwe yibhrawuza yakho "
 "asisebenzi okanye asikwazi ukufundwa"

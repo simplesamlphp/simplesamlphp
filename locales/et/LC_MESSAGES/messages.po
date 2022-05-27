@@ -323,11 +323,6 @@ msgstr ""
 "need metaandmed usaldatavatele partneritele usaldatava föderatsiooni "
 "loomiseks."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Autentimine ei õnnestunud: brauseri poolt saadetud sertifikaat on vigane "
-"või pole loetav"
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

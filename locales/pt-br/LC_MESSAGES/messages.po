@@ -338,11 +338,6 @@ msgstr ""
 "enviar este documento metadata para parceiros confiáveis para a "
 "configuração de uma federação confiável."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Falha na Autenticação: O certificado que seu navegador (browser) enviou é"
-" inválido ou não pode ser lido"
-
 msgid "Person's principal name at home organization"
 msgstr "Diretor da organização principal"
 

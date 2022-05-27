@@ -746,11 +746,6 @@ msgstr ""
 "Netefatso e hlolehile: setifikeiti seo sebadi sa hao se se rometseng ha "
 "se a nepahala kapa ha se balehe"
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Netefatso e hlolehile: setifikeiti seo sebadi sa hao se se rometseng ha "
-"se a nepahala kapa ha se balehe"
-
 msgid "No, only %SP%"
 msgstr "Tjhe, %SP% feela"
 

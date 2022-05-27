@@ -331,11 +331,6 @@ msgstr ""
 "metadata-dokumentet til dine partnarar, slik at de kan setja opp ein "
 "tillitsføderasjon."
 
-msgid "{errors:descr_INVALIDCERT}"
-msgstr ""
-"Feil autentisering: sertifikatet frå browsaren din er ugyldig eller "
-"uleseleg"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 
