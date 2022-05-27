@@ -50,9 +50,6 @@ msgstr ""
 "Wysłałeś \"coś\" do strony logowania, ale z jakiś powodów hasło nie "
 "zostało wysłane. Spróbuj jeszcze raz."
 
-msgid "{login:password}"
-msgstr "Hasło"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Poniższa informacja debugger'a  może być przydatna dla administara / "

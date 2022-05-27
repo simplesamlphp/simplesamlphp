@@ -50,9 +50,6 @@ msgstr ""
 "Odeslal jste data do přihlašovací stránky, ale z nějakého důvodu nebylo "
 "odesláno heslo. Prosím zkuste to znovu."
 
-msgid "{login:password}"
-msgstr "Heslo"
-
 msgid "{errors:debuginfo_text}"
 msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
 

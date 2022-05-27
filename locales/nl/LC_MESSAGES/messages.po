@@ -62,9 +62,6 @@ msgstr ""
 "Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet "
 "verstuurd. Probeer het opnieuw AUB."
 
-msgid "{login:password}"
-msgstr "Wachtwoord"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "

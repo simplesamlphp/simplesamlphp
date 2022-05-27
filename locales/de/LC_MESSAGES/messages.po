@@ -59,9 +59,6 @@ msgstr ""
 " ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es "
 "erneut."
 
-msgid "{login:password}"
-msgstr "Passwort"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "

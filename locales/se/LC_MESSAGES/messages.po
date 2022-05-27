@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:password}"
-msgstr "Beassansátni"
-
 msgid "Person's principal name at home organization"
 msgstr "Feide-namma"
 

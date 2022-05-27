@@ -57,9 +57,6 @@ msgstr ""
 "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan "
 "tertentu password tidak terkirimkan, Silahkan coba lagi."
 
-msgid "{login:password}"
-msgstr "Password"
-
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 

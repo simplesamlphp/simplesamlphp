@@ -52,9 +52,6 @@ msgstr ""
 "Sa saatsid midagi sisselogimislehele, kuid miskipärast parooli ei "
 "saadetud. Palun proovi uuesti."
 
-msgid "{login:password}"
-msgstr "Parool"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "

@@ -511,7 +511,7 @@ msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
 msgid "Logout failed"
 msgstr "Ukuphuma kuhlulekile"
 
-msgid "{login:password}"
+msgid "Password"
 msgstr "Iphasiwedi"
 
 msgid ""

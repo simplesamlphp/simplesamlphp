@@ -57,9 +57,6 @@ msgstr ""
 "Usted envió algo a la página de acceso pero, por algún motivo, la clave "
 "no fue enviada. Inténtelo de nuevo, por favor."
 
-msgid "{login:password}"
-msgstr "Clave de acceso"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "

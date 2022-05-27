@@ -413,9 +413,6 @@ msgstr ""
 "bakeng sa phihlello ho tshebeletso. Ho ka nna ha ba le motho ya ka o "
 "thusang. Ikopanye le ba deske ya thuso khampaning ya heno!"
 
-msgid "{login:password}"
-msgstr "Phasewete"
-
 msgid "not set"
 msgstr "ha e a setwa"
 

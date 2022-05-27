@@ -505,7 +505,7 @@ msgstr "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo..."
 msgid "Logout failed"
 msgstr "Ukuphuma kusilele"
 
-msgid "{login:password}"
+msgid "Password"
 msgstr "Iphaswedi"
 
 msgid ""

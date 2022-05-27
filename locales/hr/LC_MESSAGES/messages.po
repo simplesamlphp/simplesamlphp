@@ -58,9 +58,6 @@ msgstr ""
 "Iz nekog razloga autentifikacijskom servisu nije proslijeđena vaša "
 "zaporka. Molimo pokušajte ponovo."
 
-msgid "{login:password}"
-msgstr "Zaporka"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "

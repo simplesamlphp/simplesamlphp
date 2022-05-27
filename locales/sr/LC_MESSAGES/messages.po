@@ -57,9 +57,6 @@ msgstr ""
 "Iz nekog razloga autentifikacionom servisu nije prosleđena vaša lozinka. "
 "Molimo pokušajte ponovo."
 
-msgid "{login:password}"
-msgstr "Lozinka"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Informacije o grešci koje se nalaze ispod mogu biti od interesa "

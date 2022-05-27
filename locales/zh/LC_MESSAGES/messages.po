@@ -39,9 +39,6 @@ msgstr "该身份提供者接受到了一个来自服务提供者的认证请求
 msgid "{login:error_nopassword}"
 msgstr "你确实发送了一些信息给登录页面，但由于某些原因，你没有发送密码，请再试一次"
 
-msgid "{login:password}"
-msgstr "密码"
-
 msgid "{errors:debuginfo_text}"
 msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
 

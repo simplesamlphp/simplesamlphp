@@ -58,9 +58,6 @@ msgstr ""
 "Du skicka in en inloggningsförfrågan men det verkar som om ditt lösenord "
 "inte fanns med i förfrågan. Försök igen!"
 
-msgid "{login:password}"
-msgstr "Lösenord"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "

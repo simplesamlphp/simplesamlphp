@@ -39,9 +39,6 @@ msgstr "這個驗證提供者收到一個服務提供者的認證請求，但在
 msgid "{login:error_nopassword}"
 msgstr "您可能有傳送至網頁，但是密碼因為某些原因未傳送，請重新登入。"
 
-msgid "{login:password}"
-msgstr "密碼"
-
 msgid "{errors:debuginfo_text}"
 msgstr "管理員/服務台可能對下列除錯資訊有興趣："
 

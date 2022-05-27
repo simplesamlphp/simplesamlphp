@@ -59,9 +59,6 @@ msgstr ""
 "You sent something to the login page, but for some reason the password "
 "was not sent. Try again please."
 
-msgid "{login:password}"
-msgstr "Password"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "The debug information below may be of interest to the administrator / "

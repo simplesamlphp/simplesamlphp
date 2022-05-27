@@ -50,9 +50,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
 
-msgid "{login:password}"
-msgstr "Jelszó"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "

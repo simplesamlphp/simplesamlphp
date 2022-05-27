@@ -48,9 +48,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Dit kodeord blev ikke sendt - prøv igen."
 
-msgid "{login:password}"
-msgstr "Kodeord"
-
 msgid "{errors:debuginfo_text}"
 msgstr "Detaljerne herunder kan være af interesse for teknikerne / help-desken"
 

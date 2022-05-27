@@ -47,9 +47,6 @@ msgstr ""
 "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "
 "asb. weer."
 
-msgid "{login:password}"
-msgstr "Wagwoord"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "

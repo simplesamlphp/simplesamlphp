@@ -43,9 +43,6 @@ msgstr ""
 "Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei "
 "lähetetty. Ole hyvä ja yritä uudestaan."
 
-msgid "{login:password}"
-msgstr "Salasana"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "

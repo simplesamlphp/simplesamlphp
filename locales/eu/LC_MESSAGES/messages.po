@@ -57,9 +57,6 @@ msgstr ""
 "Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitza"
 " ez da bidali.Saia zaitez berriro, mesedez."
 
-msgid "{login:password}"
-msgstr "Pasahitza"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "

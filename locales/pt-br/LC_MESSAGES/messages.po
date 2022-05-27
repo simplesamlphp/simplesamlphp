@@ -57,9 +57,6 @@ msgstr ""
 "Você enviou alguma coisa para a página de login, mas por alguma razão a "
 "senha não foi enviada. Por favor tente novamente."
 
-msgid "{login:password}"
-msgstr "Senha"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "

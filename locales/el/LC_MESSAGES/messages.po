@@ -54,9 +54,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Ο κωδικός πρόσβασης δεν εστάλη. Παρακαλώ, προσπαθήστε ξανά."
 
-msgid "{login:password}"
-msgstr "Κωδικός"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού "
