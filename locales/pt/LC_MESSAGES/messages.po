@@ -183,9 +183,6 @@ msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Local)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Campos obrigatórios"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

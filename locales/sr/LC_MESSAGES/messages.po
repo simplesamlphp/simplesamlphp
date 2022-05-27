@@ -200,9 +200,6 @@ msgstr "SAML 2.0 Davalac Identiteta (udaljeni)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Davalac Identiteta (lokalni)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Obavezna polja"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

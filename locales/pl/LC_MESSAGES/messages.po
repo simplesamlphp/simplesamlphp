@@ -193,9 +193,6 @@ msgstr "SAML 2.0 Dostawca Tożsamości (Zdalny)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Dostawca Tożsamości (Lokalny)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Pola wymagane"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

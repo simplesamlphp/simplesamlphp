@@ -177,9 +177,6 @@ msgstr "SAML 2.0アイデンティティプロバイダ(リモート)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0アイデンティティプロバイダ(ホスト)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "必須項目"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 

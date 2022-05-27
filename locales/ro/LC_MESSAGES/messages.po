@@ -202,9 +202,6 @@ msgstr "Furnizor de identitate SAML 2.0 (distant)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "Furnizor de identitate SAML 2.0 (găzduit)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Câmpuri obligatorii"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

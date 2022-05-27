@@ -193,9 +193,6 @@ msgstr "مقدم هوية SAML 2.0 البعيد"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "مقدم هوية SAML 2.0 المستضاف"
 
-msgid "{admin:metaover_required_found}"
-msgstr "حقل إجباري"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

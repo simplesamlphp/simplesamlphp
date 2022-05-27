@@ -196,9 +196,6 @@ msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 személyazonosság-szolgáltató (helyi)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Kötelező mezők"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

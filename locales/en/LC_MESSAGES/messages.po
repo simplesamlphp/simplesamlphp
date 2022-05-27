@@ -211,9 +211,6 @@ msgstr "SAML 2.0 Identity Provider (Hosted)"
 msgid "{status:subject_notset}"
 msgstr "not set"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Required fields"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

@@ -221,9 +221,6 @@ msgstr "SAML 2.0 Identity Provider (Hosted)"
 msgid "{status:subject_notset}"
 msgstr "niet aanwezig"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Verplichte velden"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

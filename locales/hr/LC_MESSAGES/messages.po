@@ -201,9 +201,6 @@ msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 autentifikacijski servis (lokalni)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Obavezna polja"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

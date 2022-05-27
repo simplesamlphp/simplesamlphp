@@ -196,9 +196,6 @@ msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Obligatorisk felt"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

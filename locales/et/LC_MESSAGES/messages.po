@@ -197,9 +197,6 @@ msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Kohustuslikud väljad"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "

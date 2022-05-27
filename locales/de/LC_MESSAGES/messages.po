@@ -206,9 +206,6 @@ msgstr "SAML 2.0 Identity Provider (entfernt)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Identity Provider (gehosted)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Notwendige Felder"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

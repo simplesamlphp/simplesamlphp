@@ -189,9 +189,6 @@ msgstr "SAML 2.0 驗證提供者(主機)"
 msgid "{status:subject_notset}"
 msgstr "未設定"
 
-msgid "{admin:metaover_required_found}"
-msgstr "必要欄位"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

@@ -200,9 +200,6 @@ msgstr "Identity Provider SAML 2.0 (Remote)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "Identity Provider SAML 2.0 (Hosted)"
 
-msgid "{admin:metaover_required_found}"
-msgstr "Field-field yang wajib diisi"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

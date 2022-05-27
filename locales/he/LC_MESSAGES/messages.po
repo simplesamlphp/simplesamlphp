@@ -187,9 +187,6 @@ msgstr "ספק זהות מרוחק מסוג SAML 2.0"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "ספק זהות מקומי מסוג SAML 2.0"
 
-msgid "{admin:metaover_required_found}"
-msgstr "שדות נדרשים"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "
