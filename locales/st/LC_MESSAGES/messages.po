@@ -578,9 +578,6 @@ msgstr "Phoso"
 msgid "Unhandled exception"
 msgstr "Mokgelo o sa rarollwang"
 
-msgid "{status:authData_summary}"
-msgstr "Tlelika ho sheba AuthData"
-
 msgid "No SAML response provided"
 msgstr "Ha ho karabelo ya SAML e fanweng"
 

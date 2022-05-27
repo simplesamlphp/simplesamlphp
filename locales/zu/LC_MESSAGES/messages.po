@@ -123,9 +123,6 @@ msgstr "Isifiketi esingalungile"
 msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
 
-msgid "{status:authData_summary}"
-msgstr "Qhafaza ukuze ubuke i-AuthData"
-
 msgid "How to get help"
 msgstr "Indlela yokuthola usizo"
 
