@@ -37,9 +37,6 @@ msgstr ""
 "Jika Anda adalah administrator dari layanan ini, Anda harus memastikan "
 "konfigurasi metdata Anda telah disetup dengan benar. "
 
-msgid "{logout:hold}"
-msgstr "Ditahan"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Pemeriksaan konfigurasi"
 

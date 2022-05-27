@@ -89,7 +89,7 @@ msgstr "Iphutha lokulayisha imethadatha"
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
 
-msgid "{logout:hold}"
+msgid "On hold"
 msgstr "Imisiwe"
 
 msgid "LDAP Error"

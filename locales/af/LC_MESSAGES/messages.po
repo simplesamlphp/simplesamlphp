@@ -31,9 +31,6 @@ msgstr ""
 "administrateur is van dié diens moet jy verseker dat jou metadata "
 "konfigurasie korrek is."
 
-msgid "{logout:hold}"
-msgstr "Hou die verbinding"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die gestuurde parameters na die ontdekkings diens was not volgens die "

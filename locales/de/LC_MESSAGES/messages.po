@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{logout:hold}"
-msgstr "In der Wartschleife"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurationsprüfung"
 

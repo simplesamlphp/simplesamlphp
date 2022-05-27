@@ -39,9 +39,6 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{logout:hold}"
-msgstr "Vastgehouden"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Configuratie-validatie"
 

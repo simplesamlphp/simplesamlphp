@@ -37,9 +37,6 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{logout:hold}"
-msgstr "Vilande"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurationskontroll"
 

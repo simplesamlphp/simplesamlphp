@@ -30,9 +30,6 @@ msgstr ""
 "SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "
 "palvelun ylläpitäjä tulee sinun varmistua metadatan oikeellisuudesta."
 
-msgid "{logout:hold}"
-msgstr "Odota"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 

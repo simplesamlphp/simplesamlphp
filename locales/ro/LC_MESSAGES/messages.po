@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{logout:hold}"
-msgstr "În așteptare"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Verificarea configurației"
 

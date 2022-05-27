@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{logout:hold}"
-msgstr "Čekám"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Verifikace konfigurace"
 

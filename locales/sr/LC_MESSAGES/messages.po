@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{logout:hold}"
-msgstr "Na čekanju"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Provera podešavanja"
 

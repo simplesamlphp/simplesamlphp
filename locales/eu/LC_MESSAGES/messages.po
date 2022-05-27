@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{logout:hold}"
-msgstr "Itxaroten"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurazioa egiaztatu"
 

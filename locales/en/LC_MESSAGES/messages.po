@@ -39,9 +39,6 @@ msgstr ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 
-msgid "{logout:hold}"
-msgstr "On hold"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Configuration check"
 

@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{logout:hold}"
-msgstr "Em espera"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Verificação da configuração"
 

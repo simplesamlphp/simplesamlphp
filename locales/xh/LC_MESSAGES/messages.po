@@ -88,7 +88,7 @@ msgstr "Impazamo ilayisha imetadata"
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Impazamo iprosesa iSicelo Sokuphuma"
 
-msgid "{logout:hold}"
+msgid "On hold"
 msgstr "Ibanjiwe"
 
 msgid "LDAP Error"

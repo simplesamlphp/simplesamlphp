@@ -37,9 +37,6 @@ msgstr ""
 "deste seriço, você deve certificar-se que a sua configuração de metadata "
 "está definida corretamente."
 
-msgid "{logout:hold}"
-msgstr "Aguardando"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Verificar configuração"
 

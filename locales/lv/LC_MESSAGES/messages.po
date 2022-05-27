@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{logout:hold}"
-msgstr "Apturēts"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurācijas pārbaude"
 

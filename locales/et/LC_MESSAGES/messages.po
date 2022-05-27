@@ -34,9 +34,6 @@ msgstr ""
 "selle teenuse administraator, siis peaksid kontrollima, et metaandmete "
 "seadistused oleks korrektselt seadistatud."
 
-msgid "{logout:hold}"
-msgstr "Ootel"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Seadistuste kontroll"
 

@@ -35,9 +35,6 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{logout:hold}"
-msgstr "Prašome palaukti"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigūracijos patikrinimas"
 

@@ -59,9 +59,6 @@ msgstr ""
 msgid "Organization"
 msgstr "Khampani"
 
-msgid "{logout:hold}"
-msgstr "Tshwarisitswe"
-
 msgid "Authentication source error"
 msgstr "Phoso ya netefatso ya mohlodi"
 

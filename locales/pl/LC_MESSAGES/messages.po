@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{logout:hold}"
-msgstr "W zawieszeniu"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Sprawdzenie konfiguracji"
 

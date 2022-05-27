@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{logout:hold}"
-msgstr "Felfüggesztve"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Beállítások ellenőrzése"
 

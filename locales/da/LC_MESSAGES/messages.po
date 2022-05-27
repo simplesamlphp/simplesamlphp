@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{logout:hold}"
-msgstr "I kø"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Undersøgelse af konfiguration"
 

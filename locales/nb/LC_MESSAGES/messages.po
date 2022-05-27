@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{logout:hold}"
-msgstr "På vent"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Sjekker konfigurasjonen"
 

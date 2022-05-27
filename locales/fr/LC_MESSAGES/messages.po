@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{logout:hold}"
-msgstr "En cours"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Vérification de la configuration"
 

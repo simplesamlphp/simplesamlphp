@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{logout:hold}"
-msgstr "V teku"
-
 msgid "{admin:cfg_check_header}"
 msgstr "Preverjanje konfiguracije"
 
