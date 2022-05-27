@@ -47,9 +47,6 @@ msgstr ""
 "Debug mod možete isključiti u glavnom SimpleSAMLphp konfiguracionom fajlu"
 " <tt>config/config.php</tt>. "
 
-msgid "{disco:select}"
-msgstr "Odaberi"
-
 msgid "{logout:also_from}"
 msgstr "Takođe ste prijavljeni u sledećim servisima:"
 

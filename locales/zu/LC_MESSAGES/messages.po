@@ -130,7 +130,7 @@ msgstr "Indlela yokuthola usizo"
 msgid "Login at"
 msgstr "Ngena kokuthi"
 
-msgid "{disco:select}"
+msgid "Select"
 msgstr "Khetha"
 
 msgid "Remember my choice"

@@ -33,9 +33,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 
-msgid "{disco:select}"
-msgstr "Valitse"
-
 msgid "{logout:also_from}"
 msgstr "Olet kirjautunut seuraaviin palveluihin:"
 

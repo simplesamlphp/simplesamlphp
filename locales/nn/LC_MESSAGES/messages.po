@@ -46,9 +46,6 @@ msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Vel"
-
 msgid "{logout:also_from}"
 msgstr "Du er i tillegg logga inn på desse tenestene:"
 

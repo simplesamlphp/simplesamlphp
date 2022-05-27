@@ -46,9 +46,6 @@ msgstr ""
 "Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
 "στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Επιλογή"
-
 msgid "{logout:also_from}"
 msgstr "Είστε επίσης συνδεδεμένος σε αυτές τις υπηρεσίες:"
 

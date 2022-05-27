@@ -48,9 +48,6 @@ msgstr ""
 "Mod za otkrivanje grešaka možete isključiti u glavnoj SimpleSAMLphp "
 "konfiguracijskoj datoteci <tt>config/config.php</tt>. "
 
-msgid "{disco:select}"
-msgstr "Odaberi"
-
 msgid "{logout:also_from}"
 msgstr "Također ste prijavljeni u sljedećim servisima:"
 

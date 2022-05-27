@@ -42,9 +42,6 @@ msgstr ""
 "Jūs varat izslēgt atkļūdošanas režīmu globālajā SimpleSAMLphp "
 "konfigurācijas failā <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Izvēlēties"
-
 msgid "{logout:also_from}"
 msgstr "Jūs esat pieslēdzies arī pie šiem servisiem:"
 

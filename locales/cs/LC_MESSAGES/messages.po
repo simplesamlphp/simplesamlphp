@@ -40,9 +40,6 @@ msgstr ""
 "Můžete vypnout debug mód v globální konfiguraci SimpleSAMLphp "
 "<tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Zvolte"
-
 msgid "{logout:also_from}"
 msgstr "Jste ještě přihlášen(a) na tyto služby:"
 

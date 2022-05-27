@@ -44,9 +44,6 @@ msgstr ""
 "Pode desligar o modo debug no ficheiro global de configuração "
 "<tt>config/config.php</tt> do SimpleSAMLphp."
 
-msgid "{disco:select}"
-msgstr "Escolher"
-
 msgid "{logout:also_from}"
 msgstr "Está também autenticado nos seguintes serviços:"
 

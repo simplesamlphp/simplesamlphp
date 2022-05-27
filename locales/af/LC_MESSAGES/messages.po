@@ -36,9 +36,6 @@ msgstr ""
 "Die gestuurde parameters na die ontdekkings diens was not volgens die "
 "korrekte spesifikasies nie."
 
-msgid "{disco:select}"
-msgstr "Kies"
-
 msgid "{logout:also_from}"
 msgstr "Jy is ook by dié dienste aangemeld:"
 

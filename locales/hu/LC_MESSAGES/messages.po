@@ -42,9 +42,6 @@ msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
 "hibakereső módot."
 
-msgid "{disco:select}"
-msgstr "Választ"
-
 msgid "{logout:also_from}"
 msgstr "Ezen alkalmazásokban van még bejelentkezve:"
 

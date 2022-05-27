@@ -45,9 +45,6 @@ msgstr ""
 "&Egrave; possibile disabilitare la modalità di debug nel file di configurazione"
 " globale di SimpleSAMLphp, <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Selezionare"
-
 msgid "{logout:also_from}"
 msgstr "Attualmente sei anche connesso ai seguenti servizi:"
 

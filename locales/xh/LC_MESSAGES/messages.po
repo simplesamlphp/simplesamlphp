@@ -127,7 +127,7 @@ msgstr "Indlela yokufumana uncedo"
 msgid "Login at"
 msgstr "Ungeno ngo-"
 
-msgid "{disco:select}"
+msgid "Select"
 msgstr "Khetha"
 
 msgid "Remember my choice"

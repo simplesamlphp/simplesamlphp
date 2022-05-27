@@ -48,9 +48,6 @@ msgstr ""
 "\"Debug\" modunu global SimpleSAMLphp konfigürasyon dosyasında "
 "<tt>config/config.php</tt> kapatabilirsiniz."
 
-msgid "{disco:select}"
-msgstr "Seç"
-
 msgid "{logout:also_from}"
 msgstr "Ayrıca şu servislere giriş yaptınız:"
 

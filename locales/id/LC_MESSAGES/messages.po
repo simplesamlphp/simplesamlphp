@@ -47,9 +47,6 @@ msgstr ""
 "Anda dapat menonaktifkan mode debuh pada file konfigurasi global "
 "simpleSAMLhphp  <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Pilih"
-
 msgid "{logout:also_from}"
 msgstr "Anda juga telah log out dari layanan berikut: "
 

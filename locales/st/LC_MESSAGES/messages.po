@@ -241,9 +241,6 @@ msgstr ""
 "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso"
 " e bile teng."
 
-msgid "{disco:select}"
-msgstr "Kgetha"
-
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Phoso e hlahile ha o leka ho theha kopo ya SAML."
 

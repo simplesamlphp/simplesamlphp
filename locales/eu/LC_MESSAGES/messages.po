@@ -47,9 +47,6 @@ msgstr ""
 "Arazketa modua desaktibatu daiteke SimpleSAMLphp "
 "<tt>config/config.php</tt> konfigurazio orokorreko fitxategian."
 
-msgid "{disco:select}"
-msgstr "Hautatu"
-
 msgid "{logout:also_from}"
 msgstr "Zerbitzu hauetan ere kautotuta zaude:"
 

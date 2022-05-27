@@ -39,9 +39,6 @@ msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "בחר"
-
 msgid "{logout:also_from}"
 msgstr "אתה מחובר גם לשרותים הבאים:"
 

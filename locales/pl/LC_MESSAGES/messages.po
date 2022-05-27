@@ -40,9 +40,6 @@ msgstr ""
 "Możesz wyłaczyć globalnie tryb debugowania w pliku  "
 "<tt>config/config.php</tt>."
 
-msgid "{disco:select}"
-msgstr "Wybierz"
-
 msgid "{logout:also_from}"
 msgstr "Jesteś także zalogowany w nastepujących serwisach:"
 
