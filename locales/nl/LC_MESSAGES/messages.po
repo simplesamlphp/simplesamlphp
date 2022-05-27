@@ -57,9 +57,6 @@ msgstr ""
 "Deze IdP heeft een authenticatie verzoek ontvangen van een Service "
 "Provider, maar er is een fout opgetreden bij het verwerken ervan."
 
-msgid "{logout:logout_all_question}"
-msgstr "Wil je uitloggen van alle bovenvermelde diensten?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Geen toegang"
 

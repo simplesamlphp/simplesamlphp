@@ -47,9 +47,6 @@ msgstr ""
 "Identitātes piegādātājs ir saņēmis autentifikācijas pieprasījumu no "
 "servisa piegādātāja, bet to apstrādājot radās kļūda."
 
-msgid "{logout:logout_all_question}"
-msgstr "Vai vēlaties atslēgties no visiem uzskaitītajiem servisiem?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Nav pieejas"
 

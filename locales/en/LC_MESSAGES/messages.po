@@ -54,9 +54,6 @@ msgstr ""
 "This Identity Provider received an Authentication Request from a Service "
 "Provider, but an error occurred when trying to process the request."
 
-msgid "{logout:logout_all_question}"
-msgstr "Do you want to logout from all the services above?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "No access"
 

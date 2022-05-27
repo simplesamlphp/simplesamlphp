@@ -49,9 +49,6 @@ msgstr ""
 "Ocorreu um erro ao processar o pedido de autenticação emitido pelo "
 "fornecedor de serviço."
 
-msgid "{logout:logout_all_question}"
-msgstr "Deseja sair de todos os serviços listados em cima?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Acesso negado"
 

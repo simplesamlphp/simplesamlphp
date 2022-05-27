@@ -36,9 +36,6 @@ msgstr "你可以关闭调试模式，在SimpleSAMLphp全局配置文件<tt>conf
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "该身份提供者接受到了一个来自服务提供者的认证请求，但是在试图处理该请求的过程中发生了错误"
 
-msgid "{logout:logout_all_question}"
-msgstr "你想同时从上面的这些服务中退出吗？"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "禁止访问"
 

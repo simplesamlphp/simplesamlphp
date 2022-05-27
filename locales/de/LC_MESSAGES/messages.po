@@ -53,9 +53,6 @@ msgstr ""
 "Service Provider erhalten, aber es ist ein Fehler beim Bearbeiten dieser "
 "Anfrage aufgetreten."
 
-msgid "{logout:logout_all_question}"
-msgstr "Wollen Sie sich von allen obenstehenden Diensten abmelden?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Kein Zugriff"
 

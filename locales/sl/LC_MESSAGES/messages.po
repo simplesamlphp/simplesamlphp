@@ -47,9 +47,6 @@ msgstr ""
 "IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri"
 " obdelavi te zahteve."
 
-msgid "{logout:logout_all_question}"
-msgstr "Ali se želite odjaviti z vseh naštetih storitev?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ni dostopa"
 

@@ -36,9 +36,6 @@ msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "このアイデンティティプロバイダはサービスプロバイダからの認証リクエストを受け付けましたが、リクエストの処理中にエラーが発生しました。"
 
-msgid "{logout:logout_all_question}"
-msgstr "上記の全てのサービスからログアウトしますか？"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "アクセスがありません"
 

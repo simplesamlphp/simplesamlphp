@@ -48,9 +48,6 @@ msgstr ""
 "Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos "
 "teikėjo, tačiau apdorojant pranešimą įvyko klaida."
 
-msgid "{logout:logout_all_question}"
-msgstr "Ar norite atsijungti nuo visų žemiau išvardintų paslaugų?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Prieigos nėra"
 

@@ -53,9 +53,6 @@ msgstr ""
 "Autentifikacijski servis je dobio zahtjev od davatelja usluge, ali se "
 "pojavila greška prilikom obrade zahtjeva."
 
-msgid "{logout:logout_all_question}"
-msgstr "Želite li se odjaviti iz svih gore navedenih servisa?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Pristup nije dozvoljen"
 

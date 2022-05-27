@@ -45,9 +45,6 @@ msgstr ""
 "Dostawca tożsamości otrzymał od dostawcy usługi zlecenie "
 "uwierzytelnienia, ale wystąpił błąd podczas przetwarzania zlecenia."
 
-msgid "{logout:logout_all_question}"
-msgstr "Czy chcesz zostać wylogowany z powyższych serwisów?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Brak dostępu"
 

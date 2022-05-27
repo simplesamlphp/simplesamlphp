@@ -48,9 +48,6 @@ msgstr ""
 "Innloggingstjenesten mottok en autentiserings-forespørsel fra en "
 "tjeneste, men en feil oppsto i behandling av forespørselen."
 
-msgid "{logout:logout_all_question}"
-msgstr "Vil du logge ut fra alle tjenestene ovenfor?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ingen tilgang"
 

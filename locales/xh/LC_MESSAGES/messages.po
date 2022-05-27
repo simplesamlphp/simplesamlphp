@@ -434,7 +434,7 @@ msgstr "Akukho RelayState"
 msgid "You are also logged in on these services:"
 msgstr "Kananjalo ungene kwezi nkonzo:"
 
-msgid "{logout:logout_all_question}"
+msgid "Do you want to logout from all the services above?"
 msgstr "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?"
 
 msgid "You are now successfully logged out from %SP%."

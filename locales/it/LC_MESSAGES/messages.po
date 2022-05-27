@@ -51,9 +51,6 @@ msgstr ""
 "parte di un Service Provider, ma si è verificato un errore durante "
 "l'elaborazione di quest'ultima"
 
-msgid "{logout:logout_all_question}"
-msgstr "Vuoi disconnetterti da tutti i servizi qui sopra riportati?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Nessun accesso"
 

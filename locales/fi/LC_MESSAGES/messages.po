@@ -38,9 +38,6 @@ msgstr ""
 "Identiteetintarjoaja sai tunnistautumispyynnön palveluntarjoajalta, mutta"
 " pyynnin käsittelyssä tapahtui virhe."
 
-msgid "{logout:logout_all_question}"
-msgstr "Haluatko uloskirjautua edellämainituista palveluista?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ei oikeutta"
 

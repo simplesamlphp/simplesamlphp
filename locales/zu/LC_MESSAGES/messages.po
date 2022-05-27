@@ -440,7 +440,7 @@ msgstr "Ayikho I-RelayState"
 msgid "You are also logged in on these services:"
 msgstr "Ungenile futhi kulawa masevisi:"
 
-msgid "{logout:logout_all_question}"
+msgid "Do you want to logout from all the services above?"
 msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
 
 msgid "You are now successfully logged out from %SP%."

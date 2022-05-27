@@ -53,9 +53,6 @@ msgstr ""
 "Bu Kimlik Sağlayıcı bir Servis Sağlayıcı'dan kimlik doğrulama isteği "
 "aldı, ancak bu isteği işlemeye çalışırken bir hata oluştu."
 
-msgid "{logout:logout_all_question}"
-msgstr "Yukarıdaki tüm servislerden çıkmak istiyor musunuz?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Giriş yok"
 

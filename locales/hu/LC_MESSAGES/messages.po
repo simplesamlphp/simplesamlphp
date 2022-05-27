@@ -47,9 +47,6 @@ msgstr ""
 "Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során "
 "hiba történt."
 
-msgid "{logout:logout_all_question}"
-msgstr "Ki akar jelentkezni az összes fenti alkalmazásból?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Hozzáférés megtagadva"
 

@@ -53,9 +53,6 @@ msgstr ""
 "fournisseur d'identité, mais une erreur s'est produite lors du traitement"
 " de cette requête."
 
-msgid "{logout:logout_all_question}"
-msgstr "Voulez vous réellement terminer les connexions à tout ces services?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Pas d'accès"
 

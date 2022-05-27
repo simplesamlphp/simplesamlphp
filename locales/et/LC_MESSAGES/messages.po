@@ -47,9 +47,6 @@ msgstr ""
 "Identiteedipakkuja sai teenusepakkujalt autentimispäringu, kui päringu "
 "töötlemisel tekkis tõrge."
 
-msgid "{logout:logout_all_question}"
-msgstr "Kas sa soovid kõigist ülal loetletud teenustest välja logida?"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ligipääs puudub"
 

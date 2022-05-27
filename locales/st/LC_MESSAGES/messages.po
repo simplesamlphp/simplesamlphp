@@ -41,9 +41,6 @@ msgstr ""
 msgid "E-mail address:"
 msgstr "Aterese ya imeile:"
 
-msgid "{logout:logout_all_question}"
-msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
-
 msgid "Help! I don't remember my password."
 msgstr "Thuso! Ha ke hopole phasewete ya ka."
 

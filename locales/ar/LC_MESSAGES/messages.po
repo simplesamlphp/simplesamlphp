@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
 
-msgid "{logout:logout_all_question}"
-msgstr "هل ترغب بتسجيل الخروج من جميع الخدمات أعلا؟"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "ممنوع الدخول"
 
