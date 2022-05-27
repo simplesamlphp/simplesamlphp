@@ -15,24 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:username}"
-msgstr "Geavahusnamma"
-
-msgid "{login:login_button}"
-msgstr "Mana sis"
-
-msgid "{login:error_wrongpassword}"
-msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
-
-msgid "{login:password}"
-msgstr "Beassansátni"
-
-msgid "{login:organization}"
-msgstr "Organisašuvdna"
-
-msgid "{errors:report_email}"
-msgstr "Elektrovnnalaš poastačijuhus"
-
 msgid "Person's principal name at home organization"
 msgstr "Feide-namma"
 
