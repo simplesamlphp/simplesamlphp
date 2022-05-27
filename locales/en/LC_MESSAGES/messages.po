@@ -298,12 +298,6 @@ msgstr ""
 "The initiator of this request did not provide a RelayState parameter "
 "indicating where to go next."
 
-msgid "{status:intro}"
-msgstr ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
-"session is timed out, how long it lasts until it times out and all the "
-"attributes that are attached to your session."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

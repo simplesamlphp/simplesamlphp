@@ -263,11 +263,6 @@ msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סי
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
 
-msgid "{status:intro}"
-msgstr ""
-"שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה "
-"זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

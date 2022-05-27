@@ -285,12 +285,6 @@ msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "
 "parameter, der hvilket hvor der skal fortsættes"
 
-msgid "{status:intro}"
-msgstr ""
-"Dette er statussiden for SimpleSAMLphp. Du kan se om din session er "
-"udløbet, hvor lang tid der er til at den udløber, samt alle øvrige "
-"oplysninger om din session."
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

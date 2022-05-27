@@ -287,12 +287,6 @@ msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "
 "medför att nästa plats inte är definierad."
 
-msgid "{status:intro}"
-msgstr ""
-"Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig "
-"har gått ut, hur länge det dröjer innan den går ut samt alla attribut som"
-" tillhör sessionen."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

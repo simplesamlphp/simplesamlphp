@@ -303,12 +303,6 @@ msgstr ""
 "El iniciador de esta solicitud no proporcion&oacute; el par&aacute;metro "
 "RelayState que indica donde ir a continuaci&oacute;n"
 
-msgid "{status:intro}"
-msgstr ""
-"Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver "
-"si su sesión ha caducado, cuanto queda hasta que lo haga y todos los "
-"atributos existentes en su sesión."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

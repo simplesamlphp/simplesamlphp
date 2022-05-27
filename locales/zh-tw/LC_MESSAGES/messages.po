@@ -264,11 +264,6 @@ msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下一個步驟。"
 
-msgid "{status:intro}"
-msgstr ""
-"嘿，這是 SimpleSAMLphp "
-"狀態頁，在這邊您可以看到您的連線是否逾時，以及還有多久才逾時，所有屬性值(attributes)都會附加在你的連線裡(session)。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 

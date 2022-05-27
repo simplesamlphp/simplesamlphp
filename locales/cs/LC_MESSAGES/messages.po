@@ -273,11 +273,6 @@ msgstr ""
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam pokračovat."
 
-msgid "{status:intro}"
-msgstr ""
-"Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, "
-"jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

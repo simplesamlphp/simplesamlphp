@@ -291,12 +291,6 @@ msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "
 "indiquant quelle page afficher ensuite."
 
-msgid "{status:intro}"
-msgstr ""
-"Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez "
-"consulter ici le temps restant sur votre session, ainsi que les attributs"
-" qui y sont attachés."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

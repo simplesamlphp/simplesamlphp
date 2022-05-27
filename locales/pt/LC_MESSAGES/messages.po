@@ -259,11 +259,6 @@ msgstr ""
 "Este pedido foi iniciado sem o parâmetro RelayState necessário para "
 "continuar com o processamento."
 
-msgid "{status:intro}"
-msgstr ""
-"Está na página de status do SimpleSAMLphp. Aqui poderá consultar "
-"informações sobre a sua sessão: o tempo de expiração e os seus atributos."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

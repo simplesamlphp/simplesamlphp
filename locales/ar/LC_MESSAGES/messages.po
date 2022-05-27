@@ -269,11 +269,6 @@ msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم ت
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 
-msgid "{status:intro}"
-msgstr ""
-"مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك،"
-" فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 

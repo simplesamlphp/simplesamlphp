@@ -274,12 +274,6 @@ msgstr ""
 "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "
 "nusako kur toliau kreiptis."
 
-msgid "{status:intro}"
-msgstr ""
-"Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar "
-"Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei "
-"kitus Jūsų sesijai priskirtus atributus."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

@@ -275,12 +275,6 @@ msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "
 "gdzie przekazać zlecenie."
 
-msgid "{status:intro}"
-msgstr ""
-"Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy "
-"Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia "
-"sesji i wszystkie atrybuty, które zostały załączone do sesji."
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
 

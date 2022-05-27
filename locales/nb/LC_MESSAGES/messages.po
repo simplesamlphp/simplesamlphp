@@ -278,12 +278,6 @@ msgstr ""
 "Kilden til denne forespørselen har ikke angitt noen RelayState-parameter "
 "som angir hvor vi skal fortsette etterpå."
 
-msgid "{status:intro}"
-msgstr ""
-"Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen "
-"din er timet ut, hvor lenge det er til den timer ut og attributter som er"
-" knyttet til din sesjon."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

@@ -197,11 +197,6 @@ msgstr ""
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 
-msgid "{status:intro}"
-msgstr ""
-"Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko"
-" se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

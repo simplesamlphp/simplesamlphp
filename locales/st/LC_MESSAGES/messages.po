@@ -359,12 +359,6 @@ msgstr ""
 "ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong "
 "lena."
 
-msgid "{status:intro}"
-msgstr ""
-"Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na"
-" seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e "
-"fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
-
 msgid "Logging out of the following services:"
 msgstr "E tswa ditshebeletsong tse latelang:"
 

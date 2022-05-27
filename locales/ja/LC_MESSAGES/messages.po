@@ -250,10 +250,6 @@ msgstr "Assertion Consumer Serviceインターフェースへアクセスしま�
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
 
-msgid "{status:intro}"
-msgstr ""
-"ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

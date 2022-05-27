@@ -282,12 +282,6 @@ msgstr ""
 "Inisiator dari request ini tidak menyediakan parameter RelayState yang "
 "mengindikasikan kemana selanjutnya pergi."
 
-msgid "{status:intro}"
-msgstr ""
-"Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat "
-"melihat jika session anda telah time out, berapa lama ia berlaku sampai "
-"time out dan semua attribut yang menempel pada session anda."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

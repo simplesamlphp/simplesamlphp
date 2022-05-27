@@ -282,12 +282,6 @@ msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "
 "Då veit vi ikke kvar vi skal, og det blir feil."
 
-msgid "{status:intro}"
-msgstr ""
-"Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen "
-"din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir "
-"brukte i sesjonen din."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

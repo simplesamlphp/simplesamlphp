@@ -286,13 +286,6 @@ msgstr ""
 "Inițiatorul acestei cereri nu a furnizat parametrul <i>RelayState</i> "
 "care indică următorul pas."
 
-msgid "{status:intro}"
-msgstr ""
-"Aceasta este pagina de stare pentru SimpleSAMLphp. Aici puteți verifica "
-"dacă sesiunea dumneavoastră a expirat, cât timp mai este până la "
-"expirarea sesiunii precum și toate atributele atașate sesiunii "
-"dumneavoastră."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

@@ -249,9 +249,6 @@ msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一�
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 
-msgid "{status:intro}"
-msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您的会话超时，它持续多久，直到超时和连接到您的会话的所有属性。"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 

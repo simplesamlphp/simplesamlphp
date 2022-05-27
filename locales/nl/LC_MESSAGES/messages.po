@@ -310,12 +310,6 @@ msgstr ""
 "De afzender van deze request heeft geen RelayState parameter meegestuurd "
 "om aan te geven wat de volgende bestemming is."
 
-msgid "{status:intro}"
-msgstr ""
-"Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw "
-"sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u "
-"kunt alle attributen bekijken die aanwezig zijn in deze sessie."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

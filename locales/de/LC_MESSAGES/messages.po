@@ -290,12 +290,6 @@ msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "
 "bereitgestellt, der Auskunft gibt, wohin Sie weitergeleitet werden sollen."
 
-msgid "{status:intro}"
-msgstr ""
-"Hallo, das ist die Statusseite von SimpleSAMLphp. Hier können Sie sehen, "
-"ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist "
-"und alle Attribute Ihrer Sitzung."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

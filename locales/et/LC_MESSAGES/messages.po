@@ -277,12 +277,6 @@ msgstr ""
 "Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "
 "kuhu edasi minna."
 
-msgid "{status:intro}"
-msgstr ""
-"Tere! See on SimpleSAMLphp olekuteave. Siit on võimalik näha, kas su "
-"sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga "
-"seotud atribuute."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

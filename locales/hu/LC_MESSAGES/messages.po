@@ -278,12 +278,6 @@ msgstr ""
 "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "
 "határozza meg, hogy hová irányítsuk tovább."
 
-msgid "{status:intro}"
-msgstr ""
-"Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a "
-"munkamenete, mikor lépett be utoljára és a munkamenethez tartozó "
-"attribútumokat."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

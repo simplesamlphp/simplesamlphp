@@ -262,12 +262,6 @@ msgstr ""
 "Bu isteğin başlatıcısı, bir sonraki gidiş yerini bildiren RelayState "
 "parametresini sağlamamış."
 
-msgid "{status:intro}"
-msgstr ""
-"Merhaba, bu SimpleSAMLphp durum sayfasıdır. Oturumunuzun süresinin dolup "
-"dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm "
-"bilgileri buradan görebilirsiniz."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

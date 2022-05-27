@@ -286,12 +286,6 @@ msgstr ""
 "koji sadrži adresu na koju treba preusmeriti korisnikov web pretraživač "
 "nakon uspešne autentifikacije."
 
-msgid "{status:intro}"
-msgstr ""
-"Ovo je stranica s prikazom aktuelnog stanja vaše sesije. Na ovoj stranici"
-" možete videti je li vam je istekla sesija, koliko će još dugo vaša "
-"sesija trajati i sve atribute koji su vezani uz vašu sesiju."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

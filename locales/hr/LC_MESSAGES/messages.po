@@ -288,13 +288,6 @@ msgstr ""
 "parametar koji sadrži adresu na koju treba preusmjeriti korisnikov web "
 "preglednik nakon uspješne autentifikacije."
 
-msgid "{status:intro}"
-msgstr ""
-"Ovo je stranica s prikazom aktualnog stanja Single Sign-On sjednice. Na "
-"ovoj stranici možete vidjeti je li vam istekla sjednica, koliko će još "
-"dugo vaša sjednica trajati te sve atribute koji su vezani uz vašu "
-"sjednicu."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

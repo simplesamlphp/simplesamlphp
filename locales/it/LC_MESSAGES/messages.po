@@ -292,12 +292,6 @@ msgstr ""
 "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per "
 "specificare come proseguire dopo il login."
 
-msgid "{status:intro}"
-msgstr ""
-"Salve, questa è la pagina di stato di SimpleSAMLphp. Qui è possiible "
-"vedere se la sessione è scaduta, quanto è durata prima di scadere e tutti"
-" gli attributi ad essa collegati."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 
