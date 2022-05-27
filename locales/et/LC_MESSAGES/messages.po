@@ -218,9 +218,6 @@ msgstr "Tõrkeraport saadeti administraatoritele."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Väljalogimispäringu töötlemisel tekkis tõrge"
 
-msgid "{logout:success}"
-msgstr "Sa oled kõigist ülal loetletud teenustest edukalt välja logitud."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "

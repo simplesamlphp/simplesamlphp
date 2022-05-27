@@ -217,9 +217,6 @@ msgstr "Feilrapport er sent til administrator."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "En feil oppsto i behandlingen av logout-forespørselen."
 
-msgid "{logout:success}"
-msgstr "Du har n&aring; logget ut fra alle tjenestene listet ovenfor."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

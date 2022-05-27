@@ -214,9 +214,6 @@ msgstr "تم إرسال التقرير عن الخطأ  للمشرف"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "خطا عند محاولة تسجيل الخروج"
 
-msgid "{logout:success}"
-msgstr "تسجيل خروج ناجح من جميع الخدمات أعلاه "
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

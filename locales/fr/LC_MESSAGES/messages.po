@@ -229,9 +229,6 @@ msgstr ""
 "Une erreur s'est produite lors de la tentative de traiter la demande de "
 "déconnexion."
 
-msgid "{logout:success}"
-msgstr "Vous avez été déconnecté avec succès des services listés ci dessus"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

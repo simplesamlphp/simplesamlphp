@@ -204,9 +204,6 @@ msgstr "Hata raporu yöneticilere gönderildi"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Çıkış İsteğini işlemeye çalışırken bir hata oluştu"
 
-msgid "{logout:success}"
-msgstr "Yukarıda listelenen tüm servislerden başarıyla çıktınız."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

@@ -240,11 +240,6 @@ msgstr ""
 "Se ha producido un error al tratar de procesar la solicitud de cierre de "
 "sesi&oacute;n."
 
-msgid "{logout:success}"
-msgstr ""
-"Ha sido correctamente desconectado de todo los servicios listados a "
-"continuación"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "

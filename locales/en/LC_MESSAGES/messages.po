@@ -235,9 +235,6 @@ msgstr "SAML Subject"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "An error occurred when trying to process the Logout Request."
 
-msgid "{logout:success}"
-msgstr "You have successfully logged out from all services listed above."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

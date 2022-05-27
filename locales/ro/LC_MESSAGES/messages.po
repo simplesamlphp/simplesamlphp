@@ -225,9 +225,6 @@ msgstr "Raportul cu erori a fost trimis către administratori."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "A apărut o eroare la procesarea cererii de deautentificare."
 
-msgid "{logout:success}"
-msgstr "Ați fost deautentificat de la toate serviciile enumerate mai sus."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

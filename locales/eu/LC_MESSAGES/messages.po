@@ -221,9 +221,6 @@ msgstr "Errore txostena administratzaileei bidali zaie."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Errore bat jazo da saioa ixteko eskaera prozesatzean."
 
-msgid "{logout:success}"
-msgstr "Hemen adierazten den zerrendako zerbitzu guztietako saioak zuzen itxi dira"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"

@@ -247,9 +247,6 @@ msgstr "SAML Subject"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Er is een fout opgetreden tijdens het verwerken van een Logout Request."
 
-msgid "{logout:success}"
-msgstr "Je bent succesvol uitgelogd van de bovenvermelde services."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

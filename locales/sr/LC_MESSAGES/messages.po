@@ -223,9 +223,6 @@ msgstr "Prijava greške poslata je administratorima."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Došlo je do greške prilikom pokušaja obrade zahteva za odjavom."
 
-msgid "{logout:success}"
-msgstr "Uspešno ste se odjavili iz svih gore navedenih servisa."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

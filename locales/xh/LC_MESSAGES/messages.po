@@ -289,7 +289,7 @@ msgstr ""
 "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: "
 "%URL%"
 
-msgid "{logout:success}"
+msgid "You have successfully logged out from all services listed above."
 msgstr "Uphume ngokuyimpumelelo kuzo zonke iinkonzo ezidweliswe ngasentla."
 
 msgid "{login:error_wrongpassword}"

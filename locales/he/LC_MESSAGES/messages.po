@@ -208,9 +208,6 @@ msgstr "דוח השגיאה נשלח למנהל המערכת."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "שגיאה בזמן  הניסיון לעבד את בקשת התנתקות."
 
-msgid "{logout:success}"
-msgstr "התנתקת בהצלחה מכל השרותים הכתובים למעלה"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

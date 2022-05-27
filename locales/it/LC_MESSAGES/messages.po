@@ -230,9 +230,6 @@ msgstr ""
 "Si è verificato un errore quando si è tentato di elaborare la richiesta "
 "di disconnessione (Logout Request)."
 
-msgid "{logout:success}"
-msgstr "Sei stato disconnesso da tutti i servizi sopra elencati."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

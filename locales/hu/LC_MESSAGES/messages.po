@@ -217,9 +217,6 @@ msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "A kijelentkezési kérés (logout request) feldolgozása során hiba történt."
 
-msgid "{logout:success}"
-msgstr "Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

@@ -216,9 +216,6 @@ msgstr "Raport o błędzie został wysłany do administratorów."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Wystąpił bład podczas próby wylogowania."
 
-msgid "{logout:success}"
-msgstr "Zostałeś pomyślnie wylogowany ze wszystkich powyższych serwisów."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

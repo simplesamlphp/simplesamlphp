@@ -173,9 +173,6 @@ msgstr "Die foutmeldings verslag is gestuur na die administrateurs."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Daar was 'n probleem tydens die verwerking van die Afmelding  Versoek"
 
-msgid "{logout:success}"
-msgstr "Jy het suksesvol afgemeld."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

@@ -216,9 +216,6 @@ msgstr "Zpráva o chybě byla zaslána administrátorům."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Při procesu odhlášení vznikla chyba."
 
-msgid "{logout:success}"
-msgstr "Úspěšně jste se odhlásili z následujících služeb."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

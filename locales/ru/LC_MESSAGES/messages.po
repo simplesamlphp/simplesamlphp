@@ -236,9 +236,6 @@ msgstr "Тема SAML"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Ошибка произошла при попытке обработки запроса на выход из системы"
 
-msgid "{logout:success}"
-msgstr "Вы успешно вышли из всех служб перечисленных выше."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

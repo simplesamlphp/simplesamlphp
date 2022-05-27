@@ -213,9 +213,6 @@ msgstr "SAML 主題"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "有個錯誤發生於準備進行登出請求時。"
 
-msgid "{logout:success}"
-msgstr "您已經成功登出了列表中所有服務。"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

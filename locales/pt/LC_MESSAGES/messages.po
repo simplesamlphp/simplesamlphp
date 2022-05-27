@@ -201,9 +201,6 @@ msgstr "O relatório de erro foi enviado aos administradores"
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Ocorreu um erro ao processar o pedido de logout."
 
-msgid "{logout:success}"
-msgstr "Saiu com sucesso de todos os serviços listados em cima."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

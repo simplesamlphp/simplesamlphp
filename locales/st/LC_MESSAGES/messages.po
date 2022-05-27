@@ -142,11 +142,6 @@ msgstr "Phoso ya netefatso ya mohlodi"
 msgid "Debug information"
 msgstr "Tlhahisoleseding ya debug"
 
-msgid "{logout:success}"
-msgstr ""
-"O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo"
-" mona."
-
 msgid "Remember my choice"
 msgstr "Hopola kgetho ya ka"
 

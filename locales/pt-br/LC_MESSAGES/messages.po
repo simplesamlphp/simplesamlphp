@@ -228,9 +228,6 @@ msgstr "O relatório de erro foi enviado com sucesso para os administradores."
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Um erro ocorreu ao tentar processar a resposta da desconexão."
 
-msgid "{logout:success}"
-msgstr "Você saiu com sucesso de todos os serviços listados acima."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "
