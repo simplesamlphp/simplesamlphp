@@ -291,9 +291,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Está prestes a enviar uma mensagem. Carregue no botão para continuar."
-
 msgid "Person's principal name at home organization"
 msgstr "Nome de utilizador na organização de origem"
 

@@ -292,9 +292,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "אתה עומד לשלוח הודעה. לחץ על כפתור השליחה כדי להמשיך."
-
 msgid "Person's principal name at home organization"
 msgstr "השם העיקרי באירגון הבית"
 

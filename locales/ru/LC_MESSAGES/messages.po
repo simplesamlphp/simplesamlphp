@@ -328,11 +328,6 @@ msgstr ""
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Вы собираетесь отправить сообщение. Кликните клавишу отправки сообщения "
-"для продолжения."
-
 msgid "Person's principal name at home organization"
 msgstr "Имя руководителя в главной организации"
 

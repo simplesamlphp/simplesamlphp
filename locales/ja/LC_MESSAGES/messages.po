@@ -269,9 +269,6 @@ msgstr "一つ以上のサービスからログアウト出来ませんでした
 msgid "{errors:howto_text}"
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "メッセージを送信します。続けるにはメッセージ送信ボタンを押してください。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

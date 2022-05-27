@@ -309,11 +309,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "
-"patvirtinimo mygtuką."
-
 msgid "Person's principal name at home organization"
 msgstr "Asmens pagrindinis vardas organizacijoje"
 

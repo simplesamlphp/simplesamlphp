@@ -330,11 +330,6 @@ msgstr ""
 "misconfiguration of SimpleSAMLphp. Contact the administrator of this "
 "login service, and send them the error message above."
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"You are about to send a message. Hit the submit message button to "
-"continue."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

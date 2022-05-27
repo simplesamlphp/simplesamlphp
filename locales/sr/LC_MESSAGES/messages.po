@@ -320,9 +320,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Kliknite na dugme \"Pošalji poruku\" da biste poslali poruku."
-
 msgid "Person's principal name at home organization"
 msgstr "Jedinstveni identifikator osobe"
 

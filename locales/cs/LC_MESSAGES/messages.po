@@ -304,9 +304,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Můžete poslat zprávu. Požijte tlačítko k pokračování."
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

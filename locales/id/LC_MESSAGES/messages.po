@@ -316,11 +316,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan "
-"untuk melanjutkan."
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

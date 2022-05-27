@@ -323,11 +323,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Du är på väg att skicka ett meddelande. Klicka på skickaknappen för att "
-"fortsätta."
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 

@@ -341,11 +341,6 @@ msgstr ""
 "door verkeerde configuratie van SimpleSAMLphp. Meld dit bij de beheerder "
 "van deze authenticatiedienst, en geef bovenstaande melding door."
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"U gaat een bericht versturen. Klik op de Verstuur bericht knop om door te"
-" gaan."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

@@ -324,11 +324,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Mesajul este pregătit pentru a fi trimis. Apăsați butonul de trimitere "
-"pentru a continua."
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

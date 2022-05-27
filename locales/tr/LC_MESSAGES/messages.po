@@ -292,11 +292,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna "
-"tıklayın."
-
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
 

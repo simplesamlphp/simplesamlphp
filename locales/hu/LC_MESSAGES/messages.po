@@ -311,9 +311,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

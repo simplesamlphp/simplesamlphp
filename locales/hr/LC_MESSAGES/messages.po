@@ -323,9 +323,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Kliknite na gumb \"Pošalji poruku\" da biste poslali poruku."
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

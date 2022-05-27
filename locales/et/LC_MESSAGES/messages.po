@@ -311,9 +311,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Oled teadet saatmas. Jätkamiseks vajuta teatesaatmisnuppu."
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

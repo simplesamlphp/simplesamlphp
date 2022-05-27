@@ -307,9 +307,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "Jūs gatavojaties sūtīt ziņu. Spiediet pogu Sūtīt ziņu."
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 

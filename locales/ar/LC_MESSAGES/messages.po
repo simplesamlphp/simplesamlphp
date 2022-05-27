@@ -301,9 +301,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "انت علي وشك إرسال رسالة. اضغط علي الزر للمواصلة"
-
 msgid "Person's principal name at home organization"
 msgstr "ألاسم بالمنظمة الام\\الموقع الام "
 

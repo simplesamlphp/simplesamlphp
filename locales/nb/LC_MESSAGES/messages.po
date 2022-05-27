@@ -314,11 +314,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Du er i ferd med å sende en melding. Trykk knappen «Send melding» for å "
-"fortsette."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

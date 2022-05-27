@@ -270,9 +270,6 @@ msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAM
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "你准备发送一个消息，请点击提交按钮以继续"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

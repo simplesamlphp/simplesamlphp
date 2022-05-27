@@ -313,11 +313,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Mezu bat bidaltzeari ekingo zaio. Saka ezazu \"Mezua bidali\" botoia "
-"jarraitzeko."
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

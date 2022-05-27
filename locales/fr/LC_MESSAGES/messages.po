@@ -326,11 +326,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr ""
-"Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour "
-"continuer."
-
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
 

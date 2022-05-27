@@ -287,9 +287,6 @@ msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 
-msgid "{admin:debug_sending_message_text_button}"
-msgstr "您正在傳送一則訊息，請點選提交訊息按鈕來繼續。"
-
 msgid "Person's principal name at home organization"
 msgstr "家庭的個人主要名字"
 
