@@ -175,9 +175,6 @@ msgstr "Przykładowe Demo SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "Błąd"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Przerwane uwierzytelnienie"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jeden lub więcej serwisów , w których jesteś zalogowany <i>nie obsługuje "

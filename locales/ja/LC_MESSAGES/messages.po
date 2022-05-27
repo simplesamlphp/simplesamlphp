@@ -162,9 +162,6 @@ msgstr "SAML 2.0 SP デモ例"
 msgid "{login:error_header}"
 msgstr "エラー"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "認証は中断されました"
-
 msgid "{logout:incapablesps}"
 msgstr "<i>ログアウトをサポートしていない</i>サービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

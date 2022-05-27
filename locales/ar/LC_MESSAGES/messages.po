@@ -176,9 +176,6 @@ msgstr "استعراض مثال ل SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "خطا"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "إيقاف التوثيق"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "واحدة او اكثر من الخدمات التي قمت بتسجيل دخولك بها لا تدعم تسجيل الخروج. "

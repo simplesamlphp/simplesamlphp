@@ -162,9 +162,6 @@ msgstr "SAML 2.0 SP演示案例"
 msgid "{login:error_header}"
 msgstr "错误"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "认证中止"
-
 msgid "{logout:incapablesps}"
 msgstr "一个或多个你已登录的服务<i>不支持退出</i>，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

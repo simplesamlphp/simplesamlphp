@@ -175,9 +175,6 @@ msgstr "SAML 2.0 SP demonstrācijas piemērs"
 msgid "{login:error_header}"
 msgstr "Kļūda"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autentifikācija pārtraukta"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Viens vai vairāki Jūsu izmantotie servisi <i>neatbalsta atslēgšanos</i>. "

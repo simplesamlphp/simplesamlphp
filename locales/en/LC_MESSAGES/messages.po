@@ -193,9 +193,6 @@ msgstr "SAML 2.0 SP Demo Example"
 msgid "{login:error_header}"
 msgstr "Error"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Authentication aborted"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "One or more of the services you are logged into <i>do not support "

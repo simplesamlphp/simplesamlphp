@@ -191,9 +191,6 @@ msgstr "Ejemplo de SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "Los datos que ha suministrado no son válidos"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autenticacion abortada"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Uno o más de los servicios en los que está autenticado <i>no permite "

@@ -599,9 +599,6 @@ msgstr "Hopola lebitso la ka la mosebedisi"
 msgid "No SAML request provided"
 msgstr "Ha ho kopo ya SAML e fanweng"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Netefatso e kgaoditswe"
-
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
 

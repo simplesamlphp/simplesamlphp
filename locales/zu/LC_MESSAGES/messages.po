@@ -241,7 +241,7 @@ msgstr "Ulwazi lokuxhumana:"
 msgid "Error report sent"
 msgstr "Umbiko wephutha uthunyelwe"
 
-msgid "{errors:title_USERABORTED}"
+msgid "Authentication aborted"
 msgstr "Ukuqinisekisa kuyekisiwe"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"

@@ -186,9 +186,6 @@ msgstr "Exemple de démonstration de SP SAML 2.0"
 msgid "{login:error_header}"
 msgstr "Erreur"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Authentification abandonnée"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Un ou plusieurs des services auxquels vous êtes connecté <i>ne gèrent pas"

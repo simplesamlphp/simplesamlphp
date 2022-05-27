@@ -179,9 +179,6 @@ msgstr "SAML 2.0 SP demonäide"
 msgid "{login:error_header}"
 msgstr "Tõrge"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autentimine katkestatud"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Üks või mitu teenust, millesse oled sisselogitud <i>ei toeta välja "

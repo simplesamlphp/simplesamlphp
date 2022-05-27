@@ -191,9 +191,6 @@ msgstr "Демо пример сервис провайдера SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "Ошибка"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Аутентификация прервана"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Некоторые службы, к которым вы подключены, <i>не поддеживают выход из "

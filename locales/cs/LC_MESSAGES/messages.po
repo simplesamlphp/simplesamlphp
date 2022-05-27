@@ -175,9 +175,6 @@ msgstr "SAML 2.0 SP Demo"
 msgid "{login:error_header}"
 msgstr "Chyba"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Přihlášení odmítnuto"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jedna nebo více služeb, do kterých jste přihlášen(a), nepodporuje "

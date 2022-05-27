@@ -187,9 +187,6 @@ msgstr "Demo di SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "Errore"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autenticazione interrotta"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Uno o pi&ugrave; servizi a cui sei connesso <i>non supportano la "

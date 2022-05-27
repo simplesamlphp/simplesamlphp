@@ -180,9 +180,6 @@ msgstr "Demonstrasjon av SAML 2.0 SP"
 msgid "{login:error_header}"
 msgstr "Feil"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Avbroten innlogging"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Ei eller fleire av tenestene du er innlogga på <i>støtter ikkje "

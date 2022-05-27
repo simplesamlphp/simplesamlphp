@@ -187,9 +187,6 @@ msgstr "SAML 2.0 SP demoexempel"
 msgid "{login:error_header}"
 msgstr "Fel"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Inloggning avbruten"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "En eller flera av tjänsterna du är inloggad i <i>kan inte hantera "

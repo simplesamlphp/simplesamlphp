@@ -183,9 +183,6 @@ msgstr "Primjer SAML 2.0 davatelja usluge"
 msgid "{login:error_header}"
 msgstr "Greška"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Proces autentifikacije je prekinut"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jedan ili više servisa na koje ste prijavljeni <i>ne podržava "

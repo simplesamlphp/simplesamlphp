@@ -184,9 +184,6 @@ msgstr "Exemplu demonstrativ de furnizor de servicii SAML 2.0"
 msgid "{login:error_header}"
 msgstr "Eroare"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autentificare întreruptă"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Unul sau mai multe servicii în care sunteți autentificat <i>nu suportă "

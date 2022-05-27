@@ -147,9 +147,6 @@ msgstr "Onverwagte foutmelding"
 msgid "{login:error_header}"
 msgstr "Fout"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Verifikasie gestop"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meerdere dienste waarby jy aangemeld het, <i>ondersteun nie "

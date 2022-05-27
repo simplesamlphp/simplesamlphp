@@ -170,9 +170,6 @@ msgstr "הדגמת דוגמה לס\"ש מסוג SAML 2.0"
 msgid "{login:error_header}"
 msgstr "שגיאה"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "ההיזדהות בוטלה"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "אחד או יותר מן השרותים שאתה מחובר אליהם <i>לא תומכים בהתנתקות</i> .כדי "

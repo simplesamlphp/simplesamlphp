@@ -176,9 +176,6 @@ msgstr "SAML 2.0 SP Demonstracinės versijos Pavyzdys"
 msgid "{login:error_header}"
 msgstr "Klaida"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Autentikacija nutraukta"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Viena ar daugiau paslaugų, prie kurių esate prisijungęs <i>nepalaiko "

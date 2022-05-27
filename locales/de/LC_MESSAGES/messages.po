@@ -188,9 +188,6 @@ msgstr "SAML 2.0 SP Demo Beispiel"
 msgid "{login:error_header}"
 msgstr "Fehler"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Authentifizierung abgebrochen"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Einer oder mehrere Dienste an denen Sie angemeldet sind, <i>unterstützen "

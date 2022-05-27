@@ -238,7 +238,7 @@ msgstr "Inkcazelo yoqhagamshelwano:"
 msgid "Error report sent"
 msgstr "Ingxelo yempazamo ithunyelwe"
 
-msgid "{errors:title_USERABORTED}"
+msgid "Authentication aborted"
 msgstr "Ungqinisiso luyekiwe"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"

@@ -200,9 +200,6 @@ msgstr "SAML 2.0 SP Demo"
 msgid "{login:error_header}"
 msgstr "Fout"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Authenticatie afgebroken"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning "

@@ -190,9 +190,6 @@ msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών SAML 2.0"
 msgid "{login:error_header}"
 msgstr "Σφάλμα"
 
-msgid "{errors:title_USERABORTED}"
-msgstr "Η ταυτοποίηση ματαιώθηκε"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Μία ή περισσότερες υπηρεσίες με τις οποίες είστε συνδεδεμένος/η δεν "
