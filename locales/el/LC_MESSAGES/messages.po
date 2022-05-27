@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{status:subject_format}"
-msgstr "Μορφή (format)"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Τα παρακάτω πεδία δεν αναγνωρίστηκαν"
 

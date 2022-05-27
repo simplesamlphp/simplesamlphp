@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{status:subject_format}"
-msgstr "Formato"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "No se han reconocido los siguientes datos"
 

@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{status:subject_format}"
-msgstr "Format"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Følgende felter kunne ikke tolkes"
 

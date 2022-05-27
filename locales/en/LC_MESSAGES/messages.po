@@ -39,9 +39,6 @@ msgstr ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 
-msgid "{status:subject_format}"
-msgstr "Format"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "The following fields was not recognized"
 

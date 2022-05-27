@@ -156,7 +156,7 @@ msgstr ""
 "Umqalisi wesi sicelo akanikelanga ngepharamitha ye-RelayState apho "
 "kufanele kuyiwe khona."
 
-msgid "{status:subject_format}"
+msgid "Format"
 msgstr "Ufomatho"
 
 msgid "You did not present a valid certificate."

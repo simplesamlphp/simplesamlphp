@@ -159,7 +159,7 @@ msgstr ""
 "Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState "
 "ebonisa ukuthi kufanele uye kuphi ngokulandelayo."
 
-msgid "{status:subject_format}"
+msgid "Format"
 msgstr "Ifomethi"
 
 msgid "You did not present a valid certificate."

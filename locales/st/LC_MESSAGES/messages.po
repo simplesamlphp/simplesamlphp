@@ -113,9 +113,6 @@ msgstr "Mokgelo o sa rarollwang"
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "Ha ho RelayState"
 
-msgid "{status:subject_format}"
-msgstr "Fomata"
-
 msgid "Password"
 msgstr "Phasewete"
 
