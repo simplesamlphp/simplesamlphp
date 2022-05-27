@@ -43,9 +43,6 @@ msgstr ""
 "Do kan skru av debug modus i den globale SimpleSAMLphp konfigurasjonsfila"
 " <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Feil brukernavn eller passord."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Innloggingstjenesten mottok en autentiserings-forespørsel fra en "

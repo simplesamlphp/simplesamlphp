@@ -46,9 +46,6 @@ msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Feil brukarnamn eller passord."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Denne identitetsleverandøren (IdP) mottok ei autentiseringsmelding frå "

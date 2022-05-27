@@ -52,9 +52,6 @@ msgstr ""
 "U kunt debug mode uitschakelen in de globale SimpleSAMLphp configuratie "
 "file <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Gebruikersnaam of wachtwoord niet bekend."
-
 msgid "{login:remember_username}"
 msgstr "Onthoud gebruikersnaam"
 

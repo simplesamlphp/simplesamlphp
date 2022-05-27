@@ -33,9 +33,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Väärä tunnus tai salasana."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identiteetintarjoaja sai tunnistautumispyynnön palveluntarjoajalta, mutta"

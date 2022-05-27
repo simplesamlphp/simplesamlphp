@@ -33,9 +33,6 @@ msgstr "サービスディスカバリに送信したパラメータが仕様に
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
 
-msgid "{login:error_wrongpassword}"
-msgstr "ユーザー名かパスワードが間違っています。"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "このアイデンティティプロバイダはサービスプロバイダからの認証リクエストを受け付けましたが、リクエストの処理中にエラーが発生しました。"
 

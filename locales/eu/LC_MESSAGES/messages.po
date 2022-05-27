@@ -47,9 +47,6 @@ msgstr ""
 "Arazketa modua desaktibatu daiteke SimpleSAMLphp "
 "<tt>config/config.php</tt> konfigurazio orokorreko fitxategian."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Erabiltzaile-izena edo pasahitza okerra"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "IdP honek zerbitzu hornitzaile baten kautotze eskaera jaso du baina "

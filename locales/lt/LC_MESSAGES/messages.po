@@ -43,9 +43,6 @@ msgstr ""
 "Jūs galite išjungti detalųjį naršymą globaliame SimpleSAMLphp "
 "konfigūraciniame faile <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Neteisingas prisijungimo vardas arba slaptažodis."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos "

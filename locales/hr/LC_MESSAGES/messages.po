@@ -48,9 +48,6 @@ msgstr ""
 "Mod za otkrivanje grešaka možete isključiti u glavnoj SimpleSAMLphp "
 "konfiguracijskoj datoteci <tt>config/config.php</tt>. "
 
-msgid "{login:error_wrongpassword}"
-msgstr "Neispravna korisnička oznaka ili zaporka."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Autentifikacijski servis je dobio zahtjev od davatelja usluge, ali se "

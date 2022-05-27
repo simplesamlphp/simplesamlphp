@@ -47,9 +47,6 @@ msgstr ""
 "Anda dapat menonaktifkan mode debuh pada file konfigurasi global "
 "simpleSAMLhphp  <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Username atau password salah"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identity Provider ini menerima Request Autentifikasi dari sebuah Service "

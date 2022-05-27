@@ -31,9 +31,6 @@ msgstr ""
 "D'Parameter fir den Disovery Service woren net korrekt par rapport zur "
 "Specifikatioun"
 
-msgid "{login:error_wrongpassword}"
-msgstr "Falschen Benotzernumm oder Passwuert"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, "

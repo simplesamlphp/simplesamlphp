@@ -42,9 +42,6 @@ msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
 "hibakereső módot."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Hibás felhasználói név vagy jelszó!"
-
 msgid "{login:remember_username}"
 msgstr "Emlékezzen a felhasználónevemre"
 

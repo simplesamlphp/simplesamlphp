@@ -46,9 +46,6 @@ msgstr ""
 "Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
 "στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος."
-
 msgid "{login:remember_username}"
 msgstr "Να θυμάσαι το όνομα χρήστη"
 

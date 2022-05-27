@@ -42,9 +42,6 @@ msgstr ""
 "Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski "
 "datoteki <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Napačno uporabniško ime ali geslo!"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri"

@@ -48,9 +48,6 @@ msgstr ""
 "\"Debug\" modunu global SimpleSAMLphp konfigürasyon dosyasında "
 "<tt>config/config.php</tt> kapatabilirsiniz."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Kullanıcı adı ve/veya şifre yanlış."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Bu Kimlik Sağlayıcı bir Servis Sağlayıcı'dan kimlik doğrulama isteği "

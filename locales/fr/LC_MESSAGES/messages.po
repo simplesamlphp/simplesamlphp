@@ -47,9 +47,6 @@ msgstr ""
 "Vous pouvez désactivez le mode débogage dans le fichier de configuration "
 "globale de SimpleSAMLphp (<tt>config/config.php</tt>)."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Mauvais identifiant ou mot de passe."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Ce fournisseur de service a reçu une requête d'authentification d'un "

@@ -295,7 +295,7 @@ msgstr ""
 msgid "You have successfully logged out from all services listed above."
 msgstr "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla."
 
-msgid "{login:error_wrongpassword}"
+msgid "Incorrect username or password."
 msgstr "Igama lomsebenzisi noma iphasiwedi engalungile."
 
 msgid "{login:error_header}"

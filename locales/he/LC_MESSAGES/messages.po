@@ -39,9 +39,6 @@ msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "סיסמה או שם משתמש לא נכונים."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "ספק זהות זה קיבל בקשת הזדהות מספק שירות, אולם קרתה שגיאה בזמן עיבוד הבקשה."
 

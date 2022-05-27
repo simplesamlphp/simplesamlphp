@@ -40,9 +40,6 @@ msgstr ""
 "Můžete vypnout debug mód v globální konfiguraci SimpleSAMLphp "
 "<tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Nesprávné jméno nebo heslo."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Tento poskytovatel identity přijal požadavek od poskytovatele služby, ale"

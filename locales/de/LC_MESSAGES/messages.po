@@ -47,9 +47,6 @@ msgstr ""
 "Sie können den Debug-Modus in der globalen SimpleSAMLphp-"
 "Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Falscher Benutzername oder Passwort."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dieser Identity Provider hat eine Authentifizierungsanfrage von einem "

@@ -47,9 +47,6 @@ msgstr ""
 "Debug mod možete isključiti u glavnom SimpleSAMLphp konfiguracionom fajlu"
 " <tt>config/config.php</tt>. "
 
-msgid "{login:error_wrongpassword}"
-msgstr "Neispravno korisničko ime ili lozinka."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Davalac Identiteta je primio zahtev za autentikacijom od strane Davaoca "

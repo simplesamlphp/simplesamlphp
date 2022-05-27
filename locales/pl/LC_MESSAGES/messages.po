@@ -40,9 +40,6 @@ msgstr ""
 "Możesz wyłaczyć globalnie tryb debugowania w pliku  "
 "<tt>config/config.php</tt>."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Nieprawidłowa nazwa użytkownika lub hasło."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dostawca tożsamości otrzymał od dostawcy usługi zlecenie "

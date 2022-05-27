@@ -44,9 +44,6 @@ msgstr ""
 "Pode desligar o modo debug no ficheiro global de configuração "
 "<tt>config/config.php</tt> do SimpleSAMLphp."
 
-msgid "{login:error_wrongpassword}"
-msgstr "Nome de utilizador ou senha incorrecta."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Ocorreu um erro ao processar o pedido de autenticação emitido pelo "
