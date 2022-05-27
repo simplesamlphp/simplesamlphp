@@ -57,9 +57,6 @@ msgstr ""
 "Iz nekog razloga autentifikacionom servisu nije prosleđena vaša lozinka. "
 "Molimo pokušajte ponovo."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Podaci o stanju su izgubljeni i zahtev se ne može reprodukovati"
-
 msgid "{login:password}"
 msgstr "Lozinka"
 

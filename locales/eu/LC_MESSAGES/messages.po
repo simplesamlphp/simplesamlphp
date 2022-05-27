@@ -57,9 +57,6 @@ msgstr ""
 "Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitza"
 " ez da bidali.Saia zaitez berriro, mesedez."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Egoera informazioa galdua eta ez dago modurik eskaera berrabiarazteko"
-
 msgid "{login:password}"
 msgstr "Pasahitza"
 

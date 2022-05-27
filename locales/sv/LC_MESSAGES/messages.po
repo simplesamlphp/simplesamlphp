@@ -58,11 +58,6 @@ msgstr ""
 "Du skicka in en inloggningsförfrågan men det verkar som om ditt lösenord "
 "inte fanns med i förfrågan. Försök igen!"
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Sessionsinformationen är borttappad och det är inte möjligt att "
-"återstarta förfrågan"
-
 msgid "{login:password}"
 msgstr "Lösenord"
 

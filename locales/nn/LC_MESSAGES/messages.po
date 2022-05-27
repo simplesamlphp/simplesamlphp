@@ -55,9 +55,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Passordet blei ikkje sendt. Prøv på nytt."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Mista tilstandsinformasjon, og klarer ikkje å gjera omstart"
-
 msgid "{login:password}"
 msgstr "Passord"
 

@@ -54,11 +54,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Ο κωδικός πρόσβασης δεν εστάλη. Παρακαλώ, προσπαθήστε ξανά."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Δεν ήταν δυνατό να εξυπηρετηθεί το αίτημά σας καθώς δεν βρέθηκαν "
-"πληροφορίες σχετικά με την κατάστασή του"
-
 msgid "{login:password}"
 msgstr "Κωδικός"
 

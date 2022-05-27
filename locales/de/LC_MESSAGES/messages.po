@@ -59,11 +59,6 @@ msgstr ""
 " ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es "
 "erneut."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Die Statusinformationen gingen verloren und die Anfrage kann nicht neu "
-"gestartet werden"
-
 msgid "{login:password}"
 msgstr "Passwort"
 

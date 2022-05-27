@@ -57,9 +57,6 @@ msgstr ""
 "Usted envió algo a la página de acceso pero, por algún motivo, la clave "
 "no fue enviada. Inténtelo de nuevo, por favor."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Información de estado perdida y no hay manera de restablecer la petición"
-
 msgid "{login:password}"
 msgstr "Clave de acceso"
 

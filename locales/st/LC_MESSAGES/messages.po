@@ -691,11 +691,6 @@ msgstr ""
 msgid "Yes, continue"
 msgstr "E"
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Tlhahisoleeding ya porofensi e lahlehile, mmeha ho tsela ya ho qala kopo "
-"botjha"
-
 msgid "Username"
 msgstr "Lebitso la mosebedisi"
 

@@ -47,11 +47,6 @@ msgstr ""
 "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "
 "asb. weer."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Toestandsinformasie verlore en daar is geen manier om die versoek weer te"
-" stuur nie"
-
 msgid "{login:password}"
 msgstr "Wagwoord"
 

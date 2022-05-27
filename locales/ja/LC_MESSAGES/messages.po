@@ -39,9 +39,6 @@ msgstr "このアイデンティティプロバイダはサービスプロバイ
 msgid "{login:error_nopassword}"
 msgstr "あなたはログインページで何かを送信しましたが、何らかの理由でパスワードが送信されませんでした。再度試してみてください。"
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "状態情報を失い、リクエストを再開出来ません"
-
 msgid "{login:password}"
 msgstr "パスワード"
 

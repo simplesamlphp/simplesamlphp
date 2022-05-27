@@ -62,11 +62,6 @@ msgstr ""
 "Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet "
 "verstuurd. Probeer het opnieuw AUB."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr ""
-"Informatie over de toestand is verloren, en het verzoek kan niet herstart"
-" worden"
-
 msgid "{login:password}"
 msgstr "Wachtwoord"
 

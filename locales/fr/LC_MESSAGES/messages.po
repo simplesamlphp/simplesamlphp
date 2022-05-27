@@ -59,9 +59,6 @@ msgstr ""
 " raison inconnue votre mot de passe n'a pas été transmis. Veuillez "
 "réessayer."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Information d'état perdue, et aucun moyen de relancer la requête"
-
 msgid "{login:password}"
 msgstr "Mot de passe"
 

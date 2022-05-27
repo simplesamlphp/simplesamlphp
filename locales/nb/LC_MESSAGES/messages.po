@@ -51,9 +51,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Du kontaktet loginsiden, men passordet ble ikke sendt med. Forsøk igjen."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Tilstandsinformasjon tapt, det er ikke mulig å gjenoppta forespørselen"
-
 msgid "{login:password}"
 msgstr "Passord"
 

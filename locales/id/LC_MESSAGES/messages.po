@@ -57,9 +57,6 @@ msgstr ""
 "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan "
 "tertentu password tidak terkirimkan, Silahkan coba lagi."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Informasi state hilang, dan tidak ada cara untuk me-restat request"
-
 msgid "{login:password}"
 msgstr "Password"
 

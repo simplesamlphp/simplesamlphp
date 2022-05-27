@@ -50,9 +50,6 @@ msgstr ""
 "Wysłałeś \"coś\" do strony logowania, ale z jakiś powodów hasło nie "
 "zostało wysłane. Spróbuj jeszcze raz."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Utracono informacje o stanie i nie ma możliwości ponowienia zlecenia"
-
 msgid "{login:password}"
 msgstr "Hasło"
 

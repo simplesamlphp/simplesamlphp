@@ -57,9 +57,6 @@ msgstr ""
 "Ați trimis informații către pagina de autentificare dar din motive "
 "necunoscute parola nu a fost trimisă. Vă rugăm să încercați din nou."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "Informația de stare a fost pierdută, cererea nu poate fi reluată"
-
 msgid "{login:password}"
 msgstr "Parola"
 

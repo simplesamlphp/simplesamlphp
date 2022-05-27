@@ -59,9 +59,6 @@ msgstr ""
 "You sent something to the login page, but for some reason the password "
 "was not sent. Try again please."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "State information lost, and no way to restart the request"
-
 msgid "{login:password}"
 msgstr "Password"
 

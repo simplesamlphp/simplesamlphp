@@ -34,7 +34,7 @@ msgstr ""
 "ulungiselelo lwakho  lweempawu-ngcaciso zefayile lusetwe "
 "ngokuchanekileyo."
 
-msgid "{errors:descr_NOSTATE}"
+msgid "State information lost, and no way to restart the request"
 msgstr "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo"
 
 msgid "No SAML request provided"

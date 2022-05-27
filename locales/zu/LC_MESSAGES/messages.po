@@ -33,7 +33,7 @@ msgstr ""
 "ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho "
 "lwemethadatha lumiswe ngendlela efanele."
 
-msgid "{errors:descr_NOSTATE}"
+msgid "State information lost, and no way to restart the request"
 msgstr ""
 "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha "
 "isicelo"

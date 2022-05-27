@@ -48,9 +48,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Dit kodeord blev ikke sendt - prøv igen."
 
-msgid "{errors:descr_NOSTATE}"
-msgstr "State information er tabt og der er ikke muligt at gentage forspørgelsen"
-
 msgid "{login:password}"
 msgstr "Kodeord"
 
