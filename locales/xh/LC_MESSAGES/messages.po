@@ -478,7 +478,7 @@ msgstr "Ayikwazi ukubuyisela ingcombolo yeseshoni"
 msgid "Some error occurred"
 msgstr "Kwenzeke impazamo ethile"
 
-msgid "{errors:errorreport_text}"
+msgid "The error report has been sent to the administrators."
 msgstr "Ingxelo yempazamo ithunyelwe kubalawuli."
 
 msgid "No SAML message provided"

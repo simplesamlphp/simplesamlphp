@@ -215,9 +215,6 @@ msgstr "Log out dari layanan-layanan berikut:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Sekarang anda telah sukses log out dari %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Laporan error telah dikirimkan ke administrator"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

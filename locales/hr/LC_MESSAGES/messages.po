@@ -218,9 +218,6 @@ msgstr "Odjavljujete se iz sljedećih servisa:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Uspješno ste odjavljeni iz %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Prijava greške poslana je administratorima."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

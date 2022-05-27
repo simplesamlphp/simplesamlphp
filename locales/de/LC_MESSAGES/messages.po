@@ -223,9 +223,6 @@ msgstr "Melde Sie von den folgenden Diensten ab:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Sie wurden erfolgreich von %SP% abgemeldet"
 
-msgid "{errors:errorreport_text}"
-msgstr "Der Fehlerbericht wurde an den Administrator gesendet."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

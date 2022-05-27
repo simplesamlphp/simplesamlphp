@@ -484,7 +484,7 @@ msgstr "Ayikwazi ukubuyisela idatha yeseshini"
 msgid "Some error occurred"
 msgstr "Kuvele iphutha elithile"
 
-msgid "{errors:errorreport_text}"
+msgid "The error report has been sent to the administrators."
 msgstr "Umbiko wephutha uthunyelwe kubalawuli."
 
 msgid "No SAML message provided"

@@ -227,9 +227,6 @@ msgstr "Выход из следующих служб:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Вы успешно вышли из службы %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Сообщение об ошибке было отправлено администраторам."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

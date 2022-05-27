@@ -451,9 +451,6 @@ msgstr ""
 msgid "SimpleSAMLphp error"
 msgstr "Phoso ya SimpleSAMLphp"
 
-msgid "{errors:errorreport_text}"
-msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
-
 msgid "Service Provider"
 msgstr "Mofani wa Tshebeletso"
 

@@ -219,9 +219,6 @@ msgstr "Deautentificare din următoarele servicii:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Ați fost deautentificat din %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Raportul cu erori a fost trimis către administratori."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

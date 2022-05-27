@@ -210,9 +210,6 @@ msgstr "Odjava iz naslednjih storitev:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Uspešno ste se odjavili s ponudnika storitev: %SP%"
 
-msgid "{errors:errorreport_text}"
-msgstr "Poročilo o napaki je bilo poslano skrbnikom sistema."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

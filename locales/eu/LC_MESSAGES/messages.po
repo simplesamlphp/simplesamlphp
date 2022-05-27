@@ -215,9 +215,6 @@ msgstr "Honako zerbitzu hauen saioak itxi:"
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP% saioa zuzen itxi da."
 
-msgid "{errors:errorreport_text}"
-msgstr "Errore txostena administratzaileei bidali zaie."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"

@@ -238,9 +238,6 @@ msgstr "Uitloggen van de volgende diensten:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Je bent nu succesvol uitgelogd van %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Het foutmeldingsrapport is verstuurd naar de beheerders"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

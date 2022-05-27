@@ -167,9 +167,6 @@ msgstr "Afmelding van die volgende dienste:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Jy is suksesvol afgemeld van %SP% af."
 
-msgid "{errors:errorreport_text}"
-msgstr "Die foutmeldings verslag is gestuur na die administrateurs."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

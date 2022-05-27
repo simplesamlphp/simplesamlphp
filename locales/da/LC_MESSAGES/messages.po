@@ -216,9 +216,6 @@ msgstr "Du logger ud af følgende services:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Du er nu logget ud fra %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Fejlrapporten er nu sendt til system-administrator"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

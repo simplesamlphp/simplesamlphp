@@ -209,9 +209,6 @@ msgstr "Vyksta atjungimas nuo šių paslaugų:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Jūs sėkmingai buvote atjungtas iš %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Pranešimas apie klaidą išsiųstas administratoriams."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

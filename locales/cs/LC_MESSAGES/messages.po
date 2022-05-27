@@ -210,9 +210,6 @@ msgstr ""
 "<strong>%REQUESTERNAME%</strong>. Globální odhlášení znamená, že budete "
 "odhlášen ze všech následující služeb."
 
-msgid "{errors:errorreport_text}"
-msgstr "Zpráva o chybě byla zaslána administrátorům."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

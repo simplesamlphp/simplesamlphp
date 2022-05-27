@@ -220,9 +220,6 @@ msgstr "Loggar ut från följande tjänster:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Du har nu loggat ut från %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Felrapporten är skickad till den som sköter systemet."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

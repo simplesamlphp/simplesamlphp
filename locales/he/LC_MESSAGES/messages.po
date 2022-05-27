@@ -202,9 +202,6 @@ msgstr "מתנתק מהשרותים הבאים:"
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP%-נותקת בהצלחה מ"
 
-msgid "{errors:errorreport_text}"
-msgstr "דוח השגיאה נשלח למנהל המערכת."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

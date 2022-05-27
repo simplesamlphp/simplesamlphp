@@ -210,9 +210,6 @@ msgstr "Wylogowanie z następujących serwisów:"
 msgid "{logout:loggedoutfrom}"
 msgstr "Zostałeś pomyślnie wylogowany z %SP%."
 
-msgid "{errors:errorreport_text}"
-msgstr "Raport o błędzie został wysłany do administratorów."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

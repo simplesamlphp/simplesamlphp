@@ -192,9 +192,6 @@ msgstr "从下列服务中退出"
 msgid "{logout:loggedoutfrom}"
 msgstr "你已成功从%SP%退出"
 
-msgid "{errors:errorreport_text}"
-msgstr "错误报告已经发送给管理员"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 
