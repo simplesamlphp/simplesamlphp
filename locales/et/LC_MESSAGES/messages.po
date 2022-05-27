@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr "Kuna oled silumisrežiimis, siis on sul võimalik näha saadetava teate sisu:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud "

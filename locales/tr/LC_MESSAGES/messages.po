@@ -18,11 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"\"Debug\" modda olduğunuz için, gönderdiğiniz mesajın içeriğini "
-"göreceksiniz."
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "

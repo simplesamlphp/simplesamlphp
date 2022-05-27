@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Estando em modo debug, pode consultar o conteúdo da mensagem que está a "
-"enviar:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML contém"

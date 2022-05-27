@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr "Le mode de débogage est activé, le contenu du message envoyé est affiché :"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "

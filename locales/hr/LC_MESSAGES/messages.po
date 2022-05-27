@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Obzirom da ste u modu za otkrivanje grešaka, imate mogućnost vidjeti "
-"sadržaj poruke koju šaljete:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Autentifikacijski servis je poslao odgovor koji sadrži informaciju o "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr "当你处在调试模式中时，你将看到你正在发送的消息的内容"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "身份提供者的应答存在错误（SAML应答状态码并没有成功）"
 

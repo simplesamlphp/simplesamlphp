@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Если вы находитесь в режиме отладки сообщения, вы сможете наблюдать "
-"содержимое сообщения."
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Провайдер идентификации сообщает об ошибке. (Код статус в отклике SAML "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Επειδή είστε σε κατάσταση εντοπισμού σφαλμάτων (debug), μπορείτε να δείτε"
-" το περιεχόμενο του μηνύματος που στέλνετε:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "

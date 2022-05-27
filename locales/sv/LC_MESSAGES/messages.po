@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Med avseende på att du är i debugläge kommer du att se innehållet i "
-"meddelandet som du skickar:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. "

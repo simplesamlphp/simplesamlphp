@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr "כיוון שאתה במצב מבדיקת באגים, אתה רואה את תוכן ההודעה שאתה שולח:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "ספק הזיהות החזיר שגיאה. (קוד המצב בתגובת ה SAML שונה מהצלחה)"
 

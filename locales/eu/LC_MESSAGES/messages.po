@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Arazketa moduan egonez gero, bidaltzera zoazen mezuaren edukia ikusiko "
-"duzu: "
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Idp-ak errore batekin erantzun dio eskaerari. (SAML erantzunean egoera "

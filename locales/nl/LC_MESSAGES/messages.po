@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Omdat u in debug mode bent, kunt u de inhoud van het bericht dat u "
-"verstuurt inzien"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "De Identity Provider antwoordde met een fout. (De statuscode in de SAML "

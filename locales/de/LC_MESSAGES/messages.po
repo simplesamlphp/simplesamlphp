@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr ""
-"Da Sie sich im Debug-Modus befinden, sehen Sie den Inhalt der Nachricht, "
-"die Sie senden:"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr ""
 "Der Identity Provider gab einen Fehler zurück (Der Statuscode in der "

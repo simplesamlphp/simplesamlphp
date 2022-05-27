@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_sending_message_msg_text}"
-msgstr "現在はデバッグモードです。あなたは送信するメッセージの内容を見ることが出来ます。"
-
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
