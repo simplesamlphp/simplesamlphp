@@ -277,11 +277,6 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Inisiator dari request ini tidak menyediakan parameter RelayState yang "
-"mengindikasikan kemana selanjutnya pergi."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

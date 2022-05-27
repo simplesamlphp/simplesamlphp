@@ -292,11 +292,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Инициатор данного запроса не предоставил параметр RelayState с указанием "
-"следующей точки перехода."
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

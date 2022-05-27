@@ -260,9 +260,6 @@ msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעל
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr "יוזם הבקשה לא סיפק פרמטר RelayState המציין לאן ללכת ."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

@@ -272,9 +272,6 @@ msgstr ""
 "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "
 "zagotovili \"SAML Authentication Responsa\"."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

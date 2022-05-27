@@ -271,11 +271,6 @@ msgstr ""
 "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "
 "SAML autentifikācijas atbildi."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Pieprasījuma veidotājs nav norādījis RelayState parametru, kas parādītu, "
-"kurp iet tālāk."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

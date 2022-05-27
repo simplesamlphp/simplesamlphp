@@ -293,11 +293,6 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"The initiator of this request did not provide a RelayState parameter "
-"indicating where to go next."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

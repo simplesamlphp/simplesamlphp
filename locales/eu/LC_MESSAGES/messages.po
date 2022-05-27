@@ -274,11 +274,6 @@ msgstr ""
 "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
 "kautotze erantzun bat erantsi."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "
-"RelayState parametroa"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

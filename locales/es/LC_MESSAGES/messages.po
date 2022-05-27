@@ -298,11 +298,6 @@ msgstr ""
 "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
 " respuesta de autenticación SAML."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"El iniciador de esta solicitud no proporcion&oacute; el par&aacute;metro "
-"RelayState que indica donde ir a continuaci&oacute;n"
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

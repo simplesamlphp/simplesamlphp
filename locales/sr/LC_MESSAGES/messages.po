@@ -280,12 +280,6 @@ msgstr ""
 "Pristupili ste sistemu za obradu SAML potvrda, ali niste dostavili SAML "
 "autentikacioni odgovor."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Servis koji je inicirao ovaj zahtjev nije poslao RelayState parametar "
-"koji sadrži adresu na koju treba preusmeriti korisnikov web pretraživač "
-"nakon uspešne autentifikacije."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

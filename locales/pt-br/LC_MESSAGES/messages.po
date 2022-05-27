@@ -284,11 +284,6 @@ msgstr ""
 "Você acessou a interface do Assertion Consumer Service, mas não forneceu "
 "uma SAML Authentication Response."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"O promotor deste pedido não fornecer um parâmetro RelayState indicando o "
-"local para onde seguir."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Celular"
 

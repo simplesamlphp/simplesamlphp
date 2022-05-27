@@ -117,9 +117,6 @@ msgstr ""
 "Der hud den Assertion Consumer Sercice Interface accédéiert mais keng "
 "SAML Authentication Aentwert unginn"
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

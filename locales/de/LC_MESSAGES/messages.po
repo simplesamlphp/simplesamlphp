@@ -285,11 +285,6 @@ msgstr ""
 "Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
 "aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "
-"bereitgestellt, der Auskunft gibt, wohin Sie weitergeleitet werden sollen."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

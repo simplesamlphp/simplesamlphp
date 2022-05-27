@@ -247,9 +247,6 @@ msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの�
 msgid "{errors:descr_ACSPARAMS}"
 msgstr "Assertion Consumer Serviceインターフェースへアクセスしましたが、SAML認証レスポンスが提供されませんでした。"
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

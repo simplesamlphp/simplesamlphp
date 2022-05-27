@@ -282,11 +282,6 @@ msgstr ""
 "Du har anropat gränssnittet för Assertion Consumer Service utan att "
 "skicka med någon SAML Authentication Responce."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "
-"medför att nästa plats inte är definierad."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

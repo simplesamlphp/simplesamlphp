@@ -305,11 +305,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"De afzender van deze request heeft geen RelayState parameter meegestuurd "
-"om aan te geven wat de volgende bestemming is."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

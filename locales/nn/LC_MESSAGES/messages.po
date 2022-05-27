@@ -277,11 +277,6 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "
-"Då veit vi ikke kvar vi skal, og det blir feil."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

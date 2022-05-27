@@ -269,11 +269,6 @@ msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
 "autentikacijos atsakymo."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "
-"nusako kur toliau kreiptis."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

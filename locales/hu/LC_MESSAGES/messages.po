@@ -273,11 +273,6 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "
-"határozza meg, hogy hová irányítsuk tovább."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

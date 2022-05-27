@@ -282,12 +282,6 @@ msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "
 "autentifikacijski odgovor."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Aplikacija koja je inicirala ovaj zahtjev nije poslala RelayState "
-"parametar koji sadrži adresu na koju treba preusmjeriti korisnikov web "
-"preglednik nakon uspješne autentifikacije."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

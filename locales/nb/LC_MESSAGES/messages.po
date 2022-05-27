@@ -273,11 +273,6 @@ msgstr ""
 "Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
 "AuthenticationResponse."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Kilden til denne forespørselen har ikke angitt noen RelayState-parameter "
-"som angir hvor vi skal fortsette etterpå."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

@@ -270,9 +270,6 @@ msgstr ""
 "Přistupujete k Assertion Consumer Service rozhraní, ale neposíláte SAML"
 " Authentication Response."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam pokračovat."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

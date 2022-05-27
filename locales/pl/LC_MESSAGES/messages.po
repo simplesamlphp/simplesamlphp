@@ -270,11 +270,6 @@ msgstr ""
 "Została wywołana usługa Assertion Consumer Service, ale nie dostarczono "
 "komunikatu SAML 'Authentication Response'"
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "
-"gdzie przekazać zlecenie."
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
 

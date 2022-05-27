@@ -272,11 +272,6 @@ msgstr ""
 "Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
 "autentimisvastust."
 
-msgid "{errors:descr_NORELAYSTATE}"
-msgstr ""
-"Selle päringu algataja ei täitnud RelayState parameetrit, mis näitab, "
-"kuhu edasi minna."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 
