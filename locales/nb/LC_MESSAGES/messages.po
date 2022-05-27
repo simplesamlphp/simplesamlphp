@@ -235,9 +235,6 @@ msgstr "Nei"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "SAML 2.0 SP metadata"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Konvertert metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

@@ -232,9 +232,6 @@ msgstr "لا"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "البيانات الوصفية ل SAML 2.0 SP"
 
-msgid "{admin:metaconv_converted}"
-msgstr "بيانات وصفية محولة"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

@@ -254,9 +254,6 @@ msgstr "Нет"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "Метаданные сервис провайдера SAML 2.0 SP"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Преобразованные метаданные"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

@@ -239,9 +239,6 @@ msgstr "Tidak"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "Metadata SAML 2.0 SP"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Metadata yang telah dikonvesi"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

@@ -241,9 +241,6 @@ msgstr "Ne"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "SAML 2.0 SP metapodaci"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Konvertovani metapodaci"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

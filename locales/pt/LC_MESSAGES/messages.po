@@ -216,9 +216,6 @@ msgstr "Não"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "Metadados SAML 2.0 SP"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Resultado da conversão de Metadados"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

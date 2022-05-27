@@ -260,9 +260,6 @@ msgstr "No"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "Metadatos SP SAML 2.0"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Metadatos convertidos"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "

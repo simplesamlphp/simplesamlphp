@@ -226,9 +226,6 @@ msgstr "לא"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "מטא-מידע של סש מסוג SAML 2.0 "
 
-msgid "{admin:metaconv_converted}"
-msgstr "מטא-מידע מומר"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

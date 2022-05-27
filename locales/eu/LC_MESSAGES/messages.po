@@ -236,9 +236,6 @@ msgstr "Errorea CAS zerbitzariarekin komunikatzen saiatzean"
 msgid "{general:no}"
 msgstr "Ez"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Bihurtutako metadatuak"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"

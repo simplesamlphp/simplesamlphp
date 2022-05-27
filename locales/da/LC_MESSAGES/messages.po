@@ -243,9 +243,6 @@ msgstr "Nej"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "SAML 2.0 tjenesteudbyders metadata"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Konverteret metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

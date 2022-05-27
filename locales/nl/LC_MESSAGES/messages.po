@@ -265,9 +265,6 @@ msgstr "Nee"
 msgid "{admin:metadata_saml20-sp}"
 msgstr "SAML 2.0 SP Metadata"
 
-msgid "{admin:metaconv_converted}"
-msgstr "Geconverteerde metadata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "
