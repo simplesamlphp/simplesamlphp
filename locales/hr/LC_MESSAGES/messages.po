@@ -212,9 +212,6 @@ msgstr ""
 "Neuspješna autentifikacija: digitalni certifikat kojeg je poslao vaš web "
 "preglednik je nepoznat"
 
-msgid "{logout:logging_out_from}"
-msgstr "Odjavljujete se iz sljedećih servisa:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

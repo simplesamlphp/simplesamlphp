@@ -201,9 +201,6 @@ msgstr "Vyber konfiguračního souboru k verifikaci:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Přihlášení neproběhlo: certifikát který odeslal Váš prohlížeč je neznámý"
 
-msgid "{logout:logging_out_from}"
-msgstr "Odhlášení z následujících služeb:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

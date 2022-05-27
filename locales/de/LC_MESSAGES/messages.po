@@ -217,9 +217,6 @@ msgstr ""
 "Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist unbekannt"
 
-msgid "{logout:logging_out_from}"
-msgstr "Melde Sie von den folgenden Diensten ab:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

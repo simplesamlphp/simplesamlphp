@@ -203,9 +203,6 @@ msgstr "Tikrinti konfigūracijos failą:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nežinomas"
 
-msgid "{logout:logging_out_from}"
-msgstr "Vyksta atjungimas nuo šių paslaugų:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

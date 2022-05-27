@@ -213,9 +213,6 @@ msgstr ""
 "Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
 "este recunoscut"
 
-msgid "{logout:logging_out_from}"
-msgstr "Deautentificare din următoarele servicii:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

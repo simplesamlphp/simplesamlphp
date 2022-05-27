@@ -216,9 +216,6 @@ msgstr ""
 "L'autenticazione è fallita perché il tuo browser ha inviato un certificato"
 " sconosciuto."
 
-msgid "{logout:logging_out_from}"
-msgstr "Disconnessione in corso dai seguenti servizi:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

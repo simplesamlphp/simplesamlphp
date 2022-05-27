@@ -220,9 +220,6 @@ msgstr "Select configuration file to check:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Authentication failed: the certificate your browser sent is unknown"
 
-msgid "{logout:logging_out_from}"
-msgstr "Logging out of the following services:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

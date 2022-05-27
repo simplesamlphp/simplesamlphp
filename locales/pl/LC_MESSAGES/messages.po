@@ -204,9 +204,6 @@ msgstr ""
 "Nie powiodło się uwierzytelnienie: certyfikat przesłany przez "
 "przeglądarkę jest nieznany"
 
-msgid "{logout:logging_out_from}"
-msgstr "Wylogowanie z następujących serwisów:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

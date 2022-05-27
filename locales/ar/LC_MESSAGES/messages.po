@@ -202,9 +202,6 @@ msgstr "اختارملف الترتيب الذي ترغب  بمراجعته"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "فشل التوثيق لان متصفحك ارسل شهاده غير معلومة"
 
-msgid "{logout:logging_out_from}"
-msgstr "تسجيل خروج من الخدمات أدناه "
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

@@ -205,9 +205,6 @@ msgstr "Velg hvilken konfigurasjonfil som skal sjekkes"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Authentisering feilet: sertifikatet nettleseren din sendte er ukjent"
 
-msgid "{logout:logging_out_from}"
-msgstr "Logger ut fra følgende tjenester:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

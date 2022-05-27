@@ -232,9 +232,6 @@ msgstr ""
 "Authenticatie niet gelukt: het certificaat dat uw browser stuurde is "
 "onbekend"
 
-msgid "{logout:logging_out_from}"
-msgstr "Uitloggen van de volgende diensten:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

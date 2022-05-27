@@ -214,9 +214,6 @@ msgstr "Välj vilken konfigurationfil som ska kontrolleras:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Inloggning mislyckades: Certifikatet som din webbläsare skickade är okänt"
 
-msgid "{logout:logging_out_from}"
-msgstr "Loggar ut från följande tjänster:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

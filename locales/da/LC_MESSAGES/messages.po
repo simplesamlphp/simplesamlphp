@@ -210,9 +210,6 @@ msgstr "Vælg den konfiguration som skal undersøges"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Authentifikation fejlede: Certifikatet som din browser har send er ukendt"
 
-msgid "{logout:logging_out_from}"
-msgstr "Du logger ud af følgende services:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

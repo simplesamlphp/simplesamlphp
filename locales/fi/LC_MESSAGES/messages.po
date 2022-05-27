@@ -141,9 +141,6 @@ msgstr ""
 "uloskirjautumista</i>. Varmistaaksesi, että kaikki istuntosi sulkeutuvat,"
 " olet velvollinen <i>sulkemaan web-selaimesi</i>."
 
-msgid "{logout:logging_out_from}"
-msgstr "Kirjaudutaan ulos seuraavista palveluista:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "

@@ -203,9 +203,6 @@ msgstr ""
 "Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis "
 "nepazīstamu sertifikātu"
 
-msgid "{logout:logging_out_from}"
-msgstr "Atslēgšanās no šiem servisiem:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

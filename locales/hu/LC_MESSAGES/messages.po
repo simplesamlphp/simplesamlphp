@@ -205,9 +205,6 @@ msgstr "Válassza ki az ellenőrizendő konfigurációs állományt"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Azonosítási hiba: a böngésző által küldött tanúsítványt ismeretlen típusú."
 
-msgid "{logout:logging_out_from}"
-msgstr "Kilépés az alábbi szolgáltatásokból:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

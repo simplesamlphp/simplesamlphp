@@ -98,9 +98,6 @@ msgstr "Phoso ya Netefatso"
 msgid "The error report has been sent to the administrators."
 msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
 
-msgid "{logout:logging_out_from}"
-msgstr "E tswa ditshebeletsong tse latelang:"
-
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr ""
 "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se "

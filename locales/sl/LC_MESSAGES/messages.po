@@ -204,9 +204,6 @@ msgstr ""
 "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval "
 "nepoznano digitalno potrdilo"
 
-msgid "{logout:logging_out_from}"
-msgstr "Odjava iz naslednjih storitev:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

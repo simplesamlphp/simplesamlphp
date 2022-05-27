@@ -221,9 +221,6 @@ msgstr "Выберите файл конфигурации для проверк
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Ошибка при аутентификации: ваш браузер выслал неизвестный сертификат"
 
-msgid "{logout:logging_out_from}"
-msgstr "Выход из следующих служб:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

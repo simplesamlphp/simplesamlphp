@@ -215,9 +215,6 @@ msgstr ""
 "Échec de l'authentification : le certificat présenté par votre navigateur"
 " n'est pas connu"
 
-msgid "{logout:logging_out_from}"
-msgstr "Déconnexion des services suivants :"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "
