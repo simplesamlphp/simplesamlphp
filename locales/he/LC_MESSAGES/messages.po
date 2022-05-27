@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "

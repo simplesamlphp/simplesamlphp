@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Die gestuurde parameters na die ontdekkings diens was not volgens die "
-"korrekte spesifikasies nie."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Die Identiteits Verskaffer het 'n Verifikasie Versoek ontvang vanaf 'n "

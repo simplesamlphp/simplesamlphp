@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
-" nicht der Spezifikation."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Sie können den Debug-Modus in der globalen SimpleSAMLphp-"

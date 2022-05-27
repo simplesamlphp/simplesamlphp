@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Les paramètres envoyés au service de découverte automatique (discovery "
-"service) ne respectent pas les spécifications."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Vous pouvez désactivez le mode débogage dans le fichier de configuration "

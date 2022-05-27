@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Параметры, отправленные в службу обнаружения, не соответствуют "
-"спецификации."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Вы можете отключить режим отладки в файле конфигурации global "

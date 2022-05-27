@@ -324,7 +324,9 @@ msgstr ""
 msgid "Service Provider"
 msgstr "Umhlinzeki Wesevisi"
 
-msgid "{errors:descr_DISCOPARAMS}"
+msgid ""
+"The parameters sent to the discovery service were not according to "
+"specifications."
 msgstr "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
 
 msgid "SAML 2.0 SP Demo Example"

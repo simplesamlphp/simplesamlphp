@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Parameter sendt til Discovery Service er ikkje i samsvar med "
-"spesifikasjon."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "

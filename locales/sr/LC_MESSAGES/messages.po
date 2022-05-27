@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Debug mod možete isključiti u glavnom SimpleSAMLphp konfiguracionom fajlu"

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "
-"amelyek nem felelnek meg a specifikációnak."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "

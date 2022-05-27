@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "
-"doitzen."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Arazketa modua desaktibatu daiteke SimpleSAMLphp "

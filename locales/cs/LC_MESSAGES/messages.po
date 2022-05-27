@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Můžete vypnout debug mód v globální konfiguraci SimpleSAMLphp "

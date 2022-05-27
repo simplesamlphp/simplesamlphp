@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"D'Parameter fir den Disovery Service woren net korrekt par rapport zur "
-"Specifikatioun"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, "

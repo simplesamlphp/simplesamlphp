@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "
-"specificațiile."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "I parametri inviati al discovery service non rispettano le specifiche."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "&Egrave; possibile disabilitare la modalità di debug nel file di configurazione"

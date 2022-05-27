@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identiteetintarjoaja sai tunnistautumispyynnön palveluntarjoajalta, mutta"

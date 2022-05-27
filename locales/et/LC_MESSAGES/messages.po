@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Silumisrežiimi on võimalik välja lülitada SimpleSAMLphp "

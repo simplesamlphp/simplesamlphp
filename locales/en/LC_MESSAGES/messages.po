@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"The parameters sent to the discovery service were not according to "
-"specifications."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "You can turn off debug mode in the global SimpleSAMLphp configuration "

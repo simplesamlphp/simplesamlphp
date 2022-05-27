@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Parametrarna som skickades till lokaliseringstjänsten följde inte "
-"specifikationen."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan stänga av debugläget i SimpleSAMLphps globala konfigurationsfil "

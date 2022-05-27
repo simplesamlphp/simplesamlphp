@@ -460,11 +460,6 @@ msgstr "[Kgetho e kgethwang]"
 msgid "Do you want to logout from all the services above?"
 msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
 
-msgid "{errors:descr_DISCOPARAMS}"
-msgstr ""
-"Dipharamitha tse rometsweng tshebeltsong ya tshibollo di ne di se ho "
-"latela ditekanyetso."
-
 msgid "Error received from Identity Provider"
 msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
 
