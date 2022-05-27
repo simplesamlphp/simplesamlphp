@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_header}"
-msgstr "Detaljer for feilsøking"
-
 msgid "{admin:debug_sending_message_msg_text}"
 msgstr "Siden du er i debug modus kan du se innholdet i meldingene du sender."
 

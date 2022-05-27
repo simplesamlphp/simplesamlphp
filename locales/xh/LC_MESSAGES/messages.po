@@ -106,7 +106,7 @@ msgstr "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML."
 msgid "Help desk homepage"
 msgstr "Ikhasi lekhaya ledesika yoncedo"
 
-msgid "{errors:debuginfo_header}"
+msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
 
 msgid "{errors:title_NOACCESS}"

@@ -109,7 +109,7 @@ msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
 msgid "Help desk homepage"
 msgstr "Ikhasi lasekhaya ledeski losizo"
 
-msgid "{errors:debuginfo_header}"
+msgid "Debug information"
 msgstr "Ulwazi lokususwa kwephutha"
 
 msgid "{errors:title_NOACCESS}"

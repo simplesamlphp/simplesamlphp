@@ -18,9 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:debuginfo_header}"
-msgstr "Debug information"
-
 msgid "{admin:debug_sending_message_msg_text}"
 msgstr ""
 "As you are in debug mode, you get to see the content of the message you "

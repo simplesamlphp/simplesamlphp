@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_header}"
-msgstr "Silumisinfo"
-
 msgid "{admin:debug_sending_message_msg_text}"
 msgstr "Kuna oled silumisrežiimis, siis on sul võimalik näha saadetava teate sisu:"
 

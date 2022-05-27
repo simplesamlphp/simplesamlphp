@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_header}"
-msgstr "Bővebb információ a hibáról"
-
 msgid "{admin:debug_sending_message_msg_text}"
 msgstr "Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalmát"
 

@@ -71,9 +71,6 @@ msgstr "Tshwarisitswe"
 msgid "Authentication source error"
 msgstr "Phoso ya netefatso ya mohlodi"
 
-msgid "{errors:debuginfo_header}"
-msgstr "Tlhahisoleseding ya debug"
-
 msgid ""
 "The Identity Provider responded with an error. (The status code in the "
 "SAML Response was not success)"
