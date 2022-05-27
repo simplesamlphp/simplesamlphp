@@ -270,9 +270,6 @@ msgstr "Service Provider"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "There is an error in the request to this page. The reason was: %REASON%"
 
-msgid "{logout:no}"
-msgstr "No"
-
 msgid "[Preferred choice]"
 msgstr "[Preferred choice]"
 

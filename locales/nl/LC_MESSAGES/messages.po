@@ -284,9 +284,6 @@ msgstr ""
 "Er is een fout opgetreden in het verzoek voor deze pagina. De oorzaak is:"
 " %REASON%"
 
-msgid "{logout:no}"
-msgstr "Nee"
-
 msgid "[Preferred choice]"
 msgstr "[Voorkeurskeuze]"
 

@@ -254,9 +254,6 @@ msgstr ""
 "Det er ein feil i spørringa etter denne sida.  Grunnen til dette er "
 "%REASON%"
 
-msgid "{logout:no}"
-msgstr "Nei"
-
 msgid "[Preferred choice]"
 msgstr "Beste val"
 

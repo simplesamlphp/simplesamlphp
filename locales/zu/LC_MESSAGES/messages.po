@@ -526,7 +526,7 @@ msgstr ""
 "ukuziqinisekisa ukuze ufinyelele isevisi. Kungase kube khona ozokusiza. "
 "Thinta ideski losizo enhlanganweni yakho!"
 
-msgid "{logout:no}"
+msgid "No"
 msgstr "Cha"
 
 msgid ""

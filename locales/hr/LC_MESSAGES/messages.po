@@ -260,9 +260,6 @@ msgstr "Davatelj usluge"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Dogodila se greška prilikom dohvaćanja ove stranice. Razlog: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Ne"
-
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 

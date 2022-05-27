@@ -231,9 +231,6 @@ msgstr "服务提供者"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "请求该页的请求存在错误，原因：%REASON%"
 
-msgid "{logout:no}"
-msgstr "不"
-
 msgid "[Preferred choice]"
 msgstr "首选选项"
 

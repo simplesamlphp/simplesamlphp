@@ -263,9 +263,6 @@ msgstr "Provedor de Serviços"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Há um erro no pedido para esta página. O motivo foi: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Não"
-
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"
 

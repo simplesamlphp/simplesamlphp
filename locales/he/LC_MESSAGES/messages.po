@@ -243,9 +243,6 @@ msgstr "ספק שירות"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "ישנה שגיאה בבקשה לדף זה. הסיבה הייתה: %REASON%"
 
-msgid "{logout:no}"
-msgstr "לא"
-
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 

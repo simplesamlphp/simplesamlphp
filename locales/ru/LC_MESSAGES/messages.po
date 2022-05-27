@@ -271,9 +271,6 @@ msgstr "Поставщик услуг"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Ошибка в запросе к этой странице. Причина: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Нет"
-
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
 

@@ -246,9 +246,6 @@ msgstr "服務提供者"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "這裡有個錯誤於此頁面的請求。原因為：%REASON%"
 
-msgid "{logout:no}"
-msgstr "取消"
-
 msgid "[Preferred choice]"
 msgstr "喜好選擇"
 

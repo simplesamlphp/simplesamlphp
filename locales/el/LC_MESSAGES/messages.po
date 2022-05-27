@@ -275,9 +275,6 @@ msgstr "Πάροχος υπηρεσίας"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Όχι"
-
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 

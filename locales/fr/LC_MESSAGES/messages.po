@@ -265,9 +265,6 @@ msgstr "Fournisseur de service"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Erreur dans la requête de cette page. Motif : %REASON%"
 
-msgid "{logout:no}"
-msgstr "Non"
-
 msgid "[Preferred choice]"
 msgstr "[Choix préféré]"
 

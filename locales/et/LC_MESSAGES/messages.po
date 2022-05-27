@@ -253,9 +253,6 @@ msgstr "Teenusepakkuja"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Leheküljele esitati vigane päring. Põhjus: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Ei"
-
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 

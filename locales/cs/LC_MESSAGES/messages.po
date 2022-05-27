@@ -251,9 +251,6 @@ msgstr "Poskytovatel služby"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Chyba požadavku pro tuto stránku. Důvod je: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Ne"
-
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 

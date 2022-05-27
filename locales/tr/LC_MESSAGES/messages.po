@@ -236,9 +236,6 @@ msgstr "Servis Sağlayıcı"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Bu sayfaya yapılan istekte bir hata var. Nedeni %REASON% idi."
 
-msgid "{logout:no}"
-msgstr "Hayır"
-
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 

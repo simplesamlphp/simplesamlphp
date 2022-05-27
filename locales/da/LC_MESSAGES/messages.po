@@ -261,9 +261,6 @@ msgstr "Tjenesteudbyder"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Der er en fejl i forespørgslen til siden. Grunden er: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Nej"
-
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 

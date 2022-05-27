@@ -314,9 +314,6 @@ msgstr "Ho kena"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Netefatso e kgaoditswe ke mosebedisi"
 
-msgid "{logout:no}"
-msgstr "Tjhe"
-
 msgid "You did not present a valid certificate."
 msgstr "Ha o a fana ka setifikeiti se nepahetseng."
 

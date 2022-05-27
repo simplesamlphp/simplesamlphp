@@ -250,9 +250,6 @@ msgstr "Servisa piegādātājs"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Kļūdains pieprasījums šai lapai. Iemesls: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Nē"
-
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 

@@ -520,7 +520,7 @@ msgstr ""
 " ukuze ufumane ufikelelo kwinkonzo. Kusenokuba ukho umntu onokukunceda. "
 "Qhagamshelana nedesika yoncedo kumbutho wakho!"
 
-msgid "{logout:no}"
+msgid "No"
 msgstr "Hayi"
 
 msgid ""

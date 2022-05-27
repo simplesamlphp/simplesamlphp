@@ -199,9 +199,6 @@ msgstr "Diens Verskaffer"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Daar is 'n fout in die versoek na die bladsy. Die rede is: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Nee"
-
 msgid "[Preferred choice]"
 msgstr "[Verkies]"
 

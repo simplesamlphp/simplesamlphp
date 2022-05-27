@@ -173,9 +173,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Palveluntarjoaja"
 
-msgid "{logout:no}"
-msgstr "Ei"
-
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"
 

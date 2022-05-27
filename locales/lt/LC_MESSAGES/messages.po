@@ -250,9 +250,6 @@ msgstr "Paslaugos teikėjas"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Užklausoje į šį puslapį rasta klaida. Priežastis buvo: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Ne"
-
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"
 

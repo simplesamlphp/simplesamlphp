@@ -252,9 +252,6 @@ msgstr "Alkalmazásszolgáltató"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%"
 
-msgid "{logout:no}"
-msgstr "Nem"
-
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
 

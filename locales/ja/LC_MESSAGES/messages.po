@@ -231,9 +231,6 @@ msgstr "サービスプロバイダ"
 msgid "{errors:descr_BADREQUEST}"
 msgstr "ページのリクエスト中にエラーが発生しました。理由は: %REASON%"
 
-msgid "{logout:no}"
-msgstr "いいえ"
-
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
 
