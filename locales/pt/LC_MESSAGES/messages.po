@@ -207,9 +207,6 @@ msgstr "Saiu com sucesso de todos os serviços listados em cima."
 msgid "{admin:cfg_check_notices}"
 msgstr "Observações"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Ocorreu um erro ao comunicar com o servidor CAS."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

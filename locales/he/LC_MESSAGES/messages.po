@@ -217,9 +217,6 @@ msgstr "הודעות"
 msgid "{errors:descr_USERABORTED}"
 msgstr "ההיזדהות בוטלה על ידי המשתמש"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "שגיאה בהתקשרות עם שרת שהם."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

@@ -210,9 +210,6 @@ msgstr "Yukarıda listelenen tüm servislerden başarıyla çıktınız."
 msgid "{admin:cfg_check_notices}"
 msgstr "Notlar"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "CAS sunucusu ile iletişim kurarken hata"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

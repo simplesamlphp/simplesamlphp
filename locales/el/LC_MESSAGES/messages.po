@@ -249,9 +249,6 @@ msgstr "Ειδοποιήσεις"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστη."
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με τον εξυπηρετητή CAS."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

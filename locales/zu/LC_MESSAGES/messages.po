@@ -41,7 +41,7 @@ msgstr ""
 msgid "No SAML request provided"
 msgstr "Asikho isicelo se-SAML esinikeziwe"
 
-msgid "{errors:descr_CASERROR}"
+msgid "Error when communicating with the CAS server."
 msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
 
 msgid "{login:error_nopassword}"

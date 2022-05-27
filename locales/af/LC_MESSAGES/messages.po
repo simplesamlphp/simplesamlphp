@@ -179,9 +179,6 @@ msgstr "Jy het suksesvol afgemeld."
 msgid "{errors:descr_USERABORTED}"
 msgstr "Die verifikasie is gestop deur die gebruiker"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Fout tydens kommunikasie met die CAS bediener."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

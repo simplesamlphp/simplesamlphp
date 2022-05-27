@@ -40,7 +40,7 @@ msgstr "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo"
 msgid "No SAML request provided"
 msgstr "Akukho sicelo se-SAML sinikelweyo"
 
-msgid "{errors:descr_CASERROR}"
+msgid "Error when communicating with the CAS server."
 msgstr "Impazamo xa kunxibelelwana neseva ye-CAS."
 
 msgid "{login:error_nopassword}"

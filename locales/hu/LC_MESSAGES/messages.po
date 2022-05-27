@@ -226,9 +226,6 @@ msgstr "Megjegyzések"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Az azonosítást a felhasználó megszakította"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

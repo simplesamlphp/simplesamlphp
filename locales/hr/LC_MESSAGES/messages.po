@@ -233,9 +233,6 @@ msgstr "Napomene"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Korisnik je prekinuo proces autentifikacie"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Greška u komunikaciji sa CAS poslužiteljem."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

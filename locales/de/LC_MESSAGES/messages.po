@@ -238,9 +238,6 @@ msgstr "Anmerkungen"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Die Authentifizierung wurde durch den Benutzer abgebrochen"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Fehler bei der Kommunikation mit dem CAS-Server."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

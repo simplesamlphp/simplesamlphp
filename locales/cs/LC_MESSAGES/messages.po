@@ -225,9 +225,6 @@ msgstr "Poznámky"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Přihlášení bylo přerušeno uživatelem"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "Chyba při komunikaci s CAS serverem."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

@@ -156,9 +156,6 @@ msgstr "Uloskirjautumispyynnön käsittelyn yrityksessä tapahtui virhe"
 msgid "{logout:success}"
 msgstr "Olet onnistuneesti kirjautunut ulos kaikista yllä listatuista palveluista."
 
-msgid "{errors:descr_CASERROR}"
-msgstr "CAS-palvelun kättelyvirhe"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "

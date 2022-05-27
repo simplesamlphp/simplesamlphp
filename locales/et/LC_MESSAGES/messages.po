@@ -227,9 +227,6 @@ msgstr "Märkused"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Autentimine katkestati kasutaja poolt"
 
-msgid "{errors:descr_CASERROR}"
-msgstr "CAS-serveriga suhtlemisel tekkis tõrge."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "
