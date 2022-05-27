@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{status:header_saml20_sp}"
-msgstr "SAML 2.0 SP demonäide"
-
 msgid "{login:error_header}"
 msgstr "Tõrge"
 

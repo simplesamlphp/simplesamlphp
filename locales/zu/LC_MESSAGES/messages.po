@@ -320,7 +320,7 @@ msgstr "Umhlinzeki Wesevisi"
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
 
-msgid "{status:header_saml20_sp}"
+msgid "SAML 2.0 SP Demo Example"
 msgstr "Isampula Ledemo Ye-SAML 2.0 SP"
 
 msgid ""

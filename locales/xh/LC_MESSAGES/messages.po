@@ -315,7 +315,7 @@ msgstr "Umboneleli Wenkonzo"
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Iipharamitha ezithunyelwe kwinkonzo yofumaniso azihambelani neenkcukacha."
 
-msgid "{status:header_saml20_sp}"
+msgid "SAML 2.0 SP Demo Example"
 msgstr "Umzekelo weDemo we-SAML 2.0 SP"
 
 msgid ""

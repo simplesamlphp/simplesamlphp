@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{status:header_saml20_sp}"
-msgstr "SAML 2.0 SP demonstrācijas piemērs"
-
 msgid "{login:error_header}"
 msgstr "Kļūda"
 

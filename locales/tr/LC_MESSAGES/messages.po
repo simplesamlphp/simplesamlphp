@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{status:header_saml20_sp}"
-msgstr "SAML 2.0 SP Demo Örneği"
-
 msgid "{login:error_header}"
 msgstr "Hata"
 

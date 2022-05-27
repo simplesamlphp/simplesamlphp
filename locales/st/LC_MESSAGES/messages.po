@@ -539,9 +539,6 @@ msgstr "Kenya lebitso la mosebedisi le phasewete"
 msgid "[Preferred choice]"
 msgstr "[Kgetho e kgethwang]"
 
-msgid "{status:header_saml20_sp}"
-msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
-
 msgid "{status:validfor}"
 msgstr ""
 "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho "

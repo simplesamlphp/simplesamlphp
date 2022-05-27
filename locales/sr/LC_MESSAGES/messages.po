@@ -62,9 +62,6 @@ msgstr ""
 "Informacije o grešci koje se nalaze ispod mogu biti od interesa "
 "administratoru ili službi za podršku korisnicima."
 
-msgid "{status:header_saml20_sp}"
-msgstr "SAML 2.0 SP Demo Primer"
-
 msgid "{login:error_header}"
 msgstr "Greška"
 
