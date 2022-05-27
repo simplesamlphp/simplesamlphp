@@ -298,11 +298,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Para ver os detalhes da entidade SAML, clique "
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Um serviço que você pediu necessita que você se autentique. Digite seu "
-"nome de usuário e senha no formulário abaixo."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Celular"
 

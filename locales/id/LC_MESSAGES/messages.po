@@ -291,11 +291,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan"
-" masukkan username dan password Anda pada form dibawah"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

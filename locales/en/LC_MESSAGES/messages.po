@@ -309,11 +309,6 @@ msgstr ""
 "To look at the details for an SAML entity, click on the SAML entity "
 "header."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"A service has requested you to authenticate yourself. Please enter your "
-"username and password in the form below."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

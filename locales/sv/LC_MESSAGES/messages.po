@@ -298,11 +298,6 @@ msgstr ""
 "För att titta på detaljer för en SAML-entitet klicka på rubriken för "
 "SAML-entiteten."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"En webbtjänst har begärt att du ska logga in. Detta betyder att du "
-"behöver ange ditt användarnamn och ditt lösenord i formuläret nedan."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

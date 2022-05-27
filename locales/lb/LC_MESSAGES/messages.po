@@ -120,12 +120,6 @@ msgstr ""
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer "
-"musst aeren Benotzernumm an d'Passwuert an de Formulairen heidrënner "
-"angin."
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

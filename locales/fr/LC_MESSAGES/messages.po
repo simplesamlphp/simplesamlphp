@@ -300,12 +300,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Un service a demandé à ce que vous vous authentifiez.  Cela signifie que "
-"vous devez entrer votre identifiant et votre mot de passe dans le "
-"formulaire ci-dessous."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

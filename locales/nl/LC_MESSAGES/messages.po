@@ -319,11 +319,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en "
-"wachtwoord in onderstaand formulier."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

@@ -284,11 +284,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "
-"nazwę uzytkownika oraz hasło."
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
 

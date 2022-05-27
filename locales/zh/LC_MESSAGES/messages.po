@@ -255,9 +255,6 @@ msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您�
 msgid "{admin:metaover_intro}"
 msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 
-msgid "{login:user_pass_text}"
-msgstr "一个服务需要你的认证，请在下面输入你的用户名和密码"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 

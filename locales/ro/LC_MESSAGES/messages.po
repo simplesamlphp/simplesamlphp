@@ -298,11 +298,6 @@ msgstr ""
 "Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "
 "entității SAML."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Un serviciu a solicitat autentificarea dumneavoastră. Vă rugăm să "
-"completați numele de utilizator și parola în câmpurile de mai jos."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

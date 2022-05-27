@@ -271,9 +271,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כותרת ישות הSAML "
 
-msgid "{login:user_pass_text}"
-msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש והסיסמה שלך בטופס מתחת."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

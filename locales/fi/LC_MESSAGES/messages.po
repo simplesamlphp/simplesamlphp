@@ -202,11 +202,6 @@ msgstr ""
 "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko"
 " se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "
-"salasanasi alla olevaan kaavakkeeseen."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

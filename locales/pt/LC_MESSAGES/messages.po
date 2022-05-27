@@ -267,11 +267,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
-"nome de utilizador e senha nos campos seguintes."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

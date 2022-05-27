@@ -294,11 +294,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "
-"indtaste dit brugernavn og kodeord herunder."
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

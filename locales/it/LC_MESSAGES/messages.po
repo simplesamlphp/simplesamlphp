@@ -303,11 +303,6 @@ msgstr ""
 "Per visualizzare i dettagli di una entità SAML, cliccare sull'header SAML"
 " dell'entità."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Un servizio ha richiesto l'autenticazione. Si prega di inserire le "
-"proprie credenziali nella maschera di login sottostante."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

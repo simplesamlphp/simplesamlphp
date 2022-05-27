@@ -314,11 +314,6 @@ msgstr ""
 "Para ver los detalles de una entidad SAML, haga click en la cabecera de "
 "la entidad."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Un servicio solicita que se autentique. Esto significa que debe indicar "
-"su nombre de usuario y su clave de acceso en el siguiente formulario."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

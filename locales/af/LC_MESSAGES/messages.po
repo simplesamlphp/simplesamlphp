@@ -225,11 +225,6 @@ msgstr ""
 "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') "
 "parameter wat aandui waarheen om volgende te gaan nie."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "
-"wagwoord in die onderstaande vorm in."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

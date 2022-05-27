@@ -301,11 +301,6 @@ msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "
 "Kopfzeile der SAML-Entität."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"
-" Sie daher unten Benutzername und Passwort ein."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

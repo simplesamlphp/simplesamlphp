@@ -295,11 +295,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime "
-"i lozinku u dole navedena polja."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

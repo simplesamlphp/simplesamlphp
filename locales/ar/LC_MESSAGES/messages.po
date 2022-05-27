@@ -277,11 +277,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اضغط علي ترويسة  الوحدة "
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة "
-"السر خاصتك بالاستمارة أدناه"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 

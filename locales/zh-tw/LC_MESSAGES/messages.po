@@ -272,9 +272,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "點選 SAML 物件標題，可檢視 SAML 物件詳細資訊。"
 
-msgid "{login:user_pass_text}"
-msgstr "請使用帳號密碼登入，以便進入系統。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 

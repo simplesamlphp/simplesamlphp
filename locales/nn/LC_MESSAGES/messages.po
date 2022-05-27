@@ -291,11 +291,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Ei webteneste har spurt etter autentisering av deg. Skriv inn "
-"brukarnamnet ditt og passordet ditt for å autentisera deg."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

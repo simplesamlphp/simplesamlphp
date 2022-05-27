@@ -283,11 +283,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos "
-"uporabniškega imena in gesla v spodnji polji."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

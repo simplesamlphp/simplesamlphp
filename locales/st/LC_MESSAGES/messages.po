@@ -348,11 +348,6 @@ msgstr ""
 "hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala "
 "sebadi sa webo sa hao</i>."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Tshebeletso  e kopile hore o inetefatse. Ka kopo kenya lebitso la "
-"mosebedisi le phasewete ya hao foromong e ka tlase mona."
-
 msgid "No"
 msgstr "Tjhe"
 

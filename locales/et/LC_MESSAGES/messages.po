@@ -286,11 +286,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "
-"kasutajatunnus ja parool."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

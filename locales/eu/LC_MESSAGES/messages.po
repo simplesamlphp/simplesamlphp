@@ -288,11 +288,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-"
-"izena eta pasahitza honako formulario honetan sartu itzazu."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

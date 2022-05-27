@@ -287,11 +287,6 @@ msgstr ""
 msgid "{admin:metaover_intro}"
 msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg "
-"felhasználónevét és jelszavát az alábbi űrlapon."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

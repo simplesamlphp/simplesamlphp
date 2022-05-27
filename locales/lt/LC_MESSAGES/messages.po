@@ -285,11 +285,6 @@ msgstr ""
 "Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML"
 " antraštės."
 
-msgid "{login:user_pass_text}"
-msgstr ""
-"Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"
-" slaptažodį."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 
