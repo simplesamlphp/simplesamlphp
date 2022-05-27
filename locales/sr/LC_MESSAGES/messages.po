@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Davalac Identiteta je poslao odgovor koji sadrži informaciju o pojavi "
-"greške(Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri "
-"uspešno obrađenog zahteva)."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "Podaci o korisničkim nalozima čuvaju se u LDAP bazi, a kada pokušate da "

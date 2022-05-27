@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Identity Provider merespon dengan error. (Kode status di Response SAML "
-"adalah tidak berhasil)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu "

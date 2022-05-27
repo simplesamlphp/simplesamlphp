@@ -497,11 +497,6 @@ msgstr "Tlhahisoleseding ya provense e lahlehile"
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "Leqephe le fanweng ha le a fumanwa. URL e bile: %URL%"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya "
-"SAML ha e a atleha)"
-
 msgid "SAML 2.0 SP Demo Example"
 msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 

@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Autentifikacijski servis je poslao odgovor koji sadrži informaciju o "
-"pojavi greške. (Šifra statusa dostavljena u SAML odgovoru ne odgovara "
-"šifri uspješno obrađenog zahtjeva)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "Došlo je do greške prilikom spajanja na LDAP poslužitelj. Vaši podaci "

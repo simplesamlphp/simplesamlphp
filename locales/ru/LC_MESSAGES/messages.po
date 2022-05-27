@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Провайдер идентификации сообщает об ошибке. (Код статус в отклике SAML "
-"сообщает о неуспешной попытке)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP - это база данных пользователей, при вашей попытке входа в систему, "

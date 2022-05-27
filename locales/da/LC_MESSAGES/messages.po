@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Institutionen har sendt en fejl. (Status koden i SAML responset var ikke "
-"succes)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr "Der opstod en fejl i kommunikationen med LDAP databasen under login."
 

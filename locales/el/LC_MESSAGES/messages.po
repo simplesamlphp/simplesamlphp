@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
-"υποδεικνύει σφάλμα."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την υπηρεσία καταλόγου "

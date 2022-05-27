@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. "
-"(Statusmeddelandet i SAML-svaret var ett felmeddelande)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP används som användardatabas och när du försöker logga måste LDAP-"

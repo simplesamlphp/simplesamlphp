@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr "Poskytovatel identity odpověděl chybou. (Stavový kód v SAML nebyl úspěšný)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP je databáze uživatelů, a když se chcete přihlásit, je potřeba se "

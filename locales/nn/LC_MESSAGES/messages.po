@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
-"statuskode som varsla om feil)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP er brukardatabase din.  Når du prøver å logga inn må vi kontakta "

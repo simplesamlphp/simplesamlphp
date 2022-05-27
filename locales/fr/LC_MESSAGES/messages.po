@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
-"réponse SAML n'indiquait pas le succès)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "La base de données utilisateur est un annuaire LDAP, et quand vous "

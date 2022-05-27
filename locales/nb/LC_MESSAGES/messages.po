@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-"
-"svaret var noe annet enn OK)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP er brukerkatalogen, og når du forsøker å logge inn prøver vi å "

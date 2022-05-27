@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Terug"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"De Identity Provider antwoordde met een fout. (De statuscode in de SAML "
-"Response was niet success)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "De account database is in LDAP opgeslagen en bij het inloggen moet er "

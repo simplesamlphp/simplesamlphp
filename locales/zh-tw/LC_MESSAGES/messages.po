@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr "驗證提供者回應一個錯誤。(在 SAML 回應裡的狀態碼為不成功)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr "LDAP 是使用這資料庫，當您嘗試登入時，我們必須連結至一個 LDAP 資料庫。而在嘗試時有個錯誤發生。"
 

@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP je zbirka uporabnikov. Ko se želite prijaviti, je potrebno prijavo "

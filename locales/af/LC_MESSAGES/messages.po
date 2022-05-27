@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die "
-"SAML reaksie was onsuksesvol)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP is die gebruikers databasis en waneer jy probeer inteken moet ons "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Der Identity Provider gab einen Fehler zurück (Der Statuscode in der "
-"SAML-Antwort war nicht \"Erfolg\")"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP ist die gewählte Benutzerdatenbank. Wenn Sie versuchen sich "

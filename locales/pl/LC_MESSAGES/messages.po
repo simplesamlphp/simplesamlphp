@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Odpowiedź dostawcy tożsamości oznacza błąd (kod stanu w odpowiedzi SAML "
-"nie oznacza sukcesu)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP jest bazą uzytkowników i kiedy Ty próbujesz się zalogować, to my "

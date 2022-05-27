@@ -18,11 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "
-"başarılamadı)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP kullanıcı veritabanı ve siz giriş yapmaya çalışırken, LDAP "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"O Provedor de Identidade respondeu com um erro. (O código de resposta do "
-"SAML não teve sucesso."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "O banco de dados de usuários é LDAP e quando você tentar efetuar o login "

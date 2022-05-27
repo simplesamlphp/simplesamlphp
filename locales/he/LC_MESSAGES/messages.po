@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr "ספק הזיהות החזיר שגיאה. (קוד המצב בתגובת ה SAML שונה מהצלחה)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP הוא מסד הנתונים המכיל את המשתמשים, וכאשר אתה מנסה להתחבר, צריך "

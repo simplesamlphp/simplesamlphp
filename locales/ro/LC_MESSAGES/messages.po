@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Furnizorul de identitate a răspuns cu o eroare. (Codul de stare in "
-"răspunsul SAML a fost  încercare nereușită)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP reprezintă o bază de date cu utilizatori. Când încercați să vă "

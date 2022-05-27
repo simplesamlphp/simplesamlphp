@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Identitātes piegādātājs atbildējis ar kļūdu. Statusa kods SAML atbildē "
-"atšķiras no veiksmīga"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP ir lietotāju datu bāze. Pieslēdzoties pie tās ir jāspēj piekļūt. "

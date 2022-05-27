@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"L'Identity Provider ha risposto con un errore. (Il codice di stato nel "
-"messaggio SAML Response non indicava un successo)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "Gli utenti sono memorizzati nel server LDAP, che viene quindi contattato "

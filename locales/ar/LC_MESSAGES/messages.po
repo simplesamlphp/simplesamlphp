@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr "مقدم الهوية استجاب بخطأ. (رمز الحالة باستجابة SAML فاشل)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP هو سجل معلومات المستخدم. عندما تسجل دخولك ينبغي علينا الاتصال بسجل "

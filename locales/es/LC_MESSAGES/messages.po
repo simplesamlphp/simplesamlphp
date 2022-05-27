@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"El IdP respondió a la solicitud con un error. (El código de estado en la "
-"respuesta SAML no fue exitoso)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP es la base de datos de usuarios, es necesario contactar con ella "

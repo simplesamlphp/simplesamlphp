@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud "
-"positiivne)."
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP on kasutajate andmebaas ja sisselogimisel püütakse  LDAP-andmebaasi "

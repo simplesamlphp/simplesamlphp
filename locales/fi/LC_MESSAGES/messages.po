@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
-msgstr ""
-"Identiteetintarjoaja vastasi virheellä. ( Tilakoodi SAML vastauksessa oli"
-" epäonnistunut)"
-
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
 "LDAP on käyttäjätietokanta, ja kirjautuessassi tarvitsemme yhteyden LDAP-"
