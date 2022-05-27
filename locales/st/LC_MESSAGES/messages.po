@@ -476,9 +476,6 @@ msgstr "O ntshitswe"
 msgid "No SAML request provided"
 msgstr "Ha ho kopo ya SAML e fanweng"
 
-msgid "{errors:title_PROCESSASSERTION}"
-msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
-
 msgid "Enter your username and password"
 msgstr "Kenya lebitso la mosebedisi le phasewete"
 
