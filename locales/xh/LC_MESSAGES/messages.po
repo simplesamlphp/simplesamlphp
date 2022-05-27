@@ -79,7 +79,7 @@ msgstr "Kukho impazamo kwisicelo kweli khasi. Isizathu sesi: %REASON%"
 msgid "Help! I don't remember my password."
 msgstr "Ncedani! Andiyikhumbuli iphaswedi yam."
 
-msgid "{logout:return}"
+msgid "Return to service"
 msgstr "Buyela kwinkonzo"
 
 msgid "Error loading metadata"

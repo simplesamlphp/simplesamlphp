@@ -42,9 +42,6 @@ msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "
 "specifikationen."
 
-msgid "{logout:return}"
-msgstr "Åter till tjänsten"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "Du kan <a href=\"%METAURL%\">hämta metadata i XML-format på dedicerad "

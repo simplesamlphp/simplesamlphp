@@ -39,9 +39,6 @@ msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"
 " as especificações."
 
-msgid "{logout:return}"
-msgstr "Regressar ao serviço"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "Pode <a href=\"%METAURL%\">obter os metadados em XML num URL dedicado</a>:"
 

@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
 
-msgid "{logout:return}"
-msgstr "Zpátky na službu"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "<a href=\"%METAURL%\">Získejte metadata v XML formátu na dedikované "

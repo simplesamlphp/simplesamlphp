@@ -42,9 +42,6 @@ msgstr ""
 "Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "
 "specificațiile."
 
-msgid "{logout:return}"
-msgstr "Întoarcere la serviciu"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "Puteți accesa <a href=\"%METAURL%\">metadatele xml de la un URL "

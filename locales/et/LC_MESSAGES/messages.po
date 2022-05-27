@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
 
-msgid "{logout:return}"
-msgstr "Tagasi teenuse juurde"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "<a href=\"%METAURL%\">Metaandmete XML-i on võimalik saada spetsiaalselt "

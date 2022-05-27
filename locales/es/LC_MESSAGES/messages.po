@@ -42,9 +42,6 @@ msgstr ""
 "Los parametros enviados al servicio de descubrimiento no se ajustan a la "
 "especificaci&oacute;n."
 
-msgid "{logout:return}"
-msgstr "Volver al servicio"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "Puede  <a href=\"%METAURL%\">obtener una URL con los metadatos xml</a>:"
 

@@ -38,9 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
 
-msgid "{logout:return}"
-msgstr "Grįžti į paslaugą"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "Jūs galite <a href=\"%METAURL%\">gauti metaduomenis XML formatu</a>:"
 

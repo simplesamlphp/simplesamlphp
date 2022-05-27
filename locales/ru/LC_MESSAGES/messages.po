@@ -42,9 +42,6 @@ msgstr ""
 "Параметры, отправленные в службу обнаружения, не соответствуют "
 "спецификации."
 
-msgid "{logout:return}"
-msgstr "Вернуться к службе"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "Вы можете<a href=\"%METAURL%\"> получить xml файл с метаданными по "

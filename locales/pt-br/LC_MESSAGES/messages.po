@@ -42,9 +42,6 @@ msgstr ""
 "Os parâmetros enviados para o serviço de descoberta não estão de acordo "
 "com as especificações."
 
-msgid "{logout:return}"
-msgstr "Retornar ao serviço"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "Você pode obter as metadatas xml <a href=\"%METAURL%\"> em uma URL "

@@ -686,9 +686,6 @@ msgstr "Phoso"
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata ha e a fumanwa"
 
-msgid "{logout:return}"
-msgstr "E kgutlela tshebeletsong"
-
 msgid "Unhandled exception"
 msgstr "Mokgelo o sa rarollwang"
 

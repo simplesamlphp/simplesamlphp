@@ -42,9 +42,6 @@ msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
 " nicht der Spezifikation."
 
-msgid "{logout:return}"
-msgstr "Zum Dienst zurückkehren"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "Sie können <a href=\"%METAURL%\">das Metadaten-XML auf dieser URL "

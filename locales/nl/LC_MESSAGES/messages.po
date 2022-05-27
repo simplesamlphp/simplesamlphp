@@ -47,9 +47,6 @@ msgstr ""
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{logout:return}"
-msgstr "Terug naar service"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
 "U kunt <a href=\"%METAURL%\">deze directe URL gebruiken</a> om de "
