@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Sie können den Debug-Modus in der globalen SimpleSAMLphp-"
-"Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dieser Identity Provider hat eine Authentifizierungsanfrage von einem "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Vous pouvez désactivez le mode débogage dans le fichier de configuration "
-"globale de SimpleSAMLphp (<tt>config/config.php</tt>)."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Ce fournisseur de service a reçu une requête d'authentification d'un "

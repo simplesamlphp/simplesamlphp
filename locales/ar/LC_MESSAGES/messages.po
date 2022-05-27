@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"يمكنك إغلاق حالة التصحيح بملف ترتيب "
-"SimpleSAMLphp<tt>config/config.php</tt>"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
 

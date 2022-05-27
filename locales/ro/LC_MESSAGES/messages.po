@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "
-"<tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Acest furnizor de identitate a primit o cerere de autentificare de la un "

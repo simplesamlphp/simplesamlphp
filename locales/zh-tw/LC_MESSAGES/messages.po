@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr "您可以 SimpleSAMLphp 的全域設定檔 <tt>config/config.php</tt> 裡關閉除錯模式。"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "這個驗證提供者收到一個服務提供者的認證請求，但在準備執行這個請求時發生錯誤。"
 

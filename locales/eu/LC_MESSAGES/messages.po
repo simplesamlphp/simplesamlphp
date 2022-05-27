@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Arazketa modua desaktibatu daiteke SimpleSAMLphp "
-"<tt>config/config.php</tt> konfigurazio orokorreko fitxategian."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "IdP honek zerbitzu hornitzaile baten kautotze eskaera jaso du baina "

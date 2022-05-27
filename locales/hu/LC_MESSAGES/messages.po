@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
-"hibakereső módot."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során "

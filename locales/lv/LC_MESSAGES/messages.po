@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Jūs varat izslēgt atkļūdošanas režīmu globālajā SimpleSAMLphp "
-"konfigurācijas failā <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identitātes piegādātājs ir saņēmis autentifikācijas pieprasījumu no "

@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Możesz wyłaczyć globalnie tryb debugowania w pliku  "
-"<tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Dostawca tożsamości otrzymał od dostawcy usługi zlecenie "

@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski "
-"datoteki <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri"

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Puede desactivar el modo de depuración en el fichero de configuración "
-"global de SimpleSAMLphp <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Este IdP ha recibido una petición de autenticación de un proveedor de "

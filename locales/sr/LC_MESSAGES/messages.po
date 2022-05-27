@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Debug mod možete isključiti u glavnom SimpleSAMLphp konfiguracionom fajlu"
-" <tt>config/config.php</tt>. "
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Davalac Identiteta je primio zahtev za autentikacijom od strane Davaoca "

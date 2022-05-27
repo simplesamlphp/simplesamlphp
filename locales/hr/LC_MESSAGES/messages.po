@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Mod za otkrivanje grešaka možete isključiti u glavnoj SimpleSAMLphp "
-"konfiguracijskoj datoteci <tt>config/config.php</tt>. "
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Autentifikacijski servis je dobio zahtjev od davatelja usluge, ali se "

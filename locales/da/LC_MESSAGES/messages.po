@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Du kan slå debug-mode fra i den globale SimpleSAMLphp-konfigurationsfil "
-"<tt>config/config.php</tt>"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Denne IdP har modtaget en anmodning om single sign-on fra en tjeneste "

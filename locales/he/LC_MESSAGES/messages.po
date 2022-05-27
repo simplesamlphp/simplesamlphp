@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "
-"SimpleSAMLphp <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "ספק זהות זה קיבל בקשת הזדהות מספק שירות, אולם קרתה שגיאה בזמן עיבוד הבקשה."
 

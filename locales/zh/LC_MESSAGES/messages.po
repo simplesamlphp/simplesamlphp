@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr "你可以关闭调试模式，在SimpleSAMLphp全局配置文件<tt>config/config.php</tt>中"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "该身份提供者接受到了一个来自服务提供者的认证请求，但是在试图处理该请求的过程中发生了错误"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "
-"SimpleSAMLphp <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Denne identitetsleverandøren (IdP) mottok ei autentiseringsmelding frå "

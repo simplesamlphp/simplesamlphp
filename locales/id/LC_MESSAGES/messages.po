@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"Anda dapat menonaktifkan mode debuh pada file konfigurasi global "
-"simpleSAMLhphp  <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Identity Provider ini menerima Request Autentifikasi dari sebuah Service "

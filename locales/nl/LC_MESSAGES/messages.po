@@ -21,11 +21,6 @@ msgstr "Terug"
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{admin:debug_disable_debug_mode}"
-msgstr ""
-"U kunt debug mode uitschakelen in de globale SimpleSAMLphp configuratie "
-"file <tt>config/config.php</tt>."
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Deze IdP heeft een authenticatie verzoek ontvangen van een Service "
