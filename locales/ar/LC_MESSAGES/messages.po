@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{status:validfor}"
-msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
-
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 

@@ -485,11 +485,6 @@ msgstr "Kenya lebitso la mosebedisi le phasewete"
 msgid "[Preferred choice]"
 msgstr "[Kgetho e kgethwang]"
 
-msgid "{status:validfor}"
-msgstr ""
-"Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho "
-"tloha hona jwale."
-
 msgid "Help desk homepage"
 msgstr "Leqephe la lapeng la ba deske ya thuso"
 
