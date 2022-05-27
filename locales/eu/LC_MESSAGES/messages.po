@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML metadatuak"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Datu hauek ez dira antzeman"
 

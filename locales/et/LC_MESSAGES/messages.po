@@ -34,9 +34,6 @@ msgstr ""
 "selle teenuse administraator, siis peaksid kontrollima, et metaandmete "
 "seadistused oleks korrektselt seadistatud."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML-metaandmed"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Järgmistest väljadest ei saadud aru"
 

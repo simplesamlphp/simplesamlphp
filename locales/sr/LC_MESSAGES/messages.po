@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metapodaci u XML formatu"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Sledeća polja nisu prepoznata"
 

@@ -37,9 +37,6 @@ msgstr ""
 "deste seriço, você deve certificar-se que a sua configuração de metadata "
 "está definida corretamente."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metadata XML"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Os seguintes campos não foram reconhecidos"
 

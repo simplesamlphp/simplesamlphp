@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML metadata"
-
 msgid "{status:subject_format}"
 msgstr "Format"
 

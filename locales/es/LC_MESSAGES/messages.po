@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metadatos XML"
-
 msgid "{status:subject_format}"
 msgstr "Formato"
 

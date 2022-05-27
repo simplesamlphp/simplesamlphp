@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML metaadat"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "A következő mezők nem értelmezhetők"
 

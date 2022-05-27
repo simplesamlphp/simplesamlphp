@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metadados em XML"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Os seguintes campos não foram reconhecidos"
 

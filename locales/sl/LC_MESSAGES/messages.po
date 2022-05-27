@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML metapodatki"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Nepoznana polja"
 

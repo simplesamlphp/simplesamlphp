@@ -40,9 +40,6 @@ msgstr ""
 "administrator ovog servisa, provjerite jesu li svi metapodaci u "
 "konfiguraciji ispravni."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metapodaci u XML formatu"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Sljedeća polja nisu prepoznata"
 

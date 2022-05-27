@@ -37,9 +37,6 @@ msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "
 "являетесь администратором системы, проверьте конфигурацию метаданных."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML метаданные"
-
 msgid "{status:subject_format}"
 msgstr "Формат"
 

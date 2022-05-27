@@ -37,9 +37,6 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML-metadata"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Följande alternativ kändes inte igen"
 

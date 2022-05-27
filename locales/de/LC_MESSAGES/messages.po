@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "XML-Metadaten"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "Die folgenden Felder wurden nicht erkannt"
 

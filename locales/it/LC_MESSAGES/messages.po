@@ -37,9 +37,6 @@ msgstr ""
 "SimpleSAMLphp. Se sei l'amministratore di sistema, assicurati che la "
 "configurazione dei metadati sia corretta."
 
-msgid "{admin:metaconv_xmlmetadata}"
-msgstr "Metadati XML"
-
 msgid "{admin:metaover_unknown_found}"
 msgstr "I seguenti campi non sono stati riconosciuti"
 
