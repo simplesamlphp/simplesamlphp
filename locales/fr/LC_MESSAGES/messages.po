@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Les champs suivants n'ont pas été reconnus"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Erreur sur la source d'authentification"
 

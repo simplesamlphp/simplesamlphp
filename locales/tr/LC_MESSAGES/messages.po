@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Şu alanlar tanınmadı"
-
 msgid "{login:select_home_org}"
 msgstr "Organizasyonunuzu seçiniz"
 

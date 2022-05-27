@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Sledeća polja nisu prepoznata"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Greška u autentifikacionom modulu"
 

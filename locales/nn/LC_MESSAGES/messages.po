@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Gjenkjenner ikkje følgjande felt"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Innloggingsfeil: autentisering"
 

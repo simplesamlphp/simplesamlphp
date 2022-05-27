@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Følgende felter kunne ikke tolkes"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Authentication source fejl"
 

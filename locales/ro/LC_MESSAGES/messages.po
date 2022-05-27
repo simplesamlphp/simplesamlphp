@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Următoarele câmpuri nu au fost recunoscute"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Eroare sursă de autentificare"
 

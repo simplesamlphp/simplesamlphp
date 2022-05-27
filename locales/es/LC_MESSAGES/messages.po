@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "No se han reconocido los siguientes datos"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Error en la Autenticacion de origen"
 

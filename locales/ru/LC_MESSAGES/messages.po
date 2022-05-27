@@ -37,9 +37,6 @@ msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "
 "являетесь администратором системы, проверьте конфигурацию метаданных."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Следующие поля не распознаны"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Ошибка источника аутентификации"
 

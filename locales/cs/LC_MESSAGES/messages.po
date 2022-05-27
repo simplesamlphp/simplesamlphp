@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Následující pole nebyla rozpoznána"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Chyba autentizačního zdroje"
 

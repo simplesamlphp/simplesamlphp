@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Os seguintes campos não foram reconhecidos"
-
 msgid "{login:select_home_org}"
 msgstr "Escolha a sua organização de origem"
 

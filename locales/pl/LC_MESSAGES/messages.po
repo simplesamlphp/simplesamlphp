@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Nastepujące pola nie zostały rozpoznane"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Błąd źródła uwierzytelnienia"
 

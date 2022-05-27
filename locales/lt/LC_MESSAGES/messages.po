@@ -35,9 +35,6 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Šie laukai neatpažinti"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Autentikacijos šaltinio klaida"
 

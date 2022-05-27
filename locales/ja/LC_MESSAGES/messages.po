@@ -27,9 +27,6 @@ msgstr "あなたがログインを行う時、LDAPというユーザーデー�
 msgid "{errors:descr_METADATA}"
 msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたがこのサービスの管理者であればメタデータ設定を正しくセットアップする必要があります。"
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "以下の項目は認識されませんでした"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "認証元エラー"
 

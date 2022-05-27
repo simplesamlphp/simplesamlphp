@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Følgende felt ble ikke gjenkjent"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Autentiseringskildefeil"
 

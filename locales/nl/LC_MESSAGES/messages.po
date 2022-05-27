@@ -39,9 +39,6 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "De volgende velden zijn niet bekend"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Fout in authenticatiebron"
 

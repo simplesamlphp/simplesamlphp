@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Nav atpazīti šādi ievadlauki"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Autentifikācijas avota kļūda"
 

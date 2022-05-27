@@ -37,9 +37,6 @@ msgstr ""
 "Jika Anda adalah administrator dari layanan ini, Anda harus memastikan "
 "konfigurasi metdata Anda telah disetup dengan benar. "
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "Field-field berikut ini tidak dapat dikenali"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Error sumber autentifikasi"
 

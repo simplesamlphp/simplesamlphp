@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{admin:metaover_unknown_found}"
-msgstr "A következő mezők nem értelmezhetők"
-
 msgid "{errors:title_AUTHSOURCEERROR}"
 msgstr "Azonosítási forrás hiba"
 
