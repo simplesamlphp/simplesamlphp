@@ -126,12 +126,6 @@ msgstr ""
 "musst aeren Benotzernumm an d'Passwuert an de Formulairen heidrënner "
 "angin."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun "
-"SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun "
-"dësem Login Service an schéckt him den Fehlerbericht"
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

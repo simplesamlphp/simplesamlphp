@@ -305,12 +305,6 @@ msgstr ""
 "om at du blir logget ut, oppfordrer vi deg til å <i>lukke nettleseren "
 "din</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp "
-"eller den er en følge av en uforutsett hendelse. Kontakt administratoren "
-"av denne tjenesten og rapporter så mye som mulig angående feilen."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

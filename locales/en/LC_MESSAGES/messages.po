@@ -324,12 +324,6 @@ msgstr ""
 "Unable to log out of one or more services. To ensure that all your "
 "sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"This error probably is due to some unexpected behaviour or to "
-"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
-"login service, and send them the error message above."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

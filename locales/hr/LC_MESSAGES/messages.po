@@ -314,12 +314,6 @@ msgstr ""
 "sigurni da su sve vaše sjednice završene, preporučamo da <i>zatvorite web"
 " preglednik</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili "
-"neispravne konfiguracije programskog alata SimpleSAMLphp. Kontaktirajte "
-"administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

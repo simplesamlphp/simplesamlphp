@@ -302,12 +302,6 @@ msgstr ""
 "olla kindel kõigi sessioonide lõpetamises soovitame <i>sulgeda kõik "
 "brauseri aknad</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"See tõrge ilmnes tõenäoliselt SimpleSAMLphp ootamatu käitumise või "
-"valesti seadistamise tõttu. Võta ühendust selle sisselogimisteenuse "
-"administraatoriga ja saada talle ülalolev veateade."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

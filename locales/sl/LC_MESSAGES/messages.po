@@ -298,11 +298,6 @@ msgstr ""
 "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "
 "<i>zaprete spletni brskalnik</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-"
-"ja. Obrnite se na skrbnika in mu posredujte to napako."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

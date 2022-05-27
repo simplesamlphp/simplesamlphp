@@ -300,12 +300,6 @@ msgstr ""
 "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"
 " sėkmingą darbo pabaigą, rekomenduojame <i>uždaryti naršyklę</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Ši klaida tikriausiai susijusi dėl SimpleSAMLphp neteisingo "
-"sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir "
-"nusiųskite žemiau rodomą klaidos pranešimą."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

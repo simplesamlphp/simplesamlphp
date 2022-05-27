@@ -289,12 +289,6 @@ msgstr ""
 "Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić "
 "nazwę uzytkownika oraz hasło."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną "
-"konfigurację SimpleSAMLphp. Skontaktuj się z administratorem tego serwisu"
-" i wyślij mu powyższy błąd."
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
 

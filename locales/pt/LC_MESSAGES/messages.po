@@ -282,12 +282,6 @@ msgstr ""
 "Não foi possível sair de um ou mais serviços. Para garantir que todas as "
 "suas sessões são fechadas, é recomendado <i>fechar o seu browser</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Este erro ocorreu provavelmente devido a um comportamento inesperado ou "
-"uma má configuração do SimpleSAMLphp. Contacte o administrador deste "
-"serviço de login, e comunique a mensagem de erro."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

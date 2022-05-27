@@ -645,13 +645,6 @@ msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 msgid "{logout:also_from}"
 msgstr "Hape o kene ditshebeletsong tsena:"
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang "
-"kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa "
-"tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo "
-"mona."
-
 msgid "You are also logged in on these services:"
 msgstr "Hape o kene ditshebeletsong tsena:"
 

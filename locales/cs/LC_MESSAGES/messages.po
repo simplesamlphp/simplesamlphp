@@ -295,12 +295,6 @@ msgstr ""
 " všechny vaše relace budou uzavřeny, doporučujeme <i>ukončit váš webový "
 "prohlížeč</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Tato chyba pravděpodobně vznikla neočekávanou událostí, nebo chybou v "
-"konfiguraci. Kontaktujte administrátora této přihlašovací služby a "
-"zašlete mu tuto zprávu."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

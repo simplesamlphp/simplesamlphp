@@ -283,12 +283,6 @@ msgstr ""
 "Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "
 "SimpleSAMLphp dosya biçiminde bunu kullanın:"
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi"
-" ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile "
-"iletişim kurun ve yukarıdaki hata mesajını gönderin."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

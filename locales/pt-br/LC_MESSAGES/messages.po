@@ -313,12 +313,6 @@ msgstr ""
 "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "
 "sessões serão fechadas, incentivamos você a <i>fechar seu navegador</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Esse erro é provavelmente devido a algum imprevisto no comportamento do "
-"SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe"
-" a mensagem de erro acima."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Celular"
 

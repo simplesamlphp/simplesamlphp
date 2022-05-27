@@ -314,12 +314,6 @@ msgstr ""
 " fortfarande inte är inloggad ska du <i>stänga igen alla dina "
 "webbläsarfönster</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Detta fel beror troligtvis på att oväntat beteende eller felkonfigurering"
-" av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att "
-"meddela dem ovanstående felmeddelande."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

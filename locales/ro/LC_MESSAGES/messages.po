@@ -314,13 +314,6 @@ msgstr ""
 "Pentru a fi sigur că toate sesiunile sunt închise, vă rugăm să închideți "
 "<i>browser-ul</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Această eroare a apărut probabil din cauza unui comportament neașteptat "
-"sau a erorilor de configurare a SimpleSAMLphp. Vă rugăm să contactați "
-"administratorul acestui serviciu și să-i furnizați mesajul de eroare de "
-"mai sus."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

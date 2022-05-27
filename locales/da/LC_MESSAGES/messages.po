@@ -309,12 +309,6 @@ msgstr ""
 "Kan ikke logge ud af en eller flere services. For at sikre at alle dine "
 "sessioner er lukket <i>skal du lukke din browser</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Denne fejl skyldes formentlig en fejlkonfiguration af SimpleSAMLphp - "
-"alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og "
-"rapportér så mange detaljer som muligt om fejlen"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

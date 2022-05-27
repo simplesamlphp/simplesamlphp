@@ -311,12 +311,6 @@ msgstr ""
 "sigurni da su sve vaše sesija završene, preporučujemo da <i>zatvorite web"
 " pretraživač</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Ova greška se verovatno desila zbog neočekivanog ponašanja, ili pogrešnih"
-" podešavanja SimpleSAMLphp-a. Kontaktirajte administratora ovog servisa i"
-" pošaljite mu poruku o grešci prikazanu iznad."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

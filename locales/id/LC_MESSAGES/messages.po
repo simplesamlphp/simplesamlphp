@@ -307,12 +307,6 @@ msgstr ""
 "semua session anda ditutup, anda disaranakan untuk <i>menutup web browser"
 " anda</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi"
-" yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login "
-"ini, dan kirimkan kepada mereka pesan error diatas."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

@@ -212,12 +212,6 @@ msgstr ""
 "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"
 " web-selaimesi</i> varmistaaksesi, että kaikki istuntosi sulkeutuvat."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä "
-"asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä"
-" yllä oleva virheilmoitus."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

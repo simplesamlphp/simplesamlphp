@@ -317,13 +317,6 @@ msgstr ""
 "sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen "
 "empfohlen, <i>Ihren Webbrowser zu schließen</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen "
-"Verhaltens oder einer Fehlkonfiguration von SimpleSAMLphp aufgetreten. "
-"Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die "
-"obige Fehlermeldung mit."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

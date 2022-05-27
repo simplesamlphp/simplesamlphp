@@ -299,11 +299,6 @@ msgstr ""
 "Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "
 "visas sesijas, <i>aizveriet savu interneta pārlūku</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas "
-"SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

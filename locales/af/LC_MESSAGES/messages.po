@@ -236,12 +236,6 @@ msgstr ""
 "te wees dat al jou sessies afgesluit word, is dit beter om jou "
 "<i>webblaaier toe te maak</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte "
-"instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die"
-" aanmeld diens en stuur die bostaande fout boodskap aan."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

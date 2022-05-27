@@ -318,13 +318,6 @@ msgstr ""
 "Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "
 "chiudere tutte le sessioni si consiglia di <i>chiudere il browser</i>"
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Questo errore è probabilmente dovuto a qualche comportamento inatteso di "
-"SimpleSAMLphp o ad un errore di configurazione. Contatta l'amministratore"
-" di questo servizio di login con una copia del messaggio di errore "
-"riportato qui sopra."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

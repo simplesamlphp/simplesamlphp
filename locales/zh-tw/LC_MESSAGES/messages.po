@@ -281,9 +281,6 @@ msgstr "如果您需要於其他地方使用 SimpleSAMLphp 實體 - 請參閱 Si
 msgid "{logout:failedsps}"
 msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
 
-msgid "{errors:howto_text}"
-msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 

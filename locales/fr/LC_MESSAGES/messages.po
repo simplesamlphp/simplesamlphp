@@ -317,12 +317,6 @@ msgstr ""
 "certain de clore vos sessions, il vous est recommandé de <i>fermer votre "
 "navigateur</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Cette erreur est probablement causée par un comportement imprévu ou une "
-"mauvaise configuration de SimpleSAMLphp.  Contactez l'administrateur de "
-"ce service d'identification et envoyez lui le message d'erreur."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

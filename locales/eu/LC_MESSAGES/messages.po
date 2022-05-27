@@ -304,12 +304,6 @@ msgstr ""
 "itxi direla ziurtatzeko, <i>zure web nabigatzailea ixtea</i> gomendatzen "
 "da.  "
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Errore hau jazo izana SimpleSAMLphp-en ezusteko jokaera edo konfigurazio "
-"okerra izan da. Jar zaitez harremanetan identifikazio zerbitzu honen "
-"administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

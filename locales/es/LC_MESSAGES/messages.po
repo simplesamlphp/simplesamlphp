@@ -330,13 +330,6 @@ msgstr ""
 "sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador "
 "web</i>."
 
-msgid "{errors:howto_text}"
-msgstr ""
-"Este error se debe probablemente a un comportamiento inesperado o a una "
-"configuración incorrecta de SimpleSAMLphp. Póngase en contacto con el "
-"administrador de este servicio de conexión y envíele el mensaje de error "
-"anterior."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 
