@@ -42,9 +42,6 @@ msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "
 "specifikationen."
 
-msgid "{logout:logout_all}"
-msgstr "Ja, alla tjänster"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan stänga av debugläget i SimpleSAMLphps globala konfigurationsfil "

@@ -39,9 +39,6 @@ msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"
 " as especificações."
 
-msgid "{logout:logout_all}"
-msgstr "Sim, todos os serviços"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Pode desligar o modo debug no ficheiro global de configuração "

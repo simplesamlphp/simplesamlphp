@@ -38,9 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
 
-msgid "{logout:logout_all}"
-msgstr "Taip, visų paslaugų"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Jūs galite išjungti detalųjį naršymą globaliame SimpleSAMLphp "

@@ -37,9 +37,6 @@ msgstr ""
 "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo "
 "specifikaciji."
 
-msgid "{logout:logout_all}"
-msgstr "Da, odjavi me z vseh storitev"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski "

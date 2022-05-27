@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
-msgid "{logout:logout_all}"
-msgstr "نعم من جميع الخدمات"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "يمكنك إغلاق حالة التصحيح بملف ترتيب "

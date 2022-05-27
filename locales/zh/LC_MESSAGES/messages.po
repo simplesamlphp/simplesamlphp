@@ -30,9 +30,6 @@ msgstr "你的SimpleSAMLphp配置错误，如果你是该服务的管理员，�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "发送给搜寻服务的参数不符合规范"
 
-msgid "{logout:logout_all}"
-msgstr "是的，所有的服务"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "你可以关闭调试模式，在SimpleSAMLphp全局配置文件<tt>config/config.php</tt>中"
 

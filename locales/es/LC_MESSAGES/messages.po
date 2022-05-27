@@ -42,9 +42,6 @@ msgstr ""
 "Los parametros enviados al servicio de descubrimiento no se ajustan a la "
 "especificaci&oacute;n."
 
-msgid "{logout:logout_all}"
-msgstr "Si, todos los servicios"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Puede desactivar el modo de depuración en el fichero de configuración "

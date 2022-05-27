@@ -137,9 +137,6 @@ msgstr ""
 "morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts "
 "efumanehang ho sistimi ya motsamaisi:"
 
-msgid "{logout:logout_all}"
-msgstr "E, ditshebeletso tsohle"
-
 msgid "{login:error_wrongpassword}"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 

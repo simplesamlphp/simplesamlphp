@@ -100,7 +100,7 @@ msgstr ""
 "Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: "
 "%REASON%"
 
-msgid "{logout:logout_all}"
+msgid "Yes, all services"
 msgstr "Yebo, wonke amasevisi"
 
 msgid "An error occurred when trying to create the SAML request."

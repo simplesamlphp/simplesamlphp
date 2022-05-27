@@ -42,9 +42,6 @@ msgstr ""
 "Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "
 "specificațiile."
 
-msgid "{logout:logout_all}"
-msgstr "Da, toate serviciile"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "

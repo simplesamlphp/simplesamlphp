@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
 
-msgid "{logout:logout_all}"
-msgstr "Tak, wszystkie serwisy"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Możesz wyłaczyć globalnie tryb debugowania w pliku  "

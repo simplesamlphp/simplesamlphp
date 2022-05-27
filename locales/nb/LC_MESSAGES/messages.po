@@ -38,9 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametere sendt til discovery-tjenesten var ikke i korrekt format."
 
-msgid "{logout:logout_all}"
-msgstr "Ja, alle tjenestene over"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Do kan skru av debug modus i den globale SimpleSAMLphp konfigurasjonsfila"

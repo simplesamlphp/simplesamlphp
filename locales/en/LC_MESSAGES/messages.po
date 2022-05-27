@@ -44,9 +44,6 @@ msgstr ""
 "The parameters sent to the discovery service were not according to "
 "specifications."
 
-msgid "{logout:logout_all}"
-msgstr "Yes, all services"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "You can turn off debug mode in the global SimpleSAMLphp configuration "

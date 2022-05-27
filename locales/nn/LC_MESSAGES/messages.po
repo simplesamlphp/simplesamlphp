@@ -41,9 +41,6 @@ msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "
 "spesifikasjon."
 
-msgid "{logout:logout_all}"
-msgstr "Ja, logg ut frå alle"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "

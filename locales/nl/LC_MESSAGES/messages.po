@@ -47,9 +47,6 @@ msgstr ""
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{logout:logout_all}"
-msgstr "Ja, alle diensten"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "U kunt debug mode uitschakelen in de globale SimpleSAMLphp configuratie "

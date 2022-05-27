@@ -42,9 +42,6 @@ msgstr ""
 "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai "
 "dengan spesifikasi"
 
-msgid "{logout:logout_all}"
-msgstr "Ya, semua layanan"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Anda dapat menonaktifkan mode debuh pada file konfigurasi global "

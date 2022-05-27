@@ -42,9 +42,6 @@ msgstr ""
 "Os parâmetros enviados para o serviço de descoberta não estão de acordo "
 "com as especificações."
 
-msgid "{logout:logout_all}"
-msgstr "Sim, todos os serviços"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Você pode desligar o modo de debug no arquivo de configuração global do "

@@ -97,7 +97,7 @@ msgstr "Impazamo ye-LDAP"
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%"
 
-msgid "{logout:logout_all}"
+msgid "Yes, all services"
 msgstr "Ewe, zonke iinkonzo"
 
 msgid "An error occurred when trying to create the SAML request."

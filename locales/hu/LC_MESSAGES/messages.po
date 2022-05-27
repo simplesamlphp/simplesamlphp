@@ -37,9 +37,6 @@ msgstr ""
 "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "
 "amelyek nem felelnek meg a specifikációnak."
 
-msgid "{logout:logout_all}"
-msgstr "Igen, minden alkalmazásból"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "

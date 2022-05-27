@@ -30,9 +30,6 @@ msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたが�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
 
-msgid "{logout:logout_all}"
-msgstr "はい、全てのサービスからログアウトします"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
 

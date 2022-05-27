@@ -40,9 +40,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 
-msgid "{logout:logout_all}"
-msgstr "Si, da tutti i servizi"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "&Egrave; possibile disabilitare la modalità di debug nel file di configurazione"

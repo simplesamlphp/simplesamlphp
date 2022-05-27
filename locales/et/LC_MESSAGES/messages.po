@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
 
-msgid "{logout:logout_all}"
-msgstr "Jah, kõigist teenustest"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Silumisrežiimi on võimalik välja lülitada SimpleSAMLphp "

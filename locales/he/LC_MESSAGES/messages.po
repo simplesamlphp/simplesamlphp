@@ -34,9 +34,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."
 
-msgid "{logout:logout_all}"
-msgstr "כן, כל השרותים"
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "

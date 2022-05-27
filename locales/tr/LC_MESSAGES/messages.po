@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
 
-msgid "{logout:logout_all}"
-msgstr "Evet, tüm servisler."
-
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "\"Debug\" modunu global SimpleSAMLphp konfigürasyon dosyasında "
