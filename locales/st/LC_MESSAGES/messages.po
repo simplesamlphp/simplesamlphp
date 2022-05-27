@@ -625,9 +625,6 @@ msgstr "[Kgetho e kgethwang]"
 msgid "{status:header_saml20_sp}"
 msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Jwale o ntshitswe ka katleho ho %SP%."
-
 msgid "{status:sessionsize}"
 msgstr "Saese ya seshene: %SIZE%"
 

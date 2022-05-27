@@ -223,9 +223,6 @@ msgstr "Authentication failed: the certificate your browser sent is unknown"
 msgid "{logout:logging_out_from}"
 msgstr "Logging out of the following services:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "You are now successfully logged out from %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

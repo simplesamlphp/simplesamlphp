@@ -189,9 +189,6 @@ msgstr "认证失败：你的浏览器发送的是未知的证书"
 msgid "{logout:logging_out_from}"
 msgstr "从下列服务中退出"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "你已成功从%SP%退出"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 

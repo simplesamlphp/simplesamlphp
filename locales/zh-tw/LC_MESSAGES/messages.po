@@ -201,9 +201,6 @@ msgstr "認證錯誤：您的瀏覽器傳送了一個未知的憑證"
 msgid "{logout:logging_out_from}"
 msgstr "從下列服務登出："
 
-msgid "{logout:loggedoutfrom}"
-msgstr "您已成功從 %SP% 登出。"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

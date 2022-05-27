@@ -212,9 +212,6 @@ msgstr "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal
 msgid "{logout:logging_out_from}"
 msgstr "Log out dari layanan-layanan berikut:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Sekarang anda telah sukses log out dari %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

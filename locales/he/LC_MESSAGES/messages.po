@@ -199,9 +199,6 @@ msgstr "ההיזדהות נכשלה: התעודה שהדפדפן שלח לא י�
 msgid "{logout:logging_out_from}"
 msgstr "מתנתק מהשרותים הבאים:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "%SP%-נותקת בהצלחה מ"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

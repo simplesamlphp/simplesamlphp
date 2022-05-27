@@ -204,12 +204,6 @@ msgstr "Přihlášení neproběhlo: certifikát který odeslal Váš prohlíže�
 msgid "{logout:logging_out_from}"
 msgstr "Odhlášení z následujících služeb:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr ""
-"Zahájil jste <strong>globální odhlášení</strong> ze služby "
-"<strong>%REQUESTERNAME%</strong>. Globální odhlášení znamená, že budete "
-"odhlášen ze všech následující služeb."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

@@ -213,9 +213,6 @@ msgstr "Authentifikation fejlede: Certifikatet som din browser har send er ukend
 msgid "{logout:logging_out_from}"
 msgstr "Du logger ud af følgende services:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Du er nu logget ud fra %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

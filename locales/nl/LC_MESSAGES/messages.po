@@ -235,9 +235,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Uitloggen van de volgende diensten:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Je bent nu succesvol uitgelogd van %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

@@ -195,9 +195,6 @@ msgstr "Gerekli alanlar"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Kontrol edilecek konfigürasyon dosyasını seç:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "%SP%'den başarıyla çıktınız."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

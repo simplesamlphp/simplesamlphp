@@ -189,9 +189,6 @@ msgstr "認証に失敗しました: ブラウザから不正な証明書が送�
 msgid "{logout:logging_out_from}"
 msgstr "以下のサービスからログアウトしました:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "あなたは %SP% からのログアウトに成功しました。"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 

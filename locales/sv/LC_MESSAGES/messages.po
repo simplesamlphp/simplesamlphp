@@ -217,9 +217,6 @@ msgstr "Inloggning mislyckades: Certifikatet som din webbläsare skickade är ok
 msgid "{logout:logging_out_from}"
 msgstr "Loggar ut från följande tjänster:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Du har nu loggat ut från %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

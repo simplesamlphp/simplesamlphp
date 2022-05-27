@@ -219,9 +219,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Disconnessione in corso dai seguenti servizi:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Sei stato correttamente disconnesso da %SP%"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

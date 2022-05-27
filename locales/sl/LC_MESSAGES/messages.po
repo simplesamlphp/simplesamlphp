@@ -207,9 +207,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Odjava iz naslednjih storitev:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Uspešno ste se odjavili s ponudnika storitev: %SP%"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

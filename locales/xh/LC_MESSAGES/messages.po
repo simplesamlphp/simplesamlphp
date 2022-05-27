@@ -437,7 +437,7 @@ msgstr "Kananjalo ungene kwezi nkonzo:"
 msgid "{logout:logout_all_question}"
 msgstr "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?"
 
-msgid "{logout:loggedoutfrom}"
+msgid "You are now successfully logged out from %SP%."
 msgstr "Ngoku uphume ngokuyimpumelelo kwi-%SP%."
 
 msgid "The authentication was aborted by the user"

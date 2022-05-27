@@ -443,7 +443,7 @@ msgstr "Ungenile futhi kulawa masevisi:"
 msgid "{logout:logout_all_question}"
 msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
 
-msgid "{logout:loggedoutfrom}"
+msgid "You are now successfully logged out from %SP%."
 msgstr "Usuphume ngempumelelo kokuthi %SP%."
 
 msgid "The authentication was aborted by the user"

@@ -206,9 +206,6 @@ msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra ne�
 msgid "{logout:logging_out_from}"
 msgstr "Vyksta atjungimas nuo šių paslaugų:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Jūs sėkmingai buvote atjungtas iš %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

@@ -215,9 +215,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Odjavljujete se iz sljedećih servisa:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Uspješno ste odjavljeni iz %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

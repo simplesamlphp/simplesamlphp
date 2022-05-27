@@ -144,9 +144,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Kirjaudutaan ulos seuraavista palveluista:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Olet kirjautunut ulos palvelusta %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "

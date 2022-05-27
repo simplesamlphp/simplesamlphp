@@ -192,9 +192,6 @@ msgstr "Escolha o ficheiro de configuração a verificar:"
 msgid "{logout:logging_out_from}"
 msgstr "A sair dos serviços seguintes:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Saiu com sucesso de %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

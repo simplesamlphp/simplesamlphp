@@ -219,9 +219,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Saindo dos seguintes serviços:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Você está saiu com sucesso de %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "

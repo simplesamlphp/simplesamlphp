@@ -226,9 +226,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Γίνεται αποσύνδεση από τις ακόλουθες υπηρεσίες:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Έχετε αποσυνδεθεί με επιτυχία από την υπηρεσία %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

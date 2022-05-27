@@ -226,9 +226,6 @@ msgstr ""
 msgid "{logout:logging_out_from}"
 msgstr "Desconectarse de los siguientes servicios:"
 
-msgid "{logout:loggedoutfrom}"
-msgstr "Ha sido desconectado correctamente de %SP%."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "
