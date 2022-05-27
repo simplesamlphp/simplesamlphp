@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Mesaj gönder"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
 

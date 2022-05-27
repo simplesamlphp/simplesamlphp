@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Pošalji poruku"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 

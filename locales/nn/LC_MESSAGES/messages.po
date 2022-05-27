@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Send melding"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "

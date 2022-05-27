@@ -37,9 +37,6 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Skicka meddelande"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "

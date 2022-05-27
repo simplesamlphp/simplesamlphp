@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Enviar mensaje"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Los parametros enviados al servicio de descubrimiento no se ajustan a la "

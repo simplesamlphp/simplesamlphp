@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Send melding"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametere sendt til discovery-tjenesten var ikke i korrekt format."
 

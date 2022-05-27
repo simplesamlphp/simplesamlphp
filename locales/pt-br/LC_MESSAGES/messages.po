@@ -37,9 +37,6 @@ msgstr ""
 "deste seriço, você deve certificar-se que a sua configuração de metadata "
 "está definida corretamente."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Enviar mensagem"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Os parâmetros enviados para o serviço de descoberta não estão de acordo "

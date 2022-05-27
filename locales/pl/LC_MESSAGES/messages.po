@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Wyślij wiadomość"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
 

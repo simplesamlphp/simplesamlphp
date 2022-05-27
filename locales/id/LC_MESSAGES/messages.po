@@ -37,9 +37,6 @@ msgstr ""
 "Jika Anda adalah administrator dari layanan ini, Anda harus memastikan "
 "konfigurasi metdata Anda telah disetup dengan benar. "
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Submit pesan"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai "

@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Nachricht senden"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"

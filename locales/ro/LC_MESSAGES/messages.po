@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Trimite mesajul"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "

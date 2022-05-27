@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Envoi du message"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Les paramètres envoyés au service de découverte automatique (discovery "

@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Poslat zprávu"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
 

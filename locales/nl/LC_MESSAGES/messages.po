@@ -39,9 +39,6 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Verstuur bericht"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "De parameters die naar de discovery service zijn gestuurd, zijn niet "

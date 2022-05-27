@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Enviar mensagem"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"

@@ -37,9 +37,6 @@ msgstr ""
 "SimpleSAMLphp. Se sei l'amministratore di sistema, assicurati che la "
 "configurazione dei metadati sia corretta."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Invio messaggio"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 

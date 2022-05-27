@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Mezua bidali"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "

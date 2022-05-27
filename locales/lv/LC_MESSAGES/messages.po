@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Sūtīt ziņu"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."
 

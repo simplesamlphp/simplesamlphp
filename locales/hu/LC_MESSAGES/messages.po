@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "Üzenet küldése"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "

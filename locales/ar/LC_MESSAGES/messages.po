@@ -32,9 +32,6 @@ msgstr ""
 "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
 "رجاءاً من ان ترتيب الميتاداتا صحيح"
 
-msgid "{admin:debug_sending_message_send}"
-msgstr "سلم الرسالة"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
