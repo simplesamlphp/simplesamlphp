@@ -282,11 +282,6 @@ msgstr ""
 "Questo endpoint non è abilitato. Verifica le opzioni di attivazione nella"
 " configurazione di SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza "
-"fornire un messaggio SAML di Authentication Response."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

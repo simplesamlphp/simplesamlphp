@@ -293,11 +293,6 @@ msgstr ""
 "Este punto de acceso no est&aacute; habilitado. Verifique las opciones de"
 " habilitaci&oacute;n en la configuraci&oacute;n de SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Usted accedió a la interfaz consumidora de aserciones pero no incluyó una"
-" respuesta de autenticación SAML."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

@@ -266,11 +266,6 @@ msgstr ""
 "Šis beigu punkts nav iespējots. Pārbaudiet iespējošanas opcijas "
 "SimpleSAMLphp konfigurācijā."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "
-"SAML autentifikācijas atbildi."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

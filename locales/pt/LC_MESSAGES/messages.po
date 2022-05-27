@@ -249,11 +249,6 @@ msgstr ""
 "Este ponto de acesso (endpoint) não está disponível. Verifique as opções "
 "relevantes na configuração do SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
-"do tipo Authentication Response."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

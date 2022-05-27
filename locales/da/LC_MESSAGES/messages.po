@@ -275,11 +275,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "Denne tjeneste er ikke tilsluttet. Check konfigurationen."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at "
-"sende et SAML Authentication Response"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

@@ -264,11 +264,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "Baigties taškas neįjungtas. Patikrinkite savo SimpleSAMLphp konfigūraciją."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
-"autentikacijos atsakymo."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

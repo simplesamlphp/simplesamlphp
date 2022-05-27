@@ -252,11 +252,6 @@ msgstr ""
 "Bu kısım kullanımda değil. SimpleSAMLphp ayarlarınızın etkinleştirme "
 "seçeneklerini kontrol edin."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Onay Alıcı Servis (Assertion Consumer Service) arayüzüne giriş yaptınız, "
-"ancak SAML Kimlik Doğrulama Cevabı sağlamadınız."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

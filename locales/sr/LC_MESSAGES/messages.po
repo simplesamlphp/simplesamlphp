@@ -275,11 +275,6 @@ msgstr ""
 "Pristup ovoj odredišnoj adresa nije omogućen. Proverite podešavanja "
 "dozvola u SimpleSAMLphp-u."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Pristupili ste sistemu za obradu SAML potvrda, ali niste dostavili SAML "
-"autentikacioni odgovor."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

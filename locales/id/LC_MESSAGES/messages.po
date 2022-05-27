@@ -272,11 +272,6 @@ msgstr ""
 "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi "
 "SimpleSAMLphp Anda."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
-"menyediakan Response Autentifikasi SAML. "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

@@ -267,11 +267,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "See lõpp-punkt pole lubatud. Kontrolli oma simpleSAMPphp seadistust."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Sa külastasid Assertion Consumer Service liidest, kuid ei pakkunud SAML "
-"autentimisvastust."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

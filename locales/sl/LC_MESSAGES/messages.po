@@ -267,11 +267,6 @@ msgstr ""
 "Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v "
 "konfiguraciji SimpleSAMLphp-ja."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste "
-"zagotovili \"SAML Authentication Responsa\"."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

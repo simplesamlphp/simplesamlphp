@@ -257,9 +257,6 @@ msgstr ""
 msgid "{errors:descr_NOACCESS}"
 msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעלה בהגדרות  SimpleSAMLphp שלך."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

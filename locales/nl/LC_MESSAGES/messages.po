@@ -300,11 +300,6 @@ msgstr ""
 "Deze toegangsmogelijkheid is niet beschikbaar. Controleer de opties in de"
 " configuratie van SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
-"geen SAML Authentication Response meegestuurd."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

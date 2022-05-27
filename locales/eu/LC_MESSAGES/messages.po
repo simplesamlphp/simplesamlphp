@@ -269,11 +269,6 @@ msgstr ""
 "Sarbide puntu hau ez dago gaituta. Egiazta itzazu SimpleSAMLphp-aren "
 "konfigurazioan gaitze aukerak."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML "
-"kautotze erantzun bat erantsi."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

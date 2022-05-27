@@ -485,12 +485,6 @@ msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
 msgid "{errors:descr_CASERROR}"
 msgstr "Phoso e bile teng ka seva ya CAS."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"O fihletse kopano ya Tiiso ya Tshebeletso ya Bareki, empa ha o a fana ka "
-"Karabelo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha"
-" e a rerelwa ho fihlellwa ka kotloloho."
-
 msgid "Service Provider"
 msgstr "Mofani wa Tshebeletso"
 

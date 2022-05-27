@@ -189,11 +189,6 @@ msgstr ""
 "Tämä pääte ei ole otettu käyttöön. Tarkasta enable-optiot SimpleSAMLphp:n"
 " asetuksissa."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Yritit Assertion Consumer Service-liittymään, mutta et tarjonnut SAML "
-"tunnistautumisvastausta."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

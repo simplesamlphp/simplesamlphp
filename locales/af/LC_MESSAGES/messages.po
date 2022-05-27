@@ -215,11 +215,6 @@ msgstr ""
 "Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset "
 "van SimpleSAMLphp na."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Jy het aansoek gedoen vir toegang na die Assertion Consumer Service "
-"koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

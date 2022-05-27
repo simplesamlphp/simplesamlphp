@@ -243,9 +243,6 @@ msgstr "你访问了SingleLogoutService接口，但是并没有提供一个SAML�
 msgid "{errors:descr_NOACCESS}"
 msgstr "这个端点没有启用，请在SimpleSAMLphp的配置选项中选中启用"
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 

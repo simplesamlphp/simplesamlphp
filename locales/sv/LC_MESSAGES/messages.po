@@ -277,11 +277,6 @@ msgstr ""
 "Denna ändpunkt är inte aktiverad. Kontrollera aktiveringsinställningarna "
 "i konfigurationen av SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Du har anropat gränssnittet för Assertion Consumer Service utan att "
-"skicka med någon SAML Authentication Responce."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

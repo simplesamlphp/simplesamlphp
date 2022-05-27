@@ -287,11 +287,6 @@ msgstr ""
 "Данная конечная точка не активирована. Проверьте опции в конфигурации "
 "вашего SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
-"предоставили отклик SAML аутентификации."
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

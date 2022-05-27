@@ -112,11 +112,6 @@ msgstr ""
 "Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der "
 "SimpleSAMLphp Konfiguratioun."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Der hud den Assertion Consumer Sercice Interface accédéiert mais keng "
-"SAML Authentication Aentwert unginn"
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

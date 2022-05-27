@@ -276,11 +276,6 @@ msgstr ""
 "Acest capăt/obiectiv nu este activat. Verificați opțiunile de activare în"
 " configurarea SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Ați accesat interfața <i>Assertion Consumer Service</i> dar nu ați "
-"furnizat răspunsul de autentificare SAML."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

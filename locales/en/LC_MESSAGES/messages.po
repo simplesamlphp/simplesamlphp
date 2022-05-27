@@ -287,12 +287,6 @@ msgstr ""
 "This endpoint is not enabled. Check the enable options in your "
 "configuration of SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"You accessed the Assertion Consumer Service interface, but did not "
-"provide a SAML Authentication Response. Please note that this endpoint is"
-" not intended to be accessed directly."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

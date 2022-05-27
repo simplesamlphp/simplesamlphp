@@ -268,11 +268,6 @@ msgstr ""
 "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt "
 "SimpleSAMLphp-oppsett."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Du brukte AssertionConsumerService-grensesnittet uten å angi en SAML "
-"AuthenticationResponse."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

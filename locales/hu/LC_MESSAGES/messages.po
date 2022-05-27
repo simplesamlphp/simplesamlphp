@@ -268,11 +268,6 @@ msgstr ""
 "Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a SimpleSAMLphp "
 "beállításai között."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Az Assertion Consumer Service interfészen SAML Authentication Response "
-"üzenetet kell megadni."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

@@ -271,12 +271,6 @@ msgstr ""
 "Endepunktet er ikkje skrudd på. Sjekk Enable Options i konfigurasjonen av"
 " SimpleSAMLphp."
 
-msgid "{errors:descr_ACSPARAMS}"
-msgstr ""
-"Du har brukt grensesnittet for mottak av meldingar (Assertion Consumer "
-"Service), men utan å senda SAML autentiseringssvar (Authentication "
-"Response)"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
