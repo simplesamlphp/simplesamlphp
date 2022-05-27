@@ -40,9 +40,6 @@ msgstr ""
 "Můžete vypnout debug mód v globální konfiguraci SimpleSAMLphp "
 "<tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "Přihlásit"
-
 msgid "{logout:progress}"
 msgstr "Odhlašuji..."
 

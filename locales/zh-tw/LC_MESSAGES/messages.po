@@ -33,9 +33,6 @@ msgstr "傳遞至搜尋服務的參數並非按照規格所訂。"
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "您可以 SimpleSAMLphp 的全域設定檔 <tt>config/config.php</tt> 裡關閉除錯模式。"
 
-msgid "{login:login_button}"
-msgstr "登入"
-
 msgid "{logout:progress}"
 msgstr "登出中..."
 

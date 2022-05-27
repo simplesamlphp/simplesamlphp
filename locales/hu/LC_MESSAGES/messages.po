@@ -42,9 +42,6 @@ msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
 "hibakereső módot."
 
-msgid "{login:login_button}"
-msgstr "Bejelentkezés"
-
 msgid "{logout:progress}"
 msgstr "Kijelentkezés..."
 

@@ -64,7 +64,7 @@ msgstr "Ungqinisiso lweNgcombolo"
 msgid "Bad request received"
 msgstr "Kufunyenwe isicelo esibi"
 
-msgid "{login:login_button}"
+msgid "Login"
 msgstr "Ngena"
 
 msgid "Shibboleth demo"

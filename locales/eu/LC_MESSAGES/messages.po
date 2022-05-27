@@ -47,9 +47,6 @@ msgstr ""
 "Arazketa modua desaktibatu daiteke SimpleSAMLphp "
 "<tt>config/config.php</tt> konfigurazio orokorreko fitxategian."
 
-msgid "{login:login_button}"
-msgstr "Saioa hasi"
-
 msgid "{logout:progress}"
 msgstr "Saioa ixten..."
 

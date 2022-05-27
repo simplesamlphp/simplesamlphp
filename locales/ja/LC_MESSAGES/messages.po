@@ -33,9 +33,6 @@ msgstr "サービスディスカバリに送信したパラメータが仕様に
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
 
-msgid "{login:login_button}"
-msgstr "ログイン"
-
 msgid "{logout:progress}"
 msgstr "ログアウト中…"
 

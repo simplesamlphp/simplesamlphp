@@ -65,7 +65,7 @@ msgstr "I-AuthData"
 msgid "Bad request received"
 msgstr "Kutholwe umlayezo ongalungile"
 
-msgid "{login:login_button}"
+msgid "Login"
 msgstr "Ngena"
 
 msgid "Shibboleth demo"

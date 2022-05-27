@@ -31,9 +31,6 @@ msgstr ""
 "D'Parameter fir den Disovery Service woren net korrekt par rapport zur "
 "Specifikatioun"
 
-msgid "{login:login_button}"
-msgstr "Login"
-
 msgid "{login:error_wrongpassword}"
 msgstr "Falschen Benotzernumm oder Passwuert"
 

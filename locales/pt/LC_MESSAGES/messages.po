@@ -44,9 +44,6 @@ msgstr ""
 "Pode desligar o modo debug no ficheiro global de configuração "
 "<tt>config/config.php</tt> do SimpleSAMLphp."
 
-msgid "{login:login_button}"
-msgstr "Entrar"
-
 msgid "{logout:progress}"
 msgstr "A sair..."
 

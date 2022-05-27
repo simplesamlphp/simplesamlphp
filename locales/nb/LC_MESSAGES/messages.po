@@ -43,9 +43,6 @@ msgstr ""
 "Do kan skru av debug modus i den globale SimpleSAMLphp konfigurasjonsfila"
 " <tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "Logg inn"
-
 msgid "{logout:progress}"
 msgstr "Logger ut..."
 

@@ -33,9 +33,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 
-msgid "{login:login_button}"
-msgstr "Kirjaudu"
-
 msgid "{logout:progress}"
 msgstr "Kirjautuu ulos..."
 

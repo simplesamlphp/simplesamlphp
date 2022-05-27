@@ -47,9 +47,6 @@ msgstr ""
 "Debug mod možete isključiti u glavnom SimpleSAMLphp konfiguracionom fajlu"
 " <tt>config/config.php</tt>. "
 
-msgid "{login:login_button}"
-msgstr "Prijavi se"
-
 msgid "{logout:progress}"
 msgstr "Odjava u toku..."
 

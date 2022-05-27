@@ -39,9 +39,6 @@ msgstr ""
 "אתה יכול לכבות את מצב בדיקת הבאגים בקובץ בההגדרות הגלובלי של "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "כניסה"
-
 msgid "{logout:progress}"
 msgstr "מתנתק מהמערכת..."
 

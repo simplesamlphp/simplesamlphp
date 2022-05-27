@@ -46,9 +46,6 @@ msgstr ""
 "Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
 "στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "Είσοδος"
-
 msgid "{logout:progress}"
 msgstr "Γίνεται αποσύνδεση..."
 

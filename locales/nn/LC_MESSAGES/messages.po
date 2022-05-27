@@ -46,9 +46,6 @@ msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "
 "SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "Logg inn"
-
 msgid "{logout:progress}"
 msgstr "Loggar ut..."
 

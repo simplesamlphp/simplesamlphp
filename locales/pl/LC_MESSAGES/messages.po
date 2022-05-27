@@ -40,9 +40,6 @@ msgstr ""
 "Możesz wyłaczyć globalnie tryb debugowania w pliku  "
 "<tt>config/config.php</tt>."
 
-msgid "{login:login_button}"
-msgstr "Login"
-
 msgid "{logout:progress}"
 msgstr "Wylogowywanie..."
 

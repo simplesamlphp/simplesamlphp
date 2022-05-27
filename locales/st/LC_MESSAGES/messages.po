@@ -496,9 +496,6 @@ msgstr "Ha e a kgona ho fumana datha ya seshene"
 msgid "[Preferred choice]"
 msgstr "[Kgetho e kgethwang]"
 
-msgid "{login:login_button}"
-msgstr "Ho kena"
-
 msgid "Do you want to logout from all the services above?"
 msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
 
