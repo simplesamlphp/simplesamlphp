@@ -255,7 +255,7 @@ msgstr "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-"
 msgid "Yes, continue"
 msgstr "Ewe, qhubeka"
 
-msgid "{login:remember_username}"
+msgid "Remember my username"
 msgstr "Khumbula igama lomsebenzisi lam"
 
 msgid "No SAML response provided"

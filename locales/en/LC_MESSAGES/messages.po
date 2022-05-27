@@ -49,9 +49,6 @@ msgstr ""
 "You can turn off debug mode in the global SimpleSAMLphp configuration "
 "file <tt>config/config.php</tt>."
 
-msgid "{login:remember_username}"
-msgstr "Remember my username"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "This Identity Provider received an Authentication Request from a Service "

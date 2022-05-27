@@ -42,9 +42,6 @@ msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
 "hibakereső módot."
 
-msgid "{login:remember_username}"
-msgstr "Emlékezzen a felhasználónevemre"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során "

@@ -47,9 +47,6 @@ msgstr ""
 "Puede desactivar el modo de depuración en el fichero de configuración "
 "global de SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:remember_username}"
-msgstr "Recordar mi nombre de usuario"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Este IdP ha recibido una petición de autenticación de un proveedor de "

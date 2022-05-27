@@ -46,9 +46,6 @@ msgstr ""
 "Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
 "στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{login:remember_username}"
-msgstr "Να θυμάσαι το όνομα χρήστη"
-
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος ταυτοποίησης που "

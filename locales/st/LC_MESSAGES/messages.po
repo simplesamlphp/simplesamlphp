@@ -554,9 +554,6 @@ msgstr ""
 msgid "Logged out"
 msgstr "O ntshitswe"
 
-msgid "{login:remember_username}"
-msgstr "Hopola lebitso la ka la mosebedisi"
-
 msgid "No SAML request provided"
 msgstr "Ha ho kopo ya SAML e fanweng"
 
