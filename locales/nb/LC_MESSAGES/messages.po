@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Ingen metadata funnet"
-
 msgid "{login:contact_info}"
 msgstr "Kontaktinformasjon:"
 

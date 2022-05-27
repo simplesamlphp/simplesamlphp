@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadata nem található"
-
 msgid "{login:contact_info}"
 msgstr "Elérési információk"
 

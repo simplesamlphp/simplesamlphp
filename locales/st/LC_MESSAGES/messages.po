@@ -638,9 +638,6 @@ msgstr "Kgetha khampani ya lehae"
 msgid "Error"
 msgstr "Phoso"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadata ha e a fumanwa"
-
 msgid "Unhandled exception"
 msgstr "Mokgelo o sa rarollwang"
 

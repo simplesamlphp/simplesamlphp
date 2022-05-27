@@ -61,9 +61,6 @@ msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"
 " sistema o il supporto utenti:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadati non trovati"
-
 msgid "{login:contact_info}"
 msgstr "Informazioni di contatto:"
 

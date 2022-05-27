@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadatele nu au fost găsite"
-
 msgid "{login:contact_info}"
 msgstr "Informații de contact:"
 

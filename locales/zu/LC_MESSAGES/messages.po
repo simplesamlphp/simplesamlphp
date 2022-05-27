@@ -17,7 +17,7 @@ msgstr ""
 msgid "Next"
 msgstr "Okulandelayo"
 
-msgid "{errors:title_METADATANOTFOUND}"
+msgid "Metadata not found"
 msgstr "Imethadatha ayitholakalanga"
 
 msgid ""

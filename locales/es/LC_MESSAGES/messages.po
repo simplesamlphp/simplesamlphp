@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadatos no econtrados"
-
 msgid "{login:contact_info}"
 msgstr "Información de contacto:"
 

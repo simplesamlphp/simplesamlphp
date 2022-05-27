@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadata saknas"
-
 msgid "{login:contact_info}"
 msgstr "Kontaktinformation:"
 

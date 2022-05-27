@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadati nav atrasti"
-
 msgid "{login:contact_info}"
 msgstr "Kontaktinformācija"
 

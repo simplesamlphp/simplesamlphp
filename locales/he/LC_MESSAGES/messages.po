@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "לא נמצא מטא-מידע"
-
 msgid "{login:contact_info}"
 msgstr "צור קשר"
 

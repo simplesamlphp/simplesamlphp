@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Finn ikkje metadata"
-
 msgid "{login:contact_info}"
 msgstr "Kontaktinformasjon:"
 

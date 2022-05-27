@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Метаданные не найдены"
-
 msgid "{login:contact_info}"
 msgstr "Контактная информация"
 

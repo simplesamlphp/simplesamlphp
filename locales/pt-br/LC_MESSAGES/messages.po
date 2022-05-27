@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadado não encontrado"
-
 msgid "{login:contact_info}"
 msgstr "Informações de Contato"
 

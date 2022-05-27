@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Metadata niet gevonden"
-
 msgid "{login:contact_info}"
 msgstr "Contactinformatie"
 

@@ -42,9 +42,6 @@ msgstr "你确实发送了一些信息给登录页面，但由于某些原因，
 msgid "{errors:debuginfo_text}"
 msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "没有找到元信息"
-
 msgid "{login:contact_info}"
 msgstr "联系方式"
 

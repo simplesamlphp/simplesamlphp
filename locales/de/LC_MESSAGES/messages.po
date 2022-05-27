@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{errors:title_METADATANOTFOUND}"
-msgstr "Keine Metadaten gefunden"
-
 msgid "{login:contact_info}"
 msgstr "Kontakt"
 
