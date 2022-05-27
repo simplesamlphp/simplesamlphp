@@ -261,9 +261,6 @@ msgstr ""
 "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
 "LogoutRequest ar LogoutResponse užklausų."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "Baigties taškas neįjungtas. Patikrinkite savo SimpleSAMLphp konfigūraciją."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

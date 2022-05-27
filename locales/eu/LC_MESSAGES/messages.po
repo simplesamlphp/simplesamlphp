@@ -264,11 +264,6 @@ msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
 "LogoutRequest edo LogoutResponse mezurik"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Sarbide puntu hau ez dago gaituta. Egiazta itzazu SimpleSAMLphp-aren "
-"konfigurazioan gaitze aukerak."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

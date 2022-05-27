@@ -261,11 +261,6 @@ msgstr ""
 "Jūs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML "
 "atslēgšanās pieprasījumu vai atslēgšanās atbildi."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Šis beigu punkts nav iespējots. Pārbaudiet iespējošanas opcijas "
-"SimpleSAMLphp konfigurācijā."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

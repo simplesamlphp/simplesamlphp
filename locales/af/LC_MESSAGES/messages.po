@@ -210,11 +210,6 @@ msgstr ""
 "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'),"
 " maar het geen SAML LogoutRequest of LogoutResponse gestuur nie."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset "
-"van SimpleSAMLphp na."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

@@ -241,9 +241,6 @@ msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequestやLogoutResponseが提供されませんでした。"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの設定でオプションを有効にしてください。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

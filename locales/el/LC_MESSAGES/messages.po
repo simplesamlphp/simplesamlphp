@@ -288,12 +288,6 @@ msgstr ""
 " Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
 "άμεσα προσβάσιμο."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Αυτό το τελικό σημείο σύνδεσης (endpoint) δεν είναι ενεργοποιημένο. Εάν "
-"είστε ο διαχειριστής της υπηρεσίας, ελέγξτε τις ρυθμίσεις του "
-"SimpleSAMLphp."
-
 msgid "Person's principal name at home organization"
 msgstr "Αναγνωριστικό χρήστη στον οικείο οργανισμό"
 

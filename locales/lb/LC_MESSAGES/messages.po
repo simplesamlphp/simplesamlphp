@@ -107,11 +107,6 @@ msgstr ""
 "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest "
 "oder LogoutResponse unginn."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der "
-"SimpleSAMLphp Konfiguratioun."
-
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 

@@ -267,11 +267,6 @@ msgstr ""
 "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan "
 "LogoutRequest SAML atau LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi "
-"SimpleSAMLphp Anda."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

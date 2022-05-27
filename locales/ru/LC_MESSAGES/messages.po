@@ -282,11 +282,6 @@ msgstr ""
 "Вы получили доступ к интерфейсу SingleLogoutService, но не предоставили "
 "SAML LogoutRequest или LogoutResponse утверждения."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Данная конечная точка не активирована. Проверьте опции в конфигурации "
-"вашего SimpleSAMLphp."
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

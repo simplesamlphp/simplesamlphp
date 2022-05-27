@@ -272,11 +272,6 @@ msgstr ""
 "Du har anroppat tjänsten för Single Sing-Out utan att skicka med någon "
 "SAML LogoutRequest eller LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Denna ändpunkt är inte aktiverad. Kontrollera aktiveringsinställningarna "
-"i konfigurationen av SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

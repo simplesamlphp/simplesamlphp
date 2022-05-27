@@ -266,11 +266,6 @@ msgstr ""
 "utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
 "LogoutResponse)"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Endepunktet er ikkje skrudd på. Sjekk Enable Options i konfigurasjonen av"
-" SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

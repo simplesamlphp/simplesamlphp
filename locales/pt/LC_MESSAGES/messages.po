@@ -244,11 +244,6 @@ msgstr ""
 "Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
 "LogoutRequest ou LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Este ponto de acesso (endpoint) não está disponível. Verifique as opções "
-"relevantes na configuração do SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

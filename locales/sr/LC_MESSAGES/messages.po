@@ -270,11 +270,6 @@ msgstr ""
 "Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste "
 "poslali SAML <i>LogoutRequest</i> ili <i>LogoutResponse</i> poruku."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Pristup ovoj odredišnoj adresa nije omogućen. Proverite podešavanja "
-"dozvola u SimpleSAMLphp-u."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

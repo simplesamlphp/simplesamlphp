@@ -254,9 +254,6 @@ msgstr ""
 "ניגשת לממשק שירות ההתנתקות הכללית, אבל לא סיפקת בקשת או תגובת התנתקות של "
 "SAML."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "קצה זה אינו מופעל. בדוק את אפשריות ההפעלה בהגדרות  SimpleSAMLphp שלך."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

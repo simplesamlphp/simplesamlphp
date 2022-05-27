@@ -281,11 +281,6 @@ msgstr ""
 msgid "{disco:select}"
 msgstr "Kgetha"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao "
-"ya SimpleSAMLphp."
-
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Phoso e hlahile ha o leka ho theha kopo ya SAML."
 

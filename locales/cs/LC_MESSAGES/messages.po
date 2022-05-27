@@ -262,9 +262,6 @@ msgstr ""
 "Přistupujete k SingleLogoutService rozhraní, ale nezadáváte SAML "
 "LogoutRequest ani LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "Tento koncový bod není povolen. Zkontrolujte konfiguraci (zapněte volby)."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

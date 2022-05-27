@@ -262,11 +262,6 @@ msgstr ""
 "Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili "
 "SAML LogoutRequest ali LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v "
-"konfiguraciji SimpleSAMLphp-ja."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

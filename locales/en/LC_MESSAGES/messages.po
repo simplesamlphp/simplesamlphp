@@ -282,11 +282,6 @@ msgstr ""
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"This endpoint is not enabled. Check the enable options in your "
-"configuration of SimpleSAMLphp."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

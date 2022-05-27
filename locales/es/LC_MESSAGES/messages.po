@@ -288,11 +288,6 @@ msgstr ""
 "Usted accedió a la interfaz SingleLogoutService pero no incluyó un "
 "mensaje SAML LogoutRequest o LogoutResponse"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Este punto de acceso no est&aacute; habilitado. Verifique las opciones de"
-" habilitaci&oacute;n en la configuraci&oacute;n de SimpleSAMLphp."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

@@ -271,11 +271,6 @@ msgstr ""
 "Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "
 "cerere de deautentificare sau un răspuns de deautentificare SAML."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Acest capăt/obiectiv nu este activat. Verificați opțiunile de activare în"
-" configurarea SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

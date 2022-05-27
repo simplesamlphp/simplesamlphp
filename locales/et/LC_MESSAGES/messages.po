@@ -264,9 +264,6 @@ msgstr ""
 "Sa külastasid SingleLogoutService liidest, kui ei pakkunud SAML "
 "LogoutRequest või LogoutResponse."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "See lõpp-punkt pole lubatud. Kontrolli oma simpleSAMPphp seadistust."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

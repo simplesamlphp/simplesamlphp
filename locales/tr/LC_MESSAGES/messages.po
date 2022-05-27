@@ -247,11 +247,6 @@ msgstr ""
 "TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "
 "bir SAML Çıkışİsteği ya da ÇıkışCevabı sağlamadınız."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Bu kısım kullanımda değil. SimpleSAMLphp ayarlarınızın etkinleştirme "
-"seçeneklerini kontrol edin."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

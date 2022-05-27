@@ -272,9 +272,6 @@ msgstr ""
 "Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "
 "LogoutRequest eller LogoutResponse"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "Denne tjeneste er ikke tilsluttet. Check konfigurationen."
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

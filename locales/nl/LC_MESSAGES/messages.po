@@ -295,11 +295,6 @@ msgstr ""
 "Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML"
 " LogoutRequest of LogoutResponse meegestuurd."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Deze toegangsmogelijkheid is niet beschikbaar. Controleer de opties in de"
-" configuratie van SimpleSAMLphp."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

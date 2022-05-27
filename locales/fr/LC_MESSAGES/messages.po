@@ -276,11 +276,6 @@ msgstr ""
 "Vous avez accédé à l'interface SingleLogoutService, mais vous n'avez pas "
 "fourni de LogoutRequest ou LogoutResponse SAML."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Cette terminaison (ou <i>endpoint</i>) n'est pas activée. Vérifiez les "
-"options d'activation dans la configuration de SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

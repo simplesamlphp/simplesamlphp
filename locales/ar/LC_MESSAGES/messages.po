@@ -260,9 +260,6 @@ msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
 "استجابة لطلب الخروج"
 
-msgid "{errors:descr_NOACCESS}"
-msgstr "هذه النقطة غير منشطة. راجع خيارات التنشيط بترتيب SimpleSAMLphp"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 

@@ -275,11 +275,6 @@ msgstr ""
 "Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "
 "keine SAML Abmeldeanfrage oder Abmeldeantwort bereitgestellt."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die "
-"Aktivierungsoptionen in der SimpleSAMLphp-Konfiguration."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

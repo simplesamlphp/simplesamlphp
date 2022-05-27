@@ -263,11 +263,6 @@ msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
 "üzenetet kell megadni."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a SimpleSAMLphp "
-"beállításai között."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

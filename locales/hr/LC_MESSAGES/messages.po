@@ -272,11 +272,6 @@ msgstr ""
 "autentifikacije, ali niste dostavili SAML LogoutRequest ili "
 "LogoutResponse poruku."
 
-msgid "{errors:descr_NOACCESS}"
-msgstr ""
-"Ova odredišna adresa nije omogućena. Provjerite dozvole u konfiguraciji "
-"vaše instalacije programskog alata SimpleSAMLphp."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 
