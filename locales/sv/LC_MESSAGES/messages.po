@@ -303,11 +303,6 @@ msgstr ""
 "En webbtjänst har begärt att du ska logga in. Detta betyder att du "
 "behöver ange ditt användarnamn och ditt lösenord i formuläret nedan."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "
-"används i mottagende sida:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

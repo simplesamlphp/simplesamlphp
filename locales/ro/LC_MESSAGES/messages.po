@@ -303,11 +303,6 @@ msgstr ""
 "Un serviciu a solicitat autentificarea dumneavoastră. Vă rugăm să "
 "completați numele de utilizator și parola în câmpurile de mai jos."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "
-"în capătul celălalt folosiți o entitate SimpleSAMLphp:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

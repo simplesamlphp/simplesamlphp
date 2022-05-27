@@ -288,11 +288,6 @@ msgstr ""
 "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos "
 "uporabniškega imena in gesla v spodnji polji."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "
-"uporabljate SimpleSAMLphp entiteto na drugi strani:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

@@ -311,9 +311,6 @@ msgstr ""
 "Служба запрашивает авторизацию. Пожалуйста, введите имя пользователя и "
 "пароль."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr "Формат простого SimpleSAMLphp файла"
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

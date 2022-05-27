@@ -258,9 +258,6 @@ msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 msgid "{login:user_pass_text}"
 msgstr "一个服务需要你的认证，请在下面输入你的用户名和密码"
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr "如果你想在其他网站使用的SimpleSAMLphp，那么你应该使用SimpleSAMLphp扁平的文件格式"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "手机"
 

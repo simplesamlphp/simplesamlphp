@@ -319,11 +319,6 @@ msgstr ""
 "Un servicio solicita que se autentique. Esto significa que debe indicar "
 "su nombre de usuario y su clave de acceso en el siguiente formulario."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"En un fichero de formato SimpleSAMLphp - utilice esta opción si está "
-"usando una entidad SimpleSAMLphp en el otro extremo:"
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

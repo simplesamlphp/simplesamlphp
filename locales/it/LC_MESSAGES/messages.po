@@ -308,11 +308,6 @@ msgstr ""
 "Un servizio ha richiesto l'autenticazione. Si prega di inserire le "
 "proprie credenziali nella maschera di login sottostante."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"In formato flat per SimpleSAMLphp - da utilizzare se dall'altra parte c'è"
-" un'entità che utilizza SimpleSAMLphp"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

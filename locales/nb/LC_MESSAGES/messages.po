@@ -294,11 +294,6 @@ msgstr ""
 "En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt "
 "brukernavn og passord for å autentisere deg."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "
-"den andre enden:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

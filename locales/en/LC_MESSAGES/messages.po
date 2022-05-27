@@ -314,11 +314,6 @@ msgstr ""
 "A service has requested you to authenticate yourself. Please enter your "
 "username and password in the form below."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"In SimpleSAMLphp flat file format - use this if you are using a "
-"SimpleSAMLphp entity on the other side:"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

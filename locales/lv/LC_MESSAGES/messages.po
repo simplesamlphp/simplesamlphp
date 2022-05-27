@@ -289,11 +289,6 @@ msgstr ""
 "Serviss pieprasa autentifikāciju. Lūdzu ievadiet savu lietotāja vārdu un "
 "paroli."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"SimpleSAMLphp parasta faila formātā - lietojiet šo, ja izmantojat "
-"SimpleSAMLphp entītiju otrā galā:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

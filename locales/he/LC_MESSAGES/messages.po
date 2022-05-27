@@ -274,11 +274,6 @@ msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כ
 msgid "{login:user_pass_text}"
 msgstr "שירות ביקש שתזדהה. אנא הכנס את שם המשתמש והסיסמה שלך בטופס מתחת."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"
-" בצד השני: "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

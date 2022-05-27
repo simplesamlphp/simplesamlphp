@@ -306,11 +306,6 @@ msgstr ""
 "vous devez entrer votre identifiant et votre mot de passe dans le "
 "formulaire ci-dessous."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"
-" SimpleSAMLphp sur la partie adverse :"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

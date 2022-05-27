@@ -291,11 +291,6 @@ msgstr ""
 "Teenus nõuab autentimist. Palun sisesta allpool olevasse vormi oma "
 "kasutajatunnus ja parool."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "
-"SimpleSAMLphp-d:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

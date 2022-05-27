@@ -278,11 +278,6 @@ msgstr ""
 "Bir servis kendinizi yetkilendirmenizi istedi. Lütfen aşağıdaki forma "
 "kullanıcı adınızı ve şifrenizi giriniz."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"Eğer diğer tarafta bir SimpleSAMLphp elemanını kullanıyorsanız, düz "
-"SimpleSAMLphp dosya biçiminde bunu kullanın:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

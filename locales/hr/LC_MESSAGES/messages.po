@@ -303,11 +303,6 @@ msgstr ""
 "Aplikacija zahtjeva od vas da se autentificirate. Unesite vašu korisničku"
 " oznaku i zaporku u dolje navedena polja."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "
-"također nalazi SimpleSAMLphp entitet:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

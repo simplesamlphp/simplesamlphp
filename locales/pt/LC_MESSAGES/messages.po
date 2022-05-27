@@ -272,11 +272,6 @@ msgstr ""
 "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
 "nome de utilizador e senha nos campos seguintes."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "
-"alternativa se usar uma entidade SimpleSAMLphp no outro extremo:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

@@ -290,11 +290,6 @@ msgstr ""
 "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"
 " slaptažodį."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "
-"SimpleSAMLphp kitoje esybėje:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

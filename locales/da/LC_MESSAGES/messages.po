@@ -299,11 +299,6 @@ msgstr ""
 "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal "
 "indtaste dit brugernavn og kodeord herunder."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"I SimpleSAMLphp flat-file format - brug dette hvis du også bruger "
-"SimpleSAMLphp i den anden ende;"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

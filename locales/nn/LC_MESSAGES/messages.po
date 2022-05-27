@@ -296,11 +296,6 @@ msgstr ""
 "Ei webteneste har spurt etter autentisering av deg. Skriv inn "
 "brukarnamnet ditt og passordet ditt for å autentisera deg."
 
-msgid "{admin:metadata_simplesamlformat}"
-msgstr ""
-"På flat fil for SimpleSAMLphp.  Bruk denne dersom du bruker SimpleSAMLphp"
-" på andre sida:"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
