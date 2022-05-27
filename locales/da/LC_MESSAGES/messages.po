@@ -231,9 +231,6 @@ msgstr "Du har logget ud fra alle overnævnte services. "
 msgid "{admin:cfg_check_notices}"
 msgstr "Beskeder"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Autentificering blev afbrudt af brugeren"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

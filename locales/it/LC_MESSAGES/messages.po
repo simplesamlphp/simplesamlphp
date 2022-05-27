@@ -236,9 +236,6 @@ msgstr "Sei stato disconnesso da tutti i servizi sopra elencati."
 msgid "{admin:cfg_check_notices}"
 msgstr "Notifiche"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "L'autenticazione è stata interrotta dall'utente"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

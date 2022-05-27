@@ -231,9 +231,6 @@ msgstr "Ați fost deautentificat de la toate serviciile enumerate mai sus."
 msgid "{admin:cfg_check_notices}"
 msgstr "Note/Observații"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Autentificarea a fost întreruptă de utilizator"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

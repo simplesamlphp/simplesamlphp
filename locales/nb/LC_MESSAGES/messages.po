@@ -223,9 +223,6 @@ msgstr "Du har n&aring; logget ut fra alle tjenestene listet ovenfor."
 msgid "{admin:cfg_check_notices}"
 msgstr "Notiser"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Godkjenningen ble avbrutt av brukeren"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

@@ -222,9 +222,6 @@ msgstr "Zostałeś pomyślnie wylogowany ze wszystkich powyższych serwisów."
 msgid "{admin:cfg_check_notices}"
 msgstr "Uwagi"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Uwierzytelnienie zostało przerwane przez użytkownika"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

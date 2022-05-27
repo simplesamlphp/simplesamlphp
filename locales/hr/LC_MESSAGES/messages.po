@@ -230,9 +230,6 @@ msgstr "Uspješno ste se odjavili iz svih gore navedenih servisa."
 msgid "{admin:cfg_check_notices}"
 msgstr "Napomene"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Korisnik je prekinuo proces autentifikacie"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

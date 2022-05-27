@@ -224,9 +224,6 @@ msgstr "Sa oled kõigist ülal loetletud teenustest edukalt välja logitud."
 msgid "{admin:cfg_check_notices}"
 msgstr "Märkused"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Autentimine katkestati kasutaja poolt"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "

@@ -446,7 +446,7 @@ msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
 msgid "{logout:loggedoutfrom}"
 msgstr "Usuphume ngempumelelo kokuthi %SP%."
 
-msgid "{errors:descr_USERABORTED}"
+msgid "The authentication was aborted by the user"
 msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
 
 msgid "E-mail address:"

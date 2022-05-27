@@ -234,9 +234,6 @@ msgstr "Você saiu com sucesso de todos os serviços listados acima."
 msgid "{admin:cfg_check_notices}"
 msgstr "Avisos"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "A autenticação foi abortada pelo usuário"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "

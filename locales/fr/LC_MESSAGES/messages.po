@@ -235,9 +235,6 @@ msgstr "Vous avez été déconnecté avec succès des services listés ci dessus
 msgid "{admin:cfg_check_notices}"
 msgstr "A noter"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "L'authentification a été abandonnée par l'usager"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

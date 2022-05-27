@@ -221,9 +221,6 @@ msgstr "Jūs sėkmingai buvote atjungtas nuo visų žemiau išvardintų paslaug�
 msgid "{admin:cfg_check_notices}"
 msgstr "Pranešimai"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Autentikacija nutraukė naudotojas"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

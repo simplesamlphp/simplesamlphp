@@ -222,9 +222,6 @@ msgstr "Du er ferdig utlogga frå alle tenestene"
 msgid "{admin:cfg_check_notices}"
 msgstr "Legg merke til"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Innlogging blei avbroten av sluttbrukaren"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

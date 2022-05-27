@@ -222,9 +222,6 @@ msgstr "Úspěšně jste se odhlásili z následujících služeb."
 msgid "{admin:cfg_check_notices}"
 msgstr "Poznámky"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Přihlášení bylo přerušeno uživatelem"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

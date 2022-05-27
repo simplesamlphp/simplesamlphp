@@ -440,7 +440,7 @@ msgstr "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?"
 msgid "{logout:loggedoutfrom}"
 msgstr "Ngoku uphume ngokuyimpumelelo kwi-%SP%."
 
-msgid "{errors:descr_USERABORTED}"
+msgid "The authentication was aborted by the user"
 msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 
 msgid "E-mail address:"

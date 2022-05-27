@@ -222,9 +222,6 @@ msgstr "Uspešno ste se odjavili z vseh naštetih storitev."
 msgid "{admin:cfg_check_notices}"
 msgstr "Obvestila"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

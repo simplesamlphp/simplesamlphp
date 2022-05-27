@@ -223,9 +223,6 @@ msgstr "Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból."
 msgid "{admin:cfg_check_notices}"
 msgstr "Megjegyzések"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "Az azonosítást a felhasználó megszakította"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

@@ -219,9 +219,6 @@ msgstr "您已經成功登出了列表中所有服務。"
 msgid "{admin:cfg_check_notices}"
 msgstr "備註"
 
-msgid "{errors:descr_USERABORTED}"
-msgstr "使用者中斷認證"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 
