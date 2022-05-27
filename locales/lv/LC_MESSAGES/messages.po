@@ -19,11 +19,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 identitātes piegādātājs (attālināts)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "
-"mainīta. Lūdzu nomainiet to, labojot failu."
-
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 

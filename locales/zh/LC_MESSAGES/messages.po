@@ -18,9 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 身份提供者（远程）"
 
-msgid "{errors:descr_NOTSET}"
-msgstr "你没有修改配置文件中的默认密码，请修改该密码"
-
 msgid "[Preferred choice]"
 msgstr "首选选项"
 

@@ -18,9 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 驗證提供者(遠端)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
-
 msgid "[Preferred choice]"
 msgstr "喜好選擇"
 

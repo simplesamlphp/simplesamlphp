@@ -19,11 +19,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote - vzdálený)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "
-"ho."
-
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 

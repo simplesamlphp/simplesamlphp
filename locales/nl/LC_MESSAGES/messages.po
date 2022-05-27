@@ -24,11 +24,6 @@ msgstr "Geen SAML bericht opgegeven"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Het default wachtwoord in de configuratie (auth.adminpassword) is niet "
-"aangepast; pas de configuratie aan aub."
-
 msgid "[Preferred choice]"
 msgstr "[Voorkeurskeuze]"
 

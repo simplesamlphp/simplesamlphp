@@ -18,11 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (entfernt)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "
-"Konfiguration (auth.adminpassword)."
-
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"
 

@@ -18,11 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "
-"επεξεργαστείτε το αρχείο ρυθμίσεων."
-
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 

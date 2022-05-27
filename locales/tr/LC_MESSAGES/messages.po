@@ -21,11 +21,6 @@ msgstr "Dosya listesine geri dön"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "
-"değişmedi. Lütfen yapılandırma dosyasını düzeltin."
-
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 

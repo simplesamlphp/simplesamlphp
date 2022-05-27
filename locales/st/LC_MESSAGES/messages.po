@@ -338,11 +338,6 @@ msgstr "Dimanollo tsa SimpleSAMLphp"
 msgid "Incorrect username or password."
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Phasewete ya tlhophiso (auth.adminpassword) ha e a fetolwa ho tswa palong"
-" ya tlwaelo. Ka kopo edita faele ya tlhophiso."
-
 msgid "Shibboleth demo"
 msgstr "Pontsho ya Shibboleth"
 

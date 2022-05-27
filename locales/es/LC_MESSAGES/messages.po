@@ -18,11 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Proveedor de Identidad SAML 2.0 (remoto)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"La clave de acceso del fichero de configuración (auth.adminpassword) no "
-"ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero"
-
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"
 

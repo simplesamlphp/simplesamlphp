@@ -18,11 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Seadistustes on vaikimisi parool (auth.adminpassword) muutmata. Palun "
-"muuda seadistustefaili."
-
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 

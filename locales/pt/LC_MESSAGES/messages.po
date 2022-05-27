@@ -18,11 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"A password presente na configuração (auth.adminpassword) tem o valor de "
-"omissão. Por favor altere esta password no ficheiro de configuração."
-
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"
 

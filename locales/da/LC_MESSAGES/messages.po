@@ -18,12 +18,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 identitetsudbyder (remote)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Der er ikke konfigureret et password til administrationsgrænsefladen "
-"(auth.adminpassword). Opdater konfigurationen med et nyt password, der er"
-" forskelligt fra stadardpasswordet."
-
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 

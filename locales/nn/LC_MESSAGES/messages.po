@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "
-"opprinneleg verdi, dette er usikkert.  Gå inn i konfigurasjonen og bytt "
-"passord."
-
 msgid "[Preferred choice]"
 msgstr "Beste val"
 

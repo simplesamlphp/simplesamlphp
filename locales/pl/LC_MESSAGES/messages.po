@@ -19,11 +19,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Dostawca Tożsamości (Zdalny)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "
-"poprawić konfigurację."
-
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"
 

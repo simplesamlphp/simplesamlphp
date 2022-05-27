@@ -19,12 +19,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Izvorna vrijednost administratorske zaporke (parametar "
-"auth.adminpassword) u konfiguraciji nije promjenjena. Molimo promjenite "
-"administratorsku zaporku u konfiguracijskoj datoteci."
-
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 

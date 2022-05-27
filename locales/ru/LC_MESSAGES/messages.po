@@ -19,11 +19,6 @@ msgstr ""
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Провайдер идентификации SAML 2.0 (удаленное размещение)"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "
-"по умолчанию. Пожалуйста, отредактируйте файл конфигурации."
-
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
 

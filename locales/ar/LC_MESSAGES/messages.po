@@ -22,11 +22,6 @@ msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ ال
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "مقدم هوية SAML 2.0 البعيد"
 
-msgid "{errors:descr_NOTSET}"
-msgstr ""
-"لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "
-"قم بتحرير ملف الترتيب"
-
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 
