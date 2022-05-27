@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr "你确实发送了一些信息给登录页面，但由于某些原因，你没有发送密码，请再试一次"
-
 msgid "{errors:debuginfo_text}"
 msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
 

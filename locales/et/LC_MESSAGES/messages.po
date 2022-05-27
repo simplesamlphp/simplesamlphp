@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Sa saatsid midagi sisselogimislehele, kuid miskipärast parooli ei "
-"saadetud. Palun proovi uuesti."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "

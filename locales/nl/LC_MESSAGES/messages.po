@@ -21,11 +21,6 @@ msgstr "Terug"
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet "
-"verstuurd. Probeer het opnieuw AUB."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "

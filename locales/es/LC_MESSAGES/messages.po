@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Usted envió algo a la página de acceso pero, por algún motivo, la clave "
-"no fue enviada. Inténtelo de nuevo, por favor."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "

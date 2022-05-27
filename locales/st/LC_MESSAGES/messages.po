@@ -288,11 +288,6 @@ msgstr ""
 "Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao "
 "ya SimpleSAMLphp."
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"o Rometse se seng leqepheng la ho kena, empa ka lebaka le sa tsejweng "
-"phaewete ha e a romelwa. Ka kopo leka hape."
-
 msgid "Session size: %SIZE%"
 msgstr "Saese ya seshene: %SIZE%"
 

@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių "
-"priežasčių slaptažodis nebuvo nusiųstas. Prašome bandyti dar kartą."
-
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 

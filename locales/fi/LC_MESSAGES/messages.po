@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei "
-"lähetetty. Ole hyvä ja yritä uudestaan."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Der hud eppes un d'Login Sait geschéeckt me aus iergentengem Grond huet d"
-" Passwuert gefehlt. Probéiert w.e.g nach eng Kéier."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Dei Debug Informatiounen hei drënner kinnten den Administrator "

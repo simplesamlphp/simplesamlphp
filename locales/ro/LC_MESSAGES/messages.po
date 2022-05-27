@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Ați trimis informații către pagina de autentificare dar din motive "
-"necunoscute parola nu a fost trimisă. Vă rugăm să încercați din nou."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "

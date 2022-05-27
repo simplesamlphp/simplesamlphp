@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Du skicka in en inloggningsförfrågan men det verkar som om ditt lösenord "
-"inte fanns med i förfrågan. Försök igen!"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "

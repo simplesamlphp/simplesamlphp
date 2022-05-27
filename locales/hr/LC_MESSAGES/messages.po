@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Iz nekog razloga autentifikacijskom servisu nije proslijeđena vaša "
-"zaporka. Molimo pokušajte ponovo."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "

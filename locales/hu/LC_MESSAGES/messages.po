@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "

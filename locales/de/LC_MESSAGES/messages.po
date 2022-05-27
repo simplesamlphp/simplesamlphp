@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Sie haben etwas an die Anmeldeseite geschickt, aber aus irgendeinem Grund"
-" ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es "
-"erneut."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "

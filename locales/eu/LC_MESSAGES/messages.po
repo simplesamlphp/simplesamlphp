@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitza"
-" ez da bidali.Saia zaitez berriro, mesedez."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "

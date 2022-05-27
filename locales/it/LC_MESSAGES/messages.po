@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Sono state inviate delle informazioni alla pagina di login, ma per "
-"qualche motivo la password risulta mancante. Si prega di riprovare."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"

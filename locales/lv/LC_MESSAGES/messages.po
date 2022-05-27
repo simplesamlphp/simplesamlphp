@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr "Kaut kādu iemeslu dēļ parole nav nosūtīta. Lūdzu mēģiniet vēlreiz."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "

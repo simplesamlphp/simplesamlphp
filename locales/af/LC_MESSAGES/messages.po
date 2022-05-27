@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{login:error_nopassword}"
-msgstr ""
-"Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "
-"asb. weer."
-
 msgid "{errors:debuginfo_text}"
 msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
