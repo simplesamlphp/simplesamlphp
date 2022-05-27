@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{login:contact_info}"
-msgstr "İletişim bilgileri:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Beklenmeyen durum"
 

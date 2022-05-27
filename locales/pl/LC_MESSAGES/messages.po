@@ -55,9 +55,6 @@ msgstr ""
 "Poniższa informacja debugger'a  może być przydatna dla administara / "
 "helpdesk:"
 
-msgid "{login:contact_info}"
-msgstr "Informacje kontaktowe:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nieobsługiwany błąd"
 

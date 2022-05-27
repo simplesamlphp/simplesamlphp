@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktinformasjon:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Feilsituasjon som ikkje er riktig handtert"
 

@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{login:contact_info}"
-msgstr "Informações de Contato"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Exceção não tratada"
 

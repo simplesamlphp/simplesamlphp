@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{login:contact_info}"
-msgstr "Kontakt"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nicht abgefangener Ausnahmefehler"
 

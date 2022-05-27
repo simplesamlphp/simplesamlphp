@@ -59,9 +59,6 @@ msgstr ""
 "Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού "
 "και επίλυσης σφαλμάτων."
 
-msgid "{login:contact_info}"
-msgstr "Στοιχεία επικοινωνίας:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Ανεπίλυτη εξαίρεση"
 

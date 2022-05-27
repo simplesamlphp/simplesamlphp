@@ -63,9 +63,6 @@ msgstr ""
 "Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya "
 "SAML ha e a atleha)"
 
-msgid "{login:contact_info}"
-msgstr "Tlhahisoleseding ya boikopanyo:"
-
 msgid "Remember"
 msgstr "Hopola"
 

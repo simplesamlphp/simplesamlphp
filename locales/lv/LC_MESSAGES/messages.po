@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktinformācija"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nezināma kļūda"
 

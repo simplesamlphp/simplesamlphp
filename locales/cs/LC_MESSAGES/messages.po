@@ -53,9 +53,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktní informace"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Neočekávaná výjimka"
 

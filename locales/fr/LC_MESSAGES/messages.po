@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{login:contact_info}"
-msgstr "Coordonnées :"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Exception non gérée"
 

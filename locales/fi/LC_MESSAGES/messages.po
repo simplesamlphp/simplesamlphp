@@ -48,9 +48,6 @@ msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "
 "helpdeskiä:"
 
-msgid "{login:contact_info}"
-msgstr "Yhteystiedot"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Käsittelemätön poikkeus"
 

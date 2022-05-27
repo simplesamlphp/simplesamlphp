@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{login:contact_info}"
-msgstr "Kontak detail:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Onverwagte foutmelding"
 

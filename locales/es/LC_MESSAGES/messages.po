@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{login:contact_info}"
-msgstr "Información de contacto:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Excepción no controlada"
 

@@ -42,9 +42,6 @@ msgstr "您可能有傳送至網頁，但是密碼因為某些原因未傳送，
 msgid "{errors:debuginfo_text}"
 msgstr "管理員/服務台可能對下列除錯資訊有興趣："
 
-msgid "{login:contact_info}"
-msgstr "聯絡資訊："
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "不可預期的例外"
 

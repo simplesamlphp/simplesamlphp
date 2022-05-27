@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{login:contact_info}"
-msgstr "צור קשר"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "חריגה לא מטופלת "
 

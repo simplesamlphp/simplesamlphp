@@ -56,9 +56,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktai:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nežinoma klaida"
 

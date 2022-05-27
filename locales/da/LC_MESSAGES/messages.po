@@ -51,9 +51,6 @@ msgstr "Dit kodeord blev ikke sendt - prøv igen."
 msgid "{errors:debuginfo_text}"
 msgstr "Detaljerne herunder kan være af interesse for teknikerne / help-desken"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktoplysninger"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Unhandled exception"
 

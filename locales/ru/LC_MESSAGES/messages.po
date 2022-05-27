@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{login:contact_info}"
-msgstr "Контактная информация"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Необрабатываемое исключение"
 

@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktinformation:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Ohanterat undantag"
 

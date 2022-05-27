@@ -232,7 +232,7 @@ msgstr ""
 " iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela "
 "ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
-msgid "{login:contact_info}"
+msgid "Contact information:"
 msgstr "Inkcazelo yoqhagamshelwano:"
 
 msgid "Error report sent"

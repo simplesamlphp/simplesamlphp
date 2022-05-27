@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{login:contact_info}"
-msgstr "Kontaktinformasjon:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Uhåndtert feil"
 

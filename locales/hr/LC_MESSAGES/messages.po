@@ -63,9 +63,6 @@ msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "
 "podršku korisnicima:"
 
-msgid "{login:contact_info}"
-msgstr "Kontakt podaci:"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Neobrađena iznimka"
 

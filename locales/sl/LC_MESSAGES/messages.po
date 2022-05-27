@@ -53,9 +53,6 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "{errors:debuginfo_text}"
 msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
-msgid "{login:contact_info}"
-msgstr "Kontakt"
-
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nedefinirana izjema."
 
