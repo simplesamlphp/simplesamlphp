@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"La siguiente información de depuración puede ser de utilidad para el "
-"administrador del sistema o el centro de atención a usuarios:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Uno o más de los servicios en los que está autenticado <i>no permite "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "システム管理者やヘルプデスクは以下のデバッグ情報が役立つかもしれません:"
-
 msgid "{logout:incapablesps}"
 msgstr "<i>ログアウトをサポートしていない</i>サービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
 

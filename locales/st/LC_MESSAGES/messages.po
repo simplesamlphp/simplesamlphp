@@ -159,11 +159,6 @@ msgstr "Metadata ha e a fumanwa"
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Tlhahisoleseding ya debug e ka tlase mona e  ka nna ya kgahla motsamaisi "
-"/ deske ya thuso:"
-
 msgid "CAS Error"
 msgstr "Phoso ya CAS"
 

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Dei Debug Informatiounen hei drënner kinnten den Administrator "
-"interesséiren:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net "

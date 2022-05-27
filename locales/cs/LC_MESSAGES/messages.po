@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jedna nebo více služeb, do kterých jste přihlášen(a), nepodporuje "

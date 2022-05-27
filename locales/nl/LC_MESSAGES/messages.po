@@ -21,11 +21,6 @@ msgstr "Terug"
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
-"helpdesk:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning "

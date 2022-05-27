@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Die onderstaande informasie mag van hulp wees vir die stelsel "
-"administrateur / hulplyn."
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meerdere dienste waarby jy aangemeld het, <i>ondersteun nie "

@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
-"väga kasulik:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Üks või mitu teenust, millesse oled sisselogitud <i>ei toeta välja "

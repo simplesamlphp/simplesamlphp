@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Informațiile de depanare de mai jos pot fi importante pentru "
-"administratorul de sistem:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Unul sau mai multe servicii în care sunteți autentificat <i>nu suportă "

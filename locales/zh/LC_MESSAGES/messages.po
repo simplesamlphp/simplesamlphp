@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
-
 msgid "{logout:incapablesps}"
 msgstr "一个或多个你已登录的服务<i>不支持退出</i>，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"The debug information below may be of interest to the administrator / "
-"help desk:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "One or more of the services you are logged into <i>do not support "

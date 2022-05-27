@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"Arazketa informazio hau erabilgarria izan daiteke sistemaren "
-"administratzailea edo erabiltzailearen arreta zentroarentzat:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Kautotuta zauden zerbitzu bat edo batzuk <i>ez dute uzten saioa "

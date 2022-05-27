@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "אחד או יותר מן השרותים שאתה מחובר אליהם <i>לא תומכים בהתנתקות</i> .כדי "

@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Satu atau beberapa layanan yang anda telah login  <i>tidak mendukung "

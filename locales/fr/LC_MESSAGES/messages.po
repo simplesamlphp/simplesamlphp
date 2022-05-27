@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr ""
-"L'information de déboguage ci-dessous peut être intéressante pour "
-"l'administrateur ou le help desk :"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Un ou plusieurs des services auxquels vous êtes connecté <i>ne gèrent pas"

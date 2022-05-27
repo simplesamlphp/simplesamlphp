@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:debuginfo_text}"
-msgstr "Ši detali informacija gali būti įdomi administratoriui:"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Viena ar daugiau paslaugų, prie kurių esate prisijungęs <i>nepalaiko "
