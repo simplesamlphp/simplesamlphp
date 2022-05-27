@@ -18,9 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
-msgstr "SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
-
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 

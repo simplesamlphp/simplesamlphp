@@ -19,9 +19,6 @@ msgstr ""
 msgid "{status:validfor}"
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
-msgstr "مقدم هوية SAML 2.0 البعيد"
-
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 

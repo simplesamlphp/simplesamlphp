@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
-msgstr "ספק זהות מרוחק מסוג SAML 2.0"
-
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 
