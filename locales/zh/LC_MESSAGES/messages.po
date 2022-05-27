@@ -42,9 +42,6 @@ msgstr "你确实发送了一些信息给登录页面，但由于某些原因，
 msgid "{errors:debuginfo_text}"
 msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
 
-msgid "{login:error_header}"
-msgstr "错误"
-
 msgid "{logout:incapablesps}"
 msgstr "一个或多个你已登录的服务<i>不支持退出</i>，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
 

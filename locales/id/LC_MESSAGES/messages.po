@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 
-msgid "{login:error_header}"
-msgstr "Error"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Satu atau beberapa layanan yang anda telah login  <i>tidak mendukung "

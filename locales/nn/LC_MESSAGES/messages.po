@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{login:error_header}"
-msgstr "Feil"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Ei eller fleire av tenestene du er innlogga på <i>støtter ikkje "

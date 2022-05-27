@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{login:error_header}"
-msgstr "Hata"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Giriş yaptığınız bir yada daha fazla servis <i>çıkışı desteklemiyor</i>. "

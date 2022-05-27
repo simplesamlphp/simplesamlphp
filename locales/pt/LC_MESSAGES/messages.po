@@ -57,9 +57,6 @@ msgstr ""
 "A informação de debug abaixo pode ter interesse para o administrador / "
 "apoio ao utilizador:"
 
-msgid "{login:error_header}"
-msgstr "Erro"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Um ou mais dos serviços onde se encontra autenticado <i>não suporta(m) a "

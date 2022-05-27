@@ -42,9 +42,6 @@ msgstr "您可能有傳送至網頁，但是密碼因為某些原因未傳送，
 msgid "{errors:debuginfo_text}"
 msgstr "管理員/服務台可能對下列除錯資訊有興趣："
 
-msgid "{login:error_header}"
-msgstr "錯誤"
-
 msgid "{logout:incapablesps}"
 msgstr "您登入的服務中有一個或以上 <i>不支援登出<\\/i>。請確認您已關閉所有連線，並<i>關閉瀏覽器<\\/i>。"
 

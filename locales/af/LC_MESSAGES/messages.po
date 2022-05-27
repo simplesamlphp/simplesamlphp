@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{login:error_header}"
-msgstr "Fout"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meerdere dienste waarby jy aangemeld het, <i>ondersteun nie "

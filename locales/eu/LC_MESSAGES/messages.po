@@ -62,9 +62,6 @@ msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "
 "administratzailea edo erabiltzailearen arreta zentroarentzat:"
 
-msgid "{login:error_header}"
-msgstr "Eman dituzun datuak okerrak dira"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Kautotuta zauden zerbitzu bat edo batzuk <i>ez dute uzten saioa "

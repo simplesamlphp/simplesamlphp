@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{login:error_header}"
-msgstr "Los datos que ha suministrado no son válidos"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Uno o más de los servicios en los que está autenticado <i>no permite "

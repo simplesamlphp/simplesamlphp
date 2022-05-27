@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{login:error_header}"
-msgstr "Tõrge"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Üks või mitu teenust, millesse oled sisselogitud <i>ei toeta välja "

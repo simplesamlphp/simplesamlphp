@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{login:error_header}"
-msgstr "Erro"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Um ou mais dos serviços que você está conectado <i>não suportam "

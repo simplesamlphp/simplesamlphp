@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{login:error_header}"
-msgstr "Fout"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning "

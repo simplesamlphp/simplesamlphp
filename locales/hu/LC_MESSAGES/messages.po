@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{login:error_header}"
-msgstr "Hiba"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Egy vagy több alkalmazás <i>nem támogatja a kijelenkezést</i>. Hogy "

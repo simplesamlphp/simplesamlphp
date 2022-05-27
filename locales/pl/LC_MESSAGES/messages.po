@@ -55,9 +55,6 @@ msgstr ""
 "Poniższa informacja debugger'a  może być przydatna dla administara / "
 "helpdesk:"
 
-msgid "{login:error_header}"
-msgstr "Błąd"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jeden lub więcej serwisów , w których jesteś zalogowany <i>nie obsługuje "

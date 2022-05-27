@@ -48,9 +48,6 @@ msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "
 "helpdeskiä:"
 
-msgid "{login:error_header}"
-msgstr "Virhe"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue "

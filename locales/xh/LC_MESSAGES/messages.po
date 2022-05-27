@@ -292,7 +292,7 @@ msgstr "Uphume ngokuyimpumelelo kuzo zonke iinkonzo ezidweliswe ngasentla."
 msgid "Incorrect username or password."
 msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga."
 
-msgid "{login:error_header}"
+msgid "Error"
 msgstr "Impazamo"
 
 msgid "You have been logged out."

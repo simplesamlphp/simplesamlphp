@@ -389,9 +389,6 @@ msgstr "Phoso ya SimpleSAMLphp"
 msgid "Service Provider"
 msgstr "Mofani wa Tshebeletso"
 
-msgid "{login:error_header}"
-msgstr "Phoso"
-
 msgid ""
 "Without your username and password you cannot authenticate yourself for "
 "access to the service. There may be someone that can help you. Consult "

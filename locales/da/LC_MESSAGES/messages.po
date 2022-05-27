@@ -51,9 +51,6 @@ msgstr "Dit kodeord blev ikke sendt - prøv igen."
 msgid "{errors:debuginfo_text}"
 msgstr "Detaljerne herunder kan være af interesse for teknikerne / help-desken"
 
-msgid "{login:error_header}"
-msgstr "Fejl"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "En eller flere services som du er logget ind hos <i>understøtter ikke log"

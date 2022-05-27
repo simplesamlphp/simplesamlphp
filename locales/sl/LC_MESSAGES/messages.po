@@ -53,9 +53,6 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "{errors:debuginfo_text}"
 msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
-msgid "{login:error_header}"
-msgstr "Napaka"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Ena ali več storitev, v katere ste prijavljeni, <i>ne omogoča odjave</i>."

@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{login:error_header}"
-msgstr "Fel"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "En eller flera av tjänsterna du är inloggad i <i>kan inte hantera "

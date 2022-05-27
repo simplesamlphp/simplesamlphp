@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{login:error_header}"
-msgstr "Feil"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "En eller flere av tjenestene du er logget inn på <i>støtter ikke "

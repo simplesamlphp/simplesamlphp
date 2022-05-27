@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{login:error_header}"
-msgstr "שגיאה"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "אחד או יותר מן השרותים שאתה מחובר אליהם <i>לא תומכים בהתנתקות</i> .כדי "

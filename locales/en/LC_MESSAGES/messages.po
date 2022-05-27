@@ -64,9 +64,6 @@ msgstr ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
 
-msgid "{login:error_header}"
-msgstr "Error"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "One or more of the services you are logged into <i>do not support "

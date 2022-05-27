@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{login:error_header}"
-msgstr "Fehler"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Einer oder mehrere Dienste an denen Sie angemeldet sind, <i>unterstützen "

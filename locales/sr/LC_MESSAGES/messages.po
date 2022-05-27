@@ -62,9 +62,6 @@ msgstr ""
 "Informacije o grešci koje se nalaze ispod mogu biti od interesa "
 "administratoru ili službi za podršku korisnicima."
 
-msgid "{login:error_header}"
-msgstr "Greška"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Jedan ili više servisa na koje ste prijavljeni <i>ne podržava "

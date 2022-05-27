@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{login:error_header}"
-msgstr "Eroare"
-
 msgid "{logout:incapablesps}"
 msgstr ""
 "Unul sau mai multe servicii în care sunteți autentificat <i>nu suportă "
