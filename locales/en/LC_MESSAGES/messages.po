@@ -208,9 +208,6 @@ msgstr "In SAML 2.0 Metadata XML format:"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Identity Provider (Hosted)"
 
-msgid "{status:subject_notset}"
-msgstr "not set"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

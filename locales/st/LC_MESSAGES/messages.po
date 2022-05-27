@@ -422,9 +422,6 @@ msgstr ""
 "tshehetse ho tswa</i>. Ho netefatsa hore diseshene tsohle tsa hao di "
 "kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
 
-msgid "{status:subject_notset}"
-msgstr "ha e a setwa"
-
 msgid "Could not create authentication response"
 msgstr "Ha e a kgona ho theha karabelo ya ntefatso"
 

@@ -209,9 +209,6 @@ msgstr "Провайдер идентификации SAML 2.0 (удаленно
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "Провайдер идентификации SAML 2.0 (локальное размещение)"
 
-msgid "{status:subject_notset}"
-msgstr "не установлен"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

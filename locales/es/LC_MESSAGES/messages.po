@@ -209,9 +209,6 @@ msgstr "Proveedor de Identidad SAML 2.0 (remoto)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "Proveedor de Identidad SAML 2.0 (local)"
 
-msgid "{status:subject_notset}"
-msgstr "sin valor"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "

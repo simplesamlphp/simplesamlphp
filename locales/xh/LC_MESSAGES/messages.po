@@ -189,7 +189,7 @@ msgstr ""
 "ulithathe, ngoko le mpazamo isenokubonisa enye impazamo ngolungiselelo. "
 "Ukuba ingxaki iyaqhubeka, qhagamshela umboneleli wenkonzo wakho."
 
-msgid "{status:subject_notset}"
+msgid "not set"
 msgstr "ayikasetwa"
 
 msgid "Error received from Identity Provider"

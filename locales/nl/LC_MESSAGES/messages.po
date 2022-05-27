@@ -218,9 +218,6 @@ msgstr "SAML 2.0 Identity Provider (Remote)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 Identity Provider (Hosted)"
 
-msgid "{status:subject_notset}"
-msgstr "niet aanwezig"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

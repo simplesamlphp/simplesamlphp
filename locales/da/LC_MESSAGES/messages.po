@@ -198,9 +198,6 @@ msgstr "SAML 2.0 identitetsudbyder (remote)"
 msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
 msgstr "SAML 2.0 identitetsudbyder (hosted)"
 
-msgid "{status:subject_notset}"
-msgstr "ikke angivet"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

@@ -192,7 +192,7 @@ msgstr ""
 "leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga "
 "iphikelela, thinta umhlinzeki wakho wesevisi."
 
-msgid "{status:subject_notset}"
+msgid "not set"
 msgstr "akusethiwe"
 
 msgid "Error received from Identity Provider"
