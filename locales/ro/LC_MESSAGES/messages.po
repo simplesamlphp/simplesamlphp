@@ -205,9 +205,6 @@ msgstr "Furnizor de identitate SAML 2.0 (găzduit)"
 msgid "{admin:metaover_required_found}"
 msgstr "Câmpuri obligatorii"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Alegeți fișierul de configurare care doriți să-l verificați:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

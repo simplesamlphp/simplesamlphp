@@ -180,9 +180,6 @@ msgstr "SAML 2.0アイデンティティプロバイダ(ホスト)"
 msgid "{admin:metaover_required_found}"
 msgstr "必須項目"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "確認する設定ファイルを選択:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 

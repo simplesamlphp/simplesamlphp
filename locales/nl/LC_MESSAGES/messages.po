@@ -224,9 +224,6 @@ msgstr "niet aanwezig"
 msgid "{admin:metaover_required_found}"
 msgstr "Verplichte velden"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Selecteer een configuratiefile voor validatie:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

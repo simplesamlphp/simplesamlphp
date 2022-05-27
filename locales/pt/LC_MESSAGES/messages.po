@@ -186,9 +186,6 @@ msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Local)"
 msgid "{admin:metaover_required_found}"
 msgstr "Campos obrigatórios"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Escolha o ficheiro de configuração a verificar:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

@@ -208,9 +208,6 @@ msgstr "SAML 2.0 Identity Provider (Hosted)"
 msgid "{admin:metaover_required_found}"
 msgstr "Campi richiesti"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Selezionare il file di configurazione da verificare:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

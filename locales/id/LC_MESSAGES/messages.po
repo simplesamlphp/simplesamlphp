@@ -203,9 +203,6 @@ msgstr "Identity Provider SAML 2.0 (Hosted)"
 msgid "{admin:metaover_required_found}"
 msgstr "Field-field yang wajib diisi"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Pilih file konfigurasi untuk diperiksa"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai "

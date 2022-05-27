@@ -180,9 +180,6 @@ msgstr "SAML 2.0 身份提供者（本地）"
 msgid "{admin:metaover_required_found}"
 msgstr "必需的区域"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "选择一个配置文件用于检测"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 

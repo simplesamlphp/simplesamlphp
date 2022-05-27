@@ -215,9 +215,6 @@ msgstr "sin valor"
 msgid "{admin:metaover_required_found}"
 msgstr "Campos obligatorios"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Seleccione el fichero de configuración a comprobar:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "

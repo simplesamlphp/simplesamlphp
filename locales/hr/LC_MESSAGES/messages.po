@@ -204,9 +204,6 @@ msgstr "SAML 2.0 autentifikacijski servis (lokalni)"
 msgid "{admin:metaover_required_found}"
 msgstr "Obavezna polja"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Odaberite konfiguracijsku datoteku koju želite provjeriti:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

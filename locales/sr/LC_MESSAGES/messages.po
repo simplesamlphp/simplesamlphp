@@ -203,9 +203,6 @@ msgstr "SAML 2.0 Davalac Identiteta (lokalni)"
 msgid "{admin:metaover_required_found}"
 msgstr "Obavezna polja"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Odaberite konfiguracionu fajl koji želite proveriti:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

@@ -199,9 +199,6 @@ msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 msgid "{admin:metaover_required_found}"
 msgstr "Obligatorisk felt"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Velg hvilken konfigurasjonfil som skal sjekkes"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

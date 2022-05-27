@@ -197,9 +197,6 @@ msgstr "SAML 2.0 Tapatybių teikėjas (vietinis)"
 msgid "{admin:metaover_required_found}"
 msgstr "Privalomi laukai"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Tikrinti konfigūracijos failą:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

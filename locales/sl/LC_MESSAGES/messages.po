@@ -196,9 +196,6 @@ msgstr "SAML 2.0 IdP (Lokalni)"
 msgid "{admin:metaover_required_found}"
 msgstr "Zahtevana polja"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Izberite konfiguracijsko datoteko, ki jo želite preveriti"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

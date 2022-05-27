@@ -196,9 +196,6 @@ msgstr "SAML 2.0 Dostawca Tożsamości (Lokalny)"
 msgid "{admin:metaover_required_found}"
 msgstr "Pola wymagane"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Wybierz plik konfiguracyjny do sprawdzenia:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "

@@ -208,9 +208,6 @@ msgstr "SAML 2.0 Identity Provider (Local)"
 msgid "{admin:metaover_required_found}"
 msgstr "Campos requeridos"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Selecione o arquivo de configuração para verificar"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "

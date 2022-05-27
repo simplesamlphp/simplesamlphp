@@ -195,9 +195,6 @@ msgstr "SAML 2.0 identitātes piegādātājs (hostēts)"
 msgid "{admin:metaover_required_found}"
 msgstr "Obligātie lauki"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Izvēlieties pārbaudāmos konfigurācijas failus:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

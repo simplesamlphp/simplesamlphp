@@ -215,9 +215,6 @@ msgstr "δεν έχει οριστεί"
 msgid "{admin:metaover_required_found}"
 msgstr "Υποχρεωτικά πεδία"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Επιλογή αρχείου για έλεγχο: "
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

@@ -208,9 +208,6 @@ msgstr "SAML 2.0 Identity Provider (Värd)"
 msgid "{admin:metaover_required_found}"
 msgstr "Nödvändiga alternativ"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "Välj vilken konfigurationfil som ska kontrolleras:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

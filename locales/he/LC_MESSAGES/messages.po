@@ -190,9 +190,6 @@ msgstr "ספק זהות מקומי מסוג SAML 2.0"
 msgid "{admin:metaover_required_found}"
 msgstr "שדות נדרשים"
 
-msgid "{admin:cfg_check_select_file}"
-msgstr "בחר קובץ הגדרות לבדיקה:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "
