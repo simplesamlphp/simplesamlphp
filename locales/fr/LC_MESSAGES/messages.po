@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Options manquantes dans le fichier de configuration"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Une exception non gérée a été levée."
 

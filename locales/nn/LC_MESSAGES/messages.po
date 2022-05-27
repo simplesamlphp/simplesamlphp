@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Det manglar informasjon i konfigurasjonsfila"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Programvaren gjev melding om uventa feilsituasjon"
 

@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Параметры, отсутствующие в файле конфигурации"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Выдано необрабатываемое исключение."
 

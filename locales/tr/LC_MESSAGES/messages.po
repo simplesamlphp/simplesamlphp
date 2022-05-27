@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Config dosyasındaki tercihler eksik"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Bir beklenmeyen durum gönderildi."
 

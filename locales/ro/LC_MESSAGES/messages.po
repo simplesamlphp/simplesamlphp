@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Opțiuni care nu apar în fișierul de configurare"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "A apărut o excepție netratată."
 

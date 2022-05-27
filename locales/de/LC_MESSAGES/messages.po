@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Optionen, die in der Konfigurationsdatei fehlen"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Ein nicht abgefangener Ausnahmefehler ist aufgetreten."
 

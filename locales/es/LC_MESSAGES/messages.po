@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Opciones que faltan en el fichero de configuración"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Se lanzó una excepción no controlada."
 

@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Konfigurācijas failā trūkst opciju"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Noticis nezināms izņēmuma gadījums."
 

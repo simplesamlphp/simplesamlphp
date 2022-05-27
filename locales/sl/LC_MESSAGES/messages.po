@@ -53,9 +53,6 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "{errors:debuginfo_text}"
 msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "V konfiguracijski datoteki manjkajo nastavitve"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Zagnana je bila nedefinirana izjema."
 

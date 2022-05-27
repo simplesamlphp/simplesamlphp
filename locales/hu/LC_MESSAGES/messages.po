@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Hiányzó opciók a konfigurációs állományban"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Kezeletlen kivétel (exception) keletkezett."
 

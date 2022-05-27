@@ -56,9 +56,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Trūkstami parametrai konfigūraciniame faile"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Nežinoma klaida."
 

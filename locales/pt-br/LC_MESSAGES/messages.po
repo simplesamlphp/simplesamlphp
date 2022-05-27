@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Opções faltando no arquivo de configuração"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Uma exceção não tratada foi descartada."
 

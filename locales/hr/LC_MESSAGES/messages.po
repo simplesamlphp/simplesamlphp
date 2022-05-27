@@ -63,9 +63,6 @@ msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "
 "podršku korisnicima:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Parametri koji nedostaju u konfiguracijskoj datoteci"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Pojavila se iznimka koja ne može do kraja biti obrađena."
 

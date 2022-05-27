@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Alternativ saknas i konfigurationsfilen"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Ett ohanterat undatag har inträffat. "
 

@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Opsi-opsi uang hilang dari file konfigurasi"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Exception yang tidak tertangani telah di-thrown"
 

@@ -62,9 +62,6 @@ msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "
 "administratzailea edo erabiltzailearen arreta zentroarentzat:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Konfigurazio fitxategian falta diren aukerak"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Kudeatu gabeko salbuespen bat abiarazi da"
 

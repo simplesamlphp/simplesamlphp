@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Mangler element i konfigurasjonsfilen"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "En uventet feilsituasjon oppstod"
 

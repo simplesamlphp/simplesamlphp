@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Opties missen in de config file"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Een onverwachte foutmelding is opgetreden"
 

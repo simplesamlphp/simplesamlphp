@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "אפשרויות חסרות מקובץ ההגדרות"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "הושלכה חריגה ללא טיפול"
 

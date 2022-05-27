@@ -53,9 +53,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
 
-msgid "{admin:cfg_check_missing}"
-msgstr "Chybějící položky v konfiguračním souboru"
-
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
 msgstr "Vznikla neočekávaná výjimka."
 
