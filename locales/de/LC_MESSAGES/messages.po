@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{login:select_home_org}"
-msgstr "Wählen Sie die Einrichtung, von der Sie Ihre Zugangsdaten beziehen"
-
 msgid "{logout:hold}"
 msgstr "In der Wartschleife"
 

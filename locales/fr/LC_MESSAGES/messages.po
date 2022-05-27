@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{login:select_home_org}"
-msgstr "Choisissez votre fournisseur."
-
 msgid "{logout:hold}"
 msgstr "En cours"
 

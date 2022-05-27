@@ -37,9 +37,6 @@ msgstr ""
 "Jika Anda adalah administrator dari layanan ini, Anda harus memastikan "
 "konfigurasi metdata Anda telah disetup dengan benar. "
 
-msgid "{login:select_home_org}"
-msgstr "Pilih Basis Organisasi Anda"
-
 msgid "{logout:hold}"
 msgstr "Ditahan"
 

@@ -37,9 +37,6 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{login:select_home_org}"
-msgstr "Välj vilken organisation du kommer ifrån"
-
 msgid "{logout:hold}"
 msgstr "Vilande"
 

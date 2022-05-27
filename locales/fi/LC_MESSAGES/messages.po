@@ -30,9 +30,6 @@ msgstr ""
 "SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "
 "palvelun ylläpitäjä tulee sinun varmistua metadatan oikeellisuudesta."
 
-msgid "{login:select_home_org}"
-msgstr "Valitse kotiorganisaatiosi"
-
 msgid "{logout:hold}"
 msgstr "Odota"
 

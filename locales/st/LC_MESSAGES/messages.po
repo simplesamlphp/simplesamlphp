@@ -738,9 +738,6 @@ msgstr ""
 msgid "Username"
 msgstr "Lebitso la mosebedisi"
 
-msgid "{login:select_home_org}"
-msgstr "Kgetha khampani ya lehae ya hao"
-
 msgid "Error when communicating with the CAS server."
 msgstr "Phoso e bile teng ka seva ya CAS."
 

@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{login:select_home_org}"
-msgstr "Válassza ki az ön szervezetét"
-
 msgid "{logout:hold}"
 msgstr "Felfüggesztve"
 

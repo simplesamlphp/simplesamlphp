@@ -545,6 +545,6 @@ msgstr ""
 msgid "{logout:progress}"
 msgstr "Iyaphuma..."
 
-msgid "{login:select_home_org}"
+msgid "Choose your home organization"
 msgstr "Khetha inhlangano yakho yasekhaya"
 

@@ -34,9 +34,6 @@ msgstr ""
 "selle teenuse administraator, siis peaksid kontrollima, et metaandmete "
 "seadistused oleks korrektselt seadistatud."
 
-msgid "{login:select_home_org}"
-msgstr "Vali oma koduorganisatsioon"
-
 msgid "{logout:hold}"
 msgstr "Ootel"
 

@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{login:select_home_org}"
-msgstr "Wybierz swoją domową organizację"
-
 msgid "{logout:hold}"
 msgstr "W zawieszeniu"
 

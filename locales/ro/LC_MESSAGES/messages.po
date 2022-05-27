@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{login:select_home_org}"
-msgstr "Alegeți instituția de origine"
-
 msgid "{logout:hold}"
 msgstr "În așteptare"
 

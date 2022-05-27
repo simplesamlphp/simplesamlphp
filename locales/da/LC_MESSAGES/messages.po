@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{login:select_home_org}"
-msgstr "Vælg din hjemmeinstitution"
-
 msgid "{logout:hold}"
 msgstr "I kø"
 

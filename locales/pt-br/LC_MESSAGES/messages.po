@@ -37,9 +37,6 @@ msgstr ""
 "deste seriço, você deve certificar-se que a sua configuração de metadata "
 "está definida corretamente."
 
-msgid "{login:select_home_org}"
-msgstr "Escolha a sua organização principal"
-
 msgid "{logout:hold}"
 msgstr "Aguardando"
 

@@ -31,9 +31,6 @@ msgstr ""
 "administrateur is van dié diens moet jy verseker dat jou metadata "
 "konfigurasie korrek is."
 
-msgid "{login:select_home_org}"
-msgstr "Kies jou tuisorganisasie"
-
 msgid "{logout:hold}"
 msgstr "Hou die verbinding"
 

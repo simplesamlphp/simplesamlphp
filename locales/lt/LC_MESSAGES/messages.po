@@ -35,9 +35,6 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{login:select_home_org}"
-msgstr "Pasirinkite savo organizaciją"
-
 msgid "{logout:hold}"
 msgstr "Prašome palaukti"
 

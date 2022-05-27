@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{login:select_home_org}"
-msgstr "Izaberite vašu matičnu instituciju"
-
 msgid "{logout:hold}"
 msgstr "Na čekanju"
 

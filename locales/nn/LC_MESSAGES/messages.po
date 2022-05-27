@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{login:select_home_org}"
-msgstr "Vel vertsorganisasjon"
-
 msgid "{logout:hold}"
 msgstr "Venter"
 

@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{login:select_home_org}"
-msgstr "Escolha a sua organização de origem"
-
 msgid "{logout:hold}"
 msgstr "Em espera"
 

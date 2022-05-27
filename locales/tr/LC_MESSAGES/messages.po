@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{login:select_home_org}"
-msgstr "Organizasyonunuzu seçiniz"
-
 msgid "{logout:hold}"
 msgstr "Beklemede"
 
