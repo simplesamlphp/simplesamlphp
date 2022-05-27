@@ -217,9 +217,6 @@ msgstr "Required fields"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Select configuration file to check:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Authentication failed: the certificate your browser sent is unknown"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

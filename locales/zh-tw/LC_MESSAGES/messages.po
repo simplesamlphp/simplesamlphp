@@ -195,9 +195,6 @@ msgstr "必要欄位"
 msgid "{admin:cfg_check_select_file}"
 msgstr "選擇要檢查的設定檔："
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "認證錯誤：您的瀏覽器傳送了一個未知的憑證"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

@@ -201,9 +201,6 @@ msgstr "Nødvendige felt"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Vel konfigurasjonsfil som skal sjekkast"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Feil autentisering: ukjent sertifikat mottatt frå din browser"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

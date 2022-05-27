@@ -156,11 +156,6 @@ msgstr ""
 "afmelding nie</i>. Om seker te wees datal jou sessies afgesluit word, is "
 "dit beter om jou <i>webblaaier toe te maak</i>."
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Verifikasie het misluk: die sertifikaat wat jou webblaaier gestuur het is"
-" onbekend"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

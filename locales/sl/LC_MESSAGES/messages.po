@@ -199,11 +199,6 @@ msgstr "Zahtevana polja"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Izberite konfiguracijsko datoteko, ki jo želite preveriti"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Avtentikacija je spodletela: vaš spletni brskalnik je posredoval "
-"nepoznano digitalno potrdilo"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

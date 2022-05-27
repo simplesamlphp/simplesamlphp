@@ -212,11 +212,6 @@ msgstr "Notwendige Felder"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Wählen Sie die Konfigurationsdatei, die geprüft werden soll:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
-"Zertifikat ist unbekannt"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

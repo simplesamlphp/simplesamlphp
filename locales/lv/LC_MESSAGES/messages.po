@@ -198,11 +198,6 @@ msgstr "Obligātie lauki"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Izvēlieties pārbaudāmos konfigurācijas failus:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Autentifikācija neizdevās, jo Jūsu interneta pārlūks atsūtījis "
-"nepazīstamu sertifikātu"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

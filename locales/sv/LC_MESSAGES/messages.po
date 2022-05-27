@@ -211,9 +211,6 @@ msgstr "Nödvändiga alternativ"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Välj vilken konfigurationfil som ska kontrolleras:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Inloggning mislyckades: Certifikatet som din webbläsare skickade är okänt"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

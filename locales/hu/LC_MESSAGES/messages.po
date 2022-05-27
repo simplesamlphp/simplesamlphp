@@ -202,9 +202,6 @@ msgstr "Kötelező mezők"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Válassza ki az ellenőrizendő konfigurációs állományt"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Azonosítási hiba: a böngésző által küldött tanúsítványt ismeretlen típusú."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

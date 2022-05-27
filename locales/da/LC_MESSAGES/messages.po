@@ -207,9 +207,6 @@ msgstr "Obligatoriske felter"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Vælg den konfiguration som skal undersøges"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Authentifikation fejlede: Certifikatet som din browser har send er ukendt"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

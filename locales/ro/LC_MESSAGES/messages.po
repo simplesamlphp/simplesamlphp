@@ -208,11 +208,6 @@ msgstr "Câmpuri obligatorii"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Alegeți fișierul de configurare care doriți să-l verificați:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
-"este recunoscut"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"

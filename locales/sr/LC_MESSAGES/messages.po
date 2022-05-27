@@ -206,11 +206,6 @@ msgstr "Obavezna polja"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Odaberite konfiguracionu fajl koji želite proveriti:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Neuspešna autentifikacija: digitalni sertifikat koji je poslao vaš web "
-"pretraživač je nepoznat"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Administratorska lozinka u podešavanjima(parametar "

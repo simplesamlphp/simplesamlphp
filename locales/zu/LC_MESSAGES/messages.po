@@ -307,7 +307,7 @@ msgstr "Usuphumile."
 msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukwakha impendulo yokuqinisekisa"
 
-msgid "{errors:descr_UNKNOWNCERT}"
+msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr ""
 "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho "
 "asaziwa"

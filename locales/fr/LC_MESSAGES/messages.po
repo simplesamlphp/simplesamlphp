@@ -210,11 +210,6 @@ msgstr "Champs requis"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Sélectionnez le fichier de configuration à vérifier :"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Échec de l'authentification : le certificat présenté par votre navigateur"
-" n'est pas connu"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

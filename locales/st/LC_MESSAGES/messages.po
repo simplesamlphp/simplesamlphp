@@ -98,11 +98,6 @@ msgstr "Phoso ya Netefatso"
 msgid "The error report has been sent to the administrators."
 msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se "
-"tsejwe"
-
 msgid "Incorrect username or password"
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 

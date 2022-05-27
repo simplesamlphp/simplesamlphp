@@ -211,11 +211,6 @@ msgstr "Campi richiesti"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Selezionare il file di configurazione da verificare:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr ""
-"L'autenticazione è fallita perché il tuo browser ha inviato un certificato"
-" sconosciuto."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La password definita nella configurazione (auth.adminpassword) non è "

@@ -218,9 +218,6 @@ msgstr "Обязательные поля"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Выберите файл конфигурации для проверки:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Ошибка при аутентификации: ваш браузер выслал неизвестный сертификат"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

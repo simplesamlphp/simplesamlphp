@@ -198,9 +198,6 @@ msgstr "Požadovaná pole"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Vyber konfiguračního souboru k verifikaci:"
 
-msgid "{errors:descr_UNKNOWNCERT}"
-msgstr "Přihlášení neproběhlo: certifikát který odeslal Váš prohlížeč je neznámý"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "
