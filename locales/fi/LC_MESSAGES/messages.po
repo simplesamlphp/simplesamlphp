@@ -176,7 +176,7 @@ msgstr "Palveluntarjoaja"
 msgid "{logout:no}"
 msgstr "Ei"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

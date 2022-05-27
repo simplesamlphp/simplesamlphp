@@ -267,7 +267,7 @@ msgstr "In der Anfrage dieser Seite trat ein Fehler auf, der Grund ist: %REASON%
 msgid "{logout:no}"
 msgstr "Nein"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

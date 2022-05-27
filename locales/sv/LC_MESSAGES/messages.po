@@ -264,7 +264,7 @@ msgstr "Det är ett fel i anropet till denna sida. Orsak: %REASON%"
 msgid "{logout:no}"
 msgstr "Nej"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Prioriterat val"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

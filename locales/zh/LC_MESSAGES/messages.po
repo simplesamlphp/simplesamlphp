@@ -234,7 +234,7 @@ msgstr "请求该页的请求存在错误，原因：%REASON%"
 msgid "{logout:no}"
 msgstr "不"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "首选选项"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

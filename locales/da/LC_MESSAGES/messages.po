@@ -264,7 +264,7 @@ msgstr "Der er en fejl i forespørgslen til siden. Grunden er: %REASON%"
 msgid "{logout:no}"
 msgstr "Nej"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

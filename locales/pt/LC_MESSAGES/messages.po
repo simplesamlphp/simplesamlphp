@@ -236,7 +236,7 @@ msgstr "Ocorreu um erro com o pedido a esta página. A razão foi: %REASON%"
 msgid "{logout:no}"
 msgstr "Não"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Escolha preferida"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

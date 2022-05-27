@@ -234,7 +234,7 @@ msgstr "ページのリクエスト中にエラーが発生しました。理由
 msgid "{logout:no}"
 msgstr "いいえ"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

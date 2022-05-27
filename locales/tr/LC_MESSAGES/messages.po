@@ -239,7 +239,7 @@ msgstr "Bu sayfaya yapılan istekte bir hata var. Nedeni %REASON% idi."
 msgid "{logout:no}"
 msgstr "Hayır"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

@@ -246,7 +246,7 @@ msgstr "ישנה שגיאה בבקשה לדף זה. הסיבה הייתה: %REAS
 msgid "{logout:no}"
 msgstr "לא"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

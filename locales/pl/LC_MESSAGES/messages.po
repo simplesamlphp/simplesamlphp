@@ -254,7 +254,7 @@ msgstr "Wystąpił następujący błąd w zleceniu: %REASON%"
 msgid "{logout:no}"
 msgstr "Nie"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Preferowany wybór"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

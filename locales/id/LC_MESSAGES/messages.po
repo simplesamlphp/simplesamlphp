@@ -259,7 +259,7 @@ msgstr "Terjadi error pada request ke halaman ini. Alasannya adalah: %REASON%"
 msgid "{logout:no}"
 msgstr "Tidak"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

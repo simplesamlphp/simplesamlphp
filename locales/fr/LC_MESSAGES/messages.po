@@ -268,7 +268,7 @@ msgstr "Erreur dans la requête de cette page. Motif : %REASON%"
 msgid "{logout:no}"
 msgstr "Non"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Choix préféré]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

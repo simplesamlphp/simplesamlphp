@@ -254,7 +254,7 @@ msgstr "Prišlo je do napake pri prejetem zahtevku. Razlog: %REASON%"
 msgid "{logout:no}"
 msgstr "Ne"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

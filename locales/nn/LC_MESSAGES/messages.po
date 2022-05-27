@@ -257,7 +257,7 @@ msgstr ""
 msgid "{logout:no}"
 msgstr "Nei"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "Beste val"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

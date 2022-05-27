@@ -253,7 +253,7 @@ msgstr "Kļūdains pieprasījums šai lapai. Iemesls: %REASON%"
 msgid "{logout:no}"
 msgstr "Nē"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

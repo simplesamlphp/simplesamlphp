@@ -274,7 +274,7 @@ msgstr "Ошибка в запросе к этой странице. Причи�
 msgid "{logout:no}"
 msgstr "Нет"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

@@ -71,7 +71,7 @@ msgstr "Ngena"
 msgid "Shibboleth demo"
 msgstr "Idemo ye-Shibboleth"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Ukukhetha okuncanyelwayo]"
 
 msgid "{errors:descr_BADREQUEST}"

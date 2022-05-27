@@ -252,7 +252,7 @@ msgstr "خطا بطلب هذه الصفحة. السبب %REASON%"
 msgid "{logout:no}"
 msgstr "لا"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

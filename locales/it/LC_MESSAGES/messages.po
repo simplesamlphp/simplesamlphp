@@ -269,7 +269,7 @@ msgstr "C'è un errore nella richiesta di questa pagina: %REASON%"
 msgid "{logout:no}"
 msgstr "No"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Scelta preferita]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

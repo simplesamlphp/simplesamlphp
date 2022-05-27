@@ -253,7 +253,7 @@ msgstr "Užklausoje į šį puslapį rasta klaida. Priežastis buvo: %REASON%"
 msgid "{logout:no}"
 msgstr "Ne"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

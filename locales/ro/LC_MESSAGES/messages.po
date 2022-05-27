@@ -263,7 +263,7 @@ msgstr "Există o eroare în cererea către această pagină. Motivul este: %REA
 msgid "{logout:no}"
 msgstr "Nu"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

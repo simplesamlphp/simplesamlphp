@@ -254,7 +254,7 @@ msgstr "Chyba požadavku pro tuto stránku. Důvod je: %REASON%"
 msgid "{logout:no}"
 msgstr "Ne"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

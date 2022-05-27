@@ -563,7 +563,7 @@ msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
 msgid "Cannot retrieve session data"
 msgstr "Ha e a kgona ho fumana datha ya seshene"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Kgetho e kgethwang]"
 
 msgid "{login:login_button}"

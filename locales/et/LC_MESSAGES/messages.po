@@ -256,7 +256,7 @@ msgstr "Leheküljele esitati vigane päring. Põhjus: %REASON%"
 msgid "{logout:no}"
 msgstr "Ei"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

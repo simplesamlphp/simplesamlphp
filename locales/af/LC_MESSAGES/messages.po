@@ -202,7 +202,7 @@ msgstr "Daar is 'n fout in die versoek na die bladsy. Die rede is: %REASON%"
 msgid "{logout:no}"
 msgstr "Nee"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Verkies]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

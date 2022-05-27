@@ -255,7 +255,7 @@ msgstr "Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%"
 msgid "{logout:no}"
 msgstr "Nem"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

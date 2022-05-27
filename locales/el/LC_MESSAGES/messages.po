@@ -278,7 +278,7 @@ msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργα
 msgid "{logout:no}"
 msgstr "Όχι"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

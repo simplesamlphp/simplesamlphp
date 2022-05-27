@@ -256,7 +256,7 @@ msgstr "Errore bat dago orri honen eskaeran. Arrazoia hau da: %REASON%"
 msgid "{logout:no}"
 msgstr "Ez"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

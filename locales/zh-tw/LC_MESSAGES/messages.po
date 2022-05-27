@@ -249,7 +249,7 @@ msgstr "這裡有個錯誤於此頁面的請求。原因為：%REASON%"
 msgid "{logout:no}"
 msgstr "取消"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "喜好選擇"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"

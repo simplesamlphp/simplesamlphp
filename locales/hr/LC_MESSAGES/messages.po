@@ -263,7 +263,7 @@ msgstr "Dogodila se greška prilikom dohvaćanja ove stranice. Razlog: %REASON%"
 msgid "{logout:no}"
 msgstr "Ne"
 
-msgid "{disco:icon_prefered_idp}"
+msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
