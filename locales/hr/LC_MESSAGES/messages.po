@@ -58,9 +58,6 @@ msgstr ""
 "Iz nekog razloga autentifikacijskom servisu nije proslijeđena vaša "
 "zaporka. Molimo pokušajte ponovo."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Parametar RelayState nije zadan"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Podaci o stanju su izgubljeni i zahtjev se ne može reproducirati"
 

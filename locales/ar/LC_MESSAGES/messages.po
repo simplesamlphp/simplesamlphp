@@ -48,9 +48,6 @@ msgstr ""
 "لقد قمت بإرسال معلومات لصفحة الدخول لكن كلمة السر غير مرفقة. رجاءاً اعد "
 "المحاولة"
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "انعدام التقوية"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "فقدان معلومات الحالة و لا يمكن اعادة البدء للطلب"
 

@@ -53,9 +53,6 @@ msgstr ""
 "Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių "
 "priežasčių slaptažodis nebuvo nusiųstas. Prašome bandyti dar kartą."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Nėra perdavimo statuso"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Būsenos informacija prarasta, nėra galimybių pakartoti užklausą"
 

@@ -50,9 +50,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Kaut kādu iemeslu dēļ parole nav nosūtīta. Lūdzu mēģiniet vēlreiz."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Nav RelayState"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Stāvokļa informācija pazaudēta un nav iespējams atkārtot pieprasījumu"
 

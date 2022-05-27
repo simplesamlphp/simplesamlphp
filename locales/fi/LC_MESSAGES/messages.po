@@ -43,9 +43,6 @@ msgstr ""
 "Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei "
 "lähetetty. Ole hyvä ja yritä uudestaan."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Ei RelayState "
-
 msgid "{login:password}"
 msgstr "Salasana"
 

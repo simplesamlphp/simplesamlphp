@@ -39,9 +39,6 @@ msgstr "该身份提供者接受到了一个来自服务提供者的认证请求
 msgid "{login:error_nopassword}"
 msgstr "你确实发送了一些信息给登录页面，但由于某些原因，你没有发送密码，请再试一次"
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "无依赖状态"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "状态信息丢失，并且无法重新请求"
 

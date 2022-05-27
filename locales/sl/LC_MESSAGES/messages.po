@@ -50,9 +50,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Prišlo je do napake, poskusite znova."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "RelayState parameter ne obstaja"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Podatki o stanju so izgubljeni, zato zahteve ni mogoče obnoviti/ponovno "

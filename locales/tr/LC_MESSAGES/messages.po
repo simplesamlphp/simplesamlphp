@@ -58,9 +58,6 @@ msgstr ""
 "Giriş sayfasına birşeyler gönderdiniz, fakat bazı nedenlerden dolayı "
 "şifreniz gönderilemedi. Lütfen tekrar deneyiniz."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "RelayState verilmemiş."
-
 msgid "{login:password}"
 msgstr "Şifre"
 

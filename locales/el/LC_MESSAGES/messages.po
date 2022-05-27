@@ -54,9 +54,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Ο κωδικός πρόσβασης δεν εστάλη. Παρακαλώ, προσπαθήστε ξανά."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Σφάλμα παραμέτρου 'RelayState'"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Δεν ήταν δυνατό να εξυπηρετηθεί το αίτημά σας καθώς δεν βρέθηκαν "

@@ -50,9 +50,6 @@ msgstr ""
 "Odeslal jste data do přihlašovací stránky, ale z nějakého důvodu nebylo "
 "odesláno heslo. Prosím zkuste to znovu."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Nenalezen RelayState."
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Stavová informace "
 

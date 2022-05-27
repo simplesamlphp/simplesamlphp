@@ -47,9 +47,6 @@ msgstr ""
 "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "
 "asb. weer."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Geen aflos staat('RelayState')"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Toestandsinformasie verlore en daar is geen manier om die versoek weer te"

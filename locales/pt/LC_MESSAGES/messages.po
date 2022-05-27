@@ -52,9 +52,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "A senha não foi enviada no seu pedido. Por favor tente de novo."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "RelayState não definido"
-
 msgid "{login:password}"
 msgstr "Senha"
 

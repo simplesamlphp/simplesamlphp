@@ -434,7 +434,7 @@ msgstr "Usayizi weseshini: %SIZE%"
 msgid "Logout information lost"
 msgstr "Ulwazi lokuphuma lulahlekile"
 
-msgid "{errors:title_NORELAYSTATE}"
+msgid "No RelayState"
 msgstr "Ayikho I-RelayState"
 
 msgid "You are also logged in on these services:"

@@ -104,9 +104,6 @@ msgstr "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Mokgelo o sa rarollwang"
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Ha ho RelayState"
-
 msgid "Password"
 msgstr "Phasewete"
 

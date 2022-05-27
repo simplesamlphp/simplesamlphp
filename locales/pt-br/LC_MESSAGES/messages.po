@@ -57,9 +57,6 @@ msgstr ""
 "Você enviou alguma coisa para a página de login, mas por alguma razão a "
 "senha não foi enviada. Por favor tente novamente."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Sem RelayState"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Informações de estado perdidas, e não é possível reiniciar a requisição"
 

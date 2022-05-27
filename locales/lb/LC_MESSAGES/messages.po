@@ -41,9 +41,6 @@ msgstr ""
 "Der hud eppes un d'Login Sait geschéeckt me aus iergentengem Grond huet d"
 " Passwuert gefehlt. Probéiert w.e.g nach eng Kéier."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Den ReplayState Parameter fehlt"
-
 msgid "{login:password}"
 msgstr "Passwuert"
 

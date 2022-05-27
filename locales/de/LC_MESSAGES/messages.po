@@ -59,9 +59,6 @@ msgstr ""
 " ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es "
 "erneut."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Keine Weiterleitungsinformationen"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Die Statusinformationen gingen verloren und die Anfrage kann nicht neu "

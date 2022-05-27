@@ -52,9 +52,6 @@ msgstr ""
 "Sa saatsid midagi sisselogimislehele, kuid miskipärast parooli ei "
 "saadetud. Palun proovi uuesti."
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "RelayState puudub"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Olekuinfo läks kaduma ja päringut pole võimalik uuesti käivitada"
 

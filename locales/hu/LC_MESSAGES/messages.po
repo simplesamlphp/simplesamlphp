@@ -50,9 +50,6 @@ msgstr ""
 msgid "{login:error_nopassword}"
 msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
 
-msgid "{errors:title_NORELAYSTATE}"
-msgstr "Nincs RelayState paraméter"
-
 msgid "{errors:descr_NOSTATE}"
 msgstr "Állapotinformáció elveszett, a kérést nem lehet újraindítani"
 

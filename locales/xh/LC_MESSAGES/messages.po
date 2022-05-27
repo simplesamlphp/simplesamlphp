@@ -428,7 +428,7 @@ msgstr "Ubukhulu beseshoni: %SIZE%"
 msgid "Logout information lost"
 msgstr "Inkcazelo yokuphuma ilahlekile"
 
-msgid "{errors:title_NORELAYSTATE}"
+msgid "No RelayState"
 msgstr "Akukho RelayState"
 
 msgid "You are also logged in on these services:"
