@@ -42,9 +42,6 @@ msgstr "您可能有傳送至網頁，但是密碼因為某些原因未傳送，
 msgid "{errors:debuginfo_text}"
 msgstr "管理員/服務台可能對下列除錯資訊有興趣："
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "登出請求為錯誤程序"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "有錯誤存在這個 Metadata 條目"
 

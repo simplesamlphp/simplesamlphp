@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Fout met die verwerking van die Afmeldings Versoek"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nie gevind nie"
 

@@ -85,7 +85,7 @@ msgstr "Buyela kwinkonzo"
 msgid "Error loading metadata"
 msgstr "Impazamo ilayisha imetadata"
 
-msgid "{errors:title_LOGOUTREQUEST}"
+msgid "Error processing the Logout Request"
 msgstr "Impazamo iprosesa iSicelo Sokuphuma"
 
 msgid "On hold"

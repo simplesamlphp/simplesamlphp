@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Fout bij het verwerken van een Logout Request"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Fout in metadata"
 

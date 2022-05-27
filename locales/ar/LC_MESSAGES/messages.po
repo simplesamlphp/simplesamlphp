@@ -51,9 +51,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr " قد تكون معلومات التصحيح أدناه مفيدة لمشرف الموقع/ او موظف المساعدة"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "خطا عند تسجيل الخروج"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "خطا بهذا البيان الوصفي/ الميتاداتا"
 

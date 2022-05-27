@@ -64,9 +64,6 @@ msgstr ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Error processing the Logout Request"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Error in this metadata entry"
 

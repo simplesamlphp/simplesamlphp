@@ -61,11 +61,6 @@ msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"
 " sistema o il supporto utenti:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr ""
-"Errore nell'elaborazione della richiesta di disconnessione (Logout "
-"Request)."
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Errore in questo elemento dei metadati"
 

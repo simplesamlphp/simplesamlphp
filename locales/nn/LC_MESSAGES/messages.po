@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Feil under prosessering av utloggingsspørsmål"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Feil i dette metadatainnslaget"
 

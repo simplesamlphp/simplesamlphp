@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Atslēgšanās pieprasījuma apstrādes kļūda"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Kļūda šajā metadatu ierakstā"
 

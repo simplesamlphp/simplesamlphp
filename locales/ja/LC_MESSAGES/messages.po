@@ -42,9 +42,6 @@ msgstr "あなたはログインページで何かを送信しましたが、何
 msgid "{errors:debuginfo_text}"
 msgstr "システム管理者やヘルプデスクは以下のデバッグ情報が役立つかもしれません:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "ログアウト処理中にエラーが発生しました"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "このメタデータエントリでのエラー"
 

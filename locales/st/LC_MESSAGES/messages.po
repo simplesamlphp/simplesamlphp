@@ -623,9 +623,6 @@ msgstr ""
 "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la "
 "mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Phoso ho sebetseng Kopo ya Ho Tswa"
-
 #, python-format
 msgid "Your session is valid for %SECONDS% seconds from now."
 msgstr ""

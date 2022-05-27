@@ -56,9 +56,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Klaida vykdant atsijungimo užklausą"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Klaida šiame metaduomenų įraše"
 

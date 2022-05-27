@@ -86,7 +86,7 @@ msgstr "Buyela kusevisi"
 msgid "Error loading metadata"
 msgstr "Iphutha lokulayisha imethadatha"
 
-msgid "{errors:title_LOGOUTREQUEST}"
+msgid "Error processing the Logout Request"
 msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
 
 msgid "On hold"

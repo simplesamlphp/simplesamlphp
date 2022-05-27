@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Feldolgozhatatlan kijelentkezési kérés"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Hiba ebben a metaadat bejegyzésben"
 

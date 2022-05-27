@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Çıkış İsteğini işlerken hata oluştu"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Üstveri (metadata) bilgisinde hata var"
 

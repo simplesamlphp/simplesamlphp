@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Ошибка при обработке запроса на выход из системы "
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Ошибка при вводе данной записи метаданных"
 

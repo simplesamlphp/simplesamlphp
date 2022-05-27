@@ -46,9 +46,6 @@ msgstr ""
 "Dei Debug Informatiounen hei drënner kinnten den Administrator "
 "interesséiren:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Fehler beim Bearbeschten vun der Logout Unfro"
-
 msgid "{login:error_header}"
 msgstr "Fehler"
 

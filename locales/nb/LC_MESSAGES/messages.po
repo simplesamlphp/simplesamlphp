@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Feil i behandling av logout-forespørselen"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Feil i metadataoppføringen"
 

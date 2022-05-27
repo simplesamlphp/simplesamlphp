@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Fel vid utloggningsförfrågan"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Fel i dessa metadat"
 

@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{errors:title_LOGOUTREQUEST}"
-msgstr "Erro ao processar a resposta da desconexão"
-
 msgid "{admin:metaover_errorentry}"
 msgstr "Erro na entrada desta metadata"
 
