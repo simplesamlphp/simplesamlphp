@@ -62,9 +62,6 @@ msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "
 "administratzailea edo erabiltzailearen arreta zentroarentzat:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Metadatu sarrera honetan  errorea"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Ez dira metadatuak aurkitu"
 

@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Fehler in diesem Metadateneintrag"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Keine Metadaten gefunden"
 

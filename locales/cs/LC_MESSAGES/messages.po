@@ -53,9 +53,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Chyba v této položce metadat"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nenalezena"
 

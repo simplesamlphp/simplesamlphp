@@ -60,9 +60,6 @@ msgstr ""
 "Detaljane under kan vera av interesse for administrator eller "
 "hjelpetenesta"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Feil i dette metadatainnslaget"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Finn ikkje metadata"
 

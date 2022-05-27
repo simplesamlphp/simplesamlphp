@@ -55,9 +55,6 @@ msgstr ""
 "Poniższa informacja debugger'a  może być przydatna dla administara / "
 "helpdesk:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Błąd w metadanych"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Nie znaleziono metadanych"
 

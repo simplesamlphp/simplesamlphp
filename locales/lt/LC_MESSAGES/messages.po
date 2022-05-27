@@ -56,9 +56,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Ši detali informacija gali būti įdomi administratoriui:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Klaida šiame metaduomenų įraše"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metaduomenys nerasti"
 

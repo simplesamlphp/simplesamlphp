@@ -53,9 +53,6 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "{errors:debuginfo_text}"
 msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Napaka pri vnosu metapodatkov"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metapodatkov ni bilo moč najti"
 

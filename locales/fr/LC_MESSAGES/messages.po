@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Erreur dans les métadonnées de cet élément"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Métadonnées non trouvées"
 

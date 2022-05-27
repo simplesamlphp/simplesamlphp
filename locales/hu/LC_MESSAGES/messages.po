@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Hiba ebben a metaadat bejegyzésben"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nem található"
 

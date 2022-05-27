@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Kļūda šajā metadatu ierakstā"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadati nav atrasti"
 

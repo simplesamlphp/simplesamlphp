@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Error pada entri metadata ini"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata tidak ditemukan"
 

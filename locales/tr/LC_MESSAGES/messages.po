@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Üstveri (metadata) bilgisinde hata var"
-
 msgid "{login:contact_info}"
 msgstr "İletişim bilgileri:"
 

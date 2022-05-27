@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Ошибка при вводе данной записи метаданных"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Метаданные не найдены"
 

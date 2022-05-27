@@ -61,9 +61,6 @@ msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"
 " sistema o il supporto utenti:"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Errore in questo elemento dei metadati"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadati non trovati"
 

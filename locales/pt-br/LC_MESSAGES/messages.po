@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{admin:metaover_errorentry}"
-msgstr "Erro na entrada desta metadata"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadado não encontrado"
 
