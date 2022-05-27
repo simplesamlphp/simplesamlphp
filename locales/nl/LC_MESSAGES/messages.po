@@ -21,11 +21,6 @@ msgstr "Terug"
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Deze IdP heeft een authenticatie verzoek ontvangen van een Service "
-"Provider, maar er is een fout opgetreden bij het verwerken ervan."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet "

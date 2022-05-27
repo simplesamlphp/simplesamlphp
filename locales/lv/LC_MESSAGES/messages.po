@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Identitātes piegādātājs ir saņēmis autentifikācijas pieprasījumu no "
-"servisa piegādātāja, bet to apstrādājot radās kļūda."
-
 msgid "{login:error_nopassword}"
 msgstr "Kaut kādu iemeslu dēļ parole nav nosūtīta. Lūdzu mēģiniet vēlreiz."
 

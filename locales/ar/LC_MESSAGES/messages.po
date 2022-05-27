@@ -16,9 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "لقد قمت بإرسال معلومات لصفحة الدخول لكن كلمة السر غير مرفقة. رجاءاً اعد "

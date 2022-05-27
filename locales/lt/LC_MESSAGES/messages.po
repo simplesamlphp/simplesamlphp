@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos "
-"teikėjo, tačiau apdorojant pranešimą įvyko klaida."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių "

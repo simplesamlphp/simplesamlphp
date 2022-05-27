@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Questo Identity Provider ha ricevuto una richiesta di autenticazione da "
-"parte di un Service Provider, ma si è verificato un errore durante "
-"l'elaborazione di quest'ultima"
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Sono state inviate delle informazioni alla pagina di login, ma per "

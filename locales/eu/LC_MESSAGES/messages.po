@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"IdP honek zerbitzu hornitzaile baten kautotze eskaera jaso du baina "
-"errore bat jazo da hau prozesatzen saiatzean."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitza"

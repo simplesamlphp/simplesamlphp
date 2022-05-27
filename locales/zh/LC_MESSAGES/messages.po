@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr "该身份提供者接受到了一个来自服务提供者的认证请求，但是在试图处理该请求的过程中发生了错误"
-
 msgid "{login:error_nopassword}"
 msgstr "你确实发送了一些信息给登录页面，但由于某些原因，你没有发送密码，请再试一次"
 

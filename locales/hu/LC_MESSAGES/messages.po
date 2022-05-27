@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során "
-"hiba történt."
-
 msgid "{login:error_nopassword}"
 msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
 

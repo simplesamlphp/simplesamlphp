@@ -18,11 +18,6 @@ msgstr ""
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Bu Kimlik Sağlayıcı bir Servis Sağlayıcı'dan kimlik doğrulama isteği "
-"aldı, ancak bu isteği işlemeye çalışırken bir hata oluştu."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Giriş sayfasına birşeyler gönderdiniz, fakat bazı nedenlerden dolayı "

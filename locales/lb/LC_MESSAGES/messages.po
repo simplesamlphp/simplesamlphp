@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, "
-"mais et gouf en Fehler wéi déi sollt bearbescht gin."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Der hud eppes un d'Login Sait geschéeckt me aus iergentengem Grond huet d"

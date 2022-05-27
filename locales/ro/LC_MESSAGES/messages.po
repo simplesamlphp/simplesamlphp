@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Acest furnizor de identitate a primit o cerere de autentificare de la un "
-"furnizor de servicii, dar a apărut o eroare la procesarea cererii."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Ați trimis informații către pagina de autentificare dar din motive "

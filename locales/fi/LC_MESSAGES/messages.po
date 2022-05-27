@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Identiteetintarjoaja sai tunnistautumispyynnön palveluntarjoajalta, mutta"
-" pyynnin käsittelyssä tapahtui virhe."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei "

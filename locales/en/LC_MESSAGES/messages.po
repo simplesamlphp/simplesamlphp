@@ -18,11 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"This Identity Provider received an Authentication Request from a Service "
-"Provider, but an error occurred when trying to process the request."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "You sent something to the login page, but for some reason the password "

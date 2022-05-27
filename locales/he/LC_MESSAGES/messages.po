@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr "ספק זהות זה קיבל בקשת הזדהות מספק שירות, אולם קרתה שגיאה בזמן עיבוד הבקשה."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "שלחת משהו לדף הכניסה למערכת, אבל בגלל סיבה כל שהיא הסיסמה לא נשלחה. בבקשה"

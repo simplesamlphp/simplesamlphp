@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Die Identiteits Verskaffer het 'n Verifikasie Versoek ontvang vanaf 'n "
-"Diens Verskaffer maar 'n fout het voorgekom tydens die verwerking van die"
-" versoek."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer "

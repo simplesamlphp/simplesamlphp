@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Tento poskytovatel identity přijal požadavek od poskytovatele služby, ale"
-" při jeho provádění vznikla chyba."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Odeslal jste data do přihlašovací stránky, ale z nějakého důvodu nebylo "

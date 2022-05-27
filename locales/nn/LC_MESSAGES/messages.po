@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Denne identitetsleverandøren (IdP) mottok ei autentiseringsmelding frå "
-"ein tenesteleverandør (SP), men det oppsto ein feil under handteringa av "
-"meldinga"
-
 msgid "{login:error_nopassword}"
 msgstr "Passordet blei ikkje sendt. Prøv på nytt."
 

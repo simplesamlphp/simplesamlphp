@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Dostawca tożsamości otrzymał od dostawcy usługi zlecenie "
-"uwierzytelnienia, ale wystąpił błąd podczas przetwarzania zlecenia."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Wysłałeś \"coś\" do strony logowania, ale z jakiś powodów hasło nie "

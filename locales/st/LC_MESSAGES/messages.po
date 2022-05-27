@@ -475,11 +475,6 @@ msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
 msgid "Bad request received"
 msgstr "Kopo e mpe e amohetswe"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Mofani enwa wa Boitsebiso o fumane Kopo ya Netefatso ho tswa ho Mofani wa"
-" Tshebeletso, empa ho bile le phoso ha ho leka ho fihlellwa kopo."
-
 msgid "State information lost"
 msgstr "Tlhahisoleseding ya provense e lahlehile"
 

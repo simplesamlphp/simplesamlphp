@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Identitetshanteraren (Identity Provider) har tagit emot en "
-"inloggningsförfrågan från en tjänsteleverantör (Service Provider) men ett"
-" fel uppstod vid bearbetningen av förfrågan."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Du skicka in en inloggningsförfrågan men det verkar som om ditt lösenord "

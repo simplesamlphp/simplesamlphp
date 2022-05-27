@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri"
-" obdelavi te zahteve."
-
 msgid "{login:error_nopassword}"
 msgstr "Prišlo je do napake, poskusite znova."
 

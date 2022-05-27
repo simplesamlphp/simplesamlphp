@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Davalac Identiteta je primio zahtev za autentikacijom od strane Davaoca "
-"Servisa, ali se javila greška prilikom pokušaja obrade ovog zahteva."
-
 msgid "{login:error_nopassword}"
 msgstr ""
 "Iz nekog razloga autentifikacionom servisu nije prosleđena vaša lozinka. "

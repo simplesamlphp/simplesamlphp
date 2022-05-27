@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_PROCESSAUTHNREQUEST}"
-msgstr ""
-"Denne IdP har modtaget en anmodning om single sign-on fra en tjeneste "
-"udbyder, men der opstod en fejl under behandlingen af denne anmodning."
-
 msgid "{login:error_nopassword}"
 msgstr "Dit kodeord blev ikke sendt - prøv igen."
 
