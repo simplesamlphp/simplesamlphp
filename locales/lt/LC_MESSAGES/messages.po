@@ -35,9 +35,6 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{status:sessionsize}"
-msgstr "Sesijos trukmė: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Atsijungta"
 

@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{status:sessionsize}"
-msgstr "Taille de la session : %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Déconnecté"
 

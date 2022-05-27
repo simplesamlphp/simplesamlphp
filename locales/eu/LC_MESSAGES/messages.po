@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{status:sessionsize}"
-msgstr "Saioaren tamaina: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Saioa itxita."
 

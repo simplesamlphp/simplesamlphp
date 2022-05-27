@@ -36,9 +36,6 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{status:sessionsize}"
-msgstr "Sesjonsstorleik: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Utlogga"
 

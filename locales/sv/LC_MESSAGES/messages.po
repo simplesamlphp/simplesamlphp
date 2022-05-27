@@ -37,9 +37,6 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{status:sessionsize}"
-msgstr "Sessionsstorlek: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Utloggad"
 

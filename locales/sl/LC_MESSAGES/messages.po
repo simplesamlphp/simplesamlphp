@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{status:sessionsize}"
-msgstr "Velikost seje: %SIZE% bajtov"
-
 msgid "{logout:title}"
 msgstr "Odjavljen"
 

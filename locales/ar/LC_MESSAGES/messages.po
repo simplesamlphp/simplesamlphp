@@ -32,9 +32,6 @@ msgstr ""
 "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
 "رجاءاً من ان ترتيب الميتاداتا صحيح"
 
-msgid "{status:sessionsize}"
-msgstr "حجم الجلسة ٪حجم٪"
-
 msgid "{logout:title}"
 msgstr "خروج"
 

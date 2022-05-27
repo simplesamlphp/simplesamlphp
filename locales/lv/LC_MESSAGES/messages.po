@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{status:sessionsize}"
-msgstr "Sesijas izmērs: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Atslēdzies"
 

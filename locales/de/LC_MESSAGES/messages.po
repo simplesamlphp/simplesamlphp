@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{status:sessionsize}"
-msgstr "Größe der Sitzung: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Abgemeldet"
 

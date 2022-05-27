@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{status:sessionsize}"
-msgstr "Velikost sezeni: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Odhlášen"
 

@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{status:sessionsize}"
-msgstr "Sesjons størrelse: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Utlogget"
 

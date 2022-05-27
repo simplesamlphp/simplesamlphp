@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{status:sessionsize}"
-msgstr "Oturum büyüklüğü: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Çıktınız"
 

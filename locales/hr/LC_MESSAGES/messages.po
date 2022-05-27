@@ -40,9 +40,6 @@ msgstr ""
 "administrator ovog servisa, provjerite jesu li svi metapodaci u "
 "konfiguraciji ispravni."
 
-msgid "{status:sessionsize}"
-msgstr "Veličina sjednice: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Odjavljeni ste"
 

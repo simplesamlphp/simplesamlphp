@@ -422,7 +422,7 @@ msgstr ""
 "ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge "
 "igama lomsebenzisi uzame kwakhona."
 
-msgid "{status:sessionsize}"
+msgid "Session size: %SIZE%"
 msgstr "Ubukhulu beseshoni: %SIZE%"
 
 msgid "Logout information lost"

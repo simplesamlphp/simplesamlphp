@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{status:sessionsize}"
-msgstr "Tamanho da sessão: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Saída efectuada com sucesso"
 

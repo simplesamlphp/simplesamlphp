@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{status:sessionsize}"
-msgstr "Sessionsstørrelse: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Du er logget ud"
 

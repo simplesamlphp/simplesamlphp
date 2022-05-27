@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{status:sessionsize}"
-msgstr "Munkamenet mérete: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Sikeres kilépés"
 

@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{status:sessionsize}"
-msgstr "Veličina sesije: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Odjavljeni ste"
 

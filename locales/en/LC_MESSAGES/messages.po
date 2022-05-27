@@ -39,9 +39,6 @@ msgstr ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 
-msgid "{status:sessionsize}"
-msgstr "Session size: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Logged out"
 

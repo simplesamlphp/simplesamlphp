@@ -428,7 +428,7 @@ msgstr ""
 "iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese "
 "uzame futhi."
 
-msgid "{status:sessionsize}"
+msgid "Session size: %SIZE%"
 msgstr "Usayizi weseshini: %SIZE%"
 
 msgid "Logout information lost"

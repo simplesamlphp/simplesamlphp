@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{status:sessionsize}"
-msgstr "Rozmiar sesji: %SIZE%"
-
 msgid "{logout:title}"
 msgstr "Wylogowano"
 
