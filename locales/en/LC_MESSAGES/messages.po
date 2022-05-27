@@ -340,11 +340,6 @@ msgstr ""
 "When this identity provider tried to create an authentication response, "
 "an error occurred."
 
-msgid "{errors:descr_MEMCACHEDOWN}"
-msgstr ""
-"Your session data cannot be retrieved right now due to technical "
-"difficulties. Please try again in a few minutes."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

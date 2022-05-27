@@ -613,11 +613,6 @@ msgstr ""
 "Dipharamitha tse rometsweng tshebeltsong ya tshibollo di ne di se ho "
 "latela ditekanyetso."
 
-msgid "{errors:descr_MEMCACHEDOWN}"
-msgstr ""
-"Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la "
-"mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
-
 msgid "Error received from Identity Provider"
 msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
 
