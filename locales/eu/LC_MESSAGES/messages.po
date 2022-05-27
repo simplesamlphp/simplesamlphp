@@ -191,9 +191,6 @@ msgstr ""
 "ixten</i>. Zure saio guztiak ixten direla ziurtatzeko, <i>zure "
 "nabigatzaileko leiho guztiak ixtea</i> gomendatzen da."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "SAML 2.0 metadatuetako xml formatuan:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identitate hornitzailea (Urrunekoa)"
 

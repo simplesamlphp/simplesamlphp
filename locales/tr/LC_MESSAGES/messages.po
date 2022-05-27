@@ -180,9 +180,6 @@ msgstr ""
 "Tüm oturumlarınızın kapatıldığından emin olmak için, <i>tarayıcınızı "
 "kapatmanız</i> önerilir."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "XML formatında SAML 2.0 SP Üstverisi (Metadata)"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
 

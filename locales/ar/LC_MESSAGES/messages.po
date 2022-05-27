@@ -184,9 +184,6 @@ msgstr ""
 "واحدة او اكثر من الخدمات التي قمت بتسجيل دخولك بها لا تدعم تسجيل الخروج. "
 "للتأكد من ان جميع صفحاتك قد تم إغلاقها  قم بإغلاق متصفحك"
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "بيانات SAML 2.0 الوصفية بصيغة XML"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "مقدم هوية SAML 2.0 البعيد"
 

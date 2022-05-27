@@ -200,9 +200,6 @@ msgstr ""
 "системы</i>. Для обеспечения закрытия всех сессий, <i>закройте ваш "
 "браузер</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "xml формат метаданных SAML 2.0:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Провайдер идентификации SAML 2.0 (удаленное размещение)"
 

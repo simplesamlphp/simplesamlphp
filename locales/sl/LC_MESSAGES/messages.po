@@ -184,9 +184,6 @@ msgstr ""
 " Odjavo iz teh storitev izvedete tako, da <i>zaprete spletni "
 "brskalnik</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "V SAML 2.0 Metapodatkovni XML format:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 IdP (Oddaljeni)"
 

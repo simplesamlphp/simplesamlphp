@@ -185,9 +185,6 @@ msgstr ""
 "atsijungimo</i>. Siekiant užtikrinti sėkmingą darbo pabaigą, "
 "rekomenduojame <i>uždaryti naršyklę</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "SAML 2.0 Metaduomenys XML formatu:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Tapatybių teikėjas (nutolęs)"
 

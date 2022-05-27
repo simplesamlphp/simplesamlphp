@@ -187,9 +187,6 @@ msgstr ""
 "biztosítani lehessen, hogy nem maradt bejelentkezve, kérjük, <i>lépjen ki"
 " a böngészőből!</i>"
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "SAML 2.0 XML formátumban:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 

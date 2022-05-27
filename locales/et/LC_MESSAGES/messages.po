@@ -188,9 +188,6 @@ msgstr ""
 "logimise</i>. Selleks, et olla kindel kõigi sessioonide lõpetamises "
 "soovitame <i>sulgeda kõik brauseri aknad</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "SAML 2.0 metaandmete XML-vormingus:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 

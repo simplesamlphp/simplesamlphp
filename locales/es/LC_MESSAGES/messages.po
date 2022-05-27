@@ -200,9 +200,6 @@ msgstr ""
 "desconexión</i>. Para asegurarse de que todas sus sesiones se cierran, se"
 " le recomienda que <i>cierre todas las ventanas de su navegador</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "En formato xml de metadatos SAML 2.0:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Proveedor de Identidad SAML 2.0 (remoto)"
 

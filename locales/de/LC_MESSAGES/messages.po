@@ -197,9 +197,6 @@ msgstr ""
 "keine Abmeldung</i>. Um sicherzustellen, dass Sie abgemeldet sind, "
 "<i>schließen Sie bitte Ihren Webbrowser</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Im SAML 2.0 Metadaten-XML Format:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (entfernt)"
 

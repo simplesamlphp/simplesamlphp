@@ -189,9 +189,6 @@ msgstr ""
 "utlogging</i>.  Lukk weblesaren din for å sikra at alle sesjonar blir "
 "lukka"
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "På SAML 2.0 metadata XML-format"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

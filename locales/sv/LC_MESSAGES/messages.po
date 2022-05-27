@@ -196,9 +196,6 @@ msgstr ""
 "utloggning</i>. För att säkerställa att du inte längre är inloggad i "
 "någon tjänst ska du <i>stänga din webbläsare</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "I SAML 2.0 Metadata XML-format:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Fjärr)"
 

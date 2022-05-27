@@ -183,9 +183,6 @@ msgstr ""
 "Jedna nebo více služeb, do kterých jste přihlášen(a), nepodporuje "
 "odhlašení. Pokud se chcete odhlásit, musíte ukončit váš webový prohlížeč."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "V SAML 2.0 metadata XML formátu:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote - vzdálený)"
 

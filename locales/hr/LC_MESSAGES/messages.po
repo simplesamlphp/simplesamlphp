@@ -192,9 +192,6 @@ msgstr ""
 "odjavljivanje</i>. Da biste bili sigurni da su sve vaše sjednice "
 "završene, preporučamo da <i>zatvorite web preglednik</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Metapodaci u SAML 2.0 XML formatu:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 

@@ -196,9 +196,6 @@ msgstr ""
 "disconnessione</i>. Per assicurarsi di chiudere tutte le sessioni si "
 "consiglia di <i>chiudere il browser</i>"
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Metadati SAML 2.0 in formato XML:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remoto)"
 

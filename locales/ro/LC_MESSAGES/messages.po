@@ -193,9 +193,6 @@ msgstr ""
 "deautentificare</i>. Pentru a fi sigur că toate sesiunile sunt închise, "
 "vă rugăm să închideți <i>browser-ul</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "În format metadate XML SAML 2.0:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Furnizor de identitate SAML 2.0 (distant)"
 

@@ -184,9 +184,6 @@ msgstr ""
 "procesu wylogowania</i>. W celu upewnienia się, że wszystkie sesje są "
 "zakończone, zalecane jest abyś <i>zamknął przeglądarkę</i>"
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "W formacie SAML 2.0 Metadata XML"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Dostawca Tożsamości (Zdalny)"
 

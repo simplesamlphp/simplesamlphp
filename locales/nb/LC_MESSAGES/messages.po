@@ -187,9 +187,6 @@ msgstr ""
 "logout</i>. Lukk nettleseren, dersom du ønsker å logge ut fra disse "
 "tjenestene."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "I SAML 2.0 Metadata XML Format:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 

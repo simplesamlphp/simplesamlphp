@@ -174,9 +174,6 @@ msgstr ""
 "saída</i>. Para garantir que todas as sessões são encerradas, deverá "
 "<i>encerrar o seu navegador Web</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Metadados no formato XML SAML 2.0"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
 

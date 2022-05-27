@@ -200,9 +200,6 @@ msgstr ""
 "(sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web"
 " browser)."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
 

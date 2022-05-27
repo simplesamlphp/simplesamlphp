@@ -202,9 +202,6 @@ msgstr ""
 "logout</i>. To ensure that all your sessions are closed, you are "
 "encouraged to <i>close your webbrowser</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "In SAML 2.0 Metadata XML format:"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

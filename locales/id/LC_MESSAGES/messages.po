@@ -191,9 +191,6 @@ msgstr ""
 "logout</i>.Untuk meyakinkan semua session anda ditutup, anda disarankan "
 "untuk <i>menutup web browser anda</i>."
 
-msgid "{admin:metadata_xmlformat}"
-msgstr "Dalam format XML Metadata SAML 2.0"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Identity Provider SAML 2.0 (Remote)"
 
