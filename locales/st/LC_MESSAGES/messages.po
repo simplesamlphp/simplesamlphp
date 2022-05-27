@@ -47,9 +47,6 @@ msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
 msgid "Help! I don't remember my password."
 msgstr "Thuso! Ha ke hopole phasewete ya ka."
 
-msgid "{logout:title}"
-msgstr "O ntshitswe"
-
 msgid "No access"
 msgstr "Ha ho phihlello"
 

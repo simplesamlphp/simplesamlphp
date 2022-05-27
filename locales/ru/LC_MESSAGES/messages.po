@@ -37,9 +37,6 @@ msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "
 "являетесь администратором системы, проверьте конфигурацию метаданных."
 
-msgid "{logout:title}"
-msgstr "Успешный выход"
-
 msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
 msgstr "Сервис провайдер ADFS (удаленное размещение)"
 

@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{logout:title}"
-msgstr "Wylogowano"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML Metadane"
 

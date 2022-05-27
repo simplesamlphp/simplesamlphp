@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{logout:title}"
-msgstr "Saída efectuada com sucesso"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "Metadados em XML"
 

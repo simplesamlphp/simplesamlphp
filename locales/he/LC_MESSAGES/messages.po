@@ -31,9 +31,6 @@ msgstr ""
 "ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "
 "שירות זה, כדי שתוודא שהגדרות מהמטא-מידע שלך נכונות."
 
-msgid "{logout:title}"
-msgstr "התנתקות מהמערכת"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "מטא-מידע בתבנית XML"
 

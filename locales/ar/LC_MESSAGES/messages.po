@@ -32,9 +32,6 @@ msgstr ""
 "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
 "رجاءاً من ان ترتيب الميتاداتا صحيح"
 
-msgid "{logout:title}"
-msgstr "خروج"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "بيانات وصفية بصيغة XML"
 

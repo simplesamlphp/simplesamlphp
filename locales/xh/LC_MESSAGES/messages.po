@@ -496,7 +496,7 @@ msgstr "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%"
 msgid "State information lost"
 msgstr "Inkcazelo yobume ilahlekile"
 
-msgid "{logout:title}"
+msgid "Logged out"
 msgstr "Uphumile"
 
 msgid "Explain what you did when this error occurred..."

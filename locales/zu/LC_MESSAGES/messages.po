@@ -502,7 +502,7 @@ msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
 msgid "State information lost"
 msgstr "Ulwazi lwesifunda lulahlekile"
 
-msgid "{logout:title}"
+msgid "Logged out"
 msgstr "Uphume ngemvume"
 
 msgid "Explain what you did when this error occurred..."

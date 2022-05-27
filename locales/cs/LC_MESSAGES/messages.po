@@ -32,9 +32,6 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jste administrátorem "
 "služby, zkontrolujte metadata."
 
-msgid "{logout:title}"
-msgstr "Odhlášen"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML Metadata"
 

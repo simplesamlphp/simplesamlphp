@@ -27,9 +27,6 @@ msgstr "LDAP 是使用這資料庫，當您嘗試登入時，我們必須連結�
 msgid "{errors:descr_METADATA}"
 msgstr "有一些錯誤設定在您所安裝的 SimpleSAMLphp。如果您是這個服務的管理員，您可能需要確認您的詮釋資料設定是否正確地設置。"
 
-msgid "{logout:title}"
-msgstr "標題"
-
 msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
 msgstr "ADFS 服務提供者(遠端)"
 

@@ -39,9 +39,6 @@ msgstr ""
 " ovog servisa, trebalo bi da proverite da li su metapodaci ispravno "
 "podešeni."
 
-msgid "{logout:title}"
-msgstr "Odjavljeni ste"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "Metapodaci u XML formatu"
 

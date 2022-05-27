@@ -37,9 +37,6 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{logout:title}"
-msgstr "Saioa itxita."
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML metadatuak"
 

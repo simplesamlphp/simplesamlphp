@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{logout:title}"
-msgstr "Du er logget ud"
-
 msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
 msgstr "ADFS tjenesteudbyder (remote)"
 

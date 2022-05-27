@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{logout:title}"
-msgstr "Çıktınız"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML üstverisi (metadata)"
 

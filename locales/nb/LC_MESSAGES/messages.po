@@ -35,9 +35,6 @@ msgstr ""
 " administrator for tjenesten, bør du kontrollere at metadata er satt opp "
 "riktig."
 
-msgid "{logout:title}"
-msgstr "Utlogget"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML metadata"
 

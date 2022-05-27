@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{logout:title}"
-msgstr "Αποσυνδεδεμένος/η"
-
 msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
 msgstr "Πάροχος Υπηρεσιών ADFS (Απομακρυσμένος)"
 
