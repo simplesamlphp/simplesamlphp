@@ -62,9 +62,6 @@ msgstr ""
 "A informação a seguir é importante para seu administrador / Central de "
 "Dúvidas"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Uma exceção não tratada foi descartada."
-
 msgid "{general:yes}"
 msgstr "Sim"
 

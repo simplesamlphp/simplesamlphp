@@ -59,9 +59,6 @@ msgstr ""
 "Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού "
 "και επίλυσης σφαλμάτων."
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση"
-
 msgid "{general:yes}"
 msgstr "Ναί"
 

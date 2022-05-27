@@ -64,9 +64,6 @@ msgstr ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "An unhandled exception was thrown."
-
 msgid "{general:yes}"
 msgstr "Yes, continue"
 

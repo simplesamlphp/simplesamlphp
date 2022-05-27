@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Ilmnes käsitlemata tõrge."
-
 msgid "{general:yes}"
 msgstr "Jah"
 

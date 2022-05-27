@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "'n Onverwagte foutmelding is aangetoon"
-
 msgid "{general:yes}"
 msgstr "Ja"
 

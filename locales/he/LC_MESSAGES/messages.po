@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "הושלכה חריגה ללא טיפול"
-
 msgid "{general:yes}"
 msgstr "כן"
 

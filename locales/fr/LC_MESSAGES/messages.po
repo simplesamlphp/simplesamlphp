@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Une exception non gérée a été levée."
-
 msgid "{general:yes}"
 msgstr "Oui"
 

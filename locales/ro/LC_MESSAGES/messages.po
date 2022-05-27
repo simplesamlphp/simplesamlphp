@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "A apărut o excepție netratată."
-
 msgid "{general:yes}"
 msgstr "Da"
 

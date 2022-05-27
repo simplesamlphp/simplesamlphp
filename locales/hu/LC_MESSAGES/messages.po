@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Kezeletlen kivétel (exception) keletkezett."
-
 msgid "{general:yes}"
 msgstr "Igen"
 

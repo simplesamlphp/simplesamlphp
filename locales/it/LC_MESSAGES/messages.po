@@ -61,9 +61,6 @@ msgstr ""
 "Le seguenti informazioni di debug possono interessare l'amministratore di"
 " sistema o il supporto utenti:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "&Egrave; stata generata un'eccezione che non è stata gestita."
-
 msgid "{general:yes}"
 msgstr "Sì"
 

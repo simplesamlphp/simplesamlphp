@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Noticis nezināms izņēmuma gadījums."
-
 msgid "{general:yes}"
 msgstr "Jā"
 

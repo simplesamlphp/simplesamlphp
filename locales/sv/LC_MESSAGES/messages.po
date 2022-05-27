@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Ett ohanterat undatag har inträffat. "
-
 msgid "{general:yes}"
 msgstr "Ja"
 

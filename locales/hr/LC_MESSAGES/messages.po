@@ -63,9 +63,6 @@ msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "
 "podršku korisnicima:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Pojavila se iznimka koja ne može do kraja biti obrađena."
-
 msgid "{general:yes}"
 msgstr "Da"
 

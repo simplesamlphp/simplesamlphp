@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Bir beklenmeyen durum gönderildi."
-
 msgid "{general:yes}"
 msgstr "Evet"
 

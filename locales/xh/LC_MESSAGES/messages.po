@@ -373,7 +373,7 @@ msgstr "Isatifikethi esingaziwayo"
 msgid "No certificate"
 msgstr "Akukho satifikethi"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
+msgid "An unhandled exception was thrown."
 msgstr "Isinxaxhi esingasingathwanga silahliwe."
 
 msgid "Error creating request"

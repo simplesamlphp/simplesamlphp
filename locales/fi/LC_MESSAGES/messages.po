@@ -48,9 +48,6 @@ msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "
 "helpdeskiä:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Käsittelemätön poikkeus heitetty"
-
 msgid "{general:yes}"
 msgstr "Kyllä"
 

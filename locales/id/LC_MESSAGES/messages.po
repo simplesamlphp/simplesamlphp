@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Exception yang tidak tertangani telah di-thrown"
-
 msgid "{general:yes}"
 msgstr "Iya nih"
 

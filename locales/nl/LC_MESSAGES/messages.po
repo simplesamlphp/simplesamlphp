@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Een onverwachte foutmelding is opgetreden"
-
 msgid "{general:yes}"
 msgstr "Ja"
 

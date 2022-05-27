@@ -56,9 +56,6 @@ msgstr ""
 "Detaljene nedenfor kan være av interesse for administratoren / "
 "brukerstøtte:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "En uventet feilsituasjon oppstod"
-
 msgid "{general:yes}"
 msgstr "Ja"
 

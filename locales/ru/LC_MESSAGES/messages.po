@@ -60,9 +60,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "Нижеприведенная информация может быть полезна администратору системы:"
 
-msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Выдано необрабатываемое исключение."
-
 msgid "{general:yes}"
 msgstr "да"
 
