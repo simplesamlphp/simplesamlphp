@@ -184,9 +184,6 @@ msgstr "מטא-מידע עבור SAML 2.0 בתבנית XML:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "ספק זהות מרוחק מסוג SAML 2.0"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "ספק זהות מקומי מסוג SAML 2.0"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "הסיסמה בהגדרות (auth.adminpassword)  לא שונתה מהערך ההתחלתי. אנא ערוך את "

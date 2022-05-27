@@ -186,9 +186,6 @@ msgstr "XML formatında SAML 2.0 SP Üstverisi (Metadata)"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 Kimlik Sağlayıcı (Bu sistemde sunulan)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

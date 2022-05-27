@@ -206,9 +206,6 @@ msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "Πάροχος Ταυτότητας SAML 2.0 (Φιλοξενούμενος)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

@@ -180,9 +180,6 @@ msgstr "Metadados no formato XML SAML 2.0"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Local)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "

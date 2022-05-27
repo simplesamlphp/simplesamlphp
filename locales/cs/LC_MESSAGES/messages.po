@@ -189,9 +189,6 @@ msgstr "V SAML 2.0 metadata XML formátu:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote - vzdálený)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 Identity Provider (Hosted - lokální)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "

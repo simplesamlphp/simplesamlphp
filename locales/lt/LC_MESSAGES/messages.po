@@ -191,9 +191,6 @@ msgstr "SAML 2.0 Metaduomenys XML formatu:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Tapatybių teikėjas (nutolęs)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 Tapatybių teikėjas (vietinis)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

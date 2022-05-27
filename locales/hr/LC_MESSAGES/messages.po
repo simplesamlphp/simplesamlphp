@@ -198,9 +198,6 @@ msgstr "Metapodaci u SAML 2.0 XML formatu:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 autentifikacijski servis (lokalni)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

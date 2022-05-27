@@ -201,9 +201,6 @@ msgstr "Au format XML de métadonnées SAML 2.0"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Fournisseur d'identité SAML 2.0 distant"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "Fournisseur d'identité SAML 2.0 local"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

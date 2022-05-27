@@ -190,9 +190,6 @@ msgstr "V SAML 2.0 Metapodatkovni XML format:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 IdP (Oddaljeni)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 IdP (Lokalni)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"

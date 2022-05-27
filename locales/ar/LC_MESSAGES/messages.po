@@ -190,9 +190,6 @@ msgstr "بيانات SAML 2.0 الوصفية بصيغة XML"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "مقدم هوية SAML 2.0 البعيد"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "مقدم هوية SAML 2.0 المستضاف"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

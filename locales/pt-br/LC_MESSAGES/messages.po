@@ -202,9 +202,6 @@ msgstr "Em formato SAML 2.0 Metadata XML"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remoto)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 Identity Provider (Local)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "A senha na configuração (auth.adminpassword) não foi alterada. Edite o "

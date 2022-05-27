@@ -197,9 +197,6 @@ msgstr "SAML 2.0 metadatuetako xml formatuan:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identitate hornitzailea (Urrunekoa)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 Identitate hornitzailea (Anfitrioia)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"

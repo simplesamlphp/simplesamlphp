@@ -193,9 +193,6 @@ msgstr "SAML 2.0 XML formátumban:"
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 
-msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
-msgstr "SAML 2.0 személyazonosság-szolgáltató (helyi)"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "
