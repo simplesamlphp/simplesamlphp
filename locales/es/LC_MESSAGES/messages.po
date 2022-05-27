@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
-msgstr "Proveedor de Servicio ADFS (remoto)"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "Metadatos XML"
 

@@ -39,9 +39,6 @@ msgstr ""
 "SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
-msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
-msgstr "ADFS Service Provider (Remote)"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML metadata"
 

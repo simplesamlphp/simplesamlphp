@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
-msgstr "Πάροχος Υπηρεσιών ADFS (Απομακρυσμένος)"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "Αναλυτής μεταδεδομένων XML"
 

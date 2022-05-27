@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
-msgstr "ADFS tjenesteudbyder (remote)"
-
 msgid "{admin:metaconv_xmlmetadata}"
 msgstr "XML metadata"
 
