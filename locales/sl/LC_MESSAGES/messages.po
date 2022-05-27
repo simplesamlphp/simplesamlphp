@@ -248,9 +248,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Ponudnik storitev"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Prišlo je do napake pri prejetem zahtevku. Razlog: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
 

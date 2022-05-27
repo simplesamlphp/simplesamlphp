@@ -545,9 +545,6 @@ msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho
 msgid "Send e-mail to help desk"
 msgstr "Romela imeile ho ba deske ya thuso"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
-
 msgid "How to get help"
 msgstr "Ka moo o ka fumanang thuso"
 

@@ -257,9 +257,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Furnizor de servicii"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Există o eroare în cererea către această pagină. Motivul este: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
 

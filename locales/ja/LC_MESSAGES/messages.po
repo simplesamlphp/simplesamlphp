@@ -228,9 +228,6 @@ msgstr "設定のパスワード(auth.adminpassword)は既定値から変更さ�
 msgid "{general:service_provider}"
 msgstr "サービスプロバイダ"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "ページのリクエスト中にエラーが発生しました。理由は: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
 

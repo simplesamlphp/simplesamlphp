@@ -248,9 +248,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Dostawca serwisu"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Wystąpił następujący błąd w zleceniu: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"
 

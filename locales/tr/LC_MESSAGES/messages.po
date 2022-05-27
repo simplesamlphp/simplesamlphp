@@ -233,9 +233,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Servis Sağlayıcı"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Bu sayfaya yapılan istekte bir hata var. Nedeni %REASON% idi."
-
 msgid "[Preferred choice]"
 msgstr "[Tercih edilen seçenek]"
 

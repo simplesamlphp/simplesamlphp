@@ -256,9 +256,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Davalac Servisa"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Dogodila se greška prilikom dohvatanja ove stranice. Razlog: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"
 

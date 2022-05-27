@@ -250,9 +250,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Zerbitzu hornitzailea"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Errore bat dago orri honen eskaeran. Arrazoia hau da: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
 

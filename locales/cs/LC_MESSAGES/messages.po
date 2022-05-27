@@ -248,9 +248,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Poskytovatel služby"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Chyba požadavku pro tuto stránku. Důvod je: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 

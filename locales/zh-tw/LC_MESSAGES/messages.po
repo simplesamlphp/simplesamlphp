@@ -243,9 +243,6 @@ msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設�
 msgid "{general:service_provider}"
 msgstr "服務提供者"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "這裡有個錯誤於此頁面的請求。原因為：%REASON%"
-
 msgid "[Preferred choice]"
 msgstr "喜好選擇"
 

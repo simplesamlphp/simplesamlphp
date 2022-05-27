@@ -228,9 +228,6 @@ msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 msgid "{general:service_provider}"
 msgstr "服务提供者"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "请求该页的请求存在错误，原因：%REASON%"
-
 msgid "[Preferred choice]"
 msgstr "首选选项"
 

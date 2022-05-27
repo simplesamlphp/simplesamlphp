@@ -250,9 +250,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Teenusepakkuja"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Leheküljele esitati vigane päring. Põhjus: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 

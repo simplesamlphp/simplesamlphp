@@ -249,11 +249,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Tenesteleverandør"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr ""
-"Det er ein feil i spørringa etter denne sida.  Grunnen til dette er "
-"%REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Beste val"
 

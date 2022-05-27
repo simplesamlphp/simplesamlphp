@@ -230,9 +230,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Fornecedor de Serviço (SP)"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Ocorreu um erro com o pedido a esta página. A razão foi: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"
 

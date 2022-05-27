@@ -279,11 +279,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Service Provider"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr ""
-"Er is een fout opgetreden in het verzoek voor deze pagina. De oorzaak is:"
-" %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "[Voorkeurskeuze]"
 

@@ -258,9 +258,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Tjänsteleverantör"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Det är ett fel i anropet till denna sida. Orsak: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"
 

@@ -247,9 +247,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Servisa piegādātājs"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Kļūdains pieprasījums šai lapai. Iemesls: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 

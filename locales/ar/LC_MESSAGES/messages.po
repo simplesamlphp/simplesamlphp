@@ -246,9 +246,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "مقدم خدمات"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "خطا بطلب هذه الصفحة. السبب %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 

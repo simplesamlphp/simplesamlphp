@@ -258,9 +258,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Tjenesteudbyder"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Der er en fejl i forespørgslen til siden. Grunden er: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"
 

@@ -253,9 +253,6 @@ msgstr ""
 msgid "{general:service_provider}"
 msgstr "Service Provider"
 
-msgid "{errors:descr_BADREQUEST}"
-msgstr "Terjadi error pada request ke halaman ini. Alasannya adalah: %REASON%"
-
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
 
