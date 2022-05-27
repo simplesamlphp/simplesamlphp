@@ -37,9 +37,6 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Vérification de la configuration"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Envoi du message"
 

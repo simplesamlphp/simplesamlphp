@@ -34,9 +34,6 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Verificação da configuração"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Enviar mensagem"
 

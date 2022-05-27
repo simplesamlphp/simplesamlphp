@@ -32,9 +32,6 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Undersøgelse af konfiguration"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Send besked"
 

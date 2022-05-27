@@ -37,9 +37,6 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Konfigurationsprüfung"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Nachricht senden"
 

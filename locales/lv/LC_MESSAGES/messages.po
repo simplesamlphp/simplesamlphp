@@ -34,9 +34,6 @@ msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "
 "lai metadatu konfigurācija būtu korekta."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Konfigurācijas pārbaude"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Sūtīt ziņu"
 

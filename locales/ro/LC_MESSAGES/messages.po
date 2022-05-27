@@ -37,9 +37,6 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Verificarea configurației"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Trimite mesajul"
 

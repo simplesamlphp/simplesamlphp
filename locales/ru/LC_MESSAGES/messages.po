@@ -37,9 +37,6 @@ msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "
 "являетесь администратором системы, проверьте конфигурацию метаданных."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Проверка конфигурации"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Отправить сообщение"
 

@@ -37,9 +37,6 @@ msgstr ""
 "cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es "
 "correcta."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Comprobar configuración"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Enviar mensaje"
 

@@ -36,9 +36,6 @@ msgstr ""
 "διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
 "ρυθμιστεί σωστά."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Έλεγχος ρυθμίσεων"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Υποβολή μηνύματος"
 

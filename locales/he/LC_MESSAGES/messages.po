@@ -31,9 +31,6 @@ msgstr ""
 "ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "
 "שירות זה, כדי שתוודא שהגדרות מהמטא-מידע שלך נכונות."
 
-msgid "{admin:cfg_check_header}"
-msgstr "בדיקת הגדרות"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "שלח הודעה"
 

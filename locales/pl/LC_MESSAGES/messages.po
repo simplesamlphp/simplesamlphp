@@ -32,9 +32,6 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Sprawdzenie konfiguracji"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Wyślij wiadomość"
 

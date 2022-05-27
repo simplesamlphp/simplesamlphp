@@ -40,9 +40,6 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Konfigürasyon kontrolü"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Mesaj gönder"
 

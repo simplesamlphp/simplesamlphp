@@ -32,9 +32,6 @@ msgstr ""
 "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, "
 "preverite, da je konfiguracija metapodatkov pravilna."
 
-msgid "{admin:cfg_check_header}"
-msgstr "Preverjanje konfiguracije"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Pošlji sporočilo"
 

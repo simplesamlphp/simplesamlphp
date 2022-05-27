@@ -32,9 +32,6 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{admin:cfg_check_header}"
-msgstr "Beállítások ellenőrzése"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Üzenet küldése"
 
