@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP ist die gewählte Benutzerdatenbank. Wenn Sie versuchen sich "
-"anzumelden, muss auf diese LDAP-Datenbank zugegriffen werden, dabei ist "
-"dieses mal ein Fehler aufgetreten."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Diese Installation von SimpleSAMLphp ist falsch konfiguriert. Falls Sie "

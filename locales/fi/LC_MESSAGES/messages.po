@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP on käyttäjätietokanta, ja kirjautuessassi tarvitsemme yhteyden LDAP-"
-"tietokantaan. Yhteyden luonnissa tapahtui virhe."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "

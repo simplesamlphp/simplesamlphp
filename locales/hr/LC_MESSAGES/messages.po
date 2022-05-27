@@ -16,13 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"Došlo je do greške prilikom spajanja na LDAP poslužitelj. Vaši podaci "
-"pohranjeni su u LDAP imeniku i autentifikacijski servis se mora moći "
-"spojiti na LDAP poslužitelj da bi provjerio ispravnost unesene korisničke"
-" oznake i zaporke."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Programski alat SimpleSAMLphp je pogrešno iskonfiguriran. Ako ste "

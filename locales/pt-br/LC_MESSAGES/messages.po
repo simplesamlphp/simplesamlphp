@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"O banco de dados de usuários é LDAP e quando você tentar efetuar o login "
-"é preciso entrar em contato com um banco de dados LDAP. Ocorreu um erro "
-"durante a tentativa de conexão."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Há erros na sua instalação do SimpleSAMLphp. Se você é o administrador "

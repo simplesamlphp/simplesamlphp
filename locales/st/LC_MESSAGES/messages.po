@@ -197,12 +197,6 @@ msgstr ""
 "Mofani enwa wa Boitsebiso o fumane Kopo ya Netefatso ho tswa ho Mofani wa"
 " Tshebeletso, empa ho bile le phoso ha ho leka ho fihlellwa kopo."
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho "
-"ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong "
-"lena."
-
 msgid ""
 "The parameters sent to the discovery service were not according to "
 "specifications."

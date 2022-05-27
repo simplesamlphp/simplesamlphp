@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP erabiltzaileen datu basea da, eta sartzea erabakitzen duzunean "
-"beharrezkoa da harekin harremanetan jartzea. Sartze ekintza horretan "
-"errore bat jazo da."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Konfigurazio erroreak daude zure SimpleSAMLphp-ren instalazioan. "

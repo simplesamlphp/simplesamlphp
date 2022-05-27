@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"Gli utenti sono memorizzati nel server LDAP, che viene quindi contattato "
-"in fase di connessione dell'utente. Si è verificato un errore proprio in "
-"questa fase."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "C'è qualche errore di configurazione in questa installazione "

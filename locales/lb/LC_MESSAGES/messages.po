@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP as eng Benotzerdatenbank an wann een anloggen well gët se "
-"kontaktéiert. Dobai as des Kéier een Fehler geschitt."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Des SimpleSAMLphp Installatioun schéint falsch konfiguréiert ze sin. Wann"

@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP jest bazą uzytkowników i kiedy Ty próbujesz się zalogować, to my "
-"musimy nawiązać połączenie z bazą LDAP. I właśnie w tym momencie wystąpił"
-" błąd."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "

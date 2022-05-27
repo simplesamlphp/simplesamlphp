@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP er brukerkatalogen, og når du forsøker å logge inn prøver vi å "
-"kontakten en LDAP-katalog. Da vi forsøkte det denne gangen, oppsto en "
-"feil."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Det er en feil i oppsettet for din SimpleSAMLphp-installasjon. Hvis du er"

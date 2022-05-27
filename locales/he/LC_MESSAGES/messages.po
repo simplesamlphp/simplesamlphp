@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP הוא מסד הנתונים המכיל את המשתמשים, וכאשר אתה מנסה להתחבר, צריך "
-"להתחבר אליו. שגיאה קרתה בזמן ניסיון החיבור הנוכחי."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "ישנה בעייה בהגדרות של התקנת ה SimpleSAMLphp שלך. אם אתה מנהל המערכת של "

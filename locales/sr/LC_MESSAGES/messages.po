@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"Podaci o korisničkim nalozima čuvaju se u LDAP bazi, a kada pokušate da "
-"se ulogujete vrši se provera da li Vaše korisničko ime i lozinka postoje "
-"u LDAP bazi. Prilikom pristupa LDAP bazi, došlo je do greške."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Postoji greška u podešavanjima SimpleSAMLphp-a. Ukoliko ste administrator"

@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP - это база данных пользователей, при вашей попытке входа в систему, "
-"нам необходимо связаться с базой данных LDAP. При этой попытке связаться "
-"с LDAP произошла ошибка. "
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "

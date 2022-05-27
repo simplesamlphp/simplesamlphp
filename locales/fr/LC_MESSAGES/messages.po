@@ -15,13 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"La base de données utilisateur est un annuaire LDAP, et quand vous "
-"essayez de vous connecter, nous avons besoin de prendre contact avec cet "
-"annuaire LDAP. Lorsque nous avons essayé cette fois une erreur s'est "
-"produite."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Quelque chose n'est pas configuré correctement dans votre installation de"

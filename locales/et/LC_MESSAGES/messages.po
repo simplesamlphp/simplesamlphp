@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP on kasutajate andmebaas ja sisselogimisel püütakse  LDAP-andmebaasi "
-"ühendust luua. Seekord tekkis ühenduse loomisel tõrge."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Midagi on su SimpleSAMLphp paigalduses valesti seadistatud. Kui sa oled "

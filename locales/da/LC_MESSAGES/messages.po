@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr "Der opstod en fejl i kommunikationen med LDAP databasen under login."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Der er en fejl i konfigurationen af din SimpleSAMLphp installation. Hvis "

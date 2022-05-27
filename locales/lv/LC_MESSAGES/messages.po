@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"LDAP ir lietotāju datu bāze. Pieslēdzoties pie tās ir jāspēj piekļūt. "
-"Šoreiz tas neizdevās un radās kļūda."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "Jūsu SimpleSAMLphp instalācijas konfigurācijā ir kļūda. Pārliecinieties, "

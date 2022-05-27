@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr ""
-"A felhasználói adatbázis LDAP alapú, ezért bejelentkezéshez szükség van "
-"egy LDAP adatbázisra. Ezúttal hiba történt az LDAP-hoz kapcsolódás során."
-
 msgid "{errors:descr_METADATA}"
 msgstr ""
 "SimpleSAMLphp konfigurációs hiba. Ha Ön ennek a szolgáltatásnak az "

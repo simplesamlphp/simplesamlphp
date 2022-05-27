@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{errors:descr_LDAPERROR}"
-msgstr "あなたがログインを行う時、LDAPというユーザーデーターベースにアクセスします。この時エラーが発生しました。"
-
 msgid "{errors:descr_METADATA}"
 msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたがこのサービスの管理者であればメタデータ設定を正しくセットアップする必要があります。"
 
