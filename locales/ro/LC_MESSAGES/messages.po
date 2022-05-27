@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Excepție netratată"
-
 msgid "{status:header_saml20_sp}"
 msgstr "Exemplu demonstrativ de furnizor de servicii SAML 2.0"
 

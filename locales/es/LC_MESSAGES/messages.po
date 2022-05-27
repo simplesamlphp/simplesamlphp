@@ -62,9 +62,6 @@ msgstr ""
 "La siguiente información de depuración puede ser de utilidad para el "
 "administrador del sistema o el centro de atención a usuarios:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Excepción no controlada"
-
 msgid "{status:header_saml20_sp}"
 msgstr "Ejemplo de SAML 2.0 SP"
 

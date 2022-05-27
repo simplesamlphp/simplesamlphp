@@ -62,9 +62,6 @@ msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "
 "administratzailea edo erabiltzailearen arreta zentroarentzat:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Kudeatu gabeko salbuespena"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Adibidea"
 

@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Käsitlemata tõrge"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demonäide"
 

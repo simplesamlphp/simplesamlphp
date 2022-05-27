@@ -42,9 +42,6 @@ msgstr "あなたはログインページで何かを送信しましたが、何
 msgid "{errors:debuginfo_text}"
 msgstr "システム管理者やヘルプデスクは以下のデバッグ情報が役立つかもしれません:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "未処理例外"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP デモ例"
 

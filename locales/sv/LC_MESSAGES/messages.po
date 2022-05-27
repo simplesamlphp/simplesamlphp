@@ -63,9 +63,6 @@ msgstr ""
 "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter "
 "systemet:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Ohanterat undantag"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demoexempel"
 

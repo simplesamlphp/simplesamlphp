@@ -63,9 +63,6 @@ msgstr ""
 "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini "
 "çekebilir:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Beklenmeyen durum"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Örneği"
 

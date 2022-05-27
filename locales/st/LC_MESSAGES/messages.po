@@ -92,9 +92,6 @@ msgstr "Tlhahisoleseding ya boikopanyo:"
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Mokgelo o sa rarollwang"
-
 msgid "Password"
 msgstr "Phasewete"
 

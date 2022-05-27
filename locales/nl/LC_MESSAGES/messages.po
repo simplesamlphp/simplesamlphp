@@ -67,9 +67,6 @@ msgstr ""
 "Onderstaande debuginformatie kan van belang zijn voor de beheerder / "
 "helpdesk:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Onverwachte foutmelding"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo"
 

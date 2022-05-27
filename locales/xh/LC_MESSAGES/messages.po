@@ -336,7 +336,7 @@ msgstr ""
 msgid "Authentication source error"
 msgstr "Impazamo yomthombo wongqinisiso"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
+msgid "Unhandled exception"
 msgstr "Isinxaxhi esingasingathwanga"
 
 msgid "Report errors"

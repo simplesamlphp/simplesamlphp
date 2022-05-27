@@ -341,7 +341,7 @@ msgstr ""
 msgid "Authentication source error"
 msgstr "Iphutha lomthombo wokuqinisekisa"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
+msgid "Unhandled exception"
 msgstr "Okuhlukile okungasingathiwe"
 
 msgid "Report errors"

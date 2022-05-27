@@ -57,9 +57,6 @@ msgstr ""
 "A informação de debug abaixo pode ter interesse para o administrador / "
 "apoio ao utilizador:"
 
-msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Excepção não tratada"
-
 msgid "{status:header_saml20_sp}"
 msgstr "Exemplo de demonstração do SP SAML 2.0"
 
