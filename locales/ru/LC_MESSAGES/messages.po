@@ -314,11 +314,6 @@ msgstr ""
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Невозможно выйти из некоторых служб.  Для обеспечения закрытия всех "
-"сессий, <i>закройте ваш браузер</i>. "
-
 msgid "ORCID researcher identifiers"
 msgstr "Метаданные провайдера идентификации ADFS"
 

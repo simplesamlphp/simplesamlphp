@@ -295,11 +295,6 @@ msgstr ""
 "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "
 "SimpleSAMLphp kitoje esybėje:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"
-" sėkmingą darbo pabaigą, rekomenduojame <i>uždaryti naršyklę</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

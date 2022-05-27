@@ -207,11 +207,6 @@ msgstr ""
 "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja "
 "salasanasi alla olevaan kaavakkeeseen."
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje"
-" web-selaimesi</i> varmistaaksesi, että kaikki istuntosi sulkeutuvat."
-
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
 

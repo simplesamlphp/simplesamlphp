@@ -308,12 +308,6 @@ msgstr ""
 "I filformatet för simpleSAML, använd detta detta format om SimpleSAMLphp "
 "används i mottagende sida:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Kan inte logga ut från eller flera tjänster. För att vara säker på att du"
-" fortfarande inte är inloggad ska du <i>stänga igen alla dina "
-"webbläsarfönster</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

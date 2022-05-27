@@ -311,12 +311,6 @@ msgstr ""
 "Au format à plat SimpleSAMLphp - à utiliser si vous avez une installation"
 " SimpleSAMLphp sur la partie adverse :"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Impossible de se déconnecter d'un ou plusieurs services. Pour être "
-"certain de clore vos sessions, il vous est recommandé de <i>fermer votre "
-"navigateur</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
 

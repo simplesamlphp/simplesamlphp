@@ -289,12 +289,6 @@ msgstr ""
 "V SimpleSAMLphp souborovém formátu (flat-file) - použijte, pokud "
 "potřebujete používat SimpleSAMLphp na druhé straně:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Odhlášení z jedné nebo z více služeb se nezdařilo. Aby bylo zajištěno, že"
-" všechny vaše relace budou uzavřeny, doporučujeme <i>ukončit váš webový "
-"prohlížeč</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

@@ -311,12 +311,6 @@ msgstr ""
 "Im SimpleSAMLphp flat-file Format - verwenden Sie das, falls auf der "
 "Gegenseite eine SimpleSAMLphp-Entität zum Einsatz kommt:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "
-"sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen "
-"empfohlen, <i>Ihren Webbrowser zu schließen</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

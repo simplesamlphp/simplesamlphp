@@ -299,12 +299,6 @@ msgstr ""
 "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i "
 "den andre enden:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Greide ikke å logge ut fra en eller flere tjenester. For å forsikre deg "
-"om at du blir logget ut, oppfordrer vi deg til å <i>lukke nettleseren "
-"din</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

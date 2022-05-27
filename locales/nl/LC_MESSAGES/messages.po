@@ -329,12 +329,6 @@ msgstr ""
 "In SimpleSAMLphp flat file formaat - gebruik dit wanneer uw "
 "federatiepartner ook SimpleSAMLphp gebruikt"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle"
-" sessies te sluiten, raden wij u aan uw <i>webbrowser te af te "
-"sluiten</i>."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

@@ -308,12 +308,6 @@ msgstr ""
 "În format fișier simplu SimpleSAMLphp - utilizați această variantă dacă "
 "în capătul celălalt folosiți o entitate SimpleSAMLphp:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Nu a fost posibilă deautentificarea pentru unul sau mai multe servicii. "
-"Pentru a fi sigur că toate sesiunile sunt închise, vă rugăm să închideți "
-"<i>browser-ul</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

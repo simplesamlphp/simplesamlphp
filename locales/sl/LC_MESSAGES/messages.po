@@ -293,11 +293,6 @@ msgstr ""
 "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če "
 "uporabljate SimpleSAMLphp entiteto na drugi strani:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da "
-"<i>zaprete spletni brskalnik</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
 

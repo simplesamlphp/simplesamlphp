@@ -278,9 +278,6 @@ msgstr "請使用帳號密碼登入，以便進入系統。"
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "如果您需要於其他地方使用 SimpleSAMLphp 實體 - 請參閱 SimpleSAMLphp 平面文件格式："
 
-msgid "{logout:failedsps}"
-msgstr "無法正常登出，請確認您已關閉所有連線，<i>同時關閉所有瀏覽器<\\/i>。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 

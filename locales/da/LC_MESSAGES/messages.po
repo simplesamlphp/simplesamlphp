@@ -304,11 +304,6 @@ msgstr ""
 "I SimpleSAMLphp flat-file format - brug dette hvis du også bruger "
 "SimpleSAMLphp i den anden ende;"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Kan ikke logge ud af en eller flere services. For at sikre at alle dine "
-"sessioner er lukket <i>skal du lukke din browser</i>."
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS identitetsudbyder metadata"
 

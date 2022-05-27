@@ -297,11 +297,6 @@ msgstr ""
 "SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon "
 "SimpleSAMLphp van:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan "
-"lezárja a megkezdett munkamenetet, kérjük, <i>zárja be böngészőjét</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

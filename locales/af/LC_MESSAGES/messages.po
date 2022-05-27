@@ -230,12 +230,6 @@ msgstr ""
 "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en "
 "wagwoord in die onderstaande vorm in."
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker "
-"te wees dat al jou sessies afgesluit word, is dit beter om jou "
-"<i>webblaaier toe te maak</i>."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoonlike ID by tuis organisasie"
 

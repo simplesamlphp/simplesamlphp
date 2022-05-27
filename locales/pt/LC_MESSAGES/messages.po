@@ -277,11 +277,6 @@ msgstr ""
 "Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "
 "alternativa se usar uma entidade SimpleSAMLphp no outro extremo:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Não foi possível sair de um ou mais serviços. Para garantir que todas as "
-"suas sessões são fechadas, é recomendado <i>fechar o seu browser</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

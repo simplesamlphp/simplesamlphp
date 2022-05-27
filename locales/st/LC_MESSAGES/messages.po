@@ -180,12 +180,6 @@ msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 msgid "SAML Subject"
 msgstr "Taba ya SAML"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Ha e kgone ho tswa tshebeletsong e le nngwe kapa ho feta. Ho netefatsa "
-"hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala "
-"sebadi sa webo sa hao</i>."
-
 msgid "Completed"
 msgstr "E phethilwe"
 

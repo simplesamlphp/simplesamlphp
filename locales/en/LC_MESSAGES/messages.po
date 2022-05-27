@@ -319,11 +319,6 @@ msgstr ""
 "In SimpleSAMLphp flat file format - use this if you are using a "
 "SimpleSAMLphp entity on the other side:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Unable to log out of one or more services. To ensure that all your "
-"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

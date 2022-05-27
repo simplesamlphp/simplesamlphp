@@ -301,12 +301,6 @@ msgstr ""
 "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan"
 " entiti SimpleSAMLphp pada sisi lain:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan "
-"semua session anda ditutup, anda disaranakan untuk <i>menutup web browser"
-" anda</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

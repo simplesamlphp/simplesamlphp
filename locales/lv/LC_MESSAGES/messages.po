@@ -294,11 +294,6 @@ msgstr ""
 "SimpleSAMLphp parasta faila formātā - lietojiet šo, ja izmantojat "
 "SimpleSAMLphp entītiju otrā galā:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Nav iespējams atslēgties no viena vai vairākiem servisiem. Lai aizvērtu "
-"visas sesijas, <i>aizveriet savu interneta pārlūku</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

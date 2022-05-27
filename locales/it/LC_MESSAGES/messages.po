@@ -313,11 +313,6 @@ msgstr ""
 "In formato flat per SimpleSAMLphp - da utilizzare se dall'altra parte c'è"
 " un'entità che utilizza SimpleSAMLphp"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Impossibile disconnettersi da uno o più servizi. Per assicurarsi di "
-"chiudere tutte le sessioni si consiglia di <i>chiudere il browser</i>"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

@@ -308,12 +308,6 @@ msgstr ""
 "U SimpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani "
 "također nalazi SimpleSAMLphp entitet:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Odjavljivanje iz jednog ili više servisa nije uspjelo. Da biste bili "
-"sigurni da su sve vaše sjednice završene, preporučamo da <i>zatvorite web"
-" preglednik</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

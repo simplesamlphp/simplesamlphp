@@ -263,9 +263,6 @@ msgstr "サービスはあなた自身の認証を要求しています。以下
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "SimpleSAMLphp のファイルフォーマット - もう一方でSimpleSAMLphpエンティティを使用する場合にこれを使用します:"
 
-msgid "{logout:failedsps}"
-msgstr "一つ以上のサービスからログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
-
 msgid "Person's principal name at home organization"
 msgstr "永続的利用者名"
 

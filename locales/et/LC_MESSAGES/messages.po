@@ -296,12 +296,6 @@ msgstr ""
 "SimpleSAMLphp formaadis: kasuta seda siis, kui ka teine pool kasutab "
 "SimpleSAMLphp-d:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Ühest või mitmest teenusest välja logimine ei õnnestunud. Selleks, et "
-"olla kindel kõigi sessioonide lõpetamises soovitame <i>sulgeda kõik "
-"brauseri aknad</i>."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

@@ -279,11 +279,6 @@ msgstr ""
 "בתבנית קובץ SimpleSAMLphp שטוח - למקרים בהם אתה משתמש בישות SimpleSAMLphp"
 " בצד השני: "
 
-msgid "{logout:failedsps}"
-msgstr ""
-"אי אפשר להתנתק מאחד או יותר מהשרותים. כדי לוודא שהתנתקת <i>מומלץ לסגור את"
-" </i>.הדפדפן שלך"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

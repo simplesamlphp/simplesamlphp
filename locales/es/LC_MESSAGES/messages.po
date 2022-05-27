@@ -324,12 +324,6 @@ msgstr ""
 "En un fichero de formato SimpleSAMLphp - utilice esta opción si está "
 "usando una entidad SimpleSAMLphp en el otro extremo:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Imposible desconectarse de uno o más servicios. Para asegurar que todas "
-"sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador "
-"web</i>."
-
 msgid "ORCID researcher identifiers"
 msgstr "Metadatos IdP ADFS"
 

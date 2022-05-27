@@ -298,12 +298,6 @@ msgstr ""
 "SimpleSAMLphp formatuko fitxategi batean - beste muturrean SimpleSAMLphp "
 "entitate bat erabiltzen ariz gero, erabil ezazu aukera hau:"
 
-msgid "{logout:failedsps}"
-msgstr ""
-"Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak "
-"itxi direla ziurtatzeko, <i>zure web nabigatzailea ixtea</i> gomendatzen "
-"da.  "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 
