@@ -42,9 +42,6 @@ msgstr ""
 "Os parâmetros enviados para o serviço de descoberta não estão de acordo "
 "com as especificações."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Campos opcionais"
-
 msgid "{logout:return}"
 msgstr "Retornar ao serviço"
 

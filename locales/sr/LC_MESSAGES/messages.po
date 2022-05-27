@@ -42,9 +42,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Opciona polja"
-
 msgid "{logout:return}"
 msgstr "Povratak u aplikaciju"
 

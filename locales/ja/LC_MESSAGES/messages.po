@@ -30,9 +30,6 @@ msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたが�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
 
-msgid "{admin:metaover_optional_found}"
-msgstr "任意項目"
-
 msgid "{logout:return}"
 msgstr "サービスへ戻る"
 

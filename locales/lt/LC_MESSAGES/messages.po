@@ -38,9 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Neprivalomi laukai"
-
 msgid "{logout:return}"
 msgstr "Grįžti į paslaugą"
 

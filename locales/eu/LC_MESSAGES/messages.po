@@ -42,9 +42,6 @@ msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "
 "doitzen."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Hautazko datuak"
-
 msgid "{logout:return}"
 msgstr "Itzuli zerbitzura"
 

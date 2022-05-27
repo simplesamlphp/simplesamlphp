@@ -42,9 +42,6 @@ msgstr ""
 "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai "
 "dengan spesifikasi"
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Field-field opsional"
-
 msgid "{logout:return}"
 msgstr "Kembali ke layanan"
 

@@ -47,9 +47,6 @@ msgstr ""
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Optionele velden"
-
 msgid "{logout:return}"
 msgstr "Terug naar service"
 

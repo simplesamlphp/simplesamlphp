@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "İsteğe bağlı alanlar"
-
 msgid "{logout:return}"
 msgstr "Servise geri dön"
 

@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Volitelná pole"
-
 msgid "{logout:return}"
 msgstr "Zpátky na službu"
 

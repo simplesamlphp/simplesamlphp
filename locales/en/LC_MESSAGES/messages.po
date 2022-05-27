@@ -44,9 +44,6 @@ msgstr ""
 "The parameters sent to the discovery service were not according to "
 "specifications."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Optional fields"
-
 msgid "{logout:return}"
 msgstr "Return to service"
 

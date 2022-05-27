@@ -42,9 +42,6 @@ msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
 " nicht der Spezifikation."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Optionale Felder"
-
 msgid "{logout:return}"
 msgstr "Zum Dienst zurückkehren"
 

@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tuvastusteenusele saadetud parameetrid ei vastanud nõuetele."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Lisaväljad"
-
 msgid "{logout:return}"
 msgstr "Tagasi teenuse juurde"
 

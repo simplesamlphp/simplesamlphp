@@ -42,9 +42,6 @@ msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "
 "specifikationen."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Frivilliga alternativ"
-
 msgid "{logout:return}"
 msgstr "Åter till tjänsten"
 

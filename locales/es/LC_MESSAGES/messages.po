@@ -42,9 +42,6 @@ msgstr ""
 "Los parametros enviados al servicio de descubrimiento no se ajustan a la "
 "especificaci&oacute;n."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Datos opcionales"
-
 msgid "{logout:return}"
 msgstr "Volver al servicio"
 

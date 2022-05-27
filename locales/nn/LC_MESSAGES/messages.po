@@ -41,9 +41,6 @@ msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "
 "spesifikasjon."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Valfrie felt"
-
 msgid "{logout:return}"
 msgstr "Gå tilbake til tenesta"
 

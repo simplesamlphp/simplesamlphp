@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Pola opcjonalne"
-
 msgid "{logout:return}"
 msgstr "Powrót do serwisu"
 

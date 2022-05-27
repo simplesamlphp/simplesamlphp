@@ -42,9 +42,6 @@ msgstr ""
 "Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "
 "specificațiile."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Câmpuri opționale"
-
 msgid "{logout:return}"
 msgstr "Întoarcere la serviciu"
 

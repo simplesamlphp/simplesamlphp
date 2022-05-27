@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Neobligātie lauki"
-
 msgid "{logout:return}"
 msgstr "Atgriezties pie servisa"
 

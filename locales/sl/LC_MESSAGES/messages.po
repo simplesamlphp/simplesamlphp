@@ -37,9 +37,6 @@ msgstr ""
 "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo "
 "specifikaciji."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Neobvezna polja"
-
 msgid "{logout:return}"
 msgstr "Vrni se nazaj na storitev."
 

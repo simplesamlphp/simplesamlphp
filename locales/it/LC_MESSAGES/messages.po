@@ -40,9 +40,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 
-msgid "{admin:metaover_optional_found}"
-msgstr "Campi opzionali"
-
 msgid "{logout:return}"
 msgstr "Ritornare al servizio"
 

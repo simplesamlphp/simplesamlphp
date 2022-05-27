@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
-msgid "{admin:metaover_optional_found}"
-msgstr "حقل اختياري"
-
 msgid "{logout:return}"
 msgstr "عد للخدمة"
 
