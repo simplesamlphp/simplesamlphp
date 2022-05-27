@@ -227,9 +227,6 @@ msgstr "Došlo je do greške prilikom obrade zahtjeva za odjavljivanjem."
 msgid "{logout:success}"
 msgstr "Uspješno ste se odjavili iz svih gore navedenih servisa."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Napomene"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

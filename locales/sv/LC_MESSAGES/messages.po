@@ -229,9 +229,6 @@ msgstr "Ett fel uppstod när utloggningsförfrågan skulle bearbetas."
 msgid "{logout:success}"
 msgstr "Du har loggat ut från alla nedanstående tjänster."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Meddelanden"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

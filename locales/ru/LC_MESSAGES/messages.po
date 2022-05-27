@@ -239,9 +239,6 @@ msgstr "Ошибка произошла при попытке обработки
 msgid "{logout:success}"
 msgstr "Вы успешно вышли из всех служб перечисленных выше."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Уведомления"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

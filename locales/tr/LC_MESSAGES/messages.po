@@ -207,9 +207,6 @@ msgstr "Çıkış İsteğini işlemeye çalışırken bir hata oluştu"
 msgid "{logout:success}"
 msgstr "Yukarıda listelenen tüm servislerden başarıyla çıktınız."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Notlar"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

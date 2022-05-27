@@ -232,9 +232,6 @@ msgstr "Beim Versuch die Abmeldeanfrage zu bearbeiten ist ein Fehler aufgetreten
 msgid "{logout:success}"
 msgstr "Sie haben sich erfolgreich von allen obenstehenden Diensten abgemeldet."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Anmerkungen"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "

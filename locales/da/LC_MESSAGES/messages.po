@@ -228,9 +228,6 @@ msgstr "Der opstod en fejl under behandlingen af Logout forespørgelsen"
 msgid "{logout:success}"
 msgstr "Du har logget ud fra alle overnævnte services. "
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Beskeder"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

@@ -201,9 +201,6 @@ msgstr "试图处理退出请求时发生了一个错误"
 msgid "{logout:success}"
 msgstr "你成功的退出了上面列表中的服务"
 
-msgid "{admin:cfg_check_notices}"
-msgstr "通告"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 

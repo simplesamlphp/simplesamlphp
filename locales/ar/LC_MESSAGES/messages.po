@@ -217,9 +217,6 @@ msgstr "خطا عند محاولة تسجيل الخروج"
 msgid "{logout:success}"
 msgstr "تسجيل خروج ناجح من جميع الخدمات أعلاه "
 
-msgid "{admin:cfg_check_notices}"
-msgstr "ملحوظات"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

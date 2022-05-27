@@ -218,9 +218,6 @@ msgstr "Apstrādājot atslēgšanās pieprasījumu, radās kļūda."
 msgid "{logout:success}"
 msgstr "Jūs esat sekmīgi atslēdzies un augstāk uzskaitītajiem servisiem."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Brīdinājumi"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

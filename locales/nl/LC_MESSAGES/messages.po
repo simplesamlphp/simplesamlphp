@@ -250,9 +250,6 @@ msgstr "Er is een fout opgetreden tijdens het verwerken van een Logout Request."
 msgid "{logout:success}"
 msgstr "Je bent succesvol uitgelogd van de bovenvermelde services."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Opmerkingen"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Het default wachtwoord in de configuratie (auth.adminpassword) is niet "

@@ -218,9 +218,6 @@ msgstr "Klaida įvyko bandant įvykdyti atsijungimo užklausą."
 msgid "{logout:success}"
 msgstr "Jūs sėkmingai buvote atjungtas nuo visų žemiau išvardintų paslaugų."
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Pranešimai"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "

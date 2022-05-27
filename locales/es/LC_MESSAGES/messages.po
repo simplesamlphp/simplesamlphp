@@ -245,9 +245,6 @@ msgstr ""
 "Ha sido correctamente desconectado de todo los servicios listados a "
 "continuación"
 
-msgid "{admin:cfg_check_notices}"
-msgstr "Avisos"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "
