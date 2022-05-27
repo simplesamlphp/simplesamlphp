@@ -917,7 +917,6 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
-
 msgid ""
 "You are now accessing a pre-production system. This authentication setup "
 "is for testing and pre-production verification only. If someone sent you "
