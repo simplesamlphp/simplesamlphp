@@ -62,9 +62,6 @@ msgstr ""
 "Arazketa informazio hau erabilgarria izan daiteke sistemaren "
 "administratzailea edo erabiltzailearen arreta zentroarentzat:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Konfigurazio errorea"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Errorea saioa ixteko eskaera prozesatzean "
 

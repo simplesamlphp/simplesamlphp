@@ -52,9 +52,6 @@ msgstr ""
 "Die onderstaande informasie mag van hulp wees vir die stelsel "
 "administrateur / hulplyn."
 
-msgid "{errors:title_CONFIG}"
-msgstr "Instellings fout"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Fout met die verwerking van die Afmeldings Versoek"
 

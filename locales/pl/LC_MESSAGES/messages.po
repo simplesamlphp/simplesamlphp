@@ -55,9 +55,6 @@ msgstr ""
 "Poniższa informacja debugger'a  może być przydatna dla administara / "
 "helpdesk:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Błąd konfiguracji"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Błąd przetwarzania żądania wylogowania"
 

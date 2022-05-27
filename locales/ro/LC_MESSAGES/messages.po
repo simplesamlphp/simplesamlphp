@@ -62,9 +62,6 @@ msgstr ""
 "Informațiile de depanare de mai jos pot fi importante pentru "
 "administratorul de sistem:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Eroare de configurare"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Eroare la procesarea cererii de deautentificare"
 

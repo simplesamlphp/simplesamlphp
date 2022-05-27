@@ -63,9 +63,6 @@ msgstr ""
 "Sljedeće informacije mogu biti zanimljive administratorima ili službi za "
 "podršku korisnicima:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Greška u konfiguraciji"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Greška prilikom odjavljivanja"
 

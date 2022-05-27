@@ -64,9 +64,6 @@ msgstr ""
 "Die unten angegebene Debug-Information kann für den Administrator oder den "
 "Helpdesk von Nutzen sein:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Konfigurationsfehler"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Fehler beim Bearbeiten der Abmeldeanfrage"
 

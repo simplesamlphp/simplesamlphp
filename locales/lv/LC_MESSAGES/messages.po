@@ -55,9 +55,6 @@ msgstr ""
 "Zemāk esošā atkļūdošanas informācija var interesēt administratoru un "
 "palīdzības dienestu:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Konfigurācijas kļūda"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Atslēgšanās pieprasījuma apstrādes kļūda"
 

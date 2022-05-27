@@ -64,9 +64,6 @@ msgstr ""
 "L'information de déboguage ci-dessous peut être intéressante pour "
 "l'administrateur ou le help desk :"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Erreur dans la configuration"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Erreur lors du traitement de la requête de déconnexion"
 

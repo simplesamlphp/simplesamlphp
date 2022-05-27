@@ -361,7 +361,7 @@ msgstr ""
 " Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale "
 "ibhrawuza yewebhu</i>."
 
-msgid "{errors:title_CONFIG}"
+msgid "Configuration error"
 msgstr "Impazamo yolungiselelo"
 
 msgid "Unknown certificate"

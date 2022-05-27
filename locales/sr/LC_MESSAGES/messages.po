@@ -62,9 +62,6 @@ msgstr ""
 "Informacije o grešci koje se nalaze ispod mogu biti od interesa "
 "administratoru ili službi za podršku korisnicima."
 
-msgid "{errors:title_CONFIG}"
-msgstr "Greška u podešavanjima"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Greška pri obradi zahteva za odjavu"
 

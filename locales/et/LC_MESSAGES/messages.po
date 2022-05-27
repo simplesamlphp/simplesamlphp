@@ -57,9 +57,6 @@ msgstr ""
 "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele "
 "väga kasulik:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Konfiguratsioonitõrge"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Tõrge väljalogimispäringu töötlemisel"
 

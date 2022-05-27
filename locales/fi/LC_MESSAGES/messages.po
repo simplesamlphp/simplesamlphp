@@ -48,9 +48,6 @@ msgstr ""
 "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai "
 "helpdeskiä:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Virhe asetuksissa"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Uloskirjautumispyynnön käsittelyssä tapahtui virhe"
 

@@ -53,9 +53,6 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "{errors:debuginfo_text}"
 msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Napaka v nastavitvah"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Napaka pri obdelavi zahteve za odjavo"
 

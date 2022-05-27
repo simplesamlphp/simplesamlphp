@@ -55,9 +55,6 @@ msgstr ""
 "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk "
 "számára:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "Beállítási hiba"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Feldolgozhatatlan kijelentkezési kérés"
 

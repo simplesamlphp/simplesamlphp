@@ -50,9 +50,6 @@ msgstr ""
 msgid "{errors:debuginfo_text}"
 msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
 
-msgid "{errors:title_CONFIG}"
-msgstr "שגיאה בהגדרות"
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "שגיאה בעיבוד בקשת התנתקות"
 
