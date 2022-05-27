@@ -214,9 +214,6 @@ msgstr "Du er nå logget ut fra %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Feilrapport er sent til administrator."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "En feil oppsto i behandlingen av logout-forespørselen."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til "

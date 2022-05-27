@@ -224,11 +224,6 @@ msgstr "Vous avez été déconnecté de %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Le rapport d'erreur a été envoyé aux administrateurs."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr ""
-"Une erreur s'est produite lors de la tentative de traiter la demande de "
-"déconnexion."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Le mot de passe dans la configuration (auth.adminpassword) n'a pas été "

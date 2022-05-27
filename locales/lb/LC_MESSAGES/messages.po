@@ -85,9 +85,6 @@ msgstr "Fehler beim Bearbeschten vun der Logout Unfro"
 msgid "{login:error_header}"
 msgstr "Fehler"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "En Fehler as geschit beim Bearbeschten vun der Logout Unfro"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net "

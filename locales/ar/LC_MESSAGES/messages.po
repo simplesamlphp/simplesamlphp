@@ -211,9 +211,6 @@ msgstr "لقد خرجت بنجاح من %SP%"
 msgid "{errors:errorreport_text}"
 msgstr "تم إرسال التقرير عن الخطأ  للمشرف"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "خطا عند محاولة تسجيل الخروج"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "

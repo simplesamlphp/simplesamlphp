@@ -150,9 +150,6 @@ msgstr "Olet kirjautunut ulos palvelusta %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Virheraportti on lähetetty ylläpitäjille."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Uloskirjautumispyynnön käsittelyn yrityksessä tapahtui virhe"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "

@@ -195,9 +195,6 @@ msgstr "あなたは %SP% からのログアウトに成功しました。"
 msgid "{errors:errorreport_text}"
 msgstr "このエラーは管理者に送信されました。"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "ログアウト処理中にエラーが発生しました。"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
 

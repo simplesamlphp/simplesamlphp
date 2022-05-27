@@ -221,9 +221,6 @@ msgstr "Uspješno ste odjavljeni iz %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Prijava greške poslana je administratorima."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Došlo je do greške prilikom obrade zahtjeva za odjavljivanjem."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Izvorna vrijednost administratorske zaporke (parametar "

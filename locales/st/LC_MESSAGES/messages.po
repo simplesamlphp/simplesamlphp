@@ -715,9 +715,6 @@ msgstr ""
 "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la "
 "mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
-
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Phoso ho sebetseng Kopo ya Ho Tswa"
 

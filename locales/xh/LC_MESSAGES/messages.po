@@ -345,7 +345,7 @@ msgstr "Isinxaxhi esingasingathwanga"
 msgid "Report errors"
 msgstr "Chaza iimpazamo"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
+msgid "An error occurred when trying to process the Logout Request."
 msgstr "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma."
 
 msgid ""

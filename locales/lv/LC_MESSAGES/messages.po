@@ -212,9 +212,6 @@ msgstr "Jūs esat sekmīgi atslēdzies no %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Kļūdas ziņojums administratoriem ir nosūtīts."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Apstrādājot atslēgšanās pieprasījumu, radās kļūda."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurācijā auth.adminpassword parolei ir noklusētā vērtība, tā nav "

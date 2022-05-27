@@ -350,7 +350,7 @@ msgstr "Okuhlukile okungasingathiwe"
 msgid "Report errors"
 msgstr "Amaphutha ombiko"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
+msgid "An error occurred when trying to process the Logout Request."
 msgstr "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma."
 
 msgid ""

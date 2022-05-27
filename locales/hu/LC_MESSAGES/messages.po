@@ -214,9 +214,6 @@ msgstr "Sikeresen kilépett a(z) %SP% szolgáltatásból"
 msgid "{errors:errorreport_text}"
 msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "A kijelentkezési kérés (logout request) feldolgozása során hiba történt."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "

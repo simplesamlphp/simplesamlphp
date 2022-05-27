@@ -223,9 +223,6 @@ msgstr "Du har nu loggat ut från %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Felrapporten är skickad till den som sköter systemet."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Ett fel uppstod när utloggningsförfrågan skulle bearbetas."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "

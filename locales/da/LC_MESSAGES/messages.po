@@ -222,9 +222,6 @@ msgstr "Fejlrapporten er nu sendt til system-administrator"
 msgid "{status:subject_header}"
 msgstr "SAML emne"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Der opstod en fejl under behandlingen af Logout forespørgelsen"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Der er ikke konfigureret et password til administrationsgrænsefladen "

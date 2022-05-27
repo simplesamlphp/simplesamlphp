@@ -213,9 +213,6 @@ msgstr "Du er ferdig utlogga frå %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Feilrapport har blitt sendt til administrator"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Handteringa av spørsmål om utlogging er ikkje ferdig, det oppsto ein feil."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå "

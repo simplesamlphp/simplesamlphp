@@ -201,9 +201,6 @@ msgstr "%SP%'den başarıyla çıktınız."
 msgid "{errors:errorreport_text}"
 msgstr "Hata raporu yöneticilere gönderildi"
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Çıkış İsteğini işlemeye çalışırken bir hata oluştu"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "

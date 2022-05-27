@@ -213,9 +213,6 @@ msgstr "Uspešno ste se odjavili s ponudnika storitev: %SP%"
 msgid "{errors:errorreport_text}"
 msgstr "Poročilo o napaki je bilo poslano skrbnikom sistema."
 
-msgid "{errors:descr_LOGOUTREQUEST}"
-msgstr "Pri obdelavi zahteve za odjavo je prišlo do napake."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno"
