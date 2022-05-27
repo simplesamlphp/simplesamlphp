@@ -25,9 +25,6 @@ msgstr "مقدم هوية SAML 2.0 البعيد"
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "رقم الهاتف السيار"
-
 msgid "Person's principal name at home organization"
 msgstr "ألاسم بالمنظمة الام\\الموقع الام "
 

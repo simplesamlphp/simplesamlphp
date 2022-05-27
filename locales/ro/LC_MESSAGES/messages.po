@@ -22,9 +22,6 @@ msgstr "Furnizor de identitate SAML 2.0 (distant)"
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "Person's principal name at home organization"
 msgstr ""
 "Numele de identificare a persoanei la instituția de origine (de forma "

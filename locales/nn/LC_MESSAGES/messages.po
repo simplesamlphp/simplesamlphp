@@ -18,9 +18,6 @@ msgstr ""
 msgid "[Preferred choice]"
 msgstr "Beste val"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 

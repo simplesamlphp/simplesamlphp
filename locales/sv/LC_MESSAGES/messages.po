@@ -21,9 +21,6 @@ msgstr "SAML 2.0 Identity Provider (Fjärr)"
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
 

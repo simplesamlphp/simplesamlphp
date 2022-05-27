@@ -21,9 +21,6 @@ msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
 

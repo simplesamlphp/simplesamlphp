@@ -21,9 +21,6 @@ msgstr "SAML 2.0 identiteedipakkuja (hostitud)"
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiil"
-
 msgid "Person's principal name at home organization"
 msgstr "Isiku põhinimi koduasutuses"
 

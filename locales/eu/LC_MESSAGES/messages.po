@@ -21,9 +21,6 @@ msgstr "SAML 2.0 Identitate hornitzailea (Urrunekoa)"
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mugikorra"
-
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
 

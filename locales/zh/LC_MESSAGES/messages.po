@@ -21,9 +21,6 @@ msgstr "SAML 2.0 身份提供者（远程）"
 msgid "[Preferred choice]"
 msgstr "首选选项"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "手机"
-
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
 

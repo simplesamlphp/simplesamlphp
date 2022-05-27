@@ -21,9 +21,6 @@ msgstr "SAML 2.0 Identitetsleverandør (ekstern)"
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 

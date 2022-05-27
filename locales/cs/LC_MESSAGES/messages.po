@@ -22,9 +22,6 @@ msgstr "SAML 2.0 Identity Provider (Remote - vzdálený)"
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "Person's principal name at home organization"
 msgstr "Hlavní jméno osoby v organizaci"
 

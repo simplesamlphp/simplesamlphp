@@ -22,9 +22,6 @@ msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Broj mobilnog telefona"
-
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
 

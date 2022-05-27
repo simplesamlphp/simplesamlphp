@@ -21,9 +21,6 @@ msgstr "Identity Provider SAML 2.0 (Remote)"
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Handphone"
-
 msgid "Person's principal name at home organization"
 msgstr "Nama kepala pada organisasi asal"
 

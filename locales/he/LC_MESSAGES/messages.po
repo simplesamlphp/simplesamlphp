@@ -21,9 +21,6 @@ msgstr "ספק זהות מרוחק מסוג SAML 2.0"
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "נייד"
-
 msgid "Person's principal name at home organization"
 msgstr "השם העיקרי באירגון הבית"
 

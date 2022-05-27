@@ -22,9 +22,6 @@ msgstr "SAML 2.0 IdP (Oddaljeni)"
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobilni telefon"
-
 msgid "Person's principal name at home organization"
 msgstr "ID uporabnika na domači organizaciji"
 

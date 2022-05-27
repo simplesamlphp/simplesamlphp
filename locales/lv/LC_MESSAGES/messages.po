@@ -22,9 +22,6 @@ msgstr "SAML 2.0 identitātes piegādātājs (attālināts)"
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobilais telefons"
-
 msgid "Person's principal name at home organization"
 msgstr "Priekšnieka vārds"
 
