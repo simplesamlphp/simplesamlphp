@@ -274,9 +274,6 @@ msgstr ""
 "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك،"
 " فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
 
-msgid "{admin:metaover_intro}"
-msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اضغط علي ترويسة  الوحدة "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
 

@@ -283,9 +283,6 @@ msgstr ""
 "sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga "
 "seotud atribuute."
 
-msgid "{admin:metaover_intro}"
-msgstr "SAML olemi detailide vaatamiseks klõpsa SAML olemi päisel."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiil"
 

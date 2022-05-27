@@ -295,9 +295,6 @@ msgstr ""
 "dugo vaša sjednica trajati te sve atribute koji su vezani uz vašu "
 "sjednicu."
 
-msgid "{admin:metaover_intro}"
-msgstr "Da biste vidjeli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
 

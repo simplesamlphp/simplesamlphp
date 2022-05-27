@@ -316,9 +316,6 @@ msgstr ""
 "sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u "
 "kunt alle attributen bekijken die aanwezig zijn in deze sessie."
 
-msgid "{admin:metaover_intro}"
-msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
-
 msgid "Person's principal name at home organization"
 msgstr "Persoons ID bij organisatie"
 

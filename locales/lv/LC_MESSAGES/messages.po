@@ -281,9 +281,6 @@ msgstr ""
 "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir "
 "pārtraukta, cik ilgi tā bijusi aktīva un visus ar to saistītos atribūtus."
 
-msgid "{admin:metaover_intro}"
-msgstr "Lai aplūkotu SAML vienuma detaļas, klikšķiniet uz vienuma galvenes."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilais telefons"
 

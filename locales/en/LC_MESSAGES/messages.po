@@ -304,11 +304,6 @@ msgstr ""
 "session is timed out, how long it lasts until it times out and all the "
 "attributes that are attached to your session."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"To look at the details for an SAML entity, click on the SAML entity "
-"header."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 

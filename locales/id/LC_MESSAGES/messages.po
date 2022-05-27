@@ -288,9 +288,6 @@ msgstr ""
 "melihat jika session anda telah time out, berapa lama ia berlaku sampai "
 "time out dan semua attribut yang menempel pada session anda."
 
-msgid "{admin:metaover_intro}"
-msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 

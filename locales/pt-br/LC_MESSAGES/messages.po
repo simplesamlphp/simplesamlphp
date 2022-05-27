@@ -295,9 +295,6 @@ msgstr ""
 "sua sessão expirou, o tempo que dura até ele expirar e todos os atributos"
 " que estão anexados à sua sessão."
 
-msgid "{admin:metaover_intro}"
-msgstr "Para ver os detalhes da entidade SAML, clique "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Celular"
 

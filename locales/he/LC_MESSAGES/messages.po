@@ -268,9 +268,6 @@ msgstr ""
 "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה "
 "זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
 
-msgid "{admin:metaover_intro}"
-msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כותרת ישות הSAML "
-
 msgid "{attributes:attribute_mobile}"
 msgstr "נייד"
 

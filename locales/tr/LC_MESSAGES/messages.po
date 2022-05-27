@@ -268,11 +268,6 @@ msgstr ""
 "dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm "
 "bilgileri buradan görebilirsiniz."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"Bir SAML elemanı hakkındaki detayları görmek için, SAML elemanı başlığına"
-" tıklayın."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cep telefonu numarası"
 

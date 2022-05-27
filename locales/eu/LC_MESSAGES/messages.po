@@ -285,9 +285,6 @@ msgstr ""
 " saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure "
 "saioan dauden atributu guztiak."
 
-msgid "{admin:metaover_intro}"
-msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mugikorra"
 

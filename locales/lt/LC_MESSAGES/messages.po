@@ -280,11 +280,6 @@ msgstr ""
 "Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei "
 "kitus Jūsų sesijai priskirtus atributus."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML"
-" antraštės."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiliojo numeris"
 

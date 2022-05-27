@@ -284,11 +284,6 @@ msgstr ""
 "din er timet ut, hvor lenge det er til den timer ut og attributter som er"
 " knyttet til din sesjon."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"For å se på detaljene i en SAML-entitet, klikk på SAML-entitet "
-"overskriften"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

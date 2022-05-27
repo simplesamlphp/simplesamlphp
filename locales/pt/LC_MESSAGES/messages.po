@@ -264,9 +264,6 @@ msgstr ""
 "Está na página de status do SimpleSAMLphp. Aqui poderá consultar "
 "informações sobre a sua sessão: o tempo de expiração e os seus atributos."
 
-msgid "{admin:metaover_intro}"
-msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Telemóvel"
 

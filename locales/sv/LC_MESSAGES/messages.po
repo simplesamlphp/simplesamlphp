@@ -293,11 +293,6 @@ msgstr ""
 "har gått ut, hur länge det dröjer innan den går ut samt alla attribut som"
 " tillhör sessionen."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"För att titta på detaljer för en SAML-entitet klicka på rubriken för "
-"SAML-entiteten."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 

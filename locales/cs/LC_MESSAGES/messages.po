@@ -278,9 +278,6 @@ msgstr ""
 "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, "
 "jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
 
-msgid "{admin:metaover_intro}"
-msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

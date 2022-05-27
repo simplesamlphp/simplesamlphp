@@ -298,11 +298,6 @@ msgstr ""
 "vedere se la sessione è scaduta, quanto è durata prima di scadere e tutti"
 " gli attributi ad essa collegati."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"Per visualizzare i dettagli di una entità SAML, cliccare sull'header SAML"
-" dell'entità."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Cellulare"
 

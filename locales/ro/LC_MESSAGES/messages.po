@@ -293,11 +293,6 @@ msgstr ""
 "expirarea sesiunii precum și toate atributele atașate sesiunii "
 "dumneavoastră."
 
-msgid "{admin:metaover_intro}"
-msgstr ""
-"Pentru a vizualiza detalii privind o entitate SAML, apăsați pe antetul "
-"entității SAML."
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

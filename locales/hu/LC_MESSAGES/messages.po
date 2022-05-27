@@ -284,9 +284,6 @@ msgstr ""
 "munkamenete, mikor lépett be utoljára és a munkamenethez tartozó "
 "attribútumokat."
 
-msgid "{admin:metaover_intro}"
-msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
-
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobil"
 

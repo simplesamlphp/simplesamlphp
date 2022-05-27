@@ -269,9 +269,6 @@ msgstr ""
 "嘿，這是 SimpleSAMLphp "
 "狀態頁，在這邊您可以看到您的連線是否逾時，以及還有多久才逾時，所有屬性值(attributes)都會附加在你的連線裡(session)。"
 
-msgid "{admin:metaover_intro}"
-msgstr "點選 SAML 物件標題，可檢視 SAML 物件詳細資訊。"
-
 msgid "ORCID researcher identifiers"
 msgstr "ADFS 驗證提供者 Metadata"
 
