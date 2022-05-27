@@ -37,9 +37,6 @@ msgstr ""
 "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo "
 "specifikaciji."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "XML metapodatki se nahajajo na <a href=\"%METAURL%\">tem naslovu</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Da, odjavi me z vseh storitev"
 

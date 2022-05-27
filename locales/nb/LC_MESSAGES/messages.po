@@ -38,11 +38,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametere sendt til discovery-tjenesten var ikke i korrekt format."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"Du kan nå <a href=\"%METAURL%\">metadata i XML-format på en dedikert "
-"URL</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Ja, alle tjenestene over"
 

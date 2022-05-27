@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "De afsendte værdier overholder ikke Discovery Servicens' krav"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "Du kan få metadata-xml <a href=\"%METAURL%\">her</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Ja, alle services"
 

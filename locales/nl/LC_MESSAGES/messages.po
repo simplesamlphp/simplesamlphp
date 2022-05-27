@@ -47,11 +47,6 @@ msgstr ""
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"U kunt <a href=\"%METAURL%\">deze directe URL gebruiken</a> om de "
-"metadata XML op te vragen:"
-
 msgid "{logout:logout_all}"
 msgstr "Ja, alle diensten"
 

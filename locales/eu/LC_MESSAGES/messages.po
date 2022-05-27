@@ -42,9 +42,6 @@ msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "
 "doitzen."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "<a href=\"%METAURL%\">xml metadatuekin URL bat</a> eskura dezakezu:"
-
 msgid "{logout:logout_all}"
 msgstr "Bai, zerbitzu guztiak"
 

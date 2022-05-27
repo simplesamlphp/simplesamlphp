@@ -34,9 +34,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "הפרמטרים שנשלחו לשירות גילוי לא היו על פי מפרט."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "אתה יכול <a href=\"%METAURL%\">לקבל את המטא מידע בכתובת נפרדת</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "כן, כל השרותים"
 

@@ -44,9 +44,6 @@ msgstr ""
 "The parameters sent to the discovery service were not according to "
 "specifications."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Yes, all services"
 

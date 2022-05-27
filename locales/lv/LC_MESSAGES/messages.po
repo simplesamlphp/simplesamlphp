@@ -37,9 +37,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery servisam nosūtītie parametri neatbilst specifikācijām."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "Jūs varat <a href=\"%METAURL%\">saņemt metadatu xml šajā URL</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Jā, no visiem"
 

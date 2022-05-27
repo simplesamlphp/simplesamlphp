@@ -42,11 +42,6 @@ msgstr ""
 "Les paramètres envoyés au service de découverte automatique (discovery "
 "service) ne respectent pas les spécifications."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"Vous pouvez <a href=\"%METAURL%\">obtenir ces métadonnées XML depuis une "
-"URL dédiée</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Oui, de tous les services"
 

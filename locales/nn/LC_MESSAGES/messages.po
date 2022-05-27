@@ -41,9 +41,6 @@ msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "
 "spesifikasjon."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "Du kan <a href=\"%METAURL%\">få metadata i XML på ein URL</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Ja, logg ut frå alle"
 

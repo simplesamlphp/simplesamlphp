@@ -35,9 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "Możesz <a href=\"%METAURL%\">pobrać metadane w formacie xml</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Tak, wszystkie serwisy"
 

@@ -42,11 +42,6 @@ msgstr ""
 "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai "
 "dengan spesifikasi"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"Anda dapat <a href=\"%METAURL%\">mendapatkan xml metadata pada URL "
-"tersendiri</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Ya, semua layanan"
 

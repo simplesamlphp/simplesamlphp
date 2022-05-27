@@ -30,9 +30,6 @@ msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたが�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "<a href=\"%METAURL%\">このURLでメタデータのXMLを取得できます</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "はい、全てのサービスからログアウトします"
 

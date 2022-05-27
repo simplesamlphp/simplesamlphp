@@ -30,9 +30,6 @@ msgstr "你的SimpleSAMLphp配置错误，如果你是该服务的管理员，�
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "发送给搜寻服务的参数不符合规范"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "你可以在 <a href=\"%METAURL%\">获取元信息XML</a>"
-
 msgid "{logout:logout_all}"
 msgstr "是的，所有的服务"
 

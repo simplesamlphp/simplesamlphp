@@ -40,11 +40,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "I parametri inviati al discovery service non rispettano le specifiche."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"Si possono <a href=\"%METAURL%\">ottenere i metadati in XML dall'URL "
-"dedicato</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Si, da tutti i servizi"
 

@@ -43,9 +43,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "<a href=\"%METAURL%\">Üstveri xml'ini bu bağlantıdan alabilirsiniz</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Evet, tüm servisler."
 

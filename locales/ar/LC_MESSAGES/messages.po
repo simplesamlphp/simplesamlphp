@@ -35,11 +35,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
-msgid "{admin:metadata_xmlurl}"
-msgstr ""
-"يمكنك الحصول علي بياناتك الوصفية بملف xml ب URL متخصص بإدخال<a "
-"href=\"%METAURL%\">"
-
 msgid "{logout:logout_all}"
 msgstr "نعم من جميع الخدمات"
 

@@ -37,9 +37,6 @@ msgstr ""
 "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "
 "amelyek nem felelnek meg a specifikációnak."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "A következő címről <a href=\"%METAURL%\">töltheti le a metaadatokat</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Igen, minden alkalmazásból"
 

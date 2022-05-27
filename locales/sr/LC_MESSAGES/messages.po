@@ -42,9 +42,6 @@ msgstr ""
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 
-msgid "{admin:metadata_xmlurl}"
-msgstr "Metapodaci su dostupni na <a href=\"%METAURL%\">ovoj adresi</a>:"
-
 msgid "{logout:logout_all}"
 msgstr "Da, iz svih servisa"
 
