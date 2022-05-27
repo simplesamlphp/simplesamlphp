@@ -15,13 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Μία ή περισσότερες υπηρεσίες με τις οποίες είστε συνδεδεμένος/η δεν "
-"υποστηρίζουν αποσύνδεση. Για το κλείσιμο όλων των συνεδριών σας "
-"(sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web"
-" browser)."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
 

@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Egy vagy több alkalmazás <i>nem támogatja a kijelenkezést</i>. Hogy "
-"biztosítani lehessen, hogy nem maradt bejelentkezve, kérjük, <i>lépjen ki"
-" a böngészőből!</i>"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
 

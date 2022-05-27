@@ -15,11 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"אחד או יותר מן השרותים שאתה מחובר אליהם <i>לא תומכים בהתנתקות</i> .כדי "
-"לוודא שהתנתקת מכל השירותים ממולץ <i>שתסגור את הדפדפן</i>"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "ספק זהות מרוחק מסוג SAML 2.0"
 

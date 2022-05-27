@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr "<i>ログアウトをサポートしていない</i>サービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>を行ってください。"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0アイデンティティプロバイダ(リモート)"
 

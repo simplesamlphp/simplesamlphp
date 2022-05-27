@@ -18,12 +18,6 @@ msgstr ""
 msgid "Back"
 msgstr "Back"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"One or more of the services you are logged into <i>do not support "
-"logout</i>. To ensure that all your sessions are closed, you are "
-"encouraged to <i>close your webbrowser</i>."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "

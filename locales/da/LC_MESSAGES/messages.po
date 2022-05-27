@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"En eller flere services som du er logget ind hos <i>understøtter ikke log"
-" ou</i>. For at sikre at alle dine forbindelser er lukket, bedes du "
-"<i>lukke din browser</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 identitetsudbyder (remote)"
 

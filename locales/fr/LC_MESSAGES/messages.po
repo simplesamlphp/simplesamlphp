@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Un ou plusieurs des services auxquels vous êtes connecté <i>ne gèrent pas"
-" la déconnexion</i>. Pour terminer les sessions sur ces services, vous "
-"devrez <i>fermer votre navigateur</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Fournisseur d'identité SAML 2.0 distant"
 

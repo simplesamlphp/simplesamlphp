@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Een of meerdere dienste waarby jy aangemeld het, <i>ondersteun nie "
-"afmelding nie</i>. Om seker te wees datal jou sessies afgesluit word, is "
-"dit beter om jou <i>webblaaier toe te maak</i>."
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas "

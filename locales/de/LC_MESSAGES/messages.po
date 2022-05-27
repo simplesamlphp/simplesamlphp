@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Einer oder mehrere Dienste an denen Sie angemeldet sind, <i>unterstützen "
-"keine Abmeldung</i>. Um sicherzustellen, dass Sie abgemeldet sind, "
-"<i>schließen Sie bitte Ihren Webbrowser</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (entfernt)"
 

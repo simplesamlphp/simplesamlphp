@@ -15,12 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"En eller flera av tjänsterna du är inloggad i <i>kan inte hantera "
-"utloggning</i>. För att säkerställa att du inte längre är inloggad i "
-"någon tjänst ska du <i>stänga din webbläsare</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Fjärr)"
 

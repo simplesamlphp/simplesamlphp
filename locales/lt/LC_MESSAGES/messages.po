@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Viena ar daugiau paslaugų, prie kurių esate prisijungęs <i>nepalaiko "
-"atsijungimo</i>. Siekiant užtikrinti sėkmingą darbo pabaigą, "
-"rekomenduojame <i>uždaryti naršyklę</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Tapatybių teikėjas (nutolęs)"
 

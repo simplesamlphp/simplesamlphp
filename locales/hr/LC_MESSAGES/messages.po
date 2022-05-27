@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Jedan ili više servisa na koje ste prijavljeni <i>ne podržava "
-"odjavljivanje</i>. Da biste bili sigurni da su sve vaše sjednice "
-"završene, preporučamo da <i>zatvorite web preglednik</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 autentifikacijski servis (udaljeni)"
 

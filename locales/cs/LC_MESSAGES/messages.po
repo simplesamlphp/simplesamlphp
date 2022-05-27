@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Jedna nebo více služeb, do kterých jste přihlášen(a), nepodporuje "
-"odhlašení. Pokud se chcete odhlásit, musíte ukončit váš webový prohlížeč."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote - vzdálený)"
 

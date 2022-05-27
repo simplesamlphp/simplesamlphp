@@ -346,12 +346,6 @@ msgstr ""
 msgid "Shibboleth demo"
 msgstr "Pontsho ya Shibboleth"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"E le nngwe kapa ho feta ya ditshebeletso tseo o keneng ho tsona <i>ha e "
-"tshehetse ho tswa</i>. Ho netefatsa hore diseshene tsohle tsa hao di "
-"kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
-
 msgid "Could not create authentication response"
 msgstr "Ha e a kgona ho theha karabelo ya ntefatso"
 

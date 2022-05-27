@@ -15,9 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr "一个或多个你已登录的服务<i>不支持退出</i>，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 身份提供者（远程）"
 

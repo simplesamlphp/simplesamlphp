@@ -21,12 +21,6 @@ msgstr "Terug"
 msgid "No SAML message provided"
 msgstr "Geen SAML bericht opgegeven"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning "
-"voor uitloggen</i>. Om er zeker van te zijn dat al je sessies zijn "
-"beëindigd, kun je het beste <i>je webbrowser afsluiten</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "SAML 2.0 Identity Provider (Remote)"
 

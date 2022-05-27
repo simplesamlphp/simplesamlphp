@@ -16,12 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"Некоторые службы, к которым вы подключены, <i>не поддеживают выход из "
-"системы</i>. Для обеспечения закрытия всех сессий, <i>закройте ваш "
-"браузер</i>."
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "Провайдер идентификации SAML 2.0 (удаленное размещение)"
 

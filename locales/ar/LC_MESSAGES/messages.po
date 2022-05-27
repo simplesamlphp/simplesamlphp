@@ -19,11 +19,6 @@ msgstr ""
 msgid "{status:validfor}"
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
-msgid "{logout:incapablesps}"
-msgstr ""
-"واحدة او اكثر من الخدمات التي قمت بتسجيل دخولك بها لا تدعم تسجيل الخروج. "
-"للتأكد من ان جميع صفحاتك قد تم إغلاقها  قم بإغلاق متصفحك"
-
 msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
 msgstr "مقدم هوية SAML 2.0 البعيد"
 
