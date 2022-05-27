@@ -47,9 +47,6 @@ msgstr ""
 "Puede desactivar el modo de depuración en el fichero de configuración "
 "global de SimpleSAMLphp <tt>config/config.php</tt>."
 
-msgid "{logout:also_from}"
-msgstr "También está autenticado en los siguientes servicios:"
-
 msgid "{login:login_button}"
 msgstr "Login"
 

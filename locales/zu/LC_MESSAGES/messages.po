@@ -437,7 +437,7 @@ msgstr "Ulwazi lokuphuma lulahlekile"
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "Ayikho I-RelayState"
 
-msgid "{logout:also_from}"
+msgid "You are also logged in on these services:"
 msgstr "Ungenile futhi kulawa masevisi:"
 
 msgid "{logout:logout_all_question}"

@@ -47,9 +47,6 @@ msgstr ""
 "Sie können den Debug-Modus in der globalen SimpleSAMLphp-"
 "Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
 
-msgid "{logout:also_from}"
-msgstr "Sie sind auch auf diesen Diensten angemeldet:"
-
 msgid "{login:login_button}"
 msgstr "Anmelden"
 

@@ -544,9 +544,6 @@ msgstr ""
 msgid "SAML 2.0 SP Demo Example"
 msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 
-msgid "{logout:also_from}"
-msgstr "Hape o kene ditshebeletsong tsena:"
-
 msgid "You are also logged in on these services:"
 msgstr "Hape o kene ditshebeletsong tsena:"
 

@@ -33,9 +33,6 @@ msgstr "发送给搜寻服务的参数不符合规范"
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "你可以关闭调试模式，在SimpleSAMLphp全局配置文件<tt>config/config.php</tt>中"
 
-msgid "{logout:also_from}"
-msgstr "你同时登录这以下这些服务"
-
 msgid "{login:login_button}"
 msgstr "登录"
 

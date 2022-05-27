@@ -47,9 +47,6 @@ msgstr ""
 "Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "
 "<tt>config/config.php</tt>."
 
-msgid "{logout:also_from}"
-msgstr "Sunteți autentificat și la următoarele servicii:"
-
 msgid "{login:login_button}"
 msgstr "Autentificare"
 

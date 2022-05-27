@@ -42,9 +42,6 @@ msgstr ""
 "Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski "
 "datoteki <tt>config/config.php</tt>."
 
-msgid "{logout:also_from}"
-msgstr "Prijavljeni ste v naslednje storitve:"
-
 msgid "{login:login_button}"
 msgstr "Prijava"
 

@@ -42,9 +42,6 @@ msgstr ""
 "Silumisrežiimi on võimalik välja lülitada SimpleSAMLphp "
 "seadistustefailist <tt>config/config.php</tt>."
 
-msgid "{logout:also_from}"
-msgstr "Sa oled sisse logitud ja nendesse teenustesse:"
-
 msgid "{login:login_button}"
 msgstr "Logi sisse"
 

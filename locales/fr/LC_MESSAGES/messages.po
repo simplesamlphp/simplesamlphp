@@ -47,9 +47,6 @@ msgstr ""
 "Vous pouvez désactivez le mode débogage dans le fichier de configuration "
 "globale de SimpleSAMLphp (<tt>config/config.php</tt>)."
 
-msgid "{logout:also_from}"
-msgstr "Vous êtes actuellement connecté aux services suivants:"
-
 msgid "{login:login_button}"
 msgstr "S'identifier"
 

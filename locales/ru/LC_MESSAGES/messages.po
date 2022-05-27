@@ -47,9 +47,6 @@ msgstr ""
 "Вы можете отключить режим отладки в файле конфигурации global "
 "SimpleSAMLphp -<tt>config/config.php</tt>. "
 
-msgid "{logout:also_from}"
-msgstr "Вы также подключены к следующим службам:"
-
 msgid "{login:login_button}"
 msgstr "Войти"
 
