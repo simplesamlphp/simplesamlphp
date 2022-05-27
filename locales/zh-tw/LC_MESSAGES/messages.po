@@ -207,9 +207,6 @@ msgstr "您已成功從 %SP% 登出。"
 msgid "{errors:errorreport_text}"
 msgstr "錯誤報告已送給管理員。"
 
-msgid "{status:subject_header}"
-msgstr "SAML 主題"
-
 msgid "{errors:descr_NOTSET}"
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
 

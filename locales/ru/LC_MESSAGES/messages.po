@@ -230,9 +230,6 @@ msgstr "Вы успешно вышли из службы %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Сообщение об ошибке было отправлено администраторам."
 
-msgid "{status:subject_header}"
-msgstr "Тема SAML"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "

@@ -232,9 +232,6 @@ msgstr "Έχετε αποσυνδεθεί με επιτυχία από την υ
 msgid "{errors:errorreport_text}"
 msgstr "Η αποστολή της αναφοράς σφάλματος στους διαχειριστές ολοκληρώθηκε."
 
-msgid "{status:subject_header}"
-msgstr "Υποκείμενο (subject) SAML"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "

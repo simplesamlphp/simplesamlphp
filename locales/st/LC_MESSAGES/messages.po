@@ -343,9 +343,6 @@ msgstr ""
 msgid "Logging out of the following services:"
 msgstr "E tswa ditshebeletsong tse latelang:"
 
-msgid "{status:subject_header}"
-msgstr "Taba ya SAML"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ha ho phihlello"
 

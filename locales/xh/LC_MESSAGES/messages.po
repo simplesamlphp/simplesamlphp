@@ -168,7 +168,7 @@ msgstr "Ikhasi alifunyenwanga"
 msgid "Completed"
 msgstr "Igqityiwe"
 
-msgid "{status:subject_header}"
+msgid "SAML Subject"
 msgstr "Umbandela we-SAML"
 
 msgid ""

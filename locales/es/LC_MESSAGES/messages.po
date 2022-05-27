@@ -232,9 +232,6 @@ msgstr "Ha sido desconectado correctamente de %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "El informe de error ha sido enviado a los administradores."
 
-msgid "{status:subject_header}"
-msgstr "Identificador SAML"
-
 msgid "{errors:descr_NOTSET}"
 msgstr ""
 "La clave de acceso del fichero de configuración (auth.adminpassword) no "
