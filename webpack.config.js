@@ -17,10 +17,10 @@ module.exports = environment => {
     const secondaryBackground = env.hasOwnProperty('secondaryBackground') ? env.secondaryBackground : '#e8410c';
     return {
         entry: {
-            bundle: './src/js/bundle/main',
-            logout: './src/js/logout/main',
-            post: './src/js/post/main',
-            stylesheet: './src/js/style'
+            bundle: './resources/js/bundle/main',
+            logout: './resources/js/logout/main',
+            post: './resources/js/post/main',
+            stylesheet: './resources/js/style'
         },
         output: {
             path: path.resolve(buildDir),

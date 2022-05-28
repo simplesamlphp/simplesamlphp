@@ -10,7 +10,7 @@
 $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir . '/src/_autoload.php');
 
 
 echo "Enter password: ";

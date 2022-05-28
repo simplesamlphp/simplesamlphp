@@ -561,7 +561,7 @@ class Configuration implements Utils\ClearableState
             return $dir;
         }
 
-        // the directory wasn't set in the configuration file, path is <base directory>/lib/SimpleSAML/Configuration.php
+        // the directory wasn't set in the configuration file, path is <base directory>/src/SimpleSAML/Configuration.php
         $dir = __FILE__;
         Assert::same(basename($dir), 'Configuration.php');
 
@@ -569,7 +569,7 @@ class Configuration implements Utils\ClearableState
         Assert::same(basename($dir), 'SimpleSAML');
 
         $dir = dirname($dir);
-        Assert::same(basename($dir), 'lib');
+        Assert::same(basename($dir), 'src');
 
         $dir = dirname($dir);
 

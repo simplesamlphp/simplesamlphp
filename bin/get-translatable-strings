@@ -10,7 +10,7 @@
  * - The main product and the standard modules, when invoked with '--main'.
  *
  * It will search all Twig templates for occurences of the trans()
- * function, and all PHP code under lib/ for the noop() function.
+ * function, and all PHP code under src/ for the noop() function.
  */
 declare(strict_types=1);
 
@@ -22,7 +22,7 @@ use Symfony\Component\Filesystem\Filesystem;
 $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir . '/src/_autoload.php');
 
 if($argc != 2) {
     echo "Usage: $argv[0] (<module>|--main)\n";
@@ -52,9 +52,9 @@ foreach($modules as $module) {
     $domain = $module ?: 'messages';
 
     $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
-    $moduleLibDir = $moduleDir . '/lib/';
+    $moduleSrcDir = $moduleDir . '/src/';
     $outputDir = $moduleDir . $outputSuffix;
-    print `find $tempDir $moduleLibDir -name \*.php | xargs xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --omit-header --no-location -ktrans -knoop -L PHP`;
+    print `find $tempDir $moduleSrcDir -name \*.php | xargs xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --omit-header --no-location -ktrans -knoop -L PHP`;
 }
 
 $filesystem->remove($tempDirBase);

@@ -9,9 +9,9 @@
 >
     <projectFiles>
         <directory name="config-templates" />
-        <directory name="lib/SimpleSAML" />
         <directory name="metadata-templates" />
         <directory name="modules" />
+        <directory name="src/SimpleSAML" />
         <directory name="tests" />
         <directory name="www" />
 
@@ -48,12 +48,12 @@
         <UnresolvableInclude>
             <errorLevel type="suppress">
                 <file name="bin/*.php" />
-                <file name="lib/SimpleSAML/Configuration.php" />
-                <file name="lib/SimpleSAML/Metadata/MetaDataStorageHandlerFlatFile.php" />
-                <file name="lib/SimpleSAML/Module.php" />
-                <file name="lib/SimpleSAML/XHTML/Template.php" />
                 <file name="modules/core/lib/Auth/Process/AttributeMap.php" />
                 <file name="modules/*/bin/*.php" />
+                <file name="src/SimpleSAML/Configuration.php" />
+                <file name="src/SimpleSAML/Metadata/MetaDataStorageHandlerFlatFile.php" />
+                <file name="src/SimpleSAML/Module.php" />
+                <file name="src/SimpleSAML/XHTML/Template.php" />
                 <file name="tests/bootstrap.php" />
                 <file name="tests/routers/configLoader.php" />
             </errorLevel>

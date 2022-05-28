@@ -21,7 +21,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\": "lib/SimpleSAML",
+            "SimpleSAML\\": "src/SimpleSAML",
             "SimpleSAML\\Module\\admin\\": "modules/admin/lib",
             "SimpleSAML\\Module\\core\\": "modules/core/lib",
             "SimpleSAML\\Module\\cron\\": "modules/cron/lib",
@@ -32,13 +32,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\": ["tests", "tests/lib/SimpleSAML"],
-            "SimpleSAML\\Test\\Module\\admin\\": ["tests/lib/SimpleSAML/modules/admin/lib"],
-            "SimpleSAML\\Test\\Module\\core\\": ["tests/lib/SimpleSAML/modules/core/lib"],
-            "SimpleSAML\\Test\\Module\\cron\\": ["tests/lib/SimpleSAML/modules/cron/lib"],
-            "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/lib/SimpleSAML/modules/exampleauth/lib"],
-            "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/lib/SimpleSAML/modules/multiauth/lib"],
-            "SimpleSAML\\Test\\Module\\saml\\": ["tests/lib/SimpleSAML/modules/saml/lib"]
+            "SimpleSAML\\Test\\": ["tests", "tests/src/SimpleSAML"],
+            "SimpleSAML\\Test\\Module\\admin\\": ["tests//modules/admin/lib"],
+            "SimpleSAML\\Test\\Module\\core\\": ["tests/modules/core/lib"],
+            "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/lib"],
+            "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/lib"],
+            "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/lib"],
+            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/lib"]
         }
     },
     "require": {

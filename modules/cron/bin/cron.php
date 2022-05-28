@@ -11,7 +11,7 @@
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 // Add library autoloader.
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir . '/src/_autoload.php');
 
 if (!SimpleSAML\Module::isModuleEnabled('cron')) {
     echo "You need to enable the cron module before this script can be used.\n";

@@ -18,9 +18,9 @@ classes, and `SimpleSAML\Test\Module\modulename` for classes located in
 modules.
 
 For example, if you want to test the `SimpleSAML\Utils\HTTP` class
-located in `lib/SimpleSAML/Utils/HTTP.php`, the tests must be in a class
+located in `src/SimpleSAML/Utils/HTTP.php`, the tests must be in a class
 named `HTTPTest` implemented in
-`tests/lib/SimpleSAML/Utils/HTTPTest.php`, with the following namespace
+`tests/src/SimpleSAML/Utils/HTTPTest.php`, with the following namespace
 definition:
 
 ```php

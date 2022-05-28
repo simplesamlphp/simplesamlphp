@@ -3,8 +3,8 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude(__DIR__ . '/www/resources')
     ->in([
-        __DIR__ . '/lib',
         __DIR__ . '/modules',
+        __DIR__ . '/src',
         __DIR__ . '/templates',
         __DIR__ . '/tests',
         __DIR__ . '/www',

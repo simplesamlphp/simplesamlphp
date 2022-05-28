@@ -150,7 +150,7 @@ class Kernel extends BaseKernel
             $definition->setAutowired(true);
             $definition->setPublic(true);
 
-            $controllerDir = Module::getModuleDir($this->module) . '/lib/Controller';
+            $controllerDir = Module::getModuleDir($this->module) . '/src/Controller';
 
             if (!is_dir($controllerDir)) {
                 return;
