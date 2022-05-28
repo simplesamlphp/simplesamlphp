@@ -82,7 +82,7 @@ class SingleLogout
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function singleLogout(Request $request): RunnableResponse
+    public function singleLogoutService(Request $request): RunnableResponse
     {
         Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
