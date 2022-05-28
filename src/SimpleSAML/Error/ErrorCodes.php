@@ -87,7 +87,8 @@ class ErrorCodes
                 "You accessed the Artifact Resolution Service interface, but did not " .
                 "provide a SAML ArtifactResolve message. Please note that this endpoint is" .
                 " not intended to be accessed directly."),
-            'AUTHSOURCEERROR' => Translate::noop('Authentication error in source %AUTHSOURCE%. The reason was: %REASON%'),
+            'AUTHSOURCEERROR' => Translate::noop("" .
+                'Authentication error in source %AUTHSOURCE%. The reason was: %REASON%'),
             'BADREQUEST' => Translate::noop('There is an error in the request to this page. The reason was: %REASON%'),
             'CASERROR' => Translate::noop('Error when communicating with the CAS server.'),
             'CONFIG' => Translate::noop('SimpleSAMLphp appears to be misconfigured.'),
@@ -126,12 +127,13 @@ class ErrorCodes
                 "This endpoint is not enabled. Check the enable options in your " .
                 "configuration of SimpleSAMLphp."),
             'NOCERT' => Translate::noop('Authentication failed: your browser did not send any certificate'),
-            'NORELAYSTATE' => Translate::noop("".
+            'NORELAYSTATE' => Translate::noop("" .
                 "The initiator of this request did not provide a RelayState parameter " .
                 "indicating where to go next."),
             'NOSTATE' => Translate::noop('State information lost, and no way to restart the request'),
             'NOTFOUND' => Translate::noop('The given page was not found. The URL was: %URL%'),
-            'NOTFOUNDREASON' => Translate::noop("The given page was not found. The reason was: %REASON%  The URL was: %URL%"),
+            'NOTFOUNDREASON' => Translate::noop("" .
+                "The given page was not found. The reason was: %REASON%  The URL was: %URL%"),
             'NOTSET' => Translate::noop("" .
                 "The password in the configuration (auth.adminpassword) is not changed " .
                 "from the default value. Please edit the configuration file."),

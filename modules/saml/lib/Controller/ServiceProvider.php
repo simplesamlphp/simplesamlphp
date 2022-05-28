@@ -207,9 +207,11 @@ class ServiceProvider
              * In that case we may as well just redo the previous redirect
              * instead of displaying a confusing error message.
              */
-            Logger::info(
-                'Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.'
-            );
+            Logger::info(sprintf(
+                '%s - %s',
+                'Duplicate SAML 2 response detected',
+                'ignoring the response and redirecting the user to the correct page.'
+            ));
             if (isset($prevAuth['redirect'])) {
                 return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
             }
@@ -245,7 +247,7 @@ class ServiceProvider
             Assert::keyExists($state, 'saml:sp:AuthId');
             if ($state['saml:sp:AuthId'] !== $sourceId) {
                 throw new Error\Exception(
-                    'The authentication source id in the URL does not match the authentication source which sent the request.'
+                    "The authentication source id in the URL doesn't match the authentication source that sent the request."
                 );
             }
 
