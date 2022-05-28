@@ -37,13 +37,45 @@ Quite some options have been changed or removed. We recommend to start with a fr
 template from `config-templates/` and migrate the settings you require to the new
 config file manualy.
 
-The date formatting when specifying a custom logging string has been changed from PHP's
-deprecated `strftime()` format to PHP's `date()` format.
+- The date formatting when specifying a custom logging string has been changed from PHP's
+  deprecated `strftime()` format to PHP's `date()` format.
 
-Configuration options that have been removed:
- - languages[priorities]
- - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
- - admin.protectindexpage. Replaced by the admin module which always requires login.
+- Many endpoints have changed, including the saml-endpoints. This effectively means you have to exchange 
+  metadata again with your peers or to keep the legacy endpoints functioning for a certain amount of time.
+  To keep the legacy endpoints working, you have to configure your webserver to deal with them.
+
+  For Apache you should configure the following rules:
+
+```apache
+RewriteEngine On
+
+# base
+RewriteRule "/saml2/idp/metadata.php" "/module.php/saml/idp/metadata" [QSA]
+RewriteRule "/saml2/idp/SSOService.php" "/module.php/saml/idp/singleSignOnService" [QSA]
+RewriteRule "/saml2/idp/ArtifactResolutionService.php" "/module.php/saml/idp/artifactResolutionService" [QSA]
+RewriteRule "/saml2/idp/SingleLogoutService.php" "/module.php/saml/idp/singleLogoutService" [QSA]
+RewriteRule "/saml2/idp/initSingleLogout" "/module.php/saml/idp/initSingleLogout" [QSA]
+RewriteRule "/admin" "/module.php/admin" [QSA]
+
+# core
+RewriteRule "/module.php/core/frontpage_welcome.php" "/module.php/admin" [QSA]
+RewriteRule "/module.php/core/frontpage_config.php" "/module.php/admin" [QSA]
+RewriteRule "/module.php/core/frontpage_auth.php" "/module.php/admin/test" [QSA]
+RewriteRule "/module.php/core/frontpage_federation.php" "/module.php/admin/federation" [QSA]
+
+# saml
+RewriteRule "/module.php/saml/sp/metadata.php" "/module.php/saml/sp/metadata" [QSA]
+RewriteRule "/module.php/saml/sp/saml2-acs.php" "/module.php/saml/sp/assertionConsumerService" [QSA]
+RewriteRule "/module.php/saml/sp/saml2-logout.php" "/module.php/saml/sp/singleLogoutService" [QSA]
+```
+
+  ** Note ** For this to work you need to have mod_rewrite enabled.
+
+
+- Configuration options that have been removed:
+  - languages[priorities]
+  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+  - admin.protectindexpage. Replaced by the admin module which always requires login.
 
 Changes relevant for (module) developers
 ----------------------------------------
