@@ -71,7 +71,7 @@ jobs:
 
       - name: Save coverage data
         if: ${{ matrix.php-versions == '7.4' && matrix.operating-system == 'ubuntu-latest' }}
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
             name: build-data
             path: ${{ github.workspace }}/build
@@ -186,7 +186,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v3
         with:
           name: build-data
           path: ${{ github.workspace }}/build
