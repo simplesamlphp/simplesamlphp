@@ -22,23 +22,23 @@
     "autoload": {
         "psr-4": {
             "SimpleSAML\\": "src/SimpleSAML",
-            "SimpleSAML\\Module\\admin\\": "modules/admin/lib",
-            "SimpleSAML\\Module\\core\\": "modules/core/lib",
-            "SimpleSAML\\Module\\cron\\": "modules/cron/lib",
-            "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/lib",
-            "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/lib",
-            "SimpleSAML\\Module\\saml\\": "modules/saml/lib"
+            "SimpleSAML\\Module\\admin\\": "modules/admin/src",
+            "SimpleSAML\\Module\\core\\": "modules/core/src",
+            "SimpleSAML\\Module\\cron\\": "modules/cron/src",
+            "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/src",
+            "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/src",
+            "SimpleSAML\\Module\\saml\\": "modules/saml/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "SimpleSAML\\Test\\": ["tests", "tests/src/SimpleSAML"],
-            "SimpleSAML\\Test\\Module\\admin\\": ["tests//modules/admin/lib"],
-            "SimpleSAML\\Test\\Module\\core\\": ["tests/modules/core/lib"],
-            "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/lib"],
-            "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/lib"],
-            "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/lib"],
-            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/lib"]
+            "SimpleSAML\\Test\\Module\\admin\\": ["tests//modules/admin/src"],
+            "SimpleSAML\\Test\\Module\\core\\": ["tests/modules/core/src"],
+            "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/src"],
+            "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/src"],
+            "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/src"],
+            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"]
         }
     },
     "require": {
