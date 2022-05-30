@@ -81,7 +81,7 @@
         "ext-curl": "*",
         "ext-pdo_sqlite": "*",
         "mikey179/vfsstream": "~1.6",
-        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc6",
+        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc1",
         "simplesamlphp/simplesamlphp-test-framework": "^1.2.0",
         "simplesamlphp/xml-security": "^0.4.1"
     },
