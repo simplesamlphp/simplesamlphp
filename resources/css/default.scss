@@ -36,12 +36,18 @@ body {
   position: relative;
 }
 
-.left {
+.logospace {
   float: left;
 }
-
-.right {
+html[dir="rtl"] .logospace {
   float: right;
+}
+
+.menuspace {
+  float: right;
+}
+html[dir="rtl"] .menuspace {
+  float: left;
 }
 
 .center {
@@ -535,11 +541,15 @@ FOOTER
   font-size: .8rem;
 }
 
-.logo-footer-right {
+.logo-footer-space {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translate(0, -50%);
+}
+html[dir="rtl"] .logo-footer-space {
+  right: auto;
+  left: 0;
 }
 
 .logo-footer {
@@ -605,8 +615,7 @@ input[type="file"] {
 .pure-select {
   float: right;
 }
-
-div .item {
+html[dir="rtl"] .pure-select {
   float: left;
 }
 
