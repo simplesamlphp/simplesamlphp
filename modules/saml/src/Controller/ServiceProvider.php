@@ -247,7 +247,8 @@ class ServiceProvider
             Assert::keyExists($state, 'saml:sp:AuthId');
             if ($state['saml:sp:AuthId'] !== $sourceId) {
                 throw new Error\Exception(
-                    "The authentication source id in the URL doesn't match the authentication source that sent the request."
+                    "The authentication source id in the URL doesn't match the authentication"
+                    . " source that sent the request."
                 );
             }
 

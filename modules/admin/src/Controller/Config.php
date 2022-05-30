@@ -204,6 +204,7 @@ class Config
             ]
         ];
         $store = $this->config->getOptionalString('store.type', null);
+        $checkforupdates = $this->config->getOptionalBoolean('admin.checkforupdates', true);
 
         // check dependencies used via normal functions
         $functions = [
@@ -268,7 +269,7 @@ class Config
                 ]
             ],
             'curl_init' => [
-                'required' => $this->config->getOptionalBoolean('admin.checkforupdates', true) ? 'required' : 'optional',
+                'required' => ($checkforupdates === true) ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
                         'cURL (might be required by some modules)'
@@ -345,10 +346,11 @@ class Config
         }
 
         // perform some basic configuration checks
+        $technicalcontact = $this->config->getOptionalString('technicalcontact_email', 'na@example.org');
         $matrix[] = [
             'required' => 'optional',
             'descr' => Translate::noop('The <code>technicalcontact_email</code> configuration option should be set'),
-            'enabled' => $this->config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org',
+            'enabled' => $technicalcontact !== 'na@example.org',
         ];
 
         $matrix[] = [
@@ -449,7 +451,8 @@ class Config
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.
          */
-        if ($this->config->getOptionalBoolean('admin.checkforupdates', true) && $this->config->getVersion() !== 'master') {
+        $checkforupdates = $this->config->getOptionalBoolean('admin.checkforupdates', true);
+        if (($checkforupdates === true) && $this->config->getVersion() !== 'master') {
             if (!function_exists('curl_init')) {
                 $warnings[] = Translate::noop(
                     'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.'

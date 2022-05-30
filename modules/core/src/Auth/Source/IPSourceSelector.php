@@ -97,7 +97,11 @@ class IPSourceSelector extends AbstractSourceSelector
             foreach ($zone['subnet'] as $subnet) {
                 if ($netUtils->ipCIDRcheck($subnet, $ip)) {
                     // Client's IP is in one of the ranges for the secondary auth source
-                    Logger::info(sprintf("core:IPSourceSelector:  Selecting zone `%s` based on client IP %s", $name, $ip));
+                    Logger::info(sprintf(
+                        "core:IPSourceSelector:  Selecting zone `%s` based on client IP %s",
+                        $name,
+                        $ip
+                    ));
                     $source = $zone['source'];
                     break;
                 }

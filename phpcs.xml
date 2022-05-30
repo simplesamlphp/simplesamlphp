@@ -32,7 +32,7 @@
         <!-- Exclude files with long lines that we cannot immediately fix -->
         <exclude-pattern>tests/src/SimpleSAML/Metadata/MetaDataStorageSourceTest.php</exclude-pattern>
         <exclude-pattern>tests/src/SimpleSAML/Metadata/SAMLParserTest.php</exclude-pattern>
-        <exclude-pattern>tests/modules/saml/lib/Controller/ServiceProviderTest.php</exclude-pattern>
+        <exclude-pattern>tests/modules/saml/src/Controller/ServiceProviderTest.php</exclude-pattern>
     </rule>
 
     <!-- Ignore files with side effects that we cannot fix -->
