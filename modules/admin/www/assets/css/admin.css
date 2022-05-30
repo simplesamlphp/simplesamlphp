@@ -46,3 +46,6 @@ dt {
   color: #500;
 }
 
+ul.modulelist {
+  column-count: 3;
+}
