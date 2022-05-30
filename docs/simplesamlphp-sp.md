@@ -157,7 +157,7 @@ Example code:
 We start off with loading a file which registers the SimpleSAMLphp classes with the autoloader.
 
 ```php
-require_once('../../lib/_autoload.php');
+require_once('../../src/_autoload.php');
 ```
 
 We select our authentication source:
