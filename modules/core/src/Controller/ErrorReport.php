@@ -32,7 +32,7 @@ class ErrorReport
     protected Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected Configuration $session;
+    protected Session $session;
 
 
     /**
