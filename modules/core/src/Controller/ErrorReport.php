@@ -44,7 +44,8 @@ class ErrorReport
      * @param \SimpleSAML\Session $config The session to use by the controllers.
      */
     public function __construct(
-        Configuration $config
+        Configuration $config,
+        Session $session
     ) {
         $this->config = $config;
         $this->session = $session;
