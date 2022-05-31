@@ -9,6 +9,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
+use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,9 @@ class ErrorReport
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Session */
+    protected Configuration $session;
+
 
     /**
      * Controller constructor.
@@ -37,11 +41,13 @@ class ErrorReport
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Session $config The session to use by the controllers.
      */
     public function __construct(
         Configuration $config
     ) {
         $this->config = $config;
+        $this->session = $session;
     }
 
 
@@ -66,10 +72,10 @@ class ErrorReport
             throw new Error\Exception('Invalid reportID');
         }
 
-        $data = null;
         try {
             $data = $this->session->getData('core:errorreport', $reportId);
         } catch (Exception $e) {
+            $data = null;
             Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
         }
 
@@ -82,7 +88,7 @@ class ErrorReport
                 'referer'        => 'not set',
             ];
 
-            if (isset($session)) {
+            if (isset($this->session)) {
                 $data['trackId'] = $session->getTrackID();
             }
         }

@@ -137,6 +137,5 @@ class WebBrowserSingleSignOn
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SSOPARAMS', $e, 400);
         }
-        Assert::true(false);
     }
 }

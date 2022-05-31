@@ -9,6 +9,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,6 +23,9 @@ class ErrorReportTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
+
+    /** @var \SimpleSAML\Session */
+    protected Session $session;
 
 
     /**
@@ -41,6 +45,8 @@ class ErrorReportTest extends TestCase
         );
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');
+
+        $this->session = Session::getSessionFromRequest();
     }
 
 
@@ -54,7 +60,7 @@ class ErrorReportTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\ErrorReport($this->config);
+        $c = new Controller\ErrorReport($this->config, $this->session);
 
         $response = $c->main($request);
 
@@ -74,7 +80,7 @@ class ErrorReportTest extends TestCase
             ['reportId' => 'abc123'],
         );
 
-        $c = new Controller\ErrorReport($this->config);
+        $c = new Controller\ErrorReport($this->config, $this->session);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage('Invalid reportID');
@@ -98,7 +104,7 @@ class ErrorReportTest extends TestCase
             ],
         );
 
-        $c = new Controller\ErrorReport($this->config);
+        $c = new Controller\ErrorReport($this->config, $this->session);
 
         $response = $c->main($request);
 

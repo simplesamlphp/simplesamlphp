@@ -129,14 +129,12 @@ class Cron
     {
         $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
-            Logger::error('Cron - Wrong key provided. Cron will not run.');
-            exit;
+            throw new Error\Exception('Cron - Wrong key provided. Cron will not run.');
         }
 
         $cron = new \SimpleSAML\Module\cron\Cron();
         if (!$cron->isValidTag($tag)) {
-            Logger::error('Cron - Illegal tag [' . $tag . '].');
-            exit;
+            throw new Error\Exception(sprintf('Cron - Illegal tag [%s].', $tag));
         }
 
         $httpUtils = new Utils\HTTP();
