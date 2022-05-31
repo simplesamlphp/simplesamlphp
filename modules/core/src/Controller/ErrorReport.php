@@ -89,7 +89,7 @@ class ErrorReport
             ];
 
             if (isset($this->session)) {
-                $data['trackId'] = $session->getTrackID();
+                $data['trackId'] = $this->session->getTrackID();
             }
         }
 
