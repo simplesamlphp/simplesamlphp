@@ -409,6 +409,6 @@ class Logout
         $idp = IdP::getByState($state);
 
         $assocId = $state['core:TerminatedAssocId'];
-        return new RunnableResponse([$idp->getLogoutHandler(), 'startLogout'], [$state, $assocId]);
+        return new RunnableResponse([$idp->getLogoutHandler(), 'startLogout'], [&$state, $assocId]);
     }
 }
