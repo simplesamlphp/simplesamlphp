@@ -29,7 +29,7 @@ use function is_string;
 class Signer
 {
     /**
-     * This functions finds what key & certificate files should be used to sign the metadata
+     * This functions finds what key & certificate locations should be used to sign the metadata
      * for the given entity.
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
@@ -235,7 +235,7 @@ class Signer
     public static function sign(string $metadataString, array $entityMetadata, string $type): string
     {
         $config = Configuration::getInstance();
-        $configUtils = new Utils\Config();
+        $cryptoUtils = new Utils\Crypto();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {
@@ -243,27 +243,23 @@ class Signer
         }
 
         // find the key & certificate which should be used to sign the metadata
-        $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
+        $keyCertLocations = self::findKeyCert($config, $entityMetadata, $type);
 
-        $keyFile = $configUtils->getCertPath($keyCertFiles['privatekey']);
-        $fileSystem = new Filesystem();
-        if (!$fileSystem->exists($keyFile)) {
+        $keyLocation = $keyCertLocations['privatekey'];
+        $keyData = $cryptoUtils->retrieveKey($keyLocation);
+        if ($keyData === null) {
             throw new Exception(
-                'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
+                'Could not find private key location [' . $keyLocation . '], which is needed to sign the metadata'
             );
         }
 
-        $key = new File($keyFile);
-        $keyData = $key->getContent();
-
-        $certFile = $configUtils->getCertPath($keyCertFiles['certificate']);
-        $cert = new File($certFile);
-        if (!$fileSystem->exists($certFile)) {
+        $certLocation = $keyCertLocations['certificate'];
+        $certData = $cryptoUtils->retrieveCertificate($certLocation);
+        if ($certData === null) {
             throw new Exception(
-                'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'
+                'Could not find certificate location [' . $certLocation . '], which is needed to sign the metadata'
             );
         }
-        $certData = $cert->getContent();
 
         // convert the metadata to a DOM tree
         try {
@@ -276,8 +272,8 @@ class Signer
 
         // load the private key
         $objKey = new XMLSecurityKey($signature_cf['algorithm'], ['type' => 'private']);
-        if (array_key_exists('privatekey_pass', $keyCertFiles)) {
-            $objKey->passphrase = $keyCertFiles['privatekey_pass'];
+        if (array_key_exists('privatekey_pass', $keyCertLocations)) {
+            $objKey->passphrase = $keyCertLocations['privatekey_pass'];
         }
         $objKey->loadKey($keyData, false);
 

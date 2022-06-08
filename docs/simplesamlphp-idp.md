@@ -152,7 +152,8 @@ This is a minimal configuration:
 
         /*
          * The private key and certificate to use when signing responses.
-         * These are stored in the cert-directory.
+         * These can be stored as files in the cert-directory or retrieved
+         * from a database.
          */
         'privatekey' => 'example.org.pem',
         'certificate' => 'example.org.crt',

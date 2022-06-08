@@ -1355,8 +1355,8 @@ class Configuration implements Utils\ClearableState
      *
      * @return array Public key data, or empty array if no public key or was found.
      *
-     * @throws \Exception If the certificate or public key cannot be loaded from a file.
-     * @throws \SimpleSAML\Error\Exception If the file does not contain a valid PEM-encoded certificate, or there is no
+     * @throws \Exception If the certificate or public key cannot be loaded from location.
+     * @throws \SimpleSAML\Error\Exception If the location does not contain a valid PEM-encoded certificate, or there is no
      * certificate in the metadata.
      */
     public function getPublicKeys(?string $use = null, bool $required = false, string $prefix = ''): array
@@ -1388,15 +1388,14 @@ class Configuration implements Utils\ClearableState
                 ],
             ];
         } elseif ($this->hasValue($prefix . 'certificate')) {
-            $configUtils = new Utils\Config();
+            $location = $this->getString($prefix . 'certificate');
 
-            $file = $this->getString($prefix . 'certificate');
-            $file = $configUtils->getCertPath($file);
-            $data = @file_get_contents($file);
+            $cryptoUtils = new Utils\Crypto();
+            $data = $cryptoUtils->retrieveCertificate($location);
 
-            if ($data === false) {
+            if ($data === null) {
                 throw new Exception(
-                    $this->location . ': Unable to load certificate/public key from file "' . $file . '".'
+                    $this->location . ': Unable to load certificate/public key from location "' . $location . '".'
                 );
             }
 
@@ -1404,7 +1403,7 @@ class Configuration implements Utils\ClearableState
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
                 throw new Error\Exception(
-                    $this->location . ': Could not find PEM encoded certificate in "' . $file . '".'
+                    $this->location . ': Could not find PEM encoded certificate in "' . $location . '".'
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);

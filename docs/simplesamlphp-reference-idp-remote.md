@@ -49,7 +49,7 @@ Options
 :   The base64 encoded certificate for this IdP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
 `certificate`
-:   The file with the certificate for this IdP. The path is relative to the `cert`-directory.
+:   Location of certificate data for this IdP.
 
 `description`
 :   A description of this IdP. Will be used by various modules when they need to show a description of the IdP to the user.

@@ -56,7 +56,6 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
-     * - 'certdir': The base directory for certificate and key material.
      * - 'loggingdir': Where to write logs.
      * - 'datadir': Storage of general data.
      * - 'tempdir': Saving temporary files. SimpleSAMLphp will attempt to create
@@ -64,10 +63,60 @@ $config = [
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
      */
-    'certdir' => 'cert/',
     'loggingdir' => 'log/',
     'datadir' => 'data/',
     'tempdir' => '/tmp/simplesaml',
+
+    /*
+     * Certificate and key material can be loaded from different possible
+     * locations. Currently two locations are supported, the local filesystem
+     * and the database via pdo using the global database configuration. Locations
+     * are specified by a URL-link prefix before the file name/path or database
+     * identifier.
+     */
+
+    /* To load a certificate or key from the filesystem, it should be specified
+     * as 'file://<name>' where <name> is either a relative filename or a fully
+     * qualified path to a file containing the certificate or key in PEM
+     * format, such as 'cert.pem' or '/path/to/cert.pem'. If the path is
+     * relative, it will be searched for in the directory defined by the
+     * 'certdir' parameter below. When 'certdir' is specified as a relative
+     * path, it will be interpreted as relative to the SimpleSAMLphp root
+     * directory. Note that locations with no prefix included will be treated
+     * as file locations for backwards compatibility.
+     */
+    'certdir' => 'cert/',
+
+    /* To load a certificate or key from the database, it should be specified
+     * as 'pdo://<id>' where <id> is the identifier in the database table that
+     * should be matched. While the certificate and key tables are expected to
+     * be in the simplesaml database, they are not created or managed by
+     * simplesaml. The following parameters control how the pdo location
+     * attempts to retrieve certificates and keys from the database:
+     *
+     * - 'cert.pdo.table': name of table where certificates are stored
+     * - 'cert.pdo.keytable': name of table where keys are stored
+     * - 'cert.pdo.apply_prefix': whether or not to prepend the database.prefix
+     *                            parameter to the table names; if you are using
+     *                            database.prefix to separate multiple SSP instances
+     *                            in the same database but want to share certificate/key
+     *                            data between them, set this to false
+     * - 'cert.pdo.id_column': name of column to use as identifier
+     * - 'cert.pdo.data_column': name of column where PEM data is stored
+     *
+     * Basically, the query executed will be:
+     *
+     *   SELECT cert.pdo.data_column FROM cert.pdo.table WHERE cert.pdo.id_column = :id
+     *
+     * Defaults are shown below, to change them, uncomment the line and update as
+     * needed
+     */
+
+    //'cert.pdo.table' => 'certificates',
+    //'cert.pdo.keytable' => 'private_keys',
+    //'cert.pdo.apply_prefix' => true,
+    //'cert.pdo.id_column' => 'id',
+    //'cert.pdo.data_column' => 'data',
 
     /*
      * Some information about the technical persons running this installation.
