@@ -468,7 +468,8 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
+     * Test that adding IDPList to the state (of an AuthRequest)
+     * will result in that IDP being added to the scope
      */
     public function testSPIdpListScoping(): void
     {
