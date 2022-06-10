@@ -468,6 +468,20 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
+     * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
+     */
+    public function testSPIdpListScoping(): void
+    {
+        $ar = $this->createAuthnRequest([
+            'IDPList' => ['https://scope.example.com']
+        ]);
+
+        $this->assertTrue(
+            in_array('https://scope.example.com', $ar->getIDPList())
+        );
+    }
+
+    /**
      * Test for the hosted metadata generation with a custom entityID
      */
     public function testMetadataHostedSetEntityId(): void
