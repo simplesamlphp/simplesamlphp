@@ -483,6 +483,44 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
+     * Test that adding IDPList to the idp metadata
+     * will result in that IDP being added to the scope
+     */
+    public function testIdpMetadataScoping(): void
+    {
+        $this->idpConfigArray['IDPList'] = ['https://scope.example.com'];
+        $ar = $this->createAuthnRequest([]);
+
+        $this->assertTrue(
+            in_array('https://scope.example.com', $ar->getIDPList())
+        );
+    }
+
+    /**
+     * Test that adding IDPList to the config
+     * will result in that IDP being added to the scope
+     */
+    public function testRemoteMetadataScoping(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = [
+            'IDPList' => ['https://scope.example.com']
+        ];
+        $as = new SpTester($info, $config);
+
+        /** @var \SAML2\AuthnRequest $ar */
+        try {
+            $as->startSSO2Test($this->getIdpMetadata(), []);
+            $this->assertTrue(false, 'Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            ['ar' => $ar] = $e->getTestResult();
+            $this->assertTrue(
+                in_array('https://scope.example.com', $ar->getIDPList())
+            );
+        }
+    }
+
+    /**
      * Test for the hosted metadata generation with a custom entityID
      */
     public function testMetadataHostedSetEntityId(): void
