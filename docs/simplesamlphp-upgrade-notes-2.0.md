@@ -32,6 +32,7 @@ Functional changes
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
 - Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
   the upgrade process. How to do this depends on your session backend.
+- EntityIDs are no longer auto-generated. Make sure to set it to something senseful in the array-keys in `metadata/saml20-idp-hosted.php`
 
 Configuration changes
 ---------------------
