@@ -30,6 +30,8 @@ Functional changes
   It is possible to switch back via the `sharedkey_algorithm`.
   Note however that CBC is vulnerable to the Padding oracle attack.
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
+- Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
+  the upgrade process. How to do this depends on your session backend.
 
 Configuration changes
 ---------------------
