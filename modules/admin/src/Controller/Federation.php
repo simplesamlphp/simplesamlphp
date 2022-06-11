@@ -215,7 +215,11 @@ class Federation
 
                 foreach ($saml2entities as $index => $entity) {
                     Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
-                    Assert::maxLength($entity['entityid'], C::ENTITYID_MAX_LENGTH, 'The entityID cannot be longer than 1024 characters.');
+                    Assert::maxLength(
+                        $entity['entityid'],
+                        C::ENTITYID_MAX_LENGTH,
+                        'The entityID cannot be longer than 1024 characters.'
+                    );
 
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
@@ -257,7 +261,11 @@ class Federation
 
                 foreach ($adfsentities as $index => $entity) {
                     Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
-                    Assert::maxLength($entity['entityid'], C::ENTITYID_MAX_LENGTH, 'The entityID cannot be longer than 1024 characters.');
+                    Assert::maxLength(
+                        $entity['entityid'],
+                        C::ENTITYID_MAX_LENGTH,
+                        'The entityID cannot be longer than 1024 characters.'
+                    );
 
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
