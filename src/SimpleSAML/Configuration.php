@@ -1356,8 +1356,8 @@ class Configuration implements Utils\ClearableState
      * @return array Public key data, or empty array if no public key or was found.
      *
      * @throws \Exception If the certificate or public key cannot be loaded from location.
-     * @throws \SimpleSAML\Error\Exception If the location does not contain a valid PEM-encoded certificate, or there is no
-     * certificate in the metadata.
+     * @throws \SimpleSAML\Error\Exception If the location does not contain a valid PEM-encoded certificate, or there
+     *                                     is no certificate in the metadata.
      */
     public function getPublicKeys(?string $use = null, bool $required = false, string $prefix = ''): array
     {
