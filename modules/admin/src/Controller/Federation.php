@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -195,7 +196,7 @@ class Federation
                 $idps = $this->mdHandler->getList('saml20-idp-hosted');
                 $saml2entities = [];
                 $httpUtils = new Utils\HTTP();
-                $metadataBase = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
+                $metadataBase = Module::getModuleURL('saml/idp/metadata');
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
                         $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
@@ -213,6 +214,9 @@ class Federation
                 }
 
                 foreach ($saml2entities as $index => $entity) {
+                    Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
+                    Assert::maxLength($entity['entityid'], C::ENTITYID_MAX_LENGTH, 'The entityID cannot be longer than 1024 characters.');
+
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
@@ -252,6 +256,9 @@ class Federation
                 }
 
                 foreach ($adfsentities as $index => $entity) {
+                    Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
+                    Assert::maxLength($entity['entityid'], C::ENTITYID_MAX_LENGTH, 'The entityID cannot be longer than 1024 characters.');
+
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "628d965ff7eff1289f11a49069eb444a",
+    "content-hash": "75291382c13b5ddc539af6b2c03fbbc1",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1407,16 +1407,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.6.1",
+            "version": "v4.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "5e46819fdb76657f13e05a8f264d06efd9163c3d"
+                "reference": "22e06ef0081de210e2a7b45b563fd3cccb9feee6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5e46819fdb76657f13e05a8f264d06efd9163c3d",
-                "reference": "5e46819fdb76657f13e05a8f264d06efd9163c3d",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/22e06ef0081de210e2a7b45b563fd3cccb9feee6",
+                "reference": "22e06ef0081de210e2a7b45b563fd3cccb9feee6",
                 "shasum": ""
             },
             "require": {
@@ -1424,7 +1424,7 @@
                 "ext-openssl": "*",
                 "ext-zlib": "*",
                 "php": ">=7.1 || ^8.0",
-                "psr/log": "~1.1",
+                "psr/log": "~1.1 || ^2.0 || ^3.0",
                 "robrichards/xmlseclibs": "^3.1.1",
                 "webmozart/assert": "^1.9"
             },
@@ -1459,9 +1459,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.1"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.2"
             },
-            "time": "2022-05-23T20:49:55+00:00"
+            "time": "2022-06-11T19:47:27+00:00"
         },
         {
             "name": "symfony/cache",
