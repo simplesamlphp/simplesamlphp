@@ -154,7 +154,7 @@ this:
 To use this authentication source in a SAML 2.0 IdP, set the
 `auth`-option of the IdP to `'example-static'`:
 
-    '__DYNAMIC:1__' => [
+    'urn:x-simplesamlphp:example-idp' => [
       'host' => '__DEFAULT__',
       'privatekey' => 'example.org.pem',
       'certificate' => 'example.org.crt',

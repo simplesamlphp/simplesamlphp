@@ -159,16 +159,10 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         $tableName = $this->getTableName($set);
-
-        // according to the docs, it looks like *-idp-hosted metadata are the types
-        // that allow the __DYNAMIC:*__ entity id.  with the current table design
-        // we need to lookup the specific metadata entry but also we need to lookup
-        // any dynamic entries to see if the dynamic hosted entity id matches
         if (substr($set, -10) == 'idp-hosted') {
             $stmt = $this->db->read(
-                "SELECT entity_id, entity_data FROM {$tableName} "
-                . "WHERE (entity_id LIKE :dynamicId OR entity_id = :entityId)",
-                ['dynamicId' => '__DYNAMIC%', 'entityId' => $entityId]
+                "SELECT entity_id, entity_data FROM {$tableName} WHERE (entity_id LIKE :entityId)",
+                ['entityId' => $entityId]
             );
         } else {
             // other metadata types should be able to match on entity id

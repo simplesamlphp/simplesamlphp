@@ -34,7 +34,7 @@ A custom attribute:
 Internet2 compatible `eduPersontargetedID`:
 
     /* In saml20-idp-hosted.php. */
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:example-idp'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-static',
 

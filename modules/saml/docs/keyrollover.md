@@ -48,7 +48,7 @@ In `config/authsources.php`:
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:idp'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
         'privatekey' => 'old.pem',
@@ -96,7 +96,7 @@ In `config/authsources.php`:
 
 In `metadata/saml20-idp-hosted.php`:
 
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:idp'] = [
         'host' => '__DEFAULT__',
         'auth' => 'example-userpass',
         'certificate' => 'new.crt',

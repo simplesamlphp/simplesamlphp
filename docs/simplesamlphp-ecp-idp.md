@@ -19,7 +19,7 @@ Enabling ECP Profile on the IdP
 
 To enable the IdP to send ECP assertions you must add the `saml20.ecp` option to the `saml20-idp-hosted` metadata file:
 
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:example-idp'] = [
         [....]
         'auth' => 'example-userpass',
         'saml20.ecp' => true,
