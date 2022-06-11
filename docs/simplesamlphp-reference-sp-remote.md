@@ -238,19 +238,6 @@ The following options can be set:
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
-`simplesaml.nameidattribute`
-:   When the value of the `NameIDFormat`-option is set to either
-    `email` or `persistent`, this is the name of the attribute which
-    should be used as the value of the `NameID`. The attribute must
-    be in the set of attributes exported to the SP (that is, be in
-    the `attributes` array). For more advanced control over `NameID`,
-    including the ability to specify any attribute regardless of
-    the set sent to the SP, see the [NameID processing filters](./saml:nameid).
-    Note that the value of the attribute is collected **after** authproc-filters have run.
-
-:   Typical values can be `mail` for when using the `email` format,
-    and `eduPersonTargetedID` when using the `persistent` format.
-
 `simplesaml.attributes`
 :   Whether the SP should receive any attributes from the IdP. The
     default value is `TRUE`.

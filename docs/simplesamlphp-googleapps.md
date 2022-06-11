@@ -154,13 +154,19 @@ In the `saml20-sp-remote.php` file we will configure an entry for Google Workspa
        * This example shows an example config that works with Google Workspace (G Suite / Google Apps) for education.
        * What is important is that you have an attribute in your IdP that maps to the local part of the email address
        * at Google Workspace. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
-       * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
+       * must properly configure the saml:AttributeNameID authproc-filter with the name of an attribute that for this user has the value of 'john'.
        */
       $metadata['https://www.google.com/a/g.feide.no'] => [
         'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
         'NameIDFormat'               => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
-        'simplesaml.nameidattribute' => 'uid',
-        'simplesaml.attributes'      => false
+        'simplesaml.attributes'      => false,
+        'authproc'                   => [
+          1 => [
+            'saml:AttributeNameID',
+            'attribute' => 'uid',
+            'format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+          ],
+        ],
       ];
 
 You must also map some attributes received from the authentication module into email field sent to Google Workspace. In this example, the  `uid` attribute is set.  When you later configure the IdP to connect to a LDAP directory or some other authentication source, make sure that the `uid` attribute is set properly, or you can configure another attribute to use here. The `uid` attribute contains the local part of the user name.
