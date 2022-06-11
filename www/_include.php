@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // initialize the autoloader
 require_once(dirname(dirname(__FILE__)) . '/src/_autoload.php');
 

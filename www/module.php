@@ -5,6 +5,10 @@
  * the process() handler in the Module class.
  */
 
+declare(strict_types=1);
+
+namespace SimpleSAML;
+
 require_once('_include.php');
 
-\SimpleSAML\Module::process()->send();
+Module::process()->send();
