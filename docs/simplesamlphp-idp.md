@@ -75,7 +75,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`authtwitter:Twitter`](./authtwitter:oauthtwitter)
 : Authenticate with your Twitter account using the Twitter OAuth API.
 
-[`papi:PAPI`](https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md)
+[`papi:PAPI`](https://github.com/rediris-es/simplesamlphp-module-papi/blob/master/README.md)
 : Authenticate by means of the PAPI protocol.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
