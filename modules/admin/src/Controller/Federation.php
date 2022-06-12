@@ -214,7 +214,7 @@ class Federation
                 }
 
                 foreach ($saml2entities as $index => $entity) {
-                    Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
+                    Assert::validURI($entity['entityid']);
                     Assert::maxLength(
                         $entity['entityid'],
                         C::ENTITYID_MAX_LENGTH,
@@ -260,7 +260,7 @@ class Federation
                 }
 
                 foreach ($adfsentities as $index => $entity) {
-                    Assert::stringNotEmpty($entity['entityid'], 'The entityID must be a non-empty string.');
+                    Assert::validURI($entity['entityid']);
                     Assert::maxLength(
                         $entity['entityid'],
                         C::ENTITYID_MAX_LENGTH,
