@@ -48,6 +48,9 @@ All these parameters override the equivalent option from the configuration.
 `isPassive`
 :   Send a passive authentication request.
 
+`IDPList`
+:   List of IdP entity ids that should be sent in the AuthnRequest to the IdP in the IDPList element, part of the
+    Scoping element.
 
 `saml:Extensions`
 :   The samlp:Extensions (an XML chunk) that will be sent in the login request.
