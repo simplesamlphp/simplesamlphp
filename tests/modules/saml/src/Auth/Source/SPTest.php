@@ -530,8 +530,12 @@ class SPTest extends ClearStateTestCase
      * then the idp config array.
      * @dataProvider getScopingOrders
      */
-    public function testSPIdpListScopingOrder(?array $stateIdpList, ?array $idpConfigArray, ?array $remoteMetadata, string $expectedScope): void
-    {
+    public function testSPIdpListScopingOrder(
+        ?array $stateIdpList,
+        ?array $idpConfigArray,
+        ?array $remoteMetadata,
+        string $expectedScope
+    ): void {
         $info = ['AuthId' => 'default-sp'];
         $state = [];
         if (isset($stateIdpList)) {
