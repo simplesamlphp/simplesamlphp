@@ -81,19 +81,20 @@ class SP extends \SimpleSAML\Auth\Source
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        if (!isset($config['entityID'])) {
-            $config['entityID'] = $this->getMetadataURL();
-        }
-
-        /* For compatibility with code that assumes that $metadata->getString('entityid')
-         * gives the entity id. */
-        $config['entityid'] = $config['entityID'];
-
         $this->metadata = Configuration::loadFromArray(
             $config,
             'authsources[' . var_export($this->authId, true) . ']'
         );
-        $this->entityId = $this->metadata->getString('entityID');
+
+        $entityId = $this->metadata->getString('entityID');
+        Assert::validURI($entityId);
+        Assert::maxLength(
+            $entityId,
+            Constants::ENTITYID_MAX_LENGTH,
+            'The entityID cannot be longer than 1024 characters.'
+        );
+
+        $this->entityId = $entityId;
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
@@ -107,7 +108,7 @@ class SP extends \SimpleSAML\Auth\Source
      */
     public function getMetadataURL(): string
     {
-        return Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
+        return Module::getModuleURL('saml/sp/metadata/' . urlencode($this->authId));
     }
 
 
