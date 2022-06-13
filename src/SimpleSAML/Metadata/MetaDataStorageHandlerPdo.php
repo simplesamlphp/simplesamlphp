@@ -96,7 +96,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
                     throw new Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
-                    $data['entityid'] = $d['entity_id'];
+                    $data['entityID'] = $d['entity_id'];
                 }
                 $metadata[$d['entity_id']] = $data;
             }
@@ -159,18 +159,10 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         $tableName = $this->getTableName($set);
-        if (substr($set, -10) == 'idp-hosted') {
-            $stmt = $this->db->read(
-                "SELECT entity_id, entity_data FROM {$tableName} WHERE (entity_id LIKE :entityId)",
-                ['entityId' => $entityId]
-            );
-        } else {
-            // other metadata types should be able to match on entity id
-            $stmt = $this->db->read(
-                "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
-                ['entityId' => $entityId]
-            );
-        }
+        $stmt = $this->db->read(
+            "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
+            ['entityId' => $entityId]
+        );
 
         // throw pdo exception upon execution failure
         if (!$stmt->execute()) {
