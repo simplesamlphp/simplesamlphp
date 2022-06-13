@@ -163,7 +163,7 @@ class FederationTest extends TestCase
                             'name' => [
                                 'en' => 'A service',
                             ],
-                            'entityID' => null,
+                            'entityID' => 'urn:x-simplesamlphp:example-sp',
                             'privatekey' => FederationTest::CERT_KEY,
                             'certificate' => FederationTest::CERT_PUBLIC,
                             'attributes' => ['uid', 'mail']

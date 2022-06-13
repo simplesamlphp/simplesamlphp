@@ -57,7 +57,10 @@ class ServiceProviderTest extends TestCase
             Configuration::loadFromArray(
                 [
                     'admin' => ['core:AdminPassword'],
-                    'phpunit' => ['saml:SP'],
+                    'phpunit' => [
+                        'saml:SP',
+                        'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    ],
                 ],
                 '[ARRAY]',
                 'simplesaml'

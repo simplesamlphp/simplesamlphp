@@ -396,6 +396,7 @@ class SAMLBuilderTest extends TestCase
     {
         $info = ['AuthId' => 'default-sp'];
         $metadata = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'certificate' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt',
             'privatekey' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key',
         ];
