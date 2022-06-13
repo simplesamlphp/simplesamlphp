@@ -185,7 +185,7 @@ class EMail
                 }
 
                 // set the port (optional, assume standard SMTP port 25 if not provided)
-                $this->mail->Port = (isset($transportOptions['port'])) ? (int)$transportOptions['port'] : 25;
+                $this->mail->Port = (isset($transportOptions['port'])) ? intval($transportOptions['port']) : 25;
 
                 // smtp auth: enabled if username or password is set
                 if (isset($transportOptions['username']) || isset($transportOptions['password'])) {
@@ -209,7 +209,7 @@ class EMail
 
                 // smtp security: enable or disable smtp auto tls
                 if (isset($transportOptions['autotls'])) {
-                    $this->mail->SMTPAutoTLS = (bool)$transportOptions['autotls'];
+                    $this->mail->SMTPAutoTLS = boolval($transportOptions['autotls']);
                 }
 
                 // socket options for smtp TLS connection

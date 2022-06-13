@@ -525,18 +525,18 @@ $config = [
      * Example:
      *
      * 'module.enable' => [
-     *      'exampleauth' => true, // Setting to TRUE enables.
-     *      'consent' => false, // Setting to FALSE disables.
-     *      'core' => null, // Unset or NULL uses default.
+     *     'exampleauth' => true, // Setting to TRUE enables.
+     *     'consent' => false, // Setting to FALSE disables.
+     *     'core' => null, // Unset or NULL uses default.
      * ],
      */
 
-     'module.enable' => [
-         'exampleauth' => false,
-         'core' => true,
-         'admin' => true,
-         'saml' => true
-     ],
+    'module.enable' => [
+        'exampleauth' => false,
+        'core' => true,
+        'admin' => true,
+        'saml' => true
+    ],
 
 
     /*************************
