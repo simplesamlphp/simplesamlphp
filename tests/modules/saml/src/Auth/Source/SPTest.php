@@ -477,8 +477,9 @@ class SPTest extends ClearStateTestCase
             'IDPList' => ['https://scope.example.com']
         ]);
 
-        $this->assertTrue(
-            in_array('https://scope.example.com', $ar->getIDPList())
+        $this->assertContains(
+            'https://scope.example.com',
+            $ar->getIDPList()
         );
     }
 
@@ -491,8 +492,9 @@ class SPTest extends ClearStateTestCase
         $this->idpConfigArray['IDPList'] = ['https://scope.example.com'];
         $ar = $this->createAuthnRequest([]);
 
-        $this->assertTrue(
-            in_array('https://scope.example.com', $ar->getIDPList())
+        $this->assertContains(
+            'https://scope.example.com',
+            $ar->getIDPList()
         );
     }
 
@@ -514,10 +516,85 @@ class SPTest extends ClearStateTestCase
             $this->assertTrue(false, 'Expected ExitTestException');
         } catch (ExitTestException $e) {
             ['ar' => $ar] = $e->getTestResult();
-            $this->assertTrue(
-                in_array('https://scope.example.com', $ar->getIDPList())
+            $this->assertContains(
+                'https://scope.example.com',
+                $ar->getIDPList()
             );
         }
+    }
+
+
+    /**
+     * Test that makes sure that the order in which the IDPList config is applied
+     * is correct. Ie: The state IDPList has the highest priority, then the remote metadata,
+     * then the idp config array.
+     * @dataProvider getScopingOrders
+     */
+    public function testSPIdpListScopingOrder(?array $stateIdpList, ?array $idpConfigArray, ?array $remoteMetadata, string $expectedScope): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $state = [];
+        if (isset($stateIdpList)) {
+            $state['IDPList'] = $stateIdpList;
+        }
+        $config = [];
+        if (isset($remoteMetadata)) {
+            $config['IDPList'] = $remoteMetadata;
+        }
+        if (isset($idpConfigArray)) {
+            $this->idpConfigArray['IDPList'] = $idpConfigArray;
+        }
+
+        $as = new SpTester($info, $config);
+
+        /** @var \SAML2\AuthnRequest $ar */
+        try {
+            $as->startSSO2Test($this->getIdpMetadata(), $state);
+            $this->assertTrue(false, 'Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            ['ar' => $ar] = $e->getTestResult();
+
+            $this->assertContains(
+                $expectedScope,
+                $ar->getIDPList()
+            );
+        }
+    }
+
+    public function getScopingOrders()
+    {
+        return [
+            [
+                'stateIdpList' => ['https//scope1.example.com'],
+                'idpConfigArray' => ['https//scope2.example.com'],
+                'remoteMetadata' => ['https//scope3.example.com'],
+                'expectedScope' => 'https//scope1.example.com'
+            ],
+            [
+                'stateIdpList' => null,
+                'idpConfigArray' => ['https//scope2.example.com'],
+                'remoteMetadata' => ['https//scope3.example.com'],
+                'expectedScope' => 'https//scope3.example.com'
+            ],
+            [
+                'stateIdpList' => null,
+                'idpConfigArray' => null,
+                'remoteMetadata' => ['https//scope3.example.com'],
+                'expectedScope' => 'https//scope3.example.com'
+            ],
+            [
+                'stateIdpList' => ['https//scope1.example.com'],
+                'idpConfigArray' => null,
+                'remoteMetadata' => ['https//scope3.example.com'],
+                'expectedScope' => 'https//scope1.example.com'
+            ],
+            [
+                'stateIdpList' => ['https//scope1.example.com'],
+                'idpConfigArray' => ['https//scope2.example.com'],
+                'remoteMetadata' => null,
+                'expectedScope' => 'https//scope1.example.com'
+            ]
+        ];
     }
 
     /**
