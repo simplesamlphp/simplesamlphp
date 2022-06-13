@@ -509,6 +509,7 @@ class SPTest extends ClearStateTestCase
     {
         $info = ['AuthId' => 'default-sp'];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'IDPList' => ['https://scope.example.com']
         ];
         $as = new SpTester($info, $config);
@@ -544,7 +545,7 @@ class SPTest extends ClearStateTestCase
         if (isset($stateIdpList)) {
             $state['IDPList'] = $stateIdpList;
         }
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         if (isset($remoteMetadata)) {
             $config['IDPList'] = $remoteMetadata;
         }
