@@ -18,7 +18,7 @@ Both files have the following format:
     ];
     /* ... */
 
-The entity ID should be an URI.
+The entity ID must be a URI.
 
 The `host` option is the hostname of the IdP, and will be used to
 select the correct configuration. One entry in the metadata-list can
