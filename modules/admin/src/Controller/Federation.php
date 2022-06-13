@@ -217,8 +217,8 @@ class Federation
                     Assert::validURI($entity['entityid']);
                     Assert::maxLength(
                         $entity['entityid'],
-                        C::ENTITYID_MAX_LENGTH,
-                        'The entityID cannot be longer than 1024 characters.'
+                        C::SAML2INT_ENTITYID_MAX_LENGTH,
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
                     $builder = new SAMLBuilder($entity['entityid']);
@@ -263,8 +263,8 @@ class Federation
                     Assert::validURI($entity['entityid']);
                     Assert::maxLength(
                         $entity['entityid'],
-                        C::ENTITYID_MAX_LENGTH,
-                        'The entityID cannot be longer than 1024 characters.'
+                        C::SAML2INT_ENTITYID_MAX_LENGTH,
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
                     $builder = new SAMLBuilder($entity['entityid']);

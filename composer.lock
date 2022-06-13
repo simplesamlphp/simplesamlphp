@@ -1412,16 +1412,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v4.6.2",
+            "version": "v4.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "22e06ef0081de210e2a7b45b563fd3cccb9feee6"
+                "reference": "bfc9c79dd6b728a41d1de988f545f6e64728a51d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/22e06ef0081de210e2a7b45b563fd3cccb9feee6",
-                "reference": "22e06ef0081de210e2a7b45b563fd3cccb9feee6",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/bfc9c79dd6b728a41d1de988f545f6e64728a51d",
+                "reference": "bfc9c79dd6b728a41d1de988f545f6e64728a51d",
                 "shasum": ""
             },
             "require": {
@@ -1464,9 +1464,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.2"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.3"
             },
-            "time": "2022-06-11T19:47:27+00:00"
+            "time": "2022-06-13T14:04:10+00:00"
         },
         {
             "name": "symfony/cache",

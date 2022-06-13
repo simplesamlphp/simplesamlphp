@@ -90,8 +90,8 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::validURI($entityId);
         Assert::maxLength(
             $entityId,
-            Constants::ENTITYID_MAX_LENGTH,
-            'The entityID cannot be longer than 1024 characters.'
+            Constants::SAML2INT_ENTITYID_MAX_LENGTH,
+            sprintf('The entityID cannot be longer than %d characters.', Constants::SAML2INT_ENTITYID_MAX_LENGTH)
         );
 
         $this->entityId = $entityId;
