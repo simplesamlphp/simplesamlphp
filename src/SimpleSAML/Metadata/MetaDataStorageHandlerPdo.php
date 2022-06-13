@@ -129,7 +129,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
-            $entry = $this->updateEntityID($set, $entityId, $entry);
+            $entry['entityID'] = $entityId;
         }
 
         $this->cachedMetadata[$set] = $metadataSet;

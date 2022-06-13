@@ -346,24 +346,4 @@ abstract class MetaDataStorageSource
             throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
         }
     }
-
-
-    /**
-     * Updates the metadata entry's entity id and returns the modified array.
-     * If it is explicit the entityid array key is updated to the entityId that was provided.
-     *
-     * @param string $metadataSet a metadata set (saml20-idp-hosted, saml20-sp-remote, etc)
-     * @param string $entityId the entity id we are modifying
-     * @param array $metadataEntry the fully populated metadata entry
-     * @return array modified metadata to include the valid entityid
-     *
-     * @throws \Exception
-     */
-    protected function updateEntityID(string $metadataSet, string $entityId, array $metadataEntry): array
-    {
-        // set the entityid metadata array key to the provided entity id
-        $modifiedMetadataEntry = $metadataEntry;
-        $modifiedMetadataEntry['entityid'] = $entityId;
-        return $modifiedMetadataEntry;
-    }
 }
