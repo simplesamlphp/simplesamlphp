@@ -43,6 +43,7 @@ The date formatting when specifying a custom logging string has been changed fro
 deprecated `strftime()` format to PHP's `date()` format.
 
 Configuration options that have been removed:
+ - simplesaml.nameidattribute. Use the appropriate authproc-filters instead
  - languages[priorities]
  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
  - admin.protectindexpage. Replaced by the admin module which always requires login.

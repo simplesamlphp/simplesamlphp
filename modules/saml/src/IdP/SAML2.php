@@ -955,40 +955,6 @@ class SAML2
 
 
     /**
-     * Calculate the NameID value that should be used.
-     *
-     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
-     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
-     * @param array                     &$state The authentication state of the user.
-     *
-     * @return string|null The NameID value.
-     */
-    private static function generateNameIdValue(
-        Configuration $idpMetadata,
-        Configuration $spMetadata,
-        array &$state
-    ): ?string {
-        $attribute = $spMetadata->getOptionalString('simplesaml.nameidattribute', null);
-        if ($attribute === null) {
-            $attribute = $idpMetadata->getOptionalString('simplesaml.nameidattribute', null);
-            if ($attribute === null) {
-                Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
-                return null;
-            }
-        }
-
-        $attributes = $state['Attributes'];
-        if (!array_key_exists($attribute, $attributes)) {
-            Logger::error('Unable to add NameID: Missing ' . var_export($attribute, true) .
-                ' in the attributes of the user.');
-            return null;
-        }
-
-        return $attributes[$attribute][0];
-    }
-
-
-    /**
      * Helper function for encoding attributes.
      *
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
@@ -1267,25 +1233,15 @@ class SAML2
 
         if (isset($state['saml:NameID'][$nameIdFormat])) {
             $nameId = $state['saml:NameID'][$nameIdFormat];
-            $nameId->setFormat($nameIdFormat);
         } else {
-            $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
-            if ($spNameQualifier === null) {
-                $spNameQualifier = $spMetadata->getString('entityid');
-            }
-
             if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
                 // generate a random id
                 $nameIdValue = $randomUtils->generateID();
-            } else {
-                /* this code will end up generating either a fixed assigned id (via nameid.attribute)
-                   or random id if not assigned/configured */
-                $nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
-                if ($nameIdValue === null) {
-                    Logger::warning('Falling back to transient NameID.');
-                    $nameIdFormat = Constants::NAMEID_TRANSIENT;
-                    $nameIdValue = $randomUtils->generateID();
-                }
+            }
+
+            $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
+            if ($spNameQualifier === null) {
+                $spNameQualifier = $spMetadata->getString('entityid');
             }
 
             $nameId = new NameID();
