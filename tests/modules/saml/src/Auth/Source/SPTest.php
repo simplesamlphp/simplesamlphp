@@ -122,7 +122,7 @@ class SPTest extends ClearStateTestCase
     private function createAuthnRequest(array $state = []): AuthnRequest
     {
         $info = ['AuthId' => 'default-sp'];
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
         /** @var \SAML2\AuthnRequest $ar */
@@ -149,7 +149,7 @@ class SPTest extends ClearStateTestCase
     private function createLogoutRequest(array $state = []): LogoutRequest
     {
         $info = ['AuthId' => 'default-sp'];
-        $config = ['entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
         /** @var \SAML2\LogoutRequest $lr */
@@ -184,7 +184,7 @@ class SPTest extends ClearStateTestCase
 
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
         $this->assertEquals(
-            'http://localhost/simplesaml/module.php/saml/sp/metadata.php/default-sp',
+            'urn:x-simplesamlphp:example-sp',
             $q[0]->textContent
         );
     }
@@ -293,7 +293,7 @@ class SPTest extends ClearStateTestCase
         ];
 
         $info = ['AuthId' => 'default-sp'];
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
         $as->authenticate($state);
     }
@@ -319,6 +319,7 @@ class SPTest extends ClearStateTestCase
 
         $info = ['AuthId' => 'default-sp'];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
         ];
         $as = new SpTester($info, $config);
@@ -345,6 +346,7 @@ class SPTest extends ClearStateTestCase
 
         $info = ['AuthId' => 'default-sp'];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'idp' => $entityId
         ];
         $as = new SpTester($info, $config);
@@ -385,7 +387,7 @@ class SPTest extends ClearStateTestCase
         ];
 
         $info = ['AuthId' => 'default-sp'];
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
         try {
             $as->authenticate($state);
@@ -430,6 +432,7 @@ class SPTest extends ClearStateTestCase
 
         $info = ['AuthId' => 'default-sp'];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             // Use a url that is invalid for http redirects so redirect code throws an error
             // otherwise it will call exit
             'discoURL' => 'smtp://invalidurl'
@@ -447,12 +450,12 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
         $this->assertEquals('saml20-sp-remote', $md['metadata-set']);
-        $this->assertEquals('http://localhost/simplesaml/module.php/saml/sp/metadata.php/' . $spId, $md['entityid']);
+        $this->assertEquals('urn:x-simplesamlphp:example-sp', $md['entityid']);
         $this->assertArrayHasKey('SingleLogoutService', $md);
         $this->assertIsArray($md['SingleLogoutService']);
         $this->assertArrayHasKey('AssertionConsumerService', $md);
@@ -506,6 +509,7 @@ class SPTest extends ClearStateTestCase
     {
         $info = ['AuthId' => 'default-sp'];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'IDPList' => ['https://scope.example.com']
         ];
         $as = new SpTester($info, $config);
@@ -541,7 +545,7 @@ class SPTest extends ClearStateTestCase
         if (isset($stateIdpList)) {
             $state['IDPList'] = $stateIdpList;
         }
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         if (isset($remoteMetadata)) {
             $config['IDPList'] = $remoteMetadata;
         }
@@ -622,25 +626,28 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' => [
-            [
-               'contactType'       => 'other',
-               'emailAddress'      => 'csirt@example.com',
-               'surName'           => 'CSIRT',
-               'telephoneNumber'   => '+31SECOPS',
-               'company'           => 'Acme Inc',
-               'attributes'        => [
-                   'xmlns:remd'        => 'http://refeds.org/metadata',
-                   'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-               ],
-            ],
-            [
-               'contactType'       => 'administrative',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
-            ],
-        ]];
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
+                [
+                    'contactType'       => 'other',
+                    'emailAddress'      => 'csirt@example.com',
+                    'surName'           => 'CSIRT',
+                    'telephoneNumber'   => '+31SECOPS',
+                    'company'           => 'Acme Inc',
+                    'attributes'        => [
+                        'xmlns:remd'        => 'http://refeds.org/metadata',
+                        'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+                    ],
+                ],
+                [
+                    'contactType'       => 'administrative',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'givenName'         => 'Jane',
+                    'surName'           => 'Doe',
+                ],
+            ]
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -683,14 +690,17 @@ class SPTest extends ClearStateTestCase
 
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' => [
-            [
-               'contactType'       => 'technical',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
-            ],
-        ]];
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
+                [
+                    'contactType'       => 'technical',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'givenName'         => 'Jane',
+                    'surName'           => 'Doe',
+                ],
+            ]
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -725,13 +735,16 @@ class SPTest extends ClearStateTestCase
 
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' => [
-            [
-               'contactType'       => 'technical',
-               'emailAddress'      => 'j.doe@example.edu',
-               'surName'           => 'Doe',
-            ],
-        ]];
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
+                [
+                    'contactType'       => 'technical',
+                    'emailAddress'      => 'j.doe@example.edu',
+                    'surName'           => 'Doe',
+                ],
+            ]
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -746,14 +759,17 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' => [
-            [
-               'contactType'       => 'anything',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
-            ],
-        ]];
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
+                [
+                   'contactType'       => 'anything',
+                   'emailAddress'      => 'j.doe@example.edu',
+                   'givenName'         => 'Jane',
+                   'surName'           => 'Doe',
+                ],
+            ]
+        ];
         $as = new SpTester($info, $config);
 
         $this->expectException(InvalidArgumentException::class);
@@ -769,17 +785,18 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' =>
-                [
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
                 [
                     'contactType'       => 'administrative',
                     'emailAddress'      => 'j.doe@example.edu',
                     'givenName'         => 'Jane',
                     'surName'           => 'Doe',
                 ],
-                ],
-                'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
-            ];
+            ],
+            'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -797,17 +814,18 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = ['contacts' =>
-                [
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'contacts' => [
                 [
                     'contactType'       => 'administrative',
                     'emailAddress'      => 'j.doe@example.edu',
                     'givenName'         => 'Jane',
                     'surName'           => 'Doe',
                 ],
-                ],
-                'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
-            ];
+            ],
+            'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -826,8 +844,9 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
-                'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'SingleLogoutServiceBinding' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -846,8 +865,9 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
-                'SingleLogoutServiceBinding' => [],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'SingleLogoutServiceBinding' => [],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -862,6 +882,7 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'SingleLogoutServiceBinding' => [
                 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
                 'urn:this:doesnotexist'
@@ -886,6 +907,7 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'SingleLogoutServiceBinding' => [
                 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
                 'urn:this:doesnotexist'
@@ -913,6 +935,7 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'AssertionConsumerService' => [
                 [
                     'index' => 1,
@@ -926,7 +949,7 @@ class SPTest extends ClearStateTestCase
                     'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
                 ],
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -958,10 +981,11 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'WantAssertionsSigned' => true,
-                'redirect.sign' => true,
-                'sign.authnrequest' => true,
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'WantAssertionsSigned' => true,
+            'redirect.sign' => true,
+            'sign.authnrequest' => true,
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -972,10 +996,11 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayNotHasKey('validate.authnrequest', $md);
 
         $config = [
-                'WantAssertionsSigned' => false,
-                'redirect.sign' => false,
-                'sign.authnrequest' => false,
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'WantAssertionsSigned' => false,
+            'redirect.sign' => false,
+            'sign.authnrequest' => false,
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -986,8 +1011,9 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayNotHasKey('validate.authnrequest', $md);
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'sign.authnrequest' => true,
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1005,12 +1031,13 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'RegistrationInfo' => [
-                    'authority' => 'urn:mace:sp.example.org',
-                    'instant' => '2008-01-17T11:28:03.577Z',
-                    'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
-                ],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'RegistrationInfo' => [
+                'authority' => 'urn:mace:sp.example.org',
+                'instant' => '2008-01-17T11:28:03.577Z',
+                'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1033,8 +1060,12 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-            'NameIDPolicy' => [ 'Format' => 'urn:mace:shibboleth:1.0:nameIdentifier', 'AllowCreate' => true ],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'NameIDPolicy' => [
+                'Format' => 'urn:mace:shibboleth:1.0:nameIdentifier',
+                'AllowCreate' => true
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1051,8 +1082,9 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'NameIDPolicy' => 'urn:mace:shibboleth:1.0:nameIdentifier',
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'NameIDPolicy' => 'urn:mace:shibboleth:1.0:nameIdentifier',
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1069,8 +1101,9 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'NameIDPolicy' => ['AllowCreate' => true],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'NameIDPolicy' => ['AllowCreate' => true],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1087,19 +1120,20 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'OrganizationName' => [
-                    'en' => 'Voorbeeld Organisatie Foundation b.a.',
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationDisplayName' => [
-                    'en' => 'Example organization',
-                    'nl' => 'Voorbeeldorganisatie',
-                ],
-                'OrganizationURL' => [
-                    'en' => 'https://example.com',
-                    'nl' => 'https://example.com/nl',
-                ],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'OrganizationName' => [
+                'en' => 'Voorbeeld Organisatie Foundation b.a.',
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationDisplayName' => [
+                'en' => 'Example organization',
+                'nl' => 'Voorbeeldorganisatie',
+            ],
+            'OrganizationURL' => [
+                'en' => 'https://example.com',
+                'nl' => 'https://example.com/nl',
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1117,13 +1151,14 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'OrganizationName' => [
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationURL' => [
-                    'nl' => 'https://example.com/nl',
-                ],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'OrganizationName' => [
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationURL' => [
+                'nl' => 'https://example.com/nl',
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1141,13 +1176,14 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'OrganizationName' => [
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationDisplayName' => [
-                    'nl' => 'Voorbeeldorganisatie',
-                ],
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'OrganizationName' => [
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationDisplayName' => [
+                'nl' => 'Voorbeeldorganisatie',
+            ],
+        ];
         $as = new SpTester($info, $config);
 
         $this->expectException(Exception::class);
@@ -1164,6 +1200,7 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'UIInfo' => [
                 'DisplayName' => [
                     'en' => 'English name',
@@ -1174,7 +1211,7 @@ class SPTest extends ClearStateTestCase
                     'es' => 'Descripción en Español'
                  ],
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1193,8 +1230,9 @@ class SPTest extends ClearStateTestCase
 
         $ea = ['{urn:simplesamlphp:v1}foo' => ['bar']];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'EntityAttributes' => $ea,
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1211,6 +1249,7 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'name' => [
                 'en' => 'My First SP',
             ],
@@ -1224,7 +1263,7 @@ class SPTest extends ClearStateTestCase
             'attributes.required' => [
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1233,14 +1272,20 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayHasKey('description', $md);
         $this->assertEquals('This SP is my first one', $md['description']['en']);
         $this->assertArrayHasKey('attributes', $md);
-        $this->assertEquals([
+        $this->assertEquals(
+            [
                 'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
                 'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
-            ], $md['attributes']);
+            ],
+            $md['attributes']
+        );
         $this->assertArrayHasKey('attributes.required', $md);
-        $this->assertEquals([
+        $this->assertEquals(
+            [
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
-            ], $md['attributes.required']);
+            ],
+            $md['attributes.required']
+        );
     }
 
     /**
@@ -1252,13 +1297,14 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'name' => [
                 'en' => 'My First SP',
             ],
             'description' => [
                 'en' => 'This SP is my first one',
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1275,11 +1321,12 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'attributes' => [
                 'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
                 'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1295,6 +1342,7 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'name' => [
                 'en' => 'My First SP',
             ],
@@ -1323,8 +1371,9 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1349,9 +1398,10 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'privatekey' => self::CERT_KEY,
-                'certificate' => self::CERT_PUBLIC,
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'privatekey' => self::CERT_KEY,
+            'certificate' => self::CERT_PUBLIC,
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1374,11 +1424,12 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => $spId];
 
         $config = [
-                'privatekey' => self::CERT_KEY,
-                'certificate' => self::CERT_PUBLIC,
-                'new_privatekey' => self::CERT_OTHER_KEY,
-                'new_certificate' => self::CERT_OTHER_PUBLIC,
-            ];
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'privatekey' => self::CERT_KEY,
+            'certificate' => self::CERT_PUBLIC,
+            'new_privatekey' => self::CERT_OTHER_KEY,
+            'new_certificate' => self::CERT_OTHER_PUBLIC,
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1404,7 +1455,7 @@ class SPTest extends ClearStateTestCase
     {
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
-        $config = [];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();
@@ -1421,6 +1472,7 @@ class SPTest extends ClearStateTestCase
         $spId = 'myhosted-sp';
         $info = ['AuthId' => $spId];
         $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
             'AssertionConsumerService' => [
                 [
                     'index' => 1,

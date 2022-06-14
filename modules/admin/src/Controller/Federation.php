@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -195,7 +196,7 @@ class Federation
                 $idps = $this->mdHandler->getList('saml20-idp-hosted');
                 $saml2entities = [];
                 $httpUtils = new Utils\HTTP();
-                $metadataBase = $httpUtils->getBaseURL() . 'saml2/idp/metadata.php';
+                $metadataBase = Module::getModuleURL('saml/idp/metadata');
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
                         $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
@@ -213,6 +214,13 @@ class Federation
                 }
 
                 foreach ($saml2entities as $index => $entity) {
+                    Assert::validURI($entity['entityid']);
+                    Assert::maxLength(
+                        $entity['entityid'],
+                        C::SAML2INT_ENTITYID_MAX_LENGTH,
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
+                    );
+
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
@@ -252,6 +260,13 @@ class Federation
                 }
 
                 foreach ($adfsentities as $index => $entity) {
+                    Assert::validURI($entity['entityid']);
+                    Assert::maxLength(
+                        $entity['entityid'],
+                        C::SAML2INT_ENTITYID_MAX_LENGTH,
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
+                    );
+
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);

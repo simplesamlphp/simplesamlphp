@@ -130,18 +130,20 @@ If you want to setup a SAML 2.0 IdP for Google Workspace, you need to configure 
 
 This is the configuration of the IdP itself. Here is some example config:
 
-	// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
-	$metadata['__DYNAMIC:1__'] => [
-		
-		// The hostname of the server (VHOST) that this SAML entity will use.
-		'host'				=>	'__DEFAULT__',
-		
-		// X.509 key and certificate. Relative to the cert directory.
-		'privatekey'   => 'googleworkspaceidp.pem',
-		'certificate'  => 'googleappsidp.crt',
-		
-		'auth' => 'example-userpass',
-	]
+```php
+// The SAML entity ID is the index of this config.
+$metadata['urn:x-simplesamlphp:example-idp'] => [
+
+    // The hostname of the server (VHOST) that this SAML entity will use.
+    'host' => '__DEFAULT__',
+
+    // X.509 key and certificate. Relative to the cert directory.
+    'privatekey'   => 'googleworkspaceidp.pem',
+    'certificate'  => 'googleappsidp.crt',
+
+    'auth' => 'example-userpass',
+]
+```
 
 **Note**: You can only have one entry in the file with host equal to `__DEFAULT__`, therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file. 
 

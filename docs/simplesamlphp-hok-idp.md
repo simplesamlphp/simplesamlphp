@@ -29,7 +29,7 @@ Enabling HoK SSO Profile on the IdP
 
 To enable the IdP to send HoK assertions you must add the `saml20.hok.assertion` option to the `saml20-idp-hosted` metadata file:
 
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:example-idp'] = [
         [....]
         'auth' => 'example-userpass',
         'saml20.hok.assertion' => TRUE,

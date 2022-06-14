@@ -98,15 +98,17 @@ The filters in `authproc.sp` will be executed at the SP side regardless of which
 
 Filters can be added both in `hosted` and `remote` metadata. Here is an example of a filter added in a metadata file:
 
-	'__DYNAMIC:1__' => [
-		'host'				=>	'__DEFAULT_',
-		'privatekey'		=>	'example.org.pem',
-		'certificate'		=>	'example.org.crt',
-		'auth'				=>	'feide',
-		'authproc' => [
-			40 => 'core:TargetedID',
-		],
-	]
+```php
+'urn:x-simplesamlphp:example-idp' => [
+    'host' => '__DEFAULT_',
+    'privatekey' => 'example.org.pem',
+    'certificate' => 'example.org.crt',
+    'auth' => 'feide',
+    'authproc' => [
+        40 => 'core:TargetedID',
+    ],
+]
+```
 
 The example above is in `saml20-idp-hosted`.
 

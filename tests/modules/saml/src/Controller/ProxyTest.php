@@ -45,7 +45,10 @@ class ProxyTest extends TestCase
         Configuration::setPreLoadedConfig(
             Configuration::loadFromArray(
                 [
-                    'phpunit' => ['saml:SP'],
+                    'phpunit' => [
+                        'saml:SP',
+                        'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    ],
                 ],
                 '[ARRAY]',
                 'simplesaml'

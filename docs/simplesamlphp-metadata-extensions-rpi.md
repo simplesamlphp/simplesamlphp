@@ -72,7 +72,7 @@ Service Provider:
 
 Identity Provider:
 
-    $metadata['__DYNAMIC:1__'] = [
+    $metadata['urn:x-simplesamlphp:example-idp'] = [
         'host' => '__DEFAULT__',
         ...
         'RegistrationInfo' => [

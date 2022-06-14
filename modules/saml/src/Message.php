@@ -495,7 +495,7 @@ class Message
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
         $issuer = new Issuer();
-        $issuer->setValue($spMetadata->getString('entityid'));
+        $issuer->setValue($spMetadata->getString('entityID'));
         $ar->setIssuer($issuer);
         $ar->setAssertionConsumerServiceIndex(
             $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
@@ -534,7 +534,7 @@ class Message
     ): LogoutRequest {
         $lr = new LogoutRequest();
         $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setValue($srcMetadata->getString('entityID'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 

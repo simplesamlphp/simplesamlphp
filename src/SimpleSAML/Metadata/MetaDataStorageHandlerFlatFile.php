@@ -124,7 +124,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
 
         // add the entity id of an entry to each entry in the metadata
         foreach ($metadataSet as $entityId => &$entry) {
-            $entry = $this->updateEntityID($set, $entityId, $entry);
+            $entry['entityID'] = $entityId;
         }
 
         $this->cachedMetadata[$set] = $metadataSet;

@@ -96,7 +96,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
                     throw new Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
-                    $data['entityid'] = $d['entity_id'];
+                    $data['entityID'] = $d['entity_id'];
                 }
                 $metadata[$d['entity_id']] = $data;
             }
@@ -129,7 +129,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
-            $entry = $this->updateEntityID($set, $entityId, $entry);
+            $entry['entityID'] = $entityId;
         }
 
         $this->cachedMetadata[$set] = $metadataSet;
@@ -159,24 +159,10 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         $tableName = $this->getTableName($set);
-
-        // according to the docs, it looks like *-idp-hosted metadata are the types
-        // that allow the __DYNAMIC:*__ entity id.  with the current table design
-        // we need to lookup the specific metadata entry but also we need to lookup
-        // any dynamic entries to see if the dynamic hosted entity id matches
-        if (substr($set, -10) == 'idp-hosted') {
-            $stmt = $this->db->read(
-                "SELECT entity_id, entity_data FROM {$tableName} "
-                . "WHERE (entity_id LIKE :dynamicId OR entity_id = :entityId)",
-                ['dynamicId' => '__DYNAMIC%', 'entityId' => $entityId]
-            );
-        } else {
-            // other metadata types should be able to match on entity id
-            $stmt = $this->db->read(
-                "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
-                ['entityId' => $entityId]
-            );
-        }
+        $stmt = $this->db->read(
+            "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
+            ['entityId' => $entityId]
+        );
 
         // throw pdo exception upon execution failure
         if (!$stmt->execute()) {
