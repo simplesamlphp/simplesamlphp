@@ -120,7 +120,7 @@ In that file you should locate the `auth`-option for your IdP, and change it to 
 
     <?php
     /* ... */
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         /* ... */
         /*
          * Authentication source to use. Must be one that is configured in

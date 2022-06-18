@@ -22,10 +22,20 @@ $config = [
     /* This is the name of this authentication source, and will be used to access it later. */
     'default-sp' => [
         'saml:SP',
-        'entityID' => 'https://sp1.example.org/',
+        'entityID' => 'https://myapp.example.org/',
     ],
 ];
 ```
+The entity ID must be a URI, that is unlikely to change for technical or
+political reasons. We recommend it to be a domain name that you own.
+Like above, if your organization's main domain is `example.org` and this SP is
+for the application `myapp`.  The URL does not have to resolve to actual
+content, it's just an identifier. Hence you don't need to and should not change
+it if the actual domain of your application changes.
+
+For guidance in picking an entityID, see
+[InCommon's best practice](https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid)
+on the matter.
 
 For more information about additional options available for the SP,
 see the [`saml:SP` reference](./saml:sp).
@@ -37,11 +47,11 @@ remember to set the EntityID explicitly. Here is an example:
 ```php
     'sp1' => [
         'saml:SP',
-        'entityID' => 'https://sp1.example.org/',
+        'entityID' => 'https://myapp.example.org/',
     ],
     'sp2' => [
         'saml:SP',
-        'entityID' => 'https://sp2.example.org/',
+        'entityID' => 'https://myotherapp.example.org/',
     ],
 ```
 
@@ -64,6 +74,7 @@ Then edit your `authsources.php` entry, and add references to your certificate:
 ```php
     'default-sp' => [
         'saml:SP',
+        'entityID' => 'https://myapp.example.org/',
         'privatekey' => 'saml.pem',
         'certificate' => 'saml.crt',
     ],
@@ -81,9 +92,9 @@ metadata file:
 
 ```php
 <?php
-$metadata['https://example.com'] = [
-    'SingleSignOnService'  => 'https://example.com/simplesaml/saml2/idp/SSOService.php',
-    'SingleLogoutService'  => 'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php',
+$metadata['https://example.org/saml-idp'] = [
+    'SingleSignOnService'  => 'https://example.org/simplesaml/saml2/idp/SSOService.php',
+    'SingleLogoutService'  => 'https://example.org/simplesaml/saml2/idp/SingleLogoutService.php',
     'certificate'          => 'example.pem',
 ];
 ```
@@ -120,7 +131,7 @@ $config = [
          * The entity ID of the IdP this should SP should contact.
          * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
          */
-        'idp' => 'https://idp.example.com',
+        'idp' => 'https://example.org/saml-idp',
     ],
 ];
 ```
@@ -217,7 +228,7 @@ We can also request authentication with a specific IdP:
 
 ```php
 $as->login([
-    'saml:idp' => 'https://idp.example.org/',
+    'saml:idp' => 'https://example.org/saml-idp',
 ]);
 ```
 

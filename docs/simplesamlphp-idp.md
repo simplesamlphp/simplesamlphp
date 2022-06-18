@@ -142,7 +142,7 @@ The SAML 2.0 IdP is configured by the metadata stored in
 This is a minimal configuration:
 
     <?php
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         /*
          * The hostname for this IdP. This makes it possible to run multiple
          * IdPs from the same configuration. '__DEFAULT__' means that this one

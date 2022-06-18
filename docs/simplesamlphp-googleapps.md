@@ -132,7 +132,7 @@ This is the configuration of the IdP itself. Here is some example config:
 
 ```php
 // The SAML entity ID is the index of this config.
-$metadata['urn:x-simplesamlphp:example-idp'] => [
+$metadata['https://example.org/saml-idp'] => [
 
     // The hostname of the server (VHOST) that this SAML entity will use.
     'host' => '__DEFAULT__',

@@ -18,7 +18,17 @@ Both files have the following format:
     ];
     /* ... */
 
-The entity ID must be a URI.
+The entity ID must be a URI, that is unlikely to change for technical or
+political reasons. We recommend it to be a domain name you own.
+The URL does not have to resolve to actual content, it's
+just an identifier. If your organization's domain is `example.org`:
+
+    https://example.org/saml-idp
+
+For guidance in picking an entityID, see
+[InCommon's best practice](https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid)
+on the matter.
+
 
 The `host` option is the hostname of the IdP, and will be used to
 select the correct configuration. One entry in the metadata-list can
@@ -391,7 +401,7 @@ These are some examples of IdP metadata
 
     <?php
 
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         /*
          * We use '__DEFAULT__' as the hostname so we won't have to
          * enter a hostname.
@@ -420,7 +430,7 @@ $republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 
 $republishRequest->appendChild($republishTarget);
 $ext = [new \SAML2\XML\Chunk($republishRequest)];
 
-$metadata['urn:x-simplesamlphp:example-idp'] = [
+$metadata['https://example.org/saml-idp'] = [
     'host' => '__DEFAULT__',
     'certificate' => 'example.org.crt',
     'privatekey' => 'example.org.pem',

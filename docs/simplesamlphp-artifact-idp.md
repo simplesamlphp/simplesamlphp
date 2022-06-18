@@ -35,7 +35,7 @@ Enabling artifact on the IdP
 
 To enable the IdP to send artifacts, you must add the `saml20.sendartifact` option to the `saml20-idp-hosted` metadata file:
 
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         [....]
         'auth' => 'example-userpass',
         'saml20.sendartifact' => TRUE,
@@ -89,7 +89,7 @@ You may therefore have to add the webserver certificate to the metadata that you
 To do this, you need to set the `https.certificate` option in the `saml20-idp-hosted` metadata file.
 That option should refer to a file containing the webserver certificate.
 
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         [....]
         'auth' => 'example-userpass',
         'saml20.sendartifact' => TRUE,

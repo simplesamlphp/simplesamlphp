@@ -72,7 +72,7 @@ Service Provider:
 
 Identity Provider:
 
-    $metadata['urn:x-simplesamlphp:example-idp'] = [
+    $metadata['https://example.org/saml-idp'] = [
         'host' => '__DEFAULT__',
         ...
         'RegistrationInfo' => [

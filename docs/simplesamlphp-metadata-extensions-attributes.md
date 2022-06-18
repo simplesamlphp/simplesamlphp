@@ -1,12 +1,6 @@
 SAML V2.0 Metadata Attribute Extensions
 =======================================
 
-<!--
-	This file is written in Markdown syntax.
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
 [TOC]
 
 This is a reference for the SimpleSAMLphp implementation of the [SAML
@@ -76,7 +70,7 @@ Examples
 
 If given the following configuration...
 
-    $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+    $metadata['https://example.com/saml-idp'] = [
         'host' => 'www.example.com',
         'certificate' => 'example.com.crt',
         'privatekey' => 'example.com.pem',
@@ -91,7 +85,7 @@ If given the following configuration...
 ... will generate the following XML metadata:
 
 	<?xml version="1.0"?>
-	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php">
+	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://example.com/saml-idp">
 	  <md:Extensions>
 		<mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
 		  <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">

@@ -50,7 +50,7 @@ authentication source:
 
     'example-saml' => [
         'saml:SP',
-        'entityId' => 'my-entity-id',
+        'entityId' => 'https://myapp.example.org',
         'idp' => 'my-idp',
     ],
 

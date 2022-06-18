@@ -239,8 +239,16 @@ Options
 `entityID`
 :   The entity ID this SP should use.
 
-:   If this option is unset, a default entity ID will be generated.
-    The generated entity ID will be a URL where the metadata of this SP can be downloaded.
+:   The entity ID must be a URI, that is unlikely to change for technical or political
+    reasons. We recommend it to be a domain name, like above, if your organization's main
+    domain is `example.org` and this SP is for the application `myapp`.
+    The URL does not have to resolve to actual content, it's
+    just an identifier. Hence you don't need to and should not change it if the actual domain
+    of your application changes.
+
+:   For guidance in picking an entityID, see
+    [InCommon's best practice](https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid)
+    on the matter.
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
@@ -420,20 +428,15 @@ Here we will list some examples for this authentication source.
 
     'example-minimal' => [
         'saml:SP',
+        'entityID' => 'https://myapp.example.org',
     ],
 
 ### Connecting to a specific IdP
 
     'example' => [
         'saml:SP',
-        'idp' => 'https://idp.example.net/',
-    ],
-
-### Using a specific entity ID
-
-    'example' => [
-        'saml:SP',
-        'entityID' => 'https://sp.example.net',
+        'entityID' => 'https://myapp.example.org',
+        'idp' => 'https://example.net/saml-idp',
     ],
 
 ### Encryption and signing
@@ -442,6 +445,7 @@ Here we will list some examples for this authentication source.
 
     'example-enc' => [
         'saml:SP',
+        'entityID' => 'https://myapp.example.org',
 
         'certificate' => 'example.crt',
         'privatekey' => 'example.key',
@@ -457,6 +461,7 @@ Here we will list some examples for this authentication source.
 
     'example-attributes => [
         'saml:SP',
+        'entityID' => 'https://myapp.example.org',
         'name' => [ // Name required for AttributeConsumingService-element.
             'en' => 'Example service',
             'no' => 'Eksempeltjeneste',
@@ -479,6 +484,7 @@ Here we will list some examples for this authentication source.
 
     'example-acs-limit' => [
         'saml:SP',
+        'entityID' => 'https://myapp.example.org',
         'acs.Bindings' => [
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
         ],
