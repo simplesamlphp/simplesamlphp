@@ -60,9 +60,5 @@
     {% endif -%}
 {% endblock content -%}
 {% block postload %}
-<script>
-    document.getElementById('file-input').addEventListener('change', function () {
-        document.getElementById('show-file').innerHTML = this.files.item(0).name;
-    });
-</script>
+    <script src="{{ asset('js/metadata-converter.js', 'admin') }}"></script>
 {% endblock postload %}
