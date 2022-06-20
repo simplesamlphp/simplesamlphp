@@ -78,7 +78,7 @@
               {%- endif %}
 
                 <li>
-                  <a href="{{ cert.url }}"><i class="fa fa-download"></i>{{ cert.name }}
+                  <a href="{{ cert.url }}"><i class="fa fa-download"></i>{{ cert.name | default('cert') }}
                     {#- #}{% if cert.signing %}-signing{% endif %}
                     {#- #}{% if cert.encryption %}-encryption{% endif %}.pem
                     {#- #}{% if cert.prefix %} ({% trans %}new{% endtrans %}){% endif %}</a>
