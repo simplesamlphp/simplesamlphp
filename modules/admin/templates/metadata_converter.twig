@@ -61,13 +61,8 @@
 {% endblock content -%}
 {% block postload %}
 <script>
-    $('body').on('change', '#file-input', function () {
-        var files = this.files;
-        var fileNames = [];
-        for (var i = 0; i < files.length; i++) {
-            fileNames.push(files.item(i).name);
-        }
-        $('#show-file').html(fileNames.join(", "));
+    document.getElementById('file-input').addEventListener('change', function () {
+        document.getElementById('show-file').innerHTML = this.files.item(0).name;
     });
 </script>
 {% endblock postload %}
