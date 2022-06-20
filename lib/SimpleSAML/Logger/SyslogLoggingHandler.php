@@ -77,8 +77,7 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
         $formats = ['%process', '%level'];
         $replacements = ['', $level];
         $string = str_replace($formats, $replacements, $string);
-        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
-        $string = trim($string);
+        $string = preg_replace('/^%date(\{[^\}]+\})?\s*/', '', $string);
 
         syslog($level, $string);
     }
