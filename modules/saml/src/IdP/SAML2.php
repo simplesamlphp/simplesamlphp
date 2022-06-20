@@ -58,7 +58,7 @@ class SAML2
         Assert::notNull($state['saml:ConsumerURL']);
 
         $spMetadata = $state["SPMetadata"];
-        $spEntityId = $spMetadata['entityid'];
+        $spEntityId = $spMetadata['entityID'];
         $spMetadata = Configuration::loadFromArray(
             $spMetadata,
             '$metadata[' . var_export($spEntityId, true) . ']'
@@ -105,7 +105,7 @@ class SAML2
 
         $statsData = [
             'spEntityID'  => $spEntityId,
-            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'idpEntityID' => $idpMetadata->getString('entityID'),
             'protocol'    => 'saml2',
         ];
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
@@ -134,7 +134,7 @@ class SAML2
         Assert::notNull($state['saml:ConsumerURL']);
 
         $spMetadata = $state["SPMetadata"];
-        $spEntityId = $spMetadata['entityid'];
+        $spEntityId = $spMetadata['entityID'];
         $spMetadata = Configuration::loadFromArray(
             $spMetadata,
             '$metadata[' . var_export($spEntityId, true) . ']'
@@ -168,7 +168,7 @@ class SAML2
 
         $statsData = [
             'spEntityID'  => $spEntityId,
-            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'idpEntityID' => $idpMetadata->getString('entityID'),
             'protocol'    => 'saml2',
             'error'       => $status,
         ];
@@ -440,7 +440,7 @@ class SAML2
 
         Stats::log('saml:idp:AuthnRequest', [
             'spEntityID'  => $spEntityId,
-            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'idpEntityID' => $idpMetadata->getString('entityID'),
             'forceAuthn'  => $forceAuthn,
             'isPassive'   => $isPassive,
             'protocol'    => 'saml2',
@@ -531,7 +531,7 @@ class SAML2
 
         Stats::log('saml:idp:LogoutRequest:sent', [
             'spEntityID'  => $association['saml:entityID'],
-            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'idpEntityID' => $idpMetadata->getString('entityID'),
         ]);
 
         /** @var array $dst */
@@ -586,7 +586,7 @@ class SAML2
 
         Stats::log('saml:idp:LogoutResponse:sent', [
             'spEntityID'  => $spEntityId,
-            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'idpEntityID' => $idpMetadata->getString('entityID'),
             'partial'     => $partial
         ]);
 
@@ -639,7 +639,7 @@ class SAML2
             Logger::info('Received SAML 2.0 LogoutResponse from: ' . var_export($spEntityId, true));
             $statsData = [
                 'spEntityID'  => $spEntityId,
-                'idpEntityID' => $idpMetadata->getString('entityid'),
+                'idpEntityID' => $idpMetadata->getString('entityID'),
             ];
             if (!$message->isSuccess()) {
                 $statsData['error'] = $message->getStatus();
@@ -662,11 +662,11 @@ class SAML2
             Logger::info('Received SAML 2.0 LogoutRequest from: ' . var_export($spEntityId, true));
             Stats::log('saml:idp:LogoutRequest:recv', [
                 'spEntityID'  => $spEntityId,
-                'idpEntityID' => $idpMetadata->getString('entityid'),
+                'idpEntityID' => $idpMetadata->getString('entityID'),
             ]);
 
             $spStatsId = $spMetadata->getOptionalString('core:statistics-id', $spEntityId);
-            Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
+            Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityID'));
 
             $state = [
                 'Responder'       => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendLogoutResponse'],
@@ -796,7 +796,7 @@ class SAML2
 
         $metadata = [
             'metadata-set' => 'saml20-idp-hosted',
-            'entityid' => $entityid,
+            'entityID' => $entityid,
             'SingleSignOnService' => $sso,
             'SingleLogoutService' => $slo,
             'NameIDFormat' => $config->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
@@ -1111,11 +1111,11 @@ class SAML2
         }
 
         $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setValue($idpMetadata->getString('entityID'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
-        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
+        $audience = array_merge([$spMetadata->getString('entityID')], $spMetadata->getOptionalArray('audience', []));
         $a->setValidAudiences($audience);
 
         $a->setNotBefore($now - 30);
@@ -1241,7 +1241,7 @@ class SAML2
 
             $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
-                $spNameQualifier = $spMetadata->getString('entityid');
+                $spNameQualifier = $spMetadata->getString('entityID');
             }
 
             $nameId = new NameID();
@@ -1324,7 +1324,7 @@ class SAML2
                 $key->loadKey($pemKey);
             } else {
                 throw new Error\ConfigurationError(
-                    'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
+                    'Missing encryption key for entity `' . $spMetadata->getString('entityID') . '`',
                     $spMetadata->getString('metadata-set') . '.php',
                     null
                 );
@@ -1397,7 +1397,7 @@ class SAML2
 
         $r = new Response();
         $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setValue($idpMetadata->getString('entityID'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $r->setIssuer($issuer);
         $r->setDestination($consumerURL);

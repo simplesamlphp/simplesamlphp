@@ -661,7 +661,7 @@ class Template extends Response
                 return $data['OrganizationName'][$language];
             }
         }
-        return $data['entityid'];
+        return $data['entityID'];
     }
 
     /**

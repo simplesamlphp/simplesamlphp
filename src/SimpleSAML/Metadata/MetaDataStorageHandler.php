@@ -328,7 +328,7 @@ class MetaDataStorageHandler implements ClearableState
 
                 $metadata['metadata-index'] = $entityId;
                 $metadata['metadata-set'] = $set;
-                Assert::keyExists($metadata, 'entityid');
+                Assert::keyExists($metadata, 'entityID');
                 return $metadata;
             }
         }
@@ -377,12 +377,12 @@ class MetaDataStorageHandler implements ClearableState
             $result = array_merge($srcList, $result);
         }
         foreach ($result as $remote_provider) {
-            if (sha1($remote_provider['entityid']) == $sha1) {
+            if (sha1($remote_provider['entityID']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 
                 return Configuration::loadFromArray(
                     $remote_provider,
-                    $set . '/' . var_export($remote_provider['entityid'], true)
+                    $set . '/' . var_export($remote_provider['entityID'], true)
                 );
             }
         }

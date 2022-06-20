@@ -111,7 +111,7 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
             if (isset($state[$direction]['core:statistics-id'])) {
                 return $state[$direction]['core:statistics-id'];
             } else {
-                return $state[$direction]['entityid'];
+                return $state[$direction]['entityID'];
             }
         }
         return 'NA';
