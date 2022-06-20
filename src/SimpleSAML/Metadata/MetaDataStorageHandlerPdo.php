@@ -96,7 +96,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
                     throw new Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
-                    $data['entityID'] = $d['entity_id'];
+                    $data['entityid'] = $d['entity_id'];
                 }
                 $metadata[$d['entity_id']] = $data;
             }
@@ -129,7 +129,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
-            $entry['entityID'] = $entityId;
+            $entry['entityid'] = $entityId;
         }
 
         $this->cachedMetadata[$set] = $metadataSet;

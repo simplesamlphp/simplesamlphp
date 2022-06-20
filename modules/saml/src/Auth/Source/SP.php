@@ -81,6 +81,9 @@ class SP extends \SimpleSAML\Auth\Source
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
+        /* For compatibility with code that assumes that $metadata->getString('entityid')
+         * gives the entity id. */
+        $config['entityid'] = $config['entityID'];
         $this->metadata = Configuration::loadFromArray(
             $config,
             'authsources[' . var_export($this->authId, true) . ']'
