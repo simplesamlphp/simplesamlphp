@@ -199,10 +199,10 @@ class Federation
                 $metadataBase = Module::getModuleURL('saml/idp/metadata');
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityID']);
+                        $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
-                        $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityID']);
+                        $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
                         $saml2entities[] = $idp;
                     }
                 } else {
@@ -214,14 +214,14 @@ class Federation
                 }
 
                 foreach ($saml2entities as $index => $entity) {
-                    Assert::validURI($entity['entityID']);
+                    Assert::validURI($entity['entityid']);
                     Assert::maxLength(
-                        $entity['entityID'],
+                        $entity['entityid'],
                         C::SAML2INT_ENTITYID_MAX_LENGTH,
                         sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
-                    $builder = new SAMLBuilder($entity['entityID']);
+                    $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP20($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
 
@@ -245,10 +245,10 @@ class Federation
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
                         $idp['url'] = Module::getModuleURL('adfs/idp/metadata/?idpentityid=' .
-                            urlencode($idp['entityID']));
+                            urlencode($idp['entityid']));
                         $idp['metadata-set'] = 'adfs-idp-hosted';
                         $idp['metadata-index'] = $index;
-                        $idp['metadata_array'] = ADFS_IdP::getHostedMetadata($idp['entityID']);
+                        $idp['metadata_array'] = ADFS_IdP::getHostedMetadata($idp['entityid']);
                         $adfsentities[] = $idp;
                     }
                 } else {
@@ -260,14 +260,14 @@ class Federation
                 }
 
                 foreach ($adfsentities as $index => $entity) {
-                    Assert::validURI($entity['entityID']);
+                    Assert::validURI($entity['entityid']);
                     Assert::maxLength(
-                        $entity['entityID'],
+                        $entity['entityid'],
                         C::SAML2INT_ENTITYID_MAX_LENGTH,
                         sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
-                    $builder = new SAMLBuilder($entity['entityID']);
+                    $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
                     if (isset($entity['metadata_array']['contacts'])) {
@@ -360,7 +360,7 @@ class Federation
             // sanitize the resulting array
             unset($metadata['UIInfo']);
             unset($metadata['metadata-set']);
-            unset($metadata['entityID']);
+            unset($metadata['entityid']);
 
             // sanitize the attributes array to remove friendly names
             if (isset($metadata['attributes']) && is_array($metadata['attributes'])) {
@@ -372,7 +372,7 @@ class Federation
 
             $entities[] = [
                 'authid' => $source->getAuthId(),
-                'entityID' => $source->getEntityId(),
+                'entityid' => $source->getEntityId(),
                 'type' => 'saml20-sp-hosted',
                 'url' => $source->getMetadataURL(),
                 'name' => $name,
@@ -424,7 +424,7 @@ class Federation
                     ];
                 }
 
-                // transpose from $entities[entityID][type] to $output[type][entityID]
+                // transpose from $entities[entityid][type] to $output[type][entityid]
                 $arrayUtils = new Utils\Arrays();
                 $output = $arrayUtils->transpose($entities);
 
@@ -527,13 +527,13 @@ class Federation
     {
         $this->authUtils->requireAdmin();
 
-        $entityId = $request->query->get('entityID');
+        $entityId = $request->query->get('entityid');
         $set = $request->query->get('set');
 
         $metadata = $this->mdHandler->getMetaData($entityId, $set);
 
         $t = new Template($this->config, 'admin:show_metadata.twig');
-        $t->data['entityID'] = $entityId;
+        $t->data['entityid'] = $entityId;
         $t->data['metadata'] = VarExporter::export($metadata);
         return $t;
     }

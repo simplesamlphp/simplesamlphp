@@ -159,7 +159,7 @@ abstract class MetaDataStorageSource
 
             if ($hostPath === $entry['host']) {
                 if ($type === 'entityid') {
-                    return $entry['entityID'];
+                    return $entry['entityid'];
                 } else {
                     return $index;
                 }
@@ -214,7 +214,7 @@ abstract class MetaDataStorageSource
             foreach ($cidrHints as $hint_entry) {
                 if ($netUtils->ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
-                        return $entry['entityID'];
+                        return $entry['entityid'];
                     } else {
                         return $index;
                     }
@@ -314,7 +314,7 @@ abstract class MetaDataStorageSource
                 return $index;
             }
 
-            if ($entry['entityID'] === $entityId) {
+            if ($entry['entityid'] === $entityId) {
                 if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currentHost) {
                     return $index;
                 }

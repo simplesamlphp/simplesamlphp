@@ -22,13 +22,13 @@
           <dl>
             <dt>{{ set|entityDisplayName }}</dt>
 
-            <dd>EntityID: <code>{{ set.entityID }}</code></dd>
+            <dd>EntityID: <code>{{ set.entityid }}</code></dd>
             {%- if set.deprecated is defined and set.deprecated %}
 
               <dd><span class="entity-deprecated">{{ 'Deprecated'|trans }}</span></dd>
             {%- endif %}
             {% set index = attribute(set, 'metadata-index')|default(false) %}
-            {%- if index and set.entityID != index %}
+            {%- if index and set.entityid != index %}
 
               <dd>Index: <code>{{ index }}</code></dd>
             {%- endif %}
@@ -67,7 +67,7 @@
                    title="{% trans %}Copy to clipboard{% endtrans %}"><span class="fa fa-copy"></span></a>
               </div>
               <div id="php-{{ key }}" class="code-box-content php">
-                {#- #}$metadata['{{ set.entityID }}'] = {{ set.metadata_array }};{# -#}
+                {#- #}$metadata['{{ set.entityid }}'] = {{ set.metadata_array }};{# -#}
               </div>
             </dd>
             {%- for cert in set.certificates %}
@@ -102,9 +102,9 @@
     <fieldset class="fancyfieldset">
       <legend>{{ mdtype[key]|trans }}</legend>
       <ul>
-      {% for entityID, entity in set %}
+      {% for entityid, entity in set %}
 
-        <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityID|url_encode) ~ '&set=' ~ key) }}">
+        <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
             {{- entity | entityDisplayName -}}
           </a>
           {% if entity.expire is defined %}
