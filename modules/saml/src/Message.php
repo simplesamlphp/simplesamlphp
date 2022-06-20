@@ -152,7 +152,7 @@ class Message
         } else {
             throw new SSP_Error\Exception(
                 'Missing certificate in metadata for ' .
-                var_export($srcMetadata->getString('entityid'), true)
+                var_export($srcMetadata->getString('entityID'), true)
             );
         }
 
@@ -557,7 +557,7 @@ class Message
     ): LogoutResponse {
         $lr = new LogoutResponse();
         $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setValue($srcMetadata->getString('entityID'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 
@@ -687,7 +687,7 @@ class Message
         }
         $validAudiences = $assertion->getValidAudiences();
         if ($validAudiences !== null) {
-            $spEntityId = $spMetadata->getString('entityid');
+            $spEntityId = $spMetadata->getString('entityID');
             if (!in_array($spEntityId, $validAudiences, true)) {
                 $candidates = '[' . implode('], [', $validAudiences) . ']';
                 throw new SSP_Error\Exception(
@@ -907,6 +907,6 @@ class Message
         }
 
         throw new SSP_Error\Exception('No supported encryption key in ' .
-            var_export($metadata->getString('entityid'), true));
+            var_export($metadata->getString('entityID'), true));
     }
 }
