@@ -1204,6 +1204,11 @@ $config = [
     'store.redis.port' => 6379,
 
     /*
+     * The password to use when connecting to a password-protected Redis instance.
+     */
+    'store.redis.password' => null,
+
+    /*
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
