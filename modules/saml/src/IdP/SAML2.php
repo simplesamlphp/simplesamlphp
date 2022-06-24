@@ -1214,9 +1214,32 @@ class SAML2
             $a->setAttributes($attributes);
         }
 
+        $nameId = self::generateNameId($idpMetadata, $spMetadata, $state);
+        $state['saml:idp:NameID'] = $nameId;
+        $a->setNameId($nameId);
+
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
+        if ($encryptNameId === null) {
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
+        }
+        if ($encryptNameId) {
+            $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
+        }
+
+        return $a;
+    }
+
+    /**
+     * Helper for buildAssertion to decide on an NameID to set
+     */
+    private static function generateNameId(
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
+        array $state
+    ): NameID
+    {
         $nameIdFormat = null;
 
-        // generate the NameID for the assertion
         if (isset($state['saml:NameIDFormat'])) {
             $nameIdFormat = $state['saml:NameIDFormat'];
         }
@@ -1236,6 +1259,7 @@ class SAML2
         } else {
             if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
                 // generate a random id
+                $randomUtils = new Utils\Random();
                 $nameIdValue = $randomUtils->generateID();
             }
 
@@ -1250,21 +1274,8 @@ class SAML2
             $nameId->setSPNameQualifier($spNameQualifier);
         }
 
-        $state['saml:idp:NameID'] = $nameId;
-
-        $a->setNameId($nameId);
-
-        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
-        if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
-        }
-        if ($encryptNameId) {
-            $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
-        }
-
-        return $a;
+        return $nameId;
     }
-
 
     /**
      * Encrypt an assertion.
