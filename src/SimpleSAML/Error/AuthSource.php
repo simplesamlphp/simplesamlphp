@@ -43,8 +43,8 @@ class AuthSource extends Error
         parent::__construct(
             [
                 'AUTHSOURCEERROR',
-                '%AUTHSOURCE%' => htmlspecialchars(var_export($this->authsource, true)),
-                '%REASON%' => htmlspecialchars(var_export($this->reason, true))
+                '%AUTHSOURCE%' => $this->authsource,
+                '%REASON%' => $this->reason
             ],
             $cause
         );
