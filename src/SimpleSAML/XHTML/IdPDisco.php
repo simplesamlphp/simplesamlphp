@@ -18,7 +18,6 @@ use function array_intersect;
 use function array_key_exists;
 use function array_keys;
 use function array_merge;
-use function htmlspecialchars;
 use function preg_match;
 use function sizeof;
 use function strcasecmp;
@@ -631,7 +630,7 @@ class IdPDisco
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
-        $t->data['urlpattern'] = htmlspecialchars($httpUtils->getSelfURLNoQuery());
+        $t->data['urlpattern'] = $httpUtils->getSelfURLNoQuery();
         $t->data['rememberenabled'] = $this->config->getOptionalBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getOptionalBoolean('idpdisco.rememberchecked', false);
         $t->send();

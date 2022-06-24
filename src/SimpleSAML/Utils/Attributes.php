@@ -100,7 +100,7 @@ class Attributes
      *
      * This function takes in a namespaced attribute name and splits it in a namespace/attribute name tuple.
      * When no namespace is found in the attribute name, it will be namespaced with the default namespace.
-     * This default namespace can be overriden by supplying a second parameter to this function.
+     * This default namespace can be overridden by supplying a second parameter to this function.
      *
      * @param string $name The namespaced attribute name.
      * @param string $defaultns The default namespace that should be used when no namespace is found.
@@ -114,6 +114,6 @@ class Attributes
             $defaultns = substr($name, 0, $slash);
             $name = substr($name, $slash + 1);
         }
-        return [htmlspecialchars($defaultns), htmlspecialchars($name)];
+        return [$defaultns, $name];
     }
 }
