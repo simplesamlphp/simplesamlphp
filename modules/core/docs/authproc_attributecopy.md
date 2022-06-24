@@ -16,7 +16,7 @@ Copy a single attribute (user's `uid` will be copied to the user's `username`):
         ],
     ],
 
-Copy a single attribute to more then one attribute (user's `uid` will be copied to the user's `username` and to `urn:mace:dir:attribute-def:uid`)
+Copy a single attribute to more than one attribute (user's `uid` will be copied to the user's `username` and to `urn:mace:dir:attribute-def:uid`)
 
     'authproc' => [
         50 => [
