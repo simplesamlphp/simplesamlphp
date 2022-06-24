@@ -39,7 +39,6 @@ use function count;
 use function date;
 use function explode;
 use function hash;
-use function htmlspecialchars;
 use function in_array;
 use function is_null;
 use function key;
@@ -476,10 +475,10 @@ class Template extends Response
                 $url = false;
                 if (!$current) {
                     $httpUtils = new Utils\HTTP();
-                    $url = htmlspecialchars($httpUtils->addURLParameters(
+                    $url = $httpUtils->addURLParameters(
                         '',
                         [$parameterName => $lang]
-                    ));
+                    );
                 }
                 $langmap[$lang] = [
                     'name' => $langname,
