@@ -223,7 +223,9 @@ class SubjectIDTest extends TestCase
         ];
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('saml:SubjectID: Generated ID \'a1398u9u25@example\' can hardly be considered globally unique.');
+        $this->expectExceptionMessage(
+            'saml:SubjectID: Generated ID \'a1398u9u25@example\' can hardly be considered globally unique.'
+        );
 
         self::processFilter($config, $request);
     }
