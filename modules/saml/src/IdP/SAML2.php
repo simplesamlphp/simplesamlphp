@@ -1236,8 +1236,8 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $state
-    ): NameID
-    {
+    ): NameID {
+        Logger::debug('Determining value for NameID');
         $nameIdFormat = null;
 
         if (isset($state['saml:NameIDFormat'])) {
@@ -1255,24 +1255,37 @@ class SAML2
         }
 
         if (isset($state['saml:NameID'][$nameIdFormat])) {
-            $nameId = $state['saml:NameID'][$nameIdFormat];
-        } else {
-            if ($nameIdFormat === Constants::NAMEID_TRANSIENT) {
-                // generate a random id
-                $randomUtils = new Utils\Random();
-                $nameIdValue = $randomUtils->generateID();
-            }
-
-            $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
-            if ($spNameQualifier === null) {
-                $spNameQualifier = $spMetadata->getString('entityid');
-            }
-
-            $nameId = new NameID();
-            $nameId->setFormat($nameIdFormat);
-            $nameId->setValue($nameIdValue);
-            $nameId->setSPNameQualifier($spNameQualifier);
+            Logger::debug(sprintf('NameID of desired format %s found in state', var_export($nameIdFormat, true)));
+            return $state['saml:NameID'][$nameIdFormat];
         }
+
+        // We have nothing else to work with, so default to transient
+        if ($nameIdFormat !== Constants::NAMEID_TRANSIENT) {
+            Logger::notice(sprintf(
+                'Requested NameID of format %s, but can only provide transient',
+                var_export($nameIdFormat, true)
+            ));
+            $nameIdFormat = Constants::NAMEID_TRANSIENT;
+        }
+
+        $randomUtils = new Utils\Random();
+        $nameIdValue = $randomUtils->generateID();
+
+        $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
+        if ($spNameQualifier === null) {
+            $spNameQualifier = $spMetadata->getString('entityid');
+        }
+
+        Logger::info(sprintf(
+            'Setting NameID to (%s, %s, %s)',
+            var_export($nameIdFormat, true),
+            var_export($nameIdValue, true),
+            var_export($spNameQualifier, true)
+        ));
+        $nameId = new NameID();
+        $nameId->setFormat($nameIdFormat);
+        $nameId->setValue($nameIdValue);
+        $nameId->setSPNameQualifier($spNameQualifier);
 
         return $nameId;
     }
