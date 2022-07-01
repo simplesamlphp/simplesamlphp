@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.6
 
-Released TBD
+Released 1-7-2022
 
   * Fix several translations (#1572, #1573, #1577, #1578, #1603)
   * Fix HTTP status code for error pages (#1585)
