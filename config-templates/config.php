@@ -1204,9 +1204,18 @@ $config = [
     'store.redis.port' => 6379,
 
     /*
-     * The password to use when connecting to a password-protected Redis instance.
+     * The credentials to use when connecting to Redis.
+     *
+     * If your Redis server is using the legacy password protection (config
+     * directive "requirepass" in redis.conf) then you should only provide
+     * a password.
+     *
+     * If your Redis server is using ACL's (which are recommended as of
+     * Redis 6+) then you should provide both a username and a password.
+     * See https://redis.io/docs/manual/security/acl/
      */
-    'store.redis.password' => null,
+    'store.redis.username' => '',
+    'store.redis.password' => '',
 
     /*
      * The prefix we should use on our Redis datastore.

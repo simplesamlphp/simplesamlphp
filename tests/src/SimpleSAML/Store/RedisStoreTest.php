@@ -128,6 +128,21 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+    /**
+     * @test
+     */
+    public function testRedisInstanceWithPasswordAndUsername(): void
+    {
+        $config = Configuration::loadFromArray([
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.password' => 'password',
+            'store.redis.username' => 'username',
+        ], '[ARRAY]', 'simplesaml');
+
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
+    }
+
 
     /**
      * @test
