@@ -4,7 +4,6 @@
     "type": "project",
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
-    "version": "v2.0.0-rc1",
     "license": "LGPL-2.1-or-later",
     "authors": [
         {
