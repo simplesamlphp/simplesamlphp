@@ -1,14 +1,7 @@
 SimpleSAMLphp Identity Provider Advanced Topics
 ===============================================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
-<!-- {{TOC}} -->
+[TOC]
 
 AJAX iFrame Single Log-Out
 --------------------------
@@ -21,7 +14,7 @@ If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog 
 Attribute Release Consent
 -------------------------
 
-The attribute release consent is documented in a [separate document](./consent:consent).
+The attribute release consent is documented in a [separate document](/docs/contrib_modules/consent/consent.html).
 
 
 Support for bookmarking the login page

@@ -1,15 +1,7 @@
 SimpleSAMLphp Advanced Features
 ===============================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
-
-<!-- {{TOC}} -->
+[TOC]
 
 SimpleSAMLphp documentation
 ---------------------------
@@ -60,7 +52,7 @@ Automatic update of SAML 2.0 Metadata XML from HTTPS
 ----------------------------------------------------
 
 The `metarefresh` module is the preferred method for doing this.
-Please see the [metarefresh documentation](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md).
+Please see the [metarefresh documentation](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata).
 
 
 

@@ -1,16 +1,7 @@
 SimpleSAMLphp Installation and Configuration
 ============================================
 
-<!-- 
-This file is written in Markdown syntax. 
-For more information about how to use the Markdown syntax, read here:
-http://daringfireball.net/projects/markdown/syntax
--->
-
-
-
-<!-- {{TOC}} -->
-
+[TOC]
 
 This document is part of the SimpleSAMLphp documentation suite.
 
@@ -394,7 +385,7 @@ in a separate document.
    + [Remote SP reference](simplesamlphp-reference-sp-remote)
    + [Setting up an IdP for Google Workspace (G Suite / Google Apps)](simplesamlphp-googleapps)
    + [Advanced Topics](simplesamlphp-idp-more)
- - [Automated Metadata Management](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md)
+ - [Automated Metadata Management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
  - [Maintenance and configuration](simplesamlphp-maintenance)
 
 
