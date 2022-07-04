@@ -23,16 +23,13 @@ SimpleSAMLphp Documentation
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
  * Further topics
   * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
-  * [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
+  * [Automated Metadata Management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
   * [Key rollover](./saml:keyrollover)
   * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
   * [State Information Lost](simplesamlphp-nostate) - more about this common error message
   * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.
  * SimpleSAMLphp Modules
-  * Documentation for specific modules:
-    * [Consent module](./consent:consent)
-    * [Installing and configuring the consentAdmin module](./consentAdmin:consentAdmin)
-    * [Authorization](./authorize:authorize)
-    * [autotest Module](https://github.com/simplesamlphp/simplesamlphp-module-autotest/blob/v1.0/README.md)
-    * [Storing sessions in Riak](./riak:simplesamlphp-riak)
-    * [Statistics](./statistics:statistics)
+  * [Documentation for specific modules](/docs/contributed_modules.html)
+  * [Theming SimpleSAMLphp](simplesamlphp-theming)
+  * [Creating authentication sources](./simplesamlphp-authsource)
+  * [Create your own customized modules](simplesamlphp-modules)
