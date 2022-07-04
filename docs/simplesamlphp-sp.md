@@ -158,7 +158,7 @@ in federations will differ, but the common part is that you would need to
 provide the *SAML 2.0 metadata of your SP*, and register that with the
 federation administration. You will probably be required too to consume
 the federation metadata periodically. Read more about
-[automated metadata management](./metarefresh:simplesamlphp-automated_metadata)
+[automated metadata management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
 to learn more about that. 
 
 

@@ -375,7 +375,7 @@ in a separate document.
    + [Remote SP reference](simplesamlphp-reference-sp-remote)
    + [Setting up an IdP for Google Workspace (G Suite / Google Apps)](simplesamlphp-googleapps)
    + [Advanced Topics](simplesamlphp-idp-more)
- - [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
+ - [Automated Metadata Management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
  - [Maintenance and configuration](simplesamlphp-maintenance)
 
 
