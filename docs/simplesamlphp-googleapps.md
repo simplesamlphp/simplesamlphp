@@ -1,14 +1,6 @@
 Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
 ============================================
 
-<!-- 
-	This file is written in Markdown syntax. 
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
-
-
 [TOC]
 
 SimpleSAMLphp news and documentation
@@ -75,7 +67,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 `exampleauth:Static`
 : Automatically log in as a user with a set of attributes.
 
-[`ldap:LDAP`](./ldap:ldap)
+[`ldap:LDAP`](/docs/contrib_modules/ldap/ldap.html)
 : Authenticates an user to a LDAP server.
 
 For more authentication modules, see [SimpleSAMLphp Identity Provider QuickStart](simplesamlphp-idp).
