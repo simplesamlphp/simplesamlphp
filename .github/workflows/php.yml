@@ -37,7 +37,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get composer cache directory
         id: composer-cache
@@ -91,7 +91,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get composer cache directory
         id: composer-cache
@@ -132,7 +132,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get composer cache directory
         id: composer-cache
@@ -170,7 +170,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get composer cache directory
         id: composer-cache
