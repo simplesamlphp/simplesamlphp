@@ -50,47 +50,40 @@ If the username or password is incorrect, it should throw an error saying so:
 Generic rules & requirements
 ----------------------------
 
--  
-    Must be derived from the `\SimpleSAML\Auth\Source`-class.
+-  Must be derived from the `\SimpleSAML\Auth\Source`-class.
 
     **Rationale**:
      - Deriving all authentication sources from a single base class allows us extend all authentication sources by extending the base class.
 
--  
-    If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters.
-    In general, only the $config parameter should be accessed when implementing the authentication source.
+-  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters.
+   In general, only the $config parameter should be accessed when implementing the authentication source.
 
     **Rationale**:
      - PHP doesn't automatically call any parent constructor, so it needs to be done manually.
      - The `$info`-array is used to provide information to the `\SimpleSAML\Auth\Source` base class, and therefore needs to be included.
      - Including the `$config`-array makes it possible to add generic configuration options that are valid for all authentication sources.
 
--  
-    The `authenticate(&$state)`-function must be implemented.
-    If this function completes, it is assumed that the user is authenticated, and that the `$state`-array has been updated with the user's attributes.
+-  The `authenticate(&$state)`-function must be implemented.
+   If this function completes, it is assumed that the user is authenticated, and that the `$state`-array has been updated with the user's attributes.
 
     **Rationale**:
      - Allowing the `authenticate()`-function to return after updating the `$state`-array enables us to do authentication without redirecting the user.
        This can be used if the authentication doesn't require user input, for example if the authentication can be done based on the IP-address of the user.
 
--  
-    If the `authenticate`-function does not return, it must at a later time call `\SimpleSAML\Auth\Source::completeAuth` with the new state array.
+-   If the `authenticate`-function does not return, it must at a later time call `\SimpleSAML\Auth\Source::completeAuth` with the new state array.
     The state array must be an update of the array passed to the `authenticate`-function.
 
     **Rationale**:
      - Preserving the same state array allows us to save information in that array before the authentication starts, and restoring it when authentication completes.
 
--  
-    No pages may be shown to the user from the `authenticate()`-function.
+-   No pages may be shown to the user from the `authenticate()`-function.
     Instead, the state should be saved, and the user should be redirected to a new page.
-
 
     **Rationale**:
      - The `authenticate()`-function is called in the context of a different PHP page.
        If the user reloads that page, unpredictable results may occur.
 
--  
-    No state information about any authentication should be stored in the authentication source object.
+-   No state information about any authentication should be stored in the authentication source object.
     It must instead be stored in the state array.
     Any changes to variables in the authentication source object may be lost.
 
@@ -98,8 +91,7 @@ Generic rules & requirements
      - This saves us from having to save the entire authentication object between requests.
        Instead, we can recreate it from the configuration.
 
--  
-    The authentication source object must be serializable.
+-   The authentication source object must be serializable.
     It may be serialized between being constructed and the call to the `authenticate()`-function.
     This means that, for example, no database connections should be created in the constructor and later used in the `authenticate()`-function.
 
