@@ -262,7 +262,7 @@ class Metadata
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
      *
-     * @param mixed $nameIdPolicy
+     * @param null|array|false $nameIdPolicy
      *
      * @return null|array
      */
@@ -270,10 +270,7 @@ class Metadata
     {
         $policy = null;
 
-        if (is_string($nameIdPolicy)) {
-            // handle old configurations where 'NameIDPolicy' was used to specify just the format
-            $policy = ['Format' => $nameIdPolicy, 'AllowCreate' => true];
-        } elseif (is_array($nameIdPolicy)) {
+        if (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
             $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
             $policy = [
