@@ -236,13 +236,6 @@ class MetadataTest extends TestCase
         $nameIdPolicy = false;
         $this->assertEquals(null, Metadata::parseNameIdPolicy($nameIdPolicy));
 
-        // Test string
-        $nameIdPolicy = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress';
-        $this->assertEquals(
-            ['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress', 'AllowCreate' => true],
-            Metadata::parseNameIdPolicy($nameIdPolicy)
-        );
-
         // Test array
         $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
