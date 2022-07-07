@@ -3,7 +3,6 @@
 
 This filter creates a new attribute based on the scope from a different attribute.
 
-
 Parameters
 ----------
 
@@ -14,8 +13,6 @@ This filter has two parameters, where both parameters are mandatory.
 
 `targetAttribute`
 :   The name of the new attribute.
-
-
 
 Example
 -------

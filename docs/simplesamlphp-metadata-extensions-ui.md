@@ -195,7 +195,6 @@ key.
 
             'GeolocationHint' => ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
 
-
 Generated XML Metadata Examples
 ----------------
 
@@ -281,4 +280,3 @@ If given the following configuration...
           <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
             <ds:X509Data>
             ...
-

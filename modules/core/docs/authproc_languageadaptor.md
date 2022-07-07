@@ -20,7 +20,6 @@ Now, the LanguageAdaptor will read the preferred language from the cookie and ad
 
 The name of the attribute can be changed from the default by adding the `attributename` option.
 
-
 Examples
 --------
 

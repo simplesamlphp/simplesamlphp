@@ -1,5 +1,4 @@
-Upgrade notes for SimpleSAMLphp 1.14
-====================================
+# Upgrade notes for SimpleSAMLphp 1.14
 
 The `mcrypt` extension is no longer required by SimpleSAMLphp, so if no signatures or encryption are being used, it
 can be skipped. It is still a requirement for `xmlseclibs` though, so for those verifying or creating signed
@@ -19,7 +18,7 @@ The jQuery version in use has been bumped to the latest 1.8.X version.
 Service Providers using the eduPersonTargetedID attribute, will get a DOMNodeList object instead of the NameID value. In
 order to process the NameID, a SAML2_XML_saml_NameID object can be used:
 
-```
+```php
 $attributes = $as->getAttributes();
 $eptid = $attributes['eduPersonTargetedID'][0]->item(0);
 $nameID = new SAML2_XML_saml_NameID($eptid);

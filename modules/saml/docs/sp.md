@@ -1,24 +1,19 @@
-`saml:SP`
-=========
+# `saml:SP`
 
 This authentication source is used to authenticate against SAML 2 IdPs.
 
-
-Metadata
---------
+## Metadata
 
 The metadata for your SP will be available from the federation page on your SimpleSAMLphp installation.
 
 SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions
 and with entity attributes. See the documentation for those extensions for more details:
 
-  * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
-  * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
-  * [Attributes extension](./simplesamlphp-metadata-extensions-attributes)
+* [MDUI extension](./simplesamlphp-metadata-extensions-ui)
+* [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
+* [Attributes extension](./simplesamlphp-metadata-extensions-attributes)
 
-
-Parameters
-----------
+**Parameters**:
 
 These are parameters that can be used at runtime to control the authentication.
 All these parameters override the equivalent option from the configuration.
@@ -26,21 +21,18 @@ All these parameters override the equivalent option from the configuration.
 `saml:AuthnContextClassRef`
 :   The AuthnContextClassRef that will be sent in the login request.
 
-
 `saml:AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
     This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
     Possible values:
-    
+
     * `SAML2\Constants::COMPARISON_EXACT` (default)
     * `SAML2\Constants::COMPARISON_BETTER`
     * `SAML2\Constants::COMPARISON_MINIMUM`
     * `SAML2\Constants::COMPARISON_MAXIMUM`
-    
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
-
 
 `saml:idp`
 :   The entity ID of the IdP we should send an authentication request to.
@@ -55,15 +47,12 @@ All these parameters override the equivalent option from the configuration.
 `saml:Extensions`
 :   The samlp:Extensions (an XML chunk) that will be sent in the login request.
 
-
 `saml:logout:Extensions`
 :   The samlp:Extensions (an XML chunk) that will be sent in the logout request.
-
 
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
     This must be a \SAML2\XML\saml\NameID object.
-
 
 `saml:NameIDPolicy`
 :   The format of the NameID we request from the IdP: an array in the form of
@@ -74,15 +63,11 @@ All these parameters override the equivalent option from the configuration.
 :   For compatibility purposes, `null` is equivalent to transient and a format
     can be defined as a string instead of an array. These variants are deprecated.
 
-
 `saml:Audience`
 :   Add a Conditions element to the SAML AuthnRequest containing an
     AudienceRestriction with one or more audiences.
 
-
-
-Authentication data
--------------------
+## Authentication data
 
 Some SAML-specific attributes are available to the application after authentication.
 To retrieve these attributes, the application can use the `getAuthData()`-function from the [SP API](./simplesamlphp-sp-api).
@@ -98,9 +83,7 @@ The following attributes are available:
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
 
-
-Options
--------
+**Options**:
 
 `acs.Bindings`
 : List of bindings the SP should support. If it is unset, all will be added.
@@ -115,7 +98,6 @@ Options
     If this option is set to `true`, unencrypted assertions will be rejected.
 
 :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
-
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
@@ -159,17 +141,15 @@ Options
 :   The SP can request authentication with a specific authentication context class.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
 
-
 `AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
     This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
     Possible values:
-    
+
     * `SAML2\Constants::COMPARISON_EXACT` (default)
     * `SAML2\Constants::COMPARISON_BETTER`
     * `SAML2\Constants::COMPARISON_MINIMUM`
     * `SAML2\Constants::COMPARISON_MAXIMUM`
-    
 
 `authproc`
 :   Processing filters that should be run after SP authentication.
@@ -235,7 +215,6 @@ Options
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
-
 `entityID`
 :   The entity ID this SP should use.
 
@@ -252,7 +231,6 @@ Options
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
-
 
 `idp`
 :   The entity ID this SP should connect to.
@@ -285,7 +263,6 @@ Options
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
-
 `NameIDPolicy`
 :   The format of the NameID we request from the idp: an array in the form of
     `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
@@ -297,7 +274,7 @@ Options
 
 `OrganizationName`, `OrganizationDisplayName`, `OrganizationURL`
 :   The name and URL of the organization responsible for this IdP.
-    You need to either specify _all three_ or none of these options.
+    You need to either specify *all three* or none of these options.
 
 :   The Name does not need to be suitable for display to end users, the DisplayName should be.
     The URL is a website the user can access for more information about the organization.
@@ -320,30 +297,24 @@ Options
 `privatekey`
 :   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
 
-
 `privatekey_pass`
 :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
 
-
 `ProviderName`
 :   Human readable name of the local SP sent with the authentication request.
-
 
 `ProtocolBinding`
 :   The binding that should be used for SAML2 authentication responses.
     This option controls the binding that is requested through the AuthnRequest message to the IdP.
     By default the HTTP-Post binding is used.
 
-
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `false`.
     If set, the `AuthnRequestsSigned` attribute of the `SPSSODescriptor` element in SAML 2.0 metadata will contain its value. This
     option takes precedence over the `sign.authnrequest` option in any metadata generated for this SP.
 
-
 `redirect.validate`
 :   Whether logout requests and logout responses received by this SP should be validated. The default is `false`.
-
 
 `RegistrationInfo`
 :   Allows to specify information about the registrar of this SP. Please refer to the
@@ -352,9 +323,8 @@ Options
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
 
-
 `saml.SOAPClient.certificate`
-:   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
+:   A file with a certificate *and* private key that should be used when issuing SOAP requests from this SP.
     If this option isn't specified, the SP private key and certificate will be used.
 
 :   This option can also be set to `false`, in which case no client certificate will be used.
@@ -374,14 +344,12 @@ Options
     any value in the IdP-remote metadata overrides the one configured
     in the SP configuration.
 
-
 `sign.logout`
 :   Whether to sign logout messages sent from this SP.
 
 :   Note that this option also exists in the IdP-remote metadata, and
     any value in the IdP-remote metadata overrides the one configured
     in the SP configuration.
-
 
 `signature.algorithm`
 :   The algorithm to use when signing any message generated by this service provider. Defaults to RSA-SHA256.
@@ -395,8 +363,8 @@ Options
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SingleLogoutServiceBinding`
-:	List of SingleLogoutService bindings the SP will claim support for (can be empty).
-:	Possible values:
+:   List of SingleLogoutService bindings the SP will claim support for (can be empty).
+:   Possible values:
 
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
@@ -412,15 +380,12 @@ Options
     any value in the IdP-remote metadata overrides the one configured
     in the IdP metadata.
 
-
 `WantAssertionsSigned`
 :   Whether assertions received by this SP must be signed. The default value is `false`.
     The value set for this option will be used to set the `WantAssertionsSigned` attribute of the `SPSSODescriptor` element in
     the exported SAML 2.0 metadata.
 
-
-Examples
---------
+**Examples**:
 
 Here we will list some examples for this authentication source.
 
@@ -454,7 +419,6 @@ Here we will list some examples for this authentication source.
         'redirect.validate' => true,
     ],
 
-
 ### Specifying attributes and required attributes
 
     An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
@@ -479,7 +443,6 @@ Here we will list some examples for this authentication source.
         'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
     ],
 
-
 ### Limiting supported AssertionConsumerService endpoint bindings
 
     'example-acs-limit' => [
@@ -490,8 +453,7 @@ Here we will list some examples for this authentication source.
         ],
     ],
 
-
-### Requesting a specific authentication method.
+### Requesting a specific authentication method
 
     $auth = new \SimpleSAML\Auth\Simple('default-sp');
     $auth->login([

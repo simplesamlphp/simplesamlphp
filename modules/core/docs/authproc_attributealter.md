@@ -16,16 +16,16 @@ Parameters
 :   The attribute in which the search is performed.
     This parameter is REQUIRED and the filter will throw an exception if it is not set. The filter will
     stop quietly if the attribute specified here is empty or not found.
-    
+
 `pattern`
 :   The pattern to look for inside the subject. Supports full Perl Compatible Regular Expressions (PCRE).
     This parameter is REQUIRED and the filter will throw an exception if it is not set.
-    
+
 `replacement`
 :   The value used to replace the match. Back references are not supported.
     This parameter is REQUIRED, except when using the `%replace` or `%remove` options. If `%replace` is used and
     `replacement` is not set, then the match is used as a replacement.
-    
+
 `target`
 :   The attribute where the replaced value will be placed.
     This parameter is OPTIONAL, and if not set, `subject` is used as `target`.
@@ -43,7 +43,7 @@ Parameters
 :   Indicates whether the altered values must be merged with the target attribute values. The default
     behaviour is to overwrite the target attribute completely.
     This parameter is OPTIONAL.
-    
+
 Examples
 --------
 
@@ -64,7 +64,7 @@ Change the domain on the `mail` attribute (when new domain is known):
         'pattern' => '/(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}$/',
         'replacement' => 'newdomain.com',
     ],
-    
+
 Set the eduPersonPrimaryAffiliation based on users' distinguishedName:
 
     10 => [
@@ -74,7 +74,7 @@ Set the eduPersonPrimaryAffiliation based on users' distinguishedName:
         'replacement' => 'staff',
         'target' => 'eduPersonPrimaryAffiliation',
     ],
-    
+
 Normalize the eduPersonPrimaryAffiliation:
 
     10 => [
@@ -84,7 +84,7 @@ Normalize the eduPersonPrimaryAffiliation:
         'replacement' => 'student',
         '%replace',
     ],
-    
+
 Get the domain of the emailaddress and put it in a separate attribute:
 
     10 => [
@@ -109,7 +109,7 @@ unless another attribute meets a condition:
         'target' => 'myAttribute',
         '%replace',
     ],
- 
+
 Remove internal, private values from eduPersonEntitlement:
 
     10 => [

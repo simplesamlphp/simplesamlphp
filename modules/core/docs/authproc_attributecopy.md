@@ -3,7 +3,6 @@
 
 Filter that copies attributes.
 
-
 Examples
 --------
 

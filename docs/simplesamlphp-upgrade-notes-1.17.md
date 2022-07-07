@@ -1,5 +1,4 @@
-Upgrade notes for SimpleSAMLphp 1.17
-====================================
+# Upgrade notes for SimpleSAMLphp 1.17
 
 The minimum PHP version required is now PHP 5.5.
 
@@ -19,18 +18,20 @@ array syntax. This should not have an impact as both will remain working
 equally, but the code examples and config templates look slightly different.
 The following are equivalent:
 
-    // Old style array syntax
-    $config = array(
-        'authproc' => array(
-            60 => 'class:etc'
-        ),
-        'other example' => 1
-    );
+```php
+// Old style array syntax
+$config = array(
+    'authproc' => array(
+        60 => 'class:etc'
+    ),
+    'other example' => 1
+);
 
-    // Current style array syntax
-    $config = [
-        'authproc' => [
-            60 => 'class:etc'
-        ],
-        'other example' => 1
-    ];
+// Current style array syntax
+$config = [
+    'authproc' => [
+        60 => 'class:etc'
+    ],
+    'other example' => 1
+];
+```

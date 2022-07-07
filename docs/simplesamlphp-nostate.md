@@ -1,5 +1,4 @@
-Debugging "State Information Lost" errors
-=========================================
+# Debugging "State Information Lost" errors
 
 **"State Information Lost"** (`\SimpleSAML\Error\NoState: NOSTATE`)
 
@@ -10,8 +9,7 @@ actually means, and some of the situations that can cause it.
 
 [TOC]
 
-What is "state information"?
-----------------------------
+## What is "state information"?
 
 The "state information" is data that SimpleSAMLphp stores in association with a
 request. The request is typically a SAML 2.0 authentication request sent to
@@ -21,14 +19,12 @@ This state information is given a random ID, e.g.
 "`_2da56e07840b59191d9797442b6b665d67d855cf77`", and is saved in the session of
 the user.
 
-What does it mean that it was lost?
------------------------------------
+## What does it mean that it was lost?
 
 This means that we tried to load state information with a specified ID, but
 were unable to find it in the session of the user.
 
-What can cause it to be lost?
------------------------------
+## What can cause it to be lost?
 
 There are several ways that this can happen, but most of them have to do
 with session storage. Here we will outline some generic alternatives, and
@@ -43,7 +39,7 @@ accessed. For example we may have the following scenario:
 1. The user accesses `https://www.example.org/`. A session is created for the user, and the session cookie is set for the current domain (www.example.org).
 1. The user needs to be authenticated. We therefore save some information about the current status in the state array, create a SAML 2.0 authentication request, and send it to the IdP.
 1. The user logs in on the IdP. The IdP then sends a response to the SP at `example.org`. However, the metadata for the SP that is registered at the IdP uses `https://example.org/` (without `www`) as the domain the response should be sent to. The authentication response is therefore sent to that domain.
-1. The SP (now at `https://example.org/`) tries to load the state information associated with the authentication response it received. But, because the domain name has changed, we do not receive the session cookie of the user. We are therefore unable to find the session of the user. When we attempt to load the state information from the session we are therefore unable to find it. 
+1. The SP (now at `https://example.org/`) tries to load the state information associated with the authentication response it received. But, because the domain name has changed, we do not receive the session cookie of the user. We are therefore unable to find the session of the user. When we attempt to load the state information from the session we are therefore unable to find it.
 
 There are several ways to solve this. One of the simplest is often to configure
 your webserver to only use one domain, and redirect all accesses to the other
@@ -55,11 +51,11 @@ change this in `php.ini`. If not, you should change it with the
 '`session.cookie.domain`' option in `config/config.php`. In either case, it should
 be set to the top-level domain with a "dot" in front of it. E.g.:
 
-	'session.cookie.domain' => '.example.org',
+    'session.cookie.domain' => '.example.org',
 
 Or in php.ini:
 
-	session.cookie_domain = ".example.org"
+    session.cookie_domain = ".example.org"
 
 Note that if you use PHP sessions, you will also have to make sure that your
 application uses the same domain when it sets the cookie. How that is done
@@ -95,7 +91,7 @@ settings used by the application:
 * `session.save_path`: This is the location the session files are saved. The default depends on your PHP installation.
 * `session.name`: This is the name of the session cookie. The default is "`PHPSESSID`".
 * `session.cookie_path`: The path that the session cookie is limited to. The default is "`/`", which means that it is available to all pages on your domain.
-* `session.cookie_domain`: This is the domain the session cookie is limited to. The default is unset, which makes the cookie available only to the current domain. 
+* `session.cookie_domain`: This is the domain the session cookie is limited to. The default is unset, which makes the cookie available only to the current domain.
 
 What those settings should be set to depends on the application. The simplest
 way to determine it may be to look for calls to `session_set_cookie_params` in
