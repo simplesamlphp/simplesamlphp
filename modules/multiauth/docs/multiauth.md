@@ -8,7 +8,6 @@ module:
 `multiauth:MultiAuth`
 : Authenticate the user against a list of authentication sources.
 
-
 `multiauth:MultiAuth`
 ---------------------
 
@@ -98,19 +97,19 @@ filtered to only those containing context class refs that are part of the list s
 If a single authsource results from this filtering the user will be taken directly to the
 authentication page for that source, and will never be shown the multiauth select page.
 
-It is possible to add the parameter `source` to the calling URL, 
+It is possible to add the parameter `source` to the calling URL,
 when accessing a service, to allow the user to preselect the
 authsource to be used. This can be handy if you support different
-authentication types for different types of users and you want the 
-users to have a direct link to the service and not want them to 
+authentication types for different types of users and you want the
+users to have a direct link to the service and not want them to
 select the correct authentication source.
 
 For example:
 
-    htttps://example.com/service/?source=saml
-    
-will take you directly to the SAML authentication source, instead 
-of hitting the multiauth select page, but this works only if you 
+`https://example.com/service/?source=saml`
+
+will take you directly to the SAML authentication source, instead
+of hitting the multiauth select page, but this works only if you
 don't have redirections during the authentication process.
 
 You can also use the multiauth:preselect parameter to the login call:
@@ -138,8 +137,8 @@ Or add the `preselect` option in the filter:
             ],
         ],
         'preselect' => 'example-saml',
-    ),
+    ],
 
-The order of priority, in case more than one option was used is: 
+The order of priority, in case more than one option was used is:
 `source` url parameter, `multiauth:preselect` login state and
 `preselect` filter option.

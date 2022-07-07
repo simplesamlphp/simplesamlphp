@@ -1,26 +1,25 @@
-IdP remote metadata reference
-=============================
+# IdP remote metadata reference
 
 [TOC]
 
 This is a reference for metadata options available for `metadata/saml20-idp-remote.php`. The file has the following format:
 
-    <?php
-    /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = [
-        /* Configuration options for the first IdP. */
-    ];
-    $metadata['entity-id-2'] = [
-        /* Configuration options for the second IdP. */
-    ];
-    /* ... */
+```php
+<?php
+/* The index of the array is the entity ID of this IdP. */
+$metadata['entity-id-1'] = [
+    /* Configuration options for the first IdP. */
+];
+$metadata['entity-id-2'] = [
+    /* Configuration options for the second IdP. */
+];
+/* ... */
+```
 
-
-Options
--------
+## Options
 
 `AuthnContextClassRef`
-:    The AuthnContextClassRef that will be sent in the login request.
+:   The AuthnContextClassRef that will be sent in the login request.
 
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
@@ -28,12 +27,12 @@ Options
 
 `AuthnContextComparison`
 
-:    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
+:   The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
 
-        SAML2\Constants::COMPARISON_EXACT (default)
-        SAML2\Constants::COMPARISON_BETTER
-        SAML2\Constants::COMPARISON_MINIMUM
-        SAML2\Constants::COMPARISON_MAXIMUM
+* SAML2\Constants::COMPARISON_EXACT (default)
+* SAML2\Constants::COMPARISON_BETTER
+* SAML2\Constants::COMPARISON_MINIMUM
+* SAML2\Constants::COMPARISON_MAXIMUM
 
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
@@ -57,9 +56,9 @@ Options
 :   This option can be translated into multiple languages in the same way as the `name`-option.
 
 `disable_scoping`
-:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
-     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
-     interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
+:   Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
+    When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
+    interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
 
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
@@ -81,7 +80,6 @@ Options
 `hide.from.discovery`
 :   Whether to hide hide this IdP from the local discovery or not. Set to true to hide it. Defaults to false.
 
-
 `icon`
 :   A logo which will be shown next to this IdP in the discovery service.
 
@@ -95,10 +93,12 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'name' => [
-            'en' => 'A service',
-            'no' => 'En tjeneste',
-        ],
+```php
+'name' => [
+    'en' => 'A service',
+    'no' => 'En tjeneste',
+],
+```
 
 `nameid.encryption`
 :   Whether NameIDs sent to this IdP should be encrypted. The default
@@ -123,10 +123,12 @@ Options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => [
-            'en' => 'Example organization',
-            'no' => 'Eksempel organisation',
-        ],
+```php
+'OrganizationName' => [
+   'en' => 'Example organization',
+    'no' => 'Eksempel organisation',
+],
+```
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -160,12 +162,12 @@ Options
     This value in the IdP remote metadata overrides the value in the SP configuration.
 :   Possible values:
 
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-      The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+  The default.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
@@ -201,7 +203,6 @@ Options
 :   Note that this option also exists in the SP configuration.
     This value in the IdP remote metadata overrides the value in the SP configuration.
 
-
 ### Decrypting assertions
 
 It is possible to decrypt the assertions received from an IdP. Currently the only algorithm supported is `AES128_CBC` or `RIJNDAEL_128`.
@@ -221,12 +222,12 @@ There are two modes of encryption supported by SimpleSAMLphp. One is symmetric e
 `sharedkey_algorithm`
 :   Algorithm which should be used for decryption. Possible values are:
 
-    * http://www.w3.org/2001/04/xmlenc#aes128-cbc
-    * http://www.w3.org/2001/04/xmlenc#aes192-cbc
-    * http://www.w3.org/2001/04/xmlenc#aes256-cbc
-    * http://www.w3.org/2009/xmlenc11#aes128-gcm
-    * http://www.w3.org/2009/xmlenc11#aes192-gcm
-    * http://www.w3.org/2009/xmlenc11#aes256-gcm
+* `http://www.w3.org/2001/04/xmlenc#aes128-cbc`
+* `http://www.w3.org/2001/04/xmlenc#aes192-cbc`
+* `http://www.w3.org/2001/04/xmlenc#aes256-cbc`
+* `http://www.w3.org/2009/xmlenc11#aes128-gcm`
+* `http://www.w3.org/2009/xmlenc11#aes192-gcm`
+* `http://www.w3.org/2009/xmlenc11#aes256-gcm`
 
 ### Fields for signing and validating messages
 
@@ -238,7 +239,9 @@ SimpleSAMLphp only signs authentication responses by default. Signing of authent
 `redirect.validate`
 :   Whether logout requests and logout responses received from this IdP should be validated. The default is `FALSE`.
 
-**Example: Configuration for validating messages**
+**Example: Configuration for validating messages**:
 
-    'redirect.validate' => TRUE,
-    'certificate' => 'example.org.crt',
+```php
+'redirect.validate' => true,
+'certificate' => 'example.org.crt',
+```

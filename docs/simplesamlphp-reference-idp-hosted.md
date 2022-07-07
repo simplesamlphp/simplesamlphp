@@ -1,43 +1,41 @@
-IdP hosted metadata reference
-=============================
+# IdP hosted metadata reference
 
 [TOC]
 
 This is a reference for the metadata file `metadata/saml20-idp-hosted.php`.
 Both files have the following format:
 
-    <?php
-    /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = [
-        'host' => 'idp.example.org',
-        /* Configuration options for the first IdP. */
-    ];
-    $metadata['entity-id-2'] = [
-        'host' => '__DEFAULT__',
-        /* Configuration options for the default IdP. */
-    ];
-    /* ... */
+```php
+<?php
+/* The index of the array is the entity ID of this IdP. */
+$metadata['entity-id-1'] = [
+    'host' => 'idp.example.org',
+    /* Configuration options for the first IdP. */
+];
+$metadata['entity-id-2'] = [
+    'host' => '__DEFAULT__',
+    /* Configuration options for the default IdP. */
+];
+/* ... */
+```
 
 The entity ID must be a URI, that is unlikely to change for technical or
 political reasons. We recommend it to be a domain name you own.
 The URL does not have to resolve to actual content, it's
 just an identifier. If your organization's domain is `example.org`:
 
-    https://example.org/saml-idp
+`https://example.org/saml-idp`
 
 For guidance in picking an entityID, see
 [InCommon's best practice](https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid)
 on the matter.
-
 
 The `host` option is the hostname of the IdP, and will be used to
 select the correct configuration. One entry in the metadata-list can
 have the host `__DEFAULT__`. This entry will be used when no other
 entry matches.
 
-
-Common options
---------------
+## Common options
 
 `auth`
 :   Which authentication module should be used to authenticate users on
@@ -51,36 +49,40 @@ Common options
 :   Location of certificate data which should be used by this IdP, in PEM format.
 
 `contacts`
-:	Specify contacts in addition to the technical contact configured through config/config.php.
-	For example, specifying a support contact:
+:   Specify contacts in addition to the technical contact configured through config/config.php.
+    For example, specifying a support contact:
 
-		'contacts' => [
-		    [
-		        'contactType'       => 'support',
-		        'emailAddress'      => 'support@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		    ],
-		],
+```php
+'contacts' => [
+    [
+        'contactType'       => 'support',
+        'emailAddress'      => 'support@example.org',
+        'givenName'         => 'John',
+        'surName'           => 'Doe',
+        'telephoneNumber'   => '+31(0)12345678',
+        'company'           => 'Example Inc.',
+    ],
+],
+```
 
-:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
+:   If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
 
-		'contacts' => [
-		    [
-		        'contactType'       => 'other',
-		        'emailAddress'      => 'mailto:abuse@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		        'attributes'        => [
-		            'xmlns:remd'        => 'http://refeds.org/metadata',
-		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-		        ],
-		    ],
-		],
+```php
+'contacts' => [
+    [
+        'contactType'       => 'other',
+        'emailAddress'      => 'mailto:abuse@example.org',
+        'givenName'         => 'John',
+        'surName'           => 'Doe',
+        'telephoneNumber'   => '+31(0)12345678',
+        'company'           => 'Example Inc.',
+        'attributes'        => [
+            'xmlns:remd'        => 'http://refeds.org/metadata',
+            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+        ],
+    ],
+],
+```
 
 `host`
 :   The hostname for this IdP. One IdP can also have the `host`-option
@@ -92,25 +94,27 @@ Common options
 
 `OrganizationName`, `OrganizationDisplayName`, `OrganizationURL`
 :   The name and URL of the organization responsible for this IdP.
-    You need to either specify _all three_ or none of these options.
+    You need to either specify *all three* or none of these options.
 
 :   The Name does not need to be suitable for display to end users, the DisplayName should be.
     The URL is a website the user can access for more information about the organization.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => [
-            'en' => 'Voorbeeld Organisatie Foundation b.a.',
-            'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-        ],
-        'OrganizationDisplayName' => [
-            'en' => 'Example organization',
-            'nl' => 'Voorbeeldorganisatie',
-        ],
-        'OrganizationURL' => [
-            'en' => 'https://example.com',
-            'nl' => 'https://example.com/nl',
-        ],
+```php
+'OrganizationName' => [
+    'en' => 'Voorbeeld Organisatie Foundation b.a.',
+    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+],
+'OrganizationDisplayName' => [
+    'en' => 'Example organization',
+    'nl' => 'Voorbeeldorganisatie',
+],
+'OrganizationURL' => [
+    'en' => 'https://example.com',
+    'nl' => 'https://example.com/nl',
+],
+```
 
 `privatekey`
 :   Location of private key data for this IdP, in PEM format.
@@ -125,9 +129,7 @@ Common options
     A scope can either be a domain name or a regular expression
     matching a number of domains.
 
-
-SAML 2.0 options
-----------------
+## SAML 2.0 options
 
 The following SAML 2.0 options are available:
 
@@ -163,8 +165,7 @@ The following SAML 2.0 options are available:
     priority:
 
 :   1.  SP Remote Metadata
-
-    2.  IdP Hosted Metadata
+:   2.  IdP Hosted Metadata
 
 :   The default value is:
     `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`
@@ -173,11 +174,9 @@ The following SAML 2.0 options are available:
     Specification:
 
 :   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
-
-    -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
+:   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
         in Shibboleth 2.0, mandatory as per SAML2INT)
-
-    -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
+:   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
         default in Sun Access Manager)
 
 :   You can also define your own value.
@@ -217,14 +216,13 @@ The following SAML 2.0 options are available:
     the following priority:
 
 :   1.  SP Remote Metadata
-
-    2.  IdP Hosted Metadata
+:   2.  IdP Hosted Metadata
 
 :   The three most commonly used values are:
 
 :   1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
-    2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
-    3.  `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
+:   2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
+:   3.  `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
 
 :   The `transient` format will generate a new unique ID every time
     the user logs in.
@@ -274,12 +272,12 @@ The following SAML 2.0 options are available:
 :   The algorithm to use when signing any message generated by this identity provider. Defaults to RSA-SHA256.
 :   Possible values:
 
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-       The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+  The default.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `sign.logout`
 :   Whether to sign logout messages sent from this IdP.
@@ -299,15 +297,15 @@ The following SAML 2.0 options are available:
     page.
 
 `SingleSignOnServiceBinding`
-:	List of SingleSignOnService bindings that the IdP will claim support for.
-:	Possible values:
+:   List of SingleSignOnService bindings that the IdP will claim support for.
+:   Possible values:
 
-	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
-	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 
-:	Defaults to HTTP-Redirect binding. Please note that the order
-	specified will be kept in the metadata, making the first binding
-	the default one.
+:   Defaults to HTTP-Redirect binding. Please note that the order
+    specified will be kept in the metadata, making the first binding
+    the default one.
 
 `SingleLogoutService`
 :   Override the default URL for the SingleLogoutService for this
@@ -321,22 +319,22 @@ The following SAML 2.0 options are available:
 
 `SingleLogoutServiceBinding`
 :   List of SingleLogoutService bindings the IdP will claim support for.
-:	Possible values:
+:   Possible values:
 
-	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
-	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 
-:	Defaults to HTTP-Redirect binding. Please note that the order
-	specified will be kept in the metadata, making the first binding
-	the default one.
+:   Defaults to HTTP-Redirect binding. Please note that the order
+    specified will be kept in the metadata, making the first binding
+    the default one.
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent to this IdP.
     Set it to:
 
-    true: authnrequest must be signed (and signature will be validated)
-    null: authnrequest may be signed, if it is, signature will be validated
-    false: authnrequest signature is never checked
+:   true: authnrequest must be signed (and signature will be validated)
+:   null: authnrequest may be signed, if it is, signature will be validated
+:   false: authnrequest signature is never checked
 
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
@@ -348,7 +346,6 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
-
 
 ### Fields for signing and validating messages
 
@@ -371,57 +368,57 @@ messages from that SP.
     responses received sent from this IdP should be validated. The
     default is `FALSE`
 
+**Example: Configuration for signed messages**:
 
-**Example: Configuration for signed messages**
+```php
+'redirect.sign' => true,
+```
 
-     'redirect.sign' => true,
-
-
-Metadata extensions
--------------------
+## Metadata extensions
 
 SimpleSAMLphp supports generating metadata with the MDUI, MDRPI and EntityAttributes metadata extensions.
 See the documentation for those extensions for more details:
 
-  * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
-  * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
-  * [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
+* [MDUI extension](./simplesamlphp-metadata-extensions-ui)
+* [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
+* [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
 
 For other metadata extensions, you can use the `saml:Extensions` option:
 
 `saml:Extensions`
 :   An array of `\SAML2\XML\Chunk`s to include in the IdP metadata extensions, at the same level as `EntityAttributes`.
 
-Examples
---------
+`Examples`:
 
 These are some examples of IdP metadata
 
-### Minimal SAML 2.0 IdP ###
+### Minimal SAML 2.0 IdP
 
-    <?php
+```php
+<?php
 
-    $metadata['https://example.org/saml-idp'] = [
-        /*
-         * We use '__DEFAULT__' as the hostname so we won't have to
-         * enter a hostname.
-         */
-        'host' => '__DEFAULT__',
+$metadata['https://example.org/saml-idp'] = [
+    /*
+     * We use '__DEFAULT__' as the hostname so we won't have to
+     * enter a hostname.
+     */
+    'host' => '__DEFAULT__',
 
-        /* The private key and certificate used by this IdP. */
-        'certificate' => 'example.org.crt',
-        'privatekey' => 'example.org.pem',
+    /* The private key and certificate used by this IdP. */
+    'certificate' => 'example.org.crt',
+    'privatekey' => 'example.org.pem',
 
-        /*
-         * The authentication source for this IdP. Must be one
-         * from config/authsources.php.
-         */
-        'auth' => 'example-userpass',
-    ];
-
-### A custom metadata extension (eduGAIN republish request) ###
-
+    /*
+     * The authentication source for this IdP. Must be one
+     * from config/authsources.php.
+     */
+    'auth' => 'example-userpass',
+];
 ```
+
+### A custom metadata extension (eduGAIN republish request)
+
+```php
 <?php
 
 $dom = \SAML2\DOMDocumentFactory::create();
@@ -445,7 +442,7 @@ $metadata['https://example.org/saml-idp'] = [
 
 this generates the following metadata:
 
-```
+```xml
 <EntityDescriptor entityID="...">
   <Extensions xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
     <eduidmd:RepublishRequest xmlns:eduidmd="http://eduid.cz/schema/metadata/1.0">

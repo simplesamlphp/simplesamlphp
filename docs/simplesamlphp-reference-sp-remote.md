@@ -1,11 +1,9 @@
-SP remote metadata reference
-============================
+# SP remote metadata reference
 
 [TOC]
 
 This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
 Both files have the following format:
-
 
 ```php
 <?php
@@ -19,9 +17,7 @@ $metadata['entity-id-2'] = [
 /* ... */
 ```
 
-
-Common options
---------------
+## Common options
 
 The following options can be set:
 
@@ -55,10 +51,12 @@ The following options can be set:
 :   This option can be translated into multiple languages by specifying
     the value as an array of language-code to translated name:
 
-        'name' => [
-            'en' => 'A service',
-            'no' => 'En tjeneste',
-        ],
+```php
+'name' => [
+    'en' => 'A service',
+    'no' => 'En tjeneste',
+],
+```
 
 `OrganizationName`
 :   The name of the organization responsible for this SPP.
@@ -66,10 +64,12 @@ The following options can be set:
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => [
-            'en' => 'Example organization',
-            'no' => 'Eksempel organisation',
-        ],
+```php
+'OrganizationName' => [
+    'en' => 'Example organization',
+    'no' => 'Eksempel organisation',
+],
+```
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -138,7 +138,7 @@ The following options can be set:
     IdP-hosted metadata.
 
 `audience`
-:   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID. 
+:   An array of additional entities to be added to the AudienceRestriction. By default the only audience is the SP's entityID.
 
 `certData`
 :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
@@ -213,12 +213,12 @@ The following options can be set:
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 :   Possible values:
 
-:    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-      The default.
-:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-:    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+  The default.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `signature.privatekey`
 :   Location of private key data for this IdP, in PEM format.
@@ -280,7 +280,7 @@ The following options can be set:
 :   Whether to skip validating that the AssertionConsumerServiceURL sent in authentication
     requests exist in SP metadata.  Only allowed for signed requests.
     This option must be a simple boolean (true/false - although a value of false essentially has
-    no effect) or a callable.  When used as a callable, the static class method must accept the 
+    no effect) or a callable.  When used as a callable, the static class method must accept the
     SP metadata config as a parameter and return a boolean.
 
 ### Encrypting assertions
@@ -310,12 +310,12 @@ of the SP.
 `sharedkey_algorithm`
 :   Algorithm which should be used for encryption. Possible values are:
 
-:    * `http://www.w3.org/2001/04/xmlenc#aes128-cbc`
-:    * `http://www.w3.org/2001/04/xmlenc#aes192-cbc`
-:    * `http://www.w3.org/2001/04/xmlenc#aes256-cbc`
-:    * `http://www.w3.org/2009/xmlenc11#aes128-gcm`
-:    * `http://www.w3.org/2009/xmlenc11#aes192-gcm`
-:    * `http://www.w3.org/2009/xmlenc11#aes256-gcm`
+* `http://www.w3.org/2001/04/xmlenc#aes128-cbc`
+* `http://www.w3.org/2001/04/xmlenc#aes192-cbc`
+* `http://www.w3.org/2001/04/xmlenc#aes256-cbc`
+* `http://www.w3.org/2009/xmlenc11#aes128-gcm`
+* `http://www.w3.org/2009/xmlenc11#aes192-gcm`
+* `http://www.w3.org/2009/xmlenc11#aes256-gcm`
 
 ### Fields for signing and validating messages
 
@@ -335,10 +335,12 @@ These options overrides the options set in `saml20-idp-hosted`.
     responses received from this SP should be validated. The default is
     `FALSE`
 
-**Example: Configuration for validating messages**
+#### Example: Configuration for validating messages
 
-    'redirect.validate' => TRUE,
-    'certificate' => 'example.org.crt',
+```php
+'redirect.validate' => true,
+'certificate' => 'example.org.crt',
+```
 
 ### Fields for scoping
 
@@ -350,7 +352,8 @@ sp can use.
 relevant for this SP. It will override any list set in the IdP's
 metadata.
 
-**Example: Configuration for scoping**
+#### Example: Configuration for scoping
 
-
-     'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
+```php
+'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
+```

@@ -27,7 +27,6 @@ The following groups will be created:
 * `eduPersonAffiliation-example.org-student`
 * `eduPersonAffiliation-example.org-member`
 
-
 Examples
 --------
 
@@ -48,4 +47,3 @@ Custom attributes:
             'someOtherAttribute',
         ],
     ],
-

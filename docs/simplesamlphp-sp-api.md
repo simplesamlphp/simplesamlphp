@@ -1,13 +1,11 @@
-SimpleSAMLphp SP API reference
-==============================
+# SimpleSAMLphp SP API reference
 
 [TOC]
 
 This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 
-### Note on PHP sessions and SimpleSAMLphp API calls
-
+**Note on PHP sessions and SimpleSAMLphp API calls**:
 Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
 
 ```php
@@ -21,8 +19,7 @@ SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP se
 $_SESSION['key'] = 'value';
 ```
 
-Constructor
------------
+## Constructor
 
 ```php
 new \SimpleSAML\Auth\Simple(string $authSource)
@@ -30,19 +27,18 @@ new \SimpleSAML\Auth\Simple(string $authSource)
 
 The constructor initializes a \SimpleSAML\Auth\Simple object.
 
-### Parameters
+`Parameters`:
 
 It has a single parameter, which is the ID of the authentication source that should be used.
 This authentication source must exist in `config/authsources.php`.
 
-### Example
+`Example`:
 
 ```php
 $auth = new \SimpleSAML\Auth\Simple('default-sp');
 ```
 
-`isAuthenticated`
------------------
+### isAuthenticated
 
 ```php
 bool isAuthenticated()
@@ -51,7 +47,7 @@ bool isAuthenticated()
 Check whether the user is authenticated with this authentication source.
 `TRUE` is returned if the user is authenticated, `FALSE` if not.
 
-### Example
+`Example`:
 
 ```php
 if (!$auth->isAuthenticated()) {
@@ -61,8 +57,7 @@ if (!$auth->isAuthenticated()) {
 }
 ```
 
-`requireAuth`
--------------
+### requireAuth
 
 ```php
 void requireAuth(array $params = [])
@@ -72,13 +67,12 @@ Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
 If the user isn't authenticated, this function will start the authentication process.
 
-### Parameters
+`Parameters`:
 
 `$params` is an associative array with named parameters for this function.
 See the documentation for the `login`-function for a description of the parameters.
 
-
-### Example 1
+`Example 1`:
 
 ```php
 $auth->requireAuth();
@@ -86,7 +80,7 @@ SimpleSAML_Session::getSessionFromRequest()->cleanup();
 print("Hello, authenticated user!");
 ```
 
-### Example 2
+`Example 2`:
 
 ```php
 /*
@@ -101,8 +95,7 @@ SimpleSAML_Session::getSessionFromRequest()->cleanup();
 print("Hello, authenticated user!");
 ```
 
-`login`
--------------
+### login
 
 ```php
 void login(array $params = [])
@@ -111,7 +104,7 @@ void login(array $params = [])
 Start a login operation.
 This function will always start a new authentication process.
 
-### Parameters
+`Parameters`:
 
 The following global parameters are supported:
 
@@ -135,46 +128,44 @@ The following global parameters are supported:
 
 The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 
-
-### Example
+`Example`:
 
 ```php
 # Send a passive authentication request.
 $auth->login([
-    'isPassive' => TRUE,
-     'ErrorURL' => 'https://.../error_handler.php',
- ]);
- SimpleSAML_Session::getSessionFromRequest()->cleanup();
+    'isPassive' => true,
+    'ErrorURL' => 'https://.../error_handler.php',
+]);
+SimpleSAML_Session::getSessionFromRequest()->cleanup();
 ```
 
-`logout`
---------
+### logout
 
 ```php
-void logout(mixed $params = NULL)
+void logout(mixed $params = null)
 ```
 
 Log the user out.
 After logging out, the user will either be redirected to another page, or a function will be called.
 This function never returns.
 
-### Parameters
+`Parameters`:
 
 `$params`
 :   Parameters for the logout operation.
-    This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
-    If this parameter isn't specified, we will redirect the user to the current URL after logout.
+:   This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
+:   If this parameter isn't specified, we will redirect the user to the current URL after logout.
 
-    If the parameter is an an array, it can have the following options:
+:   If the parameter is an an array, it can have the following options:
 
-    - `ReturnTo`: The URL the user should be returned to after logout.
-    - `ReturnCallback`: The function that should be called after logout.
-    - `ReturnStateParam`: The parameter we should return the state in when redirecting.
-    - `ReturnStateStage`: The stage the state array should be saved with.
+- `ReturnTo`: The URL the user should be returned to after logout.
+- `ReturnCallback`: The function that should be called after logout.
+- `ReturnStateParam`: The parameter we should return the state in when redirecting.
+- `ReturnStateStage`: The stage the state array should be saved with.
 
     The `ReturnState` parameters allow access to the result of the logout operation after it completes.
 
-### Example 1
+`Example 1`:
 
 Logout, and redirect to the specified URL.
 
@@ -183,7 +174,7 @@ $auth->logout('https://sp.example.org/logged_out.php');
 SimpleSAML_Session::getSessionFromRequest()->cleanup();
 ```
 
-### Example 2
+`Example 2`:
 
 Same as the previous, but check the result of the logout operation afterwards.
 
@@ -210,8 +201,7 @@ if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['
 }
 ```
 
-`getAttributes`
----------------
+### getAttributes
 
 ```php
 array getAttributes()
@@ -229,7 +219,7 @@ The attributes will be returned as an associative array with the name of the att
 ]
 ```
 
-### Example
+`Example`:
 
 ```php
 $attrs = $auth->getAttributes();
@@ -241,8 +231,7 @@ $name = $attrs['displayName'][0];
 print('Hello, ' . htmlspecialchars($name));
 ```
 
-`getAuthData`
----------------
+### getAuthData
 
 ```php
 mixed getAuthData(string $name)
@@ -254,7 +243,7 @@ NULL is returned if the user isn't authenticated.
 The available authentication data depends on the module used for authentication.
 See the [`saml:SP`](./saml:sp) reference for information about available SAML authentication data.
 
-### Example
+`Example`:
 
 ```php
 $idp = $auth->getAuthData('saml:sp:IdP');
@@ -262,23 +251,22 @@ $nameID = $auth->getAuthData('saml:sp:NameID')->getValue();
 printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
 ```
 
-`getLoginURL`
--------------
+### getLoginURL
 
 ```php
-string getLoginURL(string $returnTo = NULL)
+string getLoginURL(string $returnTo = null)
 ```
 
 Retrieve a URL that can be used to start authentication.
 
-### Parameters
+`Parameters`:
 
 `$returnTo`
 
 :   The URL the user should be returned to after authentication.
     The default is the current page.
 
-### Example
+`Example`:
 
 ```php
 $url = $auth->getLoginURL();
@@ -286,17 +274,14 @@ $url = $auth->getLoginURL();
 print('<a href="' . htmlspecialchars($url) . '">Login</a>');
 ```
 
-### Note
-
+**Note**:
 The URL returned by this function is static, and will not change.
 You can easily create your own links without using this function.
 The URL should be:
 
-     .../simplesaml/module.php/core/login/<authentication source>?ReturnTo=<return URL>
+`.../simplesaml/module.php/core/login/<authentication source>?ReturnTo=<return URL>`
 
-
-`getLogoutURL`
---------------
+### getLogoutURL
 
 ```php
 string getLogoutURL(string $returnTo = NULL)
@@ -304,14 +289,14 @@ string getLogoutURL(string $returnTo = NULL)
 
 Retrieve a URL that can be used to trigger logout.
 
-### Parameters
+`Parameters`:
 
 `$returnTo`
 
 :   The URL the user should be returned to after logout.
     The default is the current page.
 
-### Example
+`Example`:
 
 ```php
 $url = $auth->getLogoutURL();
@@ -319,10 +304,9 @@ $url = $auth->getLogoutURL();
 print('<a href="' . htmlspecialchars($url) . '">Logout</a>');
 ```
 
-### Note
-
+**Note**:
 The URL returned by this function is static, and will not change.
 You can easily create your own links without using this function.
 The URL should be:
 
-     .../simplesaml/module.php/core/logout/<authentication source>?ReturnTo=<return URL>
+`.../simplesaml/module.php/core/logout/<authentication source>?ReturnTo=<return URL>`

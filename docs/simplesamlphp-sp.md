@@ -8,8 +8,7 @@ described in the [SimpleSAMLphp installation instructions](installation).
 
 [installation]: simplesamlphp-install
 
-Configuring the SP
-------------------
+## Configuring the SP
 
 The SP is configured by an entry in `config/authsources.php`.
 
@@ -26,6 +25,7 @@ $config = [
     ],
 ];
 ```
+
 The entity ID must be a URI, that is unlikely to change for technical or
 political reasons. We recommend it to be a domain name that you own.
 Like above, if your organization's main domain is `example.org` and this SP is
@@ -80,8 +80,7 @@ Then edit your `authsources.php` entry, and add references to your certificate:
     ],
 ```
 
-Adding IdPs to the SP
----------------------
+## Adding IdPs to the SP
 
 The service provider you are configuring needs to know about the identity
 providers you are going to connect to it. This is configured by metadata
@@ -113,9 +112,7 @@ your SimpleSAMLphp installation.
 Note that the idp-remote file lists all IdPs you trust.
 You should remove all IdPs that you don't use.
 
-
-Setting the default IdP
------------------------
+## Setting the default IdP
 
 An option in the authentication source allows you to configure which IdP should
 be used. This is the `idp` option.
@@ -136,8 +133,7 @@ $config = [
 ];
 ```
 
-Exchange metadata with the IdP
-------------------------------
+## Exchange metadata with the IdP
 
 In order to complete the connection between your SP and an IdP, you must
 exchange the metadata of your SP with the IdP. The metadata of your SP can be
@@ -159,11 +155,9 @@ provide the *SAML 2.0 metadata of your SP*, and register that with the
 federation administration. You will probably be required too to consume
 the federation metadata periodically. Read more about
 [automated metadata management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
-to learn more about that. 
+to learn more about that.
 
-
-Test the SP
------------
+## Test the SP
 
 After the metadata is configured on the IdP, you should be able to test the
 configuration. The admin module of SimpleSAMLphp has a tab to test
@@ -180,8 +174,7 @@ The test page should contain a list of your attributes:
 For a better looking, more advanced Discovery Service with tabs and live
 search, you may want to use the `discopower` module.
 
-Integrating authentication with your own application
-----------------------------------------------------
+## Integrating authentication with your own application
 
 The API is documented in [the SP API reference](simplesamlphp-sp-api).
 
@@ -275,9 +268,7 @@ session_set_save_handler($handler);
 session_start();
 ```
 
-
-Support
--------
+## Support
 
 If you need help to make this work, or want to discuss SimpleSAMLphp with other
 users of the software, you are fortunate: Around SimpleSAMLphp there is a great
@@ -285,6 +276,6 @@ Open source community, and you are welcome to join! The forums are open for you
 to ask questions, contribute answers other further questions, request
 improvements or contribute with code or plugins of your own.
 
--  [SimpleSAMLphp homepage](https://simplesamlphp.org)
--  [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
--  [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+- [SimpleSAMLphp homepage](https://simplesamlphp.org)
+- [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
+- [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)

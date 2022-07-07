@@ -1,11 +1,8 @@
-NameID generation filters
-=========================
+# NameID generation filters
 
 This document describes the NameID generation filters in the saml module.
 
-
-Common options
---------------
+## Common options
 
 `NameQualifier`
 :   The NameQualifier attribute for the generated NameID.
@@ -23,13 +20,11 @@ Common options
 
 :   The default is `true`, which means that we will use the SP entity ID.
 
-
-`saml:AttributeNameID`
-----------------------
+## `saml:AttributeNameID`
 
 Uses the value of an attribute to generate a NameID.
 
-### Options
+**Options**:
 
 `attribute`
 :   The name of the attribute we should use as the unique user ID.
@@ -37,31 +32,24 @@ Uses the value of an attribute to generate a NameID.
 `Format`
 :   The `Format` attribute of the generated NameID.
 
-
-
-`saml:PersistentNameID`
------------------------
+## `saml:PersistentNameID`
 
 Generates a persistent NameID with the format `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`.
 The filter will take the user ID from the attribute described in the `attribute` option, and hash it with the `secretsalt` from `config.php`, and the SP and IdP entity ID.
 The resulting hash is sent as the persistent NameID.
 
-### Options
+**Options**:
 
 `attribute`
 :   The name of the attribute we should use as the unique user ID.
 
-
-`saml:TransientNameID`
-----------------------
+## `saml:TransientNameID`
 
 Generates a transient NameID with the format `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
 
 No extra options are available for this filter.
 
-
-`saml:SQLPersistentNameID`
---------------------------
+## `saml:SQLPersistentNameID`
 
 Generates and stores persistent NameIDs in a SQL database.
 
@@ -70,7 +58,7 @@ To use this filter, either specify the `store` option and a database,
 or configure SimpleSAMLphp to use a SQL datastore.
 See the `store.type` configuration option in `config.php`.
 
-### Options
+**Options**:
 
 `attribute`
 :   The name of the attribute we should use as the unique user ID.
@@ -93,9 +81,7 @@ See the `store.type` configuration option in `config.php`.
 
 Setting both `allowUnspecified` and `alwaysCreate` to `true` causes `saml:SQLPersistentNameID` to behave like `saml:PersistentNameID` (and other NameID generation filters), at the expense of creating unnecessary entries in the SQL datastore.
 
-
-`saml:PersistentNameID2TargetedID`
-----------------------------------
+## `saml:PersistentNameID2TargetedID`
 
 Stores a persistent NameID in the `eduPersonTargetedID`-attribute.
 
@@ -103,7 +89,7 @@ This filter is not actually a NameID generation filter.
 Instead, it takes a persistent NameID and adds it as an attribute in the assertion.
 This can be used to set the `eduPersonTargetedID`-attribute to the same value as the persistent NameID.
 
-### Options
+**Options**:
 
 `attribute`
 :   The name of the attribute we should store the result in.
@@ -113,10 +99,7 @@ This can be used to set the `eduPersonTargetedID`-attribute to the same value as
 :   Whether the generated attribute should be an saml:NameID element.
     The default is `true`.
 
-
-
-Example
--------
+**Example**:
 
 This example makes three NameIDs available:
 

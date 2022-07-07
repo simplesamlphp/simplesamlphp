@@ -15,10 +15,10 @@ An example of this is:
     <?php
     $metadata['entity-id-1'] = [
         /* ... */
-		'EntityAttributes' => [
-			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
-			'{urn:simplesamlphp:v1}foo'          => ['bar'],
-		],
+        'EntityAttributes' => [
+            'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+            '{urn:simplesamlphp:v1}foo'          => ['bar'],
+        ],
         /* ... */
     ];
 
@@ -37,9 +37,9 @@ metadata. Each item in the `EntityAttributes` array defines a new
 array. Each item in this array produces a separate `<AttributeValue>`
 element within the `<Attribute>` element.
 
-		'EntityAttributes' => [
-			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
-		],
+    'EntityAttributes' => [
+        'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+    ],
 
 This generates:
 
@@ -52,9 +52,9 @@ This generates:
 Each `<Attribute>` element requires a `NameFormat` attribute. This is
 specified using curly braces at the beginning of the key name:
 
-		'EntityAttributes' => [
-			'{urn:simplesamlphp:v1}foo' => ['bar'],
-		],
+    'EntityAttributes' => [
+        '{urn:simplesamlphp:v1}foo' => ['bar'],
+    ],
 
 This generates:
 
@@ -76,34 +76,33 @@ If given the following configuration...
         'privatekey' => 'example.com.pem',
         'auth' => 'example-userpass',
 
-		'EntityAttributes' => [
-			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
-			'{urn:simplesamlphp:v1}foo'          => ['bar'],
-		],
-	];
+        'EntityAttributes' => [
+            'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+            '{urn:simplesamlphp:v1}foo' => ['bar'],
+        ],
+    ];
 
 ... will generate the following XML metadata:
 
-	<?xml version="1.0"?>
-	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://example.com/saml-idp">
-	  <md:Extensions>
-		<mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
-		  <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
-			<saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">is</saml:AttributeValue>
-			<saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">really</saml:AttributeValue>
-			<saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">cool</saml:AttributeValue>
-		  </saml:Attribute>
-		  <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1">
-			<saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">bar</saml:AttributeValue>
-		  </saml:Attribute>
-		</mdattr:EntityAttributes>
-	  </md:Extensions>
-	  <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-		<md:KeyDescriptor use="signing">
-		  <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-			<ds:X509Data>
-            ...
-
+    <?xml version="1.0"?>
+    <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://example.com/saml-idp">
+      <md:Extensions>
+        <mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+          <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+            <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">is</saml:AttributeValue>
+            <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">really</saml:AttributeValue>
+            <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">cool</saml:AttributeValue>
+          </saml:Attribute>
+          <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1">
+            <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">bar</saml:AttributeValue>
+          </saml:Attribute>
+        </mdattr:EntityAttributes>
+      </md:Extensions>
+      <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <md:KeyDescriptor use="signing">
+          <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+              ...
 
 An example configuration to declare Géant Data Protection Code of Conduct
 entity category support for a service provider in `authsources.php`:

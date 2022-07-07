@@ -52,7 +52,7 @@ Only allow specific values for an attribute ignoring case.
              ]
         ],
     ],
-    
+
 Only allow specific values for an attribute that match a regex pattern
 
     'authproc' => [
@@ -65,8 +65,7 @@ Only allow specific values for an attribute that match a regex pattern
             ]
         ],
     ],
-    
-    
+
 Don't allow any attributes by default, but allow the metadata to override it.
 
     'authproc' => [

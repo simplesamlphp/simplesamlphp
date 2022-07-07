@@ -7,7 +7,7 @@ SAML V2.0 Metadata Extensions for Registration and Publication Information
     http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Author: Jaime Perez [jaime.perez@uninett.no](mailto:jaime.perez@uninett.no)
+* Author: Jaime Perez [jaime.perez@uninett.no](mailto:jaime.perez@uninett.no)
 
 [TOC]
 
@@ -19,19 +19,19 @@ This extension aims to provide information about the registrars and publishers o
 available through different endpoints and modules that provide metadata all along SimpleSAMLphp. More specifically, this
 extension can be used for:
 
-- metadata published for a [hosted service provider](./saml:sp).
-- metadata published for a [hosted identity provider](./simplesamlphp-reference-idp-hosted).
-- metadata collected and published by means of the [`aggregator`](./aggregator:aggregator) or [`aggregator2`](./aggregator2:aggregator2) modules.
+* metadata published for a [hosted service provider](./saml:sp).
+* metadata published for a [hosted identity provider](./simplesamlphp-reference-idp-hosted).
+* metadata collected and published by means of the [`aggregator`](./aggregator:aggregator) or [`aggregator2`](./aggregator2:aggregator2) modules.
 
 Currently, only the `<mdrpi:RegistrationInfo>` element is supported.
 
 Depending on the metadata set you want to add this extension to, you will have to configure it on the corresponding
 configuration file:
 
-- `metadata/saml20-idp-hosted.php` for hosted identity providers.
-- `config/authsources.php` for hosted service providers.
-- `config/module_aggregator.php` for the `aggregator` module.
-- `config/module_aggregator2.php` for the `aggregator2` module.
+* `metadata/saml20-idp-hosted.php` for hosted identity providers.
+* `config/authsources.php` for hosted service providers.
+* `config/module_aggregator.php` for the `aggregator` module.
+* `config/module_aggregator2.php` for the `aggregator2` module.
 
 RegistrationInfo Items
 ----------------------
@@ -52,7 +52,6 @@ The configuration is the same for all the different files, and consists of a sin
 :   An indexed array containing URLs pointing to the policy under which the entity or entities where registered. Each
     index must be the language code corresponding to the language of the URL. This parameter is optional, and will be omitted in the
     resulting metadata if not configured.
-
 
 Examples
 --------

@@ -63,5 +63,5 @@ Only extract the value of the NameID.
 See also
 --------
 
- * [The description of the `saml:SP` authentication source.](./saml:sp)
- * [How to generate various NameIDs on the IdP.](./saml:nameid)
+* [The description of the `saml:SP` authentication source.](./saml:sp)
+* [How to generate various NameIDs on the IdP.](./saml:nameid)

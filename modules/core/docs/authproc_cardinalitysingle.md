@@ -83,6 +83,6 @@ Construct a single, comma-separated value version of `eduPersonAffiliation`:
         51 => [
             'class' => 'core:CardinalitySingle',
             'flatten' => ['eduPersonAffiliationWithCommas'],
-			'flattenWith' => ',',
+            'flattenWith' => ',',
         ],
     ],

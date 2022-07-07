@@ -18,7 +18,6 @@ Parameters
     This can be used to generate an Internet2 compatible `eduPersonTargetedID` attribute.
     Optional, defaults to `false`.
 
-
 Examples
 --------
 
