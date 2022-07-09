@@ -123,7 +123,7 @@ class Errors
     /**
      * Format a list of errors as a string.
      *
-     * This fucntion takes an array of LibXMLError objects and creates a string with all the errors.
+     * This function takes an array of LibXMLError objects and creates a string with all the errors.
      * Each error will be separated by a newline, and the string will end with a newline-character.
      *
      * @param array $errors  An array of errors.

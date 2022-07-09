@@ -85,7 +85,7 @@ class FilterScopesTest extends TestCase
     }
 
     /**
-     * Test implict scope matching on IdP hostname
+     * Test implicit scope matching on IdP hostname
      */
     public function testImplicitScopes(): void
     {

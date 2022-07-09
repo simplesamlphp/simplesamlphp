@@ -29,7 +29,7 @@ class LoggerTest extends TestCase
             'logging.level' => Logger::DEBUG
         ];
 
-        // testing statics is slightly painful
+        // testing static methodss is slightly painful
         Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
         Logger::setLoggingHandler(null);
     }

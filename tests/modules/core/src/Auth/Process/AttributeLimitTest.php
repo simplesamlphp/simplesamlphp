@@ -287,7 +287,7 @@ class AttributeLimitTest extends TestCase
      */
     public function testBadOptionsNotTreatedAsValidValues(): void
     {
-        // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
+        // Ensure really misconfigured ignoreCase and regex options are not interpreted as valid valus
         $config = [
             'eduPersonAffiliation' => ['ignoreCase' => 'member', 'nomatch'],
             'mail' => ['regex' => 'user@example.org', 'nomatch']

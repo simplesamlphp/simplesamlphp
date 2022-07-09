@@ -68,7 +68,7 @@ msgstr "Analysera"
 msgid "Converted metadata"
 msgstr "Omformat metadata"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

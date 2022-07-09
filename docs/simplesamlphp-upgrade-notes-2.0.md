@@ -41,7 +41,7 @@ Configuration changes
 ---------------------
 Quite some options have been changed or removed. We recommend to start with a fresh
 template from `config-templates/` and migrate the settings you require to the new
-config file manualy.
+config file manually.
 
 The date formatting when specifying a custom logging string has been changed from PHP's
 deprecated `strftime()` format to PHP's `date()` format.

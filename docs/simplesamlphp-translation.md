@@ -32,9 +32,9 @@ SimpleSAMLphp will always fallback to the English translation using the definiti
   * when the term is not translated into the *current selected language*, and
   * when the translation file is not available at all.
 
-The name of the definition file is `BASENAME.definition.json`, where the term is referred to like this: `{MODULENAME:BASENAME:TERM}`. The file MUST be placed in the followng location: `modules/MODULENAME/dictionaries/BASENAME.definition.json`.
+The name of the definition file is `BASENAME.definition.json`, where the term is referred to like this: `{MODULENAME:BASENAME:TERM}`. The file MUST be placed in the following location: `modules/MODULENAME/dictionaries/BASENAME.definition.json`.
 
-The content of the defintion file is a *JSON encoded array* of `term => definition`, where definition is an array with an required `en` index for the english translation, and the value is the English text.
+The content of the definition file is a *JSON encoded array* of `term => definition`, where definition is an array with an required `en` index for the english translation, and the value is the English text.
 
 Here is an example of a definition file with three terms:
 
@@ -72,7 +72,7 @@ To summarize the pattern of the definition file is as follows:
 
 The translation file is similar to the definition file, but including translation to languages others than English.
 
-The structure of the file is identical to the definition files, except from the language index, which now is not `en`, but the actual langauge that is translated:
+The structure of the file is identical to the definition files, except from the language index, which now is not `en`, but the actual language that is translated:
 
 
     {

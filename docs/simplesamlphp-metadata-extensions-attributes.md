@@ -34,7 +34,7 @@ Defining Attributes
 The `EntityAttributes` key is used to define the attributes in the
 metadata. Each item in the `EntityAttributes` array defines a new
 `<Attribute>` item in the metadata. The value for each key must be an
-array. Each item in this array produces a separte `<AttributeValue>`
+array. Each item in this array produces a separate `<AttributeValue>`
 element within the `<Attribute>` element.
 
 		'EntityAttributes' => [

@@ -733,7 +733,7 @@ class HTTP
     {
         $url = $this->getBaseURL();
 
-        /** @var int $colon getBaseURL() will allways return a valid URL */
+        /** @var int $colon getBaseURL() will always return a valid URL */
         $colon = strpos($url, '://');
         $start = $colon + 3;
         $length = strcspn($url, '/', $start);
@@ -834,7 +834,7 @@ class HTTP
     {
         $url = $this->getSelfURL();
 
-        /** @var int $colon getBaseURL() will allways return a valid URL */
+        /** @var int $colon getBaseURL() will always return a valid URL */
         $colon = strpos($url, '://');
         $start = $colon + 3;
         $length = strcspn($url, '/', $start) + $start;

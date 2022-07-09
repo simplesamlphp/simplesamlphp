@@ -68,7 +68,7 @@ msgstr "パース"
 msgid "Converted metadata"
 msgstr "変換されたメタデータ"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

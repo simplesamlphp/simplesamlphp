@@ -251,7 +251,7 @@ class Signer
      * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
      * @param \DOMElement|\DOMComment|\DOMText $insertBefore
      *  The element we should insert the signature element before. Defaults to NULL,
-     *  in which case the signature will be appended to the element spesified in $insertInto.
+     *  in which case the signature will be appended to the element specified in $insertInto.
      * @throws \Exception
      */
     public function sign(DOMElement $node, DOMElement $insertInto, $insertBefore = null): void

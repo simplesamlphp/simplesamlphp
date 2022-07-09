@@ -1313,7 +1313,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * SP config for attributes also requries name in metadata
+     * SP config for attributes also requires name in metadata
      */
     public function testMetadataHostedAttributesRequiresName(): void
     {
@@ -1390,7 +1390,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * SP config with certificate are reflected in metdata
+     * SP config with certificate are reflected in metadata
      */
     public function testMetadatCertificateIsInMetadata(): void
     {
@@ -1416,7 +1416,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * SP config with certificate in rollocer scenario are reflected in metdata
+     * SP config with certificate in rollocer scenario are reflected in metadata
      */
     public function testMetadatCertificateInRolloverIsInMetadata(): void
     {
@@ -1526,7 +1526,7 @@ class SPTest extends ClearStateTestCase
 
         $lr = $this->createLogoutRequest($state);
 
-        /** @var \SAML2\XML\samlp\Extensions $extentions */
+        /** @var \SAML2\XML\samlp\Extensions $extensions */
         $extensions = $lr->getExtensions();
         $this->assertcount(1, $state['saml:logout:Extensions']);
 

@@ -110,7 +110,7 @@ class System
      * Resolve a (possibly) relative path from the given base path.
      *
      * A path which starts with a stream wrapper pattern (e.g. s3://) will not be touched
-     * and returned as is - regardles of the value given as base path.
+     * and returned as is - regardless of the value given as base path.
      * If it starts with a '/' it is assumed to be absolute, all others are assumed to be
      * relative. The default base path is the root of the SimpleSAMLphp installation.
      *

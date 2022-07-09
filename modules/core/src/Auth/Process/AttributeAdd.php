@@ -18,7 +18,7 @@ use SimpleSAML\Auth;
 class AttributeAdd extends Auth\ProcessingFilter
 {
     /**
-     * Flag which indicates wheter this filter should append new values or replace old values.
+     * Flag which indicates whether this filter should append new values or replace old values.
      * @var bool
      */
     private bool $replace = false;

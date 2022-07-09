@@ -196,7 +196,7 @@ class MDQ extends MetaDataStorageSource
         }
 
         if (!is_array($data)) {
-            throw new Exception(sprintf('%s: Cached metadata from "%s" wasn\'t an array.', __CLASS__, strval($file)));
+            throw new Exception(sprintf("%s: Cached metadata from \"%s\" wasn't an array.", __CLASS__, strval($file)));
         }
 
         return $data;

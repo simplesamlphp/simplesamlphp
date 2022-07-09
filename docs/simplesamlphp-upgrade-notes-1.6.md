@@ -2,7 +2,7 @@ Upgrade notes for SimpleSAMLphp 1.6
 ===================================
 
   * This release requires PHP version >= 5.2.0, as that was the first version to include `json_decode()`.
-    It is possible that it may work with version of PHP >= 5.1.2 if the [JSON PECL extesion](http://pecl.php.net/package/json) is enabled, but this is untested.
+    It is possible that it may work with version of PHP >= 5.1.2 if the [JSON PECL extension](http://pecl.php.net/package/json) is enabled, but this is untested.
 
   * The secure-flag is no longer automatically set on the session cookie.
     This was changed to avoid hard to diagnose session problems.

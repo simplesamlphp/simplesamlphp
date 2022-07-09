@@ -68,7 +68,7 @@ msgstr "解析"
 msgid "Converted metadata"
 msgstr "已轉換之 Metadata"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

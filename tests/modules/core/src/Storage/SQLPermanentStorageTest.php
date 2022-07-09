@@ -60,7 +60,7 @@ class SQLPermanentStorageTest extends TestCase
         // Overwrite existing value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 2);
 
-        // Test that the value was actually overwriten
+        // Test that the value was actually overwritten
         $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
         $this->assertEquals('testvaluemodified', $result);
 

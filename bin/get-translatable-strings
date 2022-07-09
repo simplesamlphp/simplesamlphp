@@ -9,7 +9,7 @@
  * - A specific module name given on the command line
  * - The main product and the standard modules, when invoked with '--main'.
  *
- * It will search all Twig templates for occurences of the trans()
+ * It will search all Twig templates for occurrences of the trans()
  * function, and all PHP code under src/ for the noop() function.
  */
 declare(strict_types=1);

@@ -68,7 +68,7 @@ msgstr "Nagrinėti"
 msgid "Converted metadata"
 msgstr "Sukonvertuoti metaduomenys"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

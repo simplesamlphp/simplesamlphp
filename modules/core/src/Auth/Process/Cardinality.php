@@ -90,7 +90,7 @@ class Cardinality extends Auth\ProcessingFilter
                 && array_key_exists('max', $this->cardinality[$attribute])
                 && $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
             ) {
-                throw new Error\Exception('Minimum cardinality must be less than maximium: ' .
+                throw new Error\Exception('Minimum cardinality must be less than maximum: ' .
                     var_export($attribute, true));
             }
 

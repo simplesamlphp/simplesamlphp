@@ -14,15 +14,15 @@ Examples of neat things to do using Authentication Processing Filters:
 * Modify the name of attributes.
 * Generate new attributes that are composed of others, for example eduPersonTargetedID.
 * Ask the user for consent, before the user is sent back to a service.
-* Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+* Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
 
-Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
+Be aware that Authentication Processing Filters do replace some of the previous features in SimpleSAMLphp, named:
 
 * `attributemap`
 * `attributealter`
 * `attribute filter`
 
-Later in this document, we will describe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
+Later in this document, we will describe in detail the alternative Authentication Processing Filters that will replicate these functionalities.
 
 How to configure Auth Proc Filters
 ----------------------------------
@@ -128,7 +128,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:Cardinality`](./core:authproc_cardinality): Ensure the number of attribute values is within the specified multiplicity.
 - [`core:CardinalitySingle`](./core:authproc_cardinalitysingle): Ensure the correct cardinality of single-valued attributes.
 - [`core:GenerateGroups`](./core:authproc_generategroups): Generate a `group` attribute for the user.
-- [`core:LanguageAdaptor`](./core:authproc_languageadaptor): Transfering language setting from IdP to SP.
+- [`core:LanguageAdaptor`](./core:authproc_languageadaptor): Transferring language setting from IdP to SP.
 - [`core:PHP`](./core:authproc_php): Modify attributes with custom PHP code.
 - [`core:ScopeAttribute`](./core:authproc_scopeattribute): Add scope to attribute.
 - [`core:ScopeFromAttribute`](./core:authproc_scopefromattribute): Create a new attribute based on the scope on a different attribute.

@@ -11,7 +11,7 @@ SimpleSAMLphp modules
 [TOC]
 
 This document describes how the module system in SimpleSAMLphp
-works. It descibes what types of modules there are, how they are
+works. It describes what types of modules there are, how they are
 configured, and how to write new modules.
 
 Overview
