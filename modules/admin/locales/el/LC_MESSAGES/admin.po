@@ -68,7 +68,7 @@ msgstr "Ανάλυση"
 msgid "Converted metadata"
 msgstr "Μετατραπέντα μεταδεδομένα"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

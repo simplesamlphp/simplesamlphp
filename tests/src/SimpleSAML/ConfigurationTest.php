@@ -602,7 +602,7 @@ class ConfigurationTest extends ClearStateTestCase
             'opt_wrong' => 4,
         ]);
 
-        // Normale use
+        // Normal use
         $this->assertEquals($c->getArrayizeString('opt'), ['a', 'b', 'c']);
         $this->assertEquals($c->getArrayizeString('opt_str'), ['string']);
 
@@ -627,7 +627,7 @@ class ConfigurationTest extends ClearStateTestCase
             'opt_wrong' => 4,
         ]);
 
-        // Normale use
+        // Normal use
         $this->assertEquals($c->getOptionalArrayizeString('opt', ['d']), ['a', 'b', 'c']);
         $this->assertEquals($c->getOptionalArrayizeString('opt_str', ['test']), ['string']);
 
@@ -813,7 +813,7 @@ class ConfigurationTest extends ClearStateTestCase
                 'isDefault' => true,
                 'index' => 2,
             ],
-            // the first valid enpoint should be used even if it's marked as NOT default
+            // the first valid endpoint should be used even if it's marked as NOT default
             [
                 'index' => 2,
                 'isDefault' => false,

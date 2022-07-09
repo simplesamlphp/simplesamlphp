@@ -191,7 +191,7 @@ class Module
         }
 
         if (!self::isModuleEnabled($module)) {
-            throw new Error\NotFound('The module \'' . $module . '\' was either not found, or wasn\'t enabled.');
+            throw new Error\NotFound(sprintf("The module '%s' was either not found, or wasn't enabled.", $module));
         }
 
         /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
@@ -283,7 +283,7 @@ class Module
         if (!$fileSystem->exists($path)) {
             // file not found
             Logger::info('Could not find file \'' . $path . '\'.');
-            throw new Error\NotFound('The URL wasn\'t found in the module.');
+            throw new Error\NotFound("The URL wasn't found in the module.");
         }
 
         if (mb_strtolower(substr($path, -4), 'UTF-8') === '.php') {

@@ -68,7 +68,7 @@ msgstr "分析器"
 msgid "Converted metadata"
 msgstr "转换过的元信息"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

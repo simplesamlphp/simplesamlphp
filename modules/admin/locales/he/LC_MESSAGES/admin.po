@@ -68,7 +68,7 @@ msgstr "נתח"
 msgid "Converted metadata"
 msgstr "מטא-מידע מומר"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

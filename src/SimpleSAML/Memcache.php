@@ -10,7 +10,7 @@ use SimpleSAML\Utils;
  * This file implements functions to read and write to a group of memcache
  * servers.
  *
- * The goals of this storage class is to provide failover, redudancy and load
+ * The goals of this storage class is to provide failover, redundancy and load
  * balancing. This is accomplished by storing the data object to several
  * groups of memcache servers. Each data object is replicated to every group
  * of memcache servers, but it is only stored to one server in each group.
@@ -293,7 +293,7 @@ class Memcache
             if (!is_array($server)) {
                 throw new \Exception(
                     'Invalid value for the server with index ' . $index .
-                    '. Remeber that the \'memcache_store.servers\' configuration option' .
+                    '. Remember that the \'memcache_store.servers\' configuration option' .
                     ' contains an array of arrays of arrays.'
                 );
             }
@@ -339,7 +339,7 @@ class Memcache
             if (!is_array($group)) {
                 throw new \Exception(
                     "Invalid value for the server with index " . $index .
-                    ". Remeber that the 'memcache_store.servers' configuration option" .
+                    ". Remember that the 'memcache_store.servers' configuration option" .
                     ' contains an array of arrays of arrays.'
                 );
             }

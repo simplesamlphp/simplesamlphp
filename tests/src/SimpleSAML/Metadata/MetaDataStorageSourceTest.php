@@ -92,7 +92,7 @@ class MetaDataStorageSourceTest extends TestCase
         $this->assertCount(2, $entities, 'Only 2 of the entities are found');
         $this->assertArrayHasKey($entityId1, $entities);
         $this->assertArrayHasKey($entityId2, $entities);
-        // search for non-existant entities
+        // search for non-existent entities
         $entities = $source->getMetaDataForEntities(['no-such-entity'], "saml20-idp-remote");
         $this->assertCount(0, $entities, 'no matches expected');
     }

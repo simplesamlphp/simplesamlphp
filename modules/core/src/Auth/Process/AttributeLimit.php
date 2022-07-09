@@ -155,7 +155,7 @@ class AttributeLimit extends Auth\ProcessingFilter
                         break;
                     } elseif ($regexResult === 1) {
                         $matchedValues[] = $attributeValue;
-                        // Remove matched value incase a subsequent regex also matches it.
+                        // Remove matched value in case a subsequent regex also matches it.
                         unset($values[$index]);
                     }
                 }

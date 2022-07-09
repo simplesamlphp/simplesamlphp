@@ -68,7 +68,7 @@ msgstr "Sintaktična analiza (parse)"
 msgid "Converted metadata"
 msgstr "Pretvorjeni metapodatki"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

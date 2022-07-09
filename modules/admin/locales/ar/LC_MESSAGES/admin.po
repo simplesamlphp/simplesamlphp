@@ -68,7 +68,7 @@ msgstr "حلل"
 msgid "Converted metadata"
 msgstr "بيانات وصفية محولة"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

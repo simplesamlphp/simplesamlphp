@@ -68,7 +68,7 @@ msgstr "Parse"
 msgid "Converted metadata"
 msgstr "Konverteret metadata"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

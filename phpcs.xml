@@ -19,7 +19,7 @@
     <exclude-pattern>www/assets/css/*</exclude-pattern>
     <exclude-pattern>www/assets/js/*</exclude-pattern>
 
-    <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
+    <!-- This is the rule we inherit from. If you want to exclude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
 
     <!-- Lines can be a little bit longer before they break the build -->

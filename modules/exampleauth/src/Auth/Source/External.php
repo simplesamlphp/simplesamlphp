@@ -230,7 +230,7 @@ class External extends Auth\Source
         /*
          * OK, now we know that our current state is sane. Time to actually log the user in.
          *
-         * First we check that the user is acutally logged in, and didn't simply skip the login page.
+         * First we check that the user is actually logged in, and didn't simply skip the login page.
          */
         $attributes = $source->getUser();
         if ($attributes === null) {

@@ -64,7 +64,7 @@ The values specified in the $values array will be bound to the placeholders and 
 	
 	$query = $db->write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 
-You can also skip usage of prepared statements. You should **only** use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicity set to false, it will skip usage of prepared statements. This is only available when writing to the database.
+You can also skip usage of prepared statements. You should **only** use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicitly set to false, it will skip usage of prepared statements. This is only available when writing to the database.
 
 	$table = $db->applyPrefix("test");
 	$query = $db->write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)", false);

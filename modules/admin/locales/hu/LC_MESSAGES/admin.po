@@ -68,7 +68,7 @@ msgstr "Értelmez"
 msgid "Converted metadata"
 msgstr "Konvertált metaadatok"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

@@ -82,7 +82,7 @@ class WebBrowserSingleSignOn
         }
 
         if (!($request instanceof ArtifactResolve)) {
-            throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
+            throw new Exception("Message received on ArtifactResolutionService wasn't a ArtifactResolve request.");
         }
 
         $issuer = $request->getIssuer();

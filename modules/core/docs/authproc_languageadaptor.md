@@ -32,7 +32,7 @@ Default attribute (`preferredLanguage`):
         ],
     ],
 
-Custon attribute:
+Custom attribute:
 
     'authproc' => [
         50 => [

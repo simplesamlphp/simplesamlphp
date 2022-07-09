@@ -68,7 +68,7 @@ msgstr "Analizează"
 msgid "Converted metadata"
 msgstr "Metadate convertite"
 
-msgid "An error occured"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Test Authentication Sources"

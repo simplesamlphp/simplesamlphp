@@ -125,8 +125,9 @@ class ProcessingChain
             }
 
             if (!is_array($filter)) {
-                throw new Exception('Invalid authentication processing filter configuration: ' .
-                    'One of the filters wasn\'t a string or an array.');
+                throw new Exception(
+                    "Invalid authentication processing filter configuration: One of the filters wasn't a string or an array."
+                );
             }
 
             $parsedFilters[] = self::parseFilter($filter, $priority);

@@ -65,7 +65,7 @@ Released 2020-09-02
   * Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
   * Fixed some of the German translations (#1331). Thanks @htto!
   * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
-  * Harden against sevaral JS issues (npm update & npm audit fix)
+  * Harden against several JS issues (npm update & npm audit fix)
   * Fixed inconsistent configuration of backtraces logging
   * Support for Symfony 3.x is now deprecated
   * Support for Twig 1.x is now deprecated
@@ -1851,7 +1851,7 @@ Released 2009-11-05. Revision 1937.
 ### `ldapstatus`:
 
   * Do a connect-test to all ip-addresses for a hostname.
-  * Check wheter hostname exists before attempting to connect.
+  * Check whether hostname exists before attempting to connect.
   * hobbit output.
   * Check schema version.
   * Add command line tab to single LDAP status page for easier debugging.
@@ -1914,12 +1914,12 @@ Updates to `config.php`. Please check for updates in your local modified configu
     * AttributeFilter
     * AttributeMap
     * Smartname. does it best to guess the full name of the user based on several attributes.
-    * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a lanauge, this can be sent to the SP as an attribute.
+    * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a language, this can be sent to the SP as an attribute.
   * New module: portal, allows you to created tabbed interface for custom pages within SimpleSAMLphp. In example user consent management and attribute viewer.
   * New module: ldapstatus. Used by Feide to monitor connections to a large list of LDAP connections. Contact Feide on details on how to use.
   * ldapstatus also got certificate check capabilities.
   * New module: MemcacheMonitor: Show statistics for memcache servers.
-  * New module: DiscoPower. A tabbed discovery service module with alot of functionality.
+  * New module: DiscoPower. A tabbed discovery service module with a lot of functionality.
   * New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in SimpleSAMLphp allowing you to run it locally.
   * New module: Simple Consent Amdin module that have one button to remove all consent for one user.
   * New module: Consent Administration. Contribution from Wayf.
@@ -1961,7 +1961,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * All documentation is converted from docbook to markdown format.
   * Added headers to not allow google to index pages.
   * Added check on frontpage for magic quotes
-  * Added statistic loggging to Consent class.
+  * Added statistic logging to Consent class.
   * Improvements to Exception handler in LDAP class, and better logging.
   * LDAP class supports turning on LDAP-debug logging.
   * Much improvements to SAML 2.0 Metadata generation and parsing.
@@ -1982,7 +1982,7 @@ Configuration file `config.php` should not include significant changes, except o
 ### New features
 
   * Documentation update
-  * Added new language. Now there are two different portugese
+  * Added new language. Now there are two different portuguese
     dialects.
   * Consent "module" modified. Now added support for preselecting the
     checkbox by a configuration parameter. Consent module supports
@@ -2134,7 +2134,7 @@ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi (finnish), N
   * Modified IdP discovery service to support Shibboleth 2.0 SP.
   * Fix setcookie warning for PHP version \< 5.2.
   * Fix logout not being performed for Auth MemCache sometimes.
-  * Preserve case of attribute names during LDAP attribute retrival.
+  * Preserve case of attribute names during LDAP attribute retrieval.
   * Fix IdP-initiated logout.
   * Ensure that changed sessions with changed SP associations are
     written to memcache.

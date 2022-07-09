@@ -241,7 +241,7 @@ The following SAML 2.0 options are available:
     [MDRPI extension](./simplesamlphp-metadata-extensions-rpi) document for further information.
 
 `saml20.ecp`
-:   Set to `true` to enable the IdP to recieve authnrequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
+:   Set to `true` to enable the IdP to receive AuthnRequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
     Defaults to `false`.
 
 `saml20.hok.assertion`

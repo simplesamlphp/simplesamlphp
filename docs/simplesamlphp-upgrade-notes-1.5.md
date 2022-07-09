@@ -17,7 +17,7 @@ Upgrade notes for SimpleSAMLphp 1.5
     See the [migration guide](simplesamlphp-sp-migration) for more information about this.
 
   * The `request.signing` option has been removed.
-    That option was replaced with the `redirect.sign` and `redirect.validate` options, and has been depreceated for one year.
+    That option was replaced with the `redirect.sign` and `redirect.validate` options, and has been deprecated for one year.
 
   * The `aggregator` module's configuration file has changed name.
     It was changed from `aggregator.php` to `module_aggregator.php`.

@@ -199,7 +199,7 @@ class SubjectID extends Auth\ProcessingFilter
 
 
     /**
-     * Test the generated identifier to ensure compliancy with the specifications.
+     * Test the generated identifier to ensure it's compliant with the specifications.
      * Log a warning when the generated value is considered to be weak
      *
      * @param string $value

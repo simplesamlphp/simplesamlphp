@@ -387,7 +387,7 @@ class SAML2
 
             if (!($request instanceof AuthnRequest)) {
                 throw new Error\BadRequest(
-                    'Message received on authentication request endpoint wasn\'t an authentication request.'
+                    "Message received on authentication request endpoint wasn't an authentication request."
                 );
             }
 
