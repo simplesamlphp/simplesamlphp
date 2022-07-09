@@ -2103,7 +2103,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * AttributeFilter
   * AttributeMap
   * Smartname. does it best to guess the full name of the user based on several attributes.
-  * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a lanauge, this can be sent to the SP as an attribute.
+  * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a language, this can be sent to the SP as an attribute.
 * New module: portal, allows you to created tabbed interface for custom pages within SimpleSAMLphp. In example user consent management and attribute viewer.
 * New module: ldapstatus. Used by Feide to monitor connections to a large list of LDAP connections. Contact Feide on details on how to use.
 * ldapstatus also got certificate check capabilities.
