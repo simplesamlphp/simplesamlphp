@@ -112,7 +112,6 @@ msgstr "Nisu pronađena sledeća opciona polja"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Preuzmite X509 sertifikate u PEM formatu."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Metapodaci za %ENTITYID% nisu pronađeni"
 
@@ -351,7 +350,6 @@ msgstr ""
 " podešavanja SimpleSAMLphp-a. Kontaktirajte administratora ovog servisa i"
 " pošaljite mu poruku o grešci prikazanu iznad."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša sesija će biti validna još %remaining% sekundi."
 

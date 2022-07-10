@@ -114,7 +114,6 @@ msgstr "下列資料找不到必要欄位"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "下載 PEM 格式之 X.509 憑證檔案"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "無法找到詮釋資料於 %ENTITYID%"
 
@@ -334,7 +333,6 @@ msgid ""
 "login service, and send them the error message above."
 msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "您的 session 從現在起還有 %remaining% 有效。"
 

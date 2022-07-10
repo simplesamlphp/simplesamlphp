@@ -110,7 +110,6 @@ msgstr "Nieobsługiwany błąd"
 msgid "The following required fields was not found"
 msgstr "Nastepujące wymagane pola nie zostały znalezione"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Nie można zlokalizować metadanych dotyczących %ENTITYID%"
 
@@ -338,7 +337,6 @@ msgstr ""
 "konfigurację SimpleSAMLphp. Skontaktuj się z administratorem tego serwisu"
 " i wyślij mu powyższy błąd."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Twoja sesja jest jeszcze ważna przez %remaining% sekund"
 

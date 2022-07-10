@@ -149,7 +149,6 @@ msgstr "E a sebetsa..."
 msgid "Metadata not found"
 msgstr "Metadata ha e a fumanwa"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
 
@@ -552,7 +551,6 @@ msgstr ""
 "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la "
 "mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
 
-#, python-format
 msgid "Your session is valid for %SECONDS% seconds from now."
 msgstr ""
 "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho "

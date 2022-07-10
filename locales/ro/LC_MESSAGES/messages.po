@@ -116,7 +116,6 @@ msgstr "Următoarele câmpuri obligatorii nu au fost găsite"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Descărcați certificatele X509 ca fișiere PEM."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Nu pot fi localizate metadatele pentru %ENTITYID%"
 
@@ -359,7 +358,6 @@ msgstr ""
 "administratorul acestui serviciu și să-i furnizați mesajul de eroare de "
 "mai sus."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Sesiunea dumneavoastră mai este validă încă %remaining%."
 

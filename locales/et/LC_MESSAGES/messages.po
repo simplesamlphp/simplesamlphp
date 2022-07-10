@@ -110,7 +110,6 @@ msgstr "Järgmisi kohuslikke välju ei leitud"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Lae alla X509 sertifikaadid PEM kodeeringus failidena."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Olemi metaandmeid ei leitud: %ENTITYID%"
 
@@ -343,7 +342,6 @@ msgstr ""
 "valesti seadistamise tõttu. Võta ühendust selle sisselogimisteenuse "
 "administraatoriga ja saada talle ülalolev veateade."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Sinu sessioon kehtib veel %remaining% sekundit."
 

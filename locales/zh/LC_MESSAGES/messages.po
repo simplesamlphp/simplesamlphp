@@ -103,7 +103,6 @@ msgstr "下列必需的区域没有找到"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "下载X509证书作为PEM编码的文件"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "无法为%ENTITYID%定位元信息"
 
@@ -315,7 +314,6 @@ msgid ""
 "login service, and send them the error message above."
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "你的会话在%remaining%秒内有效"
 

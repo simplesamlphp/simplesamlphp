@@ -101,7 +101,6 @@ msgstr "未処理例外"
 msgid "The following required fields was not found"
 msgstr "以下の必須項目は見つかりませんでした"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "%ENTITYID% のメタデータが見つかりません"
 
@@ -318,7 +317,6 @@ msgid ""
 "login service, and send them the error message above."
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "セッションは今から %remaining% 秒間有効です"
 

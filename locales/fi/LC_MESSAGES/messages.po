@@ -260,7 +260,6 @@ msgstr ""
 "asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä"
 " yllä oleva virheilmoitus."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
 

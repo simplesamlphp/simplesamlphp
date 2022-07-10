@@ -111,7 +111,6 @@ msgstr "Die folgenden notwendigen Felder wurden nicht gefunden"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Die X509-Zertifikate als PEM-kodierte Dateien herunterladen."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Keine Metadaten für %ENTITYID% gefunden"
 
@@ -358,7 +357,6 @@ msgstr ""
 "Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die "
 "obige Fehlermeldung mit."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Ihre Sitzung ist noch für %remaining% Sekunden gültig."
 

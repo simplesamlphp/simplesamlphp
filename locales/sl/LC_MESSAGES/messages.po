@@ -110,7 +110,6 @@ msgstr "Naslednjih zahtevanih polj ni bilo mogoče najti"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Prenesi X509 digitalno potrdilo v PEM datoteki."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Metapodatkov za %ENTITYID% ni bilo moč najti"
 
@@ -338,7 +337,6 @@ msgstr ""
 "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-"
 "ja. Obrnite se na skrbnika in mu posredujte to napako."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 

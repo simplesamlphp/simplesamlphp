@@ -80,7 +80,6 @@ msgstr "Ligging"
 msgid "Unhandled exception"
 msgstr "Onverwagte foutmelding"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Kan geen metadata vind vir %ENTITYID%"
 

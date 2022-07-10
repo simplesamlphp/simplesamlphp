@@ -117,7 +117,6 @@ msgstr "Følgende obligatoriske felter kunne ikke findes "
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Download X509 certifikaterne som PEM-indkodet filer."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Kan ikke finde metadata for %ENTITYID%"
 
@@ -350,7 +349,6 @@ msgstr ""
 "alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og "
 "rapportér så mange detaljer som muligt om fejlen"
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Du har %remaining% tilbage af din session"
 

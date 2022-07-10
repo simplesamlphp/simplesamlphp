@@ -109,7 +109,6 @@ msgstr "Derrigorrezko datu hauek ez dira aurkitu"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "X509 ziurtagiriak PEM formatuan deskargatu."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ezin da aurkitu metadaturik %ENTITYID%-(a)rentzat"
 
@@ -343,7 +342,6 @@ msgstr ""
 "okerra izan da. Jar zaitez harremanetan identifikazio zerbitzu honen "
 "administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Zure saioa %remaining% segundoz izango da baliagarri."
 

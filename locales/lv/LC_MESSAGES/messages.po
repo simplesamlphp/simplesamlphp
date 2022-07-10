@@ -110,7 +110,6 @@ msgstr "Nav atrasti obligātie lauki"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Lejupielādēt X509 sertifikātus kā PEM-kodētus failus."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Nav iespējams atrast metadatus priekš %ENTITYID%"
 
@@ -342,7 +341,6 @@ msgstr ""
 "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas "
 "SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
 

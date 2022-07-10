@@ -111,7 +111,6 @@ msgstr "Šie privalomi laukai nerasti"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Parsisiųsti X509 sertifikatus kaip PEM koduotės failus."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Nepavyko rasti objekto %ENTITYID% metaduomenų"
 
@@ -346,7 +345,6 @@ msgstr ""
 "sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir "
 "nusiųskite žemiau rodomą klaidos pranešimą."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
 

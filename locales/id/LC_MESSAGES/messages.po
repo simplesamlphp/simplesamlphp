@@ -111,7 +111,6 @@ msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Tidak dapat menemukan metadata untuk %ENTITYID%"
 
@@ -344,7 +343,6 @@ msgstr ""
 " yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login "
 "ini, dan kirimkan kepada mereka pesan error diatas."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Session anda valid untuk %remaining% detik dari sekarang."
 

@@ -121,7 +121,6 @@ msgstr "Fann ikkje følgjande nødvendige felt"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Last ned X509-sertifikat som PEM-koda filer"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Klarer ikkje å finna metadata for %ENTITYID%"
 
@@ -353,7 +352,6 @@ msgstr ""
 "eller ein ukjent feil. Kontakt administrator av tenesta og rapporter "
 "detaljar om feilen."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Din sesjon er gyldig i %remaining% sekund frå no."
 
