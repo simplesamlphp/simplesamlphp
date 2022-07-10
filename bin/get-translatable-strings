@@ -14,9 +14,12 @@
  */
 declare(strict_types=1);
 
-use SimpleSAML\Module;
+use Gettext\Scanner\PhpScanner;
+use Gettext\Generator\PoGenerator;
+use Gettext\Translations;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 // This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(__FILE__, 2);
@@ -24,12 +27,12 @@ $baseDir = dirname(__FILE__, 2);
 // Add library autoloader
 require_once($baseDir . '/src/_autoload.php');
 
-if($argc != 2) {
+if ($argc !== 2) {
     echo "Usage: $argv[0] (<module>|--main)\n";
     exit(1);
 }
 
-if($argv[1] === '--main') {
+if ($argv[1] === '--main') {
     $modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
 } else {
     $modules = [$argv[1]];
@@ -43,18 +46,46 @@ $tempDirBase = $sysUtils->getTempDir() . "/temptemplatestemp";
 // Ensure no leftover from any previous invocation
 $filesystem->remove($tempDirBase);
 
-$outputSuffix = '/locales/en/LC_MESSAGES';
-
-
-foreach($modules as $module) {
-    $tempDir = $tempDirBase . "/" . $module;
-    $transUtils->compileAllTemplates($module, $tempDir);
+$translationDomains = [];
+foreach ($modules as $module) {
     $domain = $module ?: 'messages';
+    $translationDomains[] = Translations::create($domain);
+}
+
+$phpScanner = new PhpScanner(...$translationDomains);
+$phpScanner->setFunctions(['trans' => 'gettext', 'noop' => 'gettext']);
+$finder = new Finder();
+
+// Scan files in base
+foreach ($modules as $module) {
+    $tempDir = $tempDirBase . $module;
+    $transUtils->compileAllTemplates($module, $tempDir);
+
+    // Set the proper domain
+    $phpScanner->setDefaultDomain($module ?: 'messages');
 
     $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
     $moduleSrcDir = $moduleDir . '/src/';
-    $outputDir = $moduleDir . $outputSuffix;
-    print `find $tempDir $moduleSrcDir -name \*.php | xargs xgettext --default-domain=$domain -p $outputDir --from-code=UTF-8 -j --omit-header --no-location -ktrans -knoop -L PHP`;
+
+    // Scan PHP files
+    foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
+        $phpScanner->scanFile($file->getPathName());
+    }
+
+    // Scan compiled Twig-templates
+    foreach ($finder->files()->in($tempDir)->name('*.php') as $file) {
+        $phpScanner->scanFile($file->getPathName());
+    }
+}
+
+// Save the translations in .po files
+$generator = new PoGenerator();
+
+foreach ($phpScanner->getTranslations() as $domain => $translations) {
+    $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
+    $outputDir = $moduleDir . '/locales/en/LC_MESSAGES';
+    $domain = $domain ?: 'messages';
+    $generator->generateFile($translations, "{$outputDir}/{$domain}.pot");
 }
 
 $filesystem->remove($tempDirBase);
