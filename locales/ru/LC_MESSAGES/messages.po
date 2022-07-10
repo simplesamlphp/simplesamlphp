@@ -121,7 +121,6 @@ msgstr "Следующие обязательные поля не найдены
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Скачать сертификаты X509 в формате PEM файлов."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Невозможно найти метаданные для %ENTITYID%"
 
@@ -359,7 +358,6 @@ msgstr ""
 "неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором "
 "этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
 

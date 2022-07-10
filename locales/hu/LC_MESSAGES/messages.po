@@ -110,7 +110,6 @@ msgstr "A következő kötelező mezők hiányoznak"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "PEM formátumú X509 tanúsítvány letöltése."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "%ENTITYID% entitáshoz nem található metadataA"
 
@@ -340,7 +339,6 @@ msgstr ""
 "félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező "
 "szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 

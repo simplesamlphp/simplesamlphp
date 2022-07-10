@@ -129,7 +129,6 @@ msgstr "Los siguientes datos obligatorios no se han encontrado"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Descargar los certificados X509 en formato PEM."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "No se puede localizar los metadatos en %ENTITYID%"
 
@@ -374,7 +373,6 @@ msgstr ""
 "administrador de este servicio de conexión y envíele el mensaje de error "
 "anterior."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Su sesión será valida durante %remaining% segundos."
 

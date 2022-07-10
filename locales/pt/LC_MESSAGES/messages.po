@@ -316,7 +316,6 @@ msgstr ""
 "uma má configuração do SimpleSAMLphp. Contacte o administrador deste "
 "serviço de login, e comunique a mensagem de erro."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "A sua sessão é válida por %remaining% segundos."
 

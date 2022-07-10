@@ -108,7 +108,6 @@ msgstr "الحقول الإجبارية أدناه مفقودة"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "حمل شهادات X509 كملفات بترميز PEM"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "لا يمكن تحديد موقع الميتاداتا ل %ENTITYID%"
 
@@ -336,7 +335,6 @@ msgstr ""
 " بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم "
 "أيضاً "
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 

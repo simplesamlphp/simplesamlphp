@@ -110,7 +110,6 @@ msgstr "Následující požadovaná pole nenalezena"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Stáhněte certifikát X509 jako PEM-encoded soubor"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Nebyla nalezena metadata pro %ENTITYID%"
 
@@ -337,7 +336,6 @@ msgstr ""
 "konfiguraci. Kontaktujte administrátora této přihlašovací služby a "
 "zašlete mu tuto zprávu."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaše sezení je platné ještě %remaining% sekund."
 

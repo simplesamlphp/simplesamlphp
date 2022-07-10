@@ -111,7 +111,6 @@ msgstr "I seguenti campi, richiesti, non sono stati trovati"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Scarica i certificati X509 come file PEM-encoded"
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Impossibile individuare i metatadi per %ENTITYID%"
 
@@ -355,7 +354,6 @@ msgstr ""
 " di questo servizio di login con una copia del messaggio di errore "
 "riportato qui sopra."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "La tua sessione è valida per ulteriori %remaining% secondi."
 

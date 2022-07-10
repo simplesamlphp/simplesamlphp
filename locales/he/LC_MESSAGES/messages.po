@@ -109,7 +109,6 @@ msgstr "השדות הדרושים הבאים לא נמצאו"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "הורד את תעודות X509 כקבצי PEM-מקודד."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "לא ניתן לאתר מטא-מידע עבור %ENTITYID%"
 
@@ -334,7 +333,6 @@ msgstr ""
 "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. "
 "צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכשיו."
 

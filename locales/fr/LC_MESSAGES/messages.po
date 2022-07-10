@@ -113,7 +113,6 @@ msgstr "Les champs suivants n'existent pas et sont requis"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Télécharger les certificats X509 en tant que fichiers encodés PEM."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Impossible de localiser les métadonnées pour %ENTITYID%"
 
@@ -355,7 +354,6 @@ msgstr ""
 "mauvaise configuration de SimpleSAMLphp.  Contactez l'administrateur de "
 "ce service d'identification et envoyez lui le message d'erreur."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Votre session est encore valide pour %remaining% secondes."
 

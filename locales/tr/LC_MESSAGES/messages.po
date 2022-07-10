@@ -326,7 +326,6 @@ msgstr ""
 " ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile "
 "iletişim kurun ve yukarıdaki hata mesajını gönderin."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Oturumunuz, şu andan itibaren %remaining% saniyeliğine geçerlidir."
 

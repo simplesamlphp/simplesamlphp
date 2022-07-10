@@ -118,7 +118,6 @@ msgstr "Τα παρακάτω υποχρεωτικά πεδία δε βρέθη�
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
 
-#, python-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα %ENTITYID%"
 
@@ -362,7 +361,6 @@ msgstr ""
 "εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή "
 "αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
 
-#, python-format
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
 
