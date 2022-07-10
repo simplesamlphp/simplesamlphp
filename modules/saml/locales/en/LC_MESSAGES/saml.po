@@ -1,4 +1,3 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
@@ -16,26 +15,32 @@ msgstr ""
 "Generated-By: Babel 2.3.4\n"
 
 msgid ""
-"Your authentication context is not accepted at this service. Probably too"
-" weak or not two-factor."
+"Your authentication context is not accepted at this service. Probably too "
+"weak or not two-factor."
 msgstr ""
-"Your authentication context is not accepted at this service. Probably too"
-" weak or not two-factor."
+"Your authentication context is not accepted at this service. Probably too "
+"weak or not two-factor."
 
 msgid "Invalid Identity Provider"
 msgstr "Invalid Identity Provider"
 
 msgid ""
-"You already have a valid session with an identity provider "
-"(<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to"
-" log out from your existing session and log in again with another "
-"identity provider?"
+"You already have a valid session with an identity provider (<em>%IDP%</em>) "
+"that is not accepted by <em>%SP%</em>. Would you like to log out from your "
+"existing session and log in again with another identity provider?"
 msgstr ""
-"You already have a valid session with an identity provider "
-"(<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to"
-" log out from your existing session and log in again with another "
-"identity provider?"
+"You already have a valid session with an identity provider (<em>%IDP%</em>) "
+"that is not accepted by <em>%SP%</em>. Would you like to log out from your "
+"existing session and log in again with another identity provider?"
 
 msgid "Wrong authentication context"
 msgstr "Wrong authentication context"
 
+msgid "SimpleSAMLphp"
+msgstr ""
+
+msgid "Yes, continue"
+msgstr ""
+
+msgid "No, cancel"
+msgstr ""

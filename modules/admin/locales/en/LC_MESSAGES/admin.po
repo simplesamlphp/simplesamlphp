@@ -315,3 +315,27 @@ msgstr ""
 
 msgid "ADFS IdP metadata"
 msgstr ""
+
+msgid "Modules"
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "means the module is not enabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Your PHP installation"
+msgstr ""
+
+msgid "PHP intl extension"
+msgstr ""
