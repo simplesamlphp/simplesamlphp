@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f2fe6a73667b0bdebe1ea20b3194e7a",
+    "content-hash": "16319a37fa8f2ab2d4240190eb8caa08",
     "packages": [
         {
             "name": "beste/clock",
@@ -4009,6 +4009,65 @@
             "time": "2022-12-30T00:15:36+00:00"
         },
         {
+            "name": "gettext/php-scanner",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-gettext/PHP-Scanner.git",
+                "reference": "989a2cffa1d0f43d13b14c83a50429119b5eb8e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-gettext/PHP-Scanner/zipball/989a2cffa1d0f43d13b14c83a50429119b5eb8e4",
+                "reference": "989a2cffa1d0f43d13b14c83a50429119b5eb8e4",
+                "shasum": ""
+            },
+            "require": {
+                "gettext/gettext": "^5.5.0",
+                "nikic/php-parser": "^4.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "oscarotero/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gettext\\Scanner\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP scanner for gettext",
+            "homepage": "https://github.com/php-gettext/PHP-Scanner",
+            "keywords": [
+                "gettext",
+                "i18n",
+                "php",
+                "scanner",
+                "translation"
+            ],
+            "support": {
+                "email": "oom@oscarotero.com",
+                "issues": "https://github.com/php-gettext/PHP-Scanner/issues",
+                "source": "https://github.com/php-gettext/PHP-Scanner/tree/v1.3.1"
+            },
+            "time": "2022-03-18T11:47:55+00:00"
+        },
+        {
             "name": "mikey179/vfsstream",
             "version": "v1.6.11",
             "source": {
@@ -5796,6 +5855,9 @@
         "ext-xml": "*",
         "ext-zlib": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {
+        "ext-curl": "*",
+        "ext-pdo_sqlite": "*"
+    },
     "plugin-api-version": "2.3.0"
 }
