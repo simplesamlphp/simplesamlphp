@@ -2,11 +2,11 @@ name: Documentation
 
 on:
   push:
-    branches: [ master, release-* ]
+    branches: [ master, simplesamlphp-* ]
     paths:
       - '**.md'
   pull_request:
-    branches: [ master, release-* ]
+    branches: [ master, simplesamlphp-* ]
     paths:
       - '**.md'
 
