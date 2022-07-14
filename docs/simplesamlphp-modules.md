@@ -1,5 +1,4 @@
-SimpleSAMLphp modules
-==================================================
+# SimpleSAMLphp modules
 
 <!-- 
 	This file is written in Markdown syntax. 
@@ -7,38 +6,35 @@ SimpleSAMLphp modules
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-
 [TOC]
 
 This document describes how the module system in SimpleSAMLphp
 works. It describes what types of modules there are, how they are
 configured, and how to write new modules.
 
-Overview
---------
+## Overview
 
-There are currently three parts of SimpleSAMLphp which can be stored in 
-modules - authentication sources, authentication processing filters and 
-themes. There is also support for defining hooks - functions run at 
-specific times. More than one thing can be stored in a single module. 
-There is also support for storing supporting files, such as templates 
+There are currently three parts of SimpleSAMLphp which can be stored in
+modules - authentication sources, authentication processing filters and
+themes. There is also support for defining hooks - functions run at
+specific times. More than one thing can be stored in a single module.
+There is also support for storing supporting files, such as templates
 and dictionaries, in modules.
 
-The different functionalities which can be created as modules will be 
-described in more detail in the following sections; what follows is a 
+The different functionalities which can be created as modules will be
+described in more detail in the following sections; what follows is a
 short introduction to what you can do with them:
 
- - Authentication sources implement different methods for 
-   authenticating users, for example simple login forms which 
-   authenticate against a database backend, or login methods which use 
-   client-side certificates. 
- - Authentication processing filters perform various tasks after the 
-   user is authenticated and has a set of attributes. They can add, 
-   remove and modify attributes, do additional authentication checks, 
-   ask questions of the user, +++. 
- - Themes allow you to package custom templates for multiple modules 
-   into a single module.
-
+- Authentication sources implement different methods for
+  authenticating users, for example simple login forms which
+  authenticate against a database backend, or login methods which use
+  client-side certificates.
+- Authentication processing filters perform various tasks after the
+  user is authenticated and has a set of attributes. They can add,
+  remove and modify attributes, do additional authentication checks,
+  ask questions of the user, +++.
+- Themes allow you to package custom templates for multiple modules
+  into a single module.
 
 ## Module layout
 
@@ -119,93 +115,87 @@ www
     This function will then return a URL to the given file in the
     `www`-directory of `module`.
 
-
 ## Authentication sources
 
-An authentication source is used to authenticate a user and receive a 
-set of attributes belonging to this user. In a single-signon setup, the 
-authentication source will only be called once, and the attributes 
+An authentication source is used to authenticate a user and receive a
+set of attributes belonging to this user. In a single-signon setup, the
+authentication source will only be called once, and the attributes
 belonging to the user will be cached until the user logs out.
 
-Authentication sources are defined in `config/authsources.php`. This 
-file contains an array of `name => configuration` pairs. The name is 
-used to refer to the authentication source in metadata. When 
-configuring an IdP to authenticate against an authentication source, 
-\the `auth` option should be set to this name. The configuration for an 
-authentication source is an array. The first element in the array 
-identifies the class which implements the authentication source. The 
-remaining elements in the array are configuration entries for the 
+Authentication sources are defined in `config/authsources.php`. This
+file contains an array of `name => configuration` pairs. The name is
+used to refer to the authentication source in metadata. When
+configuring an IdP to authenticate against an authentication source,
+\the `auth` option should be set to this name. The configuration for an
+authentication source is an array. The first element in the array
+identifies the class which implements the authentication source. The
+remaining elements in the array are configuration entries for the
 authentication source.
 
-A typical configuration entry for an authentication source looks like 
+A typical configuration entry for an authentication source looks like
 this:
 
     'example-static' => [
-      /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-      'exampleauth:StaticSource',
+        /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+        'exampleauth:StaticSource',
     
-      /* The following is configuration which is passed on to
-       * the exampleauth:StaticSource authentication source. */
-      'uid' => 'testuser',
-      'eduPersonAffiliation' => ['member', 'employee'],
-      'cn' => ['Test User'],
+        /* The following is configuration which is passed on to
+         * the exampleauth:StaticSource authentication source. */
+        'uid' => 'testuser',
+        'eduPersonAffiliation' => ['member', 'employee'],
+        'cn' => ['Test User'],
     ],
 
 To use this authentication source in a SAML 2.0 IdP, set the
 `auth`-option of the IdP to `'example-static'`:
 
     'https://example.org/saml-idp' => [
-      'host' => '__DEFAULT__',
-      'privatekey' => 'example.org.pem',
-      'certificate' => 'example.org.crt',
-      'auth' => 'example-static',
+        'host' => '__DEFAULT__',
+        'privatekey' => 'example.org.pem',
+        'certificate' => 'example.org.crt',
+        'auth' => 'example-static',
     ],
 
 ### Creating authentication sources
 
 This is described in a separate document:
 
-  * [Creating authentication sources](simplesamlphp-authsource)
+- [Creating authentication sources](simplesamlphp-authsource)
 
-
-Authentication processing filters
----------------------------------
+## Authentication processing filters
 
 *Authentication processing filters* is explained in a separate document:
 
-  * [Authentication processing filters](simplesamlphp-authproc)
-
-
+- [Authentication processing filters](simplesamlphp-authproc)
 
 ## Themes
 
-This feature allows you to collect all your custom templates in one 
-place. The directory structure is like this: 
-`modules/<thememodule>/themes/<theme>/<module>/<template>` 
-`thememodule` is the module where you store your theme, while `theme` 
-is the name of the theme. A theme is activated by setting the 
-`theme.use` configuration option to `<thememodule>:<theme>`. `module` 
-is the module the template belongs to, and `template` is the template 
+This feature allows you to collect all your custom templates in one
+place. The directory structure is like this:
+`modules/<thememodule>/themes/<theme>/<module>/<template>`
+`thememodule` is the module where you store your theme, while `theme`
+is the name of the theme. A theme is activated by setting the
+`theme.use` configuration option to `<thememodule>:<theme>`. `module`
+is the module the template belongs to, and `template` is the template
 in that module.
 
-For example, `modules/example/themes/test/core/loginuserpass.php` 
-replaces `modules/core/templates/default/loginuserpass.php`. 
-`modules/example/themes/test/default/frontpage.php` replaces 
-`templates/default/frontpage.php`. This theme can be activated by 
+For example, `modules/example/themes/test/core/loginuserpass.php`
+replaces `modules/core/templates/default/loginuserpass.php`.
+`modules/example/themes/test/default/frontpage.php` replaces
+`templates/default/frontpage.php`. This theme can be activated by
 setting `theme.use` to `example:test`.
 
 ## Hook interface
 
-The hook interface allows you to call a hook function in all enabled 
-modules which define that hook. Hook functions are stored in a 
-directory called 'hooks' in each module directory. Each hook is 
-stored in a file named `hook_<hook name>.php`, and each file defines a 
+The hook interface allows you to call a hook function in all enabled
+modules which define that hook. Hook functions are stored in a
+directory called 'hooks' in each module directory. Each hook is
+stored in a file named `hook_<hook name>.php`, and each file defines a
 function named `<module name>_hook_<hook name>`.
 
-Each hook function accepts a single argument. This argument will be 
+Each hook function accepts a single argument. This argument will be
 passed by reference, which allows each hook to update that argument.
 
 For an example of hook usage, see the cron module, which adds a link
 to its information page in the Configuration section of the admin
 module, through the file `modules/cron/hooks/hook_configpage.php`.
-

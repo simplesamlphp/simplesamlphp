@@ -1,5 +1,4 @@
-SimpeSAMLphp Upgrade Notes
-==========================
+# SimpeSAMLphp Upgrade Notes
 
 See the following pages for important information for users upgrading
 from older versions of SimpleSAMLphp:
@@ -22,5 +21,3 @@ from older versions of SimpleSAMLphp:
 
 A detailed list of changes in each release can be found in the
 [Changelog](simplesamlphp-changelog).
-
-

@@ -11,11 +11,11 @@ Parameters
     It must be `'core:PHP'`.
 
 `code`
-:   The PHP code that should be run. This code will have two variables available: 
+:   The PHP code that should be run. This code will have two variables available:
 
 * `$attributes`.
     This is an associative array of attributes, and can be modified to add or remove attributes.
-    
+
 * `$state`.
     This is an associative array of request state. It can be modified to adjust data related to the authentication
     such as desired NameId, requested Attributes, authnContextRef and many more.
@@ -37,7 +37,6 @@ Add the `mail` attribute based on the user's `uid` attribute:
             $attributes["mail"] = [$mail];
         ',
     ],
-
 
 Create a random number variable:
 

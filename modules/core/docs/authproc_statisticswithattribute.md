@@ -15,7 +15,6 @@ Parameters
 `skipPassive`
 :   A boolean indicating whether passive requests should be skipped. Defaults to `false`, in which case the type tag is prefixed with 'passive-'.
 
-
 Example
 -------
 
@@ -26,4 +25,3 @@ Log the realm of the user:
         'attributename' => 'realm',
         'type' => 'saml20-idp-SSO',
     ],
-
