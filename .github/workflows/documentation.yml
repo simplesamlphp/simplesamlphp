@@ -37,8 +37,8 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - name: Run docs build if any of markdown-files have changed
-        if: steps.changed-files-specific.outputs.any_changed == 'true' && github.event_name != 'pull_request'
+      - name: Run docs build
+        if: github.event_name != 'pull_request'
         uses: actions/github-script@v6
         with:
           # Token has to be generated on a user account that controls the docs-repository.
