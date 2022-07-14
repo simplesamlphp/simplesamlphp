@@ -7,8 +7,6 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.0
 
-Released 1-7-2022
-
 * Support for certificate fingerprints was removed
 * Support for SAML 1.1 was removed
 * Old-style PHP templates were removed
@@ -24,129 +22,121 @@ Released 1-7-2022
 
 Released 1-7-2022
 
-  * Fix several translations (#1572, #1573, #1577, #1578, #1603)
-  * Fix HTTP status code for error pages (#1585)
-  * \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
-  * Bumped twig and minimist dependencies due to known vulnerabilities (CVE-2022-23614 and CVE-2021-44906)
-  * Minor fixes to the old UI (#1632)
-  * Fix several translations (#1572, #1573, #1577, #1578)
+* Fix several translations (#1572, #1573, #1577, #1578, #1603)
+* Fix HTTP status code for error pages (#1585)
+* \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
+* Bumped twig and minimist dependencies due to known vulnerabilities (CVE-2022-23614 and CVE-2021-44906)
+* Minor fixes to the old UI (#1632)
+* Fix several translations (#1572, #1573, #1577, #1578)
 
-### saml2 library
-  * A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
+`saml2 library`
 
-### metarefresh
-  * Added regex-template config keyword to apply a template to entityIDs matching a pattern. (v0.10)
+* A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
+
+`metarefresh`
+
+* Added regex-template config keyword to apply a template to entityIDs matching a pattern. (v0.10)
 
 ## Version 1.19.5
 
 Released 24-01-2021
 
-  * Fix composer-file to prevent warnings
-  * Fix database persistence (#1555)
-  * Dropped dependency on jquery-ui and selectize
+* Fix composer-file to prevent warnings
+* Fix database persistence (#1555)
+* Dropped dependency on jquery-ui and selectize
 
-### adfs
-  * Bump the module version to the 1.0.x branch;  the 0.9 branch only works with versions before 1.19
+`adfs`
 
-### saml2 library
-  * Fix an issue with PHP 7.x support that was introduced in 1.19.4 (#1559)
+* Bump the module version to the 1.0.x branch;  the 0.9 branch only works with versions before 1.19
+
+`saml2 library`
+
+* Fix an issue with PHP 7.x support that was introduced in 1.19.4 (#1559)
 
 ## Version 1.19.4
 
 Released 13-12-2021
 
-### core
-  * Fix translations for included templates (i.e. metadata not found error)
+`core`
 
-### ldap
-  * Added the possibility to escape the additional search filters that were introduced in 1.19.2
+* Fix translations for included templates (i.e. metadata not found error)
 
-### saml2 library
-  * The library has been quick-fixed to support PHP 8.1 (#1545)
+`ldap`
 
-### metarefresh
-  * Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
+* Added the possibility to escape the additional search filters that were introduced in 1.19.2
+
+`saml2 library`
+
+* The library has been quick-fixed to support PHP 8.1 (#1545)
+
+`metarefresh`
+
+* Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
 
 ## Version 1.19.3
 
 Released 2021-10-28
 
-  * Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
+* Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
 
 ## Version 1.19.2
 
 Released 2021-10-27
 
-  * Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
-  * Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
-    simplesamlphp-module-subjectidattrs module.
-  * Fixed a bug in the logger that would break encoded urls in the message
-  * Return a proper HTTP/405 code when incorrect method is used (#1400)
-  * Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
-  * Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
-  * Fix unsolicited response with no RelayState (#1473)
-  * Fix statistics being logged despite a configured loglevel that excludes statistics.
-  * Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
-  * Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
-  * Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
+* Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
+* Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
+  simplesamlphp-module-subjectidattrs module.
+* Fixed a bug in the logger that would break encoded urls in the message
+* Return a proper HTTP/405 code when incorrect method is used (#1400)
+* Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
+* Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
+* Fix unsolicited response with no RelayState (#1473)
+* Fix statistics being logged despite a configured loglevel that excludes statistics.
+* Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
+* Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
+* Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
 
-### adfs
-  * Fixed several issues that rendered the old UI useless for this module (v0.9.8)
+`adfs`
 
-### admin
-  * Fix warning in FederationController (#1475)
-  * Fix displayed metadata for hosted entities differing from actual metadata.
+* Fixed several issues that rendered the old UI useless for this module (v0.9.8)
 
-### consent
-  * Add possibility to set the sameSite flag on cookies set by this module (v0.9.7)
+`admin`
 
-### discopower
-  * Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
+* Fix warning in FederationController (#1475)
+* Fix displayed metadata for hosted entities differing from actual metadata.
 
-### ldap
-  * Added search-filters to AttributeAddUserGroups and made the return-attribute configurable (v0.9.11)
+`consent`
 
-### negotiate
-  * Fixed a regression that rendered the new UI useless for this module (v0.9.11)
+* Add possibility to set the sameSite flag on cookies set by this module (v0.9.7)
 
-### sqlauth
-  * Fixed a bug that rendered the module useless due to missing use-statements.
+`discopower`
+
+* Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
+
+`ldap`
+
+* Added search-filters to AttributeAddUserGroups and made the return-attribute configurable (v0.9.11)
+
+`negotiate`
+
+* Fixed a regression that rendered the new UI useless for this module (v0.9.11)
+
+`sqlauth`
+
+* Fixed a bug that rendered the module useless due to missing use-statements.
 
 ## Version 1.19.1
 
-Released 2021-04-29
+Released TBD
 
-<<<<<<< HEAD
-  * Added authproc-filters for generating the subject-id and pairwise-id (#1435)
-  * Restore support for custom error messages (#1326)
-  * Fixed a bug in the Artifact Resolution Service (#1428)
-  * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
-  * Updated npm dependencies up to April 23, 2021
-  * Fixed a bug where it was impossible to set WantAssertionsSigned=true on SP-metadata (#1433)
-  * Make inResponseTo available in state array (#1447)
-
-### admin
-  * Fixed a bug in the metadata-coverter where the converted metadata would contain newline-characters
-
-### authorize
-  * Fix a bug in the Twig-template that causes an exception in Twig strict vars mode
-=======
 * Fixed a bug in the Artifact Resolution Service (#1428)
 * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
 * Updated npm dependencies up to February 1, 2021
->>>>>>> 62bd330bd (Fix markdown)
 
 `memcacheMonitor`
 
 * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 
-<<<<<<< HEAD
-### oauth
-  * Fixed a namespace bug that was breaking the module
-
-### statistics
-  * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
-=======
 `negotiate`
 
 * Fix a bug that was breaking the module when using the old UI
@@ -154,10 +144,6 @@ Released 2021-04-29
 `statistics`
 
 * Fix a bug in the Twig-template that causes an exception on newer Twig-versions
->>>>>>> 62bd330bd (Fix markdown)
-
-### sqlauth
-  * Fix a security bug where in rare cases the database user credentials would be printed in exception messages
 
 ## Version 1.19.0
 
