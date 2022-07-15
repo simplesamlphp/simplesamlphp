@@ -66,9 +66,9 @@ Now, copy the cron configuration suggested on that page:
 
 ```text
 # Run cron [daily]
-02 0 * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&tag=daily" > /dev/null 2>&1
+02 0 * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/daily/RANDOM_KEY"
 # Run cron [hourly]
-01 * * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&tag=hourly" > /dev/null 2>&1
+01 * * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/hourly/RANDOM_KEY"
 ```
 
 Finally, add it to your crontab by going back to the terminal, and editing with:
