@@ -243,7 +243,7 @@ try {
         $t->show();
     } else {
         header('Content-Type: application/samlmetadata+xml');
-        header('E-tag: ' . hash('sha256', $metaxml));
+        header('ETag: "' . hash('sha256', $metaxml) . '"');
 
         echo $metaxml;
         exit(0);
