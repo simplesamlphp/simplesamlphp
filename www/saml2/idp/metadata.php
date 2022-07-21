@@ -246,16 +246,11 @@ try {
         if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
             if($_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
                 header("HTTP/1.1 304 Not Modified");
-            } else {
-                header('Content-Type: application/samlmetadata+xml');
-                header('ETag: ' . $etag);
-                echo $metaxml;
-            }
-        } else {
-            header('Content-Type: application/samlmetadata+xml');
-            header('ETag: ' . $etag);
-            echo $metaxml;
+                exit(0);
         }
+        header('Content-Type: application/samlmetadata+xml');
+        header('ETag: ' . $etag);
+        echo $metaxml;
         exit(0);
     }
 } catch (\Exception $exception) {
