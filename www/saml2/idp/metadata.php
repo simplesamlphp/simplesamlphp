@@ -242,10 +242,16 @@ try {
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->show();
     } else {
-        header('Content-Type: application/samlmetadata+xml');
-        header('ETag: "' . hash('sha256', $metaxml) . '"');
-
-        echo $metaxml;
+        $etag = '"' . hash('sha256', $metaxml) . '"';
+        if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+            if($_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
+                header("HTTP/1.1 304 Not Modified");
+            }
+        } else {
+            header('Content-Type: application/samlmetadata+xml');
+            header('ETag: ' . $etag);
+            echo $metaxml;
+        }
         exit(0);
     }
 } catch (\Exception $exception) {
