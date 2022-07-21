@@ -66,7 +66,13 @@ class Kernel extends BaseKernel
     public function getLogDir(): string
     {
         $configuration = Configuration::getInstance();
-        $loggingPath = $configuration->getString('loggingdir');
+        $handler = $configuration->getString('logging.handler');
+
+        if ($handler === 'file') {
+            $loggingPath = $configuration->getString('loggingdir');
+        } else {
+            $loggingPath = '/dev/null';
+        }
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($loggingPath)) {
