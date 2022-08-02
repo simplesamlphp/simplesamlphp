@@ -243,10 +243,11 @@ try {
         $t->show();
     } else {
         $etag = '"' . hash('sha256', $metaxml) . '"';
-        if(isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
-            if($_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+            if ($_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
                 header("HTTP/1.1 304 Not Modified");
                 exit(0);
+            }
         }
         header('Content-Type: application/samlmetadata+xml');
         header('ETag: ' . $etag);
