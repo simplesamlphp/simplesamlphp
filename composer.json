@@ -43,7 +43,7 @@
         "ext-hash": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "gettext/gettext": "v4.x-dev#3e7460f8d9c90174824e3f39240bd578bb3d376a",
+        "gettext/gettext": "^4.8.7",
         "phpmailer/phpmailer": "^6.1",
         "robrichards/xmlseclibs": "^3.1",
         "simplesamlphp/assert": "^0.0.13",
