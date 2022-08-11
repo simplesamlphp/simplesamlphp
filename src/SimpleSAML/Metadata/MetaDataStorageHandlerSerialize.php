@@ -123,7 +123,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $ret = [];
 
         $loc = new File(Path::canonicalize($this->directory . '/' . rawurlencode($set)), false);
-        if (!$this->fileSystem->exists($loc) || !$loc->isReadable()) {
+        if (!$this->fileSystem->exists($loc->getPath()) || !$loc->isReadable()) {
             Logger::warning(sprintf(
                 'Serialize metadata handler: Unable to open directory: %s',
                 var_export($loc->getPathName(), true),
@@ -208,7 +208,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         if (!$loc->isDir()) {
             Logger::info('Creating directory: ' . $loc);
             try {
-                $this->fileSystem->mkdir($loc, 0777);
+                $this->fileSystem->mkdir($loc->getPath(), 0777);
             } catch (IOException $e) {
                 Logger::error('Failed to create directory ' . $loc . ': ' . $e->getMessage());
                 return false;
