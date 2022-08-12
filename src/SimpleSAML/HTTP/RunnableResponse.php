@@ -67,7 +67,7 @@ class RunnableResponse extends Response
      *
      * Note: No return-type possible due to upstream limitations
      */
-    public function sendContent()
+    public function sendContent(): static
     {
         return call_user_func_array($this->callable, $this->arguments);
     }
