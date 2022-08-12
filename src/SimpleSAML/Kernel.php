@@ -141,7 +141,7 @@ class Kernel extends BaseKernel
         $routes->import($baseDir . '/routing/routes/*' . self::CONFIG_EXTS);
         $confDir = Module::getModuleDir($this->module) . '/routing/routes';
         if (is_dir($confDir)) {
-            $routes->import($confDir . '/**/*' . self::CONFIG_EXTS);
+            $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix($this->module);
         }
     }
 
