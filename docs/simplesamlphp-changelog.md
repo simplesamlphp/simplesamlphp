@@ -10,6 +10,8 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Add support for TLS configuration for Redis Store (#1828)
+* Raised Symfony version to 6.0
+* Raise minimum PHP version to 8.0
 
 ## Version 2.0.5
 

@@ -572,7 +572,7 @@ class Template extends Response
      *
      * Note: No return type possible due to upstream limitations
      */
-    public function send()
+    public function send(): static
     {
         $this->content = $this->getContents();
         return parent::send();
