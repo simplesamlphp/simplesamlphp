@@ -72,7 +72,7 @@
         "symfony/http-kernel": "^5.4||^6",
         "symfony/intl": "^5.4||^6",
         "symfony/routing": "^5.4||^6",
-        "symfony/translation-contracts": "^2.5",
+        "symfony/translation-contracts": "^2.5||^3",
         "symfony/twig-bridge": "^5.4||^6",
         "symfony/var-exporter": "^5.4||^6",
         "symfony/yaml": "^5.4||^6",
