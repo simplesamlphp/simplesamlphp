@@ -48,6 +48,6 @@ class TwigTranslator implements TranslatorInterface
      */
     public function getLocale(): string
     {
-        return 'en';
+        return Language::FALLBACKLANGUAGE;
     }
 }
