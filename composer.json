@@ -64,7 +64,7 @@
         "symfony/cache": "^5.4||^6",
         "symfony/config": "^5.4||^6",
         "symfony/console": "^5.4||^6",
-        "symfony/dependency-injection": "^5.4",
+        "symfony/dependency-injection": "^5.4||^6",
         "symfony/filesystem": "^5.4||^6",
         "symfony/finder": "^5.4||^6",
         "symfony/framework-bundle": "^5.4||^6",
