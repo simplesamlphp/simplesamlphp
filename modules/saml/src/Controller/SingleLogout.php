@@ -35,7 +35,7 @@ class SingleLogout
      * @var \SimpleSAML\IdP
      * @psalm-var \SimpleSAML\IdP|class-string
      */
-    protected IdP $idp;
+    protected $idp = IdP::class;
 
 
     /**
