@@ -16,6 +16,10 @@ use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
+use function getenv;
+use function is_dir;
+use function sys_get_temp_dir;
+
 /**
  * A class to create the container and handle a given request.
  */
@@ -67,12 +71,7 @@ class Kernel extends BaseKernel
     {
         $configuration = Configuration::getInstance();
         $handler = $configuration->getString('logging.handler');
-
-        if ($handler === 'file') {
-            $loggingPath = $configuration->getString('loggingdir');
-        } else {
-            $loggingPath = '/dev/null';
-        }
+        $loggingPath = $configuration->getString('loggingdir', sys_get_temp_dir());
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($loggingPath)) {

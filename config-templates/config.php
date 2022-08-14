@@ -56,7 +56,8 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
-     * - 'loggingdir': Where to write logs.
+     * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
+     *                 handler other than `file`.
      * - 'datadir': Storage of general data.
      * - 'tempdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
@@ -323,7 +324,6 @@ $config = [
      */
 
 
-
     /**************************
      | LOGGING AND STATISTICS |
      **************************/
@@ -359,7 +359,7 @@ $config = [
      *
      * - %level: the log level (name or number depending on the handler used).
      *
-     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
+-     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
      *   the trailing space).
      *
      * - %trackid: the track ID, an identifier that allows you to track a single session.
