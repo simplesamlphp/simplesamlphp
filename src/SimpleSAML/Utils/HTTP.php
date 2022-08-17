@@ -218,7 +218,7 @@ class HTTP
         }
 
         if (!$this->isValidURL($url)) {
-            throw new Error\Exception('Invalid destination URL.');
+            throw new Error\Exception('Invalid destination URL: ' . $url);
         }
 
         if (!empty($parameters)) {
@@ -1176,7 +1176,7 @@ class HTTP
     public function submitPOSTData(string $destination, array $data): void
     {
         if (!$this->isValidURL($destination)) {
-            throw new Error\Exception('Invalid destination URL.');
+            throw new Error\Exception('Invalid destination URL: ' . $destination);
         }
 
         $config = Configuration::getInstance();
