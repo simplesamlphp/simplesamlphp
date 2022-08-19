@@ -3,8 +3,12 @@ name: CI
 on:
   push:
     branches: [ '**' ]
+    paths-ignore:
+      - '**.md'
   pull_request:
     branches: [ master, simplesamlphp-* ]
+    paths-ignore:
+      - '**.md'
 
 jobs:
   basic-tests:
