@@ -14,13 +14,16 @@ entity publishes metadata with two certificates in it. Meanwhile it continues to
 5. Your SimpleSAMLphp now publishes metadata with only the new cert. Relying parties will refresh metadata and drop the old certificate, not trusting it anymore (or remove the old certificate from their config manually). This last step is essential to ensure that the old certificate is actually distrusted.
 
 ## The steps
+
 ### Create the new key and certificate
 
 First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 
-    cd cert
-    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+```bash
+cd cert
+openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+```
 
 ### Add the new key to SimpleSAMLphp
 
