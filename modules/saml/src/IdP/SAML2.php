@@ -851,7 +851,7 @@ class SAML2
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
+                'Location' => $httpUtils->getBaseURL() . 'module.php/saml/idp/artifactResolutionService'
             ];
         }
 
@@ -862,7 +862,7 @@ class SAML2
                 [
                     'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     'Binding' => Constants::BINDING_HOK_SSO,
-                    'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
+                    'Location' => $httpUtils->getBaseURL() . 'module.php/saml/idp/singleSignOnService',
                 ]
             );
         }
@@ -872,7 +872,7 @@ class SAML2
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => $httpUtils->getBaseURL() . 'saml2/idp/SSOService.php',
+                'Location' => $httpUtils->getBaseURL() . 'module.php/saml/idp/singleSignOnService',
             ];
         }
 
