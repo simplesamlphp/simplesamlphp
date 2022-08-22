@@ -23,6 +23,8 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 
 - Modules must be enabled through the `module.enable` option in `config.php`. Modules can no longer be enabled by having
   a file named `enable` or `default-enable` in the module's root directory.
+- The base URL of the SimpleSAMLphp installation no longer provides an admin menu. Instead this is now at the location
+  `<simpleSAMLphp base URL>/admin`. The `admin` module needs to be enabled for this to work.
 - SAML AuthnRequests that are signed will have their signature validated unless specifically disabled
   by setting `validate.authnrequest` to `false`. If unset (or set to true) signatures will be
   validated if present and requests not passing validation will be refused.
