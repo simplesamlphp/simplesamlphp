@@ -284,9 +284,13 @@ EOT;
         $this->assertArrayHasKey('SingleSignOnService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleSignOnService']);
         $this->assertCount(1, $hostedMd['SingleSignOnService']);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
-            $hostedMd['SingleSignOnService'][0]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+            ],
+            $hostedMd['SingleSignOnService'][0]
+        );
         $this->assertArrayHasKey('SingleLogoutService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleLogoutService']);
         $this->assertCount(1, $hostedMd['SingleLogoutService']);
@@ -382,9 +386,13 @@ EOT;
             ],
             $hostedMd['SingleSignOnService'][0]
         );
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
-            $hostedMd['SingleSignOnService'][1]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+            ],
+            $hostedMd['SingleSignOnService'][1]
+        );
     }
 
     public function testIdPGetHostedMetadataECP(): void
@@ -395,12 +403,21 @@ EOT;
         $this->assertArrayHasKey('SingleSignOnService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleSignOnService']);
         $this->assertCount(2, $hostedMd['SingleSignOnService']);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
-            $hostedMd['SingleSignOnService'][0]);
-        $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP', 'index' => 0,
-            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
-            $hostedMd['SingleSignOnService'][1]);
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+            ],
+            $hostedMd['SingleSignOnService'][0]
+        );
+        $this->assertEquals(
+            [
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+                'index' => 0,
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+            ],
+            $hostedMd['SingleSignOnService'][1]
+        );
     }
 
     /**
@@ -454,19 +471,19 @@ EOT;
     public function testMetadataHostedOrganizationData(): void
     {
         $config = [
-                'OrganizationName' => [
-                    'en' => 'Voorbeeld Organisatie Foundation b.a.',
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationDisplayName' => [
-                    'en' => 'Example organization',
-                    'nl' => 'Voorbeeldorganisatie',
-                ],
-                'OrganizationURL' => [
-                    'en' => 'https://example.com',
-                    'nl' => 'https://example.com/nl',
-                ],
-            ];
+            'OrganizationName' => [
+                'en' => 'Voorbeeld Organisatie Foundation b.a.',
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationDisplayName' => [
+                'en' => 'Example organization',
+                'nl' => 'Voorbeeldorganisatie',
+            ],
+            'OrganizationURL' => [
+                'en' => 'https://example.com',
+                'nl' => 'https://example.com/nl',
+            ],
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertEquals('Voorbeeld Organisatie Foundation b.a.', $md['OrganizationName']['en']);
@@ -480,13 +497,13 @@ EOT;
     public function testMetadataHostedOrganizationDataDefaultForDisplayNameIsName(): void
     {
         $config = [
-                'OrganizationName' => [
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationURL' => [
-                    'nl' => 'https://example.com/nl',
-                ],
-            ];
+            'OrganizationName' => [
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationURL' => [
+                'nl' => 'https://example.com/nl',
+            ],
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertEquals('Stichting Voorbeeld Organisatie b.a.', $md['OrganizationName']['nl']);
@@ -500,13 +517,13 @@ EOT;
     public function testMetadataHostedOrganizationURLMissingRaisesException(): void
     {
         $config = [
-                'OrganizationName' => [
-                    'nl' => 'Stichting Voorbeeld Organisatie b.a.',
-                ],
-                'OrganizationDisplayName' => [
-                    'nl' => 'Voorbeeldorganisatie',
-                ],
-            ];
+            'OrganizationName' => [
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationDisplayName' => [
+                'nl' => 'Voorbeeldorganisatie',
+            ],
+        ];
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('If OrganizationName is set, OrganizationURL must also be set.');
@@ -521,7 +538,7 @@ EOT;
         $ea = ['{urn:simplesamlphp:v1}foo' => ['bar']];
         $config = [
             'EntityAttributes' => $ea,
-            ];
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertArrayHasKey('EntityAttributes', $md);
@@ -532,7 +549,7 @@ EOT;
         $ea = ['http://macedir.org/entity-category' => ['http://refeds.org/category/hide-from-discovery']];
         $config = [
             'EntityAttributes' => $ea,
-            ];
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertArrayHasKey('EntityAttributes', $md);
@@ -615,12 +632,12 @@ EOT;
     public function testMetadataHostedContainsRegistrationInfo(): void
     {
         $config = [
-                'RegistrationInfo' => [
-                    'authority' => 'urn:mace:sp.example.org',
-                    'instant' => '2008-01-17T11:28:03.577Z',
-                    'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
-                ],
-            ];
+            'RegistrationInfo' => [
+                'authority' => 'urn:mace:sp.example.org',
+                'instant' => '2008-01-17T11:28:03.577Z',
+                'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+            ],
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertArrayHasKey('RegistrationInfo', $md);
@@ -639,9 +656,9 @@ EOT;
     public function testMetadataHostedSigning(): void
     {
         $config = [
-                'redirect.validate' => true,
-                'validate.authnrequest' => true,
-            ];
+            'redirect.validate' => true,
+            'validate.authnrequest' => true,
+        ];
         $md = $this->idpMetadataHandlerHelper($config);
 
         $this->assertArrayHasKey('sign.authnrequest', $md);
