@@ -27,8 +27,8 @@
 
     {# print out exception only if the exception is available #}
     {% if showerrors -%}
-        <h2>{{'{errors:debuginfo_header}' | trans}}</h2>
-        <p>{{'{errors:debuginfo_text}' | trans}}</p>
+        <h2>{{'Debug information' | trans}}</h2>
+        <p>{{'The debug information below may be of interest to the administrator / help desk:' | trans}}</p>
         <div class="code-box code-box-content">
             <pre>{{ error.exceptionMsg }}<br />{{ error.exceptionTrace }}
             </pre>
