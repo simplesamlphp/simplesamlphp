@@ -285,7 +285,8 @@ EOT;
         $this->assertIsArray($hostedMd['SingleSignOnService']);
         $this->assertCount(1, $hostedMd['SingleSignOnService']);
         $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-           'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'], $hostedMd['SingleSignOnService'][0]);
+            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
+            $hostedMd['SingleSignOnService'][0]);
         $this->assertArrayHasKey('SingleLogoutService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleLogoutService']);
         $this->assertCount(1, $hostedMd['SingleLogoutService']);
@@ -382,7 +383,8 @@ EOT;
             $hostedMd['SingleSignOnService'][0]
         );
         $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-           'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'], $hostedMd['SingleSignOnService'][1]);
+            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
+            $hostedMd['SingleSignOnService'][1]);
     }
 
     public function testIdPGetHostedMetadataECP(): void
@@ -394,9 +396,11 @@ EOT;
         $this->assertIsArray($hostedMd['SingleSignOnService']);
         $this->assertCount(2, $hostedMd['SingleSignOnService']);
         $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-           'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'], $hostedMd['SingleSignOnService'][0]);
+            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
+            $hostedMd['SingleSignOnService'][0]);
         $this->assertEquals(['Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP', 'index' => 0,
-           'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'], $hostedMd['SingleSignOnService'][1]);
+            'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'],
+            $hostedMd['SingleSignOnService'][1]);
     }
 
     /**
