@@ -564,10 +564,11 @@ class ServiceProvider
     /**
      * Metadata endpoint for SAML SP
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function metadata(string $sourceId): Response
+    public function metadata(Request $request, string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
