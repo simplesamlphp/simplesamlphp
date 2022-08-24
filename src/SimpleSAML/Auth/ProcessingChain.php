@@ -126,7 +126,8 @@ class ProcessingChain
 
             if (!is_array($filter)) {
                 throw new Exception(
-                    "Invalid authentication processing filter configuration: One of the filters wasn't a string or an array."
+                    "Invalid authentication processing filter configuration: " .
+                    "One of the filters wasn't a string or an array."
                 );
             }
 
