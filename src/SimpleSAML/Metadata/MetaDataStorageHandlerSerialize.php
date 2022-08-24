@@ -134,11 +134,11 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $extLen = strlen(self::EXTENSION);
 
         $finder = new Finder();
-        $finder->directories()->name(sprintf('/%s/$', self::EXTENSION))->in($this->directory);
+        $finder->files()->name('*' .  self::EXTENSION)->in($this->directory . DIRECTORY_SEPARATOR . $set);
 
         $ret = [];
         foreach ($finder as $file) {
-            $entityId = substr($file->getPathName(), 0, -$extLen);
+            $entityId = substr($file->getFileName(), 0, -$extLen);
             $entityId = rawurldecode($entityId);
 
             $md = $this->getMetaData($entityId, $set);
