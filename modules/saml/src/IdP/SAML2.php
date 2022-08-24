@@ -747,15 +747,19 @@ class SAML2
      * Retrieve the metadata of a hosted SAML 2 IdP.
      *
      * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
+     * @param MetaDataStorageHandler $handler Optionally the metadata storage to use,
+     *        if omitted the configured handler will be used.
      *
      * @return array
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      */
-    public static function getHostedMetadata(string $entityid): array
+    public static function getHostedMetadata(string $entityid, MetaDataStorageHandler $handler = null): array
     {
-        $handler = MetaDataStorageHandler::getMetadataHandler();
+        if ($handler === null) {
+            $handler = MetaDataStorageHandler::getMetadataHandler();
+        }
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
 
         // configure endpoints

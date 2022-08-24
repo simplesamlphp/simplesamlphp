@@ -6,7 +6,9 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -30,7 +32,7 @@ class MetadataTest extends TestCase
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
-
+    protected MetaDataStorageHandler $mdh;
     /**
      * Set up for each test.
      */
@@ -38,13 +40,69 @@ class MetadataTest extends TestCase
     {
         parent::setUp();
 
+        $this->mdh = new class () extends MetaDataStorageHandler {
+            /** @var string */
+            private const XMLSEC = '../vendor/simplesamlphp/xml-security/tests/resources';
+
+            /** @var string */
+            public const CERT_KEY = self::XMLSEC . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+
+            /** @var string */
+            public const CERT_PUBLIC = self::XMLSEC . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+
+            private array $idps;
+
+            public function __construct()
+            {
+                $this->idps = [
+                        'urn:example:simplesaml:idp' => [
+                            'name' => 'SimpleSAMLphp Hosted IDP',
+                            'descr' => 'The local IDP',
+                            'OrganizationDisplayName' => ['en' => 'My IDP', 'nl' => 'Mijn IDP'],
+                            'certificate' => self::CERT_PUBLIC,
+                            'privatekey' => self::CERT_KEY,
+
+                        ],
+                        'urn:example:simplesaml:another:idp' => [
+                            'name' => 'SimpleSAMLphp Hosted Another IDP',
+                            'descr' => 'Different IDP',
+                            'OrganizationDisplayName' => ['en' => 'Other IDP', 'nl' => 'Andere IDP'],
+                            'certificate' => self::CERT_PUBLIC,
+                            'privatekey' => self::CERT_KEY,
+
+                        ],
+                    ];
+            }
+
+            public function getMetaData(?string $entityId, string $set): array
+            {
+                if (isset($this->idps[$entityId]) && $set === 'saml20-idp-hosted') {
+                    return $this->idps[$entityId];
+                }
+
+                throw new Error\MetadataNotFound($entityId ?? '');
+            }
+
+            public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
+            {
+                if ($set === 'saml20-idp-hosted') {
+                    return $idps;
+                }
+                return [];
+            }
+
+            public function getMetaDataCurrentEntityID(string $set, string $type = 'entityid'): string
+            {
+                return 'urn:example:simplesaml:another:idp';
+            }
+        };
         $this->session = Session::getSessionFromRequest();
 
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
                 'enable.saml20-idp' => true,
-                'admin.protectmetadata' => true,
+                'admin.protectmetadata' => false,
             ],
             '[ARRAY]',
             'simplesaml'
@@ -70,6 +128,8 @@ class MetadataTest extends TestCase
                 // stub
             }
         };
+
+        $_SERVER['REQUEST_URI'] = '/dummy';
     }
 
 
@@ -78,39 +138,43 @@ class MetadataTest extends TestCase
      * and admin.protectmetadata set to true or false is handled properly
      *
      * @dataProvider provideMetadataAccess
-     * @param bool $protected
-     * @param bool $authenticated
-     * @return void
      */
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
+        $config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'enable.saml20-idp' => true,
+                'admin.protectmetadata' => $protected,
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+        Configuration::setPreLoadedConfig($config, 'config.php');
+
         $request = Request::create(
             '/idp/metadata',
             'GET',
         );
 
-        $c = new Controller\Metadata($this->config, $this->session);
+        $c = new Controller\Metadata($config, $this->session);
+        $c->setMetadataStorageHandler($this->mdh);
 
-        if ($authenticated === true || $protected === false) {
+        if ($authenticated === true) {
             // Bypass authentication - mock being authenticated
             $c->setAuthUtils($this->authUtils);
         }
 
         $result = $c->metadata($request);
 
-        if ($authenticated !== false && $protected !== true) {
-            // ($authenticated === true) or ($protected === false)
-            // Should lead to a Response
-            $this->assertInstanceOf(Response::class, $result);
-        } else {
+        if ($protected && !$authenticated) {
             $this->assertInstanceOf(RunnableResponse::class, $result);
+            $this->assertEquals("requireAdmin", $result->getCallable()[1]);
+        } else {
+            $this->assertInstanceOf(Response::class, $result);
         }
     }
 
-
-    /**
-     * @return array
-     */
     public function provideMetadataAccess(): array
     {
         return [
@@ -120,5 +184,118 @@ class MetadataTest extends TestCase
            [true, false],
            [true, true],
         ];
+    }
+
+    /**
+     * Test that saml20-idp setting disabled disables access
+     */
+    public function testDisabledSAML20IDPReturnsNoAccess(): void
+    {
+        $config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'enable.saml20-idp' => false,
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+        Configuration::setPreLoadedConfig($config, 'config.php');
+
+        $request = Request::create(
+            '/idp/metadata',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($config, $this->session);
+
+        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectExceptionMessage('NOACCESS');
+        $result = $c->metadata($request);
+    }
+
+    /**
+     * Test that requesting a non-existing entityID throws an exception
+     */
+    public function testMetadataUnknownEntityThrowsError(): void
+    {
+        $request = Request::create(
+            '/idp/metadata?idpentityid=https://example.org/notexist',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($this->config, $this->session);
+        $c->setMetadataStorageHandler($this->mdh);
+
+        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectExceptionMessage('METADATA');
+        $result = $c->metadata($request);
+    }
+
+    /**
+     * Basic smoke test of generated metadata
+     */
+    public function testMetadataYieldsContent(): void
+    {
+        $request = Request::create(
+            '/idp/metadata?idpentityid=urn:example:simplesaml:idp',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($this->config, $this->session);
+        $c->setMetadataStorageHandler($this->mdh);
+
+        $result = $c->metadata($request);
+        $this->assertEquals('application/samlmetadata+xml', $result->headers->get('Content-Type'));
+        $this->assertEquals('attachment; filename="idp-metadata.xml"', $result->headers->get('Content-Disposition'));
+        $content = $result->getContent();
+
+        $expect = 'entityID="urn:example:simplesaml:idp"';
+        $this->assertStringContainsString($expect, $content);
+
+        $expect = '<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location=';
+        $this->assertStringContainsString($expect, $content);
+    }
+
+    /**
+     * Test not specifying explict entityID falls back to a default
+     */
+    public function testMetadataDefaultIdPYieldsContent(): void
+    {
+        $request = Request::create(
+            '/idp/metadata',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($this->config, $this->session);
+        $c->setMetadataStorageHandler($this->mdh);
+
+        $result = $c->metadata($request);
+        $this->assertEquals('application/samlmetadata+xml', $result->headers->get('Content-Type'));
+        $this->assertEquals('attachment; filename="idp-metadata.xml"', $result->headers->get('Content-Disposition'));
+        $content = $result->getContent();
+
+        $expect = 'entityID="urn:example:simplesaml:another:idp"';
+        $this->assertStringContainsString($expect, $content);
+
+        $expect = '<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location=';
+        $this->assertStringContainsString($expect, $content);
+    }
+
+    /**
+     * Check if caching headers are set
+     */
+    public function testMetadataCachingHeaders(): void
+    {
+        $request = Request::create(
+            '/idp/metadata',
+            'GET',
+        );
+
+        $c = new Controller\Metadata($this->config, $this->session);
+        $c->setMetadataStorageHandler($this->mdh);
+
+        $result = $c->metadata($request);
+        $this->assertTrue($result->headers->has('ETag'));
+        $this->assertEquals('public', $result->headers->get('Cache-Control'));
     }
 }

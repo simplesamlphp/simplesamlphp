@@ -9,6 +9,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata as SSPMetadata;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
@@ -34,6 +35,7 @@ class Metadata
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
+    protected MetadataStorageHandler $mdHandler;
 
     /**
      * Controller constructor.
@@ -47,8 +49,8 @@ class Metadata
     ) {
         $this->config = $config;
         $this->authUtils = new Utils\Auth();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
-
 
     /**
      * Inject the \SimpleSAML\Utils\Auth dependency.
@@ -60,6 +62,13 @@ class Metadata
         $this->authUtils = $authUtils;
     }
 
+    /**
+     * Inject the \SimpleSAML\Metadata\MetadataStorageHandler dependency.
+     */
+    public function setMetadataStorageHandler(MetadataStorageHandler $mdHandler): void
+    {
+        $this->mdHandler = $mdHandler;
+    }
 
     /**
      * This endpoint will offer the SAML 2.0 IdP metadata.
@@ -78,15 +87,13 @@ class Metadata
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
-        $metadata = SSPMetadata\MetaDataStorageHandler::getMetadataHandler();
-
         try {
             if ($request->query->has('idpentityid')) {
                 $idpentityid = $request->query->get('idpentityid');
             } else {
-                $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+                $idpentityid = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
             }
-            $metaArray = SAML2_IdP::getHostedMetadata($idpentityid);
+            $metaArray = SAML2_IdP::getHostedMetadata($idpentityid, $this->mdHandler);
 
             $metaBuilder = new SSPMetadata\SAMLBuilder($idpentityid);
             $metaBuilder->addMetadataIdP20($metaArray);
