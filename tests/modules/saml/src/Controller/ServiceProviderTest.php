@@ -34,7 +34,6 @@ class ServiceProviderTest extends TestCase
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
-
     /**
      * Set up for each test.
      */
@@ -46,7 +45,7 @@ class ServiceProviderTest extends TestCase
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
-                'admin.protectmetadata' => true,
+                'admin.protectmetadata' => false,
             ],
             '[ARRAY]',
             'simplesaml'
@@ -75,6 +74,8 @@ class ServiceProviderTest extends TestCase
                 // stub
             }
         };
+
+        $_SERVER['REQUEST_URI'] = '/dummy';
     }
 
 
@@ -398,34 +399,41 @@ XML;
      * and admin.protectmetadata set to true or false is handled properly
      *
      * @dataProvider provideMetadataAccess
-     * @param bool $protected
-     * @param bool $authenticated
-     * @return void
      */
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'admin.protectmetadata' => $protected,
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+        Configuration::setPreLoadedConfig($config, 'config.php');
+
+        $request = Request::create(
+            '/sp/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($config, $this->session);
 
         if ($authenticated === true || $protected === false) {
             // Bypass authentication - mock being authenticated
             $c->setAuthUtils($this->authUtils);
         }
 
-        $result = $c->metadata('phpunit');
+        $result = $c->metadata($request, 'phpunit');
 
-        if ($authenticated !== false && $protected !== true) {
-            // ($authenticated === true) or ($protected === false)
-            // Should lead to a Response
-            $this->assertInstanceOf(Response::class, $result);
-        } else {
+        if ($protected && !$authenticated) {
             $this->assertInstanceOf(RunnableResponse::class, $result);
+            $this->assertEquals("requireAdmin", $result->getCallable()[1]);
+        } else {
+            $this->assertInstanceOf(Response::class, $result);
         }
     }
 
-
-    /**
-     * @return array
-     */
     public function provideMetadataAccess(): array
     {
         return [
@@ -435,5 +443,59 @@ XML;
            [true, false],
            [true, true],
         ];
+    }
+
+    /**
+     * Test that requesting a non-existing authsource yields an error
+     */
+    public function testMetadataUnknownEntityThrowsError(): void
+    {
+        $request = Request::create(
+            '/sp/metadata/phpnonunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
+        $result = $c->metadata($request, 'phpnonunit');
+    }
+
+    /**
+     * Basic smoke test of generated metadata
+     */
+    public function testMetadataYieldsContent(): void
+    {
+        $request = Request::create(
+            '/sp/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $result = $c->metadata($request, 'phpunit');
+        $this->assertEquals('application/samlmetadata+xml', $result->headers->get('Content-Type'));
+        $this->assertEquals('attachment; filename="phpunit.xml"', $result->headers->get('Content-Disposition'));
+        $content = $result->getContent();
+        $expect = 'entityID="urn:x-simplesamlphp:example-sp"';
+        $this->assertStringContainsString($expect, $content);
+    }
+
+    /**
+     * Check if caching headers are set
+     */
+    public function testMetadataCachingHeaders(): void
+    {
+        $request = Request::create(
+            '/sp/metadata/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $result = $c->metadata($request, 'phpunit');
+        $this->assertTrue($result->headers->has('ETag'));
+        $this->assertEquals('public', $result->headers->get('Cache-Control'));
     }
 }
