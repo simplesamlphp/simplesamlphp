@@ -131,6 +131,7 @@ class Language
         'zu'    => 'IsiZulu', // Zulu
         'xh'    => 'isiXhosa', // Xhosa
         'st'    => 'Sesotho', // Sesotho
+		'sk'	=> 'Slovenčina', // Slovak
     ];
 
     /**
