@@ -1,0 +1,952 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp 1.15\n"
+"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
+"POT-Creation-Date: 2016-10-12 09:31+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
+"Last-Translator: \n"
+"Language: sk\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n == 1 ? 0 : (n >= 2 && n <= 4 ? 1 : 2))\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Back"
+msgstr "Späť"
+
+msgid "[Preferred choice]"
+msgstr "[Preferovaná voľba]"
+
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "Hello, %who%!"
+msgstr "Vitajte, %who%!"
+
+msgid "World"
+msgstr "Svet"
+
+msgid "Person's principal name at home organization"
+msgstr "Hlavné meno osoby v domovskej organizácii"
+
+msgid "Superfluous options in config file"
+msgstr "Zbytočné nastavenia v konfiguračnom súbore"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3 Service Provider (lokálne prevádzkovaný)"
+
+msgid ""
+"LDAP is the user database, and when you try to login, we need to contact an "
+"LDAP database. An error occurred when we tried it this time."
+msgstr ""
+"LDAP je databáza užívateľov a keď sa prihlasujete, potrebujeme sa na túto databázu "
+"pripojiť. Pri tomto pokuse nastala chyba."
+
+msgid ""
+"Optionally enter your email address, for the administrators to be able "
+"contact you for further questions about your issue:"
+msgstr ""
+"Dobrovoľne zadajte Vašu emailovú adresu, aby Vás administrátori mohli "
+"kontaktovať s ďalšími otázkami pre vyriešenie problému:"
+
+msgid "Display name"
+msgstr "Zobrazované meno"
+
+msgid "Remember my choice"
+msgstr "Zapamätať moju voľbu"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "SAML 2.0 SP Metadata"
+
+msgid "ADFS IdP Metadata"
+msgstr "ADFS IdP Metadata"
+
+msgid "Notices"
+msgstr "Oznámenia"
+
+msgid "Home telephone"
+msgstr "Telefón domov"
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
+"session is timed out, how long it lasts until it times out and all the "
+"attributes that are attached to your session."
+msgstr ""
+"Toto je stránka so stavom SimpleSAMLphp. Tu môžete vidieť, či "
+"Vaša relácia vypršala, ako dlho trvá, dokým vyprší a všetky "
+"atribúty, ktoré sú pripojené k Vašej relácii."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Vysvetlite, čo ste robili, keď nastala táto chyba..."
+
+msgid "An unhandled exception was thrown."
+msgstr "Vznikla neočakávaná chyba."
+
+msgid "Invalid certificate"
+msgstr "Neplatný certifikát"
+
+msgid "Service Provider"
+msgstr "Poskytovateľ služby (Service Provider)"
+
+msgid "Incorrect username or password."
+msgstr "Nesprávne meno alebo heslo."
+
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr ""
+"V požiadavke na túto stránku je chyba. Dôvod: %REASON%"
+
+msgid "E-mail address:"
+msgstr "E-mailová adresa:"
+
+msgid "Submit message"
+msgstr "Odoslať správu"
+
+msgid "No RelayState"
+msgstr "Žiadny RelayState"
+
+msgid "Error creating request"
+msgstr "Chyba pri vytváraní požiadavky"
+
+msgid "Locality"
+msgstr "Lokalita"
+
+msgid "Unhandled exception"
+msgstr "Neočakávaná chyba"
+
+msgid "The following required fields was not found"
+msgstr "Nasledujúce povinné údaje neboli nájdené"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "Stiahnuť X509 certifikáty ako PEM kódované súbory."
+
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Nepodarilo sa nájsť metadáta pre %ENTITYID%"
+
+msgid "Organizational number"
+msgstr "Číslo organizácie"
+
+msgid "Password not set"
+msgstr "Heslo nie je nastavené"
+
+msgid "Post office box"
+msgstr "Poštová schránka"
+
+msgid ""
+"A service has requested you to authenticate yourself. Please enter your "
+"username and password in the form below."
+msgstr ""
+"Služba požaduje Vašu autentifikáciu. Zadajte, prosím, Vaše prihlasovacie "
+"meno a heslo do formulára nižšie."
+
+msgid "CAS Error"
+msgstr "CAS Chyba"
+
+msgid ""
+"The debug information below may be of interest to the administrator / help "
+"desk:"
+msgstr ""
+"Detailné informácie nižšie môžu byť pre administrátora alebo podporu nápomocné:"
+
+msgid ""
+"Either no user with the given username could be found, or the password you "
+"gave was wrong. Please check the username and try again."
+msgstr ""
+"Buď sa užívateľ s týmto prihlasovacím menom nenašiel, alebo je zadané heslo "
+"nesprávne. Skontrolujte prosím prihlasovacie meno a heslo a skúste to znovu."
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Next"
+msgstr "Ďalší"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Jednoznačné meno (DN) organizačnej jednotky človeka"
+
+msgid "State information lost"
+msgstr "Stavová informácia stratená"
+
+msgid ""
+"The password in the configuration (auth.adminpassword) is not changed from "
+"the default value. Please edit the configuration file."
+msgstr ""
+"Heslo v konfiguračnom súbore (auth.adminpassword) nie je zmenené z "
+"prednastavenej hodnoty. Zmeňte prosím konfiguračný súbor."
+
+msgid "Converted metadata"
+msgstr "Konvertované metadáta"
+
+msgid "Mail"
+msgstr "Email"
+
+msgid "No, cancel"
+msgstr "Nie, zrušiť"
+
+msgid ""
+"You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong "
+"you may choose another one."
+msgstr ""
+"Vybrali ste si <b>%HOMEORG%</b> ako svoju domovskú organizáciu. Ak toto nie je správne, "
+"môžete vybrať inú."
+
+msgid "Error processing request from Service Provider"
+msgstr "Chyba pri spracovávaní požiadavky z poskytovateľa služby (Service Provider)"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Jednoznačné meno (DN) primárnej organizačnej jednotky človeka"
+
+msgid ""
+"To look at the details for an SAML entity, click on the SAML entity header."
+msgstr ""
+"Pre detaily kliknite na hlavičku SAML entity."
+
+msgid "Enter your username and password"
+msgstr "Zadajte Vaše prihlasovacie meno a heslo"
+
+msgid "Login at"
+msgstr "Prihlásenie na"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "Home postal address"
+msgstr "Domovská poštová adresa"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "WS-Fed SP Demo"
+
+msgid "Error processing the Logout Request"
+msgstr "Chyba pri spracovávaní požiadavky odhlásenia (Logout Request)"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
+
+msgid "Select"
+msgstr "Vybrať"
+
+msgid "The authentication was aborted by the user"
+msgstr "Autentifikácia bola prerušená užívateľom"
+
+msgid "Your attributes"
+msgstr "Vaše atribúty"
+
+msgid "Given name"
+msgstr "Krstné meno"
+
+msgid "Identity assurance profile"
+msgstr "Profil uistenia identity"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "SAML 2.0 SP Demo"
+
+msgid "Logout information lost"
+msgstr "Odhlasovacia informácia stratená"
+
+msgid "Organization name"
+msgstr "Názov organizácie"
+
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Autentifikácia zlyhala: certifikát zaslaný Vašim prehliadačom je neznámy"
+
+msgid ""
+"You are about to send a message. Hit the submit message button to continue."
+msgstr ""
+"Chystáte sa poslať správu. Kliknite na tlačidlo odoslania pre pokračovanie."
+
+msgid "Home organization domain name"
+msgstr "Doménové meno organizácie"
+
+msgid "Go back to the file list"
+msgstr "Ísť späť na zoznam súborov"
+
+msgid "SAML Subject"
+msgstr "SAML Subjekt"
+
+msgid "Error report sent"
+msgstr "Chybové hlásenie odoslané"
+
+msgid "Common name"
+msgstr "Názov (Common Name)"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
+
+msgid "Logout failed"
+msgstr "Odhlásenie zlyhalo"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Číslo identity pridelené verejnou autoritou"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "WS-Federation Identity Provider (vzdialené)"
+
+msgid "Error received from Identity Provider"
+msgstr "Prijatá chyba z poskytovateľa identity (Identity Provider)"
+
+msgid "LDAP Error"
+msgstr "LDAP Chyba"
+
+msgid ""
+"The information about the current logout operation has been lost. You should "
+"return to the service you were trying to log out from and try to log out "
+"again. This error can be caused by the logout information expiring. The "
+"logout information is stored for a limited amount of time - usually a number "
+"of hours. This is longer than any normal logout operation should take, so "
+"this error may indicate some other error with the configuration. If the "
+"problem persists, contact your service provider."
+msgstr ""
+"Informácia o aktuálnej operácii odhlásenia bola stratená. Mali by ste "
+"sa vrátiť do služby, z ktorej sa snažíte odhlásiť, a skúsiť to znovu. "
+"Táto chyba môže byť zapríčinená expiráciou odhlasovacích informácií. "
+"Odhlasovacie informácie sú uložené po určitý čas - zvyčajne pár hodín, "
+"čo je dlhšie, ako by mal odhlasovací proces trvať, takže táto chyba môže "
+"indikovať problém s konfiguráciou. Ak tento problém pretrváva, kontaktujte "
+"Vášho poskytovateľa služby."
+
+msgid "No SAML request provided"
+msgstr "Žiadna poskytnutá SAML požiadavka"
+
+msgid "Some error occurred"
+msgstr "Nastala nejaká chyba"
+
+msgid "Organization"
+msgstr "Organizácia"
+
+msgid ""
+"You accessed the Single Sign On Service interface, but did not provide a "
+"SAML Authentication Request. Please note that this endpoint is not intended "
+"to be accessed directly."
+msgstr ""
+"Pristúpili ste k Single Sign On Service rozhraní, ale neposkytli ste SAML "
+"Authentication Request. Berte prosím na vedomie, že tento endpoint "
+"nie je určený na priamy prístup."
+
+msgid "No certificate"
+msgstr "Žiadny certifikát"
+
+msgid "Choose home organization"
+msgstr "Vyberte domovskú organizáciu"
+
+msgid "Cannot retrieve session data"
+msgstr "Nepodarilo sa získať dáta relácie"
+
+msgid "Persistent pseudonymous ID"
+msgstr "Perzistentné pseudonymné ID"
+
+msgid "No SAML response provided"
+msgstr "Neposkytnutá žiadna SAML odpoveď"
+
+msgid "No errors found."
+msgstr "Neboli nájdene žiadne chyby."
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "SAML 2.0 Service Provider (lokálne prevádzkovaný)"
+
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "Stránka nebola nájdená. URL je: %URL%"
+
+msgid "Configuration error"
+msgstr "Chyba konfigurácie"
+
+msgid "Required fields"
+msgstr "Povinné údaje"
+
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Pri vytváraní SAML požiadavky nastala chyba."
+
+msgid ""
+"This error probably is due to some unexpected behaviour or to "
+"misconfiguration of SimpleSAMLphp. Contact the administrator of this login "
+"service, and send them the error message above."
+msgstr ""
+"Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo "
+"zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej "
+"služby s chybovou hláškou vyššie."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
+
+msgid "Domain component (DC)"
+msgstr "Doména (DC)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3 Service Provider (vzdialené)"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "ORCID researcher identifiers"
+msgstr "ORCID researcher identifikátory"
+
+msgid "Nickname"
+msgstr "Prezývka"
+
+msgid "Send error report"
+msgstr "Odoslať správu o chybe"
+
+msgid ""
+"Authentication failed: the certificate your browser sent is invalid or "
+"cannot be read"
+msgstr ""
+"Autentifikácia zlyhala: certifikát, ktorý poslal Váš prehliadač je neplatný alebo "
+"sa nedá čítať"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Správa o chybe bola odoslaná administrátorom."
+
+msgid "Date of birth"
+msgstr "Dátum narodenia"
+
+msgid "Private information elements"
+msgstr "Privátne informačné prvky"
+
+msgid ""
+"Person's non-reassignable, persistent pseudonymous ID at home organization"
+msgstr ""
+"Nepreraditeľné, perzistentné pseudonymné ID užívateľa v domovskej organizácii"
+
+msgid "You are also logged in on these services:"
+msgstr "Ste taktiež prihlásený do týchto služieb:"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "SimpleSAMLphp diagnostika"
+
+msgid "Debug information"
+msgstr "Debug informácie"
+
+msgid "No, only %SP%"
+msgstr "Nie, len %SP%"
+
+msgid "Username"
+msgstr "Prihlasovacie meno"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Ísť späť na inštalačnú stránku SimpleSAMLphp"
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "Úspešne ste sa odhlásili zo všetkých služieb vyššie."
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "Úspešne ste sa odhlásili z %SP%."
+
+msgid "Affiliation"
+msgstr "Vzťah k organizácii"
+
+msgid "You have been logged out."
+msgstr "Boli ste odhlásený."
+
+msgid "Return to service"
+msgstr "Vrátiť sa na službu"
+
+msgid "Logout"
+msgstr "Odhlásiť sa"
+
+msgid "State information lost, and no way to restart the request"
+msgstr "Stavová informácia stratená a požiadavku sa nedá reštartovať"
+
+msgid "Error processing response from Identity Provider"
+msgstr "Nastala chyba pri spracovávaní odpovede z poskytovateľa identity (Identity Provider)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "WS-Federation Service Provider (lokálne prevádzkovaný)"
+
+msgid "Remember my username"
+msgstr "Zapamätať si prihlasovacie meno"
+
+msgid "Preferred language"
+msgstr "Preferovaný jazyk"
+
+msgid "SAML 2.0 Service Provider (Remote)"
+msgstr "SAML 2.0 Service Provider (vzdialené)"
+
+msgid "Surname"
+msgstr "Priezvisko"
+
+msgid "No access"
+msgstr "Žiadny prístup"
+
+msgid "The following fields was not recognized"
+msgstr "Nasledujúce údaje neboli rozpoznané"
+
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Chyba autentifikácie zo zdroja %AUTHSOURCE%. Dôvod: %REASON%"
+
+msgid "Bad request received"
+msgstr "Prijatá zlá požiadavka"
+
+msgid "User ID"
+msgstr "ID užívateľa"
+
+msgid "JPEG Photo"
+msgstr "JPEG fotka"
+
+msgid "Postal address"
+msgstr "Poštová adresa"
+
+msgid ""
+"Your session data cannot be retrieved right now due to technical "
+"difficulties. Please try again in a few minutes."
+msgstr ""
+"Vaše dáta relácie sa nedajú momentálne získať kvôli technickým "
+"problémom. Skúste to prosím o pár minút."
+
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Nastala chyba pri spracovávaní odhlasovacej požiadavky (Logout Request)."
+
+msgid "ADFS SP Metadata"
+msgstr "ADFS SP Metadata"
+
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "V SAML 2.0 Metadata XML formáte:"
+
+msgid "Logging out of the following services:"
+msgstr "Odhlasovanie z nasledujúcich služieb:"
+
+msgid ""
+"When this identity provider tried to create an authentication response, an "
+"error occurred."
+msgstr ""
+"Nastala chyba pri vytváraní autentifikačnej odpovede."
+
+msgid "Could not create authentication response"
+msgstr "Nepodarilo sa vytvoriť autentifikačnú odpoveď"
+
+msgid "Labeled URI"
+msgstr "Označená URI"
+
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "SimpleSAMLphp vyzerá byť zle nakonfigurovaný."
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3 Identity Provider (lokálne prevádzkovaný)"
+
+msgid "Metadata"
+msgstr "Metadáta"
+
+msgid "Login"
+msgstr "Prihlásiť sa"
+
+msgid ""
+"This Identity Provider received an Authentication Request from a Service "
+"Provider, but an error occurred when trying to process the request."
+msgstr ""
+"This Identity Provider received an Authentication Request from a Service "
+"Provider, but an error occurred when trying to process the request."
+
+msgid "Yes, all services"
+msgstr "Áno, všetky služby"
+
+msgid "Logged out"
+msgstr "Odhlásený"
+
+msgid "Postal code"
+msgstr "Poštové číslo"
+
+msgid "Logging out..."
+msgstr "Odhlasovanie..."
+
+msgid "not set"
+msgstr "nenastavené"
+
+msgid "Metadata not found"
+msgstr "Metadáta neboli nájdené"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "SAML 2.0 Identity Provider (lokálne prevádzkovaný)"
+
+msgid "Primary affiliation"
+msgstr "Primárny vzťah k organizácii"
+
+msgid ""
+"If you report this error, please also report this tracking number which "
+"makes it possible to locate your session in the logs available to the system "
+"administrator:"
+msgstr ""
+"Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré "
+"umožní administrátorovi nájsť Vašu reláciu v logoch:"
+
+msgid "XML metadata"
+msgstr "XML metadáta"
+
+msgid ""
+"The parameters sent to the discovery service were not according to "
+"specifications."
+msgstr ""
+"Parametre odoslané vyhľadávacej službe nie sú v súlade so špecifikáciou."
+
+msgid "Telephone number"
+msgstr "Telefónne číslo"
+
+msgid ""
+"Unable to log out of one or more services. To ensure that all your sessions "
+"are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr ""
+"Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, "
+"že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+
+msgid "Bad request to discovery service"
+msgstr "Zlá požiadavka pre vyhľadávaciu službu"
+
+msgid "Select your identity provider"
+msgstr "Vyberte si poskytovateľa identity"
+
+msgid "Group membership"
+msgstr "Členstvo v skupine"
+
+msgid "Entitlement regarding the service"
+msgstr "Entitlement regarding the service"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SP Metadata"
+
+msgid ""
+"As you are in debug mode, you get to see the content of the message you are "
+"sending:"
+msgstr ""
+"Keďže ste v debug režime, zobrazuje sa Vám obsah správy, ktorú posielate:"
+
+msgid "Certificates"
+msgstr "Certifikáty"
+
+msgid "Remember"
+msgstr "Zapamätať"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Jednoznačné meno (DN) užívateľovej domovskej organizácie"
+
+msgid ""
+"You are about to send a message. Hit the submit message link to continue."
+msgstr ""
+"Chystáte sa poslať správu. Kliknite na link odoslania správy pre pokračovanie."
+
+msgid "Organizational unit"
+msgstr "Organizačná jednotka"
+
+msgid "Authentication aborted"
+msgstr "Autentifikácia zrušená"
+
+msgid "Local identity number"
+msgstr "Lokálne číslo identity"
+
+msgid "Report errors"
+msgstr "Nahlásiť chyby"
+
+msgid "Page not found"
+msgstr "Stránka nebola nájdená"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Shib 1.3 IdP Metadata"
+
+msgid "Change your home organization"
+msgstr "Zmeniť Vašu domovskú organizáciu"
+
+msgid "User's password hash"
+msgstr "Hash hesla užívateľa"
+
+msgid ""
+"In SimpleSAMLphp flat file format - use this if you are using a "
+"SimpleSAMLphp entity on the other side:"
+msgstr ""
+"V SimpleSAMLphp formáte - toto použite, ak používate "
+"SimpleSAMLphp entitu na druhej strane:"
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
+
+msgid "Completed"
+msgstr "Dokončené"
+
+msgid ""
+"The Identity Provider responded with an error. (The status code in the SAML "
+"Response was not success)"
+msgstr ""
+"Poskytovateľ identity odpovedal chybou. (Kód stavu SAML "
+"odpovede nebol úspešný)"
+
+msgid "Error loading metadata"
+msgstr "Chyba pri načítavaní metadát"
+
+msgid "Select configuration file to check:"
+msgstr "Vyberte konfiguračný súbor na kontrolu:"
+
+msgid "On hold"
+msgstr "Podržané"
+
+msgid "ADFS Identity Provider (Hosted)"
+msgstr "ADFS Identity Provider (lokálne prevádzkovaný)"
+
+msgid "Error when communicating with the CAS server."
+msgstr "Chyba pri komunikácii s CAS serverom."
+
+msgid "No SAML message provided"
+msgstr "Neposkytnutá žiadna SAML správa"
+
+msgid "Help! I don't remember my password."
+msgstr "Pomoc! Nepamätám si heslo."
+
+msgid ""
+"You can turn off debug mode in the global SimpleSAMLphp configuration file "
+"<tt>config/config.php</tt>."
+msgstr ""
+"Vypnúť ladiaci režim môžete v globálnom SimpleSAMLphp konfiguračnom súbore "
+"<tt>config/config.php</tt>."
+
+msgid "How to get help"
+msgstr "Ako získať pomoc"
+
+msgid ""
+"You accessed the SingleLogoutService interface, but did not provide a SAML "
+"LogoutRequest or LogoutResponse. Please note that this endpoint is not "
+"intended to be accessed directly."
+msgstr ""
+"Pristúpili ste k SingleLogoutService rozhraní, ale neposkytli ste SAML "
+"LogoutRequest alebo LogoutResponse. Berte prosím na vedomie, že tento endpoint "
+"nie je určený na priamy prístup."
+
+msgid "SimpleSAMLphp error"
+msgstr "SimpleSAMLphp chyba"
+
+msgid ""
+"One or more of the services you are logged into <i>do not support logout</"
+"i>. To ensure that all your sessions are closed, you are encouraged to "
+"<i>close your webbrowser</i>."
+msgstr ""
+"Jedna alebo viacero služieb, do ktorých ste prihlásený, <i>nepodporuje odhlásenie</"
+"i>. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané "
+"<i>zatvoriť Váš prehliadač</i>."
+
+msgid "or select a file:"
+msgstr "alebo vyberte súbor:"
+
+msgid "Remember me"
+msgstr "Zapamätať si ma"
+
+msgid "Organization's legal name"
+msgstr "Právny názov organizácie"
+
+msgid "Options missing from config file"
+msgstr "Nastavenia chýbajúce v konfiguračnom súbore"
+
+msgid "The following optional fields was not found"
+msgstr "Nasledujúce voliteľné údaje neboli nájdené"
+
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Autentifikácia zlyhala: Váš prehliadač neodoslal žiadny certifikát"
+
+msgid ""
+"This endpoint is not enabled. Check the enable options in your configuration "
+"of SimpleSAMLphp."
+msgstr ""
+"Tento endpoint nie je aktivovaný. Skontrolujte aktivačné nastavenia v konfigurácii "
+"SimpleSAMLphp."
+
+msgid ""
+"You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr ""
+"Môžete <a href=\"%METAURL%\">získať XML metadát na samostatnom odkaze</a>:"
+
+msgid "Street"
+msgstr "Ulica"
+
+msgid ""
+"There is some misconfiguration of your SimpleSAMLphp installation. If you "
+"are the administrator of this service, you should make sure your metadata "
+"configuration is correctly setup."
+msgstr ""
+"Vo Vašej inštalácii SimpleSAMLphp je niečo zle nakonfigurované. Ak ste "
+"administrátor tejto služby, mali by ste sa uistiť, že konfigurácia "
+"metadát je správna."
+
+msgid "Incorrect username or password"
+msgstr "Nesprávne prihlasovacie meno alebo heslo"
+
+msgid "Message"
+msgstr "Správa"
+
+msgid "Contact information:"
+msgstr "Kontaktné informácie:"
+
+msgid "Unknown certificate"
+msgstr "Neznámy certifikát"
+
+msgid "Legal name"
+msgstr "Právny názov"
+
+msgid "Optional fields"
+msgstr "Voliteľné údaje"
+
+msgid ""
+"The initiator of this request did not provide a RelayState parameter "
+"indicating where to go next."
+msgstr ""
+"Iniciátor tejto požiadavky neposkytol parameter RelayState "
+"indikujúci kam pokračovať ďalej."
+
+msgid "You have previously chosen to authenticate at"
+msgstr "V minulosti ste sa rozhodli autentifikovať cez "
+
+msgid ""
+"You sent something to the login page, but for some reason the password was "
+"not sent. Try again please."
+msgstr ""
+"You sent something to the login page, but for some reason the password was "
+"not sent. Try again please."
+
+msgid "Fax number"
+msgstr "Číslo faxu"
+
+msgid "Shibboleth demo"
+msgstr "Shibboleth demo"
+
+msgid "Error in this metadata entry"
+msgstr "Chyba v tomto metadáta zázname"
+
+msgid "Session size: %SIZE%"
+msgstr "Veľkosť relácie: %SIZE%"
+
+msgid "Parse"
+msgstr "Parsovať"
+
+msgid ""
+"Without your username and password you cannot authenticate yourself for "
+"access to the service. There may be someone that can help you. Consult the "
+"help desk at your organization!"
+msgstr ""
+"Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre "
+"prístup do služby. Kontaktujte podporu Vašej organizácie."
+
+msgid "ADFS Service Provider (Remote)"
+msgstr "ADFS Service Provider (vzdialené)"
+
+msgid "Choose your home organization"
+msgstr "Vyberte si domovskú organizáciu"
+
+msgid "Send e-mail to help desk"
+msgstr "Odoslať e-mail na podporu"
+
+msgid "Metadata overview"
+msgstr "Prehľad metadát"
+
+msgid "Title"
+msgstr "Nadpis"
+
+msgid "Manager"
+msgstr "Manažér"
+
+msgid "You did not present a valid certificate."
+msgstr "Neposkytli ste platný certifikát."
+
+msgid "Authentication source error"
+msgstr "Chyba zdroja autentifikácie"
+
+msgid "Affiliation at home organization"
+msgstr "Vzťah k domovskej organizácii"
+
+msgid "Help desk homepage"
+msgstr "Domovská stránka podpory"
+
+msgid "Configuration check"
+msgstr "Kontrola konfigurácie"
+
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Neakceptovali sme odpoveď odoslanú z poskytovateľa identity."
+
+msgid ""
+"You accessed the Artifact Resolution Service interface, but did not provide "
+"a SAML ArtifactResolve message. Please note that this endpoint is not "
+"intended to be accessed directly."
+msgstr ""
+"Pristúpili ste k Artifact Resolution Service rozhraní, ale neposkytli ste SAML "
+"ArtifactResolve správu. Berte prosím na vedomie, že tento endpoint "
+"nie je určený na priamy prístup."
+
+msgid ""
+"The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr ""
+"Stránka nebola nájdená. Dôvod: %REASON%  URL: %URL%"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3 Identity Provider (vzdialené)"
+
+msgid ""
+"Here is the metadata that SimpleSAMLphp has generated for you. You may send "
+"this metadata document to trusted partners to setup a trusted federation."
+msgstr ""
+"Tu sú metadáta, ktoré SimpleSAMLphp vygeneroval. Možno budete musieť odoslať "
+"tento dokument metadát dôveryhodným partnerom na nastavenie dôveryhodnej federácie."
+
+msgid "Organizational homepage"
+msgstr "Domovská stránka organizácie"
+
+msgid "Processing..."
+msgstr "Spracovávanie..."
+
+msgid ""
+"You accessed the Assertion Consumer Service interface, but did not provide a "
+"SAML Authentication Response. Please note that this endpoint is not intended "
+"to be accessed directly."
+msgstr ""
+"Pristúpili ste k Assertion Consumer Service rozhraní, ale neposkytli ste SAML "
+"Authentication Response. Berte prosím na vedomie, že tento endpoint "
+"nie je určený na priamy prístup."
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup is "
+"for testing and pre-production verification only. If someone sent you a link "
+"that pointed you here, and you are not <i>a tester</i> you probably got the "
+"wrong link, and should <b>not be here</b>."
+msgstr ""
+"Práve pristupujete k predprodukčnému systému. Toto autentifikačné prostredie "
+"je určené len pre testovanie a predporodukčnú verifikáciu. Ak Vám niekto poslal link, "
+"ktorý Vás sem dostal, a nie ste <i>tester</i>, pravdepodobne máte "
+"zlý link a <b>nemali by ste tu byť</b>."
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Authentication status"
+msgstr "Stav autentifikácie"
+
+msgid "Debug information to be used by your support staff"
+msgstr "Debug informácie pre personál podpory"
+
+msgid "Tracking number"
+msgstr "Sledovacie číslo"
+
+msgid "Copy to clipboard"
+msgstr "Kopírovať do schránky"
+
+msgid "Information about your current session"
+msgstr "Informácie o Vašej aktuálnej relácii"
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+msgid ""
+"Since your browser does not support Javascript, you must press the button "
+"below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido "
+"nižšie pre pokračovanie."
+
+msgid "{errors:debuginfo_header}"
+msgstr ""
+
+msgid "{errors:debuginfo_text}"
+msgstr ""
+
+msgid "No identity providers found. Cannot continue."
+msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."

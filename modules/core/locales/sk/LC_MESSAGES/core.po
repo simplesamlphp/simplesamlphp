@@ -1,0 +1,254 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp 1.15\n"
+"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
+"POT-Creation-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
+"Last-Translator: \n"
+"Language: sk\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n == 1 ? 0 : (n >= 2 && n <= 4 ? 1 : 2))\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Go back to the previous page and try again."
+msgstr "Choďte späť na predchádzajúcu stránku a skúste to znovu."
+
+msgid ""
+"If this problem persists, you can report it to the system administrators."
+msgstr ""
+"Ak tento problém pretrváva, môžete odoslať hlásenie systémovým administrátorom."
+
+msgid "Welcome"
+msgstr "Vitajte"
+
+msgid ""
+"Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metadáta lokálne prevádzkovaného Shibboleth 1.3 Service Provider (automaticky generované)"
+
+msgid "Retry login"
+msgstr "Znovu skúsiť prihlásenie"
+
+msgid "Close the web browser, and try again."
+msgstr "Zatvorte prehliadač a skúste to znovu."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr ""
+"Nepodarilo sa nám nájsť informáciu o stave pre aktuálnu požiadavku."
+
+msgid ""
+"This is most likely a configuration problem on either the service provider "
+"or identity provider."
+msgstr ""
+"Toto je najpravdepodobnejšie problém konfigurácie buď na strane poskytovateľa "
+"služby alebo identity."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Použitie tlačidla späť a vpred v prehliadači."
+
+msgid ""
+"You are running an outdated version of SimpleSAMLphp. Please update to <a "
+"href=\"https://simplesamlphp.org/download\">the latest version</a> as soon "
+"as possible."
+msgstr ""
+"Máte zastaralú verziu SimpleSAMLphp. Aktualizujte prosím čo najskôr na <a "
+"href=\"https://simplesamlphp.org/download\">najnovšiu verziu</a>."
+
+msgid "Missing cookie"
+msgstr "Chýba cookie"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Súbory cookies môžu byť vypnuté v prehliadači."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otvorený prehliadač s kartami z predchádzajúcej relácie."
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr ""
+"Vyzerá to tak, že ste zablokovali súbory cookies vo Vašom prehliadači. "
+"Prosím, skontrolujte nastavenia vo Vašom prehliadači a skúste to znovu."
+
+msgid "This error may be caused by:"
+msgstr "Možné dôvody tejto chyby:"
+
+msgid "Retry"
+msgstr "Opakovať"
+
+msgid ""
+"If you are an user who received this error after following a link on a site, "
+"you should report this error to the owner of that site."
+msgstr ""
+"Ak ste dostali túto chybu po kliknutí na odkaz na nejakej stránky, "
+"mali by ste túto chybu nahlásiť vlastníkovi tejto stránky."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Návrhy na vyriešenie tohto problému:"
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP - testovanie prihlasovania cez Shib IdP"
+
+msgid "State information lost"
+msgstr "Stavová informácia stratená"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there is "
+"a problem with this SP."
+msgstr ""
+"Detekovali sme, že prebehlo iba pár sekúnd od poslednej autentifikácie "
+"s týmto poskytovateľom služby, a preto predpokladáme, že je s týmto "
+"poskytovateľom služby problém."
+
+msgid ""
+"If you are a developer who is deploying a single sign-on solution, you have "
+"a problem with the metadata configuration. Verify that metadata is "
+"configured correctly on both the identity provider and service provider."
+msgstr ""
+"Ak ste vývojár a nastavujete systém jednotného prihlásenia, máte "
+"problém s konfiguráciou metadát. Skontrolujte, či sú metadáta "
+"nakonfigurované správne na oboch stranách - poskytovateľa služby a "
+"poskytovateľa identity"
+
+msgid "Too short interval between single sign on events."
+msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."
+
+msgid ""
+"Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+
+msgid "Report this error"
+msgstr "Nahlásiť túto chybu"
+
+msgid "Incorrect Attributes"
+msgstr "Nesprávne atribúty"
+
+msgid ""
+"One or more of the attributes supplied by your identity provider did not "
+"contain the expected number of values."
+msgstr ""
+"Jedna alebo viacero atribútov poskytnutých od poskytovateľa identity nespĺňa "
+"očakávané množstvo hodnôt."
+
+msgid "The problematic attribute(s) are:"
+msgstr "Problémové atribúty sú:"
+
+msgid "got %got% values, want %want%"
+msgstr "dostané %got% hodnoty, očakávané %want%"
+
+msgid "Logout"
+msgstr "Odhlásenie"
+
+msgid "Error report sent"
+msgstr "Chybová správa odoslaná"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Chybová správa bola odoslaná administrátorom."
+
+msgid "Enter your username and password"
+msgstr "Zadajte Vaše prihlasovacie meno a heslo"
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup is "
+"for testing and pre-production verification only. If someone sent you a link "
+"that pointed you here, and you are not <i>a tester</i> you probably got the "
+"wrong link, and should <b>not be here</b>."
+msgstr ""
+
+msgid ""
+"A service has requested you to authenticate yourself. Please enter your "
+"username and password in the form below."
+msgstr ""
+"Služba požaduje Vašu autentifikáciu. Zadajte, prosím, Vaše prihlasovacie "
+"meno a heslo do formulára nižšie."
+
+msgid "Username"
+msgstr ""
+
+msgid "Remember my username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Remember my organization"
+msgstr ""
+
+msgid "Processing..."
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Help! I don't remember my password."
+msgstr ""
+
+msgid ""
+"Without your username and password you cannot authenticate yourself for "
+"access to the service. There may be someone that can help you. Consult the "
+"help desk at your organization!"
+msgstr ""
+"Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre "
+"prístup do služby. Kontaktujte podporu Vašej organizácie."
+
+msgid "Logging out..."
+msgstr "Odhlasuje sa..."
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "Teraz ste úspešne odhlásený z %SP%."
+
+msgid "You are also logged in on these services:"
+msgstr "Ste tiež prihlásený na týchto službách:"
+
+msgid "logout is not supported"
+msgstr "Odhlásenie sa nie je podporované"
+
+msgid ""
+"Unable to log out of one or more services. To ensure that all your sessions "
+"are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr ""
+"Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, "
+"že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+
+msgid "Continue"
+msgstr "Pokračovať"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
+
+msgid "Yes, all services"
+msgstr "Áno, všetky služby"
+
+msgid "No, only %SP%"
+msgstr "Nie, iba %SP%"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "Check that the link you used to access the web site is correct."
+msgstr "Skontrolujte, či je odkaz na prístup k webovej stránke správny."
+
+msgid "The link used to get here was bad, perhaps a bookmark."
+msgstr "Odkaz smerujúci sem je zlý, napríklad zo záložky."
+
+msgid "SimpleSAMLphp"
+msgstr ""
+
+msgid ""
+"If you report this error, please also report this tracking number which "
+"makes it possible to locate your session in the logs available to the system "
+"administrator:"
+msgstr ""
+"Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré "
+"umožní administrátorovi nájsť Vašu reláciu v logoch:"
