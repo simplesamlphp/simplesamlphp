@@ -754,7 +754,7 @@ msgstr ""
 msgid ""
 "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
 msgstr ""
-"Môžete <a href=\"%METAURL%\">získať XML metadát na dedikovanej URL</a>:"
+"Môžete <a href=\"%METAURL%\">získať XML metadát na samostatnom odkaze</a>:"
 
 msgid "Street"
 msgstr "Ulica"
