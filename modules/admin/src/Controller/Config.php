@@ -14,6 +14,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Controller class for the admin module.
@@ -165,18 +166,15 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \Symfony\Component\HttpFoundation\Response The output of phpinfo()
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse The output of phpinfo()
      */
-    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): StreamedResponse
     {
         $this->authUtils->requireAdmin();
 
-        ob_start();
-        phpinfo();
-        $phpinfo = ob_get_contents();
-        ob_end_clean();
-
-        return new Response($phpinfo);
+        return new StreamedResponse(function () {
+            phpinfo();
+        });
     }
 
     /**
