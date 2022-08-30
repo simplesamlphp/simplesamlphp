@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
@@ -14,6 +13,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the admin module.
@@ -165,15 +165,19 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response The output of phpinfo()
      */
-    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
     {
         $this->authUtils->requireAdmin();
 
-        return new RunnableResponse('phpinfo');
-    }
+        ob_start();
+        phpinfo();
+        $phpinfo = ob_get_contents();
+        ob_end_clean();
 
+        return new Response($phpinfo);
+    }
 
     /**
      * Perform a list of checks on the current installation, and return the results as an array.
