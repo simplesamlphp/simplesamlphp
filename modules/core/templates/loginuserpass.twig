@@ -36,11 +36,8 @@
     <h1>{{ 'Enter your username and password'|trans }}</h1>
 
     <p>{{ 'A service has requested you to authenticate yourself. Please enter your username and password in the form below.'|trans }}</p>
-    <br>
-    <div class="center">
-        <form id="f" class="pure-form pure-form-aligned center-form" action="{{ moduleURL('core/loginuserpass', {'AuthState': AuthState}) }}" method="post" name="f">
-            <div class="form-align">
-
+    <div class="center-form login-form-start">
+        <form id="f" class="pure-form pure-form-aligned" action="{{ moduleURL('core/loginuserpass', {'AuthState': AuthState}) }}" method="post" name="f">
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
                     <input id="username" {{ forceUsername ? 'disabled' }} placeholder="{{ username }}" type="text" name="username" class="edge"
@@ -48,7 +45,7 @@
             {%- if not forceUsername and not username %} autofocus {% endif %} >
                 {% if rememberUsernameEnabled and not forceUsername -%}
                 </div>
-                <div class="pure-controls pure-form-message">
+                <div class="pure-controls">
                     <label for="remember_username" class="pure-checkbox">
                         <input id="remember_username" type="checkbox" tabindex="4"
                                 {{ rememberUsernameChecked ? 'checked' }} name="remember_username" value="Yes">
@@ -61,17 +58,18 @@
                     <label for="password">{{ 'Password'|trans}}</label>
                     <input id="password" type="password" tabindex="2" name="password" class="edge" autocomplete="current-password"
                     {%- if forceUsername or username %} autofocus {% endif %} >
+                </div>
 
                 {% if rememberMeEnabled -%}
-                </div>
-                <div class="pure-controls pure-form-message">
+                <div class="pure-controls">
                     <label for="remember_me" class="pure-checkbox">
                     <input id="remember_me" type="checkbox" tabindex="5"
                             {{ rememberMeChecked ? 'checked="checked"' }} name="remember_me" value="Yes">
                         <small>{{ 'Remember me'|trans }}</small>
                     </label>
-                {%- endif %}
                 </div>
+                {%- endif %}
+
                 {% if organizations is defined -%}
                 <div class="pure-control-group">
                     <label for="organization">{{ 'Organization'|trans }}</label>
@@ -91,7 +89,7 @@
                         </select>
                     </div>
                     {% if rememberOrganizationEnabled is defined -%}
-                    <div class="pure-controls pure-form-message">
+                    <div class="pure-controls">
                         <label for="remember_organization" class="pure-checkbox">
  	                    <input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization" value="Yes"
                                 {{ rememberOrganizationChecked ? 'checked="checked"' }} >
@@ -102,15 +100,14 @@
                 </div> <!--pure-control-group-->
             {%- endif %}
 
-            </div> <!-- form-align-->
-            <br><br>
-
-            <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button"
-                    type="submit" tabindex="6" data-processing="{% trans %}Processing...{% endtrans %}">
-              {% trans %}Login{% endtrans %}
-            </button>
+            <div class="pure-control-group center login-form-submit">
+                <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button"
+                        type="submit" tabindex="6" data-processing="{% trans %}Processing...{% endtrans %}">
+                {% trans %}Login{% endtrans %}
+                </button>
+            </div>
         </form>
-    </div><!--center-->
+    </div>
     {% if links is defined -%}
     <ul>
         {% for link in links -%}

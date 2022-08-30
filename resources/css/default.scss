@@ -193,8 +193,6 @@ pre, code, kbd, samp, tt {
 
 .pure-button-group .pure-button:first-child,
 .pure-button-group .pure-button:last-child {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
 }
 
@@ -575,14 +573,12 @@ input[type="file"] {
   color: black;
 }
 
-.form-align {
-  position: relative;
-}
-
 .center-form {
-  display: inline-block;
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
+.login-form-start, .login-form-submit {
+  margin-top: 3ex;
 }
 
 .v-center-right {
@@ -596,9 +592,11 @@ input[type="file"] {
 .pure-button,
 .pure-form input.edge,
 .pure-form textarea.edge {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
+}
+.pure-form input[type="checkbox"] {
+  margin-right: .8ex;
+  vertical-align: baseline;
 }
 
 .pure-button {
