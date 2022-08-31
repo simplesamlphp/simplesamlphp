@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
@@ -14,6 +13,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Controller class for the admin module.
@@ -165,13 +165,13 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): StreamedResponse
     {
         $this->authUtils->requireAdmin();
 
-        return new RunnableResponse('phpinfo');
+        return new StreamedResponse('phpinfo');
     }
 
 
