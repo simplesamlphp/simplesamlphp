@@ -10,7 +10,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Add new SSP 2.0 metadata endpoints to the SP metadata (#1692).
+  * Add new SSP 2.0 metadata endpoints to the SP metadata (#1692)
+  * Implement ETag/If-None-Match on IDP metadata endpoint (#1672 + #1673)
+  * Update dependencies to their latest version
+  * Documentation fixes
 
 ## Version 1.19.6
 
