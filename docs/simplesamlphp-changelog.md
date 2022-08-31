@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.7
+
+Released TBD
+
+  * Add new SSP 2.0 metadata endpoints to the SP metadata (#1692).
+
 ## Version 1.19.6
 
 Released 1-7-2022

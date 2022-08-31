@@ -58,6 +58,13 @@ class SP extends \SimpleSAML\Auth\Source
     private $disable_scoping;
 
     /**
+     * Flag to indicate whether to remove new metadata endpoints from the SP metadata.
+     *
+     * @var bool
+     */
+    private $disable_new_endpoints;
+
+    /**
      * A list of supported protocols.
      *
      * @var string[]
@@ -95,6 +102,7 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
         $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
+        $this->disable_new_endpoints = $this->metadata->getBoolean('disable_new_endpoints', false);
 
         if (empty($this->discoURL) && Module::isModuleEnabled('discojuice')) {
             $this->discoURL = Module::getModuleURL('discojuice/central.php');
@@ -424,6 +432,19 @@ class SP extends \SimpleSAML\Auth\Source
             $endpoints[] = $acs;
             $index++;
         }
+
+        // Find all saml2-acs endpoints and make a copy of them with the location set to the new endpoint
+        if ($this->disable_new_endpoints !== true) {
+            foreach ($endpoints as $endpoint) {
+                if (strpos($endpoint['Location'], 'saml2-acs.php') !== false) {
+                    $endpoint['Location'] = preg_replace('/saml2-acs.php/', 'assertionConsumerService', $endpoint['Location'], 1);
+                    $endpoint['index'] = $index;
+                    $endpoints[] = $endpoint;
+                    $index++;
+                }
+            }
+        }
+
         return $endpoints;
     }
 

@@ -110,6 +110,18 @@ foreach ($assertionsconsumerservices as $services) {
     $index++;
 }
 
+// Find all saml2-acs endpoints and make a copy of them with the location set to the new endpoint
+if ($spconfig->getBoolean('disable_new_endpoints', false) !== true) {
+    foreach ($eps as $endpoint) {
+        if (strpos($endpoint['Location'], 'saml2-acs.php') !== false) {
+            $endpoint['Location'] = preg_replace('/saml2-acs.php/', 'assertionConsumerService', $endpoint['Location'], 1);
+            $endpoint['index'] = $index;
+            $eps[] = $endpoint;
+            $index++;
+        }
+    }
+}
+
 $metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = [];
