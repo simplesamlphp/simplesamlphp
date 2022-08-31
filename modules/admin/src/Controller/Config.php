@@ -172,9 +172,7 @@ class Config
     {
         $this->authUtils->requireAdmin();
 
-        return new StreamedResponse(function () {
-            phpinfo();
-        });
+        return new StreamedResponse('phpinfo');
     }
 
     /**
