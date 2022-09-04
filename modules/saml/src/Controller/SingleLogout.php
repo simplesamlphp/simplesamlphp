@@ -94,10 +94,10 @@ class SingleLogout
         $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
         $idp = $this->idp::getById('saml2:' . $idpEntityId);
 
-        if ($request->request->has('ReturnTo')) {
+        if ($request->query->has('ReturnTo')) {
             return new RunnableResponse(
                 [$idp, 'doLogoutRedirect'],
-                [$httpUtils->checkURLAllowed($request->request->get('ReturnTo'))]
+                [$httpUtils->checkURLAllowed($request->query->get('ReturnTo'))]
             );
         }
 
