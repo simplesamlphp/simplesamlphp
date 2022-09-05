@@ -62,3 +62,23 @@ $metadata['expiredInSrc1InSrc2'] = [
                 ],
         ]
 ];
+
+$metadata['http://localhost/simplesaml'] = [
+    'entityid' => 'http://localhost/simplesaml',
+    'host' => 'localhost',
+    'name' =>
+        [
+            'en' => 'hostname SP from source1',
+        ],
+    'metadata-set' => 'saml20-sp-remote',
+    'AssertionConsumerService' =>
+        [
+            0 =>
+                [
+                    'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                    'Location' => 'https://hostname.example.org/Shibboleth.sso/SAML2/POST',
+                    'index' => 1,
+                    'isDefault' => true,
+                ],
+        ]
+];
