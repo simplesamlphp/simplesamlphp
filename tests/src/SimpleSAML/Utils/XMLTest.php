@@ -18,7 +18,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\XML.
  *
- * @covers \SimpleSAML\Utils\XML
  */
 class XMLTest extends TestCase
 {

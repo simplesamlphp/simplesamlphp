@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "exampleauth" module.
  *
- * @covers \SimpleSAML\Module\exampleauth\Controller\ExampleAuth
  */
 class ExampleAuthTest extends TestCase
 {

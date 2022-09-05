@@ -13,7 +13,6 @@ use SimpleSAML\Utils\EMail;
 /**
  * A base SSP test case that tests some simple e-mail related calls
  *
- * @covers \SimpleSAML\Utils\EMail
  */
 class EMailTest extends ClearStateTestCase
 {

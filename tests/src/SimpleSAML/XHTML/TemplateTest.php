@@ -10,7 +10,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
 
 /**
- * @covers \SimpleSAML\XHTML\Template
  */
 class TemplateTest extends TestCase
 {

@@ -12,7 +12,6 @@ use SimpleSAML\Module\core\Auth\Process\PHP;
 /**
  * Test for the core:PHP filter.
  *
- * @covers \SimpleSAML\Module\core\Auth\Process\PHP
  */
 class PHPTest extends TestCase
 {

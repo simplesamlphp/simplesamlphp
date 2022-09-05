@@ -16,7 +16,6 @@ use SimpleSAML\XML\Validator;
 /**
  * Tests for SimpleSAML\XML\Validator.
  *
- * @covers \SimpleSAML\XML\Validator
  */
 class ValidatorTest extends SigningTestCase
 {

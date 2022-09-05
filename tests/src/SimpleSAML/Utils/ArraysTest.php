@@ -10,7 +10,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\Arrays.
  *
- * @covers \SimpleSAML\Utils\Arrays
  */
 class ArraysTest extends TestCase
 {

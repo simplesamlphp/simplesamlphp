@@ -13,7 +13,6 @@ use SimpleSAML\XHTML\Template;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Sandbox
  * @package SimpleSAML\Test
  */
 class SandboxTest extends TestCase

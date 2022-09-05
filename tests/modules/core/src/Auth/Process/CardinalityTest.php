@@ -13,7 +13,6 @@ use SimpleSAML\Utils;
 /**
  * Test for the core:Cardinality filter.
  *
- * @covers \SimpleSAML\Module\core\Auth\Process\Cardinality
  */
 class CardinalityTest extends TestCase
 {

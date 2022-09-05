@@ -12,7 +12,6 @@ use SimpleSAML\Error;
 use SimpleSAML\Utils;
 
 /**
- * @covers \SimpleSAML\Utils\Time
  */
 class TimeTest extends TestCase
 {

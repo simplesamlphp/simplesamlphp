@@ -10,7 +10,6 @@ use SimpleSAML\SessionHandlerPHP;
 use SimpleSAML\Configuration;
 
 /**
- * @covers \SimpleSAML\SessionHandlerPHP
  */
 class SessionHandlerPHPTest extends ClearStateTestCase
 {

@@ -12,7 +12,6 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 /**
  * Class SAMLBuilderTest
  *
- * @covers \SimpleSAML\Metadata\SAMLBuilder
  */
 class SAMLBuilderTest extends TestCase
 {

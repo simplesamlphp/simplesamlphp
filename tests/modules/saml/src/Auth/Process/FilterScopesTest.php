@@ -10,7 +10,6 @@ use SimpleSAML\Module\saml\Auth\Process\FilterScopes;
 /**
  * Test for the saml:FilterScopes filter.
  *
- * @covers \SimpleSAML\Module\saml\Auth\Process\FilterScopes
  *
  * @package SimpleSAMLphp
  */

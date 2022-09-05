@@ -11,7 +11,6 @@ use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
 /**
  * Test for the core:AttributeAlter filter.
  *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAlter
  */
 class AttributeAlterTest extends TestCase
 {

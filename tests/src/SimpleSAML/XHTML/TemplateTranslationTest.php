@@ -20,7 +20,6 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 /**
- * @covers \SimpleSAML\XHTML\Template
  */
 class TemplateTranslationTest extends TestCase
 {

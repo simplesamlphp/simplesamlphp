@@ -15,7 +15,6 @@ use TypeError;
 /**
  * Tests related to SAML metadata.
  *
- * @covers \SimpleSAML\Utils\Config
  */
 class MetadataTest extends TestCase
 {

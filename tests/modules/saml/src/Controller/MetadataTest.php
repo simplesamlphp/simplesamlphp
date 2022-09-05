@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Metadata
  * @package SimpleSAML\Test
  */
 class MetadataTest extends TestCase

@@ -14,7 +14,6 @@ use Symfony\Component\Finder\Finder;
 /**
  * Tests for SimpleSAML\Utils\Translate.
  *
- * @covers \SimpleSAML\Utils\Translate
  */
 class TranslateTest extends TestCase
 {

@@ -10,7 +10,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\Random.
  *
- * @covers \SimpleSAML\Utils\Random
  */
 class RandomTest extends TestCase
 {

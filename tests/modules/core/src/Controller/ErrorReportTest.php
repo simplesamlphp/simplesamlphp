@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "core" module.
  *
- * @covers \SimpleSAML\Module\core\Controller\ErrorReport
  * @package SimpleSAML\Test
  */
 class ErrorReportTest extends TestCase

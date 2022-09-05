@@ -14,8 +14,6 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Auth\Source\IPSourceSelector;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\IPSourceSelector
  */
 class IPSourceSelectorTest extends TestCase
 {

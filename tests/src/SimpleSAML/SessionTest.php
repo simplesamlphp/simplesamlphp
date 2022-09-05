@@ -10,7 +10,6 @@ use SimpleSAML\Session;
 use SimpleSAML\Configuration;
 
 /**
- * @covers \SimpleSAML\Session
  */
 class SessionTest extends ClearStateTestCase
 {

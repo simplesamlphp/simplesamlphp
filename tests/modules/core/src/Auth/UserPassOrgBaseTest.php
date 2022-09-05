@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\UserPassOrgBase
  */
 class UserPassOrgBaseTest extends TestCase
 {

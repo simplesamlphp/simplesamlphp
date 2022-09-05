@@ -23,7 +23,6 @@ use SimpleSAML\Test\Utils\SpTester;
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
  *
- * @covers \SimpleSAML\Module\saml\Auth\Source\SP
  */
 class SPTest extends ClearStateTestCase
 {

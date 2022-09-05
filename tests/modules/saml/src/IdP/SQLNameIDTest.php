@@ -15,7 +15,6 @@ use SimpleSAML\Store\StoreFactory;
 /**
  * Test for the SQLNameID helper class.
  *
- * @covers \SimpleSAML\Module\saml\IdP\SQLNameID
  *
  * @package SimpleSAMLphp
  */

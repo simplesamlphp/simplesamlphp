@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\ServiceProvider
  * @package SimpleSAML\Test
  */
 class ServiceProviderTest extends TestCase

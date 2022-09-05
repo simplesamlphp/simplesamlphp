@@ -12,7 +12,6 @@ use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 /**
  * Test for the core:AttributeLimit filter.
  *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeLimit
  */
 class AttributeLimitTest extends TestCase
 {

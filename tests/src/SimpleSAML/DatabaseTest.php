@@ -21,7 +21,6 @@ use SimpleSAML\Database;
  * should be created for test cases to ensure that it will work
  * in an environment.
  *
- * @covers \SimpleSAML\Database
  *
  * @package SimpleSAMLphp
  */

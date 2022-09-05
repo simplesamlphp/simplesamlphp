@@ -10,7 +10,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\Test.
  *
- * @covers \SimpleSAML\Utils\Net
  */
 class NetTest extends TestCase
 {

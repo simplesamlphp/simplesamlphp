@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Disco
  * @package SimpleSAML\Test
  */
 class DiscoTest extends TestCase

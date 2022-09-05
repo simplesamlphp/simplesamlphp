@@ -16,7 +16,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\Crypto.
  *
- * @covers \SimpleSAML\Utils\Crypto
  */
 class CryptoTest extends TestCase
 {

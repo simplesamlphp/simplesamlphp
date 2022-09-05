@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Config
  * @package SimpleSAML\Test
  */
 class ConfigTest extends TestCase

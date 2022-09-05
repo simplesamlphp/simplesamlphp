@@ -11,7 +11,6 @@ use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Path;
 
 /**
- * @covers \SimpleSAML\Module
  */
 class ModuleTest extends TestCase
 {

@@ -12,7 +12,6 @@ use SimpleSAML\Utils\Attributes;
 /**
  * Tests for SimpleSAML\Utils\Attributes.
  *
- * @covers \SimpleSAML\Utils\Attributes
  */
 class AttributesTest extends TestCase
 {

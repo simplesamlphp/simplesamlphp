@@ -11,7 +11,6 @@ use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
 /**
  * Test for the core:AttributeValueMap filter.
  *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeValueMap
  */
 class AttributeValueMapTest extends TestCase
 {

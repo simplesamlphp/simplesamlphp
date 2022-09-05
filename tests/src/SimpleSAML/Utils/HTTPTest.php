@@ -11,7 +11,6 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Utils;
 
 /**
- * @covers \SimpleSAML\Utils\HTTP
  */
 class HTTPTest extends ClearStateTestCase
 {

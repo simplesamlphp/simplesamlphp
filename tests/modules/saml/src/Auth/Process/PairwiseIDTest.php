@@ -15,7 +15,6 @@ use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
 /**
  * Test for the saml:PairwiseID filter.
  *
- * @covers \SimpleSAML\Module\saml\Auth\Process\PairwiseID
  */
 class PairwiseIDTest extends TestCase
 {

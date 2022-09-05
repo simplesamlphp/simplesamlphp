@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Proxy
  * @package SimpleSAML\Test
  */
 class ProxyTest extends TestCase

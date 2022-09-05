@@ -15,7 +15,6 @@ use SimpleSAML\Module\saml\Auth\Process\SubjectID;
 /**
  * Test for the saml:SubjectID filter.
  *
- * @covers \SimpleSAML\Module\saml\Auth\Process\SubjectID
  */
 class SubjectIDTest extends TestCase
 {

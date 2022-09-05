@@ -10,7 +10,6 @@ use SimpleSAML\Auth;
 /**
  * Tests for \SimpleSAML\Auth\State
  *
- * @covers \SimpleSAML\Auth\State
  */
 class StateTest extends TestCase
 {

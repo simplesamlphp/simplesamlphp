@@ -11,7 +11,6 @@ use SimpleSAML\Utils;
 /**
  * Tests for SimpleSAML\Utils\Config
  *
- * @covers \SimpleSAML\Utils\Config
  */
 class ConfigTest extends TestCase
 {

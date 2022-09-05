@@ -14,7 +14,6 @@ use SimpleSAML\Metadata\SAMLParser;
 /**
  * Test SAML parsing
  *
- * @covers \SimpleSAML\Metadata\SAMLParser
  */
 class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
 {
