@@ -196,15 +196,8 @@ like this:
 
 	https://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
 
-You must also configure the IdP initiated Single LogOut endpoint of your server.
-You will find this in your metadata XML in the tag
-`<md:SingleLogoutService>`. It will look something like:
-
-	http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
-
-again, using the host name of your IdP server.
-
 The Sign-out page or change password URL can be static pages on your server.
+(Google does not support SAML Single Log Out.)
 
 The network mask determines which IP addresses will be asked for SSO login.
 IP addresses not matching this mask will be presented with the normal Google Workspace login page.
