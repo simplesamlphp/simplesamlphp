@@ -182,8 +182,8 @@ This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for
 <?php
 
 $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
-    'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
-    'SingleLogoutService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp',
+    'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+    'SingleLogoutService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
 ];
 ```
 

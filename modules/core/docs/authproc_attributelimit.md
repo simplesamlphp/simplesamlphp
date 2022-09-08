@@ -85,8 +85,8 @@ like this:
 Then, add the allowed attributes to each service provider metadata, in the `attributes` option:
 
     $metadata['https://saml2sp.example.org'] = [
-        'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
-        'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp',
+        'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+        'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
         ...
         'attributes' => ['cn', 'mail'],
         ...
@@ -96,8 +96,8 @@ Now, let's look to a couple of examples on how to filter out attribute values. F
 to be used by a service provider (among other attributes):
 
     $metadata['https://saml2sp.example.org'] = [
-        'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
-        'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp',
+        'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+        'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
         ...
         'attributes' => [
             'uid',
