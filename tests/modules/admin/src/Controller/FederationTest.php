@@ -36,10 +36,10 @@ class FederationTest extends TestCase
     private const LIBRARY = 'vendor/simplesamlphp/saml2/tests/resources';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;

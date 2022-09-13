@@ -31,16 +31,16 @@ class SPTest extends ClearStateTestCase
     private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
     /** @var string */
-    public const CERT_OTHER_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.key';
+    public const CERT_OTHER_KEY = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.crt';
+    public const CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.crt';
 
     /** @var \SimpleSAML\Configuration|null $idpMetadata */
     private ?Configuration $idpMetadata = null;
