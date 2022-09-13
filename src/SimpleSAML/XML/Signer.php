@@ -256,7 +256,7 @@ class Signer
      */
     public function sign(DOMElement $node, DOMElement $insertInto, $insertBefore = null): void
     {
-        Assert::nullOrInstanceOfAny($insertBefore, [DOMElement::class, DOMComment::class, DOMText::class]);
+        Assert::nullOrIsInstanceOfAny($insertBefore, [DOMElement::class, DOMComment::class, DOMText::class]);
 
         $privateKey = $this->privateKey;
         if ($privateKey === false) {
