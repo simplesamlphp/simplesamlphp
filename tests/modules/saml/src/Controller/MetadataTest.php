@@ -45,10 +45,10 @@ class MetadataTest extends TestCase
             private const XMLSEC = '../vendor/simplesamlphp/xml-security/tests/resources';
 
             /** @var string */
-            public const CERT_KEY = self::XMLSEC . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+            public const CERT_KEY = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.key';
 
             /** @var string */
-            public const CERT_PUBLIC = self::XMLSEC . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+            public const CERT_PUBLIC = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.crt';
 
             private array $idps;
 

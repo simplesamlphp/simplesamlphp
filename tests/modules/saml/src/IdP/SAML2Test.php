@@ -23,10 +23,10 @@ class SAML2Test extends ClearStateTestCase
     private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
 
     /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key';
+    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
     /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt';
+    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
     /**
      * Default values for the state array expected to be generated at the start of logins

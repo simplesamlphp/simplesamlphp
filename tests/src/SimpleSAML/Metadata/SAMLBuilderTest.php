@@ -397,8 +397,8 @@ class SAMLBuilderTest extends TestCase
         $info = ['AuthId' => 'default-sp'];
         $metadata = [
             'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'certificate' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.crt',
-            'privatekey' => '../' . self::SECURITY . '/certificates/rsa-pem/selfsigned.simplesamlphp.org.key',
+            'certificate' => '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt',
+            'privatekey' => '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key',
         ];
 
         // Without a key name, it should have KeyDescriptors but no KeyNames.
@@ -426,8 +426,8 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals('my-key-name', $keyNames->item(1)->textContent);
 
         // Add rollover configuration.
-        $metadata['new_certificate'] = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.crt';
-        $metadata['new_privatekey'] = '../' . self::SECURITY . '/certificates/rsa-pem/other.simplesamlphp.org.key';
+        $metadata['new_certificate'] = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.crt';
+        $metadata['new_privatekey'] = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.key';
         $metadata['new_key_name'] = 'my-new-key-name';
 
         // It should now have 3 KeyNames.
