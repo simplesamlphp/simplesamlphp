@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "478dcb1eed8ab6d01353f0e10545994f",
+    "content-hash": "f9ce18ee16840fb0c5685297e01c2d05",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1499,16 +1499,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v0.6.2",
+            "version": "v0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "5e370971f38a5539b551c9a97ff8a760213dc684"
+                "reference": "9e08436126cf1155b0b12ebf0b197d1949838ad9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/5e370971f38a5539b551c9a97ff8a760213dc684",
-                "reference": "5e370971f38a5539b551c9a97ff8a760213dc684",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/9e08436126cf1155b0b12ebf0b197d1949838ad9",
+                "reference": "9e08436126cf1155b0b12ebf0b197d1949838ad9",
                 "shasum": ""
             },
             "require": {
@@ -1522,7 +1522,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v0.2.x-dev"
+                    "dev-master": "v0.8.x-dev"
                 }
             },
             "autoload": {
@@ -1547,9 +1547,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v0.6.2"
+                "source": "https://github.com/simplesamlphp/assert/tree/v0.7.2"
             },
-            "time": "2022-08-28T10:42:09+00:00"
+            "time": "2022-09-13T11:37:44+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -6663,16 +6663,16 @@
         },
         {
             "name": "sebastian/type",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "fb44e1cc6e557418387ad815780360057e40753e"
+                "reference": "fb3fe09c5f0bae6bc27ef3ce933a1e0ed9464b6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/fb44e1cc6e557418387ad815780360057e40753e",
-                "reference": "fb44e1cc6e557418387ad815780360057e40753e",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/fb3fe09c5f0bae6bc27ef3ce933a1e0ed9464b6e",
+                "reference": "fb3fe09c5f0bae6bc27ef3ce933a1e0ed9464b6e",
                 "shasum": ""
             },
             "require": {
@@ -6684,7 +6684,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -6707,7 +6707,7 @@
             "homepage": "https://github.com/sebastianbergmann/type",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/type/issues",
-                "source": "https://github.com/sebastianbergmann/type/tree/3.1.0"
+                "source": "https://github.com/sebastianbergmann/type/tree/3.2.0"
             },
             "funding": [
                 {
@@ -6715,7 +6715,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-29T06:55:37+00:00"
+            "time": "2022-09-12T14:47:03+00:00"
         },
         {
             "name": "sebastian/version",
@@ -6811,23 +6811,23 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.0.0-rc3",
+            "version": "v2.0.0-rc4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "abc0c336189c974c19a35ac38d7a81ac0f83db53"
+                "reference": "4f07e3b24d452a587375fb167f1dd112535e2e5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/abc0c336189c974c19a35ac38d7a81ac0f83db53",
-                "reference": "abc0c336189c974c19a35ac38d7a81ac0f83db53",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/4f07e3b24d452a587375fb167f1dd112535e2e5f",
+                "reference": "4f07e3b24d452a587375fb167f1dd112535e2e5f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4 || ^8.0",
-                "simplesamlphp/assert": "^0.6.0",
+                "simplesamlphp/assert": "^0.7.2",
                 "simplesamlphp/composer-module-installer": "^1.2.0",
-                "simplesamlphp/xml-security": "~0.6.3"
+                "simplesamlphp/xml-security": "~0.6.2"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp": "^2.0.0-rc1",
@@ -6858,7 +6858,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2022-09-07T19:46:03+00:00"
+            "time": "2022-09-13T12:02:09+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
@@ -6919,28 +6919,27 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v0.11.2",
+            "version": "v0.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "a16579a637cc32e522cefea8b66879dea69594bb"
+                "reference": "948add5c002cc8134ae7fe3155632c34632ef312"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a16579a637cc32e522cefea8b66879dea69594bb",
-                "reference": "a16579a637cc32e522cefea8b66879dea69594bb",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/948add5c002cc8134ae7fe3155632c34632ef312",
+                "reference": "948add5c002cc8134ae7fe3155632c34632ef312",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-spl": "*",
-                "php": ">=7.4 || ^8.0",
-                "simplesamlphp/assert": "^0.6.0"
+                "php": "^8.0",
+                "simplesamlphp/assert": "^0.7.2"
             },
             "require-dev": {
                 "ext-xmlreader": "*",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.2.1",
-                "vimeo/psalm": "^5.0.0-beta1"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.2.1"
             },
             "type": "project",
             "autoload": {
@@ -6975,20 +6974,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2022-08-29T20:12:59+00:00"
+            "time": "2022-09-13T11:59:12+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v0.6.3",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "d7a8fe174c1878d629be0ff16551351dbc81be26"
+                "reference": "efd6c00969bf6858790919c06845da6283498669"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/d7a8fe174c1878d629be0ff16551351dbc81be26",
-                "reference": "d7a8fe174c1878d629be0ff16551351dbc81be26",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/efd6c00969bf6858790919c06845da6283498669",
+                "reference": "efd6c00969bf6858790919c06845da6283498669",
                 "shasum": ""
             },
             "require": {
@@ -6996,8 +6995,8 @@
                 "ext-openssl": "*",
                 "ext-spl": "*",
                 "php": ">= 7.4 || ^8.0",
-                "simplesamlphp/assert": "^0.6.0",
-                "simplesamlphp/xml-common": "^0.11.0"
+                "simplesamlphp/assert": "^0.7.2",
+                "simplesamlphp/xml-common": "^0.12.2"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.2.1"
@@ -7035,9 +7034,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v0.6.3"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v0.6.5"
             },
-            "time": "2022-08-26T22:09:07+00:00"
+            "time": "2022-09-13T12:00:07+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
