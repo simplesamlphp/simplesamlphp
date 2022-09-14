@@ -66,12 +66,12 @@ In general, this should look like the following code:
 'AssertionConsumerService' => [
     [
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-        'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
+        'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
         'index' => 0,
     ],
     [
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-        'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
+        'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
         'index' => 4,
     ],
 ],

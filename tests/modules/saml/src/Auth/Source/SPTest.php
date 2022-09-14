@@ -462,7 +462,7 @@ class SPTest extends ClearStateTestCase
         $this->assertIsArray($md['AssertionConsumerService']);
         foreach ($md['AssertionConsumerService'] as $acs) {
             $this->assertEquals(
-                'http://localhost/simplesaml/module.php/saml/sp/assertionConsumerService/' . $spId,
+                'http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId,
                 $acs['Location']
             );
             $this->assertStringStartsWith('urn:oasis:names:tc:SAML:2.0:bindings', $acs['Binding']);
@@ -1382,7 +1382,7 @@ class SPTest extends ClearStateTestCase
         $this->assertIsArray($hok);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser', $hok['Binding']);
         $this->assertEquals(
-            'http://localhost/simplesaml/module.php/saml/sp/assertionConsumerService/' . $spId,
+            'http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId,
             $hok['Location']
         );
         $this->assertEquals(2, $hok['index']);
