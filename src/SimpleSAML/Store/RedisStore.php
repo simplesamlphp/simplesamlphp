@@ -42,7 +42,7 @@ class RedisStore implements StoreInterface
             $username = $config->getOptionalString('store.redis.username', null);
             $database = $config->getOptionalInteger('store.redis.database', 0);
 
-            $sentinels = $config->getArray('store.redis.sentinels', []);
+            $sentinels = $config->getOptionalArray('store.redis.sentinels', []);
 
             if (empty($sentinels)) {
                 $redis = new Client(
@@ -59,7 +59,7 @@ class RedisStore implements StoreInterface
                     ]
                 );
             } else {
-                $mastergroup = $config->getString('store.redis.mastergroup', 'mymaster');
+                $mastergroup = $config->getOptionalString('store.redis.mastergroup', 'mymaster');
                 $redis = new Client(
                     $sentinels,
                     [
