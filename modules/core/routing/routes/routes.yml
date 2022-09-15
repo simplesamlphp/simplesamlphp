@@ -37,6 +37,9 @@ core-legacy-federation:
 core-logout:
     path:       /logout/{as}
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout::logout' }
+core-logout-as-resume:
+    path:       /logout-as-resume
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout::resumeAuthSourceLogout' }
 core-logout-resume:
     path:       /logout-resume
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Logout::resumeLogout' }

@@ -411,4 +411,26 @@ class Logout
         $assocId = $state['core:TerminatedAssocId'];
         return new RunnableResponse([$idp->getLogoutHandler(), 'startLogout'], [&$state, $assocId]);
     }
+
+
+    /**
+     * @param Request $request The request that lead to this authsource logout operation.
+     * @return \SimpleSAML\HTTP\RunnableResponse
+     */
+    public function resumeAuthSourceLogout(Request $request): RunnableResponse
+    {
+        if (!$request->query->has('id')) {
+            throw new Error\BadRequest('Missing required parameter: id');
+        }
+        $id = $request->query->get('id');
+
+        $sid = Auth\State::parseStateID($id);
+        if (!is_null($sid['url'])) {
+            Utils\HTTP::checkURLAllowed($sid['url']);
+        }
+
+        $state = $this->authState::loadState($id, 'asConsumerLogoutCallbacks:resume');
+
+        return new RunnableResponse([Auth\Source::class, 'handleAsConsumerLogoutCallbacks'], [&$state]);
+    }
 }
