@@ -55,7 +55,7 @@ class RedisStore implements StoreInterface
                     + (!empty($username) ? ['username' => $username] : [])
                     + (!empty($password) ? ['password' => $password] : []),
                     [
-                       'prefix' => $prefix,
+                        'prefix' => $prefix,
                     ]
                 );
             } else {
