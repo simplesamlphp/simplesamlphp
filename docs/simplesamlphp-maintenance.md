@@ -179,9 +179,28 @@ For Redis instances that [require authentication](https://redis.io/commands/auth
 * If authentication is managed with the `requirepass` directive (legacy password protection): use the `store.redis.password` option
 * If authentication is managed with [ACL's](https://redis.io/docs/manual/security/acl/) (which are recommended as of Redis 6): use the `store.redis.password` and `store.redis.username` options
 
-For Redis servers controlled by [Redis Sentinel](https://redis.io/docs/manual/sentinel/):
-* Configure your sentinels by setting `store.redis.sentinels` to `['tcp://[yoursentinel1]:[port]', 'tcp://[yoursentinel2]:[port]', 'tcp://[yoursentinel3]:[port]']`
-* Configure your master group by setting `store.redis.mastergroup` (`mymaster` by default)
+#### Redis-Sentinel
+
+If your Redis servers are controlled by [Redis-Sentinel](https://redis.io/docs/manual/sentinel/), then configure your sentinels by setting `store.redis.sentinels` to
+
+```
+[
+    'tcp://[yoursentinel1]:[port]',
+    'tcp://[yoursentinel2]:[port]',
+    'tcp://[yoursentinel3]:[port]',
+]
+```
+
+If your sentinels are password-protected and use the same password as your Redis servers, then setting `store.redis.password` is enough. However if your sentinels use a different password than that of your Redis servers, then set the password of each sentinel:
+```
+[
+    'tcp://[yoursentinel1]:[port]?password=[password1]',
+    'tcp://[yoursentinel2]:[port]?password=[password2]',
+    'tcp://[yoursentinel3]:[port]?password=[password3]',
+]
+```
+
+Configure your master group by setting `store.redis.mastergroup` (`mymaster` by default).
 
 ## Metadata storage
 
