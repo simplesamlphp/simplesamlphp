@@ -1221,4 +1221,21 @@ $config = [
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The master group to use for Redis Sentinel.
+     */
+    'store.redis.mastergroup' => 'mymaster',
+
+    /*
+     * The Redis Sentinel hosts.
+     * Example:
+     * array(
+     *     'tcp://[yoursentinel1]:[port]'
+     *     'tcp://[yoursentinel2]:[port]',
+     *     'tcp://[yoursentinel3]:[port]
+     * )
+     */
+    'store.redis.sentinels' => [],
+
 ];
