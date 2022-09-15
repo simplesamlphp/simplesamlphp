@@ -179,6 +179,10 @@ For Redis instances that [require authentication](https://redis.io/commands/auth
 * If authentication is managed with the `requirepass` directive (legacy password protection): use the `store.redis.password` option
 * If authentication is managed with [ACL's](https://redis.io/docs/manual/security/acl/) (which are recommended as of Redis 6): use the `store.redis.password` and `store.redis.username` options
 
+For Redis servers controlled by [Redis Sentinel](https://redis.io/docs/manual/sentinel/):
+* Configure your sentinels by setting `store.redis.sentinels` to `['tcp://[yoursentinel1]:[port]', 'tcp://[yoursentinel2]:[port]', 'tcp://[yoursentinel3]:[port]']`
+* Configure your master group by setting `store.redis.mastergroup` (`mymaster` by default)
+
 ## Metadata storage
 
 Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
