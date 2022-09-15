@@ -42,19 +42,38 @@ class RedisStore implements StoreInterface
             $username = $config->getOptionalString('store.redis.username', null);
             $database = $config->getOptionalInteger('store.redis.database', 0);
 
-            $redis = new Client(
-                [
-                    'scheme' => 'tcp',
-                    'host' => $host,
-                    'port' => $port,
-                    'database' => $database,
-                ]
-                + (!empty($password) ? ['password' => $password] : [])
-                + (!empty($username) ? ['username' => $username] : []),
-                [
-                    'prefix' => $prefix,
-                ]
-            );
+            $sentinels = $config->getOptionalArray('store.redis.sentinels', []);
+
+            if (empty($sentinels)) {
+                $redis = new Client(
+                    [
+                        'scheme' => 'tcp',
+                        'host' => $host,
+                        'port' => $port,
+                        'database' => $database,
+                    ]
+                    + (!empty($username) ? ['username' => $username] : [])
+                    + (!empty($password) ? ['password' => $password] : []),
+                    [
+                        'prefix' => $prefix,
+                    ]
+                );
+            } else {
+                $mastergroup = $config->getOptionalString('store.redis.mastergroup', 'mymaster');
+                $redis = new Client(
+                    $sentinels,
+                    [
+                        'replication' => 'sentinel',
+                        'service' => $mastergroup,
+                        'prefix' => $prefix,
+                        'parameters' => [
+                            'database' => $database,
+                        ]
+                        + (!empty($username) ? ['username' => $username] : [])
+                        + (!empty($password) ? ['password' => $password] : []),
+                    ]
+                );
+            }
         }
 
         $this->redis = $redis;
