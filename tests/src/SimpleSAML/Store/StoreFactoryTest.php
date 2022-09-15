@@ -86,6 +86,7 @@ class StoreFactoryTest extends TestCase
         Configuration::loadFromArray([
             'store.type'                    => 'redis',
             'store.redis.prefix'            => 'phpunit_',
+            'store.redis.sentinels'         => [],
         ], '[ARRAY]', 'simplesaml');
 
         $config = Configuration::getInstance();
