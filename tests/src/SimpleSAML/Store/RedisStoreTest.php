@@ -143,6 +143,21 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+    /**
+     * @covers \SimpleSAML\Store::getInstance
+     * @covers \SimpleSAML\Store\Redis::__construct
+     * @test
+     */
+    public function testRedisSentinelInstance()
+    {
+        $config = Configuration::loadFromArray(array(
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.mastergroup' => 'phpunit_mastergroup',
+            'store.redis.sentinels' => array('tcp://sentinel1', 'tcp://sentinel2', 'tcp://sentinel3'),
+        ), '[ARRAY]', 'simplesaml');
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
+    }
 
     /**
      * @test
