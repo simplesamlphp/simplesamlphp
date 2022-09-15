@@ -183,7 +183,7 @@ For Redis instances that [require authentication](https://redis.io/commands/auth
 
 If your Redis servers are controlled by [Redis-Sentinel](https://redis.io/docs/manual/sentinel/), then configure your sentinels by setting `store.redis.sentinels` to
 
-```
+```php
 [
     'tcp://[yoursentinel1]:[port]',
     'tcp://[yoursentinel2]:[port]',
@@ -192,7 +192,8 @@ If your Redis servers are controlled by [Redis-Sentinel](https://redis.io/docs/m
 ```
 
 If your sentinels are password-protected and use the same password as your Redis servers, then setting `store.redis.password` is enough. However if your sentinels use a different password than that of your Redis servers, then set the password of each sentinel:
-```
+
+```php
 [
     'tcp://[yoursentinel1]:[port]?password=[password1]',
     'tcp://[yoursentinel2]:[port]?password=[password2]',
