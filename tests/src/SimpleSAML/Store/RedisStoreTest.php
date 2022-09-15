@@ -148,7 +148,7 @@ class RedisStoreTest extends TestCase
      * @covers \SimpleSAML\Store\Redis::__construct
      * @test
      */
-    public function testRedisSentinelInstance()
+    public function testRedisSentinelInstance(): void
     {
         $config = Configuration::loadFromArray(array(
             'store.type' => 'redis',
