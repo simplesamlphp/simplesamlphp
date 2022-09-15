@@ -17,3 +17,4 @@ See the upgrade notes for specific information about upgrading.
   Use 'scopeAttribute' instead to identify the attribute holding the scope.
 * Accepting unsolicited responses can be disabled by setting `enable_unsolicited` to `false` in the SP authsource.
 * Certificates and private keys can now be retrieved from a database
+* Support for Redis sentinel was added (#1699)
