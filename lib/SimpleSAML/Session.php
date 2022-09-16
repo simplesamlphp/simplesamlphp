@@ -599,7 +599,7 @@ class Session implements \Serializable, Utils\ClearableState
         }
         $this->rememberMeExpire = $expire;
 
-        $cookieParams = ['expire' => $this->rememberMeExpire];
+        $cookieParams = ['lifetime' => $this->rememberMeExpire];
         $this->updateSessionCookies($cookieParams);
     }
 
