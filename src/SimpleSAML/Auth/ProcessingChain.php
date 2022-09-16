@@ -103,7 +103,7 @@ class ProcessingChain
                     break;
                 }
             }
-            /* $i now points to the filter which should preceede the current filter. */
+            /* $i now points to the filter which should precede the current filter. */
             array_splice($target, $i + 1, 0, [$filter]);
         }
     }
