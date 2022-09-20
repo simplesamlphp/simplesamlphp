@@ -182,7 +182,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             }
 
             // update the entity id to either the key (if not dynamic or generate the dynamic hosted url)
-            $metadataSet[$d['entity_id']] = $this->updateEntityID($set, $entityId, $data);
+            $data['entityid'] = $entityId;
+            $metadataSet[$d['entity_id']] = $data;
         }
 
         $indexLookup = $this->lookupIndexFromEntityId($entityId, $metadataSet);
