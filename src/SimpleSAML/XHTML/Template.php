@@ -165,13 +165,19 @@ class Template extends Response
 
         // check if we need to attach a theme controller
         $controller = $this->configuration->getOptionalString('theme.controller', null);
-        if (
-            $controller !== null
-            && class_exists($controller)
-            && in_array(TemplateControllerInterface::class, class_implements($controller))
-        ) {
-            /** @var \SimpleSAML\XHTML\TemplateControllerInterface $this->controller */
-            $this->controller = new $controller();
+        if ($controller !== null) {
+            if (
+                class_exists($controller)
+                && in_array(TemplateControllerInterface::class, class_implements($controller))
+            ) {
+                /** @var \SimpleSAML\XHTML\TemplateControllerInterface $this->controller */
+                $this->controller = new $controller();
+            } else {
+                throw new Error\ConfigurationError(
+                    'Invalid controller was configured in `theme.controller`. ' .
+                    ' Make sure the class exists and implements the TemplateControllerInterface.'
+                );
+            }
         }
 
         $this->fileSystem = new Filesystem();
