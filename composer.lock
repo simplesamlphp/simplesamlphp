@@ -6920,16 +6920,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v0.12.2",
+            "version": "v0.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "948add5c002cc8134ae7fe3155632c34632ef312"
+                "reference": "c4c19410f7dff328fa53e95ecd8390b3a5b13dbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/948add5c002cc8134ae7fe3155632c34632ef312",
-                "reference": "948add5c002cc8134ae7fe3155632c34632ef312",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/c4c19410f7dff328fa53e95ecd8390b3a5b13dbe",
+                "reference": "c4c19410f7dff328fa53e95ecd8390b3a5b13dbe",
                 "shasum": ""
             },
             "require": {
@@ -6975,7 +6975,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2022-09-13T11:59:12+00:00"
+            "time": "2022-09-17T18:28:31+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
