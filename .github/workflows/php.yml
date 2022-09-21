@@ -48,7 +48,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -102,7 +102,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
             path: ${{ steps.composer-cache.outputs.dir }}
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -143,7 +143,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
             path: ${{ steps.composer-cache.outputs.dir }}
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -165,6 +165,7 @@ jobs:
 
     steps:
       - name: Setup PHP, with composer and extensions
+        id: setup-php
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
           php-version: '8.0'
@@ -181,7 +182,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
             path: ${{ steps.composer-cache.outputs.dir }}
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -196,7 +197,7 @@ jobs:
           path: ${{ github.workspace }}/build
 
       - name: Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
 
       - name: PHP Code Sniffer
         continue-on-error: false
@@ -204,8 +205,8 @@ jobs:
 
       - name: Psalm
         continue-on-error: true
-        run: php vendor/bin/psalm --show-info=true --shepherd
+        run: php vendor/bin/psalm --show-info=true --shepherd --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalter
         continue-on-error: false
-        run: php vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
+        run: php vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run --php-version=${{ steps.setup-php.outputs.php-version }}
