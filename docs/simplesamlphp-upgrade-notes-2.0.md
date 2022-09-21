@@ -66,6 +66,9 @@ Configuration options that have been removed:
 The following changes are relevant for those having custom developed modules, authentication
 processing filters or interface with the SimpleSAMLphp development API.
 
+- We expect your source-files to exist in the src/ directory within your module. This used to be the
+  lib/ directory, so you have to rename the directory and for composer-modules you have to update
+  your composer.json file (specifically the psr-0 and psr-4 entries if you have them).
 - Old JSON-formatted dictionaries have been replaced by gettext / .po-files; see [migration guide][1]
 - Old PHP templates have been replaced by Twig-templates; see [migration guide][2]
 - The source was completely typehinted; if you have custom authsources or authproc filters,
