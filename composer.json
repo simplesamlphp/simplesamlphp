@@ -59,7 +59,7 @@
         "gettext/gettext": "^5.6.1",
         "gettext/translator": "^1.0.1",
         "phpmailer/phpmailer": "^6.5",
-        "simplesamlphp/assert": "^0.6.3",
+        "simplesamlphp/assert": "^0.8.0",
         "simplesamlphp/saml2": "^4.6",
         "symfony/cache": "^5.4",
         "symfony/config": "^5.4",
@@ -83,9 +83,9 @@
         "ext-curl": "*",
         "ext-pdo_sqlite": "*",
         "mikey179/vfsstream": "~1.6",
-        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc4",
+        "simplesamlphp/simplesamlphp-module-adfs": ">=2.0.0-rc5",
         "simplesamlphp/simplesamlphp-test-framework": "^1.2.1",
-        "simplesamlphp/xml-security": "^0.6.4"
+        "simplesamlphp/xml-security": "^0.6.6"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
