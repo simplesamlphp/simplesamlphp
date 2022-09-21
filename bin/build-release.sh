@@ -49,6 +49,7 @@ php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 cd $TARGET
 npm install
 npm audit fix
+npx browserslist@latest --update-db
 npm run build
 cd ..
 
