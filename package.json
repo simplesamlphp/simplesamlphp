@@ -24,20 +24,20 @@
     "reset-css": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/helper-compilation-targets": "^7.16.7",
+    "@babel/core": "^7.19.1",
+    "@babel/helper-compilation-targets": "^7.19.1",
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.3",
+    "@babel/preset-env": "^7.19.1",
+    "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^9.1.0",
     "css-loader": "^6.7.1",
     "expose-loader": "^2.0.0",
-    "mini-css-extract-plugin": "^2.6.0",
-    "sass": "^1.48.0",
-    "sass-loader": "^12.4.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "sass": "^1.54.9",
+    "sass-loader": "^12.6.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.66.0",
-    "webpack-cli": "^4.9.1"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "browserslist": "last 2 versions, ie 11, > 1%"
 }
