@@ -69,4 +69,4 @@ rm "$TARGET/bin/build-release.sh"
 tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
 rm -rf "$TARGET"
 
-echo "Created: /tmp/$TARGET.tar.gz"
+echo `shasum -a 256 /tmp/$TARGET.tar.gz`
