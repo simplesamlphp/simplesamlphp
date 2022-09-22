@@ -37,7 +37,8 @@
 
     <p>{{ 'A service has requested you to authenticate yourself. Please enter your username and password in the form below.'|trans }}</p>
     <div class="center-form login-form-start">
-        <form id="f" class="pure-form pure-form-aligned" action="{{ moduleURL('core/loginuserpass', {'AuthState': AuthState}) }}" method="post" name="f">
+        <form id="f" class="pure-form pure-form-aligned" action="{{ moduleURL('core/loginuserpass', {'AuthState': AuthState}) }}"
+            method="post" name="f" spellcheck="false">
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
                     <input id="username" {{ forceUsername ? 'disabled' }} placeholder="{{ username }}" type="text" name="username" class="edge"
