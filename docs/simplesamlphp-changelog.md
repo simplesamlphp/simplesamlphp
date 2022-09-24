@@ -6,6 +6,16 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.7
+
+Released TBD
+
+  * Backported fix to error report page (#1637)
+  * Many doc fixes
+  * Bump composer + npm dependencies
+  * Many updated translations
+  * Handle ETag/If-None-Match logic (#1672 + #1673)
+  
 ## Version 1.19.6
 
 Released 1-7-2022
