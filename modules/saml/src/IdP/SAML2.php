@@ -152,7 +152,7 @@ class SAML2
         /** @var \SimpleSAML\Module\saml\Error $error */
         $error = \SimpleSAML\Module\saml\Error::fromException($exception);
 
-        Logger::warning("Returning error to SP with entity ID '" . var_export($spEntityId, true) . "'.");
+        Logger::warning(sprintf("Returning error to SP with entity ID %s.", var_export($spEntityId, true)));
         $exception->log(Logger::WARNING);
 
         $ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
