@@ -22,7 +22,7 @@ if (array_key_exists('link_href', $_REQUEST)) {
 if (array_key_exists('link_text', $_REQUEST)) {
     $text = $_REQUEST['link_text'];
 } else {
-    $text = '{logout:default_link_text}';
+    $text = 'Go back to SimpleSAMLphp installation page';
 }
 
 $t = new Template($config, 'logout.twig');
