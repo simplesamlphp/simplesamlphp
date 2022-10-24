@@ -842,7 +842,7 @@ $config = [
      * Set this option to the text you would like to appear at the header of each page. Set to false if you don't want
      * any text to appear in the header.
      */
-    //'theme.header' => 'SimpleSAMLphp'
+    //'theme.header' => 'SimpleSAMLphp',
 
     /**
      * A template controller, if any.
@@ -955,7 +955,7 @@ $config = [
      */
     'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
-        10 => array[
+        10 => [
             'class' => 'core:AttributeMap', 'addurnprefix'
         ],
         */
@@ -1230,11 +1230,11 @@ $config = [
     /*
      * The Redis Sentinel hosts.
      * Example:
-     * array(
-     *     'tcp://[yoursentinel1]:[port]'
+     * 'store.redis.sentinels' => [
+     *     'tcp://[yoursentinel1]:[port]',
      *     'tcp://[yoursentinel2]:[port]',
      *     'tcp://[yoursentinel3]:[port]
-     * )
+     * ],
      */
     'store.redis.sentinels' => [],
 
