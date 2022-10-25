@@ -35,8 +35,9 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
 - Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
   the upgrade process. How to do this depends on your session backend.
-- EntityIDs are no longer auto-generated. Make sure to set it to something sensible in the array-keys in
-  `metadata/saml20-idp-hosted.php` (or to the existing entityID when upgrading an existing installation).
+- EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
+  `metadata/saml20-idp-hosted.php` and for any saml:SP in `config/authsources.php` (or to the existing entityIDs when
+  upgrading an existing installation).
   If you are using a database to store metadata, make sure to replace any __DYNAMIC% entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
 - SAML endpoints have changed, meaning that a metadata exchange with your peers _could_ be necessary depending on
