@@ -165,13 +165,6 @@ class SAMLParser
     private array $validators = [];
 
     /**
-     * The original EntityDescriptor element for this entity, as a base64 encoded string.
-     *
-     * @var string
-     */
-    private string $entityDescriptor;
-
-    /**
      * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
@@ -196,9 +189,6 @@ class SAMLParser
         $this->spDescriptors = [];
         $this->idpDescriptors = [];
 
-        $e = $entityElement->toXML();
-        $e = $e->ownerDocument->saveXML($e);
-        $this->entityDescriptor = base64_encode($e);
         $this->entityId = $entityElement->getEntityID();
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
@@ -472,7 +462,6 @@ class SAMLParser
     {
         $ret = [];
         $ret['entityid'] = $this->entityId;
-        $ret['entityDescriptor'] = $this->entityDescriptor;
 
         // add organizational metadata
         if (!empty($this->organizationName)) {
