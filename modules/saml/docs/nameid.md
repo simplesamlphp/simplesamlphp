@@ -26,7 +26,7 @@ Uses the value of an attribute to generate a NameID.
 
 **Options**:
 
-`attribute`
+`identifyingAttribute`
 :   The name of the attribute we should use as the unique user ID.
 
 `Format`
@@ -40,7 +40,7 @@ The resulting hash is sent as the persistent NameID.
 
 **Options**:
 
-`attribute`
+`identifyingAttribute`
 :   The name of the attribute we should use as the unique user ID.
 
 ## `saml:TransientNameID`
@@ -60,7 +60,7 @@ See the `store.type` configuration option in `config.php`.
 
 **Options**:
 
-`attribute`
+`identifyingAttribute`
 :   The name of the attribute we should use as the unique user ID.
 
 `allowUnspecified`
@@ -109,11 +109,11 @@ This example makes three NameIDs available:
         ],
         2 => [
             'class' => 'saml:PersistentNameID',
-            'attribute' => 'eduPersonPrincipalName',
+            'identifyingAttribute' => 'eduPersonPrincipalName',
         ],
         3 => [
             'class' => 'saml:AttributeNameID',
-            'attribute' => 'mail',
+            'identifyingAttribute' => 'mail',
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ],
     ],
@@ -126,7 +126,7 @@ Storing persistent NameIDs in a SQL database:
         ],
         2 => [
             'class' => 'saml:SQLPersistentNameID',
-            'attribute' => 'eduPersonPrincipalName',
+            'identifyingAttribute' => 'eduPersonPrincipalName',
         ],
     ],
 
@@ -136,7 +136,7 @@ Generating Persistent NameID and eduPersonTargetedID.
         // Generate the persistent NameID.
         2 => [
             'class' => 'saml:PersistentNameID',
-            'attribute' => 'eduPersonPrincipalName',
+            'identifyingAttribute' => 'eduPersonPrincipalName',
         ],
         // Add the persistent to the eduPersonTargetedID attribute
         60 => [

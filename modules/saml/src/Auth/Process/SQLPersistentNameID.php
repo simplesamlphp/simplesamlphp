@@ -23,7 +23,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
      *
      * @var string
      */
-    private string $attribute;
+    private string $identifyingAttribute;
 
     /**
      * Whether we should create a persistent NameID if not explicitly requested (as saml:PersistentNameID does).
@@ -60,7 +60,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAML\Error\Exception If the 'attribute' option is not specified.
+     * @throws \SimpleSAML\Error\Exception If the 'identifyingAttribute' option is not specified.
      */
     public function __construct(array &$config, $reserved)
     {
@@ -68,10 +68,10 @@ class SQLPersistentNameID extends BaseNameIDGenerator
 
         $this->format = Constants::NAMEID_PERSISTENT;
 
-        if (!isset($config['attribute'])) {
-            throw new Error\Exception("PersistentNameID: Missing required option 'attribute'.");
+        if (!isset($config['identifyingAttribute'])) {
+            throw new Error\Exception("PersistentNameID: Missing required option 'identifyingAttribute'.");
         }
-        $this->attribute = $config['attribute'];
+        $this->identifyingAttribute = $config['identifyingAttribute'];
 
         if (isset($config['allowUnspecified'])) {
             $this->allowUnspecified = (bool) $config['allowUnspecified'];
@@ -137,26 +137,31 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         }
         $idpEntityId = $state['Source']['entityid'];
 
-        if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
+        if (
+            !isset($state['Attributes'][$this->identifyingAttribute])
+            || count($state['Attributes'][$this->identifyingAttribute]) === 0
+        ) {
             Logger::warning(
-                'SQLPersistentNameID: Missing attribute ' . var_export($this->attribute, true) .
+                'SQLPersistentNameID: Missing attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
-        if (count($state['Attributes'][$this->attribute]) > 1) {
+        if (count($state['Attributes'][$this->identifyingAttribute]) > 1) {
             Logger::warning(
-                'SQLPersistentNameID: More than one value in attribute ' . var_export($this->attribute, true) .
+                'SQLPersistentNameID: More than one value in attribute ' .
+                var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
-        $uid = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
+        // just in case the first index is no longer 0
+        $uid = array_values($state['Attributes'][$this->identifyingAttribute]);
         $uid = $uid[0];
 
         if (empty($uid)) {
             Logger::warning(
-                'Empty value in attribute ' . var_export($this->attribute, true) .
+                'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
