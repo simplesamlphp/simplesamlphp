@@ -22,7 +22,7 @@ class AttributeNameID extends BaseNameIDGenerator
      *
      * @var string
      */
-    private string $attribute;
+    private string $identifyingAttribute;
 
 
     /**
@@ -31,7 +31,7 @@ class AttributeNameID extends BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'attribute' are missing.
+     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'identifyingAttribute' are missing.
      */
     public function __construct(array $config, $reserved)
     {
@@ -42,10 +42,10 @@ class AttributeNameID extends BaseNameIDGenerator
         }
         $this->format = (string) $config['Format'];
 
-        if (!isset($config['attribute'])) {
-            throw new Error\Exception("AttributeNameID: Missing required option 'attribute'.");
+        if (!isset($config['identifyingAttribute'])) {
+            throw new Error\Exception("AttributeNameID: Missing required option 'identifyingAttribute'.");
         }
-        $this->attribute = (string) $config['attribute'];
+        $this->identifyingAttribute = (string) $config['identifyingAttribute'];
     }
 
 
@@ -57,26 +57,30 @@ class AttributeNameID extends BaseNameIDGenerator
      */
     protected function getValue(array &$state): ?string
     {
-        if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
+        if (
+            !isset($state['Attributes'][$this->identifyingAttribute])
+            || count($state['Attributes'][$this->identifyingAttribute]) === 0
+        ) {
             Logger::warning(
-                'Missing attribute ' . var_export($this->attribute, true) .
+                'Missing attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
-        if (count($state['Attributes'][$this->attribute]) > 1) {
+        if (count($state['Attributes'][$this->identifyingAttribute]) > 1) {
             Logger::warning(
-                'More than one value in attribute ' . var_export($this->attribute, true) .
+                'More than one value in attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
-        $value = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
+        // just in case the first index is no longer 0
+        $value = array_values($state['Attributes'][$this->identifyingAttribute]);
         $value = strval($value[0]);
 
         if (empty($value)) {
             Logger::warning(
-                'Empty value in attribute ' . var_export($this->attribute, true) .
+                'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
