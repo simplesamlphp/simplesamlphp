@@ -299,6 +299,11 @@ class IdP
             throw new Error\Exception('Not authenticated.');
         }
 
+        // register auth source consumer logout callback for proxy logout scenarios
+        $callback = [get_class(), 'asConsumerLogoutCallback'];
+        $params = [$idp->getId()];
+        $idp->authSource->getAuthSource()->registerAsConsumerLogoutCallback($callback, $params);
+
         $state['Attributes'] = $idp->authSource->getAttributes();
 
         if (isset($state['SPMetadata'])) {
@@ -414,6 +419,34 @@ class IdP
         }
     }
 
+    /**
+     * Callback function to be called when proxy mode logout (e.g. from an SP) is triggered.
+     *
+     * @param string $idpId The IdP entity id to be logged out.
+     * @param string $returnToUrl The URL to which the code should return to once it has finished processing.
+     * @return void
+     * @throws \Exception
+     */
+    public static function asConsumerLogoutCallback(string $idpId, string $returnToUrl): void
+    {
+        // Get active associations for this IdP
+        $session = Session::getSessionFromRequest();
+        $activeAssociations = $session->getAssociations($idpId);
+
+        Logger::debug(sprintf(
+            'saml:IdP - ASConsumerLogoutCallback: Active associations for %s: %s',
+            var_export($idpId, true),
+            var_export($activeAssociations, true)
+        ));
+
+        // If we still have active associations, log them out
+        if (!empty($activeAssociations)) {
+            $idp = self::getById($idpId);
+            // Logout
+            $idp->doLogoutRedirect($returnToUrl, true);
+        }
+    }
+
 
     /**
      * Find the logout handler of this IdP.
@@ -475,6 +508,7 @@ class IdP
 
         $state['core:IdP'] = $this->id;
         $state['core:TerminatedAssocId'] = $assocId;
+        $skipAsLogout = $state['core:Logout:SkipAsLogout'];
 
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
@@ -486,9 +520,11 @@ class IdP
         $id = Auth\State::saveState($state, 'core:Logout:afterbridge');
         $returnTo = Module::getModuleURL('core/logout-resume', ['id' => $id]);
 
-        $this->authSource->logout($returnTo);
+        if (!$skipAsLogout) {
+            $this->authSource->logout($returnTo);
+        }
 
-        if ($assocId !== null) {
+        if ($assocId !== null || $skipAsLogout) {
             $handler = $this->getLogoutHandler();
             $handler->startLogout($state, $assocId);
         }
@@ -526,12 +562,16 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
+     * @param bool $skipAsLogout Whether to skip logging out authentication source.
+     *   Used in proxy logout scenario.
+     * @return void
      */
-    public function doLogoutRedirect(string $url): void
+    public function doLogoutRedirect(string $url, bool $skipAsLogout = false): void
     {
         $state = [
             'Responder'       => [IdP::class, 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
+            'core:Logout:SkipAsLogout' => $skipAsLogout,
         ];
 
         $this->handleLogoutRequest($state, null);

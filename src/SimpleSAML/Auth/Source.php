@@ -204,6 +204,109 @@ abstract class Source
 
 
     /**
+     * Register a logout callback to be called after the consumer of this authentication source is logged out.
+     *
+     * @param callable $callback Callback structure ([CLASS_NAME, STATIC_FUNCTION_NAME]).
+     *        Static function has to have following signature: ($param1, ..., $paramN, string $returnUrl) with
+     *        $param1-N being members of $params.
+     *        If callback does not return directly (i.e. redirect) it has to make sure that $returnUrl is called after
+     *        processing finished.
+     * @param array $params Arbitrary parameters.
+     * @throws \Exception
+     */
+    public function registerAsConsumerLogoutCallback(callable $callback, array $params = []): void
+    {
+        $session = Session::getSessionFromRequest();
+
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
+
+        if ($callbacks === null) {
+            $callbacks = [];
+        }
+        $callbacks[] = [$callback, $params];
+
+        $session->setData(
+            '\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks',
+            $this->getAuthId(),
+            $callbacks,
+            Session::DATA_TIMEOUT_SESSION_END
+        );
+    }
+
+
+    /**
+     * Check if authentication source consumer logout callbacks have been registered.
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function hasAsConsumerLogoutCallbacks(): bool
+    {
+        $session = Session::getSessionFromRequest();
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $this->getAuthId());
+
+        return !empty($callbacks);
+    }
+
+
+    /**
+     * Calls all registered logout callbacks for consumers of this source.
+     * This function might not return directly, so a $returnToUrl has to be specified.
+     *
+     * @param string $returnToUrl URL to return to if callback needs to leave this flow / redirect.
+     *   Make sure to include the id parameter to recover state after processing.
+     * @throws \Exception
+     */
+    public function callAsConsumerLogoutCallbacks(string $returnToUrl): void
+    {
+        $state = [];
+        $state['asConsumerLogoutCallbacks:returnTo'] = $returnToUrl;
+        $state['asConsumerLogoutCallbacks:authId'] = $this->getAuthId();
+
+        self::handleAsConsumerLogoutCallbacks($state);
+    }
+
+
+    /**
+     * Handle authentication source consumer logout callbacks.
+     *
+     * @param array $state
+     * @throws \Exception
+     */
+    public static function handleAsConsumerLogoutCallbacks(array $state): void
+    {
+        Assert::keyExists($state, 'asConsumerLogoutCallbacks:returnTo');
+        Assert::keyExists($state, 'asConsumerLogoutCallbacks:authId');
+
+        $authId = $state['asConsumerLogoutCallbacks:authId'];
+        $session = Session::getSessionFromRequest();
+        $callbacks = $session->getData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId);
+
+        if (!empty($callbacks)) {
+            // prepare updated returnToUrl in case callback redirects
+            $id = State::saveState($state, 'asConsumerLogoutCallbacks:resume');
+            $returnToUrl = Module::getModuleURL('core/source/as_logout_resume.php', ['id' => $id]);
+
+            while (sizeof($callbacks) > 0) {
+                $callback = array_shift($callbacks);
+
+                $callbackFn = $callback[0];
+                $params = $callback[1];
+                $params[] = $returnToUrl; // append returnToUrl to params to get back to this handler after logout callback completes
+
+                // save remaining callbacks
+                $session->setData('\SimpleSAML\Auth\Source.AsConsumerLogoutCallbacks', $authId, $callbacks);
+                call_user_func_array($callbackFn, $params);
+            }
+        }
+
+        // return to caller
+        $returnTo = $state['asConsumerLogoutCallbacks:returnTo'];
+        Utils\HTTP::redirectTrustedURL($returnTo);
+    }
+
+
+    /**
      * Called when a login operation has finished.
      *
      * This method never returns.
