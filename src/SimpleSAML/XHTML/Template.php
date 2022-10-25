@@ -214,7 +214,7 @@ class Template extends Response
         $file = new File($file);
 
         $tag = $this->configuration->getVersion();
-        if ($tag === 'master') {
+        if ($tag === 'dev-master') {
             $tag = strval($file->getMtime());
         }
         $tag = substr(hash('md5', $tag), 0, 5);

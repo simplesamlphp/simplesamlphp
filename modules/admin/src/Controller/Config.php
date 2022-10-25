@@ -451,7 +451,7 @@ class Config
          * this page.
          */
         $checkforupdates = $this->config->getOptionalBoolean('admin.checkforupdates', true);
-        if (($checkforupdates === true) && $this->config->getVersion() !== 'master') {
+        if (($checkforupdates === true) && $this->config->getVersion() !== 'dev-master') {
             if (!function_exists('curl_init')) {
                 $warnings[] = Translate::noop(
                     'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.'
