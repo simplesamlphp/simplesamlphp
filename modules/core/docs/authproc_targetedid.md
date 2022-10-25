@@ -3,12 +3,12 @@
 
 This filter generates the `eduPersonTargetedID` attribute for the user.
 
-This filter will use the contents of the attribute set by the `attributename` option as the unique user ID.
+This filter will use the contents of the attribute set by the `identifyingAttribute` option as the unique user ID.
 
 Parameters
 ----------
 
-`attributename`
+`identifyingAttribute`
 :   The name of the attribute we should use for the unique user identifier.
 
     Note: only the first value of the specified attribute is being used for the generation of the identifier.
@@ -26,7 +26,7 @@ A custom attribute:
     'authproc' => [
         50 => [
             'class' => 'core:TargetedID',
-            'attributename' => 'eduPersonPrincipalName'
+            'identifyingAttribute' => 'eduPersonPrincipalName'
         ],
     ],
 

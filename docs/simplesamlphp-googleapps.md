@@ -145,13 +145,13 @@ In the `saml20-sp-remote.php` file we will configure an entry for Google Workspa
  * must properly configure the saml:AttributeNameID authproc-filter with the name of an attribute that for this user has the value of 'john'.
  */
 $metadata['https://www.google.com/a/g.feide.no'] => [
-    'AssertionConsumerService' => 'https://www.google.com/a/g.feide.no/acs', 
+    'AssertionConsumerService' => 'https://www.google.com/a/g.feide.no/acs',
     'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     'simplesaml.attributes' => false,
     'authproc' => [
         1 => [
           'saml:AttributeNameID',
-          'attribute' => 'uid',
+          'identifyingAttribute' => 'uid',
           'format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ],
     ],
