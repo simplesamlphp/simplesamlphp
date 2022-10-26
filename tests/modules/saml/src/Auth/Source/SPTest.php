@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
 use SAML2\XML\Chunk;
-use SAML2\XML\DOMDocumentFactory;
+use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
