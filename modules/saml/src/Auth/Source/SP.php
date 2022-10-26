@@ -63,6 +63,13 @@ class SP extends \SimpleSAML\Auth\Source
     private bool $disable_scoping;
 
     /**
+     * If pass AuthnContextClassRef back to the IdPs in front of the SP/IdP Proxy.
+     *
+     * @var bool
+     */
+    private bool $passAuthnContextClassRef;
+
+    /**
      * A list of supported protocols.
      *
      * @var string[]
@@ -106,6 +113,10 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
+        $this->passAuthnContextClassRef = $this->metadata->getOptionalBoolean(
+            'proxymode.passAuthnContextClassRef',
+            false
+        );
     }
 
 
@@ -475,6 +486,30 @@ class SP extends \SimpleSAML\Auth\Source
                 $comp = $state['saml:AuthnContextComparison'];
             }
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+        } elseif (
+            $this->passAuthnContextClassRef
+            && isset($state['saml:RequestedAuthnContext'])
+            && isset($state['saml:RequestedAuthnContext']['AuthnContextClassRef'])
+        ) {
+            if (
+                isset($state['saml:RequestedAuthnContext']['Comparison'])
+                && in_array(
+                    $state['saml:RequestedAuthnContext']['Comparison'],
+                    [
+                        Constants::COMPARISON_EXACT,
+                        Constants::COMPARISON_MINIMUM,
+                        Constants::COMPARISON_MAXIMUM,
+                        Constants::COMPARISON_BETTER,
+                    ],
+                    true
+                )
+            ) {
+                // RequestedAuthnContext has been set by an SP behind the proxy so pass it to the upper IdP
+                $ar->setRequestedAuthnContext([
+                    'AuthnContextClassRef' => $state['saml:RequestedAuthnContext']['AuthnContextClassRef'],
+                    'Comparison' => $state['saml:RequestedAuthnContext']['Comparison']
+                ]);
+            }
         }
 
         if (isset($state['saml:Audience'])) {
