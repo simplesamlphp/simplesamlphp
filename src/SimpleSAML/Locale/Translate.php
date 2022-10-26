@@ -139,6 +139,8 @@ class Translate
             return null;
         } elseif (isset($translations[$context['currentLanguage']])) {
             return $translations[$context['currentLanguage']];
+        } elseif (isset($translations[Language::FALLBACKLANGUAGE])) {
+            return $translations[Language::FALLBACKLANGUAGE];
         }
 
         // nothing we can use, return null so that we can set a default
