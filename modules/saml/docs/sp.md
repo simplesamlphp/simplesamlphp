@@ -216,7 +216,7 @@ The following attributes are available:
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
 
 `entityID`
-:   The entity ID this SP should use.
+:   The entity ID this SP should use. (Must be set or an error will be generated.)
 
 :   The entity ID must be a URI, that is unlikely to change for technical or political
     reasons. We recommend it to be a domain name, like above, if your organization's main
