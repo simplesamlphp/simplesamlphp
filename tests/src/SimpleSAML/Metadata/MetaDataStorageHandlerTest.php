@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use Exception;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\MetadataNotFound;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -149,5 +150,15 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(MetadataNotFound::class, "METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
         $this->handler->getMetaData('doesnotexist', 'saml20-sp-remote');
+    }
+
+    /*
+     * Test using the entityID from metadata-templates/saml20-idp-hosted.php
+     */
+    public function testSampleEntityIdException(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageMatches('/entityID/');
+        $this->handler->getMetaDataCurrent('saml20-idp-hosted');
     }
 }

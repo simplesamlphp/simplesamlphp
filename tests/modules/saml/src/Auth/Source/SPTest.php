@@ -8,11 +8,14 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
+use SAML2\XML\Chunk;
+use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
 use SAML2\Utils;
 use SAML2\XML\saml\NameID;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
@@ -1504,9 +1507,9 @@ class SPTest extends ClearStateTestCase
         $nameId = new NameID();
         $nameId->setValue('someone@example.com');
 
-        $dom = \SAML2\DOMDocumentFactory::create();
+        $dom = DOMDocumentFactory::create();
         $extension = $dom->createElementNS('urn:some:namespace', 'MyLogoutExtension');
-        $extChunk = [new \SAML2\XML\Chunk($extension)];
+        $extChunk = [new Chunk($extension)];
 
         $entityId = "https://engine.surfconext.nl/authentication/idp/metadata";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
@@ -1541,5 +1544,17 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $q[0]->childNodes);
         $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);
         $this->assertEquals('urn:some:namespace', $q[0]->firstChild->namespaceURI);
+    }
+
+    /*
+     * Test using the entityID from config-templates/authsources.php
+     */
+    public function testSampleEntityIdException(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'https://myapp.example.org/'];
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageMatches('/entityID/');
+        $as = new SpTester($info, $config);
     }
 }
