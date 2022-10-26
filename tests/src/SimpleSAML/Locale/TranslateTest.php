@@ -24,4 +24,34 @@ class TranslateTest extends TestCase
         $testString = 'Blablabla';
         $this->assertEquals($testString, $t->noop($testString));
     }
+
+    /**
+     * Test SimpleSAML\Locale\Translate::translateFromArray().
+     */
+    public function testTranslateFromArray(): void
+    {
+        $result = Translate::translateFromArray(
+            ['currentLanguage' => 'ia',],
+            [ 'ia' => 'interlingua', 'en' => 'english',]
+        );
+        $this->assertEquals('interlingua', $result);
+    }
+
+    public function testTranslateFromArrayFallback(): void
+    {
+        $result = Translate::translateFromArray(
+            ['currentLanguage' => 'ia',],
+            [ 'eo' => 'esperanto', 'en' => 'english',]
+        );
+        $this->assertEquals('english', $result);
+    }
+
+    public function testTranslateFromArrayFail(): void
+    {
+        $result = Translate::translateFromArray(
+            ['currentLanguage' => 'ia',],
+            [ 'eo' => 'esperanto',]
+        );
+        $this->assertEquals(null, $result);
+    }
 }
