@@ -125,6 +125,14 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         // add the entity id of an entry to each entry in the metadata
         foreach ($metadataSet as $entityId => &$entry) {
             $entry['entityid'] = $entityId;
+            // check we're not seeing the entityID from the metadata-template
+            if ($set === 'saml20-idp-hosted') {
+                Assert::notEq(
+                    $entityId,
+                    'urn:x-simplesamlphp:example-idp',
+                    'Please set a valid and unique entityID',
+                );
+            }
         }
 
         $this->cachedMetadata[$set] = $metadataSet;

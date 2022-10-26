@@ -150,4 +150,14 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->expectException(MetadataNotFound::class, "METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
         $this->handler->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
+
+    /*
+     * Test using the entityID from metadata-templates/saml20-idp-hosted.php
+     */
+    public function testSampleEntityIdException(): void
+    {
+        $this->expectException(\SimpleSAML\Assert\AssertionFailedException::class);
+        $this->expectExceptionMessageMatches('/entityID/');
+        $this->handler->getMetaDataCurrent('saml20-idp-hosted');
+    }
 }
