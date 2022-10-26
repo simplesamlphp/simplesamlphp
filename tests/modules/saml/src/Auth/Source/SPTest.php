@@ -1542,4 +1542,16 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);
         $this->assertEquals('urn:some:namespace', $q[0]->firstChild->namespaceURI);
     }
+
+    /*
+     * Test using the entityID from config-templates/authsources.php
+     */
+    public function testSampleEntityIdException(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'https://myapp.example.org/'];
+        $this->expectException(\SimpleSAML\Assert\AssertionFailedException::class);
+        $this->expectExceptionMessageMatches('/entityID/');
+        $as = new SpTester($info, $config);
+    }
 }

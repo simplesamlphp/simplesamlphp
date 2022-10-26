@@ -96,6 +96,11 @@ class SP extends \SimpleSAML\Auth\Source
             Constants::SAML2INT_ENTITYID_MAX_LENGTH,
             sprintf('The entityID cannot be longer than %d characters.', Constants::SAML2INT_ENTITYID_MAX_LENGTH)
         );
+        Assert::notEq(
+            $entityId,
+            'https://myapp.example.org/',
+            'Please set a valid and unique entityID',
+        );
 
         $this->entityId = $entityId;
         $this->idp = $this->metadata->getOptionalString('idp', null);
