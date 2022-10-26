@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use Exception;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\MetadataNotFound;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -156,7 +157,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testSampleEntityIdException(): void
     {
-        $this->expectException(\SimpleSAML\Assert\AssertionFailedException::class);
+        $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessageMatches('/entityID/');
         $this->handler->getMetaDataCurrent('saml20-idp-hosted');
     }
