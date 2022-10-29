@@ -948,11 +948,5 @@ msgid ""
 "below to proceed."
 msgstr ""
 
-msgid "{errors:debuginfo_header}"
-msgstr ""
-
-msgid "{errors:debuginfo_text}"
-msgstr ""
-
 msgid "No identity providers found. Cannot continue."
 msgstr ""

@@ -942,11 +942,5 @@ msgid ""
 msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido "
 "nižšie pre pokračovanie."
 
-msgid "{errors:debuginfo_header}"
-msgstr ""
-
-msgid "{errors:debuginfo_text}"
-msgstr ""
-
 msgid "No identity providers found. Cannot continue."
 msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
