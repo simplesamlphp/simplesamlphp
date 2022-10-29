@@ -5,6 +5,10 @@ set -e
 VERSION=$1
 REPOPATH=$2
 
+EXTRAMODULES="adfs authorize authx509 consent consentadmin
+discopower ldap memcookie metarefresh negotiate oauth
+radius statistics sqlauth"
+
 if ! shift; then
     echo "$0: Missing required version parameter." >&2
     exit 1
@@ -31,10 +35,7 @@ fi
 
 umask 0022
 
-git clone $REPOPATH $TARGET
-cd $TARGET
-git checkout $TAG
-cd ..
+git clone --depth 1 --branch $TAG $REPOPATH $TARGET
 
 if [ ! -x "$TARGET/composer.phar" ]; then
     curl -sS https://getcomposer.org/installer | php -- --install-dir=$TARGET
@@ -51,22 +52,33 @@ npm install
 npm audit fix
 npx browserslist@latest --update-db
 npm run build
+
+mkdir -p config metadata cert log data
+cp -rv config-templates/* config/
+cp -rv metadata-templates/* metadata/
+rm -rf .git
+rm -rf node_modules
+rm www/assets/js/stylesheet.js
+rm .editorconfig
+rm .gitattributes
+rm -r .github/
+rm phpunit.xml
+rm {cache,config,metadata,locales}/.gitkeep
+rm bin/build-release.sh
+
 cd ..
 
-mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log" "$TARGET/data"
-cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
-cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
-rm -rf "$TARGET/.git"
-rm -rf "$TARGET/node_modules"
-rm "$TARGET/www/assets/js/stylesheet.js"*
-rm "$TARGET/.editorconfig"
-rm "$TARGET/.gitattributes"
-rm -r "$TARGET/.github"
-rm "$TARGET"/phpunit.xml
-rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
-rm "$TARGET/composer.phar"
-rm "$TARGET/bin/build-release.sh"
-tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
-rm -rf "$TARGET"
+cp -a "$TARGET" "$TARGET-full"
 
-echo "Created: /tmp/$TARGET.tar.gz"
+MODS=""
+for i in $EXTRAMODULES; do MODS="$MODS simplesamlphp/simplesamlphp-module-$i"; done
+
+php "$TARGET/composer.phar" require --update-no-dev --prefer-dist --ignore-platform-reqs -n -o -d "$TARGET-full" $MODS
+
+export GZIP=-9
+tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
+tar --owner 0 --group 0 -cvzf "$TARGET-full.tar.gz" "$TARGET-full"
+
+rm -rf "$TARGET $TARGET-full"
+
+echo "Created: /tmp/$TARGET.tar.gz /tmp/$TARGET-full.tar.gz"
