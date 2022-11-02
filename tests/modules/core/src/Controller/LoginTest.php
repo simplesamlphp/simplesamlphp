@@ -93,7 +93,7 @@ class LoginTest extends ClearStateTestCase
         $request = Request::create(
             '/loginuserpass',
             'GET',
-            ['AuthState' => 'someState'],
+            ['AuthState' => '_abc123'],
         );
 
         $c = new Controller\Login($this->config);
