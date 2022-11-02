@@ -55,7 +55,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['username'] = 'h.c oersted';
         $t->data['rememberUsernameEnabled'] = false;
         $t->data['rememberMeEnabled'] = false;
-        $t->data['AuthState'] = 'abc123';
+        $t->data['AuthState'] = '_abc123';
 
         $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */

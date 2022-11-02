@@ -101,7 +101,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState']
+            ['AuthState' => '_abc123']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -154,7 +154,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState']
+            ['AuthState' => '_abc123']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -208,7 +208,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState']
+            ['AuthState' => '_abc123']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -264,7 +264,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState', 'source' => 'admin']
+            ['AuthState' => '_abc123', 'source' => 'admin']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -320,7 +320,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState', 'sourceChoice[admin]' => 'something admin']
+            ['AuthState' => '_abc123', 'sourceChoice[admin]' => 'something admin']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
