@@ -111,6 +111,7 @@ class Login
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $state = $this->authState::loadState($authStateId, UserPassBase::STAGEID);
 
@@ -137,6 +138,7 @@ class Login
     {
         Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $organizations = $organization = null;
         if ($source instanceof UserPassOrgBase) {
@@ -324,6 +326,7 @@ class Login
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
 
