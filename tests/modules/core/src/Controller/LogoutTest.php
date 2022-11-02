@@ -113,7 +113,7 @@ class LogoutTest extends ClearStateTestCase
         $request = Request::create(
             '/logout-iframe-done',
             'GET',
-            ['id' => 'someState'],
+            ['id' => '_abc123'],
         );
 
         $c = new Controller\Logout($this->config);
@@ -134,7 +134,7 @@ class LogoutTest extends ClearStateTestCase
         $request = Request::create(
             '/logout-iframe-done',
             'GET',
-            ['id' => 'someState'],
+            ['id' => '_abc123'],
         );
 
         $c = new Controller\Logout($this->config);

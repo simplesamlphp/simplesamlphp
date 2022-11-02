@@ -207,7 +207,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/redirecttest',
             'GET',
-            ['StateId' => 'someState']
+            ['StateId' => '_abc123']
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);

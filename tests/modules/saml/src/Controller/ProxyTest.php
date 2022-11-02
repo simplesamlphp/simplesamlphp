@@ -88,7 +88,7 @@ class ProxyTest extends TestCase
     public function testWithStateId(): void
     {
         $request = Request::create(
-            '/invalidSesssion?AuthState=someState',
+            '/invalidSesssion?AuthState=_abc123',
             'POST',
         );
 
@@ -117,7 +117,7 @@ class ProxyTest extends TestCase
     public function testWithStateIdCancel(): void
     {
         $request = Request::create(
-            '/invalidSesssion?AuthState=someState',
+            '/invalidSesssion?AuthState=_abc123',
             'POST',
             ['cancel' => 'cancel'],
         );
@@ -147,7 +147,7 @@ class ProxyTest extends TestCase
     public function testWithStateIdContinue(): void
     {
         $request = Request::create(
-            '/invalidSesssion?AuthState=someState',
+            '/invalidSesssion?AuthState=_abc123',
             'POST',
             ['continue' => 'continue'],
         );
