@@ -99,6 +99,7 @@ class Login
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $state = $this->authState::loadState($authStateId, UserPassBase::STAGEID);
 
@@ -124,6 +125,7 @@ class Login
     private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $organizations = $organization = null;
         if ($source instanceof UserPassOrgBase) {
@@ -311,6 +313,7 @@ class Login
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
         $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
 
         $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
 
