@@ -51,9 +51,6 @@ npm audit fix
 npx browserslist@latest --update-db
 npm run build
 
-rm cert/.gitkeep
-rm bin/build-release.sh
-
 php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"
 rm "$COMPOSER"
 echo `shasum -a 256 /tmp/$TARGET.tar.gz`

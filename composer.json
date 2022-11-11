@@ -115,6 +115,8 @@
             ".gitattributes",
             ".gitignore",
             ".php_cs.dist",
+            "bin/build-release.sh",
+            "cert/.gitkeep",
             "codecov.yml",
             "node_modules",
             "phpcs.xml",
