@@ -1,6 +1,9 @@
-/config/
-/metadata/
-/cert/
+cert/*
+config/*
+metadata/*
+!/cert/*.gitkeep
+!/config/*.dist
+!/metadata/*.dist
 /www/assets/fonts/*
 /www/assets/js/*.js
 /www/assets/js/*.js.LICENSE.txt
