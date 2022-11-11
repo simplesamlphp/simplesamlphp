@@ -33,7 +33,7 @@ class SQLPermanentStorage
             $config = Configuration::getInstance();
         }
 
-        $datadir = $config->getPathValue('datadir', 'data/') ?: 'data/';
+        $datadir = $config->getPathValue('datadir', sys_get_temp_dir()) ?: sys_get_temp_dir();
 
         if (!is_dir($datadir)) {
             throw new \Exception('Data directory [' . $datadir . '] does not exist');

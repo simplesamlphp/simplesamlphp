@@ -54,7 +54,7 @@ npm run build
 mkdir -p "config" "metadata"
 cp -rv "config-templates/"* "config/"
 cp -rv "metadata-templates/"* "metadata/"
-rm {cache,config,metadata,locales}/.gitkeep
+rm {cert,config,metadata,locales}/.gitkeep
 rm bin/build-release.sh
 
 php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"

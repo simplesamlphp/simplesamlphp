@@ -1,4 +1,4 @@
-/cache/.gitkeep export-ignore
+/cert/.gitkeep export-ignore
 /config/.gitkeep export-ignore
 /metadata/.gitkeep export-ignore
 /tests export-ignore
