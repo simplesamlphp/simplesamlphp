@@ -51,10 +51,7 @@ npm audit fix
 npx browserslist@latest --update-db
 npm run build
 
-mkdir -p "config" "metadata"
-cp -rv "config-templates/"* "config/"
-cp -rv "metadata-templates/"* "metadata/"
-rm {cert,config,metadata}/.gitkeep
+rm cert/.gitkeep
 rm bin/build-release.sh
 
 php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"
