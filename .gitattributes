@@ -1,8 +1,5 @@
 /cert/.gitkeep export-ignore
-/config/.gitkeep export-ignore
-/metadata/.gitkeep export-ignore
 /tests export-ignore
-/tools export-ignore
 codecov.yml export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
