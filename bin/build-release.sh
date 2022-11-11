@@ -8,9 +8,7 @@ REPOPATH=$2
 if ! shift; then
     echo "$0: Missing required version parameter." >&2
     exit 1
-fi
-
-if [ -z "$VERSION" ]; then
+elif [ -z "$VERSION" ]; then
     echo "$0: Empty version parameter." >&2
     exit 1
 fi
