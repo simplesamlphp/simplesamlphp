@@ -30,9 +30,8 @@ fi
 
 umask 0022
 
-git clone $REPOPATH $TARGET
+git clone --depth 1 --branch $TAG $REPOPATH $TARGET
 cd $TARGET
-git checkout $TAG
 
 if [ ! -x "$COMPOSER" ]; then
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/tmp
