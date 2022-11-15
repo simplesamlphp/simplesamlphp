@@ -1,8 +1,8 @@
-/cache/.gitkeep export-ignore
-/config/.gitkeep export-ignore
-/metadata/.gitkeep export-ignore
+/cert/.gitkeep export-ignore
+/www/assets/css/.gitkeep export-ignore
+/www/assets/fonts/.gitkeep export-ignore
+/www/assets/js/.gitkeep export-ignore
 /tests export-ignore
-/tools export-ignore
 codecov.yml export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
