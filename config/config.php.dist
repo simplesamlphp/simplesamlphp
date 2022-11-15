@@ -64,8 +64,8 @@ $config = [
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
      */
-    'loggingdir' => 'log/',
-    'datadir' => 'data/',
+    //'loggingdir' => '/var/log/',
+    //'datadir' => '/var/data/',
     'tempdir' => '/tmp/simplesaml',
 
     /*

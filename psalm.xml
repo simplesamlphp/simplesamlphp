@@ -8,8 +8,8 @@
     allowStringToStandInForClass="true"
 >
     <projectFiles>
-        <directory name="config-templates" />
-        <directory name="metadata-templates" />
+        <directory name="config" />
+        <directory name="metadata" />
         <directory name="modules" />
         <directory name="src/SimpleSAML" />
         <directory name="tests" />
@@ -69,8 +69,8 @@
         <!-- Suppress PossiblyUndefinedGlobalVariable on templates -->
         <PossiblyUndefinedGlobalVariable>
             <errorLevel type="suppress">
-                <directory name="config-templates" />
-                <directory name="metadata-templates" />
+                <directory name="config" />
+                <directory name="metadata" />
                 <directory name="modules/adfs/metadata-templates" />
             </errorLevel>
         </PossiblyUndefinedGlobalVariable>

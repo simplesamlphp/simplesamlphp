@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Module\core\Storage;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
 /**
@@ -36,6 +37,19 @@ class SQLPermanentStorageTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         unlink(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'sqllite' . DIRECTORY_SEPARATOR . 'test.sqlite');
+    }
+
+
+    /**
+     *
+     */
+    public function testMissingDatadirThrowsException(): void
+    {
+        $config = Configuration::loadFromArray([]);
+
+        $this->expectException(CriticalConfigurationError::class);
+        $this->expectExceptionMessage("The configuration is invalid: Missing 'datadir' in configuration.");
+        new SQLPermanentStorage('test', $config);
     }
 
 

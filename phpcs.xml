@@ -7,8 +7,8 @@
     </description>
 
     <file>bin</file>
-    <file>config-templates</file>
-    <file>metadata-templates</file>
+    <file>config</file>
+    <file>metadata</file>
     <file>modules</file>
     <file>resources</file>
     <file>src</file>

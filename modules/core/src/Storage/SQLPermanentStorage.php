@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Storage;
 
 use PDO;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\CriticalConfigurationError;
 
 /**
  * SQLPermanentStorage
@@ -33,7 +35,8 @@ class SQLPermanentStorage
             $config = Configuration::getInstance();
         }
 
-        $datadir = $config->getPathValue('datadir', 'data/') ?: 'data/';
+        $datadir = $config->getPathValue('datadir', null);
+        Assert::notNull($datadir, "Missing 'datadir' in configuration.", CriticalConfigurationError::class);
 
         if (!is_dir($datadir)) {
             throw new \Exception('Data directory [' . $datadir . '] does not exist');
