@@ -427,6 +427,10 @@ CONTENT
 #layout {
   right: 0;
   padding-right: 0;
+  min-height: 100%;
+
+  /* negative margin = footer height + padding-top + padding-bottom */
+  margin: 0 auto -6rem auto;
 }
 
 #content {
@@ -502,10 +506,6 @@ pre#xmlmetadata {
 /* ***********************************************************
 FOOTER
 ************************************************************ */
-#layout {
-  min-height: 100%;
-  margin: 0 auto -6rem auto; /*negative margin = footer height + padding-top + padding-bottom*/
-}
 
 #bottom, #push {
   height: 6rem;
