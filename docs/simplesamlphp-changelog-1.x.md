@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.6
 
-Released 1-7-2022
+Released 2022-07-01
 
 * Fix several translations (#1572, #1573, #1577, #1578, #1603)
 * Fix HTTP status code for error pages (#1585)
@@ -26,7 +26,7 @@ Released 1-7-2022
 
 ## Version 1.19.5
 
-Released 24-01-2021
+Released 2021-01-24
 
 * Fix composer-file to prevent warnings
 * Fix database persistence (#1555)
@@ -42,7 +42,7 @@ Released 24-01-2021
 
 ## Version 1.19.4
 
-Released 13-12-2021
+Released 2021-12-13
 
 `core`
 
@@ -114,7 +114,7 @@ Released 2021-10-27
 
 ## Version 1.19.1
 
-Released TBD
+Released 2021-04-29
 
 * Fixed a bug in the Artifact Resolution Service (#1428)
 * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
