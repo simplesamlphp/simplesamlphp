@@ -91,7 +91,7 @@ class IdP
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 
-            if ($globalConfig->getBoolean('enable.saml20-idp', false)) {
+            if ($globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
                 try {
                     // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
                     $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
