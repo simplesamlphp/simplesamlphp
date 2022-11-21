@@ -71,7 +71,7 @@ class Kernel extends BaseKernel
     {
         $configuration = Configuration::getInstance();
         $handler = $configuration->getString('logging.handler');
-        $loggingPath = $configuration->getString('loggingdir', sys_get_temp_dir());
+        $loggingPath = $configuration->getOptionalString('loggingdir', sys_get_temp_dir());
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($loggingPath)) {
