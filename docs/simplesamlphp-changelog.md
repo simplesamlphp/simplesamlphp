@@ -13,6 +13,7 @@ Released TBD
   * Backported fix to error report page (#1637)
   * Many doc fixes
   * Bump composer + npm dependencies
+    This includes a fix for vulnerability (CVE-2022-39261)
   * Many updated translations
   * Handle ETag/If-None-Match logic (#1672 + #1673)
   
