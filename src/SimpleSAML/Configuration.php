@@ -613,7 +613,7 @@ class Configuration implements Utils\ClearableState
      *                            The default value can be null or a boolean.
      *
      * @return bool|null          The option with the given name, or $default.
-     * @psalm-return              ($default is set ? bool|null : bool)
+     * @psalm-return              ($default is bool ? bool : bool|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not boolean.
      */
@@ -667,7 +667,7 @@ class Configuration implements Utils\ClearableState
      *                               The default value can be null or a string.
      *
      * @return string|null The option with the given name, or $default if the option isn't found.
-     * @psalm-return       ($default is set ? string|null : string)
+     * @psalm-return       ($default is string ? string : string|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string.
      */
@@ -717,11 +717,11 @@ class Configuration implements Utils\ClearableState
      * An exception will be thrown if this option isn't an integer.
      *
      * @param string $name     The name of the option.
-     * @param mixed  $default  A default value which will be returned if the option isn't found.
+     * @param int|null  $default  A default value which will be returned if the option isn't found.
      *                         The default value can be null or an integer.
      *
      * @return int|null The option with the given name, or $default if the option isn't found.
-     * @psalm-return           ($default is set ? int|null : int)
+     * @psalm-return           ($default is int ? int : int|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an integer.
      */
@@ -792,7 +792,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return int|null The option with the given name, or $default if the option isn't found and $default is
      *     specified.
-     * @psalm-return    ($default is set ? int|null : int)
+     * @psalm-return    ($default is int ? int : int|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not in the range specified.
      */
@@ -917,7 +917,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return array|null The option with the given name, or $default if the option isn't found and $default is
      * specified.
-     * @psalm-return      ($default is set ? array|null : array)
+     * @psalm-return      ($default is array ? array : array|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
@@ -965,7 +965,7 @@ class Configuration implements Utils\ClearableState
      *                       The default value can be null or an array.
      *
      * @return array|null The option with the given name.
-     * @psalm-return      ($default is set ? array|null : array)
+     * @psalm-return      ($default is null ? array|null : array)
      */
     public function getOptionalArrayize(string $name, $default): ?array
     {
@@ -1017,7 +1017,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return string[]|null The option with the given name, or $default if the option isn't found
      *                         and $default is specified.
-     * @psalm-return         ($default is set ? array|null : array)
+     * @psalm-return         ($default is null ? array|null : array)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not a string or an array of strings.
      */
@@ -1075,7 +1075,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return \SimpleSAML\Configuration|null The option with the given name,
      *   or $default, converted into a Configuration object.
-     * @psalm-return     ($default is set ? \SimpleSAML\Configuration|null : \SimpleSAML\Configuration)
+     * @psalm-return     ($default is array ? \SimpleSAML\Configuration : \SimpleSAML\Configuration|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException If the option is not an array.
      */
@@ -1325,10 +1325,10 @@ class Configuration implements Utils\ClearableState
      * The default language returned is always 'en'.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default The default value.
+     * @param array|null  $default The default value.
      *
      * @return array|null Associative array with language => string pairs, or the provided default value.
-     * @psalm-return ($default is set ? array|null : array)
+     * @psalm-return ($default is array ? array : array|null)
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
      *   If the translation is not an array or a string, or its index or value are not strings.
