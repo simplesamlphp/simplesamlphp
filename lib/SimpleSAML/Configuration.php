@@ -19,7 +19,7 @@ class Configuration implements Utils\ClearableState
     /**
      * The release version of this package
      */
-    public const VERSION = '1.19.6';
+    public const VERSION = '1.19.7';
 
     /**
      * A default value which means that the given option is required.
