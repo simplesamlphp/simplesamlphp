@@ -865,10 +865,12 @@ class SP extends \SimpleSAML\Auth\Source
              * starting the authentication process again with a different IdP, or
              * cancel the current SSO attempt.
              */
-            Logger::warning(
-                "Reauthentication after logout is needed. The IdP '${state['saml:sp:IdP']}' is not in the IDPList " .
-                "provided by the Service Provider '${state['core:SP']}'."
-            );
+            Logger::warning(sprintf(
+                "Reauthentication after logout is needed. The IdP '%s' is not in the IDPList "
+                . "provided by the Service Provider '%s'.",
+                $state['saml:sp:IdP'],
+                $state['core:SP']
+            ));
 
             $state['saml:sp:IdPMetadata'] = $this->getIdPMetadata($state['saml:sp:IdP']);
             $state['saml:sp:AuthId'] = $this->authId;
