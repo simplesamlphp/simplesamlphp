@@ -1138,7 +1138,7 @@ class SAMLParser
      */
     private static function extractEndpoints(array $endpoints): array
     {
-        return array_map('self::parseGenericEndpoint', $endpoints);
+        return array_map([self::class, 'parseGenericEndpoint'], $endpoints);
     }
 
 
