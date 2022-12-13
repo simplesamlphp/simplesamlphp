@@ -58,7 +58,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      */
     public function authenticate(array &$state): void
     {
-        $source = $this->selectAuthSource();
+        $source = $this->selectAuthSource($state);
         $as = Auth\Source::getById($source);
 
         if ($as === null || !in_array($source, $this->validSources, true)) {
@@ -95,5 +95,5 @@ abstract class AbstractSourceSelector extends Auth\Source
      * @param array &$state Information about the current authentication.
      * @return string
      */
-    abstract protected function selectAuthSource(): string;
+    abstract protected function selectAuthSource(array &$state): string;
 }

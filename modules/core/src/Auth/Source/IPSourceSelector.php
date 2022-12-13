@@ -87,7 +87,7 @@ class IPSourceSelector extends AbstractSourceSelector
      * @param array &$state Information about the current authentication.
      * @return string
      */
-    protected function selectAuthSource(): string
+    protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string
     {
         $netUtils = new Utils\Net();
         $ip = $_SERVER['REMOTE_ADDR'];
