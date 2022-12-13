@@ -125,7 +125,7 @@ $metadata['entity-id-2'] = [
 
 ```php
 'OrganizationName' => [
-   'en' => 'Example organization',
+    'en' => 'Example organization',
     'no' => 'Eksempel organisation',
 ],
 ```

@@ -1,11 +1,5 @@
 # Scoping
 
-<!-- 
-    This file is written in Markdown syntax. 
-    For more information about how to use the Markdown syntax, read here:
-    http://daringfireball.net/projects/markdown/syntax
--->
-
 [TOC]
 
 Scoping allows a service provider to specify a list of identity providers in an
@@ -59,7 +53,9 @@ Example configuration:
     # Set ProxyCount
     'ProxyCount' => 2,
 
-## RequesterID element
+## Retrieving information
+
+### RequesterID element
 
 To allow an identity provider to identify the original requester and the
 proxying identity providers, SimpleSAMLphp adds the RequesterID element to
@@ -67,11 +63,11 @@ the request and if necessary the scoping element even if explicit scoping is
 not used.
 
 The RequesterId elements are available from the state array as an array, for
-instance the authenticate method in an authentication source
+instance via the authenticate method on an authentication source.
 
     $requesterIDs = $state['saml:RequesterID'];
 
-## AuthenticatingAuthority element
+### AuthenticatingAuthority element
 
 To allow a service provider to identify the authentication authorities that
 were involved in the authentication of the user, SimpleSAMLphp adds the
@@ -86,7 +82,7 @@ can be retrieved as an array from the authentication data.
     # Get the AuthenticatingAuthority
     $aa = $as->getAuthData('saml:AuthenticatingAuthority');
 
-### Support
+## Support
 
 If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
