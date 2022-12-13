@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source\Selector;
 
-use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
-use SimpleSAML\Session;
 use SimpleSAML\Utils;
+
+use function array_key_exists;
+use function sprintf;
 
 /**
  * Authentication source which delegates authentication to secondary

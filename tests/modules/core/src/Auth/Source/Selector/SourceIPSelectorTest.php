@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Source\Selector;
 
-use Error;
-use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector;
 
 /**
@@ -87,7 +84,7 @@ class SourceIPSelectorTest extends TestCase
 
         $sourceConfig = Configuration::loadFromArray([
             'selector' => [
-                'core:SourceI{Selector',
+                'core:SourceIPSelector',
 
                 'zones' => [
                     'internal' => [],
