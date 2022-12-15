@@ -974,16 +974,7 @@ class SAML2
         Configuration $spMetadata,
         array $attributes
     ): array {
-        $base64Attributes = $spMetadata->getOptionalBoolean('base64attributes', null);
-        if ($base64Attributes === null) {
-            $base64Attributes = $idpMetadata->getOptionalBoolean('base64attributes', false);
-        }
-
-        if ($base64Attributes) {
-            $defaultEncoding = 'base64';
-        } else {
-            $defaultEncoding = 'string';
-        }
+        $defaultEncoding = 'string';
 
         $srcEncodings = $idpMetadata->getOptionalArray('attributeencodings', []);
         $dstEncodings = $spMetadata->getOptionalArray('attributeencodings', []);

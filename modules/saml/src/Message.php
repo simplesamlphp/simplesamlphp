@@ -829,21 +829,6 @@ class Message
         }
         // as far as we can tell, the assertion is valid
 
-        // maybe we need to base64 decode the attributes in the assertion?
-        if ($idpMetadata->getOptionalBoolean('base64attributes', false)) {
-            $attributes = $assertion->getAttributes();
-            $newAttributes = [];
-            foreach ($attributes as $name => $values) {
-                $newAttributes[$name] = [];
-                foreach ($values as $value) {
-                    foreach (explode('_', $value) as $v) {
-                        $newAttributes[$name][] = base64_decode($v);
-                    }
-                }
-            }
-            $assertion->setAttributes($newAttributes);
-        }
-
         // decrypt the NameID element if it is encrypted
         if ($assertion->isNameIdEncrypted()) {
             try {
