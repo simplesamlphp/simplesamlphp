@@ -31,10 +31,6 @@ The following options can be set:
 :   Used to manipulate attributes, and limit access for each SP. See
     the [authentication processing filter manual](simplesamlphp-authproc).
 
-`base64attributes`
-:   Whether attributes sent to this SP should be base64 encoded. The
-    default is `FALSE`.
-
 `description`
 :   A description of this SP. Will be used by various modules when they
     need to show a description of the SP to the user.
@@ -104,9 +100,7 @@ The following options can be set:
 :   -   `string`: Will include the attribute as a normal string. This is
         the default.
 
-:   -   `base64`: Store the attribute as a base64 encoded string. This
-        is the default when the `base64attributes`-option is set to
-        `TRUE`.
+:   -   `base64`: Store the attribute as a base64 encoded string.
 
 :   -   `raw`: Store the attribute without any modifications. This
         makes it possible to include raw XML in the response.
