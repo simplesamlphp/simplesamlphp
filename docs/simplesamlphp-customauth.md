@@ -29,10 +29,10 @@ Creating a basic authentication source
 
 Authentication sources are implemented using PHP classes.
 We are going to create an authentication source named `mymodule:MyAuth`.
-It will be implemented in the file `modules/mymodule/lib/Auth/Source/MyAuth.php`.
+It will be implemented in the file `modules/mymodule/src/Auth/Source/MyAuth.php`.
 
 To begin with, we will create a very simple authentication source, where the username and password is hardcoded into the source code.
-Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following contents:
+Create the file `modules/mymodule/src/Auth/Source/MyAuth.php` with the following contents:
 
 ```php
 <?php
@@ -59,7 +59,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
 Some things to note:
 
 - The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
-  This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
+  This tells SimpleSAMLphp to look for the class in `modules/mymodule/src/Auth/Source/MyAuth.php`.
 
 - Our authentication source subclasses `\SimpleSAML\Module\core\Auth\UserPassBase`.
   This is a helper-class that implements much of the common code needed for username/password authentication.
