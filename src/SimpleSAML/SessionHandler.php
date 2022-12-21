@@ -34,14 +34,14 @@ abstract class SessionHandler
      * The session handler will be instantiated if this is the first call
      * to this function.
      *
-     * @return null|self The current session handler.
+     * @return self The current session handler.
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    public static function getSessionHandler(): ?self
+    public static function getSessionHandler(): self
     {
         if (self::$sessionHandler === null) {
-            self::createSessionHandler();
+            self::$sessionHandler = self::createSessionHandler();
         }
 
         return self::$sessionHandler;
@@ -130,19 +130,20 @@ abstract class SessionHandler
      * session handler is selected, then we will fall back to the default
      * PHP session handler.
      *
+     * @return self The created session handler.
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    private static function createSessionHandler(): void
+    private static function createSessionHandler(): self
     {
         $config = Configuration::getInstance();
         $storeType = $config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         if ($store === false) {
-            self::$sessionHandler = new SessionHandlerPHP();
+            return new SessionHandlerPHP();
         } else {
-            self::$sessionHandler = new SessionHandlerStore($store);
+            return new SessionHandlerStore($store);
         }
     }
 
