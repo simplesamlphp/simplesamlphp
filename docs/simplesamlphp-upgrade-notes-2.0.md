@@ -63,6 +63,8 @@ Configuration options that have been removed:
 - languages[priorities]
 - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
 - admin.protectindexpage. Replaced by the admin module which always requires login.
+- base64attributes. Obsolete functionality, individual attributes can still be en/decoded
+  with the existing attributeencodings feature.
 
 ## Changes relevant for (module) developers
 
