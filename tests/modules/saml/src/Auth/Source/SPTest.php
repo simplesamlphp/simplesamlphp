@@ -1547,7 +1547,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /*
-     * Test using the entityID from config-templates/authsources.php
+     * Test using the entityID from config/authsources.php.dist
      */
     public function testSampleEntityIdException(): void
     {

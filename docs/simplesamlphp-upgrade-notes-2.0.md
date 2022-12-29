@@ -51,7 +51,7 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 ## Configuration changes
 
 Quite some options have been changed or removed. We recommend to start with a fresh
-template from `config-templates/` and migrate the settings you require to the new
+template from `config/config.php.dist` and migrate the settings you require to the new
 config file manually.
 
 The date formatting when specifying a custom logging string has been changed from PHP's
