@@ -27,8 +27,11 @@ Initialize configuration and metadata:
 
 ```bash
 cd /var/simplesamlphp
-cp -r config-templates/* config/
-cp -r metadata-templates/* metadata/
+cp config/config.php.dist config/config.php
+cp config/authsources.php.dist config/authsources.php
+cp metadata/saml20-idp-hosted.php.dist metadata/saml20-idp-hosted.php
+cp metadata/saml20-idp-remote.php.dist metadata/saml20-idp-remote.php
+cp metadata/saml20-sp-remote.php.dist metadata/saml20-sp-remote.php
 ```
 
 Install the external dependencies with Composer (you can refer to

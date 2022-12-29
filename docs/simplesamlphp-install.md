@@ -82,8 +82,8 @@ upgrade notes), you may have to update your configuration and metadata after upd
 
 ### Upgrading configuration files
 
-A good approach is to run a `diff` between your previous `config.php` file and the new `config.php` file located in
-`config-templates/config.php`, and apply relevant modifications to the new template. This will ensure that all new
+A good approach is to run a `diff` between your previous `config.php` file and the new `config.php.dist` file located
+the same directory, and apply relevant modifications to the new template. This will ensure that all new
 entries in the latest version of config.php are included, as well as preserve your local modifications.
 
 ### Upgrading metadata files
