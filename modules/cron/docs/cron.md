@@ -23,7 +23,7 @@ You need to enable the module and copy the `config-templates` files of the modul
 ```shell
 [root@simplesamlphp] cd /var/simplesamlphp
 [root@simplesamlphp simplesamlphp] touch modules/cron/enable
-[root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
+[root@simplesamlphp simplesamlphp] cp modules/cron/config/module_cron.php.dist config/module_cron.php
 ```
 
 ## Configuring the cron module
@@ -119,5 +119,5 @@ su -s "/bin/sh" \
        php -d max_execution_time=120 -d memory_limit=600M \
        /var/simplesamlphp/modules/cron/bin/cron.php -t hourly" \
     apache
-    
+
 ```
