@@ -530,7 +530,7 @@ class Logger
             if ($statsLog) {
                 $stat = 'STAT ';
             }
-            array_push($replacements, $stat);
+            $replacements[] = $stat;
 
             if (self::$trackid === self::NO_TRACKID && !self::$shuttingDown) {
                 // we have a log without track ID and we are not still shutting down, so defer logging

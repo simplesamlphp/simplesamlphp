@@ -110,14 +110,11 @@ class Database
             $config->getOptionalArray('database.slaves', [])
         );
         foreach ($secondaries as $secondary) {
-            array_push(
-                $this->dbSecondaries,
-                $this->connect(
-                    $secondary['dsn'],
-                    $secondary['username'],
-                    $secondary['password'],
-                    $driverOptions
-                )
+            $this->dbSecondaries[] = $this->connect(
+                $secondary['dsn'],
+                $secondary['username'],
+                $secondary['password'],
+                $driverOptions
             );
         }
         $this->tablePrefix = $config->getOptionalString('database.prefix', '');
