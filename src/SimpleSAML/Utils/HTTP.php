@@ -113,11 +113,11 @@ class HTTP
             $current = 'localhost';
         }
 
-        if (strstr($current, ":")) {
+        if (str_contains($current, ":")) {
             $decomposed = explode(":", $current);
             $port = array_pop($decomposed);
             if (!is_numeric($port)) {
-                array_push($decomposed, $port);
+                $decomposed[] = $port;
             }
             $current = implode(":", $decomposed);
         }
