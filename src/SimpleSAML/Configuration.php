@@ -229,7 +229,7 @@ class Configuration implements Utils\ClearableState
             if ($configSet !== 'simplesaml') {
                 throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+                self::$configDirs['simplesaml'] = dirname(__FILE__, 3) . '/config';
             }
         }
 

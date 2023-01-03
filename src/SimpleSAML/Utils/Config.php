@@ -65,7 +65,7 @@ class Config
      */
     public function getConfigDir(): string
     {
-        $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
+        $configDir = dirname(__DIR__, 3) . '/config';
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
 
         if ($configDirEnv === false) {

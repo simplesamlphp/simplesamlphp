@@ -32,7 +32,7 @@ class ModuleTest extends TestCase
     {
         // test for the most basic functionality
         $this->assertEquals(
-            Path::canonicalize(dirname(dirname(dirname(dirname(__FILE__)))) . '/modules/module'),
+            Path::canonicalize(dirname(__FILE__, 4) . '/modules/module'),
             Path::canonicalize(Module::getModuleDir('module')),
         );
     }

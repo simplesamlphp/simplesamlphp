@@ -126,7 +126,7 @@ class TemplateTranslationTest extends TestCase
 
     public function testValidateTwigFiles(): void
     {
-        $root = dirname(dirname((dirname(dirname(__DIR__)))));
+        $root = dirname(__DIR__, 4);
 
         // Setup basic twig environment
         $loader = new FilesystemLoader(['templates', 'modules'], $root);
