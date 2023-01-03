@@ -40,7 +40,7 @@ class ConfigTest extends TestCase
         putenv('SIMPLESAMLPHP_CONFIG_DIR');
         $configDir = $this->configUtils->getConfigDir();
 
-        $this->assertEquals($configDir, dirname(dirname(dirname(dirname(__DIR__)))) . '/config');
+        $this->assertEquals($configDir, dirname(__DIR__, 4) . '/config');
     }
 
 

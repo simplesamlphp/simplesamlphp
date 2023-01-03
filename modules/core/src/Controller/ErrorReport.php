@@ -97,7 +97,7 @@ class ErrorReport
         $data['reportId'] = $reportId;
         $data['version'] = $this->config->getVersion();
         $data['hostname'] = php_uname('n');
-        $data['directory'] = dirname(dirname(__FILE__));
+        $data['directory'] = dirname(__FILE__, 2);
 
         if ($this->config->getOptionalBoolean('errorreporting', true)) {
             $mail = new Utils\EMail('SimpleSAMLphp error report from ' . $email);

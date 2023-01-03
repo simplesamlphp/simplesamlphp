@@ -41,7 +41,7 @@ class ConfigurationError extends Error
         $params = ['CONFIG'];
         if ($file !== null) {
             $params['%FILE%'] = $file;
-            $basepath = dirname(dirname(dirname(dirname(__FILE__)))) . '/';
+            $basepath = dirname(__FILE__, 4) . '/';
             $file_str = '(' . str_replace($basepath, '', $file) . ') ';
         }
         if ($reason !== null) {
