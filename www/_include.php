@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 // initialize the autoloader
-require_once(dirname(dirname(__FILE__)) . '/src/_autoload.php');
+require_once(dirname(__FILE__, 2) . '/src/_autoload.php');
 
 use SAML2\Compat\ContainerSingleton;
 use SimpleSAML\Compat\SspContainer;

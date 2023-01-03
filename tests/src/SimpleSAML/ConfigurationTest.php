@@ -234,7 +234,7 @@ class ConfigurationTest extends ClearStateTestCase
     public function testGetBaseDir(): void
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR);
+        $this->assertEquals($c->getBaseDir(), dirname(__FILE__, 4) . DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
             'basedir' => DIRECTORY_SEPARATOR . 'basedir',

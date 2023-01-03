@@ -124,7 +124,7 @@ class Module
      */
     public static function getModuleDir(string $module): string
     {
-        $baseDir = dirname(dirname(dirname(__FILE__))) . '/modules';
+        $baseDir = dirname(__FILE__, 3) . '/modules';
         $moduleDir = $baseDir . '/' . $module;
 
         return $moduleDir;
@@ -505,7 +505,7 @@ class Module
         }
 
         $hooks = [];
-        $hook_dir = Path::canonicalize(dirname(dirname(dirname(__FILE__))) . '/modules/' . $module . '/hooks');
+        $hook_dir = Path::canonicalize(dirname(__FILE__, 3) . '/modules/' . $module . '/hooks');
         if ((new Filesystem())->exists($hook_dir)) {
             $finder = new Finder();
             $finder->files()->in($hook_dir)->depth(0);
