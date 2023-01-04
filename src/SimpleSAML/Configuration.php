@@ -8,7 +8,6 @@ use Exception;
 use ParseError;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
@@ -16,11 +15,8 @@ use Symfony\Component\Filesystem\Filesystem;
 use function array_key_exists;
 use function array_keys;
 use function dirname;
-use function implode;
 use function interface_exists;
-use function in_array;
 use function is_array;
-use function is_bool;
 use function is_int;
 use function is_string;
 use function ob_end_clean;
@@ -286,10 +282,10 @@ class Configuration implements Utils\ClearableState
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
                 throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
-            } else {
-                $configUtils = new Utils\Config();
-                self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
             }
+
+            $configUtils = new Utils\Config();
+            self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
         }
 
         $dir = self::$configDirs[$configSet];
@@ -455,34 +451,39 @@ class Configuration implements Utils\ClearableState
         $baseURL = $this->getOptionalString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
-            // we have a full url, we need to strip the path
+            // We have a full url, we need to strip the path.
             if (!array_key_exists(1, $matches)) {
-                // absolute URL without path
+                // Absolute URL without path.
                 return '/';
             }
             return '/' . rtrim($matches[1], '/') . '/';
-        } elseif ($baseURL === '' || $baseURL === '/') {
-            // root directory of site
-            return '/';
-        } elseif (preg_match('#^/?((?:[^/\s]+/?)+)#', $baseURL, $matches)) {
-            // local path only
-            return '/' . rtrim($matches[1], '/') . '/';
-        } else {
-            /*
-             * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
-             * with the configuration. Use a guessed base path instead of the one provided.
-             */
-            $c = $this->toArray();
-            $httpUtils = new Utils\HTTP();
-            $c['baseurlpath'] = $httpUtils->guessBasePath();
-            throw new Error\CriticalConfigurationError(
-                'Incorrect format for option \'baseurlpath\'. Value is: "' .
-                $this->getOptionalString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
-                ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
-                $this->filename,
-                $c
-            );
         }
+
+        if ($baseURL === '' || $baseURL === '/') {
+            // Root directory of site.
+            return '/';
+        }
+
+        if (preg_match('#^/?((?:[^/\s]+/?)+)#', $baseURL, $matches)) {
+            // Local path only.
+            return '/' . rtrim($matches[1], '/') . '/';
+        }
+
+        /**
+         * Invalid 'baseurlpath'. We cannot recover from this.
+         * Throw a critical exception and try to be graceful
+         * with the configuration. Use a guessed base path instead of the one provided.
+         */
+        $c = $this->toArray();
+        $httpUtils = new Utils\HTTP();
+        $c['baseurlpath'] = $httpUtils->guessBasePath();
+        throw new Error\CriticalConfigurationError(
+            'Incorrect format for option \'baseurlpath\'. Value is: "' .
+            $this->getOptionalString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
+            ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
+            $this->filename,
+            $c
+        );
     }
 
 
