@@ -63,18 +63,16 @@ jobs:
       - name: Syntax check PHP
         run: bash vendor/bin/check-syntax-php.sh
 
-      - name: Decide whether to run code coverage or not
-        if: ${{ matrix.php-versions != '7.4' || matrix.operating-system != 'ubuntu-latest' }}
-        run: |
-          echo "NO_COVERAGE=--no-coverage" >> $GITHUB_ENV
+      - name: Run unit tests with coverage
+        if: ${{ matrix.php-versions == '8.1' && matrix.operating-system == 'ubuntu-latest' }}
+        run: ./vendor/bin/phpunit
 
-      - name: Run unit tests
-        run: |
-          echo $NO_COVERAGE
-          ./vendor/bin/phpunit $NO_COVERAGE
+      - name: Run unit tests (no coverage)
+        if: ${{ matrix.php-versions != '8.1' || matrix.operating-system != 'ubuntu-latest' }}
+        run: ./vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
-        if: ${{ matrix.php-versions == '7.4' && matrix.operating-system == 'ubuntu-latest' }}
+        if: ${{ matrix.php-versions == '8.1' && matrix.operating-system == 'ubuntu-latest' }}
         uses: actions/upload-artifact@v3
         with:
             name: build-data
