@@ -261,29 +261,28 @@ class Metadata
 
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
-     *
-     * @param null|array|false $nameIdPolicy
-     *
-     * @return null|array
      */
-    public static function parseNameIdPolicy($nameIdPolicy): ?array
+    public static function parseNameIdPolicy(array $nameIdPolicy = null): array
     {
-        $policy = null;
+        if ($nameIdPolicy === null) {
+            // when NameIDPolicy is unset or set to null, default to transient
+            return ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
+        }
 
-        if (is_array($nameIdPolicy)) {
-            // handle current configurations specifying an array in the NameIDPolicy config option
-            $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
-            $policy = [
-                'Format'      => $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT),
-                'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
-            ];
-            $spNameQualifier = $nameIdPolicy_cf->getOptionalString('SPNameQualifier', null);
-            if ($spNameQualifier !== null) {
-                $policy['SPNameQualifier'] = $spNameQualifier;
-            }
-        } elseif ($nameIdPolicy === null) {
-            // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
+        if ($nameIdPolicy === []) {
+            // empty array means not to send any NameIDPolicy element
+            return [];
+        }
+
+        // handle configurations specifying an array in the NameIDPolicy config option
+        $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
+        $policy = [
+            'Format'      => $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT),
+            'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
+        ];
+        $spNameQualifier = $nameIdPolicy_cf->getOptionalString('SPNameQualifier', null);
+        if ($spNameQualifier !== null) {
+            $policy['SPNameQualifier'] = $spNameQualifier;
         }
 
         return $policy;
