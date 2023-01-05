@@ -72,7 +72,10 @@ class ConfigurationTest extends ClearStateTestCase
 
         // Normal use
         $this->assertTrue($c->getValue('exists_true'));
-        $this->assertNull($c->getValue('exists_null'));
+
+        // Null option
+        $this->expectException(AssertionFailedException::class);
+        $c->getValue('exists_null');
 
         // Missing option
         $this->expectException(AssertionFailedException::class);
@@ -108,7 +111,7 @@ class ConfigurationTest extends ClearStateTestCase
         ]);
         $this->assertEquals($c->hasValue('missing'), false);
         $this->assertEquals($c->hasValue('exists_true'), true);
-        $this->assertEquals($c->hasValue('exists_null'), true);
+        $this->assertEquals($c->hasValue('exists_null'), false);
     }
 
 
@@ -124,7 +127,7 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertEquals($c->hasValueOneOf([]), false);
         $this->assertEquals($c->hasValueOneOf(['missing']), false);
         $this->assertEquals($c->hasValueOneOf(['exists_true']), true);
-        $this->assertEquals($c->hasValueOneOf(['exists_null']), true);
+        $this->assertEquals($c->hasValueOneOf(['exists_null']), false);
 
         $this->assertEquals($c->hasValueOneOf(['missing1', 'missing2']), false);
         $this->assertEquals($c->hasValueOneOf(['exists_true', 'missing']), true);

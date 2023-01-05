@@ -18,6 +18,7 @@ use function dirname;
 use function interface_exists;
 use function is_array;
 use function is_int;
+use function is_null;
 use function is_string;
 use function ob_end_clean;
 use function ob_get_length;
@@ -415,7 +416,7 @@ class Configuration implements Utils\ClearableState
      */
     public function hasValue(string $name): bool
     {
-        return array_key_exists($name, $this->configuration);
+        return array_key_exists($name, $this->configuration) && !is_null($this->configuration[$name]);
     }
 
 
