@@ -101,7 +101,7 @@ See the [Twig documentation](https://twig.symfony.com/doc/2.x/templates.html) fo
 ## Migrating to Twig templates
 
 For existing themes that have been created before SimpleSAMLphp 2.0, you may need to upgrade them to the Twig
-templating enging to be compatible with SimpleSAMLphp 2.0.
+templating engine to be compatible with SimpleSAMLphp 2.0.
 
 Twig works by extending a base template, which can itself include other partial templates. Some of the content of the old `includes/header.php` template is now located in a separate `_header.twig` file. This can be customized by copying it from the base template:
 
