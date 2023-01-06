@@ -55,12 +55,6 @@ simpleSAMLphp can be configured to send HTTP/S requests via such a proxy. The pr
 
 The default is not to use a proxy ('proxy' = null) and no username and password are used ('proxy.auth' = false).
 
-## Auth MemCookie
-
-[Auth MemCookie](http://authmemcookie.sourceforge.net/) support is deprecated in the standard code base of SimpleSAMLphp
- and will no longer be available starting in SimpleSAMLphp 2.0. Please use the new
- [memcookie module](https://github.com/simplesamlphp/simplesamlphp-module-memcookie) instead.
-
 ## Metadata signing
 
 SimpleSAMLphp supports signing of the metadata it generates. Metadata signing is configured by four options:
