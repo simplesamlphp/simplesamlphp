@@ -111,11 +111,9 @@ $metadata['entity-id-2'] = [
 `NameIDPolicy`
 :   The format of the NameID we request from this IdP: an array in the form of
     `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
-    Set to `false` instead of an array to omit sending any specific NameIDPolicy
-    in the AuthnRequest.
-
-:   For compatibility purposes, `null` is equivalent to Transient and a format
-    can be defined as a string instead of an array. These variants are deprecated.
+    Set to an empty array `[]` to omit sending any specific NameIDPolicy element
+    in the AuthnRequest. When the entire option or either array key is unset,
+    the defaults are transient and true respectively.
 
 `OrganizationName`
 :   The name of the organization responsible for this SPP.

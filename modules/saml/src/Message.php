@@ -477,8 +477,8 @@ class Message
         }
 
         $policy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
-        if ($policy !== null) {
-            // either we have a policy set, or we used the transient default
+        // empty array signals not to set any NameIdPolicy element
+        if ($policy !== []) {
             $ar->setNameIdPolicy($policy);
         }
 

@@ -1077,26 +1077,7 @@ class SPTest extends ClearStateTestCase
     }
 
     /**
-     * SP config option NameIDPolicy specified in legacy string form is reflected in metadata
-     */
-    public function testMetadataHostedNameIDPolicyString(): void
-    {
-        $spId = 'myhosted-sp';
-        $info = ['AuthId' => $spId];
-
-        $config = [
-            'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'NameIDPolicy' => 'urn:mace:shibboleth:1.0:nameIdentifier',
-        ];
-        $as = new SpTester($info, $config);
-
-        $md = $as->getHostedMetadata();
-        $this->assertArrayHasKey('NameIDFormat', $md);
-        $this->assertEquals('urn:mace:shibboleth:1.0:nameIdentifier', $md['NameIDFormat']);
-    }
-
-    /**
-     * SP config option NameIDPolicy specified in deprecated form without Format is reflected in metadata
+     * SP config option NameIDPolicy specified without Format is reflected in metadata
      */
     public function testMetadataHostedNameIDPolicyNullFormat(): void
     {
