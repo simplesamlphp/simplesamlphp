@@ -161,10 +161,7 @@ class SP extends \SimpleSAML\Auth\Source
         if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getArray('NameIDPolicy');
             if ($format !== []) {
-                $metadata['NameIDFormat'] = Configuration::loadFromArray($format)->getOptionalString(
-                    'Format',
-                    Constants::NAMEID_TRANSIENT
-                );
+                $metadata['NameIDFormat'] = $format['Format'] ?? Constants::NAMEID_TRANSIENT;
             }
         }
 
@@ -556,16 +553,8 @@ class SP extends \SimpleSAML\Auth\Source
             $ar->setNameId($nid);
         }
 
-        if (isset($state['saml:NameIDPolicy'])) {
-            $policy = null;
-            if (is_array($state['saml:NameIDPolicy'])) {
-                $policy = $state['saml:NameIDPolicy'];
-            } elseif ($state['saml:NameIDPolicy'] === null) {
-                $policy = ['Format' => Constants::NAMEID_TRANSIENT];
-            }
-            if ($policy !== []) {
-                $ar->setNameIdPolicy($policy);
-            }
+        if (!empty($state['saml:NameIDPolicy'])) {
+            $ar->setNameIdPolicy($policy);
         }
 
         $requesterID = [];
