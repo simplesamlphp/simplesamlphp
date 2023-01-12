@@ -36,7 +36,7 @@ class SQLPermanentStorageTest extends TestCase
      */
     public static function tearDownAfterClass(): void
     {
-        unlink(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'sqllite' . DIRECTORY_SEPARATOR . 'test.sqlite');
+        @unlink(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'sqllite' . DIRECTORY_SEPARATOR . 'test.sqlite');
     }
 
 
