@@ -112,7 +112,7 @@ Examples below assume that SimpleSAMLphp is installed in the default location, `
 another location, but this requires a path update in a few files. See Appendix _Installing SimpleSAMLphp
 in alternative locations_ for more details.
 
-The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of
+The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `public`. There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just
 one possible configuration.
 
@@ -126,9 +126,9 @@ look like this:
 
     SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
-    Alias /simplesaml /var/simplesamlphp/www
+    Alias /simplesaml /var/simplesamlphp/public
 
-    <Directory /var/simplesamlphp/www>
+    <Directory /var/simplesamlphp/public>
         Require all granted
     </Directory>
 </VirtualHost>
@@ -136,7 +136,7 @@ look like this:
 
 Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls matching
 `http(s)://service.example.com/simplesaml/*`. SimpleSAMLphp makes several SAML interfaces available on the web; all of
-them are accessible through the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias
+them are accessible through the `public` subdirectory of your SimpleSAMLphp installation. You can name the alias
 whatever you want, but the name must be specified in the `baseurlpath` configuration option in the `config.php` file of
 SimpleSAMLphp as described in
 [the section called “SimpleSAMLphp configuration: config.php”](#section_6 "SimpleSAMLphp configuration: config.php").
@@ -167,7 +167,7 @@ Examples below assume that SimpleSAMLphp is installed in the default location, `
 another location, but this requires a path update in a few files. See Appendix _Installing SimpleSAMLphp
 in alternative locations_ for more details.
 
-The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of
+The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `public`. There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Nginx web server. The following is just
 one possible configuration.
 
@@ -185,7 +185,7 @@ server {
     ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
 
     location ^~ /simplesaml {
-        alias /var/simplesamlphp/www;
+        alias /var/simplesamlphp/public;
 
         location ~^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
             include          fastcgi_params;
@@ -378,8 +378,8 @@ There may be several reasons why you want to install SimpleSAMLphp in an alterna
 
 The SimpleSAMLphp package contains one folder named `simplesamlphp-x.y.z` (where `x.y.z` is the version number). In
 this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named
-`www`. **Only this folder should be exposed on the web**. The recommended configuration is to put the whole
-`simplesamlphp` folder outside the web root, and then link to the `www` folder by using the `Alias` directive, as
+`public`. **Only this folder should be exposed on the web**. The recommended configuration is to put the whole
+`simplesamlphp` folder outside the web root, and then link to the `public` folder by using the `Alias` directive, as
 described in [the section called “Configuring Apache”](#section_4 "Configuring Apache"). This is not the only
 possible way, though.
 
@@ -397,7 +397,7 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
 
    ```bash
    cd ~/public_html
-   ln -s ../simplesamlphp/www simplesaml
+   ln -s ../simplesamlphp/public simplesaml
    ```
 
 3. Next, you need to set the `baseurlpath` configuration option with the URL pointing to the `simplesaml` link you
@@ -415,18 +415,18 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
 ### Tip
 
 Symlinking may fail, because some Apache configurations do not allow you to link to files from outside the
-`public_html` folder. If so, you can move the `www` folder instead of symlinking it:
+`public_html` folder. If so, you can move the `public` folder instead of symlinking it:
 
 ```bash
 cd ~/public_html
-mv ../simplesamlphp/www simplesaml
+mv ../simplesamlphp/public simplesaml
 ```
 
 Now you have the following directory structure.
 
 * `~/simplesamlphp`
 
-* `~/public_html/simplesaml` where `simplesaml` is the `www` directory from the `simplesamlphp` installation directory,
+* `~/public_html/simplesaml` where `simplesaml` is the `public` directory from the `simplesamlphp` installation directory,
   either moved or a symlink.
 
 Now, we need to make a few configuration changes. First, let's edit `~/public_html/simplesaml/_include.php`:
@@ -444,5 +444,5 @@ require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');
 ```
 
 **Warning**: note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the
-`www` directory and manually edit files every time you upgrade. It is also possible that this method does not work in
+`public` directory and manually edit files every time you upgrade. It is also possible that this method does not work in
 future versions of SimpleSAMLphp, and therefore it is discouraged and should be used only as a last resort.

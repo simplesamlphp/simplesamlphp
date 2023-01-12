@@ -126,10 +126,8 @@
             "phpunit.xml",
             "phpunit-interoperability.xml",
             "psalm.xml",
-            "tests",
-            "www/assets/css/.gitkeep",
-            "www/assets/fonts/.gitkeep",
-            "www/assets/js/.gitkeep"
+            "public/assets/.gitkeep",
+            "tests"
         ]
     }
 }

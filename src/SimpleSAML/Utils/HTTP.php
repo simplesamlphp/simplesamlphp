@@ -777,8 +777,8 @@ class HTTP
         $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
         // make sure we got a string from realpath()
         $cur_path = is_string($cur_path) ? $cur_path : '';
-        // find the path to the current script relative to the www/ directory of SimpleSAMLphp
-        $rel_path = str_replace($baseDir . 'www' . DIRECTORY_SEPARATOR, '', $cur_path);
+        // find the path to the current script relative to the public/ directory of SimpleSAMLphp
+        $rel_path = str_replace($baseDir . 'public' . DIRECTORY_SEPARATOR, '', $cur_path);
         // convert that relative path to an HTTP query
         $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
         // find where the relative path starts in the current request URI
@@ -791,12 +791,12 @@ class HTTP
              * - $_SERVER['SCRIPT_FILENAME'] points to a script that doesn't exist. E.g. functional testing. In this
              *   case, realpath() returns false and str_replace an empty string, so we compare them loosely.
              *
-             * - The URI requested does not belong to a script in the www/ directory of SimpleSAMLphp. In that case,
+             * - The URI requested does not belong to a script in the public/ directory of SimpleSAMLphp. In that case,
              *   removing SimpleSAMLphp's base dir from the current path yields the same path, so $cur_path and
              *   $rel_path are equal.
              *
-             * - The request URI does not match the current script. Even if the current script is located in the www/
-             *   directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
+             * - The request URI does not match the current script. Even if the current script is located in the
+             *   public/ directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
              *
              * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
              * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
