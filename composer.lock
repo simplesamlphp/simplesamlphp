@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "decfc6dd37af194ee0ee274596c63460",
+    "content-hash": "754b6791c360a125a5ada8d86ca12c35",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -6923,16 +6923,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.3.1",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "a809f872338728215768c1f56a13a236ee482dbb"
+                "reference": "8cb6ebeb1e2a67b25a531e6092e03708c404e74b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/a809f872338728215768c1f56a13a236ee482dbb",
-                "reference": "a809f872338728215768c1f56a13a236ee482dbb",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/8cb6ebeb1e2a67b25a531e6092e03708c404e74b",
+                "reference": "8cb6ebeb1e2a67b25a531e6092e03708c404e74b",
                 "shasum": ""
             },
             "require": {
@@ -6976,7 +6976,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2022-09-07T14:32:18+00:00"
+            "time": "2023-01-12T16:25:47+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
