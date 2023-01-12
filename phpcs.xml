@@ -15,8 +15,7 @@
     <file>tests</file>
 
     <exclude-pattern>modules/adfs/*</exclude-pattern>
-    <exclude-pattern>public/assets/css/*</exclude-pattern>
-    <exclude-pattern>public/assets/js/*</exclude-pattern>
+    <exclude-pattern>public/assets/*</exclude-pattern>
 
     <!-- This is the rule we inherit from. If you want to exclude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
