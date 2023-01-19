@@ -24,6 +24,8 @@ $config = [
      *
      * The full url format is useful if your SimpleSAMLphp setup is hosted behind
      * a reverse proxy. In that case you can specify the external url here.
+     * Specifying the full URL including https: will let SimpleSAMLphp know
+     * that it runs on HTTPS even if the backend server is plain HTTP.
      *
      * Please note that SimpleSAMLphp will then redirect all queries to the
      * external url, no matter where you come from (direct access or via the
@@ -340,6 +342,9 @@ $config = [
      *
      * Options: [syslog,file,errorlog,stderr]
      *
+     * If you set the handler to 'file', the directory specified in loggingdir above
+     * must exist and be writable for SimpleSAMLphp. If set to something else, set
+     * loggingdir above to 'null'.
      */
     'logging.level' => SimpleSAML\Logger::NOTICE,
     'logging.handler' => 'syslog',
