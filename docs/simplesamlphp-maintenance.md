@@ -1,21 +1,14 @@
 # SimpleSAMLphp Maintenance
 
-<!--
-	This file is written in Markdown syntax.
-	For more information about how to use the Markdown syntax, read here:
-	http://daringfireball.net/projects/markdown/syntax
--->
-
 [TOC]
 
 ## SimpleSAMLphp news and documentation
 
 Please check the following sources of information to stay up to date with regard to SimpleSAMLphp:
 
-* [SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+* [SimpleSAMLphp documentation](https://simplesamlphp.org/docs)
 * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 * [SimpleSAMLphp mailing lists](https://simplesamlphp.org/lists)
-* [SimpleSAMLphp in twitter](https://twitter.com/simplesamlphp)
 
 ## Session management
 
@@ -220,7 +213,7 @@ example configuration of different metadata sources in use at the same time:
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
 your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
 and override the methods needed to change the backend used. This class **must** also be located in the
-`lib/MetadataStore/` directory of your custom module.
+`src/MetadataStore/` directory of your custom module.
 
 Bear in mind that **your class name must follow the PSR-0 autoloading standard**. This means it needs to be
 named in a particular way, with the use of namespaces being the preferred convention. For example, if your
