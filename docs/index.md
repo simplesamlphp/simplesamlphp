@@ -9,6 +9,7 @@
   * [Service Provider Quickstart](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
+  * [SP API reference (for your application)](simplesamlphp-sp-api).
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)
   * [Holder-of-Key profile](simplesamlphp-hok-sp)
