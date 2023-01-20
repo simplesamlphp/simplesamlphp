@@ -1,6 +1,6 @@
 # Creating authentication sources
 
-All authentication sources are located in the `lib/Auth/Source/` directory in a module, and the class name is `\SimpleSAML\Module\<module>\Auth\Source\<name>`.
+All authentication sources are located in the `src/Auth/Source/` directory in a module, and the class name is `\SimpleSAML\Module\<module>\Auth\Source\<name>`.
 The authentication source must extend the `\SimpleSAML\Auth\Source` class or one of its subclasses.
 
 The "entry point" of an authentication source is the `authenticate()`-function.
@@ -56,7 +56,7 @@ If the username or password is incorrect, it should throw an error saying so:
   - The `$info`-array is used to provide information to the `\SimpleSAML\Auth\Source` base class, and therefore needs to be included.
   - Including the `$config`-array makes it possible to add generic configuration options that are valid for all authentication sources.
 
-- The `authenticate(&$state)`-function must be implemented.
+- The `authenticate(array &$state)`-function must be implemented.
   If this function completes, it is assumed that the user is authenticated, and that the `$state`-array has been updated with the user's attributes.
 
   **Rationale**:
