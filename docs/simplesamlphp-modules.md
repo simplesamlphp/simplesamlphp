@@ -60,25 +60,25 @@ hooks
     file in this directory represents a single function. See the
     hook-section in the documentation for more information.
 
-lib
+src
 :   This directory contains classes which belong to this module.
     All classes must be named in the following pattern:
     `\SimpleSAML\Module\<module name>\<class name>` When looking up the filename of
-    a class, SimpleSAMLphp will search for `<class name>` in the `lib`
+    a class, SimpleSAMLphp will search for `<class name>` in the `src`
     directory. Underscores in the class name will be translated into
     slashes.
 
 :   Thus, if SimpleSAMLphp needs to load a class named
     `\SimpleSAML\Module\example\Auth\Source\Example`, it will load the file named
-    `modules/example/lib/Auth/Source/Example.php`.
+    `modules/example/src/Auth/Source/Example.php`.
 
 templates
 :   These are module-specific templates. To use one of these
-    templates, specify `<module name>:<template file>.php`
+    templates, specify `<module name>:<template file>.twig`
     as the template file in the constructor of
-    `\SimpleSAML\XHTML\Template`. For example, `example:login-form.php`
+    `\SimpleSAML\XHTML\Template`. For example, `example:login-form.twig`
     is translated to the file
-    `modules/example/templates/default/login-form.php`. Note that
+    `modules/example/templates/default/login-form.twig`. Note that
     `default` in the previous example is defined by the `theme.use`
     configuration option.
 
@@ -95,11 +95,11 @@ themes
     `<module name>:<theme name>`.
 
 :   When using the theme `example:blue`, the template
-    `templates/default/login.php` will be overridden by
-    `modules/example/themes/blue/default/login.php`, while the template
-    `modules/core/templates/default/loginuserpass.php` will be
+    `templates/default/login.twig` will be overridden by
+    `modules/example/themes/blue/default/login.twig`, while the template
+    `modules/core/templates/default/loginuserpass.twig` will be
     overridden by
-    `modules/example/themes/blue/core/loginuserpass.php`.
+    `modules/example/themes/blue/core/loginuserpass.twig`.
 
 www
 :   All files stored in this directory will be available by
@@ -136,7 +136,7 @@ A typical configuration entry for an authentication source looks like
 this:
 
     'example-static' => [
-        /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+        /* This maps to modules/exampleauth/src/Auth/Source/Static.php */
         'exampleauth:StaticSource',
     
         /* The following is configuration which is passed on to
