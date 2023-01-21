@@ -321,7 +321,7 @@ $config = [
 
     /*
      * Custom error show function called from SimpleSAML\Error\Error::show.
-     * See docs/simplesamlphp-errorhandling.txt for function code example.
+     * See docs/simplesamlphp-errorhandling.md for function code example.
      *
      * Example:
      *   'errors.show_function' => ['SimpleSAML\Module\example\Error', 'show'],
@@ -663,7 +663,7 @@ $config = [
 
     /*
      * Custom function for session checking called on session init and loading.
-     * See docs/simplesamlphp-advancedfeatures.txt for function code example.
+     * See docs/simplesamlphp-advancedfeatures.md for function code example.
      *
      * Example:
      *   'session.check_function' => ['\SimpleSAML\Module\example\Util', 'checkSession'],
