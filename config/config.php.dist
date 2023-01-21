@@ -407,7 +407,8 @@ $config = [
      * This is an array of outputs. Each output has at least a 'class' option, which
      * selects the output.
      */
-    'statistics.out' => [// Log statistics to the normal log.
+    'statistics.out' => [
+        // Log statistics to the normal log.
         /*
         [
             'class' => 'core:Log',
