@@ -49,8 +49,8 @@ This configuration will execute *Auth Proc Filters* one by one, with the priorit
 
 The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `\SimpleSAML\Module\core\Auth\Process\AttributeLimit`. The location of this class file *must* then be: `modules/core/src/Auth/Process/AttributeLimit.php`.
 
-You will see that a bunch of useful filters is included in the `core` module, but there are
-many others publised as [SimpleSAMLphp modules)[https://simplesamlphp.org/modules/] you can install. Beyond that, you are
+You will see that a bunch of useful filters is included in the `core` and `saml` modules, but there are
+many others published as [SimpleSAMLphp modules)[https://simplesamlphp.org/modules/] you can install. Beyond that, you are
 encouraged to create your own filters and share with the community. If you have
 created a cool *Auth Proc Filter* that does something useful, let us know, and
 we may add it on the Modules overview.
