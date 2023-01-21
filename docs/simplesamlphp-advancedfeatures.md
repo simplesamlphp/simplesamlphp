@@ -82,15 +82,12 @@ Optional session checking function, called on session init and loading, defined 
 Example code for the function with GeoIP country check:
 
 ```php
-public static function checkSession($session, $init = false)
+public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
 {
     $data_type = 'example:check_session';
     $data_key = 'remote_addr';
 
-    $remote_addr = null;
-    if (!empty($_SERVER['REMOTE_ADDR'])) {
-        $remote_addr = (string)$_SERVER['REMOTE_ADDR'];
-    }
+    $remote_addr = strval($_SERVER['REMOTE_ADDR']);
 
     if ($init) {
         $session->setData(
