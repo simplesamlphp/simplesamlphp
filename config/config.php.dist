@@ -37,7 +37,7 @@ $config = [
      * The 'application' configuration array groups a set configuration options
      * relative to an application protected by SimpleSAMLphp.
      */
-    //'application' => [
+    'application' => [
         /*
          * The 'baseURL' configuration option allows you to specify a protocol,
          * host and optionally a port that serves as the canonical base for all
@@ -53,7 +53,7 @@ $config = [
          * to SimpleSAMLphp's API.
          */
         //'baseURL' => 'https://example.com',
-    //],
+    ],
 
     /*
      * The following settings are *filesystem paths* which define where
@@ -114,7 +114,6 @@ $config = [
      * Defaults are shown below, to change them, uncomment the line and update as
      * needed
      */
-
     //'cert.pdo.table' => 'certificates',
     //'cert.pdo.keytable' => 'private_keys',
     //'cert.pdo.apply_prefix' => true,
@@ -141,19 +140,22 @@ $config = [
      * Set the transport options for the transport method specified.  The valid settings are relative to the
      * selected transport method.
      */
-    // // smtp mail transport options
-    // 'mail.transport.options' => [
-    //     'host' => 'mail.example.org', // required
-    //     'port' => 25, // optional
-    //     'username' => 'user@example.org', // optional: if set, enables smtp authentication
-    //     'password' => 'password', // optional: if set, enables smtp authentication
-    //     'security' => 'tls', // optional: defaults to no smtp security
-    //     'smtpOptions' => [], // optional: passed to stream_context_create when connecting via SMTP
-    // ],
-    // // sendmail mail transport options
-    // 'mail.transport.options' => [
-    //     'path' => '/usr/sbin/sendmail' // optional: defaults to php.ini path
-    // ],
+    /*
+    'mail.transport.options' => [
+        'host' => 'mail.example.org', // required
+        'port' => 25, // optional
+        'username' => 'user@example.org', // optional: if set, enables smtp authentication
+        'password' => 'password', // optional: if set, enables smtp authentication
+        'security' => 'tls', // optional: defaults to no smtp security
+        'smtpOptions' => [], // optional: passed to stream_context_create when connecting via SMTP
+    ],
+
+    // sendmail mail transport options
+    /*
+    'mail.transport.options' => [
+        'path' => '/usr/sbin/sendmail' // optional: defaults to php.ini path
+    ],
+    */
 
     /*
      * The envelope from address for outgoing emails.
@@ -364,7 +366,7 @@ $config = [
      *
      * - %level: the log level (name or number depending on the handler used).
      *
--     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
+     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
      *   the trailing space).
      *
      * - %trackid: the track ID, an identifier that allows you to track a single session.
