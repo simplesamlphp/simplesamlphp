@@ -87,12 +87,6 @@ class MultiAuth extends Auth\Source
         /** @psalm-var array $sources */
         $sources = $config['sources'];
         foreach ($sources as $source => $info) {
-            if (is_int($source)) {
-                // Backwards compatibility
-                $source = $info;
-                $info = [];
-            }
-
             if (array_key_exists('text', $info)) {
                 $text = $info['text'];
             } else {
