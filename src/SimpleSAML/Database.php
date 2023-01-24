@@ -97,18 +97,8 @@ class Database
             $driverOptions
         );
 
-        // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-        if ($config->getOptionalArray('database.slaves', null) !== null) {
-            Logger::warning(
-                'The "database.slaves" config option is deprecated. ' .
-                'Please update your configuration to use "database.secondaries".'
-            );
-        }
-        // connect to any configured secondaries, preserving legacy config option
-        $secondaries = $config->getOptionalArray(
-            'database.secondaries',
-            $config->getOptionalArray('database.slaves', [])
-        );
+        // connect to any configured secondaries
+        $secondaries = $config->getOptionalArray('database.secondaries', []);
         foreach ($secondaries as $secondary) {
             $this->dbSecondaries[] = $this->connect(
                 $secondary['dsn'],
@@ -139,11 +129,7 @@ class Database
                 'database.persistent' => $config->getOptionalBoolean('database.persistent', true),
             ],
 
-            // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
-            'secondaries' => $config->getOptionalArray(
-                'database.secondaries',
-                $config->getOptionalArray('database.slaves', [])
-            ),
+            'secondaries' => $config->getOptionalArray('database.secondaries', []),
         ];
 
         return sha1(serialize($assembledConfig));
