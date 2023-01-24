@@ -34,7 +34,7 @@ authentication source:
                     'en' => 'Log in using a SAML SP',
                     'es' => 'Entrar usando un SP SAML',
                 ],
-                'css-class' => 'SAML',
+                'css_class' => 'SAML',
                 'AuthnContextClassRef' => ['urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'],
             ],
             'example-admin' => [
@@ -75,11 +75,11 @@ they want.
 
 Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with optional keys: 'text', 'css-class', 'help', and 'AuthnContextClassRef'.
+is another array with optional keys: 'text', 'css_class', 'help', and 'AuthnContextClassRef'.
 The text element is another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
-language as specified in your config.php file. The css-class
+language as specified in your config.php file. The css_class
 element is a string with the css class that will be applied to
 the &lt;li> element in the selectsource.php view. By default the
 authtype of the authsource is used as the css class with colons
