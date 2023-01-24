@@ -57,11 +57,8 @@ All these parameters override the equivalent option from the configuration.
 `saml:NameIDPolicy`
 :   The format of the NameID we request from the IdP: an array in the form of
     `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
-    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    Set to an empty array `[]` to omit sending any specific NameIDPolicy element
     in the AuthnRequest.
-
-:   For compatibility purposes, `null` is equivalent to transient and a format
-    can be defined as a string instead of an array. These variants are deprecated.
 
 `saml:Audience`
 :   Add a Conditions element to the SAML AuthnRequest containing an
