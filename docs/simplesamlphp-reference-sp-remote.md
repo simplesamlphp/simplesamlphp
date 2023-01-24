@@ -2,8 +2,7 @@
 
 [TOC]
 
-This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
-Both files have the following format:
+This is a reference for metadata options available for `metadata/saml20-sp-remote.php`. The file has the following format:
 
 ```php
 <?php
