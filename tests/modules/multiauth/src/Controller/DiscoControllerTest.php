@@ -114,8 +114,8 @@ class DiscoControllerTest extends TestCase
                         'multiauth:discovery' => 'foo'
                     ],
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'source2' => ['source' => 'test', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']]
+                        'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']]
                     ]
                 ];
             }
@@ -168,8 +168,8 @@ class DiscoControllerTest extends TestCase
                     ],
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'source2' => ['source' => 'test', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']]
+                        'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']]
                     ]
                 ];
             }
@@ -224,8 +224,8 @@ class DiscoControllerTest extends TestCase
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['nl' => 'text']],
-                        'source2' => ['source' => 'test', 'text' => ['en' => 'text'], 'help' => ['nl' => 'help']]
+                        'admin' => ['help' => ['en' => 'help'], 'text' => ['nl' => 'text']],
+                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['nl' => 'help']]
                     ]
                 ];
             }
@@ -256,7 +256,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a RunnableResponse
+     * Test that a valid request results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth1WithPreviousSource(): void
@@ -280,8 +280,8 @@ class DiscoControllerTest extends TestCase
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help']],
-                        'source2' => ['source' => 'test', 'text' => ['en' => 'text']]
+                        'admin' => ['help' => ['en' => 'help']],
+                        'admin2' => ['text' => ['en' => 'text']]
                     ]
                 ];
             }
@@ -312,7 +312,7 @@ class DiscoControllerTest extends TestCase
 
 
     /**
-     * Test that a valid requests results in a RunnableResponse
+     * Test that a valid request results in a RunnableResponse
      * @return void
      */
     public function testDiscoveryDelegateAuth2(): void
@@ -320,7 +320,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState', 'src-YWRtaW4=' => 'admin']
+            ['AuthState' => 'someState', 'sourceChoice[admin]' => 'something admin']
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -334,8 +334,8 @@ class DiscoControllerTest extends TestCase
                     ],
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
-                        'source1' => ['source' => 'admin', 'help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'source2' => ['source' => 'test', 'text' => ['en' => 'text'], 'help' => ['en' => 'help']]
+                        'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['en' => 'help']]
                     ]
                 ];
             }

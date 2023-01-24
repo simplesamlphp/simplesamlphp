@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\multiauth\Controller;
 
 use SimpleSAML\Auth;
@@ -113,13 +115,21 @@ class DiscoController
             $as = Auth\Source::getById($authId);
         }
 
-        $source = $request->query->get('source', null);
+        // Get a preselected source either from the URL or the discovery page
+        $urlSource = $request->get('source', null);
+        $discoSource = $request->get('sourceChoice', null);
 
-        if ($source !== null) {
+        if ($urlSource !== null) {
+            $selectedSource = $urlSource;
+        } elseif ($discoSource !== null) {
+            $selectedSource = array_key_first($discoSource);
+        }
+
+        if (isset($selectedSource)) {
             if ($as !== null) {
-                $as->setPreviousSource($source);
+                $as->setPreviousSource($selectedSource);
             }
-            return MultiAuth::delegateAuthentication($source, $state);
+            return MultiAuth::delegateAuthentication($selectedSource, $state);
         }
 
         if (array_key_exists('multiauth:preselect', $state)) {
@@ -129,39 +139,9 @@ class DiscoController
 
         $t = new Template($this->config, 'multiauth:selectsource.twig');
 
-        $defaultLanguage = $this->config->getOptionalString('language.default', 'en');
-        $language = $t->getTranslator()->getLanguage()->getLanguage();
-
-        $sources = $state[MultiAuth::SOURCESID];
-        foreach ($sources as $key => $source) {
-            $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
-            if (isset($sources[$key]['text'][$language])) {
-                $sources[$key]['text'] = $sources[$key]['text'][$language];
-            } else {
-                $sources[$key]['text'] = $sources[$key]['text'][$defaultLanguage];
-            }
-
-            if (isset($sources[$key]['help'][$language])) {
-                $sources[$key]['help'] = $sources[$key]['help'][$language];
-            } else {
-                $sources[$key]['help'] = $sources[$key]['help'][$defaultLanguage];
-            }
-        }
-
-        $httpUtils = new Utils\HTTP();
-        $baseurl = explode("/", $httpUtils->getBaseURL());
-        $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
-        $path = implode("/", $elements);
-
-        $t->data['selfUrl'] = '/' . $path;
         $t->data['authstate'] = $authStateId;
-        $t->data['sources'] = $sources;
-
-        if ($as !== null) {
-            $t->data['preferred'] = $as->getPreviousSource();
-        } else {
-            $t->data['preferred'] = null;
-        }
+        $t->data['sources'] = $state[MultiAuth::SOURCESID];
+        $t->data['preferred'] = is_null($as) ? null : $as->getPreviousSource();
         return $t;
     }
 }
