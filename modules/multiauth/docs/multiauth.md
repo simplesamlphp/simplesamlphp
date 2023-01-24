@@ -71,10 +71,7 @@ The keys of the sources array are the identifiers of authentication
 sources defined in the authsources.php configuration file. The
 values are arrays with information used to create the user
 interface that will let the user select the authentication source
-he wants. Older versions of the multiauth module did not have
-this structure and just have the authsources identifiers as the
-values of the sources array. It has been improved in a backwards
-compatible fashion so both cases should work.
+they want.
 
 Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
