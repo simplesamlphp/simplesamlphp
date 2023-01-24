@@ -86,7 +86,7 @@ $config = [
      * 'certdir' parameter below. When 'certdir' is specified as a relative
      * path, it will be interpreted as relative to the SimpleSAMLphp root
      * directory. Note that locations with no prefix included will be treated
-     * as file locations for backwards compatibility.
+     * as file locations.
      */
     'certdir' => 'cert/',
 

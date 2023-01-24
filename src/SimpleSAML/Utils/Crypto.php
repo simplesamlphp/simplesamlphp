@@ -429,7 +429,7 @@ class Crypto
 
             return(null);
         } elseif (strncmp($location, 'file://', 7) === 0) {
-            # For backwards compatibility, locations without a prefix are assumed to be file locations.
+            # Locations without a prefix are assumed to be file locations.
             # So just remove prefix and fall through
 
             $location = substr($location, 7);
