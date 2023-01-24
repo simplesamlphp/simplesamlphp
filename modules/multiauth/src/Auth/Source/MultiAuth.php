@@ -79,55 +79,7 @@ class MultiAuth extends Auth\Source
             $this->preselect = $config['preselect'];
         }
 
-        $globalConfiguration = Configuration::getInstance();
-        $defaultLanguage = $globalConfiguration->getOptionalString('language.default', 'en');
-        $authsources = Configuration::getConfig('authsources.php');
-        $this->sources = [];
-
-        /** @psalm-var array $sources */
-        $sources = $config['sources'];
-        foreach ($sources as $source => $info) {
-            if (array_key_exists('text', $info)) {
-                $text = $info['text'];
-            } else {
-                $text = [$defaultLanguage => $source];
-            }
-
-            if (array_key_exists('help', $info)) {
-                $help = $info['help'];
-            } else {
-                $help = null;
-            }
-            if (array_key_exists('css-class', $info)) {
-                $css_class = $info['css-class'];
-            } else {
-                // Use the authtype as the css class
-                $authconfig = $authsources->getOptionalArray($source, null);
-                if (!array_key_exists(0, $authconfig) || !is_string($authconfig[0])) {
-                    $css_class = "";
-                } else {
-                    $css_class = str_replace(":", "-", $authconfig[0]);
-                }
-            }
-
-            $class_ref = [];
-            if (array_key_exists('AuthnContextClassRef', $info)) {
-                $ref = $info['AuthnContextClassRef'];
-                if (is_string($ref)) {
-                    $class_ref = [$ref];
-                } else {
-                    $class_ref = $ref;
-                }
-            }
-
-            $this->sources[] = [
-                'source' => $source,
-                'text' => $text,
-                'help' => $help,
-                'css_class' => $css_class,
-                'AuthnContextClassRef' => $class_ref,
-            ];
-        }
+        $this->sources = $config['sources'];
     }
 
 
@@ -148,7 +100,7 @@ class MultiAuth extends Auth\Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
-        if (!array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
+        if (!array_key_exists('multiauth:preselect', $state) && isset($this->preselect)) {
             $state['multiauth:preselect'] = $this->preselect;
         }
 
@@ -171,7 +123,7 @@ class MultiAuth extends Auth\Source
                     'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs)
                 );
             } elseif ($number_of_sources === 1) {
-                MultiAuth::delegateAuthentication($new_sources[0]['source'], $state);
+                MultiAuth::delegateAuthentication(array_key_first($new_sources), $state);
             }
         }
 
@@ -213,17 +165,7 @@ class MultiAuth extends Auth\Source
     public static function delegateAuthentication(string $authId, array $state): RunnableResponse
     {
         $as = Auth\Source::getById($authId);
-        $valid_sources = array_map(
-            /**
-             * @param array $src
-             * @return string
-             */
-            function ($src) {
-                return $src['source'];
-            },
-            $state[self::SOURCESID]
-        );
-        if ($as === null || !in_array($authId, $valid_sources, true)) {
+        if ($as === null || !array_key_exists($authId, $state[self::SOURCESID])) {
             throw new Exception('Invalid authentication source: ' . $authId);
         }
 

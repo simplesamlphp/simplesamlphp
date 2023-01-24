@@ -5,16 +5,22 @@
     <h2>{{ 'Select an authentication source'|trans }}</h2>
     <p>{{ 'The selected authentication source will be used to authenticate you and and to create a valid session.'|trans }}</p>
 
-    <form action="{{ selfUrl|escape('html') }}" method="get">
-        <input type="hidden" name="AuthState" value="{{ authstate|escape('html') }}">
+    <form>
+        <input type="hidden" name="AuthState" value="{{ authstate }}">
         <ul>
         {% for key, source in sources %}
-            {% set button = ('button-' ~ source.source) %}
-	    <li class="{{ source.css_class|escape('html') }} authsource">
-            <input type="submit" name="source" id="{{ button|escape('html') }}" value="{{ source.text|escape('html') }}"{%- if source.source == preferred %} autofocus{% endif -%}>
-            {% if source.help %}
-              <p>{{ source.help|escape('html') }}</p>
-            {% endif %}
+            {% set button = ('button-' ~ key) %}
+	    <li class="{{ source.css_class|default('') }} authsource">
+              <input type="submit" name="sourceChoice[{{ key }}]"
+                {%- if key == preferred %}
+                    class="pure-button pure-button-active" autofocus
+                {%- else %}
+                    class="pure-button"
+                {% endif %}
+                id="{{ button }}" value="{{ source.text is defined ? source.text|translateFromArray : key }}">
+              {% if source.help is defined %}
+                <p>{{ source.help|translateFromArray }}</p>
+              {% endif %}
             </li>
         {% endfor %}
         </ul>
