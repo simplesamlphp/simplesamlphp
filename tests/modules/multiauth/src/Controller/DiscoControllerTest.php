@@ -57,8 +57,8 @@ class DiscoControllerTest extends TestCase
                     'multi' => [
                         'multiauth:MultiAuth',
                         'sources' => [
-                            'admin',
-                            'admin2'
+                            'admin' => [],
+                            'admin2' => [],
                         ]
                     ],
                 ],
