@@ -88,7 +88,7 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param string $sessionIndex  The SessionIndex of the user.
-     * @param int $expire
+     * @param int $expire Unix timestamp when this session expires.
      * @param string $sessionId
      */
     private static function addSessionSQL(
@@ -184,16 +184,10 @@ class LogoutStore
     /**
      * Register a new session in the datastore.
      *
-     * Please observe the change of the signature in this method. Previously, the second parameter ($nameId) was forced
-     * to be an array. However, it has no type restriction now, and the documentation states it must be a
-     * \SAML2\XML\saml\NameID object. Currently, this function still accepts an array passed as $nameId, and will
-     * silently convert it to a \SAML2\XML\saml\NameID object. This is done to keep backwards-compatibility, though will
-     * no longer be possible in the future as the $nameId parameter will be required to be an object.
-     *
      * @param string $authId  The authsource ID.
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
-     * @param int $expire
+     * @param int $expire  Unix timestamp when this session expires.
      */
     public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
