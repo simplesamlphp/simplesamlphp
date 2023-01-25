@@ -60,11 +60,13 @@ deprecated `strftime()` format to PHP's `date()` format.
 Configuration options that have been removed:
 
 - simplesaml.nameidattribute. Use the appropriate authproc-filters instead
-- languages[priorities]
+- languages[priorities]. No replacement.
 - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
 - admin.protectindexpage. Replaced by the admin module which always requires login.
 - base64attributes. Obsolete functionality, individual attributes can still be en/decoded
   with the existing attributeencodings feature.
+- database.slaves. This is now called database.secondaries.
+- metadata.handler. Since a long time the preferred option is metadata.sources.
 
 ## Changes relevant for (module) developers
 
