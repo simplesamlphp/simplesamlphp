@@ -4,21 +4,9 @@ metadata/*
 !/cert/*.gitkeep
 !/config/*.dist
 !/metadata/*.dist
-/www/assets/fonts/*
-/www/assets/js/*.js
-/www/assets/js/*.js.LICENSE.txt
-!/www/assets/js/post.js
-/www/assets/js/*.map
-/www/assets/css/*.css
-/www/assets/css/*.css.LICENSE.txt
-!/www/assets/css/post.css
-/www/assets/css/*.map
+!/public/assets/.gitkeep
+/public/assets/*
 .phpunit.result.cache
-
-!/www/assets/fonts/.gitkeep
-!/www/assets/js/.gitkeep
-!/www/assets/css/.gitkeep
-
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io

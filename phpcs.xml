@@ -10,14 +10,12 @@
     <file>config</file>
     <file>metadata</file>
     <file>modules</file>
-    <file>resources</file>
+    <file>public</file>
     <file>src</file>
     <file>tests</file>
-    <file>www</file>
 
     <exclude-pattern>modules/adfs/*</exclude-pattern>
-    <exclude-pattern>www/assets/css/*</exclude-pattern>
-    <exclude-pattern>www/assets/js/*</exclude-pattern>
+    <exclude-pattern>public/assets/*</exclude-pattern>
 
     <!-- This is the rule we inherit from. If you want to exclude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
@@ -38,9 +36,9 @@
     <!-- Ignore files with side effects that we cannot fix -->
     <rule ref="PSR1.Files.SideEffects">
         <exclude-pattern>bin/*</exclude-pattern>
+        <exclude-pattern>public/_include.php</exclude-pattern>
         <exclude-pattern>src/_autoload_modules.php</exclude-pattern>
         <exclude-pattern>tests/_autoload_modules.php</exclude-pattern>
-        <exclude-pattern>www/_include.php</exclude-pattern>
     </rule>
 </ruleset>
 

@@ -199,11 +199,14 @@ class Template extends Response
     {
         $baseDir = $this->configuration->getBaseDir();
         if (is_null($module)) {
-            $file = $baseDir . 'www/assets/' . $asset;
+            $file = $baseDir . 'public/assets/base/' . $asset;
             $basePath = $this->configuration->getBasePath();
-            $path = $basePath . 'assets/' . $asset;
+            $path = $basePath . 'assets/base/' . $asset;
+        } elseif (file_exists($baseDir . 'public/assets/' . $module)) {
+            $file = $baseDir . '/public/assets/' . $module . '/' . $asset;
+            $path = $basePath . 'assets/' . $module . '/' . $asset;
         } else {
-            $file = $baseDir . 'modules/' . $module . '/www/assets/' . $asset;
+            $file = $baseDir . 'modules/' . $module . '/public/assets/' . $asset;
             $path = Module::getModuleUrl($module . '/assets/' . $asset);
         }
 

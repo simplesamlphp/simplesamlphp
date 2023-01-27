@@ -83,27 +83,27 @@ class HTTPTest extends ClearStateTestCase
         $httpUtils = new Utils\HTTP();
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/dir/in/www/script.php';
@@ -196,7 +196,7 @@ class HTTPTest extends ClearStateTestCase
             'baseurlpath' => 'https://example.org/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
         $baseDir = $cfg->getBaseDir();
-        $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'www/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'public/module.php';
         $this->setupEnvFromURL('http://www.example.com/protected/resource.asp?foo=bar');
         $this->assertEquals('http://www.example.com/protected/resource.asp?foo=bar', $httpUtils->getSelfURL());
         $this->assertEquals('http://www.example.com', $httpUtils->getSelfURLHost());

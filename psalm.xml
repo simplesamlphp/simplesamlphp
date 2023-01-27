@@ -11,9 +11,9 @@
         <directory name="config" />
         <directory name="metadata" />
         <directory name="modules" />
+        <directory name="public" />
         <directory name="src/SimpleSAML" />
         <directory name="tests" />
-        <directory name="www" />
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
@@ -59,10 +59,10 @@
             </errorLevel>
         </UnresolvableInclude>
 
-        <!-- Ignore MissingFile on www-scripts - Remove when the last www-script is replaced by a controller -->
+        <!-- Ignore MissingFile on public-scripts - Remove when the last public-script is replaced by a controller -->
         <MissingFile>
             <errorLevel type="suppress">
-                <file name="www/*.php" />
+                <file name="public/*.php" />
             </errorLevel>
         </MissingFile>
 

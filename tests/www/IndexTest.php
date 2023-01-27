@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\TestUtils\BuiltInServer;
 
 /**
- * Simple test for the www/index.php script.
+ * Simple test for the public/index.php script.
  *
  * This test is intended mostly as a demonstration of how to test the public web interface in SimpleSAMLphp.
  *
