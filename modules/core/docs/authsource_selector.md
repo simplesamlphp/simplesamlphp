@@ -47,9 +47,9 @@ An example configuration would look like this:
     ],
 ```
 
-## SourceIPSelector
+## RequestedAuthnContextSelector
 
-The SourceIPSelector is an implementation of the `AbstractSourceSelector` that
+The RequestedAuthnContextSelector is an implementation of the `AbstractSourceSelector` that
 uses the RequestedAuthnContext to decide what Authentication Source is called.
 It works by defining AuthnContexts with their corresponding Authentication
 Sources. The 'default' will be used as a fallback when no RequestedAuthnContext
