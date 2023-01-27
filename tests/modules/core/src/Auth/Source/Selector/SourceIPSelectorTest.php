@@ -128,9 +128,9 @@ class SourceIPSelectorTest extends TestCase
     /**
      * @dataProvider provideClientIP
      * @param string $ip  The client IP
-     * @param string $expected  The expected authsource
+     * @param array $expected  The expected authsource
      */
-    public function testSelectAuthSource(string $ip, string $expected): void
+    public function testSelectAuthSource(string $ip, array $expected): void
     {
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
@@ -138,7 +138,7 @@ class SourceIPSelectorTest extends TestCase
         $_SERVER['REMOTE_ADDR'] = $ip;
 
         $selector = new class ($info, $config) extends SourceIPSelector {
-            public function selectAuthSource(array &$state): string
+            public function selectAuthSource(array &$state): array
             {
                 return parent::selectAuthSource($state);
             }
@@ -156,12 +156,12 @@ class SourceIPSelectorTest extends TestCase
     public function provideClientIP(): array
     {
         return [
-            ['127.0.0.2', 'external'],
-            ['10.4.13.2', 'internal'],
-            ['2001:0DB8:0000:0000:0000:0000:0000:0000', 'internal'],
-            ['145.21.93.97', 'external'],
-            ['172.16.1.2', 'other'],
-            ['2002:1234:0000:0000:0000:0000:0000:0000', 'other'],
+            ['127.0.0.2', ['external']],
+            ['10.4.13.2', ['internal']],
+            ['2001:0DB8:0000:0000:0000:0000:0000:0000', ['internal']],
+            ['145.21.93.97', ['external']],
+            ['172.16.1.2', ['other']],
+            ['2002:1234:0000:0000:0000:0000:0000:0000', ['other']],
         ];
     }
 }
