@@ -101,19 +101,19 @@ themes
     overridden by
     `modules/example/themes/blue/core/loginuserpass.twig`.
 
-www
+public
 :   All files stored in this directory will be available by
     accessing the URL
     `https://.../simplesamlphp/module.php/<module name>/<file name>`.
     For example, if a script named `login.php` is stored in
-    `modules/example/www/`, it can be accessed by the URL
+    `modules/example/public/`, it can be accessed by the URL
     `https://.../simplesamlphp/module.php/example/login.php`.
 
 :   To retrieve this URL, the
     `SimpleSAML\Module::getModuleURL($resource)`-function can be used.
     This function takes in a resource on the form `<module>/<file>`.
     This function will then return a URL to the given file in the
-    `www`-directory of `module`.
+    `public`-directory of `module`.
 
 ## Authentication sources
 

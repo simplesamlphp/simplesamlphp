@@ -1,13 +1,13 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(__DIR__ . '/www/resources')
+    ->exclude(__DIR__ . '/public/assets')
     ->in([
         __DIR__ . '/modules',
+        __DIR__ . '/public',
         __DIR__ . '/src',
         __DIR__ . '/templates',
         __DIR__ . '/tests',
-        __DIR__ . '/www',
     ])
 ;
 

@@ -62,6 +62,7 @@
         "phpmailer/phpmailer": "^6.5",
         "simplesamlphp/assert": "^0.8.0",
         "simplesamlphp/saml2": "^4.6",
+        "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
         "symfony/cache": "^5.4||^6",
         "symfony/config": "^5.4||^6",
         "symfony/console": "^5.4||^6",
@@ -86,7 +87,7 @@
 
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^1.2.1",
+        "simplesamlphp/simplesamlphp-test-framework": "^1.3.2",
         "simplesamlphp/xml-security": "^0.6.5"
     },
     "suggest": {
@@ -125,10 +126,8 @@
             "phpunit.xml",
             "phpunit-interoperability.xml",
             "psalm.xml",
-            "tests",
-            "www/assets/css/.gitkeep",
-            "www/assets/fonts/.gitkeep",
-            "www/assets/js/.gitkeep"
+            "public/assets/.gitkeep",
+            "tests"
         ]
     }
 }
