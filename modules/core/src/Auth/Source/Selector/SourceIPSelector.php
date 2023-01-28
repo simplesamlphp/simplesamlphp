@@ -69,9 +69,9 @@ class SourceIPSelector extends AbstractSourceSelector
 
         foreach ($zones as $key => $zone) {
             if (!array_key_exists('source', $zone)) {
-                Logger::warning(sprintf('Discarding zone %s due to missing `source` key.', $key));
+                throw new Exception(sprintf("Incomplete zone-configuration '%s' due to missing `source` key.", $key));
             } elseif (!array_key_exists('subnet', $zone)) {
-                Logger::warning(sprintf('Discarding zone %s due to missing `subnet` key.', $key));
+                throw new Exception(sprintf("Incomplete zone-configuration '%s' due to missing `subnet` key.", $key));
             } else {
                 $this->zones[$key] = $zone;
             }

@@ -82,9 +82,9 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
             } else {
                 Assert::natural($key);
                 if (!array_key_exists('identifier', $context)) {
-                    Logger::warning(sprintf('Discarding context %d due to missing `identifier` key.', $key));
+                    throw new Exception(sprintf("Incomplete context '%d' due to missing `identifier` key.", $key));
                 } elseif (!array_key_exists('source', $context)) {
-                    Logger::warning(sprintf('Discarding context %d due to missing `source` key.', $key));
+                    throw new Exception(sprintf("Incomplete context '%d' due to missing `source` key.", $key));
                 } else {
                     $this->contexts[$key] = $context;
                 }
