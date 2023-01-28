@@ -174,40 +174,6 @@ class RequestedAuthnContextSelectorTest extends TestCase
                 ],
                 'loa2',
             ],
-/**
-            // 'better'
-            [
-                [
-                    'AuthnContextClassRef' => [
-                        'urn:x-simplesamlphp:loa2',
-                    ],
-                    'Comparison' => 'better',
-                ],
-                ['loa1'],
-            ],
-
-            // 'maximum'
-            [
-                [
-                    'AuthnContextClassRef' => [
-                        'urn:x-simplesamlphp:loa2',
-                    ],
-                    'Comparison' =>  'maximum',
-                ],
-                ['loa1'],
-            ],
-
-            // 'minimum'
-            [
-                [
-                    'AuthnContextClassRef' => [
-                        'urn:x-simplesamlphp:loa2',
-                    ],
-                    'Comparison' => 'minimum',
-                ],
-                ['loa1'],
-            ],
-*/
 
             // Unknown context requested
             [
