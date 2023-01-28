@@ -2,22 +2,19 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Module\core\Auth\Source;
+namespace SimpleSAML\Test\Module\core\Auth\Source\Selector;
 
-use Error;
-use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Module\core\Auth\Source\IPSourceSelector;
+use SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\IPSourceSelector
+ * @covers \SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector
  */
-class IPSourceSelectorTest extends TestCase
+class SourceIPSelectorTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
     private Configuration $config;
@@ -39,7 +36,7 @@ class IPSourceSelectorTest extends TestCase
 
         $this->sourceConfig = Configuration::loadFromArray([
             'selector' => [
-                'core:IPSourceSelector',
+                'core:SourceIPSelector',
 
                 'zones' => [
                     'internal' => [
@@ -87,7 +84,7 @@ class IPSourceSelectorTest extends TestCase
 
         $sourceConfig = Configuration::loadFromArray([
             'selector' => [
-                'core:IPSourceSelector',
+                'core:SourceIPSelector',
 
                 'zones' => [
                     'internal' => [],
@@ -96,7 +93,7 @@ class IPSourceSelectorTest extends TestCase
         ]);
         Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
 
-        new IPSourceSelector(['AuthId' => 'selector'], $sourceConfig->getArray('selector'));
+        new SourceIPSelector(['AuthId' => 'selector'], $sourceConfig->getArray('selector'));
     }
 
 
@@ -110,7 +107,7 @@ class IPSourceSelectorTest extends TestCase
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         $_SERVER['REQUEST_URI'] = '/';
 
-        $selector = new class ($info, $config) extends IPSourceSelector {
+        $selector = new class ($info, $config) extends SourceIPSelector {
             /**
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
@@ -140,17 +137,15 @@ class IPSourceSelectorTest extends TestCase
 
         $_SERVER['REMOTE_ADDR'] = $ip;
 
-        $selector = new class ($info, $config) extends IPSourceSelector {
-            /**
-             * @return string
-             */
-            public function selectAuthSource(): string
+        $selector = new class ($info, $config) extends SourceIPSelector {
+            public function selectAuthSource(array &$state): string
             {
-                return parent::selectAuthSource();
+                return parent::selectAuthSource($state);
             }
         };
 
-        $source = $selector->selectAuthSource();
+        $state = [];
+        $source = $selector->selectAuthSource($state);
         $this->assertEquals($expected, $source);
     }
 

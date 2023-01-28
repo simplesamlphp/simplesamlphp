@@ -11,9 +11,9 @@ act as an Authentication Source. Any derivative classes must implement the
 abstract `selectAuthSource` method. This method must return the name of the
 Authentication Source to use, based on whatever logic is necessary.
 
-## IPSourceSelector
+## SourceIPSelector
 
-The IPSourceSelector is an implementation of the `AbstractSourceSelector` and
+The SourceIPSelector is an implementation of the `AbstractSourceSelector` that
 uses the client IP to decide what Authentication Source is called.
 It works by defining zones with corresponding IP-ranges and Authentication
 Sources. The 'default' zone is required and acts as a fallback when none
@@ -23,7 +23,7 @@ An example configuration would look like this:
 
 ```php
     'selector' => [
-        'core:IPSourceSelector',
+        'core:SourceIPSelector',
 
         'zones' => [
             'internal' => [
@@ -43,6 +43,36 @@ An example configuration would look like this:
             ],
 
             'default' => 'yubikey',
+        ],
+    ],
+```
+
+## RequestedAuthnContextSelector
+
+The RequestedAuthnContextSelector is an implementation of the `AbstractSourceSelector` that
+uses the RequestedAuthnContext to decide what Authentication Source is called.
+It works by defining AuthnContexts with their corresponding Authentication
+Sources. The 'default' will be used as a fallback when no RequestedAuthnContext
+is passed in the request.
+
+An example configuration would look like this:
+
+```php
+    'selector' => [
+        'core:RequestedAuthnContextSelector',
+
+        'contexts' => [
+            'userpass' => [
+                'identifier' => 'urn:x-simplesamlphp:loa1',
+                'source' => 'ldap',
+            ],
+
+            'mfa' => [
+                'identifier' => 'urn:x-simplesamlphp:loa2',
+                'source' => 'radius',
+            ],
+
+            'default' => 'ldap',
         ],
     ],
 ```
