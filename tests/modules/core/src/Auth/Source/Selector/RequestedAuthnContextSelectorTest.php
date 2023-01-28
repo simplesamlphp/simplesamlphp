@@ -123,7 +123,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
         try {
             $source = $selector->selectAuthSource($state);
         } catch (AssertionFailedException | NoAuthnContextException $e) {
-            $source = $e::class;
+            $source = get_class($e);
         }
 
         $this->assertEquals($expected, $source);
