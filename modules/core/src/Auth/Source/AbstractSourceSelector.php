@@ -59,16 +59,12 @@ abstract class AbstractSourceSelector extends Auth\Source
     public function authenticate(array &$state): void
     {
         $source = $this->selectAuthSource($state);
-        if (count($source) === 1) {
-            $as = Auth\Source::getById($source[0]);
-            if ($as === null || !in_array($source[0], $this->validSources, true)) {
-                throw new Exception('Invalid authentication source: ' . $source[0]);
-            }
-
-            static::doAuthentication($as, $state);
-            return;
+        $as = Auth\Source::getById($source);
+        if ($as === null || !in_array($source, $this->validSources, true)) {
+            throw new Exception('Invalid authentication source: ' . $source);
         }
-        throw new Exception('Not implemented.');
+
+        static::doAuthentication($as, $state);
     }
 
 
@@ -96,7 +92,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      * Decide what authsource to use.
      *
      * @param array &$state Information about the current authentication.
-     * @return array
+     * @return string
      */
-    abstract protected function selectAuthSource(array &$state): array;
+    abstract protected function selectAuthSource(array &$state): string;
 }

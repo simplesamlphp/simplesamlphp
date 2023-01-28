@@ -83,9 +83,9 @@ class SourceIPSelector extends AbstractSourceSelector
      * Decide what authsource to use.
      *
      * @param array &$state Information about the current authentication.
-     * @return array
+     * @return string
      */
-    protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): array
+    protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string
     {
         $netUtils = new Utils\Net();
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -110,6 +110,6 @@ class SourceIPSelector extends AbstractSourceSelector
             Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
         }
 
-        return [$source];
+        return $source;
     }
 }

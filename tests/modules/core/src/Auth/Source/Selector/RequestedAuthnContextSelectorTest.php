@@ -104,15 +104,15 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * @dataProvider provideRequestedAuthnContext
      * @param array $requestedAuthnContext  The RequestedAuthnContext
-     * @param array $expected  The expected authsource
+     * @param string $expected  The expected authsource
      */
-    public function testSelectAuthSource(array $requestedAuthnContext, array $expected): void
+    public function testSelectAuthSource(array $requestedAuthnContext, string $expected): void
     {
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
 
         $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
-            public function selectAuthSource(array &$state): array
+            public function selectAuthSource(array &$state): string
             {
                 return parent::selectAuthSource($state);
             }
@@ -123,7 +123,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
         try {
             $source = $selector->selectAuthSource($state);
         } catch (AssertionFailedException | NoAuthnContextException $e) {
-            $source = [$e::class];
+            $source = $e::class;
         }
 
         $this->assertEquals($expected, $source);
@@ -139,7 +139,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
             // Normal use-case - No RequestedAuthnContext provided
             [
                 ['AuthnContextClassRef' => null],
-                ['loa1'],
+                'loa1',
             ],
 
             // Normal use-case
@@ -150,7 +150,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     ],
                     'Comparison' => 'exact',
                 ],
-                ['loa1'],
+                'loa1',
             ],
 
             // Order is important - see specs
@@ -162,7 +162,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     ],
                     'Comparison' => 'exact',
                 ],
-                ['loa1'],
+                'loa1',
             ],
             [
                 [
@@ -172,7 +172,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     ],
                     'Comparison' => 'exact',
                 ],
-                ['loa2'],
+                'loa2',
             ],
 /**
             // 'better'
@@ -217,7 +217,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     ],
                     'Comparison' => 'exact',
                 ],
-                [NoAuthnContextException::class],
+                NoAuthnContextException::class,
             ],
 
             // Unknown comparison requested
@@ -228,7 +228,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     ],
                     'Comparison' => 'phpunit',
                 ],
-                [AssertionFailedException::class],
+                AssertionFailedException::class,
             ],
         ];
     }
