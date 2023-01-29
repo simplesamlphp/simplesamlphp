@@ -309,7 +309,7 @@ CIPHER;
     public function testLoadPrivateKeyMissingFile(): void
     {
         $this->expectException(Error\Exception::class);
-        $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
+        $config = new Configuration(['privatekey' => 'nonexistent'], 'test');
 
         $this->cryptoUtils->loadPrivateKey($config, false, '', true);
     }
