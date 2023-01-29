@@ -6,6 +6,8 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\InvalidArgumentException;
+use Psr\Log\LogLevel;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\TestUtils\ArrayLogger;
@@ -26,7 +28,7 @@ class LoggerTest extends TestCase
         $this->originalLogger = Logger::getLoggingHandler();
         $config = [
             'logging.handler' => $handler,
-            'logging.level' => Logger::DEBUG
+            'logging.level' => LogLevel::DEBUG
         ];
 
         // testing static methods is slightly painful
@@ -43,7 +45,7 @@ class LoggerTest extends TestCase
             // reset the logger and Configuration
             Configuration::clearInternalState();
             Logger::clearCapturedLog();
-            Logger::setLogLevel(Logger::INFO);
+            Logger::setLogLevel(LogLevel::INFO);
             Logger::setLoggingHandler($this->originalLogger);
         }
     }
@@ -104,24 +106,24 @@ class LoggerTest extends TestCase
     public function provideLogLevels(): array
     {
         return [
-           'emergency' => ['emergency', Logger::EMERG],
-           'alert' => ['alert', Logger::ALERT],
-           'critical' => ['critical', Logger::CRIT],
-           'error' => ['error', Logger::ERR],
-           'warning' => ['warning', Logger::WARNING],
-           'notice' => ['notice', Logger::NOTICE],
-           'info' => ['info', Logger::INFO],
-           'debug' => ['debug', Logger::DEBUG],
+            ['emergency', LogLevel::EMERGENCY],
+            ['alert', LogLevel::ALERT],
+            ['critical', LogLevel::CRITICAL],
+            ['error', LogLevel::ERROR],
+            ['warning', LogLevel::WARNING],
+            ['notice', LogLevel::NOTICE],
+            ['info', LogLevel::INFO],
+            ['debug', LogLevel::DEBUG],
         ];
     }
 
 
     /**
      * @param string $method
-     * @param int $level
+     * @param string $level
      * @dataProvider provideLogLevels
      */
-    public function testLevelMethods(string $method, int $level): void
+    public function testLevelMethods(string $method, string $level): void
     {
         $this->setLoggingHandler(ArrayLogger::class);
 
@@ -130,5 +132,14 @@ class LoggerTest extends TestCase
         $logger = Logger::getLoggingHandler();
         $this->assertInstanceOf(ArrayLogger::class, $logger);
         self::assertMatchesRegularExpression("/\[CL[0-9a-f]{8}\]\ {$payload}$/", $logger->logs[$level][0]);
+    }
+
+
+    /**
+     */
+    public function testInvalidLogLevelThrowsException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->logger->log('bogus', 'array logger', []);
     }
 }

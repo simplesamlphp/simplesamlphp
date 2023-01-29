@@ -334,11 +334,11 @@ $config = [
 
     /*
      * Define the minimum log level to log. Available levels:
-     * - SimpleSAML\Logger::ERR     No statistics, only errors
-     * - SimpleSAML\Logger::WARNING No statistics, only warnings/errors
-     * - SimpleSAML\Logger::NOTICE  Statistics and errors
-     * - SimpleSAML\Logger::INFO    Verbose logs
-     * - SimpleSAML\Logger::DEBUG   Full debug logs - not recommended for production
+     * - \Psr\Log\LogLevel::ERROR   No statistics, only errors
+     * - \Psr\Log\LogLevel::WARNING No statistics, only warnings/errors
+     * - \Psr\Log\LogLevel::NOTICE  Statistics and errors
+     * - \Psr\Log\LogLevel::INFO    Verbose logs
+     * - \Psr\Log\LogLevel::DEBUG   Full debug logs - not recommended for production
      *
      * Choose logging handler.
      *
@@ -348,7 +348,7 @@ $config = [
      * must exist and be writable for SimpleSAMLphp. If set to something else, set
      * loggingdir above to 'null'.
      */
-    'logging.level' => SimpleSAML\Logger::NOTICE,
+    'logging.level' => \Psr\Log\LogLevel::NOTICE,
     'logging.handler' => 'syslog',
 
     /*

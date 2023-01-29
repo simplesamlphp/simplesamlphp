@@ -5,20 +5,31 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
+use Psr\Log\AbstractLogger;
+use Psr\Log\InvalidArgumentException;
+use Psr\Log\LogLevel;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger\ErrorLogLoggingHandler;
 use SimpleSAML\Logger\FileLoggingHandler;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 use SimpleSAML\Logger\StandardErrorLoggingHandler;
 use SimpleSAML\Logger\SyslogLoggingHandler;
+use Stringable;
 
 /**
  * The main logger class for SimpleSAMLphp.
  *
  * @package SimpleSAMLphp
  */
-class Logger
+class Logger extends AbstractLogger
 {
+    /**
+     * Associative array with mappings from instance-names to logger objects.
+     *
+     * @var \SimpleSAML\Logger|null
+     */
+    private static ?Logger $instance = null;
+
     /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
@@ -30,9 +41,9 @@ class Logger
     private static bool $initializing = false;
 
     /**
-     * @var integer|null
+     * @var string|null
      */
-    private static ?int $logLevel = null;
+    private static ?string $logLevel = null;
 
     /**
      * @var boolean
@@ -129,128 +140,54 @@ class Logger
      */
     private static bool $shuttingDown = false;
 
-    /** @var int */
-    public const EMERG = 0;
-
-    /** @var int */
-    public const ALERT = 1;
-
-    /** @var int */
-    public const CRIT = 2;
-
-    /** @var int */
-    public const ERR = 3;
-
-    /** @var int */
-    public const WARNING = 4;
-
-    /** @var int */
-    public const NOTICE = 5;
-
-    /** @var int */
-    public const INFO = 6;
-
-    /** @var int */
-    public const DEBUG = 7;
+    /**
+     * @var array
+     */
+    public static array $logLevels = [
+        LogLevel::EMERGENCY,
+        LogLevel::ALERT,
+        LogLevel::CRITICAL,
+        LogLevel::ERROR,
+        LogLevel::WARNING,
+        LogLevel::NOTICE,
+        LogLevel::INFO,
+        LogLevel::DEBUG,
+    ];
 
 
     /**
-     * Log an emergency message.
-     *
-     * @param string $string The message to log.
+     * Private constructor that restricts instantiation to getInstance().
      */
-    public static function emergency(string $string): void
+    private function __construct()
     {
-        self::log(self::EMERG, $string);
     }
 
 
     /**
-     * Log a critical message.
+     * Retrieves the current logger instance. Will create a new one if there isn't any
      *
-     * @param string $string The message to log.
+     * @return \SimpleSAML\Logger The logger instance
      */
-    public static function critical(string $string): void
+    public static function getInstance(): Logger
     {
-        self::log(self::CRIT, $string);
-    }
+        if (self::$instance !== null) {
+            return self::$instance;
+        }
 
-
-    /**
-     * Log an alert.
-     *
-     * @param string $string The message to log.
-     */
-    public static function alert(string $string): void
-    {
-        self::log(self::ALERT, $string);
-    }
-
-
-    /**
-     * Log an error.
-     *
-     * @param string $string The message to log.
-     */
-    public static function error(string $string): void
-    {
-        self::log(self::ERR, $string);
-    }
-
-
-    /**
-     * Log a warning.
-     *
-     * @param string $string The message to log.
-     */
-    public static function warning(string $string): void
-    {
-        self::log(self::WARNING, $string);
-    }
-
-
-    /**
-     * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
-     *
-     * @param string $string The message to log.
-     */
-    public static function notice(string $string): void
-    {
-        self::log(self::NOTICE, $string);
-    }
-
-
-    /**
-     * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
-     *
-     * @param string $string The message to log.
-     */
-    public static function info(string $string): void
-    {
-        self::log(self::INFO, $string);
-    }
-
-
-    /**
-     * Debug messages are very verbose, and will contain more information than what is necessary for a production
-     * system.
-     *
-     * @param string $string The message to log.
-     */
-    public static function debug(string $string): void
-    {
-        self::log(self::DEBUG, $string);
+        return new self();
     }
 
 
     /**
      * Statistics.
      *
-     * @param string $string The message to log.
+     * @param string|\Stringable $string The message to log.
+     * @param array $context
      */
-    public static function stats(string $string): void
+    public function stats(string|Stringable $string, array $context): void
     {
-        self::log(self::NOTICE, $string, self::$logLevel >= self::NOTICE);
+        $context['statsLog'] = true;
+        $this->log(LogLevel::EMERGENCY, $message, $context);
     }
 
 
@@ -303,7 +240,7 @@ class Logger
     public static function flush(): void
     {
         foreach (self::$earlyLog as $msg) {
-            self::log($msg['level'], $msg['string'], $msg['statsLog']);
+            $this->log($msg['level'], $msg['string'], $msg['statsLog']);
         }
         self::$earlyLog = [];
     }
@@ -399,15 +336,17 @@ class Logger
         self::$loggingHandler = $loggingHandler;
     }
 
+
     /**
      * Sets the log level.
      *
-     * @param int $level One of the Logger class constants.
+     * @param string $level One of the Logger class constants.
      */
-    public static function setLogLevel(int $level): void
+    public static function setLogLevel(string $level): void
     {
         self::$logLevel = $level;
     }
+
 
     /**
      * Defer a message for later logging.
@@ -449,7 +388,7 @@ class Logger
         $config = Configuration::getInstance();
 
         // setting minimum log_level
-        self::$logLevel = $config->getOptionalInteger('logging.level', self::INFO);
+        self::$logLevel = $config->getOptionalString('logging.level', LogLevel::INFO);
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
@@ -483,18 +422,25 @@ class Logger
         } catch (Exception $e) {
             self::$loggingHandler = new ErrorLogLoggingHandler($config);
             self::$initializing = false;
-            self::log(self::CRIT, $e->getMessage(), false);
+            $this->log(LogLevel::CRITICAL, $e->getMessage(), false);
         }
     }
 
 
     /**
-     * @param int $level
-     * @param string $string
-     * @param bool $statsLog
+     * @param string $level
+     * @param string|Stringable $string
+     * @param array $context
      */
-    private static function log(int $level, string $string, bool $statsLog = false): void
+    private function log(string|Stringable $string, array $context): void
     {
+        Assert::oneOf($level, self::$logLevels, InvalidArgumentException::class);
+
+        $statsLog = false;
+        if (array_key_exists('statsLog', $context)) {
+            $statsLog = boolval($context['statsLog']);
+        }
+
         if (self::$initializing) {
             // some error occurred while initializing logging
             self::defer($level, $string, $statsLog);

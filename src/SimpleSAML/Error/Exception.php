@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Psr\Log\LogLevel;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
@@ -195,9 +196,9 @@ class Exception extends \Exception
 
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
-     * @param int $level
+     * @param string $level
      */
-    protected function logBacktrace(int $level = Logger::DEBUG): void
+    protected function logBacktrace(string $level = LogLevel::DEBUG): void
     {
         // Do nothing if backtraces have been disabled in config.
         $debug = Configuration::getInstance()->getOptionalArray('debug', ['backtraces' => true]);
@@ -206,18 +207,8 @@ class Exception extends \Exception
         }
 
         $backtrace = $this->formatBacktrace();
-
-        $callback = [Logger::class];
-        $functions = [
-            Logger::ERR     => 'error',
-            Logger::WARNING => 'warning',
-            Logger::INFO    => 'info',
-            Logger::DEBUG   => 'debug',
-        ];
-        $callback[] = $functions[$level];
-
         foreach ($backtrace as $line) {
-            call_user_func($callback, $line);
+            call_user_func([Logger::class, $level], $line);
         }
     }
 
@@ -227,15 +218,15 @@ class Exception extends \Exception
      *
      * Override to allow errors extending this class to specify the log level themselves.
      *
-     * @param int $default_level The log level to use if this method was not overridden.
+     * @param string $default_level The log level to use if this method was not overridden.
      */
-    public function log(int $default_level): void
+    public function log(string $default_level): void
     {
         $fn = [
-            Logger::ERR     => 'logError',
-            Logger::WARNING => 'logWarning',
-            Logger::INFO    => 'logInfo',
-            Logger::DEBUG   => 'logDebug',
+            LogLevel::ERROR   => 'logError',
+            LogLevel::WARNING => 'logWarning',
+            LogLevel::INFO    => 'logInfo',
+            LogLevel::DEBUG   => 'logDebug',
         ];
         call_user_func([$this, $fn[$default_level]], $default_level);
     }
@@ -249,7 +240,7 @@ class Exception extends \Exception
     public function logError(): void
     {
         Logger::error($this->getClass() . ': ' . $this->getMessage());
-        $this->logBacktrace(Logger::ERR);
+        $this->logBacktrace(LogLevel::ERROR);
     }
 
 
@@ -261,7 +252,7 @@ class Exception extends \Exception
     public function logWarning(): void
     {
         Logger::warning($this->getClass() . ': ' . $this->getMessage());
-        $this->logBacktrace(Logger::WARNING);
+        $this->logBacktrace(LogLevel::WARNING);
     }
 
 
@@ -273,7 +264,7 @@ class Exception extends \Exception
     public function logInfo(): void
     {
         Logger::info($this->getClass() . ': ' . $this->getMessage());
-        $this->logBacktrace(Logger::INFO);
+        $this->logBacktrace(LogLevel::INFO);
     }
 
 
@@ -285,7 +276,7 @@ class Exception extends \Exception
     public function logDebug(): void
     {
         Logger::debug($this->getClass() . ': ' . $this->getMessage());
-        $this->logBacktrace(Logger::DEBUG);
+        $this->logBacktrace(LogLevel::DEBUG);
     }
 
 

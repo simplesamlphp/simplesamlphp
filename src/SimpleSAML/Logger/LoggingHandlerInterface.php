@@ -25,10 +25,10 @@ interface LoggingHandlerInterface
     /**
      * Log a message to its destination.
      *
-     * @param int $level The log level.
+     * @param string $level The log level.
      * @param string $string The message to log.
      */
-    public function log(int $level, string $string): void;
+    public function log(string $level, string $string): void;
 
 
     /**

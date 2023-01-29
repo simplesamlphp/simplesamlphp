@@ -91,6 +91,7 @@
         "simplesamlphp/xml-security": "^0.6.5"
     },
     "suggest": {
+        "monolog/monolog": "Needed if the basic errorlog is not sufficient for you",
         "predis/predis": "Needed if a Redis server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
         "ext-ldap": "Needed if an LDAP backend is used",
