@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source\Selector;
 
-use Exception;
 use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 
@@ -132,7 +131,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
                 case 'maximum':
                 case 'better':
                     // Not implemented
-                    throw new Error\Exception('Not implemented.');
+                    throw new Exception('Not implemented.');
             }
         }
 

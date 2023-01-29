@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector;
 
 /**
@@ -156,6 +157,69 @@ class SourceIPSelectorTest extends TestCase
         $state = [];
         $source = $selector->selectAuthSource($state);
         $this->assertEquals($expected, $source);
+    }
+
+
+    /**
+     */
+    public function testIncompleteConfigurationThrowsExceptionVariant1(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:SourceIPSelector',
+
+                'zones' => [
+                    'internal' => [
+                        'subnet' => [
+                            '10.0.0.0/8',
+                            '2001:0DB8::/108',
+                        ],
+                    ],
+
+                    'default' => 'external',
+                ],
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Incomplete zone-configuration 'internal' due to missing `source` key.");
+
+        new SourceIPSelector($info, $config);
+    }
+
+
+    /**
+     */
+    public function testIncompleteConfigurationThrowsExceptionVariant2(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:SourceIPSelector',
+
+                'zones' => [
+                    'internal' => [
+                        'source' => 'internal',
+                    ],
+
+                    'default' => 'external',
+                ],
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Incomplete zone-configuration 'internal' due to missing `subnet` key.");
+
+        new SourceIPSelector($info, $config);
     }
 
 
