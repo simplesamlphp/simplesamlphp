@@ -270,7 +270,6 @@ EOT;
         $md = [];
         $hostedMd = $this->idpMetadataHandlerHelper($md);
 
-        $this->assertIsArray($hostedMd);
         $this->assertArrayHasKey('metadata-set', $hostedMd);
         $this->assertEquals('saml20-idp-hosted', $hostedMd['metadata-set']);
         $this->assertArrayHasKey('entityid', $hostedMd);

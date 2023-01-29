@@ -139,7 +139,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetadataCurrentEmptySet(): void
     {
-        $this->expectException(Exception::class, 'Could not find any default metadata');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Could not find any default metadata');
         $this->handler->getMetaDataCurrent('saml20-idp-remote');
     }
 
@@ -148,7 +149,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetaDataNonExistentEntity(): void
     {
-        $this->expectException(MetadataNotFound::class, "METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
+        $this->expectException(MetadataNotFound::class);
+        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
         $this->handler->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 

@@ -109,7 +109,7 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\Http\RunnableResponse
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function discoResponse(Request $request): RunnableResponse
     {
@@ -155,7 +155,7 @@ class ServiceProvider
      * Handler for the Assertion Consumer Service.
      *
      * @param string $sourceId
-     * @return \SimpleSAML\Http\RunnableResponse
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function assertionConsumerService(string $sourceId): RunnableResponse
     {
@@ -423,7 +423,7 @@ class ServiceProvider
      * This endpoint handles both logout requests and logout responses.
      *
      * @param string $sourceId
-     * @return \SimpleSAML\Http\RunnableResponse
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function singleLogoutService(string $sourceId): RunnableResponse
     {

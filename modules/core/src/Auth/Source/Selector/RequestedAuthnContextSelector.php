@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source\Selector;
 
+use Exception;
 use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source\Selector;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;

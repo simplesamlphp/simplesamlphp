@@ -72,6 +72,7 @@
                 <directory name="config" />
                 <directory name="metadata" />
                 <directory name="modules/adfs/metadata-templates" />
+                <directory name="tests/src/SimpleSAML/Metadata/test-metadata" />
             </errorLevel>
         </PossiblyUndefinedGlobalVariable>
 

@@ -39,7 +39,7 @@ class Disco
     /**
      * Built-in IdP discovery service
      *
-     * @return \SimpleSAML\Http\RunnableResponse
+     * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function disco(): RunnableResponse
     {
