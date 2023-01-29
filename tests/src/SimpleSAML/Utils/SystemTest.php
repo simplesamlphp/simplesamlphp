@@ -234,9 +234,9 @@ class SystemTest extends TestCase
     /**
      * @test
      */
-    public function testGetTempDirNonExistant(): void
+    public function testGetTempDirNonExistent(): void
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
+        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistent';
         $config = $this->setConfigurationTempDir($tempdir);
 
         $res = $this->sysUtils->getTempDir();
