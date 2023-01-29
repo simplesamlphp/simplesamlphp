@@ -145,7 +145,7 @@ class RedisStoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store\StoreFactory::getInstance
-     * @covers \SimpleSAML\Store\Redis::__construct
+     * @covers \SimpleSAML\Store\RedisStore::__construct
      * @test
      */
     public function testRedisSentinelInstance(): void
