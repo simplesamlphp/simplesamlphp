@@ -9,6 +9,7 @@ use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector;
 
 /**
@@ -93,6 +94,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
             {
                 // Dummy
             }
+
             /**
              * @param array &$state
              * @return void
@@ -106,6 +108,62 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
         $selector->authenticate($state);
         $this->assertTrue($state['finished']);
+    }
+
+
+    /**
+     */
+    public function testIncompleteConfigurationThrowsExceptionVariant1(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:RequestedAuthnContextSelector',
+
+                'contexts' => [
+                    10 => [
+                        'identifier' => 'urn:x-simplesamlphp:loa1',
+                    ],
+                ],
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Incomplete context '10' due to missing `source` key.");
+
+        new RequestedAuthnContextSelector($info, $config);
+    }
+
+
+    /**
+     */
+    public function testIncompleteConfigurationThrowsExceptionVariant2(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:RequestedAuthnContextSelector',
+
+                'contexts' => [
+                    10 => [
+                        'source' => 'loa1',
+                    ],
+                ],
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Incomplete context '10' due to missing `identifier` key.");
+
+        new RequestedAuthnContextSelector($info, $config);
     }
 
 
@@ -130,7 +188,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
         try {
             $source = $selector->selectAuthSource($state);
-        } catch (AssertionFailedException | NoAuthnContextException $e) {
+        } catch (AssertionFailedException | NoAuthnContextException | Exception $e) {
             $source = $e::class;
         }
 
@@ -203,6 +261,35 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     'Comparison' => 'phpunit',
                 ],
                 AssertionFailedException::class,
+            ],
+
+            // Non-implemented comparison requested
+            [
+                [
+                    'AuthnContextClassRef' => [
+                        'urn:x-simplesamlphp:loa2',
+                    ],
+                    'Comparison' => 'minimum',
+                ],
+                Exception::class,
+            ],
+            [
+                [
+                    'AuthnContextClassRef' => [
+                        'urn:x-simplesamlphp:loa2',
+                    ],
+                    'Comparison' => 'maximum',
+                ],
+                Exception::class,
+            ],
+            [
+                [
+                    'AuthnContextClassRef' => [
+                        'urn:x-simplesamlphp:loa2',
+                    ],
+                    'Comparison' => 'better',
+                ],
+                Exception::class,
             ],
         ];
     }
