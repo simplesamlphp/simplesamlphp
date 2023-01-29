@@ -117,11 +117,20 @@ class SourceIPSelectorTest extends TestCase
             {
                 // Dummy
             }
+
+            /**
+             * @param array &$state
+             * @return void
+             */
+            public function authenticate(array &$state): void
+            {
+                $state['finished'] = true;
+            }
         };
 
         $state = [];
-        $result = $selector->authenticate($state);
-        $this->assertNull($result);
+        $selector->authenticate($state);
+        $this->assertTrue($state['finished']);
     }
 
 
@@ -151,7 +160,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
-     * @return string
+     * @return array
      */
     public function provideClientIP(): array
     {

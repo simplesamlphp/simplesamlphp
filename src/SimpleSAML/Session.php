@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use DOMNodeList;
 use SAML2\XML\saml\AttributeValue;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
@@ -621,7 +622,7 @@ class Session implements Utils\ClearableState
                 }
 
                 // at this point, this should be a DOMNodeList object...
-                if (!is_a($value, 'DOMNodeList')) {
+                if (!is_a($value, DOMNodeList::class)) {
                     continue;
                 }
 
@@ -894,7 +895,7 @@ class Session implements Utils\ClearableState
         if ($timeout === self::DATA_TIMEOUT_SESSION_END) {
             $expires = self::DATA_TIMEOUT_SESSION_END;
         } else {
-            $expires = time() + $timeout;
+            $expires = time() + intval($timeout);
         }
 
         $dataInfo = [

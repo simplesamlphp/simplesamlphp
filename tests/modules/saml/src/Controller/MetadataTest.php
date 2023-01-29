@@ -26,9 +26,6 @@ class MetadataTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
@@ -86,7 +83,7 @@ class MetadataTest extends TestCase
             public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
             {
                 if ($set === 'saml20-idp-hosted') {
-                    return $idps;
+                    return $this->idps;
                 }
                 return [];
             }
@@ -96,7 +93,6 @@ class MetadataTest extends TestCase
                 return 'urn:example:simplesaml:another:idp';
             }
         };
-        $this->session = Session::getSessionFromRequest();
 
         $this->config = Configuration::loadFromArray(
             [
@@ -157,7 +153,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($config, $this->session);
+        $c = new Controller\Metadata($config);
         $c->setMetadataStorageHandler($this->mdh);
 
         if ($authenticated === true) {
@@ -206,7 +202,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($config, $this->session);
+        $c = new Controller\Metadata($config);
 
         $this->expectException(\SimpleSAML\Error\Error::class);
         $this->expectExceptionMessage('NOACCESS');
@@ -223,7 +219,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($this->config, $this->session);
+        $c = new Controller\Metadata($this->config);
         $c->setMetadataStorageHandler($this->mdh);
 
         $this->expectException(\SimpleSAML\Error\Error::class);
@@ -241,7 +237,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($this->config, $this->session);
+        $c = new Controller\Metadata($this->config);
         $c->setMetadataStorageHandler($this->mdh);
 
         $result = $c->metadata($request);
@@ -266,7 +262,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($this->config, $this->session);
+        $c = new Controller\Metadata($this->config);
         $c->setMetadataStorageHandler($this->mdh);
 
         $result = $c->metadata($request);
@@ -291,7 +287,7 @@ class MetadataTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Metadata($this->config, $this->session);
+        $c = new Controller\Metadata($this->config);
         $c->setMetadataStorageHandler($this->mdh);
 
         $result = $c->metadata($request);

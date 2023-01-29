@@ -17,4 +17,4 @@ use Symfony\Component\HttpFoundation\Request;
 $request = Request::createFromGlobals();
 $config = Configuration::getInstance();
 $controller = new Controller\SingleLogout($config);
-$controller->initSingleLogout()->send($request);
+$controller->initSingleLogout($request)->send();

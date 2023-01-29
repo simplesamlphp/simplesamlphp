@@ -93,11 +93,19 @@ class RequestedAuthnContextSelectorTest extends TestCase
             {
                 // Dummy
             }
+            /**
+             * @param array &$state
+             * @return void
+             */
+            public function authenticate(array &$state): void
+            {
+                $state['finished'] = true;
+            }
         };
 
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
-        $result = $selector->authenticate($state);
-        $this->assertNull($result);
+        $selector->authenticate($state);
+        $this->assertTrue($state['finished']);
     }
 
 

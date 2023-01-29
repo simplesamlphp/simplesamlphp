@@ -198,9 +198,9 @@ class Template extends Response
     public function asset(string $asset, string $module = null): string
     {
         $baseDir = $this->configuration->getBaseDir();
+        $basePath = $this->configuration->getBasePath();
         if (is_null($module)) {
             $file = $baseDir . 'public/assets/base/' . $asset;
-            $basePath = $this->configuration->getBasePath();
             $path = $basePath . 'assets/base/' . $asset;
         } elseif (file_exists($baseDir . 'public/assets/' . $module)) {
             $file = $baseDir . '/public/assets/' . $module . '/' . $asset;
