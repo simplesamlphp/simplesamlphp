@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Module\core\Auth\Source\Selector;
+namespace SimpleSAML\Test\Module\core\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector;
+use SimpleSAML\Module\core\Auth\Source\SourceIPSelector;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector
+ * @covers \SimpleSAML\Module\core\Auth\Source\SourceIPSelector
  */
 class SourceIPSelectorTest extends TestCase
 {
