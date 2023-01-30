@@ -45,4 +45,4 @@ php "$COMPOSER" install --no-dev --prefer-dist -o
 
 php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"
 rm "$COMPOSER"
-echo `shasum -a 256 /tmp/$TARGET.tar.gz`
+echo `sha256sum /tmp/$TARGET.tar.gz`
