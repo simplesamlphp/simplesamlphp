@@ -14,7 +14,6 @@ use Gettext\Translator;
 use Gettext\TranslatorFunctions;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 
 class Translate

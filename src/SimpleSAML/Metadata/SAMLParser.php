@@ -895,6 +895,7 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
+        $logger = Logger::getInstance();
         foreach ($element->getExtensions() as $e) {
             if ($e instanceof Scope) {
                 $ret['scope'][] = $e->getScope();
@@ -912,7 +913,7 @@ class SAMLParser
                         isset($ret['RegistrationInfo']['authority'])
                         && $ret['RegistrationInfo']['authority'] !== $e->getRegistrationAuthority()
                     ) {
-                        Logger::warning(
+                        $logger->warning(
                             'Invalid attempt to override registrationAuthority \''
                             . $ret['RegistrationInfo']['authority']
                             . "' with '{$e->getRegistrationAuthority()}'"
@@ -1303,7 +1304,8 @@ class SAMLParser
                 }
             }
         }
-        Logger::debug('Could not validate signature');
+        $logger = Logger::getInstance();
+        $logger->debug('Could not validate signature');
         return false;
     }
 }

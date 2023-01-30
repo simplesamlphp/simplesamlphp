@@ -78,8 +78,13 @@ class ProcessingChain
             self::addFilters($this->filters, $spFilters);
         }
 
-        Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
-            $spMetadata['entityid'] . ': ' . str_replace("\n", '', var_export($this->filters, true)));
+        $logger = Logger::getInstance();
+        $logger->debug(sprintf(
+            'Filter config for %s->%s: %s',
+            $idpMetadata['entityid'],
+            $spMetadata['entityid'],
+            str_replace("\n", '', var_export($this->filters, true)),
+        ));
     }
 
 

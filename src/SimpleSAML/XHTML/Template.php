@@ -54,6 +54,9 @@ use function substr;
  */
 class Template extends Response
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * The data associated with this template, accessible within the template itself.
      *
@@ -142,11 +145,12 @@ class Template extends Response
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string                   $template Which template file to load
+     * @param string $template Which template file to load
      */
     public function __construct(Configuration $configuration, string $template)
     {
         $this->configuration = $configuration;
+        $this->logger = Logger::getInstance();
         $this->template = $template;
         // TODO: do not remove the slash from the beginning, change the templates instead!
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
@@ -396,7 +400,7 @@ class Template extends Response
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
 
         if (!$this->fileSystem->exists($themeDir)) {
-            Logger::warning(
+            $this->logger->warning(
                 sprintf('Theme directory for theme "%s" (%s) does not exist.', $this->theme['name'], $themeDir),
             );
             return [];
@@ -405,7 +409,7 @@ class Template extends Response
         $finder = new Finder();
         $finder->directories()->in($themeDir)->depth(0);
         if (!$finder->hasResults()) {
-            Logger::warning(sprintf(
+            $this->logger->warning(sprintf(
                 'Theme directory for theme "%s" (%s) is not readable or is empty.',
                 $this->theme['name'],
                 $themeDir,

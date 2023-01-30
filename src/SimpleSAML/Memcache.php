@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use SimpleSAML\Utils;
 
 /**
@@ -41,7 +42,8 @@ class Memcache
      */
     public static function get(string $key)
     {
-        Logger::debug("loading key $key from memcache");
+        $logger = Logger::getInstance();
+        $logger->debug("loading key $key from memcache");
 
         $latestInfo = null;
         $latestTime = 0.0;
@@ -73,19 +75,19 @@ class Memcache
              * - 'data': The data.
              */
             if (!is_array($info)) {
-                Logger::warning(
+                $logger->warning(
                     'Retrieved invalid data from a memcache server. Data was not an array.'
                 );
                 continue;
             }
             if (!array_key_exists('timestamp', $info)) {
-                Logger::warning(
+                $logger->warning(
                     'Retrieved invalid data from a memcache server. Missing timestamp.'
                 );
                 continue;
             }
             if (!array_key_exists('data', $info)) {
-                Logger::warning(
+                $logger->warning(
                     'Retrieved invalid data from a memcache server. Missing data.'
                 );
                 continue;
@@ -122,13 +124,13 @@ class Memcache
                 throw new Error\Exception('All memcache servers are down', 503, $e);
             }
             // we didn't find any data matching the key
-            Logger::debug("key $key not found in memcache");
+            $logger->debug("key $key not found in memcache");
             return null;
         }
 
         if ($mustUpdate) {
             // we found data matching the key, but some of the servers need updating
-            Logger::debug("Memcache servers out of sync for $key, forcing sync");
+            $logger->debug("Memcache servers out of sync for $key, forcing sync");
             self::set($key, $latestData);
         }
 
@@ -145,7 +147,8 @@ class Memcache
      */
     public static function set(string $key, $value, ?int $expire = null): void
     {
-        Logger::debug("saving key $key to memcache");
+        $logger = Logger::getInstance();
+        $logger->debug("saving key $key to memcache");
         $savedInfo = [
             'timestamp' => microtime(true),
             'data'      => $value
@@ -171,7 +174,8 @@ class Memcache
      */
     public static function delete(string $key): void
     {
-        Logger::debug("deleting key $key from memcache");
+        $logger = Logger::getInstance();
+        $logger->debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
@@ -207,7 +211,7 @@ class Memcache
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {
-            throw new \Exception(
+            throw new Exception(
                 "hostname setting missing from server in the 'memcache_store.servers' configuration option."
             );
         }
@@ -216,7 +220,7 @@ class Memcache
 
         // the hostname must be a valid string
         if (!is_string($hostname)) {
-            throw new \Exception(
+            throw new Exception(
                 "Invalid hostname for server in the 'memcache_store.servers' configuration option. The hostname is" .
                 ' supposed to be a string.'
             );
@@ -230,7 +234,7 @@ class Memcache
             // get the port number from the array, and validate it
             $port = (int) $server['port'];
             if (($port <= 0) || ($port > 65535)) {
-                throw new \Exception(
+                throw new Exception(
                     "Invalid port for server in the 'memcache_store.servers' configuration option. The port number" .
                     ' is supposed to be an integer between 0 and 65535.'
                 );

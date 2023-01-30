@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
+use Exception;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -32,6 +33,13 @@ abstract class UserPassBase extends Auth\Source
      * The key of the AuthId field in the state.
      */
     public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
+
+    /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
 
     /**
      * Username we should force.
@@ -122,6 +130,19 @@ abstract class UserPassBase extends Auth\Source
         $sspcnf = Configuration::getInstance();
         $this->rememberMeEnabled = $sspcnf->getOptionalBoolean('session.rememberme.enable', false);
         $this->rememberMeChecked = $sspcnf->getOptionalBoolean('session.rememberme.checked', false);
+
+        $this->logger = Logger::getInstance();
+    }
+
+
+    /**
+     * Set Logger.
+     *
+     * @param \SimpleSAML\Logger $logger  The Logger
+     */
+    public function setLogger(Logger $logger): void
+    {
+        $this->logger = $logger;
     }
 
 
@@ -219,7 +240,7 @@ abstract class UserPassBase extends Auth\Source
         // other use cases.
         if (isset($state['saml:Binding']) && $state['saml:Binding'] === Constants::BINDING_PAOS) {
             if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-                Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
+                $this->logger->error("ECP AuthnRequest did not contain Basic Authentication header");
                 // TODO Return a SOAP fault instead of using the current binding?
                 throw new Error\Error("WRONGUSERPASS");
             }
@@ -292,7 +313,7 @@ abstract class UserPassBase extends Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         /*
@@ -301,14 +322,15 @@ abstract class UserPassBase extends Auth\Source
          */
 
         // Attempt to log in
+        $logger = Logger::getInstance();
         try {
             $attributes = $source->login($username, $password);
-        } catch (\Exception $e) {
-            Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
+        } catch (Exception $e) {
+            $logger->stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
             throw $e;
         }
 
-        Logger::stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
+        $logger->stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
 
         // Save the attributes we received from the login-function in the $state-array
         $state['Attributes'] = $attributes;

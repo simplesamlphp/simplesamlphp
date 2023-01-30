@@ -42,6 +42,9 @@ use SimpleSAML\Utils;
 
 class SAMLBuilder
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * The EntityDescriptor we are building.
      *
@@ -101,6 +104,8 @@ class SAMLBuilder
         if ($this->maxDuration !== null) {
             $this->entityDescriptor->setValidUntil(time() + $this->maxDuration);
         }
+
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -481,7 +486,7 @@ class SAMLBuilder
                 $this->addAttributeAuthority($metadata);
                 break;
             default:
-                Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
+                $this->logger->warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
         }
     }
 

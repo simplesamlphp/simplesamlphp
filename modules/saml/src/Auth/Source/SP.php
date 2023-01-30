@@ -28,6 +28,13 @@ use SimpleSAML\Utils;
 class SP extends \SimpleSAML\Auth\Source
 {
     /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * The entity ID of this SP.
      *
      * @var string
@@ -117,6 +124,7 @@ class SP extends \SimpleSAML\Auth\Source
             'proxymode.passAuthnContextClassRef',
             false
         );
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -369,7 +377,7 @@ class SP extends \SimpleSAML\Auth\Source
                     ];
                     break;
                 default:
-                    Logger::warning('Unknown acs.Binding value specified, ignoring: ' . $service);
+                    $this->logger->warning('Unknown acs.Binding value specified, ignoring: ' . $service);
                     continue 2;
             }
             $acs['index'] = $index;
@@ -570,7 +578,7 @@ class SP extends \SimpleSAML\Auth\Source
                 $requesterID[] = $state['core:SP'];
             }
         } else {
-            Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), true));
+            $this->logger->debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), true));
         }
 
         $ar->setRequesterID($requesterID);
@@ -595,7 +603,7 @@ class SP extends \SimpleSAML\Auth\Source
         $id = Auth\State::saveState($state, 'saml:sp:sso', true);
         $ar->setId($id);
 
-        Logger::debug(
+        $this->logger->debug(
             'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), true)
         );
 
@@ -827,7 +835,7 @@ class SP extends \SimpleSAML\Auth\Source
              * starting the authentication process again with a different IdP, or
              * cancel the current SSO attempt.
              */
-            Logger::warning(sprintf(
+            $this->logger->warning(sprintf(
                 "Reauthentication after logout is needed. The IdP '%s' is not in the IDPList "
                 . "provided by the Service Provider '%s'.",
                 $state['saml:sp:IdP'],
@@ -893,7 +901,8 @@ class SP extends \SimpleSAML\Auth\Source
      */
     public static function reauthLogout(array $state): void
     {
-        Logger::debug('Proxy: logging the user out before re-authentication.');
+        $logger = Logger::getInstance();
+        $logger->debug('Proxy: logging the user out before re-authentication.');
 
         if (isset($state['Responder'])) {
             $state['saml:proxy:reauthLogout:PrevResponder'] = $state['Responder'];
@@ -938,7 +947,8 @@ class SP extends \SimpleSAML\Auth\Source
     {
         Assert::keyExists($state, 'saml:sp:AuthId');
 
-        Logger::debug('Proxy: logout completed.');
+        $logger = Logger::getInstance();
+        $logger->debug('Proxy: logout completed.');
 
         if (isset($state['saml:proxy:reauthLogout:PrevResponder'])) {
             $state['Responder'] = $state['saml:proxy:reauthLogout:PrevResponder'];
@@ -947,7 +957,7 @@ class SP extends \SimpleSAML\Auth\Source
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $sp */
         $sp = Auth\Source::getById($state['saml:sp:AuthId'], Module\saml\Auth\Source\SP::class);
 
-        Logger::debug('Proxy: logging in again.');
+        $logger->debug('Proxy: logging in again.');
         $sp->authenticate($state);
         Assert::true(false);
     }
@@ -982,7 +992,7 @@ class SP extends \SimpleSAML\Auth\Source
             false
         );
         if ($endpoint === false) {
-            Logger::info('No logout endpoint for IdP ' . var_export($idp, true) . '.');
+            $this->logger->info('No logout endpoint for IdP ' . var_export($idp, true) . '.');
             return;
         }
 

@@ -28,6 +28,9 @@ class SingleLogout
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected Logger $logger;
+
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetaDataStorageHandler $mdHandler;
 
@@ -49,6 +52,7 @@ class SingleLogout
         Configuration $config
     ) {
         $this->config = $config;
+        $this->logger = Logger::getInstance();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
 
@@ -84,7 +88,7 @@ class SingleLogout
      */
     public function singleLogout(Request $request): RunnableResponse
     {
-        Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
+        $this->logger->info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
@@ -117,7 +121,7 @@ class SingleLogout
      */
     public function initSingleLogout(Request $request): RunnableResponse
     {
-        Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
+        $this->logger->info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);

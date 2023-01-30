@@ -65,7 +65,8 @@ class PersistentNameID2TargetedID extends ProcessingFilter
     public function process(array &$state): void
     {
         if (!isset($state['saml:NameID'][Constants::NAMEID_PERSISTENT])) {
-            Logger::warning(
+            $logger = Logger::getInstance();
+            $logger->warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'
             );
             return;

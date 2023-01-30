@@ -24,6 +24,13 @@ use Symfony\Component\HttpFoundation\File\File;
 class Localization
 {
     /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * The configuration to use.
      *
      * @var \SimpleSAML\Configuration
@@ -87,6 +94,7 @@ class Localization
     {
         $this->fileSystem = new Filesystem();
         $this->configuration = $configuration;
+        $this->logger = Logger::getInstance();
         /** @var string $locales */
         $locales = $this->configuration->resolvePath('locales');
         $this->localeDir = $locales;
@@ -159,7 +167,7 @@ class Localization
     public function addDomain(string $localeDir, string $domain): void
     {
         $this->localeDomainMap[$domain] = $localeDir;
-        Logger::debug("Localization: load domain '$domain' at '$localeDir'");
+        $this->logger->debug("Localization: load domain '$domain' at '$localeDir'");
         $this->loadGettextGettextFromPO($domain);
     }
 
@@ -178,7 +186,7 @@ class Localization
         $langcode = $langcode[0];
         $localeDir = $this->localeDomainMap[$domain];
         $langPath = $localeDir . '/' . $langcode . '/LC_MESSAGES/';
-        Logger::debug("Trying langpath for '$langcode' as '$langPath'");
+        $this->logger->debug("Trying langpath for '$langcode' as '$langPath'");
         if (is_dir($langPath) && is_readable($langPath)) {
             return $langPath;
         }
@@ -187,7 +195,7 @@ class Localization
         $alias = $this->language->getLanguageCodeAlias($langcode);
         if (isset($alias)) {
             $langPath = $localeDir . '/' . $alias . '/LC_MESSAGES/';
-            Logger::debug("Trying langpath for alternative '$alias' as '$langPath'");
+            $this->logger->debug("Trying langpath for alternative '$alias' as '$langPath'");
             if (is_dir($langPath) && is_readable($langPath)) {
                 return $langPath;
             }
@@ -200,13 +208,13 @@ class Localization
             // Report that the localization for the preferred language is missing
             $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '" .
                 $defLangcode . "'";
-            Logger::info($_SERVER['PHP_SELF'] . ' - ' . $error);
+            $this->logger->info($_SERVER['PHP_SELF'] . ' - ' . $error);
             return $langPath;
         }
 
         // Locale for default language missing even, error out
         $error = "Localization directory '$langPath' missing/broken for langcode '$langcode' and domain '$domain'";
-        Logger::info($_SERVER['PHP_SELF'] . ' - ' . $error);
+        $this->logger->info($_SERVER['PHP_SELF'] . ' - ' . $error);
         throw new Exception($error);
     }
 
@@ -240,7 +248,7 @@ class Localization
             $langPath = $this->getLangPath($domain);
         } catch (Exception $e) {
             $error = "Something went wrong when trying to get path to language file, cannot load domain '$domain'.";
-            Logger::debug($_SERVER['PHP_SELF'] . ' - ' . $error);
+            $this->logger->debug($_SERVER['PHP_SELF'] . ' - ' . $error);
             if ($catchException) {
                 // bail out!
                 return;
@@ -257,7 +265,7 @@ class Localization
                 $arrayGenerator->generateArray($translations)
             );
         } else {
-            Logger::debug(sprintf(
+            $this->logger->debug(sprintf(
                 "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
                 $_SERVER['PHP_SELF'],
                 $file->getfileName(),

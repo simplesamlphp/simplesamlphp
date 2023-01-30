@@ -21,6 +21,13 @@ use Throwable;
 class Exception extends \Exception
 {
     /**
+     * The Logger to use.
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * The backtrace for this exception.
      *
      * We need to save the backtrace, since we cannot rely on
@@ -53,6 +60,7 @@ class Exception extends \Exception
         parent::__construct($message, $code);
 
         $this->initBacktrace($this);
+        $this->logger = Logger::getInstance();
 
         if ($cause !== null) {
             $this->cause = Exception::fromException($cause);
@@ -239,7 +247,7 @@ class Exception extends \Exception
      */
     public function logError(): void
     {
-        Logger::error($this->getClass() . ': ' . $this->getMessage());
+        $this->logger->error($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(LogLevel::ERROR);
     }
 
@@ -251,7 +259,7 @@ class Exception extends \Exception
      */
     public function logWarning(): void
     {
-        Logger::warning($this->getClass() . ': ' . $this->getMessage());
+        $this->logger->warning($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(LogLevel::WARNING);
     }
 
@@ -263,7 +271,7 @@ class Exception extends \Exception
      */
     public function logInfo(): void
     {
-        Logger::info($this->getClass() . ': ' . $this->getMessage());
+        $this->logger->info($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(LogLevel::INFO);
     }
 
@@ -275,7 +283,7 @@ class Exception extends \Exception
      */
     public function logDebug(): void
     {
-        Logger::debug($this->getClass() . ': ' . $this->getMessage());
+        $this->logger->debug($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(LogLevel::DEBUG);
     }
 

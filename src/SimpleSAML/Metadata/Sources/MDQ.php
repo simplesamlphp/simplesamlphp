@@ -34,6 +34,9 @@ use function urlencode;
 
 class MDQ extends MetaDataStorageSource
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * The URL of MDQ server (url:port)
      *
@@ -103,6 +106,8 @@ class MDQ extends MetaDataStorageSource
         } else {
             $this->cacheLength = 86400;
         }
+
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -164,14 +169,14 @@ class MDQ extends MetaDataStorageSource
         if (!$file->isReadable()) {
             throw new Exception(sprintf('%s: could not read cache file for entity [%s]', strval($file), __CLASS__));
         }
-        Logger::debug(sprintf('%s: reading cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
+        $this->logger->debug(sprintf('%s: reading cache [%s] => [%s]', __CLASS__, $entityId, strval($file)));
 
         /* Ensure that this metadata isn't older that the cachelength option allows. This
          * must be verified based on the file, since this option may be changed after the
          * file is written.
          */
         if (($file->getMtime() + $this->cacheLength) <= time()) {
-            Logger::debug(sprintf('%s: cache file older that the cachelength option allows.', __CLASS__));
+            $this->logger->debug(sprintf('%s: cache file older that the cachelength option allows.', __CLASS__));
             $this->fileSystem->remove($cacheFileName);
             return null;
         }
@@ -220,7 +225,7 @@ class MDQ extends MetaDataStorageSource
 
         $cacheFileName = $this->getCacheFilename($set, $entityId);
 
-        Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
+        $this->debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
         /** @psalm-suppress TooManyArguments */
         $this->fileSystem->appendToFile($cacheFileName, serialize($data), true);
@@ -246,7 +251,8 @@ class MDQ extends MetaDataStorageSource
             case 'attributeauthority-remote':
                 return $entity->getAttributeAuthorities();
             default:
-                Logger::warning(sprintf('%s: unknown metadata set: \'%s\'.', __CLASS__, $set));
+                $logger = Logger::getInstance();
+                $logger->warning(sprintf('%s: unknown metadata set: \'%s\'.', __CLASS__, $set));
         }
 
         return null;
@@ -273,13 +279,13 @@ class MDQ extends MetaDataStorageSource
      */
     public function getMetaData(string $entityId, string $set): ?array
     {
-        Logger::info(sprintf('%s: loading metadata entity [%s] from [%s]', __CLASS__, $entityId, $set));
+        $this->logger->info(sprintf('%s: loading metadata entity [%s] from [%s]', __CLASS__, $entityId, $set));
 
         // read from cache if possible
         try {
             $data = $this->getFromCache($set, $entityId);
         } catch (Exception $e) {
-            Logger::error($e->getMessage());
+            $this->logger->error($e->getMessage());
             // proceed with fetching metadata even if the cache is broken
             $data = null;
         }
@@ -290,7 +296,7 @@ class MDQ extends MetaDataStorageSource
                 $data = null;
             } else {
                 // metadata found in cache and not expired
-                Logger::debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));
+                $this->logger->debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));
                 return $data;
             }
         }
@@ -298,7 +304,7 @@ class MDQ extends MetaDataStorageSource
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
         $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
-        Logger::debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
+        $this->logger->debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
         $httpUtils = new Utils\HTTP();
         try {
             $xmldata = $httpUtils->fetch($mdq_url);
@@ -309,7 +315,7 @@ class MDQ extends MetaDataStorageSource
 
         if (empty($xmldata)) {
             $error = error_get_last();
-            Logger::info(sprintf(
+            $this->logger->info(sprintf(
                 'Unable to fetch metadata for "%s" from %s: %s',
                 $entityId,
                 $mdq_url,
@@ -320,14 +326,14 @@ class MDQ extends MetaDataStorageSource
 
         /** @var string $xmldata */
         $entity = SAMLParser::parseString($xmldata);
-        Logger::debug(sprintf('%s: completed parsing of [%s]', __CLASS__, $mdq_url));
+        $this->logger->debug(sprintf('%s: completed parsing of [%s]', __CLASS__, $mdq_url));
 
         if (!empty($this->validateCertificate)) {
             if (!$entity->validateSignature($this->validateCertificate)) {
                 throw new Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $entityId . '".');
             }
         } else {
-            Logger::notice('Not verifying MDQ metadata signature because no certificates were configured.');
+            $this->logger->notice('Not verifying MDQ metadata signature because no certificates were configured.');
         }
 
         $data = self::getParsedSet($entity, $set);
@@ -341,7 +347,7 @@ class MDQ extends MetaDataStorageSource
             $this->writeToCache($set, $entityId, $data);
         } catch (Exception $e) {
             // Proceed without writing to cache
-            Logger::error(sprintf('Error writing MDQ result to cache: %s', $e->getMessage()));
+            $this->logger->error(sprintf('Error writing MDQ result to cache: %s', $e->getMessage()));
         }
 
         return $data;

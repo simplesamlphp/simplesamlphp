@@ -41,6 +41,9 @@ class Logout
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected Logger $logger;
+
     /**
      * @var \SimpleSAML\Auth\State|string
      * @psalm-var \SimpleSAML\Auth\State|class-string
@@ -59,6 +62,7 @@ class Logout
         Configuration $config
     ) {
         $this->config = $config;
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -132,12 +136,12 @@ class Logout
         $associations = $idp->getAssociations();
 
         if (!$request->query->has('cancel')) {
-            Logger::stats('slo-iframe done');
+            $this->logger->stats('slo-iframe done');
             Stats::log('core:idp:logout-iframe:page', ['type' => 'done']);
             $SPs = $state['core:Logout-IFrame:Associations'];
         } else {
             // user skipped global logout
-            Logger::stats('slo-iframe skip');
+            $this->logger->stats('slo-iframe skip');
             Stats::log('core:idp:logout-iframe:page', ['type' => 'skip']);
             $SPs = []; // no SPs should have been logged out
             $state['core:Failed'] = true; // mark as partial logout
@@ -165,13 +169,13 @@ class Logout
             if ($sp['core:Logout-IFrame:State'] === 'completed') {
                 $idp->terminateAssociation($assocId);
             } else {
-                Logger::warning('Unable to terminate association with ' . var_export($assocId, true) . '.');
+                $this->logger->warning('Unable to terminate association with ' . var_export($assocId, true) . '.');
                 if (isset($sp['saml:entityID'])) {
                     $spId = $sp['saml:entityID'];
                 } else {
                     $spId = $assocId;
                 }
-                Logger::stats('slo-iframe-fail ' . $spId);
+                $this->logger->stats('slo-iframe-fail ' . $spId);
                 Stats::log('core:idp:logout-iframe:spfail', ['sp' => $spId]);
                 $state['core:Failed'] = true;
             }
@@ -268,7 +272,7 @@ class Logout
         }
 
         if ($type !== 'embed') {
-            Logger::stats('slo-iframe ' . $type);
+            $this->logger->stats('slo-iframe ' . $type);
             Stats::log('core:idp:logout-iframe:page', ['type' => $type]);
         }
 

@@ -31,6 +31,13 @@ use SimpleSAML\Utils;
 class ExpectedAuthnContextClassRef extends ProcessingFilter
 {
     /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * Array of accepted AuthnContextClassRef
      * @var array
      */
@@ -56,8 +63,9 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
+        $this->logger = Logger::getInstance();
         if (empty($config['accepted'])) {
-            Logger::error(
+            $logger->error(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
             );
             throw new Error\Exception(
@@ -97,7 +105,7 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
      */
     protected function unauthorized(array &$state): void
     {
-        Logger::error(
+        $this->logger->error(
             'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .
             '. Accepted values are: ' . var_export($this->accepted, true)
         );

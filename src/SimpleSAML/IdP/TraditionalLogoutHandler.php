@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
@@ -26,6 +27,9 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      */
     private IDP $idp;
 
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
 
     /**
      * TraditionalLogout constructor.
@@ -35,6 +39,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     public function __construct(IdP $idp)
     {
         $this->idp = $idp;
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -55,15 +60,15 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $relayState = Auth\State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
-        Logger::info('Logging out of ' . var_export($id, true) . '.');
+        $this->logger->info('Logging out of ' . var_export($id, true) . '.');
 
         try {
             $idp = IdP::getByState($association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
             $httpUtils = new Utils\HTTP();
             $httpUtils->redirectTrustedURL($url);
-        } catch (\Exception $e) {
-            Logger::warning('Unable to initialize logout to ' . var_export($id, true) . '.');
+        } catch (Exception $e) {
+            $this->logger->warning('Unable to initialize logout to ' . var_export($id, true) . '.');
             $this->idp->terminateAssociation($id);
             $state['core:Failed'] = true;
 
@@ -110,10 +115,10 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $state = Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
-            Logger::info('Logged out of ' . var_export($assocId, true) . '.');
+            $this->logger->info('Logged out of ' . var_export($assocId, true) . '.');
             $this->idp->terminateAssociation($assocId);
         } else {
-            Logger::warning('Error received from ' . var_export($assocId, true) . ' during logout:');
+            $this->logger->warning('Error received from ' . var_export($assocId, true) . ' during logout:');
             $error->logWarning();
             $state['core:Failed'] = true;
         }

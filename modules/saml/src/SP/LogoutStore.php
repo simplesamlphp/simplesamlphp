@@ -71,7 +71,8 @@ class LogoutStore
      */
     private static function cleanLogoutStore(Store\SQLStore $store): void
     {
-        Logger::debug('saml.LogoutStore: Cleaning logout store.');
+        $logger = Logger::getInstance();
+        $logger->debug('saml.LogoutStore: Cleaning logout store.');
 
         $query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
         $params = ['now' => gmdate('Y-m-d H:i:s')];
@@ -285,9 +286,10 @@ class LogoutStore
         }
 
         $numLoggedOut = 0;
+        $logger = Logger::getInstance();
         foreach ($sessionIndexes as $sessionIndex) {
             if (!isset($sessions[$sessionIndex])) {
-                Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
+                $logger->info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
                 continue;
             }
 
@@ -295,18 +297,18 @@ class LogoutStore
 
             $session = Session::getSession($sessionId);
             if ($session === null) {
-                Logger::info('saml.LogoutStore: Skipping logout of missing session.');
+                $logger->info('saml.LogoutStore: Skipping logout of missing session.');
                 continue;
             }
 
             if (!$session->isValid($authId)) {
-                Logger::info(
+                $logger->info(
                     'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.'
                 );
                 continue;
             }
 
-            Logger::info(
+            $logger->info(
                 'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].'
             );
             $session->doLogout($authId);

@@ -18,6 +18,9 @@ use SimpleSAML\Utils;
 
 class SessionHandlerPHP extends SessionHandler
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * This variable contains the session cookie name.
      *
@@ -48,6 +51,7 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
+        $this->logger = Logger::getInstance();
         $this->cookie_name = $config->getOptionalString(
             'session.phpsession.cookiename',
             ini_get('session.name') ?: 'PHPSESSID'
@@ -55,7 +59,7 @@ class SessionHandlerPHP extends SessionHandler
 
         if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name) {
-                Logger::warning(
+                $this->logger->warning(
                     'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the ' .
                     "'session.phpsession.cookiename' configuration option is not set. Make sure to set " .
                     "SimpleSAMLphp's cookie name with a value not used by any other applications."
@@ -150,14 +154,14 @@ class SessionHandlerPHP extends SessionHandler
             $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
             if (($sid_length * $sid_bits_per_char) < 128) {
-                Logger::warning("Unsafe defaults used for sessionId generation!");
+                $this->logger->warning("Unsafe defaults used for sessionId generation!");
             }
 
             $sessionId = session_create_id();
         }
 
         if (!$sessionId) {
-            Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
+            $this->logger->warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
 

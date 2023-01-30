@@ -21,8 +21,15 @@ class Cron
      */
     private Configuration $cronconfig;
 
+    /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
 
-    /*
+
+    /**
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
      */
@@ -32,7 +39,9 @@ class Cron
             $cronconfig = Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
+        $this->logger = Logger::getInstance();
     }
+
 
     /**
      * Invoke the cron hook for the given tag
@@ -56,12 +65,13 @@ class Cron
         Assert::isArray($croninfo);
 
         foreach ($summary as $s) {
-            Logger::debug('Cron - Summary: ' . $s);
+            $this->logger->debug('Cron - Summary: ' . $s);
         }
 
         /** @psalm-suppress NullableReturnStatement */
         return $croninfo;
     }
+
 
     /**
      * @param string $tag

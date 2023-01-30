@@ -16,6 +16,9 @@ use SimpleSAML\Logger;
  */
 class LanguageAdaptor extends Auth\ProcessingFilter
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /** @var string */
     private string $langattr = 'preferredLanguage';
 
@@ -29,6 +32,8 @@ class LanguageAdaptor extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
+
+        $this->logger = Logger::getInstance();
 
         if (array_key_exists('attributename', $config)) {
             $this->langattr = $config['attributename'];
@@ -57,10 +62,10 @@ class LanguageAdaptor extends Auth\ProcessingFilter
         $lang = Language::getLanguageCookie();
 
         if (isset($attrlang)) {
-            Logger::debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
+            $this->logger->debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
         }
         if (isset($lang)) {
-            Logger::debug('LanguageAdaptor: Language in session was set [' . $lang . ']');
+            $this->logger->debug('LanguageAdaptor: Language in session was set [' . $lang . ']');
         }
 
         if (isset($attrlang) && !isset($lang)) {

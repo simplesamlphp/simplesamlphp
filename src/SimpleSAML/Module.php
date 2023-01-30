@@ -205,6 +205,7 @@ class Module
         }
 
         $config = Configuration::getInstance();
+        $logger = Logger::getInstance();
 
         // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to.
         // This is needed for server aliases and rewrites
@@ -282,7 +283,7 @@ class Module
 
         if (!$fileSystem->exists($path)) {
             // file not found
-            Logger::info('Could not find file \'' . $path . '\'.');
+            $logger->info('Could not find file \'' . $path . '\'.');
             throw new Error\NotFound("The URL wasn't found in the module.");
         }
 
@@ -322,7 +323,7 @@ class Module
                 $contentType = mime_content_type($path);
             } else {
                 // mime_content_type doesn't exist. Return a default MIME type
-                Logger::warning('Unable to determine mime content type of file: ' . $path);
+                $logger->warning('Unable to determine mime content type of file: ' . $path);
                 $contentType = 'application/octet-stream';
             }
         }

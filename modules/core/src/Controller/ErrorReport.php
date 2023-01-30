@@ -31,6 +31,9 @@ class ErrorReport
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected Logger $logger;
+
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
@@ -48,6 +51,7 @@ class ErrorReport
         Session $session
     ) {
         $this->config = $config;
+        $this->logger = Logger::getInstance();
         $this->session = $session;
     }
 
@@ -77,7 +81,7 @@ class ErrorReport
             $data = $this->session->getData('core:errorreport', $reportId);
         } catch (Exception $e) {
             $data = null;
-            Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
+            $this->logger->error('Error loading error report data: ' . var_export($e->getMessage(), true));
         }
 
         if ($data === null) {
@@ -107,7 +111,7 @@ class ErrorReport
             }
             $mail->setText($text);
             $mail->send();
-            Logger::error('Report with id ' . $reportId . ' sent');
+            $this->logger->error('Report with id ' . $reportId . ' sent');
         }
 
         // redirect the user back to this page to clear the POST request

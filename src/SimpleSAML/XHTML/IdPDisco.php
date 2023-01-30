@@ -44,6 +44,11 @@ class IdPDisco
     protected Configuration $config;
 
     /**
+     * @var \SimpleSAML\Logger
+     */
+    protected Logger $logger;
+
+    /**
      * The identifier of this discovery service.
      *
      * @var string
@@ -132,6 +137,7 @@ class IdPDisco
     {
         // initialize standard classes
         $this->config = Configuration::getInstance();
+        $this->logger = Logger::getInstance();
         $this->metadata = MetaDataStorageHandler::getMetadataHandler();
         $this->session = Session::getSessionFromRequest();
         $this->instance = $instance;
@@ -189,7 +195,7 @@ class IdPDisco
      */
     protected function log(string $message): void
     {
-        Logger::info('idpDisco.' . $this->instance . ': ' . $message);
+        $this->logger->info('idpDisco.' . $this->instance . ': ' . $message);
     }
 
 

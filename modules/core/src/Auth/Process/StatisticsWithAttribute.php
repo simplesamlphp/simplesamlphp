@@ -16,6 +16,9 @@ use SimpleSAML\Logger;
  */
 class StatisticsWithAttribute extends Auth\ProcessingFilter
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * The attribute to log
      * @var string|null
@@ -42,6 +45,8 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
+
+        $this->logger = Logger::getInstance();
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -92,10 +97,10 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            Logger::stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
+            $this->logger->stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
         }
 
-        Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
+        $this->logger->stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
     }
 
 

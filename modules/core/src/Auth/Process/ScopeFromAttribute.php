@@ -28,6 +28,13 @@ use SimpleSAML\Logger;
 class ScopeFromAttribute extends Auth\ProcessingFilter
 {
     /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * The attribute where the scope is taken from
      *
      * @var string
@@ -52,6 +59,7 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
+        $this->logger = Logger::getInstance();
         $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
         $this->sourceAttribute = $cfg->getString('sourceAttribute');
@@ -88,11 +96,11 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
             $attributes[$this->targetAttribute] = [];
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
-            Logger::debug(
+            $this->logger->debug(
                 'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope
             );
         } else {
-            Logger::warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
+            $this->logger->warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
                 . ' does not have a scope. Did not add attribute ' . $this->targetAttribute . '.');
         }
     }

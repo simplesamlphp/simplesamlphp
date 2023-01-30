@@ -33,6 +33,9 @@ class WebBrowserSingleSignOn
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected Logger $logger;
+
 
     /**
      * Controller constructor.
@@ -45,6 +48,7 @@ class WebBrowserSingleSignOn
         Configuration $config
     ) {
         $this->config = $config;
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -122,7 +126,7 @@ class WebBrowserSingleSignOn
      */
     public function singleSignOnService(): RunnableResponse
     {
-        Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
+        $logger->info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);

@@ -25,6 +25,9 @@ class SQLStore implements StoreInterface
      */
     public PDO $pdo;
 
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * Our database driver.
      *
@@ -65,8 +68,8 @@ class SQLStore implements StoreInterface
             throw new Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $this->logger = Logger::getInstance();
 
         if ($this->driver === 'mysql') {
             $this->pdo->exec('SET time_zone = "+00:00"');
@@ -242,7 +245,7 @@ class SQLStore implements StoreInterface
      */
     private function cleanKVStore(): void
     {
-        Logger::debug('store.sql: Cleaning key-value store.');
+        $this->logger->debug('store.sql: Cleaning key-value store.');
 
         $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _expire < :now';
         $params = ['now' => gmdate('Y-m-d H:i:s')];

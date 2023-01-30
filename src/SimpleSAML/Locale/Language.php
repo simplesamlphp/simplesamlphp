@@ -18,6 +18,13 @@ use SimpleSAML\Utils;
 class Language
 {
     /**
+     * The Logger to use
+     *
+     * @var \SimpleSAML\Logger
+     */
+    private Logger $logger;
+
+    /**
      * This is the default language map. It is used to map languages codes from the user agent to other language codes.
      * @var array<string, string>
      */
@@ -153,11 +160,13 @@ class Language
     public function __construct(Configuration $configuration)
     {
         $this->configuration = $configuration;
+        $this->logger = Logger::getInstance();
         $this->availableLanguages = $this->getInstalledLanguages();
         $this->defaultLanguage = $this->configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
         $this->languageParameterName = $this->configuration->getOptionalString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getOptionalArray('language.get_language_function', null);
         $this->rtlLanguages = $this->configuration->getOptionalArray('language.rtl', []);
+
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
@@ -183,7 +192,7 @@ class Language
             if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
                 $availableLanguages[] = $code;
             } else {
-                Logger::error("Language \"$code\" not installed. Check config.");
+                $this->logger->error("Language \"$code\" not installed. Check config.");
             }
         }
         return $availableLanguages;
@@ -277,7 +286,7 @@ class Language
         if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
             return self::$language_names[$code];
         }
-        Logger::error("Name for language \"$code\" not found. Check config.");
+        $this->logger->error("Name for language \"$code\" not found. Check config.");
         return null;
     }
 

@@ -52,6 +52,9 @@ class ServiceProvider
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Logger */
+    protected Logger $logger;
+
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
@@ -78,6 +81,7 @@ class ServiceProvider
         Session $session
     ) {
         $this->config = $config;
+        $this->logger = Logger::getInstance();
         $this->session = $session;
         $this->authUtils = new Utils\Auth();
     }
@@ -240,7 +244,7 @@ class ServiceProvider
              * In that case we may as well just redo the previous redirect
              * instead of displaying a confusing error message.
              */
-            Logger::info(sprintf(
+            $this->logger->info(sprintf(
                 '%s - %s',
                 'Duplicate SAML 2 response detected',
                 'ignoring the response and redirecting the user to the correct page.'
@@ -249,7 +253,7 @@ class ServiceProvider
                 return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
             }
 
-            Logger::info('No RelayState or ReturnURL available, cannot redirect.');
+            $this->logger->info('No RelayState or ReturnURL available, cannot redirect.');
             throw new Error\Exception('Duplicate assertion received.');
         }
 
@@ -263,7 +267,7 @@ class ServiceProvider
                 $state = $this->authState::loadState($stateId, 'saml:sp:sso');
             } catch (Exception $e) {
                 // something went wrong,
-                Logger::warning(sprintf(
+                $this->logger->warning(sprintf(
                     'Could not load state specified by InResponseTo: %s Processing response as unsolicited.',
                     $e->getMessage(),
                 ));
@@ -291,7 +295,7 @@ class ServiceProvider
                 $idpMetadata = $source->getIdPMetadata($issuer);
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-                    Logger::warning(
+                    $this->logger->warning(
                         'The issuer of the response not match to the identity provider we sent the request to.'
                     );
                 }
@@ -306,7 +310,7 @@ class ServiceProvider
             ];
         }
 
-        Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
+        $this->logger->debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
             $idpMetadata = $source->getIdPmetadata($issuer);
@@ -509,7 +513,7 @@ class ServiceProvider
             }
 
             if (!$message->isSuccess()) {
-                Logger::warning(
+                $this->logger->warning(
                     'Unsuccessful logout. Status was: ' . Module\saml\Message::getResponseError($message)
                 );
             }
@@ -518,8 +522,8 @@ class ServiceProvider
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
             return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
         } elseif ($message instanceof LogoutRequest) {
-            Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
-            Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
+            $this->logger->debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
+            $this->logger->stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
             if ($message->isNameIdEncrypted()) {
                 try {
@@ -534,11 +538,11 @@ class ServiceProvider
                 foreach ($keys as $i => $key) {
                     try {
                         $message->decryptNameId($key, $blacklist);
-                        Logger::debug('Decryption with key #' . $i . ' succeeded.');
+                        $this->logger->debug('Decryption with key #' . $i . ' succeeded.');
                         $lastException = null;
                         break;
                     } catch (Exception $e) {
-                        Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                        $this->logger->debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                         $lastException = $e;
                     }
                 }
@@ -564,7 +568,7 @@ class ServiceProvider
             $lr->setInResponseTo($message->getId());
 
             if ($numLoggedOut < count($sessionIndexes)) {
-                Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
+                $this->logger->warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
             }
 
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(

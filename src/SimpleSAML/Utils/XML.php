@@ -13,8 +13,11 @@ namespace SimpleSAML\Utils;
 use DOMComment;
 use DOMDocument;
 use DOMElement;
+use DOMException;
 use DOMNode;
 use DOMText;
+use Exception;
+use InvalidArgumentException;
 use SAML2\Constants as C;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Assert\Assert;
@@ -25,6 +28,18 @@ use SimpleSAML\XML\Errors;
 
 class XML
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->logger = new Logger();
+    }
+
     /**
      * This function performs some sanity checks on XML documents, and optionally validates them against their schema
      * if the 'validatexml' debugging option is enabled. A warning will be printed to the log if validation fails.
@@ -44,7 +59,7 @@ class XML
     {
         $allowed_types = ['saml20', 'saml-meta'];
         if (!in_array($type, $allowed_types, true)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
+            throw new InvalidArgumentException('Invalid input parameters.');
         }
 
         // a SAML message should not contain a doctype-declaration
@@ -74,7 +89,7 @@ class XML
                 $result = $this->isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
         if (is_string($result)) {
-            Logger::warning($result);
+            $this->logger->warning($result);
         }
     }
 
@@ -97,7 +112,7 @@ class XML
     public function debugSAMLMessage($message, string $type): void
     {
         if (!(is_string($message) || $message instanceof DOMElement)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
+            throw new InvalidArgumentException('Invalid input parameters.');
         }
 
         // see if debugging is enabled for SAML messages
@@ -119,16 +134,16 @@ class XML
 
         switch ($type) {
             case 'in':
-                Logger::debug('Received message:');
+                $this->logger->debug('Received message:');
                 break;
             case 'out':
-                Logger::debug('Sending message:');
+                $this->logger->debug('Sending message:');
                 break;
             case 'decrypt':
-                Logger::debug('Decrypted message:');
+                $this->logger->debug('Decrypted message:');
                 break;
             case 'encrypt':
-                Logger::debug('Encrypted message:');
+                $this->logger->debug('Encrypted message:');
                 break;
             default:
                 Assert::true(false);
@@ -136,7 +151,7 @@ class XML
 
         $str = $this->formatXMLString($message);
         foreach (explode("\n", $str) as $line) {
-            Logger::debug($line);
+            $this->logger->debug($line);
         }
     }
 
@@ -244,8 +259,8 @@ class XML
     {
         try {
             $doc = DOMDocumentFactory::fromString($xml);
-        } catch (\Exception $e) {
-            throw new \DOMException('Error parsing XML string.');
+        } catch (Exception $e) {
+            throw new DOMException('Error parsing XML string.');
         }
 
         $root = $doc->firstChild;
@@ -293,7 +308,7 @@ class XML
 
             // check if it is a valid shortcut
             if (!array_key_exists($nsURI, $shortcuts)) {
-                throw new \InvalidArgumentException('Unknown namespace shortcut: ' . $nsURI);
+                throw new InvalidArgumentException('Unknown namespace shortcut: ' . $nsURI);
             }
 
             // expand the shortcut
@@ -326,7 +341,7 @@ class XML
     public function isValid($xml, string $schema)
     {
         if (!is_string($xml) && !($xml instanceof DOMDocument)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
+            throw new InvalidArgumentException('Invalid input parameters.');
         }
 
         Errors::begin();
@@ -338,7 +353,7 @@ class XML
             try {
                 $dom = DOMDocumentFactory::fromString($xml);
                 $res = true;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $res = false;
             }
         }

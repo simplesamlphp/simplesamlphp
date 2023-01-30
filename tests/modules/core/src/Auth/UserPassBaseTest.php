@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Module\core\Auth;
 use PHPUnit\Framework\TestCase;
 use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
 /**
@@ -60,6 +61,7 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
+        $stub->setLogger(Logger::getInstance());
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
@@ -83,6 +85,7 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
+        $stub->setLogger(Logger::getInstance());
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);

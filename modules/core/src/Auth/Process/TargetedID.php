@@ -33,6 +33,9 @@ use SimpleSAML\Utils;
  */
 class TargetedID extends Auth\ProcessingFilter
 {
+    /** @var \SimpleSAML\Logger */
+    private Logger $logger;
+
     /**
      * The attribute we should generate the targeted id from.
      *
@@ -79,6 +82,7 @@ class TargetedID extends Auth\ProcessingFilter
         }
 
         $this->configUtils = new Utils\Config();
+        $this->logger = Logger::getInstance();
     }
 
 
@@ -102,7 +106,7 @@ class TargetedID extends Auth\ProcessingFilter
     {
         Assert::keyExists($state, 'Attributes');
         if (!array_key_exists($this->identifyingAttribute, $state['Attributes'])) {
-            Logger::warning(
+            $this->logger->warning(
                 sprintf(
                     "core:TargetedID: Missing attribute '%s', which is needed to generate the TargetedID.",
                     $this->identifyingAttribute

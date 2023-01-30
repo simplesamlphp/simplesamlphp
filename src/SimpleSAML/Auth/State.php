@@ -233,7 +233,8 @@ class State
         $session = Session::getSessionFromRequest();
         $session->setData('\SimpleSAML\Auth\State', $id, $serializedState, self::getStateTimeout());
 
-        Logger::debug('Saved state: ' . var_export($return, true));
+        $logger = Logger::getInstance();
+        $logger->debug('Saved state: ' . var_export($return, true));
 
         return $return;
     }
@@ -251,14 +252,15 @@ class State
     public static function cloneState(array $state): array
     {
         $clonedState = $state;
+        $logger = Logger::getInstance();
 
         if (array_key_exists(self::ID, $state)) {
             $clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
             unset($clonedState[self::ID]);
 
-            Logger::debug('Cloned state: ' . var_export($state[self::ID], true));
+            $logger->debug('Cloned state: ' . var_export($state[self::ID], true));
         } else {
-            Logger::debug('Cloned state with undefined id.');
+            $logger->debug('Cloned state with undefined id.');
         }
 
         return $clonedState;
@@ -284,7 +286,8 @@ class State
      */
     public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {
-        Logger::debug('Loading state: ' . var_export($id, true));
+        $logger = Logger::getInstance();
+        $logger->debug('Loading state: ' . var_export($id, true));
 
         $sid = self::parseStateID($id);
 
@@ -320,7 +323,7 @@ class State
             $msg = 'Wrong stage in state. Was \'' . $state[self::STAGE] .
                 '\', should be \'' . $stage . '\'.';
 
-            Logger::warning($msg);
+            $logger->warning($msg);
 
             if ($sid['url'] === null) {
                 throw new Exception($msg);
@@ -347,7 +350,8 @@ class State
             return;
         }
 
-        Logger::debug('Deleting state: ' . var_export($state[self::ID], true));
+        $logger = Logger::getInstance();
+        $logger->debug('Deleting state: ' . var_export($state[self::ID], true));
 
         $session = Session::getSessionFromRequest();
         $session->deleteData('\SimpleSAML\Auth\State', $state[self::ID]);
