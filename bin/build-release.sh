@@ -43,11 +43,6 @@ php "$COMPOSER" config version "v$VERSION"
 # Install dependencies (without vcs history or dev tools)
 php "$COMPOSER" install --no-dev --prefer-dist -o
 
-npm install
-npm audit fix
-npx browserslist@latest --update-db
-npm run build
-
 php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"
 rm "$COMPOSER"
 echo `shasum -a 256 /tmp/$TARGET.tar.gz`
