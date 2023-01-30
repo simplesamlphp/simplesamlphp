@@ -86,7 +86,6 @@ class BasicLogger extends AbstractLogger
         $formats = ['%trackid', '%msg', '%srcip', '%stat'];
         $replacements = [$trackId, $message, $_SERVER['REMOTE_ADDR'], 'STAT'];
 
-        array_push($replacements, $stat);
         $message = str_replace($formats, $replacements, self::$format);
 
         if (in_array($level, self::$logLevels, true)) {

@@ -267,7 +267,6 @@ class MetaDataStorageHandler implements Utils\ClearableState, LoggerAwareInterfa
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         $result = [];
-        $logger = Logger::getInstance();
         $timeUtils = new Utils\Time();
 
         foreach ($this->sources as $source) {

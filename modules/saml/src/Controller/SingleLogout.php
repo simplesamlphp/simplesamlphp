@@ -11,7 +11,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger\LoggerAwareInterface;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;

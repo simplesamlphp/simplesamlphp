@@ -38,6 +38,7 @@ use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;

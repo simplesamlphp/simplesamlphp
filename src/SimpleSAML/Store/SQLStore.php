@@ -10,7 +10,7 @@ use PDOException;
 use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger\LoggerAwareInterface;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
 /**
  * A data store using a RDBMS to keep the data.
@@ -56,6 +56,7 @@ class SQLStore implements StoreInterface, LoggerAwareInterface
     public function __construct()
     {
         $config = Configuration::getInstance();
+        $this->logger = $this->getLogger();
 
         $dsn = $config->getString('store.sql.dsn');
         $username = $config->getOptionalString('store.sql.username', null);

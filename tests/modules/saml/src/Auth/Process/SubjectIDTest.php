@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use SAML2\Constants;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\saml\Auth\Process\SubjectID;
 
 /**
@@ -22,26 +23,6 @@ class SubjectIDTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Logger */
-    protected static Logger $logger;
-
-
-    /**
-     * Set up for each test.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        self::$logger = new class () extends Logger {
-            public static function warning(string $string): void
-            {
-                // stub
-                throw new RuntimeException($string);
-            }
-        };
-    }
-
 
     /**
      * Helper function to run the filter with a given configuration.
@@ -53,7 +34,7 @@ class SubjectIDTest extends TestCase
     private static function processFilter(array $config, array $request): array
     {
         $filter = new SubjectID($config, null);
-        $filter->setLogger(self::$logger);
+        $filter->setLogger(new NullLogger());
         $filter->process($request);
         return $request;
     }

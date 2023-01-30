@@ -6,6 +6,7 @@ namespace SimpleSAML\Compat;
 
 use Psr\Log\LoggerInterface;
 use SAML2\Compat\AbstractContainer;
+use SimpleSAML\Configuration;
 use SimpleSAML\Utils;
 
 class SspContainer extends AbstractContainer

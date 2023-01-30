@@ -386,7 +386,8 @@ abstract class Source implements LoggerAwareInterface
 
         $session = Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
-            $this->logger->warning(sprintf(
+            $logger = Configuration::getLogger();
+            $logger->warning(sprintf(
                 'Received logout from an invalid authentication source %s',
                 var_export($source, true)
             ));

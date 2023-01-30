@@ -39,9 +39,9 @@ use function var_export;
 class Configuration implements Utils\ClearableState
 {
     /**
-     * @var \Psr\Log\LoggerInterface|null
+     * @var \Psr\Log\LoggerInterface
      */
-    private static ?LoggerInterface $logger = null;
+    private static LoggerInterface $logger;
 
     /**
      * The release version of this package
@@ -130,14 +130,18 @@ class Configuration implements Utils\ClearableState
 
         // Pull the logger from the configuration
         $logger = $config->getOptionalString('logger', null);
-        Assert::nullOrImplementsInterface($logger, LoggerInterface::class);
 
         if ($logger === null) {
             $logger = new BasicLogger();
+        } else {
+            /** @psalm-var \Psr\Log\LoggerInterface $logger */
+            $logger = new $logger();
         }
 
+        Assert::nullOrImplementsInterface($logger, LoggerInterface::class);
+
         self::$logger = $logger;
-        return self::$logger;
+        return $logger;
     }
 
 

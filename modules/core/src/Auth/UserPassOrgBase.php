@@ -297,7 +297,7 @@ abstract class UserPassOrgBase extends Auth\Source
         }
 
         /* Attempt to log in. */
-        $logger = Configuration::getLogegr();
+        $logger = Configuration::getLogger();
         try {
             $attributes = $source->login($username, $password, $organization);
         } catch (Exception $e) {

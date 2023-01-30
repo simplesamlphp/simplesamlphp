@@ -301,7 +301,7 @@ abstract class UserPassBase extends Auth\Source
          */
 
         // Attempt to log in
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         try {
             $attributes = $source->login($username, $password);
         } catch (Exception $e) {

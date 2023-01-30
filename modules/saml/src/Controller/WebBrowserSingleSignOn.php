@@ -126,7 +126,7 @@ class WebBrowserSingleSignOn implements LoggerAwareInterface
      */
     public function singleSignOnService(): RunnableResponse
     {
-        $logger->info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
+        $this->logger->info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);

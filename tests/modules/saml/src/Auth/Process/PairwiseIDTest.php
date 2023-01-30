@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use SAML2\Constants;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
 
 /**
@@ -24,9 +25,6 @@ class PairwiseIDTest extends TestCase
 
     /** @var \SimpleSAML\Utils\Config */
     protected static Utils\Config $configUtils;
-
-    /** @var \SimpleSAML\Logger */
-    protected static Logger $logger;
 
 
     /**
@@ -43,14 +41,6 @@ class PairwiseIDTest extends TestCase
                 return 'secretsalt';
             }
         };
-
-        self::$logger = new class () extends Logger {
-            public static function warning(string $string): void
-            {
-                // stub
-                throw new RuntimeException($string);
-            }
-        };
     }
 
 
@@ -65,7 +55,7 @@ class PairwiseIDTest extends TestCase
     {
         $filter = new PairwiseID($config, null);
         $filter->setConfigUtils(self::$configUtils);
-        $filter->setLogger(self::$logger);
+        $filter->setLogger(new NullLogger());
         $filter->process($request);
         return $request;
     }

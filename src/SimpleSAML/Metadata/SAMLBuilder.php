@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
-use Psr\Loger\LoggerAwareInterface;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Constants;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;

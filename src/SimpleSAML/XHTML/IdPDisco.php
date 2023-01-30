@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggerAwareTrait;

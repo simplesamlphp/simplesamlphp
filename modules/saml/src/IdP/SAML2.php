@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use DOMNodeList;
 use Exception;
+use Psr\Log\LogLevel;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
@@ -270,7 +271,7 @@ class SAML2
             }
         }
 
-        $logger = Configuration::getLogger()
+        $logger = Configuration::getLogger();
         if (($AssertionConsumerServiceURL !== null) && ($skipEndpointValidation === true)) {
             $logger->info(
                 'AssertionConsumerService specified in AuthnRequest not in metadata, ' .

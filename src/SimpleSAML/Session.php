@@ -399,7 +399,7 @@ class Session implements Utils\ClearableState
      */
     private static function load(Session $session): Session
     {
-        $logger = Configurationg::getLogger();
+        $logger = Configuration::getLogger();
         $logger->setTrackId($session->getTrackID());
         self::$instance = $session;
         return self::$instance;

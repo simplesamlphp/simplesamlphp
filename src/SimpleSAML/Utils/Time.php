@@ -10,18 +10,30 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
-class Time
+class Time implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * Whether the timezone has been initialized or not.
      *
      * @var bool
      */
     private static bool $tz_initialized = false;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->logger = $this->getLogger();
+    }
 
 
     /**
@@ -66,9 +78,9 @@ class Time
         }
         // we don't have a timezone configured
 
-        Logger::maskErrors(E_ALL);
+        $this->logger::maskErrors(E_ALL);
         $serverTimezone = date_default_timezone_get();
-        Logger::popErrorMask();
+        $this->logger::popErrorMask();
 
         // set the timezone to the default
         date_default_timezone_set($serverTimezone);
