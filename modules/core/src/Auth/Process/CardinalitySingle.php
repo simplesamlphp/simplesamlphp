@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -20,9 +19,6 @@ use SimpleSAML\Utils;
  */
 class CardinalitySingle extends Auth\ProcessingFilter
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
-
     /** @var array Attributes that should be single-valued or we generate an error */
     private array $singleValued = [];
 
@@ -54,8 +50,6 @@ class CardinalitySingle extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         $this->httpUtils = $httpUtils ?: new Utils\HTTP();
-        $this->logger = Logger::getInstance();
-
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
         }

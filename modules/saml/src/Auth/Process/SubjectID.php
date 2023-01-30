@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 use SAML2\Constants;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Logger};
+use SimpleSAML\Auth;
 
 /**
  * Filter to generate the subject ID attribute.
@@ -75,12 +75,6 @@ class SubjectID extends Auth\ProcessingFilter
      * @var string
      */
     protected string $scopeAttribute;
-
-    /**
-     * @var \SimpleSAML\Logger|string
-     * @psalm-var \SimpleSAML\Logger|class-string
-     */
-    protected $logger = Logger::class;
 
 
     /**

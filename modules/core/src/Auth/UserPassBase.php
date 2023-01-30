@@ -10,7 +10,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -33,13 +32,6 @@ abstract class UserPassBase extends Auth\Source
      * The key of the AuthId field in the state.
      */
     public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
-
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
 
     /**
      * Username we should force.
@@ -109,12 +101,12 @@ abstract class UserPassBase extends Auth\Source
      */
     public function __construct(array $info, array &$config)
     {
+        // Call the parent constructor first, as required by the interface
+        parent::__construct($info, $config);
+
         if (isset($config['core:loginpage_links'])) {
             $this->loginLinks = $config['core:loginpage_links'];
         }
-
-        // Call the parent constructor first, as required by the interface
-        parent::__construct($info, $config);
 
         // Get the remember username config options
         if (isset($config['remember.username.enabled'])) {
@@ -130,19 +122,6 @@ abstract class UserPassBase extends Auth\Source
         $sspcnf = Configuration::getInstance();
         $this->rememberMeEnabled = $sspcnf->getOptionalBoolean('session.rememberme.enable', false);
         $this->rememberMeChecked = $sspcnf->getOptionalBoolean('session.rememberme.checked', false);
-
-        $this->logger = Logger::getInstance();
-    }
-
-
-    /**
-     * Set Logger.
-     *
-     * @param \SimpleSAML\Logger $logger  The Logger
-     */
-    public function setLogger(Logger $logger): void
-    {
-        $this->logger = $logger;
     }
 
 

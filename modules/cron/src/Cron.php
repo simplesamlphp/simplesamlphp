@@ -5,28 +5,25 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 
 /**
  * Handles interactions with SSP's cron system/hooks.
  */
-class Cron
+class Cron implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+
     /**
      * The configuration for the Cron module
      * @var \SimpleSAML\Configuration
      */
     private Configuration $cronconfig;
-
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
 
 
     /**
@@ -39,7 +36,7 @@ class Cron
             $cronconfig = Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
     }
 
 

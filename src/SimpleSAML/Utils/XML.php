@@ -18,18 +18,18 @@ use DOMNode;
 use DOMText;
 use Exception;
 use InvalidArgumentException;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Constants as C;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\XML\Errors;
 
-class XML
+class XML implements LoggerAwareInterface
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
+    use LoggerAwareTrait;
 
 
     /**
@@ -37,7 +37,7 @@ class XML
      */
     public function __construct()
     {
-        $this->logger = new Logger();
+        $this->logger = $this->getLogger();
     }
 
     /**

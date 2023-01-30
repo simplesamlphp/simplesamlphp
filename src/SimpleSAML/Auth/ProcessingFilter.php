@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
 /**
  * Base class for authentication processing filters.
@@ -23,8 +25,10 @@ use SimpleSAML\Assert\Assert;
  * @package SimpleSAMLphp
  */
 
-abstract class ProcessingFilter
+abstract class ProcessingFilter implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * Priority of this filter.
      *
@@ -48,6 +52,7 @@ abstract class ProcessingFilter
      */
     public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
     {
+        $this->logger = $this->getLogger();
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             unset($config['%priority']);

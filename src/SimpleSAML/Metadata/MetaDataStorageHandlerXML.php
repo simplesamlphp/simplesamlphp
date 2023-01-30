@@ -36,6 +36,8 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
+        parent::__construct($config);
+
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
             // get the configuration

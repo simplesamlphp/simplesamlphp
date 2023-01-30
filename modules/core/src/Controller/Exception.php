@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -22,13 +23,12 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\core
  */
-class Exception
+class Exception implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
-
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;
@@ -49,7 +49,7 @@ class Exception
         Session $session
     ) {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         $this->session = $session;
     }
 

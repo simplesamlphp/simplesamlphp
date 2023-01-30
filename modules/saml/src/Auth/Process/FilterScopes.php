@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -18,19 +17,13 @@ use SimpleSAML\Utils;
 class FilterScopes extends ProcessingFilter
 {
     /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
-    /**
      * @var string[]  Stores any pre-configured scoped attributes which come from the filter configuration.
      */
     private array $scopedAttributes = [
         'eduPersonScopedAffiliation',
         'eduPersonPrincipalName'
     ];
+
 
     /**
      * Constructor for the processing filter.
@@ -45,9 +38,8 @@ class FilterScopes extends ProcessingFilter
         if (array_key_exists('attributes', $config) && !empty($config['attributes'])) {
             $this->scopedAttributes = $config['attributes'];
         }
-
-        $this->logger = Logger::getInstance();
     }
+
 
     /**
      * This method applies the filter, removing any values

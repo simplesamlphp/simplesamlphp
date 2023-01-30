@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Metadata\SAMLParser;
@@ -32,13 +33,13 @@ use Symfony\Component\VarExporter\VarExporter;
  *
  * @package SimpleSAML\Module\admin
  */
-class Federation
+class Federation implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
     /**
      * @var \SimpleSAML\Auth\Source|string
@@ -67,7 +68,7 @@ class Federation
     public function __construct(Configuration $config)
     {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
         $this->authUtils = new Utils\Auth();

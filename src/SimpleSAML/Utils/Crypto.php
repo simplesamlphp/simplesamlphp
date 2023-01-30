@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Assert\Assert;
 use InvalidArgumentException;
+use Psr\Log\LoggerAwareInterface;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
 /**
  * A class for cryptography-related functions.
@@ -16,8 +17,19 @@ use SimpleSAML\Logger;
  * @package SimpleSAMLphp
  */
 
-class Crypto
+class Crypto implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->logger = $this->getLogger();
+    }
+
+
     /**
      * Decrypt data using AES-256-CBC and the key provided as a parameter.
      *
@@ -403,7 +415,7 @@ class Crypto
             try {
                 $db = \SimpleSAML\Database::getInstance();
             } catch (\Exception $e) {
-                Logger::error('failed to instantiate database: ' . $e->getMessage());
+                $this->logger->error('failed to instantiate database: ' . $e->getMessage());
                 return(null);
             }
 
@@ -417,7 +429,7 @@ class Crypto
                                     ($data_type == 'certificate' ? $cert_table : $key_table) .
                                     " where $id_column = :id", ['id' => $location]);
             } catch (\Exception $e) {
-                Logger::error('failed to query database: ' . $e->getMessage());
+                $this->logger->error('failed to query database: ' . $e->getMessage());
                 return(null);
             }
 
@@ -444,7 +456,7 @@ class Crypto
         $data = @file_get_contents($location);
 
         if ($data === false) {
-            Logger::error("failed to read $data_type data from file $location");
+            $this->logger->error("failed to read $data_type data from file $location");
             return(null);
         }
 

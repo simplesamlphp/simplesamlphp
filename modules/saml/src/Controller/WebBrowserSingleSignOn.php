@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;
@@ -16,7 +17,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
@@ -28,13 +29,12 @@ use SimpleSAML\Store\StoreFactory;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class WebBrowserSingleSignOn
+class WebBrowserSingleSignOn implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
-
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
 
     /**
@@ -48,7 +48,7 @@ class WebBrowserSingleSignOn
         Configuration $config
     ) {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
     }
 
 

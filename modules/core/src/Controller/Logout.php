@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Binding;
 use SAML2\Constants;
 use SimpleSAML\Auth;
@@ -12,7 +13,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\Stats;
@@ -36,13 +37,12 @@ use function var_export;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Logout
+class Logout implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
-
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
     /**
      * @var \SimpleSAML\Auth\State|string
@@ -62,7 +62,7 @@ class Logout
         Configuration $config
     ) {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
     }
 
 

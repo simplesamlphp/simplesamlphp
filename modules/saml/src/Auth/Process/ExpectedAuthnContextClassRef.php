@@ -8,7 +8,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -30,13 +29,6 @@ use SimpleSAML\Utils;
 
 class ExpectedAuthnContextClassRef extends ProcessingFilter
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
     /**
      * Array of accepted AuthnContextClassRef
      * @var array
@@ -63,9 +55,8 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        $this->logger = Logger::getInstance();
         if (empty($config['accepted'])) {
-            $logger->error(
+            $this->logger->error(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
             );
             throw new Error\Exception(

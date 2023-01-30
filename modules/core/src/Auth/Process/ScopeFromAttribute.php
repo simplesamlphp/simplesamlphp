@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -27,13 +26,6 @@ use SimpleSAML\Logger;
  */
 class ScopeFromAttribute extends Auth\ProcessingFilter
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
     /**
      * The attribute where the scope is taken from
      *
@@ -59,7 +51,6 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        $this->logger = Logger::getInstance();
         $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
         $this->sourceAttribute = $cfg->getString('sourceAttribute');

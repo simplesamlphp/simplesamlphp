@@ -9,7 +9,6 @@ use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
@@ -34,9 +33,6 @@ use function urlencode;
 
 class MDQ extends MetaDataStorageSource
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
-
     /**
      * The URL of MDQ server (url:port)
      *
@@ -84,7 +80,7 @@ class MDQ extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
-        parent::__construct();
+        parent::__construct($config);
 
         if (!array_key_exists('server', $config)) {
             throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
@@ -106,8 +102,6 @@ class MDQ extends MetaDataStorageSource
         } else {
             $this->cacheLength = 86400;
         }
-
-        $this->logger = Logger::getInstance();
     }
 
 
@@ -251,7 +245,7 @@ class MDQ extends MetaDataStorageSource
             case 'attributeauthority-remote':
                 return $entity->getAttributeAuthorities();
             default:
-                $logger = Logger::getInstance();
+                $logger = Configuration::getLogger();
                 $logger->warning(sprintf('%s: unknown metadata set: \'%s\'.', __CLASS__, $set));
         }
 

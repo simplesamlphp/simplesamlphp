@@ -18,9 +18,6 @@ use SimpleSAML\Utils;
 
 class SessionHandlerPHP extends SessionHandler
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
-
     /**
      * This variable contains the session cookie name.
      *
@@ -51,7 +48,6 @@ class SessionHandlerPHP extends SessionHandler
         parent::__construct();
 
         $config = Configuration::getInstance();
-        $this->logger = Logger::getInstance();
         $this->cookie_name = $config->getOptionalString(
             'session.phpsession.cookiename',
             ini_get('session.name') ?: 'PHPSESSID'

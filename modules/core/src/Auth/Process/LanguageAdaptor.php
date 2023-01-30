@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Locale\Language;
-use SimpleSAML\Logger;
 
 /**
  * Filter to set and get language settings from attributes.
@@ -16,9 +15,6 @@ use SimpleSAML\Logger;
  */
 class LanguageAdaptor extends Auth\ProcessingFilter
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
-
     /** @var string */
     private string $langattr = 'preferredLanguage';
 
@@ -32,8 +28,6 @@ class LanguageAdaptor extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        $this->logger = Logger::getInstance();
 
         if (array_key_exists('attributename', $config)) {
             $this->langattr = $config['attributename'];

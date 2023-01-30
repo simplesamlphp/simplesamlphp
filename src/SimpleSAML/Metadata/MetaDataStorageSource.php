@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
@@ -20,8 +23,10 @@ use Symfony\Component\Filesystem\Filesystem;
  * @package SimpleSAMLphp
  */
 
-abstract class MetaDataStorageSource
+abstract class MetaDataStorageSource implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @var \Symfony\Component\Filesystem\Filesystem
      */
@@ -29,11 +34,14 @@ abstract class MetaDataStorageSource
 
 
     /**
-     * This function initializes an XML metadata source.
+     * Constructor for this metadata handler.
+     *
+     * @param array $config The configuration for this metadata handler.
      */
-    protected function __construct()
+    public function __construct(/** @scrutinizer ignore-unused */ array $config)
     {
         $this->fileSystem = new Filesystem();
+        $this->logger = $this->getLogger();
     }
 
 
@@ -55,7 +63,7 @@ abstract class MetaDataStorageSource
 
         foreach ($sourcesConfig as $sourceConfig) {
             if (!is_array($sourceConfig)) {
-                throw new \Exception("Found an element in metadata source configuration which wasn't an array.");
+                throw new Exception("Found an element in metadata source configuration which wasn't an array.");
             }
 
             $sources[] = self::getSource($sourceConfig);
@@ -104,7 +112,7 @@ abstract class MetaDataStorageSource
                         'MetadataStore',
                         '\SimpleSAML\Metadata\MetaDataStorageSource'
                     );
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     throw new Error\CriticalConfigurationError(
                         "Invalid 'type' for metadata source. Cannot find store '$type'.",
                         null
@@ -343,7 +351,7 @@ abstract class MetaDataStorageSource
         } elseif ($set === 'adfs-idp-hosted') {
             return 'urn:federation:' . $httpUtils->getSelfHost() . ':idp';
         } else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
+            throw new Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
         }
     }
 }

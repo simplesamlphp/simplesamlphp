@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -26,13 +27,12 @@ use function var_export;
  *
  * @package SimpleSAML\Module\core
  */
-class ErrorReport
+class ErrorReport implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
-
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;
@@ -51,7 +51,7 @@ class ErrorReport
         Session $session
     ) {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         $this->session = $session;
     }
 

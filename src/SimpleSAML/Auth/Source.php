@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -20,8 +21,10 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-abstract class Source
+abstract class Source implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * The authentication source identifier. This identifier can be used to look up this object, for example when
      * returning from a login form.
@@ -43,8 +46,8 @@ abstract class Source
     public function __construct(array $info, array &$config)
     {
         Assert::keyExists($info, 'AuthId');
-
         $this->authId = $info['AuthId'];
+        $this->logger = $this->getLogger();
     }
 
 
@@ -383,7 +386,6 @@ abstract class Source
 
         $session = Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
-            $logger = Logger::getInstance();
             $this->logger->warning(sprintf(
                 'Received logout from an invalid authentication source %s',
                 var_export($source, true)

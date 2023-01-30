@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LogLevel;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use Throwable;
 
 /**
@@ -18,14 +19,9 @@ use Throwable;
  * @package SimpleSAMLphp
  */
 
-class Exception extends \Exception
+class Exception extends \Exception implements LoggerAwareInterface
 {
-    /**
-     * The Logger to use.
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
+    use LoggerAwareTrait;
 
     /**
      * The backtrace for this exception.
@@ -60,7 +56,7 @@ class Exception extends \Exception
         parent::__construct($message, $code);
 
         $this->initBacktrace($this);
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
 
         if ($cause !== null) {
             $this->cause = Exception::fromException($cause);
@@ -216,7 +212,7 @@ class Exception extends \Exception
 
         $backtrace = $this->formatBacktrace();
         foreach ($backtrace as $line) {
-            call_user_func([Logger::class, $level], $line);
+            call_user_func([$this->logger, $level], $line);
         }
     }
 

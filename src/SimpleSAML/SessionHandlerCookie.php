@@ -41,7 +41,6 @@ abstract class SessionHandlerCookie extends SessionHandler
      */
     protected function __construct()
     {
-        // call the constructor in the base class in case it should become necessary in the future
         parent::__construct();
 
         $config = Configuration::getInstance();

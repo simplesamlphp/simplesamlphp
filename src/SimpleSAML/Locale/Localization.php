@@ -16,19 +16,15 @@ use Gettext\Loader\PoLoader;
 use Gettext\Translations;
 use Gettext\Translator;
 use Gettext\TranslatorFunctions;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
-class Localization
+class Localization implements LoggerAwareInterface
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
+    use LoggerAwareTrait;
 
     /**
      * The configuration to use.
@@ -94,7 +90,7 @@ class Localization
     {
         $this->fileSystem = new Filesystem();
         $this->configuration = $configuration;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         /** @var string $locales */
         $locales = $this->configuration->resolvePath('locales');
         $this->localeDir = $locales;

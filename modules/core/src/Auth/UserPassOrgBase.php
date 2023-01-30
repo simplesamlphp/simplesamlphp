@@ -7,8 +7,8 @@ namespace SimpleSAML\Module\core\Auth;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -297,7 +297,7 @@ abstract class UserPassOrgBase extends Auth\Source
         }
 
         /* Attempt to log in. */
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogegr();
         try {
             $attributes = $source->login($username, $password, $organization);
         } catch (Exception $e) {

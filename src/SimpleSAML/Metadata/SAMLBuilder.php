@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
+use Psr\Loger\LoggerAwareInterface;
 use SAML2\Constants;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
@@ -28,7 +29,7 @@ use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\Utils;
 
@@ -40,10 +41,9 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class SAMLBuilder
+class SAMLBuilder implements LoggerAwareInterface
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
+    use LoggerAwareTrait;
 
     /**
      * The EntityDescriptor we are building.
@@ -79,6 +79,7 @@ class SAMLBuilder
      */
     public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
     {
+        $this->logger = $this->getLogger();
         $this->maxCache = $maxCache;
         $this->maxDuration = $maxDuration;
 
@@ -104,8 +105,6 @@ class SAMLBuilder
         if ($this->maxDuration !== null) {
             $this->entityDescriptor->setValidUntil(time() + $this->maxDuration);
         }
-
-        $this->logger = Logger::getInstance();
     }
 
 

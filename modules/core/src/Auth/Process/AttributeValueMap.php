@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 
 /**
  * Filter to create target attribute based on value(s) in source attribute
@@ -16,13 +15,6 @@ use SimpleSAML\Logger;
  */
 class AttributeValueMap extends Auth\ProcessingFilter
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
     /**
      * The name of the attribute we should assign values to (ie: the target attribute).
      * @var string
@@ -64,8 +56,6 @@ class AttributeValueMap extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        $this->logger = Logger::getInstance();
 
         // parse configuration
         foreach ($config as $name => $value) {

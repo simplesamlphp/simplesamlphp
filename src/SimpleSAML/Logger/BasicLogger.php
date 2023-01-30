@@ -54,23 +54,8 @@ class BasicLogger extends AbstractLogger
      */
     private static string $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
 
+    /** @var string[] $logLevels */
     private static array $logLevels = [
-        LogLevel::EMERGENCY,
-        LogLevel::ALERT,
-        LogLevel::CRITICAL,
-        LogLevel::ERROR,
-        LogLevel::WARNING,
-        LogLevel::NOTICE,
-        LogLevel::INFO,
-        LogLevel::DEBUG,
-    ];
-
-    /**
-     * This array contains the mappings from syslog log level to names.
-     *
-     * @var string[]
-     */
-    private static array $levelNames = [
         LogLevel::EMERGENCY,
         LogLevel::ALERT,
         LogLevel::CRITICAL,
@@ -104,7 +89,7 @@ class BasicLogger extends AbstractLogger
         array_push($replacements, $stat);
         $message = str_replace($formats, $replacements, self::$format);
 
-        if (in_array($level, self::$levelNames, true)) {
+        if (in_array($level, self::$logLevels, true)) {
             $levelName = $level;
         } else {
             $levelName = sprintf('UNKNOWN%d', $level);

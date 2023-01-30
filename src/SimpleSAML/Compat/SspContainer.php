@@ -6,7 +6,6 @@ namespace SimpleSAML\Compat;
 
 use Psr\Log\LoggerInterface;
 use SAML2\Compat\AbstractContainer;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 class SspContainer extends AbstractContainer
@@ -19,7 +18,7 @@ class SspContainer extends AbstractContainer
      */
     public function __construct()
     {
-        $this->logger = new Logger();
+        $this->logger = Configuration::getLogger();
     }
 
 

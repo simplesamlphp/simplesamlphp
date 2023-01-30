@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareInterface;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
@@ -23,13 +24,12 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class SingleLogout
+class SingleLogout implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
-
-    /** @var \SimpleSAML\Logger */
-    protected Logger $logger;
 
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetaDataStorageHandler $mdHandler;
@@ -52,7 +52,7 @@ class SingleLogout
         Configuration $config
     ) {
         $this->config = $config;
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
 

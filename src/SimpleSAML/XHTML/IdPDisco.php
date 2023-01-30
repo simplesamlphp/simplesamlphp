@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
+use Psr\Log\LoggerAwareTrait;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -34,19 +35,16 @@ use function usort;
  * @package SimpleSAMLphp
  */
 
-class IdPDisco
+class IdPDisco implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * An instance of the configuration class.
      *
      * @var \SimpleSAML\Configuration
      */
     protected Configuration $config;
-
-    /**
-     * @var \SimpleSAML\Logger
-     */
-    protected Logger $logger;
 
     /**
      * The identifier of this discovery service.
@@ -137,7 +135,7 @@ class IdPDisco
     {
         // initialize standard classes
         $this->config = Configuration::getInstance();
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
         $this->metadata = MetaDataStorageHandler::getMetadataHandler();
         $this->session = Session::getSessionFromRequest();
         $this->instance = $instance;

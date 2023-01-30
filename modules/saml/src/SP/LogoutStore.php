@@ -9,7 +9,6 @@ use PDO;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
@@ -71,7 +70,7 @@ class LogoutStore
      */
     private static function cleanLogoutStore(Store\SQLStore $store): void
     {
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('saml.LogoutStore: Cleaning logout store.');
 
         $query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
@@ -286,7 +285,7 @@ class LogoutStore
         }
 
         $numLoggedOut = 0;
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         foreach ($sessionIndexes as $sessionIndex) {
             if (!isset($sessions[$sessionIndex])) {
                 $logger->info('saml.LogoutStore: Logout requested for unknown SessionIndex.');

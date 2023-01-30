@@ -17,7 +17,6 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -25,15 +24,8 @@ use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 
-class SP extends \SimpleSAML\Auth\Source
+class SP extends Auth\Source
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
     /**
      * The entity ID of this SP.
      *
@@ -124,7 +116,6 @@ class SP extends \SimpleSAML\Auth\Source
             'proxymode.passAuthnContextClassRef',
             false
         );
-        $this->logger = Logger::getInstance();
     }
 
 
@@ -901,7 +892,7 @@ class SP extends \SimpleSAML\Auth\Source
      */
     public static function reauthLogout(array $state): void
     {
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('Proxy: logging the user out before re-authentication.');
 
         if (isset($state['Responder'])) {
@@ -947,7 +938,7 @@ class SP extends \SimpleSAML\Auth\Source
     {
         Assert::keyExists($state, 'saml:sp:AuthId');
 
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('Proxy: logout completed.');
 
         if (isset($state['saml:proxy:reauthLogout:PrevResponder'])) {

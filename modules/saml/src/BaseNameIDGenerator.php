@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml;
 
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Logger;
 
 /**
  * Base filter for generating NameID values.
@@ -98,13 +97,12 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
         $nameId = new NameID();
         $nameId->setValue($value);
         $nameId->setFormat($this->format);
-        $logger = Logger::getInstance();
 
         if ($this->nameQualifier === true) {
             if (isset($state['IdPMetadata']['entityid'])) {
                 $nameId->setNameQualifier($state['IdPMetadata']['entityid']);
             } else {
-                $logger->warning('No IdP entity ID, unable to set NameQualifier.');
+                $this->logger->warning('No IdP entity ID, unable to set NameQualifier.');
             }
         } elseif (is_string($this->nameQualifier)) {
             $nameId->setNameQualifier($this->nameQualifier);
@@ -114,7 +112,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
             if (isset($state['SPMetadata']['entityid'])) {
                 $nameId->setSPNameQualifier($state['SPMetadata']['entityid']);
             } else {
-                $logger->warning('No SP entity ID, unable to set SPNameQualifier.');
+                $this->logger->warning('No SP entity ID, unable to set SPNameQualifier.');
             }
         } elseif (is_string($this->spNameQualifier)) {
             $nameId->setSPNameQualifier($this->spNameQualifier);

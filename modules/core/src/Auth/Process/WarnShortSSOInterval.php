@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -47,8 +46,7 @@ class WarnShortSSOInterval extends Auth\ProcessingFilter
             $entityId = 'UNKNOWN';
         }
 
-        $logger = Logger::getInstance();
-        $logger->::warning(sprintf(
+        $this->logger->::warning(sprintf(
             'WarnShortSSOInterval: Only %d seconds since last SSO for this user from the SP %s'
             $timeDelta,
             var_export($entityId, true)

@@ -8,7 +8,6 @@ use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
@@ -233,7 +232,7 @@ class State
         $session = Session::getSessionFromRequest();
         $session->setData('\SimpleSAML\Auth\State', $id, $serializedState, self::getStateTimeout());
 
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('Saved state: ' . var_export($return, true));
 
         return $return;
@@ -252,7 +251,7 @@ class State
     public static function cloneState(array $state): array
     {
         $clonedState = $state;
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
 
         if (array_key_exists(self::ID, $state)) {
             $clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
@@ -286,7 +285,7 @@ class State
      */
     public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('Loading state: ' . var_export($id, true));
 
         $sid = self::parseStateID($id);
@@ -350,7 +349,7 @@ class State
             return;
         }
 
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $logger->debug('Deleting state: ' . var_export($state[self::ID], true));
 
         $session = Session::getSessionFromRequest();

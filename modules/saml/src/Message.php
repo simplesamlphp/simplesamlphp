@@ -21,7 +21,6 @@ use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -134,7 +133,7 @@ class Message
      */
     public static function checkSign(Configuration $srcMetadata, SignedElement $element): bool
     {
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
 
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
@@ -351,7 +350,7 @@ class Message
         $assertion
     ): Assertion {
         Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
@@ -428,7 +427,7 @@ class Message
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
 
         $error = true;
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         foreach ($keys as $i => $key) {
             try {
                 $assertion->decryptAttributes($key, $blacklist);
@@ -658,7 +657,7 @@ class Message
         } // at least one valid signature found
 
         $httpUtils = new Utils\HTTP();
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
         $currentURL = $httpUtils->getSelfURLNoQuery();
 
         // check various properties of the assertion

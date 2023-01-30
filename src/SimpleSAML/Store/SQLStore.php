@@ -7,26 +7,26 @@ namespace SimpleSAML\Store;
 use Exception;
 use PDO;
 use PDOException;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareInterface;
 
 /**
  * A data store using a RDBMS to keep the data.
  *
  * @package simplesamlphp/simplesamlphp
  */
-class SQLStore implements StoreInterface
+class SQLStore implements StoreInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * The PDO object for our database.
      *
      * @var \PDO
      */
     public PDO $pdo;
-
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
 
     /**
      * Our database driver.
@@ -69,7 +69,6 @@ class SQLStore implements StoreInterface
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-        $this->logger = Logger::getInstance();
 
         if ($this->driver === 'mysql') {
             $this->pdo->exec('SET time_zone = "+00:00"');

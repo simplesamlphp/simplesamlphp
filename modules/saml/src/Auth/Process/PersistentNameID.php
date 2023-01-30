@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Utils;
 
@@ -56,15 +55,14 @@ class PersistentNameID extends BaseNameIDGenerator
      */
     protected function getValue(array &$state): ?string
     {
-        $logger = Logger::getInstace();
         if (!isset($state['Destination']['entityid'])) {
-            $logger->warning('No SP entity ID - not generating persistent NameID.');
+            $this->logger->warning('No SP entity ID - not generating persistent NameID.');
             return null;
         }
         $spEntityId = $state['Destination']['entityid'];
 
         if (!isset($state['Source']['entityid'])) {
-            $logger->warning('No IdP entity ID - not generating persistent NameID.');
+            $this->logger->warning('No IdP entity ID - not generating persistent NameID.');
             return null;
         }
         $idpEntityId = $state['Source']['entityid'];
@@ -73,14 +71,14 @@ class PersistentNameID extends BaseNameIDGenerator
             !isset($state['Attributes'][$this->identifyingAttribute])
             || count($state['Attributes'][$this->identifyingAttribute]) === 0
         ) {
-            $logger->warning(
+            $this->logger->warning(
                 'Missing attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->identifyingAttribute]) > 1) {
-            $logger->warning(
+            $this->logger->warning(
                 'More than one value in attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );
@@ -91,7 +89,7 @@ class PersistentNameID extends BaseNameIDGenerator
         $uid = $uid[0];
 
         if (empty($uid)) {
-            $logger->warning(
+            $this->logger->warning(
                 'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
                 ' on user - not generating persistent NameID.'
             );

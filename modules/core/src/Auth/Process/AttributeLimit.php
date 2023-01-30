@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 
 /**
  * A filter for limiting which attributes are passed on.
@@ -16,13 +15,6 @@ use SimpleSAML\Logger;
  */
 class AttributeLimit extends Auth\ProcessingFilter
 {
-    /**
-     * The Logger to use
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
-
     /**
      * List of attributes which this filter will allow through.
      * @var array
@@ -47,8 +39,6 @@ class AttributeLimit extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        $this->logger = Logger::getInstance();
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {

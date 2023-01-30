@@ -9,7 +9,6 @@ use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -33,9 +32,6 @@ use SimpleSAML\Utils;
  */
 class TargetedID extends Auth\ProcessingFilter
 {
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
-
     /**
      * The attribute we should generate the targeted id from.
      *

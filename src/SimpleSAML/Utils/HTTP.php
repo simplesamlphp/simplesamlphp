@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
@@ -16,14 +17,9 @@ use SimpleSAML\XHTML\Template;
  *
  * @package SimpleSAMLphp
  */
-class HTTP
+class HTTP implements LoggerAwareInterface
 {
-    /**
-     * The Logger to use.
-     *
-     * @var \SimpleSAML\Logger
-     */
-    private Logger $logger;
+    use LoggerAwareTrait;
 
 
     /**
@@ -31,7 +27,7 @@ class HTTP
      */
     public function __construct()
     {
-        $this->logger = Logger::getInstance();
+        $this->logger = $this->getLogger();
     }
 
 

@@ -39,7 +39,7 @@ trait LoggerAwareTrait
      *
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function setLogger(LoggerInterface $logger): void
+    protected function setLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;
     }

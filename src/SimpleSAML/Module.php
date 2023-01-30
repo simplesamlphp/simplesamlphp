@@ -205,7 +205,7 @@ class Module
         }
 
         $config = Configuration::getInstance();
-        $logger = Logger::getInstance();
+        $logger = Configuration::getLogger();
 
         // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to.
         // This is needed for server aliases and rewrites

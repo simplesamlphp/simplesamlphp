@@ -36,8 +36,6 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public const EXTENSION = '.serialized';
 
-    /** @var \SimpleSAML\Logger */
-    private Logger $logger;
 
     /**
      * The base directory where metadata is stored.
@@ -56,9 +54,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function __construct(array $config)
     {
-        parent::__construct();
+        parent::__construct($config);
 
-        $this->logger = Logger::getInstance();
         $globalConfig = Configuration::getInstance();
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
         $this->directory = $cfgHelp->getString('directory');
