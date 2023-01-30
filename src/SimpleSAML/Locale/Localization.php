@@ -200,13 +200,13 @@ class Localization
             // Report that the localization for the preferred language is missing
             $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '" .
                 $defLangcode . "'";
-            Logger::error($_SERVER['PHP_SELF'] . ' - ' . $error);
+            Logger::info($_SERVER['PHP_SELF'] . ' - ' . $error);
             return $langPath;
         }
 
         // Locale for default language missing even, error out
         $error = "Localization directory '$langPath' missing/broken for langcode '$langcode' and domain '$domain'";
-        Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
+        Logger::info($_SERVER['PHP_SELF'] . ' - ' . $error);
         throw new Exception($error);
     }
 
