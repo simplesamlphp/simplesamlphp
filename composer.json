@@ -59,7 +59,6 @@
         "composer/composer": "^2.3",
         "gettext/gettext": "^5.6.1",
         "gettext/translator": "^1.0.1",
-        "monolog/monolog": "^2.8",
         "phpmailer/phpmailer": "^6.5",
         "simplesamlphp/assert": "^0.8.0",
         "simplesamlphp/saml2": "^4.6",
@@ -92,6 +91,7 @@
         "simplesamlphp/xml-security": "^0.6.5"
     },
     "suggest": {
+        "monolog/monolog": "Needed if the basic errorlog is not sufficient for you",
         "predis/predis": "Needed if a Redis server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
         "ext-ldap": "Needed if an LDAP backend is used",
