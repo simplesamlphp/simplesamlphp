@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\core\Auth\Source\Selector;
+namespace SimpleSAML\Module\core\Auth\Source;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Logger;
-use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Utils;
 
 use function array_key_exists;
@@ -24,17 +23,17 @@ class SourceIPSelector extends AbstractSourceSelector
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector.AuthId';
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\Source\SourceIPSelector.AuthId';
 
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector.StageId';
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\Source\SourceIPSelector.StageId';
 
     /**
      * The key where the sources is saved in the state.
      */
-    public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\Selector\SourceIPSelector.SourceId';
+    public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\SourceIPSelector.SourceId';
 
     /**
      * @param string  The default authentication source to use when none of the zones match

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\core\Auth\Source\Selector;
+namespace SimpleSAML\Module\core\Auth\Source;
 
 use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Logger;
-use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 
 use function array_key_exists;
 use function sprintf;
@@ -25,17 +24,17 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector.AuthId';
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.AuthId';
 
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector.StageId';
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.StageId';
 
     /**
      * The key where the sources is saved in the state.
      */
-    public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector.SourceId';
+    public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.SourceId';
 
     /**
      * @var string  The default authentication source to use when no RequestedAuthnContext is passed
@@ -74,20 +73,19 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
         parent::__construct($info, $config);
 
         Assert::keyExists($config, 'contexts');
+        Assert::keyExists($config['contexts'], 'default');
+        Assert::stringNotEmpty($config['contexts']['default']);
+        $this->defaultSource = $config['contexts']['default'];
+        unset($config['contexts']['default']);
 
         foreach ($config['contexts'] as $key => $context) {
-            if ($key === 'default') {
-                Assert::stringNotEmpty($config['contexts']['default']);
-                $this->defaultSource = $config['contexts']['default'];
+            Assert::natural($key);
+            if (!array_key_exists('identifier', $context)) {
+                throw new Exception(sprintf("Incomplete context '%d' due to missing `identifier` key.", $key));
+            } elseif (!array_key_exists('source', $context)) {
+                throw new Exception(sprintf("Incomplete context '%d' due to missing `source` key.", $key));
             } else {
-                Assert::natural($key);
-                if (!array_key_exists('identifier', $context)) {
-                    throw new Exception(sprintf("Incomplete context '%d' due to missing `identifier` key.", $key));
-                } elseif (!array_key_exists('source', $context)) {
-                    throw new Exception(sprintf("Incomplete context '%d' due to missing `source` key.", $key));
-                } else {
-                    $this->contexts[$key] = $context;
-                }
+                $this->contexts[$key] = $context;
             }
         }
     }
@@ -117,12 +115,12 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
          * The set of supplied references MUST be evaluated as an ordered set, where the first element
          * is the most preferred authentication context class or declaration.
          */
-        $index = false;
         foreach ($requestedContexts['AuthnContextClassRef'] as $requestedContext) {
             switch ($comparison) {
                 case 'exact':
                     foreach ($this->contexts as $index => $context) {
                         if ($context['identifier'] === $requestedContext) {
+                            $state['saml:AuthnContextClassRef'] = $context['identifier'];
                             return $context['source'];
                         }
                     }

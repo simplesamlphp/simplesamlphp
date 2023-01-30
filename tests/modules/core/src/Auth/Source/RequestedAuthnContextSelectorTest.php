@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Module\core\Auth\Source\Selector;
+namespace SimpleSAML\Test\Module\core\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
 use SAML2\Exception\Protocol\NoAuthnContextException;
@@ -10,11 +10,11 @@ use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector;
+use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\Selector\RequestedAuthnContextSelector
+ * @covers \SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector
  */
 class RequestedAuthnContextSelectorTest extends TestCase
 {
@@ -78,8 +78,9 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
+     * No RequestedAuthnContext
      */
-    public function testAuthentication(): void
+    public function testAuthenticationVariant1(): void
     {
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
@@ -94,24 +95,75 @@ class RequestedAuthnContextSelectorTest extends TestCase
             {
                 // Dummy
             }
-
-            /**
-             * @param array &$state
-             * @return void
-             */
-            public function authenticate(array &$state): void
-            {
-                $state['finished'] = true;
-            }
         };
 
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
         $selector->authenticate($state);
-        $this->assertTrue($state['finished']);
+        $this->assertArrayNotHasKey('saml:AuthnContextClassRef', $state);
     }
 
 
     /**
+     * Specific RequestedAuthnContext
+     */
+    public function testAuthenticationVariant2(): void
+    {
+        $info = ['AuthId' => 'selector'];
+        $config = $this->sourceConfig->getArray('selector');
+
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array $state): void
+            {
+                // Dummy
+            }
+        };
+
+        $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1']]];
+        $selector->authenticate($state);
+        $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
+        $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
+    }
+
+
+    /**
+     * Specific RequestedAuthnContext with comparison=exact
+     */
+    public function testAuthenticationVariant3(): void
+    {
+        $info = ['AuthId' => 'selector'];
+        $config = $this->sourceConfig->getArray('selector');
+
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array $state): void
+            {
+                // Dummy
+            }
+        };
+
+        $state = [
+            'saml:RequestedAuthnContext' => [
+                'AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1'],
+                'Comparison' => 'exact',
+            ],
+        ];
+        $selector->authenticate($state);
+        $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
+        $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
+    }
+
+
+    /**
+     * Missing source
      */
     public function testIncompleteConfigurationThrowsExceptionVariant1(): void
     {
@@ -123,6 +175,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     10 => [
                         'identifier' => 'urn:x-simplesamlphp:loa1',
                     ],
+                    'default' => 'phpunit',
                 ],
             ],
         ]);
@@ -140,8 +193,39 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
+     * Missing identifier
      */
     public function testIncompleteConfigurationThrowsExceptionVariant2(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:RequestedAuthnContextSelector',
+
+                'contexts' => [
+                    10 => [
+                        'source' => 'loa1',
+                    ],
+                    'default' => 'phpunit',
+                ],
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Incomplete context '10' due to missing `identifier` key.");
+
+        new RequestedAuthnContextSelector($info, $config);
+    }
+
+
+    /**
+     * Missing default
+     */
+    public function testIncompleteConfigurationThrowsExceptionVariant3(): void
     {
         $sourceConfig = Configuration::loadFromArray([
             'selector' => [
@@ -160,8 +244,8 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $info = ['AuthId' => 'selector'];
         $config = $sourceConfig->getArray('selector');
 
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Incomplete context '10' due to missing `identifier` key.");
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessage('Expected the key "default" to exist.');
 
         new RequestedAuthnContextSelector($info, $config);
     }
