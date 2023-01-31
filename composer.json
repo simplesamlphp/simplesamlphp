@@ -108,25 +108,5 @@
             "simplesamlphp/composer-module-installer": true,
             "muglug/package-versions-56": true
         }
-    },
-    "archive": {
-        "exclude": [
-            ".editorconfig",
-            ".gitattributes",
-            ".gitignore",
-            ".markdownlintignore",
-            ".markdownlintrc",
-            ".php_cs.dist",
-            "bin/build-release.sh",
-            "cert/.gitkeep",
-            "codecov.yml",
-            "node_modules",
-            "phpcs.xml",
-            "phpunit.xml",
-            "phpunit-interoperability.xml",
-            "psalm.xml",
-            "public/assets/.gitkeep",
-            "tests"
-        ]
     }
 }
