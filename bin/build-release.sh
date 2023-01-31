@@ -24,7 +24,7 @@ COMPOSER="/tmp/composer.phar"
 cd /tmp
 
 if [ -a "$TARGET" ]; then
-    echo "$0: Destination already exists: $TARGET" >&2
+    echo "$0: Destination already exists: /tmp/$TARGET" >&2
     exit 1
 fi
 
@@ -43,6 +43,10 @@ php "$COMPOSER" config version "v$VERSION"
 # Install dependencies (without vcs history or dev tools)
 php "$COMPOSER" install --no-dev --prefer-dist -o
 
-php "$COMPOSER" archive -f tar.gz --dir /tmp --file "$TARGET"
+cd ..
+for f in `grep export-ignore "$TARGET/.gitattributes"|cut -d ' ' -f 1`; do
+    rm -r "$TARGET/$f"
+done
+tar --owner 0 --group 0 -cvzf "/tmp/$TARGET.tar.gz" "$TARGET"
 rm "$COMPOSER"
 echo `sha256sum /tmp/$TARGET.tar.gz`
