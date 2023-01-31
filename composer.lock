@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cf4fada3b9957e3c48e961d73c12dd7",
+    "content-hash": "88be11be1bb5b2938f11935666881eee",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1550,6 +1550,49 @@
             "time": "2022-09-20T20:18:55+00:00"
         },
         {
+            "name": "simplesamlphp/composer-module-installer",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/composer-module-installer.git",
+                "reference": "24422673102843d42411098245e37b68c951d650"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/24422673102843d42411098245e37b68c951d650",
+                "reference": "24422673102843d42411098245e37b68c951d650",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2.0",
+                "php": "^7.4 || ^8.0",
+                "simplesamlphp/assert": "^0.8.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.4",
+                "simplesamlphp/simplesamlphp-test-framework": "^1.2.1"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "SimpleSAML\\Composer\\ModuleInstallerPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
+            "support": {
+                "issues": "https://github.com/simplesamlphp/composer-module-installer/issues",
+                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.3.2"
+            },
+            "time": "2023-01-10T17:03:58+00:00"
+        },
+        {
             "name": "simplesamlphp/saml2",
             "version": "v4.6.5",
             "source": {
@@ -1606,6 +1649,42 @@
                 "source": "https://github.com/simplesamlphp/saml2/tree/v4.6.5"
             },
             "time": "2022-11-23T12:50:43+00:00"
+        },
+        {
+            "name": "simplesamlphp/simplesamlphp-assets-base",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
+                "reference": "23d8bd528a13284f48070114fa20934cb826c644"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/23d8bd528a13284f48070114fa20934cb826c644",
+                "reference": "23d8bd528a13284f48070114fa20934cb826c644",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4 || ^8.0",
+                "simplesamlphp/composer-module-installer": "^1.3.2"
+            },
+            "type": "simplesamlphp-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Tim van Dijen",
+                    "email": "tvdijen@gmail.com"
+                }
+            ],
+            "description": "Assets for the SimpleSAMLphp main repository",
+            "support": {
+                "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.0.2"
+            },
+            "time": "2023-01-27T18:20:32+00:00"
         },
         {
             "name": "symfony/cache",
@@ -6825,60 +6904,17 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-            "name": "simplesamlphp/composer-module-installer",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/simplesamlphp/composer-module-installer.git",
-                "reference": "24422673102843d42411098245e37b68c951d650"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/24422673102843d42411098245e37b68c951d650",
-                "reference": "24422673102843d42411098245e37b68c951d650",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1 || ^2.0",
-                "php": "^7.4 || ^8.0",
-                "simplesamlphp/assert": "^0.8.0"
-            },
-            "require-dev": {
-                "composer/composer": "^2.4",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.2.1"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "SimpleSAML\\Composer\\ModuleInstallerPlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "SimpleSAML\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-only"
-            ],
-            "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
-            "support": {
-                "issues": "https://github.com/simplesamlphp/composer-module-installer/issues",
-                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.3.2"
-            },
-            "time": "2023-01-10T17:03:58+00:00"
-        },
-        {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.0.0-rc5",
+            "version": "v2.0.0-rc6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "f80891f3604273474aec664853e1c31ba107d3e8"
+                "reference": "9bdd18586414770e2473b669409fe0c9047ca798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/f80891f3604273474aec664853e1c31ba107d3e8",
-                "reference": "f80891f3604273474aec664853e1c31ba107d3e8",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/9bdd18586414770e2473b669409fe0c9047ca798",
+                "reference": "9bdd18586414770e2473b669409fe0c9047ca798",
                 "shasum": ""
             },
             "require": {
@@ -6916,7 +6952,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2022-09-21T15:46:11+00:00"
+            "time": "2023-01-29T19:31:02+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
