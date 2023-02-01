@@ -10,3 +10,5 @@ phpcs.xml export-ignore
 phpunit.xml export-ignore
 .github export-ignore
 .php_cs.dist export-ignore
+.markdownlintignore export-ignore
+.markdownlintrc export-ignore
