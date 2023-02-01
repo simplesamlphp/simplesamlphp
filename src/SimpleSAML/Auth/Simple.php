@@ -320,8 +320,7 @@ class Simple
             $returnTo = $httpUtils->getSelfURL();
         }
 
-        $login = Module::getModuleURL('core/login/' . urlencode($this->authSource), [
-            'AuthId'   => $this->authSource,
+        $login = Module::getModuleURL('saml/sp/login/' . urlencode($this->authSource), [
             'ReturnTo' => $returnTo,
         ]);
 

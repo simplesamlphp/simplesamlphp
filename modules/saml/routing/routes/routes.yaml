@@ -7,6 +7,9 @@ saml-disco:
 saml-sp-discoResponse:
     path:       /sp/discoResponse
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse' }
+saml-sp-login:
+    path:       /sp/login/{sourceId}
+    defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::login' }
 saml-sp-wrongAuthnContextClassRef:
     path:       /sp/wrongAuthnContextClassRef
     defaults:   { _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef' }

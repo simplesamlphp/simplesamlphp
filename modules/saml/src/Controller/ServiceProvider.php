@@ -106,6 +106,46 @@ class ServiceProvider
 
 
     /**
+     * Start single sign-on for an SP identified with the specified entityID
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string $sourceId
+     * @return \SimpleSAML\HTTP\RunnableResponse
+     */
+    public function login(Request $request, string $sourceId): RunnableResponse
+    {
+        $as = new Auth\Simple($sourceId);
+        if (!($as->getAuthSource() instanceof SP)) {
+            throw new Error\Exception('Authsource must be of type saml:SP.');
+        }
+
+        if (!$request->query->has('ReturnTo')) {
+            throw new Error\BadRequest('Missing ReturnTo parameter.');
+        }
+        $returnTo = $request->query->get('ReturnTo');
+
+        /**
+         * Setting up the options for the requireAuth() call later..
+         */
+        $httpUtils = new Utils\HTTP();
+        $options = [
+            'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
+        ];
+
+        /**
+         * Allows a saml:idp query string parameter specify the IdP entity ID to be used
+         * as used by the DiscoJuice embedded client.
+         */
+        if (!empty($request->query->has('saml:idp'))) {
+            $options['saml:idp'] = $request->query->get('saml:idp');
+        }
+        $as->requireAuth($options);
+
+        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+    }
+
+
+    /**
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
