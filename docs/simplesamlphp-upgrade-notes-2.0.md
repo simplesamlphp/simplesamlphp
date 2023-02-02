@@ -42,11 +42,6 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
   upgrading an existing installation).
   If you are using a database to store metadata, make sure to replace any __DYNAMIC% entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
-- SAML endpoints have changed, meaning that a metadata exchange with your peers _could_ be necessary depending on
-  your configuration. If you are an IDP, you are fine, because the old endpoints still work and you can still
-  receive authentication requests there. If you're an SP, it is dependent on you IDPs.. For example, Azure AD is known
-  to break and will require a new metadata exchange. However, any SAML2INT compliant IDP should accept the new endpoint
-  out-of-the-box _if_ you are signing your authentication requests.
 
 ## Configuration changes
 
