@@ -52,6 +52,10 @@ config file manually.
 The date formatting when specifying a custom logging string has been changed from PHP's
 deprecated `strftime()` format to PHP's `date()` format.
 
+The format of the `NameIDPolicy` option has been changed: to omit sending the
+element entirely, you can no longer specify `false` but need to set it to
+an empty array (`[]`).
+
 Configuration options that have been removed:
 
 - simplesaml.nameidattribute. Use the appropriate authproc-filters instead
