@@ -66,7 +66,7 @@ It represents a SAML 2 status code with three elements: the top-level status cod
 The second-level status code and the status message is optional, and can be `NULL`.
 
 The `\SimpleSAML\Module\saml\Error` class contains a helper function named `fromException`.
-The `fromException()` function is used by `www/saml2/idp/SSOService.php` to return SAML 2 errors to the SP.
+The `fromException()` function is used to return SAML 2 errors to the SP.
 The function contains a list which maps various exceptions to specific SAML 2 errors.
 If it is unable to convert the exception, it will return a generic SAML 2 error describing the original exception in its status message.
 
@@ -130,7 +130,6 @@ There are two methods in this class that deals with exceptions:
 #### `throwException`
 
 This method delivers the exception to the code that initialized the exception handling in the authentication state.
-That would be `www/saml2/idp/SSOService.php` for processing filters.
 To configure how and where the exception should be delivered, there are two fields in the state-array which can be set:
 
 * `\SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC`, in which case the exception will be delivered by a function call to the function specified in that field.
