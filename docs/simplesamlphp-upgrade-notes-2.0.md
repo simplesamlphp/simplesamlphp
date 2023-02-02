@@ -73,7 +73,7 @@ Configuration options that have been removed:
 ## Changes relevant for (module) developers
 
 The following changes are relevant for those having custom developed modules, authentication
-processing filters or interface with the SimpleSAMLphp development API.
+processing filters, themes, or interface with the SimpleSAMLphp development API.
 
 - We expect your source-files to exist in the src/ directory within your module. This used to be the
   lib/ directory, so you have to rename the directory and for composer-modules you have to update
