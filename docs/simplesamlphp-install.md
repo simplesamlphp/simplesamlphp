@@ -328,15 +328,6 @@ At the bottom of the admin page there are some green lights. SimpleSAMLphp runs 
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 
-## Building assets
-
-Run the following commands to build the default theme.
-
-```bash
-npm install
-npm run build
-```
-
 ## Next steps
 
 You have now successfully installed SimpleSAMLphp, and the next steps depend on whether you want to setup a Service
@@ -405,7 +396,7 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
    `https://host.example/~myaccount/`, set the base URL path accordingly:
 
    ```bash
-   'baseurlpath' => 'https://host.example/~myaccount/simplesaml/', 
+   'baseurlpath' => 'https://host.example/~myaccount/simplesaml/',
    ```
 
    Now, you can go to the URL of your installation and check if things work:
