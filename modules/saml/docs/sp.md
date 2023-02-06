@@ -210,7 +210,7 @@ The following attributes are available:
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
 
-:   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
+:   Note that this option can be set for each IdP in the [IdP-remote metadata](../simplesamlphp-reference-idp-remote).
 
 `entityID`
 :   The entity ID this SP should use. (Must be set or an error will be generated.)
@@ -258,7 +258,7 @@ The following attributes are available:
 :   Whether NameIDs sent from this SP should be encrypted. The default
     value is `false`.
 
-:   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
+:   Note that this option can be set for each IdP in the [IdP-remote metadata](../simplesamlphp-reference-idp-remote).
 
 `NameIDPolicy`
 :   The format of the NameID we request from the idp: an array in the form of
@@ -313,7 +313,7 @@ The following attributes are available:
 
 `RegistrationInfo`
 :   Allows to specify information about the registrar of this SP. Please refer to the
-    [MDRPI extension](./simplesamlphp-metadata-extensions-rpi) document for further information.
+    [MDRPI extension](../simplesamlphp-metadata-extensions-rpi) document for further information.
 
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
