@@ -1,14 +1,6 @@
 SAML V2.0 Metadata Extensions for Registration and Publication Information
 =============================
 
-<!--
-    This file is written in Markdown syntax.
-    For more information about how to use the Markdown syntax, read here:
-    http://daringfireball.net/projects/markdown/syntax
--->
-
-* Author: Jaime Perez [jaime.perez@uninett.no](mailto:jaime.perez@uninett.no)
-
 [TOC]
 
 This is a reference for the SimpleSAMLphp implementation of the [SAML
@@ -21,7 +13,7 @@ extension can be used for:
 
 * metadata published for a [hosted service provider](./saml:sp).
 * metadata published for a [hosted identity provider](./simplesamlphp-reference-idp-hosted).
-* metadata collected and published by means of the [`aggregator`](./aggregator:aggregator) or [`aggregator2`](./aggregator2:aggregator2) modules.
+* metadata collected and published by means of the [`aggregator2`](./aggregator2:aggregator2) module.
 
 Currently, only the `<mdrpi:RegistrationInfo>` element is supported.
 
@@ -30,7 +22,6 @@ configuration file:
 
 * `metadata/saml20-idp-hosted.php` for hosted identity providers.
 * `config/authsources.php` for hosted service providers.
-* `config/module_aggregator.php` for the `aggregator` module.
 * `config/module_aggregator2.php` for the `aggregator2` module.
 
 RegistrationInfo Items
@@ -77,22 +68,6 @@ Identity Provider:
         'RegistrationInfo' => [
             'authority' => 'urn:mace:idp.example.org',
             'instant' => '2008-01-17T11:28:03.577Z',
-        ],
-    ];
-
-`aggregator` module:
-
-    $config = [
-        'aggregators' => [
-            ...
-        ],
-        'maxDuration'   => 60*60*24*5,
-        'reconstruct' => FALSE,
-        ...
-        'RegistrationInfo' => [
-            'authority' => 'urn:mace:example.federation',
-            'instant' => '2008-01-17T11:28:03Z',
-            'policies' => ['en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'],
         ],
     ];
 
