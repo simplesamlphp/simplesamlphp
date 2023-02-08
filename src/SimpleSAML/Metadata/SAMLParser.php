@@ -919,6 +919,14 @@ class SAMLParser
                     } else {
                         $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();
                     }
+                    $registrationInstant = $e->getRegistrationInstant();
+                    if ($registrationInstant !== null) {
+                        $ret['RegistrationInfo']['instant'] = $registrationInstant;
+                    }
+                    $registrationPolicy = $e->getRegistrationPolicy();
+                    if (!empty($registrationPolicy)) {
+                        $ret['RegistrationInfo']['policies'] = $registrationPolicy;
+                    }
                 }
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
                     foreach ($e->getChildren() as $attr) {
