@@ -40,7 +40,6 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
 XML
         );
 
-
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -98,6 +97,72 @@ XML
 
         /** @var array $metadata */
         $metadata = $entities['subEntityIdOverride']->getMetadata20SP();
+        $this->assertEquals($expected, $metadata['RegistrationInfo']);
+    }
+
+
+    /**
+     * Test Registration Info is parsed
+     */
+    public function testRegistrationPolicy(): void
+    {
+        $expected = [
+            'authority' => 'https://safire.ac.za',
+            'policies' => [ 'en' => 'https://safire.ac.za/safire/policy/mrps/v20190207.html' ],
+        ];
+
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za">
+        <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
+      </mdrpi:RegistrationInfo>
+    </Extensions>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        // RegistrationInfo is accessible in the SP or IDP metadata accessors
+        /** @var array $metadata */
+        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $this->assertEquals($expected, $metadata['RegistrationInfo']);
+    }
+
+
+    /**
+     * Test Registration Info is parsed
+     */
+    public function testRegistrationInstant(): void
+    {
+        $expected = [
+            'authority' => 'https://safire.ac.za',
+            'instant' => 1675861615,
+        ];
+
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
+  <EntityDescriptor entityID="theEntityID">
+    <Extensions>
+      <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za" registrationInstant="2023-02-08T13:06:55Z" />
+    </Extensions>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        // RegistrationInfo is accessible in the SP or IDP metadata accessors
+        /** @var array $metadata */
+        $metadata = $entities['theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
