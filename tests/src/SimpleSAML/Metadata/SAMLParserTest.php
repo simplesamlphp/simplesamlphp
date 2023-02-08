@@ -24,7 +24,7 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
     public function testRegistrationInfo(): void
     {
         $expected = [
-            'registrationAuthority' => 'https://incommon.org',
+            'authority' => 'https://incommon.org',
         ];
 
         $document = DOMDocumentFactory::fromString(
@@ -57,7 +57,7 @@ XML
     public function testRegistrationInfoInheritance(): void
     {
         $expected = [
-            'registrationAuthority' => 'https://incommon.org',
+            'authority' => 'https://incommon.org',
         ];
 
         $document = DOMDocumentFactory::fromString(
