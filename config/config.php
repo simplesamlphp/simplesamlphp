@@ -26,7 +26,7 @@ else if ($storeType == 'redis') {
        $redisHost = $CFG->session_redis_host;
     }
     if (!empty($CFG->session_redis_port)) {
-       $redisPort = $CFG->session_redis_port;
+       $redisPort = intval($CFG->session_redis_port);
     }
 }
 
