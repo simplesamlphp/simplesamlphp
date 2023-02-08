@@ -908,16 +908,16 @@ class SAMLParser
                 if ($e instanceof RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (
-                        isset($ret['RegistrationInfo']['registrationAuthority'])
-                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()
+                        isset($ret['RegistrationInfo']['authority'])
+                        && $ret['RegistrationInfo']['authority'] !== $e->getRegistrationAuthority()
                     ) {
                         Logger::warning(
                             'Invalid attempt to override registrationAuthority \''
-                            . $ret['RegistrationInfo']['registrationAuthority']
+                            . $ret['RegistrationInfo']['authority']
                             . "' with '{$e->getRegistrationAuthority()}'"
                         );
                     } else {
-                        $ret['RegistrationInfo']['registrationAuthority'] = $e->getRegistrationAuthority();
+                        $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();
                     }
                 }
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
