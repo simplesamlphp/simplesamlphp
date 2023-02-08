@@ -6,14 +6,28 @@
 require_once(__DIR__ . '/../../config.php');
 global $CFG;
 
-$memcacheStore = [
-    ['hostname' => 'localhost'],
-];
-if (!empty($CFG->session_memcached_save_path)) {
-    $memcached = explode(':', $CFG->session_memcached_save_path);
+$storeType = $CFG->cachedriver;
+if ($storeType == 'memcached') {
+    $storeType = 'memcache'; // simplesaml spells it differently to moodle
     $memcacheStore = [
-        ['hostname' => $memcached[0], 'port' => $memcached[1]],
-    ];    
+        ['hostname' => 'localhost'],
+    ];
+    if (!empty($CFG->session_memcached_save_path)) {
+        $memcached = explode(':', $CFG->session_memcached_save_path);
+        $memcacheStore = [
+            ['hostname' => $memcached[0], 'port' => $memcached[1]],
+        ];    
+    }
+} 
+else if ($storeType == 'redis') {
+    $redisHost = 'localhost';
+    $redisPort = 6379;
+    if (!empty($CFG->session_redis_host)) {
+       $redisHost = $CFG->session_redis_host;
+    }
+    if (!empty($CFG->session_redis_port)) {
+       $redisPort = $CFG->session_redis_port;
+    }
 }
 
 $config = [
@@ -1192,7 +1206,7 @@ $config = [
      *
      * The default datastore is 'phpsession'.
      */
-    'store.type'                    => 'memcache',
+    'store.type'                    => $storeType,
 
     /*
      * The DSN the sql datastore should connect to.
@@ -1216,8 +1230,8 @@ $config = [
     /*
      * The hostname and port of the Redis datastore instance.
      */
-    'store.redis.host' => 'localhost',
-    'store.redis.port' => 6379,
+    'store.redis.host' => $redisHost,
+    'store.redis.port' => $redisPort,
 
     /*
      * The prefix we should use on our Redis datastore.
