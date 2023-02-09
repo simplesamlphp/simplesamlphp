@@ -106,7 +106,7 @@ class ServiceProvider
 
 
     /**
-     * Start single sign-on for an SP identified with the specified entityID
+     * Start single sign-on for an SP identified with the specified Authsource ID
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
