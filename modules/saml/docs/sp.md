@@ -269,7 +269,7 @@ The following attributes are available:
         ],
 
 `NameIDPolicy`
-:   The format of the NameID we request from the IdP in the Authentiction Request:
+:   The format of the NameID we request from the IdP in the AuthnRequest:
     an array in the form of
     `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
     Set to an empty array `[]` to omit sending any specific NameIDPolicy element
