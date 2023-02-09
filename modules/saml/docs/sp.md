@@ -260,8 +260,17 @@ The following attributes are available:
 
 :   Note that this option can be set for each IdP in the [IdP-remote metadata](../simplesamlphp-reference-idp-remote).
 
+`NameIDFormat`
+:   An array of the format(s) listed in the SP metadata that this SP will accept. Example:
+
+        'NameIDFormat' => [
+            \SAML2\Constants::NAMEID_PERSISTENT,
+            \SAML2\Constants::NAMEID_TRANSIENT,
+        ],
+
 `NameIDPolicy`
-:   The format of the NameID we request from the idp: an array in the form of
+:   The format of the NameID we request from the IdP in the Authentiction Request:
+    an array in the form of
     `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
     Set to an empty array `[]` to omit sending any specific NameIDPolicy element
     in the AuthnRequest. When the entire option or either array key is unset,
