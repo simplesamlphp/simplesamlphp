@@ -75,7 +75,7 @@ class Exception
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
         if (isset($state['Source']['auth'])) {
             $t->data['LogoutURL'] = Module::getModuleURL(
-                'core/login/' . urlencode($state['Source']['auth'])
+                'saml/sp/login/' . urlencode($state['Source']['auth'])
             );
         }
 
