@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
+use ArgumentCountError;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
@@ -46,6 +47,7 @@ class ServiceProviderTest extends TestCase
             [
                 'module.enable' => ['saml' => true],
                 'admin.protectmetadata' => false,
+                'trusted.url.domains' => ['example.org'],
             ],
             '[ARRAY]',
             'simplesaml'
@@ -77,6 +79,87 @@ class ServiceProviderTest extends TestCase
 
         $_SERVER['REQUEST_URI'] = '/dummy';
     }
+
+
+    /**
+     * Test that accessing the login-endpoint without AuthID leads to an exception
+     *
+     * @return void
+     */
+    public function testLoginMissingAuthId(): void
+    {
+        $request = Request::create(
+            '/sp/login',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(ArgumentCountError::class);
+        $c->login($request);
+    }
+
+
+    /**
+     * Test that accessing the login-endpoint with a non-SP authsource leads to an exception
+     *
+     * @return void
+     */
+    public function testLoginWrongAuthSource(): void
+    {
+        $request = Request::create(
+            '/sp/login/admin',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Authsource must be of type saml:SP.');
+        $c->login($request, 'admin');
+    }
+
+
+    /**
+     * Test that accessing the login-endpoint without ReturnTo parameter leads to an exception
+     *
+     * @return void
+     */
+    public function testLoginMissingReturnTo(): void
+    {
+        $request = Request::create(
+            '/sp/login/phpunit',
+            'GET',
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\BadRequest::class);
+        $this->expectExceptionMessage('Missing ReturnTo parameter.');
+        $c->login($request, 'phpunit');
+    }
+
+
+    /**
+     * @TODO: This cannot be tested until we are PSR-7 compliant
+     *
+     * Test that accessing the login-endpoint with ReturnTo parameter leads to a RunnableResponse
+     *
+     * @return void
+    public function testLogin(): void
+    {
+        $request = Request::create(
+            '/sp/login/phpunit',
+            'GET',
+            ['ReturnTo' => 'https://localhost'],
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $response = $c->login($request, 'phpunit');
+
+        $this->assertInstanceOf(RunnableResponse::class, $response);
+    }
+     */
 
 
     /**
@@ -459,7 +542,7 @@ XML;
 
         $this->expectException(\SimpleSAML\Error\Error::class);
         $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
-        $result = $c->metadata($request, 'phpnonunit');
+        $c->metadata($request, 'phpnonunit');
     }
 
     /**
