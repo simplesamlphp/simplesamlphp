@@ -132,13 +132,6 @@ class ServiceProvider
             'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
         ];
 
-        /**
-         * Allows a saml:idp query string parameter specify the IdP entity ID to be used
-         * as used by the DiscoJuice embedded client.
-         */
-        if (!empty($request->query->has('saml:idp'))) {
-            $options['saml:idp'] = $request->query->get('saml:idp');
-        }
         $as->requireAuth($options);
 
         return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
