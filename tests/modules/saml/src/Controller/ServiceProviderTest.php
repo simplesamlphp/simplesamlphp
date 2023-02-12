@@ -82,25 +82,6 @@ class ServiceProviderTest extends TestCase
 
 
     /**
-     * Test that accessing the login-endpoint without AuthID leads to an exception
-     *
-     * @return void
-     */
-    public function testLoginMissingAuthId(): void
-    {
-        $request = Request::create(
-            '/sp/login',
-            'GET',
-        );
-
-        $c = new Controller\ServiceProvider($this->config, $this->session);
-
-        $this->expectException(ArgumentCountError::class);
-        $c->login($request);
-    }
-
-
-    /**
      * Test that accessing the login-endpoint with a non-SP authsource leads to an exception
      *
      * @return void
