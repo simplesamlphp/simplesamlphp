@@ -6,7 +6,7 @@ core-account-disco-clearchoices:
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login::cleardiscochoices' }
 core-legacy-login:
     path:       /login/{as}
-    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /module.php/saml/sp/login/{as}, permanent: true }
+    defaults:   { _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction', path: /module.php/saml/sp/login/, permanent: true }
 core-loginuserpass:
     path:       /loginuserpass
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\Login::loginuserpass' }
