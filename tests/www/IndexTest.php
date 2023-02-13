@@ -69,7 +69,7 @@ class IndexTest extends TestCase
     {
         // test most basic redirection
         $this->updateConfig([
-                'baseurlpath' => 'http://example.org/simplesaml/'
+            'baseurlpath' => 'http://example.org/simplesaml/'
         ]);
         $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -113,7 +113,7 @@ class IndexTest extends TestCase
     public function testRedirectionFrontpageRedirectOption(): void
     {
         $this->updateConfig([
-                'frontpage.redirect' => 'https://www.example.edu/'
+            'frontpage.redirect' => 'https://www.example.edu/'
         ]);
         $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
