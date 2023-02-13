@@ -227,7 +227,8 @@ abstract class Source
         if (is_string($return)) {
             // redirect...
             $httpUtils = new Utils\HTTP();
-            $httpUtils->redirectTrustedURL($return);
+            $response = $httpUtils->redirectTrustedURL($return);
+            $response->send();
         } else {
             call_user_func($return, $state);
         }

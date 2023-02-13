@@ -616,7 +616,7 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp): void
+    public static function receiveLogoutMessage(IdP $idp): ?Response
     {
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
@@ -657,7 +657,7 @@ class SAML2
 
             $assocId = 'saml:' . $spEntityId;
 
-            $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
+            return $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
         } elseif ($message instanceof LogoutRequest) {
             Logger::info('Received SAML 2.0 LogoutRequest from: ' . var_export($spEntityId, true));
             Stats::log('saml:idp:LogoutRequest:recv', [
@@ -676,7 +676,7 @@ class SAML2
             ];
 
             $assocId = 'saml:' . $spEntityId;
-            $idp->handleLogoutRequest($state, $assocId);
+            return $idp->handleLogoutRequest($state, $assocId);
         } else {
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }

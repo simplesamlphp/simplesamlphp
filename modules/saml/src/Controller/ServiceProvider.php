@@ -28,7 +28,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function array_merge;
 use function count;
@@ -110,9 +110,9 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function login(Request $request, string $sourceId): RunnableResponse
+    public function login(Request $request, string $sourceId): RedirectResponse
     {
         $as = new Auth\Simple($sourceId);
         if (!($as->getAuthSource() instanceof SP)) {
@@ -134,7 +134,7 @@ class ServiceProvider
 
         $as->requireAuth($options);
 
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+        return $httpUtils->redirectTrustedURL($returnTo);
     }
 
 
@@ -188,9 +188,9 @@ class ServiceProvider
      * Handler for the Assertion Consumer Service.
      *
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function assertionConsumerService(string $sourceId): RunnableResponse
+    public function assertionConsumerService(string $sourceId): RedirectResponse|RunnableResponse
     {
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId, SP::class);
@@ -246,7 +246,7 @@ class ServiceProvider
                 'ignoring the response and redirecting the user to the correct page.'
             ));
             if (isset($prevAuth['redirect'])) {
-                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
+                return $httpUtils->redirectTrustedURL($prevAuth['redirect']);
             }
 
             Logger::info('No RelayState or ReturnURL available, cannot redirect.');

@@ -167,9 +167,10 @@ class External extends Auth\Source
          * the real name of the parameter for the login page.
          */
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($authPage, [
+        $response = $httpUtils->redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
         ]);
+        $response->send();
 
         /*
          * The redirect function never returns, so we never get this far.

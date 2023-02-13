@@ -216,8 +216,10 @@ abstract class UserPassOrgBase extends Auth\Source
 
         $url = Module::getModuleURL('core/loginuserpassorg');
         $params = ['AuthState' => $id];
+
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $params);
+        $response = $httpUtils->redirectTrustedURL($url, $params);
+        $response->send();
     }
 
 

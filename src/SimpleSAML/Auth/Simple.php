@@ -251,7 +251,8 @@ class Simple
                 $params[$state['ReturnStateParam']] = $stateID;
             }
             $httpUtils = new Utils\HTTP();
-            $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
+            $response = $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
+            $response->send();
         }
     }
 

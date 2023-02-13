@@ -15,12 +15,11 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request};
 
 use function array_key_exists;
 use function substr;
+use function strval;
 use function time;
 
 /**
@@ -466,7 +465,7 @@ class Login
      *
      * @param Request $request The request that lead to this login operation.
      */
-    public function cleardiscochoices(Request $request): void
+    public function cleardiscochoices(Request $request): RedirectResponse
     {
         $httpUtils = new Utils\HTTP();
 
@@ -486,6 +485,6 @@ class Login
         $returnTo = $this->getReturnPath($request);
 
         // Redirect to destination.
-        $httpUtils->redirectTrustedURL($returnTo);
+        return $httpUtils->redirectTrustedURL($returnTo);
     }
 }

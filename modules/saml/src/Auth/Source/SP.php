@@ -24,6 +24,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 class SP extends \SimpleSAML\Auth\Source
 {
@@ -708,7 +709,8 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($discoURL, $params);
+        $response = $httpUtils->redirectTrustedURL($discoURL, $params);
+        $response->send();
     }
 
 
@@ -879,7 +881,8 @@ class SP extends \SimpleSAML\Auth\Source
         $url = Module::getModuleURL('saml/proxy/invalid_session.php');
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
+        $response = $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
+        $response->send();
         Assert::true(false);
     }
 
@@ -891,7 +894,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param array $state The state array.
      */
-    public static function reauthLogout(array $state): void
+    public static function reauthLogout(array $state): ?Response
     {
         Logger::debug('Proxy: logging the user out before re-authentication.');
 

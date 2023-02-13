@@ -529,7 +529,7 @@ class IdPDisco
             $extDiscoveryStorage = $this->config->getOptionalString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-                $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
+                $response = $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
@@ -541,13 +541,15 @@ class IdPDisco
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
                     . $this->returnIdParam . ')'
                 );
-                $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
+                $response = $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
+            $response->send();
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
-            $httpUtils->redirectTrustedURL($this->returnURL);
+            $response = $httpUtils->redirectTrustedURL($this->returnURL);
+            $response->send();
         }
     }
 
@@ -579,10 +581,11 @@ class IdPDisco
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
                 $this->returnIdParam . ')'
             );
-            $httpUtils->redirectTrustedURL(
+            $response = $httpUtils->redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $idpintersection[0]]
             );
+            $response->send();
         }
 
         /*

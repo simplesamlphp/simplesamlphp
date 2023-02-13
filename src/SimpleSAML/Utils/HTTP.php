@@ -320,12 +320,13 @@ class HTTP
         }
 
         // we didn't have a session cookie. Redirect to the no-cookie page
-
         $url = Module::getModuleURL('core/error/nocookie');
         if ($retryURL !== null) {
             $url = $this->addURLParameters($url, ['retryURL' => $retryURL]);
         }
-        $this->redirectTrustedURL($url);
+
+        $response = $this->redirectTrustedURL($url);
+        $response->send();
     }
 
 

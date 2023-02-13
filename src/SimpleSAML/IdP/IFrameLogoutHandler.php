@@ -81,7 +81,8 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
 
         $url = Module::getModuleURL('core/logout-iframe', $params);
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url);
+        $response = $httpUtils->redirectTrustedURL($url);
+        $response->send();
     }
 
 

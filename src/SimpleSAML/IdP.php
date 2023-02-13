@@ -527,15 +527,14 @@ class IdP
      *
      * @param string $url The URL the user should be returned to after logout.
      */
-    public function doLogoutRedirect(string $url): void
+    public function doLogoutRedirect(string $url): Response
     {
         $state = [
             'Responder'       => [IdP::class, 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
         ];
 
-        $this->handleLogoutRequest($state, null);
-        Assert::true(false);
+        return $this->handleLogoutRequest($state, null);
     }
 
 
@@ -552,7 +551,9 @@ class IdP
         Assert::notNull($state['core:Logout:URL']);
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
+        $response = $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
+        $response->send();
+
         Assert::true(false);
     }
 }

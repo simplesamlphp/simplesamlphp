@@ -371,10 +371,11 @@ class State
             $id = self::saveState($state, self::EXCEPTION_STAGE);
 
             // Redirect to the exception handler
-            $httpUtils->redirectTrustedURL(
+            $response = $httpUtils->redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
                 [self::EXCEPTION_PARAM => $id]
             );
+            $response->send();
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler
             $func = $state[self::EXCEPTION_HANDLER_FUNC];

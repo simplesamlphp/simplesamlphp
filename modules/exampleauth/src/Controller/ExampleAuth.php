@@ -12,7 +12,7 @@ use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 use function array_key_exists;
@@ -78,9 +78,9 @@ class ExampleAuth
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function authpage(Request $request)
+    public function authpage(Request $request): Template|RedirectResponse
     {
         /**
          * This page serves as a dummy login page.
@@ -155,7 +155,7 @@ class ExampleAuth
                 $session->set('mail', $user['mail']);
                 $session->set('type', $user['type']);
 
-                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+                return $httpUtils->redirectTrustedURL($returnTo);
             }
         }
 
