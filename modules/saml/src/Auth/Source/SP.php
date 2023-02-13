@@ -685,14 +685,10 @@ class SP extends \SimpleSAML\Auth\Source
         $idpMetadata = $this->getIdPMetadata($idp);
 
         $type = $idpMetadata->getString('metadata-set');
-        switch ($type) {
-            case 'saml20-idp-remote':
-                $this->startSSO2($idpMetadata, $state);
-                Assert::true(false); // Should not return
-            default:
-                // Should only be one of the known types
-                Assert::true(false);
-        }
+        Assert::oneOf($type, ['saml20-idp-remote']);
+
+        $this->startSSO2($idpMetadata, $state);
+        Assert::true(false); // Should not return
     }
 
 
@@ -1042,14 +1038,10 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::keyExists($state, 'saml:logout:Type');
 
         $logoutType = $state['saml:logout:Type'];
-        switch ($logoutType) {
-            case 'saml2':
-                $this->startSLO2($state);
-                return;
-            default:
-                // Should never happen
-                Assert::true(false);
-        }
+        Assert::oneOf($logoutType, ['saml2']);
+
+        $this->startSLO2($state);
+        Assert::true(false); // Should not return
     }
 
 
