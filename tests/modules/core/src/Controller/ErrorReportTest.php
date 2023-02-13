@@ -65,6 +65,7 @@ class ErrorReportTest extends TestCase
         $response = $c->main($request);
 
         $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals('core:errorreport.twig', $response->getTemplateName());
     }
 
@@ -109,5 +110,6 @@ class ErrorReportTest extends TestCase
         $response = $c->main($request);
 
         $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
     }
 }
