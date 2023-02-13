@@ -67,6 +67,7 @@ class LoginTest extends ClearStateTestCase
         $response = $c->welcome();
 
         $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals('core:welcome.twig', $response->getTemplateName());
     }
 
@@ -135,6 +136,7 @@ class LoginTest extends ClearStateTestCase
         $response = $c->loginuserpass($request);
 
         $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
 
@@ -205,6 +207,7 @@ class LoginTest extends ClearStateTestCase
         $response = $c->loginuserpassorg($request);
 
         $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
      */

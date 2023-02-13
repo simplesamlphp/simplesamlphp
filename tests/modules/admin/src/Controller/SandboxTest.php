@@ -52,5 +52,6 @@ class SandboxTest extends TestCase
         $response = $c->main();
 
         $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
     }
 }
