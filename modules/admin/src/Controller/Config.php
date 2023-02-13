@@ -367,11 +367,11 @@ class Config
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             } catch (Exception $e) {
-                    $matrix[] = [
-                        'required' => 'required',
-                        'descr' => Translate::noop('Hosted IdP metadata present'),
-                        'enabled' => false
-                    ];
+                $matrix[] = [
+                    'required' => 'required',
+                    'descr' => Translate::noop('Hosted IdP metadata present'),
+                    'enabled' => false
+                ];
             }
 
             if (isset($metadata)) {
@@ -483,9 +483,9 @@ class Config
                             'You are running an outdated version of SimpleSAMLphp. Please update to <a href="' .
                             '%latest%">the latest version</a> as soon as possible.'
                         ),
-                            [
-                                '%latest%' => $latest['html_url']
-                            ]
+                        [
+                            '%latest%' => $latest['html_url'],
+                        ],
                     ];
                 }
             }
