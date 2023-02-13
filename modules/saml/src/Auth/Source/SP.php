@@ -904,8 +904,7 @@ class SP extends \SimpleSAML\Auth\Source
         $state['Responder'] = [SP::class, 'reauthPostLogout'];
 
         $idp = IdP::getByState($state);
-        $idp->handleLogoutRequest($state, null);
-        Assert::true(false);
+        return $idp->handleLogoutRequest($state, null);
     }
 
 

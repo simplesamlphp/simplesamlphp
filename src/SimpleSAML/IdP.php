@@ -15,6 +15,7 @@ use SimpleSAML\IdP\TraditionalLogoutHandler;
 use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * IdP class.
@@ -462,13 +463,11 @@ class IdP
     /**
      * Process a logout request.
      *
-     * This function will never return.
-     *
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
      */
-    public function handleLogoutRequest(array &$state, ?string $assocId): void
+    public function handleLogoutRequest(array &$state, ?string $assocId): Response
     {
         Assert::notNull($state['Responder']);
         Assert::nullOrString($assocId);
@@ -490,7 +489,7 @@ class IdP
 
         if ($assocId !== null) {
             $handler = $this->getLogoutHandler();
-            $handler->startLogout($state, $assocId);
+            return $handler->startLogout($state, $assocId);
         }
         Assert::true(false);
     }
@@ -499,13 +498,11 @@ class IdP
     /**
      * Process a logout response.
      *
-     * This function will never return.
-     *
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
      */
-    public function handleLogoutResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
+    public function handleLogoutResponse(string $assocId, ?string $relayState, Error\Exception $error = null): Response
     {
         $index = strpos($assocId, ':');
         Assert::integer($index);
@@ -514,9 +511,7 @@ class IdP
         $session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, $index + 1));
 
         $handler = $this->getLogoutHandler();
-        $handler->onResponse($assocId, $relayState, $error);
-
-        Assert::true(false);
+        return $handler->onResponse($assocId, $relayState, $error);
     }
 
 

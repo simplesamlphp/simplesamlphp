@@ -35,6 +35,7 @@ class ProxyTest extends TestCase
 
         $this->config = Configuration::loadFromArray(
             [
+                'enable.saml20-idp' => true,
                 'module.enable' => ['saml' => true],
             ],
             '[ARRAY]',
@@ -158,6 +159,7 @@ class ProxyTest extends TestCase
             {
                 return [
                     'saml:sp:AuthId' => 'phpunit',
+                    'core:IdP' => 'saml2:phpunit',
                 ];
             }
         });

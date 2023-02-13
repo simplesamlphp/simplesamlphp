@@ -106,6 +106,7 @@ class Proxy
 
             // log the user out before being able to login again
             return new RunnableResponse([$as, 'reauthLogout'], [$state]);
+            // return $as->reauthLogout($state); Not working yet
         }
 
         $template = new Template($this->config, 'saml:proxy/invalid_session.twig');
