@@ -7,7 +7,6 @@ namespace SimpleSAML\Compat;
 use Psr\Log\LoggerInterface;
 use SAML2\Compat\AbstractContainer;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SspContainer extends AbstractContainer
 {
@@ -61,10 +60,11 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function redirect(string $url, array $data = []): RedirectResponse
+    public function redirect(string $url, array $data = []): void
     {
         $httpUtils = new Utils\HTTP();
-        return $httpUtils->redirectTrustedURL($url, $data);
+        $response = $httpUtils->redirectTrustedURL($url, $data);
+        $response->send();
     }
 
 
@@ -73,10 +73,11 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function postRedirect(string $url, array $data = []): RedirectResponse
+    public function postRedirect(string $url, array $data = []): void
     {
         $httpUtils = new Utils\HTTP();
-        return $httpUtils->submitPOSTData($url, $data);
+        $response = $httpUtils->submitPOSTData($url, $data);
+        $response->send();
     }
 
 
