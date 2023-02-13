@@ -302,7 +302,8 @@ class State
                 throw new Error\NoState();
             }
 
-            $httpUtils->redirectUntrustedURL($sid['url']);
+            $response = $httpUtils->redirectUntrustedURL($sid['url']);
+            $response->send();
         }
 
         $state = unserialize($state);
@@ -326,7 +327,8 @@ class State
                 throw new Exception($msg);
             }
 
-            $httpUtils->redirectUntrustedURL($sid['url']);
+            $response = $httpUtils->redirectUntrustedURL($sid['url']);
+            $response->send();
         }
 
         return $state;

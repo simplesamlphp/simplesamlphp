@@ -1108,7 +1108,8 @@ class SP extends \SimpleSAML\Auth\Source
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectUntrustedURL($redirectTo);
+        $response = $httpUtils->redirectUntrustedURL($redirectTo);
+        $response->send();
     }
 
 

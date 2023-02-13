@@ -956,11 +956,10 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public function redirectUntrustedURL(string $url, array $parameters = []): void
+    public function redirectUntrustedURL(string $url, array $parameters = []): RedirectResponse
     {
         $url = $this->checkURLAllowed($url);
-        $response = $this->redirect($url, $parameters);
-        $response->send();
+        return $this->redirect($url, $parameters);
     }
 
 
