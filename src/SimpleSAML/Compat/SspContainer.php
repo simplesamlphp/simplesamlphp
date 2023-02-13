@@ -60,10 +60,10 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function redirect(string $url, array $data = []): void
+    public function redirect(string $url, array $data = []): RedirectResponse
     {
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $data);
+        return $httpUtils->redirectTrustedURL($url, $data);
     }
 
 
