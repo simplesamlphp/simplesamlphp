@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\cron\Controller;
 
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use SimpleSAML\Auth;
-use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;

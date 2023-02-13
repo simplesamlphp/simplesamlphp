@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\multiauth\Controller;
 
 use SimpleSAML\Auth;
-use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
