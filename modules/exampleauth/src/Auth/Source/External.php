@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
@@ -171,11 +172,6 @@ class External extends Auth\Source
             'ReturnTo' => $returnTo,
         ]);
         $response->send();
-
-        /*
-         * The redirect function never returns, so we never get this far.
-         */
-        Assert::true(false);
     }
 
 
@@ -250,12 +246,8 @@ class External extends Auth\Source
          */
 
         $state['Attributes'] = $attributes;
-        Auth\Source::completeAuth($state);
-
-        /*
-         * The completeAuth-function never returns, so we never get this far.
-         */
-        Assert::true(false);
+        $response = new RunnableResponse([Auth\Source::class, 'completeAuth'], [&$state]);
+        $response->send();
     }
 
 

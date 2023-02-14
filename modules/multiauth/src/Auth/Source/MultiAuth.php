@@ -145,9 +145,6 @@ class MultiAuth extends Auth\Source
         $httpUtils = new Utils\HTTP();
         $response = $httpUtils->redirectTrustedURL($url, $params);
         $response->send();
-
-        // The previous function never returns, so this code is never executed
-        Assert::true(false);
     }
 
 
