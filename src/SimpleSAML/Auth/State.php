@@ -383,8 +383,8 @@ class State
             $func = $state[self::EXCEPTION_HANDLER_FUNC];
             Assert::isCallable($func);
 
-            call_user_func($func, $exception, $state);
-            Assert::true(false);
+            $response = call_user_func($func, $exception, $state);
+            $response->send();
         } else {
             /*
              * No exception handler is defined for the current state.
