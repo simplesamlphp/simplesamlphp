@@ -12,6 +12,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class for implementing authentication processing chains for IdPs.
@@ -253,7 +254,6 @@ class ProcessingChain
             $id = State::saveState($state, self::COMPLETED_STAGE);
             $httpUtils = new Utils\HTTP();
             $response = $httpUtils->redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
-            $response->send();
         } else {
             /* Pass the state to the function defined in $state['ReturnCall']. */
 
@@ -263,9 +263,10 @@ class ProcessingChain
             $func = $state['ReturnCall'];
             Assert::isCallable($func);
 
-            call_user_func($func, $state);
-            Assert::true(false);
+            $response = call_user_func($func, $state);
+            Assert::subclassOf($response, Response::class);
         }
+        $response->send();
     }
 
 
