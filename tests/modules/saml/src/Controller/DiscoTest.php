@@ -6,9 +6,8 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -41,7 +40,7 @@ class DiscoTest extends TestCase
 
 
     /**
-     * Test that accessing the disco-endpoint leads to a RunnableResponse
+     * Test that accessing the disco-endpoint leads to a RedirectResponse
      *
      * @return void
      */
@@ -61,7 +60,8 @@ class DiscoTest extends TestCase
 
         $c = new Controller\Disco($this->config);
 
-        $result = $c->disco();
-        $this->assertInstanceOf(RunnableResponse::class, $result);
+        $response = $c->disco();
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 }

@@ -11,6 +11,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_fill_keys;
 use function array_intersect_key;
@@ -519,9 +520,8 @@ class IdPDisco
 
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
-     *
      */
-    protected function start(): void
+    protected function start(): ?Response
     {
         $httpUtils = new Utils\HTTP();
         $idp = $this->getTargetIdP();
@@ -529,7 +529,7 @@ class IdPDisco
             $extDiscoveryStorage = $this->config->getOptionalString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-                $response = $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
+                return $httpUtils->redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
@@ -541,16 +541,16 @@ class IdPDisco
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
                     . $this->returnIdParam . ')'
                 );
-                $response = $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
+                return $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
-            $response->send();
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
-            $response = $httpUtils->redirectTrustedURL($this->returnURL);
-            $response->send();
+            return $httpUtils->redirectTrustedURL($this->returnURL);
         }
+
+        return null;
     }
 
 
@@ -559,9 +559,12 @@ class IdPDisco
      *
      * The IdP disco parameters should be set before calling this function.
      */
-    public function handleRequest(): void
+    public function handleRequest(): Response
     {
-        $this->start();
+        $response = $this->start();
+        if ($response !== null) {
+            return $response;
+        }
 
         // no choice made. Show discovery service page
         $idpList = $this->getIdPList();
@@ -581,11 +584,11 @@ class IdPDisco
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
                 $this->returnIdParam . ')'
             );
-            $response = $httpUtils->redirectTrustedURL(
+
+            return $httpUtils->redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $idpintersection[0]]
             );
-            $response->send();
         }
 
         /*
@@ -636,6 +639,6 @@ class IdPDisco
         $t->data['urlpattern'] = $httpUtils->getSelfURLNoQuery();
         $t->data['rememberenabled'] = $this->config->getOptionalBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getOptionalBoolean('idpdisco.rememberchecked', false);
-        $t->send();
+        return $t;
     }
 }
