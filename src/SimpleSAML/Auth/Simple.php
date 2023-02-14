@@ -10,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Helper class for simple authentication applications.
@@ -241,8 +242,8 @@ class Simple
         Assert::true(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
-            call_user_func($state['ReturnCallback'], $state);
-            Assert::true(false);
+            $response = call_user_func($state['ReturnCallback'], $state);
+            Assert::subclassOf($response, Response::class);
         } else {
             $params = [];
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {
@@ -252,8 +253,8 @@ class Simple
             }
             $httpUtils = new Utils\HTTP();
             $response = $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
-            $response->send();
         }
+        $response->send();
     }
 
 
