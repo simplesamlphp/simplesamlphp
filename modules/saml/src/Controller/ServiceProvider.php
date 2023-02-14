@@ -318,7 +318,6 @@ class ServiceProvider
             // the status of the response wasn't "success"
             $e = $e->toException();
             $this->authState::throwException($state, $e);
-            Assert::true(false);
         }
 
         $authenticatingAuthority = null;
