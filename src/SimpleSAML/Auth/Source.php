@@ -11,6 +11,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * This class defines a base class for authentication source.
@@ -150,8 +151,9 @@ abstract class Source
         $func = $state['LoginCompletedHandler'];
         Assert::isCallable($func);
 
-        call_user_func($func, $state);
-        Assert::true(false);
+        $response = call_user_func($func, $state);
+        Assert::subclassOf($response, Response::class);
+        $response->send();
     }
 
 
@@ -228,11 +230,11 @@ abstract class Source
             // redirect...
             $httpUtils = new Utils\HTTP();
             $response = $httpUtils->redirectTrustedURL($return);
-            $response->send();
         } else {
-            call_user_func($return, $state);
+            $response = call_user_func($return, $state);
+            Assert::subclassOf($response, Response::class);
         }
-        Assert::true(false);
+        $response->send();
     }
 
 
@@ -273,8 +275,9 @@ abstract class Source
         $func = $state['LogoutCompletedHandler'];
         Assert::isCallable($func);
 
-        call_user_func($func, $state);
-        Assert::true(false);
+        $response = call_user_func($func, $state);
+        Assert::subclassOf($response, Response::class);
+        $response->send();
     }
 
 
@@ -470,7 +473,9 @@ abstract class Source
         $callbackState = $data['state'];
 
         $session->deleteData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
-        call_user_func($callback, $callbackState);
+        $response = call_user_func($callback, $callbackState);
+        Assert::subclassOf($response, Response::class);
+        $response->send();
     }
 
 
