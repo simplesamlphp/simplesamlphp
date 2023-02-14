@@ -280,8 +280,8 @@ class IdP
             );
         }
 
-        call_user_func($state['Responder'], $state);
-        Assert::true(false);
+        $response = call_user_func($state['Responder'], $state);
+        $response->send();
     }
 
 
@@ -455,8 +455,8 @@ class IdP
         Assert::notNull($state['Responder']);
 
         $idp = IdP::getByState($state);
-        call_user_func($state['Responder'], $idp, $state);
-        Assert::true(false);
+        $response = call_user_func($state['Responder'], $idp, $state);
+        $response->send();
     }
 
 
@@ -548,7 +548,5 @@ class IdP
         $httpUtils = new Utils\HTTP();
         $response = $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
         $response->send();
-
-        Assert::true(false);
     }
 }
