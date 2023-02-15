@@ -1041,7 +1041,6 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::oneOf($logoutType, ['saml2']);
 
         $this->startSLO2($state);
-        Assert::true(false); // Should not return
     }
 
 
