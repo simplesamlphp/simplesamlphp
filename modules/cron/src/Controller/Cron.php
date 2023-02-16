@@ -8,7 +8,6 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -124,7 +123,7 @@ class Cron
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run(string $tag, string $key, string $output = 'xhtml'): Response
+    public function run(string $tag, string $key, string $output = 'xhtml'): Response|Template
     {
         $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
@@ -163,6 +162,7 @@ class Cron
             $t->data['summary'] = $summary;
             return $t;
         }
+
         return new Response();
     }
 }
