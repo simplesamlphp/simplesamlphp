@@ -226,7 +226,7 @@ class ProcessingChain
      *
      * @param array $state  The state we are processing.
      */
-    public static function resumeProcessing(array $state): void
+    public static function resumeProcessing(array $state): Response
     {
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
@@ -266,7 +266,8 @@ class ProcessingChain
             $response = call_user_func($func, $state);
             Assert::subclassOf($response, Response::class);
         }
-        $response->send();
+
+        return $response;
     }
 
 

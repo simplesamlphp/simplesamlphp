@@ -12,7 +12,7 @@ use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 use function array_key_exists;
@@ -173,14 +173,14 @@ class ExampleAuth
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function redirecttest(Request $request): RunnableResponse
+    public function redirecttest(Request $request): Response
     {
         /**
          * Request handler for redirect filter test.
          */
-        $stateId = $request->query->get('StateId');
+        $stateId = $request->query->get('AuthState');
         if ($stateId === null) {
             throw new Error\BadRequest('Missing required StateId query parameter.');
         }
@@ -188,7 +188,7 @@ class ExampleAuth
         $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');
         $state['Attributes']['RedirectTest2'] = ['OK'];
 
-        return new RunnableResponse([Auth\ProcessingChain::class, 'resumeProcessing'], [$state]);
+        return Auth\ProcessingChain::resumeProcessing($state);
     }
 
 
@@ -199,7 +199,7 @@ class ExampleAuth
      *
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function resume(Request $request): RunnableResponse
+    public function resume(Request $request): Response
     {
         /**
          * This page serves as the point where the user's authentication

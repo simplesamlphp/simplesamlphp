@@ -112,7 +112,7 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
@@ -129,7 +129,7 @@ class Exception
         $continue = $request->query->get('continue', false);
         if ($continue !== false) {
             // The user has pressed the continue/retry-button
-            Auth\ProcessingChain::resumeProcessing($state);
+            return Auth\ProcessingChain::resumeProcessing($state);
         }
 
         $t = new Template($this->config, 'core:short_sso_interval.twig');

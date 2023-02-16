@@ -12,7 +12,7 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\exampleauth\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 
 /**
  * Set of tests for the controllers in the "exampleauth" module.
@@ -187,9 +187,16 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/resume',
             'GET',
+            ['AuthState' => 'someState']
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
+        $c->setAuthState(new class () extends Auth\State {
+            public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
+            {
+                return [];
+            }
+        });
 
         $response = $c->resume($request);
         $this->assertTrue($response->isSuccessful());
@@ -207,20 +214,23 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/redirecttest',
             'GET',
-            ['StateId' => '_abc123']
+            ['AuthState' => '_abc123']
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
-                return [];
+                return [
+                    'ReturnURL' => 'https://example.org/phpunit',
+                    Auth\ProcessingChain::FILTERS_INDEX => [],
+                ];
             }
         });
 
         $response = $c->redirecttest($request);
-        $this->assertTrue($response->isSuccessful());
-        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
+        $this->assertInstanceOf(RedirectResponse::class, $response);
     }
 
 

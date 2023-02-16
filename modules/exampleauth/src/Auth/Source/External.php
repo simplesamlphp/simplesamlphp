@@ -10,7 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 /**
@@ -149,7 +149,7 @@ class External extends Auth\Source
          * option to return the user to a specific page afterwards.
          */
         $returnTo = Module::getModuleURL('exampleauth/resume', [
-            'State' => $stateId,
+            'AuthState' => $stateId,
         ]);
 
         /*
@@ -186,13 +186,13 @@ class External extends Auth\Source
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume(Request $request): void
+    public static function resume(Request $request): Response
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
          * it in the 'State' request parameter.
          */
-        if (!$request->query->has('State')) {
+        if (!$request->query->has('AuthState')) {
             throw new Error\BadRequest('Missing "State" parameter.');
         }
 
@@ -200,7 +200,7 @@ class External extends Auth\Source
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
-        $state = Auth\State::loadState($request->query->get('State'), 'exampleauth:External');
+        $state = Auth\State::loadState($request->query->get('AuthState'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication
@@ -246,8 +246,7 @@ class External extends Auth\Source
          */
 
         $state['Attributes'] = $attributes;
-        $response = new RunnableResponse([Auth\Source::class, 'completeAuth'], [&$state]);
-        $response->send();
+        return new RunnableResponse([Auth\Source::class, 'completeAuth'], [&$state]);
     }
 
 
