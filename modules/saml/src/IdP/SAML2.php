@@ -36,6 +36,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -1421,7 +1422,7 @@ class SAML2
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
-        $r = new Response();
+        $r = new SAML2_Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(C::NAMEID_ENTITY);
