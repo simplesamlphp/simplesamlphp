@@ -230,19 +230,7 @@ class HTTP
             Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        $response = new RedirectResponse($url, 303);
-
-        if (!headers_sent()) {
-            // disable caching of this response
-            $response->headers->set('Pragma', 'no-cache');
-            $response->setCache([
-                'no_cache' => true,
-                'no_store' => true,
-                'must_revalidate' => true,
-            ]);
-        }
-
-        return $response;
+        return new RedirectResponse($url, 303);
     }
 
 
