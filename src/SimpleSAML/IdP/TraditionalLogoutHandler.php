@@ -84,11 +84,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param array  &$state The logout state.
      * @param string|null $assocId The association that started the logout.
      */
-<<<<<<< HEAD
-    public function startLogout(array &$state, /** @scrutinizer ignore-unused */?string $assocId): void
-=======
-    public function startLogout(array &$state, string $assocId): Response
->>>>>>> 61be438b0 (Migrate logout handlers)
+    public function startLogout(array &$state, /** @scrutinizer ignore-unused */?string $assocId): Response
     {
         $state['core:LogoutTraditional:Remaining'] = $this->idp->getAssociations();
 

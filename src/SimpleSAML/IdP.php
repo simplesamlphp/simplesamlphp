@@ -487,11 +487,8 @@ class IdP
 
         $this->authSource->logout($returnTo);
 
-        if ($assocId !== null) {
-            $handler = $this->getLogoutHandler();
-            return $handler->startLogout($state, $assocId);
-        }
-        Assert::true(false);
+        $handler = $this->getLogoutHandler();
+        return $handler->startLogout($state, $assocId);
     }
 
 
