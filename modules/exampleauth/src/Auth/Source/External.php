@@ -193,7 +193,7 @@ class External extends Auth\Source
          * it in the 'State' request parameter.
          */
         if (!$request->query->has('AuthState')) {
-            throw new Error\BadRequest('Missing "State" parameter.');
+            throw new Error\BadRequest('Missing "AuthState" parameter.');
         }
 
         /*

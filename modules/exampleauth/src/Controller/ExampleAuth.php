@@ -182,7 +182,7 @@ class ExampleAuth
          */
         $stateId = $request->query->get('AuthState');
         if ($stateId === null) {
-            throw new Error\BadRequest('Missing required StateId query parameter.');
+            throw new Error\BadRequest('Missing required AuthState query parameter.');
         }
 
         $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');

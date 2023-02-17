@@ -249,7 +249,7 @@ class ExampleAuthTest extends TestCase
         $c = new Controller\ExampleAuth($this->config, $this->session);
 
         $this->expectException(Error\BadRequest::class);
-        $this->expectExceptionMessage('Missing required StateId query parameter.');
+        $this->expectExceptionMessage('Missing required AuthState query parameter.');
 
         $c->redirecttest($request);
     }

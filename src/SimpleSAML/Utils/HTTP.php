@@ -235,7 +235,11 @@ class HTTP
         if (!headers_sent()) {
             // disable caching of this response
             $response->headers->set('Pragma', 'no-cache');
-            $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            $response->setCache([
+                'no_cache' => true,
+                'no_store' => true,
+                'must_revalidate' => true,
+            ]);
         }
 
         return $response;
