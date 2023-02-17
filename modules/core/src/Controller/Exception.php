@@ -12,8 +12,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 /**
  * Controller class for the core module.
@@ -91,7 +90,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function nocookie(Request $request): Response
+    public function nocookie(Request $request): Template|RedirectResponse
     {
         $retryURL = $request->query->get('retryURL', null);
         if ($retryURL !== null) {
