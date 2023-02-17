@@ -16,7 +16,7 @@ use SAML2\EncryptedAssertion;
 use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
-use SAML2\Response;
+use SAML2\Response as SAML2_Response;
 use SAML2\SOAP;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -1415,7 +1415,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         string $consumerURL
-    ): Response {
+    ): SAML2_Response {
         $signResponse = $spMetadata->getOptionalBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
