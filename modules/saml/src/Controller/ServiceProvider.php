@@ -142,9 +142,8 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function discoResponse(Request $request): RunnableResponse
+    public function discoResponse(Request $request): Response
     {
         if (!$request->query->has('AuthID')) {
             throw new Error\BadRequest('Missing AuthID to discovery service response handler');
@@ -171,7 +170,7 @@ class ServiceProvider
             throw new Error\Exception('Source type changed?');
         }
 
-        return new RunnableResponse([$source, 'startSSO'], [$idpEntityId, $state]);
+        return $source->startSSO($idpEntityId, $state);
     }
 
 
@@ -455,9 +454,9 @@ class ServiceProvider
      * This endpoint handles both logout requests and logout responses.
      *
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function singleLogoutService(string $sourceId): RunnableResponse
+    public function singleLogoutService(string $sourceId): Response
     {
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
@@ -515,7 +514,7 @@ class ServiceProvider
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
-            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
+            return $source::completeLogout($state);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
             Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
@@ -599,12 +598,12 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function metadata(Request $request, string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
-            return new RunnableResponse([$this->authUtils, 'requireAdmin']);
+            $this->authUtils->requireAdmin();
         }
 
         $source = Auth\Source::getById($sourceId);

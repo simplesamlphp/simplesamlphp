@@ -180,11 +180,6 @@ class TestTest extends TestCase
             {
                 return false;
             }
-
-            public function login(array $params = []): void
-            {
-                // stub
-            }
         });
 
         $response = $c->main($request, 'admin');

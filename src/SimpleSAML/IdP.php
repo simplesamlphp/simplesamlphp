@@ -339,13 +339,13 @@ class IdP
      *
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
      */
-    private function authenticate(array &$state): void
+    private function authenticate(array &$state): Response
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             throw new NoPassiveException(C::STATUS_RESPONDER . ':  Passive authentication not supported.');
         }
 
-        $this->authSource->login($state);
+        return $this->authSource->login($state);
     }
 
 
@@ -373,7 +373,7 @@ class IdP
      *
      * @param array &$state The authentication request state.
      */
-    public function handleAuthenticationRequest(array &$state): void
+    public function handleAuthenticationRequest(array &$state): ?Response
     {
         Assert::notNull($state['Responder']);
 
@@ -401,8 +401,7 @@ class IdP
 
         try {
             if ($needAuth) {
-                $this->authenticate($state);
-                Assert::true(false);
+                return $this->authenticate($state);
             } else {
                 $this->reauthenticate($state);
             }
@@ -413,6 +412,8 @@ class IdP
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
         }
+
+        return null;
     }
 
 

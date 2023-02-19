@@ -54,8 +54,7 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\BadRequest
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
-     *   An HTML template or a redirection if we are not authenticated.
+     * @return \SimpleSAML\XHTML\Template  An HTML template
      */
     public function cardinality(Request $request): Response
     {
@@ -111,12 +110,12 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      *
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
      */
-    public function shortSsoInterval(Request $request): Response
+    public function shortSsoInterval(Request $request): Template|Response
     {
         $stateId = $request->query->get('StateId', false);
         if ($stateId === false) {

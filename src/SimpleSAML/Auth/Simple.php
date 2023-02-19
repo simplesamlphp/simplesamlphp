@@ -100,14 +100,14 @@ class Simple
      *
      * @param array $params Various options to the authentication request. See the documentation.
      */
-    public function requireAuth(array $params = []): void
+    public function requireAuth(array $params = []): ?Response
     {
         if ($this->session->isValid($this->authSource)) {
             // Already authenticated
-            return;
+            return null;
         }
 
-        $this->login($params);
+        return $this->login($params);
     }
 
 
@@ -121,11 +121,9 @@ class Simple
      *  - 'ReturnTo': The URL the user should be returned to after authentication.
      *  - 'ReturnCallback': The function we should call after the user has finished authentication.
      *
-     * Please note: this function never returns.
-     *
      * @param array $params Various options to the authentication request.
      */
-    public function login(array $params = []): void
+    public function login(array $params = []): Response
     {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
@@ -168,8 +166,8 @@ class Simple
             $params[State::RESTART] = $restartURL;
         }
 
-        $as->initLogin($returnTo, $errorURL, $params);
-        Assert::true(false);
+        $as = $this->getAuthSource();
+        return $as->initLogin($returnTo, $errorURL, $params);
     }
 
 

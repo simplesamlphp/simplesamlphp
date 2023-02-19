@@ -160,8 +160,6 @@ abstract class Source
     /**
      * Start authentication.
      *
-     * This method never returns.
-     *
      * @param string|array $return The URL or function we should direct the user to after authentication. If using a
      * URL obtained from user input, please make sure to check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param string|null $errorURL The URL we should direct the user to after failed authentication. Can be null, in
@@ -170,7 +168,7 @@ abstract class Source
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
      */
-    public function initLogin($return, ?string $errorURL = null, array $params = []): void
+    public function initLogin($return, ?string $errorURL = null, array $params = []): Response
     {
         Assert::True(is_string($return) || is_array($return));
 
@@ -178,8 +176,8 @@ abstract class Source
             '\SimpleSAML\Auth\Source.id' => $this->authId,
             '\SimpleSAML\Auth\Source.Return' => $return,
             '\SimpleSAML\Auth\Source.ErrorURL' => $errorURL,
-            'LoginCompletedHandler' => [get_class(), 'loginCompleted'],
-            'LogoutCallback' => [get_class(), 'logoutCallback'],
+            'LoginCompletedHandler' => [static::class, 'loginCompleted'],
+            'LogoutCallback' => [static::class, 'logoutCallback'],
             'LogoutCallbackState' => [
                 '\SimpleSAML\Auth\Source.logoutSource' => $this->authId,
             ],
@@ -201,18 +199,16 @@ abstract class Source
             $e = new Error\UnserializableException($e);
             State::throwException($state, $e);
         }
-        self::loginCompleted($state);
+        return self::loginCompleted($state);
     }
 
 
     /**
      * Called when a login operation has finished.
      *
-     * This method never returns.
-     *
      * @param array $state The state after the login has completed.
      */
-    public static function loginCompleted(array $state): void
+    public static function loginCompleted(array $state): Response
     {
         Assert::keyExists($state, '\SimpleSAML\Auth\Source.Return');
         Assert::keyExists($state, '\SimpleSAML\Auth\Source.id');
@@ -234,7 +230,7 @@ abstract class Source
             $response = call_user_func($return, $state);
             Assert::subclassOf($response, Response::class);
         }
-        $response->send();
+        return $response;
     }
 
 
@@ -260,13 +256,13 @@ abstract class Source
     /**
      * Complete logout.
      *
-     * This function should be called after logout has completed. It will never return,
+     * This function should be called after logout has completed.
      * except in the case of exceptions. Exceptions thrown from this page should not be caught,
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
      */
-    public static function completeLogout(array &$state): void
+    public static function completeLogout(array &$state): Response
     {
         Assert::keyExists($state, 'LogoutCompletedHandler');
 
@@ -277,7 +273,7 @@ abstract class Source
 
         $response = call_user_func($func, $state);
         Assert::subclassOf($response, Response::class);
-        $response->send();
+        return $response;
     }
 
 
