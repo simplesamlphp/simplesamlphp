@@ -586,7 +586,7 @@ class ServiceProvider
                 $lr->setDestination($dst['Location']);
             }
 
-            return new RunnableResponse([$binding, 'send'], [$lr]);
+            return $binding->send($lr);
         } else {
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }

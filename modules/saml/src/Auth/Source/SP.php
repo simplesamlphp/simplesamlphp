@@ -24,7 +24,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
 
 class SP extends \SimpleSAML\Auth\Source
 {
@@ -424,7 +424,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(Configuration $idpMetadata, array $state): void
+    private function startSSO2(Configuration $idpMetadata, array $state): Response
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
@@ -623,9 +623,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $b = Binding::getBinding($dst['Binding']);
 
-        $this->sendSAML2AuthnRequest($b, $ar);
-
-        Assert::true(false);
+        return $this->sendSAML2AuthnRequest($b, $ar);
     }
 
 
@@ -637,10 +635,9 @@ class SP extends \SimpleSAML\Auth\Source
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\AuthnRequest  $ar  The authentication request.
      */
-    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
+    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
-        $binding->send($ar);
-        Assert::true(false);
+        return $binding->send($ar);
     }
 
 
@@ -652,10 +649,9 @@ class SP extends \SimpleSAML\Auth\Source
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\LogoutRequest  $ar  The logout request.
      */
-    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): void
+    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
-        $binding->send($lr);
-        Assert::true(false);
+        return $binding->send($lr);
     }
 
 
@@ -665,15 +661,13 @@ class SP extends \SimpleSAML\Auth\Source
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    public function startSSO(string $idp, array $state): void
+    public function startSSO(string $idp, array $state): Response
     {
         $idpMetadata = $this->getIdPMetadata($idp);
-
         $type = $idpMetadata->getString('metadata-set');
         Assert::oneOf($type, ['saml20-idp-remote']);
 
-        $this->startSSO2($idpMetadata, $state);
-        Assert::true(false); // Should not return
+        return $this->startSSO2($idpMetadata, $state);
     }
 
 
@@ -682,7 +676,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param array $state  The state array.
      */
-    private function startDisco(array $state): void
+    private function startDisco(array $state): RedirectResponse
     {
         $id = Auth\State::saveState($state, 'saml:sp:sso');
 
@@ -709,8 +703,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         $httpUtils = new Utils\HTTP();
-        $response = $httpUtils->redirectTrustedURL($discoURL, $params);
-        $response->send();
+        return $response = $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -758,12 +751,11 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         if ($idp === null) {
-            $this->startDisco($state);
-            Assert::true(false);
+            $response = $this->startDisco($state);
+        } else {
+            $response = $this->startSSO($idp, $state);
         }
-
-        $this->startSSO($idp, $state);
-        Assert::true(false);
+        $response->send();
     }
 
 
@@ -883,7 +875,6 @@ class SP extends \SimpleSAML\Auth\Source
         $httpUtils = new Utils\HTTP();
         $response = $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
         $response->send();
-        Assert::true(false);
     }
 
 
@@ -960,7 +951,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param array $state  The logout state.
      */
-    public function startSLO2(array &$state): void
+    public function startSLO2(array &$state): ?Response
     {
         Assert::keyExists($state, 'saml:logout:IdP');
         Assert::keyExists($state, 'saml:logout:NameID');
@@ -985,7 +976,7 @@ class SP extends \SimpleSAML\Auth\Source
         );
         if ($endpoint === false) {
             Logger::info('No logout endpoint for IdP ' . var_export($idp, true) . '.');
-            return;
+            return null;
         }
 
         $lr = Module\saml\Message::buildLogoutRequest($this->metadata, $idpMetadata);
@@ -1010,7 +1001,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $b = Binding::getBinding($endpoint['Binding']);
 
-        $this->sendSAML2LogoutRequest($b, $lr);
+        return $this->sendSAML2LogoutRequest($b, $lr);
     }
 
 
@@ -1026,7 +1017,8 @@ class SP extends \SimpleSAML\Auth\Source
         $logoutType = $state['saml:logout:Type'];
         Assert::oneOf($logoutType, ['saml2']);
 
-        $this->startSLO2($state);
+        $response = $this->startSLO2($state);
+        $response?->send();
     }
 
 

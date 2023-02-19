@@ -116,7 +116,8 @@ class SAML2
 
         // send the response
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+        $response = $binding->send($ar);
+        $response->send();
     }
 
 
@@ -179,7 +180,8 @@ class SAML2
         Stats::log('saml:idp:Response:error', $statsData);
 
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+        $response = $binding->send($ar);
+        $response->send();
     }
 
 
@@ -547,7 +549,8 @@ class SAML2
         $lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
         $lr->setDestination($dst['Location']);
 
-        $binding->send($lr);
+        $response = $binding->send($lr);
+        $response->send();
     }
 
 
@@ -607,7 +610,8 @@ class SAML2
         }
         $lr->setDestination($dst);
 
-        $binding->send($lr);
+        $response = $binding->send($lr);
+        $response->send();
     }
 
 
