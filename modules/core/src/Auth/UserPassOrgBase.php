@@ -315,7 +315,8 @@ abstract class UserPassOrgBase extends Auth\Source
         $state['PersistentAuthData'][] = self::ORGID;
 
         $state['Attributes'] = $attributes;
-        Auth\Source::completeAuth($state);
+        $response = parent::completeAuth($state);
+        $response->send();
     }
 
 

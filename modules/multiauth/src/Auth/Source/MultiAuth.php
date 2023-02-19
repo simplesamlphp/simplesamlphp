@@ -196,7 +196,8 @@ class MultiAuth extends Auth\Source
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
         }
-        Auth\Source::completeAuth($state);
+        $response = parent::completeAuth($state);
+        $response->send();
     }
 
 

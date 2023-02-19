@@ -136,13 +136,13 @@ abstract class Source
     /**
      * Complete authentication.
      *
-     * This function should be called if authentication has completed. It will never return,
+     * This function should be called if authentication has completed. It will return a Response,
      * except in the case of exceptions. Exceptions thrown from this page should not be caught,
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
      */
-    public static function completeAuth(array &$state): void
+    public static function completeAuth(array &$state): Response
     {
         Assert::keyExists($state, 'LoginCompletedHandler');
 
@@ -153,7 +153,7 @@ abstract class Source
 
         $response = call_user_func($func, $state);
         Assert::subclassOf($response, Response::class);
-        $response->send();
+        return $response;
     }
 
 

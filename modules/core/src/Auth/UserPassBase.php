@@ -313,6 +313,7 @@ abstract class UserPassBase extends Auth\Source
         $state['Attributes'] = $attributes;
 
         // Return control to SimpleSAMLphp after successful authentication.
-        Auth\Source::completeAuth($state);
+        $response = parent::completeAuth($state);
+        $response->send();
     }
 }

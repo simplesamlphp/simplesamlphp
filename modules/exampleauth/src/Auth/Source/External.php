@@ -246,7 +246,7 @@ class External extends Auth\Source
          */
 
         $state['Attributes'] = $attributes;
-        return new RunnableResponse([Auth\Source::class, 'completeAuth'], [&$state]);
+        return parent::completeAuth($state);
     }
 
 
