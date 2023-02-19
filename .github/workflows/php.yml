@@ -198,7 +198,7 @@ jobs:
         run: php vendor/bin/psalm -c psalm.xml --show-info=true --shepherd --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalm (testsuite)
-        continue-on-error: true
+        continue-on-error: false
         run: php vendor/bin/psalm -c psalm-dev.xml --show-info=true --shepherd --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalter
