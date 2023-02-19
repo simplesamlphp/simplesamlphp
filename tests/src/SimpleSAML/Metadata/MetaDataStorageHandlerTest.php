@@ -13,7 +13,7 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
-    protected $handler;
+    protected MetadataStorageHandler $handler;
 
     public function setUp(): void
     {

@@ -66,6 +66,7 @@ class LogoutTest extends ClearStateTestCase
 
         $this->assertInstanceOf(RunnableResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
+        /** @psalm-var array $callable */
         $callable = $response->getCallable();
         $this->assertInstanceOf(Auth\Simple::class, $callable[0]);
         $this->assertEquals('logout', $callable[1]);
