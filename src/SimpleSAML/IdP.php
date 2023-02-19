@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Assert\Assert;
@@ -59,6 +60,13 @@ class IdP
     private Configuration $config;
 
     /**
+     * The global configuration.
+     *
+     * @var \SimpleSAML\Configuration
+     */
+    private Configuration $globalConfig;
+
+    /**
      * Our authsource.
      *
      * @var \SimpleSAML\Auth\Simple
@@ -78,31 +86,31 @@ class IdP
         $this->id = $id;
         $this->associationGroup = $id;
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
-        $globalConfig = Configuration::getInstance();
+        $this->globalConfig = Configuration::getInstance();
+        $metadata = MetaDataStorageHandler::getMetadataHandler($this->globalConfig);
 
         if (substr($id, 0, 6) === 'saml2:') {
-            if (!$globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
+            if (!$this->globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
                 throw new Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
-            if (!$globalConfig->getOptionalBoolean('enable.adfs-idp', false)) {
+            if (!$this->globalConfig->getOptionalBoolean('enable.adfs-idp', false)) {
                 throw new Error\Exception('enable.adfs-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 
-            if ($globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
+            if ($this->globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
                 try {
                     // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
                     $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
                     $this->associationGroup = 'saml2:' . $saml2EntityId;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     // probably no SAML 2 IdP configured for this host. Ignore the error
                 }
             }
         } else {
-            throw new \Exception("Protocol not implemented.");
+            throw new Exception("Protocol not implemented.");
         }
 
         $auth = $this->config->getString('auth');
@@ -183,12 +191,12 @@ class IdP
     {
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler($this->globalConfig);
 
         if ($prefix === 'saml') {
             try {
                 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return null;
             }
         } else {
@@ -266,7 +274,7 @@ class IdP
      *
      * @param array $state The authentication request state array.
      */
-    public static function postAuthProc(array $state): void
+    public static function postAuthProc(array $state): Response
     {
         Assert::isCallable($state['Responder']);
 
@@ -281,7 +289,8 @@ class IdP
         }
 
         $response = call_user_func($state['Responder'], $state);
-        $response->send();
+        Assert::instanceOf($response, Response::class);
+        return $response;
     }
 
 
@@ -292,7 +301,7 @@ class IdP
      *
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
      */
-    public static function postAuth(array $state): void
+    public static function postAuth(array $state): Response
     {
         $idp = IdP::getByState($state);
 
@@ -326,7 +335,7 @@ class IdP
 
         $pc->processState($state);
 
-        self::postAuthProc($state);
+        return self::postAuthProc($state);
     }
 
 
@@ -373,7 +382,7 @@ class IdP
      *
      * @param array &$state The authentication request state.
      */
-    public function handleAuthenticationRequest(array &$state): ?Response
+    public function handleAuthenticationRequest(array &$state): Response
     {
         Assert::notNull($state['Responder']);
 
@@ -405,15 +414,15 @@ class IdP
             } else {
                 $this->reauthenticate($state);
             }
-            $this->postAuth($state);
+            return $this->postAuth($state);
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
         }
 
-        return null;
+        throw new Exception('Should never happen.');
     }
 
 

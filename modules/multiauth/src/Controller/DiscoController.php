@@ -14,8 +14,7 @@ use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 /**
  * Controller class for the multiauth module.
@@ -93,10 +92,10 @@ class DiscoController
      * delegateAuthentication method on it.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function discovery(Request $request)
+    public function discovery(Request $request): Template|Response
     {
         // Retrieve the authentication state
         $authStateId = $request->query->get('AuthState', null);

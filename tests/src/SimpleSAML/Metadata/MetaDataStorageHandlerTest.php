@@ -23,8 +23,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
                 ['type' => 'serialize', 'directory' => __DIR__ . '/test-metadata/source2'],
             ],
         ];
-        Configuration::loadFromArray($c, '', 'simplesaml');
-        $this->handler = MetaDataStorageHandler::getMetadataHandler();
+        $config = Configuration::loadFromArray($c, '', 'simplesaml');
+        $this->handler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 
     /**
@@ -85,7 +85,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSetEmpty(): void
     {
-        $entities = $this->handler->getList('saml20-idp-remote');
+        $entities = $this->handler->getList('something stupid');
 
         $this->assertCount(0, $entities);
     }

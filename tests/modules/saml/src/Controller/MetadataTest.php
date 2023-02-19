@@ -37,7 +37,9 @@ class MetadataTest extends TestCase
     {
         parent::setUp();
 
-        $this->mdh = new class () extends MetaDataStorageHandler {
+        $config = Configuration::getInstance();
+
+        $this->mdh = new class ($config) extends MetaDataStorageHandler {
             /** @var string */
             private const XMLSEC = '../vendor/simplesamlphp/xml-security/resources';
 
@@ -49,8 +51,10 @@ class MetadataTest extends TestCase
 
             private array $idps;
 
-            public function __construct()
+            public function __construct(Configuration $config)
             {
+                parent::__construct($config);
+
                 $this->idps = [
                         'urn:example:simplesaml:idp' => [
                             'name' => 'SimpleSAMLphp Hosted IDP',

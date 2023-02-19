@@ -52,11 +52,10 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param array $config The configuration for this metadata handler.
      */
-    public function __construct(array $config)
+    public function __construct(Configuration $globalConfig, array $config)
     {
         parent::__construct();
 
-        $globalConfig = Configuration::getInstance();
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
         $this->directory = $cfgHelp->getString('directory');
 

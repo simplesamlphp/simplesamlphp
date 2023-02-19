@@ -14,8 +14,7 @@ use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 /**
  * Set of tests for the controllers in the "admin" module.
@@ -166,6 +165,7 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceNotAuthenticated(): void
     {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
@@ -184,8 +184,8 @@ class TestTest extends TestCase
 
         $response = $c->main($request, 'admin');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 
 

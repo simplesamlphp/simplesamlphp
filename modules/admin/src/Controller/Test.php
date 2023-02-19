@@ -137,7 +137,7 @@ class Test
                     'ReturnTo' => $url,
                     Auth\State::RESTART => $url,
                 ];
-                return new RunnableResponse([$authsource, 'login'], [$params]);
+                return $authsource->login($params);
             }
 
             $attributes = $authsource->getAttributes();

@@ -304,9 +304,9 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(IdP $idp): void
+    public static function receiveAuthnRequest(IdP $idp): Response
     {
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $httpUtils = new Utils\HTTP();
 
@@ -513,7 +513,7 @@ class SAML2
             'saml:RequestedAuthnContext'  => $authnContext,
         ];
 
-        $idp->handleAuthenticationRequest($state);
+        return $idp->handleAuthenticationRequest($state);
     }
 
 
@@ -528,7 +528,7 @@ class SAML2
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
@@ -568,7 +568,7 @@ class SAML2
 
         $spEntityId = $state['saml:SPEntityId'];
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -634,7 +634,7 @@ class SAML2
             $spEntityId = $issuer->getValue();
         }
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -701,7 +701,7 @@ class SAML2
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
@@ -739,7 +739,7 @@ class SAML2
      */
     public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
         } catch (Exception $e) {
@@ -763,7 +763,7 @@ class SAML2
     public static function getHostedMetadata(string $entityid, MetaDataStorageHandler $handler = null): array
     {
         if ($handler === null) {
-            $handler = MetaDataStorageHandler::getMetadataHandler();
+            $handler = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         }
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
 

@@ -16,8 +16,7 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -117,9 +116,10 @@ class LoginTest extends ClearStateTestCase
                 // stub
             }
 
-            public function authenticate(array &$state): void
+            public function authenticate(array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
             public static function getById(string $authId, ?string $type = null): ?UserPassBase
@@ -183,9 +183,10 @@ class LoginTest extends ClearStateTestCase
                 // stub
             }
 
-            public function authenticate(array &$state): void
+            public function authenticate(array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
             public static function getById(string $authId, ?string $type = null): ?UserPassOrgBase

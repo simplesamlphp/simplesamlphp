@@ -170,7 +170,7 @@ class ServiceProvider
             throw new Error\Exception('Source type changed?');
         }
 
-        return $source->startSSO($idpEntityId, $state);
+        return $source->startSSO($this->config, $idpEntityId, $state);
     }
 
 
@@ -287,7 +287,7 @@ class ServiceProvider
             // check that the issuer is the one we are expecting
             Assert::keyExists($state, 'ExpectedIssuer');
             if ($state['ExpectedIssuer'] !== $issuer) {
-                $idpMetadata = $source->getIdPMetadata($issuer);
+                $idpMetadata = $source->getIdPMetadata($this->config, $issuer);
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
                     Logger::warning(
@@ -308,7 +308,7 @@ class ServiceProvider
         Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
-            $idpMetadata = $source->getIdPmetadata($issuer);
+            $idpMetadata = $source->getIdPmetadata($this->config, $issuer);
         }
 
         try {
@@ -488,7 +488,7 @@ class ServiceProvider
 
         $spEntityId = $source->getEntityId();
 
-        $idpMetadata = $source->getIdPMetadata($idpEntityId);
+        $idpMetadata = $source->getIdPMetadata($this->config, $idpEntityId);
         $spMetadata = $source->getMetadata();
 
         Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);

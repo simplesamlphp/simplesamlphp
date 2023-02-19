@@ -26,7 +26,7 @@ use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
 
-class SP extends \SimpleSAML\Auth\Source
+class SP extends Auth\Source
 {
     /**
      * The entity ID of this SP.
@@ -34,6 +34,13 @@ class SP extends \SimpleSAML\Auth\Source
      * @var string
      */
     private string $entityId;
+
+    /**
+     * The global configuration.
+     *
+     * @var \SimpleSAML\Configuration
+     */
+    private Configuration $config;
 
     /**
      * The metadata of this SP.
@@ -110,6 +117,7 @@ class SP extends \SimpleSAML\Auth\Source
             'Please set a valid and unique entityID',
         );
 
+        $this->config = Configuration::getInstance();
         $this->entityId = $entityId;
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
@@ -214,12 +222,11 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         // add technical contact
-        $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        $email = $this->config->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
+                'givenName' => $this->config->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -286,17 +293,18 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Retrieve the metadata of an IdP.
      *
+     * @param \SimpleSAML\Configuration $config  The configuration
      * @param string $entityId  The entity id of the IdP.
      * @return \SimpleSAML\Configuration  The metadata of the IdP.
      */
-    public function getIdPMetadata(string $entityId): Configuration
+    public function getIdPMetadata(Configuration $config, string $entityId): Configuration
     {
         if ($this->idp !== null && $this->idp !== $entityId) {
             throw new Error\Exception('Cannot retrieve metadata for IdP ' .
                 var_export($entityId, true) . ' because it isn\'t a valid IdP for this SP.');
         }
 
-        $metadataHandler = MetaDataStorageHandler::getMetadataHandler();
+        $metadataHandler = MetaDataStorageHandler::getMetadataHandler($config);
 
         return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
     }
@@ -389,8 +397,7 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private function getSLOEndpoints(): array
     {
-        $config = Configuration::getInstance();
-        $storeType = $config->getOptionalString('store.type', 'phpsession');
+        $storeType = $this->config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getOptionalArray(
@@ -658,12 +665,13 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Send a SSO request to an IdP.
      *
+     * @param \SimpleSAML\Configuration $config  The configuration
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    public function startSSO(string $idp, array $state): Response
+    public function startSSO(Configuration $config, string $idp, array $state): Response
     {
-        $idpMetadata = $this->getIdPMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($config, $idp);
         $type = $idpMetadata->getString('metadata-set');
         Assert::oneOf($type, ['saml20-idp-remote']);
 
@@ -714,7 +722,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(array &$state): ?Response
     {
         // We are going to need the authId in order to retrieve this authentication source later
         $state['saml:sp:AuthId'] = $this->authId;
@@ -727,7 +735,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
-            $mdh = MetaDataStorageHandler::getMetadataHandler();
+            $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
             $matchedEntities = $mdh->getMetaDataForEntities($state['saml:IDPList'], 'saml20-idp-remote');
 
             if (empty($matchedEntities)) {
@@ -753,9 +761,9 @@ class SP extends \SimpleSAML\Auth\Source
         if ($idp === null) {
             $response = $this->startDisco($state);
         } else {
-            $response = $this->startSSO($idp, $state);
+            $response = $this->startSSO($this->config, $idp, $state);
         }
-        $response->send();
+        return $response;
     }
 
 
@@ -793,7 +801,7 @@ class SP extends \SimpleSAML\Auth\Source
              * First, check if we recognize any of the IdPs requested.
              */
 
-            $mdh = MetaDataStorageHandler::getMetadataHandler();
+            $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
@@ -949,9 +957,10 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Start a SAML 2 logout operation.
      *
+     * @param \SimpleSAML\Configuration $config  The configuration.
      * @param array $state  The logout state.
      */
-    public function startSLO2(array &$state): ?Response
+    public function startSLO2(Configuration $config, array &$state): ?Response
     {
         Assert::keyExists($state, 'saml:logout:IdP');
         Assert::keyExists($state, 'saml:logout:NameID');
@@ -963,7 +972,7 @@ class SP extends \SimpleSAML\Auth\Source
         $nameId = $state['saml:logout:NameID'];
         $sessionIndex = $state['saml:logout:SessionIndex'];
 
-        $idpMetadata = $this->getIdPMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($config, $idp);
 
         /** @var array $endpoint */
         $endpoint = $idpMetadata->getEndpointPrioritizedByBinding(
@@ -1017,7 +1026,7 @@ class SP extends \SimpleSAML\Auth\Source
         $logoutType = $state['saml:logout:Type'];
         Assert::oneOf($logoutType, ['saml2']);
 
-        $response = $this->startSLO2($state);
+        $response = $this->startSLO2($this->config, $state);
         $response?->send();
     }
 
@@ -1034,7 +1043,7 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::keyExists($state, 'LogoutState');
         Assert::keyExists($state['LogoutState'], 'saml:logout:Type');
 
-        $idpMetadata = $this->getIdPMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($this->config, $idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();

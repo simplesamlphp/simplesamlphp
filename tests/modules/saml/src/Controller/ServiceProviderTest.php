@@ -11,6 +11,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -42,12 +43,15 @@ class ServiceProviderTest extends TestCase
     {
         parent::setUp();
 
-        $this->session = Session::getSessionFromRequest();
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
                 'admin.protectmetadata' => false,
                 'trusted.url.domains' => ['example.org'],
+                'metadatadir' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1',
+                'metadata.sources' => [
+                    ['type' => 'flatfile', 'directory' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1'],
+                ],
             ],
             '[ARRAY]',
             'simplesaml'
@@ -70,6 +74,7 @@ class ServiceProviderTest extends TestCase
             'simplesaml'
         );
 
+        $this->session = Session::getSessionFromRequest();
         $this->authUtils = new class () extends Utils\Auth {
             public function requireAdmin(): void
             {
@@ -78,6 +83,18 @@ class ServiceProviderTest extends TestCase
         };
 
         $_SERVER['REQUEST_URI'] = '/dummy';
+    }
+
+
+    /**
+     * Tear down after each test.
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
+        $mdh->clearInternalState();
     }
 
 
@@ -122,13 +139,14 @@ class ServiceProviderTest extends TestCase
 
 
     /**
-     * @TODO: This cannot be tested until we are PSR-7 compliant
-     *
-     * Test that accessing the login-endpoint with ReturnTo parameter leads to a RunnableResponse
+     * Test that accessing the login-endpoint with ReturnTo parameter leads to a Response
      *
      * @return void
+     */
     public function testLogin(): void
     {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
         $request = Request::create(
             '/sp/login/phpunit',
             'GET',
@@ -138,9 +156,8 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
         $response = $c->login($request, 'phpunit');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertInstanceOf(Response::class, $response);
     }
-     */
 
 
     /**
@@ -244,7 +261,6 @@ class ServiceProviderTest extends TestCase
 
     /**
      * Test that accessing the discoResponse-endpoint with SP authsource in state results in a RunnableResponse
-     *
      * @return void
      */
     public function testWithSPAuthSource(): void
@@ -252,10 +268,24 @@ class ServiceProviderTest extends TestCase
         $request = Request::create(
             '/discoResponse',
             'GET',
-            ['AuthID' => 'abc123', 'idpentityid' => 'urn:idp:entity'],
+            ['AuthID' => 'abc123', 'idpentityid' => 'urn:x-simplesamlphp:some-idp'],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'admin.protectmetadata' => false,
+                'trusted.url.domains' => ['example.org'],
+                'metadata.sources' => [
+                    ['type' => 'flatfile', 'directory' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1'],
+                ],
+            ],
+            '[ARRAY]',
+            'simplesaml'
+        );
+        Configuration::setPreLoadedConfig($config, 'config.php');
+
+        $c = new Controller\ServiceProvider($config, $this->session);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
@@ -266,7 +296,7 @@ class ServiceProviderTest extends TestCase
         });
 
         $result = $c->discoResponse($request);
-        $this->assertInstanceOf(RunnableResponse::class, $result);
+        $this->assertInstanceOf(Response::class, $result);
     }
 
 
@@ -482,22 +512,11 @@ XML;
         );
 
         $c = new Controller\ServiceProvider($config, $this->session);
-
-        if ($authenticated === true || $protected === false) {
-            // Bypass authentication - mock being authenticated
-            $c->setAuthUtils($this->authUtils);
-        }
+        // Bypass authentication - mock being authenticated
+        $c->setAuthUtils($this->authUtils);
 
         $result = $c->metadata($request, 'phpunit');
-
-        if ($protected && !$authenticated) {
-            $this->assertInstanceOf(RunnableResponse::class, $result);
-            /** @psalm-var array $callable */
-            $callable = $result->getCallable();
-            $this->assertEquals("requireAdmin", $callable[1]);
-        } else {
-            $this->assertInstanceOf(Response::class, $result);
-        }
+        $this->assertInstanceOf(Response::class, $result);
     }
 
     public function provideMetadataAccess(): array

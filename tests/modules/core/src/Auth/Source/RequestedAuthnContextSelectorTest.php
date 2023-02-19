@@ -90,11 +90,11 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
              * @return void
-             */
             public static function doAuthentication(Auth\Source $as, array $state): void
             {
                 // Dummy
             }
+             */
         };
 
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
@@ -116,11 +116,11 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
              * @return void
-             */
             public static function doAuthentication(Auth\Source $as, array $state): void
             {
                 // Dummy
             }
+             */
         };
 
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1']]];
@@ -143,11 +143,11 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
              * @return void
-             */
             public static function doAuthentication(Auth\Source $as, array $state): void
             {
                 // Dummy
             }
+             */
         };
 
         $state = [

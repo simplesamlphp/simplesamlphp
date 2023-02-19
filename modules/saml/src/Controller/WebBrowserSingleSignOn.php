@@ -20,6 +20,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the Web Browser Single Sign On profile.
@@ -51,16 +52,14 @@ class WebBrowserSingleSignOn
     /**
      * The ArtifactResolutionService receives the samlart from the sp.
      * And when the artifact is found, it sends a \SAML2\ArtifactResponse.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function artifactResolutionService(): RunnableResponse
+    public function artifactResolutionService(): Response
     {
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
         $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
@@ -109,7 +108,7 @@ class WebBrowserSingleSignOn
         $artifactResponse->setInResponseTo($request->getId());
         $artifactResponse->setAny($responseXML);
         Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
-        return new RunnableResponse([$binding, 'send'], [$artifactResponse]);
+        return $binding->send($artifactResponse);
     }
 
 
@@ -117,10 +116,8 @@ class WebBrowserSingleSignOn
      * The SSOService is part of the SAML 2.0 IdP code, and it receives incoming Authentication Requests
      * from a SAML 2.0 SP, parses, and process it, and then authenticates the user and sends the user back
      * to the SP with an Authentication Response.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function singleSignOnService(): RunnableResponse
+    public function singleSignOnService(): Response
     {
         Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
@@ -128,12 +125,12 @@ class WebBrowserSingleSignOn
             throw new Error\Error('NOACCESS', null, 403);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
         $idp = IdP::getById('saml2:' . $idpEntityId);
 
         try {
-            return new RunnableResponse([Module\saml\IdP\SAML2::class, 'receiveAuthnRequest'], [$idp]);
+            return Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SSOPARAMS', $e, 400);
         }

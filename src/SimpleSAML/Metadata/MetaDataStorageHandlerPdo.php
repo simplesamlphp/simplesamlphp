@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
 
@@ -60,8 +61,12 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    public function __construct(/** @scrutinizer ignore-unused */ array $config)
+    public function __construct(
+        /** @scrutinizer ignore-used */ Configuration $globalConfig,
+        /** @scrutinizer ignore-unused */ array $config)
     {
+        parent::__construct();
+
         $this->db = Database::getInstance();
     }
 

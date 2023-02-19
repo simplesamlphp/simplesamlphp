@@ -34,12 +34,13 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @throws \Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
-    protected function __construct(array $config)
+    protected function __construct(Configuration $globalConfig, array $config)
     {
+        parent::__construct();
+
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
             // get the configuration
-            $globalConfig = Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];

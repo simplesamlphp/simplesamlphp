@@ -45,7 +45,7 @@ class Metadata
     ) {
         $this->config = $config;
         $this->authUtils = new Utils\Auth();
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 
     /**

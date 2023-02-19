@@ -105,7 +105,7 @@ abstract class Source
      *
      * @param array &$state Information about the current authentication.
      */
-    abstract public function authenticate(array &$state): void;
+    abstract public function authenticate(array &$state): ?Response;
 
 
     /**
@@ -170,7 +170,7 @@ abstract class Source
      */
     public function initLogin($return, ?string $errorURL = null, array $params = []): Response
     {
-        Assert::True(is_string($return) || is_array($return));
+        Assert::true(is_string($return) || is_array($return));
 
         $state = array_merge($params, [
             '\SimpleSAML\Auth\Source.id' => $this->authId,
@@ -192,7 +192,10 @@ abstract class Source
         }
 
         try {
-            $this->authenticate($state);
+            $response = $this->authenticate($state);
+            if ($response instanceof Response) {
+                return $response;
+            }
         } catch (Error\Exception $e) {
             State::throwException($state, $e);
         } catch (\Exception $e) {

@@ -23,6 +23,11 @@ use SimpleSAML\Utils\ClearableState;
 class MetaDataStorageHandler implements ClearableState
 {
     /**
+     * The configuration
+     */
+    protected Configuration $globalConfig;
+
+    /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
      * we haven't instantiated a metadata handler yet.
@@ -48,10 +53,10 @@ class MetaDataStorageHandler implements ClearableState
      *
      * @return MetaDataStorageHandler The current metadata handler instance.
      */
-    public static function getMetadataHandler(): MetaDataStorageHandler
+    public static function getMetadataHandler(Configuration $config): MetaDataStorageHandler
     {
         if (self::$metadataHandler === null) {
-            self::$metadataHandler = new MetaDataStorageHandler();
+            self::$metadataHandler = new MetaDataStorageHandler($config);
         }
 
         return self::$metadataHandler;
@@ -62,11 +67,11 @@ class MetaDataStorageHandler implements ClearableState
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
      */
-    protected function __construct()
+    protected function __construct(Configuration $globalConfig)
     {
-        $config = Configuration::getInstance();
+        $this->globalConfig = $globalConfig;
 
-        $sourcesConfig = $config->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
+        $sourcesConfig = $this->globalConfig->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
@@ -101,9 +106,8 @@ class MetaDataStorageHandler implements ClearableState
         }
 
         // get the configuration
-        $config = Configuration::getInstance();
         $httpUtils = new Utils\HTTP();
-        $baseurl = $httpUtils->getSelfURLHost() . $config->getBasePath();
+        $baseurl = $httpUtils->getSelfURLHost() . $this->globalConfig->getBasePath();
         if ($overrideHost !== null) {
             $baseurl = str_replace('://' . $httpUtils->getSelfHost(), '://' . $overrideHost, $baseurl);
         }

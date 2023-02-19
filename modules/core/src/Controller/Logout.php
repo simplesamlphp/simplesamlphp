@@ -210,7 +210,7 @@ class Logout
         }
         $association = $associations[$assocId];
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
@@ -274,7 +274,7 @@ class Logout
 
         $state = $this->authState::loadState($id, 'core:Logout-IFrame');
         $idp = IdP::getByState($state);
-        $mdh = MetaDataStorageHandler::getMetadataHandler();
+        $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
 
         if ($type !== 'init') {
             // update association state

@@ -13,6 +13,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @covers \SimpleSAML\Module\saml\IdP\SAML2
@@ -202,6 +203,7 @@ EOT;
             'metadata.sources' => [
                 ["type" => "xml", 'xml' => $spMetadataXml],
             ],
+            'enable.saml20-idp' => true,
         ], '', 'simplesaml');
 
         // Since we aren't really running on a webserver some of the url calculations done, such as for restart url
@@ -212,19 +214,19 @@ EOT;
 
 
         $state = [];
-
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
             ->with($this->callback(
-                /**
-                 * @param array $arg
-                 * @return bool
-                 */
+                //
+                 // @param array $arg
+                 // @return bool
+                 //
                 function ($arg) use (&$state) {
                     $state = $arg;
                     return true;
                 }
-            ));
+            ))
+            ->willReturn(new Response());
 
         /** @psalm-suppress InvalidArgument */
         SAML2::receiveAuthnRequest($idpStub);
@@ -244,12 +246,12 @@ EOT;
      */
     private function idpMetadataHandlerHelper(array $metadata, array $extraconfig = []): array
     {
-        Configuration::loadFromArray([
+        $config = Configuration::loadFromArray([
             'metadata.sources' => [
                 ["type" => "serialize", "directory" => "/tmp"],
             ],
         ] + $extraconfig, '', 'simplesaml');
-        $metaHandler = new MetaDataStorageHandlerSerialize(['directory' => '/tmp']);
+        $metaHandler = new MetaDataStorageHandlerSerialize($config, ['directory' => '/tmp']);
 
         $metadata['entityid'] = 'urn:example:simplesaml:idp';
         $metadata['certificate'] = self::CERT_PUBLIC;

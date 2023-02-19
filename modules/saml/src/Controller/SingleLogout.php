@@ -49,7 +49,7 @@ class SingleLogout
         Configuration $config
     ) {
         $this->config = $config;
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 
 

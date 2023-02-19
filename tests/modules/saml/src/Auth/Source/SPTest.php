@@ -158,7 +158,7 @@ class SPTest extends ClearStateTestCase
         /** @var \SAML2\LogoutRequest $lr */
         $lr = null;
         try {
-            $as->startSLO2($state);
+            $as->startSLO2($this->config, $state);
             $this->assertTrue(false, 'Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
@@ -1499,7 +1499,7 @@ class SPTest extends ClearStateTestCase
                 ["type" => "xml", "xml" => $xml],
             ],
         ];
-        Configuration::loadFromArray($c, '', 'simplesaml');
+        $this->config = Configuration::loadFromArray($c, '', 'simplesaml');
 
         $state = [
             'saml:logout:IdP' => $entityId,

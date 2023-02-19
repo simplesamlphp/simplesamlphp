@@ -47,12 +47,9 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    protected function __construct(array $config)
+    protected function __construct(Configuration $globalConfig, array $config)
     {
         parent::__construct();
-
-        // get the configuration
-        $globalConfig = Configuration::getInstance();
 
         // find the path to the directory we should search for metadata in
         if (array_key_exists('directory', $config)) {
@@ -84,7 +81,6 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
     private function load(string $set): ?array
     {
         $metadatasetfile = $this->directory . $set . '.php';
-
         if (!$this->fileSystem->exists($metadatasetfile)) {
             return null;
         }

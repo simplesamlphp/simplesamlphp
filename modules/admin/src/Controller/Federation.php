@@ -65,7 +65,7 @@ class Federation
     {
         $this->config = $config;
         $this->menu = new Menu();
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
         $this->authUtils = new Utils\Auth();
         $this->cryptoUtils = new Utils\Crypto();
     }

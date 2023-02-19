@@ -362,7 +362,7 @@ class Config
 
         // perform some sanity checks on the configured certificates
         if ($this->config->getOptionalBoolean('enable.saml20-idp', false) !== false) {
-            $handler = MetaDataStorageHandler::getMetadataHandler();
+            $handler = MetaDataStorageHandler::getMetadataHandler($this->config);
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             } catch (Exception $e) {

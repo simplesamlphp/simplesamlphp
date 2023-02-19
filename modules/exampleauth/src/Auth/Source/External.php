@@ -103,7 +103,7 @@ class External extends Auth\Source
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(array &$state): ?Response
     {
         $attributes = $this->getUser();
         if ($attributes !== null) {
@@ -114,7 +114,7 @@ class External extends Auth\Source
              * to the authentication process.
              */
             $state['Attributes'] = $attributes;
-            return;
+            return null;
         }
 
         /*
@@ -168,10 +168,9 @@ class External extends Auth\Source
          * the real name of the parameter for the login page.
          */
         $httpUtils = new Utils\HTTP();
-        $response = $httpUtils->redirectTrustedURL($authPage, [
+        return $httpUtils->redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
         ]);
-        $response->send();
     }
 
 

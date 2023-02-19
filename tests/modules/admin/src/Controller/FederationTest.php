@@ -13,9 +13,7 @@ use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Cookie, Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -147,9 +145,10 @@ class FederationTest extends TestCase
                 // stub
             }
 
-            public function authenticate(array &$state): void
+            public function authenticate(array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
             public static function getSourcesOfType(string $type): array
@@ -311,9 +310,10 @@ class FederationTest extends TestCase
                 // stub
             }
 
-            public function authenticate(array &$state): void
+            public function authenticate(array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
             public function getMetadata(): Configuration
