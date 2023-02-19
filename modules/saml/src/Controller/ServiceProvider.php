@@ -553,7 +553,8 @@ class ServiceProvider
             $numLoggedOut = Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
             if ($numLoggedOut === false) {
                 // This type of logout was unsupported. Use the old method
-                $source->handleLogout($idpEntityId);
+                $response = $source->handleLogout($idpEntityId);
+                Assert::null($response);
                 $numLoggedOut = count($sessionIndexes);
             }
 

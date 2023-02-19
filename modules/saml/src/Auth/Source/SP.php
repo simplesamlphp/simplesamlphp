@@ -1072,10 +1072,10 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param string $idpEntityId  The entity ID of the IdP.
      */
-    public function handleLogout(string $idpEntityId): void
+    public function handleLogout(string $idpEntityId): ?Response
     {
         /* Call the logout callback we registered in onProcessingCompleted(). */
-        $this->callLogoutCallback($idpEntityId);
+        return $this->callLogoutCallback($idpEntityId);
     }
 
 

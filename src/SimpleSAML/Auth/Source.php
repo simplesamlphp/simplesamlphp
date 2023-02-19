@@ -451,7 +451,7 @@ abstract class Source
      *
      * @param string $assoc The logout association which should be called.
      */
-    protected function callLogoutCallback(string $assoc): void
+    protected function callLogoutCallback(string $assoc): ?Response
     {
         $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
@@ -462,7 +462,7 @@ abstract class Source
             // FIXME: fix for IdP-first flow (issue 397) -> reevaluate logout callback infrastructure
             $session->doLogout($this->authId);
 
-            return;
+            return null;
         }
 
         Assert::isArray($data);
@@ -475,7 +475,7 @@ abstract class Source
         $session->deleteData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
         $response = call_user_func($callback, $callbackState);
         Assert::subclassOf($response, Response::class);
-        $response->send();
+        return $response;
     }
 
 
