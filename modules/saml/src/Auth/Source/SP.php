@@ -554,7 +554,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         if (!empty($state['saml:NameIDPolicy'])) {
-            $ar->setNameIdPolicy($policy);
+            $ar->setNameIdPolicy($state['saml:NameIDPolicy']);
         }
 
         $requesterID = [];
