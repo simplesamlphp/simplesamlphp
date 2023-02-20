@@ -13,7 +13,6 @@
         <directory name="modules" />
         <directory name="public" />
         <directory name="src/SimpleSAML" />
-        <directory name="tests" />
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
@@ -54,8 +53,6 @@
                 <file name="src/SimpleSAML/Metadata/MetaDataStorageHandlerFlatFile.php" />
                 <file name="src/SimpleSAML/Module.php" />
                 <file name="src/SimpleSAML/XHTML/Template.php" />
-                <file name="tests/bootstrap.php" />
-                <file name="tests/routers/configLoader.php" />
             </errorLevel>
         </UnresolvableInclude>
 
@@ -72,30 +69,8 @@
                 <directory name="config" />
                 <directory name="metadata" />
                 <directory name="modules/adfs/metadata-templates" />
-                <directory name="tests/src/SimpleSAML/Metadata/test-metadata" />
             </errorLevel>
         </PossiblyUndefinedGlobalVariable>
-
-        <!-- Suppress PHPunit-issue -->
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <directory name="tests" />
-            </errorLevel>
-        </PropertyNotSetInConstructor>
-
-        <!-- Suppress PHPunit-issue -->
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <directory name="tests" />
-            </errorLevel>
-        </InternalMethod>
-
-        <!-- Suppress Psalm-issue - We should be able to fix this with the static return-type in PHP 8.0 -->
-        <UnsafeInstantiation>
-            <errorLevel type="suppress">
-                <directory name="tests" />
-            </errorLevel>
-        </UnsafeInstantiation>
     </issueHandlers>
 
     <stubs>

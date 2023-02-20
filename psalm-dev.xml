@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<psalm
+    name="SimpleSAMLphp testsuite"
+    useDocblockTypes="true"
+    errorLevel="4"
+    reportMixedIssues="false"
+    hideExternalErrors="true"
+    allowStringToStandInForClass="true"
+>
+    <projectFiles>
+        <directory name="tests" />
+
+        <!-- Ignore certain directories -->
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <!-- Ignore UnresolvableInclude on CLI-scripts -->
+        <UnresolvableInclude>
+            <errorLevel type="suppress">
+                <file name="tests/bootstrap.php" />
+                <file name="tests/routers/configLoader.php" />
+            </errorLevel>
+        </UnresolvableInclude>
+
+        <!-- Suppress PossiblyUndefinedGlobalVariable on templates -->
+        <PossiblyUndefinedGlobalVariable>
+            <errorLevel type="suppress">
+                <directory name="tests/src/SimpleSAML/Metadata/test-metadata" />
+            </errorLevel>
+        </PossiblyUndefinedGlobalVariable>
+
+        <!-- Suppress PHPunit-issue -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+
+        <!-- Suppress PHPunit-issue -->
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </InternalMethod>
+
+        <!-- Suppress Psalm-issue - We should be able to fix this with the static return-type in PHP 8.0 -->
+        <UnsafeInstantiation>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnsafeInstantiation>
+    </issueHandlers>
+
+    <stubs>
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
+    </stubs>
+</psalm>

@@ -104,6 +104,7 @@ class CronTest extends TestCase
         $c = new Controller\Cron($this->config, $this->session);
         $response = $c->run('daily', 'secret');
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals('daily', $response->data['tag']);
         $this->assertFalse($response->data['mail_required']);

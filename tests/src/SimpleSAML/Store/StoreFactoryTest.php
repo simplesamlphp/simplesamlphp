@@ -34,9 +34,7 @@ class StoreFactoryTest extends TestCase
         $config = Configuration::getInstance();
         $storeType = $config->getOptionalString('store.type', 'phpsession');
 
-        /** @var false $store */
         $store = StoreFactory::getInstance($storeType);
-
         $this->assertFalse($store);
     }
 
@@ -53,9 +51,7 @@ class StoreFactoryTest extends TestCase
         $config = Configuration::getInstance();
         $storeType = $config->getString('store.type');
 
-        /** @var false $store */
         $store = StoreFactory::getInstance($storeType);
-
         $this->assertFalse($store);
     }
 
