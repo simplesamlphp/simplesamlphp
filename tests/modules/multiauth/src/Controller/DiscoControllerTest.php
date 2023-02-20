@@ -125,12 +125,6 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
-            public function authenticate(array &$state): ?Response
-            {
-                // stub
-                return null;
-            }
-
             public static function getById(string $authId, ?string $type = null): ?Source
             {
                 return new static();
@@ -178,12 +172,6 @@ class DiscoControllerTest extends TestCase
             public function __construct()
             {
                 // stub
-            }
-
-            public function authenticate(array &$state): ?Response
-            {
-                // stub
-                return null;
             }
 
             public static function getById(string $authId, ?string $type = null): ?Source
@@ -237,12 +225,6 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
-            public function authenticate(array &$state): ?Response
-            {
-                // stub
-                return null;
-            }
-
             public static function getById(string $authId, ?string $type = null): ?Source
             {
                 return new static();
@@ -294,12 +276,6 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
-            public function authenticate(array &$state): ?Response
-            {
-                // stub
-                return null;
-            }
-
             public static function getById(string $authId, ?string $type = null): ?Source
             {
                 return new static();
@@ -347,12 +323,6 @@ class DiscoControllerTest extends TestCase
             public function __construct()
             {
                 // stub
-            }
-
-            public function authenticate(array &$state): ?Response
-            {
-                // stub
-                return null;
             }
 
             public static function getById(string $authId, ?string $type = null): ?Source

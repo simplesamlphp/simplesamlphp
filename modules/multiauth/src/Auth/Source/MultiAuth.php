@@ -89,12 +89,11 @@ class MultiAuth extends Auth\Source
      * and redirects to a page where the user must select one of these
      * authentication sources.
      *
-     * This method never return. The authentication process is finished
-     * in the delegateAuthentication method.
+     * The authentication process is finished in the delegateAuthentication method.
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(array &$state): ?Response
+    public function authenticate(array &$state): Response
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
@@ -159,7 +158,7 @@ class MultiAuth extends Auth\Source
      * @param array $state Information about the current authentication.
      * @throws \Exception
      */
-    public static function delegateAuthentication(string $authId, array $state): ?Response
+    public static function delegateAuthentication(string $authId, array $state): Response
     {
         $as = Auth\Source::getById($authId);
         if ($as === null || !array_key_exists($authId, $state[self::SOURCESID])) {
@@ -183,7 +182,7 @@ class MultiAuth extends Auth\Source
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
      */
-    public static function doAuthentication(Auth\Source $as, array $state): ?Response
+    public static function doAuthentication(Auth\Source $as, array $state): Response
     {
         try {
             $response = $as->authenticate($state);
@@ -209,7 +208,7 @@ class MultiAuth extends Auth\Source
      *
      * @param array &$state Information about the current logout operation.
      */
-    public function logout(array &$state): void
+    public function logout(array &$state): ?Response
     {
         // Get the source that was used to authenticate
         $session = Session::getSessionFromRequest();
@@ -220,7 +219,7 @@ class MultiAuth extends Auth\Source
             throw new Exception('Invalid authentication source during logout: ' . $authId);
         }
         // Then, do the logout on it
-        $source->logout($state);
+        return $source->logout($state);
     }
 
 

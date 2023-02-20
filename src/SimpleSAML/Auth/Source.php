@@ -250,9 +250,10 @@ abstract class Source
      *
      * @param array &$state Information about the current logout operation.
      */
-    public function logout(array &$state): void
+    public function logout(array &$state): ?Response
     {
         // default logout handler which doesn't do anything
+        return null;
     }
 
 

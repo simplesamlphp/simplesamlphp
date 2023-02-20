@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -255,7 +254,7 @@ class External extends Auth\Source
      *
      * @param array &$state  The logout state array.
      */
-    public function logout(array &$state): void
+    public function logout(array &$state): ?Response
     {
         $session = new SymfonySession();
         if (!$session->getId()) {
@@ -268,5 +267,6 @@ class External extends Auth\Source
          * If we need to do a redirect to a different page, we could do this
          * here, but in this example we don't need to do this.
          */
+        return null;
     }
 }
