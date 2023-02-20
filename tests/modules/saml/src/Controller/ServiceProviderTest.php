@@ -492,7 +492,9 @@ XML;
 
         if ($protected && !$authenticated) {
             $this->assertInstanceOf(RunnableResponse::class, $result);
-            $this->assertEquals("requireAdmin", $result->getCallable()[1]);
+            /** @psalm-var array $callable */
+            $callable = $result->getCallable();
+            $this->assertEquals("requireAdmin", $callable[1]);
         } else {
             $this->assertInstanceOf(Response::class, $result);
         }

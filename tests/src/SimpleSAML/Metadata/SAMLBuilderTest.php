@@ -70,6 +70,7 @@ class SAMLBuilderTest extends TestCase
             $curAttribute = $attributes->item($c);
             $this->assertTrue($curAttribute->hasAttribute("Name"));
             $this->assertFalse($curAttribute->hasAttribute("FriendlyName"));
+            /** @psalm-suppress InvalidArrayOffset */
             $this->assertEquals($metadata['attributes'][$c], $curAttribute->getAttribute("Name"));
         }
 

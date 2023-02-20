@@ -128,6 +128,7 @@ class LoggerTest extends TestCase
         Logger::{$method}($payload = "test {$method}");
 
         $logger = Logger::getLoggingHandler();
+        $this->assertInstanceOf(ArrayLogger::class, $logger);
         self::assertMatchesRegularExpression("/\[CL[0-9a-f]{8}\]\ {$payload}$/", $logger->logs[$level][0]);
     }
 }

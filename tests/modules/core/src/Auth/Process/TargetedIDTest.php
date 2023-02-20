@@ -123,7 +123,7 @@ class TargetedIDTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['joe'],
-                'eduPersonTargetedID' => [$nameid->toXML()->ownerDocument->saveXML()],
+                'eduPersonTargetedID' => [$nameid->toXML()->ownerDocument?->saveXML()],
             ],
             'Source' => [
                 'metadata-set' => 'saml20-idp-hosted',
