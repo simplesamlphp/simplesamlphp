@@ -270,7 +270,7 @@ abstract class UserPassOrgBase extends Auth\Source
         string $username,
         string $password,
         string $organization
-    ): void {
+    ): Response {
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
@@ -315,8 +315,7 @@ abstract class UserPassOrgBase extends Auth\Source
         $state['PersistentAuthData'][] = self::ORGID;
 
         $state['Attributes'] = $attributes;
-        $response = parent::completeAuth($state);
-        $response->send();
+        return parent::completeAuth($state);
     }
 
 

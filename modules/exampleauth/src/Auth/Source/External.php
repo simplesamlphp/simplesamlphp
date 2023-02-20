@@ -66,12 +66,13 @@ class External extends Auth\Source
          * stored in the users PHP session, but this could be replaced
          * with anything.
          */
-        $session = new SymfonySession();
-        if (!$session->getId()) {
-            $session->start();
+
+        if (!session_id()) {
+            // session_start not called before. Do it here
+            @session_start();
         }
 
-        if (!$session->has('uid')) {
+        if (!isset($_SESSION['uid'])) {
             // The user isn't authenticated
             return null;
         }
@@ -81,15 +82,16 @@ class External extends Auth\Source
          * Note that all attributes in SimpleSAMLphp are multivalued, so we need
          * to store them as arrays.
          */
+
         $attributes = [
-            'uid' => [$session->get('uid')],
-            'displayName' => [$session->get('name')],
-            'mail' => [$session->get('mail')],
+            'uid' => [$_SESSION['uid']],
+            'displayName' => [$_SESSION['name']],
+            'mail' => [$_SESSION['mail']],
         ];
 
         // Here we generate a multivalued attribute based on the account type
         $attributes['eduPersonAffiliation'] = [
-            $session->get('type'), /* In this example, either 'student' or 'employee'. */
+            $_SESSION['type'], /* In this example, either 'student' or 'employee'. */
             'member',
         ];
 
@@ -184,7 +186,7 @@ class External extends Auth\Source
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume(Request $request): Response
+    public static function resume(Request $request, Auth\State $authState): Response
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
@@ -198,7 +200,7 @@ class External extends Auth\Source
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
-        $state = Auth\State::loadState($request->query->get('AuthState'), 'exampleauth:External');
+        $state = $authState::loadState($request->query->get('AuthState'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication

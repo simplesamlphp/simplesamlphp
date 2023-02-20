@@ -159,8 +159,19 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testSampleEntityIdException(): void
     {
+        $this->handler->clearInternalState();
+
+        $c = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $config = Configuration::loadFromArray($c, '', 'simplesaml');
+        $this->handler = MetaDataStorageHandler::getMetadataHandler($config);
+
         $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessageMatches('/entityID/');
+        $this->expectExceptionMessageMatches('/Please set a valid and unique entityID/');
         $this->handler->getMetaDataCurrent('saml20-idp-hosted');
     }
 }

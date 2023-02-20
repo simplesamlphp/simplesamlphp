@@ -7,10 +7,9 @@ namespace SimpleSAML\Test\Module\core\Controller;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -64,12 +63,8 @@ class LogoutTest extends ClearStateTestCase
 
         $response = $c->logout($request, 'example-authsource');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
-        /** @psalm-var array $callable */
-        $callable = $response->getCallable();
-        $this->assertInstanceOf(Auth\Simple::class, $callable[0]);
-        $this->assertEquals('logout', $callable[1]);
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 
 
@@ -102,9 +97,9 @@ class LogoutTest extends ClearStateTestCase
         $c = new Controller\Logout($this->config);
 
         $response = $c->logout($request, 'example-authsource');
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('https://example.org/something', $response->getArguments()[0]);
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
+        $this->assertEquals('https://example.org/something', $response->getTargetUrl());
     }
 
 

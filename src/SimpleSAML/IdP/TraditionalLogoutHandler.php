@@ -7,6 +7,7 @@ namespace SimpleSAML\IdP;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
@@ -54,7 +55,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     {
         $association = array_pop($state['core:LogoutTraditional:Remaining']);
         if ($association === null) {
-            $this->idp->finishLogout($state);
+            return $this->idp->finishLogout($state);
         }
 
         $relayState = Auth\State::saveState($state, 'core:LogoutTraditional', true);
@@ -63,7 +64,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         Logger::info('Logging out of ' . var_export($id, true) . '.');
 
         try {
-            $idp = IdP::getByState($association);
+            $idp = IdP::getByState(Configuration::getInstance(), $association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
             $httpUtils = new Utils\HTTP();
             return $httpUtils->redirectTrustedURL($url);

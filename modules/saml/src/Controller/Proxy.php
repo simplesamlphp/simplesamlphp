@@ -10,7 +10,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
@@ -68,7 +67,7 @@ class Proxy
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      */
-    public function invalidSession(Request $request): Response
+    public function invalidSession(Request $request): Template|Response
     {
         // retrieve the authentication state
         if (!$request->query->has('AuthState')) {
@@ -85,8 +84,8 @@ class Proxy
             $state = $this->authState::loadState($stateId, 'core:Logout:afterbridge');
 
             // success! Try to continue with reauthentication, since we no longer have a valid session here
-            $idp = IdP::getById($state['core:IdP']);
-            return new RunnableResponse([SP::class, 'reauthPostLogout'], [$idp, $state]);
+            $idp = IdP::getById($this->config, $state['core:IdP']);
+            return SP::reauthPostLogout($idp, $state);
         }
 
         if ($request->request->has('cancel')) {
@@ -105,8 +104,7 @@ class Proxy
             $as = Auth\Source::getById($state['saml:sp:AuthId'], SP::class);
 
             // log the user out before being able to login again
-            return new RunnableResponse([$as, 'reauthLogout'], [$state]);
-            // return $as->reauthLogout($state); Not working yet
+            return $as->reauthLogout($this->config, $state);
         }
 
         $template = new Template($this->config, 'saml:proxy/invalid_session.twig');

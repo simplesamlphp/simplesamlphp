@@ -9,7 +9,6 @@ use ReflectionClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Module\core\Auth\UserPassBase;

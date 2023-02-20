@@ -28,6 +28,9 @@ class DiscoControllerTest extends TestCase
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+    /** @var \SimpleSAML\Auth\Source */
+    protected Source $authSource;
+
 
     /**
      * Set up for each test.
@@ -66,6 +69,18 @@ class DiscoControllerTest extends TestCase
             'authsources.php',
             'simplesaml'
         );
+
+        $this->authSource = new class () extends MultiAuth {
+            public function __construct()
+            {
+                // stub
+            }
+
+            public static function getById(string $authId, ?string $type = null): ?Source
+            {
+                return new static();
+            }
+        };
     }
 
 
@@ -119,17 +134,7 @@ class DiscoControllerTest extends TestCase
             }
         });
 
-        $c->setAuthSource(new class () extends MultiAuth {
-            public function __construct()
-            {
-                // stub
-            }
-
-            public static function getById(string $authId, ?string $type = null): ?Source
-            {
-                return new static();
-            }
-        });
+        $c->setAuthSource($this->authSource);
 
         $response = $c->discovery($request);
 
@@ -168,17 +173,7 @@ class DiscoControllerTest extends TestCase
             }
         });
 
-        $c->setAuthSource(new class () extends MultiAuth {
-            public function __construct()
-            {
-                // stub
-            }
-
-            public static function getById(string $authId, ?string $type = null): ?Source
-            {
-                return new static();
-            }
-        });
+        $c->setAuthSource($this->authSource);
 
         $response = $c->discovery($request);
 
@@ -219,17 +214,7 @@ class DiscoControllerTest extends TestCase
             }
         });
 
-        $c->setAuthSource(new class () extends MultiAuth {
-            public function __construct()
-            {
-                // stub
-            }
-
-            public static function getById(string $authId, ?string $type = null): ?Source
-            {
-                return new static();
-            }
-        });
+        $c->setAuthSource($this->authSource);
 
         $response = $c->discovery($request);
 
@@ -270,17 +255,7 @@ class DiscoControllerTest extends TestCase
             }
         });
 
-        $c->setAuthSource(new class () extends MultiAuth {
-            public function __construct()
-            {
-                // stub
-            }
-
-            public static function getById(string $authId, ?string $type = null): ?Source
-            {
-                return new static();
-            }
-        });
+        $c->setAuthSource($this->authSource);
 
         $response = $c->discovery($request);
 
@@ -319,17 +294,7 @@ class DiscoControllerTest extends TestCase
             }
         });
 
-        $c->setAuthSource(new class () extends MultiAuth {
-            public function __construct()
-            {
-                // stub
-            }
-
-            public static function getById(string $authId, ?string $type = null): ?Source
-            {
-                return new static();
-            }
-        });
+        $c->setAuthSource($this->authSource);
 
         $response = $c->discovery($request);
 

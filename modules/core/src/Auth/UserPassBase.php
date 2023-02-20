@@ -280,7 +280,7 @@ abstract class UserPassBase extends Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      */
-    public static function handleLogin(string $authStateId, string $username, string $password): void
+    public static function handleLogin(string $authStateId, string $username, string $password): Response
     {
         // Here we retrieve the state array we saved in the authenticate-function.
         $state = Auth\State::loadState($authStateId, self::STAGEID);
@@ -313,7 +313,6 @@ abstract class UserPassBase extends Auth\Source
         $state['Attributes'] = $attributes;
 
         // Return control to SimpleSAMLphp after successful authentication.
-        $response = parent::completeAuth($state);
-        $response->send();
+        return parent::completeAuth($state);
     }
 }

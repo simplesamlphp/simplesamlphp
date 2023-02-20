@@ -186,7 +186,7 @@ class Simple
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
      * with parameters for the logout. If this parameter is null, we will return to the current page.
      */
-    public function logout($params = null): void
+    public function logout($params = null): Response
     {
         Assert::true(is_array($params) || is_string($params) || $params === null);
 
@@ -220,11 +220,14 @@ class Simple
 
             $as = Source::getById($this->authSource);
             if ($as !== null) {
-                $as->logout($params);
+                $response = $as->logout($params);
+                if ($response instanceof Response) {
+                    return $response;
+                }
             }
         }
 
-        self::logoutCompleted($params);
+        return self::logoutCompleted($params);
     }
 
 
@@ -235,7 +238,7 @@ class Simple
      *
      * @param array $state The state after the logout.
      */
-    public static function logoutCompleted(array $state): void
+    public static function logoutCompleted(array $state): Response
     {
         Assert::true(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
@@ -252,7 +255,8 @@ class Simple
             $httpUtils = new Utils\HTTP();
             $response = $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
         }
-        $response->send();
+
+        return $response;
     }
 
 

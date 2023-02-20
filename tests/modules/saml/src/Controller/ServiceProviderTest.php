@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
@@ -260,7 +259,7 @@ class ServiceProviderTest extends TestCase
 
 
     /**
-     * Test that accessing the discoResponse-endpoint with SP authsource in state results in a RunnableResponse
+     * Test that accessing the discoResponse-endpoint with SP authsource in state results in a Response
      * @return void
      */
     public function testWithSPAuthSource(): void
@@ -268,7 +267,7 @@ class ServiceProviderTest extends TestCase
         $request = Request::create(
             '/discoResponse',
             'GET',
-            ['AuthID' => 'abc123', 'idpentityid' => 'urn:x-simplesamlphp:some-idp'],
+            ['AuthID' => 'abc123', 'idpentityid' => 'urn:x-simplesamlphp:other-idp'],
         );
 
         $config = Configuration::loadFromArray(

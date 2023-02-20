@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\multiauth\Controller;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;

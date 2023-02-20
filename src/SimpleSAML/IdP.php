@@ -16,7 +16,7 @@ use SimpleSAML\IdP\TraditionalLogoutHandler;
 use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
 
 /**
  * IdP class.
@@ -77,16 +77,17 @@ class IdP
     /**
      * Initialize an IdP.
      *
+     * @param \SimpleSAML\Configuration $config The configuration
      * @param string $id The identifier of this IdP.
      *
      * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
      */
-    private function __construct(string $id)
+    private function __construct(Configuration $config, string $id)
     {
         $this->id = $id;
         $this->associationGroup = $id;
 
-        $this->globalConfig = Configuration::getInstance();
+        $this->globalConfig = $config;
         $metadata = MetaDataStorageHandler::getMetadataHandler($this->globalConfig);
 
         if (substr($id, 0, 6) === 'saml2:') {
@@ -136,17 +137,18 @@ class IdP
     /**
      * Retrieve an IdP by ID.
      *
+     * @param \SimpleSAML\Configuration $config The Configuration
      * @param string $id The identifier of the IdP.
      *
      * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getById(string $id): IdP
+    public static function getById(Configuration $config, string $id): IdP
     {
         if (isset(self::$idpCache[$id])) {
             return self::$idpCache[$id];
         }
 
-        $idp = new self($id);
+        $idp = new self($config, $id);
         self::$idpCache[$id] = $idp;
         return $idp;
     }
@@ -157,13 +159,14 @@ class IdP
      *
      * @param array &$state The state array.
      *
+     * @return \SimpleSAML\Configuration The Configuration.
      * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getByState(array &$state): IdP
+    public static function getByState(Configuration $config, array &$state): IdP
     {
         Assert::notNull($state['core:IdP']);
 
-        return self::getById($state['core:IdP']);
+        return self::getById($config, $state['core:IdP']);
     }
 
 
@@ -303,7 +306,7 @@ class IdP
      */
     public static function postAuth(array $state): Response
     {
-        $idp = IdP::getByState($state);
+        $idp = IdP::getByState(Configuration::getInstance(), $state);
 
         if (!$idp->isAuthenticated()) {
             throw new Error\Exception('Not authenticated.');
@@ -460,13 +463,12 @@ class IdP
      *
      * @param array &$state The logout request state.
      */
-    public function finishLogout(array &$state): void
+    public function finishLogout(array &$state): Response
     {
         Assert::notNull($state['Responder']);
 
-        $idp = IdP::getByState($state);
-        $response = call_user_func($state['Responder'], $idp, $state);
-        $response->send();
+        $idp = IdP::getByState($this->globalConfig, $state);
+        return $response = call_user_func($state['Responder'], $idp, $state);
     }
 
 
@@ -548,12 +550,11 @@ class IdP
      * @param IdP      $idp Deprecated. Will be removed.
      * @param array    &$state The logout state from doLogoutRedirect().
      */
-    public static function finishLogoutRedirect(IdP $idp, array $state): void
+    public static function finishLogoutRedirect(IdP $idp, array $state): RedirectResponse
     {
         Assert::notNull($state['core:Logout:URL']);
 
         $httpUtils = new Utils\HTTP();
-        $response = $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
-        $response->send();
+        return $httpUtils->redirectTrustedURL($state['core:Logout:URL']);
     }
 }

@@ -63,8 +63,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      */
     public function __construct(
         /** @scrutinizer ignore-used */ Configuration $globalConfig,
-        /** @scrutinizer ignore-unused */ array $config)
-    {
+        /** @scrutinizer ignore-unused */ array $config,
+    ) {
         parent::__construct();
 
         $this->db = Database::getInstance();

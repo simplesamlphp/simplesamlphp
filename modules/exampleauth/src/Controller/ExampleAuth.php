@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\exampleauth\Controller;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -196,8 +195,6 @@ class ExampleAuth
      * Resume testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function resume(Request $request): Response
     {
@@ -207,6 +204,6 @@ class ExampleAuth
          *
          * It simply passes control back to the class.
          */
-        return new RunnableResponse([External::class, 'resume'], [$request]);
+        return External::resume($request, $this->authState);
     }
 }

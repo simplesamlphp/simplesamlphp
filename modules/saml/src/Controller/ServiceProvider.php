@@ -19,7 +19,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
@@ -187,9 +186,9 @@ class ServiceProvider
      * Handler for the Assertion Consumer Service.
      *
      * @param string $sourceId
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function assertionConsumerService(string $sourceId): RedirectResponse|RunnableResponse
+    public function assertionConsumerService(string $sourceId): Response
     {
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId, SP::class);
@@ -444,7 +443,7 @@ class ServiceProvider
         }
         $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
-        return new RunnableResponse([$source, 'handleResponse'], [$state, $issuer, $attributes]);
+        return $source->handleResponse($state, $issuer, $attributes);
     }
 
 

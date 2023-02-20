@@ -8,7 +8,6 @@ use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -106,7 +105,7 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function main(Request $request, string $as = null): Response
     {
@@ -121,7 +120,7 @@ class Test
             $authsource = new $this->authSimple($as);
 
             if (!is_null($request->query->get('logout'))) {
-                return new RunnableResponse([$authsource, 'logout'], [Module::getModuleURL('admin/logout')]);
+                return $authsource->logout(Module::getModuleURL('admin/logout'));
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */

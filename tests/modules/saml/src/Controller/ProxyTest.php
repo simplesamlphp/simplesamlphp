@@ -8,11 +8,11 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -37,6 +37,10 @@ class ProxyTest extends TestCase
             [
                 'enable.saml20-idp' => true,
                 'module.enable' => ['saml' => true],
+                'metadatadir' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1',
+                'metadata.sources' => [
+                    ['type' => 'flatfile', 'directory' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1'],
+                ],
             ],
             '[ARRAY]',
             'simplesaml'
@@ -57,6 +61,18 @@ class ProxyTest extends TestCase
             'authsources.php',
             'simplesaml'
         );
+    }
+
+
+    /**
+     * Tear down after each test.
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
+        $mdh->clearInternalState();
     }
 
 
@@ -111,7 +127,7 @@ class ProxyTest extends TestCase
 
     /**
      * Test that accessing the invalidSession-endpoint with StateId and
-     * with pressing cancel results in a RunnableResponse
+     * with pressing cancel results in a Response
      *
      * @return void
      */
@@ -141,7 +157,7 @@ class ProxyTest extends TestCase
 
     /**
      * Test that accessing the invalidSession-endpoint with StateId and
-     * with pressing continue results in a RunnableResponse
+     * with pressing continue results in a Response
      *
      * @return void
      */
@@ -159,12 +175,12 @@ class ProxyTest extends TestCase
             {
                 return [
                     'saml:sp:AuthId' => 'phpunit',
-                    'core:IdP' => 'saml2:phpunit',
+                    'core:IdP' => 'saml2:urn:x-simplesamlphp:some-idp',
                 ];
             }
         });
 
         $result = $c->invalidSession($request);
-        $this->assertInstanceOf(RunnableResponse::class, $result);
+        $this->assertInstanceOf(Response::class, $result);
     }
 }

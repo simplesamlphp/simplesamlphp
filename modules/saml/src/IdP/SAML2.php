@@ -72,7 +72,7 @@ class SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = IdP::getByState($state);
+        $idp = IdP::getByState(Configuration::getInstance(), $state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -147,7 +147,7 @@ class SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = IdP::getByState($state);
+        $idp = IdP::getByState(Configuration::getInstance(), $state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -621,7 +621,7 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp): ?Response
+    public static function receiveLogoutMessage(IdP $idp): Response
     {
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
@@ -682,9 +682,9 @@ class SAML2
 
             $assocId = 'saml:' . $spEntityId;
             return $idp->handleLogoutRequest($state, $assocId);
-        } else {
-            throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
+
+        throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
     }
 
 

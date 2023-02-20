@@ -15,7 +15,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
@@ -127,7 +126,7 @@ class WebBrowserSingleSignOn
 
         $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = IdP::getById('saml2:' . $idpEntityId);
+        $idp = IdP::getById($this->config, 'saml2:' . $idpEntityId);
 
         try {
             return Module\saml\IdP\SAML2::receiveAuthnRequest($idp);

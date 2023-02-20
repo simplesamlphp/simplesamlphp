@@ -56,11 +56,11 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         $associations = $this->idp->getAssociations();
 
         if (count($associations) === 0) {
-            $this->idp->finishLogout($state);
+            return $this->idp->finishLogout($state);
         }
 
         foreach ($associations as $id => &$association) {
-            $idp = IdP::getByState($association);
+            $idp = IdP::getByState(Configuration::getInstance(), $association);
             $association['core:Logout-IFrame:Name'] = $idp->getSPName($id);
             $association['core:Logout-IFrame:State'] = 'onhold';
         }

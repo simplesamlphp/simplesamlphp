@@ -9,7 +9,6 @@ use SAML2\XML\saml\NameID;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -104,17 +103,11 @@ class TestTest extends TestCase
 
         $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
-        $c->setAuthSimple(new class ('admin') extends Auth\Simple {
-            public function logout($params = null): void
-            {
-                // stub
-            }
-        });
 
         $response = $c->main($request, 'admin');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 
 
