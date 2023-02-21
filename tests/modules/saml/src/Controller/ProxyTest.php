@@ -39,7 +39,10 @@ class ProxyTest extends TestCase
                 'module.enable' => ['saml' => true],
                 'metadatadir' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1',
                 'metadata.sources' => [
-                    ['type' => 'flatfile', 'directory' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1'],
+                    [
+                        'type' => 'flatfile',
+                        'directory' => dirname(__FILE__, 5) . '/src/SimpleSAML/Metadata/test-metadata/source1',
+                    ],
                 ],
             ],
             '[ARRAY]',
