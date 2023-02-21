@@ -62,7 +62,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param array $config An associative array with the configuration for this handler.
      */
     public function __construct(
-        /** @scrutinizer ignore-used */ Configuration $globalConfig,
+        /** @scrutinizer ignore-unused */ Configuration $globalConfig,
         /** @scrutinizer ignore-unused */ array $config,
     ) {
         parent::__construct();

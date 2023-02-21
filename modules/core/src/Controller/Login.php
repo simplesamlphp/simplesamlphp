@@ -316,9 +316,9 @@ class Login
      * username/password/organization authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginuserpassorg(Request $request): Template
+    public function loginuserpassorg(Request $request): Response
     {
         // Retrieve the authentication state
         if (!$request->query->has('AuthState')) {

@@ -711,7 +711,7 @@ class SP extends Auth\Source
         }
 
         $httpUtils = new Utils\HTTP();
-        return $response = $httpUtils->redirectTrustedURL($discoURL, $params);
+        return $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -1024,11 +1024,7 @@ class SP extends Auth\Source
         $logoutType = $state['saml:logout:Type'];
         Assert::oneOf($logoutType, ['saml2']);
 
-        $response = $this->startSLO2($this->config, $state);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        return null;
+        return $this->startSLO2($this->config, $state);
     }
 
 

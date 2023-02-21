@@ -157,7 +157,7 @@ class IdP
     /**
      * Retrieve the IdP "owning" the state.
      *
-     * @param \SimpleSAML\Configuration The Configuration.
+     * @param \SimpleSAML\Configuration $config The Configuration.
      * @param array &$state The state array.
      *
      * @return \SimpleSAML\IdP The IdP.
@@ -468,7 +468,7 @@ class IdP
         Assert::notNull($state['Responder']);
 
         $idp = IdP::getByState($this->globalConfig, $state);
-        return $response = call_user_func($state['Responder'], $idp, $state);
+        return call_user_func($state['Responder'], $idp, $state);
     }
 
 
