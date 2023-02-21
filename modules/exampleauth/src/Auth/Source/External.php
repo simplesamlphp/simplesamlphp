@@ -258,12 +258,15 @@ class External extends Auth\Source
      */
     public function logout(array &$state): ?Response
     {
-        $session = new SymfonySession();
-        if (!$session->getId()) {
-            $session->start();
+       if (!session_id()) {
+            // session_start not called before. Do it here
+            @session_start();
         }
 
-        $session->clear();
+        /*
+         * In this example we simply remove the 'uid' from the session.
+         */
+        unset($_SESSION['uid']);
 
         /*
          * If we need to do a redirect to a different page, we could do this
