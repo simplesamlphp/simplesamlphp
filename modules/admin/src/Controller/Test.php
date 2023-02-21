@@ -109,7 +109,11 @@ class Test
      */
     public function main(Request $request, string $as = null): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
+
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [

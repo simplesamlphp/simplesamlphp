@@ -602,7 +602,10 @@ class ServiceProvider
     public function metadata(Request $request, string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
-            $this->authUtils->requireAdmin();
+            $response = $this->authUtils->requireAdmin();
+            if ($response instanceof Response) {
+                return $response;
+            }
         }
 
         $source = Auth\Source::getById($sourceId);

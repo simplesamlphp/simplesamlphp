@@ -8,6 +8,7 @@ use SimpleSAML\Auth as Authentication;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Auth-related utility methods.
@@ -53,17 +54,16 @@ class Auth
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
      */
-    public function requireAdmin(): void
+    public function requireAdmin(): ?Response
     {
         if ($this->isAdmin()) {
-            return;
+            return null;
         }
 
         // not authenticated as admin user, start authentication
         if (Authentication\Source::getById('admin') !== null) {
             $as = new Authentication\Simple('admin');
-            $response = $as->login();
-            $response->send();
+            return $as->login();
         } else {
             throw new Error\Exception(
                 'Cannot find "admin" auth source, and admin privileges are required.'

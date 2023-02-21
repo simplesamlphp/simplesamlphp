@@ -13,6 +13,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -76,11 +77,14 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function diagnostics(Request $request): Template
+    public function diagnostics(Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
@@ -110,11 +114,14 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -165,11 +172,14 @@ class Config
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse The output of phpinfo()
+     * @return \Symfony\Component\HttpFoundation\Response The output of phpinfo()
      */
-    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): StreamedResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         return new StreamedResponse('phpinfo');
     }

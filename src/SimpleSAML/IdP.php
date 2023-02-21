@@ -157,9 +157,9 @@ class IdP
     /**
      * Retrieve the IdP "owning" the state.
      *
+     * @param \SimpleSAML\Configuration The Configuration.
      * @param array &$state The state array.
      *
-     * @return \SimpleSAML\Configuration The Configuration.
      * @return \SimpleSAML\IdP The IdP.
      */
     public static function getByState(Configuration $config, array &$state): IdP

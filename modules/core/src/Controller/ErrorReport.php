@@ -41,7 +41,7 @@ class ErrorReport
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Session $config The session to use by the controllers.
+     * @param \SimpleSAML\Session $session The session to use by the controllers.
      */
     public function __construct(
         Configuration $config,

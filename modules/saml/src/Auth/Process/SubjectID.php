@@ -38,6 +38,8 @@ class SubjectID extends Auth\ProcessingFilter
 {
     /**
      * The name for this class
+     *
+     * @var string
      */
     public const NAME = 'SubjectID';
 
