@@ -121,6 +121,23 @@ class TestTest extends TestCase
 
     /**
      */
+    public function testLogoutReturnsTemplate(): void
+    {
+        $request = Request::create(
+            '/logout',
+            'GET'
+        );
+
+        $c = new TestController($this->config, $this->session);
+        $response = $c->logout($request);
+
+        $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
+    }
+
+
+    /**
+     */
     public function testMainWithAuthSourceAndException(): void
     {
         $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
