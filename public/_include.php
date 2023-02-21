@@ -49,7 +49,6 @@ function SimpleSAML_error_handler(
     string $errstr,
     ?string $errfile = null,
     int $errline = 0,
-    /** @scrutinizer-unused */ $errcontext = null
 ): bool {
     if (Logger::isErrorMasked($errno)) {
         // masked error
