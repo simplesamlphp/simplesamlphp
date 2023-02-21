@@ -14,7 +14,7 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request};
+use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request, Response};
 
 use function array_key_exists;
 use function substr;
@@ -99,9 +99,9 @@ class Login
      * username/password authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginuserpass(Request $request): Template
+    public function loginuserpass(Request $request): Response
     {
         // Retrieve the authentication state
         if (!$request->query->has('AuthState')) {
@@ -130,9 +130,9 @@ class Login
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function handleLogin(Request $request, $source, array $state): Template
+    private function handleLogin(Request $request, $source, array $state): Response
     {
         Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
         $authStateId = $request->query->get('AuthState');
@@ -221,9 +221,9 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+                        return UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
                     } else {
-                        UserPassBase::handleLogin($authStateId, $username, $password);
+                        return UserPassBase::handleLogin($authStateId, $username, $password);
                     }
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
