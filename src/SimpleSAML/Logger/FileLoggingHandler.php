@@ -73,7 +73,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
         );
 
-        $file = new File($this->logFile);
+        $file = new File($this->logFile, false);
         // Suppress E_WARNING if not exists
         if (@$this->fileSystem->exists($this->logFile)) {
             if (!$file->isWritable()) {
