@@ -139,6 +139,8 @@ The following filters are included in the SimpleSAMLphp distribution:
 * [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
 * [`saml:PersistentNameID2TargetedID`](./saml:nameid): Store persistent NameID as eduPersonTargetedID.
 * [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
+* [`saml:SubjectID`](./saml:authproc_subjectid): Generate SubjectID.
+* [`saml:PairwiseID`](./saml:authproc_pairwiseid): Generate PairwiseID.
 
 See the [Third-party modules](https://simplesamlphp.org/modules) page on the SimpleSAMLphp website
 for externally hosted modules that may provide a processing filter.
