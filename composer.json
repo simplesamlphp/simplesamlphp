@@ -61,7 +61,7 @@
         "phpmailer/phpmailer": "^6.5",
         "simplesamlphp/assert": "^0.8.0",
         "simplesamlphp/saml2": "^4.6",
-        "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
+        "simplesamlphp/simplesamlphp-assets-base": "^2.0",
         "symfony/cache": "^5.4",
         "symfony/config": "^5.4",
         "symfony/console": "^5.4",
