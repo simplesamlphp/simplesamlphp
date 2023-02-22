@@ -1,4 +1,4 @@
-`subjectidattrs:SubjectID`
+`saml:SubjectID`
 ===================
 
 Filter to insert a subject-id that complies with the
@@ -23,7 +23,7 @@ Examples
 ```php
     'authproc' => [
         50 => [
-            'class' => 'subjectidattrs:SubjectID',
+            'class' => 'saml:SubjectID',
             'identifyingAttribute' => 'uid',
             'scopeAttribute' => 'scope',
         ],
