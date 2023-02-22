@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "gettext/gettext",
-            "version": "v4.8.7",
+            "version": "v4.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-gettext/Gettext.git",
-                "reference": "3f7bc5ef23302a9059e64934f3d59e454516bec0"
+                "reference": "302a00aa9d6762c92c884d879c15d3ed05d6a37d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/3f7bc5ef23302a9059e64934f3d59e454516bec0",
-                "reference": "3f7bc5ef23302a9059e64934f3d59e454516bec0",
+                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/302a00aa9d6762c92c884d879c15d3ed05d6a37d",
+                "reference": "302a00aa9d6762c92c884d879c15d3ed05d6a37d",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +69,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/oscarotero/Gettext/issues",
-                "source": "https://github.com/php-gettext/Gettext/tree/v4.8.7"
+                "source": "https://github.com/php-gettext/Gettext/tree/v4.8.8"
             },
             "funding": [
                 {
@@ -85,7 +85,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-08-02T09:42:10+00:00"
+            "time": "2022-12-08T11:59:50+00:00"
         },
         {
             "name": "gettext/languages",
@@ -239,16 +239,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.7",
+            "version": "v6.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "80fc8686fcd070267b98dae0ec228d5d67d94310"
+                "reference": "49cd7ea3d2563f028d7811f06864a53b1f15ff55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/80fc8686fcd070267b98dae0ec228d5d67d94310",
-                "reference": "80fc8686fcd070267b98dae0ec228d5d67d94310",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/49cd7ea3d2563f028d7811f06864a53b1f15ff55",
+                "reference": "49cd7ea3d2563f028d7811f06864a53b1f15ff55",
                 "shasum": ""
             },
             "require": {
@@ -258,17 +258,18 @@
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "doctrine/annotations": "^1.2",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+                "doctrine/annotations": "^1.2.6 || ^1.13.3",
                 "php-parallel-lint/php-console-highlighter": "^1.0.0",
                 "php-parallel-lint/php-parallel-lint": "^1.3.2",
                 "phpcompatibility/php-compatibility": "^9.3.5",
                 "roave/security-advisories": "dev-latest",
                 "squizlabs/php_codesniffer": "^3.7.1",
-                "yoast/phpunit-polyfills": "^1.0.0"
+                "yoast/phpunit-polyfills": "^1.0.4"
             },
             "suggest": {
                 "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
+                "ext-openssl": "Needed for secure SMTP sending and DKIM signing",
                 "greew/oauth2-azure-provider": "Needed for Microsoft Azure XOAUTH2 authentication",
                 "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
                 "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
@@ -306,7 +307,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.7"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.7.1"
             },
             "funding": [
                 {
@@ -314,7 +315,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-05T10:56:35+00:00"
+            "time": "2022-12-08T13:30:06+00:00"
         },
         {
             "name": "psr/cache",
@@ -570,20 +571,21 @@
         },
         {
             "name": "simplesamlphp/composer-module-installer",
-            "version": "v1.1.8",
+            "version": "v1.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/composer-module-installer.git",
-                "reference": "45161b5406f3e9c82459d0f9a5a1dba064953cfa"
+                "reference": "6c8a36fa116f04b3dbe24ff363c6fec3b5ee3e9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/45161b5406f3e9c82459d0f9a5a1dba064953cfa",
-                "reference": "45161b5406f3e9c82459d0f9a5a1dba064953cfa",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/6c8a36fa116f04b3dbe24ff363c6fec3b5ee3e9f",
+                "reference": "6c8a36fa116f04b3dbe24ff363c6fec3b5ee3e9f",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.1|^2.0",
+                "simplesamlphp/assert": "^0.0.13",
                 "simplesamlphp/simplesamlphp": "*"
             },
             "type": "composer-plugin",
@@ -602,9 +604,9 @@
             "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
             "support": {
                 "issues": "https://github.com/simplesamlphp/composer-module-installer/issues",
-                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.1.8"
+                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.1.9"
             },
-            "time": "2020-08-25T19:04:33+00:00"
+            "time": "2023-02-22T19:11:50+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -2169,6 +2171,7 @@
                 "issues": "https://github.com/simplesamlphp/twig-configurable-i18n/issues",
                 "source": "https://github.com/simplesamlphp/twig-configurable-i18n"
             },
+            "abandoned": true,
             "time": "2022-11-28T16:34:29+00:00"
         },
         {
@@ -3318,16 +3321,16 @@
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v4.4.49",
+            "version": "v4.4.50",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "4e36db8103062c62b3882b1bd297b02de6b021c4"
+                "reference": "aa6df6c045f034aa13ac752fc234bb300b9488ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4e36db8103062c62b3882b1bd297b02de6b021c4",
-                "reference": "4e36db8103062c62b3882b1bd297b02de6b021c4",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/aa6df6c045f034aa13ac752fc234bb300b9488ef",
+                "reference": "aa6df6c045f034aa13ac752fc234bb300b9488ef",
                 "shasum": ""
             },
             "require": {
@@ -3402,7 +3405,7 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-kernel/tree/v4.4.49"
+                "source": "https://github.com/symfony/http-kernel/tree/v4.4.50"
             },
             "funding": [
                 {
@@ -3418,7 +3421,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-28T17:58:43+00:00"
+            "time": "2023-02-01T08:01:31+00:00"
         },
         {
             "name": "symfony/mime",
@@ -4612,16 +4615,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.15.3",
+            "version": "v2.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ab402673db8746cb3a4c46f3869d6253699f614a"
+                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ab402673db8746cb3a4c46f3869d6253699f614a",
-                "reference": "ab402673db8746cb3a4c46f3869d6253699f614a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e059001d6d597dd50ea7c74dd2464b4adea48d3",
+                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3",
                 "shasum": ""
             },
             "require": {
@@ -4676,7 +4679,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v2.15.3"
+                "source": "https://github.com/twigphp/Twig/tree/v2.15.4"
             },
             "funding": [
                 {
@@ -4688,7 +4691,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-28T08:40:08+00:00"
+            "time": "2022-12-27T12:26:20+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -5216,30 +5219,30 @@
         },
         {
             "name": "doctrine/instantiator",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc"
+                "reference": "0a0fa9780f5d4e507415a065172d26a98d02047b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/10dcfce151b967d20fde1b34ae6640712c3891bc",
-                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/0a0fa9780f5d4e507415a065172d26a98d02047b",
+                "reference": "0a0fa9780f5d4e507415a065172d26a98d02047b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^9",
+                "doctrine/coding-standard": "^9 || ^11",
                 "ext-pdo": "*",
                 "ext-phar": "*",
                 "phpbench/phpbench": "^0.16 || ^1",
                 "phpstan/phpstan": "^1.4",
                 "phpstan/phpstan-phpunit": "^1",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
-                "vimeo/psalm": "^4.22"
+                "vimeo/psalm": "^4.30 || ^5.4"
             },
             "type": "library",
             "autoload": {
@@ -5266,7 +5269,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/instantiator/issues",
-                "source": "https://github.com/doctrine/instantiator/tree/1.4.1"
+                "source": "https://github.com/doctrine/instantiator/tree/1.5.0"
             },
             "funding": [
                 {
@@ -5282,7 +5285,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-03T08:28:38+00:00"
+            "time": "2022-12-30T00:15:36+00:00"
         },
         {
             "name": "felixfbecker/advanced-json-rpc",
@@ -5548,16 +5551,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.2",
+            "version": "v4.15.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc"
+                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/570e980a201d8ed0236b0a62ddf2c9cbb2034039",
+                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039",
                 "shasum": ""
             },
             "require": {
@@ -5598,9 +5601,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.2"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.3"
             },
-            "time": "2022-11-12T15:38:23+00:00"
+            "time": "2023-01-16T22:05:37+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
