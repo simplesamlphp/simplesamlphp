@@ -28,6 +28,7 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - SAML AuthnRequests that are signed will have their signature validated unless specifically disabled
   by setting `validate.authnrequest` to `false`. If unset (or set to true) signatures will be
   validated if present and requests not passing validation will be refused.
+- The default value for attrname-format was changed to 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri'.
 - In the  core:TargetedID authproc-filter, the `attributename` setting has been renamed to `identifyingAttribute`.
   Similarly, in the  saml:AttributeNameID, saml:PersistentNameID and saml:SQLPersistentNameId authproc-filters, the
   `attribute` setting has been renamed to `identifyingAttribute` for consistency with other NameID filters.
