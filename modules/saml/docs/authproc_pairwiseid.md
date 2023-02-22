@@ -1,4 +1,4 @@
-`subjectidattrs:PairwiseID`
+`saml:PairwiseID`
 ===================
 
 Filter to insert a pairwise-id that complies with the
@@ -20,7 +20,7 @@ Examples
 ```php
     'authproc' => [
         50 => [
-            'class' => 'subjectidattrs:PairwiseID',
+            'class' => 'saml:PairwiseID',
             'identifyingAttribute' => 'uid',
             'scopeAttribute' => 'scope',
         ],
