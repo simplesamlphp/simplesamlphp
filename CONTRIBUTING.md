@@ -6,23 +6,6 @@ These guidelines briefly explain how to contribute to SimpleSAMLphp effectively 
 
 [TOC]
 
-## Team members
-
-Currently, the core team members are:
-
-* Jaime Pérez Crespo, *maintainer and main developer*, UNINETT <jaime.perez@uninett.no>
-* Tim van Dijen, *main developer*
-* Thijs Kinkhorst, *main developer*
-
-Two other persons are listed here for historical reasons, even though they are no longer involved in the project:
-
-* Andreas Åkre Solberg, *architect and original developer*, UNINETT <andreas.solberg@uninett.no>
-* Olav Morken, *architect and main developer*, UNINETT <olav.morken@uninett.no>
-
-We have been lucky enough to have so many people help us through the years. SimpleSAMLphp wouldn't have reached so far without them. We want to thank them from here, but unfortunately they are so many it is nearly impossible to mention all of them. [Here is a Github page that summarizes everyone's contributions](https://github.com/simplesamlphp/simplesamlphp/graphs/contributors?from=2007-09-09&to=2015-09-06&type=c).
-
-***Big thanks to you all!***
-
 ## First things first
 
 Before embarking yourself in a contribution, please make sure you are familiar with the way SimpleSAMLphp is written, the way it works, and what is required or not.
@@ -97,35 +80,17 @@ You can help us diagnose and fix bugs by asking and providing answers to the fol
 
 ## Reporting vulnerabilities
 
-In case you find a vulnerability in SimpleSAMLphp, or you want to confirm a possible security issue in the software, please get in touch with us through [UNINETT's CERT team](https://www.uninett.no/cert). Please use our PGP public key to encrypt any possibly sensitive data that you may need to submit. We will get back to you as soon as possible according to our working hours in Central European Time.
-
-When reporting a security issue, please add as much information as possible to help us identify, confirm, replicate and fix the problem. In particular, remember to include the following information in your report:
-
-* The version or versions of SimpleSAMLphp affected.
-* An exact version that can be used to replicate the issue.
-* Any module or modules involved in the issue.
-* Any particular configuration details relevant to the setup affected.
-* A detailed description and a clear and concise, step-by-step guide to allow us reproduce the issue.
-* Screenshots, videos, or any other media that would help identify the issue.
-* Pointers to the exact line or lines in the code where the vulnerability is supposed to be.
-* Context on how you discovered the issue.
-* Your own name and whether you want to be credited for the discovery or not.
-
-Please **DO NOT** report security incidents related to systems that use SimpleSAMLphp, where this software is not the cause of the incident. Issues related to the use (or misuse) of infrastructure, misconfiguration of the software, malfunction of a particular system or user-related errors should not be reported either. If you are using SimpleSAMLphp to authenticate or login to services, but you don't know what SimpleSAMLphp is or you are not sure about the nature of the issue, please contact the organization running the service for you.
-
-Finally, be reasonable. We'll do our best to resolve the issue according to our principles of security and transparency. Every confirmed vulnerability will be published and resolved in a timely manner. All we ask in return is that you contact us privately first in order to avoid any potential damage to those using the software.
-
-You can find the list of security advisories we have published [here](https://simplesamlphp.org/security).
+Please see [SECURITY.md](SECURITY.md) for how to report security vulnerabilities. Please do _not_ use the public issue tracker.
 
 ## Translations
 
-SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new translations to other languages. For the moment, translations can be contributed as **pull requests**. We are looking at better ways to translate the software that would make your life easier, so stay tuned! You can also join the [translators mailing list](http://groups.google.com/group/simplesamlphp-translation) to keep up to date on the latest news.
+SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new translations to other languages. For the moment, translations can be contributed as **pull requests**.
 
 Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and you want to complete it, make sure to keep the same style used by your fellow translators.
 
 ## Documentation improvements
 
-Did you find a typo in the documentation? Does something make no sense? Did we use poor english? Tell us!
+Did you find a typo in the documentation? Does something make no sense? Did we use poor English? Tell us!
 
 Documentation is included in our own repository in *markdown* format. You can submit pull requests with fixes. If you encounter some feature that is not documented, or the documentation does not reflect the real behaviour of the library, please do not hesitate to open an issue.
 
