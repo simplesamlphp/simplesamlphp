@@ -14,7 +14,7 @@ session_start();
 $auth = new \SimpleSAML\Auth\Simple('default-sp');
 $auth->isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
 // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
-SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
+\SimpleSAML\Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
 // Save to our session
 $_SESSION['key'] = 'value';
 ```
@@ -51,7 +51,7 @@ Check whether the user is authenticated with this authentication source.
 
 ```php
 if (!$auth->isAuthenticated()) {
-    SimpleSAML_Session::getSessionFromRequest()->cleanup();
+    \SimpleSAML\Session::getSessionFromRequest()->cleanup();
     /* Show login link. */
     print('<a href="/login">Login</a>');
 }
@@ -76,7 +76,7 @@ See the documentation for the `login`-function for a description of the paramete
 
 ```php
 $auth->requireAuth();
-SimpleSAML_Session::getSessionFromRequest()->cleanup();
+\SimpleSAML\Session::getSessionFromRequest()->cleanup();
 print("Hello, authenticated user!");
 ```
 
@@ -91,7 +91,7 @@ $auth->requireAuth([
     'ReturnTo' => 'https://sp.example.org/',
     'KeepPost' => FALSE,
 ]);
-SimpleSAML_Session::getSessionFromRequest()->cleanup();
+\SimpleSAML\Session::getSessionFromRequest()->cleanup();
 print("Hello, authenticated user!");
 ```
 
@@ -136,7 +136,7 @@ $auth->login([
     'isPassive' => true,
     'ErrorURL' => 'https://.../error_handler.php',
 ]);
-SimpleSAML_Session::getSessionFromRequest()->cleanup();
+\SimpleSAML\Session::getSessionFromRequest()->cleanup();
 ```
 
 ### logout
@@ -171,7 +171,7 @@ Logout, and redirect to the specified URL.
 
 ```php
 $auth->logout('https://sp.example.org/logged_out.php');
-SimpleSAML_Session::getSessionFromRequest()->cleanup();
+\SimpleSAML\Session::getSessionFromRequest()->cleanup();
 ```
 
 `Example 2`:
@@ -184,7 +184,7 @@ $auth->logout([
     'ReturnStateParam' => 'LogoutState',
     'ReturnStateStage' => 'MyLogoutState',
 ]);
-SimpleSAML_Session::getSessionFromRequest()->cleanup();
+\SimpleSAML\Session::getSessionFromRequest()->cleanup();
 ```
 
 And in logged_out.php:
