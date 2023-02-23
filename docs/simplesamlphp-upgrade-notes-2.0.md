@@ -121,24 +121,24 @@ $x = \SimpleSAML\Utils\Arrays::arrayize($someVar)
   - Logout store:     1.18+ > 2.0
 
 - Data stores have been refactored:
-  - lib/SimpleSAML/Store.php has been renamed to lib/SimpleSAML/Store/StoreFactory.php and is now solely a Factory-class
-  - All store implementations now implement \SimpleSAML\Store\StoreInterface:
-    - lib/SimpleSAML/Store/SQL.php has been renamed to lib/SimpleSAML/Store/SQLStore.php
-    - lib/SimpleSAML/Store/Memcache.php has been renamed to lib/SimpleSAML/Store/MemcacheStore.php
-    - lib/SimpleSAML/Store/Redis.php has been renamed to lib/SimpleSAML/Store/RedisStore.php
+  - `lib/SimpleSAML/Store.php` has been renamed to `lib/SimpleSAML/Store/StoreFactory.php` and is now solely a Factory-class
+  - All store implementations now implement `\SimpleSAML\Store\StoreInterface`:
+    - `lib/SimpleSAML/Store/SQL.php` has been renamed to `lib/SimpleSAML/Store/SQLStore.php`
+    - `lib/SimpleSAML/Store/Memcache.php` has been renamed to `lib/SimpleSAML/Store/MemcacheStore.php`
+    - `lib/SimpleSAML/Store/Redis.php` has been renamed to `lib/SimpleSAML/Store/RedisStore.php`
 
 - The following methods have had their signature changed:
-  - Configuration::getValue
-  - Configuration::getBoolean
-  - Configuration::getString
-  - Configuration::getInteger
-  - Configuration::getIntegerRange
-  - Configuration::getValueValidate
-  - Configuration::getArray
-  - Configuration::getArrayize
-  - Configuration::getArrayizeString
-  - Configuration::getConfigItem
-  - Configuration::getLocalizedString
+  - `Configuration::getValue`
+  - `Configuration::getBoolean`
+  - `Configuration::getString`
+  - `Configuration::getInteger`
+  - `Configuration::getIntegerRange`
+  - `Configuration::getValueValidate`
+  - `Configuration::getArray`
+  - `Configuration::getArrayize`
+  - `Configuration::getArrayizeString`
+  - `Configuration::getConfigItem`
+  - `Configuration::getLocalizedString`
 
   All of these methods no longer accept a default as their last parameter. Use their getOptional* counterparts instead.
 
