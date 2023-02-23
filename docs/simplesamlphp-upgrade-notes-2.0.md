@@ -26,7 +26,7 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - The base URL of the SimpleSAMLphp installation no longer provides an admin menu. Instead this is now at the location
   `<simpleSAMLphp base URL>/admin`. The `admin` module needs to be enabled for this to work.
 - SAML AuthnRequests that are signed will have their signature validated unless specifically disabled
-  by setting `validate.authnrequest` to `false`. If unset (or set to true) signatures will be
+  by setting `validate.authnrequest` to `false`. If unset (or set to `true`) signatures will be
   validated if present and requests not passing validation will be refused.
 - The default value for attrname-format was changed to 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri'.
 - In the  core:TargetedID authproc-filter, the `attributename` setting has been renamed to `identifyingAttribute`.
@@ -41,7 +41,7 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
   `metadata/saml20-idp-hosted.php` and for any saml:SP in `config/authsources.php` (or to the existing entityIDs when
   upgrading an existing installation).
-  If you are using a database to store metadata, make sure to replace any __DYNAMIC% entityID's with
+  If you are using a database to store metadata, make sure to replace any `__DYNAMIC:1__` entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
 
 ## Configuration changes
@@ -59,26 +59,26 @@ an empty array (`[]`).
 
 Configuration options that have been removed:
 
-- simplesaml.nameidattribute. Use the appropriate authproc-filters instead
-- languages[priorities]. No replacement.
-- attributes.extradictionaries. Add an attributes.po to your configured theme instead.
-- admin.protectindexpage. Replaced by the admin module which always requires login.
-- base64attributes. Obsolete functionality, individual attributes can still be en/decoded
+- `simplesaml.nameidattribute`. Use the appropriate authproc-filters instead.
+- `languages[priorities]`. No replacement.
+- `attributes.extradictionaries`. Add an attributes.po to your configured theme instead.
+- `admin.protectindexpage`. Replaced by the admin module which always requires login.
+- `base64attributes`. Obsolete functionality, individual attributes can still be en/decoded
   with the existing attributeencodings feature.
-- database.slaves. This is now called database.secondaries.
-- metadata.handler. Since a long time the preferred option is metadata.sources.
-- Our assets have been moved from the `www` to the `public` directory. You may have to update
+- `database.slaves`. This is now called `database.secondaries`.
+- `metadata.handler`. Since a long time the preferred option is `metadata.sources`.
+- Our assets have been moved from the `www` to the `public` directory. You will have to update
   your webserver to reflect this change.
 
 ## Changes relevant for (module) developers
 
 The following changes are relevant for those having custom developed modules, authentication
-processing filters, themes, or interface with the SimpleSAMLphp development API.
+processing filters, themes, or that interface with the SimpleSAMLphp development API.
 
-- We expect your source-files to exist in the src/ directory within your module. This used to be the
-  lib/ directory, so you have to rename the directory and for composer-modules you have to update
-  your composer.json file (specifically the psr-0 and psr-4 entries if you have them).
-- We exoect your module assets to exist in the public/ directory within your module (was: www).
+- We expect your source files to exist in the `src/` directory within your module. This used to be the
+  `lib/` directory, so you have to rename the directory and for composer-modules you have to update
+  your `composer.json` file (specifically the `psr-0` and `psr-4` entries if you have them).
+- We expect your module assets to exist in the `public/` directory within your module (was: `www/`).
 - Old JSON-formatted dictionaries have been replaced by gettext / .po-files; see [migration guide][1]
 - Old PHP templates have been replaced by Twig-templates; see [migration guide][2]
 - The source was completely typehinted; if you have custom authsources or authproc filters,
@@ -88,18 +88,18 @@ processing filters, themes, or interface with the SimpleSAMLphp development API.
   - `htmlinject`: use a Twig template override instead.
   - `metadata_hosted`: no replacement
 - The following classes have been migrated to non-static:
-  - \SimpleSAML\Utils\Arrays
-  - \SimpleSAML\Utils\Attributes
-  - \SimpleSAML\Utils\Auth
-  - \SimpleSAML\Utils\Config
-  - \SimpleSAML\Utils\Crypto
-  - \SimpleSAML\Utils\EMail
-  - \SimpleSAML\Utils\HTTP
-  - \SimpleSAML\Utils\Net
-  - \SimpleSAML\Utils\Random
-  - \SimpleSAML\Utils\System
-  - \SimpleSAML\Utils\Time
-  - \SimpleSAML\Utils\XML
+  - `\SimpleSAML\Utils\Arrays`
+  - `\SimpleSAML\Utils\Attributes`
+  - `\SimpleSAML\Utils\Auth`
+  - `\SimpleSAML\Utils\Config`
+  - `\SimpleSAML\Utils\Crypto`
+  - `\SimpleSAML\Utils\EMail`
+  - `\SimpleSAML\Utils\HTTP`
+  - `\SimpleSAML\Utils\Net`
+  - `\SimpleSAML\Utils\Random`
+  - `\SimpleSAML\Utils\System`
+  - `\SimpleSAML\Utils\Time`
+  - `\SimpleSAML\Utils\XML`
 
   If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
 
