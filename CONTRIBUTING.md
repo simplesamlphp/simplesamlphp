@@ -80,7 +80,7 @@ You can help us diagnose and fix bugs by asking and providing answers to the fol
 
 ## Reporting vulnerabilities
 
-Please see [SECURITY.md](SECURITY.md) for how to report security vulnerabilities. Please do _not_ use the public issue tracker.
+Please see [SECURITY.md](SECURITY.md) for how to report security vulnerabilities. Please do *not* use the public issue tracker.
 
 ## Translations
 
