@@ -37,10 +37,12 @@ class Disco
 
     /**
      * Built-in IdP discovery service
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function disco(): Response
+    public function disco(Request $request): Response
     {
-        $disco = new IdPDisco(['saml20-idp-remote'], 'saml');
+        $disco = new IdPDisco($request, ['saml20-idp-remote'], 'saml');
         return $disco->handleRequest();
     }
 }

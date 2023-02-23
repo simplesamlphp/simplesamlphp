@@ -11,7 +11,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * This class defines a base class for authentication source.
@@ -103,9 +103,10 @@ abstract class Source
      * save the state, and at a later stage, load the state, update it with the authentication
      * information about the user, and call completeAuth with the state array.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request
      * @param array &$state Information about the current authentication.
      */
-    abstract public function authenticate(array &$state): ?Response;
+    abstract public function authenticate(Request $request, array &$state): ?Response;
 
 
     /**
@@ -191,8 +192,9 @@ abstract class Source
             $state[State::EXCEPTION_HANDLER_URL] = $errorURL;
         }
 
+        $request = Request::createFromGlobals();
         try {
-            $response = $this->authenticate($state);
+            $response = $this->authenticate($request, $state);
             if ($response instanceof Response) {
                 return $response;
             }

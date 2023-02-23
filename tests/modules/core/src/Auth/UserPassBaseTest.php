@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SAML2\Constants as C;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\UserPassBase
@@ -36,8 +37,9 @@ class UserPassBaseTest extends TestCase
             ->with($username, $password)
             ->will($this->returnValue($attributes));
 
+        $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub->authenticate($state);
+        $stub->authenticate($request, $state);
 
         $this->assertSame($attributes, $state['Attributes']);
     }
@@ -61,8 +63,9 @@ class UserPassBaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub->authenticate($state);
+        $stub->authenticate($request, $state);
     }
 
 
@@ -84,8 +87,9 @@ class UserPassBaseTest extends TestCase
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
+        $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub->authenticate($state);
+        $stub->authenticate($request, $state);
     }
 
 
@@ -113,8 +117,9 @@ class UserPassBaseTest extends TestCase
             ->with($forcedUsername, $password)
             ->will($this->returnValue($attributes));
 
+        $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->setForcedUsername($forcedUsername);
-        $stub->authenticate($state);
+        $stub->authenticate($request, $state);
     }
 }

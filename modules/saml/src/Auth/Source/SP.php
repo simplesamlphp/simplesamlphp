@@ -24,7 +24,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 class SP extends Auth\Source
 {
@@ -720,9 +720,10 @@ class SP extends Auth\Source
      *
      * This function saves the information about the login, and redirects to the IdP.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): Response
+    public function authenticate(Request $request, array &$state): Response
     {
         // We are going to need the authId in order to retrieve this authentication source later
         $state['saml:sp:AuthId'] = $this->authId;
@@ -948,7 +949,8 @@ class SP extends Auth\Source
         $sp = Auth\Source::getById($state['saml:sp:AuthId'], self::class);
 
         Logger::debug('Proxy: logging in again.');
-        return $sp->authenticate($state);
+        $request = Request::createFromGlobals();
+        return $sp->authenticate($request, $state);
     }
 
 

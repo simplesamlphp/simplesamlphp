@@ -13,7 +13,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Authentication source which let the user chooses among a list of
@@ -91,9 +91,10 @@ class MultiAuth extends Auth\Source
      *
      * The authentication process is finished in the delegateAuthentication method.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(array &$state): Response
+    public function authenticate(Request $request, array &$state): Response
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
@@ -137,8 +138,8 @@ class MultiAuth extends Auth\Source
         $params = ['AuthState' => $id];
 
         // Allows the user to specify the auth source to be used
-        if (isset($_GET['source'])) {
-            $params['source'] = $_GET['source'];
+        if ($request->query->has('source')) {
+            $params['source'] = $request->query->get('source');
         }
 
         $httpUtils = new Utils\HTTP();
@@ -184,8 +185,9 @@ class MultiAuth extends Auth\Source
      */
     public static function doAuthentication(Auth\Source $as, array $state): Response
     {
+        $request = Request::createFromGlobals();
         try {
-            $response = $as->authenticate($state);
+            $response = $as->authenticate($request, $state);
             if ($response instanceof Response) {
                 return $response;
             }

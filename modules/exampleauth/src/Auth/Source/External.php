@@ -102,9 +102,10 @@ class External extends Auth\Source
     /**
      * Log in using an external authentication helper.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): ?Response
+    public function authenticate(Request $request, array &$state): ?Response
     {
         $attributes = $this->getUser();
         if ($attributes !== null) {
@@ -258,7 +259,7 @@ class External extends Auth\Source
      */
     public function logout(array &$state): ?Response
     {
-       if (!session_id()) {
+        if (!session_id()) {
             // session_start not called before. Do it here
             @session_start();
         }

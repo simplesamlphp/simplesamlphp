@@ -11,7 +11,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_fill_keys;
 use function array_intersect_key;
@@ -118,6 +118,12 @@ class IdPDisco
      */
     protected string $returnURL;
 
+    /**
+     * The current request
+     *
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
+    protected Request $request;
 
     /**
      * Initializes this discovery service.
@@ -129,9 +135,10 @@ class IdPDisco
      *
      * @throws \Exception If the request is invalid.
      */
-    public function __construct(array $metadataSets, string $instance)
+    public function __construct(Request $request, array $metadataSets, string $instance)
     {
         // initialize standard classes
+        $this->request = $request;
         $this->config = Configuration::getInstance();
         $this->metadata = MetaDataStorageHandler::getMetadataHandler($this->config);
         $this->session = Session::getSessionFromRequest();
@@ -141,41 +148,40 @@ class IdPDisco
         $this->log('Accessing discovery service.');
 
         // standard discovery service parameters
-        if (!array_key_exists('entityID', $_GET)) {
+        if (!$request->query->has('entityID')) {
             throw new Exception('Missing parameter: entityID');
-        } else {
-            $this->spEntityId = $_GET['entityID'];
         }
+        $this->spEntityId = $request->query->get('entityID');
 
-        if (!array_key_exists('returnIDParam', $_GET)) {
+        if (!$request->query->has('returnIDParam')) {
             $this->returnIdParam = 'entityID';
         } else {
-            $this->returnIdParam = $_GET['returnIDParam'];
+            $this->returnIdParam = $request->query->get('returnIDParam');
         }
 
         $this->log('returnIdParam initially set to [' . $this->returnIdParam . ']');
 
-        if (!array_key_exists('return', $_GET)) {
+        if (!$request->query->has('return')) {
             throw new Exception('Missing parameter: return');
         } else {
             $httpUtils = new Utils\HTTP();
-            $this->returnURL = $httpUtils->checkURLAllowed($_GET['return']);
+            $this->returnURL = $httpUtils->checkURLAllowed($request->query->get('return'));
         }
 
         $this->isPassive = false;
-        if (array_key_exists('isPassive', $_GET)) {
-            if ($_GET['isPassive'] === 'true') {
+        if ($request->query->has('isPassive')) {
+            if ($request->query->get('isPassive') === 'true') {
                 $this->isPassive = true;
             }
         }
         $this->log('isPassive initially set to [' . ($this->isPassive ? 'TRUE' : 'FALSE') . ']');
 
-        if (array_key_exists('IdPentityID', $_GET)) {
-            $this->setIdPentityID = $_GET['IdPentityID'];
+        if ($this->query->has('IdPentityID')) {
+            $this->setIdPentityID = $request->query->get('IdPentityID');
         }
 
-        if (array_key_exists('IDPList', $_REQUEST)) {
-            $this->scopedIDPList = $_REQUEST['IDPList'];
+        if ($request->query->get('IDPList')) {
+            $this->scopedIDPList = $request->query->get('IDPList');
         }
     }
 
@@ -207,8 +213,8 @@ class IdPDisco
     protected function getCookie(string $name): ?string
     {
         $prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
-        if (array_key_exists($prefixedName, $_COOKIE)) {
-            return $_COOKIE[$prefixedName];
+        if ($request->cookies->has($prefixedName)) {
+            return $request->cookies->get($prefixedName);
         } else {
             return null;
         }
@@ -294,8 +300,8 @@ class IdPDisco
         }
 
         // user has clicked on a link, or selected the IdP from a drop-down list
-        if (array_key_exists('idpentityid', $_GET)) {
-            return $this->validateIdP($_GET['idpentityid']);
+        if ($this->request->query->has('idpentityid')) {
+            return $this->validateIdP($this->request->query->get('idpentityid'));
         }
 
         /* Search for the IdP selection from the form used by the links view. This form uses a name which equals
@@ -304,7 +310,7 @@ class IdPDisco
          * Unfortunately, php replaces periods in the name with underscores, and there is no reliable way to get them
          * back. Therefore we do some quick and dirty parsing of the query string.
          */
-        $qstr = $_SERVER['QUERY_STRING'];
+        $qstr = $this->request->server->get('QUERY_STRING');
         $matches = [];
         if (preg_match('/(?:^|&)idp_([^=]+)=/', $qstr, $matches)) {
             return $this->validateIdP(urldecode($matches[1]));
@@ -360,7 +366,7 @@ class IdPDisco
     protected function getFromCIDRhint(): ?string
     {
         foreach ($this->metadataSets as $metadataSet) {
-            $idp = $this->metadata->getPreferredEntityIdFromCIDRhint($metadataSet, $_SERVER['REMOTE_ADDR']);
+            $idp = $this->metadata->getPreferredEntityIdFromCIDRhint($metadataSet, $request->server->get('REMOTE_ADDR'));
             if (!empty($idp)) {
                 return $idp;
             }
@@ -421,7 +427,7 @@ class IdPDisco
             return false;
         }
 
-        if (array_key_exists('remember', $_GET)) {
+        if ($this->request->has('remember')) {
             return true;
         }
 
@@ -525,6 +531,7 @@ class IdPDisco
     {
         $httpUtils = new Utils\HTTP();
         $idp = $this->getTargetIdP();
+
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getOptionalString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
@@ -639,6 +646,7 @@ class IdPDisco
         $t->data['urlpattern'] = $httpUtils->getSelfURLNoQuery();
         $t->data['rememberenabled'] = $this->config->getOptionalBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getOptionalBoolean('idpdisco.rememberchecked', false);
+
         return $t;
     }
 }

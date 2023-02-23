@@ -115,7 +115,7 @@ class LoginTest extends ClearStateTestCase
                 // stub
             }
 
-            public function authenticate(array &$state): ?Response
+            public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
                 return null;
@@ -182,7 +182,7 @@ class LoginTest extends ClearStateTestCase
                 // stub
             }
 
-            public function authenticate(array &$state): ?Response
+            public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
                 return null;
