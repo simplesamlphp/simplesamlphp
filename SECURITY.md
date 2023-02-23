@@ -6,7 +6,9 @@ This page contains information about security vulnerabilities, incidents or issu
 
 ## Supported Versions
 
-Only the current minor version (X.Y) receives bug and security fixes as a general rule. Release candidates are not considered stable, meaning the previous minor version will still receive fixes until the release candidate promotes to stable.
+Only the current minor version (X.Y) receives bug and security fixes as a general rule.
+
+The 1.19 branch will receive security and critical bug fixes until the end of 2023.
 
 ## Reporting a Vulnerability
 
