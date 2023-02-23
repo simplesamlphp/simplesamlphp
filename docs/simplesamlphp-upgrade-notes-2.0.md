@@ -41,7 +41,7 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
   `metadata/saml20-idp-hosted.php` and for any saml:SP in `config/authsources.php` (or to the existing entityIDs when
   upgrading an existing installation).
-  If you are using a database to store metadata, make sure to replace any `__DYNAMIC:1__` entityID's with
+  If you are using a database to store metadata, make sure to replace any `__DYNAMIC:<n>__` entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
 
 ## Configuration changes
