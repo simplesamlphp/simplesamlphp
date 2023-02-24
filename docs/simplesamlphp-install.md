@@ -14,7 +14,7 @@ repository](simplesamlphp-install-repo).
 ## Prerequisites
 
 * A web server capable of executing PHP scripts.
-* PHP version >= 7.2.0.
+* PHP version >= 7.4.0.
 * Support for the following PHP extensions:
   * Always required: `date`, `dom`, `hash`, `intl`, `json`, `libxml`, `mbstring`, `openssl`, `pcre`, `SPL`, `zlib`
   * When automatically checking for latest versions, and used by some modules: `cURL`
