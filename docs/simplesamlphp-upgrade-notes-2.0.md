@@ -46,6 +46,8 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 
 ## Configuration changes
 
+Our assets have been moved from the `www` to the `public` directory. You will have to update your webserver to reflect this change.
+
 Quite some options have been changed or removed. We recommend to start with a fresh
 template from `config/config.php.dist` and migrate the settings you require to the new
 config file manually.
@@ -67,8 +69,6 @@ Configuration options that have been removed:
   with the existing attributeencodings feature.
 - `database.slaves`. This is now called `database.secondaries`.
 - `metadata.handler`. Since a long time the preferred option is `metadata.sources`.
-- Our assets have been moved from the `www` to the `public` directory. You will have to update
-  your webserver to reflect this change.
 
 ## Changes relevant for (module) developers
 
