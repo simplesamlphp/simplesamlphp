@@ -176,12 +176,17 @@ class IdPDisco
         }
         $this->log('isPassive initially set to [' . ($this->isPassive ? 'TRUE' : 'FALSE') . ']');
 
-        if ($this->query->has('IdPentityID')) {
+        if ($request->query->has('IdPentityID')) {
             $this->setIdPentityID = $request->query->get('IdPentityID');
         }
 
-        if ($request->query->get('IDPList')) {
-            $this->scopedIDPList = $request->query->get('IDPList');
+        if ($request->query->has('IDPList')) {
+            $this->scopedIDPList = $request->query->filter(
+                'IDPList',
+                [],
+                \FILTER_DEFAULT,
+                ['flags' => \FILTER_REQUIRE_ARRAY],
+            );
         }
     }
 

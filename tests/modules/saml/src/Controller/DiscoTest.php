@@ -46,21 +46,22 @@ class DiscoTest extends TestCase
      */
     public function testDisco(): void
     {
-        $params = [
-            'entityID' => 'urn:entity:phpunit',
-            'return' => '/something',
-            'isPassive' => 'true',
-            'IdPentityID' => 'some:idp:phpunit',
-            'returnIDParam' => 'someParam',
-            'IDPList' => 'a,b,c',
-        ];
-
-        $_GET = array_merge($_GET, $params);
-        $_SERVER['REQUEST_URI'] = '/disco';
+        $request = Request::create(
+            '/disco',
+            'GET',
+            [
+                'entityID' => 'urn:entity:phpunit',
+                'return' => '/something',
+                'isPassive' => 'true',
+                'IdPentityID' => 'some:idp:phpunit',
+                'returnIDParam' => 'someParam',
+                'IDPList' => ['a', 'b', 'c'],
+            ],
+        );
 
         $c = new Controller\Disco($this->config);
 
-        $response = $c->disco();
+        $response = $c->disco($request);
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertTrue($response->isRedirection());
     }

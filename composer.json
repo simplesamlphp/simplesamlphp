@@ -78,6 +78,7 @@
         "symfony/http-foundation": "^5.4||^6",
         "symfony/http-kernel": "^5.4||^6",
         "symfony/intl": "^5.4||^6",
+        "symfony/psr-http-message-bridge": "^2.1",
         "symfony/routing": "^5.4||^6",
         "symfony/translation-contracts": "^2.5||^3",
         "symfony/twig-bridge": "^5.4||^6",

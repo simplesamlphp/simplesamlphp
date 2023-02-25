@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Source;
 
+use Psr\Http\Message\RequestInterface;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants as C;
@@ -24,6 +25,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 class SP extends Auth\Source
@@ -640,11 +642,12 @@ class SP extends Auth\Source
      * This function does not return.
      *
      * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\AuthnRequest  $ar  The authentication request.
+     * @param \SAML2\AuthnRequest $ar  The authentication request.
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
-        return $binding->send($ar);
+        $response = $binding->send($ar);
+        return (new HttpFoundationFactory())->createResponse($response);
     }
 
 

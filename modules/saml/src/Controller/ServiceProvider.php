@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use SAML2\Assertion;
 use SAML2\Binding;
 use SAML2\Constants as C;
@@ -27,6 +28,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function array_merge;
@@ -185,17 +187,22 @@ class ServiceProvider
     /**
      * Handler for the Assertion Consumer Service.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function assertionConsumerService(string $sourceId): Response
+    public function assertionConsumerService(Request $request, string $sourceId): Response
     {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId, SP::class);
 
         $spMetadata = $source->getMetadata();
         try {
-            $b = Binding::getCurrentBinding();
+            $b = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('ACSPARAMS', $e, 400);
         }
@@ -204,7 +211,7 @@ class ServiceProvider
             $b->setSPMetadata($spMetadata);
         }
 
-        $response = $b->receive();
+        $response = $b->receive($psrRequest);
         if (!($response instanceof SAML2_Response)) {
             throw new Error\BadRequest('Invalid message received at AssertionConsumerService endpoint.');
         }
@@ -452,11 +459,16 @@ class ServiceProvider
      *
      * This endpoint handles both logout requests and logout responses.
      *
+     * @param \Symfony\Component\HttpFoundation\Request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function singleLogoutService(string $sourceId): Response
+    public function singleLogoutService(Request $request, string $sourceId): Response
     {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
 
@@ -467,11 +479,11 @@ class ServiceProvider
         }
 
         try {
-            $binding = Binding::getCurrentBinding();
+            $binding = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
         }
-        $message = $binding->receive();
+        $message = $binding->receive($psrRequest);
 
         $issuer = $message->getIssuer();
         if ($issuer instanceof Issuer) {
