@@ -90,9 +90,9 @@ class ExampleAuthTest extends TestCase
     public function testAuthpageInvalidReturnTo(): void
     {
         $request = Request::create(
-            '/authpage/',
+            '/authpage',
             'POST',
-            ['ReturnTo' => 'SomeBogusValue'],
+            ['ReturnTo' => '/SomeBogusValue'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
@@ -105,16 +105,15 @@ class ExampleAuthTest extends TestCase
 
 
     /**
-     * Test that accessing the authpage-endpoint using GET-method show a login-screen
+     * Test that accessing the authpage-endpoint without ReturnTo parameter
      *
      * @return void
      */
-    public function testAuthpageGetMethod(): void
+    public function testAuthpageMissingReturnTo(): void
     {
         $request = Request::create(
             '/authpage',
             'POST',
-            ['ReturnTo' => 'State=/'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
@@ -125,9 +124,9 @@ class ExampleAuthTest extends TestCase
             }
         });
 
-        $response = $c->authpage($request);
-        $this->assertTrue($response->isSuccessful());
-        $this->assertInstanceOf(Template::class, $response);
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Missing ReturnTo parameter.');
+        $c->authpage($request);
     }
 
 
@@ -171,7 +170,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/authpage',
             'POST',
-            ['ReturnTo' => 'State=/', 'username' => 'user', 'password' => 'something stupid'],
+            ['ReturnTo' => '/State=/', 'username' => 'user', 'password' => 'something stupid'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
