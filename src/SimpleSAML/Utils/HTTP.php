@@ -1032,7 +1032,7 @@ class HTTP
         $sysUtils = new System();
         $dir = $sysUtils->resolvePath($dir, $baseDir);
 
-        return $baseHost . $dir . $tail;
+        return $baseHost . DIRECTORY_SEPARATOR . $dir . $tail;
     }
 
 

@@ -90,7 +90,7 @@ class ExampleAuthTest extends TestCase
     public function testAuthpageInvalidReturnTo(): void
     {
         $request = Request::create(
-            '/authpage',
+            '/authpage/',
             'POST',
             ['ReturnTo' => 'SomeBogusValue'],
         );

@@ -76,10 +76,11 @@ class Cron
     /**
      * Show cron info.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info()
+    public function info(Request $request)
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {
@@ -117,6 +118,7 @@ class Cron
      *
      * This controller will start a cron operation
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $tag The tag
      * @param string $key The secret key
      * @param string $output The output format, defaulting to xhtml
@@ -125,7 +127,7 @@ class Cron
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run(string $tag, string $key, string $output = 'xhtml'): Template
+    public function run(Request $request, string $tag, string $key, string $output = 'xhtml'): Template
     {
         $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
