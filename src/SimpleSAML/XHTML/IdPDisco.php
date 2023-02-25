@@ -218,8 +218,8 @@ class IdPDisco
     protected function getCookie(string $name): ?string
     {
         $prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
-        if ($request->cookies->has($prefixedName)) {
-            return $request->cookies->get($prefixedName);
+        if ($this->request->cookies->has($prefixedName)) {
+            return $this->request->cookies->get($prefixedName);
         } else {
             return null;
         }
@@ -371,7 +371,11 @@ class IdPDisco
     protected function getFromCIDRhint(): ?string
     {
         foreach ($this->metadataSets as $metadataSet) {
-            $idp = $this->metadata->getPreferredEntityIdFromCIDRhint($metadataSet, $request->server->get('REMOTE_ADDR'));
+            $idp = $this->metadata->getPreferredEntityIdFromCIDRhint(
+                $metadataSet,
+                $this->request->server->get('REMOTE_ADDR')
+            );
+
             if (!empty($idp)) {
                 return $idp;
             }
@@ -432,7 +436,7 @@ class IdPDisco
             return false;
         }
 
-        if ($this->request->has('remember')) {
+        if ($this->request->request->has('remember')) {
             return true;
         }
 

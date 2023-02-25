@@ -76,10 +76,10 @@ class Cron
     /**
      * Show cron info.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(): Response
+    public function info()
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {

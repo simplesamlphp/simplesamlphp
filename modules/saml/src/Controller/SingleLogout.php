@@ -99,7 +99,7 @@ class SingleLogout
         }
 
         try {
-            return Module\saml\IdP\SAML2::receiveLogoutMessage($idp);
+            return Module\saml\IdP\SAML2::receiveLogoutMessage($request, $idp);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
         }

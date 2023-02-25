@@ -17,6 +17,7 @@ use SimpleSAML\Module\saml\Message;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function call_user_func;
@@ -240,7 +241,9 @@ class Logout
         $lr->setDestination($dst['Location']);
         $lr->setRelayState($relayState);
 
-        return $binding->send($lr);
+        $psrResponse = $binding->send($lr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 

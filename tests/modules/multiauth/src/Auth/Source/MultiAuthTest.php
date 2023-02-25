@@ -184,9 +184,10 @@ class MultiAuthTest extends ClearStateTestCase
 
         $state = [];
         $source = new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
+        $request = Request::createFromGlobals();
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Error $e) {
         } catch (Exception $e) {
         }

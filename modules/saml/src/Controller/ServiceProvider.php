@@ -28,6 +28,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -597,7 +598,9 @@ class ServiceProvider
                 $lr->setDestination($dst['Location']);
             }
 
-            return $binding->send($lr);
+            $psrResponse = $binding->send($lr);
+            $httpFoundationFactory = new HttpFoundationFactory();
+            return $httpFoundationFactory->createResponse($psrResponse);
         } else {
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
