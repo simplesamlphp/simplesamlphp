@@ -292,7 +292,7 @@ class IdP
         }
 
         $response = call_user_func($state['Responder'], $state);
-        Assert::instanceOf($response, Response::class);
+        Assert::isInstanceOf($response, Response::class);
         return $response;
     }
 
