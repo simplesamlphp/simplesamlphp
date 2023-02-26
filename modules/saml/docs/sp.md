@@ -135,8 +135,9 @@ The following attributes are available:
 : The attributes should still be present in `attributes`.
 
 `AuthnContextClassRef`
-:   The SP can request authentication with a specific authentication context class.
+:   The SP can request authentication with one or more specific authentication context classses.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
+    Set this to a string for one class identifier or an array of requested class identifiers.
 
 `AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
