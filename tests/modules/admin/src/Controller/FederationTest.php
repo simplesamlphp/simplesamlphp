@@ -207,6 +207,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
@@ -226,6 +227,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
@@ -244,6 +246,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertStringNotContainsString("'expire' =>", $response->data['output']['saml20-idp-remote']);
     }
@@ -264,6 +267,7 @@ class FederationTest extends TestCase
 
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNotNull($response->data['error']);
     }
@@ -284,6 +288,7 @@ class FederationTest extends TestCase
 
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals([], $response->data['output']);
         $this->assertEquals('', $response->data['xmldata']);

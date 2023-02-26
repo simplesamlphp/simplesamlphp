@@ -87,6 +87,7 @@ class CronTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->info($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $expect = [
             'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret',

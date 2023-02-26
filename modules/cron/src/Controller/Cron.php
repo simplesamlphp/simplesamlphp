@@ -80,7 +80,7 @@ class Cron
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(Request $request)
+    public function info(Request $request): Response|Template
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {
