@@ -292,15 +292,6 @@ class Federation
         foreach ($entities as $index => $entity) {
             $entities[$index]['type'] = $entity['metadata-set'];
             foreach ($entity['metadata_array']['keys'] as $kidx => $key) {
-                $key['url'] = Module::getModuleURL(
-                    'admin/federation/cert',
-                    [
-                        'set' => $entity['metadata-set'],
-                        'entity' => $entity['metadata-index'],
-                        'prefix' => $key['prefix'],
-                    ]
-                );
-                $key['name'] = 'idp';
                 unset($entity['metadata_array']['keys'][$kidx]['prefix']);
                 $entities[$index]['certificates'][] = $key;
             }

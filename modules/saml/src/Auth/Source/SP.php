@@ -237,14 +237,6 @@ class SP extends \SimpleSAML\Auth\Source
                 'encryption' => true,
                 'X509Certificate' => $certInfo['certData'],
                 'prefix' => 'new_',
-                'url' => Module::getModuleURL(
-                    'admin/federation/cert',
-                    [
-                        'set' => 'saml20-sp-hosted',
-                        'source' => $this->getAuthId(),
-                        'prefix' => 'new_'
-                    ]
-                ),
                 'name' => $certInfo['name'] ?? null,
             ];
         }
@@ -257,14 +249,6 @@ class SP extends \SimpleSAML\Auth\Source
                 'encryption' => $hasNewCert ? false : true,
                 'X509Certificate' => $certInfo['certData'],
                 'prefix' => '',
-                'url' => Module::getModuleURL(
-                    'admin/federation/cert',
-                    [
-                        'set' => 'saml20-sp-hosted',
-                        'source' => $this->getAuthId(),
-                        'prefix' => ''
-                    ]
-                ),
                 'name' => $certInfo['name'] ?? null,
             ];
         }
