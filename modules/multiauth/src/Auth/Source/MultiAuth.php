@@ -99,6 +99,7 @@ class MultiAuth extends Auth\Source
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
+        $arrayUtils = new Utils\Arrays();
 
         if (!array_key_exists('multiauth:preselect', $state) && isset($this->preselect)) {
             $state['multiauth:preselect'] = $this->preselect;
@@ -111,7 +112,8 @@ class MultiAuth extends Auth\Source
             $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
             $new_sources = [];
             foreach ($this->sources as $source) {
-                if (count(array_intersect($source['AuthnContextClassRef'], $refs)) >= 1) {
+                $config_refs = $arrayUtils->arrayize($source['AuthnContextClassRef']);
+                if (count(array_intersect($config_refs, $refs)) >= 1) {
                     $new_sources[] = $source;
                 }
             }
