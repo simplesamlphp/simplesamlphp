@@ -5,6 +5,11 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.1
+
+* Several issues regarding the use of the back-button were fixed (#1720)
+* Many fixes in documentation
+
 ## Version 2.0.0
 
 * Many changes, upgrades and improvements since the 1.x series.
@@ -16,7 +21,7 @@ See the upgrade notes for specific information about upgrading.
 * Code cleanups, improvements and simplifications.
 * Improved test coverage and more use of standard libraries.
 * Compatibility with modern versions of PHP.
-* Variouw new features, including:
+* Various new features, including:
   * SAML SubjectID and Pairwise ID support
   * Accepting unsolicited responses can be disabled by setting `enable_unsolicited` to `false` in the SP authsource.
   * Certificates and private keys can now be retrieved from a database
