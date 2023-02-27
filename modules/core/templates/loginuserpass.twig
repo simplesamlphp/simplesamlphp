@@ -92,8 +92,8 @@
                     {% if rememberOrganizationEnabled is defined -%}
                     <div class="pure-controls">
                         <label for="remember_organization" class="pure-checkbox">
- 	                    <input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization" value="Yes"
-                                {{ rememberOrganizationChecked ? 'checked="checked"' }} >
+                            <input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization"
+                                value="Yes" {{ rememberOrganizationChecked ? 'checked="checked"' }} >
                             <small>{{ 'Remember my organization'|trans }}</small>
                         </label>
                     </div>
@@ -103,7 +103,8 @@
 
             <div class="pure-control-group center login-form-submit">
                 <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button"
-                        type="submit" tabindex="6" data-processing="{% trans %}Processing...{% endtrans %}">
+                        type="submit" tabindex="6" data-default="{% trans %}Login{% endtrans %}"
+                        data-processing="{% trans %}Processing...{% endtrans %}">
                 {% trans %}Login{% endtrans %}
                 </button>
             </div>
