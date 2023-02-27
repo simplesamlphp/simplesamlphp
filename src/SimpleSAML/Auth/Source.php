@@ -153,7 +153,7 @@ abstract class Source
         Assert::isCallable($func);
 
         $response = call_user_func($func, $state);
-        Assert::subclassOf($response, Response::class);
+        Assert::isInstanceOf($response, Response::class);
         return $response;
     }
 
@@ -233,7 +233,7 @@ abstract class Source
             $response = $httpUtils->redirectTrustedURL($return);
         } else {
             $response = call_user_func($return, $state);
-            Assert::subclassOf($response, Response::class);
+            Assert::isInstanceOf($response, Response::class);
         }
         return $response;
     }
@@ -278,7 +278,7 @@ abstract class Source
         Assert::isCallable($func);
 
         $response = call_user_func($func, $state);
-        Assert::subclassOf($response, Response::class);
+        Assert::isInstanceOf($response, Response::class);
         return $response;
     }
 
@@ -476,7 +476,7 @@ abstract class Source
 
         $session->deleteData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
         $response = call_user_func($callback, $callbackState);
-        Assert::subclassOf($response, Response::class);
+        Assert::isInstanceOf($response, Response::class);
         return $response;
     }
 

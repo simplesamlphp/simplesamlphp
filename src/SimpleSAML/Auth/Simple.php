@@ -244,7 +244,7 @@ class Simple
 
         if (isset($state['ReturnCallback'])) {
             $response = call_user_func($state['ReturnCallback'], $state);
-            Assert::subclassOf($response, Response::class);
+            Assert::isInstanceOf($response, Response::class);
         } else {
             $params = [];
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {

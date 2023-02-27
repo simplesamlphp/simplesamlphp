@@ -264,7 +264,7 @@ class ProcessingChain
             Assert::isCallable($func);
 
             $response = call_user_func($func, $state);
-            Assert::subclassOf($response, Response::class);
+            Assert::isInstanceOf($response, Response::class);
         }
 
         return $response;
