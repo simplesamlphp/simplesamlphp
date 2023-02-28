@@ -9,6 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 * Several issues regarding the use of the back-button were fixed (#1720)
 * Many fixes in documentation
+* Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
 
 ## Version 2.0.0
 
