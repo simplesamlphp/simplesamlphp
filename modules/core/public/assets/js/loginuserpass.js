@@ -1,12 +1,15 @@
 ready(function () {
-    var button = document.getElementById("submit_button");
-    button.onclick = function () {
-        this.innerHTML = button.getAttribute("data-processing");
-        this.disabled = true;
+    window.onpageshow  = function () {
+        var button = document.getElementById("submit_button");
+        button.innerHTML = button.getAttribute('data-default');
+        button.disabled = false;
+    }
 
-        var form = document.getElementById("f");
-        form.submit();
-        return true;
-    };
+    var form = document.getElementById("f");
+    form.onsubmit = function () {
+        var button = document.getElementById("submit_button");
+        button.innerHTML = button.getAttribute("data-processing");
+        button.disabled = true;
+    }
 });
 

@@ -153,8 +153,12 @@ class Simple
             $errorURL = null;
         }
 
-
-        if (!isset($params[State::RESTART]) && is_string($returnTo)) {
+        $as = $this->getAuthSource();
+        if (
+            $as instanceof Module\saml\Auth\Source\SP
+            && !isset($params[State::RESTART])
+            && is_string($returnTo)
+        ) {
             /*
              * A URL to restart the authentication, in case the user bookmarks
              * something, e.g. the discovery service page.
@@ -163,7 +167,6 @@ class Simple
             $params[State::RESTART] = $restartURL;
         }
 
-        $as = $this->getAuthSource();
         $as->initLogin($returnTo, $errorURL, $params);
         Assert::true(false);
     }
