@@ -479,7 +479,7 @@ class SAMLParser
         // add contact metadata
         if (!empty($this->contacts)) {
             $ret['contacts'] = $this->contacts;
-	}
+        }
 
         return $ret;
     }
