@@ -291,7 +291,7 @@ class Login
                 $t->data['organizations'] = $organizations;
             }
         } else {
-            $t->data['links'] = $source->getLoginLinks();
+            $t->data['loginpage_links'] = $source->getLoginLinks();
         }
 
         $t->data['errorcode'] = $errorCode;
