@@ -1220,4 +1220,19 @@ $config = [
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * Allow a list of php scripts to be called before a logout to
+     * perform validation on the HTTP request and possibly veto
+     * the logout. An example might be to check that the request is
+     * an HTTP POST and that there is a valid CSRF token sent in
+     * order to prevent an attack from logging out the user.
+     *
+     * Examples:
+     *
+     * 'logout_possible_veto_php_file' => [
+     *      '/opt/filesender/classes/auth/SamlLogoutCheck.php',
+     *  ],
+     */
+
 ];
