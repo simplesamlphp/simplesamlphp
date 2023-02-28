@@ -782,8 +782,6 @@ class Session implements Utils\ClearableState
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
 
-        $params = array_merge($sessionHandler->getCookieParams(), $params);
-
         if ($this->authToken !== null) {
             $httpUtils = new Utils\HTTP();
             $httpUtils->setCookie(
