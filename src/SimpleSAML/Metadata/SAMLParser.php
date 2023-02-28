@@ -476,9 +476,10 @@ class SAMLParser
             $ret['url'] = $this->organizationURL;
             $ret['OrganizationURL'] = $this->organizationURL;
         }
-
-        //add contact metadata
-        $ret['contacts'] = $this->contacts;
+        // add contact metadata
+        if (!empty($this->contacts)) {
+            $ret['contacts'] = $this->contacts;
+	}
 
         return $ret;
     }
