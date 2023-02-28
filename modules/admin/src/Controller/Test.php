@@ -136,6 +136,7 @@ class Test
                 $params = [
                     'ErrorURL' => $url,
                     'ReturnTo' => $url,
+                    Auth\State::RESTART => $url,
                 ];
                 return new RunnableResponse([$authsource, 'login'], [$params]);
             }
