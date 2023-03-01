@@ -56,3 +56,30 @@ IdP-initiated logout can be initiated by visiting the URL:
 `https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=<URL to return to after logout>`
 
 It will send a logout request to each SP, and afterwards return the user to the URL specified in the `ReturnTo` parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
+
+Adding links to the login page
+------------------------------
+
+If you want to add some helpful links to the login page, you can add
+the following to the `authsources.php` config of the authentication
+source you are using:
+
+```php
+    'example-userpass' => [
+        ...
+        'core:loginpage_links' => [
+            [
+                'href' => 'https://example.com/reset',
+                'text' => 'Forgot your password?',
+            ],
+            [
+                'href' => 'https://example.com/news',
+                'text' => 'Latest news about us',
+            ],
+        ],
+        ...
+    ],
+```
+
+The given text will also be translated via SimpleSAMLphp's translation
+system if translations are available in the messages catalog.
