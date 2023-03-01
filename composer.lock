@@ -1652,16 +1652,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "dcc7c7e485a6e6f03e6b2ff7abf64a2149a2fdd0"
+                "reference": "d2aed5063349880897515b71fca85300e5fad2c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/dcc7c7e485a6e6f03e6b2ff7abf64a2149a2fdd0",
-                "reference": "dcc7c7e485a6e6f03e6b2ff7abf64a2149a2fdd0",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/d2aed5063349880897515b71fca85300e5fad2c9",
+                "reference": "d2aed5063349880897515b71fca85300e5fad2c9",
                 "shasum": ""
             },
             "require": {
@@ -1682,9 +1682,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.0.3"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.0.4"
             },
-            "time": "2023-02-22T12:34:35+00:00"
+            "time": "2023-02-27T17:17:05+00:00"
         },
         {
             "name": "symfony/cache",
