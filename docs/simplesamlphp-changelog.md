@@ -8,6 +8,8 @@ See the upgrade notes for specific information about upgrading.
 ## Version 2.0.1
 
 * Several issues regarding the use of the back-button were fixed (#1720)
+* Fixed loginpage_links feature in authsources (#1770)
+* Fixed language menu on mobile
 * Many fixes in documentation
 * Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
 
