@@ -10,7 +10,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released 2-3-2023
 
-  * Dependencies have been bumped
+  * Dependencies have been bumped (CVE-2022-24894)
 
 ## Version 1.19.7
 
@@ -23,7 +23,7 @@ Released 5-12-2022
   * Bump composer + npm dependencies (includes a fix for CVE-2022-39261)
   * Many updated translations
   * Handle ETag/If-None-Match logic (#1672 + #1673)
-  
+
 ## Version 1.19.6
 
 Released 1-7-2022
