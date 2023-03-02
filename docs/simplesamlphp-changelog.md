@@ -15,20 +15,20 @@ Released 2023-03-10
 * Many fixes in documentation
 * Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
 * Fixed incompatibility with SSP 2.0 for the following modules;
-  - consent
-  - consentadmin
-  - consentsimpleadmin
-  - exampleattributeserver
-  - expirycheck
-  - memcachemonitor
-  - memcookie
-  - metaedit
-  - negotiate
-  - negotiateext
-  - preprodwarning
-  - saml2debug
-  - sanitycheck
-  - sqlauth
+  * consent
+  * consentadmin
+  * consentsimpleadmin
+  * exampleattributeserver
+  * expirycheck
+  * memcachemonitor
+  * memcookie
+  * metaedit
+  * negotiate
+  * negotiateext
+  * preprodwarning
+  * saml2debug
+  * sanitycheck
+  * sqlauth
 
 `authtwitter`
 
