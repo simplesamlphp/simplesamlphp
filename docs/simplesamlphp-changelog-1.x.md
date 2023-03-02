@@ -5,6 +5,24 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.8
+
+Released 2-3-2023
+
+  * Dependencies have been bumped (CVE-2022-24894)
+
+## Version 1.19.7
+
+Released 5-12-2022
+
+  * Backported fix to error report page (#1637)
+  * Many doc fixes
+  * Fixed the handling of SAML AttributeQuery and SOAP-binding (#314 @ saml2)
+  * Fixed serialization of complex AttributeValue structures
+  * Bump composer + npm dependencies (includes a fix for CVE-2022-39261)
+  * Many updated translations
+  * Handle ETag/If-None-Match logic (#1672 + #1673)
+
 ## Version 1.19.6
 
 Released 2022-07-01
