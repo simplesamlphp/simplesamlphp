@@ -7,13 +7,53 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.1
 
+Released 2023-03-10
+
+* The language-menu on mobile devices was fixed
+* The `loginpage_links` functionality for authsources was restored and documented (#1773)
 * Several issues regarding the use of the back-button were fixed (#1720)
 * Fixed loginpage_links feature in authsources (#1770)
 * Fixed language menu on mobile
 * Many fixes in documentation
 * Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
+* Fixed incompatibility with SSP 2.0 for the following modules;
+  - consent
+  - consentadmin
+  - consentsimpleadmin
+  - exampleattributeserver
+  - expirycheck
+  - memcachemonitor
+  - memcookie
+  - metaedit
+  - negotiate
+  - negotiateext
+  - preprodwarning
+  - saml2debug
+  - sanitycheck
+  - sqlauth
+
+`authtwitter`
+
+* A legacy route was added for backwards compatibility
+* Docs have been updated
+
+`ldap`
+
+* Fixed the possibility to return ALL attributes (simplesamlphp/simplesamlphp-module-ldap#39)
+
+`negotiate`
+
+* Added support for multi-realm environments
+
+`statistics`
+
+* Fixed missing script-tag to load jQuery
+* Fixed static calls to SSP utilities
+* Docs have been updated
 
 ## Version 2.0.0
+
+Released 2023-02-23
 
 * Many changes, upgrades and improvements since the 1.x series.
 * Most notably the new templating system based on Twig, a new
