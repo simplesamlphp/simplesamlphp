@@ -93,8 +93,45 @@ in `config.php`:
 'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
 ```
 
-This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `lib`-directory.
+This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `src`-directory.
 The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
+
+An example to put in `src/FancyThemeController.php`:
+
+```php
+<?php
+
+namespace SimpleSAML\Module\mymodule;
+
+use Twig\Environment;
+use SimpleSAML\XHTML\TemplateControllerInterface;
+
+class FancyThemeController implements TemplateControllerInterface
+{
+    /**
+     * Modify the twig environment after its initialization (e.g. add filters or extensions).
+     *
+     * @param \Twig\Environment $twig The current twig environment.
+     * @return void
+     */
+    public function setUpTwig(Environment &$twig): void
+    {
+    }
+
+    /**
+     * Add, delete or modify the data passed to the template.
+     *
+     * This method will be called right before displaying the template.
+     *
+     * @param array $data The current data used by the template.
+     * @return void
+     */
+    public function display(array &$data): void
+    {
+        $data{'extra_info'] = 'Extra information to use in your template';
+    }
+}
+```
 
 See the [Twig documentation](https://twig.symfony.com/doc/2.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
 
