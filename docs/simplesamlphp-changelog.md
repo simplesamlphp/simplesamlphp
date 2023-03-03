@@ -38,6 +38,7 @@ Released 2023-03-10
 `ldap`
 
 * Fixed the possibility to return ALL attributes (simplesamlphp/simplesamlphp-module-ldap#39)
+* Restored the possibility to use anonymous bind (simplesamlphp/simplesamlphp-module-ldap#41)
 
 `negotiate`
 
