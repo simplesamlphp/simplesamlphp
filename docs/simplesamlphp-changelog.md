@@ -10,7 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released 2023-03-10
 
 * The language-menu on mobile devices was fixed
-* Fix logout completion for SP (#1780) 
+* Fix logout completion for SP (#1780)
 * The `loginpage_links` functionality for authsources was restored and documented (#1773)
 * Several issues regarding the use of the back-button were fixed (#1720)
 * Many fixes in documentation
