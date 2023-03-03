@@ -21,7 +21,17 @@
           <dl>
             <dt>{{ set|entityDisplayName }}</dt>
 
-            <dd>EntityID: <code>{{ set.entityid }}</code></dd>
+            <dd>EntityID: <code>{{ set.entityid }}</code>
+            {% if set.type == 'saml20-idp-hosted' and set.host is defined %}
+                (hostname:
+                    {% if set.host == '__DEFAULT__' %}
+                        <em>{{ 'default'|trans }}</em>
+                    {%- else %}
+                        <code>{{ set.host }}</code>
+                    {%- endif -%}
+                )
+            {% endif %}
+            </dd>
             {%- if set.deprecated is defined and set.deprecated %}
 
               <dd><span class="entity-deprecated">{{ 'Deprecated'|trans }}</span></dd>

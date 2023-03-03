@@ -199,7 +199,12 @@ class Federation
                 $metadataBase = Module::getModuleURL('saml/idp/metadata');
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
+                        if (isset($idp['host']) && $idp['host'] !== '__DEFAULT__') {
+                            $hostMetadataBase = str_replace('://' . $httpUtils->getSelfHost(), '://' . $idp['host'], $metadataBase);
+                        } else {
+                            $hostMetadataBase = $metadataBase;
+                        }
+                        $idp['url'] = $hostMetadataBase . '?idpentityid=' . urlencode($idp['entityid']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
