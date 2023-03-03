@@ -516,7 +516,7 @@ class ServiceProvider
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
-            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [$state]);
+            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
             Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
