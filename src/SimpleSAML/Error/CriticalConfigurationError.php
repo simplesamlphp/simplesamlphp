@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Logger;
+use Psr\Log\LogLevel;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use Throwable;
 
@@ -35,10 +37,10 @@ class CriticalConfigurationError extends ConfigurationError
      * @var array
      */
     private static array $minimum_config = [
-        'logging.handler' => 'errorlog',
-        'logging.level'  => Logger::DEBUG,
-        'errorreporting' => false,
-        'debug'          => [],
+        'logging.handler' => ErrorLogHandler::class,
+        'logging.level'   => LogLevel::DEBUG,
+        'errorreporting'  => false,
+        'debug'           => [],
     ];
 
 

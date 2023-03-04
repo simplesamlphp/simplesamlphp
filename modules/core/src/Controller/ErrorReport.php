@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -26,8 +27,10 @@ use function var_export;
  *
  * @package SimpleSAML\Module\core
  */
-class ErrorReport
+class ErrorReport implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -48,6 +51,7 @@ class ErrorReport
         Session $session
     ) {
         $this->config = $config;
+        $this->logger = $this->getLogger();
         $this->session = $session;
     }
 
@@ -77,7 +81,7 @@ class ErrorReport
             $data = $this->session->getData('core:errorreport', $reportId);
         } catch (Exception $e) {
             $data = null;
-            Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
+            $this->logger->error('Error loading error report data: ' . var_export($e->getMessage(), true));
         }
 
         if ($data === null) {
@@ -107,7 +111,7 @@ class ErrorReport
             }
             $mail->setText($text);
             $mail->send();
-            Logger::error('Report with id ' . $reportId . ' sent');
+            $this->logger->error('Report with id ' . $reportId . ' sent');
         }
 
         // redirect the user back to this page to clear the POST request

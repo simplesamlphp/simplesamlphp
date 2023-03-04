@@ -7,17 +7,20 @@ namespace SimpleSAML\Store;
 use Exception;
 use PDO;
 use PDOException;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
 /**
  * A data store using a RDBMS to keep the data.
  *
  * @package simplesamlphp/simplesamlphp
  */
-class SQLStore implements StoreInterface
+class SQLStore implements StoreInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * The PDO object for our database.
      *
@@ -53,6 +56,7 @@ class SQLStore implements StoreInterface
     public function __construct()
     {
         $config = Configuration::getInstance();
+        $this->logger = $this->getLogger();
 
         $dsn = $config->getString('store.sql.dsn');
         $username = $config->getOptionalString('store.sql.username', null);
@@ -65,7 +69,6 @@ class SQLStore implements StoreInterface
             throw new Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($this->driver === 'mysql') {
@@ -242,7 +245,7 @@ class SQLStore implements StoreInterface
      */
     private function cleanKVStore(): void
     {
-        Logger::debug('store.sql: Cleaning key-value store.');
+        $this->logger->debug('store.sql: Cleaning key-value store.');
 
         $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _expire < :now';
         $params = ['now' => gmdate('Y-m-d H:i:s')];

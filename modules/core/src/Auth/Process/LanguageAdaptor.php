@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Locale\Language;
-use SimpleSAML\Logger;
 
 /**
  * Filter to set and get language settings from attributes.
@@ -57,10 +56,10 @@ class LanguageAdaptor extends Auth\ProcessingFilter
         $lang = Language::getLanguageCookie();
 
         if (isset($attrlang)) {
-            Logger::debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
+            $this->logger->debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
         }
         if (isset($lang)) {
-            Logger::debug('LanguageAdaptor: Language in session was set [' . $lang . ']');
+            $this->logger->debug('LanguageAdaptor: Language in session was set [' . $lang . ']');
         }
 
         if (isset($attrlang) && !isset($lang)) {

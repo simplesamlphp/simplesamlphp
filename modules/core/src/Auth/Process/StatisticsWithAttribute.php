@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 
 /**
  * Log a line in the STAT log with one attribute.
@@ -92,10 +91,10 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            Logger::stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
+            $this->logger->stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
         }
 
-        Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
+        $this->logger->stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
     }
 
 

@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\core\Auth\Source;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Logger;
+use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Utils;
 
 use function array_key_exists;
@@ -95,7 +95,7 @@ class SourceIPSelector extends AbstractSourceSelector
             foreach ($zone['subnet'] as $subnet) {
                 if ($netUtils->ipCIDRcheck($subnet, $ip)) {
                     // Client's IP is in one of the ranges for the secondary auth source
-                    Logger::info(sprintf(
+                    $this->logger->info(sprintf(
                         "core:SourceIPSelector:  Selecting zone `%s` based on client IP %s",
                         $name,
                         $ip
@@ -107,7 +107,7 @@ class SourceIPSelector extends AbstractSourceSelector
         }
 
         if ($source === $this->defaultSource) {
-            Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
+            $this->logger->info("core:SourceIPSelector:  no match on client IP; selecting default zone");
         }
 
         return $source;

@@ -21,7 +21,6 @@ use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -134,6 +133,8 @@ class Message
      */
     public static function checkSign(Configuration $srcMetadata, SignedElement $element): bool
     {
+        $logger = Configuration::getLogger();
+
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
         if (!empty($keys)) {
@@ -146,7 +147,7 @@ class Message
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        Logger::debug('Skipping unknown key type: ' . $key['type']);
+                        $logger->debug('Skipping unknown key type: ' . $key['type']);
                 }
             }
         } else {
@@ -156,7 +157,7 @@ class Message
             );
         }
 
-        Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
+        $logger->debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
@@ -167,12 +168,12 @@ class Message
                 // make sure that we have a valid signature on either the response or the assertion
                 $res = $element->validate($key);
                 if ($res) {
-                    Logger::debug('Validation with key #' . $i . ' succeeded.');
+                    $logger->debug('Validation with key #' . $i . ' succeeded.');
                     return true;
                 }
-                Logger::debug('Validation with key #' . $i . ' failed without exception.');
+                $logger->debug('Validation with key #' . $i . ' failed without exception.');
             } catch (\Exception $e) {
-                Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                $logger->debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -349,6 +350,7 @@ class Message
         $assertion
     ): Assertion {
         Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
+        $logger = Configuration::getLogger();
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
@@ -380,10 +382,10 @@ class Message
         foreach ($keys as $i => $key) {
             try {
                 $ret = $assertion->getAssertion($key, $blacklist);
-                Logger::debug('Decryption with key #' . $i . ' succeeded.');
+                $logger->debug('Decryption with key #' . $i . ' succeeded.');
                 return $ret;
             } catch (\Exception $e) {
-                Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                $logger->debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -425,14 +427,15 @@ class Message
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
 
         $error = true;
+        $logger = Configuration::getLogger();
         foreach ($keys as $i => $key) {
             try {
                 $assertion->decryptAttributes($key, $blacklist);
-                Logger::debug('Attribute decryption with key #' . $i . ' succeeded.');
+                $logger->debug('Attribute decryption with key #' . $i . ' succeeded.');
                 $error = false;
                 break;
             } catch (\Exception $e) {
-                Logger::debug('Attribute decryption failed with exception: ' . $e->getMessage());
+                $logger->debug('Attribute decryption failed with exception: ' . $e->getMessage());
             }
         }
         if ($error) {
@@ -654,6 +657,7 @@ class Message
         } // at least one valid signature found
 
         $httpUtils = new Utils\HTTP();
+        $logger = Configuration::getLogger();
         $currentURL = $httpUtils->getSelfURLNoQuery();
 
         // check various properties of the assertion
@@ -843,11 +847,11 @@ class Message
             foreach ($keys as $i => $key) {
                 try {
                     $assertion->decryptNameId($key, $blacklist);
-                    Logger::debug('Decryption with key #' . $i . ' succeeded.');
+                    $logger->debug('Decryption with key #' . $i . ' succeeded.');
                     $lastException = null;
                     break;
                 } catch (\Exception $e) {
-                    Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                    $logger->debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                     $lastException = $e;
                 }
             }

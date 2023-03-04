@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -51,7 +50,6 @@ class CardinalitySingle extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         $this->httpUtils = $httpUtils ?: new Utils\HTTP();
-
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
         }
@@ -92,7 +90,7 @@ class CardinalitySingle extends Auth\ProcessingFilter
             && array_key_exists('entityid', $state['Source'])
             && in_array($state['Source']['entityid'], $this->ignoreEntities, true)
         ) {
-            Logger::debug('CardinalitySingle: Ignoring assertions from ' . $state['Source']['entityid']);
+            $this->logger->debug('CardinalitySingle: Ignoring assertions from ' . $state['Source']['entityid']);
             return;
         }
 

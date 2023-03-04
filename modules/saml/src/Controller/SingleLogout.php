@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
@@ -23,8 +24,10 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class SingleLogout
+class SingleLogout implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -49,6 +52,7 @@ class SingleLogout
         Configuration $config
     ) {
         $this->config = $config;
+        $this->logger = $this->getLogger();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
 
@@ -84,7 +88,7 @@ class SingleLogout
      */
     public function singleLogout(Request $request): RunnableResponse
     {
-        Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
+        $this->logger->info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);
@@ -117,7 +121,7 @@ class SingleLogout
      */
     public function initSingleLogout(Request $request): RunnableResponse
     {
-        Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
+        $this->logger->info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
             throw new Error\Error('NOACCESS', null, 403);

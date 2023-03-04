@@ -7,6 +7,7 @@ namespace SimpleSAML\Metadata;
 use DOMDocument;
 use DOMElement;
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Constants;
@@ -37,7 +38,8 @@ use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Logger;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
@@ -61,8 +63,10 @@ use function count;
  * an array of SAMLParser elements where each element represents an EntityDescriptor-element.
  */
 
-class SAMLParser
+class SAMLParser implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * This is the list with the SAML 2.0 protocol.
      *
@@ -186,6 +190,7 @@ class SAMLParser
         array $parentExtensions = []
     ) {
         $this->fileSystem = new Filesystem();
+        $this->logger = $this->getLogger();
         $this->spDescriptors = [];
         $this->idpDescriptors = [];
 
@@ -895,6 +900,7 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
+        $logger = Configuration::getLogger();
         foreach ($element->getExtensions() as $e) {
             if ($e instanceof Scope) {
                 $ret['scope'][] = $e->getScope();
@@ -912,7 +918,7 @@ class SAMLParser
                         isset($ret['RegistrationInfo']['authority'])
                         && $ret['RegistrationInfo']['authority'] !== $e->getRegistrationAuthority()
                     ) {
-                        Logger::warning(
+                        $logger->warning(
                             'Invalid attempt to override registrationAuthority \''
                             . $ret['RegistrationInfo']['authority']
                             . "' with '{$e->getRegistrationAuthority()}'"
@@ -1303,7 +1309,8 @@ class SAMLParser
                 }
             }
         }
-        Logger::debug('Could not validate signature');
+        $logger = Configuration::getLogger();
+        $logger->debug('Could not validate signature');
         return false;
     }
 }

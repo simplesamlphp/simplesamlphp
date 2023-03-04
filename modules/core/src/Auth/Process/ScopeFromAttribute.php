@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -88,11 +87,11 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
             $attributes[$this->targetAttribute] = [];
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
-            Logger::debug(
+            $this->logger->debug(
                 'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope
             );
         } else {
-            Logger::warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
+            $this->logger->warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute
                 . ' does not have a scope. Did not add attribute ' . $this->targetAttribute . '.');
         }
     }

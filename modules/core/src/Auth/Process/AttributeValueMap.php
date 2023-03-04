@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 
 /**
  * Filter to create target attribute based on value(s) in source attribute
@@ -68,7 +67,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
                     $this->keep = true;
                 } else {
                     // unknown configuration option, log it and ignore the error
-                    Logger::warning(
+                    $this->logger->warning(
                         "AttributeValueMap: unknown configuration flag '" . var_export($value, true) . "'"
                     );
                 }
@@ -111,7 +110,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
      */
     public function process(array &$state): void
     {
-        Logger::debug('Processing the AttributeValueMap filter.');
+        $this->logger->debug('Processing the AttributeValueMap filter.');
 
         Assert::keyExists($state, 'Attributes');
         $attributes = &$state['Attributes'];
@@ -130,7 +129,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
                     $values = [$values];
                 }
                 if (count(array_intersect($values, $sourceattribute)) > 0) {
-                    Logger::debug("AttributeValueMap: intersect match for '$value'");
+                    $this->logger->debug("AttributeValueMap: intersect match for '$value'");
                     $targetvalues[] = $value;
                 }
             }

@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 
 /**
  * Handles interactions with SSP's cron system/hooks.
  */
-class Cron
+class Cron implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+
     /**
      * The configuration for the Cron module
      * @var \SimpleSAML\Configuration
@@ -22,7 +26,7 @@ class Cron
     private Configuration $cronconfig;
 
 
-    /*
+    /**
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
      */
@@ -32,7 +36,9 @@ class Cron
             $cronconfig = Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
+        $this->logger = $this->getLogger();
     }
+
 
     /**
      * Invoke the cron hook for the given tag
@@ -56,12 +62,13 @@ class Cron
         Assert::isArray($croninfo);
 
         foreach ($summary as $s) {
-            Logger::debug('Cron - Summary: ' . $s);
+            $this->logger->debug('Cron - Summary: ' . $s);
         }
 
         /** @psalm-suppress NullableReturnStatement */
         return $croninfo;
     }
+
 
     /**
      * @param string $tag

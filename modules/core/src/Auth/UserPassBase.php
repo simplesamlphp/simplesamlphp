@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
+use Exception;
 use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -101,12 +101,12 @@ abstract class UserPassBase extends Auth\Source
      */
     public function __construct(array $info, array &$config)
     {
+        // Call the parent constructor first, as required by the interface
+        parent::__construct($info, $config);
+
         if (isset($config['core:loginpage_links'])) {
             $this->loginLinks = $config['core:loginpage_links'];
         }
-
-        // Call the parent constructor first, as required by the interface
-        parent::__construct($info, $config);
 
         // Get the remember username config options
         if (isset($config['remember.username.enabled'])) {
@@ -219,7 +219,7 @@ abstract class UserPassBase extends Auth\Source
         // other use cases.
         if (isset($state['saml:Binding']) && $state['saml:Binding'] === Constants::BINDING_PAOS) {
             if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-                Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
+                $this->logger->error("ECP AuthnRequest did not contain Basic Authentication header");
                 // TODO Return a SOAP fault instead of using the current binding?
                 throw new Error\Error("WRONGUSERPASS");
             }
@@ -292,7 +292,7 @@ abstract class UserPassBase extends Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         /*
@@ -301,14 +301,15 @@ abstract class UserPassBase extends Auth\Source
          */
 
         // Attempt to log in
+        $logger = Configuration::getLogger();
         try {
             $attributes = $source->login($username, $password);
-        } catch (\Exception $e) {
-            Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
+        } catch (Exception $e) {
+            $logger->stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
             throw $e;
         }
 
-        Logger::stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
+        $logger->stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
 
         // Save the attributes we received from the login-function in the $state-array
         $state['Attributes'] = $attributes;

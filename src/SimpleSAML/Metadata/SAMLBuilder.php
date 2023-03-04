@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Constants;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
@@ -28,7 +29,7 @@ use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\Utils;
 
@@ -40,8 +41,10 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class SAMLBuilder
+class SAMLBuilder implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * The EntityDescriptor we are building.
      *
@@ -76,6 +79,7 @@ class SAMLBuilder
      */
     public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
     {
+        $this->logger = $this->getLogger();
         $this->maxCache = $maxCache;
         $this->maxDuration = $maxDuration;
 
@@ -481,7 +485,7 @@ class SAMLBuilder
                 $this->addAttributeAuthority($metadata);
                 break;
             default:
-                Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
+                $this->logger->warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
         }
     }
 

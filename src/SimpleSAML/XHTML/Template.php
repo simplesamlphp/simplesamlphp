@@ -12,6 +12,7 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -19,7 +20,7 @@ use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
@@ -52,8 +53,11 @@ use function substr;
  * The content-property is set upstream, but this is not recognized by Psalm
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class Template extends Response
+class Template extends Response implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+
     /**
      * The data associated with this template, accessible within the template itself.
      *
@@ -142,11 +146,12 @@ class Template extends Response
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string                   $template Which template file to load
+     * @param string $template Which template file to load
      */
     public function __construct(Configuration $configuration, string $template)
     {
         $this->configuration = $configuration;
+        $this->logger = $this->getLogger();
         $this->template = $template;
         // TODO: do not remove the slash from the beginning, change the templates instead!
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
@@ -396,7 +401,7 @@ class Template extends Response
         $themeDir = Module::getModuleDir($this->theme['module']) . '/themes/' . $this->theme['name'];
 
         if (!$this->fileSystem->exists($themeDir)) {
-            Logger::warning(
+            $this->logger->warning(
                 sprintf('Theme directory for theme "%s" (%s) does not exist.', $this->theme['name'], $themeDir),
             );
             return [];
@@ -405,7 +410,7 @@ class Template extends Response
         $finder = new Finder();
         $finder->directories()->in($themeDir)->depth(0);
         if (!$finder->hasResults()) {
-            Logger::warning(sprintf(
+            $this->logger->warning(sprintf(
                 'Theme directory for theme "%s" (%s) is not readable or is empty.',
                 $this->theme['name'],
                 $themeDir,

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
@@ -16,8 +17,20 @@ use SimpleSAML\XHTML\Template;
  *
  * @package SimpleSAMLphp
  */
-class HTTP
+class HTTP implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->logger = $this->getLogger();
+    }
+
+
     /**
      * Determine if the user agent can support cookies being sent with SameSite equal to "None".
      * Browsers without support may drop the cookie and or treat it as stricter setting
@@ -226,7 +239,7 @@ class HTTP
         }
 
         if (strlen($url) > 2048) {
-            Logger::warning('Redirecting to a URL longer than 2048 bytes.');
+            $this->logger->warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
         if (!headers_sent()) {
@@ -488,7 +501,7 @@ class HTTP
                         'SNI_enabled'     => true,
                     ];
                 } else {
-                    Logger::warning('Invalid URL format or local URL used through a proxy');
+                    $this->logger->warning('Invalid URL format or local URL used through a proxy');
                 }
             }
         }
@@ -1103,7 +1116,7 @@ class HTTP
                     Error\CannotSetCookie::SECURE_COOKIE
                 );
             }
-            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
+            $this->logger->warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
             return;
         }
 
@@ -1155,7 +1168,7 @@ class HTTP
                     Error\CannotSetCookie::HEADERS_SENT
                 );
             }
-            Logger::warning('Error setting cookie: headers already sent.');
+            $this->logger->warning('Error setting cookie: headers already sent.');
         }
     }
 

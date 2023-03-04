@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 use SAML2\Constants;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Logger};
+use SimpleSAML\Auth;
 
 /**
  * Filter to generate the subject ID attribute.
@@ -76,12 +76,6 @@ class SubjectID extends Auth\ProcessingFilter
      */
     protected string $scopeAttribute;
 
-    /**
-     * @var \SimpleSAML\Logger|string
-     * @psalm-var \SimpleSAML\Logger|class-string
-     */
-    protected $logger = Logger::class;
-
 
     /**
      * Initialize this filter.
@@ -138,7 +132,7 @@ class SubjectID extends Auth\ProcessingFilter
             !array_key_exists('Attributes', $state)
             || !array_key_exists($this->identifyingAttribute, $state['Attributes'])
         ) {
-            $this->logger::warning(
+            $this->logger->warning(
                 sprintf(
                     "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
                     $this->identifyingAttribute
@@ -169,7 +163,7 @@ class SubjectID extends Auth\ProcessingFilter
     protected function getScopeAttribute(array $state): ?string
     {
         if (!array_key_exists('Attributes', $state) || !array_key_exists($this->scopeAttribute, $state['Attributes'])) {
-            $this->logger::warning(
+            $this->logger->warning(
                 sprintf(
                     "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
                     $this->scopeAttribute
@@ -216,20 +210,9 @@ class SubjectID extends Auth\ProcessingFilter
         );
 
         if (preg_match(self::WARN_PATTERN, $value) === 0) {
-            $this->logger::warning(
+            $this->logger->warning(
                 'saml:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.'
             );
         }
-    }
-
-
-    /**
-     * Inject the \SimpleSAML\Logger dependency.
-     *
-     * @param \SimpleSAML\Logger $logger
-     */
-    public function setLogger(Logger $logger): void
-    {
-        $this->logger = $logger;
     }
 }

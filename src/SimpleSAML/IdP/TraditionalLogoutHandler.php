@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
+use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Utils;
 
 /**
@@ -17,8 +19,10 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class TraditionalLogoutHandler implements LogoutHandlerInterface
+class TraditionalLogoutHandler implements LogoutHandlerInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * The IdP we are logging out from.
      *
@@ -35,6 +39,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     public function __construct(IdP $idp)
     {
         $this->idp = $idp;
+        $this->logger = $this->getLogger();
     }
 
 
@@ -55,15 +60,15 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $relayState = Auth\State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
-        Logger::info('Logging out of ' . var_export($id, true) . '.');
+        $this->logger->info('Logging out of ' . var_export($id, true) . '.');
 
         try {
             $idp = IdP::getByState($association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
             $httpUtils = new Utils\HTTP();
             $httpUtils->redirectTrustedURL($url);
-        } catch (\Exception $e) {
-            Logger::warning('Unable to initialize logout to ' . var_export($id, true) . '.');
+        } catch (Exception $e) {
+            $this->logger->warning('Unable to initialize logout to ' . var_export($id, true) . '.');
             $this->idp->terminateAssociation($id);
             $state['core:Failed'] = true;
 
@@ -110,10 +115,10 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $state = Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
-            Logger::info('Logged out of ' . var_export($assocId, true) . '.');
+            $this->logger->info('Logged out of ' . var_export($assocId, true) . '.');
             $this->idp->terminateAssociation($assocId);
         } else {
-            Logger::warning('Error received from ' . var_export($assocId, true) . ' during logout:');
+            $this->logger->warning('Error received from ' . var_export($assocId, true) . ' during logout:');
             $error->logWarning();
             $state['core:Failed'] = true;
         }

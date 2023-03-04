@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
+use Psr\Log\LoggerAwareInterface;
 use SAML2\Binding;
 use SAML2\Constants;
 use SimpleSAML\Auth;
@@ -12,7 +13,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\Stats;
@@ -36,8 +37,10 @@ use function var_export;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Logout
+class Logout implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -59,6 +62,7 @@ class Logout
         Configuration $config
     ) {
         $this->config = $config;
+        $this->logger = $this->getLogger();
     }
 
 
@@ -132,12 +136,12 @@ class Logout
         $associations = $idp->getAssociations();
 
         if (!$request->query->has('cancel')) {
-            Logger::stats('slo-iframe done');
+            $this->logger->stats('slo-iframe done');
             Stats::log('core:idp:logout-iframe:page', ['type' => 'done']);
             $SPs = $state['core:Logout-IFrame:Associations'];
         } else {
             // user skipped global logout
-            Logger::stats('slo-iframe skip');
+            $this->logger->stats('slo-iframe skip');
             Stats::log('core:idp:logout-iframe:page', ['type' => 'skip']);
             $SPs = []; // no SPs should have been logged out
             $state['core:Failed'] = true; // mark as partial logout
@@ -165,13 +169,13 @@ class Logout
             if ($sp['core:Logout-IFrame:State'] === 'completed') {
                 $idp->terminateAssociation($assocId);
             } else {
-                Logger::warning('Unable to terminate association with ' . var_export($assocId, true) . '.');
+                $this->logger->warning('Unable to terminate association with ' . var_export($assocId, true) . '.');
                 if (isset($sp['saml:entityID'])) {
                     $spId = $sp['saml:entityID'];
                 } else {
                     $spId = $assocId;
                 }
-                Logger::stats('slo-iframe-fail ' . $spId);
+                $this->logger->stats('slo-iframe-fail ' . $spId);
                 Stats::log('core:idp:logout-iframe:spfail', ['sp' => $spId]);
                 $state['core:Failed'] = true;
             }
@@ -268,7 +272,7 @@ class Logout
         }
 
         if ($type !== 'embed') {
-            Logger::stats('slo-iframe ' . $type);
+            $this->logger->stats('slo-iframe ' . $type);
             Stats::log('core:idp:logout-iframe:page', ['type' => $type]);
         }
 

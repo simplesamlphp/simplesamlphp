@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 
 /**
  * A filter for limiting which attributes are passed on.
@@ -151,7 +150,7 @@ class AttributeLimit extends Auth\ProcessingFilter
                      */
                     $regexResult = @preg_match($pattern, $attributeValue);
                     if ($regexResult === false) {
-                        Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");
+                        $this->logger->warning("Error processing regex '$pattern' on value '$attributeValue'");
                         break;
                     } elseif ($regexResult === 1) {
                         $matchedValues[] = $attributeValue;

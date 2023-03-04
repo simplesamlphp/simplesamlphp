@@ -49,7 +49,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
-        parent::__construct();
+        parent::__construct($config);
 
         // get the configuration
         $globalConfig = Configuration::getInstance();

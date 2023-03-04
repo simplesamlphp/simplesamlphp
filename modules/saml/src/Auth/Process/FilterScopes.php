@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -25,6 +24,7 @@ class FilterScopes extends ProcessingFilter
         'eduPersonPrincipalName'
     ];
 
+
     /**
      * Constructor for the processing filter.
      *
@@ -39,6 +39,7 @@ class FilterScopes extends ProcessingFilter
             $this->scopedAttributes = $config['attributes'];
         }
     }
+
 
     /**
      * This method applies the filter, removing any values
@@ -77,12 +78,12 @@ class FilterScopes extends ProcessingFilter
                 } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
                     $newValues[] = $value;
                 } else {
-                    Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
+                    $this->logger->warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
                 }
             }
 
             if (empty($newValues)) {
-                Logger::warning("No suitable values for attribute '$attribute', removing it.");
+                $this->logger->warning("No suitable values for attribute '$attribute', removing it.");
                 unset($state['Attributes'][$attribute]); // remove empty attributes
             } else {
                 $state['Attributes'][$attribute] = $newValues;

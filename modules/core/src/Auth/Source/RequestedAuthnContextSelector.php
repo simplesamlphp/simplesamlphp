@@ -8,7 +8,7 @@ use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Logger;
+use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 
 use function array_key_exists;
 use function sprintf;
@@ -101,7 +101,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
     {
         $requestedContexts = $state['saml:RequestedAuthnContext'];
         if ($requestedContexts['AuthnContextClassRef'] === null) {
-            Logger::info(
+            $this->logger->info(
                 "core:RequestedAuthnContextSelector:  no RequestedAuthnContext provided; selecting default authsource"
             );
             return $this->defaultSource;

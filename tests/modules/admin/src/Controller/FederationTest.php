@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -59,6 +60,9 @@ class FederationTest extends TestCase
     /** @var string */
     private string $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
 
+    /** @var \SimpleSAML\Module\admin\Controller\Federation */
+    private Controller\Federation $controller;
+
     /**
      * Set up for each test.
      */
@@ -96,6 +100,9 @@ class FederationTest extends TestCase
             'authsources.php',
             'simplesaml'
         );
+
+        $this->controller = new Controller\Federation($this->config);
+        $this->controller->setLogger(new NullLogger());
     }
 
 
@@ -173,7 +180,7 @@ class FederationTest extends TestCase
             }
         };
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $c->setAuthSource($authSource);
         $c->setMetadataStorageHandler($mdh);
@@ -203,7 +210,7 @@ class FederationTest extends TestCase
             ]
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
@@ -222,7 +229,7 @@ class FederationTest extends TestCase
             ['xmldata' => file_get_contents($this->metadata_xml)]
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
@@ -240,7 +247,7 @@ class FederationTest extends TestCase
             ['xmldata' => file_get_contents($this->expired_metadata_xml)]
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
@@ -259,7 +266,7 @@ class FederationTest extends TestCase
             ['xmldata' => file_get_contents($this->broken_metadata_xml)]
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
 
         $response = $c->metadataConverter($request);
@@ -279,7 +286,7 @@ class FederationTest extends TestCase
             ['xmldata' => '']
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
 
         $response = $c->metadataConverter($request);
@@ -303,7 +310,7 @@ class FederationTest extends TestCase
             ]
         );
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $authSource = new class () extends Auth\Source {
             public function __construct()
@@ -368,7 +375,7 @@ class FederationTest extends TestCase
             }
         };
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $c->setMetaDataStorageHandler($mdh);
 
@@ -401,7 +408,7 @@ class FederationTest extends TestCase
             }
         };
 
-        $c = new Controller\Federation($this->config);
+        $c = $this->controller;
         $c->setAuthUtils($this->authUtils);
         $c->setMetaDataStorageHandler($mdh);
         $response = $c->showRemoteEntity($request);

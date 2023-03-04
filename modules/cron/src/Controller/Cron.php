@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron\Controller;
 
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
+use SimpleSAML\Logger\LoggerAwareTrait;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -25,8 +26,11 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\cron
  */
-class Cron
+class Cron implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -58,6 +62,7 @@ class Cron
     ) {
         $this->config = $config;
         $this->cronconfig = Configuration::getConfig('module_cron.php');
+        $this->logger = $this->getLogger();
         $this->session = $session;
         $this->authUtils = new Utils\Auth();
     }
@@ -149,7 +154,7 @@ class Cron
             try {
                 $mail->send();
             } catch (PHPMailerException $e) {
-                Logger::warning("Unable to send cron report; " . $e->getMessage());
+                $this->logger->warning("Unable to send cron report; " . $e->getMessage());
             }
         }
 

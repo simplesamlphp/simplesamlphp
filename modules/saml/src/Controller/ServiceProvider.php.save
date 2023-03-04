@@ -110,39 +110,6 @@ class ServiceProvider implements LoggerAwareInterface
 
 
     /**
-     * Start single sign-on for an SP identified with the specified Authsource ID
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
-     */
-    public function login(Request $request, string $sourceId): RunnableResponse
-    {
-        $as = new Auth\Simple($sourceId);
-        if (!($as->getAuthSource() instanceof SP)) {
-            throw new Error\Exception('Authsource must be of type saml:SP.');
-        }
-
-        if (!$request->query->has('ReturnTo')) {
-            throw new Error\BadRequest('Missing ReturnTo parameter.');
-        }
-        $returnTo = $request->query->get('ReturnTo');
-
-        /**
-         * Setting up the options for the requireAuth() call later..
-         */
-        $httpUtils = new Utils\HTTP();
-        $options = [
-            'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
-        ];
-
-        $as->requireAuth($options);
-
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
-    }
-
-
-    /**
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -244,7 +211,7 @@ class ServiceProvider implements LoggerAwareInterface
              * In that case we may as well just redo the previous redirect
              * instead of displaying a confusing error message.
              */
-            $this->logger->info(sprintf(
+            $logger->info(sprintf(
                 '%s - %s',
                 'Duplicate SAML 2 response detected',
                 'ignoring the response and redirecting the user to the correct page.'
@@ -253,7 +220,7 @@ class ServiceProvider implements LoggerAwareInterface
                 return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
             }
 
-            $this->logger->info('No RelayState or ReturnURL available, cannot redirect.');
+            $logger->info('No RelayState or ReturnURL available, cannot redirect.');
             throw new Error\Exception('Duplicate assertion received.');
         }
 
@@ -267,7 +234,7 @@ class ServiceProvider implements LoggerAwareInterface
                 $state = $this->authState::loadState($stateId, 'saml:sp:sso');
             } catch (Exception $e) {
                 // something went wrong,
-                $this->logger->warning(sprintf(
+                $logger->warning(sprintf(
                     'Could not load state specified by InResponseTo: %s Processing response as unsolicited.',
                     $e->getMessage(),
                 ));
@@ -295,7 +262,7 @@ class ServiceProvider implements LoggerAwareInterface
                 $idpMetadata = $source->getIdPMetadata($issuer);
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-                    $this->logger->warning(
+                    $logger->warning(
                         'The issuer of the response not match to the identity provider we sent the request to.'
                     );
                 }
@@ -310,7 +277,7 @@ class ServiceProvider implements LoggerAwareInterface
             ];
         }
 
-        $this->logger->debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
+        Logger->debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
             $idpMetadata = $source->getIdPmetadata($issuer);
@@ -513,17 +480,17 @@ class ServiceProvider implements LoggerAwareInterface
             }
 
             if (!$message->isSuccess()) {
-                $this->logger->warning(
+                Logger::warning(
                     'Unsuccessful logout. Status was: ' . Module\saml\Message::getResponseError($message)
                 );
             }
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
-            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
+            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [$state]);
         } elseif ($message instanceof LogoutRequest) {
-            $this->logger->debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
-            $this->logger->stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
+            Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
+            Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
             if ($message->isNameIdEncrypted()) {
                 try {
@@ -538,11 +505,11 @@ class ServiceProvider implements LoggerAwareInterface
                 foreach ($keys as $i => $key) {
                     try {
                         $message->decryptNameId($key, $blacklist);
-                        $this->logger->debug('Decryption with key #' . $i . ' succeeded.');
+                        Logger::debug('Decryption with key #' . $i . ' succeeded.');
                         $lastException = null;
                         break;
                     } catch (Exception $e) {
-                        $this->logger->debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                        Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                         $lastException = $e;
                     }
                 }
@@ -568,7 +535,7 @@ class ServiceProvider implements LoggerAwareInterface
             $lr->setInResponseTo($message->getId());
 
             if ($numLoggedOut < count($sessionIndexes)) {
-                $this->logger->warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
+                Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
             }
 
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(

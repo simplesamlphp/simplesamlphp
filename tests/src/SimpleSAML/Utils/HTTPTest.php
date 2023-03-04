@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\TestUtils\ClearStateTestCase;
@@ -15,6 +16,23 @@ use SimpleSAML\Utils;
  */
 class HTTPTest extends ClearStateTestCase
 {
+    /** @var \SimpleSAML\Utils\HTTP */
+    protected $httpUtils;
+
+
+    /**
+     * Set up for each test.
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->httpUtils = new Utils\HTTP();
+        $this->httpUtils->setLogger(new NullLogger());
+    }
+
+
     /**
      * Set up the environment ($_SERVER) populating the typical variables from a given URL.
      *
@@ -50,7 +68,7 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testAddURLParameters(): void
     {
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         $url = 'http://example.com/';
         $params = [
@@ -80,7 +98,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGuessBasePath(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
         $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
@@ -124,7 +142,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfHost(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         Configuration::loadFromArray([
             'baseurlpath' => '',
@@ -144,7 +162,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfHostWithPort(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         Configuration::loadFromArray([
             'baseurlpath' => '',
@@ -173,7 +191,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetSelfURLMethods(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         /*
          * Test a URL pointing to a script that's not part of the public interface. This allows us to test calls to
@@ -327,7 +345,7 @@ class HTTPTest extends ClearStateTestCase
             'http://app.example.com/',
         ];
 
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
         foreach ($allowed as $url) {
             $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
@@ -362,7 +380,7 @@ class HTTPTest extends ClearStateTestCase
             'http://app2.example.com/',
         ];
 
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
         foreach ($allowed as $url) {
             $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
@@ -380,7 +398,7 @@ class HTTPTest extends ClearStateTestCase
     public function testGetServerPort(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         // Test HTTP + non-standard port
         $_SERVER['HTTPS'] = 'off';
@@ -427,7 +445,7 @@ class HTTPTest extends ClearStateTestCase
     public function testCheckURLAllowedWithRegexWithoutDelimiters(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         Configuration::loadFromArray([
             'trusted.url.domains' => ['app\.example\.com'],
@@ -450,7 +468,7 @@ class HTTPTest extends ClearStateTestCase
     public function testSetCookie(): void
     {
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/',
@@ -511,7 +529,7 @@ class HTTPTest extends ClearStateTestCase
         $this->expectException(Error\CannotSetCookie::class);
 
         $original = $_SERVER;
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
 
         Configuration::loadFromArray([
             'baseurlpath' => 'http://example.com/simplesaml/',
@@ -531,7 +549,7 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testSetCookieSameSite(): void
     {
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
         $httpUtils->setCookie('SSNull', 'value', ['samesite' => null]);
         $httpUtils->setCookie('SSNone', 'value', ['samesite' => 'None']);
         $httpUtils->setCookie('SSLax', 'value', ['samesite' => 'Lax']);
@@ -555,7 +573,7 @@ class HTTPTest extends ClearStateTestCase
         if ($userAgent) {
             $_SERVER['HTTP_USER_AGENT'] = $userAgent;
         }
-        $httpUtils = new Utils\HTTP();
+        $httpUtils = $this->httpUtils;
         $this->assertEquals($supportsNone, $httpUtils->canSetSameSiteNone(), $userAgent ?? 'No user agent set');
     }
 

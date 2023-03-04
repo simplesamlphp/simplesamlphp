@@ -8,7 +8,6 @@ use Exception;
 use PDO;
 use PDOException;
 use PDOStatement;
-use SimpleSAML\Logger;
 
 /**
  * This file implements functions to read and write to a group of database servers.

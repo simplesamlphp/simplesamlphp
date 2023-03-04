@@ -15,10 +15,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Psr\Log\LoggerAwareInterface;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Logger\LoggerAwareTrait;
 
-abstract class SessionHandler
+abstract class SessionHandler implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * This static variable contains a reference to the current
      * instance of the session handler. This variable will be NULL if
@@ -49,12 +53,10 @@ abstract class SessionHandler
 
 
     /**
-     * This constructor is included in case it is needed in the
-     * future. Including it now allows us to write parent::__construct() in
-     * the subclasses of this class.
      */
     protected function __construct()
     {
+        $this->logger = $this->getLogger();
     }
 
 

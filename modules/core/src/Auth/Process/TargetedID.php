@@ -9,7 +9,6 @@ use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 /**
@@ -102,7 +101,7 @@ class TargetedID extends Auth\ProcessingFilter
     {
         Assert::keyExists($state, 'Attributes');
         if (!array_key_exists($this->identifyingAttribute, $state['Attributes'])) {
-            Logger::warning(
+            $this->logger->warning(
                 sprintf(
                     "core:TargetedID: Missing attribute '%s', which is needed to generate the TargetedID.",
                     $this->identifyingAttribute
