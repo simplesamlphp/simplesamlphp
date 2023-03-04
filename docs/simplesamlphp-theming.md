@@ -2,7 +2,7 @@
 
 [TOC]
 
-In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
+In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents an anonymous look.
 
 You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
 
@@ -12,15 +12,15 @@ If you want to customize the UI, the right way to do that is to create a new **t
 
 ### Configuring which theme to use
 
-In `config.php` there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
+In `config.php` there is a configuration option that controls theming. You need to set that option and also add the module that contains the theme to the list of enabled modules. Here is an example:
 
 ```php
 'module.enable' => [
     ...
-    'fancymodule' => true,
+    'mymodule' => true,
 ],
 
-'theme.use' => 'fancymodule:fancytheme',
+'theme.use' => 'mymodule:fancytheme',
 ```
 
 The `theme.use` parameter points to which theme that will be used. If some functionality in SimpleSAMLphp needs to present UI in example with the `logout.twig` template, it will first look for `logout.twig` in the `theme.use` theme, and if not found it will all fallback to look for the base templates.
@@ -39,8 +39,6 @@ cd modules
 mkdir mymodule
 ```
 
-Enable the module by setting `$config['module.enable' => ['mymodule' => true]]`
-
 Then within this module, you can create a new theme named `fancytheme`.
 
 ```bash
@@ -48,9 +46,13 @@ cd modules/mymodule
 mkdir -p themes/fancytheme/default/
 ```
 
-Now, configure SimpleSAMLphp to use your new theme in `config.php`:
+Now, in `config.php`, add the module to the list of enabled modules, and configure SimpleSAMLphp to actually use your new theme:
 
 ```php
+'module.enable' => [
+    ...
+    'mymodule' => true,
+],
 'theme.use' => 'mymodule:fancytheme',
 ```
 
@@ -66,14 +68,16 @@ In the `modules/mymodule/themes/fancytheme/default/_header.twig` file, type in s
 
 You can put resource files within the `public/assets` folder of your module, to make your module completely independent with included css, icons etc.
 
+```bash
 modules
 └───mymodule
-    └───lib
+    └───src
     └───themes
     └───public
         └───assets
             └───logo.svg
             └───style.css
+```
 
 Reference these resources in your custom templates under `themes/fancytheme` by using a generator for the URL.
 Example for a custom CSS stylesheet file:
@@ -128,7 +132,7 @@ class FancyThemeController implements TemplateControllerInterface
      */
     public function display(array &$data): void
     {
-        $data{'extra_info'] = 'Extra information to use in your template';
+        $data['extra_info'] = 'Extra information to use in your template';
     }
 }
 ```
