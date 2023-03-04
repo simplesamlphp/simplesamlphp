@@ -33,8 +33,6 @@ jobs:
           VALIDATE_PHP_BUILTIN: true
           VALIDATE_YAML: true
           VALIDATE_GITHUB_ACTIONS: true
-          DEFAULT_BRANCH: ${{ github.head_ref || github.ref_name }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   basic-tests:
     name: Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}
