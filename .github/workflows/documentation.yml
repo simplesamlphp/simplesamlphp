@@ -1,12 +1,14 @@
+---
+
 name: Documentation
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
-    branches: [ master, simplesamlphp-* ]
+    branches: [master, simplesamlphp-*]
     paths:
       - '**.md'
   pull_request:
-    branches: [ master, simplesamlphp-* ]
+    branches: [master, simplesamlphp-*]
     paths:
       - '**.md'
 

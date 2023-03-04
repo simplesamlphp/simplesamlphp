@@ -1,0 +1,7 @@
+---
+
+multiauth-discovery:
+  path: /discovery
+  defaults: {
+    _controller: 'SimpleSAML\Module\multiauth\Controller\DiscoController::discovery'
+  }

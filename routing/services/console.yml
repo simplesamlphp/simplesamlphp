@@ -1,4 +1,6 @@
+---
+
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        public: false
+  # default configuration for services in *this* file
+  _defaults:
+    public: false
