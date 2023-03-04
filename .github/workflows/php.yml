@@ -11,6 +11,29 @@ on:
       - '**.md'
 
 jobs:
+  linter:
+    name: Linter
+    runs-on: ['ubuntu-latest']
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          LINTER_RULES_PATH: 'tools/linters'
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JSON: true
+          VALIDATE_PHP_BUILTIN: true
+          VALIDATE_YAML: true
+          VALIDATE_GITHUB_ACTIONS: true
+          DEFAULT_BRANCH: ${{ github.head_ref || github.ref_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   basic-tests:
     name: Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -64,9 +87,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Syntax check PHP
-        run: bash vendor/bin/check-syntax-php.sh
-
       - name: Run unit tests with coverage
         if: ${{ matrix.php-versions == '8.1' && matrix.operating-system == 'ubuntu-latest' }}
         run: ./vendor/bin/phpunit
@@ -118,44 +138,10 @@ jobs:
       - name: Security check for updated dependencies
         run: composer audit
 
-  sanity-check:
-    name: Sanity checks
-    runs-on: [ubuntu-latest]
-
-    steps:
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
-        with:
-          php-version: '8.0'
-          extensions: mbstring, xml
-          tools: composer:v2
-          coverage: none
-
-      - name: Setup problem matchers for PHP
-        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-
-      - uses: actions/checkout@v3
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v3
-        with:
-            path: $COMPOSER_CACHE
-            key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-            restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
-
-      - name: Syntax check YAML / XML / JSON
-        run: |
-          bash vendor/bin/check-syntax-yaml.sh
-          bash vendor/bin/check-syntax-xml.sh
-          bash vendor/bin/check-syntax-json.sh
-
   quality:
     name: Quality control
     runs-on: [ubuntu-latest]
-    needs: [basic-tests]
+    needs: [linter, basic-tests]
 
     steps:
       - name: Setup PHP, with composer and extensions
