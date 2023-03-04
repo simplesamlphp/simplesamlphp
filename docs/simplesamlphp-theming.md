@@ -68,7 +68,7 @@ In the `modules/mymodule/themes/fancytheme/default/_header.twig` file, type in s
 
 You can put resource files within the `public/assets` folder of your module, to make your module completely independent with included css, icons etc.
 
-```
+```bash
 modules
 └───mymodule
     └───src
