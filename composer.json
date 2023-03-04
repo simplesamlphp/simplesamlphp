@@ -3,7 +3,7 @@
     "description": "A PHP implementation of a SAML 2.0 service provider and identity provider.",
     "type": "project",
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
-    "homepage": "http://simplesamlphp.org",
+    "homepage": "https://simplesamlphp.org",
     "license": "LGPL-2.1-or-later",
     "authors": [
         {
