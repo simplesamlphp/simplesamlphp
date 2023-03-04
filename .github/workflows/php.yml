@@ -34,46 +34,24 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_GITHUB_ACTIONS: true
 
-  basic-tests:
-    name: Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ubuntu-latest, windows-latest]
-        php-versions: ['8.0', '8.1', '8.2']
+  quality:
+    name: Quality control
+    runs-on: [ubuntu-latest]
 
     steps:
       - name: Setup PHP, with composer and extensions
+        id: setup-php
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
+          php-version: '8.0'
           tools: composer:v2
-          ini-values: error_reporting=E_ALL
-          coverage: xdebug
+          extensions: mbstring, xml
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Setup problem matchers for PHPUnit
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Set git to use LF
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
-
       - uses: actions/checkout@v3
-
-      - name: Get composer cache directory (linux)
-        if: ${{ matrix.operating-system == 'ubuntu-latest' }}
-        run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
-
-      - name: Get composer cache directory (windows)
-        if: ${{ matrix.operating-system == 'windows-latest' }}
-        run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
 
       - name: Cache composer dependencies
         uses: actions/cache@v3
@@ -88,20 +66,32 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Run unit tests with coverage
-        if: ${{ matrix.php-versions == '8.1' && matrix.operating-system == 'ubuntu-latest' }}
-        run: ./vendor/bin/phpunit
+      - name: PHP Code Sniffer
+        run: php vendor/bin/phpcs
 
-      - name: Run unit tests (no coverage)
-        if: ${{ matrix.php-versions != '8.1' || matrix.operating-system != 'ubuntu-latest' }}
-        run: ./vendor/bin/phpunit --no-coverage
+      - name: Psalm
+        continue-on-error: true
+        run: |
+          php vendor/bin/psalm \
+          -c psalm.xml \
+          --show-info=true \
+          --shepherd \
+          --php-version=${{ steps.setup-php.outputs.php-version }}
 
-      - name: Save coverage data
-        if: ${{ matrix.php-versions == '8.1' && matrix.operating-system == 'ubuntu-latest' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-data
-          path: ${{ github.workspace }}/build
+      - name: Psalm (testsuite)
+        run: |
+          php vendor/bin/psalm \
+          -c psalm-dev.xml \
+          --show-info=true \
+          --shepherd \
+          --php-version=${{ steps.setup-php.outputs.php-version }}
+
+      - name: Psalter
+        run: |
+          php vendor/bin/psalter \
+          --issues=UnnecessaryVarAnnotation \
+          --dry-run \
+          --php-version=${{ steps.setup-php.outputs.php-version }}
 
   security:
     name: Security checks
@@ -140,25 +130,42 @@ jobs:
       - name: Security check for updated dependencies
         run: composer audit
 
-  quality:
-    name: Quality control
-    runs-on: [ubuntu-latest]
-    needs: [linter, basic-tests]
+  unit-tests-linux:
+    name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
+    runs-on: ${{ matrix.operating-system }}
+    needs: [linter, quality, security]
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ['8.0', '8.1', '8.2']
 
     steps:
       - name: Setup PHP, with composer and extensions
-        id: setup-php
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: ${{ matrix.php-versions }}
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
           tools: composer:v2
-          extensions: mbstring, xml
+          ini-values: error_reporting=E_ALL
+          coverage: xdebug
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
       - uses: actions/checkout@v3
+
+      - name: Get composer cache directory
+        run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
         uses: actions/cache@v3
@@ -170,37 +177,80 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+      - name: Run unit tests with coverage
+        if: ${{ matrix.php-versions == '8.1' }}
+        run: ./vendor/bin/phpunit
+
+      - name: Run unit tests (no coverage)
+        if: ${{ matrix.php-versions != '8.1' }}
+        run: ./vendor/bin/phpunit --no-coverage
+
+      - name: Save coverage data
+        if: ${{ matrix.php-versions == '8.1' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-data
+          path: ${{ github.workspace }}/build
+
+  unit-tests-windows:
+    name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
+    runs-on: ${{ matrix.operating-system }}
+    needs: [linter, quality, security]
+    strategy:
+      fail-fast: true
+      matrix:
+        operating-system: [windows-latest]
+        php-versions: ['8.0', '8.1', '8.2']
+
+    steps:
+      - name: Setup PHP, with composer and extensions
+        # https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
+          tools: composer:v2
+          ini-values: error_reporting=E_ALL
+          coverage: xdebug
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - uses: actions/checkout@v3
+
+      - name: Get composer cache directory
+        run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: $COMPOSER_CACHE
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Run unit tests
+        run: ./vendor/bin/phpunit --no-coverage
+
+  coverage:
+    name: Code coverage
+    runs-on: [ubuntu-latest]
+    needs: [unit-tests-linux]
+    steps:
       - uses: actions/download-artifact@v3
         with:
-          name: build-data
+          name: coverage-data
           path: ${{ github.workspace }}/build
 
       - name: Codecov
         uses: codecov/codecov-action@v3
-
-      - name: PHP Code Sniffer
-        run: php vendor/bin/phpcs
-
-      - name: Psalm
-        continue-on-error: true
-        run: |
-          php vendor/bin/psalm \
-          -c psalm.xml \
-          --show-info=true \
-          --shepherd \
-          --php-version=${{ steps.setup-php.outputs.php-version }}
-
-      - name: Psalm (testsuite)
-        run: |
-          php vendor/bin/psalm \
-          -c psalm-dev.xml \
-          --show-info=true \
-          --shepherd \
-          --php-version=${{ steps.setup-php.outputs.php-version }}
-
-      - name: Psalter
-        run: |
-          php vendor/bin/psalter \
-          --issues=UnnecessaryVarAnnotation \
-          --dry-run \
-          --php-version=${{ steps.setup-php.outputs.php-version }}
