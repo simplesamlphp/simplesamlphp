@@ -1,0 +1,86 @@
+---
+
+saml-proxy-invalidSession:
+  path: /proxy/invalidSession
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Proxy::invalidSession'
+  }
+
+saml-disco:
+  path: /disco
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Disco::disco'
+  }
+
+saml-sp-discoResponse:
+  path: /sp/discoResponse
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse'
+  }
+
+saml-sp-login:
+  path: /sp/login/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::login'
+  }
+
+saml-sp-wrongAuthnContextClassRef:
+  path: /sp/wrongAuthnContextClassRef
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef'
+  }
+
+saml-sp-assertionConsumerService:
+  path: /sp/saml2-acs.php/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService'
+  }
+
+saml-sp-singleLogoutService:
+  path: /sp/saml2-logout.php/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService'
+  }
+
+saml-sp-metadata:
+  path: /sp/metadata/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata'
+  }
+
+saml-legacy-sp-metadata:
+  path: /sp/metadata.php/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata',
+    path: /saml/sp/metadata, permanent: true
+  }
+
+websso-single-sign-on:
+  path: /idp/singleSignOnService
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::singleSignOnService'
+  }
+
+websso-artifact-resolution:
+  path: /idp/artifactResolutionService
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::artifactResolutionService'
+  }
+
+websso-metadata:
+  path: /idp/metadata
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Metadata::metadata'
+  }
+
+websso-single-logout:
+  path: /idp/singleLogout
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::singleLogout'
+  }
+
+websso-init-single-logout:
+  path: /idp/initSingleLogout
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::initSingleLogout'
+  }
