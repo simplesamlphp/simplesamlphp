@@ -762,11 +762,14 @@ class SAML2
         }
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
 
+        $host = $config->getOptionalString('host', null);
+        $host = $host === '__DEFAULT__' ? null : $host;
+
         // configure endpoints
-        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted');
-        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted');
-        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted');
-        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted');
+        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted', $host);
+        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted', $host);
+        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', $host);
+        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted', $host);
 
         $sso = [];
         if (is_array($ssob)) {

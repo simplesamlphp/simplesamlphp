@@ -198,8 +198,14 @@ class Federation
                 $httpUtils = new Utils\HTTP();
                 $metadataBase = Module::getModuleURL('saml/idp/metadata');
                 if (count($idps) > 1) {
+                    $selfHost = $httpUtils->getSelfHost();
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = $metadataBase . '?idpentityid=' . urlencode($idp['entityid']);
+                        if (isset($idp['host']) && $idp['host'] !== '__DEFAULT__') {
+                            $mdHostBase = str_replace('://' . $selfHost, '://' . $idp['host'], $metadataBase);
+                        } else {
+                            $mdHostBase = $metadataBase;
+                        }
+                        $idp['url'] = $mdHostBase . '?idpentityid=' . urlencode($idp['entityid']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
