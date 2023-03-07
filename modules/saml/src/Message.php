@@ -534,7 +534,7 @@ class Message
     ): LogoutRequest {
         $lr = new LogoutRequest();
         $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityID'));
+        $issuer->setValue($srcMetadata->getString('entityid'));
         $issuer->setFormat(C::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 
