@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Error;
 
-use SAML2\Constants;
+use SimpleSAML\SAML2\Constants as C;
 use Throwable;
 
 /**
@@ -25,6 +25,6 @@ class NoAuthnContext extends \SimpleSAML\Module\saml\Error
      */
     public function __construct(string $responsible, string $message = null, Throwable $cause = null)
     {
-        parent::__construct($responsible, Constants::STATUS_NO_AUTHN_CONTEXT, $message, $cause);
+        parent::__construct($responsible, C::STATUS_NO_AUTHN_CONTEXT, $message, $cause);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -140,7 +140,7 @@ class TargetedID extends Auth\ProcessingFilter
             // Convert the targeted ID to a SAML 2.0 name identifier element
             $nameId = new NameID();
             $nameId->setValue($uid);
-            $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+            $nameId->setFormat(C::NAMEID_PERSISTENT);
 
             if (isset($state['Source']['entityid'])) {
                 $nameId->setNameQualifier($state['Source']['entityid']);

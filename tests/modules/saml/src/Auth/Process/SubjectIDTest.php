@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, Logger, Utils};
@@ -70,12 +70,12 @@ class SubjectIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
         $this->assertMatchesRegularExpression(
             SubjectID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_SUBJECT_ID][0]
+            $attributes[C::ATTR_SUBJECT_ID][0]
         );
-        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[C::ATTR_SUBJECT_ID][0]);
     }
 
 
@@ -90,12 +90,12 @@ class SubjectIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
         $this->assertMatchesRegularExpression(
             SubjectID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_SUBJECT_ID][0]
+            $attributes[C::ATTR_SUBJECT_ID][0]
         );
-        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[C::ATTR_SUBJECT_ID][0]);
     }
 
 
@@ -142,8 +142,8 @@ class SubjectIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_SUBJECT_ID][0];
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
+        $value1 = $attributes[C::ATTR_SUBJECT_ID][0];
 
         // Switch user
         $request['Attributes']['uid'] = ['user2'];
@@ -151,8 +151,8 @@ class SubjectIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_SUBJECT_ID][0];
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
+        $value2 = $attributes[C::ATTR_SUBJECT_ID][0];
 
         $this->assertNotSame($value1, $value2);
     }
@@ -171,8 +171,8 @@ class SubjectIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_SUBJECT_ID][0];
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
+        $value1 = $attributes[C::ATTR_SUBJECT_ID][0];
 
         // Change the scope
         $request['Attributes']['scope'] = ['example.edu'];
@@ -180,8 +180,8 @@ class SubjectIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_SUBJECT_ID][0];
+        $this->assertArrayHasKey(C::ATTR_SUBJECT_ID, $attributes);
+        $value2 = $attributes[C::ATTR_SUBJECT_ID][0];
 
         $this->assertNotSame($value1, $value2);
 

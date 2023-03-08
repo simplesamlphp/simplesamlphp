@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
@@ -121,7 +121,7 @@ class NameIDAttribute extends ProcessingFilter
         Assert::notNull($rep->getValue());
 
         if ($rep->getFormat() === null) {
-            $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
+            $rep->setFormat(C::NAMEID_UNSPECIFIED);
         }
 
         if ($rep->getSPNameQualifier() === null) {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
@@ -341,7 +341,7 @@ class IdP
     private function authenticate(array &$state): void
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
-            throw new NoPassiveException(Constants::STATUS_RESPONDER . ':  Passive authentication not supported.');
+            throw new NoPassiveException(C::STATUS_RESPONDER . ':  Passive authentication not supported.');
         }
 
         $this->authSource->login($state);

@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\EncryptedAssertion;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
@@ -486,11 +486,11 @@ class Message
         $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
 
         $protbind = $spMetadata->getOptionalValueValidate('ProtocolBinding', [
-            Constants::BINDING_HTTP_POST,
-            Constants::BINDING_HOK_SSO,
-            Constants::BINDING_HTTP_ARTIFACT,
-            Constants::BINDING_HTTP_REDIRECT,
-        ], Constants::BINDING_HTTP_POST);
+            C::BINDING_HTTP_POST,
+            C::BINDING_HOK_SSO,
+            C::BINDING_HTTP_ARTIFACT,
+            C::BINDING_HTTP_REDIRECT,
+        ], C::BINDING_HTTP_POST);
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
@@ -507,11 +507,11 @@ class Message
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
             $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
-                Constants::COMPARISON_EXACT,
-                Constants::COMPARISON_MINIMUM,
-                Constants::COMPARISON_MAXIMUM,
-                Constants::COMPARISON_BETTER,
-            ], Constants::COMPARISON_EXACT);
+                C::COMPARISON_EXACT,
+                C::COMPARISON_MINIMUM,
+                C::COMPARISON_MAXIMUM,
+                C::COMPARISON_BETTER,
+            ], C::COMPARISON_EXACT);
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }
 
@@ -535,7 +535,7 @@ class Message
         $lr = new LogoutRequest();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityID'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $issuer->setFormat(C::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
@@ -558,7 +558,7 @@ class Message
         $lr = new LogoutResponse();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $issuer->setFormat(C::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
@@ -699,7 +699,7 @@ class Message
 
         $found = false;
         $lastError = 'No SubjectConfirmation element in Subject.';
-        $validSCMethods = [Constants::CM_BEARER, Constants::CM_HOK, Constants::CM_VOUCHES];
+        $validSCMethods = [C::CM_BEARER, C::CM_HOK, C::CM_VOUCHES];
         foreach ($assertion->getSubjectConfirmation() as $sc) {
             $method = $sc->getMethod();
             if (!in_array($method, $validSCMethods, true)) {
@@ -712,18 +712,18 @@ class Message
             if ($hok === null) {
                 $hok = $spMetadata->getOptionalBoolean('saml20.hok.assertion', false);
             }
-            if ($method === Constants::CM_BEARER && $hok) {
+            if ($method === C::CM_BEARER && $hok) {
                 $lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
                 continue;
             }
-            if ($method === Constants::CM_HOK && !$hok) {
+            if ($method === C::CM_HOK && !$hok) {
                 $lastError = 'Holder-of-Key SubjectConfirmation received, ' .
                     'but the Holder-of-Key profile is not enabled.';
                 continue;
             }
 
             $scd = $sc->getSubjectConfirmationData();
-            if ($method === Constants::CM_HOK) {
+            if ($method === C::CM_HOK) {
                 // check HoK Assertion
                 if ($httpUtils->isHTTPS() === false) {
                     $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';

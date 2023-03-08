@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth;
 
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
@@ -19,7 +19,7 @@ class UserPassBaseTest extends TestCase
     public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
         $state = [
-            'saml:Binding' => Constants::BINDING_PAOS,
+            'saml:Binding' => C::BINDING_PAOS,
         ];
         $attributes = ['attrib' => 'val'];
 
@@ -51,7 +51,7 @@ class UserPassBaseTest extends TestCase
         $this->expectExceptionMessage('WRONGUSERPASS');
 
         $state = [
-            'saml:Binding' => Constants::BINDING_PAOS,
+            'saml:Binding' => C::BINDING_PAOS,
         ];
 
         unset($_SERVER['PHP_AUTH_USER']);
@@ -74,7 +74,7 @@ class UserPassBaseTest extends TestCase
         $this->expectExceptionMessage('WRONGUSERPASS');
 
         $state = [
-            'saml:Binding' => Constants::BINDING_PAOS,
+            'saml:Binding' => C::BINDING_PAOS,
         ];
 
         $_SERVER['PHP_AUTH_USER'] = 'username';
@@ -94,7 +94,7 @@ class UserPassBaseTest extends TestCase
     public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {
         $state = [
-            'saml:Binding' => Constants::BINDING_PAOS,
+            'saml:Binding' => C::BINDING_PAOS,
         ];
         $attributes = [];
 

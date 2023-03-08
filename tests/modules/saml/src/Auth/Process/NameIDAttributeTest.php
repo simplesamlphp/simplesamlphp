@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;
 use SAML2\XML\saml\NameID;
-use SAML2\Constants;
+use SAML2\Constants as C;
 
 /**
  * Test for the saml:NameIDAttribute filter.
@@ -46,7 +46,7 @@ class NameIDAttributeTest extends TestCase
 
         $nameId = new NameID();
         $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setFormat(C::NAMEID_PERSISTENT);
         $nameId->setNameQualifier($idpId);
         $nameId->setSPNameQualifier($spId);
 
@@ -76,7 +76,7 @@ class NameIDAttributeTest extends TestCase
 
         $nameId = new NameID();
         $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setFormat(C::NAMEID_PERSISTENT);
         $nameId->setNameQualifier($idpId);
         $nameId->setSPNameQualifier($spId);
 
@@ -106,7 +106,7 @@ class NameIDAttributeTest extends TestCase
 
         $nameId = new NameID();
         $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setFormat(C::NAMEID_PERSISTENT);
         $nameId->setNameQualifier($idpId);
         $nameId->setSPNameQualifier($spId);
 
@@ -189,7 +189,7 @@ class NameIDAttributeTest extends TestCase
 
         $nameId = new NameID();
         $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setFormat(C::NAMEID_PERSISTENT);
         $nameId->setNameQualifier($idpId);
         $nameId->setSPNameQualifier($spId);
 
@@ -229,7 +229,7 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $this->processFilter([], $request);
-        $this->assertEquals("{$nameId->getFormat()}", Constants::NAMEID_UNSPECIFIED);
+        $this->assertEquals("{$nameId->getFormat()}", C::NAMEID_UNSPECIFIED);
         $this->assertEquals("{$nameId->getNameQualifier()}", $idpId);
         $this->assertEquals("{$nameId->getSPNameQualifier()}", $spId);
     }

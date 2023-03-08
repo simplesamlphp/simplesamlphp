@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\saml\Auth\Source;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\XML\Chunk;
 use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
@@ -200,7 +200,7 @@ class SPTest extends ClearStateTestCase
     public function testNameID(): void
     {
         $state = [
-            'saml:NameID' => ['Value' => 'user@example.org', 'Format' => Constants::NAMEID_UNSPECIFIED]
+            'saml:NameID' => ['Value' => 'user@example.org', 'Format' => C::NAMEID_UNSPECIFIED]
         ];
 
         $ar = $this->createAuthnRequest($state);

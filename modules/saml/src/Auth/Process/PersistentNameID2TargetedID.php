@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
@@ -64,14 +64,14 @@ class PersistentNameID2TargetedID extends ProcessingFilter
      */
     public function process(array &$state): void
     {
-        if (!isset($state['saml:NameID'][Constants::NAMEID_PERSISTENT])) {
+        if (!isset($state['saml:NameID'][C::NAMEID_PERSISTENT])) {
             Logger::warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'
             );
             return;
         }
         /** @var \SAML2\XML\saml\NameID $nameID */
-        $nameID = $state['saml:NameID'][Constants::NAMEID_PERSISTENT];
+        $nameID = $state['saml:NameID'][C::NAMEID_PERSISTENT];
 
         $state['Attributes'][$this->attribute] = [(!$this->nameId) ? $nameID->getValue() : $nameID];
     }
