@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
-use DOMDocument;
 use DOMElement;
 use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use SAML2\DOMDocumentFactory;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\XML\Validator;
@@ -24,8 +24,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testValidatorMissingSignature(): void
     {
-        $doc = new DOMDocument();
-        $doc->loadXML('<?xml version="1.0"?><node>value</node>');
+        $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
         $this->expectException(Exception::class);
         new Validator($doc);
@@ -36,8 +35,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testGetX509Certificate(): void
     {
-        $doc = new DOMDocument();
-        $doc->loadXML('<?xml version="1.0"?><node>value</node>');
+        $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
         /** @psalm-var DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
@@ -64,8 +62,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testIsNodeValidatedSuccess(): void
     {
-        $doc = new DOMDocument();
-        $doc->loadXML('<?xml version="1.0"?><node>value</node>');
+        $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
         /** @psalm-var DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
@@ -92,8 +89,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testIsNodeValidatedFailure(): void
     {
-        $doc = new DOMDocument();
-        $doc->loadXML('<?xml version="1.0"?><parent><node1>value1</node1><node2>value2</node2></parent>');
+        $doc = DOMDocumentFactory::fromString('<parent><node1>value1</node1><node2>value2</node2></parent>');
 
         /** @psalm-var DOMElement $node1 */
         $node1 = $doc->getElementsByTagName('node1')->item(0);
