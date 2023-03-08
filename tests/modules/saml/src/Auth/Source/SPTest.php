@@ -1393,7 +1393,7 @@ class SPTest extends ClearStateTestCase
         $this->assertIsArray($md['keys']);
         $this->assertCount(1, $md['keys']);
         $this->assertEquals('X509Certificate', $md['keys'][0]['type']);
-        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUCJ8EYI', $md['keys'][0]['X509Certificate']);
+        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUZ9QDx+', $md['keys'][0]['X509Certificate']);
         $this->assertTrue($md['keys'][0]['encryption']);
         $this->assertTrue($md['keys'][0]['signing']);
         $this->assertEquals('', $md['keys'][0]['prefix']);
@@ -1423,7 +1423,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('X509Certificate', $md['keys'][0]['type']);
         $this->assertEquals('X509Certificate', $md['keys'][1]['type']);
         $this->assertStringStartsWith('MIICeTCCAeICAQMwDQYJKoZIhv', $md['keys'][0]['X509Certificate']);
-        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUCJ8EYI', $md['keys'][1]['X509Certificate']);
+        $this->assertStringStartsWith('MIICxDCCAi2gAwIBAgIUZ9QDx+', $md['keys'][1]['X509Certificate']);
         $this->assertTrue($md['keys'][0]['encryption']);
         $this->assertTrue($md['keys'][0]['signing']);
         $this->assertFalse($md['keys'][1]['encryption']);
