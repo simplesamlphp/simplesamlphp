@@ -29,9 +29,9 @@ interface LogoutHandlerInterface
      * This function must never return.
      *
      * @param array &$state The logout state.
-     * @param string $assocId The association that started the logout.
+     * @param string|null $assocId The association that started the logout.
      */
-    public function startLogout(array &$state, string $assocId): void;
+    public function startLogout(array &$state, ?string $assocId): void;
 
 
     /**
