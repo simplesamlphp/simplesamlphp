@@ -13,6 +13,7 @@ Released 2023-03-10
 * Fix some issues with logout (#1780, #1785)
 * The `loginpage_links` functionality for authsources was restored and documented (#1770, #1773)
 * Several issues regarding the use of the back-button were fixed (#1720)
+* Fixed IdP-initiated SLO (#1776)
 * Many fixes in documentation
 * Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
 * Fixed UTF-8 encoding for metadata output
