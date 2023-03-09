@@ -1,30 +1,62 @@
+---
+
 admin-main:
-    path:       /
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Config::main' }
+  path: /
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Config::main'
+  }
+
 admin-diagnostics:
-    path:       /diagnostics
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Config::diagnostics' }
+  path: /diagnostics
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Config::diagnostics'
+  }
+
 admin-phpinfo:
-    path:       /phpinfo
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Config::phpinfo' }
+  path: /phpinfo
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Config::phpinfo'
+  }
+
 admin-sandbox:
-    path:       /sandbox
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Sandbox::main' }
+  path: /sandbox
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Sandbox::main'
+  }
+
 admin-test:
-    path:       /test/{as}
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Test::main', as: null }
+  path: /test/{as}
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Test::main',
+    as: null
+  }
+
 core-logout:
-    path:       /logout
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Test::logout' }
+  path: /logout
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Test::logout'
+  }
+
 admin-fed:
-    path:       /federation
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Federation::main' }
+  path: /federation
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Federation::main'
+  }
+
 admin-fed-cert:
-    path:       /federation/cert
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Federation::downloadCert' }
+  path: /federation/cert
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Federation::downloadCert'
+  }
+
 admin-fed-show:
-    path:       /federation/show
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Federation::showRemoteEntity' }
+  path: /federation/show
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Federation::showRemoteEntity'
+  }
+
 admin-fed-converter:
-    path:       /federation/metadata-converter
-    defaults:   { _controller: 'SimpleSAML\Module\admin\Controller\Federation::metadataConverter' }
+  path: /federation/metadata-converter
+  defaults: {
+    _controller: 'SimpleSAML\Module\admin\Controller\Federation::metadataConverter'
+  }
