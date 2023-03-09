@@ -9,7 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released 2023-03-10
 
-* Fix logout completion for SP (#1780)
+* Fix some issues with logout (#1780, #1785)
 * The `loginpage_links` functionality for authsources was restored and documented (#1773)
 * Several issues regarding the use of the back-button were fixed (#1720)
 * Fixed loginpage_links feature in authsources (#1770)
