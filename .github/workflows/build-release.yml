@@ -37,16 +37,16 @@ jobs:
 
       - name: Clean release
         run: |
-          grep export-ignore .gitattributes|cut -d ' ' -f 1 | while IFS= read -r line
+          grep export-ignore .gitattributes | cut -d ' ' -f 1 | while IFS= read -r line
           do
-            rm -rf $line
+            rm -rf "$line"
           done
           rm -rf .git
 
       - name: Build tarball
         run: |
           cd ..
-          mv simplesamlphp "simplesamlphp-${{ github.ref_name }}"
+          cp -R  simplesamlphp "simplesamlphp-${{ github.ref_name }}"
           tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz" \
           "simplesamlphp-${{ github.ref_name }}"
 
