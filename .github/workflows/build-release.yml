@@ -1,0 +1,60 @@
+---
+
+name: Build release
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    name: Build release
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Setup PHP, with composer and extensions
+        id: setup-php
+        # https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: composer:v2
+          extensions: mbstring, xml
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - uses: actions/checkout@v3
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Set version in composer.json
+        run: composer config version "${{ github.ref_name }}"
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Clean release
+        run: |
+          grep export-ignore .gitattributes|cut -d ' ' -f 1 | while IFS= read -r line
+          do
+            rm -rf $line
+          done
+          rm -rf .git
+
+      - name: Build tarball
+        run: |
+          cd ..
+          mv simplesamlphp "simplesamlphp-${{ github.ref_name }}"
+          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz" "simplesamlphp-${{ github.ref_name }}"
+
+      - name: Save tarball
+        uses: actions/upload-artifact@v3
+        with:
+          name: release
+          path: "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz"
+          retention-days: 1
+
+      - name: Calculate SHA checksum
+        run: sha256sum "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz"
