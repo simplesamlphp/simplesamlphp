@@ -437,7 +437,7 @@ class IdP
                 throw new Error\Exception('Unknown logout handler: ' . var_export($logouttype, true));
         }
 
-        /** @var IdP\LogoutHandlerInterface */
+        /** @var \SimpleSAML\IdP\LogoutHandlerInterface */
         return new $handler($this);
     }
 
