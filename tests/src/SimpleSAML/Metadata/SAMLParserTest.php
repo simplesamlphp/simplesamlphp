@@ -219,12 +219,9 @@ XML
     /**
      * @return \DOMDocument
      */
-    public function makeTestDocument(): \DOMDocument
+    public function makeTestDocument(): DOMDocument
     {
-        $doc = new DOMDocument();
-        $doc->loadXML(
-            <<<XML
-<?xml version="1.0"?>
+        $doc = DOMDocumentFactory::fromString(<<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
   <EntityDescriptor entityID="theEntityID">
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>

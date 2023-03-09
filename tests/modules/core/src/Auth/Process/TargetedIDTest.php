@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
@@ -110,7 +110,7 @@ class TargetedIDTest extends TestCase
     public function testNameIdGeneration(): void
     {
         $nameid = new NameID();
-        $nameid->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameid->setFormat(C::NAMEID_PERSISTENT);
         $nameid->setNameQualifier('urn:example:src:id');
         $nameid->setSPNameQualifier('joe');
         $nameid->setValue('joe');

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
@@ -66,7 +66,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
     {
         parent::__construct($config, $reserved);
 
-        $this->format = Constants::NAMEID_PERSISTENT;
+        $this->format = C::NAMEID_PERSISTENT;
 
         if (!isset($config['identifyingAttribute'])) {
             throw new Error\Exception("PersistentNameID: Missing required option 'identifyingAttribute'.");
@@ -181,8 +181,8 @@ class SQLPersistentNameID extends BaseNameIDGenerator
                 'SQLPersistentNameID: Did not find persistent NameID for user, and not allowed to create new NameID.'
             );
             throw new \SimpleSAML\Module\saml\Error(
-                Constants::STATUS_RESPONDER,
-                Constants::STATUS_INVALID_NAMEID_POLICY
+                C::STATUS_RESPONDER,
+                C::STATUS_INVALID_NAMEID_POLICY
             );
         }
 

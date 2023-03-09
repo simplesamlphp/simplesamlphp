@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Auth, Logger};
@@ -121,7 +121,7 @@ class SubjectID extends Auth\ProcessingFilter
         $value = strtolower($userID . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
-        $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
+        $state['Attributes'][C::ATTR_SUBJECT_ID] = [$value];
     }
 
 

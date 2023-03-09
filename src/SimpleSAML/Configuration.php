@@ -6,7 +6,7 @@ namespace SimpleSAML;
 
 use Exception;
 use ParseError;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
@@ -1136,11 +1136,11 @@ class Configuration implements Utils\ClearableState
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
-                return Constants::BINDING_HTTP_REDIRECT;
+                return C::BINDING_HTTP_REDIRECT;
             case 'saml20-sp-remote:AssertionConsumerService':
-                return Constants::BINDING_HTTP_POST;
+                return C::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
-                return Constants::BINDING_SOAP;
+                return C::BINDING_SOAP;
             default:
                 throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }

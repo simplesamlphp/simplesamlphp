@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -217,7 +217,7 @@ abstract class UserPassBase extends Auth\Source
         // doesn't define how the credentials are transferred, but Office 365
         // uses the Authorization header, so we will just use that in lieu of
         // other use cases.
-        if (isset($state['saml:Binding']) && $state['saml:Binding'] === Constants::BINDING_PAOS) {
+        if (isset($state['saml:Binding']) && $state['saml:Binding'] === C::BINDING_PAOS) {
             if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
                 Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
                 // TODO Return a SOAP fault instead of using the current binding?

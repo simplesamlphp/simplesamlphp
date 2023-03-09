@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
 use SAML2\XML\md\ContactPerson;
@@ -135,6 +135,8 @@ class SAMLBuilder
             $xmlUtils->formatDOMElement($xml);
         }
 
+        $xml->ownerDocument->encoding = "utf-8";
+
         return $xml->ownerDocument->saveXML();
     }
 
@@ -197,13 +199,13 @@ class SAMLBuilder
             foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
                 $a = new Attribute();
                 $a->setName($attributeName);
-                $a->setNameFormat(Constants::NAMEFORMAT_UNSPECIFIED);
+                $a->setNameFormat(C::NAMEFORMAT_UNSPECIFIED);
 
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
                     $a->setName($matches[2]);
                     $nameFormat = $matches[1];
-                    if ($nameFormat !== Constants::NAMEFORMAT_UNSPECIFIED) {
+                    if ($nameFormat !== C::NAMEFORMAT_UNSPECIFIED) {
                         $a->setNameFormat($nameFormat);
                     }
                 }
@@ -392,11 +394,7 @@ class SAMLBuilder
                 $t->setResponseLocation($ep['ResponseLocation']);
             }
             if (isset($ep['hoksso:ProtocolBinding'])) {
-                $t->setAttributeNS(
-                    Constants::NS_HOK,
-                    'hoksso:ProtocolBinding',
-                    Constants::BINDING_HTTP_REDIRECT
-                );
+                $t->setAttributeNS(C::NS_HOK, 'hoksso:ProtocolBinding', C::BINDING_HTTP_REDIRECT);
             }
 
             $ret[] = $t;
@@ -440,14 +438,14 @@ class SAMLBuilder
         $attributeconsumer->setServiceName($name);
         $attributeconsumer->setServiceDescription($metadata->getOptionalLocalizedString('description', []));
 
-        $nameFormat = $metadata->getOptionalString('attributes.NameFormat', Constants::NAMEFORMAT_URI);
+        $nameFormat = $metadata->getOptionalString('attributes.NameFormat', C::NAMEFORMAT_URI);
         foreach ($attributes as $friendlyName => $attribute) {
             $t = new RequestedAttribute();
             $t->setName($attribute);
             if (!is_int($friendlyName)) {
                 $t->setFriendlyName($friendlyName);
             }
-            if ($nameFormat !== Constants::NAMEFORMAT_UNSPECIFIED) {
+            if ($nameFormat !== C::NAMEFORMAT_UNSPECIFIED) {
                 $t->setNameFormat($nameFormat);
             }
             if (in_array($attribute, $attributesrequired, true)) {
@@ -492,7 +490,7 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @param string[] $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
      */
-    public function addMetadataSP20(array $metadata, array $protocols = [Constants::NS_SAMLP]): void
+    public function addMetadataSP20(array $metadata, array $protocols = [C::NS_SAMLP]): void
     {
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
@@ -523,7 +521,7 @@ class SAMLBuilder
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
         foreach ($metadata->getOptionalArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
             $endpoints[] = [
-                'Binding'  => Constants::BINDING_HTTP_ARTIFACT,
+                'Binding'  => C::BINDING_HTTP_ARTIFACT,
                 'Location' => $acs,
             ];
         }
@@ -554,7 +552,7 @@ class SAMLBuilder
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new IDPSSODescriptor();
-        $e->setProtocolSupportEnumeration(array_merge($e->getProtocolSupportEnumeration(), [Constants::NS_SAMLP]));
+        $e->setProtocolSupportEnumeration(array_merge($e->getProtocolSupportEnumeration(), [C::NS_SAMLP]));
 
         if ($metadata->hasValue('sign.authnrequest')) {
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('sign.authnrequest'));
@@ -603,7 +601,7 @@ class SAMLBuilder
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new AttributeAuthorityDescriptor();
-        $e->setProtocolSupportEnumeration($metadata->getOptionalArray('protocols', [Constants::NS_SAMLP]));
+        $e->setProtocolSupportEnumeration($metadata->getOptionalArray('protocols', [C::NS_SAMLP]));
 
         $this->addExtensions($metadata, $e);
         $this->addCertificate($e, $metadata);

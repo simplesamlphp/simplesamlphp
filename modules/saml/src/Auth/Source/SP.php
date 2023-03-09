@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 
 use SAML2\AuthnRequest;
 use SAML2\Binding;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoPassiveException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
@@ -74,7 +74,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var string[]
      */
-    private array $protocols = [Constants::NS_SAMLP];
+    private array $protocols = [C::NS_SAMLP];
 
 
     /**
@@ -100,8 +100,8 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::validURI($entityId);
         Assert::maxLength(
             $entityId,
-            Constants::SAML2INT_ENTITYID_MAX_LENGTH,
-            sprintf('The entityID cannot be longer than %d characters.', Constants::SAML2INT_ENTITYID_MAX_LENGTH)
+            C::SAML2INT_ENTITYID_MAX_LENGTH,
+            sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
         );
         Assert::notEq(
             $entityId,
@@ -161,7 +161,7 @@ class SP extends \SimpleSAML\Auth\Source
         if ($this->metadata->hasValue('NameIDPolicy')) {
             $format = $this->metadata->getArray('NameIDPolicy');
             if ($format !== []) {
-                $metadata['NameIDFormat'] = $format['Format'] ?? Constants::NAMEID_TRANSIENT;
+                $metadata['NameIDFormat'] = $format['Format'] ?? C::NAMEID_TRANSIENT;
             }
         }
 
@@ -338,34 +338,34 @@ class SP extends \SimpleSAML\Auth\Source
 
         $endpoints = [];
         $default = [
-            Constants::BINDING_HTTP_POST,
-            Constants::BINDING_HTTP_ARTIFACT,
+            C::BINDING_HTTP_POST,
+            C::BINDING_HTTP_ARTIFACT,
         ];
-        if ($this->metadata->getOptionalString('ProtocolBinding', null) === Constants::BINDING_HOK_SSO) {
-            $default[] = Constants::BINDING_HOK_SSO;
+        if ($this->metadata->getOptionalString('ProtocolBinding', null) === C::BINDING_HOK_SSO) {
+            $default[] = C::BINDING_HOK_SSO;
         }
 
         $bindings = $this->metadata->getOptionalArray('acs.Bindings', $default);
         $index = 0;
         foreach ($bindings as $service) {
             switch ($service) {
-                case Constants::BINDING_HTTP_POST:
+                case C::BINDING_HTTP_POST:
                     $acs = [
-                        'Binding' => Constants::BINDING_HTTP_POST,
+                        'Binding' => C::BINDING_HTTP_POST,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
                     break;
-                case Constants::BINDING_HTTP_ARTIFACT:
+                case C::BINDING_HTTP_ARTIFACT:
                     $acs = [
-                        'Binding' => Constants::BINDING_HTTP_ARTIFACT,
+                        'Binding' => C::BINDING_HTTP_ARTIFACT,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
                     ];
                     break;
-                case Constants::BINDING_HOK_SSO:
+                case C::BINDING_HOK_SSO:
                     $acs = [
-                        'Binding' => Constants::BINDING_HOK_SSO,
+                        'Binding' => C::BINDING_HOK_SSO,
                         'Location' => Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->getAuthId()),
-                        'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
+                        'hoksso:ProtocolBinding' => C::BINDING_HTTP_REDIRECT,
                     ];
                     break;
                 default:
@@ -395,8 +395,8 @@ class SP extends \SimpleSAML\Auth\Source
         $bindings = $this->metadata->getOptionalArray(
             'SingleLogoutServiceBinding',
             [
-                Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_SOAP,
+                C::BINDING_HTTP_REDIRECT,
+                C::BINDING_SOAP,
             ]
         );
         $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
@@ -404,7 +404,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $endpoints = [];
         foreach ($bindings as $binding) {
-            if ($binding == Constants::BINDING_SOAP && !($store instanceof Store\SQLStore)) {
+            if ($binding == C::BINDING_SOAP && !($store instanceof Store\SQLStore)) {
                 // we cannot properly support SOAP logout
                 continue;
             }
@@ -428,7 +428,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
                 $state,
-                new Module\saml\Error\ProxyCountExceeded(Constants::STATUS_RESPONDER)
+                new Module\saml\Error\ProxyCountExceeded(C::STATUS_RESPONDER)
             );
         }
 
@@ -450,16 +450,16 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         if ($accr !== null) {
-            $comp = Constants::COMPARISON_EXACT;
+            $comp = C::COMPARISON_EXACT;
             if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
                 && in_array($state['saml:AuthnContextComparison'], [
-                    Constants::COMPARISON_EXACT,
-                    Constants::COMPARISON_MINIMUM,
-                    Constants::COMPARISON_MAXIMUM,
-                    Constants::COMPARISON_BETTER,
+                    C::COMPARISON_EXACT,
+                    C::COMPARISON_MINIMUM,
+                    C::COMPARISON_MAXIMUM,
+                    C::COMPARISON_BETTER,
                 ], true)
             ) {
                 $comp = $state['saml:AuthnContextComparison'];
@@ -475,10 +475,10 @@ class SP extends \SimpleSAML\Auth\Source
                 && in_array(
                     $state['saml:RequestedAuthnContext']['Comparison'],
                     [
-                        Constants::COMPARISON_EXACT,
-                        Constants::COMPARISON_MINIMUM,
-                        Constants::COMPARISON_MAXIMUM,
-                        Constants::COMPARISON_BETTER,
+                        C::COMPARISON_EXACT,
+                        C::COMPARISON_MINIMUM,
+                        C::COMPARISON_MAXIMUM,
+                        C::COMPARISON_BETTER,
                     ],
                     true
                 )
@@ -600,12 +600,12 @@ class SP extends \SimpleSAML\Auth\Source
         );
 
         // Select appropriate SSO endpoint
-        if ($ar->getProtocolBinding() === Constants::BINDING_HOK_SSO) {
+        if ($ar->getProtocolBinding() === C::BINDING_HOK_SSO) {
             /** @var array $dst */
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
                 [
-                    Constants::BINDING_HOK_SSO
+                    C::BINDING_HOK_SSO
                 ]
             );
         } else {
@@ -613,8 +613,8 @@ class SP extends \SimpleSAML\Auth\Source
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleSignOnService',
                 [
-                    Constants::BINDING_HTTP_REDIRECT,
-                    Constants::BINDING_HTTP_POST,
+                    C::BINDING_HTTP_REDIRECT,
+                    C::BINDING_HTTP_POST,
                 ]
             );
         }
@@ -870,7 +870,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
             throw new NoPassiveException(
-                Constants::STATUS_REQUESTER . ':  Reauthentication required'
+                C::STATUS_REQUESTER . ':  Reauthentication required'
             );
         }
 
@@ -976,8 +976,8 @@ class SP extends \SimpleSAML\Auth\Source
         $endpoint = $idpMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
-                Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST
+                C::BINDING_HTTP_REDIRECT,
+                C::BINDING_HTTP_POST
             ],
             false
         );

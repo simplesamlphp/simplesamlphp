@@ -26,9 +26,9 @@ $metadata['google.com'] = [
     'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     'authproc' => [
       1 => [
-        'saml:AttributeNameID',
+        'class' => 'saml:AttributeNameID',
         'identifyingAttribute' => 'uid',
-        'format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+        'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
       ],
     ],
     'simplesaml.attributes' => false,

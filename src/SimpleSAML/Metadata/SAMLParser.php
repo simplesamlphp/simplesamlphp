@@ -9,7 +9,7 @@ use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\DOMDocumentFactory;
 use SAML2\SignedElementHelper;
 use SAML2\XML\Chunk;
@@ -69,7 +69,7 @@ class SAMLParser
      * @var string[]
      */
     private static array $SAML20Protocols = [
-        Constants::NS_SAMLP,
+        C::NS_SAMLP,
     ];
 
     /**
@@ -945,8 +945,8 @@ class SAMLParser
                             // attribute names that is not URI is prefixed as this: '{nameformat}name'
                             $name = $attrName;
                             if ($attrNameFormat === null) {
-                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attrName;
-                            } elseif ($attrNameFormat !== Constants::NAMEFORMAT_URI) {
+                                $name = '{' . C::NAMEFORMAT_UNSPECIFIED . '}' . $attrName;
+                            } elseif ($attrNameFormat !== C::NAMEFORMAT_URI) {
                                 $name = '{' . $attrNameFormat . '}' . $attrName;
                             }
 
@@ -1077,13 +1077,13 @@ class SAMLParser
             if ($child->getNameFormat() !== null) {
                 $attrformat = $child->getNameFormat();
             } else {
-                $attrformat = Constants::NAMEFORMAT_UNSPECIFIED;
+                $attrformat = C::NAMEFORMAT_UNSPECIFIED;
             }
 
             if ($format === null) {
                 $format = $attrformat;
             } elseif ($format !== $attrformat) {
-                $format = Constants::NAMEFORMAT_UNSPECIFIED;
+                $format = C::NAMEFORMAT_UNSPECIFIED;
             }
         }
 
@@ -1095,7 +1095,7 @@ class SAMLParser
             unset($sp['attributes.required']);
         }
 
-        if ($format !== Constants::NAMEFORMAT_UNSPECIFIED && $format !== null) {
+        if ($format !== C::NAMEFORMAT_UNSPECIFIED && $format !== null) {
             $sp['attributes.NameFormat'] = $format;
         }
     }

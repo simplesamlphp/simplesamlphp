@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Error;
 
-use SAML2\Constants;
+use SAML2\Constants as C;
 use Throwable;
 
 /**
@@ -25,6 +25,6 @@ class NoAvailableIDP extends \SimpleSAML\Module\saml\Error
      */
     public function __construct(string $responsible, string $message = null, Throwable $cause = null)
     {
-        parent::__construct($responsible, Constants::STATUS_NO_AVAILABLE_IDP, $message, $cause);
+        parent::__construct($responsible, C::STATUS_NO_AVAILABLE_IDP, $message, $cause);
     }
 }

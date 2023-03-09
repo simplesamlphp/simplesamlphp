@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -94,7 +94,7 @@ class Proxy
             $this->authState::throwException(
                 $state,
                 new NoAvailableIDP(
-                    Constants::STATUS_RESPONDER,
+                    C::STATUS_RESPONDER,
                     'User refused to reauthenticate with any of the IdPs requested.'
                 )
             );

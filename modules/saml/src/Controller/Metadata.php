@@ -16,10 +16,6 @@ use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use function strpos;
-use function strrpos;
-use function substr;
-
 /**
  * Controller class for the IdP metadata.
  *
@@ -103,14 +99,6 @@ class Metadata
 
             // sign the metadata if enabled
             $metaxml = SSPMetadata\Signer::sign($metaxml, $metaArray, 'SAML 2 IdP');
-
-            // make sure to export only the md:EntityDescriptor
-            $i = strpos($metaxml, '<md:EntityDescriptor');
-            $metaxml = substr($metaxml, $i ? $i : 0);
-
-            // 22 = strlen('</md:EntityDescriptor>')
-            $i = strrpos($metaxml, '</md:EntityDescriptor>');
-            $metaxml = substr($metaxml, 0, $i ? $i + 22 : 0);
 
             $response = new Response();
             $response->setEtag(hash('sha256', $metaxml));
