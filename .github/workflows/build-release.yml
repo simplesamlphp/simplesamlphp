@@ -47,7 +47,8 @@ jobs:
         run: |
           cd ..
           mv simplesamlphp "simplesamlphp-${{ github.ref_name }}"
-          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz" "simplesamlphp-${{ github.ref_name }}"
+          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz" \
+          "simplesamlphp-${{ github.ref_name }}"
 
       - name: Save tarball
         uses: actions/upload-artifact@v3
