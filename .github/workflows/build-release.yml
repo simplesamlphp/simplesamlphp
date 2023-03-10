@@ -27,8 +27,8 @@ jobs:
       # Store the version, stripping any v-prefix
       - name: Write release version
         run: |
-          TAG=${{ github.ref_name }}
-          echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+          TAG="${{ github.ref_name }}"
+          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
 
       - uses: actions/checkout@v3
 
