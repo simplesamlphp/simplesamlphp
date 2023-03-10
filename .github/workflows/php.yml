@@ -70,12 +70,12 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: PHP Code Sniffer
-        run: php vendor/bin/phpcs
+        run: php vendor/simplesamlphp/simplesamlphp-test-framework/tools/phpcs
 
       - name: Psalm
         continue-on-error: true
         run: |
-          php vendor/bin/psalm \
+          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
           -c psalm.xml \
           --show-info=true \
           --shepherd \
@@ -83,7 +83,7 @@ jobs:
 
       - name: Psalm (testsuite)
         run: |
-          php vendor/bin/psalm \
+          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
           -c psalm-dev.xml \
           --show-info=true \
           --shepherd \
@@ -91,7 +91,8 @@ jobs:
 
       - name: Psalter
         run: |
-          php vendor/bin/psalter \
+          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
+          --alter \
           --issues=UnnecessaryVarAnnotation \
           --dry-run \
           --php-version=${{ steps.setup-php.outputs.php-version }}
@@ -185,11 +186,11 @@ jobs:
 
       - name: Run unit tests with coverage
         if: ${{ matrix.php-versions == '8.1' }}
-        run: ./vendor/bin/phpunit
+        run: vendor/bin/phpunit
 
       - name: Run unit tests (no coverage)
         if: ${{ matrix.php-versions != '8.1' }}
-        run: ./vendor/bin/phpunit --no-coverage
+        run: vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
         if: ${{ matrix.php-versions == '8.1' }}
@@ -246,7 +247,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run unit tests
-        run: ./vendor/bin/phpunit --no-coverage
+        run: vendor/bin/phpunit --no-coverage
 
   coverage:
     name: Code coverage

@@ -87,7 +87,7 @@
 
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^1.3.2",
+        "simplesamlphp/simplesamlphp-test-framework": "^1.4.0",
         "simplesamlphp/xml-security": "^1.5.0"
     },
     "suggest": {
