@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release
-          path: "/tmp/simplesamlphp-$VERSION.tar.gz"
+          path: "/tmp/simplesamlphp-${{ env.VERSION }}.tar.gz"
           retention-days: 1
 
       - name: Calculate SHA checksum
