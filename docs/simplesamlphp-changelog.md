@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.2
+
+Released 2023-03-10
+
+* Fixed the broken 2.0.1 release by restoring an accidentally removed file
+
 ## Version 2.0.1
 
 Released 2023-03-10
