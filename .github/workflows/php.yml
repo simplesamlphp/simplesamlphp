@@ -218,7 +218,7 @@ jobs:
           extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
-          coverage: xdebug
+          coverage: none
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
