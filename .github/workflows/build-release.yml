@@ -24,13 +24,19 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
+      # Store the version, stripping any v-prefix
+      - name: Write release version
+        run: |
+          TAG=${{ github.ref_name }}
+          echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+
       - uses: actions/checkout@v3
 
       - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Set version in composer.json
-        run: composer config version "${{ github.ref_name }}"
+        run: composer config version "$VERSION"
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
@@ -46,16 +52,16 @@ jobs:
       - name: Build tarball
         run: |
           cd ..
-          cp -R  simplesamlphp "simplesamlphp-${{ github.ref_name }}"
-          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz" \
-          "simplesamlphp-${{ github.ref_name }}"
+          cp -R  simplesamlphp "simplesamlphp-$VERSION"
+          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION.tar.gz" \
+          "simplesamlphp-$VERSION"
 
       - name: Save tarball
         uses: actions/upload-artifact@v3
         with:
           name: release
-          path: "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz"
+          path: "/tmp/simplesamlphp-$VERSION.tar.gz"
           retention-days: 1
 
       - name: Calculate SHA checksum
-        run: sha256sum "/tmp/simplesamlphp-${{ github.ref_name }}.tar.gz"
+        run: sha256sum "/tmp/simplesamlphp-$VERSION.tar.gz"
