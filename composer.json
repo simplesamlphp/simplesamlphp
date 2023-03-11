@@ -53,8 +53,8 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-pcre": "*",
-        "ext-SPL": "*",
-        "ext-zlib": "*",
+        "ext-spl": "*",
+        "ext-xml": "*",
 
         "composer/composer": "^2.3",
         "gettext/gettext": "^5.6.1",
