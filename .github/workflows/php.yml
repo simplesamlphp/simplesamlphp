@@ -187,15 +187,15 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run unit tests with coverage
-        if: ${{ matrix.php-versions == '8.2' }}
+        if: ${{ matrix.php-versions == '8.1' }}
         run: vendor/bin/phpunit
 
       - name: Run unit tests (no coverage)
-        if: ${{ matrix.php-versions != '8.2' }}
+        if: ${{ matrix.php-versions != '8.1' }}
         run: vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
-        if: ${{ matrix.php-versions == '8.2' }}
+        if: ${{ matrix.php-versions == '8.1' }}
         uses: actions/upload-artifact@v3
         with:
           name: coverage-data
