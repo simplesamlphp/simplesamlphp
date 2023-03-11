@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd97480b73efcc82d870c92a4dd4a675",
+    "content-hash": "00aa4a33e8d5771e80ae4325280c07ea",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1506,12 +1506,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "a0f3ac62b8fb279ec1f310f92a1327aa55c39a85"
+                "reference": "b23e632035512e00926f97406aff178574049eb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/a0f3ac62b8fb279ec1f310f92a1327aa55c39a85",
-                "reference": "a0f3ac62b8fb279ec1f310f92a1327aa55c39a85",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/b23e632035512e00926f97406aff178574049eb6",
+                "reference": "b23e632035512e00926f97406aff178574049eb6",
                 "shasum": ""
             },
             "require": {
@@ -1554,7 +1554,7 @@
                 "issues": "https://github.com/simplesamlphp/assert/issues",
                 "source": "https://github.com/simplesamlphp/assert/tree/v1.0.2"
             },
-            "time": "2023-03-11T17:37:51+00:00"
+            "time": "2023-03-11T20:40:43+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",
@@ -6223,23 +6223,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "565ef81ccd5bbff0e16b489b4f836deded5ea7cd"
+                "reference": "1b3b01b469720547684b8e6dbce454eeb350dc61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/565ef81ccd5bbff0e16b489b4f836deded5ea7cd",
-                "reference": "565ef81ccd5bbff0e16b489b4f836deded5ea7cd",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/1b3b01b469720547684b8e6dbce454eeb350dc61",
+                "reference": "1b3b01b469720547684b8e6dbce454eeb350dc61",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.0",
-                "simplesamlphp/composer-module-installer": "^1.3.2",
-                "simplesamlphp/xml-security": "^1.5.0"
+                "simplesamlphp/assert": "^1.0.2",
+                "simplesamlphp/composer-module-installer": "^1.3.4",
+                "simplesamlphp/xml-security": "^1.6.0"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp": "dev-master",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.3.1"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.4.1"
             },
             "default-branch": true,
             "type": "simplesamlphp-module",
@@ -6267,7 +6267,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2023-03-08T20:53:36+00:00"
+            "time": "2023-03-11T22:01:14+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
@@ -6320,36 +6320,35 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.6.3",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "84c866c74ac41d35a21c3cbd2fb857f761f23304"
+                "reference": "ade79e4cd9e24f1260b338e51d02029807123445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/84c866c74ac41d35a21c3cbd2fb857f761f23304",
-                "reference": "84c866c74ac41d35a21c3cbd2fb857f761f23304",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/ade79e4cd9e24f1260b338e51d02029807123445",
+                "reference": "ade79e4cd9e24f1260b338e51d02029807123445",
                 "shasum": ""
             },
             "require": {
+                "ext-date": "*",
                 "ext-dom": "*",
+                "ext-pcre": "*",
                 "ext-spl": "*",
                 "ext-xml": "*",
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.1"
+                "simplesamlphp/assert": "^1.0.2"
             },
             "require-dev": {
                 "ext-xmlreader": "*",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.3.2"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.4.1"
             },
             "type": "project",
             "autoload": {
                 "psr-4": {
-                    "SimpleSAML\\XML\\": "src/",
-                    "SimpleSAML\\Test\\XML\\": [
-                        "src/PHPUnit/"
-                    ]
+                    "SimpleSAML\\XML\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6376,20 +6375,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2023-03-11T17:08:39+00:00"
+            "time": "2023-03-11T20:42:45+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.5.1",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "567a594c793083ca1db7f30d8fbad947ac0e1717"
+                "reference": "2c10ef320b84a8b90d9c903c67d93f5d51df3a84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/567a594c793083ca1db7f30d8fbad947ac0e1717",
-                "reference": "567a594c793083ca1db7f30d8fbad947ac0e1717",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/2c10ef320b84a8b90d9c903c67d93f5d51df3a84",
+                "reference": "2c10ef320b84a8b90d9c903c67d93f5d51df3a84",
                 "shasum": ""
             },
             "require": {
@@ -6401,8 +6400,8 @@
                 "ext-spl": "*",
                 "ext-xml": "*",
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.1",
-                "simplesamlphp/xml-common": "^1.6.0"
+                "simplesamlphp/assert": "^1.0.2",
+                "simplesamlphp/xml-common": "^1.7.0"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.4.1"
@@ -6410,8 +6409,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SimpleSAML\\XMLSecurity\\": "src",
-                    "SimpleSAML\\XMLSecurity\\TestUtils\\": "tests/TestUtils"
+                    "SimpleSAML\\XMLSecurity\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6440,9 +6438,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.5.1"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.0"
             },
-            "time": "2023-03-11T17:50:06+00:00"
+            "time": "2023-03-11T21:31:58+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

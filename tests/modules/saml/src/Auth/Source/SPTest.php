@@ -31,7 +31,7 @@ use SimpleSAML\Test\Utils\SpTester;
 class SPTest extends ClearStateTestCase
 {
     /** @var string */
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
+    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
     /** @var string */
     public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';

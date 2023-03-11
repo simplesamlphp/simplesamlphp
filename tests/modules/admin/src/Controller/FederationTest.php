@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FederationTest extends TestCase
 {
     /** @var string */
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/tests/resources';
+    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
     /** @var string */
     private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
