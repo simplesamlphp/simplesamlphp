@@ -47,7 +47,9 @@ jobs:
           # Should be the higest supported version, so we can use the newest tools
           php-version: '8.2'
           tools: composer:v2
-          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre, pdo, pdo_sqlite, spl, xml
+          # optional performance gain for psalm: opcache
+          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, \
+            opcache, openssl, pcre, pdo, pdo_sqlite, spl, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
