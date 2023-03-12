@@ -156,7 +156,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre, pdo, pdo_sqlite, spl, xml
+          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre,\
+            pdo, pdo_sqlite, spl, xdebug, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL, pcov.directory=.
           coverage: pcov
@@ -218,7 +219,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, dom, date, hash, intl, json, mbstring, mysql, openssl, pcre, pdo, pdo_sqlite, spl, xml
+          extensions: ctype, dom, date, hash, intl, json, mbstring, mysql, openssl, pcre, \
+            pdo, pdo_sqlite, spl, xdenug, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
           coverage: none
