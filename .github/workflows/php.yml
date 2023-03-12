@@ -199,7 +199,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-data
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/build
 
   unit-tests-windows:
     name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
@@ -256,10 +256,12 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
+      - uses: actions/checkout@v3
+
       - uses: actions/download-artifact@v3
         with:
           name: coverage-data
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/build
 
       - name: Codecov
         uses: codecov/codecov-action@v3
