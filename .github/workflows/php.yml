@@ -158,8 +158,8 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre, pdo, pdo_sqlite, spl, xml
           tools: composer:v2
-          ini-values: error_reporting=E_ALL
-          coverage: xdebug
+          ini-values: error_reporting=E_ALL, pcov.directory=.
+          coverage: pcov
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
