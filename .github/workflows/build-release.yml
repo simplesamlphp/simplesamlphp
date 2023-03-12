@@ -20,6 +20,7 @@ jobs:
           php-version: '8.0'
           tools: composer:v2
           extensions: mbstring, xml
+          coverage: none
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
