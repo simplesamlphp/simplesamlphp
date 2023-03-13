@@ -35,8 +35,8 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Set version in composer.json
-        run: composer config version "$VERSION"
+      - name: Make sure a version is set in composer.json
+        run: composer config version
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
