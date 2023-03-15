@@ -46,9 +46,9 @@ jobs:
         with:
           # Should be the higest supported version, so we can use the newest tools
           php-version: '8.2'
-          tools: composer:v2
+          tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
-          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, \
+          extensions: ctype, date, dom, filter hash, intl, json, mbstring, mysql, \
             opcache, openssl, pcre, pdo, pdo_sqlite, spl, xml
           coverage: none
 
@@ -73,30 +73,33 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+      - name: Check code for hard dependencies missing in composer.json
+        run: composer-require-checker check composer.json
+
+      - name: Check code for unused dependencies in composer.json
+        run: composer-unused
+
       - name: PHP Code Sniffer
-        run: php vendor/simplesamlphp/simplesamlphp-test-framework/tools/phpcs
+        run: phpcs
 
       - name: Psalm
         continue-on-error: true
         run: |
-          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
-          -c psalm.xml \
+          psalm -c psalm.xml \
           --show-info=true \
           --shepherd \
           --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalm (testsuite)
         run: |
-          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
-          -c psalm-dev.xml \
+          psalm -c psalm-dev.xml \
           --show-info=true \
           --shepherd \
           --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalter
         run: |
-          php vendor/simplesamlphp/simplesamlphp-test-framework/tools/psalm \
-          --alter \
+          psalm --alter \
           --issues=UnnecessaryVarAnnotation \
           --dry-run \
           --php-version=${{ steps.setup-php.outputs.php-version }}
@@ -111,8 +114,9 @@ jobs:
         with:
           # Should be the lowest supported version
           php-version: '8.0'
-          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre, pdo, pdo_sqlite, spl, xml
-          tools: composer:v2
+          extensions: ctype, date, dom, hash, filter, intl, json, mbstring, mysql, \
+            openssl, pcre, pdo, pdo_sqlite, spl, xml
+          tools: composer
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -143,7 +147,7 @@ jobs:
         run: composer audit
 
   unit-tests-linux:
-    name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
+    name: "Unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
     needs: [linter, quality, security]
     strategy:
@@ -158,9 +162,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, date, dom, hash, intl, json, mbstring, mysql, openssl, pcre,\
+          extensions: ctype, date, dom, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
             pdo, pdo_sqlite, spl, xdebug, xml
-          tools: composer:v2
+          tools: composer
           ini-values: error_reporting=E_ALL, pcov.directory=.
           coverage: pcov
 
@@ -206,7 +210,7 @@ jobs:
           path: ${{ github.workspace }}/build
 
   unit-tests-windows:
-    name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
+    name: "Unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
     needs: [linter, quality, security]
     strategy:
@@ -221,9 +225,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, dom, date, hash, intl, json, mbstring, mysql, openssl, pcre, \
+          extensions: ctype, dom, date, filter, hash, intl, json, mbstring, mysql, openssl, pcre, \
             pdo, pdo_sqlite, spl, xdenug, xml
-          tools: composer:v2
+          tools: composer
           ini-values: error_reporting=E_ALL
           coverage: none
 
