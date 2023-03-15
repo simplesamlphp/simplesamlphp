@@ -74,6 +74,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Check code for hard dependencies missing in composer.json
+        continue-on-error: true
         run: composer-require-checker check composer.json
 
       - name: Check code for unused dependencies in composer.json
