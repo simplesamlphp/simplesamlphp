@@ -150,12 +150,12 @@ class RedisStoreTest extends TestCase
      */
     public function testRedisSentinelInstance(): void
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'store.type' => 'redis',
             'store.redis.prefix' => 'phpunit_',
             'store.redis.mastergroup' => 'phpunit_mastergroup',
-            'store.redis.sentinels' => array('tcp://sentinel1', 'tcp://sentinel2', 'tcp://sentinel3'),
-        ), '[ARRAY]', 'simplesaml');
+            'store.redis.sentinels' => ['tcp://sentinel1', 'tcp://sentinel2', 'tcp://sentinel3'],
+        ], '[ARRAY]', 'simplesaml');
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
