@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00aa4a33e8d5771e80ae4325280c07ea",
+    "content-hash": "68de8cbf2491f5b80b7611cec2b02220",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -6271,22 +6271,20 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.4.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "2cc6d6d07fb425c30989dbc1241412be02558cac"
+                "reference": "e0f7f1e1232e78e06fafaab1b0108dd92ec49b36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/2cc6d6d07fb425c30989dbc1241412be02558cac",
-                "reference": "2cc6d6d07fb425c30989dbc1241412be02558cac",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/e0f7f1e1232e78e06fafaab1b0108dd92ec49b36",
+                "reference": "e0f7f1e1232e78e06fafaab1b0108dd92ec49b36",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.0",
-                "phpunit/phpunit": "^9.6 || ^10.0",
-                "symfony/phpunit-bridge": "^6.1"
+                "phpunit/phpunit": "^9.6 || ^10.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -6316,7 +6314,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2023-03-10T22:54:36+00:00"
+            "time": "2023-03-15T18:11:14+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
@@ -6441,89 +6439,6 @@
                 "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.0"
             },
             "time": "2023-03-11T21:31:58+00:00"
-        },
-        {
-            "name": "symfony/phpunit-bridge",
-            "version": "v6.2.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "56965fae0b6b8d271015990eff5240ffff02e185"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/56965fae0b6b8d271015990eff5240ffff02e185",
-                "reference": "56965fae0b6b8d271015990eff5240ffff02e185",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3"
-            },
-            "conflict": {
-                "phpunit/phpunit": "<7.5|9.1.2"
-            },
-            "require-dev": {
-                "symfony/deprecation-contracts": "^2.1|^3.0",
-                "symfony/error-handler": "^5.4|^6.0"
-            },
-            "suggest": {
-                "symfony/error-handler": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
-            },
-            "bin": [
-                "bin/simple-phpunit"
-            ],
-            "type": "symfony-bridge",
-            "extra": {
-                "thanks": {
-                    "name": "phpunit/phpunit",
-                    "url": "https://github.com/sebastianbergmann/phpunit"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Bridge\\PhpUnit\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/phpunit-bridge/tree/v6.2.7"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2023-02-16T09:57:23+00:00"
         },
         {
             "name": "theseer/tokenizer",
