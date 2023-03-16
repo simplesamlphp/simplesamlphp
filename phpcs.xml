@@ -21,6 +21,13 @@
     <rule ref="PSR12"/>
     <rule ref="vendor/simplesamlphp/simplesamlphp-test-framework/phpcs-simplesamlphp.xml"/>
 
+    <!-- Require the file to start with a declare(strict_types=1); -->
+    <rule ref="Generic.PHP.RequireStrictTypes">
+      <exclude-pattern>*/attributemap/*</exclude-pattern>
+      <exclude-pattern>*/config/*</exclude-pattern>
+      <exclude-pattern>*/metadata/*</exclude-pattern>
+    </rule>
+
     <!-- Lines can be a little bit longer before they break the build -->
     <rule ref="Generic.Files.LineLength">
         <properties>
