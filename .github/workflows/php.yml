@@ -78,8 +78,7 @@ jobs:
         run: composer-require-checker check --config-file=tools/composer-require-checker.json composer.json
 
       - name: Check code for unused dependencies in composer.json
-        run: composer-unused --excludePackage=simplesamlphp/simplesamlphp-assets-base \
-          --excludePackage=simplesamlphp/simplesamlphp-module-adfs
+        run: composer-unused --excludePackage=simplesamlphp/simplesamlphp-assets-base --excludePackage=simplesamlphp/simplesamlphp-module-adfs
 
       - name: PHP Code Sniffer
         run: phpcs
