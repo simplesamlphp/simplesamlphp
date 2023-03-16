@@ -45,7 +45,6 @@
     },
     "require": {
         "php": "^8.0",
-        "ext-curl": "*",
         "ext-date": "*",
         "ext-dom": "*",
         "ext-fileinfo": "*",
@@ -92,9 +91,6 @@
         "twig/twig": "^3.3.8"
     },
     "require-dev": {
-        "ext-curl": "*",
-        "ext-pdo_sqlite": "*",
-
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.1",
         "simplesamlphp/xml-security": "^1.6.0"
@@ -102,8 +98,7 @@
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
-        "ext-ldap": "Needed if an LDAP backend is used",
-        "ext-memcache": "Needed if a Memcache server is used to store session information",
+        "ext-memcached": "Needed if a Memcached server is used to store session information",
         "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",
         "ext-mysql": "Needed if a MySQL backend is used, either for authentication or to store session information",
         "ext-pgsql": "Needed if a PostgreSQL backend is used, either for authentication or to store session information"
