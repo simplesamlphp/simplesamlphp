@@ -23,11 +23,3 @@ jobs:
           issue-inactive-days: '90'
           pr-inactive-days: '90'
           log-output: true
-          issue-comment: \n
-            This issue has been automatically locked since there has \n
-            not been any recent activity after it was closed.\n
-            Please open a new issue for related bugs.
-          pr-comment: \n
-            This pull request has been automatically locked since there has \n
-            not been any recent activity after it was closed.\n
-            Please open a new issue for related bugs.
