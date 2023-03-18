@@ -48,8 +48,8 @@ jobs:
           php-version: '8.2'
           tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
-          extensions: ctype, date, dom, filter hash, intl, json, mbstring, mysql, \
-            opcache, openssl, pcre, pdo, pdo_sqlite, spl, xml
+          extensions: ctype, date, dom, fileinfo, filter, hash, intl, json, mbstring, mysql, \
+            opcache, openssl, pcre, pdo, pdo_sqlite, posix, spl, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -78,7 +78,7 @@ jobs:
         run: composer-require-checker check --config-file=tools/composer-require-checker.json composer.json
 
       - name: Check code for unused dependencies in composer.json
-        run: composer-unused --excludePackage=simplesamlphp/simplesamlphp-assets-base --excludePackage=simplesamlphp/simplesamlphp-module-adfs
+        run: composer-unused --excludePackage=simplesamlphp/simplesamlphp-assets-base
 
       - name: PHP Code Sniffer
         run: phpcs
@@ -115,8 +115,8 @@ jobs:
         with:
           # Should be the lowest supported version
           php-version: '8.0'
-          extensions: ctype, date, dom, hash, filter, intl, json, mbstring, mysql, \
-            openssl, pcre, pdo, pdo_sqlite, spl, xml
+          extensions: ctype, date, dom, hash, fileinfo, filter, intl, json, mbstring, mysql, \
+            openssl, pcre, pdo, pdo_sqlite, posix, spl, xml
           tools: composer
           coverage: none
 
@@ -163,8 +163,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, date, dom, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
-            pdo, pdo_sqlite, spl, xdebug, xml
+          extensions: ctype, date, dom, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
+            pdo, pdo_sqlite, posix, spl, xdebug, xml
           tools: composer
           ini-values: error_reporting=E_ALL, pcov.directory=.
           coverage: pcov
@@ -226,8 +226,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, dom, date, filter, hash, intl, json, mbstring, mysql, openssl, pcre, \
-            pdo, pdo_sqlite, spl, xdenug, xml
+          extensions: ctype, dom, date, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre, \
+            pdo, pdo_sqlite, posix, spl, xdebug, xml
           tools: composer
           ini-values: error_reporting=E_ALL
           coverage: none
@@ -256,7 +256,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader --ignore-platform-req=ext-posix
 
       - name: Run unit tests
         run: vendor/bin/phpunit --no-coverage
