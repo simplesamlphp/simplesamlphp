@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.3
+
+Released TBD
+
+* Fix exception when translation-file does not exist
+
 ## Version 2.0.2
 
 Released 2023-03-10
