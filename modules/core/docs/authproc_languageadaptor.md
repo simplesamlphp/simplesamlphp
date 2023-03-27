@@ -8,9 +8,9 @@ MACE defines an attribute with preferred language: `preferredLanguage`.
 [Read more about the preferredLanguage attribute defined by MACE](https://tools.ietf.org/html/rfc2798#section-2.7).
 
 The LanguageAdaptor brings these two concepts together.
-If executed early at the IdP it will check if the `preferredLanguage` attribute is among the users attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
-**Notice that** the login page itself is to early to be influenced by the user attributes, because the IdP does not know any user attributes before the user logs in.
-In contrast, the consent module will be presented in the correct language based on user attribute.
+If executed early at the IdP it will check if the `preferredLanguage` attribute is among the user's attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
+**Note:** the login page itself is too early to be influenced by the user attributes, because the IdP does not know any user attributes before the user logs in.
+In contrast, the consent module will be presented in the correct language based on the user attribute.
 
 The LanguageAdaptor also works the other way around.
 If the user does not have the `preferredLanguage` attribute, the user interface for the user will be set to the default for the installation.
