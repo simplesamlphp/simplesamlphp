@@ -15,7 +15,7 @@ cd /var
 Then do a git clone:
 
 ```bash
-git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+git clone https://github.com/simplesamlphp/simplesamlphp.git simplesamlphp
 ```
 
 Initialize configuration and metadata:
