@@ -7,11 +7,23 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.3
 
-Released TBD
+Released 2023-03-29
 
 * Fix exception when translation-file does not exist
 * Correct host in generated URLS for IdPs with 'host' config in admin/federation (#1774, #1781)
 * Restore dev-autoloader (#1795)
+
+`authyubikey`
+
+* The module wasn't fully compatible with SSP 2.0 yet (v2.0.1)
+
+`cas`
+
+* Fixed a broken controller (simplesamlphp/simplesamlphp-module-cas#6) (v1.1.2)
+
+`saml2debug`
+
+* Fixed a broken controller (simplesamlphp/simplesamlphp-module-saml2debug#4) (v1.0.5)
 
 ## Version 2.0.2
 
