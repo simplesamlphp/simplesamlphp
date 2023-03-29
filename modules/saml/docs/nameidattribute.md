@@ -15,6 +15,7 @@ Parameters
     The default is `%I!%S!%V`.
 
 The format string accepts the following replacements:
+
 * `%I`: The IdP that issued the NameID.
    This will be the `NameQualifier` element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
 * `%S`: The SP the NameID was issued to.
