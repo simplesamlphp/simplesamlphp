@@ -11,6 +11,7 @@ Released TBD
 
 * Fix exception when translation-file does not exist
 * Correct host in generated URLS for IdPs with 'host' config in admin/federation (#1774, #1781)
+* Restore dev-autoloader (#1795)
 
 ## Version 2.0.2
 
