@@ -16,7 +16,9 @@ repository](simplesamlphp-install-repo).
 * A web server capable of executing PHP scripts.
 * PHP version >= 7.2.0.
 * Support for the following PHP extensions:
-  * Always required: `date`, `dom`, `hash`, `intl`, `json`, `libxml`, `mbstring`, `openssl`, `pcre`, `SPL`, `zlib`
+  * Always required: `date`, `dom`, `fileinfo`, `filter`, `hash`, `intl`, `json`, `libxml`, `mbstring`, `openssl`,
+                     `pcre`, `session`, `simplexml`, `SPL` and `zlib`
+  * When running on Linux: `posix`
   * When automatically checking for latest versions, and used by some modules: `cURL`
   * When authenticating against an LDAP server: `ldap`
   * When authenticating against a RADIUS server: `radius`
