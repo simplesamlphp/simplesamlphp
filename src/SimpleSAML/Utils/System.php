@@ -95,11 +95,11 @@ class System
                 );
             }
         } elseif (!is_writable($tempDir)) {
-            throw new Error\Exception(
-                'Temporary directory "' . $tempDir .
-                '" cannot be written to by the current user' .
-                (function_exists('posix_getuid') ? ' "' . posix_getuid() . '"' : '')
-            );
+            throw new Error\Exception(sprintf(
+                'Temporary directory "%s" cannot be written to by the current user "%s".',
+                $tempDir,
+                get_current_user(),
+            ));
         }
 
         return $tempDir;
