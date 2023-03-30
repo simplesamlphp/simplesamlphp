@@ -54,7 +54,6 @@
         "ext-libxml": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
-        "ext-posix": "*",
         "ext-pcre": "*",
         "ext-session": "*",
         "ext-simplexml": "*",
