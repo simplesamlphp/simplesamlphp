@@ -156,7 +156,6 @@ include your Google Workspace domain name instead of `g.feide.no`.
 for an e-mail address at GW `student@g.feide.no`, sending an attribute with the
 value `student`.)
 
-
 ## Configure Google Workspace
 
 Start by logging in to our Google Workspace for education account panel.
