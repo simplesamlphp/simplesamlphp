@@ -1,13 +1,6 @@
-# Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
+# Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace for Education
 
 [TOC]
-
-## SimpleSAMLphp news and documentation
-
-This document is part of the SimpleSAMLphp documentation suite.
-
-* [List of all SimpleSAMLphp documentation](https://simplesamlphp.org/docs)
-* [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 ## Introduction
 
@@ -139,10 +132,8 @@ In the `saml20-sp-remote.php` file we will configure an entry for Google Workspa
 
 ```php
 /*
- * This example shows an example config that works with Google Workspace (G Suite / Google Apps) for education.
- * What is important is that you have an attribute in your IdP that maps to the local part of the email address
- * at Google Workspace. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
- * must properly configure the saml:AttributeNameID authproc-filter with the name of an attribute that for this user has the value of 'john'.
+ * This example shows an example config that works with Google Workspace for education.
+ * You send the email address that identifies the user from your IdP in the SAML Name ID.
  */
 $metadata['https://www.google.com/a/g.feide.no'] => [
     'AssertionConsumerService' => 'https://www.google.com/a/g.feide.no/acs',
@@ -151,21 +142,20 @@ $metadata['https://www.google.com/a/g.feide.no'] => [
     'authproc' => [
         1 => [
           'saml:AttributeNameID',
-          'identifyingAttribute' => 'uid',
+          'identifyingAttribute' => 'mail',
           'format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ],
     ],
 ];
 ```
 
-You must also map some attributes received from the authentication module into email field sent to Google Workspace. In this example, the  `uid` attribute is set.  When you later configure the IdP to connect to a LDAP directory or some other authentication source, make sure that the `uid` attribute is set properly, or you can configure another attribute to use here. The `uid` attribute contains the local part of the user name.
+You should modify the entityID above and the `AssertionConsumerService` to
+include your Google Workspace domain name instead of `g.feide.no`.
 
-For an e-mail address `student@g.feide.no`, the `uid` should be set to `student`.
+(It is also possible to send only the local part of the email address to Google. E.g.
+for an e-mail address at GW `student@g.feide.no`, sending an attribute with the
+value `student`.)
 
-You should modify the `AssertionConsumerService` to include your G Suite domain name instead of `g.feide.no`.
-
-For an explanation of the parameters, see the
-[SimpleSAMLphp Identity Provider QuickStart](simplesamlphp-idp).
 
 ## Configure Google Workspace
 
@@ -209,21 +199,17 @@ Figure 4. **Fill out the remaining fields**
 
 ![Fill out the remaining fields](resources/simplesamlphp-googleapps/googleapps-ssoconfig.png)
 
-### Add a user in G Suite that is known to the IdP
+### Add a user in Google Workspace that is known to the IdP
 
-Before we can test login, a new user must be defined in Google Workspace. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
+Before we can test login, a new user must be defined in Google Workspace. This user must have a mail field matching the email from the attribute as described above in the metadata section.
 
 ## Test to login to G Suite for education
 
 Go to the URL of your mail account for this domain, the URL is similar to the following:
 
-`http://mail.google.com/a/yourgoogleappsdomain.com`
+`http://mail.google.com/a/yourgoogleworkspacedomain.com`
 
 replacing the last part with your own Google Workspace domain name.
-
-## Security Considerations
-
-Make sure that your IdP server runs HTTPS (TLS). The Apache documentation contains information for how to configure HTTPS.
 
 ## Support
 
