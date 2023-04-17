@@ -7,11 +7,12 @@ require_once(__DIR__ . '/../../config.php');
 global $CFG;
 
 $storeType = $CFG->cachedriver;
+$memcacheStore = [];
+$redisHost = null;
+$redisPort = null;
+
 if ($storeType == 'memcached') {
     $storeType = 'memcache'; // simplesaml spells it differently to moodle
-    $memcacheStore = [
-        ['hostname' => 'localhost'],
-    ];
     if (!empty($CFG->session_memcached_save_path)) {
         $memcached = explode(':', $CFG->session_memcached_save_path);
         $memcacheStore = [
