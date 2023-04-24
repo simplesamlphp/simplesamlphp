@@ -397,8 +397,8 @@ class Config
         }
 
         if ($this->config->getOptionalBoolean('metadata.sign.enable', false) !== false) {
-            $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
-            $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
+            $private = $cryptoUtils->loadPrivateKey($this->config, true, 'metadata.sign.');
+            $public = $cryptoUtils->loadPublicKey($this->config, true, 'metadata.sign.');
             $matrix[] = [
                 'required' => 'required',
                 'descr' => Translate::noop('Matching key-pair for signing metadata'),
