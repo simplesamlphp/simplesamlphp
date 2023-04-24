@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
 // Check that the memcache library is enabled
 if (!class_exists('Memcache') && !class_exists('Memcached')) {
     echo "Error: the memcached (or memcache) PHP extension appears to be unavailable.\n";

@@ -6,6 +6,8 @@
  * translation file for each supported language.
  */
 
+declare(strict_types=1);
+
 $base = __DIR__ . '/../';
 
 include_once($base . 'vendor/autoload.php');
