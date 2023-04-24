@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Error;
 use SimpleSAML\Utils;
 
 /**
@@ -89,7 +90,7 @@ class ConfigTest extends TestCase
         $invalidDir = __DIR__ . '/e9826ad19cbc4f5bf20c0913ffcd2ce6';
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . $invalidDir);
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(Error\CriticalConfigurationError::class);
         $this->expectExceptionMessage(
             'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a directory.  ' .
             'Given: "' . $invalidDir . '"'
