@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Source;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error\Exception;
+use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
@@ -36,9 +36,9 @@ class SourceIPSelector extends AbstractSourceSelector
     public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\SourceIPSelector.SourceId';
 
     /**
-     * @param string  The default authentication source to use when none of the zones match
+     * @param string|null  The default authentication source to use when none of the zones match
      */
-    protected string $defaultSource;
+    protected ?string $defaultSource;
 
     /**
      * @param array  An array of zones. Each zone requires two keys;
@@ -61,7 +61,7 @@ class SourceIPSelector extends AbstractSourceSelector
 
         Assert::keyExists($config, 'zones');
         Assert::keyExists($config['zones'], 'default');
-        Assert::stringNotEmpty($config['zones']['default']);
+        Assert::nullOrStringNotEmpty($config['zones']['default']);
         $this->defaultSource = $config['zones']['default'];
 
         unset($config['zones']['default']);
@@ -69,9 +69,13 @@ class SourceIPSelector extends AbstractSourceSelector
 
         foreach ($zones as $key => $zone) {
             if (!array_key_exists('source', $zone)) {
-                throw new Exception(sprintf("Incomplete zone-configuration '%s' due to missing `source` key.", $key));
+                throw new Error\Exception(
+                    sprintf("Incomplete zone-configuration '%s' due to missing `source` key.", $key)
+                );
             } elseif (!array_key_exists('subnet', $zone)) {
-                throw new Exception(sprintf("Incomplete zone-configuration '%s' due to missing `subnet` key.", $key));
+                throw new Error\Exception(
+                    sprintf("Incomplete zone-configuration '%s' due to missing `subnet` key.", $key)
+                );
             } else {
                 $this->zones[$key] = $zone;
             }
@@ -101,7 +105,6 @@ class SourceIPSelector extends AbstractSourceSelector
                         $ip
                     ));
                     $source = $zone['source'];
-                    $state['sourceIPSelector:zone'] = $name;
                     break;
                 }
             }
@@ -109,7 +112,10 @@ class SourceIPSelector extends AbstractSourceSelector
 
         if ($source === $this->defaultSource) {
             Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
-            $state['sourceIPSelector:zone'] = 'default';
+        }
+
+        if ($source === null) {
+            throw new Error\NotFound();
         }
 
         return $source;
