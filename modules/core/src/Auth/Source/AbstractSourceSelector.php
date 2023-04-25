@@ -64,6 +64,7 @@ abstract class AbstractSourceSelector extends Auth\Source
             throw new Exception('Invalid authentication source: ' . $source);
         }
 
+        $state['sourceSelector:selected'] = $source;
         static::doAuthentication($as, $state);
     }
 

@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.4
+
+Released TBD
+
+* The source that was selected by the SourceSelector is now available in the state.
+
 ## Version 2.0.3
 
 Released 2023-03-29
