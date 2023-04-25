@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * The source that was selected by the SourceSelector is now available in the state.
+* The zone that was selected by the SourceIPSelector is now available in the state.
 
 ## Version 2.0.3
 
