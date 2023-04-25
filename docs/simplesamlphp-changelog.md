@@ -11,6 +11,8 @@ Released TBD
 
 * The source that was selected by the SourceSelector is now available in the state.
 * The zone that was selected by the SourceIPSelector is now available in the state.
+* The defaultSource for the SourceIPSelector can now be set to `null`. If none of the zones
+  are matched, a NotFound exception will be thrown.
 
 ## Version 2.0.3
 

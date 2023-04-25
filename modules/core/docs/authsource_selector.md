@@ -16,8 +16,9 @@ Authentication Source to use, based on whatever logic is necessary.
 The SourceIPSelector is an implementation of the `AbstractSourceSelector` that
 uses the client IP to decide what Authentication Source is called.
 It works by defining zones with corresponding IP-ranges and Authentication
-Sources. The 'default' zone is required and acts as a fallback when none
-of the zones match a client's IP-address.
+Sources. The 'default' zone is optional and acts as a fallback when none
+of the zones match a client's IP-address. When set to `null` a NotFound-
+exception will be thrown.
 
 An example configuration would look like this:
 
