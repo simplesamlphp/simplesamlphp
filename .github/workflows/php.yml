@@ -45,7 +45,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-          tools: composer:v2
+          tools: composer, phpcs, psalm
           extensions: mbstring, xml
 
       - name: Setup problem matchers for PHP
@@ -70,12 +70,12 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: PHP Code Sniffer
-        run: php vendor/bin/phpcs
+        run: phpcs
 
       - name: Psalm
         continue-on-error: true
         run: |
-          php vendor/bin/psalm \
+          psalm \
           -c psalm.xml \
           --show-info=true \
           --shepherd \
@@ -83,7 +83,7 @@ jobs:
 
       - name: Psalm (testsuite)
         run: |
-          php vendor/bin/psalm \
+          psalm \
           -c psalm-dev.xml \
           --show-info=true \
           --shepherd \
@@ -91,7 +91,7 @@ jobs:
 
       - name: Psalter
         run: |
-          php vendor/bin/psalter \
+          psalm --alter \
           --issues=UnnecessaryVarAnnotation \
           --dry-run \
           --php-version=${{ steps.setup-php.outputs.php-version }}
