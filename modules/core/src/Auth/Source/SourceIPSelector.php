@@ -101,6 +101,7 @@ class SourceIPSelector extends AbstractSourceSelector
                         $ip
                     ));
                     $source = $zone['source'];
+                    $state['sourceIPSelector:zone'] = $name;
                     break;
                 }
             }
@@ -108,6 +109,7 @@ class SourceIPSelector extends AbstractSourceSelector
 
         if ($source === $this->defaultSource) {
             Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
+            $state['sourceIPSelector:zone'] = 'default';
         }
 
         return $source;
