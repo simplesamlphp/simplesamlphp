@@ -36,6 +36,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
      */
     public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.SourceId';
 
+
     /**
      * @var string  The default authentication source to use when no RequestedAuthnContext is passed
      * @psalm-suppress PropertyNotSetInConstructor
@@ -43,17 +44,18 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
     protected string $defaultSource;
 
     /**
-     * @var array<int, array>  An array of AuthnContexts, indexed by its weight (higher = better).
+     * @var array<int, array>  An array of AuthnContexts, indexed by a numeric key.
      *   Each entry is in the format of:
-     *   `weight` => [`identifier` => 'identifier', `source` => 'source']
+     *   `loa` => [`identifier` => 'identifier', `source` => 'source']
      *
      *   i.e.:
      *
-     *   '10' => [
+     *   10 => [
      *       'identifier' => 'urn:x-simplesamlphp:loa1',
      *       'source' => 'exampleauth',
      *   ],
-     *   '20' => [
+     *
+     *   20 => [
      *       'identifier' => 'urn:x-simplesamlphp:loa2',
      *       'source' => 'exampleauth-mfa',
      *   ]
@@ -74,19 +76,25 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
 
         Assert::keyExists($config, 'contexts');
         Assert::keyExists($config['contexts'], 'default');
-        Assert::stringNotEmpty($config['contexts']['default']);
-        $this->defaultSource = $config['contexts']['default'];
-        unset($config['contexts']['default']);
+
+        if (!is_array($config['contexts']['default'])) {
+            Assert::stringNotEmpty($config['contexts']['default']);
+            $this->defaultSource = $config['contexts']['default'];
+            unset($config['contexts']['default']);
+        }
 
         foreach ($config['contexts'] as $key => $context) {
-            Assert::natural($key);
+            ($key !== 'default') && Assert::natural($key);
+
             if (!array_key_exists('identifier', $context)) {
                 throw new Exception(sprintf("Incomplete context '%d' due to missing `identifier` key.", $key));
             } elseif (!array_key_exists('source', $context)) {
                 throw new Exception(sprintf("Incomplete context '%d' due to missing `source` key.", $key));
-            } else {
-                $this->contexts[$key] = $context;
             }
+
+            Assert::stringNotEmpty($context['identifier']);
+            Assert::stringNotEmpty($context['source']);
+            $this->contexts[$key] = $context;
         }
     }
 
@@ -104,6 +112,12 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
             Logger::info(
                 "core:RequestedAuthnContextSelector:  no RequestedAuthnContext provided; selecting default authsource"
             );
+
+            if (array_key_exists('default', $this->contexts)) {
+                $state['saml:AuthnContextClassRef'] = $this->contexts['default']['identifier'];
+                return $this->contexts['default']['source'];
+            }
+
             return $this->defaultSource;
         }
 

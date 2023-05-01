@@ -13,6 +13,7 @@ Released TBD
 * The zone that was selected by the SourceIPSelector is now available in the state.
 * The defaultSource for the SourceIPSelector can now be set to `null`. If none of the zones
   are matched, a NotFound exception will be thrown.
+* It is now possible to set a default AuthnContext in the RequestedAuthnContextSelector.
 
 ## Version 2.0.3
 

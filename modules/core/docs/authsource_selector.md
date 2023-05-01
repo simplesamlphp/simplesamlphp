@@ -53,7 +53,7 @@ An example configuration would look like this:
 The RequestedAuthnContextSelector is an implementation of the `AbstractSourceSelector` that
 uses the RequestedAuthnContext to decide what Authentication Source is called.
 It works by defining AuthnContexts with their corresponding Authentication
-Sources. The 'default' will be used as a fallback when no RequestedAuthnContext
+Sources. The 'default' key will be used as a default when no RequestedAuthnContext
 is passed in the request.
 
 An example configuration would look like this:
@@ -63,17 +63,20 @@ An example configuration would look like this:
         'core:RequestedAuthnContextSelector',
 
         'contexts' => [
-            'userpass' => [
+            10 => [
                 'identifier' => 'urn:x-simplesamlphp:loa1',
                 'source' => 'ldap',
             ],
 
-            'mfa' => [
+            20 => [
                 'identifier' => 'urn:x-simplesamlphp:loa2',
                 'source' => 'radius',
             ],
 
-            'default' => 'ldap',
+            'default' => [
+                'identifier' => 'urn:x-simplesamlphp:loa0',
+                'source' => 'sql',
+            ],
         ],
     ],
 ```
