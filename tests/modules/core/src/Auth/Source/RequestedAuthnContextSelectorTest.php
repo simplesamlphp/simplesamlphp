@@ -163,6 +163,62 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
+     * Array-syntax
+     */
+    public function testArraySyntaxWorks(): void
+    {
+        $sourceConfig = Configuration::loadFromArray([
+            'selector' => [
+                'core:RequestedAuthnContextSelector',
+
+                'contexts' => [
+                    20 => [
+                        'identifier' => 'urn:x-simplesamlphp:loa2',
+                        'source' => 'loa2',
+                    ],
+                    'default' => [
+                        'identifier' => 'urn:x-simplesamlphp:loa1',
+                        'source' => 'loa1',
+                    ],
+                ],
+            ],
+
+            'loa1' => [
+                'core:AdminPassword',
+            ],
+        ]);
+
+        Configuration::setPreLoadedConfig($sourceConfig, 'authsources.php');
+
+        $info = ['AuthId' => 'selector'];
+        $config = $sourceConfig->getArray('selector');
+
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array $state): void
+            {
+                // Dummy
+            }
+        };
+
+        $state = [
+            'saml:RequestedAuthnContext' => [
+                'AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1'],
+                'Comparison' => 'exact',
+            ],
+        ];
+
+        $selector->authenticate($state);
+        $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
+        $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
+    }
+
+
+    /**
      * Missing source
      */
     public function testIncompleteConfigurationThrowsExceptionVariant1(): void
