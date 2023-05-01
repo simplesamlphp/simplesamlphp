@@ -679,7 +679,7 @@ class Template extends Response
      * can be a string, array or other type allowed in metadata, if not found it
      * returns null.
      */
-    public function getEntityPropertyTranslation(string $property, array $data)
+    public function getEntityPropertyTranslation(string $property, array $data): array|string|null
     {
         $tryLanguages = $this->translator->getLanguage()->getPreferredLanguages();
 
