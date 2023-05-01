@@ -678,6 +678,8 @@ class Template extends Response
      * language and fallback language; it will return the property value (which
      * can be a string, array or other type allowed in metadata, if not found it
      * returns null.
+     *
+     * @psalm-return string|array|null
      */
     public function getEntityPropertyTranslation(string $property, array $data)
     {
