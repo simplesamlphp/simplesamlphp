@@ -110,12 +110,12 @@ class SourceIPSelector extends AbstractSourceSelector
             }
         }
 
-        if ($source === $this->defaultSource) {
-            Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
-        }
-
         if ($source === null) {
             throw new Error\NotFound();
+        }
+
+        if ($source === $this->defaultSource) {
+            Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
         }
 
         return $source;
