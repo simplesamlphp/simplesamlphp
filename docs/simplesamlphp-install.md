@@ -14,7 +14,7 @@ repository](simplesamlphp-install-repo).
 ## Prerequisites
 
 * A web server capable of executing PHP scripts.
-* PHP version >= 7.2.0.
+* PHP version >= 8.0.0.
 * Support for the following PHP extensions:
   * Always required: `date`, `dom`, `fileinfo`, `filter`, `hash`, `intl`, `json`, `libxml`, `mbstring`, `openssl`,
                      `pcre`, `session`, `simplexml`, `SPL` and `zlib`
@@ -396,7 +396,7 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
    just created in your `public_html` directory. For example, if your home directory is reachable in
    `https://host.example/~myaccount/`, set the base URL path accordingly:
 
-   ```bash
+   ```php
    'baseurlpath' => 'https://host.example/~myaccount/simplesaml/',
    ```
 
