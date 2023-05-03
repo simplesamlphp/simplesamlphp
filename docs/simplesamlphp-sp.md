@@ -129,7 +129,7 @@ After you click the link for that authentication source, you will be redirected 
 After entering your credentials, you should be redirected back to the test page.
 The test page should contain a list of your attributes:
 
-![Screenshot of the status page after a user has succesfully authenticated](resources/simplesamlphp-sp/screenshot-example.png)
+![Screenshot of the status page after a user has successfully authenticated](resources/simplesamlphp-sp/screenshot-example.png)
 
 For a better looking, more advanced Discovery Service with tabs and live search, you may want to use the `discopower` module
 contained in the SimpleSAMLphp distribution.
