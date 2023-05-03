@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.19.9
+
+Released TBD
+
+* Fixed several deprecation warnings (#1790)
+
 ## Version 1.19.8
 
 Released 2-3-2023
