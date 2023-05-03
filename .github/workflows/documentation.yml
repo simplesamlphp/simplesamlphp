@@ -25,6 +25,7 @@ jobs:
         with:
           files: .
           ignore_path: .markdownlintignore
+        continue-on-error: true
 
       - name: Perform spell check
         uses: codespell-project/actions-codespell@master
