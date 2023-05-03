@@ -236,13 +236,13 @@ There are a few steps that you should complete in the main configuration file, `
 tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
 ```
 
-  Here is an example of the configuration option:
+Here is an example of the configuration option:
 
 ```php
 'secretsalt' => 'randombytesinsertedhere',
 ```
 
-  **Please note that changing the secret salt may break access to services for your users**.
+**Please note that changing the secret salt may break access to services for your users**.
 
 * Configure your data storage. You can do this by editing the `store.type` configuration option, and setting it to
   one of the supported values. Now configure the backend of your choice with the relevant options, if needed.
@@ -273,7 +273,7 @@ tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1
 'timezone' => 'Europe/Oslo',
 ```
 
-  You can see [a list of Supported Timezones at php.net](http://php.net/manual/en/timezones.php).
+You can see [a list of Supported Timezones at php.net](http://php.net/manual/en/timezones.php).
 
 ## Configuring PHP
 
