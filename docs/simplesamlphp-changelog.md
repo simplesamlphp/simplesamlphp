@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Fixed several deprecation warnings (#1790)
+* Resolved security vulnerability in Webpack dev-dependency (CVE-2023-28154)
 
 ## Version 1.19.8
 
