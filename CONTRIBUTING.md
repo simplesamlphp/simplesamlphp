@@ -1,4 +1,5 @@
 # Contribution guidelines
+
 **SimpleSAMLphp welcomes all contributions**. It is impossible to make a product like this without the efforts of many people, so please don't be shy and share your help with us. Even the tiniest contribution can make a difference!
 
 These guidelines briefly explain how to contribute to SimpleSAMLphp effectively and consistently, making sure to keep high quality standards and making it easier for you to contribute.
@@ -6,6 +7,7 @@ These guidelines briefly explain how to contribute to SimpleSAMLphp effectively 
 <!-- {{TOC}} -->
 
 ## Team members
+
 Currently, the core team members are:
 
 * Jaime Pérez Crespo, *maintainer and main developer*, UNINETT <jaime.perez@uninett.no>
@@ -22,6 +24,7 @@ We have been lucky enough to have so many people help us through the years. Simp
 ***Big thanks to you all!***
 
 ## First things first
+
 Before embarking yourself in a contribution, please make sure you are familiar with the way SimpleSAMLphp is written, the way it works, and what is required or not.
 
 * Make sure to read [the documentation](https://simplesamlphp.org/docs/stable/). If you use the search engine in the website, please verify that you are reading the latest stable version. If you want to make a change, check [the development branch of the documentation](https://simplesamlphp.org/docs/development/).
@@ -30,26 +33,30 @@ Before embarking yourself in a contribution, please make sure you are familiar w
 * If you think you have discovered a bug, please check the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to verify it hasn't been reported already.
 
 ## Contributing code
+
 New features are always welcome, provided they will be useful to someone apart from yourself. Please take a look at the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) to see what people are asking for. Our [roadmap](https://simplesamlphp.org/releaseplan) might also be a good place to start if you do not know exactly how you can contribute.
 
 When submitting a pull request, please make sure to account for:
 
 ### Coding standards
+
 * Respect the coding standards. We try to comply with PHP's [PSR-12](http://www.php-fig.org/psr/psr-12/). Pay special attention to the rules below:
-    * Lines should not be longer than 80 characters.
-    * Use **4 spaces** instead of tabs.
-    * Keep the keywords in **lowercase**, including `true`, `false` and `null`.
-    * Make sure your classes work with *autoloading*.
-    * Never include a trailing `?>` in your files.
-    * The first line of every file must be `<?php`.
-    * Use namespaces if you are adding new files.
+  * Lines should not be longer than 80 characters.
+  * Use **4 spaces** instead of tabs.
+  * Keep the keywords in **lowercase**, including `true`, `false` and `null`.
+  * Make sure your classes work with *autoloading*.
+  * Never include a trailing `?>` in your files.
+  * The first line of every file must be `<?php`.
+  * Use namespaces if you are adding new files.
+
 * Do not include too many changes in every commit. Commits should be focused and address one single problem or feature. By having **multiple, small commits** instead of fewer large ones, it is easier to track what you are doing, revert changes in case of an error and help you make changes if needed.
 * Try to write clean **commit messages**, largely based on the [seven rules](http://chris.beams.io/posts/git-commit/):
-    * Write a **short** subject line, followed by a blank line and a longer explanation.
-    * Prefix the subject line with the component(s) changed, e.g. "docs: Update foo", or "SAML: Don't log bar twice", or "tests: Add tests for quux".
-    * Explain **what and why** in the commit message, not just _how_. Things that seem obvious now might become quite confusing when rediscovered years later.
+  * Write a **short** subject line, followed by a blank line and a longer explanation.
+  * Prefix the subject line with the component(s) changed, e.g. "docs: Update foo", or "SAML: Don't log bar twice", or "tests: Add tests for quux".
+  * Explain **what and why** in the commit message, not just **how**. Things that seem obvious now might become quite confusing when rediscovered years later.
 
 ### Comments, comparisons, and simplicity
+
 * Add comments that describe why/how your code works.
 * Include complete **phpdoc** documentation for every property and method you add. If you change a method or property, make sure to update the existing *phpdoc* accordingly. Do not forget to document all parameters, returned values and exceptions thrown.
 * Use strict comparison operators like `===` and check for specific values when writing tests.
@@ -57,12 +64,15 @@ When submitting a pull request, please make sure to account for:
 * Try to keep **backwards-compatibility**. Code that breaks current configurations and installations is difficult to deploy, and therefore we try to avoid that as much as possible.
 
 ### Unit tests
+
 Add **unit tests** to verify that your code not only works but also keeps working over time. When adding tests, keep the same directory structure used for regular classes. Try to cover **all your code** with tests. The bigger the test coverage, the more reliable and better our library is. Read our [guidelines](TESTING.md) to learn more about tests.
 
 ### Documentation
+
 In order to keep this library user-friendly, we ask that you add proper **documentation** explaining how to use your new feature or how your code changes things.
 
 ### Pull requests
+
 Please follow all instructions below:
 
 1. Submit your code as a **pull request** in github from a branch with a descriptive name in your own fork of the repository.
@@ -72,6 +82,7 @@ Please follow all instructions below:
 Sometimes it can take a long time before we are able to process your pull requests. Do not get discouraged, we will eventually reach your change. Remember that by following these guidelines, you are making it easier for us to analyze your request so the process will be smooth and fast. We really appreciate you helping us out, not only with your code, but also by following these guidelines.
 
 ## Reporting bugs
+
 Before reporting a bug, please make sure it is indeed a bug. Check [the documentation](https://simplesamlphp.org/docs/stable/) to verify what the intended behaviour is. Review the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to see if someone has already reported the same issue.
 
 If you are able, a pull request is much more appreciated than just a new issue. If not, please do not hesitate to open one. It is better to have just an issue report than nothing!
@@ -86,6 +97,7 @@ You can help us diagnose and fix bugs by asking and providing answers to the fol
 * Is this a security issue? If so, how severe is it? How can an attacker exploit it? Read more about security issues in the next section.
 
 ## Reporting vulnerabilities
+
 In case you find a vulnerability in SimpleSAMLphp, or you want to confirm a possible security issue in the software, please get in touch with us through [UNINETT's CERT team](https://www.uninett.no/cert). Please use our PGP public key to encrypt any possibly sensitive data that you may need to submit. We will get back to you as soon as possible according to our working hours in Central European Time.
 
 When reporting a security issue, please add as much information as possible to help us identify, confirm, replicate and fix the problem. In particular, remember to include the following information in your report:
@@ -107,11 +119,13 @@ Finally, be reasonable. We'll do our best to resolve the issue according to our 
 You can find the list of security advisories we have published [here](https://simplesamlphp.org/security).
 
 ## Translations
+
 SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new translations to other languages. For the moment, translations can be contributed as **pull requests**. We are looking at better ways to translate the software that would make your life easier, so stay tuned! You can also join the [translators mailing list](http://groups.google.com/group/simplesamlphp-translation) to keep up to date on the latest news.
 
 Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and you want to complete it, make sure to keep the same style used by your fellow translators.
 
-## Documentation
+## Documentation improvements
+
 Did you find a typo in the documentation? Does something make no sense? Did we use poor english? Tell us!
 
 Documentation is included in our own repository in *markdown* format. You can submit pull requests with fixes. If you encounter some feature that is not documented, or the documentation does not reflect the real behaviour of the library, please do not hesitate to open an issue.
@@ -119,4 +133,5 @@ Documentation is included in our own repository in *markdown* format. You can su
 Good documentation is key to make things easier for our users!
 
 ## Community
+
 You do not feel capable of contributing with your code, but are using SimpleSAMLphp and can share your knowledge and experience? Please, do so! Join our [users mailing list](http://groups.google.com/group/simplesamlphp) and help other users when you can. Your experience might be valuable for many!

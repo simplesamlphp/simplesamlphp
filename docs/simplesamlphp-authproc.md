@@ -1,5 +1,4 @@
-Authentication Processing Filters in SimpleSAMLphp
-==================================================
+# Authentication Processing Filters in SimpleSAMLphp
 
 <!-- 
 	This file is written in Markdown syntax. 
@@ -7,9 +6,7 @@ Authentication Processing Filters in SimpleSAMLphp
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-
 <!-- {{TOC}} -->
-
 
 In SimpleSAMLphp, there is an API where you can *do stuff* at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successful Authentication Response from the IdP and before you are sent back to the SP application.
 
@@ -17,47 +14,48 @@ Authentication processing filters postprocess authentication information receive
 
 Examples of neat things to do using Authentication Processing Filters:
 
-  * Filter out a subset of available attributes that are sent to a SP.
-  * Modify the name of attributes.
-  * Generate new attributes that are composed of others, for example eduPersonTargetedID.
-  * Ask the user for consent, before the user is sent back to a service.
-  * Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
+- Filter out a subset of available attributes that are sent to a SP.
+- Modify the name of attributes.
+- Generate new attributes that are composed of others, for example eduPersonTargetedID.
+- Ask the user for consent, before the user is sent back to a service.
+- Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
 
 Be aware that Authentication Processing Filters do replace some of the previous features in SimpleSAMLphp, named:
 
-  * `attributemap`
-  * `attributealter`
-  * `attribute filter`
+- `attributemap`
+- `attributealter`
+- `attribute filter`
 
 Later in this document, we will describe in detail the alternative Authentication Processing Filters that will replicate these functionalities.
 
-How to configure Auth Proc Filters
-----------------------------------
+## How to configure Auth Proc Filters
 
 *Auth Proc Filters* can be set globally, or to be specific for only one SP or one IdP. That means there are five locations where you can configure *Auth Proc Filters*:
 
-  * Globally in `config.php`
-  * On the SP: Specific for only the SP in `authsources.php`
-  * On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
-  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
-  * On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
+- Globally in `config.php`
+- On the SP: Specific for only the SP in `authsources.php`
+- On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
+- On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
+- On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 
-	'authproc.idp' => [
-		10 => [
-			'class' => 'core:AttributeMap', 
-			'addurnprefix'
-		],
-		20 => 'core:TargetedID',
-		50 => 'core:AttributeLimit',
-		90 => [
-			'class' 	=> 'consent:Consent', 
-			'store' 	=> 'consent:Cookie', 
-			'focus' 	=> 'yes', 
-			'checked' 	=> TRUE
-		],
-	],
+```php
+'authproc.idp' => [
+    10 => [
+        'class' => 'core:AttributeMap', 
+        'addurnprefix'
+    ],
+    20 => 'core:TargetedID',
+    50 => 'core:AttributeLimit',
+    90 => [
+        'class' => 'consent:Consent', 
+        'store' => 'consent:Cookie', 
+        'focus' => 'yes', 
+        'checked' => true
+    ],
+],
+```
 
 This configuration will execute *Auth Proc Filters* one by one, with the priority value in increasing order. When *Auth Proc Filters* is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
 
@@ -69,23 +67,28 @@ You will see that a bunch of useful filters is included in the `core` module. In
 
 When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 
-	20 => 'core:TargetedID',
+```php
+20 => 'core:TargetedID',
+```
 
 This is analogous to:
 
-	20 => [
-		'class' => 'core:TargetedID'
-	],
+```php
+20 => [
+    'class' => 'core:TargetedID'
+],
+```
 
 Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 
-	90 => [
-		'class' 	=> 'consent:Consent', 
-		'store' 	=> 'consent:Cookie', 
-		'focus' 	=> 'yes', 
-		'checked' 	=> TRUE
-	],
-
+```php
+90 => [
+    'class' => 'consent:Consent', 
+    'store' => 'consent:Cookie', 
+    'focus' => 'yes', 
+    'checked' => true
+],
+```
 
 ### Filters in `config.php`
 
@@ -93,34 +96,32 @@ Global *Auth Proc Filters* are configured in the `config.php` file. You will see
 
 There are two config parameters:
 
-  * `authproc.idp` and
-  * `authproc.sp`
+- `authproc.idp` and
+- `authproc.sp`
 
 The filters in `authproc.idp` will be executed at the IdP side regardless of which IdP and SP entity that is involved.
 
 The filters in `authproc.sp` will be executed at the SP side regardless of which SP and IdP entity that is involved.
 
-
 ### Filters in metadata
 
 Filters can be added both in `hosted` and `remote` metadata. Here is an example of a filter added in a metadata file:
 
-	'__DYNAMIC:1__' => [
-		'host'				=>	'__DEFAULT_',
-		'privatekey'		=>	'example.org.pem',
-		'certificate'		=>	'example.org.crt',
-		'auth'				=>	'feide',
-		'authproc' => [
-			40 => 'core:TargetedID',
-		],
-	]
+```php
+'__DYNAMIC:1__' => [
+    'host' => '__DEFAULT_',
+    'privatekey' => 'example.org.pem',
+    'certificate' => 'example.org.crt',
+    'auth' => 'feide',
+    'authproc' => [
+        40 => 'core:TargetedID',
+    ],
+]
+```
 
 The example above is in `saml20-idp-hosted`.
 
-
-
-Auth Proc Filters included in the SimpleSAMLphp distribution
-------------------------------------------------------------
+## Auth Proc Filters included in the SimpleSAMLphp distribution
 
 The following filters are included in the SimpleSAMLphp distribution:
 
@@ -153,9 +154,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 See the [Third-party modules](https://simplesamlphp.org/modules) page on the SimpleSAMLphp website
 for externally hosted modules that may provide a processing filter.
 
-
-Writing your own Auth Proc Filter
----------------------------------
+## Writing your own Auth Proc Filter
 
 Look at the included *Auth Proc Filters* as examples. Copy the classes into your own module and start playing around.
 
@@ -165,13 +164,13 @@ If a filter for some reason needs to redirect the user, for example to show a we
 
 Requirements for authentication processing filters:
 
- - Must be derived from the `\SimpleSAML\Auth\ProcessingFilter`-class.
- - If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
- - The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
- - If the `process`-function does not return, it must at a later time call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
- - No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
- - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
- - The filter object must be serializable. It may be serialized between being constructed and the call to the `process`-function. This means that, for example, no database connections should be created in the constructor and later used in the `process`-function.
+- Must be derived from the `\SimpleSAML\Auth\ProcessingFilter`-class.
+- If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
+- The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+- If the `process`-function does not return, it must at a later time call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
+- No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
+- No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
+- The filter object must be serializable. It may be serialized between being constructed and the call to the `process`-function. This means that, for example, no database connections should be created in the constructor and later used in the `process`-function.
 
 *Note*: An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP *and* and SP when testing your filter.
 
