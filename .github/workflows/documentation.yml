@@ -1,0 +1,56 @@
+---
+
+name: Documentation
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master, simplesamlphp-*]
+    paths:
+      - '**.md'
+  pull_request:
+    branches: [master, simplesamlphp-*]
+    paths:
+      - '**.md'
+
+jobs:
+  quality:
+    name: Quality checks
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Lint markdown files
+        uses: nosborn/github-action-markdown-cli@v3
+        with:
+          files: .
+          ignore_path: .markdownlintignore
+        continue-on-error: true
+
+      - name: Perform spell check
+        uses: codespell-project/actions-codespell@master
+        with:
+          path: '**/*.md'
+          check_filenames: true
+          ignore_words_list: tekst
+
+  build:
+    name: Build documentation
+    needs: quality
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Run docs build
+        if: github.event_name != 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          # Token has to be generated on a user account that controls the docs-repository.
+          # The _only_ scope to select is "Access public repositories", nothing more.
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'simplesamlphp',
+              repo: 'docs',
+              workflow_id: 'mk_docs.yml',
+              ref: 'main'
+            })

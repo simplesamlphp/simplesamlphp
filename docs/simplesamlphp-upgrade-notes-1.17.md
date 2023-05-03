@@ -9,7 +9,7 @@ from the legacy names so calling code should remain working. Custom code
 exceptions, may need to be changed.
 
 The possibility has been reintroduced to omit the NameIdPolicy from SP
-AuthnRequests by setting NameIDPolicy to `false`. The prefered way is
+AuthnRequests by setting NameIDPolicy to `false`. The preferred way is
 to configure it as an array `[ 'Format' => format, 'AllowCreate' => true/false ]`,
 which is now also the format used in the `saml:NameIDPolicy` variable
 in `$state`.

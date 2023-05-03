@@ -383,7 +383,7 @@ relevant for this sp. The final list is the concatenation of the list
 given as parameter to InitSSO (at the sp), the list configured at the
 sp and the list configured at the ipd (here) for this sp. The intersection
 of the final list and the idps configured at the at this idp will be
-presented to the user at the discovery service if neccessary. If only one
+presented to the user at the discovery service if necessary. If only one
 idp is in the intersection the discoveryservice will go directly to the idp.
 
 **Example: Configuration for scoping**
@@ -397,7 +397,7 @@ Shibboleth 1.3 options
 
 Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
 
-The following options for Shibboleth 1.3 SP's are avaiblable:
+The following options for Shibboleth 1.3 SP's are available:
 
 `audience`
 :   The value which should be given in the `<Audience>`-element in the
