@@ -18,12 +18,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use function array_key_exists;
 use function error_get_last;
 use function is_array;
-use function serialize;
+use function json_decode;
+use function json_encode;
 use function sha1;
 use function sprintf;
 use function strval;
 use function time;
-use function unserialize;
 use function urlencode;
 
 /**
@@ -188,7 +188,7 @@ class MDQ extends MetaDataStorageSource
             ));
         }
 
-        $data = unserialize($rawData);
+        $data = json_decode($rawData);
         if ($data === false) {
             throw new Exception(
                 sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file))
@@ -223,7 +223,7 @@ class MDQ extends MetaDataStorageSource
         Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
         /** @psalm-suppress TooManyArguments */
-        $this->fileSystem->appendToFile($cacheFileName, serialize($data), true);
+        $this->fileSystem->appendToFile($cacheFileName, json_encode($data), true);
     }
 
 
@@ -285,7 +285,7 @@ class MDQ extends MetaDataStorageSource
         }
 
         if (isset($data)) {
-            if (array_key_exists('expires', $data) && $data['expires'] < time()) {
+            if (array_key_exists('expire', $data) && $data['expire'] < time()) {
                 // metadata has expired
                 $data = null;
             } else {

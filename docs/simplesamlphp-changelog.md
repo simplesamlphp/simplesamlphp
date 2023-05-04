@@ -14,6 +14,8 @@ Released TBD
 * The defaultSource for the SourceIPSelector can now be set to `null`. If none of the zones
   are matched, a NotFound exception will be thrown.
 * It is now possible to set a default AuthnContext in the RequestedAuthnContextSelector.
+* Fixed a bug in MDQ metadata expiration
+* Resolved a possible object injection vulnerability in MDQ metadata cache
 
 ## Version 2.0.3
 
