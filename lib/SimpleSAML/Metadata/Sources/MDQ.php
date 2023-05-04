@@ -188,7 +188,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             );
         }
 
-        $data = unserialize($rawData);
+        $data = json_decode($rawData);
         if ($data === false) {
             throw new Exception(__CLASS__ . ': error unserializing cached data from file "' . $cachefilename . '".');
         }
@@ -222,7 +222,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             throw new \Exception(__CLASS__ . ': could not write cache file for entity [' . $cachefilename . ']');
         }
         Logger::debug(__CLASS__ . ': Writing cache [' . $entityId . '] => [' . $cachefilename . ']');
-        file_put_contents($cachefilename, serialize($data));
+        file_put_contents($cachefilename, json_encode($data));
     }
 
 
@@ -290,7 +290,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             $data = null;
         }
 
-        if ($data !== null && array_key_exists('expires', $data) && $data['expires'] < time()) {
+        if ($data !== null && array_key_exists('expire', $data) && $data['expire'] < time()) {
             // metadata has expired
             $data = null;
         }
