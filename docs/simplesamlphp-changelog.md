@@ -17,6 +17,10 @@ Released TBD
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 
+`saml2`
+
+* Fixed a static call to a non-static function that caused a broken artifact binding (#332)
+
 ## Version 2.0.3
 
 Released 2023-03-29
