@@ -840,16 +840,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0-alpha.1",
+            "version": "v5.0.0-alpha.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "94d4c0736656b8fb7390cc6258b692f84ed5bae5"
+                "reference": "5d1a686011f032a6f3c1017dbf2130dd236d7c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/94d4c0736656b8fb7390cc6258b692f84ed5bae5",
-                "reference": "94d4c0736656b8fb7390cc6258b692f84ed5bae5",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5d1a686011f032a6f3c1017dbf2130dd236d7c3d",
+                "reference": "5d1a686011f032a6f3c1017dbf2130dd236d7c3d",
                 "shasum": ""
             },
             "require": {
@@ -900,9 +900,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.1"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.2"
             },
-            "time": "2023-05-09T13:19:45+00:00"
+            "time": "2023-05-09T15:32:27+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
