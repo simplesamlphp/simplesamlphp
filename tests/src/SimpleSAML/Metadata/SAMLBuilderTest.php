@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * Class SAMLBuilderTest
@@ -268,7 +270,7 @@ class SAMLBuilderTest extends TestCase
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-idp-remote';
 
-        $dom = \SAML2\DOMDocumentFactory::create();
+        $dom = DOMDocumentFactory::create();
         $republishRequest = $dom->createElementNS(
             'http://eduid.cz/schema/metadata/1.0',
             'eduidmd:RepublishRequest'
@@ -280,7 +282,7 @@ class SAMLBuilderTest extends TestCase
             $republishTargetContent
         );
         $republishRequest->appendChild($republishTarget);
-        $ext = [new \SAML2\XML\Chunk($republishRequest)];
+        $ext = [new Chunk($republishRequest)];
 
         $metadata = [
             'entityid' => $entityId,

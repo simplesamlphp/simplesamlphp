@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SAML2\Constants as C;
-use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
 use SimpleSAML\Error\MetadataNotFound;
+use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
 
 /**

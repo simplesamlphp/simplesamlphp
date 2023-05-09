@@ -6,10 +6,10 @@ namespace SimpleSAML\Module\saml\SP;
 
 use Exception;
 use PDO;
-use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
@@ -185,7 +185,7 @@ class LogoutStore
      * Register a new session in the datastore.
      *
      * @param string $authId  The authsource ID.
-     * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
+     * @param \SimpleSAML\SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
      * @param int $expire  Unix timestamp when this session expires.
      */
@@ -240,7 +240,7 @@ class LogoutStore
      * Log out of the given sessions.
      *
      * @param string $authId  The authsource ID.
-     * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
+     * @param \SimpleSAML\SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */

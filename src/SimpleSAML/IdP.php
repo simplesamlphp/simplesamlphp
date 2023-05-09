@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SAML2\Constants as C;
-use SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\IdP\IFrameLogoutHandler;
 use SimpleSAML\IdP\LogoutHandlerInterface;
 use SimpleSAML\IdP\TraditionalLogoutHandler;
-use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
 

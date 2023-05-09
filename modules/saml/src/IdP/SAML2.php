@@ -8,25 +8,6 @@ use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Assertion;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\Constants as C;
-use SAML2\DOMDocumentFactory;
-use SAML2\EncryptedAssertion;
-use SAML2\HTTPRedirect;
-use SAML2\LogoutRequest;
-use SAML2\LogoutResponse;
-use SAML2\Response as SAML2_Response;
-use SAML2\SOAP;
-use SAML2\XML\ds\X509Certificate;
-use SAML2\XML\ds\X509Data;
-use SAML2\XML\ds\KeyInfo;
-use SAML2\XML\saml\AttributeValue;
-use SAML2\XML\saml\Issuer;
-use SAML2\XML\saml\NameID;
-use SAML2\XML\saml\SubjectConfirmation;
-use SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -35,7 +16,26 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Assertion;
+use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\EncryptedAssertion;
+use SimpleSAML\SAML2\HTTPRedirect;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\LogoutResponse;
+use SimpleSAML\SAML2\Response as SAML2_Response;
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\ds\X509Certificate;
+use SimpleSAML\SAML2\XML\ds\X509Data;
+use SimpleSAML\SAML2\XML\ds\KeyInfo;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Stats;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\Utils;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
@@ -1047,7 +1047,7 @@ class SAML2
                             /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
-                        Assert::isInstanceOfAny($value, [\DOMNodeList::class, \SAML2\XML\saml\NameID::class]);
+                        Assert::isInstanceOfAny($value, [DOMNodeList::class, NameID::class]);
                         break;
                     default:
                         throw new Error\Exception('Invalid encoding for attribute ' .
@@ -1105,7 +1105,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array &$state The state array with information about the request.
      *
-     * @return \SAML2\Assertion  The assertion.
+     * @return \SimpleSAML\SAML2\Assertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
      */
@@ -1319,14 +1319,14 @@ class SAML2
     /**
      * Encrypt an assertion.
      *
-     * This function takes in a \SAML2\Assertion and encrypts it if encryption of
+     * This function takes in a \SimpleSAML\SAML2\Assertion and encrypts it if encryption of
      * assertions are enabled in the metadata.
      *
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
-     * @param \SAML2\Assertion $assertion The assertion we are encrypting.
+     * @param \SimpleSAML\SAML2\Assertion $assertion The assertion we are encrypting.
      *
-     * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
+     * @return \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
      */
@@ -1395,7 +1395,7 @@ class SAML2
      * @param array $association The SP association.
      * @param string|null $relayState An id that should be carried across the logout.
      *
-     * @return \SAML2\LogoutRequest The corresponding SAML2 logout request.
+     * @return \SimpleSAML\SAML2\LogoutRequest The corresponding SAML2 logout request.
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,
@@ -1433,7 +1433,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param string                    $consumerURL The Destination URL of the response.
      *
-     * @return \SAML2\Response The SAML2 Response corresponding to the given data.
+     * @return \SimpleSAML\SAML2\Response The SAML2 Response corresponding to the given data.
      */
     private static function buildResponse(
         Configuration $idpMetadata,

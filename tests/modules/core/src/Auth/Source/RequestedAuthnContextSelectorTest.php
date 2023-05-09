@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
-use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
-use Symfony\Component\HttpFoundation\Request;
+use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
@@ -169,13 +169,15 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
         $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
             /**
+             * @param \Symfony\Component\HttpFoundation\Request $request
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
-             * @return void
+             * @return \Symfony\Component\HttpFoundation\Response|null
              */
-            public static function doAuthentication(Auth\Source $as, array $state): void
+            public static function doAuthentication(Request $request, Auth\Source $as, array $state): ?Response
             {
                 // Dummy
+                return null;
             }
         };
 
@@ -186,7 +188,8 @@ class RequestedAuthnContextSelectorTest extends TestCase
             ],
         ];
 
-        $selector->authenticate($state);
+        $request = Request::createFromGlobals();
+        $selector->authenticate($request, $state);
         $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
         $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
     }

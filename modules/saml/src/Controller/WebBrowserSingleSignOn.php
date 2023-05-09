@@ -6,12 +6,6 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use SAML2\Exception\Protocol\UnsupportedBindingException;
-use SAML2\ArtifactResolve;
-use SAML2\ArtifactResponse;
-use SAML2\DOMDocumentFactory;
-use SAML2\SOAP;
-use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -19,7 +13,13 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\SAML2\ArtifactResolve;
+use SimpleSAML\SAML2\ArtifactResponse;
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -53,7 +53,7 @@ class WebBrowserSingleSignOn
 
     /**
      * The ArtifactResolutionService receives the samlart from the sp.
-     * And when the artifact is found, it sends a \SAML2\ArtifactResponse.
+     * And when the artifact is found, it sends a \SimpleSAML\SAML2\ArtifactResponse.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
@@ -93,7 +93,7 @@ class WebBrowserSingleSignOn
         }
 
         $issuer = $request->getIssuer();
-        /** @psalm-assert \SAML2\XML\saml\Issuer $issuer */
+        /** @psalm-assert \SimpleSAML\SAML2\XML\saml\Issuer $issuer */
         Assert::notNull($issuer);
         $issuer = $issuer->getValue();
         $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');

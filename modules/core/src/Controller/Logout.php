@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
-use SAML2\Binding;
-use SAML2\Constants as C;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -14,6 +12,8 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;

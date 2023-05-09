@@ -16,12 +16,12 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 use Exception;
-use SAML2\Constants as C;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Errors;
 
 class XML
@@ -343,7 +343,7 @@ class XML
         if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
-            $schemaPath = $config->resolvePath('vendor/simplesamlphp/saml2/schemas');
+            $schemaPath = $config->resolvePath('vendor/simplesamlphp/resources/saml2/schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
             libxml_set_external_entity_loader(

@@ -5,14 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Source;
 
 use Psr\Http\Message\RequestInterface;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\Constants as C;
-use SAML2\Exception\Protocol\NoAvailableIDPException;
-use SAML2\Exception\Protocol\NoPassiveException;
-use SAML2\Exception\Protocol\NoSupportedIDPException;
-use SAML2\LogoutRequest;
-use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -21,6 +13,14 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
+use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
+use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
@@ -641,8 +641,8 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\AuthnRequest $ar  The authentication request.
+     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
+     * @param \SimpleSAML\SAML2\AuthnRequest $ar  The authentication request.
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
@@ -656,8 +656,8 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\LogoutRequest  $ar  The logout request.
+     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
+     * @param \SimpleSAML\SAML2\LogoutRequest  $ar  The logout request.
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
@@ -868,7 +868,7 @@ class SP extends Auth\Source
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
-     * @throws \SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
+     * @throws \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state): RedirectResponse
     {

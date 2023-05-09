@@ -9,36 +9,36 @@ use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Constants as C;
-use SAML2\DOMDocumentFactory;
-use SAML2\SignedElementHelper;
-use SAML2\XML\Chunk;
-use SAML2\XML\ds\X509Certificate;
-use SAML2\XML\ds\X509Data;
-use SAML2\XML\md\AttributeAuthorityDescriptor;
-use SAML2\XML\md\AttributeConsumingService;
-use SAML2\XML\md\ContactPerson;
-use SAML2\XML\md\EndpointType;
-use SAML2\XML\md\EntityDescriptor;
-use SAML2\XML\md\EntitiesDescriptor;
-use SAML2\XML\md\IDPSSODescriptor;
-use SAML2\XML\md\IndexedEndpointType;
-use SAML2\XML\md\KeyDescriptor;
-use SAML2\XML\md\Organization;
-use SAML2\XML\md\RoleDescriptor;
-use SAML2\XML\md\SPSSODescriptor;
-use SAML2\XML\md\SSODescriptorType;
-use SAML2\XML\mdattr\EntityAttributes;
-use SAML2\XML\mdrpi\RegistrationInfo;
-use SAML2\XML\mdui\DiscoHints;
-use SAML2\XML\mdui\Keywords;
-use SAML2\XML\mdui\Logo;
-use SAML2\XML\mdui\UIInfo;
-use SAML2\XML\saml\Attribute;
-use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\SignedElementHelper;
+use SimpleSAML\SAML2\XML\ds\X509Certificate;
+use SimpleSAML\SAML2\XML\ds\X509Data;
+use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
+use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\md\EndpointType;
+use SimpleSAML\SAML2\XML\md\EntityDescriptor;
+use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
+use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
+use SimpleSAML\SAML2\XML\md\KeyDescriptor;
+use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\SAML2\XML\md\RoleDescriptor;
+use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\SSODescriptorType;
+use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
+use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
+use SimpleSAML\SAML2\XML\mdui\DiscoHints;
+use SimpleSAML\SAML2\XML\mdui\Keywords;
+use SimpleSAML\SAML2\XML\mdui\Logo;
+use SimpleSAML\SAML2\XML\mdui\UIInfo;
+use SimpleSAML\SAML2\XML\saml\Attribute;
+use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -160,7 +160,7 @@ class SAMLParser
     /**
      * This is an array of elements that may be used to validate this element.
      *
-     * @var \SAML2\SignedElementHelper[]
+     * @var \SimpleSAML\SAML2\SignedElementHelper[]
      */
     private array $validators = [];
 
@@ -173,7 +173,7 @@ class SAMLParser
     /**
      * This is the constructor for the SAMLParser class.
      *
-     * @param \SAML2\XML\md\EntityDescriptor $entityElement The EntityDescriptor.
+     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor $entityElement The EntityDescriptor.
      * @param int|null                      $maxExpireTime The unix timestamp for when this entity should expire, or
      *     NULL if unknown.
      * @param array                         $validators An array of parent elements that may validate this element.
@@ -286,10 +286,11 @@ class SAMLParser
 
 
     /**
-     * This function parses a \SAML2\XML\md\EntityDescriptor object which represents a EntityDescriptor element.
+     * This function parses a \SimpleSAML\SAML2\XML\md\EntityDescriptor object which represents
+     * a EntityDescriptor element.
      *
-     * @param \SAML2\XML\md\EntityDescriptor $entityElement A \SAML2\XML\md\EntityDescriptor object which represents a
-     *     EntityDescriptor element.
+     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor $entityElement A \SimpleSAML\SAML2\XML\md\EntityDescriptor
+     *   object which represents a EntityDescriptor element.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
@@ -383,7 +384,8 @@ class SAMLParser
 
     /**
      *
-     * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element The element we should process.
+     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor|\SimpleSAML\SAML2\XML\md\EntitiesDescriptor $element
+     *   The element we should process.
      * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
@@ -696,7 +698,7 @@ class SAMLParser
     /**
      * Retrieve AttributeAuthorities from the metadata.
      *
-     * @return \SAML2\XML\md\AttributeAuthorityDescriptor[] Array of AttributeAuthorityDescriptor entries.
+     * @return \SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor[] Array of AttributeAuthorityDescriptor entries.
      */
     public function getAttributeAuthorities(): array
     {
@@ -712,7 +714,7 @@ class SAMLParser
      * - 'expire': Timestamp for when this descriptor expires.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
      *
-     * @param \SAML2\XML\md\RoleDescriptor $element The element we should extract metadata from.
+     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $element The element we should extract metadata from.
      * @param int|null $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      *
@@ -760,8 +762,8 @@ class SAMLParser
      * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
      *
-     * @param \SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
-     * @param int|NULL                       $expireTime The unix timestamp for when this element should expire, or
+     * @param \SimpleSAML\SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
+     * @param int|null                       $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
@@ -787,8 +789,8 @@ class SAMLParser
     /**
      * This function extracts metadata from a SPSSODescriptor element.
      *
-     * @param \SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
-     * @param int|NULL                     $expireTime The unix timestamp for when this element should expire, or
+     * @param \SimpleSAML\SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
+     * @param int|null                     $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      */
     private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
@@ -821,8 +823,8 @@ class SAMLParser
     /**
      * This function extracts metadata from a IDPSSODescriptor element.
      *
-     * @param \SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
-     * @param int|NULL                      $expireTime The unix timestamp for when this element should expire, or
+     * @param \SimpleSAML\SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
+     * @param int|null                      $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
@@ -845,8 +847,8 @@ class SAMLParser
     /**
      * This function extracts metadata from a AttributeAuthorityDescriptor element.
      *
-     * @param \SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
-     * @param int|NULL                                  $expireTime The unix timestamp for when this element should
+     * @param \SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
+     * @param int|null                                  $expireTime The unix timestamp for when this element should
      *     expire, or NULL if unknown.
      */
     private function processAttributeAuthorityDescriptor(
@@ -1010,7 +1012,7 @@ class SAMLParser
     /**
      * Parse and process a Organization element.
      *
-     * @param \SAML2\XML\md\Organization $element The Organization element.
+     * @param \SimpleSAML\SAML2\XML\md\Organization $element The Organization element.
      */
     private function processOrganization(Organization $element): void
     {
@@ -1023,7 +1025,7 @@ class SAMLParser
     /**
      * Parse and process a ContactPerson element.
      *
-     * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
+     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $element The ContactPerson element.
      */
     private function processContactPerson(ContactPerson $element): void
     {
@@ -1055,7 +1057,7 @@ class SAMLParser
     /**
      * This function parses AttributeConsumerService elements.
      *
-     * @param \SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
+     * @param \SimpleSAML\SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
      * @param array $sp The array with the SP's metadata.
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
@@ -1111,7 +1113,7 @@ class SAMLParser
      * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
      * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
      *
-     * @param \SAML2\XML\md\EndpointType $element The element which should be parsed.
+     * @param \SimpleSAML\SAML2\XML\md\EndpointType $element The element which should be parsed.
      *
      * @return array An associative array with the data we have extracted from the element.
      */
@@ -1161,7 +1163,7 @@ class SAMLParser
      * - 'type: The type of the key. 'X509Certificate' is the only key type we support.
      * - 'X509Certificate': The contents of the first X509Certificate element (if the type is 'X509Certificate ').
      *
-     * @param \SAML2\XML\md\KeyDescriptor $kd The KeyDescriptor element.
+     * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor $kd The KeyDescriptor element.
      *
      * @return array|null An associative array describing the key, or null if this is an unsupported key.
      */
@@ -1251,7 +1253,7 @@ class SAMLParser
      *
      * @param \DOMDocument $doc The \DOMDocument where we should find the EntityDescriptor node.
      *
-     * @return \SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
+     * @return \SimpleSAML\SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
      * @throws \Exception If the document is empty or the first element is not an EntityDescriptor element.
      */
     private static function findEntityDescriptor(DOMDocument $doc): EntityDescriptor
