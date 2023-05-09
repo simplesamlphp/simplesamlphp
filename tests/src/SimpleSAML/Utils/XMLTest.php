@@ -296,7 +296,7 @@ NOWDOC;
             self::FRAMEWORK . '/metadata/valid-metadata-selfsigned.xml',
         );
 
-        $schema = 'saml-schema-metadata-2.0.xsd';
+        $schema = dirname(__FILE__, 5) . '/vendor/simplesamlphp/saml2/resources/schemas/saml-schema-metadata-2.0.xsd';
         $res = $xmlUtils->isValid($dom, $schema);
         $this->assertTrue($res === true);
     }
