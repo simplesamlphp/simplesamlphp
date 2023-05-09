@@ -188,7 +188,7 @@ $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/def
 ```
 
 Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
-If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your SimpleSAMLphp installation.
+If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/module.php/admin/federation/metadata-converter` in your SimpleSAMLphp installation.
 
 For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
 
