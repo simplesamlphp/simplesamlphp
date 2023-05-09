@@ -16,6 +16,7 @@ Released TBD
 * It is now possible to set a default AuthnContext in the RequestedAuthnContextSelector.
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
+* Restored the possibility to use HTTP-Artifact binding on AuthnRequests
 
 `saml2`
 
