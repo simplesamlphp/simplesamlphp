@@ -241,7 +241,7 @@ class XML
     {
         try {
             $doc = DOMDocumentFactory::fromString($xml);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new \DOMException('Error parsing XML string.');
         }
 
@@ -335,7 +335,7 @@ class XML
             try {
                 $dom = DOMDocumentFactory::fromString($xml);
                 $res = true;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $res = false;
             }
         }
@@ -375,7 +375,6 @@ class XML
 
         $errors = Errors::end();
         $errorText .= Errors::formatErrors($errors);
-
         return $errorText;
     }
 }
