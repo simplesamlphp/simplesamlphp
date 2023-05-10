@@ -98,7 +98,7 @@ The following attributes are available:
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
-    arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
+    arrays format as seen in the [Metadata endpoints](../simplesamlphp-metadata-endpoints)
     documentation. Note that this list is taken at face value, so it's not useful to list
     anything here that the SP auth source does not actually support (unless the URLs point
     externally).
@@ -339,7 +339,7 @@ The following attributes are available:
 
 `saml20.hok.assertion`
 :   Enable support for the SAML 2.0 Holder-of-Key SSO profile.
-    See the documentation for the [Holder-of-Key profile](./simplesamlphp-hok-sp).
+    See the documentation for the [Holder-of-Key profile](../simplesamlphp-hok-sp).
 
 `sign.authnrequest`
 :   Whether to sign authentication requests sent from this SP. If set, the `AuthnRequestsSigned` attribute of the
