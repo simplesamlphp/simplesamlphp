@@ -123,7 +123,7 @@ Options
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
-    arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
+    arrays format as seen in the [Metadata endpoints](../simplesamlphp-metadata-endpoints)
     documentation. Note: you must ensure that you set the `acs.Bindings` option to the set
     of bindings that you use here if it is different from the default.
 
@@ -357,7 +357,7 @@ Options
 
 `RegistrationInfo`
 :   Allows to specify information about the registrar of this SP. Please refer to the
-    [MDRPI extension](./simplesamlphp-metadata-extensions-rpi) document for further information.
+    [MDRPI extension](../simplesamlphp-metadata-extensions-rpi) document for further information.
 
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
