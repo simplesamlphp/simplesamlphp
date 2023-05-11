@@ -18,6 +18,11 @@ Released TBD
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 * Restored the possibility to use HTTP-Artifact binding on AuthnRequests
 
+`ldap`
+
+* Fixed loading the options-array from configuration (v2.1.6)
+* Properly escape user-input in ldap filters (v2.1.7)
+
 `saml2`
 
 * Fixed a static call to a non-static function that caused a broken artifact binding (#332)
