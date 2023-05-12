@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.4
+## Version 2.0.5
 
 Released TBD
+
+## Version 2.0.4
+
+Released 2023-05-12
 
 * The source that was selected by the SourceSelector is now available in the state.
 * The zone that was selected by the SourceIPSelector is now available in the state.
@@ -17,6 +21,8 @@ Released TBD
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 * Restored the possibility to use HTTP-Artifact binding on AuthnRequests
+* Removed unused private method MetaDataStorageSource::getDynamicHostedUrl (leftover from entityid generation)
+* Bumped simplesamlphp-assets-base
 
 `ldap`
 
@@ -25,7 +31,7 @@ Released TBD
 
 `saml2`
 
-* Fixed a static call to a non-static function that caused a broken artifact binding (#332)
+* Fixed a static call to a non-static function that caused a broken artifact binding (v4.6.8)
 
 ## Version 2.0.3
 
