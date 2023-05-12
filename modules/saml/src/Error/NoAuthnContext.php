@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Error;
 
-use SimpleSAML\SAML2\Constants as C;
+use SAML2\Constants as C;
 use Throwable;
 
 /**

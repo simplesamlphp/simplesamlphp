@@ -623,6 +623,7 @@ class SP extends Auth\Source
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleSignOnService',
                 [
+                    C::BINDING_HTTP_ARTIFACT,
                     C::BINDING_HTTP_REDIRECT,
                     C::BINDING_HTTP_POST,
                 ]
