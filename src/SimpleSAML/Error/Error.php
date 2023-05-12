@@ -246,7 +246,6 @@ class Error extends Exception
             && $config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
-            $httpUtils = new Utils\HTTP();
             $data['errorReportAddress'] = Module::getModuleURL('core/errorReport');
         }
 

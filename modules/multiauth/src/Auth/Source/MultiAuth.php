@@ -91,7 +91,7 @@ class MultiAuth extends Auth\Source
      *
      * The authentication process is finished in the delegateAuthentication method.
      *
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state Information about the current authentication.
      */
     public function authenticate(Request $request, array &$state): Response
@@ -220,6 +220,7 @@ class MultiAuth extends Auth\Source
         if ($source === null) {
             throw new Exception('Invalid authentication source during logout: ' . $authId);
         }
+
         // Then, do the logout on it
         return $source->logout($state);
     }

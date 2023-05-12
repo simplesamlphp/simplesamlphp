@@ -567,15 +567,13 @@ class Template extends Response
     /**
      * Send this template as a response.
      *
-     * @return $this This response.
+     * @return \Symfony\Component\HttpFoundation\Response This response.
      * @throws \Exception if the template cannot be found.
-     *
-     * Note: No return type possible due to upstream limitations
      */
     public function send(): static
     {
         $this->content = $this->getContents();
-        return parent::send();
+        return /** @scrutinizer ignore-type */parent::send();
     }
 
 

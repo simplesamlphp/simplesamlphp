@@ -102,7 +102,7 @@ class External extends Auth\Source
     /**
      * Log in using an external authentication helper.
      *
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
      */
     public function authenticate(Request $request, array &$state): ?Response

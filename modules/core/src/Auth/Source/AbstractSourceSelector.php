@@ -54,7 +54,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      * save the state, and at a later stage, load the state, update it with the authentication
      * information about the user, and call completeAuth with the state array.
      *
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request
      * @param array &$state Information about the current authentication.
      */
     public function authenticate(Request $request, array &$state): ?Response

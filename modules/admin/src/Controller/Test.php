@@ -171,7 +171,7 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
      */
-    public function logout(Request $request): Template
+    public function logout(/** @scrutinizer ignore-unused */Request $request): Template
     {
         return new Template($this->config, 'admin:logout.twig');
     }

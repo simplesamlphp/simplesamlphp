@@ -287,7 +287,7 @@ class MDQ extends MetaDataStorageSource
         if (isset($data)) {
             if (array_key_exists('expire', $data) && $data['expire'] < time()) {
                 // metadata has expired
-                $data = null;
+                unset($data);
             } else {
                 // metadata found in cache and not expired
                 Logger::debug(sprintf('%s: using cached metadata for: %s.', __CLASS__, $entityId));

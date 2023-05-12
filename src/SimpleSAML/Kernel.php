@@ -171,6 +171,7 @@ class Kernel extends BaseKernel
                 $controllerDir . '/*'
             );
         } catch (FileLocatorFileNotFoundException $e) {
+            // fall through
         }
     }
 }

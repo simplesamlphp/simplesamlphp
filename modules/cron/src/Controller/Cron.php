@@ -80,7 +80,7 @@ class Cron
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(Request $request): Response|Template
+    public function info(/** @scrutinizer ignore-unused */Request $request): Response|Template
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {
@@ -127,8 +127,12 @@ class Cron
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run(Request $request, string $tag, string $key, string $output = 'xhtml'): Template
-    {
+    public function run(
+        /** @scrutinizer ignore-unused */Request $request,
+        string $tag,
+        string $key,
+        string $output = 'xhtml',
+    ): Template {
         $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
             throw new Error\Exception('Cron - Wrong key provided. Cron will not run.');

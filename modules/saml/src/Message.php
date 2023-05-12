@@ -690,7 +690,7 @@ class Message
             );
         }
         $validAudiences = $assertion->getValidAudiences();
-        if ($validAudiences !== null) {
+        if ($validAudiences !== []) {
             $spEntityId = $spMetadata->getString('entityid');
             if (!in_array($spEntityId, $validAudiences, true)) {
                 $candidates = '[' . implode('], [', $validAudiences) . ']';

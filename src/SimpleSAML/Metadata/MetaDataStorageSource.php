@@ -325,27 +325,4 @@ abstract class MetaDataStorageSource
 
         return null;
     }
-
-
-    /**
-     * @param string $set
-     * @throws \Exception
-     * @return string
-     */
-    private function getDynamicHostedUrl(string $set): string
-    {
-        // get the configuration
-        $httpUtils = new Utils\HTTP();
-        $baseUrl = $httpUtils->getBaseURL();
-
-        if ($set === 'saml20-idp-hosted') {
-            return $baseUrl . 'saml2/idp/metadata.php';
-        } elseif ($set === 'saml20-sp-hosted') {
-            return $baseUrl . 'saml2/sp/metadata.php';
-        } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:' . $httpUtils->getSelfHost() . ':idp';
-        } else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
-        }
-    }
 }
