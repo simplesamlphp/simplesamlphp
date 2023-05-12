@@ -15,6 +15,7 @@ use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\md\EndpointType;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
+use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\Organization;
@@ -24,13 +25,12 @@ use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
-use SimpleSAML\SAML2\XML\mdui\Keywords;
-use SimpleSAML\SAML2\XML\mdui\Logo;
 use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
-use SimplESAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Utils as XMLUtils;
 
 /**
@@ -173,138 +173,66 @@ class SAMLBuilder
      */
     private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
+        $extensions = [];
+
         if ($metadata->hasValue('hint.cidr')) {
-            $a = new Attribute();
-            $a->setName('hint.cidr');
+            $attr = new Attribute();
+            $attr->setName('hint.cidr');
             foreach ($metadata->getArray('hint.cidr') as $hint) {
-                $a->addAttributeValue(new AttributeValue($hint));
+                $attr->addAttributeValue(new AttributeValue($hint));
             }
-            $e->setExtensions(array_merge($e->getExtensions(), [$a]));
+            $extensions[] = $attr;
         }
 
         if ($metadata->hasValue('scope')) {
             foreach ($metadata->getArray('scope') as $scopetext) {
-                $s = new Scope();
-                $s->setScope($scopetext);
-                // Check whether $ ^ ( ) * | \ are in a scope -> assume regex.
-                if (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext)) {
-                    $s->setIsRegexpScope(true);
-                } else {
-                    $s->setIsRegexpScope(false);
-                }
-                $e->setExtensions(array_merge($e->getExtensions(), [$s]));
+                $isScoped = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
+                $extensions[] = new Scope($scopetext, $isScoped);
             }
         }
 
         if ($metadata->hasValue('EntityAttributes')) {
             $ea = new EntityAttributes();
             foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
-                $a = new Attribute();
-                $a->setName($attributeName);
-                $a->setNameFormat(C::NAMEFORMAT_UNSPECIFIED);
+                $attr = new Attribute();
+                $attr->setName($attributeName);
+                $attr->setNameFormat(C::NAMEFORMAT_UNSPECIFIED);
 
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
-                    $a->setName($matches[2]);
+                    $attr->setName($matches[2]);
                     $nameFormat = $matches[1];
                     if ($nameFormat !== C::NAMEFORMAT_UNSPECIFIED) {
-                        $a->setNameFormat($nameFormat);
+                        $attr->setNameFormat($nameFormat);
                     }
                 }
                 foreach ($attributeValues as $attributeValue) {
-                    $a->addAttributeValue(new AttributeValue($attributeValue));
+                    $attr->addAttributeValue(new AttributeValue($attributeValue));
                 }
-                $ea->addChildren($a);
+                $ea->addChildren($attr);
             }
-            $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), [$ea])
-            );
+            $extensions[] = $ea;
         }
 
         if ($metadata->hasValue('saml:Extensions')) {
-            $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), $metadata->getArray('saml:Extensions'))
-            );
+            $chunks = $metadata->getArray('saml:Extensions');
+            Assert::allIsInstanceOf($chunks, Chunk::class);
+            $extensions = array_merge($extensions, $chunks);
         }
 
         if ($metadata->hasValue('RegistrationInfo')) {
-            $ri = new RegistrationInfo();
-            foreach ($metadata->getArray('RegistrationInfo') as $riName => $riValues) {
-                switch ($riName) {
-                    case 'authority':
-                        $ri->setRegistrationAuthority($riValues);
-                        break;
-                    case 'instant':
-                        $ri->setRegistrationInstant(XMLUtils::xsDateTimeToTimestamp($riValues));
-                        break;
-                    case 'policies':
-                        $ri->setRegistrationPolicy($riValues);
-                        break;
-                }
-            }
-            $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), [$ri])
-            );
+            $extensions[] = RegistrationInfo::fromArray($metadata->getArray('RegistrationInfo'));
         }
 
         if ($metadata->hasValue('UIInfo')) {
-            $ui = new UIInfo();
-            foreach ($metadata->getArray('UIInfo') as $uiName => $uiValues) {
-                switch ($uiName) {
-                    case 'DisplayName':
-                        $ui->setDisplayName($uiValues);
-                        break;
-                    case 'Description':
-                        $ui->setDescription($uiValues);
-                        break;
-                    case 'InformationURL':
-                        $ui->setInformationURL($uiValues);
-                        break;
-                    case 'PrivacyStatementURL':
-                        $ui->setPrivacyStatementURL($uiValues);
-                        break;
-                    case 'Keywords':
-                        foreach ($uiValues as $lang => $keywords) {
-                            $uiItem = new Keywords();
-                            $uiItem->setLanguage($lang);
-                            $uiItem->setKeywords($keywords);
-                            $ui->addKeyword($uiItem);
-                        }
-                        break;
-                    case 'Logo':
-                        foreach ($uiValues as $logo) {
-                            $uiItem = new Logo();
-                            $uiItem->setUrl($logo['url']);
-                            $uiItem->setWidth($logo['width']);
-                            $uiItem->setHeight($logo['height']);
-                            if (isset($logo['lang'])) {
-                                $uiItem->setLanguage($logo['lang']);
-                            }
-                            $ui->addLogo($uiItem);
-                        }
-                        break;
-                }
-            }
-            $e->setExtensions(array_merge($e->getExtensions(), [$ui]));
+            $extensions[] = UIInfo::fromArray($metadata->getArray('UIInfo'));
         }
 
         if ($metadata->hasValue('DiscoHints')) {
-            $dh = new DiscoHints();
-            foreach ($metadata->getArray('DiscoHints') as $dhName => $dhValues) {
-                switch ($dhName) {
-                    case 'IPHint':
-                        $dh->setIPHint($dhValues);
-                        break;
-                    case 'DomainHint':
-                        $dh->setDomainHint($dhValues);
-                        break;
-                    case 'GeolocationHint':
-                        $dh->setGeolocationHint($dhValues);
-                        break;
-                }
-            }
-            $e->setExtensions(array_merge($e->getExtensions(), [$dh]));
+            $extensions[] = DiscoHints::fromArray($metadata->getArray('DiscoHints'));
         }
+
+        $e->setExtensions(new Extensions($extensions));
     }
 
 

@@ -31,8 +31,6 @@ use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
-use SimpleSAML\SAML2\XML\mdui\Keywords;
-use SimpleSAML\SAML2\XML\mdui\Logo;
 use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
@@ -897,9 +895,10 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
-        foreach ($element->getExtensions() as $e) {
+        $extensions = $element->getExtensions()?->getList() ?? [];
+        foreach ($extensions as $e) {
             if ($e instanceof Scope) {
-                $ret['scope'][] = $e->getScope();
+                $ret['scope'][] = $e->getContent();
                 continue;
             }
 
@@ -911,26 +910,19 @@ class SAMLParser
                 if ($e instanceof RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (
-                        isset($ret['RegistrationInfo']['authority'])
-                        && $ret['RegistrationInfo']['authority'] !== $e->getRegistrationAuthority()
+                        isset($ret['RegistrationInfo']['registrationAuthority'])
+                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()
                     ) {
-                        Logger::warning(
-                            'Invalid attempt to override registrationAuthority \''
-                            . $ret['RegistrationInfo']['authority']
-                            . "' with '{$e->getRegistrationAuthority()}'"
-                        );
+                        Logger::warning(sprintf(
+                            'Invalid attempt to override registrationAuthority \'%s\' with \'%s\'',
+                            $ret['RegistrationInfo']['registrationAuthority'],
+                            $e->getRegistrationAuthority(),
+                        ));
                     } else {
-                        $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();
-                    }
-                    $registrationInstant = $e->getRegistrationInstant();
-                    if ($registrationInstant !== null) {
-                        $ret['RegistrationInfo']['instant'] = $registrationInstant;
-                    }
-                    $registrationPolicy = $e->getRegistrationPolicy();
-                    if (!empty($registrationPolicy)) {
-                        $ret['RegistrationInfo']['policies'] = $registrationPolicy;
+                        $ret['RegistrationInfo'] = $e->toArray();
                     }
                 }
+
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
                     foreach ($e->getChildren() as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows
@@ -966,42 +958,14 @@ class SAMLParser
             // UIInfo elements are only allowed at RoleDescriptor level extensions
             if ($element instanceof RoleDescriptor) {
                 if ($e instanceof UIInfo) {
-                    $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
-                    $ret['UIInfo']['Description'] = $e->getDescription();
-                    $ret['UIInfo']['InformationURL'] = $e->getInformationURL();
-                    $ret['UIInfo']['PrivacyStatementURL'] = $e->getPrivacyStatementURL();
-
-                    foreach ($e->getKeywords() as $uiItem) {
-                        $keywords = $uiItem->getKeywords();
-                        $language = $uiItem->getLanguage();
-                        if (($keywords === [])) {
-                            continue;
-                        }
-                        $ret['UIInfo']['Keywords'][$language] = $keywords;
-                    }
-                    foreach ($e->getLogo() as $uiItem) {
-                        if (!($uiItem instanceof Logo)) {
-                            continue;
-                        }
-                        $logo = [
-                            'url'    => $uiItem->getUrl(),
-                            'height' => $uiItem->getHeight(),
-                            'width'  => $uiItem->getWidth(),
-                        ];
-                        if ($uiItem->getLanguage() !== null) {
-                            $logo['lang'] = $uiItem->getLanguage();
-                        }
-                        $ret['UIInfo']['Logo'][] = $logo;
-                    }
+                    $ret['UIInfo'] = $e->toArray();
                 }
             }
 
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof IDPSSODescriptor) {
                 if ($e instanceof DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
-                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
-                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
+                    $ret['DiscoHints'] = $e->toArray();
                 }
             }
         }
