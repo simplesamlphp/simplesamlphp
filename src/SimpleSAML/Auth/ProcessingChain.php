@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SAML2\Exception\Protocol\NoPassiveException;
+use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class for implementing authentication processing chains for IdPs.
@@ -225,7 +226,7 @@ class ProcessingChain
      *
      * @param array $state  The state we are processing.
      */
-    public static function resumeProcessing(array $state): void
+    public static function resumeProcessing(array $state): Response
     {
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
@@ -252,7 +253,7 @@ class ProcessingChain
              */
             $id = State::saveState($state, self::COMPLETED_STAGE);
             $httpUtils = new Utils\HTTP();
-            $httpUtils->redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
+            $response = $httpUtils->redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
         } else {
             /* Pass the state to the function defined in $state['ReturnCall']. */
 
@@ -262,9 +263,11 @@ class ProcessingChain
             $func = $state['ReturnCall'];
             Assert::isCallable($func);
 
-            call_user_func($func, $state);
-            Assert::true(false);
+            $response = call_user_func($func, $state);
+            Assert::isInstanceOf($response, Response::class);
         }
+
+        return $response;
     }
 
 
@@ -293,7 +296,7 @@ class ProcessingChain
             try {
                 $filter->process($state);
             } catch (NoPassiveException $e) {
-                // Ignore \SAML2\Exception\Protocol\NoPassiveException exceptions
+                // Ignore \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException exceptions
             }
         }
     }

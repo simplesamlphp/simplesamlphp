@@ -678,6 +678,8 @@ class Template extends Response
      * language and fallback language; it will return the property value (which
      * can be a string, array or other type allowed in metadata, if not found it
      * returns null.
+     *
+     * @return array|string|null
      */
     public function getEntityPropertyTranslation(string $property, array $data): array|string|null
     {
@@ -685,6 +687,7 @@ class Template extends Response
 
         foreach ($tryLanguages as $language) {
             if (isset($data[$property][$language])) {
+                Assert::string($data[$property][$language]);
                 return $data[$property][$language];
             }
         }

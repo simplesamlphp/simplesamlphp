@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml;
 
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Assertion;
-use SAML2\AuthnRequest;
-use SAML2\Constants as C;
-use SAML2\EncryptedAssertion;
-use SAML2\LogoutRequest;
-use SAML2\LogoutResponse;
-use SAML2\Response;
-use SAML2\SignedElement;
-use SAML2\StatusResponse;
-use SAML2\XML\ds\KeyInfo;
-use SAML2\XML\ds\X509Certificate;
-use SAML2\XML\ds\X509Data;
-use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Assertion;
+use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\EncryptedAssertion;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\LogoutResponse;
+use SimpleSAML\SAML2\Response;
+use SimpleSAML\SAML2\SignedElement;
+use SimpleSAML\SAML2\StatusResponse;
+use SimpleSAML\SAML2\XML\ds\KeyInfo;
+use SimpleSAML\SAML2\XML\ds\X509Certificate;
+use SimpleSAML\SAML2\XML\ds\X509Data;
+use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Utils;
 
 /**
@@ -36,7 +37,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @param \SAML2\SignedElement $element The element we should add the data to.
+     * @param \SimpleSAML\SAML2\SignedElement $element The element we should add the data to.
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -88,12 +89,12 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @param \SAML2\Message $message The message we should add the data to.
+     * @param \SimpleSAML\SAML2\Message $message The message we should add the data to.
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message
+        \SimpleSAML\SAML2\Message $message
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -126,7 +127,8 @@ class Message
      * Check the signature on a SAML2 message or assertion.
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
-     * @param \SAML2\SignedElement $element Either a \SAML2\Response or a \SAML2\Assertion.
+     * @param \SimpleSAML\SAML2\SignedElement $element Either a \SimpleSAML\SAML2\Response
+     *   or a \SimpleSAML\SAML2\Assertion.
      * @return bool True if the signature is correct, false otherwise.
      *
      * @throws \SimpleSAML\Error\Exception if there is not certificate in the metadata for the entity.
@@ -171,7 +173,7 @@ class Message
                     return true;
                 }
                 Logger::debug('Validation with key #' . $i . ' failed without exception.');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
@@ -191,7 +193,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @param \SAML2\Message $message The message we should check the signature on.
+     * @param \SimpleSAML\SAML2\Message $message The message we should check the signature on.
      * @return bool Whether or not the message was validated.
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
@@ -199,7 +201,7 @@ class Message
     public static function validateMessage(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message
+        \SimpleSAML\SAML2\Message $message
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -335,9 +337,10 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
-     * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion we are decrypting.
+     * @param \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion $assertion
+     *   The assertion we are decrypting.
      *
-     * @return \SAML2\Assertion The assertion.
+     * @return \SimpleSAML\SAML2\Assertion The assertion.
      *
      * @throws \SimpleSAML\Error\Exception if encryption is enabled but the assertion is not encrypted, or if we cannot
      * get the decryption keys.
@@ -357,7 +360,7 @@ class Message
             }
             if ($encryptAssertion) {
                 /* The assertion was unencrypted, but we have encryption enabled. */
-                throw new \Exception('Received unencrypted assertion, but encryption was enabled.');
+                throw new Exception('Received unencrypted assertion, but encryption was enabled.');
             }
 
             return $assertion;
@@ -370,7 +373,7 @@ class Message
 
             $encryptionMethod = null;
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
 
@@ -382,7 +385,7 @@ class Message
                 $ret = $assertion->getAssertion($key, $blacklist);
                 Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 return $ret;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
@@ -402,7 +405,8 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
-     * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
+     * @param \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\Assertion $assertion
+     *   The assertion containing any possibly encrypted attributes.
      *
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
@@ -418,7 +422,7 @@ class Message
 
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new SSP_Error\Exception('Error decrypting attributes: ' . $e->getMessage());
         }
 
@@ -431,7 +435,7 @@ class Message
                 Logger::debug('Attribute decryption with key #' . $i . ' succeeded.');
                 $error = false;
                 break;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::debug('Attribute decryption failed with exception: ' . $e->getMessage());
             }
         }
@@ -444,7 +448,7 @@ class Message
     /**
      * Retrieve the status code of a response as a \SimpleSAML\Module\saml\Error.
      *
-     * @param \SAML2\StatusResponse $response The response.
+     * @param \SimpleSAML\SAML2\StatusResponse $response The response.
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
@@ -460,7 +464,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
-     * @return \SAML2\AuthnRequest An authentication request object.
+     * @return \SimpleSAML\SAML2\AuthnRequest An authentication request object.
      */
     public static function buildAuthnRequest(
         Configuration $spMetadata,
@@ -526,7 +530,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @return \SAML2\LogoutRequest A logout request object.
+     * @return \SimpleSAML\SAML2\LogoutRequest A logout request object.
      */
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
@@ -549,7 +553,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @return \SAML2\LogoutResponse A logout response object.
+     * @return \SimpleSAML\SAML2\LogoutResponse A logout response object.
      */
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
@@ -574,9 +578,9 @@ class Message
      *
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
-     * @param \SAML2\Response $response The response.
+     * @param \SimpleSAML\SAML2\Response $response The response.
      *
-     * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
+     * @return array Array with \SimpleSAML\SAML2\Assertion objects, containing valid assertions from the response.
      *
      * @throws \SimpleSAML\Error\Exception if there are no assertions in the response.
      * @throws \Exception if the destination of the response does not match the current URL.
@@ -595,7 +599,7 @@ class Message
         $currentURL = $httpUtils->getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
-            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+            throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
                 $msgDestination . '", current URL is "' . $currentURL . '".');
         }
 
@@ -624,11 +628,11 @@ class Message
      *
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
-     * @param \SAML2\Response $response The response containing the assertion.
-     * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
+     * @param \SimpleSAML\SAML2\Response $response The response containing the assertion.
+     * @param \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
      *
-     * @return \SAML2\Assertion The assertion, if it is valid.
+     * @return \SimpleSAML\SAML2\Assertion The assertion, if it is valid.
      *
      * @throws \SimpleSAML\Error\Exception if an error occurs while trying to validate the assertion, or if a assertion
      * is not signed and it should be, or if we are unable to decrypt the NameID due to a local failure (missing or
@@ -642,7 +646,7 @@ class Message
         $assertion,
         bool $responseSigned
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
+        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
@@ -833,7 +837,7 @@ class Message
         if ($assertion->isNameIdEncrypted()) {
             try {
                 $keys = self::getDecryptionKeys($idpMetadata, $spMetadata);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 throw new SSP_Error\Exception('Error decrypting NameID: ' . $e->getMessage());
             }
 
@@ -846,7 +850,7 @@ class Message
                     Logger::debug('Decryption with key #' . $i . ' succeeded.');
                     $lastException = null;
                     break;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                     $lastException = $e;
                 }

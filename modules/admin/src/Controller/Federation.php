@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
-use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -18,6 +17,7 @@ use SimpleSAML\Metadata\Signer;
 use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,7 +65,7 @@ class Federation
     {
         $this->config = $config;
         $this->menu = new Menu();
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
         $this->authUtils = new Utils\Auth();
         $this->cryptoUtils = new Utils\Crypto();
     }
@@ -108,13 +108,16 @@ class Federation
      * Display the federation page.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -388,11 +391,15 @@ class Federation
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function metadataConverter(Request $request): Template
+    public function metadataConverter(Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
+
         if ($xmlfile = $request->files->get('xmlfile')) {
             $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
@@ -479,7 +486,10 @@ class Federation
      */
     public function downloadCert(Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         $set = $request->query->get('set');
         $prefix = $request->query->get('prefix', '');
@@ -518,11 +528,14 @@ class Federation
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showRemoteEntity(Request $request): Template
+    public function showRemoteEntity(Request $request): Response
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         $entityId = $request->query->get('entityid');
         $set = $request->query->get('set');

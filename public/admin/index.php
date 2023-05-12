@@ -9,4 +9,5 @@ require_once('../_include.php');
 $httpUtils = new Utils\HTTP();
 
 $redirect = Module::getModuleURL('admin/');
-$httpUtils->redirectTrustedURL($redirect);
+$response = $httpUtils->redirectTrustedURL($redirect);
+$response->send();

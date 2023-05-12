@@ -5,30 +5,32 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SAML2\Assertion;
-use SAML2\Binding;
-use SAML2\Constants as C;
-use SAML2\Exception\Protocol\UnsupportedBindingException;
-use SAML2\HTTPArtifact;
-use SAML2\LogoutRequest;
-use SAML2\LogoutResponse;
-use SAML2\Response as SAML2_Response;
-use SAML2\SOAP;
-use SAML2\XML\saml\Issuer;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\Assertion;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\SAML2\HTTPArtifact;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\LogoutResponse;
+use SimpleSAML\SAML2\Response as SAML2_Response;
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function array_merge;
 use function count;
@@ -110,9 +112,9 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function login(Request $request, string $sourceId): RunnableResponse
+    public function login(Request $request, string $sourceId): RedirectResponse
     {
         $as = new Auth\Simple($sourceId);
         if (!($as->getAuthSource() instanceof SP)) {
@@ -134,7 +136,7 @@ class ServiceProvider
 
         $as->requireAuth($options);
 
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+        return $httpUtils->redirectTrustedURL($returnTo);
     }
 
 
@@ -142,9 +144,8 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function discoResponse(Request $request): RunnableResponse
+    public function discoResponse(Request $request): Response
     {
         if (!$request->query->has('AuthID')) {
             throw new Error\BadRequest('Missing AuthID to discovery service response handler');
@@ -171,7 +172,7 @@ class ServiceProvider
             throw new Error\Exception('Source type changed?');
         }
 
-        return new RunnableResponse([$source, 'startSSO'], [$idpEntityId, $state]);
+        return $source->startSSO($this->config, $idpEntityId, $state);
     }
 
 
@@ -187,17 +188,22 @@ class ServiceProvider
     /**
      * Handler for the Assertion Consumer Service.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function assertionConsumerService(string $sourceId): RunnableResponse
+    public function assertionConsumerService(Request $request, string $sourceId): Response
     {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId, SP::class);
 
         $spMetadata = $source->getMetadata();
         try {
-            $b = Binding::getCurrentBinding();
+            $b = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('ACSPARAMS', $e, 400);
         }
@@ -206,7 +212,7 @@ class ServiceProvider
             $b->setSPMetadata($spMetadata);
         }
 
-        $response = $b->receive();
+        $response = $b->receive($psrRequest);
         if (!($response instanceof SAML2_Response)) {
             throw new Error\BadRequest('Invalid message received at AssertionConsumerService endpoint.');
         }
@@ -246,7 +252,7 @@ class ServiceProvider
                 'ignoring the response and redirecting the user to the correct page.'
             ));
             if (isset($prevAuth['redirect'])) {
-                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
+                return $httpUtils->redirectTrustedURL($prevAuth['redirect']);
             }
 
             Logger::info('No RelayState or ReturnURL available, cannot redirect.');
@@ -288,7 +294,7 @@ class ServiceProvider
             // check that the issuer is the one we are expecting
             Assert::keyExists($state, 'ExpectedIssuer');
             if ($state['ExpectedIssuer'] !== $issuer) {
-                $idpMetadata = $source->getIdPMetadata($issuer);
+                $idpMetadata = $source->getIdPMetadata($this->config, $issuer);
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
                     Logger::warning(
@@ -309,7 +315,7 @@ class ServiceProvider
         Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
-            $idpMetadata = $source->getIdPmetadata($issuer);
+            $idpMetadata = $source->getIdPmetadata($this->config, $issuer);
         }
 
         try {
@@ -318,7 +324,6 @@ class ServiceProvider
             // the status of the response wasn't "success"
             $e = $e->toException();
             $this->authState::throwException($state, $e);
-            Assert::true(false);
         }
 
         $authenticatingAuthority = null;
@@ -446,7 +451,7 @@ class ServiceProvider
         }
         $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
-        return new RunnableResponse([$source, 'handleResponse'], [$state, $issuer, $attributes]);
+        return $source->handleResponse($state, $issuer, $attributes);
     }
 
 
@@ -455,11 +460,16 @@ class ServiceProvider
      *
      * This endpoint handles both logout requests and logout responses.
      *
+     * @param \Symfony\Component\HttpFoundation\Request
      * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function singleLogoutService(string $sourceId): RunnableResponse
+    public function singleLogoutService(Request $request, string $sourceId): Response
     {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
 
@@ -470,11 +480,11 @@ class ServiceProvider
         }
 
         try {
-            $binding = Binding::getCurrentBinding();
+            $binding = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
             throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
         }
-        $message = $binding->receive();
+        $message = $binding->receive($psrRequest);
 
         $issuer = $message->getIssuer();
         if ($issuer instanceof Issuer) {
@@ -490,7 +500,7 @@ class ServiceProvider
 
         $spEntityId = $source->getEntityId();
 
-        $idpMetadata = $source->getIdPMetadata($idpEntityId);
+        $idpMetadata = $source->getIdPMetadata($this->config, $idpEntityId);
         $spMetadata = $source->getMetadata();
 
         Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);
@@ -516,7 +526,7 @@ class ServiceProvider
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
-            return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
+            return $source::completeLogout($state);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
             Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
@@ -554,7 +564,8 @@ class ServiceProvider
             $numLoggedOut = Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
             if ($numLoggedOut === false) {
                 // This type of logout was unsupported. Use the old method
-                $source->handleLogout($idpEntityId);
+                $response = $source->handleLogout($idpEntityId);
+                Assert::null($response);
                 $numLoggedOut = count($sessionIndexes);
             }
 
@@ -587,7 +598,9 @@ class ServiceProvider
                 $lr->setDestination($dst['Location']);
             }
 
-            return new RunnableResponse([$binding, 'send'], [$lr]);
+            $psrResponse = $binding->send($lr);
+            $httpFoundationFactory = new HttpFoundationFactory();
+            return $httpFoundationFactory->createResponse($psrResponse);
         } else {
             throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
@@ -599,12 +612,15 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function metadata(Request $request, string $sourceId): Response
     {
         if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
-            return new RunnableResponse([$this->authUtils, 'requireAdmin']);
+            $response = $this->authUtils->requireAdmin();
+            if ($response instanceof Response) {
+                return $response;
+            }
         }
 
         $source = Auth\Source::getById($sourceId);

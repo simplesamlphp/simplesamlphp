@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use DOMNodeList;
-use SAML2\XML\saml\AttributeValue;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\Utils;
 
 /**
@@ -233,7 +233,7 @@ class Session implements Utils\ClearableState
             foreach ($parameters['RawAttributes'] as $attribute => $values) {
                 foreach ($values as $idx => $value) {
                     // this should be originally a DOMNodeList
-                    /* @var \SAML2\XML\saml\AttributeValue $value */
+                    /* @var \SimpleSAML\SAML2\XML\saml\AttributeValue $value */
                     $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->getElement()->childNodes;
                 }
             }

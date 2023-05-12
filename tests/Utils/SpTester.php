@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use ReflectionObject;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\LogoutRequest;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\LogoutRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Wrap the SSP \SimpleSAML\Module\saml\Auth\Source\SP class
@@ -42,7 +43,7 @@ class SpTester extends SP
     /**
      * override the method that sends the request to avoid sending anything
      */
-    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
+    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
@@ -57,7 +58,7 @@ class SpTester extends SP
     /**
      * override the method that sends the request to avoid sending anything
      */
-    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): void
+    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(

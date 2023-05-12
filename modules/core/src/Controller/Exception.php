@@ -12,8 +12,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 /**
  * Controller class for the core module.
@@ -55,8 +54,7 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\BadRequest
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
-     *   An HTML template or a redirection if we are not authenticated.
+     * @return \SimpleSAML\XHTML\Template  An HTML template
      */
     public function cardinality(Request $request): Response
     {
@@ -91,7 +89,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function nocookie(Request $request): Response
+    public function nocookie(Request $request): Template|RedirectResponse
     {
         $retryURL = $request->query->get('retryURL', null);
         if ($retryURL !== null) {
@@ -112,12 +110,12 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
      */
-    public function shortSsoInterval(Request $request): Response
+    public function shortSsoInterval(Request $request): Template|Response
     {
         $stateId = $request->query->get('StateId', false);
         if ($stateId === false) {
@@ -129,7 +127,7 @@ class Exception
         $continue = $request->query->get('continue', false);
         if ($continue !== false) {
             // The user has pressed the continue/retry-button
-            Auth\ProcessingChain::resumeProcessing($state);
+            return Auth\ProcessingChain::resumeProcessing($state);
         }
 
         $t = new Template($this->config, 'core:short_sso_interval.twig');

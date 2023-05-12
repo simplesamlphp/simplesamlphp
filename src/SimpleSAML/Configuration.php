@@ -6,9 +6,9 @@ namespace SimpleSAML;
 
 use Exception;
 use ParseError;
-use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
 

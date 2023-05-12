@@ -262,11 +262,11 @@ class Error extends Exception
         }
 
         $show_function = $config->getOptionalArray('errors.show_function', null);
-        if (isset($show_function)) {
-            Assert::isCallable($show_function);
+        Assert::nullOrIsCallable($show_function);
+        if ($show_function !== null) {
             $this->setHTTPCode();
-            call_user_func($show_function, $config, $data);
-            Assert::true(false);
+            $response = call_user_func($show_function, $config, $data);
+            $response->send();
         } else {
             $t = new Template($config, 'error.twig');
 
@@ -282,7 +282,5 @@ class Error extends Exception
             $t->data = array_merge($t->data, $data);
             $t->send();
         }
-
-        exit;
     }
 }

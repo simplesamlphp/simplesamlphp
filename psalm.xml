@@ -16,6 +16,7 @@
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
+            <directory name="modules/adfs" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>

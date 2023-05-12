@@ -6,26 +6,8 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use DOMNodeList;
 use Exception;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Assertion;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\Constants as C;
-use SAML2\DOMDocumentFactory;
-use SAML2\EncryptedAssertion;
-use SAML2\HTTPRedirect;
-use SAML2\LogoutRequest;
-use SAML2\LogoutResponse;
-use SAML2\Response;
-use SAML2\SOAP;
-use SAML2\XML\ds\X509Certificate;
-use SAML2\XML\ds\X509Data;
-use SAML2\XML\ds\KeyInfo;
-use SAML2\XML\saml\AttributeValue;
-use SAML2\XML\saml\Issuer;
-use SAML2\XML\saml\NameID;
-use SAML2\XML\saml\SubjectConfirmation;
-use SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -34,8 +16,30 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Assertion;
+use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\EncryptedAssertion;
+use SimpleSAML\SAML2\HTTPRedirect;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\LogoutResponse;
+use SimpleSAML\SAML2\Response as SAML2_Response;
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\ds\X509Certificate;
+use SimpleSAML\SAML2\XML\ds\X509Data;
+use SimpleSAML\SAML2\XML\ds\KeyInfo;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Stats;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\Utils;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -49,7 +53,7 @@ class SAML2
      *
      * @param array $state The authentication state.
      */
-    public static function sendResponse(array $state): void
+    public static function sendResponse(array $state): Response
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -71,7 +75,7 @@ class SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = IdP::getByState($state);
+        $idp = IdP::getByState(Configuration::getInstance(), $state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -115,7 +119,10 @@ class SAML2
 
         // send the response
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+        $psrResponse = $binding->send($ar);
+
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
@@ -126,7 +133,7 @@ class SAML2
      *
      * @param array $state The error state.
      */
-    public static function handleAuthError(Error\Exception $exception, array $state): void
+    public static function handleAuthError(Error\Exception $exception, array $state): Response
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL.
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -145,7 +152,7 @@ class SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = IdP::getByState($state);
+        $idp = IdP::getByState(Configuration::getInstance(), $state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -178,7 +185,10 @@ class SAML2
         Stats::log('saml:idp:Response:error', $statsData);
 
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+        $psrResponse = $binding->send($ar);
+
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
@@ -298,12 +308,13 @@ class SAML2
     /**
      * Receive an authentication request.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(IdP $idp): void
+    public static function receiveAuthnRequest(Request $request, IdP $idp): Response
     {
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $httpUtils = new Utils\HTTP();
 
@@ -320,11 +331,11 @@ class SAML2
 
         $authnRequestSigned = false;
 
-        if (isset($_REQUEST['spentityid']) || isset($_REQUEST['providerId'])) {
+        if ($request->query->has('spentityid') || $request->query->has('providerId')) {
             /* IdP initiated authentication. */
 
-            if (isset($_REQUEST['cookieTime'])) {
-                $cookieTime = (int) $_REQUEST['cookieTime'];
+            if ($request->query->has('cookieTime')) {
+                $cookieTime = intval($request->query->get('cookieTime'));
                 if ($cookieTime + 5 > time()) {
                     /*
                      * Less than five seconds has passed since we were
@@ -334,35 +345,33 @@ class SAML2
                 }
             }
 
-            $spEntityId = (string) isset($_REQUEST['spentityid']) ? $_REQUEST['spentityid'] : $_REQUEST['providerId'];
+            $spEntityId = $request->query->has('spentityid')
+                ? $request->query->get('spentityid')
+                : $request->query->get('providerId');
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            if (isset($_REQUEST['RelayState'])) {
-                $relayState = (string) $_REQUEST['RelayState'];
-            } elseif (isset($_REQUEST['target'])) {
-                $relayState = (string) $_REQUEST['target'];
-            } else {
-                $relayState = null;
+            $relayState = null;
+            if ($request->query->has('RelayState')) {
+                $relayState = $request->query->get('RelayState');
+            } elseif ($request->query->has('target')) {
+                $relayState = $request->query->get('target');
             }
 
-            if (isset($_REQUEST['binding'])) {
-                $protocolBinding = (string) $_REQUEST['binding'];
-            } else {
-                $protocolBinding = null;
+            $protocolBinding = null;
+            if ($request->query->has('binding')) {
+                $protocolBinding = $request->query->get('binding');
             }
 
-            if (isset($_REQUEST['NameIDFormat'])) {
-                $nameIDFormat = (string) $_REQUEST['NameIDFormat'];
-            } else {
-                $nameIDFormat = null;
+            $nameIDFormat = null;
+            if ($request->query->has('NameIDFormat')) {
+                $nameIDFormat = $request->query->get('NameIDFormat');
             }
 
-            if (isset($_REQUEST['ConsumerURL'])) {
-                $consumerURL = (string) $_REQUEST['ConsumerURL'];
-            } elseif (isset($_REQUEST['shire'])) {
-                $consumerURL = (string) $_REQUEST['shire'];
-            } else {
-                $consumerURL = null;
+            $consumerURL = null;
+            if ($request->query->has('ConsumerURL')) {
+                $consumerURL = $request->query->get('ConsumerURL');
+            } elseif ($request->query->has('shire')) {
+                $consumerURL = $request->query->get('shire');
             }
 
             $requestId = null;
@@ -382,8 +391,11 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
-            $binding = Binding::getCurrentBinding();
-            $request = $binding->receive();
+            $psr17Factory = new Psr17Factory();
+            $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+            $psrRequest = $psrHttpFactory->createRequest($request);
+            $binding = Binding::getCurrentBinding($psrRequest);
+            $request = $binding->receive($psrRequest);
 
             if (!($request instanceof AuthnRequest)) {
                 throw new Error\BadRequest(
@@ -510,7 +522,7 @@ class SAML2
             'saml:RequestedAuthnContext'  => $authnContext,
         ];
 
-        $idp->handleAuthenticationRequest($state);
+        return $idp->handleAuthenticationRequest($state);
     }
 
 
@@ -521,11 +533,11 @@ class SAML2
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
      */
-    public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
+    public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): Response
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
@@ -542,21 +554,25 @@ class SAML2
                 C::BINDING_HTTP_POST
             ]
         );
+
         $binding = Binding::getBinding($dst['Binding']);
         $lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
         $lr->setDestination($dst['Location']);
 
-        $binding->send($lr);
+        $psrResponse = $binding->send($lr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
     /**
      * Send a logout response.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
      */
-    public static function sendLogoutResponse(IdP $idp, array $state): void
+    public static function sendLogoutResponse(Request $request, IdP $idp, array $state): Response
     {
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
         Assert::notNull($state['saml:SPEntityId']);
@@ -564,7 +580,7 @@ class SAML2
 
         $spEntityId = $state['saml:SPEntityId'];
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -606,20 +622,28 @@ class SAML2
         }
         $lr->setDestination($dst);
 
-        $binding->send($lr);
+        $psrResponse = $binding->send($lr);
+
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
     /**
      * Receive a logout message.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp): void
+    public static function receiveLogoutMessage(Request $request, IdP $idp): Response
     {
-        $binding = Binding::getCurrentBinding();
-        $message = $binding->receive();
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
+        $binding = Binding::getCurrentBinding($psrRequest);
+        $message = $binding->receive($psrRequest);
 
         $issuer = $message->getIssuer();
         if ($issuer === null) {
@@ -629,7 +653,7 @@ class SAML2
             $spEntityId = $issuer->getValue();
         }
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -657,7 +681,7 @@ class SAML2
 
             $assocId = 'saml:' . $spEntityId;
 
-            $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
+            return $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
         } elseif ($message instanceof LogoutRequest) {
             Logger::info('Received SAML 2.0 LogoutRequest from: ' . var_export($spEntityId, true));
             Stats::log('saml:idp:LogoutRequest:recv', [
@@ -676,10 +700,10 @@ class SAML2
             ];
 
             $assocId = 'saml:' . $spEntityId;
-            $idp->handleLogoutRequest($state, $assocId);
-        } else {
-            throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
+            return $idp->handleLogoutRequest($state, $assocId);
         }
+
+        throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
     }
 
 
@@ -696,7 +720,7 @@ class SAML2
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
@@ -734,7 +758,7 @@ class SAML2
      */
     public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
         } catch (Exception $e) {
@@ -758,7 +782,7 @@ class SAML2
     public static function getHostedMetadata(string $entityid, MetaDataStorageHandler $handler = null): array
     {
         if ($handler === null) {
-            $handler = MetaDataStorageHandler::getMetadataHandler();
+            $handler = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         }
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
 
@@ -1023,7 +1047,7 @@ class SAML2
                             /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
-                        Assert::isInstanceOfAny($value, [\DOMNodeList::class, \SAML2\XML\saml\NameID::class]);
+                        Assert::isInstanceOfAny($value, [DOMNodeList::class, NameID::class]);
                         break;
                     default:
                         throw new Error\Exception('Invalid encoding for attribute ' .
@@ -1081,7 +1105,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array &$state The state array with information about the request.
      *
-     * @return \SAML2\Assertion  The assertion.
+     * @return \SimpleSAML\SAML2\Assertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
      */
@@ -1295,14 +1319,14 @@ class SAML2
     /**
      * Encrypt an assertion.
      *
-     * This function takes in a \SAML2\Assertion and encrypts it if encryption of
+     * This function takes in a \SimpleSAML\SAML2\Assertion and encrypts it if encryption of
      * assertions are enabled in the metadata.
      *
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
-     * @param \SAML2\Assertion $assertion The assertion we are encrypting.
+     * @param \SimpleSAML\SAML2\Assertion $assertion The assertion we are encrypting.
      *
-     * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
+     * @return \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
      */
@@ -1371,7 +1395,7 @@ class SAML2
      * @param array $association The SP association.
      * @param string|null $relayState An id that should be carried across the logout.
      *
-     * @return \SAML2\LogoutRequest The corresponding SAML2 logout request.
+     * @return \SimpleSAML\SAML2\LogoutRequest The corresponding SAML2 logout request.
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,
@@ -1409,19 +1433,19 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param string                    $consumerURL The Destination URL of the response.
      *
-     * @return \SAML2\Response The SAML2 Response corresponding to the given data.
+     * @return \SimpleSAML\SAML2\Response The SAML2 Response corresponding to the given data.
      */
     private static function buildResponse(
         Configuration $idpMetadata,
         Configuration $spMetadata,
         string $consumerURL
-    ): Response {
+    ): SAML2_Response {
         $signResponse = $spMetadata->getOptionalBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
-        $r = new Response();
+        $r = new SAML2_Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(C::NAMEID_ENTITY);

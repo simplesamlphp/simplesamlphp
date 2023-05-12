@@ -8,8 +8,8 @@ use DOMElement;
 use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\XML\Validator;
 

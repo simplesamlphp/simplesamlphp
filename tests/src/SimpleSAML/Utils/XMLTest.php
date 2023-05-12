@@ -11,10 +11,10 @@ use DOMException;
 use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * Tests for SimpleSAML\Utils\XML.

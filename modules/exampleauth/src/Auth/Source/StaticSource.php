@@ -8,6 +8,7 @@ use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Example authentication source.
@@ -52,10 +53,12 @@ class StaticSource extends Auth\Source
     /**
      * Log in using static attributes.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         $state['Attributes'] = $this->attributes;
+        return null;
     }
 }

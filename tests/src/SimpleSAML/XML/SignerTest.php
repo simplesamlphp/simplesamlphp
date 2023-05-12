@@ -10,9 +10,9 @@ use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 
 /**

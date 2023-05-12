@@ -10,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Helper class for username/password/organization authentication.
@@ -205,9 +206,10 @@ abstract class UserPassOrgBase extends Auth\Source
      * This function saves the information about the login, and redirects to a
      * login page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
@@ -216,8 +218,9 @@ abstract class UserPassOrgBase extends Auth\Source
 
         $url = Module::getModuleURL('core/loginuserpassorg');
         $params = ['AuthState' => $id];
+
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $params);
+        return $httpUtils->redirectTrustedURL($url, $params);
     }
 
 
@@ -268,7 +271,7 @@ abstract class UserPassOrgBase extends Auth\Source
         string $username,
         string $password,
         string $organization
-    ): void {
+    ): Response {
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
@@ -313,7 +316,7 @@ abstract class UserPassOrgBase extends Auth\Source
         $state['PersistentAuthData'][] = self::ORGID;
 
         $state['Attributes'] = $attributes;
-        Auth\Source::completeAuth($state);
+        return parent::completeAuth($state);
     }
 
 

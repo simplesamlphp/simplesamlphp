@@ -26,10 +26,10 @@ All these parameters override the equivalent option from the configuration.
     This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
     Possible values:
 
-    * `SAML2\Constants::COMPARISON_EXACT` (default)
-    * `SAML2\Constants::COMPARISON_BETTER`
-    * `SAML2\Constants::COMPARISON_MINIMUM`
-    * `SAML2\Constants::COMPARISON_MAXIMUM`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_EXACT` (default)
+    * `SimpleSAML\SAML2\Constants::COMPARISON_BETTER`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_MINIMUM`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_MAXIMUM`
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
@@ -52,7 +52,7 @@ All these parameters override the equivalent option from the configuration.
 
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
-    This must be a \SAML2\XML\saml\NameID object.
+    This must be a \SimpleSAML\SAML2\XML\saml\NameID object.
 
 `saml:NameIDPolicy`
 :   The format of the NameID we request from the IdP: an array in the form of
@@ -75,7 +75,7 @@ The following attributes are available:
 
 `saml:sp:NameID`
 :   The NameID the user was issued by the IdP.
-    This is a \SAML2\XML\saml\NameID object with the various fields from the NameID.
+    This is a \SimpleSAML\SAML2\XML\saml\NameID object with the various fields from the NameID.
 
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
@@ -144,10 +144,10 @@ The following attributes are available:
     This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
     Possible values:
 
-    * `SAML2\Constants::COMPARISON_EXACT` (default)
-    * `SAML2\Constants::COMPARISON_BETTER`
-    * `SAML2\Constants::COMPARISON_MINIMUM`
-    * `SAML2\Constants::COMPARISON_MAXIMUM`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_EXACT` (default)
+    * `SimpleSAML\SAML2\Constants::COMPARISON_BETTER`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_MINIMUM`
+    * `SimpleSAML\SAML2\Constants::COMPARISON_MAXIMUM`
 
 `authproc`
 :   Processing filters that should be run after SP authentication.
@@ -265,8 +265,8 @@ The following attributes are available:
 :   An array of the format(s) listed in the SP metadata that this SP will accept. Example:
 
         'NameIDFormat' => [
-            \SAML2\Constants::NAMEID_PERSISTENT,
-            \SAML2\Constants::NAMEID_TRANSIENT,
+            \SimpleSAML\SAML2\Constants::NAMEID_PERSISTENT,
+            \SimpleSAML\SAML2\Constants::NAMEID_TRANSIENT,
         ],
 
 `NameIDPolicy`
@@ -467,9 +467,9 @@ Here we will list some examples for this authentication source.
 
 ### Using samlp:Extensions
 
-    $dom = \SAML2\DOMDocumentFactory::create();
+    $dom = \SimpleSAML\XML\DOMDocumentFactory::create();
     $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
-    $ext[] = new \SAML2\XML\Chunk($ce);
+    $ext[] = new \SimpleSAML\SAML2\XML\Chunk($ce);
 
     $auth = new \SimpleSAML\Auth\Simple('default-sp');
     $auth->login([

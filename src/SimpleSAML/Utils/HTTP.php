@@ -10,6 +10,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * HTTP-related utility methods.
@@ -211,7 +212,7 @@ class HTTP
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
      */
-    private function redirect(string $url, array $parameters = []): void
+    private function redirect(string $url, array $parameters = []): RedirectResponse
     {
         if (empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -229,36 +230,7 @@ class HTTP
             Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        if (!headers_sent()) {
-            // set the location header
-            header('Location: ' . $url, true, 303);
-
-            // disable caching of this response
-            header('Pragma: no-cache');
-            header('Cache-Control: no-cache, no-store, must-revalidate');
-        }
-
-        // show a minimal web page with a clickable link to the URL
-        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"';
-        echo ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . "\n";
-        echo '<html xmlns="http://www.w3.org/1999/xhtml">' . "\n";
-        echo "  <head>\n";
-        echo '    <meta http-equiv="content-type" content="text/html; charset=utf-8">' . "\n";
-        echo '    <meta http-equiv="refresh" content="0;URL=\'' . htmlspecialchars($url) . '\'">' . "\n";
-        echo "    <title>Redirect</title>\n";
-        echo "  </head>\n";
-        echo "  <body>\n";
-        echo "    <h1>Redirect</h1>\n";
-        echo '      <p>You were redirected to: <a id="redirlink" href="' . htmlspecialchars($url) . '">';
-        echo htmlspecialchars($url) . "</a>\n";
-        echo '        <script type="text/javascript">document.getElementById("redirlink").focus();</script>' . "\n";
-        echo "      </p>\n";
-        echo "  </body>\n";
-        echo '</html>';
-
-        // end script execution
-        exit;
+        return new RedirectResponse($url, 303);
     }
 
 
@@ -340,12 +312,13 @@ class HTTP
         }
 
         // we didn't have a session cookie. Redirect to the no-cookie page
-
         $url = Module::getModuleURL('core/error/nocookie');
         if ($retryURL !== null) {
             $url = $this->addURLParameters($url, ['retryURL' => $retryURL]);
         }
-        $this->redirectTrustedURL($url);
+
+        $response = $this->redirectTrustedURL($url);
+        $response->send();
     }
 
 
@@ -949,10 +922,10 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public function redirectTrustedURL(string $url, array $parameters = []): void
+    public function redirectTrustedURL(string $url, array $parameters = []): RedirectResponse
     {
         $url = $this->normalizeURL($url);
-        $this->redirect($url, $parameters);
+        return $this->redirect($url, $parameters);
     }
 
 
@@ -975,10 +948,10 @@ class HTTP
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      */
-    public function redirectUntrustedURL(string $url, array $parameters = []): void
+    public function redirectUntrustedURL(string $url, array $parameters = []): RedirectResponse
     {
         $url = $this->checkURLAllowed($url);
-        $this->redirect($url, $parameters);
+        return $this->redirect($url, $parameters);
     }
 
 
@@ -1171,9 +1144,8 @@ class HTTP
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      *
-     *
      */
-    public function submitPOSTData(string $destination, array $data): void
+    public function submitPOSTData(string $destination, array $data): RedirectResponse|Template
     {
         if (!$this->isValidURL($destination)) {
             throw new Error\Exception('Invalid destination URL: ' . $destination);
@@ -1184,13 +1156,13 @@ class HTTP
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
-            $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
+            return $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
         }
 
         $p = new Template($config, 'post.twig');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
-        $p->send();
-        exit(0);
+
+        return $p;
     }
 }

@@ -75,11 +75,12 @@ class MDQ extends MetaDataStorageSource
      * - 'cachedir':            Directory where metadata can be cached. Optional.
      * - 'cachelength':         Maximum time metadata cah be cached, in seconds. Default to 24 hours (86400 seconds).
      *
+     * @param \SimpleSAML\Configuration $globalConfig The global configuration
      * @param array $config The configuration for this instance of the XML metadata source.
      *
      * @throws \Exception If no server option can be found in the configuration.
      */
-    protected function __construct(array $config)
+    protected function __construct(Configuration $globalConfig, array $config)
     {
         parent::__construct();
 
@@ -94,7 +95,6 @@ class MDQ extends MetaDataStorageSource
         }
 
         if (array_key_exists('cachedir', $config)) {
-            $globalConfig = Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
         }
 

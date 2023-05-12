@@ -9,6 +9,7 @@ use Exception;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @covers \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth
@@ -183,9 +184,10 @@ class MultiAuthTest extends ClearStateTestCase
 
         $state = [];
         $source = new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
+        $request = Request::createFromGlobals();
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Error $e) {
         } catch (Exception $e) {
         }
@@ -200,10 +202,11 @@ class MultiAuthTest extends ClearStateTestCase
     {
         $state = [];
 
+        $request = Request::createFromGlobals();
         $source = new MultiAuth(['AuthId' => 'example-multi'], $this->sourceConfig->getArray('example-multi'));
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Exception $e) {
         }
 
@@ -216,12 +219,13 @@ class MultiAuthTest extends ClearStateTestCase
      */
     public function testStatePreselectHasPriority(): void
     {
+        $request = Request::createFromGlobals();
         $state = ['multiauth:preselect' => 'example-admin'];
 
         $source = new MultiAuth(['AuthId' => 'example-multi'], $this->sourceConfig->getArray('example-multi'));
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Exception $e) {
         }
 

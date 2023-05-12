@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils\Config;
 
-use SAML2\Constants as C;
-use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.

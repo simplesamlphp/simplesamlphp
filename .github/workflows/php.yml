@@ -49,7 +49,7 @@ jobs:
           tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
           extensions: ctype, date, dom, fileinfo, filter, hash, intl, json, mbstring, mysql, \
-            opcache, openssl, pcre, pdo, pdo_sqlite, posix, spl, xml
+            opcache, openssl, pcre, pdo, pdo_sqlite, posix, soap, spl, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -116,7 +116,7 @@ jobs:
           # Should be the lowest supported version
           php-version: '8.0'
           extensions: ctype, date, dom, hash, fileinfo, filter, intl, json, mbstring, mysql, \
-            openssl, pcre, pdo, pdo_sqlite, posix, spl, xml
+            openssl, pcre, pdo, pdo_sqlite, posix, soap, spl, xml
           tools: composer
           coverage: none
 
@@ -164,7 +164,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ctype, date, dom, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
-            pdo, pdo_sqlite, posix, spl, xdebug, xml
+            pdo, pdo_sqlite, posix, soap, spl, xdebug, xml
           tools: composer
           ini-values: error_reporting=E_ALL, pcov.directory=.
           coverage: pcov
@@ -227,7 +227,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ctype, dom, date, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre, \
-            pdo, pdo_sqlite, posix, spl, xdebug, xml
+            pdo, pdo_sqlite, posix, soap, spl, xdebug, xml
           tools: composer
           ini-values: error_reporting=E_ALL
           coverage: none

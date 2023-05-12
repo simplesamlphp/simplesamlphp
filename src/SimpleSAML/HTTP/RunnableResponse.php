@@ -7,6 +7,8 @@ namespace SimpleSAML\HTTP;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * @deprecated
+ *
  * Class modelling a response that consists on running some function.
  *
  * This is a helper class that allows us to have the new and the old architecture coexist. This way, classes and files

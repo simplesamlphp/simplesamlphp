@@ -122,8 +122,8 @@ class CardinalitySingle extends Auth\ProcessingFilter
         if (array_key_exists('core:cardinality:errorAttributes', $state)) {
             $id = Auth\State::saveState($state, 'core:cardinality');
             $url = Module::getModuleURL('core/error/cardinality');
-            $this->httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
-            return;
+            $response = $this->httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
+            $response->send();
         }
     }
 }

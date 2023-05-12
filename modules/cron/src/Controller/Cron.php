@@ -8,7 +8,6 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -77,12 +76,16 @@ class Cron
     /**
      * Show cron info.
      *
-     * @return \SimpleSAML\XHTML\Template
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(): Template
+    public function info(Request $request): Response|Template
     {
-        $this->authUtils->requireAdmin();
+        $response = $this->authUtils->requireAdmin();
+        if ($response instanceof Response) {
+            return $response;
+        }
 
         $key = $this->cronconfig->getOptionalString('key', 'secret');
         $tags = $this->cronconfig->getOptionalArray('allowed_tags', []);
@@ -115,16 +118,16 @@ class Cron
      *
      * This controller will start a cron operation
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $tag The tag
      * @param string $key The secret key
      * @param string $output The output format, defaulting to xhtml
      *
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
-     *   An HTML template, a redirect or a "runnable" response.
+     * @return \SimpleSAML\XHTML\Template An HTML template.
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run(string $tag, string $key, string $output = 'xhtml'): Response
+    public function run(Request $request, string $tag, string $key, string $output = 'xhtml'): Template
     {
         $configKey = $this->cronconfig->getOptionalString('key', 'secret');
         if ($key !== $configKey) {
@@ -163,6 +166,7 @@ class Cron
             $t->data['summary'] = $summary;
             return $t;
         }
-        return new Response();
+
+        throw new Error\Exception('Unknown output type.');
     }
 }

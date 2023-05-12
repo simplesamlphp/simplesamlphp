@@ -10,4 +10,5 @@ $config = Configuration::getInstance();
 $httpUtils = new Utils\HTTP();
 
 $redirect = $config->getOptionalString('frontpage.redirect', Module::getModuleURL('core/welcome'));
-$httpUtils->redirectTrustedURL($redirect);
+$response = $httpUtils->redirectTrustedURL($redirect);
+$response->send();

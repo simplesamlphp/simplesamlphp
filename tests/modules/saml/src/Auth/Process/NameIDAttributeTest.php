@@ -7,8 +7,8 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;
-use SAML2\XML\saml\NameID;
-use SAML2\Constants as C;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\saml\NameID;
 
 /**
  * Test for the saml:NameIDAttribute filter.
