@@ -2,11 +2,13 @@
   "symbol-whitelist": [
     "Predis\\Client"
   ],
-  "readme": "Note: we 'abuse' the core-extensions to exclude our soft dependencies",
   "php-core-extensions": [
+    "Core",
     "curl",
     "memcached",
-    "opcache",
-    "pdo"
+    "pdo",
+    "random",
+    "standard",
+    "zend-opcache"
   ]
 }

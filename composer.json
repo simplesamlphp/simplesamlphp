@@ -68,6 +68,7 @@
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/saml2": "^4.6",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0",
+        "simplesamlphp/simplesamlphp-module-adfs": "dev-master#62f4d6367c184a30c35b2ba91511f2303c5bd4f1",
         "symfony/cache": "^5.4||^6",
         "symfony/config": "^5.4||^6",
         "symfony/console": "^5.4||^6",
@@ -88,7 +89,6 @@
     },
     "require-dev": {
         "mikey179/vfsstream": "~1.6",
-        "simplesamlphp/simplesamlphp-module-adfs": "3.0.x-dev",
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.1",
         "simplesamlphp/xml-security": "^1.6.0"
     },
