@@ -980,9 +980,10 @@ class SAMLParser
      */
     private function processOrganization(Organization $element): void
     {
-        $this->organizationName = $element->getOrganizationName();
-        $this->organizationDisplayName = $element->getOrganizationDisplayName();
-        $this->organizationURL = $element->getOrganizationURL();
+        $org = $element->toArray();
+        $this->organizationName = $org['OrganizationName'];
+        $this->organizationDisplayName = $org['OrganizationDisplayName'];
+        $this->organizationURL = $org['OrganizationURL'];
     }
 
 

@@ -186,8 +186,8 @@ class SAMLBuilder
 
         if ($metadata->hasValue('scope')) {
             foreach ($metadata->getArray('scope') as $scopetext) {
-                $isScoped = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
-                $extensions[] = new Scope($scopetext, $isScoped);
+                $isRegexpScope = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
+                $extensions[] = new Scope($scopetext, $isRegexpScope);
             }
         }
 
@@ -237,25 +237,6 @@ class SAMLBuilder
 
 
     /**
-     * Add an Organization element based on data passed as parameters
-     *
-     * @param array $orgName An array with the localized OrganizationName.
-     * @param array $orgDisplayName An array with the localized OrganizationDisplayName.
-     * @param array $orgURL An array with the localized OrganizationURL.
-     */
-    public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL): void
-    {
-        $org = new Organization();
-
-        $org->setOrganizationName($orgName);
-        $org->setOrganizationDisplayName($orgDisplayName);
-        $org->setOrganizationURL($orgURL);
-
-        $this->entityDescriptor->setOrganization($org);
-    }
-
-
-    /**
      * Add an Organization element based on metadata array.
      *
      * @param array $metadata The metadata we should extract the organization information from.
@@ -273,11 +254,12 @@ class SAMLBuilder
 
         $arrayUtils = new Utils\Arrays();
 
-        $orgName = $arrayUtils->arrayize($metadata['OrganizationName'], 'en');
-        $orgDisplayName = $arrayUtils->arrayize($metadata['OrganizationDisplayName'], 'en');
-        $orgURL = $arrayUtils->arrayize($metadata['OrganizationURL'], 'en');
+        $metadata['OrganizationName'] = $arrayUtils->arrayize($metadata['OrganizationName'], 'en');
+        $metadata['OrganizationDisplayName'] = $arrayUtils->arrayize($metadata['OrganizationDisplayName'], 'en');
+        $metadata['OrganizationURL'] = $arrayUtils->arrayize($metadata['OrganizationURL'], 'en');
 
-        $this->addOrganization($orgName, $orgDisplayName, $orgURL);
+        $org = Organization::fromArray($metadata);
+        $this->entityDescriptor->setOrganization($org);
     }
 
 
