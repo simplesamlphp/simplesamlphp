@@ -18,6 +18,7 @@ use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
+use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RequestedAttribute;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
@@ -32,6 +33,10 @@ use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Utils as XMLUtils;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use SimpleSAML\XMLSecurity\XML\ds\KeyName;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
@@ -580,20 +585,29 @@ class SAMLBuilder
      *
      * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param string                      $use The value of the 'use' attribute.
-     * @param string                      $x509data The certificate data.
+     * @param string                      $x509cert The certificate data.
      * @param string|null                 $keyName The name of the key. Should be valid for usage in an ID attribute,
      *                                             e.g. not start with a digit.
      */
     private function addX509KeyDescriptor(
         RoleDescriptor $rd,
         string $use,
-        string $x509data,
+        string $x509cert,
         ?string $keyName = null
     ): void {
         Assert::oneOf($use, ['encryption', 'signing']);
-
-        $keyDescriptor = \SimpleSAML\SAML2\Utils::createKeyDescriptor($x509data, $keyName);
-        $keyDescriptor->setUse($use);
+        $info = [
+            new X509Data([
+                new X509Certificate($x509cert),
+            ]),
+        ];
+        if ($keyName !== null) {
+            $info[] = new KeyName($keyName);
+        }
+        $keyDescriptor = new KeyDescriptor(
+            new KeyInfo($info),
+            $use,
+        );
         $rd->addKeyDescriptor($keyDescriptor);
     }
 

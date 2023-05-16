@@ -13,8 +13,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\SignedElementHelper;
-use SimpleSAML\SAML2\XML\ds\X509Certificate;
-use SimpleSAML\SAML2\XML\ds\X509Data;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
@@ -37,6 +35,8 @@ use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -1155,7 +1155,7 @@ class SAMLParser
                 foreach ($i->getData() as $d) {
                     if ($d instanceof X509Certificate) {
                         $r['type'] = 'X509Certificate';
-                        $r['X509Certificate'] = $d->getCertificate();
+                        $r['X509Certificate'] = $d->getContent();
                         return $r;
                     }
                 }
