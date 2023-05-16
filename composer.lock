@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "257f0d0cf563340a943e9f6d42d3e128",
+    "content-hash": "f0e9be8b707d9558d20edacf78d4404b",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -844,12 +844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "ea6cfab8a41cb4d51808b623e4ec0e86ddb6cb74"
+                "reference": "90860f53c6b80e1e66175dd6bcf9cd1927adb396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/ea6cfab8a41cb4d51808b623e4ec0e86ddb6cb74",
-                "reference": "ea6cfab8a41cb4d51808b623e4ec0e86ddb6cb74",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/90860f53c6b80e1e66175dd6bcf9cd1927adb396",
+                "reference": "90860f53c6b80e1e66175dd6bcf9cd1927adb396",
                 "shasum": ""
             },
             "require": {
@@ -908,7 +908,7 @@
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
                 "source": "https://github.com/simplesamlphp/saml2/tree/master"
             },
-            "time": "2023-05-15T20:11:58+00:00"
+            "time": "2023-05-16T11:51:37+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -1008,16 +1008,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.7.3",
+            "version": "v1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "8682637e51e61a97dda656d12da35bbaa03ffbac"
+                "reference": "231891cd0d266a3ca6fa7c12f9593b3bfbcc59ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/8682637e51e61a97dda656d12da35bbaa03ffbac",
-                "reference": "8682637e51e61a97dda656d12da35bbaa03ffbac",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/231891cd0d266a3ca6fa7c12f9593b3bfbcc59ee",
+                "reference": "231891cd0d266a3ca6fa7c12f9593b3bfbcc59ee",
                 "shasum": ""
             },
             "require": {
@@ -1063,7 +1063,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2023-05-05T23:06:23+00:00"
+            "time": "2023-05-16T10:55:27+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
