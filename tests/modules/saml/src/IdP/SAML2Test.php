@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use InvalidArgumentException;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\IdP;
@@ -633,9 +634,9 @@ EOT;
     {
         $config = [
             'RegistrationInfo' => [
-                'authority' => 'urn:mace:sp.example.org',
-                'instant' => '2008-01-17T11:28:03.577Z',
-                'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+                'registrationAuthority' => 'urn:mace:sp.example.org',
+                'registrationInstant' => '2008-01-17T11:28:03.577Z',
+                'registrationPolicy' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
             ],
         ];
         $md = $this->idpMetadataHandlerHelper($config);
@@ -643,11 +644,11 @@ EOT;
         $this->assertArrayHasKey('RegistrationInfo', $md);
         $reginfo = $md['RegistrationInfo'];
         $this->assertIsArray($reginfo);
-        $this->assertEquals('urn:mace:sp.example.org', $reginfo['authority']);
-        $this->assertEquals('2008-01-17T11:28:03.577Z', $reginfo['instant']);
-        $this->assertIsArray($reginfo['policies']);
-        $this->assertCount(2, $reginfo['policies']);
-        $this->assertEquals('http://sp.example.org/politica', $reginfo['policies']['es']);
+        $this->assertEquals('urn:mace:sp.example.org', $reginfo['registrationAuthority']);
+        $this->assertEquals('2008-01-17T11:28:03.577Z', $reginfo['registrationInstant']);
+        $this->assertIsArray($reginfo['registrationPolicy']);
+        $this->assertCount(2, $reginfo['registrationPolicy']);
+        $this->assertEquals('http://sp.example.org/politica', $reginfo['registrationPolicy']['es']);
     }
 
     /**
@@ -675,21 +676,25 @@ EOT;
     {
         $config = ['contacts' => [
             [
-               'contactType'       => 'other',
-               'emailAddress'      => 'csirt@example.com',
-               'surName'           => 'CSIRT',
-               'telephoneNumber'   => '+31SECOPS',
-               'company'           => 'Acme Inc',
+               'ContactType'       => 'other',
+               'EmailAddress'      => ['csirt@example.com'],
+               'SurName'           => 'CSIRT',
+               'TelephoneNumber'   => ['+31SECOPS'],
+               'Company'           => 'Acme Inc',
                'attributes'        => [
-                   'xmlns:remd'        => 'http://refeds.org/metadata',
-                   'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-               ],
+                    [
+                        'namespaceURI' => 'http://refeds.org/metadata',
+                        'namespacePrefix' => 'remd',
+                        'attrName' => 'contactType',
+                        'attrValue' => 'http://refeds.org/metadata/contactType/security',
+                    ],
+                ],
             ],
             [
-               'contactType'       => 'administrative',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
+               'ContactType'       => 'administrative',
+               'EmailAddress'      => ['j.doe@example.edu'],
+               'GivenName'         => 'Jane',
+               'SurName'           => 'Doe',
             ],
         ]];
         $md = $this->idpMetadataHandlerHelper($config);
@@ -702,22 +707,26 @@ EOT;
         $contact = $md['contacts'][0];
 
         $this->assertIsArray($contact);
-        $this->assertEquals('other', $contact['contactType']);
-        $this->assertEquals('CSIRT', $contact['surName']);
-        $this->assertArrayNotHasKey('givenName', $contact);
-        $this->assertEquals('+31SECOPS', $contact['telephoneNumber']);
-        $this->assertEquals('Acme Inc', $contact['company']);
+        $this->assertEquals('other', $contact['ContactType']);
+        $this->assertEquals('CSIRT', $contact['SurName']);
+        $this->assertArrayNotHasKey('GivenName', $contact);
+        $this->assertEquals(['+31SECOPS'], $contact['TelephoneNumber']);
+        $this->assertEquals('Acme Inc', $contact['Company']);
         $this->assertIsArray($contact['attributes']);
         $attrs = [
-            'xmlns:remd' => 'http://refeds.org/metadata',
-            'remd:contactType' => 'http://refeds.org/metadata/contactType/security'
+            [
+                'namespaceURI' => 'http://refeds.org/metadata',
+                'namespacePrefix' => 'remd',
+                'attrName' => 'contactType',
+                'attrValue' => 'http://refeds.org/metadata/contactType/security',
+            ],
         ];
         $this->assertEquals($attrs, $contact['attributes']);
 
         $contact = $md['contacts'][1];
         $this->assertIsArray($contact);
-        $this->assertEquals('administrative', $contact['contactType']);
-        $this->assertEquals('j.doe@example.edu', $contact['emailAddress']);
+        $this->assertEquals('administrative', $contact['ContactType']);
+        $this->assertEquals(['mailto:j.doe@example.edu'], $contact['EmailAddress']);
         $this->assertArrayNotHasKey('attributes', $contact);
     }
 
@@ -733,10 +742,10 @@ EOT;
 
         $config = ['contacts' => [
             [
-               'contactType'       => 'technical',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
+               'ContactType'       => 'technical',
+               'EmailAddress'      => ['j.doe@example.edu'],
+               'GivenName'         => 'Jane',
+               'SurName'           => 'Doe',
             ],
         ]];
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
@@ -749,15 +758,15 @@ EOT;
         $contact = $md['contacts'][0];
 
         $this->assertIsArray($contact);
-        $this->assertEquals('technical', $contact['contactType']);
-        $this->assertEquals('Doe', $contact['surName']);
+        $this->assertEquals('technical', $contact['ContactType']);
+        $this->assertEquals('Doe', $contact['SurName']);
 
         $contact = $md['contacts'][1];
         $this->assertIsArray($contact);
-        $this->assertEquals('technical', $contact['contactType']);
-        $this->assertEquals('someone.somewhere@example.org', $contact['emailAddress']);
-        $this->assertEquals('Someone von Somewhere', $contact['givenName']);
-        $this->assertArrayNotHasKey('surName', $contact);
+        $this->assertEquals('technical', $contact['ContactType']);
+        $this->assertEquals(['mailto:someone.somewhere@example.org'], $contact['EmailAddress']);
+        $this->assertEquals('Someone von Somewhere', $contact['GivenName']);
+        $this->assertArrayNotHasKey('SurName', $contact);
     }
 
     /**
@@ -773,16 +782,16 @@ EOT;
         $config = [
             'contacts' => [
                 [
-                    'contactType'       => 'technical',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'surName'           => 'Doe',
+                    'ContactType'       => 'technical',
+                    'EmailAddress'      => ['j.doe@example.edu'],
+                    'SurName'           => 'Doe',
                 ],
             ]
         ];
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
 
         $this->assertCount(1, $md['contacts']);
-        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['emailAddress']);
+        $this->assertEquals(['mailto:j.doe@example.edu'], $md['contacts'][0]['EmailAddress']);
     }
 
     /**
@@ -792,15 +801,15 @@ EOT;
     {
         $config = ['contacts' => [
             [
-               'contactType'       => 'anything',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
+               'ContactType'       => 'anything',
+               'EmailAddress'      => ['j.doe@example.edu'],
+               'GivenName'         => 'Jane',
+               'SurName'           => 'Doe',
             ],
         ]];
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('"contactType" is mandatory and must be one of');
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessage('Expected one of: "technical", "support", "administrative", "billing", "other". Got: "anything"');
         $this->idpMetadataHandlerHelper($config);
     }
 }

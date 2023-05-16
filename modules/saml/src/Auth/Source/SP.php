@@ -20,6 +20,7 @@ use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
 use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
@@ -220,18 +221,18 @@ class SP extends Auth\Source
         // add contacts
         $contacts = $this->metadata->getOptionalArray('contacts', []);
         foreach ($contacts as $contact) {
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
         }
 
         // add technical contact
         $email = $this->config->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
-                'emailAddress' => $email,
-                'givenName' => $this->config->getOptionalString('technicalcontact_name', null),
-                'contactType' => 'technical',
+                'EmailAddress' => [$email],
+                'GivenName' => $this->config->getOptionalString('technicalcontact_name', null),
+                'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
         }
 
         $cryptoUtils = new Utils\Crypto();

@@ -26,6 +26,7 @@ use SimpleSAML\SAML2\LogoutRequest;
 use SimpleSAML\SAML2\LogoutResponse;
 use SimpleSAML\SAML2\Response as SAML2_Response;
 use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
@@ -966,7 +967,7 @@ class SAML2
         if ($config->hasValue('contacts')) {
             $contacts = $config->getArray('contacts');
             foreach ($contacts as $contact) {
-                $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
             }
         }
 
@@ -974,11 +975,11 @@ class SAML2
         $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
-                'emailAddress' => $email,
-                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
-                'contactType' => 'technical',
+                'EmailAddress' => [$email],
+                'GivenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
+                'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
         }
 
         return $metadata;

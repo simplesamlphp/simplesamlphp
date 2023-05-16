@@ -110,7 +110,7 @@ The following options can be set:
     the actual value used is fetched from metadata by the following
     priority:
 
-:  
+:
     1. SP Remote Metadata
     2. IdP Hosted Metadata
 
@@ -166,7 +166,7 @@ The following options can be set:
 
 :   The three most commonly used values are:
 
-:  
+:
     1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
     2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
     3.  `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`

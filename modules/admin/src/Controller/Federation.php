@@ -18,6 +18,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -281,7 +282,7 @@ class Federation
                     $builder->addOrganizationInfo($entity['metadata_array']);
                     if (isset($entity['metadata_array']['contacts'])) {
                         foreach ($entity['metadata_array']['contacts'] as $contact) {
-                            $builder->addContact(Utils\Config\Metadata::getContact($contact));
+                            $builder->addContact(ContactPerson::fromArray($contact));
                         }
                     }
 

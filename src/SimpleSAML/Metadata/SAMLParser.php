@@ -990,32 +990,11 @@ class SAMLParser
     /**
      * Parse and process a ContactPerson element.
      *
-     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $element The ContactPerson element.
+     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $contact The ContactPerson element.
      */
-    private function processContactPerson(ContactPerson $element): void
+    private function processContactPerson(ContactPerson $contact): void
     {
-        $contactPerson = [];
-        if ($element->getContactType() !== '') {
-            $contactPerson['contactType'] = $element->getContactType();
-        }
-        if ($element->getCompany() !== null) {
-            $contactPerson['company'] = $element->getCompany();
-        }
-        if ($element->getGivenName() !== null) {
-            $contactPerson['givenName'] = $element->getGivenName();
-        }
-        if ($element->getSurName() !== null) {
-            $contactPerson['surName'] = $element->getSurName();
-        }
-        if ($element->getEmailAddress() !== []) {
-            $contactPerson['emailAddress'] = $element->getEmailAddress();
-        }
-        if ($element->getTelephoneNumber() !== []) {
-            $contactPerson['telephoneNumber'] = $element->getTelephoneNumber();
-        }
-        if (!empty($contactPerson)) {
-            $this->contacts[] = $contactPerson;
-        }
+        $this->contacts[] = $contact->toArray();
     }
 
 

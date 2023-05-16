@@ -440,8 +440,8 @@ class SAMLBuilder
         $this->entityDescriptor->addRoleDescriptor($e);
 
         foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
-            if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                $this->addContact(Utils\Config\Metadata::getContact($contact));
+            if (array_key_exists('ContactType', $contact) && array_key_exists('EmailAddress', $contact)) {
+                $this->addContact(ContactPerson::fromArray($contact));
             }
         }
     }
@@ -488,8 +488,8 @@ class SAMLBuilder
         $this->entityDescriptor->addRoleDescriptor($e);
 
         foreach ($metadata->getOptionalArray('contacts', []) as $contact) {
-            if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                $this->addContact(Utils\Config\Metadata::getContact($contact));
+            if (array_key_exists('ContactType', $contact) && array_key_exists('EmailAddress', $contact)) {
+                $this->addContact(ContactPerson::fromArray($contact));
             }
         }
     }
@@ -529,54 +529,11 @@ class SAMLBuilder
     /**
      * Add contact information.
      *
-     * Accepts a contact type, and a contact array that must be previously sanitized
-     * by calling Utils\Config\Metadata::getContact().
-     *
-     * @param array  $details The details about the contact.
+     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $contact The details about the contact.
      */
-    public function addContact(array $details): void
+    public function addContact(ContactPerson $contact): void
     {
-        Assert::notNull($details['contactType']);
-        Assert::oneOf($details['contactType'], ContactPerson::CONTACT_TYPES);
-
-        $e = new ContactPerson();
-        $e->setContactType($details['contactType']);
-
-        if (!empty($details['attributes'])) {
-            $e->setContactPersonAttributes($details['attributes']);
-        }
-
-        if (isset($details['company'])) {
-            $e->setCompany($details['company']);
-        }
-        if (isset($details['givenName'])) {
-            $e->setGivenName($details['givenName']);
-        }
-        if (isset($details['surName'])) {
-            $e->setSurName($details['surName']);
-        }
-
-        if (isset($details['emailAddress'])) {
-            $eas = $details['emailAddress'];
-            if (!is_array($eas)) {
-                $eas = [$eas];
-            }
-            foreach ($eas as $ea) {
-                $e->addEmailAddress($ea);
-            }
-        }
-
-        if (isset($details['telephoneNumber'])) {
-            $tlfNrs = $details['telephoneNumber'];
-            if (!is_array($tlfNrs)) {
-                $tlfNrs = [$tlfNrs];
-            }
-            foreach ($tlfNrs as $tlfNr) {
-                $e->addTelephoneNumber($tlfNr);
-            }
-        }
-
-        $this->entityDescriptor->addContactPerson($e);
+        $this->entityDescriptor->addContactPerson($contact);
     }
 
 

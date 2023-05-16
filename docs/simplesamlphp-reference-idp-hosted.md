@@ -55,12 +55,12 @@ entry matches.
 ```php
 'contacts' => [
     [
-        'contactType'       => 'support',
-        'emailAddress'      => 'support@example.org',
-        'givenName'         => 'John',
+        'ContactType'       => 'support',
+        'EmailAddress'      => 'support@example.org',
+        'GivenName'         => 'John',
         'surName'           => 'Doe',
-        'telephoneNumber'   => '+31(0)12345678',
-        'company'           => 'Example Inc.',
+        'TelephoneNumber'   => '+31(0)12345678',
+        'Company'           => 'Example Inc.',
     ],
 ],
 ```
@@ -70,13 +70,13 @@ entry matches.
 ```php
 'contacts' => [
     [
-        'contactType'       => 'other',
-        'emailAddress'      => 'mailto:abuse@example.org',
-        'givenName'         => 'John',
-        'surName'           => 'Doe',
-        'telephoneNumber'   => '+31(0)12345678',
-        'company'           => 'Example Inc.',
-        'attributes'        => [
+        'ContactType'       => 'other',
+        'EmailAddress'      => 'mailto:abuse@example.org',
+        'GivenName'         => 'John',
+        'SurName'           => 'Doe',
+        'TelephoneNumber'   => '+31(0)12345678',
+        'Company'           => 'Example Inc.',
+        'attributes' => [
             'xmlns:remd'        => 'http://refeds.org/metadata',
             'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
         ],
