@@ -175,15 +175,6 @@ class SAMLBuilder
     {
         $extensions = [];
 
-        if ($metadata->hasValue('hint.cidr')) {
-            $attr = new Attribute();
-            $attr->setName('hint.cidr');
-            foreach ($metadata->getArray('hint.cidr') as $hint) {
-                $attr->addAttributeValue(new AttributeValue($hint));
-            }
-            $extensions[] = $attr;
-        }
-
         if ($metadata->hasValue('scope')) {
             foreach ($metadata->getArray('scope') as $scopetext) {
                 $isRegexpScope = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
