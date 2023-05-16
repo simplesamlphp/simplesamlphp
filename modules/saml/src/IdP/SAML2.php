@@ -26,17 +26,17 @@ use SimpleSAML\SAML2\LogoutRequest;
 use SimpleSAML\SAML2\LogoutResponse;
 use SimpleSAML\SAML2\Response as SAML2_Response;
 use SimpleSAML\SAML2\SOAP;
-use SimpleSAML\SAML2\XML\ds\X509Certificate;
-use SimpleSAML\SAML2\XML\ds\X509Data;
-use SimpleSAML\SAML2\XML\ds\KeyInfo;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Stats;
-use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -1199,14 +1199,12 @@ class SAML2
                     $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
                     if (preg_match($pattern, $clientCert, $matches)) {
                         // we have a client certificate from the browser which we add to the HoK assertion
-                        $x509Certificate = new X509Certificate();
-                        $x509Certificate->setCertificate(str_replace(["\r", "\n", " "], '', $matches[1]));
+                        $x509Certificate = new X509Certificate(
+                            str_replace(["\r", "\n", " "], '', $matches[1])
+                        );
 
-                        $x509Data = new X509Data();
-                        $x509Data->addData($x509Certificate);
-
-                        $keyInfo = new KeyInfo();
-                        $keyInfo->addInfo($x509Data);
+                        $x509Data = new X509Data($x509Certificate);
+                        $keyInfo = new KeyInfo([$x509Data]);
 
                         $scd->addInfo($keyInfo);
                     } else {

@@ -19,12 +19,14 @@ use SimpleSAML\SAML2\LogoutResponse;
 use SimpleSAML\SAML2\Response;
 use SimpleSAML\SAML2\SignedElement;
 use SimpleSAML\SAML2\StatusResponse;
-use SimpleSAML\SAML2\XML\ds\KeyInfo;
-use SimpleSAML\SAML2\XML\ds\X509Certificate;
-use SimpleSAML\SAML2\XML\ds\X509Data;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Utils;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
+use function array_filter;
+use function array_values;
 /**
  * Common code for building SAML 2 messages based on the available metadata.
  *
@@ -748,43 +750,40 @@ class Message
                 // we have a valid client certificate from the browser
                 $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
 
-                $keyInfo = [];
-                foreach ($scd->getInfo() as $thing) {
-                    if ($thing instanceof KeyInfo) {
-                        $keyInfo[] = $thing;
-                    }
-                }
+                $keyInfo = array_values(array_filter($scd->getInfo(), function ($info) {
+                    return $info instanceof KeyInfo;
+                }));
+
                 if (count($keyInfo) != 1) {
                     $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in ' .
                         '<SubjectConfirmationData> allowed';
                     continue;
                 }
+                $keyInfo = array_pop($keyInfo);
 
-                $x509data = [];
-                foreach ($keyInfo[0]->getInfo() as $thing) {
-                    if ($thing instanceof X509Data) {
-                        $x509data[] = $thing;
-                    }
-                }
+                $x509data = array_values(array_filter($keyInfo->getInfo(), function ($info) {
+                    return $info instanceof X509Data;
+                }));
+
                 if (count($x509data) != 1) {
                     $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in ' .
                         '<ds:KeyInfo> within <SubjectConfirmationData> allowed';
                     continue;
                 }
+                $x509data = array_pop($x509data);
 
-                $x509cert = [];
-                foreach ($x509data[0]->getData() as $thing) {
-                    if ($thing instanceof X509Certificate) {
-                        $x509cert[] = $thing;
-                    }
-                }
+                $x509cert = array_values(array_filter($x509data->getData(), function ($data) {
+                    return $data instanceof X509Certificate;
+                }));
+
                 if (count($x509cert) != 1) {
                     $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in ' .
                         '<ds:X509Data> within <SubjectConfirmationData> allowed';
                     continue;
                 }
+                $x509cert = array_pop($x509cert);
 
-                $HoKCertificate = $x509cert[0]->getCertificate();
+                $HoKCertificate = $x509cert->getCertificate();
                 if ($HoKCertificate !== $clientCert) {
                     $lastError = 'Provided client certificate does not match the certificate bound to the ' .
                         'Holder-of-Key assertion';
