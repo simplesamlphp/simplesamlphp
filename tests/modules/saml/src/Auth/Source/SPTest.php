@@ -805,7 +805,9 @@ class SPTest extends ClearStateTestCase
         $as = new SpTester($info, $config);
 
         $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessage('Expected one of: "technical", "support", "administrative", "billing", "other". Got: "anything"');
+        $this->expectExceptionMessage(
+            'Expected one of: "technical", "support", "administrative", "billing", "other". Got: "anything"',
+        );
 
         $md = $as->getHostedMetadata();
     }

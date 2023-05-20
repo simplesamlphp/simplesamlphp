@@ -27,6 +27,7 @@ use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
 use function array_filter;
 use function array_values;
+
 /**
  * Common code for building SAML 2 messages based on the available metadata.
  *

@@ -809,7 +809,9 @@ EOT;
         ]];
 
         $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessage('Expected one of: "technical", "support", "administrative", "billing", "other". Got: "anything"');
+        $this->expectExceptionMessage(
+            'Expected one of: "technical", "support", "administrative", "billing", "other". Got: "anything"',
+        );
         $this->idpMetadataHandlerHelper($config);
     }
 }
