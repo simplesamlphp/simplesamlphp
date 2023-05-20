@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73fc7bd90f1ce0d7607cd36fcbb7a72f",
+    "content-hash": "2277b467a6e2ac0f8a3241ed208ecc68",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -595,16 +595,16 @@
         },
         {
             "name": "psr/http-message",
-            "version": "1.1",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
-                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba"
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
-                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
                 "shasum": ""
             },
             "require": {
@@ -613,7 +613,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -628,7 +628,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for HTTP messages",
@@ -642,9 +642,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-message/tree/1.1"
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "time": "2023-04-04T09:50:52+00:00"
+            "time": "2023-04-04T09:54:51+00:00"
         },
         {
             "name": "psr/log",
@@ -840,44 +840,45 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "dev-master",
+            "version": "v5.0.0-alpha.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "5c817c8caebd01b100dbb57450f12584ce15d30c"
+                "reference": "e94ad0828c59e93827ca9df6047279e676798344"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5c817c8caebd01b100dbb57450f12584ce15d30c",
-                "reference": "5c817c8caebd01b100dbb57450f12584ce15d30c",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/e94ad0828c59e93827ca9df6047279e676798344",
+                "reference": "e94ad0828c59e93827ca9df6047279e676798344",
                 "shasum": ""
             },
             "require": {
                 "ext-date": "*",
                 "ext-dom": "*",
                 "ext-filter": "*",
+                "ext-libxml": "*",
                 "ext-openssl": "*",
                 "ext-pcre": "*",
                 "ext-soap": "*",
                 "ext-zlib": "*",
-                "nyholm/psr7": "^1.5.1",
+                "nyholm/psr7": "^1.8",
                 "php": "^8.0",
-                "psr/http-message": "^1.0.1",
+                "psr/http-message": "^2.0",
                 "psr/log": "^2.0 || ^3.0",
+                "robrichards/xmlseclibs": "^3.1.1",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/xml-common": "^1.9.3",
+                "simplesamlphp/xml-common": "^1.9.0",
                 "simplesamlphp/xml-security": "^1.6.3",
                 "simplesamlphp/xml-soap": "^1.2.0"
             },
             "require-dev": {
-                "mockery/mockery": "^1.5.1",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
+                "mockery/mockery": "^1.5",
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.3"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v6.0.x-dev"
+                    "dev-master": "v5.0.x-dev"
                 }
             },
             "autoload": {
@@ -893,22 +894,14 @@
                 {
                     "name": "Andreas Åkre Solberg",
                     "email": "andreas.solberg@uninett.no"
-                },
-                {
-                    "name": "Jaime Pérez Crespo",
-                    "email": "jaime.perez@uninett.no"
-                },
-                {
-                    "name": "Tim van Dijen",
-                    "email": "tvdijen@gmail.com"
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/master"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.5"
             },
-            "time": "2023-05-20T16:03:50+00:00"
+            "time": "2023-05-20T22:46:19+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -5662,17 +5655,10 @@
             "time": "2021-07-28T10:34:58+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "simplesamlphp/saml2",
-            "version": "9999999-dev",
-            "alias": "5.0.0-alpha.5",
-            "alias_normalized": "5.0.0.0-alpha5"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "simplesamlphp/saml2": 20,
+        "simplesamlphp/saml2": 15,
         "simplesamlphp/simplesamlphp-module-adfs": 20
     },
     "prefer-stable": false,
