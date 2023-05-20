@@ -254,7 +254,12 @@ class SAMLBuilder
         $metadata['OrganizationDisplayName'] = $arrayUtils->arrayize($metadata['OrganizationDisplayName'], 'en');
         $metadata['OrganizationURL'] = $arrayUtils->arrayize($metadata['OrganizationURL'], 'en');
 
-        $org = Organization::fromArray($metadata);
+        $org = Organization::fromArray([
+            'OrganizationName' => $metadata['OrganizationName'],
+            'OrganizationDisplayName' => $metadata['OrganizationDisplayName'],
+            'OrganizationURL' => $metadata['OrganizationURL'],
+        ]);
+
         $this->entityDescriptor->setOrganization($org);
     }
 

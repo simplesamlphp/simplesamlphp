@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf966827ea884f2e2f02be834cf76a44",
+    "content-hash": "73fc7bd90f1ce0d7607cd36fcbb7a72f",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -844,12 +844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "34cae3f685c7d27a881c28edce1b1a05304169c2"
+                "reference": "5c817c8caebd01b100dbb57450f12584ce15d30c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/34cae3f685c7d27a881c28edce1b1a05304169c2",
-                "reference": "34cae3f685c7d27a881c28edce1b1a05304169c2",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5c817c8caebd01b100dbb57450f12584ce15d30c",
+                "reference": "5c817c8caebd01b100dbb57450f12584ce15d30c",
                 "shasum": ""
             },
             "require": {
@@ -908,7 +908,7 @@
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
                 "source": "https://github.com/simplesamlphp/saml2/tree/master"
             },
-            "time": "2023-05-20T14:48:44+00:00"
+            "time": "2023-05-20T16:03:50+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
