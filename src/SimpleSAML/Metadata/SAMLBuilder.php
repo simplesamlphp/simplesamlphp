@@ -19,6 +19,7 @@ use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
+use SimpleSAML\SAML2\XML\md\NameIDFormat;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RequestedAttribute;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
@@ -429,7 +430,11 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
+        $nids = [];
+        foreach ($metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
+            $nids[] = new NameIDFormat($nid);
+        }
+        $e->setNameIDFormat($nids);
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
         foreach ($metadata->getOptionalArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
@@ -486,7 +491,11 @@ class SAMLBuilder
 
         $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false));
 
-        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
+        $nids = [];
+        foreach ($metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
+            $nids[] = new NameIDFormat($nid);
+        }
+        $e->setNameIDFormat($nids);
 
         $e->setSingleSignOnService(self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false));
 
@@ -525,7 +534,11 @@ class SAMLBuilder
             false
         ));
 
-        $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));
+        $nids = [];
+        foreach ($metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
+            $nids[] = new NameIDFormat($nid);
+        }
+        $e->setNameIDFormat($nids);
 
         $this->entityDescriptor->addRoleDescriptor($e);
     }
