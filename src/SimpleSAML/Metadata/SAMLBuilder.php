@@ -28,7 +28,7 @@ use SimpleSAML\SAML2\XML\mdui\Keywords;
 use SimpleSAML\SAML2\XML\mdui\Logo;
 use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
-use SimplESAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Utils as XMLUtils;
