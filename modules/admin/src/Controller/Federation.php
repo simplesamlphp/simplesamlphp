@@ -364,7 +364,6 @@ class Federation
             $xml = $builder->getEntityDescriptorText(true);
 
             // sanitize the resulting array
-            unset($metadata['UIInfo']);
             unset($metadata['metadata-set']);
             unset($metadata['entityid']);
 
