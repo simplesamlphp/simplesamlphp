@@ -215,9 +215,9 @@ your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\M
 and override the methods needed to change the backend used. This class **must** also be located in the
 `src/MetadataStore/` directory of your custom module.
 
-Bear in mind that **your class name must follow the PSR-0 autoloading standard**. This means it needs to be
-named in a particular way, with the use of namespaces being the preferred convention. For example, if your
-module is named `mymodule` and your class is named `MyMetadataHandler`, you should define it like this:
+Bear in mind that **your class name must follow the PSR-4 autoloading standard**. This means it needs to be
+properly namespaced. For example, if your module is named `mymodule` and your class is named `MyMetadataHandler`,
+you should define it like this:
 
 ```php
 <?php
