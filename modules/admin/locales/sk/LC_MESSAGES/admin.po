@@ -332,8 +332,8 @@ msgstr "zapnuté"
 msgid "Details"
 msgstr "Detaily"
 
-msgid "Your PHP installation"
-msgstr "Vaša PHP inštalácia"
+msgid "Checks"
+msgstr ""
 
 msgid "PHP intl extension"
 msgstr "PHP intl rozšírenie"
