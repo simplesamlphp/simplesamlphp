@@ -229,24 +229,24 @@ class SAMLBuilder
         if ($metadata->hasValue('RegistrationInfo')) {
             try {
                 $extensions[] = RegistrationInfo::fromArray($metadata->getArray('RegistrationInfo'));
-            } catch (ArrayValidationException $e) {
-                Logger::error('Metadata: invalid content found in RegistrationInfo: ' . $e->getMessage());
+            } catch (ArrayValidationException $err) {
+                Logger::error('Metadata: invalid content found in RegistrationInfo: ' . $err->getMessage());
             }
         }
 
         if ($metadata->hasValue('UIInfo')) {
             try {
                 $extensions[] = UIInfo::fromArray($metadata->getArray('UIInfo'));
-            } catch (ArrayValidationException $e) {
-                Logger::error('Metadata: invalid content found in UIInfo: ' . $e->getMessage());
+            } catch (ArrayValidationException $err) {
+                Logger::error('Metadata: invalid content found in UIInfo: ' . $err->getMessage());
             }
         }
 
         if ($metadata->hasValue('DiscoHints')) {
             try {
                 $extensions[] = DiscoHints::fromArray($metadata->getArray('DiscoHints'));
-            } catch (ArrayValidationException $e) {
-                Logger::error('Metadata: invalid content found in DiscoHints: ' . $e->getMessage());
+            } catch (ArrayValidationException $err) {
+                Logger::error('Metadata: invalid content found in DiscoHints: ' . $err->getMessage());
             }
         }
 
@@ -298,7 +298,7 @@ class SAMLBuilder
      */
     private static function createEndpoints(array $endpoints, string $class): array
     {
-        $indexed = in_array(AbstractIndexedEndpoint::class, class_parents($class), true);
+        $indexed = in_array(AbstractIndexedEndpointType::class, class_parents($class), true);
         $ret = [];
 
         // Set an index if it wasn't already set
@@ -322,8 +322,8 @@ class SAMLBuilder
             }
         }
 
-        foreach ($endpoints as $ep) {
-            $ret[] = $class::fromArray($ep);
+        foreach ($endpoints as $endpoint) {
+            $ret[] = $class::fromArray($endpoint);
         }
 
         return $ret;

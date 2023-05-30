@@ -1216,7 +1216,7 @@ class SAML2
                             str_replace(["\r", "\n", " "], '', $matches[1])
                         );
 
-                        $x509Data = new X509Data($x509Certificate);
+                        $x509Data = new X509Data([$x509Certificate]);
                         $keyInfo = new KeyInfo([$x509Data]);
 
                         $scd->addInfo($keyInfo);

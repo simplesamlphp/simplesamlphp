@@ -777,12 +777,9 @@ class SAMLParser
         $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
 
         // process NameIDFormat elements
-        $sd['nameIDFormats'] = array_walk(
-            $element->getNameIDFormat(),
-            function ($nidFormat) {
-                return $nidFormat->getContent();
-            },
-        );
+        foreach ($element->getNameIDFormat() as $format) {
+            $sd['nameIDFormats'][] = $format->getContent();
+        }
 
         return $sd;
     }
@@ -1066,7 +1063,7 @@ class SAMLParser
      * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
      * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
      *
-     * @param \SimpleSAML\SAML2\XML\md\EndpointType $element The element which should be parsed.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractEndpointType $element The element which should be parsed.
      *
      * @return array An associative array with the data we have extracted from the element.
      */
