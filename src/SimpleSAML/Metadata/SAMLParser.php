@@ -777,6 +777,7 @@ class SAMLParser
         $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
 
         // process NameIDFormat elements
+        $sd['nameIDFormats'] = [];
         foreach ($element->getNameIDFormat() as $format) {
             $sd['nameIDFormats'][] = $format->getContent();
         }
