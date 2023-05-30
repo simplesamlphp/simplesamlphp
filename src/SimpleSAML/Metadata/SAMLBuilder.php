@@ -376,7 +376,9 @@ class SAMLBuilder
                 $serviceName,
             ),
             $requestedAttributes,
-            $metadata->hasValue('attributes.isDefault') ? $metadata->getOptionalBoolean('attributes.isDefault', false) : null,
+            $metadata->hasValue('attributes.isDefault')
+                ? $metadata->getOptionalBoolean('attributes.isDefault', false)
+                : null,
             array_map(
                 function ($lang, $sDesc) {
                     return new ServiceDescription($lang, $sDesc);
@@ -446,7 +448,10 @@ class SAMLBuilder
 
         $this->addCertificate($e, $metadata);
 
-        $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), SingleLogoutService::class));
+        $e->setSingleLogoutService(self::createEndpoints(
+            $metadata->getEndpoints('SingleLogoutService'),
+            SingleLogoutService::class,
+        ));
 
         $nids = [];
         foreach ($metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
@@ -507,7 +512,10 @@ class SAMLBuilder
             ));
         }
 
-        $e->setSingleLogoutService(self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), SingleLogoutService::class));
+        $e->setSingleLogoutService(self::createEndpoints(
+            $metadata->getEndpoints('SingleLogoutService'),
+            SingleLogoutService::class,
+        ));
 
         $nids = [];
         foreach ($metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
@@ -515,7 +523,10 @@ class SAMLBuilder
         }
         $e->setNameIDFormat($nids);
 
-        $e->setSingleSignOnService(self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), SingleSignOnService::class));
+        $e->setSingleSignOnService(self::createEndpoints(
+            $metadata->getEndpoints('SingleSignOnService'),
+            SingleSignOnService::class,
+        ));
 
         $this->entityDescriptor->addRoleDescriptor($e);
 
@@ -551,7 +562,10 @@ class SAMLBuilder
         $this->addExtensions($metadata, $e);
         $this->addCertificate($e, $metadata);
 
-        $e->setAttributeService(self::createEndpoints($metadata->getEndpoints('AttributeService'), AttributeService::class));
+        $e->setAttributeService(self::createEndpoints(
+            $metadata->getEndpoints('AttributeService'),
+            AttributeService::class,
+        ));
         $e->setAssertionIDRequestService(self::createEndpoints(
             $metadata->getEndpoints('AssertionIDRequestService'),
             AssertionIDRequestService::class,

@@ -636,7 +636,10 @@ EOT;
             'RegistrationInfo' => [
                 'RegistrationAuthority' => 'urn:mace:sp.example.org',
                 'RegistrationInstant' => '2008-01-17T11:28:03.577Z',
-                'RegistrationPolicy' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+                'RegistrationPolicy' => [
+                    'en' => 'http://sp.example.org/policy',
+                    'es' => 'http://sp.example.org/politica',
+                ],
             ],
         ];
         $md = $this->idpMetadataHandlerHelper($config);
