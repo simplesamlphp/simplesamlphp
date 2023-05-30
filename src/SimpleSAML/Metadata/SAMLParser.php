@@ -44,6 +44,7 @@ use function array_intersect;
 use function array_key_exists;
 use function array_map;
 use function array_merge;
+use function array_walk;
 use function count;
 
 /**
@@ -775,9 +776,13 @@ class SAMLParser
         // find all ArtifactResolutionService elements
         $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
 
-
         // process NameIDFormat elements
-        $sd['nameIDFormats'] = $element->getNameIDFormat();
+        $sd['nameIDFormats'] = array_walk(
+            $element->getNameIDFormat(),
+            function ($nidFormat) {
+                return $nidFormat->getContent();
+            },
+        );
 
         return $sd;
     }
