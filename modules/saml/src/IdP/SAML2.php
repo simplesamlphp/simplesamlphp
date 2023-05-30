@@ -9,6 +9,7 @@ use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -20,6 +21,7 @@ use SimpleSAML\SAML2\Assertion;
 use SimpleSAML\SAML2\AuthnRequest;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\EncryptedAssertion;
 use SimpleSAML\SAML2\HTTPRedirect;
 use SimpleSAML\SAML2\LogoutRequest;
@@ -967,7 +969,12 @@ class SAML2
         if ($config->hasValue('contacts')) {
             $contacts = $config->getArray('contacts');
             foreach ($contacts as $contact) {
-                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+                try {
+                    $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+                } catch (ArrayValidationException $e) {
+                    Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
+                    continue;
+                }
             }
         }
 
@@ -979,7 +986,12 @@ class SAML2
                 'GivenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
+            }
         }
 
         return $metadata;

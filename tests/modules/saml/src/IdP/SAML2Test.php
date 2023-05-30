@@ -634,9 +634,9 @@ EOT;
     {
         $config = [
             'RegistrationInfo' => [
-                'registrationAuthority' => 'urn:mace:sp.example.org',
-                'registrationInstant' => '2008-01-17T11:28:03.577Z',
-                'registrationPolicy' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+                'RegistrationAuthority' => 'urn:mace:sp.example.org',
+                'RegistrationInstant' => '2008-01-17T11:28:03.577Z',
+                'RegistrationPolicy' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
             ],
         ];
         $md = $this->idpMetadataHandlerHelper($config);
@@ -644,11 +644,11 @@ EOT;
         $this->assertArrayHasKey('RegistrationInfo', $md);
         $reginfo = $md['RegistrationInfo'];
         $this->assertIsArray($reginfo);
-        $this->assertEquals('urn:mace:sp.example.org', $reginfo['registrationAuthority']);
-        $this->assertEquals('2008-01-17T11:28:03.577Z', $reginfo['registrationInstant']);
-        $this->assertIsArray($reginfo['registrationPolicy']);
-        $this->assertCount(2, $reginfo['registrationPolicy']);
-        $this->assertEquals('http://sp.example.org/politica', $reginfo['registrationPolicy']['es']);
+        $this->assertEquals('urn:mace:sp.example.org', $reginfo['RegistrationAuthority']);
+        $this->assertEquals('2008-01-17T11:28:03.577Z', $reginfo['RegistrationInstant']);
+        $this->assertIsArray($reginfo['RegistrationPolicy']);
+        $this->assertCount(2, $reginfo['RegistrationPolicy']);
+        $this->assertEquals('http://sp.example.org/politica', $reginfo['RegistrationPolicy']['es']);
     }
 
     /**

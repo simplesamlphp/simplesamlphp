@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Metadata;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
@@ -16,7 +17,7 @@ use SimpleSAML\Metadata\SAMLParser;
  *
  * @covers \SimpleSAML\Metadata\SAMLParser
  */
-class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
+class SAMLParserTest extends SigningTestCase
 {
     /**
      * Test Registration Info is parsed
@@ -108,7 +109,7 @@ XML
     {
         $expected = [
             'registrationAuthority' => 'https://safire.ac.za',
-            'registrationPolicy' => [ 'en' => 'https://safire.ac.za/safire/policy/mrps/v20190207.html' ],
+            'RegistrationPolicy' => [ 'en' => 'https://safire.ac.za/safire/policy/mrps/v20190207.html' ],
         ];
 
         $document = DOMDocumentFactory::fromString(
@@ -142,7 +143,7 @@ XML
     {
         $expected = [
             'registrationAuthority' => 'https://safire.ac.za',
-            'registrationInstant' => 1675861615,
+            'registrationInstant' => '2023-02-08T13:06:55Z',
         ];
 
         $document = DOMDocumentFactory::fromString(
@@ -200,7 +201,6 @@ XML
 
         /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20SP();
-
         $this->assertEquals("Example service", $metadata['name']['en']);
         $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
 

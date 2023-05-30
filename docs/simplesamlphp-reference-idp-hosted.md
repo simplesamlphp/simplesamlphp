@@ -77,8 +77,12 @@ entry matches.
         'TelephoneNumber'   => '+31(0)12345678',
         'Company'           => 'Example Inc.',
         'attributes' => [
-            'xmlns:remd'        => 'http://refeds.org/metadata',
-            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+            [
+                'namespaceURI' => 'http://refeds.org/metadata',
+                'namespacePrefix' => 'remd',
+                'attrName' => 'contactType',
+                'attrValue' => 'http://refeds.org/metadata/contactType/security',
+            ],
         ],
     ],
 ],

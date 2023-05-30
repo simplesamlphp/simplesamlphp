@@ -16,11 +16,10 @@ use SimpleSAML\SAML2\SignedElementHelper;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\md\EndpointType;
+use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
@@ -1006,8 +1005,13 @@ class SAMLParser
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
-        $sp['name'] = $element->getServiceName();
-        $sp['description'] = $element->getServiceDescription();
+        foreach ($element->getServiceName() as $sName) {
+            $sp['name'][$sName->getLanguage()] = $sName->getContent();
+        }
+
+        foreach ($element->getServiceDescription() as $sDesc) {
+            $sp['description'][$sDesc->getLanguage()] = $sDesc->getContent();
+        }
 
         $format = null;
         $sp['attributes'] = [];
@@ -1061,26 +1065,9 @@ class SAMLParser
      *
      * @return array An associative array with the data we have extracted from the element.
      */
-    private static function parseGenericEndpoint(EndpointType $element): array
+    private static function parseGenericEndpoint(AbstractEndpointType $element): array
     {
-        $ep = [];
-
-        $ep['Binding'] = $element->getBinding();
-        $ep['Location'] = $element->getLocation();
-
-        if ($element->getResponseLocation() !== null) {
-            $ep['ResponseLocation'] = $element->getResponseLocation();
-        }
-
-        if ($element instanceof IndexedEndpointType) {
-            $ep['index'] = $element->getIndex();
-
-            if ($element->getIsDefault() !== null) {
-                $ep['isDefault'] = $element->getIsDefault();
-            }
-        }
-
-        return $ep;
+        return $element->toArray();
     }
 
 

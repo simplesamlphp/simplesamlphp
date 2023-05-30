@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
@@ -18,6 +19,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -281,8 +283,14 @@ class Federation
                     $builder->addSecurityTokenServiceType($entity['metadata_array']);
                     $builder->addOrganizationInfo($entity['metadata_array']);
                     if (isset($entity['metadata_array']['contacts'])) {
-                        foreach ($entity['metadata_array']['contacts'] as $contact) {
-                            $builder->addContact(ContactPerson::fromArray($contact));
+                        foreach ($entity['metadata_array']['contacts'] as $c) {
+                            try {
+                                $contact = ContactPerson::fromArray($c);
+                            } catch (ArrayValidationException $e) {
+                                Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
+                                continue;
+                            }
+                            $builder->addContact($contact);
                         }
                     }
 

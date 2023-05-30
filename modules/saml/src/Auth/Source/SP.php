@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 
 use Psr\Http\Message\RequestInterface;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -16,6 +17,7 @@ use SimpleSAML\Module;
 use SimpleSAML\SAML2\AuthnRequest;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
@@ -221,7 +223,12 @@ class SP extends Auth\Source
         // add contacts
         $contacts = $this->metadata->getOptionalArray('contacts', []);
         foreach ($contacts as $contact) {
-            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('SP metadata: invalid content found in contact: ' . $e->getMessage());
+                continue;
+            }
         }
 
         // add technical contact
@@ -232,7 +239,12 @@ class SP extends Auth\Source
                 'GivenName' => $this->config->getOptionalString('technicalcontact_name', null),
                 'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('SP metadata: invalid content found in contact: ' . $e->getMessage());
+            }
         }
 
         $cryptoUtils = new Utils\Crypto();
