@@ -155,9 +155,9 @@ class Login
             $errorParams = $state['error']['params'];
         }
 
-        $cookies = [];
         if ($organizations === null || $organization !== '') {
             if (!empty($username) || !empty($password)) {
+                $cookies = [];
                 $httpUtils = new Utils\HTTP();
                 $sameSiteNone = $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null;
 
@@ -221,10 +221,16 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        return UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+                        $response = UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
                     } else {
-                        return UserPassBase::handleLogin($authStateId, $username, $password);
+                        $response = UserPassBase::handleLogin($authStateId, $username, $password);
                     }
+
+                    foreach ($cookies as $cookie) {
+                        $response->headers->setCookie($cookie);
+                    }
+
+                    return $response;
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
                     $errorCode = $e->getErrorCode();
@@ -300,10 +306,6 @@ class Login
             $t->data['SPMetadata'] = $state['SPMetadata'];
         } else {
             $t->data['SPMetadata'] = null;
-        }
-
-        foreach ($cookies as $cookie) {
-            $t->headers->setCookie($cookie);
         }
 
         return $t;
