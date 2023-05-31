@@ -1017,8 +1017,6 @@ class SAMLParser
         }
 
         $format = null;
-        $sp['attributes'] = [];
-        $sp['attributes.required'] = [];
         foreach ($element->getRequestedAttribute() as $child) {
             $attrname = $child->getName();
             $sp['attributes'][] = $attrname;
@@ -1040,10 +1038,6 @@ class SAMLParser
             }
         }
 
-        if (empty($sp['attributes'])) {
-            // a really invalid configuration: all AttributeConsumingServices should have one or more attributes
-            unset($sp['attributes']);
-        }
         if (empty($sp['attributes.required'])) {
             unset($sp['attributes.required']);
         }
