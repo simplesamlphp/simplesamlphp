@@ -291,7 +291,7 @@ class SAMLBuilder
      * Add a list of endpoints to metadata.
      *
      * @param array $endpoints The endpoints.
-     * @param class-string The type of endpoint to create
+     * @param class-string $class The type of endpoint to create
      *
      * @return array An array of endpoint objects,
      *     either \SimpleSAML\SAML2\XML\md\AbstractEndpointType or \SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType.
