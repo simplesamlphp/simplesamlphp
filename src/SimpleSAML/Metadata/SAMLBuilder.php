@@ -356,7 +356,7 @@ class SAMLBuilder
         foreach ($attributes as $friendlyName => $attribute) {
             $requestedAttributes[] = new RequestedAttribute(
                 $attribute,
-                in_array($attribute, $attributesrequired, true),
+                in_array($attribute, $attributesrequired, true) ?: null,
                 $nameFormat !== C::NAMEFORMAT_UNSPECIFIED ? $nameFormat : null,
                 !is_int($friendlyName) ? $friendlyName : null,
             );
