@@ -19,7 +19,7 @@ msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"
 
 msgid "Person's principal name at home organization"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 msgid "Superfluous options in config file"
 msgstr "Überflüssige Optionen in der Konfigurationsdatei"
@@ -257,7 +257,7 @@ msgstr ""
 "senden\"-Knopf um fortzufahren."
 
 msgid "Home organization domain name"
-msgstr "Domain-Name der Heimorganisation"
+msgstr "Domain-Name der Heimatorganisation"
 
 msgid "Go back to the file list"
 msgstr "Gehe zurück zur Dateiliste"
@@ -809,7 +809,7 @@ msgid "Authentication source error"
 msgstr "Authentifizierungsquellenfehler"
 
 msgid "Affiliation at home organization"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
+msgstr "Zugehörigkeit bei der Heimatorganisation"
 
 msgid "Help desk homepage"
 msgstr "Seite des Helpdesks"
