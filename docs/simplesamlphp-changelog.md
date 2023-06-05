@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Updated German translations (#1814)
+
 ## Version 2.0.4
 
 Released 2023-05-12

@@ -498,27 +498,27 @@ msgstr "Distinguished name (DN) der primären Organisationseinheit"
 
 # English string: Person's principal name at home organization
 msgid "eduPersonPrincipalName"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "urn:mace:dir:attribute-def:eduPersonPrincipalName"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Affiliation at home organization
 msgid "eduPersonScopedAffiliation"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
+msgstr "Zugehörigkeit bei der Heimatorganisation"
 
 # English string: Affiliation at home organization
 msgid "urn:mace:dir:attribute-def:eduPersonScopedAffiliation"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
+msgstr "Zugehörigkeit bei der Heimatorganisation"
 
 # English string: Affiliation at home organization
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.9"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
+msgstr "Zugehörigkeit bei der Heimatorganisation"
 
 # English string: Persistent pseudonymous ID
 msgid "eduPersonTargetedID"
@@ -1074,11 +1074,11 @@ msgstr "urn:mace:dir:attribute-def:pagerTelephoneNumber"
 
 # English string: Service-specific pseudonymous ID at home organization
 msgid "pairwise-id"
-msgstr "Service-spezifische pseudonyme ID bei der Heimorganisation"
+msgstr "Service-spezifische pseudonyme ID bei der Heimatorganisation"
 
 # English string: Service-specific pseudonymous ID at home organization
 msgid "urn:oasis:names:tc:SAML:attribute:pairwise-id"
-msgstr "Service-spezifische pseudonyme ID bei der Heimorganisation"
+msgstr "Service-spezifische pseudonyme ID bei der Heimatorganisation"
 
 msgid "personalSignature"
 msgstr "personalSignature"
@@ -1310,19 +1310,19 @@ msgstr "urn:schac:attribute-def:schacGender"
 
 # English string: Home organization domain name
 msgid "schacHomeOrganization"
-msgstr "Domain-Name der Heimorganisation"
+msgstr "Domain-Name der Heimatorganisation"
 
 # English string: Home organization domain name
 msgid "urn:mace:terena.org:attribute-def:schacHomeOrganization"
-msgstr "Domain-Name der Heimorganisation"
+msgstr "Domain-Name der Heimatorganisation"
 
 # English string: Home organization domain name
 msgid "urn:oid:1.3.6.1.4.1.25178.1.2.9"
-msgstr "Domain-Name der Heimorganisation"
+msgstr "Domain-Name der Heimatorganisation"
 
 # English string: Home organization domain name
 msgid "urn:schac:attribute-def:schacHomeOrganization"
-msgstr "Domain-Name der Heimorganisation"
+msgstr "Domain-Name der Heimatorganisation"
 
 msgid "schacHomeOrganizationType"
 msgstr "schacHomeOrganizationType"
@@ -1618,11 +1618,11 @@ msgstr "urn:mace:dir:attribute-def:streetAddress"
 
 # English string: Pseudonymous ID at home organization
 msgid "subject-id"
-msgstr "Pseudonyme ID bei der Heimorganisation"
+msgstr "Pseudonyme ID bei der Heimatorganisation"
 
 # English string: Pseudonymous ID at home organization
 msgid "urn:oasis:names:tc:SAML:attribute:subject-id"
-msgstr "Pseudonyme ID bei der Heimorganisation"
+msgstr "Pseudonyme ID bei der Heimatorganisation"
 
 msgid "subtreeMaximumQuality"
 msgstr "subtreeMaximumQuality"
@@ -1868,23 +1868,23 @@ msgstr "Anzeigename"
 
 # English string: Person's principal name at home organization
 msgid "facebook_user"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "linkedin_user"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "twitter_screen_n_realm"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "windowslive_user"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Person's principal name at home organization
 msgid "windowslive.userPrincipalName"
-msgstr "Persönliche ID bei der Heimorganisation"
+msgstr "Persönliche ID bei der Heimatorganisation"
 
 # English string: Persistent pseudonymous ID
 msgid "facebook_targetedID"
