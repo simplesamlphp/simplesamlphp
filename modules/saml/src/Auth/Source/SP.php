@@ -14,6 +14,7 @@ use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\samlp\Extensions;
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -601,9 +602,9 @@ class SP extends Auth\Source
         // If the downstream SP has set extensions then use them.
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
         if (isset($state['saml:Extensions']) && count($state['saml:Extensions']) > 0) {
-            $ar->setExtensions($state['saml:Extensions']);
+            $ar->setExtensions(new Extensions($state['saml:Extensions']));
         } elseif ($this->metadata->getOptionalArray('saml:Extensions', null) !== null) {
-            $ar->setExtensions($this->metadata->getArray('saml:Extensions'));
+            $ar->setExtensions(new Extensions($this->metadata->getArray('saml:Extensions')));
         }
 
         $providerName = $this->metadata->getOptionalString("ProviderName", null);
@@ -1014,9 +1015,9 @@ class SP extends Auth\Source
         $lr->setDestination($endpoint['Location']);
 
         if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
-            $lr->setExtensions($state['saml:logout:Extensions']);
+            $lr->setExtensions(new Extensions($state['saml:logout:Extensions']));
         } elseif ($this->metadata->getOptionalArray('saml:logout:Extensions', null) !== null) {
-            $lr->setExtensions($this->metadata->getArray('saml:logout:Extensions'));
+            $lr->setExtensions(new Extensions($this->metadata->getArray('saml:logout:Extensions')));
         }
 
         $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', null);
