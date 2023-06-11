@@ -7,6 +7,16 @@ namespace SimpleSAML\Utils;
 use InvalidArgumentException;
 use SimpleSAML\Error;
 
+use function array_key_exists;
+use function count;
+use function is_array;
+use function is_string;
+use function print_r;
+use function reset;
+use function sprintf;
+use function strrpos;
+use function substr;
+
 /**
  * Attribute-related utility methods.
  *

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
-use SimpleSAML\Error;
-use SimpleSAML\IdP;
+use SimpleSAML\{Error, IdP};
 use Symfony\Component\HttpFoundation\Response;
 
 /**

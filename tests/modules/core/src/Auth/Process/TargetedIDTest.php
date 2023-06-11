@@ -6,11 +6,10 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Utils;
 
 /**
  * Test for the core:TargetedID filter.

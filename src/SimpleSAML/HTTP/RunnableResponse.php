@@ -6,6 +6,8 @@ namespace SimpleSAML\HTTP;
 
 use Symfony\Component\HttpFoundation\Response;
 
+use function call_user_func_array;
+
 /**
  * @deprecated
  *

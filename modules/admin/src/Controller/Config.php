@@ -5,16 +5,24 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Module, Session, Utils};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
+
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function explode;
+use function function_exists;
+use function json_decode;
+use function ltrim;
+use function openssl_x509_check_private_key;
+use function phpversion;
+use function version_compare;
 
 /**
  * Controller class for the admin module.
@@ -205,11 +213,11 @@ class Config
                 'descr' => [
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
-                        '%minimum%' => '7.4',
+                        '%minimum%' => '8.0',
                         '%current%' => explode('-', phpversion())[0]
                     ]
                 ],
-                'enabled' => version_compare(phpversion(), '7.4', '>=')
+                'enabled' => version_compare(phpversion(), '8.0', '>=')
             ]
         ];
         $store = $this->config->getOptionalString('store.type', null);

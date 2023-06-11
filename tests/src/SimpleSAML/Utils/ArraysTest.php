@@ -15,7 +15,7 @@ use SimpleSAML\Utils;
 class ArraysTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\Arrays */
-    protected $arrayUtils;
+    protected Utils\Arrays $arrayUtils;
 
 
     /**

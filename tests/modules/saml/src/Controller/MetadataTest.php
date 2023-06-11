@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -167,7 +163,7 @@ class MetadataTest extends TestCase
         $this->assertInstanceOf(Response::class, $result);
     }
 
-    public function provideMetadataAccess(): array
+    public static function provideMetadataAccess(): array
     {
         return [
            /* [authenticated, protected] */

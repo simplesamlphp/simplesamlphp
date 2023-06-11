@@ -5,9 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
+use SimpleSAML\{Auth, Logger};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Logger;
+
+use function array_key_exists;
+use function count;
+use function explode;
+use function is_string;
+use function ord;
+use function preg_replace_callback;
+use function sprintf;
+use function var_export;
 
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.

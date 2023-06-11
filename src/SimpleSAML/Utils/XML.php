@@ -13,16 +13,25 @@ namespace SimpleSAML\Utils;
 use DOMComment;
 use DOMDocument;
 use DOMElement;
+use DOMException;
 use DOMNode;
 use DOMText;
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\{Configuration, Error, Logger};
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Errors;
+use SimpleSAML\XML\{DOMDocumentFactory, Errors};
+
+use function array_key_exists;
+use function count;
+use function explode;
+use function filter_var;
+use function in_array;
+use function is_string;
+use function libxml_set_external_entity_loader;
+use function strlen;
+use function strpos;
+use function trim;
 
 class XML
 {
@@ -213,7 +222,7 @@ class XML
             $root->insertBefore(new DOMText("\n" . $childIndentation), $node);
 
             // format child elements
-            if ($node instanceof \DOMElement) {
+            if ($node instanceof DOMElement) {
                 $this->formatDOMElement($node, $childIndentation);
             }
         }
@@ -242,7 +251,7 @@ class XML
         try {
             $doc = DOMDocumentFactory::fromString($xml);
         } catch (Exception $e) {
-            throw new \DOMException('Error parsing XML string.');
+            throw new DOMException('Error parsing XML string.');
         }
 
         $root = $doc->firstChild;

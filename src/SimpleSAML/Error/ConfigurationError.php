@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use function dirname;
+use function str_replace;
+
 /**
  * This exception represents a configuration error.
  *

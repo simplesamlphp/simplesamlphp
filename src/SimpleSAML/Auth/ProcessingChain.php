@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
+use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use Symfony\Component\HttpFoundation\Response;
+
+use function array_key_exists;
+use function array_shift;
+use function array_splice;
+use function call_user_func;
+use function count;
+use function is_array;
+use function is_string;
+use function str_replace;
+use function var_export;
 
 /**
  * Class for implementing authentication processing chains for IdPs.

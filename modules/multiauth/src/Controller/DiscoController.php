@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Controller;
 
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+
+use function array_key_exists;
+use function is_null;
 
 /**
  * Controller class for the multiauth module.

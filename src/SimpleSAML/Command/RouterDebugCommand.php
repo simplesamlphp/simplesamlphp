@@ -12,6 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Routing\RouterInterface;
 
+use function get_class;
+use function implode;
+use function is_object;
+
 class RouterDebugCommand extends Command
 {
     /**

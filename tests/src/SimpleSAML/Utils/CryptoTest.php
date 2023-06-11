@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Utils};
+
+use function extension_loaded;
+use function file_put_contents;
+use function substr;
+use function trim;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
@@ -37,10 +39,10 @@ class CryptoTest extends TestCase
     protected Configuration $config;
 
     /** @var \SimpleSAML\Utils\Crypto */
-    protected $cryptoUtils;
+    protected Utils\Crypto $cryptoUtils;
 
     /** @var string */
-    protected $pem = <<<PHP
+    protected string $pem = <<<PHP
 -----BEGIN CERTIFICATE-----
 MIIF8zCCA9ugAwIBAgIJANSv0D4ZoP9iMA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
 VQQGEwJFWDEQMA4GA1UECAwHRXhhbXBsZTEQMA4GA1UEBwwHRXhhbXBsZTEQMA4G

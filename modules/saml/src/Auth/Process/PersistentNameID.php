@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\{Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
-use SimpleSAML\Utils;
+use SimpleSAML\SAML2\Constants as C;
+
+use function array_values;
+use function count;
+use function sha1;
+use function strlen;
+use function var_export;
 
 /**
  * Authentication processing filter to generate a persistent NameID.

@@ -4,8 +4,32 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error};
+
+use function chmod;
+use function dirname;
+use function error_get_last;
+use function explode;
+use function file_put_contents;
+use function function_exists;
+use function get_current_user;
+use function is_array;
+use function is_dir;
+use function is_writable;
+use function mkdir;
+use function opcache_invalidate;
+use function ord;
+use function preg_match;
+use function rename;
+use function rtrim;
+use function sprintf;
+use function str_replace;
+use function stristr;
+use function strpos;
+use function strtoupper;
+use function substr;
+use function sys_get_temp_dir;
+use function unlink;
 
 /**
  * System-related utility methods.

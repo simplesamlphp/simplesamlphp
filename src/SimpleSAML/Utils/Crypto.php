@@ -4,11 +4,38 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Assert\Assert;
+use Exception;
 use InvalidArgumentException;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use OPENSSL_RAW_DATA;
+use PASSWORD_DEFAULT;
+use PDO;
+use SimpleSAML\{Configuration, Database, Error, Logger};
+use SimpleSAML\Assert\Assert;
+
+use function base64_decode;
+use function base64_encode;
+use function chunk_split;
+use function count;
+use function defined;
+use function explode;
+use function extension_loaded;
+use function hash_equals;
+use function hash_hmac;
+use function implode;
+use function is_null;
+use function mb_strlen;
+use function mb_substr;
+use function openssl_decrypt;
+use function openssl_digest;
+use function openssl_encrypt;
+use function openssl_random_pseudo_bytes;
+use function password_get_info;
+use function password_hash;
+use function password_verify;
+use function strncmp;
+use function strpos;
+use function substr;
+use function trim;
 
 /**
  * A class for cryptography-related functions.
@@ -389,7 +416,7 @@ class Crypto
     private function retrieveCertOrKey(string $data_type, string $location, bool $full_path): ?string
     {
         if (strncmp($location, 'pdo://', 6) === 0) {
-            # Attempt to load data via pdo from database
+            // Attempt to load data via pdo from database
 
             $location = substr($location, 6);
 
@@ -401,10 +428,10 @@ class Crypto
             $data_column = $globalConfig->getOptionalString('cert.pdo.data_column', 'data');
 
             try {
-                $db = \SimpleSAML\Database::getInstance();
-            } catch (\Exception $e) {
+                $db = Database::getInstance();
+            } catch (Exception $e) {
                 Logger::error('failed to instantiate database: ' . $e->getMessage());
-                return(null);
+                return null;
             }
 
             if ($apply_prefix) {
@@ -416,26 +443,26 @@ class Crypto
                 $query = $db->read("select $data_column from " .
                                     ($data_type == 'certificate' ? $cert_table : $key_table) .
                                     " where $id_column = :id", ['id' => $location]);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::error('failed to query database: ' . $e->getMessage());
-                return(null);
+                return null;
             }
 
-            $result = $query->fetch(\PDO::FETCH_NUM);
+            $result = $query->fetch(PDO::FETCH_NUM);
 
             if ($result) {
-                return($result[0]);
+                return $result[0];
             }
 
-            return(null);
+            return null;
         } elseif (strncmp($location, 'file://', 7) === 0) {
-            # Locations without a prefix are assumed to be file locations.
-            # So just remove prefix and fall through
+            // Locations without a prefix are assumed to be file locations.
+            // So just remove prefix and fall through
 
             $location = substr($location, 7);
         }
 
-        # Attempt to load data from file
+        // Attempt to load data from file
         if (!$full_path) {
             $configUtils = new Config();
             $location = $configUtils->getCertPath($location);
@@ -445,10 +472,10 @@ class Crypto
 
         if ($data === false) {
             Logger::error("failed to read $data_type data from file $location");
-            return(null);
+            return null;
         }
 
-        return($data);
+        return $data;
     }
 
     /**

@@ -6,27 +6,28 @@ namespace SimpleSAML\Module\saml;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error as SSP_Error;
-use SimpleSAML\Logger;
-use SimpleSAML\SAML2\Assertion;
-use SimpleSAML\SAML2\AuthnRequest;
-use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\EncryptedAssertion;
-use SimpleSAML\SAML2\LogoutRequest;
-use SimpleSAML\SAML2\LogoutResponse;
-use SimpleSAML\SAML2\Response;
-use SimpleSAML\SAML2\SignedElement;
-use SimpleSAML\SAML2\StatusResponse;
+use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
+use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
+use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
-use SimpleSAML\Utils;
-use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
-use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
-use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
+use function array_key_exists;
 use function array_filter;
+use function array_pop;
 use function array_values;
+use function count;
+use function chunk_split;
+use function filter_var;
+use function implode;
+use function in_array;
+use function is_int;
+use function preg_match;
+use function str_replace;
+use function time;
+use function var_export;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -370,7 +371,7 @@ class Message
         }
 
         try {
-            // @todo Enable this code for saml2v5 to automatically determine encryption algorithm
+            // @todo Enable this code for saml2v6 to automatically determine encryption algorithm
             //$encryptionMethod = $assertion->getEncryptedData()->getEncryptionMethod();
             //$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata, $encryptionMethod);
 
@@ -598,7 +599,7 @@ class Message
         }
 
         // validate Response-element destination
-        $httpUtils = new \SimpleSAML\Utils\HTTP();
+        $httpUtils = new Utils\HTTP();
         $currentURL = $httpUtils->getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {

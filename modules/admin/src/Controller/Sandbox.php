@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Session;
+use SimpleSAML\{Configuration, Session};
 use SimpleSAML\XHTML\Template;
+
+use function time;
 
 /**
  * Controller class for the admin module.

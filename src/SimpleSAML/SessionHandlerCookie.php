@@ -17,6 +17,14 @@ namespace SimpleSAML;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
 
+use function array_key_exists;
+use function array_merge;
+use function bin2hex;
+use function is_null;
+use function openssl_random_pseudo_bytes;
+use function preg_match;
+use function strlen;
+
 abstract class SessionHandlerCookie extends SessionHandler
 {
     /**

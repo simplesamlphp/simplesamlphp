@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
+use FILTER_REQUIRE_SCALAR;
+use FILTER_VALIDATE_EMAIL;
+use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 

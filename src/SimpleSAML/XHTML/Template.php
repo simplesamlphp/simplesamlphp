@@ -12,27 +12,18 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
+use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Locale\Language;
-use SimpleSAML\Locale\Localization;
-use SimpleSAML\Locale\Translate;
-use SimpleSAML\Locale\TwigTranslator;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+use SimpleSAML\Locale\{Language, Localization, Translate, TwigTranslator};
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
+use Twig\{Environment, TwigFilter, TwigFunction};
 use Twig\Error\RuntimeError;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
-use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 use function class_exists;
 use function count;
@@ -94,7 +85,7 @@ class Template extends Response
      *
      * @var \Twig\Environment
      */
-    private \Twig\Environment $twig;
+    private Environment $twig;
 
     /**
      * The template name.

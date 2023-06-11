@@ -6,8 +6,10 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Error, Utils};
+
+use function dirname;
+use function putenv;
 
 /**
  * Tests for SimpleSAML\Utils\Config

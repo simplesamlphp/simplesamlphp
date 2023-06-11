@@ -6,10 +6,8 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Store};
 use SimpleSAML\Module\saml\IdP\SQLNameID;
-use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 
 /**
@@ -61,7 +59,7 @@ class SQLNameIDTest extends TestCase
     public function testIncompatibleStore(): void
     {
         Configuration::loadFromArray([
-            'store.type'                    => 'memcache',
+            'store.type' => 'memcache',
         ], '[ARRAY]', 'simplesaml');
         $config = Configuration::getInstance();
         $storeType = $config->getString('store.type');

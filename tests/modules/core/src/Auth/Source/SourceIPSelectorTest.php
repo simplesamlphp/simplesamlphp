@@ -6,8 +6,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\SourceIPSelector;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -231,7 +230,7 @@ class SourceIPSelectorTest extends TestCase
     /**
      * @return array
      */
-    public function provideClientIP(): array
+    public static function provideClientIP(): array
     {
         return [
             ['127.0.0.2', 'external'],

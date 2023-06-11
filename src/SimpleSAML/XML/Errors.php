@@ -16,6 +16,15 @@ namespace SimpleSAML\XML;
 use LibXMLError;
 use SimpleSAML\Assert\Assert;
 
+use function array_merge;
+use function array_pop;
+use function count;
+use function function_exists;
+use function libxml_clear_errors;
+use function libxml_get_errors;
+use function libxml_use_internal_errors;
+use function trim;
+
 class Errors
 {
     /**

@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+use SimpleSAML\{Configuration, Module};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Module;
+
+use function in_array;
+use function is_array;
+use function phpversion;
+use function version_compare;
 
 /**
  * Hook to do sanitycheck
@@ -30,7 +34,7 @@ function core_hook_sanitycheck(array &$hookinfo): void
         $hookinfo['info'][] = '[core] In config.php technicalcontact_email is set properly';
     }
 
-    if (version_compare(phpversion(), '7.4', '>=')) {
+    if (version_compare(phpversion(), '8.0', '>=')) {
         $hookinfo['info'][] = '[core] You are running a PHP version suitable for SimpleSAMLphp.';
     } else {
         $hookinfo['errors'][] = '[core] You are running an old PHP installation. ' .

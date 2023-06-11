@@ -7,16 +7,15 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use ArgumentCountError;
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function base64_encode;
+use function dirname;
+use function gzdeflate;
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -530,7 +529,7 @@ XML;
         $this->assertInstanceOf(Response::class, $result);
     }
 
-    public function provideMetadataAccess(): array
+    public static function provideMetadataAccess(): array
     {
         return [
            /* [authenticated, protected] */
@@ -553,7 +552,7 @@ XML;
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
-        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectException(Error\Error::class);
         $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
         $c->metadata($request, 'phpnonunit');
     }

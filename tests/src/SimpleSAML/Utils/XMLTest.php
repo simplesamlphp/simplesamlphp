@@ -11,9 +11,7 @@ use DOMException;
 use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\XML\DOMDocumentFactory;
 
 /**

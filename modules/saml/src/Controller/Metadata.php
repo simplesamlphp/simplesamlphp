@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Module, Utils};
 use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
-use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function hash;
 
 /**
  * Controller class for the IdP metadata.
@@ -30,6 +28,7 @@ class Metadata
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
+    /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
 
     /**

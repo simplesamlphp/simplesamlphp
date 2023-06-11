@@ -6,8 +6,12 @@ namespace SimpleSAML\Store;
 
 use Predis\Client;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error};
+
+use function class_exists;
+use function serialize;
+use function time;
+use function unserialize;
 
 /**
  * A data store using Redis to keep the data.

@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
+use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
 use SimpleSAML\Error\MetadataNotFound;
-use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\Issuer;
-use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
+
+use function array_key_exists;
+use function array_merge;
+use function array_search;
+use function sha1;
+use function str_replace;
+use function time;
+use function var_export;
 
 /**
  * This file defines a class for metadata handling.
@@ -75,8 +81,8 @@ class MetaDataStorageHandler implements ClearableState
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
-        } catch (\Exception $e) {
-            throw new \Exception(
+        } catch (Exception $e) {
+            throw new Exception(
                 "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage()
             );
         }
@@ -101,7 +107,7 @@ class MetaDataStorageHandler implements ClearableState
             if (array_key_exists($property, $metadataSet)) {
                 return $metadataSet[$property];
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // probably metadata wasn't found. In any case we continue by generating the metadata
         }
 
@@ -132,7 +138,7 @@ class MetaDataStorageHandler implements ClearableState
             }
         }
 
-        throw new \Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
+        throw new Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
     }
 
 
@@ -231,7 +237,7 @@ class MetaDataStorageHandler implements ClearableState
         }
 
         // we were unable to find the hostname/path in any metadata source
-        throw new \Exception(
+        throw new Exception(
             'Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ' : ' .
             $currenthostwithpath . ']'
         );
@@ -320,7 +326,7 @@ class MetaDataStorageHandler implements ClearableState
             if ($metadata !== null) {
                 if (array_key_exists('expire', $metadata)) {
                     if ($metadata['expire'] < time()) {
-                        throw new \Exception(
+                        throw new Exception(
                             'Metadata for the entity [' . $entityId . '] expired ' .
                             (time() - $metadata['expire']) . ' seconds ago.'
                         );

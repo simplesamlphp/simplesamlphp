@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+
+use function mkdir;
+use function mt_rand;
+use function sys_get_temp_dir;
 
 /**
  * Tests for SimpleSAML\Utils\Translate.

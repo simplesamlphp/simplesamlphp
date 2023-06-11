@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\multiauth\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Auth\Source;
-use SimpleSAML\Auth\State;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Session};
+use SimpleSAML\Auth\{Source, State};
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Module\multiauth\Controller;
-use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 

@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XHTML;
 
+use InvalidArgumentException;
 use SimpleSAML\Module;
+
+use function explode;
+use function in_array;
+use function is_dir;
+use function strpos;
 
 /**
  * This class extends the Twig\Loader\FilesystemLoader so that we can load templates from modules in twig, even
@@ -68,13 +74,13 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
     public static function getModuleTemplateDir(string $module): string
     {
         if (!Module::isModuleEnabled($module)) {
-            throw new \InvalidArgumentException('The module \'' . $module . '\' is not enabled.');
+            throw new InvalidArgumentException('The module \'' . $module . '\' is not enabled.');
         }
         $moduledir = Module::getModuleDir($module);
         // check if module has a /templates dir, if so, append
         $templatedir = $moduledir . '/templates';
         if (!is_dir($templatedir)) {
-            throw new \InvalidArgumentException('The module \'' . $module . '\' has no templates directory.');
+            throw new InvalidArgumentException('The module \'' . $module . '\' has no templates directory.');
         }
         return $templatedir;
     }

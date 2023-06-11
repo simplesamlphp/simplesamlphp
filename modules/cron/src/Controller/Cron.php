@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron\Controller;
 
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+
+use function array_key_exists;
+use function count;
+use function date;
+use function sprintf;
 
 /**
  * Controller class for the cron module.
@@ -35,10 +32,8 @@ class Cron
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
-    /**
-     * @var \SimpleSAML\Utils\Auth
-     */
-    protected $authUtils;
+    /** @var \SimpleSAML\Utils\Auth */
+    protected Utils\Auth $authUtils;
 
 
     /**
@@ -138,7 +133,7 @@ class Cron
             throw new Error\Exception('Cron - Wrong key provided. Cron will not run.');
         }
 
-        $cron = new \SimpleSAML\Module\cron\Cron();
+        $cron = new Module\cron\Cron();
         if (!$cron->isValidTag($tag)) {
             throw new Error\Exception(sprintf('Cron - Illegal tag [%s].', $tag));
         }

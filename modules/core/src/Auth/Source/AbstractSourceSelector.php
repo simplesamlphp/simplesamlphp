@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Source;
 
 use Exception;
+use SimpleSAML\{Auth, Configuration, Error, Session};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Session;
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function in_array;
 
 /**
  * Authentication source which delegates authentication to secondary

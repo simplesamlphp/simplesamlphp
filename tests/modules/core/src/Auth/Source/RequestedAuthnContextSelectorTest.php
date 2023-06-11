@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;

@@ -7,6 +7,8 @@ namespace SimpleSAML\Logger;
 use SimpleSAML\Configuration;
 use Symfony\Component\Filesystem\Filesystem;
 
+use function preg_replace;
+
 /**
  * A logging handler that outputs all messages to standard error.
  *

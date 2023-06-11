@@ -7,10 +7,9 @@ namespace SimpleSAML\Test\Metadata;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
-use SimpleSAML\Test\SigningTestCase;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\{DOMDocumentFactory, Signer};
 
 /**
  * Test SAML parsing

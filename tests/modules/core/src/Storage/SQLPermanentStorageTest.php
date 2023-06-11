@@ -9,6 +9,10 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
+use function sleep;
+use function sys_get_temp_dir;
+use function unlink;
+
 /**
  * Test for the SQLPermanentStorage class.
  *

@@ -7,9 +7,11 @@ namespace SimpleSAML\Test\Utils;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Utils};
+
+use function date_default_timezone_get;
+use function gmmktime;
+use function time;
 
 /**
  * @covers \SimpleSAML\Utils\Time

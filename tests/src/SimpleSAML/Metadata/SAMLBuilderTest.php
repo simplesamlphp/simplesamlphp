@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Module\saml\Auth\Source\SP;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+
+use function array_keys;
 
 /**
  * Class SAMLBuilderTest

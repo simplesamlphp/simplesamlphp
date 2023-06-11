@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Utils;
+
+use function parse_url;
+use function strval;
+use function xdebug_get_headers;
 
 /**
  * @covers \SimpleSAML\Utils\HTTP
@@ -332,7 +334,7 @@ class HTTPTest extends ClearStateTestCase
             $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $httpUtils->checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -367,7 +369,7 @@ class HTTPTest extends ClearStateTestCase
             $this->assertEquals($httpUtils->checkURLAllowed($url), $url);
         }
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $httpUtils->checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -559,7 +561,7 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($supportsNone, $httpUtils->canSetSameSiteNone(), $userAgent ?? 'No user agent set');
     }
 
-    public function detectSameSiteProvider(): array
+    public static function detectSameSiteProvider(): array
     {
         // @codingStandardsIgnoreStart
         return [

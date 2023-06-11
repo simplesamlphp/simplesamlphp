@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\{Configuration, Session};
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Session;
-use SimpleSAML\Configuration;
+
+use function time;
 
 /**
  * @covers \SimpleSAML\Session

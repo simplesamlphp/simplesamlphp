@@ -7,6 +7,11 @@ namespace SimpleSAML\Test\Web;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\TestUtils\BuiltInServer;
 
+use function file_get_contents;
+use function sys_get_temp_dir;
+use function unlink;
+use function var_export;
+
 /**
  * Simple test for the public/index.php script.
  *

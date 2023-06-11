@@ -31,8 +31,9 @@ class BadRequest extends Error
      */
     public function __construct(string $reason)
     {
+        parent::__construct(['BADREQUEST', '%REASON%' => $reason]);
+
         $this->reason = $reason;
-        parent::__construct(['BADREQUEST', '%REASON%' => $this->reason]);
         $this->httpCode = 400;
     }
 

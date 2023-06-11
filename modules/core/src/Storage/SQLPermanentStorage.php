@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Storage;
 
+use Exception;
 use PDO;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
+
+use function count;
+use function in_array;
+use function is_dir;
+use function is_null;
+use function is_writable;
+use function join;
+use function mkdir;
+use function time;
+use function serialize;
+use function unserialize;
 
 /**
  * SQLPermanentStorage
@@ -39,9 +51,9 @@ class SQLPermanentStorage
         Assert::notNull($datadir, "Missing 'datadir' in configuration.", CriticalConfigurationError::class);
 
         if (!is_dir($datadir)) {
-            throw new \Exception('Data directory [' . $datadir . '] does not exist');
+            throw new Exception('Data directory [' . $datadir . '] does not exist');
         } elseif (!is_writable($datadir)) {
-            throw new \Exception('Data directory [' . $datadir . '] is not writable');
+            throw new Exception('Data directory [' . $datadir . '] is not writable');
         }
 
         $sqllitedir = $datadir . 'sqllite/';
@@ -69,7 +81,7 @@ class SQLPermanentStorage
                 ');
             }
         } else {
-            throw new \Exception('Error creating SQL lite database [' . $dbfile . '].');
+            throw new Exception('Error creating SQL lite database [' . $dbfile . '].');
         }
     }
 
@@ -240,7 +252,7 @@ class SQLPermanentStorage
         string $whichKey = 'type'
     ): ?array {
         if (!in_array($whichKey, ['key1', 'key2', 'type'], true)) {
-            throw new \Exception('Invalid key type');
+            throw new Exception('Invalid key type');
         }
 
         $conditions = $this->getCondition($type, $key1, $key2);

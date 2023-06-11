@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Controller;
 
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Module\exampleauth\Auth\Source\External;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
-use function array_key_exists;
 use function preg_match;
 use function session_id;
 use function session_start;

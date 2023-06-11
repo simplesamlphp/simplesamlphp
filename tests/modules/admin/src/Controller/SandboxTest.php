@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Session};
 use SimpleSAML\Module\admin\Controller;
-use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 
 /**

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Logger, Utils};
 use Throwable;
 
 /**

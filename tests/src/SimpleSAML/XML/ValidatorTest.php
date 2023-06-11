@@ -9,9 +9,7 @@ use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\SigningTestCase;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Signer;
-use SimpleSAML\XML\Validator;
+use SimpleSAML\XML\{DOMDocumentFactory, Signer, Validator};
 
 /**
  * Tests for SimpleSAML\XML\Validator.

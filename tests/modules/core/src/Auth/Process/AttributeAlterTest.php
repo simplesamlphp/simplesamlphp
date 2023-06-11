@@ -390,7 +390,6 @@ class AttributeAlterTest extends TestCase
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
-            'replacement' => null,
         ];
 
         $request = [

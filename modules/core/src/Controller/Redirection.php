@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
+use Exception;
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function base64_decode;
+use function explode;
 
 /**
  * Controller class for the core module.
@@ -32,7 +29,7 @@ class Redirection
     protected Session $session;
 
     /** @var \SimpleSAML\Utils\Crypto */
-    protected $cryptoUtils;
+    protected Utils\Crypto $cryptoUtils;
 
 
     /**
@@ -40,8 +37,8 @@ class Redirection
      *
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Session                    $session The session to use by the controllers.
+     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Session $session The session to use by the controllers.
      *
      * @throws \Exception
      */
@@ -87,14 +84,14 @@ class Redirection
 
         $session = $this->session;
         if ($session === null) {
-            throw new \Exception('Unable to load session.');
+            throw new Exception('Unable to load session.');
         }
 
         $postData = $session->getData('core_postdatalink', $postId);
 
         if ($postData === null) {
             // The post data is missing, probably because it timed out
-            throw new \Exception('The POST data we should restore was lost.');
+            throw new Exception('The POST data we should restore was lost.');
         }
 
         $session->deleteData('core_postdatalink', $postId);

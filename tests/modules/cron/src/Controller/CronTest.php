@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\cron\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Session, Utils};
 use SimpleSAML\Module\cron\Controller;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Set of tests for the controllers in the "cron" module.

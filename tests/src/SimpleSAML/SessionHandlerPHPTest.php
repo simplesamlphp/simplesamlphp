@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\{Configuration, SessionHandlerPHP};
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\SessionHandlerPHP;
-use SimpleSAML\Configuration;
+
+use function array_merge;
+use function session_id;
+use function session_name;
+use function session_start;
+use function xdebug_get_headers;
 
 /**
  * @covers \SimpleSAML\SessionHandlerPHP

@@ -6,13 +6,10 @@ namespace SimpleSAML\Test\Module\core\Controller;
 
 use Exception;
 use ReflectionClass;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Module\core\Controller;
-use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Module\core\Auth\UserPassOrgBase;
+use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};

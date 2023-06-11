@@ -6,9 +6,10 @@ namespace SimpleSAML\Module\cron;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
+use SimpleSAML\{Configuration, Logger, Module};
+
+use function in_array;
+use function is_null;
 
 /**
  * Handles interactions with SSP's cron system/hooks.

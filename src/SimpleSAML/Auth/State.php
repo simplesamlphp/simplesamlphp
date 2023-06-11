@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
+use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 
+use function array_key_exists;
+use function call_user_func;
+use function count;
+use function explode;
 use function filter_var;
 use function preg_match;
+use function serialize;
+use function unserialize;
+use function var_export;
 
 /**
  * This is a helper class for saving and loading state information.

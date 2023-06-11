@@ -5,11 +5,20 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
+use SimpleSAML\{Auth, Configuration, Module};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Filesystem;
+
+use function array_key_exists;
+use function array_merge;
+use function array_merge_recursive;
+use function count;
+use function explode;
+use function in_array;
+use function is_array;
+use function is_int;
+use function is_string;
+use function var_export;
 
 /**
  * Attribute filter for renaming attributes.

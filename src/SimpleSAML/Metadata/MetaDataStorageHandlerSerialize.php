@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\{Configuration, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
@@ -16,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use function array_key_exists;
 use function rawurlencode;
 use function serialize;
+use function sprintf;
 use function strlen;
 use function substr;
 use function unserialize;

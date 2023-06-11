@@ -8,6 +8,9 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 
+use function array_merge;
+use function print_r;
+
 /**
  * Tests for \SimpleSAML\Auth\State
  *

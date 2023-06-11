@@ -9,19 +9,15 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\SAML2\AuthnRequest;
+use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest};
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
-use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
-use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
 use SimpleSAML\SAML2\Utils\XPath;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Test\Utils\ExitTestException;
-use SimpleSAML\Test\Utils\SpTester;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\Test\Utils\{ExitTestException, SpTester};
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use Symfony\Component\HttpFoundation\Request;
 
 /**

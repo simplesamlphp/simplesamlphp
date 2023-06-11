@@ -6,15 +6,16 @@ namespace SimpleSAML\Module\saml\SP;
 
 use Exception;
 use PDO;
+use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Session;
-use SimpleSAML\Store;
-use SimpleSAML\Store\StoreFactory;
-use SimpleSAML\Store\StoreInterface;
-use SimpleSAML\Utils;
+use SimpleSAML\Store\{StoreFactory, StoreInterface};
+
+use function gmdate;
+use function rand;
+use function serialize;
+use function sha1;
+use function strlen;
 
 /**
  * A directory over logout information.

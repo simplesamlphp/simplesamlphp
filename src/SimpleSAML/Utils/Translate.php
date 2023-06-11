@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
 
@@ -28,9 +30,9 @@ class Translate
         $templateprefix = ($module === '' ? '' : $module . ":");
 
         foreach (
-            new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($tplDir),
-                \RecursiveIteratorIterator::LEAVES_ONLY
+            new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($tplDir),
+                RecursiveIteratorIterator::LEAVES_ONLY
             ) as $file
         ) {
             if ($file->isFile()) {

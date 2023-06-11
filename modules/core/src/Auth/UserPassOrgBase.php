@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth;
 
+use Exception;
+use SimpleSAML\{Auth, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function count;
+use function explode;
 
 /**
  * Helper class for username/password/organization authentication.
@@ -281,7 +281,7 @@ abstract class UserPassOrgBase extends Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         $orgMethod = $source->getUsernameOrgMethod();
@@ -301,7 +301,7 @@ abstract class UserPassOrgBase extends Auth\Source
         /* Attempt to log in. */
         try {
             $attributes = $source->login($username, $password, $organization);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
             throw $e;
         }
@@ -340,7 +340,7 @@ abstract class UserPassOrgBase extends Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         $orgMethod = $source->getUsernameOrgMethod();

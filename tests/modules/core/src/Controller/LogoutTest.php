@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request};

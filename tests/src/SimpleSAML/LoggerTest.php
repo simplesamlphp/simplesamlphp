@@ -6,8 +6,7 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\{Configuration, Logger};
 use SimpleSAML\TestUtils\ArrayLogger;
 
 class LoggerTest extends TestCase
@@ -101,7 +100,7 @@ class LoggerTest extends TestCase
     /**
      * @return array
      */
-    public function provideLogLevels(): array
+    public static function provideLogLevels(): array
     {
         return [
            'emergency' => ['emergency', Logger::EMERG],

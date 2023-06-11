@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use Exception;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Module, Utils};
 
 /**
  * Base class for data stores.

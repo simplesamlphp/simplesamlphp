@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\AttributeMap;
 
@@ -191,7 +192,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         self::processFilter($config, $request);
     }
 
@@ -209,7 +210,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         self::processFilter($config, $request);
     }
 
@@ -227,7 +228,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         self::processFilter($config, $request);
     }
 

@@ -7,6 +7,8 @@ namespace SimpleSAML\Error;
 use PDOException;
 use Throwable;
 
+use function is_int;
+
 /**
  * Class for saving normal exceptions for serialization.
  *

@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\{Configuration, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Throwable;
+
+use function array_key_exists;
+use function array_merge;
+use function array_shift;
+use function bin2hex;
+use function call_user_func;
+use function count;
+use function explode;
+use function http_response_code;
+use function implode;
+use function is_array;
+use function openssl_random_pseudo_bytes;
+use function substr;
+use function var_export;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.

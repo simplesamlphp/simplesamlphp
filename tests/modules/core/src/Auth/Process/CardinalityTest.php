@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Error\Exception as SspException;
 use SimpleSAML\Module\core\Auth\Process\Cardinality;
-use SimpleSAML\Utils;
 
 /**
  * Test for the core:Cardinality filter.

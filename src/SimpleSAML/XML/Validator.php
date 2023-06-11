@@ -12,10 +12,15 @@ namespace SimpleSAML\XML;
 
 use DOMNode;
 use DOMDocument;
-use RobRichards\XMLSecLibs\XMLSecEnc;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use Exception;
+use RobRichards\XMLSecLibs\{XMLSecEnc, XMLSecurityDSig};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
+
+use function array_key_exists;
+use function in_array;
+use function is_array;
+use function is_string;
 
 class Validator
 {
@@ -78,7 +83,7 @@ class Validator
         // Locate the XMLDSig Signature element to be used
         $signatureElement = $objXMLSecDSig->locateSignature($xmlNode);
         if (!$signatureElement) {
-            throw new \Exception('Could not locate XML Signature element.');
+            throw new Exception('Could not locate XML Signature element.');
         }
 
         // Canonicalize the XMLDSig SignedInfo element in the message
@@ -86,14 +91,14 @@ class Validator
 
         // Validate referenced xml nodes
         if (!$objXMLSecDSig->validateReference()) {
-            throw new \Exception('XMLsec: digest validation failed');
+            throw new Exception('XMLsec: digest validation failed');
         }
 
 
         // Find the key used to sign the document
         $objKey = $objXMLSecDSig->locateKey();
         if (empty($objKey)) {
-            throw new \Exception('Error loading key to handle XML signature');
+            throw new Exception('Error loading key to handle XML signature');
         }
 
         // Load the key data
@@ -104,13 +109,13 @@ class Validator
             // No PEM data. Search for key in signature
 
             if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
-                throw new \Exception('Error finding key data for XML signature validation.');
+                throw new Exception('Error finding key data for XML signature validation.');
             }
         }
 
         // Check the signature
         if ($objXMLSecDSig->verify($objKey) !== 1) {
-            throw new \Exception("Unable to validate Signature");
+            throw new Exception("Unable to validate Signature");
         }
 
         // Extract the certificate

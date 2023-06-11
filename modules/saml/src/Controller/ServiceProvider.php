@@ -6,38 +6,30 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Metadata;
-use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Auth\Source\SP;
-use SimpleSAML\SAML2\Assertion;
-use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, LogoutRequest, LogoutResponse, SOAP};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
-use SimpleSAML\SAML2\HTTPArtifact;
-use SimpleSAML\SAML2\LogoutRequest;
-use SimpleSAML\SAML2\LogoutResponse;
 use SimpleSAML\SAML2\Response as SAML2_Response;
-use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\XML\saml\Issuer;
-use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
-use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function array_merge;
+use function basename;
 use function count;
 use function end;
 use function get_class;
+use function hash;
 use function in_array;
 use function is_null;
+use function sprintf;
+use function strpos;
+use function strrpos;
 use function substr;
 use function time;
 use function var_export;
@@ -475,7 +467,7 @@ class ServiceProvider
 
         if ($source === null) {
             throw new Error\Exception('No authentication source with id \'' . $sourceId . '\' found.');
-        } elseif (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
+        } elseif (!($source instanceof Module\saml\Auth\Source\SP)) {
             throw new Error\Exception('Source type changed?');
         }
 

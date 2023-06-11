@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Compat;
 
-use Psr\Log\InvalidArgumentException;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Psr\Log\{InvalidArgumentException, LoggerInterface, LogLevel};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger as SspLogger;
+use Stringable;
+
+use function var_export;
 
 class Logger implements LoggerInterface
 {
     /**
      * System is unusable.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function emergency($message, array $context = []): void
+    public function emergency(string|Stringable $message, array $context = []): void
     {
         SspLogger::emergency($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -32,12 +31,10 @@ class Logger implements LoggerInterface
      * Example: Entire website down, database unavailable, etc. This should
      * trigger the SMS alerts and wake you up.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function alert($message, array $context = []): void
+    public function alert(string|Stringable $message, array $context = []): void
     {
         SspLogger::alert($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -48,12 +45,10 @@ class Logger implements LoggerInterface
      *
      * Example: Application component unavailable, unexpected exception.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function critical($message, array $context = []): void
+    public function critical(string|Stringable $message, array $context = []): void
     {
         SspLogger::critical($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -63,12 +58,10 @@ class Logger implements LoggerInterface
      * Runtime errors that do not require immediate action but should typically
      * be logged and monitored.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function error($message, array $context = []): void
+    public function error(string|Stringable $message, array $context = []): void
     {
         SspLogger::error($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -80,12 +73,10 @@ class Logger implements LoggerInterface
      * Example: Use of deprecated APIs, poor use of an API, undesirable things
      * that are not necessarily wrong.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function warning($message, array $context = []): void
+    public function warning(string|Stringable $message, array $context = []): void
     {
         SspLogger::warning($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -94,12 +85,10 @@ class Logger implements LoggerInterface
     /**
      * Normal but significant events.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function notice($message, array $context = []): void
+    public function notice(string|Stringable $message, array $context = []): void
     {
         SspLogger::notice($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -110,12 +99,10 @@ class Logger implements LoggerInterface
      *
      * Example: User logs in, SQL logs.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function info($message, array $context = []): void
+    public function info(string|Stringable $message, array $context = []): void
     {
         SspLogger::info($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -124,12 +111,10 @@ class Logger implements LoggerInterface
     /**
      * Detailed debug information.
      *
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function debug($message, array $context = []): void
+    public function debug(string|Stringable $message, array $context = []): void
     {
         SspLogger::debug($message . ($context ? " " . var_export($context, true) : ""));
     }
@@ -139,19 +124,16 @@ class Logger implements LoggerInterface
      * Logs with an arbitrary level.
      *
      * @param mixed $level
-     * @param string $message
+     * @param string|\Stringable $message
      * @param array $context
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException if assertions are false
-     *
-     * Type hint not possible due to upstream method signature
      */
-    public function log($level, $message, array $context = []): void
+    public function log($level, string|Stringable $message, array $context = []): void
     {
-        Assert::string($message);
-
         switch ($level) {
-            /* From PSR:  Calling this method with one of the log level constants
+            /**
+             * From PSR:  Calling this method with one of the log level constants
              * MUST have the same result as calling the level-specific method
              */
             case LogLevel::ALERT:

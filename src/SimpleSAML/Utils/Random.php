@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use function bin2hex;
+use function openssl_random_pseudo_bytes;
+
 /**
  * Utility class for random data generation and manipulation.
  *

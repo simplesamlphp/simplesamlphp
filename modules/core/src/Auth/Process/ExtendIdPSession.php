@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\{Auth, Configuration, Session, SessionHandler};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Session;
-use SimpleSAML\SessionHandler;
+
+use function time;
 
 /**
  * Extend IdP session and cookies.

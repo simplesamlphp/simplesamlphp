@@ -7,35 +7,21 @@ namespace SimpleSAML\Metadata;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
-use RobRichards\XMLSecLibs\XMLSecurityKey;
+use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Logger;
+use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\SignedElementHelper;
-use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
-use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
-use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
-use SimpleSAML\SAML2\XML\md\EntityDescriptor;
-use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
-use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\KeyDescriptor;
-use SimpleSAML\SAML2\XML\md\Organization;
-use SimpleSAML\SAML2\XML\md\RoleDescriptor;
-use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\SSODescriptorType;
+use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, EntityDescriptor, EntitiesDescriptor, IDPSSODescriptor};
+use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, ContactPerson, AbstractEndpointType, KeyDescriptor};
+use SimpleSAML\SAML2\XML\md\{Organization, RoleDescriptor, SPSSODescriptor, SSODescriptorType};
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
-use SimpleSAML\SAML2\XML\mdui\DiscoHints;
-use SimpleSAML\SAML2\XML\mdui\UIInfo;
+use SimpleSAML\SAML2\XML\mdui\{DiscoHints, UIInfo};
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
-use SimpleSAML\Utils;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
-use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -44,8 +30,8 @@ use function array_intersect;
 use function array_key_exists;
 use function array_map;
 use function array_merge;
-use function array_walk;
 use function count;
+use function sprintf;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.
@@ -855,8 +841,6 @@ class SAMLParser
         AttributeAuthorityDescriptor $element,
         ?int $expireTime
     ): void {
-        Assert::nullOrInteger($expireTime);
-
         $aad = self::parseRoleDescriptorType($element, $expireTime);
         $aad['entityid'] = $this->getEntityId();
         $aad['metadata-set'] = 'attributeauthority-remote';

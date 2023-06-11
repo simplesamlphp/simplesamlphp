@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\{Auth, Configuration, Error, IdP, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\IdP;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Response;
 
+use function count;
 use function is_null;
 use function sha1;
 use function var_export;

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Utils;
 
 /**
  * Authentication source which verifies the password against

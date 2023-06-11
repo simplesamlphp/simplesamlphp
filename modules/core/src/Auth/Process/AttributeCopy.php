@@ -8,6 +8,11 @@ use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 
+use function array_key_exists;
+use function is_array;
+use function is_string;
+use function var_export;
+
 /**
  * Attribute filter for renaming attributes.
  *

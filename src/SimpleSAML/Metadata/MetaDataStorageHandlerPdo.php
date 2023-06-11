@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
+use SimpleSAML\{Configuration, Database, Error};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Database;
-use SimpleSAML\Error;
+
+use function array_key_exists;
+use function count;
+use function in_array;
+use function json_decode;
+use function json_last_error;
+use function str_replace;
+use function var_export;
 
 /**
  * Class for handling metadata files stored in a database.
@@ -108,7 +115,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
             return $metadata;
         } else {
-            throw new \Exception(
+            throw new Exception(
                 'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
             );
         }
@@ -171,7 +178,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         // throw pdo exception upon execution failure
         if (!$stmt->execute()) {
-            throw new \Exception(
+            throw new Exception(
                 'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
             );
         }
@@ -181,7 +188,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         while ($d = $stmt->fetch()) {
             $data = json_decode($d['entity_data'], true);
             if (json_last_error() != JSON_ERROR_NONE) {
-                throw new \SimpleSAML\Error\Exception(
+                throw new Error\Exception(
                     "Cannot decode metadata for entity '${d['entity_id']}'"
                 );
             }

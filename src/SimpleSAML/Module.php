@@ -5,18 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
+use SimpleSAML\{Kernel, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Kernel;
-use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Path;
+use Symfony\Component\Filesystem\{Filesystem, Path};
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\{BinaryFileResponse, RedirectResponse, Request, Response, ResponseHeaderBag};
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function array_filter;

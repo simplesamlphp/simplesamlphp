@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\{Configuration, Logger};
+
+use function array_key_exists;
+use function error_log;
+use function preg_replace;
+use function sprintf;
+use function str_replace;
+use function trim;
 
 /**
  * A class for logging to the default php error log.

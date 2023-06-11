@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\{Auth, Error, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Error;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
+
+use function session_id;
+use function session_start;
 
 /**
  * Example external authentication source.

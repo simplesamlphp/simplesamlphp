@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Auth, Configuration, Module, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Controller;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Cookie, Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+use function file_get_contents;
 
 /**
  * Set of tests for the controllers in the "admin" module.

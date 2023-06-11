@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Utils};
+
+use function constants;
+use function defined;
+use function openlog;
+use function preg_replace;
+use function str_replace;
+use function syslog;
 
 /**
  * A logger that sends messages to syslog.

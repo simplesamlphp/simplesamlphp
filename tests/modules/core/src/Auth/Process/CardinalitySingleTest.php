@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
@@ -44,7 +44,7 @@ class CardinalitySingleTest extends TestCase
      */
     protected function setUp(): void
     {
-        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();

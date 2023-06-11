@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
-use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\{Configuration, Error, IdP, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\IdP;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**

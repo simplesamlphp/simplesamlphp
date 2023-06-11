@@ -10,6 +10,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 
 use function array_key_exists;
+use function is_array;
 use function sprintf;
 
 /**

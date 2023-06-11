@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityKey;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use RobRichards\XMLSecLibs\{XMLSecurityKey, XMLSecurityDSig};
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;

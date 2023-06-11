@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
+use SimpleSAML\{Auth, Configuration, Error, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\IdP\IFrameLogoutHandler;
-use SimpleSAML\IdP\LogoutHandlerInterface;
-use SimpleSAML\IdP\TraditionalLogoutHandler;
+use SimpleSAML\IdP\{IFrameLogoutHandler, LogoutHandlerInterface, TraditionalLogoutHandler};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
+
+use function call_user_func;
+use function strpos;
+use function substr;
+use function time;
+use function var_export;
 
 /**
  * IdP class.

@@ -4,13 +4,54 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
+use InvalidArgumentException;
+use SimpleSAML\{Configuration, Error, Logger, Module, Session};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use function array_key_exists;
+use function array_merge;
+use function array_pop;
+use function array_shift;
+use function array_slice;
+use function base64_encode;
+use function count;
+use function defined;
+use function dirname;
+use function error_get_last;
+use function explode;
+use function file_get_contents;
+use function filter_var;
+use function http_build_query;
+use function implode;
+use function in_array;
+use function intval;
+use function is_array;
+use function is_numeric;
+use function is_string;
+use function join;
+use function parse_url;
+use function preg_match;
+use function preg_replace;
+use function preg_quote;
+use function realpath;
+use function setcookie;
+use function setrawcookie;
+use function str_contains;
+use function str_replace;
+use function strcspn;
+use function stream_context_create;
+use function strlen;
+use function strpos;
+use function strtolower;
+use function strval;
+use function substr;
+use function time;
+use function trim;
+use function rtrim;
+use function urldecode;
+use function var_export;
+use function version_compare;
 
 /**
  * HTTP-related utility methods.
@@ -215,7 +256,7 @@ class HTTP
     private function redirect(string $url, array $parameters = []): RedirectResponse
     {
         if (empty($url)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
+            throw new InvalidArgumentException('Invalid input parameters.');
         }
 
         if (!$this->isValidURL($url)) {

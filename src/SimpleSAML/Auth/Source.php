@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function array_key_exists;
+use function array_merge;
+use function call_user_func;
+use function get_class;
+use function is_array;
+use function is_string;
+use function strlen;
+use function var_export;
 
 /**
  * This class defines a base class for authentication source.
@@ -169,7 +173,7 @@ abstract class Source
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
      */
-    public function initLogin($return, ?string $errorURL = null, array $params = []): Response
+    public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): Response
     {
         Assert::true(is_string($return) || is_array($return));
 

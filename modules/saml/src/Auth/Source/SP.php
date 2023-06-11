@@ -5,31 +5,31 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Source;
 
 use Psr\Http\Message\RequestInterface;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\IdP;
-use SimpleSAML\Logger;
+use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
+use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
-use SimpleSAML\SAML2\AuthnRequest;
-use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
-use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
-use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
-use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Session;
-use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
-use SimpleSAML\Utils;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+
+use function array_intersect;
+use function array_key_exists;
+use function array_keys;
+use function call_user_func;
+use function count;
+use function in_array;
+use function is_a;
+use function is_array;
+use function is_null;
+use function sprintf;
+use function urlencode;
+use function var_export;
 
 class SP extends Auth\Source
 {
@@ -753,7 +753,7 @@ class SP extends Auth\Source
             $idp = (string) $state['saml:idp'];
         }
 
-        if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
+        if (isset($state['saml:IDPList']) && count($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
             $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
             $matchedEntities = $mdh->getMetaDataForEntities($state['saml:IDPList'], 'saml20-idp-remote');
@@ -772,7 +772,7 @@ class SP extends Auth\Source
                 );
             }
 
-            if (is_null($idp) && sizeof($matchedEntities) === 1) {
+            if (is_null($idp) && count($matchedEntities) === 1) {
                 // only one IdP requested or valid
                 $idp = key($matchedEntities);
             }
@@ -811,7 +811,7 @@ class SP extends Auth\Source
         // check if we have an IDPList specified in the request
         if (
             isset($state['saml:IDPList'])
-            && sizeof($state['saml:IDPList']) > 0
+            && count($state['saml:IDPList']) > 0
             && !in_array($state['saml:sp:IdP'], $state['saml:IDPList'], true)
         ) {
             /*

@@ -10,10 +10,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
+use SimpleSAML\{Configuration, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
+
+use function array_fill_keys;
+use function array_key_exists;
+use function array_unique;
+use function call_user_func;
+use function in_array;
+use function is_callable;
+use function strtolower;
 
 class Language
 {

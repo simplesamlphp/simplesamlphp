@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Exception;
+use InvalidArgumentException;
 use PHPMailer\PHPMailer\PHPMailer;
+use SimpleSAML\{Configuration, Logger};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\XHTML\Template;
 
+use function array_map;
+use function intval;
+use function is_array;
+use function preg_replace;
+use function strtolower;
+
 /**
- * E-mailer class that can generate a formatted e-mail from array
- * input data.
+ * E-mailer class that can generate a formatted e-mail from array input data.
  *
  * @package SimpleSAMLphp
  */
@@ -84,7 +90,7 @@ class EMail
         $address = $config->getOptionalString('technicalcontact_email', 'na@example.org');
         $address = preg_replace('/^mailto:/i', '', $address);
         if ('na@example.org' === $address) {
-            throw new \Exception('technicalcontact_email must be changed from the default value');
+            throw new Exception('technicalcontact_email must be changed from the default value');
         }
         return $address;
     }
@@ -181,7 +187,7 @@ class EMail
                     $this->mail->Host = $transportOptions['host'];
                 } else {
                     // throw an exception otherwise
-                    throw new \InvalidArgumentException("Missing Required Email Transport Parameter 'host'");
+                    throw new InvalidArgumentException("Missing Required Email Transport Parameter 'host'");
                 }
 
                 // set the port (optional, assume standard SMTP port 25 if not provided)

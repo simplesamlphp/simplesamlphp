@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Session;
+use SimpleSAML\{Configuration, Session};
 
 /**
  * Factory class to get instances of \SimpleSAML\Auth\Simple for a given authentication source.

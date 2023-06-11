@@ -6,13 +6,10 @@ namespace SimpleSAML\Metadata\Sources;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;

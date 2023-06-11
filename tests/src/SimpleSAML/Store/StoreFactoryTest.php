@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{MockObject\MockObject, TestCase};
 use Predis\Client;
 use ReflectionClass;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, Store};
 use SimpleSAML\Error\CriticalConfigurationError;
-use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 
 /**

@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Auth;
 
 use ReflectionClass;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**

@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
+use SimpleSAML\{Error, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Utils;
+
+use function array_key_exists;
+use function count;
+use function explode;
+use function is_string;
 
 /**
  * Example authentication source - username & password.

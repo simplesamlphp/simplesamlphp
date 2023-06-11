@@ -12,9 +12,26 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use PHP_SESSION_ACTIVE;
+use SimpleSAML\{Error, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+
+use function array_key_exists;
+use function bin2hex;
+use function headers_sent;
+use function ini_get;
+use function openssl_random_pseudo_bytes;
+use function session_create_id;
+use function session_get_cookie_params;
+use function session_id;
+use function session_name;
+use function session_regenerate_id;
+use function session_save_path;
+use function session_set_cookie_params;
+use function session_start;
+use function session_status;
+use function session_write_close;
+use function unserialize;
 
 class SessionHandlerPHP extends SessionHandler
 {

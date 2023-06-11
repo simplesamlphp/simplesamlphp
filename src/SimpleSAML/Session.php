@@ -5,10 +5,28 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use DOMNodeList;
+use Exception;
+use SimpleSAML\{Error, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
-use SimpleSAML\Utils;
+
+use function array_key_exists;
+use function array_keys;
+use function array_merge;
+use function bin2hex;
+use function call_user_func;
+use function defined;
+use function get_object_vars;
+use function header_register_callback;
+use function intval;
+use function is_a;
+use function is_callable;
+use function is_int;
+use function is_string;
+use function openssl_random_pseudo_bytes;
+use function php_sapi_name;
+use function time;
+use function var_export;
 
 /**
  * The Session class holds information about a user session, and everything attached to it.
@@ -258,7 +276,7 @@ class Session implements Utils\ClearableState
         // check if we have stored a session stored with the session handler
         try {
             $session = self::getSession();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             /*
              * For some reason, we were unable to initialize this session. Note that this error might be temporary, and
              * it's possible that we can recover from it in subsequent requests, so we should not try to create a new
@@ -269,7 +287,7 @@ class Session implements Utils\ClearableState
             Logger::error('Error loading session: ' . $e->getMessage());
             if ($e instanceof Error\Exception) {
                 $cause = $e->getCause();
-                if ($cause instanceof \Exception) {
+                if ($cause instanceof Exception) {
                     throw $cause;
                 }
             }
@@ -458,7 +476,7 @@ class Session implements Utils\ClearableState
 
         try {
             $sh->saveSession($this);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             if (!($e instanceof Error\Exception)) {
                 $e = new Error\UnserializableException($e);
             }
@@ -724,7 +742,7 @@ class Session implements Utils\ClearableState
                 $classname = $handler[0];
                 $functionname = $handler[1];
 
-                throw new \Exception(
+                throw new Exception(
                     'Logout handler is not a valid function: ' . $classname . '::' .
                     $functionname
                 );
@@ -827,7 +845,7 @@ class Session implements Utils\ClearableState
         $logout_handler = [$classname, $functionname];
 
         if (!is_callable($logout_handler)) {
-            throw new \Exception(
+            throw new Exception(
                 'Logout handler is not a valid function: ' . $classname . '::' .
                 $functionname
             );
@@ -882,7 +900,7 @@ class Session implements Utils\ClearableState
             $timeout = self::$config->getOptionalInteger('session.datastore.timeout', null);
             if ($timeout !== null) {
                 if ($timeout <= 0) {
-                    throw new \Exception(
+                    throw new Exception(
                         'The value of the session.datastore.timeout' .
                         ' configuration option should be a positive integer.'
                     );

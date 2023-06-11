@@ -5,28 +5,30 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Auth, Configuration, Logger, Module, Utils};
+use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Logger;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Metadata\SAMLBuilder;
-use SimpleSAML\Metadata\SAMLParser;
-use SimpleSAML\Metadata\Signer;
-use SimpleSAML\Module;
+use SimpleSAML\Metadata\{MetaDataStorageHandler, SAMLBuilder, SAMLParser, Signer};
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\{Request, Response, ResponseHeaderBag};
 use Symfony\Component\VarExporter\VarExporter;
+
+use function array_merge;
+use function array_pop;
+use function array_values;
+use function count;
+use function file_get_contents;
+use function is_array;
+use function sprintf;
+use function str_replace;
+use function trim;
+use function urlencode;
+use function var_export;
 
 /**
  * Controller class for the admin module.

@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+use SimpleSAML\{Auth, Logger, Module, Utils};
+
+use function array_key_exists;
+use function array_shift;
+use function count;
+use function implode;
+use function in_array;
+use function is_array;
 
 /**
  * Filter to ensure correct cardinality of single-valued attributes

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Error, Utils};
+
+use function chmod;
+use function file_get_contents;
 
 /**
  * Tests for SimpleSAML\Utils\System.
@@ -28,10 +28,10 @@ class SystemTest extends TestCase
     protected VfsStreamDirectory $root;
 
     /** @var string */
-    protected $root_directory;
+    protected string $root_directory;
 
     /** @var \SimpleSAML\Utils\System */
-    protected $sysUtils;
+    protected Utils\System $sysUtils;
 
 
     /**

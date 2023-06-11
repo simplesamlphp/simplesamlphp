@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+
+use function array_keys;
+use function implode;
+use function urlencode;
 
 /**
  * Controller class for the core module.

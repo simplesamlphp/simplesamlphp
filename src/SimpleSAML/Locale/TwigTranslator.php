@@ -12,6 +12,8 @@ namespace SimpleSAML\Locale;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use function call_user_func_array;
+
 class TwigTranslator implements TranslatorInterface
 {
     /** @var string|null $locale */

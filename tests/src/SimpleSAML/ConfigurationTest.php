@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error};
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
@@ -48,7 +47,7 @@ class ConfigurationTest extends ClearStateTestCase
         try {
             Configuration::getInstance();
             $this->fail('Exception expected');
-        } catch (Error\CriticalConfigurationError $var) {
+        } catch (Error\CriticalConfigurationError) {
             // This exception is expected.
         }
         /*

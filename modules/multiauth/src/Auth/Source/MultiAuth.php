@@ -7,13 +7,16 @@ namespace SimpleSAML\Module\multiauth\Auth\Source;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
+use SimpleSAML\{Auth, Configuration, Error, Module, Session, Utils};
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function array_intersect;
+use function array_key_exists;
+use function array_key_first;
+use function array_values;
+use function count;
+use function implode;
+use function is_null;
 
 /**
  * Authentication source which let the user chooses among a list of

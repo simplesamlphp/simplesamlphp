@@ -6,9 +6,12 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Module;
+use SimpleSAML\{Configuration, Module};
 use Symfony\Component\Filesystem\Path;
+
+use function count;
+use function dirname;
+use function var_export;
 
 /**
  * @covers \SimpleSAML\Module

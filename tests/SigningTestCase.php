@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
@@ -225,9 +224,9 @@ NOWDOC;
     /**
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
-     * @param mixed|null $value
+     * @param mixed $value
      */
-    protected function clearInstance(Configuration $service, string $className, $value = null): void
+    protected function clearInstance(Configuration $service, string $className, mixed $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

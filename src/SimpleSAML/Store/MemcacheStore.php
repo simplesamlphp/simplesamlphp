@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Memcache;
+use SimpleSAML\{Configuration, Memcache};
 
 /**
  * A memcache based data store.

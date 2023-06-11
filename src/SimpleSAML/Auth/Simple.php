@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\{Configuration, Error, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Response;
+
+use function array_key_exists;
+use function call_user_func;
+use function get_class;
+use function is_string;
+use function parse_url;
+use function trim;
+use function urlencode;
 
 /**
  * Helper class for simple authentication applications.
@@ -186,10 +190,8 @@ class Simple
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
      * with parameters for the logout. If this parameter is null, we will return to the current page.
      */
-    public function logout($params = null): Response
+    public function logout(string|array|null $params = null): Response
     {
-        Assert::true(is_array($params) || is_string($params) || $params === null);
-
         if ($params === null) {
             $httpUtils = new Utils\HTTP();
             $params = $httpUtils->getSelfURL();

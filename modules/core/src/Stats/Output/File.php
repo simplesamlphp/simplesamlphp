@@ -4,16 +4,28 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Stats\Output;
 
+use Exception;
+use SimpleSAML\{Configuration, Error, Stats};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+
+use function fclose;
+use function fopen;
+use function fwrite;
+use function gmdate;
+use function intval;
+use function is_dir;
+use function json_encode;
+use function sprintf;
+use function stream_set_write_buffer;
+use function substr;
+use function var_export;
 
 /**
  * Statistics logger that writes to a set of log files
  *
  * @package SimpleSAMLphp
  */
-class File extends \SimpleSAML\Stats\Output
+class File extends Stats\Output
 {
     /**
      * The log directory.
@@ -25,7 +37,7 @@ class File extends \SimpleSAML\Stats\Output
      * The file handle for the current file.
      * @var resource|null
      */
-    private $file = null;
+    private ?resource $file = null;
 
     /**
      * The current file date.
@@ -43,10 +55,10 @@ class File extends \SimpleSAML\Stats\Output
     {
         $logDir = $config->getPathValue('directory');
         if ($logDir === null) {
-            throw new \Exception('Missing "directory" option for core:File');
+            throw new Exception('Missing "directory" option for core:File');
         }
         if (!is_dir($logDir)) {
-            throw new \Exception('Could not find log directory: ' . var_export($logDir, true));
+            throw new Exception('Could not find log directory: ' . var_export($logDir, true));
         }
         $this->logDir = $logDir;
     }

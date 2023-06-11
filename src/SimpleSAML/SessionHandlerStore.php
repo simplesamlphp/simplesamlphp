@@ -13,6 +13,8 @@ namespace SimpleSAML;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Store\StoreInterface;
 
+use function time;
+
 class SessionHandlerStore extends SessionHandlerCookie
 {
     /**

@@ -6,11 +6,8 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_fill_keys;

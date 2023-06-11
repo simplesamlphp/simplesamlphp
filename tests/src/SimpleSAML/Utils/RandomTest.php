@@ -7,6 +7,8 @@ namespace SimpleSAML\Test\Utils;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils;
 
+use function strlen;
+
 /**
  * Tests for SimpleSAML\Utils\Random.
  *

@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use SimpleSAML\{Auth, Configuration, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Module;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function is_null;
+use function time;
+use function urlencode;
 
 /**
  * Controller class for the admin module.

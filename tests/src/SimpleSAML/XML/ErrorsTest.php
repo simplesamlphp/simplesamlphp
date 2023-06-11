@@ -8,6 +8,8 @@ use LibXMLError;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Errors;
 
+use function simplexml_load_string;
+
 /**
  * Tests for the SQL store.
  *

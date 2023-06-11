@@ -10,12 +10,24 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use DateInterval;
+use InvalidArgumentException;
+use SimpleSAML\{Configuration, Error, Logger};
+use SimpleSAML\Assert\CustomAssertionTrait;
+use SimpleSAML\SAML2\Constants as C;
+
+use function date_default_timezone_get;
+use function date_default_timezone_set;
+use function explode;
+use function gmdate;
+use function gmmktime;
+use function preg_match;
+use function time;
 
 class Time
 {
+    use CustomAssertionTrait;
+
     /**
      * Whether the timezone has been initialized or not.
      *
@@ -36,7 +48,7 @@ class Time
         if ($instant === null) {
             $instant = time();
         }
-        return gmdate('Y-m-d\TH:i:s\Z', $instant);
+        return gmdate('Y-m-d\\TH:i:sp', $instant);
     }
 
 

@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\{Configuration, Logger};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use Throwable;
+
+use function array_key_exists;
+use function array_keys;
+use function array_merge;
+use function call_user_func;
+use function count;
+use function get_class;
+use function str_replace;
 
 /**
  * Base class for SimpleSAMLphp Exceptions

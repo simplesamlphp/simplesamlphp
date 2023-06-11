@@ -6,6 +6,8 @@ namespace SimpleSAML\Auth;
 
 use SimpleSAML\Assert\Assert;
 
+use function array_key_exists;
+
 /**
  * Base class for authentication processing filters.
  *
@@ -46,7 +48,7 @@ abstract class ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
+    public function __construct(array &$config, /** @scrutinizer ignore-unused */ mixed $reserved)
     {
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];

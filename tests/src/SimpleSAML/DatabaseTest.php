@@ -10,8 +10,13 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
-use SimpleSAML\Configuration;
-use SimpleSAML\Database;
+use SimpleSAML\{Configuration, Database};
+
+use function md5;
+use function rand;
+use function spl_object_hash;
+use function strval;
+use function time;
 
 /**
  * This test ensures that the \SimpleSAML\Database class can properly
@@ -30,12 +35,12 @@ class DatabaseTest extends TestCase
     /**
      * @var \SimpleSAML\Configuration
      */
-    protected $config;
+    protected Configuration $config;
 
     /**
      * @var \SimpleSAML\Database
      */
-    protected $db;
+    protected Database $db;
 
 
     /**

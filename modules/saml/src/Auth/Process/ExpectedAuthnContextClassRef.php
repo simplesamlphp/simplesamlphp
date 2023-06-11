@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\{Auth, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Auth\ProcessingFilter;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
+
+use function in_array;
+use function strval;
+use function var_export;
 
 /**
  * Attribute filter to validate AuthnContextClassRef values.
@@ -28,7 +27,7 @@ use SimpleSAML\Utils;
  * @package SimpleSAMLphp
  */
 
-class ExpectedAuthnContextClassRef extends ProcessingFilter
+class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
 {
     /**
      * Array of accepted AuthnContextClassRef

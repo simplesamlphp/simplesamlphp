@@ -6,16 +6,15 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 
 use InvalidArgumentException;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Configuration;
+use SimpleSAML\{Configuration, IdP};
 use SimpleSAML\Error\Exception;
-use SimpleSAML\IdP;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
+use SimpleSAML\Metadata\{MetaDataStorageHandler, MetaDataStorageHandlerSerialize};
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function http_build_query;
 
 /**
  * @covers \SimpleSAML\Module\saml\IdP\SAML2

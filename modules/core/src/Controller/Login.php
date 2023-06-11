@@ -5,14 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
-use SimpleSAML\Module;
-use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Module\core\Auth\UserPassOrgBase;
-use SimpleSAML\Utils;
+use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
+use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request, Response};
 
@@ -132,9 +126,8 @@ class Login
      * @param array $state
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function handleLogin(Request $request, $source, array $state): Response
+    private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
-        Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
         $authStateId = $request->query->get('AuthState');
         $this->authState::validateStateId($authStateId);
 

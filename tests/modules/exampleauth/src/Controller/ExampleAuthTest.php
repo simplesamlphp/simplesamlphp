@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\exampleauth\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Auth, Configuration, Error, Session};
 use SimpleSAML\Module\exampleauth\Controller;
-use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 

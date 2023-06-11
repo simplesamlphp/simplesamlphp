@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use function bin2hex;
+use function explode;
+use function hexdec;
+use function inet_pton;
+use function intval;
+use function ip2long;
+use function sizeof;
+use function str_split;
+use function strpos;
+use function strstr;
+
 /**
  * Net-related utility methods.
  *

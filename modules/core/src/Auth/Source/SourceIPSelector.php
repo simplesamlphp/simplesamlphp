@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
+use SimpleSAML\{Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function sprintf;

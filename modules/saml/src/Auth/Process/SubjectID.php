@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\{Auth, Logger};
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Logger};
+
+use function array_key_exists;
+use function explode;
+use function preg_match;
+use function strpos;
+use function strtolower;
+use function sprintf;
 
 /**
  * Filter to generate the subject ID attribute.
