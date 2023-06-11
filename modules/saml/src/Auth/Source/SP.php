@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\saml\Auth\Source;
 
 use Psr\Http\Message\RequestInterface;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -16,10 +17,12 @@ use SimpleSAML\Module;
 use SimpleSAML\SAML2\AuthnRequest;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
 use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
@@ -220,18 +223,28 @@ class SP extends Auth\Source
         // add contacts
         $contacts = $this->metadata->getOptionalArray('contacts', []);
         foreach ($contacts as $contact) {
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('SP metadata: invalid content found in contact: ' . $e->getMessage());
+                continue;
+            }
         }
 
         // add technical contact
         $email = $this->config->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
-                'emailAddress' => $email,
-                'givenName' => $this->config->getOptionalString('technicalcontact_name', null),
-                'contactType' => 'technical',
+                'EmailAddress' => [$email],
+                'GivenName' => $this->config->getOptionalString('technicalcontact_name', null),
+                'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('SP metadata: invalid content found in contact: ' . $e->getMessage());
+            }
         }
 
         $cryptoUtils = new Utils\Crypto();

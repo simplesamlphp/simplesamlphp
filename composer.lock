@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af6d46bef3d694c53bf6c7b972969ac8",
+    "content-hash": "3e5dde0a4ffae1bc3f23fb0c72fe42f9",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -840,16 +840,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0-alpha3",
+            "version": "v5.0.0-alpha.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "570776ec2e973f2a8a832de95e1b9952f949a151"
+                "reference": "628c05a7245977bf37b5d8234d3fcce4ed88a2e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/570776ec2e973f2a8a832de95e1b9952f949a151",
-                "reference": "570776ec2e973f2a8a832de95e1b9952f949a151",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/628c05a7245977bf37b5d8234d3fcce4ed88a2e2",
+                "reference": "628c05a7245977bf37b5d8234d3fcce4ed88a2e2",
                 "shasum": ""
             },
             "require": {
@@ -867,14 +867,13 @@
                 "psr/log": "^2.0 || ^3.0",
                 "robrichards/xmlseclibs": "^3.1.1",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/xml-common": "^1.7.3",
-                "simplesamlphp/xml-security": "^1.6.1",
-                "simplesamlphp/xml-soap": "^1.1.0"
+                "simplesamlphp/xml-common": "^1.11.2",
+                "simplesamlphp/xml-security": "^1.6.5",
+                "simplesamlphp/xml-soap": "^1.2.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.5",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.4",
-                "vimeo/psalm": "^5.11"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.3"
             },
             "type": "library",
             "extra": {
@@ -900,9 +899,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha3"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.6"
             },
-            "time": "2023-05-09T20:13:01+00:00"
+            "time": "2023-05-30T20:52:38+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -1002,16 +1001,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.7.3",
+            "version": "v1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "8682637e51e61a97dda656d12da35bbaa03ffbac"
+                "reference": "38248c325d4defab95b271a461e2645370adca63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/8682637e51e61a97dda656d12da35bbaa03ffbac",
-                "reference": "8682637e51e61a97dda656d12da35bbaa03ffbac",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/38248c325d4defab95b271a461e2645370adca63",
+                "reference": "38248c325d4defab95b271a461e2645370adca63",
                 "shasum": ""
             },
             "require": {
@@ -1022,10 +1021,10 @@
                 "ext-spl": "*",
                 "ext-xmlreader": "*",
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.3"
+                "simplesamlphp/assert": "^1.0.4"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.2"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
             },
             "type": "project",
             "autoload": {
@@ -1057,20 +1056,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2023-05-05T23:06:23+00:00"
+            "time": "2023-05-29T16:54:53+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.6.1",
+            "version": "v1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "640b55b079a00f2549fb9c6a173496c1c6345c50"
+                "reference": "c3c3c9750dbbb982e18b014e79925d6d49cd5a87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/640b55b079a00f2549fb9c6a173496c1c6345c50",
-                "reference": "640b55b079a00f2549fb9c6a173496c1c6345c50",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/c3c3c9750dbbb982e18b014e79925d6d49cd5a87",
+                "reference": "c3c3c9750dbbb982e18b014e79925d6d49cd5a87",
                 "shasum": ""
             },
             "require": {
@@ -1081,11 +1080,11 @@
                 "ext-pcre": "*",
                 "ext-spl": "*",
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.3",
-                "simplesamlphp/xml-common": "^1.7.2"
+                "simplesamlphp/assert": "^1.0.4",
+                "simplesamlphp/xml-common": "^1.11.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.1"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
             },
             "type": "library",
             "autoload": {
@@ -1119,33 +1118,33 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.1"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.5"
             },
-            "time": "2023-03-14T21:52:29+00:00"
+            "time": "2023-05-28T18:49:00+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-soap.git",
-                "reference": "64e2dc1e33372d880793c8847afd194b6f488f3a"
+                "reference": "ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/64e2dc1e33372d880793c8847afd194b6f488f3a",
-                "reference": "64e2dc1e33372d880793c8847afd194b6f488f3a",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5",
+                "reference": "ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-pcre": "*",
                 "php": "^8.0",
-                "simplesamlphp/assert": "^1.0.2",
-                "simplesamlphp/xml-common": "^1.7.0"
+                "simplesamlphp/assert": "^1.0.4",
+                "simplesamlphp/xml-common": "^1.9.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.4.1"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.4"
             },
             "type": "library",
             "extra": {
@@ -1173,9 +1172,9 @@
             "description": "SimpleSAMLphp library for XML SOAP",
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-soap/issues",
-                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.1.0"
+                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.2.0"
             },
-            "time": "2023-05-06T15:48:24+00:00"
+            "time": "2023-05-19T09:59:49+00:00"
         },
         {
             "name": "symfony/cache",
@@ -4007,16 +4006,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.4",
+            "version": "v4.15.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/11e2663a5bc9db5d714eedb4277ee300403b4a9e",
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e",
                 "shasum": ""
             },
             "require": {
@@ -4057,9 +4056,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.5"
             },
-            "time": "2023-03-05T19:49:14+00:00"
+            "time": "2023-05-19T20:20:00+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5559,16 +5558,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.5.4",
+            "version": "v1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "b627dd12d1d5bb50cef5336b9726f3a2d1b4969e"
+                "reference": "98e550a86b3c630820b363575a72b7f7073ef589"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/b627dd12d1d5bb50cef5336b9726f3a2d1b4969e",
-                "reference": "b627dd12d1d5bb50cef5336b9726f3a2d1b4969e",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/98e550a86b3c630820b363575a72b7f7073ef589",
+                "reference": "98e550a86b3c630820b363575a72b7f7073ef589",
                 "shasum": ""
             },
             "require": {
@@ -5602,7 +5601,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2023-03-16T20:42:22+00:00"
+            "time": "2023-05-20T08:39:41+00:00"
         },
         {
             "name": "theseer/tokenizer",

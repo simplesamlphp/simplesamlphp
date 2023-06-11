@@ -9,6 +9,7 @@ use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -20,23 +21,25 @@ use SimpleSAML\SAML2\Assertion;
 use SimpleSAML\SAML2\AuthnRequest;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\EncryptedAssertion;
 use SimpleSAML\SAML2\HTTPRedirect;
 use SimpleSAML\SAML2\LogoutRequest;
 use SimpleSAML\SAML2\LogoutResponse;
 use SimpleSAML\SAML2\Response as SAML2_Response;
 use SimpleSAML\SAML2\SOAP;
-use SimpleSAML\SAML2\XML\ds\X509Certificate;
-use SimpleSAML\SAML2\XML\ds\X509Data;
-use SimpleSAML\SAML2\XML\ds\KeyInfo;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
 use SimpleSAML\Stats;
-use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -966,7 +969,12 @@ class SAML2
         if ($config->hasValue('contacts')) {
             $contacts = $config->getArray('contacts');
             foreach ($contacts as $contact) {
-                $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+                try {
+                    $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+                } catch (ArrayValidationException $e) {
+                    Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
+                    continue;
+                }
             }
         }
 
@@ -974,11 +982,16 @@ class SAML2
         $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
-                'emailAddress' => $email,
-                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
-                'contactType' => 'technical',
+                'EmailAddress' => [$email],
+                'GivenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
+                'ContactType' => 'technical',
             ];
-            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
+
+            try {
+                $metadata['contacts'][] = ContactPerson::fromArray($contact)->toArray();
+            } catch (ArrayValidationException $e) {
+                Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
+            }
         }
 
         return $metadata;
@@ -1199,14 +1212,12 @@ class SAML2
                     $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
                     if (preg_match($pattern, $clientCert, $matches)) {
                         // we have a client certificate from the browser which we add to the HoK assertion
-                        $x509Certificate = new X509Certificate();
-                        $x509Certificate->setCertificate(str_replace(["\r", "\n", " "], '', $matches[1]));
+                        $x509Certificate = new X509Certificate(
+                            str_replace(["\r", "\n", " "], '', $matches[1])
+                        );
 
-                        $x509Data = new X509Data();
-                        $x509Data->addData($x509Certificate);
-
-                        $keyInfo = new KeyInfo();
-                        $keyInfo->addInfo($x509Data);
+                        $x509Data = new X509Data([$x509Certificate]);
+                        $keyInfo = new KeyInfo([$x509Data]);
 
                         $scd->addInfo($keyInfo);
                     } else {

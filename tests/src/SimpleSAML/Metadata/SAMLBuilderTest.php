@@ -317,21 +317,25 @@ class SAMLBuilderTest extends TestCase
             'metadata-set' => $set,
             'contacts' => [
                 [
-                   'contactType'       => 'other',
-                   'emailAddress'      => 'csirt@example.com',
-                   'surName'           => 'CSIRT',
-                   'telephoneNumber'   => '+31SECOPS',
-                   'company'           => 'Acme Inc',
-                   'attributes'        => [
-                       'xmlns:remd'        => 'http://refeds.org/metadata',
-                       'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-                   ],
+                    'ContactType'       => 'other',
+                    'EmailAddress'      => ['csirt@example.com'],
+                    'SurName'           => 'CSIRT',
+                    'TelephoneNumber'   => ['+31SECOPS'],
+                    'Company'           => 'Acme Inc',
+                    'attributes' => [
+                        [
+                            'namespaceURI' => 'http://refeds.org/metadata',
+                            'namespacePrefix' => 'remd',
+                            'attrName' => 'contactType',
+                            'attrValue' => 'http://refeds.org/metadata/contactType/security',
+                        ],
+                    ],
                 ],
                 [
-                   'contactType'       => 'administrative',
-                   'emailAddress'      => 'j.doe@example.edu',
-                   'givenName'         => 'Jane',
-                   'surName'           => 'Doe',
+                    'ContactType'       => 'administrative',
+                    'EmailAddress'      => ['j.doe@example.edu'],
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
         ];

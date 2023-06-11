@@ -30,16 +30,16 @@ RegistrationInfo Items
 The configuration is the same for all the different files, and consists of a single directive called `RegistrationInfo`, which
 **must** be an indexed array with the following options:
 
-`authority`
+`RegistrationAuthority`
 :   A string containing an identifier of the authority who has registered this metadata. This parameter is **mandatory**.
 
-`instant`
+`RegistrationInstant`
 :   A string containing the instant when the entity or entities where registered by the authority. This parameter is
     optional, and must be expressed in the UTC timezone with the *zulu* (`Z`) timezone identifier. If omitted, there will be no
     `registrationInstant` in the resulting metadata, except in the `aggregator2` module, which will use the instant when the metadata
     was generated.
 
-`policies`
+`RegistrationPolicy`
 :   An indexed array containing URLs pointing to the policy under which the entity or entities where registered. Each
     index must be the language code corresponding to the language of the URL. This parameter is optional, and will be omitted in the
     resulting metadata if not configured.
@@ -54,9 +54,9 @@ Service Provider:
         'entityID' => NULL,
         ...
         'RegistrationInfo' => [
-            'authority' => 'urn:mace:sp.example.org',
-            'instant' => '2008-01-17T11:28:03.577Z',
-            'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+            'RegistrationAuthority' => 'urn:mace:sp.example.org',
+            'RegistrationInstant' => '2008-01-17T11:28:03.577Z',
+            'RegistrationPolicy' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
         ],
     ],
 
@@ -66,8 +66,8 @@ Identity Provider:
         'host' => '__DEFAULT__',
         ...
         'RegistrationInfo' => [
-            'authority' => 'urn:mace:idp.example.org',
-            'instant' => '2008-01-17T11:28:03.577Z',
+            'RegistrationAuthority' => 'urn:mace:idp.example.org',
+            'RegistrationInstant' => '2008-01-17T11:28:03.577Z',
         ],
     ];
 
@@ -79,8 +79,8 @@ Identity Provider:
                 ...
             ],
             'RegistrationInfo' => [
-                'authority' => 'urn:mace:example.federation',
-                'policies' => ['en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'],
+                'RegistrationAuthority' => 'urn:mace:example.federation',
+                'RegistrationPolicy' => ['en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'],
             ],
         ],
     ];

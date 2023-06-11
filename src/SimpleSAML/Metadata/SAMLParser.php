@@ -13,16 +13,13 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\SignedElementHelper;
-use SimpleSAML\SAML2\XML\ds\X509Certificate;
-use SimpleSAML\SAML2\XML\ds\X509Data;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\md\EndpointType;
+use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
@@ -31,14 +28,14 @@ use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
-use SimpleSAML\SAML2\XML\mdui\Keywords;
-use SimpleSAML\SAML2\XML\mdui\Logo;
 use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -47,6 +44,7 @@ use function array_intersect;
 use function array_key_exists;
 use function array_map;
 use function array_merge;
+use function array_walk;
 use function count;
 
 /**
@@ -778,9 +776,11 @@ class SAMLParser
         // find all ArtifactResolutionService elements
         $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
 
-
         // process NameIDFormat elements
-        $sd['nameIDFormats'] = $element->getNameIDFormat();
+        $sd['nameIDFormats'] = [];
+        foreach ($element->getNameIDFormat() as $format) {
+            $sd['nameIDFormats'][] = $format->getContent();
+        }
 
         return $sd;
     }
@@ -897,9 +897,10 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
-        foreach ($element->getExtensions() as $e) {
+        $extensions = $element->getExtensions()?->getList() ?? [];
+        foreach ($extensions as $e) {
             if ($e instanceof Scope) {
-                $ret['scope'][] = $e->getScope();
+                $ret['scope'][] = $e->getContent();
                 continue;
             }
 
@@ -911,26 +912,19 @@ class SAMLParser
                 if ($e instanceof RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (
-                        isset($ret['RegistrationInfo']['authority'])
-                        && $ret['RegistrationInfo']['authority'] !== $e->getRegistrationAuthority()
+                        isset($ret['RegistrationInfo']['registrationAuthority'])
+                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()
                     ) {
-                        Logger::warning(
-                            'Invalid attempt to override registrationAuthority \''
-                            . $ret['RegistrationInfo']['authority']
-                            . "' with '{$e->getRegistrationAuthority()}'"
-                        );
+                        Logger::warning(sprintf(
+                            'Invalid attempt to override registrationAuthority \'%s\' with \'%s\'',
+                            $ret['RegistrationInfo']['registrationAuthority'],
+                            $e->getRegistrationAuthority(),
+                        ));
                     } else {
-                        $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();
-                    }
-                    $registrationInstant = $e->getRegistrationInstant();
-                    if ($registrationInstant !== null) {
-                        $ret['RegistrationInfo']['instant'] = $registrationInstant;
-                    }
-                    $registrationPolicy = $e->getRegistrationPolicy();
-                    if (!empty($registrationPolicy)) {
-                        $ret['RegistrationInfo']['policies'] = $registrationPolicy;
+                        $ret['RegistrationInfo'] = $e->toArray();
                     }
                 }
+
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
                     foreach ($e->getChildren() as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows
@@ -966,42 +960,14 @@ class SAMLParser
             // UIInfo elements are only allowed at RoleDescriptor level extensions
             if ($element instanceof RoleDescriptor) {
                 if ($e instanceof UIInfo) {
-                    $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
-                    $ret['UIInfo']['Description'] = $e->getDescription();
-                    $ret['UIInfo']['InformationURL'] = $e->getInformationURL();
-                    $ret['UIInfo']['PrivacyStatementURL'] = $e->getPrivacyStatementURL();
-
-                    foreach ($e->getKeywords() as $uiItem) {
-                        $keywords = $uiItem->getKeywords();
-                        $language = $uiItem->getLanguage();
-                        if (($keywords === [])) {
-                            continue;
-                        }
-                        $ret['UIInfo']['Keywords'][$language] = $keywords;
-                    }
-                    foreach ($e->getLogo() as $uiItem) {
-                        if (!($uiItem instanceof Logo)) {
-                            continue;
-                        }
-                        $logo = [
-                            'url'    => $uiItem->getUrl(),
-                            'height' => $uiItem->getHeight(),
-                            'width'  => $uiItem->getWidth(),
-                        ];
-                        if ($uiItem->getLanguage() !== null) {
-                            $logo['lang'] = $uiItem->getLanguage();
-                        }
-                        $ret['UIInfo']['Logo'][] = $logo;
-                    }
+                    $ret['UIInfo'] = $e->toArray();
                 }
             }
 
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof IDPSSODescriptor) {
                 if ($e instanceof DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
-                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
-                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
+                    $ret['DiscoHints'] = $e->toArray();
                 }
             }
         }
@@ -1016,41 +982,21 @@ class SAMLParser
      */
     private function processOrganization(Organization $element): void
     {
-        $this->organizationName = $element->getOrganizationName();
-        $this->organizationDisplayName = $element->getOrganizationDisplayName();
-        $this->organizationURL = $element->getOrganizationURL();
+        $org = $element->toArray();
+        $this->organizationName = $org['OrganizationName'];
+        $this->organizationDisplayName = $org['OrganizationDisplayName'];
+        $this->organizationURL = $org['OrganizationURL'];
     }
 
 
     /**
      * Parse and process a ContactPerson element.
      *
-     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $element The ContactPerson element.
+     * @param \SimpleSAML\SAML2\XML\md\ContactPerson $contact The ContactPerson element.
      */
-    private function processContactPerson(ContactPerson $element): void
+    private function processContactPerson(ContactPerson $contact): void
     {
-        $contactPerson = [];
-        if ($element->getContactType() !== '') {
-            $contactPerson['contactType'] = $element->getContactType();
-        }
-        if ($element->getCompany() !== null) {
-            $contactPerson['company'] = $element->getCompany();
-        }
-        if ($element->getGivenName() !== null) {
-            $contactPerson['givenName'] = $element->getGivenName();
-        }
-        if ($element->getSurName() !== null) {
-            $contactPerson['surName'] = $element->getSurName();
-        }
-        if ($element->getEmailAddress() !== []) {
-            $contactPerson['emailAddress'] = $element->getEmailAddress();
-        }
-        if ($element->getTelephoneNumber() !== []) {
-            $contactPerson['telephoneNumber'] = $element->getTelephoneNumber();
-        }
-        if (!empty($contactPerson)) {
-            $this->contacts[] = $contactPerson;
-        }
+        $this->contacts[] = $contact->toArray();
     }
 
 
@@ -1062,12 +1008,15 @@ class SAMLParser
      */
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
-        $sp['name'] = $element->getServiceName();
-        $sp['description'] = $element->getServiceDescription();
+        foreach ($element->getServiceName() as $sName) {
+            $sp['name'][$sName->getLanguage()] = $sName->getContent();
+        }
+
+        foreach ($element->getServiceDescription() as $sDesc) {
+            $sp['description'][$sDesc->getLanguage()] = $sDesc->getContent();
+        }
 
         $format = null;
-        $sp['attributes'] = [];
-        $sp['attributes.required'] = [];
         foreach ($element->getRequestedAttribute() as $child) {
             $attrname = $child->getName();
             $sp['attributes'][] = $attrname;
@@ -1089,10 +1038,6 @@ class SAMLParser
             }
         }
 
-        if (empty($sp['attributes'])) {
-            // a really invalid configuration: all AttributeConsumingServices should have one or more attributes
-            unset($sp['attributes']);
-        }
         if (empty($sp['attributes.required'])) {
             unset($sp['attributes.required']);
         }
@@ -1113,30 +1058,13 @@ class SAMLParser
      * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
      * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
      *
-     * @param \SimpleSAML\SAML2\XML\md\EndpointType $element The element which should be parsed.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractEndpointType $element The element which should be parsed.
      *
      * @return array An associative array with the data we have extracted from the element.
      */
-    private static function parseGenericEndpoint(EndpointType $element): array
+    private static function parseGenericEndpoint(AbstractEndpointType $element): array
     {
-        $ep = [];
-
-        $ep['Binding'] = $element->getBinding();
-        $ep['Location'] = $element->getLocation();
-
-        if ($element->getResponseLocation() !== null) {
-            $ep['ResponseLocation'] = $element->getResponseLocation();
-        }
-
-        if ($element instanceof IndexedEndpointType) {
-            $ep['index'] = $element->getIndex();
-
-            if ($element->getIsDefault() !== null) {
-                $ep['isDefault'] = $element->getIsDefault();
-            }
-        }
-
-        return $ep;
+        return $element->toArray();
     }
 
 
@@ -1190,7 +1118,7 @@ class SAMLParser
                 foreach ($i->getData() as $d) {
                     if ($d instanceof X509Certificate) {
                         $r['type'] = 'X509Certificate';
-                        $r['X509Certificate'] = $d->getCertificate();
+                        $r['X509Certificate'] = $d->getContent();
                         return $r;
                     }
                 }
