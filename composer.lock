@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e5dde0a4ffae1bc3f23fb0c72fe42f9",
+    "content-hash": "36ae47ac4fa7d7ee939741bd58c68f38",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -840,16 +840,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0-alpha.6",
+            "version": "v5.0.0-alpha.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "628c05a7245977bf37b5d8234d3fcce4ed88a2e2"
+                "reference": "1e46bcead3fc3589dc7e6c161631eda39df988aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/628c05a7245977bf37b5d8234d3fcce4ed88a2e2",
-                "reference": "628c05a7245977bf37b5d8234d3fcce4ed88a2e2",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/1e46bcead3fc3589dc7e6c161631eda39df988aa",
+                "reference": "1e46bcead3fc3589dc7e6c161631eda39df988aa",
                 "shasum": ""
             },
             "require": {
@@ -899,9 +899,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.6"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.7"
             },
-            "time": "2023-05-30T20:52:38+00:00"
+            "time": "2023-06-11T18:49:07+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -1001,16 +1001,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.11.2",
+            "version": "v1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "38248c325d4defab95b271a461e2645370adca63"
+                "reference": "89a31ba1dd5bf5fe7573555e3d8238f9af66df5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/38248c325d4defab95b271a461e2645370adca63",
-                "reference": "38248c325d4defab95b271a461e2645370adca63",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/89a31ba1dd5bf5fe7573555e3d8238f9af66df5f",
+                "reference": "89a31ba1dd5bf5fe7573555e3d8238f9af66df5f",
                 "shasum": ""
             },
             "require": {
@@ -1056,20 +1056,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2023-05-29T16:54:53+00:00"
+            "time": "2023-06-04T21:46:50+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.6.5",
+            "version": "v1.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "c3c3c9750dbbb982e18b014e79925d6d49cd5a87"
+                "reference": "b165928717c51edad19b16a99ac9c6df422ec8bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/c3c3c9750dbbb982e18b014e79925d6d49cd5a87",
-                "reference": "c3c3c9750dbbb982e18b014e79925d6d49cd5a87",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/b165928717c51edad19b16a99ac9c6df422ec8bc",
+                "reference": "b165928717c51edad19b16a99ac9c6df422ec8bc",
                 "shasum": ""
             },
             "require": {
@@ -1081,7 +1081,7 @@
                 "ext-spl": "*",
                 "php": "^8.0",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/xml-common": "^1.11.0"
+                "simplesamlphp/xml-common": "^1.11.5"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
@@ -1118,22 +1118,22 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.5"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.9"
             },
-            "time": "2023-05-28T18:49:00+00:00"
+            "time": "2023-06-03T20:50:34+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-soap.git",
-                "reference": "ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5"
+                "reference": "a5eb5dff4d1aab8ebc0edc280da853615bd34a2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5",
-                "reference": "ac0d8c03a2f5eaa4d070b2074a80a1448579d7a5",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/a5eb5dff4d1aab8ebc0edc280da853615bd34a2e",
+                "reference": "a5eb5dff4d1aab8ebc0edc280da853615bd34a2e",
                 "shasum": ""
             },
             "require": {
@@ -1141,10 +1141,10 @@
                 "ext-pcre": "*",
                 "php": "^8.0",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/xml-common": "^1.9.0"
+                "simplesamlphp/xml-common": "^1.11.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.4"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
             },
             "type": "library",
             "extra": {
@@ -1172,9 +1172,9 @@
             "description": "SimpleSAMLphp library for XML SOAP",
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-soap/issues",
-                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.2.0"
+                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.3.0"
             },
-            "time": "2023-05-19T09:59:49+00:00"
+            "time": "2023-06-03T21:18:58+00:00"
         },
         {
             "name": "symfony/cache",
@@ -3695,16 +3695,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.6.0",
+            "version": "v3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "106c170d08e8415d78be2d16c3d057d0d108262b"
+                "reference": "7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/106c170d08e8415d78be2d16c3d057d0d108262b",
-                "reference": "106c170d08e8415d78be2d16c3d057d0d108262b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
+                "reference": "7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
                 "shasum": ""
             },
             "require": {
@@ -3750,7 +3750,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.6.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.6.1"
             },
             "funding": [
                 {
@@ -3762,7 +3762,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-03T19:06:57+00:00"
+            "time": "2023-06-08T12:52:13+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4491,16 +4491,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.8",
+            "version": "9.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e"
+                "reference": "a9aceaf20a682aeacf28d582654a1670d8826778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/17d621b3aff84d0c8b62539e269e87d8d5baa76e",
-                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a9aceaf20a682aeacf28d582654a1670d8826778",
+                "reference": "a9aceaf20a682aeacf28d582654a1670d8826778",
                 "shasum": ""
             },
             "require": {
@@ -4574,7 +4574,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.8"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.9"
             },
             "funding": [
                 {
@@ -4590,7 +4590,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-11T05:14:45+00:00"
+            "time": "2023-06-11T06:13:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",
