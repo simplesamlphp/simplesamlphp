@@ -434,16 +434,8 @@ class SAML2
             $authnContext = $request->getRequestedAuthnContext();
 
             $nameIdPolicy = $request->getNameIdPolicy();
-            if (isset($nameIdPolicy['Format'])) {
-                $nameIDFormat = $nameIdPolicy['Format'];
-            } else {
-                $nameIDFormat = null;
-            }
-            if (isset($nameIdPolicy['AllowCreate'])) {
-                $allowCreate = $nameIdPolicy['AllowCreate'];
-            } else {
-                $allowCreate = false;
-            }
+            $nameIDFormat = $nameIdPolicy->getFormat();
+            $allowCreate = $nameIdPolicy->getAllowCreate() ?? false;
 
             $idpInit = false;
 

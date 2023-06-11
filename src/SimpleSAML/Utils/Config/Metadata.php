@@ -7,6 +7,7 @@ namespace SimpleSAML\Utils\Config;
 use SimpleSAML\{Configuration, Logger};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 
 use function in_array;
 
@@ -129,16 +130,16 @@ class Metadata
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
      */
-    public static function parseNameIdPolicy(array $nameIdPolicy = null): array
+    public static function parseNameIdPolicy(array $nameIdPolicy = null): ?NameIDPolicy
     {
         if ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient
-            return ['Format' => C::NAMEID_TRANSIENT, 'AllowCreate' => true];
+            return NameIDPolicy::fromArray(['Format' => C::NAMEID_TRANSIENT, 'AllowCreate' => true]);
         }
 
         if ($nameIdPolicy === []) {
             // empty array means not to send any NameIDPolicy element
-            return [];
+            return null;
         }
 
         // handle configurations specifying an array in the NameIDPolicy config option
@@ -152,6 +153,6 @@ class Metadata
             $policy['SPNameQualifier'] = $spNameQualifier;
         }
 
-        return $policy;
+        return NameIDPolicy::fromArray($policy);
     }
 }

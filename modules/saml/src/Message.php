@@ -485,10 +485,7 @@ class Message
         }
 
         $policy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
-        // empty array signals not to set any NameIdPolicy element
-        if ($policy !== []) {
-            $ar->setNameIdPolicy($policy);
-        }
+        $ar->setNameIdPolicy($policy);
 
         $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
         $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
