@@ -14,6 +14,7 @@ use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
 use SimpleSAML\SAML2\Utils\XPath;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList};
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\{ExitTestException, SpTester};
@@ -497,12 +498,12 @@ class SPTest extends ClearStateTestCase
     public function testSPIdpListScoping(): void
     {
         $ar = $this->createAuthnRequest([
-            'IDPList' => ['https://scope.example.com']
+            'IDPList' => new IDPList([new IDPEntry('https://scope.example.com')]),
         ]);
 
         $this->assertContains(
-            'https://scope.example.com',
-            $ar->getIDPList()
+            (new IDPEntry('https://scope.example.com'))->toArray(),
+            ($ar->getScoping()->getIDPList()->toArray())['IDPEntry'],
         );
     }
 
@@ -516,8 +517,8 @@ class SPTest extends ClearStateTestCase
         $ar = $this->createAuthnRequest([]);
 
         $this->assertContains(
-            'https://scope.example.com',
-            $ar->getIDPList()
+            (new IDPEntry('https://scope.example.com'))->toArray(),
+            ($ar->getScoping()->getIDPList()->toArray())['IDPEntry'],
         );
     }
 
@@ -541,8 +542,8 @@ class SPTest extends ClearStateTestCase
         } catch (ExitTestException $e) {
             ['ar' => $ar] = $e->getTestResult();
             $this->assertContains(
-                'https://scope.example.com',
-                $ar->getIDPList()
+                (new IDPEntry('https://scope.example.com'))->toArray(),
+                ($ar->getScoping()->getIDPList()->toArray())['IDPEntry'],
             );
         }
     }
@@ -555,7 +556,7 @@ class SPTest extends ClearStateTestCase
      * @dataProvider getScopingOrders
      */
     public function testSPIdpListScopingOrder(
-        ?array $stateIdpList,
+        ?IDPList $stateIdpList,
         ?array $idpConfigArray,
         ?array $remoteMetadata,
         string $expectedScope
@@ -583,8 +584,8 @@ class SPTest extends ClearStateTestCase
             ['ar' => $ar] = $e->getTestResult();
 
             $this->assertContains(
-                $expectedScope,
-                $ar->getIDPList()
+                (new IDPEntry($expectedScope))->toArray(),
+                ($ar->getScoping()->getIDPList()->toArray())['IDPEntry'],
             );
         }
     }
@@ -593,34 +594,34 @@ class SPTest extends ClearStateTestCase
     {
         return [
             [
-                'stateIdpList' => ['https//scope1.example.com'],
-                'idpConfigArray' => ['https//scope2.example.com'],
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com'
+                'stateIdpList' => new IDPList([new IDPEntry('https://scope1.example.com')]),
+                'idpConfigArray' => ['https://scope2.example.com'],
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope1.example.com'
             ],
             [
                 'stateIdpList' => null,
-                'idpConfigArray' => ['https//scope2.example.com'],
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com'
+                'idpConfigArray' => ['https://scope2.example.com'],
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope3.example.com'
             ],
             [
                 'stateIdpList' => null,
                 'idpConfigArray' => null,
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com'
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope3.example.com'
             ],
             [
-                'stateIdpList' => ['https//scope1.example.com'],
+                'stateIdpList' => new IDPList([new IDPEntry('https://scope1.example.com')]),
                 'idpConfigArray' => null,
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com'
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope1.example.com'
             ],
             [
-                'stateIdpList' => ['https//scope1.example.com'],
-                'idpConfigArray' => ['https//scope2.example.com'],
+                'stateIdpList' => new IDPList([new IDPEntry('https://scope1.example.com')]),
+                'idpConfigArray' => ['https://scope2.example.com'],
                 'remoteMetadata' => null,
-                'expectedScope' => 'https//scope1.example.com'
+                'expectedScope' => 'https://scope1.example.com'
             ]
         ];
     }

@@ -14,7 +14,7 @@ use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\SAML2\XML\samlp\Extensions;
+use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequesterID, Scoping};
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -565,39 +565,50 @@ class SP extends Auth\Source
             $ar->setNameIdPolicy($state['saml:NameIDPolicy']);
         }
 
+        $proxyCount = $idpList = null;
         $requesterID = [];
 
         /* Only check for real info for Scoping element if we are going to send Scoping element */
         if ($this->disable_scoping !== true && $idpMetadata->getOptionalBoolean('disable_scoping', false) !== true) {
+            $idpEntry = [];
             if (isset($state['IDPList'])) {
-                $ar->setIDPList($state['IDPList']);
+                $idpList = $state['IDPList'];
             } elseif (!empty($this->metadata->getOptionalArray('IDPList', []))) {
-                $ar->setIDPList($this->metadata->getArray('IDPList'));
+                foreach ($this->metadata->getArray('IDPList') as $entry) {
+                    $idpEntry[] = new IDPEntry($entry);
+                }
+                $idpList = new IDPList($idpEntry);
             } elseif (!empty($idpMetadata->getOptionalArray('IDPList', []))) {
-                $ar->setIDPList($idpMetadata->getArray('IDPList'));
+                foreach ($idpMetadata->getArray('IDPList') as $entry) {
+                    $idpEntry[] = new IDPEntry($entry);
+                }
+                $idpList = new IDPList($idpEntry);
             }
 
             if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
-                $ar->setProxyCount($state['saml:ProxyCount']);
+                $proxyCount = $state['saml:ProxyCount'];
             } elseif ($idpMetadata->hasValue('ProxyCount')) {
-                $ar->setProxyCount($idpMetadata->getInteger('ProxyCount'));
+                $proxyCount = $idpMetadata->getInteger('ProxyCount');
             } elseif ($this->metadata->hasValue('ProxyCount')) {
-                $ar->setProxyCount($this->metadata->getInteger('ProxyCount'));
+                  $proxyCount = $this->metadata->getInteger('ProxyCount');
             }
 
             $requesterID = [];
             if (isset($state['saml:RequesterID'])) {
-                $requesterID = $state['saml:RequesterID'];
+                foreach ($state['saml:RequesterID'] as $requesterId) {
+                    $requesterID[] = new RequesterID($requesterId);
+                }
             }
 
             if (isset($state['core:SP'])) {
-                $requesterID[] = $state['core:SP'];
+                $requesterID[] = new RequesterID($state['core:SP']);
             }
         } else {
             Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), true));
         }
 
-        $ar->setRequesterID($requesterID);
+        $scoping = new Scoping($proxyCount, $idpList, $requesterID);
+        $ar->setScoping($scoping);
 
         // If the downstream SP has set extensions then use them.
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)

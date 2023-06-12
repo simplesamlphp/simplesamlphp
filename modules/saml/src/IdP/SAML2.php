@@ -24,6 +24,7 @@ use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
+use function array_map;
 use function array_merge;
 use function array_unique;
 use function array_unshift;
@@ -419,12 +420,24 @@ class SAML2
             $relayState = $request->getRelayState();
 
             $requestId = $request->getId();
-            $IDPList = $request->getIDPList();
-            $ProxyCount = $request->getProxyCount();
+            $scoping = $request->getScoping();
+
+            $ProxyCount = $scoping->getProxyCount();
             if ($ProxyCount !== null) {
                 $ProxyCount--;
             }
-            $RequesterID = $request->getRequesterID();
+
+            if ($scoping->getIDPList() !== null) {
+                $IDPList = ($scoping->getIDPList()->toArray())['IDPEntry'];
+            } else {
+                $IDPList = [];
+            }
+
+            $RequesterID = $scoping->getRequesterID();
+            if ($RequesterID !== null) {
+                $RequesterID = array_map('strval', $RequesterID);
+            }
+
             $forceAuthn = $request->getForceAuthn();
             $isPassive = $request->getIsPassive();
             $consumerURL = $request->getAssertionConsumerServiceURL();
