@@ -66,7 +66,7 @@
         "psr/log": "^2.0 || ^3.0",
         "robrichards/xmlseclibs": "^3.1.1",
         "simplesamlphp/assert": "^1.0.0",
-        "simplesamlphp/saml2": "^v5.0.0-alpha.7",
+        "simplesamlphp/saml2": "^v5.0.0-alpha.8",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
         "symfony/cache": "^5.4||^6",
