@@ -24,8 +24,8 @@ use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
-use function array_map;
 use function array_merge;
+use function array_pop;
 use function array_unique;
 use function array_unshift;
 use function base64_encode;
@@ -435,7 +435,9 @@ class SAML2
 
             $RequesterID = $scoping->getRequesterID();
             if ($RequesterID !== null) {
-                $RequesterID = array_map('strval', $RequesterID);
+                foreach ($scoping->getRequesterID() as $k => $rid) {
+                    $RequesterID[$k] = array_pop($rid->toArray());
+                }
             }
 
             $forceAuthn = $request->getForceAuthn();
