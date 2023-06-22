@@ -246,12 +246,71 @@ class Configuration implements Utils\ClearableState
      * @throws \Exception If the configuration set is not initialized.
      */
     public static function getConfig(
-        string $filename = 'config.php',
-        string $configSet = 'simplesaml'
-    ): Configuration {
+        $filename = 'config.php', 
+        $configSet = 'simplesaml', 
+        $required=true
+    ) : Configuration {
+        
+        $config = array();
+
+        if($filename == 'authsources.php') {
+
+            $config = self::getInstance();
+            $authsources_storage = $config->getString('authsources.storage', 'file');
+
+            if($authsources_storage=='database') {
+
+                $db = Database::getInstance();
+                $authsources_database_table = $config->getString('authsources.database_table', 'authsources');
+            
+                // create table if not exists
+                $db->write(sprintf("
+                    CREATE TABLE IF NOT EXISTS $authsources_database_table (
+                        `id` VARCHAR(255) PRIMARY KEY NOT NULL, 
+                        `entity_data` JSON NOT NULL,
+                        `_disabled` enum('N','Y') NOT NULL DEFAULT 'N'
+                    );
+                "));
+                
+                // add admin auth source
+                $db->write(sprintf("
+                    INSERT IGNORE INTO $authsources_database_table(`id`, `entity_data`) VALUES('admin', '%s');
+                ", json_encode(['core:AdminPassword'])));
+
+                // get config from database
+                $statement = $db->read("SELECT `id`, `entity_data` FROM `" . $authsources_database_table . "` WHERE `_disabled`='N'");
+                $authsources = $statement->fetchAll();
+            
+                $db_config = [];
+
+                // compile config
+                foreach($authsources as $as) {
+                    $db_config[$as['id']] = json_decode($as['entity_data'], true);
+                }
+
+                $config = new Configuration($db_config, 'database');
+                $config->filename = 'database';
+
+
+            } else {
+                $config = self::getFileConfig($filename, $configSet, $required);
+            }
+            
+        } else {
+            $config = self::getFileConfig($filename, $configSet, $required);
+        }
+        
+        return $config;
+    }
+
+    private static function getFileConfig($filename, $configSet, $required=true) 
+    {
+        assert(is_string($filename));
+        assert(is_string($configSet));
+
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 $configUtils = new Utils\Config();
                 self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
@@ -260,9 +319,10 @@ class Configuration implements Utils\ClearableState
 
         $dir = self::$configDirs[$configSet];
         $filePath = $dir . '/' . $filename;
-        return self::loadFromFile($filePath, true);
-    }
 
+        $config = self::loadFromFile($filePath, $required);
+        return $config;
+    }
 
     /**
      * Load a configuration file from a configuration set.
@@ -279,18 +339,7 @@ class Configuration implements Utils\ClearableState
         string $filename = 'config.php',
         string $configSet = 'simplesaml'
     ): Configuration {
-        if (!array_key_exists($configSet, self::$configDirs)) {
-            if ($configSet !== 'simplesaml') {
-                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
-            }
-
-            $configUtils = new Utils\Config();
-            self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
-        }
-
-        $dir = self::$configDirs[$configSet];
-        $filePath = $dir . '/' . $filename;
-        return self::loadFromFile($filePath, false);
+        return self::getConfig($filename, $configSet, false);
     }
 
 
