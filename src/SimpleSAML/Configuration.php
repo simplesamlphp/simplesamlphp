@@ -249,7 +249,7 @@ class Configuration implements Utils\ClearableState
     {
         $config = [];
 
-        if ($filename == 'authsources.php') {
+        if ($filename === 'authsources.php') {
             $config = self::getInstance();
             $authsources_storage = $config->getString('authsources.storage', 'file');
 
@@ -305,7 +305,8 @@ class Configuration implements Utils\ClearableState
             if ($configSet !== 'simplesaml') {
                 throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
+                $configUtils = new Utils\Config();
+                self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
             }
         }
 
