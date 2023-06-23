@@ -251,11 +251,11 @@ class Configuration implements Utils\ClearableState
 
         if ($filename === 'authsources.php') {
             $config = self::getInstance();
-            $authsources_storage = $config->getString('authsources.storage', 'file');
+            $authsources_storage = $config->getOptionalString('authsources.storage', 'file');
 
             if ($authsources_storage == 'database') {
                 $db = Database::getInstance();
-                $authsources_database_table = $config->getString('authsources.database_table', 'authsources');
+                $authsources_database_table = $config->getOptionalString('authsources.database_table', 'authsources');
 
                 // create table if not exists
                 $db->write(sprintf("
