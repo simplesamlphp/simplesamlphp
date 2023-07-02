@@ -12,6 +12,7 @@ use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_key_exists;
@@ -487,7 +488,7 @@ class Message
         $policy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
         // empty array signals not to set any NameIdPolicy element
         if ($policy !== []) {
-            $ar->setNameIdPolicy($policy);
+            $ar->setNameIdPolicy(NameIDPolicy::fromArray($policy));
         }
 
         $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));

@@ -14,6 +14,7 @@ use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -561,7 +562,7 @@ class SP extends Auth\Source
         }
 
         if (!empty($state['saml:NameIDPolicy'])) {
-            $ar->setNameIdPolicy($state['saml:NameIDPolicy']);
+            $ar->setNameIdPolicy(NameIDPolicy::fromArray($state['saml:NameIDPolicy']));
         }
 
         $requesterID = [];
