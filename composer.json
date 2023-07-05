@@ -69,7 +69,7 @@
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/saml2": "^5.0.0-alpha.6",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
-        "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
+        "simplesamlphp/simplesamlphp-module-adfs": "^3.0.0-rc1",
         "symfony/cache": "^5.4||^6",
         "symfony/config": "^5.4||^6",
         "symfony/console": "^5.4||^6",
@@ -87,7 +87,8 @@
         "symfony/var-exporter": "^5.4||^6",
         "symfony/yaml": "^5.4||^6",
         "twig/intl-extra": "^3.3",
-        "twig/twig": "^3.3.8"
+        "twig/twig": "^3.3.8",
+        "simplesamlphp/xml-common": "^1.12"
     },
     "require-dev": {
         "mikey179/vfsstream": "~1.6",

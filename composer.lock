@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e5dde0a4ffae1bc3f23fb0c72fe42f9",
+    "content-hash": "5b7cb7b788e186caec87e8170bd38223",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -941,16 +941,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "dev-master",
+            "version": "v3.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "15434fb952865d59296ad84c8ff1b4eed64501c8"
+                "reference": "164f867fca890411a3b4445ffc6e91a5d901eb20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/15434fb952865d59296ad84c8ff1b4eed64501c8",
-                "reference": "15434fb952865d59296ad84c8ff1b4eed64501c8",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/164f867fca890411a3b4445ffc6e91a5d901eb20",
+                "reference": "164f867fca890411a3b4445ffc6e91a5d901eb20",
                 "shasum": ""
             },
             "require": {
@@ -958,15 +958,15 @@
                 "php": "^8.0",
                 "robrichards/xmlseclibs": "^3.1.1",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/saml2": "^5.0.0-alpha.1",
+                "simplesamlphp/saml2": "^5.0.0-alpha.6",
+                "simplesamlphp/xml-common": "^1.12",
                 "symfony/http-foundation": "^6.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp": "dev-symfony_responses",
+                "simplesamlphp/simplesamlphp": "dev-master",
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5.4",
                 "simplesamlphp/xml-security": "^1.6.0"
             },
-            "default-branch": true,
             "type": "simplesamlphp-module",
             "extra": {
                 "branch-alias": {
@@ -997,20 +997,20 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2023-05-09T13:55:06+00:00"
+            "time": "2023-07-05T18:40:30+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.11.2",
+            "version": "v1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "38248c325d4defab95b271a461e2645370adca63"
+                "reference": "89a31ba1dd5bf5fe7573555e3d8238f9af66df5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/38248c325d4defab95b271a461e2645370adca63",
-                "reference": "38248c325d4defab95b271a461e2645370adca63",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/89a31ba1dd5bf5fe7573555e3d8238f9af66df5f",
+                "reference": "89a31ba1dd5bf5fe7573555e3d8238f9af66df5f",
                 "shasum": ""
             },
             "require": {
@@ -1056,7 +1056,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2023-05-29T16:54:53+00:00"
+            "time": "2023-06-04T21:46:50+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
@@ -5658,7 +5658,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "simplesamlphp/saml2": 15,
-        "simplesamlphp/simplesamlphp-module-adfs": 20
+        "simplesamlphp/simplesamlphp-module-adfs": 5
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -5673,6 +5673,7 @@
         "ext-libxml": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
+        "ext-posix": "*",
         "ext-pcre": "*",
         "ext-session": "*",
         "ext-simplexml": "*",
