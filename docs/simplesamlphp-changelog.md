@@ -19,6 +19,10 @@ Released TBD
 
 * Updated French translations (#1824)
 
+`metarefresh`
+
+* Added support for PDO storage (v0.11.0)
+
 ## Version 2.0.4
 
 Released 2023-05-12
