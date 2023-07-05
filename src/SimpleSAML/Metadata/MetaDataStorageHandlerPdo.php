@@ -256,6 +256,31 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
 
     /**
+     * Remove metadata from the configured database
+     *
+     * @param string $entityId The entityId we are removing.
+     * @param string $set The set to remove the metadata from.
+     *
+     * @return bool True/False if entry was successfully deleted
+     */
+    public function removeEntry(string $entityId, string $set): bool
+    {
+        if (!in_array($set, $this->supportedSets, true)) {
+            return false;
+        }
+
+        $tableName = $this->getTableName($set);
+
+        $rows = $this->db->write(
+            "DELETE FROM $tableName WHERE entity_id = :entity_id",
+            ['entity_id' => $entityId]
+        );
+
+        return $rows === 1;
+    }
+
+
+    /**
      * Replace the -'s to an _ in table names for Metadata sets
      * since SQL does not allow a - in a table name.
      *
