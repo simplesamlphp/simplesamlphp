@@ -10,6 +10,14 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Updated German translations (#1814)
+* Do not drop UIInfo from SSP array style metadata (#1808)
+* Fixed incorrect return types
+* Fixed code setting a cookie to remember username/organization
+* Added removeEntry-method to MetadataStorageHandlerPdo (#1823)
+
+`admin`
+
+* Updated French translations (#1824)
 
 ## Version 2.0.4
 
