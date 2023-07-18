@@ -25,6 +25,7 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
 use function array_merge;
+use function array_pop;
 use function array_unique;
 use function array_unshift;
 use function base64_encode;
@@ -419,12 +420,26 @@ class SAML2
             $relayState = $request->getRelayState();
 
             $requestId = $request->getId();
-            $IDPList = $request->getIDPList();
-            $ProxyCount = $request->getProxyCount();
+            $scoping = $request->getScoping();
+
+            $ProxyCount = $scoping->getProxyCount();
             if ($ProxyCount !== null) {
                 $ProxyCount--;
             }
-            $RequesterID = $request->getRequesterID();
+
+            if ($scoping->getIDPList() !== null) {
+                $IDPList = ($scoping->getIDPList()->toArray())['IDPEntry'];
+            } else {
+                $IDPList = [];
+            }
+
+            $RequesterID = $scoping->getRequesterID();
+            if ($RequesterID !== null) {
+                foreach ($scoping->getRequesterID() as $k => $rid) {
+                    $RequesterID[$k] = array_pop($rid->toArray());
+                }
+            }
+
             $forceAuthn = $request->getForceAuthn();
             $isPassive = $request->getIsPassive();
             $consumerURL = $request->getAssertionConsumerServiceURL();
@@ -434,16 +449,8 @@ class SAML2
             $authnContext = $request->getRequestedAuthnContext();
 
             $nameIdPolicy = $request->getNameIdPolicy();
-            if (isset($nameIdPolicy['Format'])) {
-                $nameIDFormat = $nameIdPolicy['Format'];
-            } else {
-                $nameIDFormat = null;
-            }
-            if (isset($nameIdPolicy['AllowCreate'])) {
-                $allowCreate = $nameIdPolicy['AllowCreate'];
-            } else {
-                $allowCreate = false;
-            }
+            $nameIDFormat = $nameIdPolicy->getFormat();
+            $allowCreate = $nameIdPolicy->getAllowCreate() ?? false;
 
             $idpInit = false;
 
