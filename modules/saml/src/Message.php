@@ -10,12 +10,14 @@ use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
+use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_key_exists;
 use function array_filter;
+use function array_map;
 use function array_pop;
 use function array_values;
 use function count;
@@ -459,7 +461,22 @@ class Message
     public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
     {
         $status = $response->getStatus();
-        return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
+        $subcode = null;
+        if (!empty($status->getStatusCode()->getSubCodes())) {
+            $subcodes = array_map(
+                function (StatusCode $code) {
+                    return $code->getValue();
+                },
+                $status->getStatusCode()->getSubCodes(),
+            );
+            $subcode = implode(' / ', $subcodes);
+        }
+
+        return new \SimpleSAML\Module\saml\Error(
+            $status->getStatusCode()->getValue(),
+            $subcode,
+            $status->getStatusMessage()?->getContent(),
+        );
     }
 
 

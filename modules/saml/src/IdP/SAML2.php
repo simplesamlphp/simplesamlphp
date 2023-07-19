@@ -18,6 +18,7 @@ use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\{AttributeValue, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
+use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data, KeyInfo};
 use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};
@@ -169,11 +170,20 @@ class SAML2
         $ar->setInResponseTo($requestId);
         $ar->setRelayState($relayState);
 
-        $status = [
-            'Code'    => $error->getStatus(),
-            'SubCode' => $error->getSubStatus(),
-            'Message' => $error->getStatusMessage(),
-        ];
+        $subStatus = $error->getSubStatus();
+        if ($subStatus !== null) {
+            $subStatus = new StatusCode($subStatus);
+        }
+
+        $statusMessage = $error->getStatusMessage();
+        if ($statusMessage !== null) {
+            $statusMessage = new StatusMessage($statusMessage);
+        }
+
+        $status = new Status(
+            new StatusCode($error->getStatus(), $subStatus ? [$subStatus] : []),
+            $statusMessage,
+        );
         $ar->setStatus($status);
 
         $statsData = [
@@ -422,21 +432,23 @@ class SAML2
             $requestId = $request->getId();
             $scoping = $request->getScoping();
 
-            $ProxyCount = $scoping->getProxyCount();
+            $ProxyCount = $scoping?->getProxyCount();
             if ($ProxyCount !== null) {
                 $ProxyCount--;
             }
 
-            if ($scoping->getIDPList() !== null) {
-                $IDPList = ($scoping->getIDPList()->toArray())['IDPEntry'];
+            $IDPList = $scoping?->getIDPList();
+            if ($IDPList !== null) {
+                $IDPList = ($IDPList->toArray())['IDPEntry'];
             } else {
                 $IDPList = [];
             }
 
-            $RequesterID = $scoping->getRequesterID();
+            $RequesterID = $scoping?->getRequesterID();
             if ($RequesterID !== null) {
-                foreach ($scoping->getRequesterID() as $k => $rid) {
-                    $RequesterID[$k] = array_pop($rid->toArray());
+                foreach ($requesterID as $k => $rid) {
+                    $rid = $rid->toArray();
+                    $RequesterID[$k] = array_pop($rid);
                 }
             }
 
@@ -449,8 +461,8 @@ class SAML2
             $authnContext = $request->getRequestedAuthnContext();
 
             $nameIdPolicy = $request->getNameIdPolicy();
-            $nameIDFormat = $nameIdPolicy->getFormat();
-            $allowCreate = $nameIdPolicy->getAllowCreate() ?? false;
+            $nameIDFormat = $nameIdPolicy?->getFormat();
+            $allowCreate = $nameIdPolicy?->getAllowCreate() ?? false;
 
             $idpInit = false;
 
@@ -599,10 +611,12 @@ class SAML2
 
         if (isset($state['core:Failed']) && $state['core:Failed']) {
             $partial = true;
-            $lr->setStatus([
-                'Code'    => C::STATUS_SUCCESS,
-                'SubCode' => C::STATUS_PARTIAL_LOGOUT,
-            ]);
+            $lr->setStatus(new Status(new StatusCode(
+                C::STATUS_SUCCESS,
+                [
+                    new StatusCode(C::STATUS_PARTIAL_LOGOUT),
+                ],
+            )));
             Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, true));
         } else {
             $partial = false;
