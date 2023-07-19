@@ -98,7 +98,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         }
 
         $finder = new Finder();
-        $finder->directories()->name(sprintf('/%s$/' . self::EXTENSION))->in($this->directory);
+        $finder->directories()->name(sprintf('/%s$/', self::EXTENSION))->in($this->directory);
 
         $ret = [];
         foreach ($finder as $file) {
