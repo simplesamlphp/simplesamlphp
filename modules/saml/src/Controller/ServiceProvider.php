@@ -578,17 +578,14 @@ class ServiceProvider
                 ]
             );
 
+            $dst = $dst['Location'];
             if (!($binding instanceof SOAP)) {
                 $binding = Binding::getBinding($dst['Binding']);
                 if (isset($dst['ResponseLocation'])) {
                     $dst = $dst['ResponseLocation'];
-                } else {
-                    $dst = $dst['Location'];
                 }
-                $binding->setDestination($dst);
-            } else {
-                $lr->setDestination($dst['Location']);
             }
+            $lr->setDestination($dst);
 
             $psrResponse = $binding->send($lr);
             $httpFoundationFactory = new HttpFoundationFactory();
