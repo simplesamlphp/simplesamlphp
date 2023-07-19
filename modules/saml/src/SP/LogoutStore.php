@@ -9,7 +9,7 @@ use PDO;
 use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Store\{StoreFactory, StoreInterface};
+use SimpleSAML\Store\{SQLStore, StoreFactory, StoreInterface};
 
 use function gmdate;
 use function rand;
@@ -30,7 +30,7 @@ class LogoutStore
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
-    private static function createLogoutTable(Store\SQLStore $store): void
+    private static function createLogoutTable(SQLStore $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
@@ -70,7 +70,7 @@ class LogoutStore
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
      */
-    private static function cleanLogoutStore(Store\SQLStore $store): void
+    private static function cleanLogoutStore(SQLStore $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -93,7 +93,7 @@ class LogoutStore
      * @param string $sessionId
      */
     private static function addSessionSQL(
-        Store\SQLStore $store,
+        SQLStore $store,
         string $authId,
         string $nameId,
         string $sessionIndex,
@@ -129,7 +129,7 @@ class LogoutStore
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsSQL(Store\SQLStore $store, string $authId, string $nameId): array
+    private static function getSessionsSQL(SQLStore $store, string $authId, string $nameId): array
     {
         self::createLogoutTable($store);
 
@@ -229,7 +229,7 @@ class LogoutStore
         /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
-        if ($store instanceof Store\SQLStore) {
+        if ($store instanceof SQLStore) {
             self::addSessionSQL($store, $authId, $strNameId, $sessionIndex, $expire, $sessionId);
         } else {
             $store->set('saml.LogoutStore', $strNameId . ':' . $sessionIndex, $sessionId, $expire);
@@ -271,7 +271,7 @@ class LogoutStore
         // Remove reference
         unset($sessionIndex);
 
-        if ($store instanceof Store\SQLStore) {
+        if ($store instanceof SQLStore) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
         } else {
             if (empty($sessionIndexes)) {
