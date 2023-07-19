@@ -749,7 +749,7 @@ class Message
                 // we have a valid client certificate from the browser
                 $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
 
-                $keyInfo = array_values(array_filter($scd->getInfo(), function ($info) {
+                $keyInfo = array_values(array_filter($scd->getInfo(), function (array $info) {
                     return $info instanceof KeyInfo;
                 }));
 
@@ -760,7 +760,7 @@ class Message
                 }
                 $keyInfo = array_pop($keyInfo);
 
-                $x509data = array_values(array_filter($keyInfo->getInfo(), function ($info) {
+                $x509data = array_values(array_filter($keyInfo->getInfo(), function (array $info) {
                     return $info instanceof X509Data;
                 }));
 
@@ -771,7 +771,7 @@ class Message
                 }
                 $x509data = array_pop($x509data);
 
-                $x509cert = array_values(array_filter($x509data->getData(), function ($data) {
+                $x509cert = array_values(array_filter($x509data->getData(), function (array $data) {
                     return $data instanceof X509Certificate;
                 }));
 
