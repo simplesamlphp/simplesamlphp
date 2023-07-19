@@ -14,6 +14,7 @@ Released TBD
 * Fixed incorrect return types
 * Fixed code setting a cookie to remember username/organization
 * Added removeEntry-method to MetadataStorageHandlerPdo (#1823)
+* Fix SLO with signed response (#1812)
 
 `admin`
 

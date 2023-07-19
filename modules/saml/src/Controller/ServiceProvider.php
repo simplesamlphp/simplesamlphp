@@ -563,6 +563,9 @@ class ServiceProvider
             $lr->setRelayState($message->getRelayState());
             $lr->setInResponseTo($message->getId());
 
+            // If we set a key, we're sending a signed message
+            $signedMessage = $lr->getSignatureKey() ? true : false;
+
             if ($numLoggedOut < count($sessionIndexes)) {
                 Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
             }
@@ -583,6 +586,20 @@ class ServiceProvider
                     $dst = $dst['Location'];
                 }
                 $binding->setDestination($dst);
+
+
+                if ($signedMessage && ($binding instanceof HTTPRedirect || $binding instanceof HTTPPost)) {
+                    /**
+                     * Bindings 3.4.5.2 - Security Considerations (HTTP-Redirect)
+                     * Bindings 3.5.5.2 - Security Considerations (HTTP-POST)
+                     *
+                     * If the message is signed, the Destination XML attribute in the root SAML element of the protocol
+                     * message MUST contain the URL to which the sender has instructed the user agent to deliver the
+                     * message. The recipient MUST then verify that the value matches the location at which the message
+                     * has been received.
+                     */
+                    $lr->setDestination($dst);
+                }
             } else {
                 $lr->setDestination($dst['Location']);
             }
