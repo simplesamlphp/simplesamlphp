@@ -29,7 +29,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      *
      * @param string $name
      * @param bool $throw
-     * @return string|false|null
+     * @return string|null
      *
      * NOTE: cannot typehint due to upstream restrictions
      */

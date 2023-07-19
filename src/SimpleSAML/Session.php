@@ -262,7 +262,7 @@ class Session implements Utils\ClearableState
     /**
      * Retrieves the current session. Creates a new session if there's not one.
      *
-     * @return Session The current session.
+     * @return \SimpleSAML\Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
     public static function getSessionFromRequest(): Session

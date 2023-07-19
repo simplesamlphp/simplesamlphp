@@ -420,7 +420,7 @@ class Module
      *
      * @param string      $id The string we should resolve.
      * @param string      $type The type of the class.
-     * @param string|null $subclass The class should be a subclass of this class. Optional.
+     * @param class-string|null $subclass The class should be a subclass of this class. Optional.
      *
      * @return string The classname.
      *

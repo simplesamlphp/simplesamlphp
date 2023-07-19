@@ -182,6 +182,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
      */
     public function loadCertificate(string $file, bool $full_path = false): void
     {
@@ -197,11 +198,7 @@ class Signer
         }
 
         $file = new File($certFile);
-        $cert = $file->getContent();
-        if ($cert === false) {
-            throw new Exception('Unable to read certificate file "' . $certFile . '".');
-        }
-        $this->certificate = $cert;
+        $this->certificate = $file->getContent();
     }
 
 
