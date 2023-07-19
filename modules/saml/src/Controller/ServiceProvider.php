@@ -452,7 +452,7 @@ class ServiceProvider
      *
      * This endpoint handles both logout requests and logout responses.
      *
-     * @param \Symfony\Component\HttpFoundation\Request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
      */
