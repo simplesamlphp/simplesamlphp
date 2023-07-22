@@ -1227,6 +1227,28 @@ $config = [
     'store.redis.password' => '',
 
     /*
+     * Communicate with Redis over a secure connection instead of plain TCP.
+     *
+     * This setting affects both single host connections as
+     * well as Sentinel mode.
+     */
+    'store.redis.tls' => false,
+
+    /*
+     * Verify the Redis server certificate.
+     */
+    'store.redis.insecure' => false,
+
+    /*
+     * Files related to secure communication with Redis.
+     *
+     * Files are searched in the 'certdir' when using relative paths.
+     */
+    'store.redis.ca_certificate' => null,
+    'store.redis.certificate' => null,
+    'store.redis.privatekey' => null,
+
+    /*
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
@@ -1244,6 +1266,9 @@ $config = [
      *     'tcp://[yoursentinel2]:[port]',
      *     'tcp://[yoursentinel3]:[port]
      * ],
+     *
+     * Use 'tls' instead of 'tcp' in order to make use of the additional
+     * TLS settings.
      */
     'store.redis.sentinels' => [],
 
