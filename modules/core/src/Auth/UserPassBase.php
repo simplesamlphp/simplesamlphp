@@ -291,6 +291,11 @@ abstract class UserPassBase extends Auth\Source
             throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
+        /* Do not take leading/trailing whitespace into account, this sometimes is accidentally pasted
+         * in the username field (and hard to see).
+         */
+        $username = trim($username);
+
         /*
          * $source now contains the authentication source on which authenticate()
          * was called. We should call login() on the same authentication source.
