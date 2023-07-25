@@ -37,7 +37,7 @@ instructions on how to install Composer itself):
 php composer.phar install
 ```
 
-When installing on Linux, use:
+When installing on Windows, use:
 
 ```bash
 php composer.phar install --ignore-platform-req=ext-posix
