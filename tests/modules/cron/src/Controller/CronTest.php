@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\cron\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Session, Utils};
+use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -58,7 +58,7 @@ class CronTest extends TestCase
         Configuration::setPreLoadedConfig(
             Configuration::loadFromArray(
                 [
-                    'key' => 'secret',
+                    'key' => 'verysecret',
                     'allowed_tags' => ['daily'],
                     'sendemail' => false,
                 ],
@@ -87,8 +87,8 @@ class CronTest extends TestCase
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $expect = [
-            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret',
-            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret/xhtml',
+            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret',
+            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret/xhtml',
             'tag' => 'daily',
             'int' => '02 0 * * *',
         ];
@@ -102,12 +102,12 @@ class CronTest extends TestCase
     public function testRun(): void
     {
         $request = Request::create(
-            '/run/daily/secret',
+            '/run/daily/verysecret',
             'GET',
         );
 
         $c = new Controller\Cron($this->config, $this->session);
-        $response = $c->run($request, 'daily', 'secret');
+        $response = $c->run($request, 'daily', 'verysecret');
 
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
@@ -116,5 +116,66 @@ class CronTest extends TestCase
         $this->assertArrayHasKey('time', $response->data);
         $this->assertCount(1, $response->data['summary']);
         $this->assertEquals('Cron did run tag [daily] at ' . $response->data['time'], $response->data['summary'][0]);
+    }
+
+
+    /**
+     * @dataProvider provideStupidSecret
+     */
+    public function testRunWithStupidSecretThrowsException(string $secret): void
+    {
+        $request = Request::create(
+            sprintf('/run/daily/%s', $secret),
+            'GET',
+        );
+
+        $c = new Controller\Cron($this->config, $this->session);
+
+        $this->expectException(Error\NotFound::class);
+        $c->run($request, 'daily', $secret);
+    }
+
+
+    /**
+     * @dataProvider provideStupidSecret
+     */
+    public function testRunWithConfiguredStupidSecretThrowsException(string $secret): void
+    {
+        Configuration::setPreLoadedConfig(
+            Configuration::loadFromArray(
+                [
+                    'key' => $secret,
+                    'allowed_tags' => ['daily'],
+                    'sendemail' => false,
+                ],
+                '[ARRAY]',
+                'simplesaml'
+            ),
+            'module_cron.php',
+            'simplesaml'
+        );
+
+        $request = Request::create(
+            sprintf('/run/daily/%s', 'verysecret'),
+            'GET',
+        );
+
+        $c = new Controller\Cron($this->config, $this->session);
+
+        $this->expectException(Error\ConfigurationError::class);
+        $this->expectExceptionMessage("Cron: no proper key has been configured.");
+        $c->run($request, 'daily', 'verysecret');
+    }
+
+
+    /**
+     * @return array
+     */
+    public static function provideStupidSecret(): array
+    {
+        return [
+            'default' => ['secret'],
+            'documentation' => ['RANDOM_KEY'],
+        ];
     }
 }
