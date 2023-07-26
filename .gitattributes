@@ -20,3 +20,4 @@ phpunit.xml export-ignore
 .php_cs.dist export-ignore
 .markdownlintignore export-ignore
 .markdownlint.yml export-ignore
+.markdownlintrc export-ignore
