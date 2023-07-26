@@ -118,5 +118,6 @@
         "branch-alias": {
             "dev-master": "3.0.x-dev"
         }
-    }
+    },
+    "version": "2.0.4-alpha.1"
 }
