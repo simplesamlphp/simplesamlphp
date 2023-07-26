@@ -893,7 +893,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = Auth\State::saveState($state, 'saml:proxy:invalid_idp', true);
-        $url = Module::getModuleURL('saml/proxy/invalid_session.php');
+        $url = Module::getModuleURL('saml/proxy/invalidSession');
 
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);

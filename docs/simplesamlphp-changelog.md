@@ -9,6 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fixed link pointing to legacy endpoint (#1833)
 * Updated German translations (#1814)
 * Do not drop UIInfo from SSP array style metadata (#1808)
 * Fixed incorrect return types
