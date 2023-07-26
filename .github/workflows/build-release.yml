@@ -69,7 +69,7 @@ jobs:
 #        if: "${{ matrix.modules }}"
         run: |
           for module in ${{ matrix.modules }}; do
-            composer require simplesamlphp/simplesamlphp-module-${{ $module }} --update-no-dev
+            composer require simplesamlphp/simplesamlphp-module-$module --update-no-dev
           done
 
       - name: Clean release
