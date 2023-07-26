@@ -128,14 +128,21 @@ class Cron
         string $key,
         string $output = 'xhtml',
     ): Template {
-        $configKey = $this->cronconfig->getOptionalString('key', 'secret');
-        if ($key !== $configKey) {
-            throw new Error\Exception('Cron - Wrong key provided. Cron will not run.');
+        $configKey = $this->cronconfig->getString('key', 'secret');
+
+        if ($key === 'secret' || $key === 'RANDOM_KEY') {
+            // TODO: Replace with condition in route when Symfony 6.1 is available
+            // Possible malicious attempt to run cron tasks with default secret
+            throw new Error\NotFound();
+        } elseif ($configKey === 'secret' || $configKey === 'RANDOM_KEY') {
+            throw new Error\ConfigurationError("Cron: no proper key has been configured.");
+        } elseif ($key !== $configKey) {
+            throw new Error\Exception('Cron: Wrong key provided. Cron will not run.');
         }
 
         $cron = new Module\cron\Cron();
         if (!$cron->isValidTag($tag)) {
-            throw new Error\Exception(sprintf('Cron - Illegal tag [%s].', $tag));
+            throw new Error\Exception(sprintf('Cron: Illegal tag [%s].', $tag));
         }
 
         $httpUtils = new Utils\HTTP();
