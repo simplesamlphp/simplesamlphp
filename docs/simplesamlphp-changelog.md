@@ -23,6 +23,10 @@ Released TBD
 
 * Updated French translations (#1824)
 
+`cron`
+
+* Log a warning if secret is not properly configured (#1831)
+
 `metarefresh`
 
 * Added support for PDO storage (v0.11.0)

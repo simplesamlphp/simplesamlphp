@@ -60,7 +60,7 @@ class CronTest extends TestCase
         Configuration::setPreLoadedConfig(
             Configuration::loadFromArray(
                 [
-                    'key' => 'secret',
+                    'key' => 'verysecret',
                     'allowed_tags' => ['daily'],
                     'sendemail' => false,
                 ],
@@ -85,8 +85,8 @@ class CronTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $expect = [
-            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret',
-            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/secret/xhtml',
+            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret',
+            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret/xhtml',
             'tag' => 'daily',
             'int' => '02 0 * * *',
         ];
@@ -99,10 +99,10 @@ class CronTest extends TestCase
      */
     public function testRun(): void
     {
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/secret';
+        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
-        $response = $c->run('daily', 'secret');
+        $response = $c->run('daily', 'verysecret');
 
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());

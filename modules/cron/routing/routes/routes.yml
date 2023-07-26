@@ -12,3 +12,5 @@ cron-run:
     _controller: 'SimpleSAML\Module\cron\Controller\Cron::run',
     output: 'silent'
   }
+#  TODO: Use this instead of controller-code when Symfony 6.1 is available
+#  condition:  "params['key'] not in ['secret', 'RANDOM_KEY']"
