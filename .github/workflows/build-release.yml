@@ -9,7 +9,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    name: Build releases
+    name: Build release
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
@@ -42,14 +42,14 @@ jobs:
         run: |
           TAG="${{ github.ref_name }}"
           echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
-
+          echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
       - uses: actions/checkout@v3
 
       - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: $(composer config version) != "${{ env.VERSION }}"
+        if: "${{ env.COMPOSER_VERSION }}" != "${{ env.VERSION }}"
         run: |
           echo "${{ env.VERSION }}"
           echo "$VERSION"
