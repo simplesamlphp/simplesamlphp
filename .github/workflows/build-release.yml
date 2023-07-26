@@ -16,9 +16,12 @@ jobs:
         version: ['slim', 'full']
         include:
           - version: slim
-#            modules: []
+            modules:
           - version: full
-            modules: ['authorize', 'authx509', 'consent', 'consentadmin', 'discopower', 'ldap', 'metarefresh', 'radius', 'statistics', 'sqlauth']
+            modules:
+              - authorize
+              - authx509
+# ['authorize', 'authx509', 'consent', 'consentadmin', 'discopower', 'ldap', 'metarefresh', 'radius', 'statistics', 'sqlauth']
 
     steps:
       - name: Setup PHP, with composer and extensions
