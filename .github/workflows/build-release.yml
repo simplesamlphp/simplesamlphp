@@ -69,6 +69,7 @@ jobs:
 #        if: "${{ matrix.modules }}"
         run: |
           for module in ${{ matrix.modules }}; do
+            echo simplesamlphp/simplesamlphp-module-$module
             composer require simplesamlphp/simplesamlphp-module-$module --update-no-dev
           done
 
