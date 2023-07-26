@@ -9,17 +9,26 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    name: Build release
+    name: Build releases
     runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        version: ['slim', 'full']
+        include:
+          - version: slim
+#            modules: []
+          - version: full
+            modules: ['authorize', 'authx509', 'consent', 'consentadmin', 'discopower', 'ldap', 'metarefresh', 'radius', 'statistics', 'sqlauth']
+
     steps:
       - name: Setup PHP, with composer and extensions
         id: setup-php
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.2'
           tools: composer:v2
-          extensions: mbstring, xml
+          extensions: ldap, krb5, mbstring, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -43,6 +52,23 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
+      - name: Zip artifact for deployment
+        run: |
+          zip release-slim.zip -r .
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-slim
+          path: release-slim.zip
+          retention-days: 1
+
+      - name: Install SimpleSAMLphp modules
+        if: "${{ matrix.modules }}"
+        run: |
+          for module in ${{ matrix.modules }}; do
+            composer require simplesamlphp/simplesamlphp-module-${{ $module }} --update-no-dev
+          done
+
       - name: Clean release
         run: |
           grep export-ignore .gitattributes | cut -d ' ' -f 1 | while IFS= read -r line
@@ -55,15 +81,16 @@ jobs:
         run: |
           cd ..
           cp -R  simplesamlphp "simplesamlphp-$VERSION"
-          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION.tar.gz" \
+          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz" \
           "simplesamlphp-$VERSION"
+          rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
         uses: actions/upload-artifact@v3
         with:
-          name: release
-          path: "/tmp/simplesamlphp-${{ env.VERSION }}.tar.gz"
+          name: release-${{ matrix.version }}
+          path: "/tmp/simplesamlphp-${{ env.VERSION }}-${{ matrix.version }}.tar.gz"
           retention-days: 1
 
-      - name: Calculate SHA checksum
-        run: sha256sum "/tmp/simplesamlphp-$VERSION.tar.gz"
+      - name: Calculate SHA checksum (${{ matrix.version }})
+        run: sha256sum "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz"
