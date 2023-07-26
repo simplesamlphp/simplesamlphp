@@ -63,7 +63,7 @@ jobs:
           retention-days: 1
 
       - name: Install SimpleSAMLphp modules
-        if: "${{ matrix.modules }}"
+#        if: "${{ matrix.modules }}"
         run: |
           for module in ${{ matrix.modules }}; do
             composer require simplesamlphp/simplesamlphp-module-${{ $module }} --update-no-dev
