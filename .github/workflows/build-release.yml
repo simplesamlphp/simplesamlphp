@@ -50,7 +50,9 @@ jobs:
 
       - name: Make sure a version is set in composer.json that matches the tag
         if: $(composer config version) != "${{ env.VERSION }}"
-        run: exit 1
+        run: |
+          echo "Composer version: $(composer config version)"
+          exit 1
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
