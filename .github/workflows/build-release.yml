@@ -49,7 +49,7 @@ jobs:
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: "${{ env.COMPOSER_VERSION }}" != "${{ env.VERSION }}"
+        if: "${{ env.COMPOSER_VERSION }} != ${{ env.VERSION }}"
         run: |
           echo "${{ env.VERSION }}"
           echo "$VERSION"
