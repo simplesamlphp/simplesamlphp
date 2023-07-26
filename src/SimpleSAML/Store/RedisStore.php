@@ -6,8 +6,12 @@ namespace SimpleSAML\Store;
 
 use Predis\Client;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use SimpleSAML\{Configuration, Error, Utils};
+
+use function class_exists;
+use function serialize;
+use function time;
+use function unserialize;
 
 /**
  * A data store using Redis to keep the data.
@@ -41,17 +45,44 @@ class RedisStore implements StoreInterface
             $password = $config->getOptionalString('store.redis.password', null);
             $username = $config->getOptionalString('store.redis.username', null);
             $database = $config->getOptionalInteger('store.redis.database', 0);
+            $tls = $config->getOptionalBoolean('store.redis.tls', false);
+            $scheme = $tls ? 'tls' : 'tcp';
+            $ssl = [];
 
             $sentinels = $config->getOptionalArray('store.redis.sentinels', []);
+
+            if ($tls) {
+                $configUtils = new Utils\Config();
+
+                if ($config->getOptionalBoolean('store.redis.insecure', false)) {
+                    $ssl['verify_peer'] = false;
+                    $ssl['verify_peer_name'] = false;
+                } else {
+                    $ca = $config->getOptionalString('store.redis.ca_certificate', null);
+
+                    if ($ca !== null) {
+                        $ssl['cafile'] = $configUtils->getCertPath($ca);
+                    }
+                }
+
+                $cert = $config->getOptionalString('store.redis.certificate', null);
+                $key = $config->getOptionalString('store.redis.privatekey', null);
+
+                if ($cert !== null && $key !== null) {
+                    $ssl['local_cert'] = $configUtils->getCertPath($cert);
+                    $ssl['local_pk'] = $configUtils->getCertPath($key);
+                }
+            }
 
             if (empty($sentinels)) {
                 $redis = new Client(
                     [
-                        'scheme' => 'tcp',
+                        'scheme' => $scheme,
                         'host' => $host,
                         'port' => $port,
                         'database' => $database,
                     ]
+                    + (!empty($ssl) ? ['ssl' => $ssl] : [])
                     + (!empty($username) ? ['username' => $username] : [])
                     + (!empty($password) ? ['password' => $password] : []),
                     [
@@ -69,6 +100,7 @@ class RedisStore implements StoreInterface
                         'parameters' => [
                             'database' => $database,
                         ]
+                        + (!empty($ssl) ? ['ssl' => $ssl] : [])
                         + (!empty($username) ? ['username' => $username] : [])
                         + (!empty($password) ? ['password' => $password] : []),
                     ]

@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.1.0
+
+Released TBD
+
+* Add support for TLS configuration for Redis Store (#1828)
+
 ## Version 2.0.5
 
 Released TBD

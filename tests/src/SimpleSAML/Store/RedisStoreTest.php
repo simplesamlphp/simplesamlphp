@@ -113,6 +113,37 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+    /**
+     * @test
+     */
+    public function testRedisInstanceWithInsecureTLS(): void
+    {
+        $config = Configuration::loadFromArray([
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.tls' => true,
+            'store.redis.insecure' => true,
+        ], '[ARRAY]', 'simplesaml');
+
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
+    }
+
+    /**
+     * @test
+     */
+    public function testRedisInstanceWithSecureTLS(): void
+    {
+        $config = Configuration::loadFromArray([
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.tls' => true,
+            'store.redis.ca_certificate' => '/tmp/ssl/pki_roots.crt.pem',
+            'store.redis.certificate' => '/tmp/ssl/phpunit.crt.pem',
+            'store.redis.privatekey' => '/tmp/ssl/phpunit.key.pem',
+        ], '[ARRAY]', 'simplesaml');
+
+        $this->assertInstanceOf(Store\RedisStore::class, $this->store);
+    }
 
     /**
      * @test
