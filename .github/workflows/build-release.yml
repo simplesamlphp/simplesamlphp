@@ -37,13 +37,14 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
+      - uses: actions/checkout@v3
+
       # Store the version, stripping any v-prefix
       - name: Write release version
         run: |
           TAG="${{ github.ref_name }}"
           echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
           echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
-      - uses: actions/checkout@v3
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -51,9 +52,6 @@ jobs:
       - name: Make sure a version is set in composer.json that matches the tag
         if: "${{ env.COMPOSER_VERSION }} != ${{ env.VERSION }}"
         run: |
-          echo "${{ env.VERSION }}"
-          echo "$VERSION"
-          echo $(composer config version)
           exit 1
 
       - name: Install Composer dependencies
