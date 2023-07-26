@@ -49,9 +49,8 @@ jobs:
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: $(composer config version) != "$VERSION"
+        if: $(composer config version) != "${{VERSION}}"
         run: |
-          echo "Composer version: $(composer config version)"
           exit 1
 
       - name: Install Composer dependencies
