@@ -16,6 +16,7 @@ Released TBD
 * Added removeEntry-method to MetadataStorageHandlerPdo (#1823)
 * Fixed SLO with signed response (#1812)
 * Fixed broken MetaDataStorageHandlerSerialize
+* Usernames are now trimmed (#1829)
 
 `admin`
 
