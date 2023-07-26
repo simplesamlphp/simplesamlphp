@@ -14,6 +14,7 @@ use function array_key_exists;
 use function substr;
 use function strval;
 use function time;
+use function trim;
 
 /**
  * Controller class for the core module.
@@ -376,7 +377,7 @@ class Login
         $username = '';
 
         if ($request->request->has('username')) {
-            $username = $request->request->get('username');
+            $username = trim($request->request->get('username'));
         } elseif (
             $source->getRememberUsernameEnabled()
             && $request->cookies->has($source->getAuthId() . '-username')
