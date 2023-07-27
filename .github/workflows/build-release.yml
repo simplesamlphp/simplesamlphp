@@ -69,7 +69,7 @@ jobs:
         if: toJSON(matrix.modules) != '[]'
         run: |
           echo "${{ toJSON(matrix.modules) }}" >> "${{ matrix.version }}.json"
-          for k in $(jq '.modules | keys | .[]' "${{ matrix.version }}.json"); do
+          for k in $(jq '.modules | keys | .[]' ${{ matrix.version }}.json); do
 #            module=$(jq -r ".modules[$k]" "${{ matrix.version }}.json");
 #            repository=$(jq -r '.repository' <<< "$module");
 #            v=$(jq -r '.version' <<< "$module");
