@@ -64,7 +64,7 @@ jobs:
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
       - name: Install SimpleSAMLphp modules
-        if: "${{ toJSON(matrix.modules) != {}"
+        if: toJSON(matrix.modules) != '{}'
         env:
           MODULE_NAME: ${{ matrix.modules.module.name }}
           MODULE_VERSION: ${{ matrix.modules.module.version }}
