@@ -56,7 +56,7 @@ jobs:
         run: |
           for k in $(jq '.modules | keys | .[]' $FILE); do
             module=$(jq -r ".modules[$k]" $FILE);
-            if [ -z "$module" ];
+            if [ -n "$module" ];
             then
               repository=$(jq -r '.repository' <<< "$module");
               v=$(jq -r '.version' <<< "$module");
