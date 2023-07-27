@@ -54,8 +54,8 @@ jobs:
         env:
           FILE: ".github/build/${{ matrix.version }}.json"
         run: |
-          for k in $(jq '.modules | keys | .[]' $FILE); do
-            module=$(jq -r ".modules[$k]" $FILE);
+          for k in $(jq '.modules | keys | .[]' "$FILE"); do
+            module=$(jq -r ".modules[$k]" "$FILE");
             if [ -n "$module" ];
             then
               repository=$(jq -r '.repository' <<< "$module");
