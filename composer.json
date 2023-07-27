@@ -69,7 +69,7 @@
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/saml2": "^v5.0.0-alpha.8",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
-        "simplesamlphp/simplesamlphp-module-adfs": "^3.0.0-rc1",
+        "simplesamlphp/simplesamlphp-module-adfs": "^3.0.0@dev",
         "symfony/cache": "^5.4||^6",
         "symfony/config": "^5.4||^6",
         "symfony/console": "^5.4||^6",
