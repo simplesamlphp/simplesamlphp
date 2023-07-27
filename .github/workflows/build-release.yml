@@ -54,13 +54,16 @@ jobs:
         env:
           FILE: ".github/build/${{ matrix.version }}.json"
         run: |
-          for k in "$(jq '.modules | keys | .[]' ${{ env.FILE }})"; do
-            module=$(jq -r ".modules[$k]" "${{ env.FILE }}");
-            repository=$(jq -r '.repository' <<< "$module");
-            v=$(jq -r '.version' <<< "$module");
+          for k in $(jq '.modules | keys | .[]' $env.FILE); do
+            module=$(jq -r ".modules[$k]" $env.FILE);
+            if [ -z "$module" ];
+            then
+              repository=$(jq -r '.repository' <<< "$module");
+              v=$(jq -r '.version' <<< "$module");
 
-            composer require "$repository:$v" --update-no-dev --ignore-platform-reqs
-          done | column -t -s$'\t'
+              composer require "$repository:$v" --update-no-dev --ignore-platform-reqs
+            fi
+          done
 
       - name: Clean release
         run: |
