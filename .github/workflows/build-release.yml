@@ -44,7 +44,7 @@ jobs:
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: "${{ env.COMPOSER_VERSION !=  env.VERSION }}"
+        if: "${{ env.COMPOSER_VERSION != env.VERSION }}"
         run: exit 1
 
       - name: Install Composer dependencies
@@ -54,8 +54,8 @@ jobs:
         env:
           FILE: ".github/build/${{ matrix.version }}.json"
         run: |
-          for k in $(jq '.modules | keys | .[]' $env.FILE); do
-            module=$(jq -r ".modules[$k]" $env.FILE);
+          for k in $(jq '.modules | keys | .[]' env.FILE); do
+            module=$(jq -r ".modules[$k]" env.FILE);
             if [ -z "$module" ];
             then
               repository=$(jq -r '.repository' <<< "$module");
