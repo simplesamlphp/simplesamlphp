@@ -12,6 +12,7 @@ jobs:
     name: Build release
     runs-on: [ubuntu-latest]
     strategy:
+      fail-fast: false
       matrix:
         version: ['slim', 'full']
         include:
