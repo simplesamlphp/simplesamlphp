@@ -68,10 +68,13 @@ jobs:
       - name: Install SimpleSAMLphp modules
         if: toJSON(matrix.modules) != '[]'
         env:
-          MODULE_NAME: ${{ matrix.modules.module.name }}
-          MODULE_VERSION: ${{ matrix.modules.module.version }}
+          MODULES: ${{ matrix.modules }}
         run: |
-          composer require $MODULE_NAME:$MODULE_VERSION --update-no-dev
+          for module in $(echo $matrix.modules | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+            export $s
+          done
+
+#          composer require $MODULE_NAME:$MODULE_VERSION --update-no-dev
 
       - name: Clean release
         run: |
