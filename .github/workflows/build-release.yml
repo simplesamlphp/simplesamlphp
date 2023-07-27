@@ -67,8 +67,6 @@ jobs:
 
       - name: Install SimpleSAMLphp modules
         if: toJSON(matrix.modules) != '[]'
-        env:
-          MODULES: ${{ matrix.modules }}
         run: |
           for module in $(echo $matrix.modules | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
             export $s
