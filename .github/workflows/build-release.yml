@@ -25,7 +25,7 @@ jobs:
           # Should match the minimum required version for SimpleSAMLphp
           php-version: '8.0'
           tools: composer:v2
-          extensions: ldap, krb5, mbstring, xml
+          extensions: mbstring, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -56,16 +56,12 @@ jobs:
           FILE: ".github/build/${{ matrix.version }}.json"
         run: |
           for k in "$(jq '.modules | keys | .[]' ${{ env.FILE }})"; do
-            echo "${{ env.file }}";
-          done
+            module=$(jq -r ".modules[$k]" "${{ env.FILE }}.json");
+            repository=$(jq -r '.repository' <<< "$module");
+            v=$(jq -r '.version' <<< "$module");
 
-
-#            module=$(jq -r ".modules[$k]" "${{ matrix.version }}.json");
-#            repository=$(jq -r '.repository' <<< "$module");
-#            v=$(jq -r '.version' <<< "$module");
-#	    printf '%s\t%s\t%s\n' "$k" "$repository" "$v";
-#          done | column -t -s$'\t'
-#          composer require $MODULE_NAME:$MODULE_VERSION --update-no-dev
+            composer require "$repository:$v" --update-no-dev --ignore-platform-reqs
+          done | column -t -s$'\t'
 
       - name: Clean release
         run: |
