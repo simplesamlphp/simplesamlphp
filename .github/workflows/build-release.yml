@@ -16,9 +16,19 @@ jobs:
         version: ['slim', 'full']
         include:
           - version: slim
-            modules:
+            modules: []
           - version: full
-            modules: ['authorize', 'authx509', 'consent', 'consentadmin', 'discopower', 'ldap', 'metarefresh', 'radius', 'statistics', 'sqlauth']
+            modules: [
+              module: {name: 'simplesamlphp/simplesamlphp-module-authorize', version: '^1.2'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-consent', version: '^1.2'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-consentadmin', version: '^1.0'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-discopower', version: '^1.3'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-ldap', version: '^2.1'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-metarefresh', version: '^1.1'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-radius', version: '^2.0'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-statictics', version: '^1.1'},
+              module: {name: 'simplesamlphp/simplesamlphp-module-sqlauth', version: '^1.0'}
+            ]
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -48,29 +58,18 @@ jobs:
 
       - name: Make sure a version is set in composer.json that matches the tag
         if: "${{ env.COMPOSER_VERSION !=  env.VERSION }}"
-        run: |
-          exit 1
+        run: exit 1
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
-      - name: Zip artifact for deployment
-        run: |
-          zip release-slim.zip -r .
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: release-slim
-          path: release-slim.zip
-          retention-days: 1
-
       - name: Install SimpleSAMLphp modules
-#        if: "${{ matrix.modules }}"
+        if: "${{ matrix.modules != [] }}"
+        env:
+          MODULE_NAME: ${{ matrix.modules.module.name }}
+          MODULE_VERSION: ${{ matrix.modules.module.version }}
         run: |
-          for module in ${{ matrix.modules }}; do
-            echo simplesamlphp/simplesamlphp-module-$module
-            composer require simplesamlphp/simplesamlphp-module-$module --update-no-dev
-          done
+          composer require $MODULE_NAME:$MODULE_VERSION --update-no-dev
 
       - name: Clean release
         run: |
