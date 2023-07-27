@@ -1,5 +1,8 @@
 #!/usr/bin/php -q
 <?php
+
+declare(strict_types=1);
+
 /**
  * Find translatable strings in Twig templates and the PHP library
  * and merge them into the English PO file.

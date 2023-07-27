@@ -56,10 +56,8 @@ class XML
         $debug = Configuration::getInstance()->getOptionalArray('debug', ['validatexml' => false]);
 
         if (
-            !(
-                in_array('validatexml', $debug, true)
-                || (array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true))
-            )
+            !in_array('validatexml', $debug, true) // implicitly enabled
+            && !(array_key_exists('validatexml', $debug) && ($debug['validatexml'] === true)) // explicitly enabled
         ) {
             // XML validation is disabled
             return;
@@ -104,10 +102,8 @@ class XML
         $debug = Configuration::getInstance()->getOptionalArray('debug', ['saml' => false]);
 
         if (
-            !(
-                in_array('saml', $debug, true) || // implicitly enabled
-                (array_key_exists('saml', $debug) && $debug['saml'] === true) // explicitly enabled
-            )
+            !(in_array('saml', $debug, true) || // implicitly enabled
+            (array_key_exists('saml', $debug) && $debug['saml'] === true)) // explicitly enabled
         ) {
             // debugging messages is disabled
             return;

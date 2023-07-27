@@ -110,10 +110,7 @@ class Metadata
         // check givenName
         if (
             isset($contact['givenName'])
-            && (
-                empty($contact['givenName'])
-                || !is_string($contact['givenName'])
-            )
+            && (empty($contact['givenName']) || !is_string($contact['givenName']))
         ) {
             throw new \InvalidArgumentException('"givenName" must be a string and cannot be empty.');
         }
@@ -121,10 +118,7 @@ class Metadata
         // check surName
         if (
             isset($contact['surName'])
-            && (
-                empty($contact['surName'])
-                || !is_string($contact['surName'])
-            )
+            && (empty($contact['surName']) || !is_string($contact['surName']))
         ) {
             throw new \InvalidArgumentException('"surName" must be a string and cannot be empty.');
         }
@@ -132,10 +126,7 @@ class Metadata
         // check company
         if (
             isset($contact['company'])
-            && (
-                empty($contact['company'])
-                || !is_string($contact['company'])
-            )
+            && (empty($contact['company']) || !is_string($contact['company']))
         ) {
             throw new \InvalidArgumentException('"company" must be a string and cannot be empty.');
         }
@@ -144,10 +135,7 @@ class Metadata
         if (isset($contact['emailAddress'])) {
             if (
                 empty($contact['emailAddress'])
-                || !(
-                    is_string($contact['emailAddress'])
-                    || is_array($contact['emailAddress'])
-                )
+                || !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
             ) {
                 throw new \InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
             }
@@ -164,10 +152,7 @@ class Metadata
         if (isset($contact['telephoneNumber'])) {
             if (
                 empty($contact['telephoneNumber'])
-                || !(
-                    is_string($contact['telephoneNumber'])
-                    || is_array($contact['telephoneNumber'])
-                )
+                || !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
             ) {
                 throw new \InvalidArgumentException(
                     '"telephoneNumber" must be a string or an array and cannot be empty.'

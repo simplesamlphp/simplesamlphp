@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
 /*
  * This script can be used to invoke cron jobs from cli.
  * You most likely want to execute as the user running your webserver.
