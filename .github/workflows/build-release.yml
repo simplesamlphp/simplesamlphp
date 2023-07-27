@@ -37,7 +37,8 @@ jobs:
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          # Should match the minimum required version for SimpleSAMLphp
+          php-version: '8.0'
           tools: composer:v2
           extensions: ldap, krb5, mbstring, xml
           coverage: none
@@ -65,7 +66,7 @@ jobs:
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
       - name: Install SimpleSAMLphp modules
-        if: toJSON(matrix.modules) != '{}'
+        if: toJSON(matrix.modules) != '[]'
         env:
           MODULE_NAME: ${{ matrix.modules.module.name }}
           MODULE_VERSION: ${{ matrix.modules.module.version }}
