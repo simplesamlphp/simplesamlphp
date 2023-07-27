@@ -69,12 +69,12 @@ jobs:
         if: toJSON(matrix.modules) != '[]'
         run: |
           echo "${{ toJSON(matrix.modules) }}" >> "${{ matrix.version }}.json"
-          for k in $(jq '.modules | keys | .[]' "${{ matrix.version }}.json); do
-            module=$(jq -r ".modules[$k]" "${{ matrix.version }}.json");
-            repository=$(jq -r '.repository' <<< "$module");
-            v=$(jq -r '.version' <<< "$module");
-	    printf '%s\t%s\t%s\n' "$k" "$repository" "$v";
-          done | column -t -s$'\t'
+#          for k in $(jq '.modules | keys | .[]' "${{ matrix.version }}.json); do
+#            module=$(jq -r ".modules[$k]" "${{ matrix.version }}.json");
+#            repository=$(jq -r '.repository' <<< "$module");
+#            v=$(jq -r '.version' <<< "$module");
+#	    printf '%s\t%s\t%s\n' "$k" "$repository" "$v";
+#          done | column -t -s$'\t'
 #          composer require $MODULE_NAME:$MODULE_VERSION --update-no-dev
 
       - name: Clean release
