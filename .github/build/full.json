@@ -1,0 +1,12 @@
+{
+  "modules": {
+    "ldap": {
+      "repository": "simplesamlphp/simplesamlphp-module-ldap",
+      "version": "^2.1"
+    },
+    "radius": {
+      "repository": "simplesamlphp/simplesamlphp-module-radius",
+      "version": "^2.0"
+    }
+  }
+}
