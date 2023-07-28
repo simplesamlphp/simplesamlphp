@@ -39,7 +39,7 @@ class MetadataTest extends TestCase
 
         $this->mdh = new class () extends MetaDataStorageHandler {
             /** @var string */
-            private const XMLSEC = '../vendor/simplesamlphp/xml-security/tests/resources';
+            private const XMLSEC = '../vendor/simplesamlphp/xml-security/resources';
 
             /** @var string */
             public const CERT_KEY = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.key';
