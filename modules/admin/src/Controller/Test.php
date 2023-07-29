@@ -24,9 +24,6 @@ use function urlencode;
  */
 class Test
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /**
      * @var \SimpleSAML\Utils\Auth
      */
@@ -47,9 +44,6 @@ class Test
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
 
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
 
     /**
      * TestController constructor.
@@ -57,10 +51,10 @@ class Test
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
      */
-    public function __construct(Configuration $config, Session $session)
-    {
-        $this->config = $config;
-        $this->session = $session;
+    public function __construct(
+        protected Configuration $config,
+        protected Session $session
+    ) {
         $this->menu = new Menu();
         $this->authUtils = new Utils\Auth();
     }

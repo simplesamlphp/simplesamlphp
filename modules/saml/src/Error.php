@@ -21,28 +21,6 @@ use function substr;
 class Error extends \SimpleSAML\Error\Exception
 {
     /**
-     * The top-level status code.
-     *
-     * @var string
-     */
-    private string $status;
-
-    /**
-     * The second-level status code, or NULL if no second-level status code is defined.
-     *
-     * @var string|null
-     */
-    private ?string $subStatus;
-
-    /**
-     * The status message, or NULL if no status message is defined.
-     *
-     * @var string|null
-     */
-    private ?string $statusMessage;
-
-
-    /**
      * Create a SAML 2 error.
      *
      * @param string $status  The top-level status code.
@@ -53,9 +31,9 @@ class Error extends \SimpleSAML\Error\Exception
      * @param \Throwable|null $cause  The cause of this exception. Can be NULL.
      */
     public function __construct(
-        string $status,
-        string $subStatus = null,
-        string $statusMessage = null,
+        private string $status,
+        private ?string $subStatus = null,
+        private ?string $statusMessage = null,
         Throwable $cause = null
     ) {
         $st = self::shortStatus($status);
@@ -66,10 +44,6 @@ class Error extends \SimpleSAML\Error\Exception
             $st .= ': ' . $statusMessage;
         }
         parent::__construct($st, 0, $cause);
-
-        $this->status = $status;
-        $this->subStatus = $subStatus;
-        $this->statusMessage = $statusMessage;
     }
 
 
@@ -124,7 +98,7 @@ class Error extends \SimpleSAML\Error\Exception
             $e = new self(
                 C::STATUS_RESPONDER,
                 null,
-                get_class($e) . ': ' . $e->getMessage(),
+                $e::class . ': ' . $e->getMessage(),
                 $e
             );
         }

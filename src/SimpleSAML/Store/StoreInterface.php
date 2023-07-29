@@ -19,7 +19,7 @@ interface StoreInterface
      *
      * @return mixed|null The value.
      */
-    public function get(string $type, string $key);
+    public function get(string $type, string $key): mixed;
 
 
     /**
@@ -30,7 +30,7 @@ interface StoreInterface
      * @param mixed    $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
      */
-    public function set(string $type, string $key, $value, ?int $expire = null): void;
+    public function set(string $type, string $key, mixed $value, ?int $expire = null): void;
 
 
     /**

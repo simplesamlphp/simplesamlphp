@@ -348,7 +348,7 @@ class Crypto
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.
-     * @param mixed $algorithm The algorithm to use. Defaults to the system default
+     * @param string|int|null $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
      * @throws \Exception If the algorithm is not known ti PHP.
@@ -357,7 +357,7 @@ class Crypto
      * @see hash_algos()
      *
      */
-    public function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
+    public function pwHash(string $password, string|int|null $algorithm = PASSWORD_DEFAULT): string
     {
         return password_hash($password, $algorithm);
     }

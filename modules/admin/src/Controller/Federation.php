@@ -39,9 +39,6 @@ use function var_export;
  */
 class Federation
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /**
      * @var \SimpleSAML\Auth\Source|string
      * @psalm-var \SimpleSAML\Auth\Source|class-string
@@ -66,9 +63,9 @@ class Federation
      *
      * @param \SimpleSAML\Configuration $config The configuration to use.
      */
-    public function __construct(Configuration $config)
-    {
-        $this->config = $config;
+    public function __construct(
+        protected Configuration $config
+    ) {
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
         $this->authUtils = new Utils\Auth();

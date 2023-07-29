@@ -24,13 +24,6 @@ use function urlencode;
 
 class Simple
 {
-    /**
-     * The id of the authentication source we are accessing.
-     *
-     * @var string
-     */
-    protected string $authSource;
-
     /** @var \SimpleSAML\Configuration */
     protected Configuration $app_config;
 
@@ -45,12 +38,14 @@ class Simple
      * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
      * @param \SimpleSAML\Session|null $session Optional session to use.
      */
-    public function __construct(string $authSource, Configuration $config = null, Session $session = null)
-    {
+    public function __construct(
+        protected string $authSource,
+        Configuration $config = null,
+        Session $session = null
+    ) {
         if ($config === null) {
             $config = Configuration::getInstance();
         }
-        $this->authSource = $authSource;
         $this->app_config = $config->getOptionalConfigItem('application', []);
 
         if ($session === null) {
@@ -289,7 +284,7 @@ class Simple
      *
      * @return mixed|null The value of the parameter, or null if it isn't found or we are unauthenticated.
      */
-    public function getAuthData(string $name)
+    public function getAuthData(string $name): mixed
     {
         if (!$this->isAuthenticated()) {
             return null;

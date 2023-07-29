@@ -22,12 +22,6 @@ use function explode;
  */
 class Redirection
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /** @var \SimpleSAML\Utils\Crypto */
     protected Utils\Crypto $cryptoUtils;
 
@@ -43,11 +37,9 @@ class Redirection
      * @throws \Exception
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
-        $this->session = $session;
         $this->cryptoUtils = new Utils\Crypto();
     }
 

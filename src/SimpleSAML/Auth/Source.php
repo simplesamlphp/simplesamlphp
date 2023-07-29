@@ -175,8 +175,6 @@ abstract class Source
      */
     public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): Response
     {
-        Assert::true(is_string($return) || is_array($return));
-
         $state = array_merge($params, [
             '\SimpleSAML\Auth\Source.id' => $this->authId,
             '\SimpleSAML\Auth\Source.Return' => $return,

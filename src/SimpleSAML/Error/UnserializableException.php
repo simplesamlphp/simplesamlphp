@@ -40,7 +40,7 @@ class UnserializableException extends Exception
     public function __construct(Throwable $original)
     {
 
-        $this->class = get_class($original);
+        $this->class = $original::class;
         $msg = $original->getMessage();
 
         $code = $original->getCode();

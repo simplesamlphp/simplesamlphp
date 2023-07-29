@@ -51,19 +51,20 @@ class Validator
      *          this attribute is NULL (the default), then we will use whatever is the default
      *          ID. Can be eigther a string with one value, or an array with multiple ID
      *          attrbute names.
-     * @param array|false $publickey The public key / certificate which should be used to validate the XML node.
+     * @param array|false|null|string $publickey The public key / certificate which should be used to validate the XML node.
      * @throws \Exception
      */
-    public function __construct(DOMDocument $xmlNode, $idAttribute = null, $publickey = false)
-    {
+    public function __construct(
+        DOMDocument $xmlNode,
+        string|array|null $idAttribute = null,
+        array|false|null|string $publickey = false
+    ) {
         if ($publickey === null) {
             $publickey = false;
         } elseif (is_string($publickey)) {
             $publickey = [
                 'PEM' => $publickey,
             ];
-        } else {
-            Assert::true($publickey === false || is_array($publickey));
         }
 
         // Create an XML security object
@@ -73,7 +74,7 @@ class Validator
         if ($idAttribute !== null) {
             if (is_string($idAttribute)) {
                 $objXMLSecDSig->idKeys[] = $idAttribute;
-            } elseif (is_array($idAttribute)) {
+            } else {
                 foreach ($idAttribute as $ida) {
                     $objXMLSecDSig->idKeys[] = $ida;
                 }

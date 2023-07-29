@@ -54,7 +54,7 @@ class Memcache
      *
      * @return mixed The data stored with the given key, or null if no data matching the key was found.
      */
-    public static function get(string $key)
+    public static function get(string $key): mixed
     {
         Logger::debug("loading key $key from memcache");
 
@@ -158,7 +158,7 @@ class Memcache
      * @param mixed        $value The value of the data.
      * @param integer|null $expire The expiration timestamp of the data.
      */
-    public static function set(string $key, $value, ?int $expire = null): void
+    public static function set(string $key, mixed $value, ?int $expire = null): void
     {
         Logger::debug("saving key $key to memcache");
         $savedInfo = [
@@ -402,7 +402,7 @@ class Memcache
         /* If the configuration option is 0, then we should return 0. This allows the user to specify that the data
          * shouldn't expire.
          */
-        if ($expire == 0) {
+        if ($expire === 0) {
             return 0;
         }
 

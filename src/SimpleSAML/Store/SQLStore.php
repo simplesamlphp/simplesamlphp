@@ -273,7 +273,7 @@ class SQLStore implements StoreInterface
      *
      * @return mixed|null The value associated with that key, or null if there's no such key.
      */
-    public function get(string $type, string $key)
+    public function get(string $type, string $key): mixed
     {
         if (strlen($key) > 50) {
             $key = sha1($key);
@@ -313,7 +313,7 @@ class SQLStore implements StoreInterface
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
      */
-    public function set(string $type, string $key, $value, ?int $expire = null): void
+    public function set(string $type, string $key, mixed $value, ?int $expire = null): void
     {
         Assert::nullOrGreaterThan($expire, 2592000);
 

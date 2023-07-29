@@ -102,12 +102,8 @@ class XML
      *
      *
      */
-    public function debugSAMLMessage($message, string $type): void
+    public function debugSAMLMessage(string|DOMElement $message, string $type): void
     {
-        if (!(is_string($message) || $message instanceof DOMElement)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         // see if debugging is enabled for SAML messages
         $debug = Configuration::getInstance()->getOptionalArray('debug', ['saml' => false]);
 
@@ -329,12 +325,8 @@ class XML
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
      */
-    public function isValid($xml, string $schema)
+    public function isValid(string|DOMDocument $xml, string $schema)
     {
-        if (!is_string($xml) && !($xml instanceof DOMDocument)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         Errors::begin();
 
         if ($xml instanceof DOMDocument) {

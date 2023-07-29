@@ -250,10 +250,11 @@ class Signer
      *  in which case the signature will be appended to the element specified in $insertInto.
      * @throws \Exception
      */
-    public function sign(DOMElement $node, DOMElement $insertInto, $insertBefore = null): void
-    {
-        Assert::nullOrIsInstanceOfAny($insertBefore, [DOMElement::class, DOMComment::class, DOMText::class]);
-
+    public function sign(
+        DOMElement $node,
+        DOMElement $insertInto,
+        DOMElement|DOMComment|DOMText|null $insertBefore = null
+    ): void {
         $privateKey = $this->privateKey;
         if ($privateKey === false) {
             throw new Exception('Private key not set.');

@@ -9,7 +9,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
-use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, LogoutRequest, LogoutResponse, SOAP};
+use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\SAML2\Response as SAML2_Response;
@@ -43,12 +43,6 @@ use function var_export;
  */
 class ServiceProvider
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /**
      * @var \SimpleSAML\Auth\State|string
      * @psalm-var \SimpleSAML\Auth\State|class-string
@@ -68,11 +62,9 @@ class ServiceProvider
      * @param \SimpleSAML\Session $session The Session to use by the controllers.
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
-        $this->session = $session;
         $this->authUtils = new Utils\Auth();
     }
 

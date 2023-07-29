@@ -38,7 +38,7 @@ class Attributes
      * @throws \InvalidArgumentException If $attributes is not an array or $expected is not a string.
      * @throws \SimpleSAML\Error\Exception If the expected attribute was not found in the attributes array.
      */
-    public function getExpectedAttribute(array $attributes, string $expected, bool $allow_multiple = false)
+    public function getExpectedAttribute(array $attributes, string $expected, bool $allow_multiple = false): mixed
     {
         if (!array_key_exists($expected, $attributes)) {
             throw new Error\Exception("No such attribute '" . $expected . "' found.");

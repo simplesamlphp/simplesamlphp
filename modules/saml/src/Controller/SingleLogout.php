@@ -19,9 +19,6 @@ use Symfony\Component\HttpFoundation\{Request, Response};
  */
 class SingleLogout
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetaDataStorageHandler $mdHandler;
 
@@ -40,9 +37,8 @@ class SingleLogout
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        Configuration $config
+        protected Configuration $config
     ) {
-        $this->config = $config;
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 

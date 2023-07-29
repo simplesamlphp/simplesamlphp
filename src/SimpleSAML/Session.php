@@ -891,9 +891,11 @@ class Session implements Utils\ClearableState
      * @throws \Exception If the data couldn't be stored.
      *
      */
-    public function setData(string $type, string $id, $data, $timeout = null): void
+    public function setData(string $type, string $id, mixed $data, int|string|null $timeout = null): void
     {
-        Assert::true(is_int($timeout) || $timeout === null || $timeout === self::DATA_TIMEOUT_SESSION_END);
+        if (is_string($timeout)) {
+            Assert::same($timeout, self::DATA_TIMEOUT_SESSION_END);
+        }
 
         if ($timeout === null) {
             // use the default timeout
@@ -965,7 +967,7 @@ class Session implements Utils\ClearableState
      *
      * @return mixed The data of the given type with the given id or null if the data doesn't exist in the data store.
      */
-    public function getData(string $type, ?string $id)
+    public function getData(string $type, ?string $id): mixed
     {
         if ($id === null) {
             return null;
@@ -1135,7 +1137,7 @@ class Session implements Utils\ClearableState
      *
      * @return mixed  The value, or null if the value wasn't found.
      */
-    public function getAuthData(string $authority, string $name)
+    public function getAuthData(string $authority, string $name): mixed
     {
         if (!isset($this->authData[$authority][$name])) {
             return null;

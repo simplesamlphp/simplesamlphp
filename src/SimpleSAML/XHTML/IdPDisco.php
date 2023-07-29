@@ -42,13 +42,6 @@ class IdPDisco
     protected Configuration $config;
 
     /**
-     * The identifier of this discovery service.
-     *
-     * @var string
-     */
-    protected string $instance;
-
-    /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
@@ -61,13 +54,6 @@ class IdPDisco
      * @var \SimpleSAML\Session
      */
     protected Session $session;
-
-    /**
-     * The metadata sets we find allowed entities in, in prioritized order.
-     *
-     * @var array
-     */
-    protected array $metadataSets;
 
     /**
      * The entity id of the SP which accesses this IdP discovery service.
@@ -116,31 +102,25 @@ class IdPDisco
     protected string $returnURL;
 
     /**
-     * The current request
-     *
-     * @var \Symfony\Component\HttpFoundation\Request
-     */
-    protected Request $request;
-
-    /**
      * Initializes this discovery service.
      *
      * The constructor does the parsing of the request. If this is an invalid request, it will throw an exception.
      *
-     * @param string[] $metadataSets Array with metadata sets we find remote entities in.
+     * @param string[] $metadataSets Array with metadata sets we find remote entities in, in prioritized order.
      * @param string $instance The name of this instance of the discovery service.
      *
      * @throws \Exception If the request is invalid.
      */
-    public function __construct(Request $request, array $metadataSets, string $instance)
-    {
+    public function __construct(
+        protected Request $request,
+        protected array $metadataSets,
+        protected string $instance
+    ) {
         // initialize standard classes
         $this->request = $request;
         $this->config = Configuration::getInstance();
         $this->metadata = MetaDataStorageHandler::getMetadataHandler($this->config);
         $this->session = Session::getSessionFromRequest();
-        $this->instance = $instance;
-        $this->metadataSets = $metadataSets;
 
         $this->log('Accessing discovery service.');
 

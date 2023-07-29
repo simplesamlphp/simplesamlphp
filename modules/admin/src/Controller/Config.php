@@ -37,9 +37,6 @@ class Config
 
     public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
@@ -49,9 +46,6 @@ class Config
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
 
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
 
     /**
      * ConfigController constructor.
@@ -59,10 +53,10 @@ class Config
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
      */
-    public function __construct(Configuration $config, Session $session)
-    {
-        $this->config = $config;
-        $this->session = $session;
+    public function __construct(
+        protected Configuration $config,
+        protected Session $session
+    ) {
         $this->menu = new Menu();
         $this->authUtils = new Utils\Auth();
         $this->httpUtils = new Utils\HTTP();

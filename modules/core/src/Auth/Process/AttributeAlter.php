@@ -46,9 +46,9 @@ class AttributeAlter extends Auth\ProcessingFilter
 
     /**
      * String to replace the pattern found with.
-     * @var string|false
+     * @var string|false|null
      */
-    private string|false $replacement = false;
+    private string|bool|null $replacement = false;
 
     /**
      * Attribute to search in

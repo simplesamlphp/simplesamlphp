@@ -17,10 +17,6 @@ use Symfony\Component\HttpFoundation\{Request, Response};
  */
 class Disco
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-
     /**
      * Controller constructor.
      *
@@ -29,9 +25,8 @@ class Disco
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        Configuration $config
+        protected Configuration $config
     ) {
-        $this->config = $config;
     }
 
 

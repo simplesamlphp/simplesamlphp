@@ -73,7 +73,7 @@ class SAMLParser
      *
      * @var array
      */
-    private array $spDescriptors;
+    private array $spDescriptors = [];
 
     /**
      * This is an array with the processed IDPSSODescriptor elements we have found.
@@ -83,7 +83,7 @@ class SAMLParser
      *
      * @var array
      */
-    private array $idpDescriptors;
+    private array $idpDescriptors = [];
 
     /**
      * List of attribute authorities we have found.
@@ -142,13 +142,6 @@ class SAMLParser
     private array $registrationInfo;
 
     /**
-     * This is an array of elements that may be used to validate this element.
-     *
-     * @var \SimpleSAML\SAML2\SignedElementHelper[]
-     */
-    private array $validators = [];
-
-    /**
      * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
@@ -166,19 +159,16 @@ class SAMLParser
     private function __construct(
         EntityDescriptor $entityElement,
         ?int $maxExpireTime,
-        array $validators = [],
+        private array $validators = [],
         array $parentExtensions = []
     ) {
         $this->fileSystem = new Filesystem();
-        $this->spDescriptors = [];
-        $this->idpDescriptors = [];
 
         $this->entityId = $entityElement->getEntityID();
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
-        $this->validators = $validators;
-        $this->validators[] = $entityElement;
+        $validators[] = $entityElement;
 
         // process Extensions element, if it exists
         $ext = self::processExtensions($entityElement, $parentExtensions);
@@ -417,7 +407,7 @@ class SAMLParser
      * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
      *             limit is set for the element.
      */
-    private static function getExpireTime($element, ?int $maxExpireTime): ?int
+    private static function getExpireTime(mixed $element, ?int $maxExpireTime): ?int
     {
         // validUntil may be null
         $expire = $element->getValidUntil();
@@ -862,7 +852,7 @@ class SAMLParser
      *
      * @return array An associative array with the extensions parsed.
      */
-    private static function processExtensions($element, array $parentExtensions = []): array
+    private static function processExtensions(mixed $element, array $parentExtensions = []): array
     {
         $ret = [
             'scope'            => [],

@@ -56,7 +56,7 @@ class System
      *                   False if we are unable to determine it.
      *
      */
-    public function getOS()
+    public function getOS(): int|false
     {
         if (stristr(PHP_OS, 'LINUX')) {
             return self::LINUX;

@@ -54,22 +54,6 @@ class SAMLBuilder
 
 
     /**
-     * The maximum time in seconds the metadata should be cached.
-     *
-     * @var int|null
-     */
-    private ?int $maxCache = null;
-
-
-    /**
-     * The maximum time in seconds since the current time that this metadata should be considered valid.
-     *
-     * @var int|null
-     */
-    private ?int $maxDuration = null;
-
-
-    /**
      * Initialize the SAML builder.
      *
      * @param string   $entityId The entity id of the entity.
@@ -77,11 +61,11 @@ class SAMLBuilder
      * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
      * to null.
      */
-    public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
-    {
-        $this->maxCache = $maxCache;
-        $this->maxDuration = $maxDuration;
-
+    public function __construct(
+        string $entityId,
+        private ?int $maxCache = null,
+        private ?int $maxDuration = null
+    ) {
         $this->entityDescriptor = new EntityDescriptor();
         $this->entityDescriptor->setEntityID($entityId);
     }
