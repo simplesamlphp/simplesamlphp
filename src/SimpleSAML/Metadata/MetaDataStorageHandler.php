@@ -88,7 +88,7 @@ class MetaDataStorageHandler implements ClearableState
      * @return string|array The auto-generated metadata property.
      * @throws \Exception If the metadata cannot be generated automatically.
      */
-    public function getGenerated(string $property, string $set, string $overrideHost = null)
+    public function getGenerated(string $property, string $set, string $overrideHost = null): string|array
     {
         // first we check if the user has overridden this property in the metadata
         try {

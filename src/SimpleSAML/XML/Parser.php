@@ -22,7 +22,7 @@ class Parser
      */
     public function __construct(string $xml)
     {
-        $this->simplexml = new \SimpleXMLElement($xml);
+        $this->simplexml = new SimpleXMLElement($xml);
         $this->simplexml->registerXPathNamespace('saml2', 'urn:oasis:names:tc:SAML:2.0:assertion');
         $this->simplexml->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
         $this->simplexml->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');

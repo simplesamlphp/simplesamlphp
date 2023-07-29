@@ -50,7 +50,7 @@ class TargetedID extends Auth\ProcessingFilter
     /**
      * @var \SimpleSAML\Utils\Config
      */
-    protected $configUtils;
+    protected Utils\Config $configUtils;
 
 
     /**

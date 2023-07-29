@@ -346,10 +346,8 @@ class Message
     private static function decryptAssertion(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        $assertion
+        Assertion|EncryptedAssertion $assertion
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [Assertion::class, EncryptedAssertion::class]);
-
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
             if ($encryptAssertion === null) {
@@ -639,11 +637,9 @@ class Message
         Configuration $spMetadata,
         Configuration $idpMetadata,
         Response $response,
-        $assertion,
+        Assertion|EncryptedAssertion $assertion,
         bool $responseSigned
     ): Assertion {
-        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
-
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
 

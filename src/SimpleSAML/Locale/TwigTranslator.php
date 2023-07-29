@@ -24,8 +24,7 @@ class TwigTranslator implements TranslatorInterface
     /**
      * @param callable $translator
      */
-    public function __construct(callable $translator)
-    {
+    public function __construct(callable $translator) {
         $this->translator = $translator;
     }
 

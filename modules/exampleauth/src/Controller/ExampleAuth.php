@@ -12,7 +12,7 @@ use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 use function array_key_exists;
@@ -30,12 +30,6 @@ use function urldecode;
  */
 class ExampleAuth
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /**
      * @var \SimpleSAML\Auth\State|string
      * @psalm-var \SimpleSAML\Auth\State|class-string
@@ -54,11 +48,9 @@ class ExampleAuth
      * @throws \Exception
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
-        $this->session = $session;
     }
 
 
@@ -80,7 +72,7 @@ class ExampleAuth
      *
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function authpage(Request $request)
+    public function authpage(Request $request): Response
     {
         /**
          * This page serves as a dummy login page.

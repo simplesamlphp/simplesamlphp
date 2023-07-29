@@ -12,21 +12,14 @@ use SimpleSAML\Session;
  */
 class AuthenticationFactory
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
-
     /**
      * @param \SimpleSAML\Configuration $config
      * @param \SimpleSAML\Session $session
      */
-    public function __construct(Configuration $config, Session $session)
-    {
-        $this->config = $config;
-        $this->session = $session;
+    public function __construct(
+        protected Configuration $config,
+        protected Session $session
+    ) {
     }
 
 

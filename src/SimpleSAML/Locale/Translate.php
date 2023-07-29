@@ -20,13 +20,6 @@ use SimpleSAML\Module;
 class Translate
 {
     /**
-     * The configuration to be used for this translator.
-     *
-     * @var \SimpleSAML\Configuration
-     */
-    private Configuration $configuration;
-
-    /**
      * The language object we'll use internally.
      *
      * @var \SimpleSAML\Locale\Language
@@ -39,9 +32,9 @@ class Translate
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
-    public function __construct(Configuration $configuration)
-    {
-        $this->configuration = $configuration;
+    public function __construct(
+        private Configuration $configuration
+    ) {
         $this->language = new Language($configuration);
     }
 

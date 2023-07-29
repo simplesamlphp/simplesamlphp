@@ -40,7 +40,7 @@ class MemcacheStore implements StoreInterface
      * @param string $key The key.
      * @return mixed|null The value.
      */
-    public function get(string $type, string $key)
+    public function get(string $type, string $key): mixed
     {
         return Memcache::get($this->prefix . '.' . $type . '.' . $key);
     }
@@ -54,7 +54,7 @@ class MemcacheStore implements StoreInterface
      * @param mixed $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or NULL if it never expires.
      */
-    public function set(string $type, string $key, $value, ?int $expire = null): void
+    public function set(string $type, string $key, mixed $value, ?int $expire = null): void
     {
         Assert::nullOrGreaterThan($expire, 2592000);
 

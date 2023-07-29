@@ -41,7 +41,7 @@ function codifyWithSource(array $sourcePairs, array $destPairs): array
 function dissectFile(array $fileInputRaw): array
 {
     $pairs = [];
-// create an array with MSGID => MSGSTR
+    // create an array with MSGID => MSGSTR
     foreach ($fileInputRaw as $rowIndex => $oneLine) {
         if (preg_match("/^msgid/", $oneLine)) {
             $msgId = $oneLine;

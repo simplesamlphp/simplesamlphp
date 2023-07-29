@@ -19,21 +19,16 @@ class RouterDebugCommand extends Command
      */
     protected static $defaultName = 'debug:router';
 
-    /**
-     * @var \Symfony\Component\Routing\RouterInterface
-     */
-    private RouterInterface $router;
-
 
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
      *
      * @throws \Symfony\Component\Console\Exception\LogicException When the command name is empty
      */
-    public function __construct(RouterInterface $router)
-    {
+    public function __construct(
+        protected RouterInterface $router
+    ) {
         parent::__construct();
-        $this->router = $router;
     }
 
 

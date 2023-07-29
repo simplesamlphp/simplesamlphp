@@ -25,12 +25,10 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Metadata
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
+    /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
 
     /**
@@ -41,9 +39,8 @@ class Metadata
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        Configuration $config
+        protected Configuration $config
     ) {
-        $this->config = $config;
         $this->authUtils = new Utils\Auth();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }

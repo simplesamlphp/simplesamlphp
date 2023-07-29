@@ -168,10 +168,8 @@ abstract class Source
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
      */
-    public function initLogin($return, ?string $errorURL = null, array $params = []): void
+    public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): void
     {
-        Assert::True(is_string($return) || is_array($return));
-
         $state = array_merge($params, [
             '\SimpleSAML\Auth\Source.id' => $this->authId,
             '\SimpleSAML\Auth\Source.Return' => $return,

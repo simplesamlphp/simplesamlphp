@@ -16,9 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RunnableResponse extends Response
 {
-    /** @var array */
-    protected array $arguments;
-
     /** @var callable */
     protected $callable;
 
@@ -29,11 +26,12 @@ class RunnableResponse extends Response
      * @param callable $callable A callable that we should run as part of this response.
      * @param array $args An array of arguments to be passed to the callable. Note that each element of the array
      */
-    public function __construct(callable $callable, array $args = [])
-    {
-        $this->arguments = $args;
+    public function __construct(
+        callable $callable,
+        protected array $arguments = []
+    ) {
         $this->callable = $callable;
-        $this->charset = 'UTF-8';
+        $this->setCharset('UTF-8');
         parent::__construct();
     }
 
@@ -64,8 +62,6 @@ class RunnableResponse extends Response
      * "Send" this response by actually running the callable.
      *
      * @return $this
-     *
-     * Note: No return-type possible due to upstream limitations
      */
     public function sendContent(): static
     {

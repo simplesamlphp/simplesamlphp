@@ -533,7 +533,7 @@ class Module
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */
-    public static function callHooks(string $hook, &$data = null): void
+    public static function callHooks(string $hook, mixed &$data = null): void
     {
         $modules = self::getModules();
         $config = Configuration::getOptionalConfig()->getOptionalArray('module.enable', []);

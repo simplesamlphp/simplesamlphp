@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Stats\Output;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -43,10 +44,10 @@ class File extends \SimpleSAML\Stats\Output
     {
         $logDir = $config->getPathValue('directory');
         if ($logDir === null) {
-            throw new \Exception('Missing "directory" option for core:File');
+            throw new Exception('Missing "directory" option for core:File');
         }
         if (!is_dir($logDir)) {
-            throw new \Exception('Could not find log directory: ' . var_export($logDir, true));
+            throw new Exception('Could not find log directory: ' . var_export($logDir, true));
         }
         $this->logDir = $logDir;
     }

@@ -19,31 +19,23 @@ use SimpleSAML\Utils;
 class NotFound extends Error
 {
     /**
-     * Reason why the given page could not be found.
-     */
-    private ?string $reason;
-
-
-    /**
      * Create a new NotFound error
      *
      * @param string $reason  Optional description of why the given page could not be found.
      */
-    public function __construct(?string $reason = null)
-    {
+    public function __construct(
+        private ?string $reason = null
+    ) {
         $httpUtils = new Utils\HTTP();
         $url = $httpUtils->getSelfURL();
 
         if ($reason === null) {
-            parent::__construct(['NOTFOUND', '%URL%' => $url]);
+            parent::__construct(['NOTFOUND', '%URL%' => $url], null, 404);
             $this->message = "The requested page '$url' could not be found.";
         } else {
-            parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason]);
+            parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason], null, 404);
             $this->message = "The requested page '$url' could not be found. " . $reason;
         }
-
-        $this->reason = $reason;
-        $this->httpCode = 404;
     }
 
 

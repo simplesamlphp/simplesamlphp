@@ -10,6 +10,7 @@ use SAML2\Binding;
 use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
+use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
 use SAML2\Response as SAML2_Response;
@@ -49,12 +50,6 @@ use function var_export;
  */
 class ServiceProvider
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /**
      * @var \SimpleSAML\Auth\State|string
      * @psalm-var \SimpleSAML\Auth\State|class-string
@@ -74,11 +69,9 @@ class ServiceProvider
      * @param \SimpleSAML\Session $session The Session to use by the controllers.
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
-        $this->session = $session;
         $this->authUtils = new Utils\Auth();
     }
 

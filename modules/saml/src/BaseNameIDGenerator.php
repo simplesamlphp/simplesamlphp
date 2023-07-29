@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\saml;
 
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
 
 /**
@@ -13,7 +14,7 @@ use SimpleSAML\Logger;
  *
  * @package SimpleSAMLphp
  */
-abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
+abstract class BaseNameIDGenerator extends ProcessingFilter
 {
     /**
      * What NameQualifier should be used.
@@ -24,7 +25,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @var string|bool
      */
-    private $nameQualifier;
+    private string|bool $nameQualifier;
 
 
     /**
@@ -36,7 +37,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @var string|bool
      */
-    private $spNameQualifier;
+    private string|bool $spNameQualifier;
 
 
     /**

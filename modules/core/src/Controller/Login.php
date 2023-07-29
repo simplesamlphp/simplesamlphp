@@ -34,9 +34,6 @@ use function trim;
  */
 class Login
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
     /**
      * @var \SimpleSAML\Auth\Source|string
      * @psalm-var \SimpleSAML\Auth\Source|class-string
@@ -60,9 +57,8 @@ class Login
      * @throws \Exception
      */
     public function __construct(
-        Configuration $config
+        protected Configuration $config
     ) {
-        $this->config = $config;
     }
 
 
@@ -133,9 +129,8 @@ class Login
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
      */
-    private function handleLogin(Request $request, $source, array $state): Response
+    private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
-        Assert::isInstanceOfAny($source, [UserPassBase::class, UserPassOrgBase::class]);
         $authStateId = $request->query->get('AuthState');
 
         $organizations = $organization = null;

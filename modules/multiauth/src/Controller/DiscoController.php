@@ -16,6 +16,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the multiauth module.
@@ -26,12 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DiscoController
 {
-    /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
-
     /**
      * @var \SimpleSAML\Auth\Source|string
      * @psalm-var \SimpleSAML\Auth\Source|class-string
@@ -56,11 +51,9 @@ class DiscoController
      * @throws \Exception
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
-        $this->session = $session;
     }
 
 
@@ -96,7 +89,7 @@ class DiscoController
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function discovery(Request $request)
+    public function discovery(Request $request): Response
     {
         // Retrieve the authentication state
         $authStateId = $request->query->get('AuthState', null);

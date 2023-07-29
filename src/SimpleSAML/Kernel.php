@@ -83,7 +83,7 @@ class Kernel extends BaseKernel
 
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function registerBundles(): array
     {

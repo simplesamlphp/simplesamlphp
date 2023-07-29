@@ -46,43 +46,36 @@ class State
      */
     public const ID = '\SimpleSAML\Auth\State.id';
 
-
     /**
      * The index in the cloned state array which contains the identifier of the
      * original state.
      */
     public const CLONE_ORIGINAL_ID = '\SimpleSAML\Auth\State.cloneOriginalId';
 
-
     /**
      * The index in the state array which contains the current stage.
      */
     public const STAGE = '\SimpleSAML\Auth\State.stage';
-
 
     /**
      * The index in the state array which contains the restart URL.
      */
     public const RESTART = '\SimpleSAML\Auth\State.restartURL';
 
-
     /**
      * The index in the state array which contains the exception handler URL.
      */
     public const EXCEPTION_HANDLER_URL = '\SimpleSAML\Auth\State.exceptionURL';
-
 
     /**
      * The index in the state array which contains the exception handler function.
      */
     public const EXCEPTION_HANDLER_FUNC = '\SimpleSAML\Auth\State.exceptionFunc';
 
-
     /**
      * The index in the state array which contains the exception data.
      */
     public const EXCEPTION_DATA = '\SimpleSAML\Auth\State.exceptionData';
-
 
     /**
      * The stage of a state with an exception.

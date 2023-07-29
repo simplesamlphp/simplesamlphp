@@ -28,13 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 class Cron
 {
     /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
-
-    /** @var \SimpleSAML\Configuration */
     protected Configuration $cronconfig;
-
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
 
     /**
      * @var \SimpleSAML\Utils\Auth
@@ -53,12 +47,10 @@ class Cron
      * @throws \Exception
      */
     public function __construct(
-        Configuration $config,
-        Session $session
+        protected Configuration $config,
+        protected Session $session
     ) {
-        $this->config = $config;
         $this->cronconfig = Configuration::getConfig('module_cron.php');
-        $this->session = $session;
         $this->authUtils = new Utils\Auth();
     }
 

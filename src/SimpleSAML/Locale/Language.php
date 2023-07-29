@@ -24,13 +24,6 @@ class Language
     private static array $defaultLanguageMap = ['nb' => 'no'];
 
     /**
-     * The configuration to use.
-     *
-     * @var \SimpleSAML\Configuration
-     */
-    private Configuration $configuration;
-
-    /**
      * An array holding a list of languages available.
      *
      * @var string[]
@@ -150,18 +143,18 @@ class Language
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
-    public function __construct(Configuration $configuration)
-    {
-        $this->configuration = $configuration;
+    public function __construct(
+        private Configuration $configuration
+    ) {
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $this->configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
-        $this->languageParameterName = $this->configuration->getOptionalString('language.parameter.name', 'language');
-        $this->customFunction = $this->configuration->getOptionalArray('language.get_language_function', null);
-        $this->rtlLanguages = $this->configuration->getOptionalArray('language.rtl', []);
+        $this->defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+        $this->languageParameterName = $configuration->getOptionalString('language.parameter.name', 'language');
+        $this->customFunction = $configuration->getOptionalArray('language.get_language_function', null);
+        $this->rtlLanguages = $configuration->getOptionalArray('language.rtl', []);
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
-                $this->configuration->getOptionalBoolean('language.parameter.setcookie', true)
+                $configuration->getOptionalBoolean('language.parameter.setcookie', true)
             );
         }
     }
@@ -411,7 +404,7 @@ class Language
         $name = $config->getOptionalString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
-            $language = strtolower((string) $_COOKIE[$name]);
+            $language = strtolower($_COOKIE[$name]);
             if (in_array($language, $availableLanguages, true)) {
                 return $language;
             }

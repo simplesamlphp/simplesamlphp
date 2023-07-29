@@ -256,7 +256,7 @@ class TestTest extends TestCase
                 return [];
             }
 
-            public function getAuthData(string $name)
+            public function getAuthData(string $name): mixed
             {
                 $nameId = new NameID();
                 $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');

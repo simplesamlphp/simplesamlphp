@@ -39,7 +39,7 @@ class Stats
      *
      * @return mixed A new instance of the configured class.
      */
-    private static function createOutput(Configuration $config)
+    private static function createOutput(Configuration $config): mixed
     {
         $cls = $config->getString('class');
         $cls = Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
@@ -73,7 +73,7 @@ class Stats
      *
      * @return false|null
      */
-    public static function log(string $event, array $data = [])
+    public static function log(string $event, array $data = []): bool|null
     {
         Assert::keyNotExists($data, 'op');
         Assert::keyNotExists($data, 'time');
@@ -100,5 +100,7 @@ class Stats
         foreach (self::$outputs as $out) {
             $out->emit($data);
         }
+
+        return null;
     }
 }

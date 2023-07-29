@@ -20,21 +20,13 @@ use SimpleSAML\Utils;
 class TraditionalLogoutHandler implements LogoutHandlerInterface
 {
     /**
-     * The IdP we are logging out from.
-     *
-     * @var \SimpleSAML\IdP
-     */
-    private IDP $idp;
-
-
-    /**
      * TraditionalLogout constructor.
      *
      * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
-    public function __construct(IdP $idp)
-    {
-        $this->idp = $idp;
+    public function __construct(
+        private IdP $idp
+    ) {
     }
 
 

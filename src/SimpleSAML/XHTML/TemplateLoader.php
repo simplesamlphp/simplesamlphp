@@ -23,11 +23,9 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      *
      * @param string $name
      * @param bool $throw
-     * @return string|false|null
-     *
-     * NOTE: cannot typehint due to upstream restrictions
+     * @return string|null
      */
-    protected function findTemplate($name, $throw = true)
+    protected function findTemplate(string $name, bool $throw = true)
     {
         list($namespace, $shortname) = $this->parseModuleName($name);
         if (!in_array($namespace, $this->paths, true) && $namespace !== self::MAIN_NAMESPACE) {

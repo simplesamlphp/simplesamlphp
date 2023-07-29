@@ -23,13 +23,6 @@ use Symfony\Component\HttpFoundation\File\File;
 class Localization
 {
     /**
-     * The configuration to use.
-     *
-     * @var \SimpleSAML\Configuration
-     */
-    private Configuration $configuration;
-
-    /**
      * The default gettext domain.
      *
      * @var string
@@ -77,11 +70,11 @@ class Localization
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
-    public function __construct(Configuration $configuration)
-    {
-        $this->configuration = $configuration;
+    public function __construct(
+        private Configuration $configuration
+    ) {
         /** @var string $locales */
-        $locales = $this->configuration->resolvePath('locales');
+        $locales = $configuration->resolvePath('locales');
         $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());

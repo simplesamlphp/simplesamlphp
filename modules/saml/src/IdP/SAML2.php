@@ -34,6 +34,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\Module\saml\Message;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 
@@ -400,7 +401,7 @@ class SAML2
             $spEntityId = $issuer->getValue();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            $authnRequestSigned = \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
+            $authnRequestSigned = Message::validateMessage($spMetadata, $idpMetadata, $request);
 
             $relayState = $request->getRelayState();
 
@@ -568,7 +569,7 @@ class SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-        $lr = \SimpleSAML\Module\saml\Message::buildLogoutResponse($idpMetadata, $spMetadata);
+        $lr = Message::buildLogoutResponse($idpMetadata, $spMetadata);
         $lr->setInResponseTo($state['saml:RequestId']);
         $lr->setRelayState($state['saml:RelayState']);
 
@@ -633,7 +634,7 @@ class SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-        \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $message);
+        Message::validateMessage($spMetadata, $idpMetadata, $message);
 
         if ($message instanceof LogoutResponse) {
             Logger::info('Received SAML 2.0 LogoutResponse from: ' . var_export($spEntityId, true));
@@ -649,7 +650,7 @@ class SAML2
             $relayState = $message->getRelayState();
 
             if (!$message->isSuccess()) {
-                $logoutError = \SimpleSAML\Module\saml\Message::getResponseError($message);
+                $logoutError = Message::getResponseError($message);
                 Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
             } else {
                 $logoutError = null;
@@ -1105,7 +1106,7 @@ class SAML2
 
         $a = new Assertion();
         if ($signAssertion) {
-            \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $a);
+            Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
         $issuer = new Issuer();
@@ -1225,7 +1226,7 @@ class SAML2
             $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
-            $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
+            $a->encryptNameId(Message::getEncryptionKey($spMetadata));
         }
 
         return $a;
@@ -1379,7 +1380,7 @@ class SAML2
         array $association,
         string $relayState = null
     ): LogoutRequest {
-        $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
+        $lr = Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
@@ -1395,7 +1396,7 @@ class SAML2
             $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
-            $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
+            $lr->encryptNameId(Message::getEncryptionKey($spMetadata));
         }
 
         return $lr;
@@ -1429,7 +1430,7 @@ class SAML2
         $r->setDestination($consumerURL);
 
         if ($signResponse) {
-            \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $r);
+            Message::addSign($idpMetadata, $spMetadata, $r);
         }
 
         return $r;

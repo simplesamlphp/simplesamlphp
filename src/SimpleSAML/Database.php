@@ -268,7 +268,7 @@ class Database
      *
      * @return int|false The number of rows affected by the query or false on error.
      */
-    public function write(string $stmt, array $params = [])
+    public function write(string $stmt, array $params = []): int|bool
     {
         return $this->query($this->dbPrimary, $stmt, $params)->rowCount();
     }

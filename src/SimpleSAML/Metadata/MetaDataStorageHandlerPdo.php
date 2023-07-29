@@ -287,7 +287,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return int|false The number of SQL statements successfully executed, false if some error occurred.
      */
-    public function initDatabase()
+    public function initDatabase(): int|false
     {
         $stmt = 0;
         $fine = true;

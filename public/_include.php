@@ -45,7 +45,7 @@ set_exception_handler('SimpleSAML_exception_handler');
  * @return false
  */
 function SimpleSAML_error_handler(
-    $errno,
+    int $errno,
     string $errstr,
     ?string $errfile = null,
     int $errline = 0,

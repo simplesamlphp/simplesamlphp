@@ -302,7 +302,7 @@ abstract class MetaDataStorageSource
      * @param array $metadataSet the already loaded metadata set
      * @return mixed|null
      */
-    protected function lookupIndexFromEntityId(string $entityId, array $metadataSet)
+    protected function lookupIndexFromEntityId(string $entityId, array $metadataSet): mixed
     {
         // check for hostname
         $httpUtils = new Utils\HTTP();

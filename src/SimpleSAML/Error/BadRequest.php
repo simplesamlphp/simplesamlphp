@@ -18,20 +18,13 @@ use SimpleSAML\Assert\Assert;
 class BadRequest extends Error
 {
     /**
-     * Reason why this request was invalid.
-     * @var string
-     */
-    private string $reason;
-
-
-    /**
      * Create a new BadRequest error.
      *
      * @param string $reason  Description of why the request was unacceptable.
      */
-    public function __construct(string $reason)
-    {
-        $this->reason = $reason;
+    public function __construct(
+        protected string $reason
+    ) {
         parent::__construct(['BADREQUEST', '%REASON%' => $this->reason]);
         $this->httpCode = 400;
     }
