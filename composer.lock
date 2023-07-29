@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1688fb0d8f536434f088a722b1a134df",
+    "content-hash": "e3149e777211af5f367e800535db7804",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1656,16 +1656,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.0.4",
+            "version": "v2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "d2aed5063349880897515b71fca85300e5fad2c9"
+                "reference": "f462dacce8bdda4e87e02ed4f209f6dd73f8342b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/d2aed5063349880897515b71fca85300e5fad2c9",
-                "reference": "d2aed5063349880897515b71fca85300e5fad2c9",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/f462dacce8bdda4e87e02ed4f209f6dd73f8342b",
+                "reference": "f462dacce8bdda4e87e02ed4f209f6dd73f8342b",
                 "shasum": ""
             },
             "require": {
@@ -1686,9 +1686,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.0.4"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.1.5"
             },
-            "time": "2023-02-27T17:17:05+00:00"
+            "time": "2023-07-29T13:14:53+00:00"
         },
         {
             "name": "symfony/cache",
