@@ -710,6 +710,9 @@ class Message
         }
         $validAudiences = $assertion->getValidAudiences();
         if ($validAudiences !== []) {
+            // Turn array of saml:Audience objects into an array of identifiers
+            $validAudiences = array_map(fn($audience): string => $audience->getContent(), $validAudiences);
+
             $spEntityId = $spMetadata->getString('entityid');
             if (!in_array($spEntityId, $validAudiences, true)) {
                 $candidates = '[' . implode('], [', $validAudiences) . ']';
