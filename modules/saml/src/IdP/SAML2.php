@@ -18,7 +18,7 @@ use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response as S
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\saml\{AttributeValue, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
+use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
 use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
 use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -27,6 +27,7 @@ use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
+use function array_map;
 use function array_merge;
 use function array_pop;
 use function array_unique;
@@ -1168,8 +1169,9 @@ class SAML2
         $issuer->setFormat(C::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
-        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
-        $a->setValidAudiences($audience);
+        $audiences = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
+        $audiences = array_map(fn($audience): Audience => new Audience($audience), $audiences);
+        $a->setValidAudiences($audiences);
 
         $a->setNotBefore($now - 30);
 
