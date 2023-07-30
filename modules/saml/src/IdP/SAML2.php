@@ -19,6 +19,7 @@ use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\{AttributeValue, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
+use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
 use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data, KeyInfo};
@@ -85,10 +86,6 @@ class SAML2
         $idpMetadata = $idp->getConfig();
 
         $assertion = self::buildAssertion($idpMetadata, $spMetadata, $state);
-
-        if (isset($state['saml:AuthenticatingAuthority'])) {
-            $assertion->setAuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
-        }
 
         // create the session association (for logout)
         $association = [
@@ -1184,15 +1181,27 @@ class SAML2
 
         $passAuthnContextClassRef = $config->getOptionalBoolean('proxymode.passAuthnContextClassRef', false);
         if (isset($state['saml:AuthnContextClassRef'])) {
-            $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
+            $classRef = $state['saml:AuthnContextClassRef'];
         } elseif ($passAuthnContextClassRef && isset($state['saml:sp:AuthnContext'])) {
             // AuthnContext has been set by the upper IdP in front of the proxy, pass it back to the SP behind the proxy
-            $a->setAuthnContextClassRef($state['saml:sp:AuthnContext']);
-        } elseif ($httpUtils->isHTTPS()) {
-            $a->setAuthnContextClassRef(C::AC_PASSWORD_PROTECTED_TRANSPORT);
+            $classRef = $state['saml:sp:AuthnContext'];
         } else {
-            $a->setAuthnContextClassRef(C::AC_PASSWORD);
+            $classRef = $httpUtils->isHTTPS() ? C::AC_PASSWORD_PROTECTED_TRANSPORT : C::AC_PASSWORD;
         }
+
+        $authorities = [];
+        if (isset($state['saml:AuthenticatingAuthority'])) {
+            $authorities[] = new AuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
+        }
+
+        $a->setAuthnContext(
+            new AuthnContext(
+                authnContextClassRef: new AuthnContextClassRef($classRef),
+                authnContextDecl: null,
+                authnContextDeclRef: null,
+                authenticatingAuthorities: $authorities,
+            )
+        );
 
         $sessionStart = $now;
         if (isset($state['AuthnInstant'])) {
