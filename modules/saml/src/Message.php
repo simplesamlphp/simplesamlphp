@@ -10,9 +10,11 @@ use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
-use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
+use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_key_exists;
@@ -532,7 +534,10 @@ class Message
                 C::COMPARISON_MAXIMUM,
                 C::COMPARISON_BETTER,
             ], C::COMPARISON_EXACT);
-            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+
+            $ar->setRequestedAuthnContext(
+                new RequestedAuthnContext([new AuthnContextClassRef($accr)], $comp),
+            );
         }
 
         self::addRedirectSign($spMetadata, $idpMetadata, $ar);
