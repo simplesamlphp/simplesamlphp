@@ -409,7 +409,10 @@ class ServiceProvider
         }
 
         $state['LogoutState'] = $logoutState;
-        $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
+        $state['saml:AuthenticatingAuthority'] = array_map(
+            fn($authority): string => $authority->getContent(),
+            $authenticatingAuthority,
+        );
         $state['saml:AuthenticatingAuthority'][] = $issuer;
         $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
         $state['saml:AuthnInstant'] = $assertion->getAuthnInstant();

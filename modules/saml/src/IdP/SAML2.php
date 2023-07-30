@@ -1233,7 +1233,10 @@ class SAML2
             )
         );
 
-        $sessionStart = time();
+        $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
+        $now = $systemClock->now();
+
+        $sessionStart = $now;
         if (isset($state['AuthnInstant'])) {
             $a->setAuthnInstant($state['AuthnInstant']);
             $sessionStart = $state['AuthnInstant'];
@@ -1244,9 +1247,6 @@ class SAML2
 
         $randomUtils = new Utils\Random();
         $a->setSessionIndex($randomUtils->generateID());
-
-        $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
-        $now = $systemClock->now();
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
