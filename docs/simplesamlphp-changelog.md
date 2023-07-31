@@ -17,6 +17,8 @@ Released TBD
 * Fixed SLO with signed response (#1812)
 * Fixed broken MetaDataStorageHandlerSerialize
 * Usernames are now trimmed (#1829)
+* Never expose the cron-API if secret is not properly configured (#1831)
+* Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 
 `admin`
 
