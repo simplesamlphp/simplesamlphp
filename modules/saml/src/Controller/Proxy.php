@@ -98,10 +98,10 @@ class Proxy
 
         if ($request->request->has('continue')) {
             /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
-            $as = Auth\Source::getById($state['saml:sp:AuthId'], SP::class);
+            $as = new \SimpleSAML\Auth\Simple($state['saml:sp:AuthId']);
 
             // log the user out before being able to login again
-            return $as->reauthLogout($this->config, $state);
+            return $as->login($state);
         }
 
         $template = new Template($this->config, 'saml:proxy/invalid_session.twig');
