@@ -95,6 +95,10 @@ class SingleLogout
                 [$idp, 'doLogoutRedirect'],
                 [$httpUtils->checkURLAllowed($request->query->get('ReturnTo'))]
             );
+        } elseif ($request->request->has('ReturnTo')) {
+            return $idp->doLogoutRedirect(
+                $httpUtils->checkURLAllowed($request->request->get('ReturnTo'))
+            );
         }
 
         try {

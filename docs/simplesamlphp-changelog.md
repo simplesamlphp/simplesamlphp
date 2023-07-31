@@ -17,6 +17,8 @@ Released TBD
 
 Released TBD
 
+* Never expose the cron-API if secret is not properly configured (#1831)
+* Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 * Fixed link pointing to legacy endpoint (#1833)
 * Updated German translations (#1814)
 * Do not drop UIInfo from SSP array style metadata (#1808)
