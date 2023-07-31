@@ -1,0 +1,40 @@
+{
+  "modules": {
+    "authorize": {
+      "repository": "simplesamlphp/simplesamlphp-module-authorize",
+      "version": "dev-master"
+    },
+    "consent": {
+      "repository": "simplesamlphp/simplesamlphp-module-consent",
+      "version": "dev-master"
+    },
+    "consentadmin": {
+      "repository": "simplesamlphp/simplesamlphp-module-consentadmin",
+      "version": "dev-master"
+    },
+    "discopower": {
+      "repository": "simplesamlphp/simplesamlphp-module-discopower",
+      "version": "dev-master"
+    },
+    "ldap": {
+      "repository": "simplesamlphp/simplesamlphp-module-ldap",
+      "version": "dev-master"
+    },
+    "metarefresh": {
+      "repository": "simplesamlphp/simplesamlphp-module-metarefresh",
+      "version": "dev-master"
+    },
+    "radius": {
+      "repository": "simplesamlphp/simplesamlphp-module-radius",
+      "version": "dev-master"
+    },
+    "statistics": {
+      "repository": "simplesamlphp/simplesamlphp-module-statistics",
+      "version": "dev-master"
+    },
+    "sqlauth": {
+      "repository": "simplesamlphp/simplesamlphp-module-sqlauth",
+      "version": "dev-master"
+    }
+  }
+}

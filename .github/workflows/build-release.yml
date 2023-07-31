@@ -11,12 +11,18 @@ jobs:
   build:
     name: Build release
     runs-on: [ubuntu-latest]
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['slim', 'full']
+
     steps:
       - name: Setup PHP, with composer and extensions
         id: setup-php
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
+          # Should match the minimum required version for SimpleSAMLphp
           php-version: '8.0'
           tools: composer:v2
           extensions: mbstring, xml
@@ -25,23 +31,39 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
+      - uses: actions/checkout@v3
+
       # Store the version, stripping any v-prefix
       - name: Write release version
         run: |
           TAG="${{ github.ref_name }}"
           echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
-
-      - uses: actions/checkout@v3
+          echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
 
       - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: $(composer config version) != "${{ env.VERSION }}"
+        if: "${{ env.COMPOSER_VERSION != env.VERSION }}"
         run: exit 1
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Install SimpleSAMLphp modules
+        env:
+          FILE: ".github/build/${{ matrix.version }}.json"
+        run: |
+          for k in $(jq '.modules | keys | .[]' "$FILE"); do
+            module=$(jq -r ".modules[$k]" "$FILE");
+            if [ -n "$module" ];
+            then
+              repository=$(jq -r '.repository' <<< "$module");
+              v=$(jq -r '.version' <<< "$module");
+
+              composer require "$repository:$v" --update-no-dev --ignore-platform-reqs
+            fi
+          done
 
       - name: Clean release
         run: |
@@ -55,15 +77,16 @@ jobs:
         run: |
           cd ..
           cp -R  simplesamlphp "simplesamlphp-$VERSION"
-          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION.tar.gz" \
+          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz" \
           "simplesamlphp-$VERSION"
+          rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
         uses: actions/upload-artifact@v3
         with:
-          name: release
-          path: "/tmp/simplesamlphp-${{ env.VERSION }}.tar.gz"
+          name: release-${{ matrix.version }}
+          path: "/tmp/simplesamlphp-${{ env.VERSION }}-${{ matrix.version }}.tar.gz"
           retention-days: 1
 
-      - name: Calculate SHA checksum
-        run: sha256sum "/tmp/simplesamlphp-$VERSION.tar.gz"
+      - name: Calculate SHA checksum (${{ matrix.version }})
+        run: sha256sum "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz"
