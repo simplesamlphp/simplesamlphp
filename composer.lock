@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c9bf633583135d49c13ea2167f23fe9",
+    "content-hash": "0acd7f843bef1da4bf97997de5255240",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -6370,16 +6370,16 @@
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.6.9",
+            "version": "v1.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "b165928717c51edad19b16a99ac9c6df422ec8bc"
+                "reference": "d5aa494ad3909029e7fe14735e344532e67ab7d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/b165928717c51edad19b16a99ac9c6df422ec8bc",
-                "reference": "b165928717c51edad19b16a99ac9c6df422ec8bc",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/d5aa494ad3909029e7fe14735e344532e67ab7d6",
+                "reference": "d5aa494ad3909029e7fe14735e344532e67ab7d6",
                 "shasum": ""
             },
             "require": {
@@ -6391,7 +6391,7 @@
                 "ext-spl": "*",
                 "php": "^8.0",
                 "simplesamlphp/assert": "^1.0.4",
-                "simplesamlphp/xml-common": "^1.11.5"
+                "simplesamlphp/xml-common": "^1.12.2"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
@@ -6428,9 +6428,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.9"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.10"
             },
-            "time": "2023-06-03T20:50:34+00:00"
+            "time": "2023-07-30T22:12:05+00:00"
         },
         {
             "name": "theseer/tokenizer",

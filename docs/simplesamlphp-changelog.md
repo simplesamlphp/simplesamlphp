@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.1.0
 
-Released TBD
+Released 2023-07-31
 
 * Add support for TLS configuration for Redis Store (#1828)
 * Raised minimum Symfony version to 6.0

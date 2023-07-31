@@ -109,5 +109,6 @@
             "simplesamlphp/composer-module-installer": true,
             "muglug/package-versions-56": true
         }
-    }
+    },
+    "version": "2.1.0"
 }
