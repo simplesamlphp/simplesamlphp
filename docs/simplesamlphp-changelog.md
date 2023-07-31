@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.5
 
-Released TBD
+Released 2023-07-31
 
 * Fixed link pointing to legacy endpoint (#1833)
 * Updated German translations (#1814)
