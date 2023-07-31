@@ -25,3 +25,4 @@ admin-shortcut:
     path: /admin,
     permanent: true
   }
+  methods: [GET]

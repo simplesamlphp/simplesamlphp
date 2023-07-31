@@ -5,12 +5,14 @@ core-welcome:
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Login::welcome'
   }
+  methods: [GET]
 
 core-account-disco-clearchoices:
   path: /account/disco/clearchoices
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Login::cleardiscochoices'
   }
+  methods: [GET]
 
 core-legacy-login:
   path: /login/{as}
@@ -18,42 +20,49 @@ core-legacy-login:
     _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction',
     path: /module.php/saml/sp/login/, permanent: true
   }
+  methods: [GET]
 
 core-loginuserpass:
   path: /loginuserpass
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Login::loginuserpass'
   }
+  methods: [GET, POST]
 
 core-loginuserpassorg:
   path: /loginuserpassorg
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Login::loginuserpassorg'
   }
+  methods: [GET, POST]
 
 core-error-nocookie:
   path: /error/nocookie
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Exception::nocookie'
   }
+  methods: [GET]
 
 core-cardinality:
   path: /error/cardinality
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Exception::cardinality'
   }
+  methods: [GET]
 
 core-warning-shortssointerval:
   path: /warning/short_sso_interval
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Exception::shortSsoInterval'
   }
+  methods: [GET]
 
 core-post-redirect:
   path: /postredirect
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Redirection::postredirect'
   }
+  methods: [GET]
 
 core-legacy-welcome:
   path: /frontpage_welcome.php
@@ -61,6 +70,7 @@ core-legacy-welcome:
     _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction',
     path: /admin/, permanent: true
   }
+  methods: [GET]
 
 core-legacy-config:
   path: /frontpage_config.php
@@ -68,6 +78,7 @@ core-legacy-config:
     _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction',
     path: /admin/, permanent: true
   }
+  methods: [GET]
 
 core-legacy-auth:
   path: /frontpage_auth.php
@@ -75,6 +86,7 @@ core-legacy-auth:
     _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction',
     path: /admin/test, permanent: true
   }
+  methods: [GET]
 
 core-legacy-federation:
   path: /frontpage_federation.php
@@ -82,24 +94,28 @@ core-legacy-federation:
     _controller: 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction',
     path: /admin/federation, permanent: true
   }
+  methods: [GET]
 
 core-logout:
   path: /logout/{as}
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Logout::logout'
   }
+  methods: [GET]
 
 core-logout-resume:
   path: /logout-resume
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Logout::resumeLogout'
   }
+  methods: [GET]
 
 core-logout-iframe:
   path: /logout-iframe
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Logout::logoutIframe'
   }
+  methods: [GET]
 
 core-logout-iframe-done:
   path: /logout-iframe-done
@@ -112,9 +128,11 @@ core-logout-iframe-post:
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Logout::logoutIframePost'
   }
+  methods: [GET]
 
 core-error-report:
   path: /errorReport
   defaults: {
     _controller: '\SimpleSAML\Module\core\Controller\ErrorReport::main'
   }
+  methods: [GET, POST]

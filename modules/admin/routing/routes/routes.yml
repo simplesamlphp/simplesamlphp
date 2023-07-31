@@ -5,24 +5,28 @@ admin-main:
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Config::main'
   }
+  methods: [GET]
 
 admin-diagnostics:
   path: /diagnostics
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Config::diagnostics'
   }
+  methods: [GET]
 
 admin-phpinfo:
   path: /phpinfo
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Config::phpinfo'
   }
+  methods: [GET]
 
 admin-sandbox:
   path: /sandbox
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Sandbox::main'
   }
+  methods: [GET]
 
 admin-test:
   path: /test/{as}
@@ -30,33 +34,39 @@ admin-test:
     _controller: 'SimpleSAML\Module\admin\Controller\Test::main',
     as: null
   }
+  methods: [GET]
 
 core-logout:
   path: /logout
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Test::logout'
   }
+  methods: [GET]
 
 admin-fed:
   path: /federation
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Federation::main'
   }
+  methods: [GET]
 
 admin-fed-cert:
   path: /federation/cert
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Federation::downloadCert'
   }
+  methods: [GET]
 
 admin-fed-show:
   path: /federation/show
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Federation::showRemoteEntity'
   }
+  methods: [GET]
 
 admin-fed-converter:
   path: /federation/metadata-converter
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Federation::metadataConverter'
   }
+  methods: [POST]
