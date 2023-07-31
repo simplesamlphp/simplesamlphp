@@ -10,15 +10,14 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Add support for TLS configuration for Redis Store (#1828)
-* Raised Symfony version to 6.0
+* Raised minimum Symfony version to 6.0
 * Raise minimum PHP version to 8.0
+* Specified the allowed HTTP methods for each route
 
 ## Version 2.0.5
 
-Released TBD
+Released 2023-07-31
 
-* Never expose the cron-API if secret is not properly configured (#1831)
-* Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 * Fixed link pointing to legacy endpoint (#1833)
 * Updated German translations (#1814)
 * Do not drop UIInfo from SSP array style metadata (#1808)
@@ -27,6 +26,8 @@ Released TBD
 * Fixed SLO with signed response (#1812)
 * Fixed broken MetaDataStorageHandlerSerialize
 * Usernames are now trimmed (#1829)
+* Never expose the cron-API if secret is not properly configured (#1831)
+* Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 
 `admin`
 
