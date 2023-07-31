@@ -117,7 +117,7 @@ class IdPDisco
     public function __construct(
         protected array $metadataSets,
         protected string $instance
-    ){
+    ) {
         // initialize standard classes
         $this->config = Configuration::getInstance();
         $this->metadata = MetaDataStorageHandler::getMetadataHandler();
