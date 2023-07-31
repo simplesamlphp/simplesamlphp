@@ -5,48 +5,56 @@ saml-proxy-invalidSession:
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\Proxy::invalidSession'
   }
+  methods: [GET, POST]
 
 saml-disco:
   path: /disco
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\Disco::disco'
   }
+  methods: [GET, POST]
 
 saml-sp-discoResponse:
   path: /sp/discoResponse
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::discoResponse'
   }
+  methods: [GET]
 
 saml-sp-login:
   path: /sp/login/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::login'
   }
+  methods: [GET]
 
 saml-sp-wrongAuthnContextClassRef:
   path: /sp/wrongAuthnContextClassRef
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::wrongAuthnContextClassRef'
   }
+  methods: [GET]
 
 saml-sp-assertionConsumerService:
   path: /sp/saml2-acs.php/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService'
   }
+  methods: [GET, POST]
 
 saml-sp-singleLogoutService:
   path: /sp/saml2-logout.php/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::singleLogoutService'
   }
+  methods: [GET, POST]
 
 saml-sp-metadata:
   path: /sp/metadata/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata'
   }
+  methods: [GET]
 
 saml-legacy-sp-metadata:
   path: /sp/metadata.php/{sourceId}
@@ -54,33 +62,39 @@ saml-legacy-sp-metadata:
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata',
     path: /saml/sp/metadata, permanent: true
   }
+  methods: [GET]
 
 websso-single-sign-on:
   path: /idp/singleSignOnService
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::singleSignOnService'
   }
+  methods: [GET, POST]
 
 websso-artifact-resolution:
   path: /idp/artifactResolutionService
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::artifactResolutionService'
   }
+  methods: [GET, POST]
 
 websso-metadata:
   path: /idp/metadata
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\Metadata::metadata'
   }
+  methods: [GET]
 
 websso-single-logout:
   path: /idp/singleLogout
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::singleLogout'
   }
+  methods: [GET, POST]
 
 websso-init-single-logout:
   path: /idp/initSingleLogout
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\SingleLogout::initSingleLogout'
   }
+  methods: [GET]

@@ -5,3 +5,4 @@ multiauth-discovery:
   defaults: {
     _controller: 'SimpleSAML\Module\multiauth\Controller\DiscoController::discovery'
   }
+  methods: [GET]

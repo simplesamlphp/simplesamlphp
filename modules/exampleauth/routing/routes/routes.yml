@@ -5,15 +5,18 @@ exampleauth-authpage:
   defaults: {
     _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::authpage'
   }
+  methods: [POST]
 
 exampleauth-redirecttest:
   path: /redirecttest
   defaults: {
     _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::redirecttest'
   }
+  methods: [GET]
 
 exampleauth-resume:
   path: /resume
   defaults: {
     _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::resume'
   }
+  methods: [GET]
