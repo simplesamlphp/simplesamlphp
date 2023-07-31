@@ -122,6 +122,7 @@ core-logout-iframe-done:
   defaults: {
     _controller: 'SimpleSAML\Module\core\Controller\Logout::logoutIframeDone'
   }
+  methods: [GET]
 
 core-logout-iframe-post:
   path: /logout-iframe-post

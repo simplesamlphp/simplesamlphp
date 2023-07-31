@@ -26,6 +26,7 @@ saml-sp-login:
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::login'
   }
+  methods: [GET]
 
 saml-sp-wrongAuthnContextClassRef:
   path: /sp/wrongAuthnContextClassRef
