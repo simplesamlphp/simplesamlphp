@@ -8,6 +8,7 @@ See the upgrade notes for specific information about upgrading.
 ## Version 2.0.5
 
 * Never expose the cron-API if secret is not properly configured (#1831)
+* Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 
 ## Version 2.0.4
 
