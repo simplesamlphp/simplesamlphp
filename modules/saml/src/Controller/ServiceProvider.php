@@ -216,7 +216,7 @@ class ServiceProvider
                 throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
             }
         }
-        $issuer = $issuer->getValue();
+        $issuer = $issuer->getContent();
 
         $prevAuth = $this->session->getAuthData($sourceId, 'saml:sp:prevAuth');
 
@@ -472,7 +472,7 @@ class ServiceProvider
 
         $issuer = $message->getIssuer();
         if ($issuer instanceof Issuer) {
-            $idpEntityId = $issuer->getValue();
+            $idpEntityId = $issuer->getContent();
         } else {
             $idpEntityId = $issuer;
         }
