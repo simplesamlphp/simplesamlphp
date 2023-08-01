@@ -62,6 +62,7 @@
         "ext-xml": "*",
         "ext-zlib": "*",
 
+        "beste/clock": "^3.0",
         "composer/composer": "^2.5",
         "gettext/gettext": "^5.7",
         "gettext/translator": "^1.1",
