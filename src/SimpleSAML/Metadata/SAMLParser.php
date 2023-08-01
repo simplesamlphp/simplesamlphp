@@ -906,7 +906,7 @@ class SAMLParser
                         if ($attr instanceof Attribute) {
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
-                            $attrValue = $attr->getAttributeValue();
+                            $attrValue = $attr->getAttributeValues();
 
                             if ($attrName === null || $attrValue === []) {
                                 continue;
@@ -922,7 +922,7 @@ class SAMLParser
 
                             $values = [];
                             foreach ($attrValue as $attrval) {
-                                $values[] = $attrval->getString();
+                                $values[] = $attrval->getValue();
                             }
 
                             $ret['EntityAttributes'][$name] = $values;

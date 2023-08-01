@@ -13,6 +13,7 @@ use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
 use SimpleSAML\SAML2\Utils\XPath;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList};
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
@@ -200,14 +201,14 @@ class SPTest extends ClearStateTestCase
     public function testNameID(): void
     {
         $state = [
-            'saml:NameID' => ['Value' => 'user@example.org', 'Format' => C::NAMEID_UNSPECIFIED]
+            'saml:NameID' => ['value' => 'user@example.org', 'Format' => C::NAMEID_UNSPECIFIED]
         ];
 
         $ar = $this->createAuthnRequest($state);
 
         /** @var \SimpleSAML\SAML2\XML\saml\NameID $nameID */
         $nameID = $ar->getNameId();
-        $this->assertEquals($state['saml:NameID']['Value'], $nameID->getValue());
+        $this->assertEquals($state['saml:NameID']['value'], $nameID->getContent());
         $this->assertEquals($state['saml:NameID']['Format'], $nameID->getFormat());
 
         $xml = $ar->toSignedXML();
@@ -222,7 +223,7 @@ class SPTest extends ClearStateTestCase
 
         $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID', $xpCache);
         $this->assertEquals(
-            $state['saml:NameID']['Value'],
+            $state['saml:NameID']['value'],
             $q[0]->textContent
         );
     }
@@ -235,7 +236,7 @@ class SPTest extends ClearStateTestCase
     public function testAuthnContextClassRef(): void
     {
         $state = [
-            'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef'
+            'saml:AuthnContextClassRef' => new AuthnContextClassRef('http://example.com/myAuthnContextClassRef')
         ];
 
         $ar = $this->createAuthnRequest($state);
@@ -243,8 +244,8 @@ class SPTest extends ClearStateTestCase
         /** @var array $a */
         $a = $ar->getRequestedAuthnContext();
         $this->assertEquals(
-            $state['saml:AuthnContextClassRef'],
-            $a['AuthnContextClassRef'][0]
+            ($state['saml:AuthnContextClassRef'])->getContent(),
+            $a->getRequestedAuthnContexts()[0]->getContent(),
         );
 
         $xml = $ar->toSignedXML();
@@ -256,7 +257,7 @@ class SPTest extends ClearStateTestCase
             $xpCache,
         );
         $this->assertEquals(
-            $state['saml:AuthnContextClassRef'],
+            ($state['saml:AuthnContextClassRef'])->getContent(),
             $q[0]->textContent
         );
     }
@@ -1513,8 +1514,7 @@ class SPTest extends ClearStateTestCase
     */
     public function testLogoutRequest(): void
     {
-        $nameId = new NameID();
-        $nameId->setValue('someone@example.com');
+        $nameId = new NameID('someone@example.com');
 
         $dom = DOMDocumentFactory::create();
         $extension = $dom->createElementNS('urn:some:namespace', 'MyLogoutExtension');

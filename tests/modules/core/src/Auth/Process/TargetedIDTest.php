@@ -108,11 +108,12 @@ class TargetedIDTest extends TestCase
      */
     public function testNameIdGeneration(): void
     {
-        $nameid = new NameID();
-        $nameid->setFormat(C::NAMEID_PERSISTENT);
-        $nameid->setNameQualifier('urn:example:src:id');
-        $nameid->setSPNameQualifier('joe');
-        $nameid->setValue('joe');
+        $nameid = new NameID(
+            value: 'joe',
+            Format: C::NAMEID_PERSISTENT,
+            NameQualifier: 'urn:example:src:id',
+            SPNameQualifier: 'joe',
+        );
 
         $config = [
             'nameId' => true,
