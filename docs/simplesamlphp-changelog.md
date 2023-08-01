@@ -14,6 +14,10 @@ Released TBD
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 
+`metarefresh`
+
+* Added support for 'pdo' outputFormat (v0.11)
+
 ## Version 1.19.8
 
 Released 2-3-2023

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc052523b43249ea95a526cdcd7757d2",
+    "content-hash": "fe478e908c6eca5c62e110b8d8e5e712",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1608,16 +1608,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-metarefresh",
-            "version": "v0.10.0",
+            "version": "v0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-metarefresh.git",
-                "reference": "488d7809857c274befac89facfa03520a05bc1ba"
+                "reference": "142322422f6c49ffbf0783d817403bd90ee262f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-metarefresh/zipball/488d7809857c274befac89facfa03520a05bc1ba",
-                "reference": "488d7809857c274befac89facfa03520a05bc1ba",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-metarefresh/zipball/142322422f6c49ffbf0783d817403bd90ee262f7",
+                "reference": "142322422f6c49ffbf0783d817403bd90ee262f7",
                 "shasum": ""
             },
             "require": {
@@ -1653,7 +1653,7 @@
                 "issues": "https://github.com/tvdijen/simplesamlphp-module-metarefresh/issues",
                 "source": "https://github.com/tvdijen/simplesamlphp-module-metarefresh"
             },
-            "time": "2022-05-03T08:57:30+00:00"
+            "time": "2023-07-06T16:24:06+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-negotiate",
@@ -7557,5 +7557,5 @@
     "platform-dev": {
         "ext-curl": "*"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
