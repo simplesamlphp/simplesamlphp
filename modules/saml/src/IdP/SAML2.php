@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\IdP;
 
+use Beste\Clock\LocalizedClock;
+use DateInterval;
+use DateTimeZone;
 use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -421,7 +424,7 @@ class SAML2
                     'Received message on authentication request endpoint without issuer.'
                 );
             }
-            $spEntityId = $issuer->getValue();
+            $spEntityId = $issuer->getContent();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
             $authnRequestSigned = Message::validateMessage($spMetadata, $idpMetadata, $request);
@@ -445,7 +448,7 @@ class SAML2
 
             $RequesterID = $scoping?->getRequesterID();
             if ($RequesterID !== null) {
-                foreach ($requesterID as $k => $rid) {
+                foreach ($RequesterID as $k => $rid) {
                     $rid = $rid->toArray();
                     $RequesterID[$k] = array_pop($rid);
                 }
@@ -672,7 +675,7 @@ class SAML2
             /* Without an issuer we have no way to respond to the message. */
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
         } else {
-            $spEntityId = $issuer->getValue();
+            $spEntityId = $issuer->getContent();
         }
 
         $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
@@ -1150,7 +1153,6 @@ class SAML2
         Assert::notNull($state['saml:ConsumerURL']);
 
         $httpUtils = new Utils\HTTP();
-        $now = time();
 
         $signAssertion = $spMetadata->getOptionalBoolean('saml20.sign.assertion', null);
         if ($signAssertion === null) {
@@ -1164,22 +1166,23 @@ class SAML2
             Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
-        $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
-        $issuer->setFormat(C::NAMEID_ENTITY);
+        $issuer = new Issuer(
+            value: $idpMetadata->getString('entityid'),
+            Format: C::NAMEID_ENTITY,
+        );
         $a->setIssuer($issuer);
 
         $audiences = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
         $audiences = array_map(fn($audience): Audience => new Audience($audience), $audiences);
         $a->setValidAudiences($audiences);
 
-        $a->setNotBefore($now - 30);
+        $a->setNotBefore(time() - 30);
 
         $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
             $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
-        $a->setNotOnOrAfter($now + $assertionLifetime);
+        $a->setNotOnOrAfter(time() + $assertionLifetime);
 
         $passAuthnContextClassRef = $config->getOptionalBoolean('proxymode.passAuthnContextClassRef', false);
         if (isset($state['saml:AuthnContextClassRef'])) {
@@ -1205,7 +1208,7 @@ class SAML2
             )
         );
 
-        $sessionStart = $now;
+        $sessionStart = time();
         if (isset($state['AuthnInstant'])) {
             $a->setAuthnInstant($state['AuthnInstant']);
             $sessionStart = $state['AuthnInstant'];
@@ -1217,12 +1220,8 @@ class SAML2
         $randomUtils = new Utils\Random();
         $a->setSessionIndex($randomUtils->generateID());
 
-        $sc = new SubjectConfirmation();
-        $scd = new SubjectConfirmationData();
-        $scd->setNotOnOrAfter($now + $assertionLifetime);
-        $scd->setRecipient($state['saml:ConsumerURL']);
-        $scd->setInResponseTo($state['saml:RequestId']);
-        $sc->setSubjectConfirmationData($scd);
+        $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
+        $now = $systemClock->now();
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
@@ -1233,9 +1232,10 @@ class SAML2
             $hokAssertion = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', false);
         }
 
+        $children = [];
         if ($hokAssertion) {
             // Holder-of-Key
-            $sc->setMethod(C::CM_HOK);
+            $method = C::CM_HOK;
 
             if ($httpUtils->isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
@@ -1249,9 +1249,7 @@ class SAML2
                         );
 
                         $x509Data = new X509Data([$x509Certificate]);
-                        $keyInfo = new KeyInfo([$x509Data]);
-
-                        $scd->addInfo($keyInfo);
+                        $children[] = new KeyInfo([$x509Data]);
                     } else {
                         throw new Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during '
@@ -1270,9 +1268,21 @@ class SAML2
             }
         } else {
             // Bearer
-            $sc->setMethod(C::CM_BEARER);
+            $method = C::CM_BEARER;
         }
-        $sc->setSubjectConfirmationData($scd);
+
+        $scd = new SubjectConfirmationData(
+            notBefore: $now,
+            notOnOrAfter: $now->add(new DateInterval(sprintf('PT%dS', $assertionLifetime))),
+            recipient: $state['saml:ConsumerURL'],
+            inResponseTo: $state['saml:RequestId'],
+            children: $children,
+        );
+
+        $sc = new SubjectConfirmation(
+            method: $method,
+            subjectConfirmationData: $scd,
+        );
         $a->setSubjectConfirmation([$sc]);
 
         // add attributes
@@ -1351,10 +1361,11 @@ class SAML2
             var_export($nameIdValue, true),
             var_export($spNameQualifier, true)
         ));
-        $nameId = new NameID();
-        $nameId->setFormat($nameIdFormat);
-        $nameId->setValue($nameIdValue);
-        $nameId->setSPNameQualifier($spNameQualifier);
+        $nameId = new NameID(
+            value: $nameIdValue,
+            Format: $nameIdFormat,
+            SPNameQualifier: $spNameQualifier,
+        );
 
         return $nameId;
     }
@@ -1489,9 +1500,10 @@ class SAML2
         }
 
         $r = new SAML2_Response();
-        $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
-        $issuer->setFormat(C::NAMEID_ENTITY);
+        $issuer = new Issuer(
+            value: $idpMetadata->getString('entityid'),
+            Format: C::NAMEID_ENTITY,
+        );
         $r->setIssuer($issuer);
         $r->setDestination($consumerURL);
 

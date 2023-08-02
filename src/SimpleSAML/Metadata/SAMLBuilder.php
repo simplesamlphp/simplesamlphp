@@ -169,26 +169,30 @@ class SAMLBuilder
         }
 
         if ($metadata->hasValue('EntityAttributes')) {
-            $ea = new EntityAttributes();
+            $attr = [];
             foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
-                $attr = new Attribute();
-                $attr->setName($attributeName);
-                $attr->setNameFormat(C::NAMEFORMAT_UNSPECIFIED);
+                $attrValues = [];
+                foreach ($attributeValues as $attributeValue) {
+                    $attrValues[] = new AttributeValue($attributeValue);
+                }
 
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
-                    $attr->setName($matches[2]);
-                    $nameFormat = $matches[1];
-                    if ($nameFormat !== C::NAMEFORMAT_UNSPECIFIED) {
-                        $attr->setNameFormat($nameFormat);
-                    }
+                    $attr[] = new Attribute(
+                        name: $matches[2],
+                        nameFormat: $matches[1] === C::NAMEFORMAT_UNSPECIFIED ? null : $matches[1],
+                        attributeValue: $attrValues,
+                    );
+                } else {
+                    $attr[] = new Attribute(
+                        name: $attributeName,
+                        nameFormat: C::NAMEFORMAT_UNSPECIFIED,
+                        attributeValue: $attrValues,
+                    );
                 }
-                foreach ($attributeValues as $attributeValue) {
-                    $attr->addAttributeValue(new AttributeValue($attributeValue));
-                }
-                $ea->addChildren($attr);
             }
-            $extensions[] = $ea;
+
+            $extensions[] = new EntityAttributes($attr);
         }
 
         if ($metadata->hasValue('saml:Extensions')) {

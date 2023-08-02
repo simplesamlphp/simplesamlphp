@@ -341,7 +341,7 @@ class ServiceProvider
             }
 
             if ($authenticatingAuthority === null) {
-                $authenticatingAuthority = $assertion->getAuthenticatingAuthority();
+                $authenticatingAuthority = $assertion->getAuthnContext()?->getAuthenticatingAuthorities();
             }
             if ($nameId === null) {
                 $nameId = $assertion->getNameId();

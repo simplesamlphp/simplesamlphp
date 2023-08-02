@@ -97,29 +97,33 @@ abstract class BaseNameIDGenerator extends Auth\ProcessingFilter
             return;
         }
 
-        $nameId = new NameID();
-        $nameId->setValue($value);
-        $nameId->setFormat($this->format);
-
+        $nq = $spnq = null;
         if ($this->nameQualifier === true) {
             if (isset($state['IdPMetadata']['entityid'])) {
-                $nameId->setNameQualifier($state['IdPMetadata']['entityid']);
+                $nq = $state['IdPMetadata']['entityid'];
             } else {
                 Logger::warning('No IdP entity ID, unable to set NameQualifier.');
             }
         } elseif (is_string($this->nameQualifier)) {
-            $nameId->setNameQualifier($this->nameQualifier);
+            $nq = $this->nameQualifier;
         }
 
         if ($this->spNameQualifier === true) {
             if (isset($state['SPMetadata']['entityid'])) {
-                $nameId->setSPNameQualifier($state['SPMetadata']['entityid']);
+                $spnq = $state['SPMetadata']['entityid'];
             } else {
                 Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
             }
         } elseif (is_string($this->spNameQualifier)) {
-            $nameId->setSPNameQualifier($this->spNameQualifier);
+            $spnq = $this->spNameQualifier;
         }
+
+        $nameId = new NameID(
+            value: $value,
+            Format: $this->format,
+            NameQualifier: $nq,
+            SPNameQualifier: $spnq,
+        );
 
         /** @psalm-suppress PossiblyNullArrayOffset */
         $state['saml:NameID'][$this->format] = $nameId;

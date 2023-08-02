@@ -72,6 +72,6 @@ class PersistentNameID2TargetedID extends Auth\ProcessingFilter
         /** @var \SimpleSAML\SAML2\XML\saml\NameID $nameID */
         $nameID = $state['saml:NameID'][C::NAMEID_PERSISTENT];
 
-        $state['Attributes'][$this->attribute] = [(!$this->nameId) ? $nameID->getValue() : $nameID];
+        $state['Attributes'][$this->attribute] = [(!$this->nameId) ? $nameID->getContent() : $nameID];
     }
 }
