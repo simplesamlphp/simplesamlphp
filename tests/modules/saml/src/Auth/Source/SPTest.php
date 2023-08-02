@@ -241,11 +241,10 @@ class SPTest extends ClearStateTestCase
 
         $ar = $this->createAuthnRequest($state);
 
-        /** @var array $a */
         $a = $ar->getRequestedAuthnContext();
         $this->assertEquals(
             ($state['saml:AuthnContextClassRef'])->getContent(),
-            $a[0]->getContent(),
+            $a->getRequestedAuthnContexts()[0]->getContent(),
         );
 
         $xml = $ar->toSignedXML();
