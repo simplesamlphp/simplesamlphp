@@ -139,6 +139,7 @@ class Test
             $attributes = $authsource->getAttributes();
             $authData = $authsource->getAuthDataArray();
             $nameId = $authsource->getAuthData('saml:sp:NameID') ?? false;
+            $nameId = $nameId ? $nameId->toArray() : $nameId;
 
             $httpUtils = new Utils\HTTP();
             $t = new Template($this->config, 'admin:status.twig');

@@ -47,19 +47,19 @@
         {%  set items = items|merge({'NameID' : 'not set'|trans}) %}
       {% endif %}
 
-      {% if nameid.Format %}
+      {% if nameid.Format is defined %}
         {% set items = items|merge({('Format'|trans) : nameid.Format}) %}
       {% endif %}
 
-      {% if nameid.NameQualifier %}
+      {% if nameid.NameQualifier is defined %}
         {% set items = items|merge({'NameQualifier' : nameid.NameQualifier}) %}
       {% endif %}
 
-      {% if nameid.SPNameQualifier %}
+      {% if nameid.SPNameQualifier is defined %}
         {% set items = items|merge({'SPNameQualifier' : nameid.SPNameQualifier}) %}
       {% endif %}
 
-      {% if nameid.SPProvidedID %}
+      {% if nameid.SPProvidedID is defined %}
         {% set items = items|merge({'SPProvidedID' : nameid.SPProvidedID}) %}
       {%- endif %}
 
