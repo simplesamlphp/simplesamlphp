@@ -69,4 +69,4 @@ admin-fed-converter:
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Federation::metadataConverter'
   }
-  methods: [POST]
+  methods: [GET, POST]
