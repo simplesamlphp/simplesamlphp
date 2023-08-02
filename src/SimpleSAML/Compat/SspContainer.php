@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Compat;
 
+use Beste\Clock\LocalizedClock;
+use DateTimeZone;
+use Psr\Clock\ClockInterface;
 use Psr\Log\LoggerInterface;
 use SimpleSAML\SAML2\Compat\AbstractContainer;
 use SimpleSAML\Utils;
 
 class SspContainer extends AbstractContainer
 {
+    /** @var \Psr\Clock\ClockInterface */
+    private ClockInterface $clock;
+
     /** @var \Psr\Log\LoggerInterface */
     protected LoggerInterface $logger;
 
@@ -92,5 +98,25 @@ class SspContainer extends AbstractContainer
             $mode = 0600;
         }
         $sysUtils->writeFile($filename, $data, $mode);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setBlacklistedAlgorithms(?array $algos): void
+    {
+        $this->blacklistedEncryptionAlgorithms = $algos;
+    }
+
+
+    /**
+     * Get the system clock
+     *
+     * @return \Psr\Clock\ClockInterface
+     */
+    public function getClock(): ClockInterface
+    {
+        return LocalizedClock::in(new DateTimeZone('Z'));
     }
 }

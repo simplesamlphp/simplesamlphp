@@ -199,12 +199,13 @@ class TestTest extends TestCase
 
             public function getAttributes(): array
             {
-                $nameId = new NameID();
-                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
-                $nameId->setSPProvidedID('some:entity');
-                $nameId->setNameQualifier('some name qualifier');
-                $nameId->setSPNameQualifier('some SP name qualifier');
-                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+                $nameId = new NameID(
+                    value: '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
+                    SPProvidedID: 'some:entity',
+                    NameQualifier: 'some name qualifier',
+                    SPNameQualifier: 'some SP name qualifier',
+                    Format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+                );
 
                 /** @psalm-suppress PossiblyNullPropertyFetch */
                 return [
@@ -243,12 +244,13 @@ class TestTest extends TestCase
 
             public function getAuthData(string $name): mixed
             {
-                $nameId = new NameID();
-                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
-                $nameId->setSPProvidedID('some:entity');
-                $nameId->setNameQualifier('some name qualifier');
-                $nameId->setSPNameQualifier('some SP name qualifier');
-                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+                $nameId = new NameID(
+                    value: '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
+                    SPProvidedID: 'some:entity',
+                    NameQualifier: 'some name qualifier',
+                    SPNameQualifier: 'some SP name qualifier',
+                    Format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+                );
 
                 return $nameId;
             }

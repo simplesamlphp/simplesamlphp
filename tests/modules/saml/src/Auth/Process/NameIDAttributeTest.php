@@ -44,11 +44,12 @@ class NameIDAttributeTest extends TestCase
         $idpId = 'eugeneIdP';
 
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(C::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID(
+            value: 'eugene@oombaas',
+            Format: C::NAMEID_PERSISTENT,
+            NameQualifier: $idpId,
+            SPNameQualifier: $spId,
+        );
 
         $request = [
             'Source'     => [
@@ -60,7 +61,7 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getContent()}", $result['Attributes']['nameid'][0]);
     }
 
 
@@ -74,11 +75,12 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(C::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID(
+            value: 'eugene@oombaas',
+            Format: C::NAMEID_PERSISTENT,
+            NameQualifier: $idpId,
+            SPNameQualifier: $spId,
+        );
 
         $request = [
             'Source'     => [
@@ -91,7 +93,7 @@ class NameIDAttributeTest extends TestCase
         ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getContent()}", $result['Attributes'][$attributeName][0]);
     }
 
 
@@ -104,11 +106,12 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(C::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID(
+            value: 'eugene@oombaas',
+            Format: C::NAMEID_PERSISTENT,
+            NameQualifier: $idpId,
+            SPNameQualifier: $spId,
+        );
 
         $request = [
             'Source'     => [
@@ -120,7 +123,7 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$nameId->getValue()}!%", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$nameId->getContent()}!%", $result['Attributes']['nameid'][0]);
     }
 
 
@@ -133,8 +136,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
+        $nameId = new NameID('eugene@oombaas');
 
         $request = [
             'Source'     => [
@@ -187,11 +189,12 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
-        $nameId->setFormat(C::NAMEID_PERSISTENT);
-        $nameId->setNameQualifier($idpId);
-        $nameId->setSPNameQualifier($spId);
+        $nameId = new NameID(
+            value: 'eugene@oombaas',
+            Format: C::NAMEID_PERSISTENT,
+            NameQualifier: $idpId,
+            SPNameQualifier: $spId,
+        );
 
         $request = [
             'Source'     => [
@@ -204,7 +207,7 @@ class NameIDAttributeTest extends TestCase
         ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$nameId->getContent()}", $result['Attributes'][$attributeName][0]);
     }
 
 
@@ -216,8 +219,7 @@ class NameIDAttributeTest extends TestCase
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $nameId = new NameID();
-        $nameId->setValue('eugene@oombaas');
+        $nameId = new NameID('eugene@oombaas');
 
         $request = [
             'Source'     => [
@@ -228,9 +230,11 @@ class NameIDAttributeTest extends TestCase
             ],
             'saml:sp:NameID' => $nameId,
         ];
-        $this->processFilter([], $request);
+        $result = $this->processFilter([], $request);
+        $nameId = $result['saml:sp:NameID'];
+
         $this->assertEquals("{$nameId->getFormat()}", C::NAMEID_UNSPECIFIED);
-        $this->assertEquals("{$nameId->getNameQualifier()}", $idpId);
-        $this->assertEquals("{$nameId->getSPNameQualifier()}", $spId);
+        $this->assertEquals("{$nameId->getNameQualifier()}", $spId);
+        $this->assertEquals("{$nameId->getSPNameQualifier()}", $idpId);
     }
 }

@@ -14,7 +14,8 @@ use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequesterID, Scoping};
+use SimpleSAML\SAML2\XML\saml\{AuthnContextClassRef};
+use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequestedAuthnContext, RequesterID, Scoping};
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -22,6 +23,7 @@ use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use function array_intersect;
 use function array_key_exists;
 use function array_keys;
+use function array_map;
 use function call_user_func;
 use function count;
 use function in_array;
@@ -469,6 +471,7 @@ class SP extends Auth\Source
         $accr = null;
         if ($idpMetadata->getOptionalString('AuthnContextClassRef', null) !== null) {
             $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
+            $accr = array_map(fn($value): AuthnContextClassRef => new AuthnContextClassRef($value), $accr);
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
@@ -488,7 +491,9 @@ class SP extends Auth\Source
             ) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
-            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+            $ar->setRequestedAuthnContext(
+                new RequestedAuthnContext($accr, $comp),
+            );
         } elseif (
             $this->passAuthnContextClassRef
             && isset($state['saml:RequestedAuthnContext'])
@@ -534,26 +539,7 @@ class SP extends Auth\Source
 
             $nameId = $state['saml:NameID'];
             if (is_array($nameId)) {
-                // Must be an array > convert to object
-
-                $nid = new NameID();
-                if (!array_key_exists('Value', $nameId)) {
-                    throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
-                }
-
-                $nid->setValue($nameId['Value']);
-                if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
-                    $nid->setNameQualifier($nameId['NameQualifier']);
-                }
-                if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
-                    $nid->setSPNameQualifier($nameId['SPNameQualifier']);
-                }
-                if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
-                    $nid->setSPProvidedID($nameId['SPProvidedID']);
-                }
-                if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
-                    $nid->setFormat($nameId['Format']);
-                }
+                $nid = NameID::fromArray($state['saml:NameID']);
             } else {
                 $nid = $nameId;
             }
