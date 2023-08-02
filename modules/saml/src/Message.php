@@ -535,7 +535,10 @@ class Message
             ], C::COMPARISON_EXACT);
 
             $ar->setRequestedAuthnContext(
-                new RequestedAuthnContext(array_map(fn($value): AuthnContextClassRef => new AuthnContextClassRef($value), $accr), $comp),
+                new RequestedAuthnContext(
+                    array_map(fn($value): AuthnContextClassRef => new AuthnContextClassRef($value), $accr),
+                    $comp,
+                ),
             );
         }
 
