@@ -448,7 +448,7 @@ class SAML2
 
             $RequesterID = $scoping?->getRequesterID();
             if ($RequesterID !== null) {
-                foreach ($requesterID as $k => $rid) {
+                foreach ($RequesterID as $k => $rid) {
                     $rid = $rid->toArray();
                     $RequesterID[$k] = array_pop($rid);
                 }
@@ -675,7 +675,7 @@ class SAML2
             /* Without an issuer we have no way to respond to the message. */
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
         } else {
-            $spEntityId = $issuer->getValue();
+            $spEntityId = $issuer->getContent();
         }
 
         $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
@@ -1223,13 +1223,6 @@ class SAML2
         $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
         $now = $systemClock->now();
 
-        $scd = new SubjectConfirmationData(
-            notBefore: $now,
-            notOnOrAfter: $now->add(new DateInterval(sprintf('PT%dS', $assertionLifetime))),
-            recipient: $state['saml:ConsumerURL'],
-            inResponseTo: $state['saml:RequestId'],
-        );
-
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
         if ($state['saml:Binding'] === C::BINDING_HOK_SSO) {
@@ -1239,6 +1232,7 @@ class SAML2
             $hokAssertion = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', false);
         }
 
+        $children = [];
         if ($hokAssertion) {
             // Holder-of-Key
             $method = C::CM_HOK;
@@ -1255,9 +1249,7 @@ class SAML2
                         );
 
                         $x509Data = new X509Data([$x509Certificate]);
-                        $keyInfo = new KeyInfo([$x509Data]);
-
-                        $scd->addInfo($keyInfo);
+                        $children[] = new KeyInfo([$x509Data]);
                     } else {
                         throw new Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during '
@@ -1278,6 +1270,14 @@ class SAML2
             // Bearer
             $method = C::CM_BEARER;
         }
+
+        $scd = new SubjectConfirmationData(
+            notBefore: $now,
+            notOnOrAfter: $now->add(new DateInterval(sprintf('PT%dS', $assertionLifetime))),
+            recipient: $state['saml:ConsumerURL'],
+            inResponseTo: $state['saml:RequestId'],
+            children: $children,
+        );
 
         $sc = new SubjectConfirmation(
             method: $method,

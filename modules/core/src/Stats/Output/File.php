@@ -37,7 +37,7 @@ class File extends Stats\Output
      * The file handle for the current file.
      * @var resource|null
      */
-    private ?resource $file = null;
+    private $file = null;
 
     /**
      * The current file date.

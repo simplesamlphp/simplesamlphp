@@ -513,10 +513,14 @@ class SP extends Auth\Source
                 )
             ) {
                 // RequestedAuthnContext has been set by an SP behind the proxy so pass it to the upper IdP
-                $ar->setRequestedAuthnContext([
-                    'AuthnContextClassRef' => $state['saml:RequestedAuthnContext']['AuthnContextClassRef'],
-                    'Comparison' => $state['saml:RequestedAuthnContext']['Comparison']
-                ]);
+                $ar->setRequestedAuthnContext(
+                    new RequestedAuthnContext(
+                        [
+                            $state['saml:RequestedAuthnContext']['AuthnContextClassRef'],
+                        ],
+                        $state['saml:RequestedAuthnContext']['Comparison'],
+                    ),
+                );
             }
         }
 

@@ -79,7 +79,7 @@ class WebBrowserSingleSignOn
             throw new Exception("Message received on ArtifactResolutionService wasn't a ArtifactResolve request.");
         }
 
-        $issuer = $request->getIssuer?->getValue();
+        $issuer = $request->getIssuer()?->getContent();
         /** @psalm-assert \SimpleSAML\SAML2\XML\saml\Issuer $issuer */
         Assert::notNull($issuer);
         $spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
@@ -95,8 +95,7 @@ class WebBrowserSingleSignOn
         }
 
         $artifactResponse = new ArtifactResponse();
-        $issuer = new Issuer();
-        $issuer->setValue($idpEntityId);
+        $issuer = new Issuer($idpEntityId);
         $artifactResponse->setIssuer($issuer);
 
         $artifactResponse->setInResponseTo($request->getId());

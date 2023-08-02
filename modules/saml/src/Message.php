@@ -535,7 +535,7 @@ class Message
             ], C::COMPARISON_EXACT);
 
             $ar->setRequestedAuthnContext(
-                new RequestedAuthnContext([new AuthnContextClassRef($accr)], $comp),
+                new RequestedAuthnContext(array_map(fn($value): AuthnContextClassRef => new AuthnContextClassRef($value), $accr), $comp),
             );
         }
 
@@ -581,9 +581,10 @@ class Message
         Configuration $dstMetadata
     ): LogoutResponse {
         $lr = new LogoutResponse();
-        $issuer = new Issuer();
-        $issuer->setValue($srcMetadata->getString('entityid'));
-        $issuer->setFormat(C::NAMEID_ENTITY);
+        $issuer = new Issuer(
+            value: $srcMetadata->getString('entityid'),
+            Format: C::NAMEID_ENTITY,
+        );
         $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);

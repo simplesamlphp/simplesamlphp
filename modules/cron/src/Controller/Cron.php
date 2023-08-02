@@ -74,7 +74,7 @@ class Cron
             return $response;
         }
 
-        $key = $this->cronconfig->getOptionalString('key', 'secret');
+        $key = $this->cronconfig->getString('key');
         $tags = $this->cronconfig->getOptionalArray('allowed_tags', []);
 
         $def = [
@@ -120,7 +120,7 @@ class Cron
         string $key,
         string $output = 'xhtml',
     ): Template {
-        $configKey = $this->cronconfig->getString('key', 'secret');
+        $configKey = $this->cronconfig->getString('key');
 
         if ($key === 'secret' || $key === 'RANDOM_KEY') {
             // TODO: Replace with condition in route when Symfony 6.1 is available
