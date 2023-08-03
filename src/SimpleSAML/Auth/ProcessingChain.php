@@ -204,7 +204,9 @@ class ProcessingChain
         try {
             while (count($state[self::FILTERS_INDEX]) > 0) {
                 $filter = array_shift($state[self::FILTERS_INDEX]);
-                $filter->process($state);
+                if ($filter->checkPrecondition($state) === true) {
+                    $filter->process($state);
+                }
             }
         } catch (Error\Exception $e) {
             // No need to convert the exception
