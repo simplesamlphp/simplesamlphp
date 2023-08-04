@@ -16,3 +16,8 @@ services:
     arguments:
       - '@SimpleSAML\Configuration'
       - '@SimpleSAML\Session'
+
+  Beste\Clock\LocalizedClock:
+    factory: ['Beste\Clock\LocalizedClock', 'in']
+    arguments:
+      $timeZone: 'Z'

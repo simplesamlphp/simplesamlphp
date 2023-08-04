@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
+use ArgumentCountError;
+use Beste\Clock\LocalizedClock;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
@@ -24,6 +26,9 @@ use function gzdeflate;
  */
 class ServiceProviderTest extends TestCase
 {
+    /** @var \Beste\Clock\LocalizedClock */
+    protected LocalizedClock $clock;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -81,6 +86,8 @@ class ServiceProviderTest extends TestCase
         };
 
         $_SERVER['REQUEST_URI'] = '/dummy';
+
+        $this->clock = LocalizedClock::in('Z');
     }
 
 
@@ -108,7 +115,7 @@ class ServiceProviderTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage('Authsource must be of type saml:SP.');
@@ -128,7 +135,7 @@ class ServiceProviderTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Missing ReturnTo parameter.');
@@ -151,7 +158,7 @@ class ServiceProviderTest extends TestCase
             ['ReturnTo' => 'https://localhost'],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
         $response = $c->login($request, 'phpunit');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -170,7 +177,7 @@ class ServiceProviderTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Missing AuthID to discovery service response handler');
@@ -192,7 +199,7 @@ class ServiceProviderTest extends TestCase
             ['AuthID' => 'abc123']
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Missing idpentityid to discovery service response handler');
@@ -214,7 +221,7 @@ class ServiceProviderTest extends TestCase
             ['AuthID' => 'abc123', 'idpentityid' => 'urn:idp:entity'],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
@@ -242,7 +249,7 @@ class ServiceProviderTest extends TestCase
             ['AuthID' => 'abc123', 'idpentityid' => 'urn:idp:entity'],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
@@ -283,7 +290,7 @@ class ServiceProviderTest extends TestCase
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 
-        $c = new Controller\ServiceProvider($config, $this->session);
+        $c = new Controller\ServiceProvider($config, $this->session, $this->clock);
         $c->setAuthState(new class () extends Auth\State {
             public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
             {
@@ -305,7 +312,7 @@ class ServiceProviderTest extends TestCase
      */
     public function testWrongAuthnContextClassRef(): void
     {
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $result = $c->wrongAuthnContextClassRef();
         $this->assertInstanceOf(Template::class, $result);
@@ -324,7 +331,7 @@ class ServiceProviderTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage("No authentication source with id 'something' found.");
@@ -345,7 +352,7 @@ class ServiceProviderTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Error::class);
         $this->expectExceptionMessage(Error\ErrorCodes::ACSPARAMS);
@@ -371,7 +378,7 @@ class ServiceProviderTest extends TestCase
             ],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\BadRequest::class);
         $this->expectExceptionMessage('Invalid message received at AssertionConsumerService endpoint.');
@@ -395,7 +402,7 @@ class ServiceProviderTest extends TestCase
             ],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\MetadataNotFound::class);
         $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'https://engine.test.surfconext.nl/authentication/idp/metadata')");
@@ -416,7 +423,7 @@ class ServiceProviderTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage("No authentication source with id 'something' found.");
@@ -437,7 +444,7 @@ class ServiceProviderTest extends TestCase
             'PUT'
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Error::class);
         $this->expectExceptionMessage(Error\ErrorCodes::SLOSERVICEPARAMS);
@@ -488,7 +495,7 @@ XML;
             ],
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\MetadataNotFound::class);
         $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'TheIssuer')");
@@ -520,7 +527,7 @@ XML;
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($config, $this->session);
+        $c = new Controller\ServiceProvider($config, $this->session, $this->clock);
         // Bypass authentication - mock being authenticated
         $c->setAuthUtils($this->authUtils);
 
@@ -555,7 +562,7 @@ XML;
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $this->expectException(Error\Error::class);
         $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
@@ -572,7 +579,7 @@ XML;
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $result = $c->metadata($request, 'phpunit');
         $this->assertEquals('application/samlmetadata+xml', $result->headers->get('Content-Type'));
@@ -592,7 +599,7 @@ XML;
             'GET',
         );
 
-        $c = new Controller\ServiceProvider($this->config, $this->session);
+        $c = new Controller\ServiceProvider($this->config, $this->session, $this->clock);
 
         $result = $c->metadata($request, 'phpunit');
         $this->assertTrue($result->headers->has('ETag'));
