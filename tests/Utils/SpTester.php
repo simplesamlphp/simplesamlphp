@@ -8,6 +8,8 @@ use ReflectionObject;
 use SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest};
 use Symfony\Component\HttpFoundation\Response;
 
 /**

@@ -39,11 +39,11 @@ $config = [
 
         /*
          * If SP behind the SimpleSAMLphp in IdP/SP proxy mode requests
-         * AuthnContextClassRef, decide whether the AuthnContextClassRef will be
+         * RequestedAuthnContext, decide whether the RequestdAuthnContext will be
          * processed by the IdP/SP proxy or if it will be passed to the original
          * IdP in front of the IdP/SP proxy.
          */
-        'proxymode.passAuthnContextClassRef' => false,
+        'proxymode.passRequestedAuthnContext' => false,
 
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.

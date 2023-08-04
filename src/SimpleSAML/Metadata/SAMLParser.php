@@ -355,9 +355,9 @@ class SAMLParser
 
         $xmlUtils = new Utils\XML();
         if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntityDescriptor($element));
+            return self::processDescriptorsElement(EntityDescriptor::fromXML($element));
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntitiesDescriptor($element));
+            return self::processDescriptorsElement(EntitiesDescriptor::fromXML($element));
         } else {
             throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }

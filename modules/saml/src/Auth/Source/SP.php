@@ -9,6 +9,8 @@ use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store,
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module\saml\MessageBuilder;
+use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{
@@ -19,8 +21,8 @@ use SimpleSAML\SAML2\Exception\Protocol\{
 };
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\SAML2\XML\saml\{AuthnContextClassRef};
-use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequestedAuthnContext, RequesterID, Scoping};
+use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest};
+use SimpleSAML\SAML2\XML\samlp\Extensions;
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -134,11 +136,6 @@ class SP extends Auth\Source
         $this->entityId = $entityId;
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
-        $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
-        $this->passAuthnContextClassRef = $this->metadata->getOptionalBoolean(
-            'proxymode.passAuthnContextClassRef',
-            false
-        );
     }
 
 
@@ -468,9 +465,12 @@ class SP extends Auth\Source
             );
         }
 
-        $ar = Module\saml\Message::buildAuthnRequest($this->metadata, $idpMetadata);
+        // save IdP entity ID as part of the state
+        $state['ExpectedIssuer'] = $idpMetadata->getString('entityID');
+        Auth\State::saveState($state, 'saml:sp:sso', true);
 
-        $ar->setAssertionConsumerServiceURL(Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
+        $builder = new MessageBuilder($this->metadata, $idpMetadata, $state);
+        $ar = $builder->buildAuthnRequest($this->authId);
 
         if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
@@ -635,7 +635,7 @@ class SP extends Auth\Source
         $ar->setId($id);
 
         Logger::debug(
-            'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), true)
+            'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityID'), true)
         );
 
         // Select appropriate SSO endpoint
@@ -665,7 +665,6 @@ class SP extends Auth\Source
                 ]
             );
         }
-        $ar->setDestination($dst['Location']);
 
         $b = Binding::getBinding($dst['Binding']);
 
