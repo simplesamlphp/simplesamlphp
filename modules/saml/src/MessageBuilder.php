@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml;
 use Beste\Clock\LocalizedClock;
 use DateTimeZone;
 use Psr\Clock\ClockInterface;
-use SimpleSAML\{Configuration, Logger, Module, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\State;
 use SimpleSAML\SAML2\Constants as C;
@@ -15,13 +15,17 @@ use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\{NameID, Subject}; // Subject
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\{Conditions, AudienceRestriction, Audience}; // Conditions
-use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
-use SimpleSAML\SAML2\XML\samlp\AuthnRequest; // Messages
+use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest}; // Messages
 use SimpleSAML\SAML2\XML\samlp\{Extensions, NameIDPolicy};
 use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList, RequesterID, Scoping};
-use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
+use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
+use SimpleSAML\SAML2\XML\samlp\SessionIndex;
+use SimpleSAML\XMLSecurity\Alg\Encryption\EncryptionAlgorithmFactory;
+use SimpleSAML\XMLSecurity\Alg\KeyTransport\KeyTransportAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Key\PrivateKey;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
+use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_map;
 use function sprintf;
@@ -81,7 +85,7 @@ class MessageBuilder
             C::BINDING_HTTP_ARTIFACT,
             C::BINDING_HTTP_REDIRECT,
         ], C::BINDING_HTTP_POST);
-        $destination = $this->getDestination($protocolBinding);
+        $destination = $this->getSSODestination($protocolBinding);
 
         $authnRequest = new AuthnRequest(
             id: $this->state[State::ID],
@@ -113,24 +117,44 @@ class MessageBuilder
     /**
      * Build an LogoutRequest
      *
-     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest
+     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest|null
      */
-    public function buildLogoutRequest(): LogoutRequest
+    public function buildLogoutRequest(): ?LogoutRequest
     {
+        $destination = $this->getSLODestination();
+        if ($destination === null) {
+            return null;
+        }
+
+        $identifier = $this->state['saml:logout:NameID'];
+        if ($this->hasNameIDEncryption()) {
+            $identifier = $this->encryptIdentifier($identifier);
+        }
+
+        $sessionIndex = $this->state['saml:logout:SessionIndex'];
+        Assert::isArray($sessionIndex);
+        Assert::allIsInstanceOf($sessionIndex, SessionIndex::class);
+
+        $extensions = $this->getLogoutExtensions();
         $issuer = new Issuer(
             value: $this->srcMetadata->getString('entityid'),
             Format: C::NAMEID_ENTITY,
         );
 
-        $lr = new LogoutRequest(
+        $logoutRequest = new LogoutRequest(
+            issueInstant: $this->clock->now(),
+            sessionIndexes: $sessionIndex,
+            identifier: $identifier,
+            destination: $destination,
             issuer: $issuer,
+            extensions: $extensions,
         );
 
         if ($this->hasRedirectSign() || $this->hasSignLogout()) {
-            $this->signMessage($authnRequest);
+            $this->signMessage($logoutRequest);
         }
 
-        return $authnRequest;
+        return $logoutRequest;
     }
 
 
@@ -146,15 +170,55 @@ class MessageBuilder
             Format: C::NAMEID_ENTITY,
         );
 
-        $lr = new LogoutResponse(
+        $logoutResponse = new LogoutResponse(
             issuer: $issuer,
         );
 
         if ($this->hasRedirectSign() || $this->hasSignLogout()) {
-            $this->signMessage($authnRequest);
+            $this->signMessage($logoutResponse);
         }
 
-        return $authnRequest;
+        return $logoutResponse;
+    }
+
+
+    /**
+     * @param \SimpleSAML\SAML2\XML\saml\IdentifierInterface $identifier
+     * @return \SimpleSAML\SAML2\XML\saml\EncryptedID
+     */
+    protected function encryptIdentifier(IdentifierInterface $identifier): EncryptedID
+    {
+        if ($this->dstMetadata->hasValue('sharedkey')) {
+            $encryptor = (new EncryptionAlgorithmFactory())->getAlgorithm(
+                $this->dstMetadata->getOptionalString('sharedkey_algorithm', C::BLOCK_ENC_AES128_GCM),
+                new SymmetricKey($this->dstMetadata->getString('sharedkey'))
+            );
+        } else {
+            $keys = $metadata->getPublicKeys('encryption', true);
+            $publicKey = null;
+
+            foreach ($keys as $key) {
+                switch ($key['type']) {
+                    case 'X509Certificate':
+                        $publicKey = PublicKey::fromFile($key['X509Certificate']);
+                        break 2;
+                }
+            }
+
+            if ($publicKey === null) {
+                throw new Error\Exception(sprintf(
+                    'No supported encryption key in %s',
+                    var_export($metadata->getString('entityid'), true),
+                ));
+            }
+
+            $encryptor = (new KeyTransportAlgorithmFactory())->getAlgorithm(
+                C::KEY_TRANSPORT_OAEP_MGF1P, // @TODO: Configurable algo
+                $publicKey,
+            );
+        }
+
+        return $identifier->encrypt($encryptor);
     }
 
 
@@ -193,6 +257,22 @@ class MessageBuilder
                 ]),
             ),
         );
+    }
+
+
+    /**
+     * Whether or not nameid.encryption is set and true
+     *
+     * @return bool
+     */
+    private function hasNameIDEncryption(): bool
+    {
+        $enabled = $this->dstMetadata->getOptionalBoolean('nameid.encryption', null);
+        if ($enabled === null) {
+            $enabled = $this->srcMetadata->getOptionalBoolean('nameid.encryption', false);
+        }
+
+        return $enabled;
     }
 
 
@@ -291,9 +371,36 @@ class MessageBuilder
 
 
     /**
-     * This method parses the different possible config values of the Destination
+     * This method parses the different possible config values of the Destination for the SingleLogoutService
      */
-    private function getDestination(string $protocolBinding): string
+    private function getSLODestination(): ?string
+    {
+        $dst = $this->dstMetadata->getEndpointPrioritizedByBinding(
+            'SingleLogoutService',
+            [
+                C::BINDING_HTTP_REDIRECT,
+                C::BINDING_HTTP_POST
+            ],
+            false
+        );
+
+        if ($dst === false) {
+            Logger::info(sprintf(
+                'No logout endpoint for IdP %s.',
+                var_export($this->state['saml:logout:IdP'], true),
+            ));
+
+            return null;
+        }
+
+        return $dst['Location'];
+    }
+
+
+    /**
+     * This method parses the different possible config values of the Destination for the SingleSignOnService
+     */
+    private function getSSODestination(string $protocolBinding): string
     {
         // Select appropriate SSO endpoint
         if ($protocolBinding === C::BINDING_HOK_SSO) {
@@ -359,6 +466,21 @@ class MessageBuilder
             IDPList: $this->getIDPList(),
             requesterId: $this->getRequesterID(),
         );
+    }
+
+
+    /**
+     * This method builds the samlp:Extensions if any
+     */
+    private function getLogoutExtensions(): ?Extensions
+    {
+        if (!empty($this->state['saml:logout:Extensions'])) {
+            return new Extensions($this->state['saml:logout:Extensions']);
+        } elseif ($this->srcMetadata->hasValue('saml:logout:Extensions')) {
+            return new Extensions($this->srcMetadata->getArray('saml:logout:Extensions'));
+        }
+
+        return null;
     }
 
 

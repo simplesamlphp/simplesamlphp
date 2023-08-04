@@ -27,11 +27,6 @@ use function var_export;
 class MetaDataStorageHandler implements ClearableState
 {
     /**
-     * The configuration
-     */
-    protected Configuration $globalConfig;
-
-    /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
      * we haven't instantiated a metadata handler yet.
@@ -71,17 +66,16 @@ class MetaDataStorageHandler implements ClearableState
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
      */
-    protected function __construct(Configuration $globalConfig)
-    {
-        $this->globalConfig = $globalConfig;
-
+    protected function __construct(
+        protected Configuration $globalConfig
+    ) {
         $sourcesConfig = $this->globalConfig->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
 
-        try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
+        try {
         } catch (Exception $e) {
             throw new Exception(
-                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage()
+                sprintf("Invalid configuration of the 'metadata.sources' configuration option: %s", $e->getMessage()),
             );
         }
     }
