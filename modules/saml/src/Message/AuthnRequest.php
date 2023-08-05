@@ -2,58 +2,47 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\saml;
+namespace SimpleSAML\Module\saml\Message;
 
-use Beste\Clock\LocalizedClock;
-use DateTimeZone;
-use Psr\Clock\ClockInterface;
-use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\State;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+use SimpleSAML\Module\saml\AbstractMessage;
+use SimpleSAML\Utils;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\Issuer;
-use SimpleSAML\SAML2\XML\saml\{NameID, Subject}; // Subject
-use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
-use SimpleSAML\SAML2\XML\saml\{Conditions, AudienceRestriction, Audience}; // Conditions
-use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest}; // Messages
+use SimpleSAML\SAML2\XML\samlp\AuthnRequest as SAML2_AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\{Extensions, NameIDPolicy};
 use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList, RequesterID, Scoping};
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
-use SimpleSAML\SAML2\XML\samlp\SessionIndex;
-use SimpleSAML\XMLSecurity\Alg\Encryption\EncryptionAlgorithmFactory;
-use SimpleSAML\XMLSecurity\Alg\KeyTransport\KeyTransportAlgorithmFactory;
-use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
-use SimpleSAML\XMLSecurity\Key\PrivateKey;
-use SimpleSAML\XMLSecurity\Key\SymmetricKey;
-use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_map;
 use function sprintf;
 use function var_export;
 
 /**
- * Common code for building SAML 2 messages based on the available metadata.
+ * Class building SAML 2.0 AuthnRequest based on the available metadata.
  *
  * @package SimpleSAMLphp
  */
-class MessageBuilder
+final class AuthnRequest extends AbstractMessage
 {
-    /** @var \Psr\Clock\ClockInterface */
-    private ClockInterface $clock;
-
     /**
      * Constructor.
      *
      * @param \SimpleSAML\Configuration $srcMetadata The source metadata
      * @param \SimpleSAML\Configuration $dstMetadata The destination metadata
      * @param array $state The current state
+     * @param string $authId
      */
     public function __construct(
-        protected Configuration $srcMetadata,
-        protected Configuration $dstMetadata,
-        protected array $state
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
+        array $state,
+        protected string $authId
     ) {
-        $this->clock = LocalizedClock::in(new DateTimeZone('Z'));
+        parent::__construct($srcMetadata, $dstMetadata, $state);
     }
 
 
@@ -63,7 +52,7 @@ class MessageBuilder
      * @param string $authId  The ID if the saml:SP authentication source
      * @return \SimpleSAML\SAML2\XML\samlp\AuthnRequest
      */
-    public function buildAuthnRequest(string $authId): AuthnRequest
+    public function buildMessage(): SAML2_AuthnRequest
     {
         $requestedAuthnContext = $this->getRequestedAuthnContext();
         $nameIDPolicy = $this->getNameIDPolicy();
@@ -75,7 +64,7 @@ class MessageBuilder
         $scoping = $this->getScoping();
 
         $issuer = new Issuer($this->srcMetadata->getString('entityID'));
-        $assertionConsumerServiceURL = Module::getModuleURL('saml/sp/saml2-acs.php/' . $authId);
+        $assertionConsumerServiceURL = Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId);
         $assertionConsumerServiceIdx = $this->srcMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null);
         $attributeConsumingServiceIdx = $this->srcMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null);
         $providerName = $this->srcMetadata->getOptionalString("ProviderName", null);
@@ -85,9 +74,9 @@ class MessageBuilder
             C::BINDING_HTTP_ARTIFACT,
             C::BINDING_HTTP_REDIRECT,
         ], C::BINDING_HTTP_POST);
-        $destination = $this->getSSODestination($protocolBinding);
+        $destination = $this->getDestination($protocolBinding);
 
-        $authnRequest = new AuthnRequest(
+        $authnRequest = new SAML2_AuthnRequest(
             id: $this->state[State::ID],
             issueInstant: $this->clock->now(),
             requestedAuthnContext: $requestedAuthnContext,
@@ -115,184 +104,6 @@ class MessageBuilder
 
 
     /**
-     * Build an LogoutRequest
-     *
-     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest|null
-     */
-    public function buildLogoutRequest(): ?LogoutRequest
-    {
-        $destination = $this->getSLODestination();
-        if ($destination === null) {
-            return null;
-        }
-
-        $identifier = $this->state['saml:logout:NameID'];
-        if ($this->hasNameIDEncryption()) {
-            $identifier = $this->encryptIdentifier($identifier);
-        }
-
-        $sessionIndex = $this->state['saml:logout:SessionIndex'];
-        Assert::isArray($sessionIndex);
-        Assert::allIsInstanceOf($sessionIndex, SessionIndex::class);
-
-        $extensions = $this->getLogoutExtensions();
-        $issuer = new Issuer(
-            value: $this->srcMetadata->getString('entityid'),
-            Format: C::NAMEID_ENTITY,
-        );
-
-        $logoutRequest = new LogoutRequest(
-            issueInstant: $this->clock->now(),
-            sessionIndexes: $sessionIndex,
-            identifier: $identifier,
-            destination: $destination,
-            issuer: $issuer,
-            extensions: $extensions,
-        );
-
-        if ($this->hasRedirectSign() || $this->hasSignLogout()) {
-            $this->signMessage($logoutRequest);
-        }
-
-        return $logoutRequest;
-    }
-
-
-    /**
-     * Build an LogoutResponse
-     *
-     * @return \SimpleSAML\SAML2\XML\samlp\LogoutResponse
-     */
-    public function buildLogoutResponse(): LogoutResponse
-    {
-        $issuer = new Issuer(
-            value: $this->srcMetadata->getString('entityid'),
-            Format: C::NAMEID_ENTITY,
-        );
-
-        $logoutResponse = new LogoutResponse(
-            issuer: $issuer,
-        );
-
-        if ($this->hasRedirectSign() || $this->hasSignLogout()) {
-            $this->signMessage($logoutResponse);
-        }
-
-        return $logoutResponse;
-    }
-
-
-    /**
-     * @param \SimpleSAML\SAML2\XML\saml\IdentifierInterface $identifier
-     * @return \SimpleSAML\SAML2\XML\saml\EncryptedID
-     */
-    protected function encryptIdentifier(IdentifierInterface $identifier): EncryptedID
-    {
-        if ($this->dstMetadata->hasValue('sharedkey')) {
-            $encryptor = (new EncryptionAlgorithmFactory())->getAlgorithm(
-                $this->dstMetadata->getOptionalString('sharedkey_algorithm', C::BLOCK_ENC_AES128_GCM),
-                new SymmetricKey($this->dstMetadata->getString('sharedkey'))
-            );
-        } else {
-            $keys = $metadata->getPublicKeys('encryption', true);
-            $publicKey = null;
-
-            foreach ($keys as $key) {
-                switch ($key['type']) {
-                    case 'X509Certificate':
-                        $publicKey = PublicKey::fromFile($key['X509Certificate']);
-                        break 2;
-                }
-            }
-
-            if ($publicKey === null) {
-                throw new Error\Exception(sprintf(
-                    'No supported encryption key in %s',
-                    var_export($metadata->getString('entityid'), true),
-                ));
-            }
-
-            $encryptor = (new KeyTransportAlgorithmFactory())->getAlgorithm(
-                C::KEY_TRANSPORT_OAEP_MGF1P, // @TODO: Configurable algo
-                $publicKey,
-            );
-        }
-
-        return $identifier->encrypt($encryptor);
-    }
-
-
-    /**
-     * @param \SimpleSAML\SAML2\XML\saml\AbstractMessage $message
-     * @return \SimpleSAML\SAML2\XML\saml\AbstractMessage
-     */
-    protected function signMessage(AbstractMessage $message): AbstractMessage
-    {
-        $dstPrivateKey = $this->dstMetadata->getOptionalString('signature.privatekey', null);
-        $cryptoUtils = new Utils\Crypto();
-
-        if ($dstPrivateKey !== null) {
-            /** @var array $keyArray */
-            $keyArray = $cryptoUtils->loadPrivateKey($this->dstMetadata, true, 'signature.');
-            $certArray = $cryptoUtils->loadPublicKey($this->dstMetadata, false, 'signature.');
-        } else {
-            /** @var array $keyArray */
-            $keyArray = $cryptoUtils->loadPrivateKey($this->srcMetadata, true);
-            $certArray = $cryptoUtils->loadPublicKey($this->srcMetadata, false);
-        }
-
-        $algo = $dstMetadata->getOptionalString('signature.algorithm', null);
-        if ($algo === null) {
-            $algo = $srcMetadata->getOptionalString('signature.algorithm', C::SIG_RSA_SHA256);
-        }
-
-        $key = PrivateKey::fromFile($keyArray['PEM'], $keyArray['password'] ?? '');
-        $signer = (new SignatureAlgorithmFactory())->getAlgorithm($algo, $key);
-
-        return $message->sign(
-            $signer,
-            new KeyInfo(
-                new X509Data([
-                    new X509Certificate($certArray['PEM']),
-                ]),
-            ),
-        );
-    }
-
-
-    /**
-     * Whether or not nameid.encryption is set and true
-     *
-     * @return bool
-     */
-    private function hasNameIDEncryption(): bool
-    {
-        $enabled = $this->dstMetadata->getOptionalBoolean('nameid.encryption', null);
-        if ($enabled === null) {
-            $enabled = $this->srcMetadata->getOptionalBoolean('nameid.encryption', false);
-        }
-
-        return $enabled;
-    }
-
-
-    /**
-     * Whether or not redirect.sign is set and true
-     *
-     * @return bool
-     */
-    private function hasRedirectSign(): bool
-    {
-        $enabled = $this->dstMetadata->getOptionalBoolean('redirect.sign', null);
-        if ($enabled === null) {
-            return $this->srcMetadata->getOptionalBoolean('redirect.sign', false);
-        }
-
-        return $enabled;
-    }
-
-
-    /**
      * Whether or not sign.authnRequest is set and true
      *
      * @return bool
@@ -302,22 +113,6 @@ class MessageBuilder
         $enabled = $this->srcMetadata->getOptionalBoolean('sign.authnrequest', null);
         if ($enabled === null) {
             return $this->dstMetadata->getOptionalBoolean('sign.authnrequest', false);
-        }
-
-        return $enabled;
-    }
-
-
-    /**
-     * Whether or not sign.logout is set and true. Concerns both LogoutRequest and LogoutResponse
-     *
-     * @return bool
-     */
-    private function hasSignLogout(): bool
-    {
-        $enabled = $this->srcMetadata->getOptionalBoolean('sign.logout', null);
-        if ($enabled === null) {
-            return $this->dstMetadata->getOptionalBoolean('sign.logout', false);
         }
 
         return $enabled;
@@ -371,36 +166,9 @@ class MessageBuilder
 
 
     /**
-     * This method parses the different possible config values of the Destination for the SingleLogoutService
-     */
-    private function getSLODestination(): ?string
-    {
-        $dst = $this->dstMetadata->getEndpointPrioritizedByBinding(
-            'SingleLogoutService',
-            [
-                C::BINDING_HTTP_REDIRECT,
-                C::BINDING_HTTP_POST
-            ],
-            false
-        );
-
-        if ($dst === false) {
-            Logger::info(sprintf(
-                'No logout endpoint for IdP %s.',
-                var_export($this->state['saml:logout:IdP'], true),
-            ));
-
-            return null;
-        }
-
-        return $dst['Location'];
-    }
-
-
-    /**
      * This method parses the different possible config values of the Destination for the SingleSignOnService
      */
-    private function getSSODestination(string $protocolBinding): string
+    private function getDestination(string $protocolBinding): string
     {
         // Select appropriate SSO endpoint
         if ($protocolBinding === C::BINDING_HOK_SSO) {
@@ -472,21 +240,6 @@ class MessageBuilder
     /**
      * This method builds the samlp:Extensions if any
      */
-    private function getLogoutExtensions(): ?Extensions
-    {
-        if (!empty($this->state['saml:logout:Extensions'])) {
-            return new Extensions($this->state['saml:logout:Extensions']);
-        } elseif ($this->srcMetadata->hasValue('saml:logout:Extensions')) {
-            return new Extensions($this->srcMetadata->getArray('saml:logout:Extensions'));
-        }
-
-        return null;
-    }
-
-
-    /**
-     * This method builds the samlp:Extensions if any
-     */
     private function getExtensions(): ?Extensions
     {
         // If the downstream SP has set extensions then use them.
@@ -502,66 +255,7 @@ class MessageBuilder
 
 
     /**
-     * This method builds the saml:Subject if any
-     */
-    private function getSubject(): ?Subject
-    {
-        $identifier = null;
-
-        if (isset($this->state['saml:NameID'])) {
-            Assert::isInstanceOf($this->state['saml:NameID'], NameID::class);
-            $identifier = $this->state['saml:NameID'];
-        }
-
-        if ($identifier !== null) {
-            return new Subject($identifier);
-        }
-
-        return null;
-    }
-
-
-    /**
-     * This method builds the saml:Conditions if any
-     */
-    private function getConditions(): ?Conditions
-    {
-        $audienceRestriction = $this->getAudienceRestriction();
-
-        if ($audienceRestriction !== null) {
-            return new Conditions(
-                audienceRestriction: $audienceRestriction,
-            );
-        }
-
-        return null;
-    }
-
-
-    /**
-     * This method parses the different possible config values of the saml:AudienceRestriction
-     */
-    private function getAudienceRestriction(): ?AudienceRestriction
-    {
-        $audience = null;
-        if (isset($this->state['saml:Audience'])) {
-            Assert::allIsInstanceOf($this->state['saml:Audience'], Audience::class);
-            $audience = $this->state['saml:Audience'];
-        } elseif ($this->srcMetadata->hasValue('saml:Audience')) {
-            $audience = $this->srcMetadata->getArrayizeString('saml:Audience');
-            $audience = array_map(fn($value): Audience => new Audience($value), $audience);
-        }
-
-        if (!empty($audience)) { // Covers both null and the empty array
-            return new AudienceRestriction($audience);
-        }
-
-        return null;
-    }
-
-
-    /**
-     * This method parses the different possible config values of ForceAuthn.
+     * This method parses the different possible config values of ForceAuthn
      */
     private function getForceAuthn(): ?bool
     {

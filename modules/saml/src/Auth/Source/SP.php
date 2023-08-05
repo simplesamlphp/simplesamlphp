@@ -9,7 +9,7 @@ use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store,
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module\saml\MessageBuilder;
+use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
@@ -469,8 +469,8 @@ class SP extends Auth\Source
         $state['ExpectedIssuer'] = $idpMetadata->getString('entityID');
         Auth\State::saveState($state, 'saml:sp:sso', true);
 
-        $builder = new MessageBuilder($this->metadata, $idpMetadata, $state);
-        $ar = $builder->buildAuthnRequest($this->authId);
+        $builder = new Message\AuthnRequest($this->metadata, $idpMetadata, $state, $this->authId);
+        $ar = $builder->buildMessage();
 
         if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
@@ -677,8 +677,8 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\AuthnRequest $ar  The authentication request.
+     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
+     * @param \SimpleSAML\SAML2\XML\samlp\AuthnRequest $ar  The authentication request.
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
@@ -693,14 +693,13 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\LogoutRequest  $ar  The logout request.
+     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
+     * @param \SimpleSAML\SAML2\XML\samlp\LogoutRequest  $ar  The logout request.
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
-        $response = $binding->send($lr);
-        $httpFoundationFactory = new HttpFoundationFactory();
-        return new RunnableResponse([$httpFoundationFactory, 'createResponse'], [$response]);
+        $psrResponse = $binding->send($lr);
+        return (new HttpFoundationFactory())->createResponse($psrResponse);
     }
 
 
@@ -1085,33 +1084,8 @@ class SP extends Auth\Source
             return null;
         }
 
-        $lr = Module\saml\Message::buildLogoutRequest($this->metadata, $idpMetadata);
-
-        $tmp = new \SAML2\XML\saml\NameID();
-        $tmp->setValue($nameId->getContent());
-        $tmp->setFormat($nameId->getFormat());
-        $tmp->setNameQualifier($nameId->getNameQualifier());
-        $tmp->setSPNameQualifier($nameId->getSPNameQualifier());
-        $tmp->setSPProvidedID($nameId->getSPProvidedID());
-
-        $lr->setNameId($tmp);
-        $lr->setSessionIndex($sessionIndex);
-        $lr->setRelayState($id);
-        $lr->setDestination($endpoint['Location']);
-
-        if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
-            $lr->setExtensions([new Extensions($state['saml:logout:Extensions'])]);
-        } elseif ($this->metadata->getOptionalArray('saml:logout:Extensions', null) !== null) {
-            $lr->setExtensions([new Extensions($this->metadata->getArray('saml:logout:Extensions'))]);
-        }
-
-        $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', null);
-        if ($encryptNameId === null) {
-            $encryptNameId = $this->metadata->getOptionalBoolean('nameid.encryption', false);
-        }
-        if ($encryptNameId) {
-            $lr->encryptNameId(Module\saml\Message::getEncryptionKey($idpMetadata));
-        }
+        $builder = new Message\LogoutRequest($this->metadata, $idpMetadata, $state);
+        $lr = $builder->buildMessage();
 
         $b = Binding::getBinding($endpoint['Binding']);
 
