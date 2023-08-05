@@ -666,9 +666,15 @@ class SP extends Auth\Source
             );
         }
 
-        $b = Binding::getBinding($dst['Binding']);
+        $binding = Binding::getBinding($dst['Binding']);
 
-        $this->sendSAML2AuthnRequest($b, $ar);
+        if (!($binding instanceof HTTPRedirect)) {
+            if ($builder->hasRedirectSign() || $builder->hasSignAuthnRequest()) {
+                $ar = $builder->signMessage($ar);
+            }
+        }
+
+        return $this->sendSAML2AuthnRequest($binding, $ar);
     }
 
 
@@ -1087,9 +1093,14 @@ class SP extends Auth\Source
         $builder = new Message\LogoutRequest($this->metadata, $idpMetadata, $state);
         $lr = $builder->buildMessage();
 
-        $b = Binding::getBinding($endpoint['Binding']);
+        $binding = Binding::getBinding($endpoint['Binding']);
+        if (!($binding instanceof HTTPRedirect)) {
+            if ($builder->hasRedirectSign() || $builder->hasSignLogout()) {
+                $lr = $builder->signMessage($lr);
+            }
+        }
 
-        return $this->sendSAML2LogoutRequest($b, $lr);
+        return $this->sendSAML2LogoutRequest($binding, $lr);
     }
 
 

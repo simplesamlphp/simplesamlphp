@@ -64,27 +64,7 @@ final class LogoutRequest extends AbstractMessage
             extensions: $extensions,
         );
 
-        if ($this->hasRedirectSign() || $this->hasSignLogout()) {
-            $this->signMessage($logoutRequest);
-        }
-
         return $logoutRequest;
-    }
-
-
-    /**
-     * Whether or not sign.logout is set and true. Concerns both LogoutRequest and LogoutResponse
-     *
-     * @return bool
-     */
-    private function hasSignLogout(): bool
-    {
-        $enabled = $this->srcMetadata->getOptionalBoolean('sign.logout', null);
-        if ($enabled === null) {
-            return $this->dstMetadata->getOptionalBoolean('sign.logout', false);
-        }
-
-        return $enabled;
     }
 
 

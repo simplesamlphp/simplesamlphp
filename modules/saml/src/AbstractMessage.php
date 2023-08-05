@@ -95,7 +95,7 @@ abstract class AbstractMessage
      * @param \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message
      * @return \SimpleSAML\SAML2\XML\samlp\AbstractMessage
      */
-    protected function signMessage(AbstractMessage $message): AbstractMessage
+    public function signMessage(SAML2_Message $message): SAML2_Message
     {
         $dstPrivateKey = $this->dstMetadata->getOptionalString('signature.privatekey', null);
         $cryptoUtils = new Utils\Crypto();
@@ -110,9 +110,9 @@ abstract class AbstractMessage
             $certArray = $cryptoUtils->loadPublicKey($this->srcMetadata, false);
         }
 
-        $algo = $dstMetadata->getOptionalString('signature.algorithm', null);
+        $algo = $this->dstMetadata->getOptionalString('signature.algorithm', null);
         if ($algo === null) {
-            $algo = $srcMetadata->getOptionalString('signature.algorithm', C::SIG_RSA_SHA256);
+            $algo = $this->srcMetadata->getOptionalString('signature.algorithm', C::SIG_RSA_SHA256);
         }
 
         $key = PrivateKey::fromFile($keyArray['PEM'], $keyArray['password'] ?? '');
@@ -120,14 +120,15 @@ abstract class AbstractMessage
 
         $keyInfo = null;
         if ($certArray !== null) {
-            $keyInfo = new KeyInfo(
+            $keyInfo = new KeyInfo([
                 new X509Data([
-                    new X509Certificate($certArray['PEM']),
+                    new X509Certificate($certArray['certData']),
                 ]),
-            );
+            ]);
         }
 
-        return $message->sign($signer, $keyInfo);
+        $message->sign($signer, C::C14N_EXCLUSIVE_WITHOUT_COMMENTS, $keyInfo);
+        return $message;
     }
 
 
@@ -152,11 +153,27 @@ abstract class AbstractMessage
      *
      * @return bool
      */
-    protected function hasRedirectSign(): bool
+    public function hasRedirectSign(): bool
     {
         $enabled = $this->dstMetadata->getOptionalBoolean('redirect.sign', null);
         if ($enabled === null) {
             return $this->srcMetadata->getOptionalBoolean('redirect.sign', false);
+        }
+
+        return $enabled;
+    }
+
+
+    /**
+     * Whether or not sign.logout is set and true. Concerns both LogoutRequest and LogoutResponse
+     *
+     * @return bool
+     */
+    public function hasSignLogout(): bool
+    {
+        $enabled = $this->srcMetadata->getOptionalBoolean('sign.logout', null);
+        if ($enabled === null) {
+            return $this->dstMetadata->getOptionalBoolean('sign.logout', false);
         }
 
         return $enabled;

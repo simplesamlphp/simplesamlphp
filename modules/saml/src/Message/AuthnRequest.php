@@ -94,10 +94,6 @@ final class AuthnRequest extends AbstractMessage
             destination: $destination,
         );
 
-        if ($this->hasRedirectSign() || $this->hasSignAuthnRequest()) {
-            $this->signMessage($authnRequest);
-        }
-
         return $authnRequest;
     }
 
@@ -107,7 +103,7 @@ final class AuthnRequest extends AbstractMessage
      *
      * @return bool
      */
-    private function hasSignAuthnRequest(): bool
+    public function hasSignAuthnRequest(): bool
     {
         $enabled = $this->srcMetadata->getOptionalBoolean('sign.authnrequest', null);
         if ($enabled === null) {
