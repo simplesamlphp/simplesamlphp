@@ -30,9 +30,9 @@ final class LogoutRequest extends AbstractMessage
      * Build an authentication request based on information in the metadata.
      *
      * @param string $authId  The ID if the saml:SP authentication source
-     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest
+     * @return \SimpleSAML\SAML2\XML\samlp\LogoutRequest|null
      */
-    public function buildMessage(): SAML2_LogoutRequest
+    public function buildMessage(): ?SAML2_LogoutRequest
     {
         $destination = $this->getDestination();
         if ($destination === null) {

@@ -6,12 +6,11 @@ namespace SimpleSAML\Module\saml\Message;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\State;
-use SimpleSAML\Configuration;
-use SimpleSAML\Module;
+use SimpleSAML\{Configuration, Logger, Module, Utils};
 use SimpleSAML\Module\saml\AbstractMessage;
-use SimpleSAML\Utils;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest as SAML2_AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\{Extensions, NameIDPolicy};
 use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList, RequesterID, Scoping};
@@ -55,7 +54,7 @@ final class AuthnRequest extends AbstractMessage
     public function buildMessage(): SAML2_AuthnRequest
     {
         $requestedAuthnContext = $this->getRequestedAuthnContext();
-        $nameIDPolicy = $this->getNameIDPolicy();
+        $nameIdPolicy = $this->getNameIDPolicy();
         $forceAuthn = $this->getForceAuthn();
         $isPassive = $this->getIsPassive();
         $conditions = $this->getConditions();
@@ -80,7 +79,7 @@ final class AuthnRequest extends AbstractMessage
             id: $this->state[State::ID],
             issueInstant: $this->clock->now(),
             requestedAuthnContext: $requestedAuthnContext,
-            nameIdPolicy: $nameIDPolicy,
+            nameIdPolicy: $nameIdPolicy,
             forceAuthn: $forceAuthn,
             isPassive: $isPassive,
             conditions: $conditions,
@@ -349,7 +348,7 @@ final class AuthnRequest extends AbstractMessage
     private function getNameIdPolicy(): ?NameIDPolicy
     {
         if (!empty($this->state['saml:NameIDPolicy'])) {
-            Assert::isInstanceOf($nameIdPolicy, NameIDPolicy::class);
+            Assert::isInstanceOf($this->state['saml:NameIDPolicy'], NameIDPolicy::class);
             return $this->state['saml:NameIDPolicy'];
         }
 

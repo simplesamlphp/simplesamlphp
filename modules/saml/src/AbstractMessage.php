@@ -52,14 +52,6 @@ abstract class AbstractMessage
 
 
     /**
-     * Build a Message
-     *
-     * @return \SimpleSAML\SAML2\XML\samlp\AbstractMessage
-     */
-    abstract public function buildMessage(): SAML2_Message;
-
-
-    /**
      * @param \SimpleSAML\SAML2\XML\saml\IdentifierInterface $identifier
      * @return \SimpleSAML\SAML2\XML\saml\EncryptedID
      */
@@ -100,8 +92,8 @@ abstract class AbstractMessage
 
 
     /**
-     * @param \SimpleSAML\SAML2\XML\saml\AbstractMessage $message
-     * @return \SimpleSAML\SAML2\XML\saml\AbstractMessage
+     * @param \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message
+     * @return \SimpleSAML\SAML2\XML\samlp\AbstractMessage
      */
     protected function signMessage(AbstractMessage $message): AbstractMessage
     {
