@@ -29,6 +29,7 @@ use SimpleSAML\SAML2\XML\md\NameIDFormat;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\SAML2\XML\md\RequestedAttribute;
 use SimpleSAML\SAML2\XML\md\ServiceDescription;
 use SimpleSAML\SAML2\XML\md\ServiceName;
 use SimpleSAML\SAML2\XML\md\SingleLogoutService;
@@ -394,7 +395,7 @@ class MetadataBuilder
         }
 
         $attributesrequired = $this->metadata->getOptionalArray('attributes.required', []);
-        $nameFormat = $this->metadata->getOptionalString('attributes.NameFormat', C::NAMEFORMAT_URI);
+        $nameFormat = $this->metadata->getOptionalString('attributes.NameFormat', null);
         $serviceDescription = $this->metadata->getOptionalLocalizedString('description', []);
 
         $requestedAttributes = [];
@@ -402,7 +403,7 @@ class MetadataBuilder
             $requestedAttributes[] = new RequestedAttribute(
                 $attribute,
                 in_array($attribute, $attributesrequired, true) ?: null,
-                $nameFormat !== C::NAMEFORMAT_UNSPECIFIED ? $nameFormat : null,
+                $nameFormat,
                 !is_int($friendlyName) ? $friendlyName : null,
             );
         }
@@ -412,7 +413,7 @@ class MetadataBuilder
          * of requested attributes
          */
         $attributeConsumingService = new AttributeConsumingService(
-            $metadata->getOptionalInteger('attributes.index', 0),
+            $this->metadata->getOptionalInteger('attributes.index', 0),
             array_map(
                 function ($lang, $sName) {
                     return new ServiceName($lang, $sName);
@@ -421,8 +422,8 @@ class MetadataBuilder
                 $serviceName,
             ),
             $requestedAttributes,
-            $metadata->hasValue('attributes.isDefault')
-                ? $metadata->getOptionalBoolean('attributes.isDefault', false)
+            $this->metadata->hasValue('attributes.isDefault')
+                ? $this->metadata->getOptionalBoolean('attributes.isDefault', false)
                 : null,
             array_map(
                 function ($lang, $sDesc) {

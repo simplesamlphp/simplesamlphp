@@ -10,6 +10,7 @@ use Psr\Clock\ClockInterface;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
