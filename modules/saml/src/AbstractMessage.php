@@ -126,14 +126,16 @@ abstract class AbstractMessage
         $key = PrivateKey::fromFile($keyArray['PEM'], $keyArray['password'] ?? '');
         $signer = (new SignatureAlgorithmFactory())->getAlgorithm($algo, $key);
 
-        return $message->sign(
-            $signer,
-            new KeyInfo(
+        $keyInfo = null;
+        if ($certArray !== null) {
+            $keyInfo = new KeyInfo(
                 new X509Data([
                     new X509Certificate($certArray['PEM']),
                 ]),
-            ),
-        );
+            );
+        }
+
+        return $message->sign($signer, $keyInfo);
     }
 
 
