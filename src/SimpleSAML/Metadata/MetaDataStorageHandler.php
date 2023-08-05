@@ -115,7 +115,7 @@ class MetaDataStorageHandler implements ClearableState
         $httpUtils = new Utils\HTTP();
         $baseurl = $httpUtils->getSelfURLHost() . $this->globalConfig->getBasePath();
         if ($overrideHost !== null) {
-            $baseurl = str_replace('://' . $httpUtils->getSelfHost(), '://' . $overrideHost, $baseurl);
+            $baseurl = str_replace('://' . $httpUtils->getSelfHostWithPath() . '/', '://' . $overrideHost . '/', $baseurl);
         }
 
         if ($set == 'saml20-sp-hosted') {
