@@ -561,30 +561,14 @@ class ServiceProvider
             }
 
             // Create and send response
-            $lr = Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata);
-            $lr->setRelayState($message->getRelayState());
-            $lr->setInResponseTo($message->getId());
+            $builder = new LogoutResponse($spMetadata, $idpMetadata, [], $message, $binding);
+            $lr = $builder->buildMessage();
+
+//            $lr->setRelayState($message->getRelayState());
 
             if ($numLoggedOut < count($sessionIndexes)) {
                 Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
             }
-
-            $dst = $idpMetadata->getEndpointPrioritizedByBinding(
-                'SingleLogoutService',
-                [
-                    C::BINDING_HTTP_REDIRECT,
-                    C::BINDING_HTTP_POST
-                ]
-            );
-
-            $dst = $dst['Location'];
-            if (!($binding instanceof SOAP)) {
-                $binding = Binding::getBinding($dst['Binding']);
-                if (isset($dst['ResponseLocation'])) {
-                    $dst = $dst['ResponseLocation'];
-                }
-            }
-            $lr->setDestination($dst);
 
             $psrResponse = $binding->send($lr);
             $httpFoundationFactory = new HttpFoundationFactory();

@@ -49,26 +49,29 @@ final class LogoutResponse extends AbstractMessage
      * @return \SimpleSAML\SAML2\XML\samlp\LogoutResponse
      */
     public function buildMessage(): SAML2_LogoutResponse
+    {
         $destination = $this->getDestination();
 
         $logoutResponse = new SAML2_LogoutResponse(
             destination: $destination,
         );
+
+        return $logoutResponse;
     }
 
 
     /**
      * This method parses the different possible config values of the Destination for the SingleSignOnService
-     */
     private function getDestination(string $protocolBinding): string
     {
     }
+     */
 
 
     /**
      * This method builds the samlp:Extensions if any
-     */
     private function getExtensions(): ?Extensions
     {
     }
+     */
 }
