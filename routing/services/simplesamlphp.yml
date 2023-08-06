@@ -20,4 +20,6 @@ services:
   Beste\Clock\LocalizedClock:
     factory: ['Beste\Clock\LocalizedClock', 'in']
     arguments:
-      $timeZone: 'Z'
+      - 'Z'
+
+  Psr\Clock\ClockInterface: '@Beste\Clock\LocalizedClock'

@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use Psr\Clock\ClockInterface;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
@@ -63,8 +62,7 @@ class ServiceProvider
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session,
-        protected ClockInterface $clock
+        protected Session $session
     ) {
         $this->authUtils = new Utils\Auth();
     }
