@@ -224,7 +224,7 @@ class MetadataBuilder
                 $descriptors[] = $this->getIDPSSODescriptor();
                 break;
             case 'attributeautority-remote':
-                $descriptors = $this->getAttributeAuthority();
+                $descriptors[] = $this->getAttributeAuthority();
                 break;
             case 'adfs-idp-hosted':
                 $descriptors[] = $this->getIDPSSODescriptor();
@@ -266,9 +266,14 @@ class MetadataBuilder
         );
 
         $assertionIDRequestService = self::createEndpoints(
-            $metadata->getEndpoints('AssertionIDRequestService'),
+            $this->metadata->getEndpoints('AssertionIDRequestService'),
             AssertionIDRequestService::class,
         );
+
+        $nids = [];
+        foreach ($this->metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
+            $nids[] = new NameIDFormat($nid);
+        }
 
         return new AttributeAuthority(
             protocolSupportEnumeration: [C::NS_SAMLP],

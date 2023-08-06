@@ -8,7 +8,8 @@ use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use SimpleSAML\{Configuration, Error, IdP, Logger, Metadata, Module};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SAML2\{ArtifactResolve, ArtifactResponse, SOAP};
+use SimpleSAML\SAML2\SOAP;
+use SimpleSAML\SAML2\XML\samlp\{ArtifactResolve, ArtifactResponse}; // Messages
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Store\StoreFactory;

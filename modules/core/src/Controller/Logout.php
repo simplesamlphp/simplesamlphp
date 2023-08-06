@@ -201,7 +201,10 @@ class Logout
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-        $lr = Message::buildLogoutRequest($idpMetadata, $spMetadata);
+        $builder = new Message\LogoutRequest($idpMetadata, $spMetadata, $association);
+        $lr = $builder->buildMessage();
+
+//        $lr = Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
 

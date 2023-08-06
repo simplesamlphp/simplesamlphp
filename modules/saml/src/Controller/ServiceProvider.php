@@ -10,11 +10,11 @@ use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, U
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\MetadataBuilder;
-use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
+use SimpleSAML\SAML2\{Binding, HTTPArtifact, HTTPRedirect, SOAP}; // Bindings
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
-use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
-use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\{Assertion, Issuer};
+use SimpleSAML\SAML2\XML\samlp\{LogoutRequest, LogoutResponse, Response as SAML2_Response};
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};

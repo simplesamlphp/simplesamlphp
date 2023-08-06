@@ -14,9 +14,8 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Stats, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module\saml\MessageBuilder;
 use SimpleSAML\Module\saml\Message;
-use SimpleSAML\SAML2\XML\samlp\{Assertion, EncryptedAssertion}; // Assertions
+use SimpleSAML\SAML2\XML\saml\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{Binding, HTTPRedirect, SOAP}; // Bindings
 use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
 use SimpleSAML\SAML2\Constants as C;

@@ -9,7 +9,7 @@ use Psr\Clock\ClockInterface;
 use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\saml\{NameID, Subject}; // Subject
+use SimpleSAML\SAML2\XML\saml\{EncryptedID, IdentifierInterface, NameID, Subject}; // Subject
 use SimpleSAML\SAML2\XML\saml\{Conditions, AudienceRestriction, Audience}; // Conditions
 use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest}; // Messages
 use SimpleSAML\SAML2\XML\samlp\{Extensions, SessionIndex};
@@ -18,6 +18,7 @@ use SimpleSAML\XMLSecurity\Alg\Encryption\EncryptionAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Alg\KeyTransport\KeyTransportAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Key\PrivateKey;
+use SimpleSAML\XMLSecurity\Key\PublicKey;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
@@ -63,7 +64,7 @@ abstract class AbstractMessage
                 new SymmetricKey($this->dstMetadata->getString('sharedkey'))
             );
         } else {
-            $keys = $metadata->getPublicKeys('encryption', true);
+            $keys = $this->dstMetadata->getPublicKeys('encryption', true);
             $publicKey = null;
 
             foreach ($keys as $key) {
@@ -77,12 +78,12 @@ abstract class AbstractMessage
             if ($publicKey === null) {
                 throw new Error\Exception(sprintf(
                     'No supported encryption key in %s',
-                    var_export($metadata->getString('entityid'), true),
+                    var_export($this->dstMetadata->getString('entityid'), true),
                 ));
             }
 
             $encryptor = (new KeyTransportAlgorithmFactory())->getAlgorithm(
-                C::KEY_TRANSPORT_OAEP_MGF1P, // @TODO: Configurable algo
+                C::KEY_TRANSPORT_OAEP_MGF1P,
                 $publicKey,
             );
         }
@@ -209,7 +210,7 @@ abstract class AbstractMessage
 
         if ($audienceRestriction !== null) {
             return new Conditions(
-                audienceRestriction: $audienceRestriction,
+                audienceRestriction: [$audienceRestriction],
             );
         }
 

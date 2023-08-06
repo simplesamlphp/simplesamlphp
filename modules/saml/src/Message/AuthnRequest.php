@@ -80,6 +80,7 @@ final class AuthnRequest extends AbstractMessage
             issueInstant: $this->clock->now(),
             requestedAuthnContext: $requestedAuthnContext,
             nameIdPolicy: $nameIdPolicy,
+            extensions: $extensions,
             forceAuthn: $forceAuthn,
             isPassive: $isPassive,
             conditions: $conditions,
@@ -286,8 +287,6 @@ final class AuthnRequest extends AbstractMessage
      */
     private function getRequestedAuthnContext(): ?RequestedAuthnContext
     {
-        $rac = null;
-
         if ($this->srcMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $this->srcMetadata->getArrayizeString('AuthnContextClassRef');
             $accr = array_map(fn($value): AuthnContextClassRef => new AuthnContextClassRef($value), $accr);

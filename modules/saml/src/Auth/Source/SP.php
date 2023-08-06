@@ -19,6 +19,7 @@ use SimpleSAML\SAML2\Exception\Protocol\{
     NoSupportedIDPException,
     ProxyCountExceededException,
 };
+use SimpleSAML\SAML2\HTTPRedirect;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest};
@@ -77,20 +78,6 @@ class SP extends Auth\Source
      * @var string|null
      */
     private ?string $discoURL;
-
-    /**
-     * Flag to indicate whether to disable sending the Scoping element.
-     *
-     * @var bool
-     */
-    private bool $disable_scoping;
-
-    /**
-     * If pass AuthnContextClassRef back to the IdPs in front of the SP/IdP Proxy.
-     *
-     * @var bool
-     */
-    private bool $passAuthnContextClassRef;
 
     /**
      * A list of supported protocols.

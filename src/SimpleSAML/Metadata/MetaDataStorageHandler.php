@@ -192,12 +192,12 @@ class MetaDataStorageHandler implements ClearableState
      * It will throw an exception if it is unable to locate the entity id.
      *
      * @param string $set The set we look for the entity id in.
-     * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
+     * @param string $type Do you want to return the metaindex or the entityID. [entityID|metaindex]
      *
      * @return string The entity id which is associated with the current hostname/path combination.
      * @throws \Exception If no default metadata can be found in the set for the current host.
      */
-    public function getMetaDataCurrentEntityID(string $set, string $type = 'entityid'): string
+    public function getMetaDataCurrentEntityID(string $set, string $type = 'entityID'): string
     {
         // first we look for the hostname/path combination
         $httpUtils = new Utils\HTTP();
@@ -326,8 +326,9 @@ class MetaDataStorageHandler implements ClearableState
                 }
 
                 $metadata['metadata-index'] = $entityId;
+                $metadata['entityID'] = $entityId;
                 $metadata['metadata-set'] = $set;
-                Assert::keyExists($metadata, 'entityid');
+                Assert::keyExists($metadata, 'entityID');
                 return $metadata;
             }
         }
@@ -376,12 +377,12 @@ class MetaDataStorageHandler implements ClearableState
             $result = array_merge($srcList, $result);
         }
         foreach ($result as $remote_provider) {
-            if (sha1($remote_provider['entityid']) == $sha1) {
+            if (sha1($remote_provider['entityID']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 
                 return Configuration::loadFromArray(
                     $remote_provider,
-                    $set . '/' . var_export($remote_provider['entityid'], true)
+                    $set . '/' . var_export($remote_provider['entityID'], true)
                 );
             }
         }
