@@ -476,6 +476,14 @@ class SAMLBuilder
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('redirect.sign'));
         }
 
+        if ($metadata->hasValue('errorURL')) {
+            $e->setErrorURL($metadata->getString('errorURL'));
+        } else {
+            $e->setErrorURL(Module::getModuleURL(
+                'core/error/ERRORURL_CODE?ts=ERRORURL_TS&rp=ERRORURL_RP&tid=ERRORURL_TID&ctx=ERRORURL_CTX',
+            ));
+        }
+
         $this->addExtensions($metadata, $e);
 
         $this->addCertificate($e, $metadata);

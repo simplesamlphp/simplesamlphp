@@ -1,0 +1,33 @@
+{% set pagetitle = 'An error has occurred'|trans %}
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2>{{ pagetitle }}</h2>
+
+    {% if code is same as ('IDENTIFICATION_FAILURE') %}
+    <p>{{ 'The identification procesd has failed.' |trans }}</p>
+    {% elseif code is same as ('AUTHENTICATION_FAILURE') %}
+    <p>{{ 'The authentication procesd has failed.' |trans }}</p>
+    {% elseif code is same as ('AUTHORIZATION_FAILURE') %}
+    <p>{{ 'The authorization procesd has failed.' |trans }}</p>
+    {% else %}
+    <p>{{ 'There was an issue while signing you in.' |trans }}</p>
+    {% endif %}
+
+    {% if is defined ts or is defined rp or is defined tid or is defined ctx %}
+    <table id="table_with_attributes" class="attributes pure-table pure-table-striped pure-table-attributes" summary="attribute overview">
+      {% if ts is not defined %}
+      <tr><td>Timestamp</td><td>{{ ts }}</td></tr>
+      {% endif %}
+      {% if rp is not defined %}
+      <tr><td>Service Provider</td><td>{{ rp }}</td></tr>
+      {% endif %}
+      {% if tid is not defined %}
+      <tr><td>Reference code</td><td>{{ tid }}</td></tr>
+      {% endif %}
+      {% if ctx is not defined %}
+      <tr><td>Context</td><td>{{ ctx }}</td></tr>
+      {% endif %}
+    </table>
+    {% endif %}
+{% endblock %}
