@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0acd7f843bef1da4bf97997de5255240",
+    "content-hash": "84234203e152601cc951e5e88af8ea48",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5748,16 +5748,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "5.0.5",
+            "version": "5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "0ca8db5a5fc9c8646244e629625ac486fa286bf2"
+                "reference": "bde739e7565280bda77be70044ac1047bc007e34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/0ca8db5a5fc9c8646244e629625ac486fa286bf2",
-                "reference": "0ca8db5a5fc9c8646244e629625ac486fa286bf2",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/bde739e7565280bda77be70044ac1047bc007e34",
+                "reference": "bde739e7565280bda77be70044ac1047bc007e34",
                 "shasum": ""
             },
             "require": {
@@ -5800,7 +5800,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/global-state/issues",
-                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.5"
+                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.6"
             },
             "funding": [
                 {
@@ -5808,7 +5808,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-14T08:28:10+00:00"
+            "time": "2023-08-02T09:26:13+00:00"
         },
         {
             "name": "sebastian/lines-of-code",
@@ -6208,16 +6208,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "2381e4296f297cfd24296614ce35907db1c5d7b1"
+                "reference": "bea8239f6f262b35b8fe02f451929c63372d6642"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/2381e4296f297cfd24296614ce35907db1c5d7b1",
-                "reference": "2381e4296f297cfd24296614ce35907db1c5d7b1",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/bea8239f6f262b35b8fe02f451929c63372d6642",
+                "reference": "bea8239f6f262b35b8fe02f451929c63372d6642",
                 "shasum": ""
             },
             "require": {
@@ -6260,7 +6260,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2023-07-28T10:01:38+00:00"
+            "time": "2023-08-02T07:55:16+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
