@@ -94,10 +94,10 @@ class Exception
             "A Service Provider reported the following error during authentication:  "
             . "Code: %s; Timestamp: %s; Relying party: %s; Transaction ID: %s; Context: [%s]",
             $code,
-            strval($ts),
-            strval($rp),
-            strval($tid),
-            strval($ctx),
+            $ts ?? 'null',
+            $rp ?? 'null',
+            $tid ?? 'null',
+            $ctx,
         ));
 
         $t = new Template($this->config, 'core:error.twig');

@@ -69,11 +69,10 @@ class ExceptionTest extends TestCase
      * @param string $code
      * Test that we are presented with an 'error was reported' page
      */
-    public function testErrorURL(string $code): void
+    public function testErrorURL(string $code, string $ts, string $rp, string $tid, string $ctx): void
     {
-        $now = time();
         $request = Request::create(
-            sprintf('/error/%s?ts=%d&rp=phpunit&tid=phpunit&ctx=phpunit', $code, $now),
+            sprintf('/error/%s?ts=%s&rp=%s&tid=%s&ctx=%s', $code, $ts, $rp, $tid, $ctx),
             'GET',
         );
 
@@ -89,9 +88,12 @@ class ExceptionTest extends TestCase
         self::assertStringContainsString(
             "A Service Provider reported the following error during authentication:  "
             . sprintf(
-                "Code: %s; Timestamp: %s; Relying party: phpunit; Transaction ID: phpunit; Context: [phpunit]",
+                "Code: %s; Timestamp: %s; Relying party: %s; Transaction ID: %s; Context: [%s]",
                 $code,
-                date(DATE_W3C, $now),
+                ($ts === 'ERRORURL_TS') ? 'null' : date(DATE_W3C, intval($ts)),
+                ($rp === 'ERRORURL_RP') ? 'null' : $rp,
+                ($tid === 'ERRORURL_TID') ? 'null' : $tid,
+                ($ctx === 'ERRORURL_CTX') ? '' : urldecode($ctx),
             ),
             $log[0],
         );
@@ -106,13 +108,33 @@ class ExceptionTest extends TestCase
      */
     public static function codeProvider(): array
     {
-        return [
-            'placeholder' => ['ERRORURL_CODE'],
-            'identification' => ['IDENTIFICATION_FAILURE'],
-            'authentication' => ['AUTHENTICATION_FAILURE'],
-            'authorization' => ['AUTHORIZATION_FAILURE'],
-            'other' => ['OTHER_ERROR'],
+        $codes = [
+            'ERRORURL_CODE',
+            'IDENTIFICATION_FAILURE',
+            'AUTHENTICATION_FAILURE',
+            'AUTHORIZATION_FAILURE',
+            'OTHER_ERROR',
         ];
+
+        $tss = ['ERRORURL_TS', strval(time())];
+        $rps = ['ERRORURL_RP', 'phpunit'];
+        $tids = ['ERRORURL_TID', '123456'];
+        $ctxs = ['ERRORURL_CTX', urlencode("phpunit did it's job")];
+
+        $matrix = [];
+        foreach ($codes as $code) {
+            foreach ($tss as $ts) {
+                foreach ($rps as $rp) {
+                    foreach ($tids as $tid) {
+                        foreach ($ctxs as $ctx) {
+                            $matrix[] = [$code, $ts, $rp, $tid, $ctx];
+                        }
+                    }
+                }
+            }
+        }
+
+        return $matrix;
     }
 
 
