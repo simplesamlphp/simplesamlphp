@@ -14,7 +14,7 @@
     <p>{{ 'There was an issue while signing you in.' |trans }}</p>
     {% endif %}
 
-    {% if is defined ts or is defined rp or is defined tid or is defined ctx %}
+    {% if ts is defined or rp is defined or tid is defined or ctx is defined %}
     <table id="table_with_attributes" class="attributes pure-table pure-table-striped pure-table-attributes" summary="attribute overview">
       {% if ts is not defined %}
       <tr><td>Timestamp</td><td>{{ ts }}</td></tr>
