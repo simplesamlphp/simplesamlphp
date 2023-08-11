@@ -288,8 +288,8 @@ jobs:
     runs-on: [ubuntu-latest]
     if: |
       always() &&
-      needs.coverage.result == 'success' &&
-      (needs.unit-tests-linux == 'success' || needs.coverage == 'skipped')
+      needs.coverage.result == 'success' ||
+      (needs.unit-tests-linux == 'success' && needs.coverage == 'skipped')
 
     steps:
       - uses: geekyeggo/delete-artifact@v2
