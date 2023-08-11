@@ -12,8 +12,19 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
+
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function explode;
+use function function_exists;
+use function json_decode;
+use function ltrim;
+use function phpversion;
+use function version_compare;
 
 /**
  * Controller class for the admin module.
@@ -353,52 +364,18 @@ class Config
             'enabled' => $this->config->getOptionalString('auth.adminpassword', '123') !== '123',
         ];
 
-        $cryptoUtils = new Utils\Crypto();
 
-        // perform some sanity checks on the configured certificates
-        if ($this->config->getOptionalBoolean('enable.saml20-idp', false) !== false) {
-            $handler = MetaDataStorageHandler::getMetadataHandler();
-            try {
-                $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
-            } catch (Exception $e) {
+        // Add module specific checks via the sanitycheck hook that a module can provide.
+        $hookinfo = [ 'info' => [], 'errors' => [] ];
+        Module::callHooks('sanitycheck', $hookinfo);
+        foreach (['info', 'errors'] as $resulttype) {
+            foreach ($hookinfo[$resulttype] as $result) {
                 $matrix[] = [
                     'required' => 'required',
-                    'descr' => Translate::noop('Hosted IdP metadata present'),
-                    'enabled' => false
+                    'descr' => $result,
+                    'enabled' => $resulttype === 'info',
                 ];
             }
-
-            if (isset($metadata)) {
-                $metadata_config = Configuration::loadfromArray($metadata);
-                $private = $cryptoUtils->loadPrivateKey($metadata_config, false);
-                $public = $cryptoUtils->loadPublicKey($metadata_config, false);
-
-                $matrix[] = [
-                    'required' => 'required',
-                    'descr' => Translate::noop('Matching key-pair for signing assertions'),
-                    'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
-                ];
-
-                $private = $cryptoUtils->loadPrivateKey($metadata_config, false, 'new_');
-                if ($private !== null) {
-                    $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
-                    $matrix[] = [
-                        'required' => 'required',
-                        'descr' => Translate::noop('Matching key-pair for signing assertions (rollover key)'),
-                        'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
-                    ];
-                }
-            }
-        }
-
-        if ($this->config->getOptionalBoolean('metadata.sign.enable', false) !== false) {
-            $private = $cryptoUtils->loadPrivateKey($this->config, false, 'metadata.sign.');
-            $public = $cryptoUtils->loadPublicKey($this->config, false, 'metadata.sign.');
-            $matrix[] = [
-                'required' => 'required',
-                'descr' => Translate::noop('Matching key-pair for signing metadata'),
-                'enabled' => $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']),
-            ];
         }
 
         return $matrix;
@@ -486,22 +463,5 @@ class Config
         }
 
         return $warnings;
-    }
-
-
-    /**
-     * Test whether public & private key are a matching pair
-     *
-     * @param string $publicKey
-     * @param string $privateKey
-     * @param string|null $password
-     * @return bool
-     */
-    private function matchingKeyPair(
-        string $publicKey,
-        string $privateKey,
-        ?string $password = null
-    ): bool {
-        return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
     }
 }
