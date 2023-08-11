@@ -15,7 +15,6 @@ use function date;
 use function implode;
 use function intval;
 use function strval;
-use function urldecode;
 use function urlencode;
 
 /**
@@ -72,21 +71,15 @@ class Exception
             $ts = null;
         }
 
-        if ($rp !== 'ERRORURL_RP') {
-            $rp = urldecode($rp);
-        } else {
+        if ($rp === 'ERRORURL_RP') {
             $rp = null;
         }
 
-        if ($tid !== 'ERRORURL_TID') {
-            $tid = urldecode($tid);
-        } else {
+        if ($tid === 'ERRORURL_TID') {
             $tid = null;
         }
 
-        if ($ctx !== 'ERRORURL_CTX') {
-            $ctx = urldecode($ctx);
-        } else {
+        if ($ctx === 'ERRORURL_CTX') {
             $ctx = null;
         }
 
