@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Module, Logger, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\SAML2\Constants as C;
@@ -474,6 +474,14 @@ class SAMLBuilder
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('sign.authnrequest'));
         } elseif ($metadata->hasValue('redirect.sign')) {
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('redirect.sign'));
+        }
+
+        if ($metadata->hasValue('errorURL')) {
+            $e->setErrorURL($metadata->getString('errorURL'));
+        } else {
+            $e->setErrorURL(Module::getModuleURL(
+                'core/error/ERRORURL_CODE?ts=ERRORURL_TS&rp=ERRORURL_RP&tid=ERRORURL_TID&ctx=ERRORURL_CTX',
+            ));
         }
 
         $this->addExtensions($metadata, $e);

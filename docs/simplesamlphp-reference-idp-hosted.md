@@ -88,6 +88,9 @@ entry matches.
 ],
 ```
 
+`errorURL`
+:   Overrides the errorURL in the IDP's published metadata.
+
 `host`
 :   The hostname for this IdP. One IdP can also have the `host`-option
     set to `__DEFAULT__`, and that IdP will be used when no other

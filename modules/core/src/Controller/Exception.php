@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
+use DATE_W3C;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function array_keys;
+use function date;
 use function implode;
+use function intval;
+use function strval;
 use function urlencode;
 
 /**
@@ -21,6 +26,9 @@ use function urlencode;
  */
 class Exception
 {
+    public const CODES = ['IDENTIFICATION_FAILURE', 'AUTHENTICATION_FAILURE', 'AUTHORIZATION_FAILURE', 'OTHER_ERROR'];
+
+
     /**
      * Controller constructor.
      *
@@ -35,6 +43,65 @@ class Exception
         protected Configuration $config,
         protected Session $session
     ) {
+    }
+
+
+    /**
+     * Show Service Provider error.
+     *
+     * @param Request $request The request that lead to this login operation.
+     * @param string $code The error code
+     * @return \SimpleSAML\XHTML\Template  An HTML template
+     */
+    public function error(Request $request, string $code): Response
+    {
+        if ($code !== 'ERRORURL_CODE') {
+            Assert::oneOf($code, self::CODES);
+        }
+
+        $ts = $request->query->get('ts');
+        $rp = $request->query->get('rp');
+        $tid = $request->query->get('tid');
+        $ctx = $request->query->get('ctx');
+
+        if ($ts !== 'ERRORURL_TS') {
+            Assert::integerish($ts);
+            $ts = date(DATE_W3C, intval($ts));
+        } else {
+            $ts = null;
+        }
+
+        if ($rp === 'ERRORURL_RP') {
+            $rp = null;
+        }
+
+        if ($tid === 'ERRORURL_TID') {
+            $tid = null;
+        }
+
+        if ($ctx === 'ERRORURL_CTX') {
+            $ctx = null;
+        }
+
+        Logger::notice(sprintf(
+            "A Service Provider reported the following error during authentication:  "
+            . "Code: %s; Timestamp: %s; Relying party: %s; Transaction ID: %s; Context: [%s]",
+            $code,
+            $ts ?? 'null',
+            $rp ?? 'null',
+            $tid ?? 'null',
+            $ctx,
+        ));
+
+        $t = new Template($this->config, 'core:error.twig');
+
+        $t->data['code'] = $code;
+        $t->data['ts'] = $ts;
+        $t->data['rp'] = $rp;
+        $t->data['tid'] = $tid;
+        $t->data['ctx'] = $ctx;
+
+        return $t;
     }
 
 
