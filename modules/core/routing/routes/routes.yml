@@ -36,6 +36,13 @@ core-loginuserpassorg:
   }
   methods: [GET, POST]
 
+core-error:
+  path: /error/{code}
+  defaults: {
+    _controller: 'SimpleSAML\Module\core\Controller\Exception::error'
+  }
+  methods: [GET]
+
 core-error-nocookie:
   path: /error/nocookie
   defaults: {

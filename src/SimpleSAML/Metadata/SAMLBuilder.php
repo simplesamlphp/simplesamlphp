@@ -26,11 +26,9 @@ use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use SimpleSAML\{Configuration, Module, Logger, Utils};
+use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
-use SimpleSAML\Utils;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
@@ -546,6 +544,14 @@ class SAMLBuilder
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('sign.authnrequest'));
         } elseif ($metadata->hasValue('redirect.sign')) {
             $e->setWantAuthnRequestsSigned($metadata->getBoolean('redirect.sign'));
+        }
+
+        if ($metadata->hasValue('errorURL')) {
+            $e->setErrorURL($metadata->getString('errorURL'));
+        } else {
+            $e->setErrorURL(Module::getModuleURL(
+                'core/error/ERRORURL_CODE?ts=ERRORURL_TS&rp=ERRORURL_RP&tid=ERRORURL_TID&ctx=ERRORURL_CTX',
+            ));
         }
 
         $this->addExtensions($metadata, $e);
