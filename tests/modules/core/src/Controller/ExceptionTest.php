@@ -107,6 +107,7 @@ class ExceptionTest extends TestCase
     public static function codeProvider(): array
     {
         return [
+            'placeholder' => ['ERRORURL_CODE'],
             'identification' => ['IDENTIFICATION_FAILURE'],
             'authentication' => ['AUTHENTICATION_FAILURE'],
             'authorization' => ['AUTHORIZATION_FAILURE'],

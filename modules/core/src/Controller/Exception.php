@@ -56,7 +56,9 @@ class Exception
      */
     public function error(Request $request, string $code): Response
     {
-        Assert::oneOf($code, self::CODES);
+        if ($code !== 'ERRORURL_CODE') {
+            Assert::oneOf($code, self::CODES);
+        }
 
         $ts = $request->query->get('ts');
         $rp = $request->query->get('rp');
