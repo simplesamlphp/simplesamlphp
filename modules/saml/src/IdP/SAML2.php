@@ -13,6 +13,7 @@ use SAML2\Binding;
 use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
 use SAML2\EncryptedAssertion;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
@@ -382,7 +383,11 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
-            $binding = Binding::getCurrentBinding();
+            try {
+                $binding = Binding::getCurrentBinding();
+            } catch (UnsupportedBindingException $e) {
+                throw new Error\Error('SSOPARAMS', $e, 400);
+            }
             $request = $binding->receive();
 
             if (!($request instanceof AuthnRequest)) {
