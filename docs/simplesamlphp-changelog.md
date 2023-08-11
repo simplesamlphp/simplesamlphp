@@ -5,6 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.6
+
+Released TBD
+
+* Fixed an incorrect return-type in RunnableResponse
+* Fix for admin.protectmetadata=true - it would show a blank page
+
 ## Version 2.0.5
 
 Released 2023-07-31
