@@ -79,7 +79,7 @@ class Metadata
         }
 
         // check if valid local session exists
-        if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
+        if ($this->config->getOptionalBoolean('admin.protectmetadata', false) && !$this->authUtils->isAdmin()) {
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
