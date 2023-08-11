@@ -7,8 +7,6 @@ use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 
-use function openssl_x509_check_private_key;
-
 function saml_hook_sanitycheck(array &$hookinfo): void
 {
     Assert::keyExists($hookinfo, 'errors');
