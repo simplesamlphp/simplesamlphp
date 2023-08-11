@@ -16,10 +16,17 @@ declare(strict_types=1);
 
 use Gettext\Scanner\PhpScanner;
 use Gettext\Generator\PoGenerator;
+use Gettext\Translation;
 use Gettext\Translations;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use SimpleSAML\TestUtils\ArrayLogger;
+use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Translation\MessageCatalogue;
 
 // This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(__FILE__, 2);
@@ -32,8 +39,10 @@ if ($argc !== 2) {
     exit(1);
 }
 
+$core_modules = ['core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
+
 if ($argv[1] === '--main') {
-    $modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
+    $modules = array_merge([''], $core_modules);
 } else {
     $modules = [$argv[1]];
 }
@@ -52,10 +61,22 @@ foreach ($modules as $module) {
     $translationDomains[] = Translations::create($domain);
 }
 
+// We need the modules to be enabled, otherwise the Template class will complain
+Configuration::setPreloadedConfig(
+    Configuration::loadFromArray([
+        'module.enable' => array_fill_keys($core_modules, true),
+        // Dirty hack to silence the unnecessary output of this script
+        'logging.handler' => ArrayLogger::class,
+    ]),
+    'config.php',
+    'simplesaml'
+);
+
 $phpScanner = new PhpScanner(...$translationDomains);
 $phpScanner->setFunctions(['trans' => 'gettext', 'noop' => 'gettext']);
-$finder = new Finder();
 
+$config = Configuration::getInstance();
+$twigTranslations = [];
 // Scan files in base
 foreach ($modules as $module) {
     $tempDir = $tempDirBase . $module;
@@ -66,27 +87,73 @@ foreach ($modules as $module) {
 
     $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
     $moduleSrcDir = $moduleDir . '/src/';
+    $moduleTemplateDir = $moduleDir . '/templates/';
 
     // Scan PHP files
+    $finder = new Finder();
     foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
         $phpScanner->scanFile($file->getPathName());
     }
 
-    // Scan compiled Twig-templates
-    foreach ($finder->files()->in($tempDir)->name('*.php') as $file) {
-        $phpScanner->scanFile($file->getPathName());
+    // Scan Twig-templates
+    $finder = new Finder();
+    foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
+        $t = new Template(
+            $config,
+            ($module ? ($module . ':') : '') . str_replace($moduleTemplateDir, '', $file->getPathName()),
+        );
+        $env = $t->getTwig();
+
+        $catalogue = new MessageCatalogue('en', []);
+        $extractor = new TwigExtractor($env);
+        $extractor->extract($file, $catalogue);
+
+        $tmp = $catalogue->all();
+        if ($tmp === []) {
+            // This template has no translation strings
+            continue;
+        }
+
+        // The catalogue always uses 'messages' for the domain and it's not configurable.
+        // Manually replace it with the module-name
+        if ($module !== '') {
+            $tmp[$module] = $tmp['messages'];
+            unset($tmp['messages']);
+        }
+        $twigTranslations[] = $tmp;
     }
 }
 
-// Save the translations in .po files
+// The catalogue returns an array with strings, while the php-scanner returns Translations-objects.
+// Migrate the catalogue results to match the php-scanner results.
+$migrated = [];
+foreach ($twigTranslations as $t) {
+    foreach ($t as $domain => $translation) {
+        $trans = Translations::create($domain);
+        foreach ($translation as $s => $t) {
+            $trans->add(Translation::create(null, $s, $t));
+        }
+        $migrated[$domain][] = $trans;
+    }
+}
+
 $generator = new PoGenerator();
 
 foreach ($phpScanner->getTranslations() as $domain => $translations) {
-    $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
-    $outputDir = $moduleDir . '/locales/en/LC_MESSAGES';
-    $domain = $domain ?: 'messages';
-    $generator->generateFile($translations, "{$outputDir}/{$domain}.pot");
+    // If we also have results from the Twig-templates, merge them
+    if (array_key_exists($domain, $migrated)) {
+        foreach ($migrated[$domain] as $migratedTranslations) {
+            $translations = $translations->mergeWith($migratedTranslations);
+        }
+    }
+
+    // If we have at least one translation, write it into a template file
+    if ($translations->getTranslations() !== []) {
+        $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
+        $outputDir = $moduleDir . '/locales/';
+        $domain = $domain ?: 'messages';
+        $generator->generateFile($translations, "{$outputDir}/{$domain}.pot");
+    }
 }
 
 $filesystem->remove($tempDirBase);
-// TODO: merge new strings into translated languages catalogs
