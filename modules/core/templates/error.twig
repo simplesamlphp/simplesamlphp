@@ -16,16 +16,16 @@
 
     {% if ts is defined or rp is defined or tid is defined or ctx is defined %}
     <table id="table_with_attributes" class="attributes pure-table pure-table-striped pure-table-attributes" summary="attribute overview">
-      {% if ts is not defined %}
+      {% if ts is defined %}
       <tr><td>Timestamp</td><td>{{ ts }}</td></tr>
       {% endif %}
-      {% if rp is not defined %}
+      {% if rp is defined %}
       <tr><td>Service Provider</td><td>{{ rp }}</td></tr>
       {% endif %}
-      {% if tid is not defined %}
+      {% if tid is defined %}
       <tr><td>Reference code</td><td>{{ tid }}</td></tr>
       {% endif %}
-      {% if ctx is not defined %}
+      {% if ctx is defined %}
       <tr><td>Context</td><td>{{ ctx }}</td></tr>
       {% endif %}
     </table>
