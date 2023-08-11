@@ -69,6 +69,7 @@ class RunnableResponse extends Response
      */
     public function sendContent()
     {
-        return call_user_func_array($this->callable, $this->arguments);
+        call_user_func_array($this->callable, $this->arguments);
+        return $this;
     }
 }
