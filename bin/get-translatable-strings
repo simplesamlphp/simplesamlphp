@@ -49,11 +49,11 @@ if ($argv[1] === '--main') {
 
 $transUtils = new Utils\Translate();
 $sysUtils = new Utils\System();
-$filesystem = new Filesystem();
+$fileSystem = new Filesystem();
 
 $tempDirBase = $sysUtils->getTempDir() . "/temptemplatestemp";
 // Ensure no leftover from any previous invocation
-$filesystem->remove($tempDirBase);
+$fileSystem->remove($tempDirBase);
 
 $translationDomains = [];
 foreach ($modules as $module) {
@@ -156,4 +156,4 @@ foreach ($phpScanner->getTranslations() as $domain => $translations) {
     }
 }
 
-$filesystem->remove($tempDirBase);
+$fileSystem->remove($tempDirBase);

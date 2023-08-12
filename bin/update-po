@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 use Gettext\Generator\PoGenerator;
-use Gettext\Generator\PoLoader;
+use Gettext\Loader\PoLoader;
 use Gettext\Merge;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
@@ -19,105 +19,33 @@ require_once($baseDir . '/src/_autoload.php');
 
 $modules = ['', 'core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
 
-    $loader = new PoLoader();
+$loader = new PoLoader();
 $generator = new PoGenerator();
-$finder = new Finder();
-foreach ($finder->files()->in($baseDir . '/locales/')->name->('*.pot') as $potFile) {
-    $template = $loader->load($potFile->getPathName());
+$fileSystem = new Filesystem();
 
-    $poFile = substr($potFile->getPathName(), 0, -1);
-    foreach ($finder->files->in($baseDir . 'locales/**/LC_MESSAGES/' . $poFile)) {
-        $translations = $loader->load($poFile->getPathName());
-
-        // Merge the translations with the template
-        $merged = $template->mergeWith(
-            $translations,
-            Merge::TRANSLATIONS_THEIR | Merge::COMMENTS_OURS | Merge::HEADERS_OURS,
-        );
-
-        // Overwrite the current .po file with a fresh one
-        $generator->generateFile($merged, $poFile);
-    }
-}
-
-
-$config = Configuration::getInstance();
-$twigTranslations = [];
-// Scan files in base
 foreach ($modules as $module) {
-    $tempDir = $tempDirBase . $module;
-    $transUtils->compileAllTemplates($module, $tempDir);
-
-    // Set the proper domain
-    $phpScanner->setDefaultDomain($module ?: 'messages');
-
     $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
-    $moduleSrcDir = $moduleDir . '/src/';
-    $moduleTemplateDir = $moduleDir . '/templates/';
+    $moduleLocalesDir = $moduleDir . '/locales/';
 
-    // Scan PHP files
-$finder = new Finder();
-foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
-    $phpScanner->scanFile($file->getPathName());
-}
+    if ($fileSystem->exists($moduleLocalesDir)) {
+        $finder = new Finder();
+        foreach ($finder->files()->in($moduleLocalesDir)->name('*.pot') as $potFile) {
+            $template = $loader->loadFile($potFile->getPathName());
 
-    // Scan Twig-templates
-    $finder = new Finder();
-    foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
-        $t = new Template(
-            $config,
-            ($module ? ($module . ':') : '') . str_replace($moduleTemplateDir, '', $file->getPathName()),
-        );
-        $env = $t->getTwig();
+            $poFileName = substr($potFile->getFileName(), 0, -1);
+            $finder = new Finder();
+            foreach ($finder->files()->in($moduleLocalesDir . '/**/LC_MESSAGES/')->name($poFileName) as $poFile) {
+                $translations = $loader->loadFile($poFile->getPathName());
 
-        $catalogue = new MessageCatalogue('en', []);
-        $extractor = new TwigExtractor($env);
-        $extractor->extract($file, $catalogue);
+                // Merge the translations with the template
+                $merged = $template->mergeWith(
+                    $translations,
+                    Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS,
+                );
 
-        $tmp = $catalogue->all();
-        if ($tmp === []) {
-            // This template has no translation strings
-            continue;
+                // Overwrite the current .po file with a fresh one
+                $generator->generateFile($merged, $poFile->getPathName());
+            }
         }
-
-        // The catalogue always uses 'messages' for the domain and it's not configurable.
-        // Manually replace it with the module-name
-        if ($module !== '') {
-            $tmp[$module] = $tmp['messages'];
-            unset($tmp['messages']);
-        }
-        $twigTranslations[] = $tmp;
     }
 }
-
-
-// The catalogue returns an array with strings, while the php-scanner returns Translations-objects.
-// Migrate the catalogue results to match the php-scanner results.
-$migrated = [];
-foreach ($twigTranslations as $t) {
-    foreach ($t as $domain => $translation) {
-        $trans = Translations::create($domain);
-        foreach ($translation as $s => $t) {
-            $trans->add(Translation::create(null, $s, $t));
-        }
-        $migrated[$domain][] = $trans;
-    }
-}
-
-$generator = new PoGenerator();
-
-foreach ($phpScanner->getTranslations() as $domain => $translations) {
-    if ($translations->getTranslations() !== []) {
-        // Merge the php-scanner results with the migrated catalogue results
-        foreach ($migrated[$domain] as $migratedTranslations) {
-            $translations = $translations->mergeWith($migratedTranslations);
-        }
-
-        $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
-        $outputDir = $moduleDir . '/locales/';
-        $domain = $domain ?: 'messages';
-        $generator->generateFile($translations, "{$outputDir}/{$domain}.pot");
-    }
-}
-
-$filesystem->remove($tempDirBase);
