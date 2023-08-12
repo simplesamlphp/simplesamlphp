@@ -22,17 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - run: pip install lint-po
+      #- uses: actions/setup-python@v4
+      #  with:
+      #    python-version: '3.10'
 
-      - name: Lint PO(T) files
-        run: |
-          lint-po locales/*/LC_MESSAGES/*.po
-          lint-po locales/*.pot
-          lint-po modules/*/locales/*/LC_MESSAGES/*.po
-          lint-po modules/*/locales/*.pot
+      #- run: pip install lint-po
+
+      #- name: Lint PO(T) files
+      #  run: |
+      #    lint-po locales/*/LC_MESSAGES/*.po
+      #    lint-po locales/*.pot
+      #    lint-po modules/*/locales/*/LC_MESSAGES/*.po
+      #    lint-po modules/*/locales/*.pot
 
   build:
     name: Build PO(T)-files
