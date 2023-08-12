@@ -79,7 +79,7 @@ jobs:
           $SourceDiff = $Diff | Where-Object {
               $_ -match '^*.mo' -or
               $_ -match '^*.po' -or
-              $_ -match '^*.pot' -or
+              $_ -match '^*.pot'
           }
           echo "Changed files"
           echo $SourceDiff
