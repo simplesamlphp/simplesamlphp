@@ -48,10 +48,9 @@ if ($argv[1] === '--main') {
 }
 
 $transUtils = new Utils\Translate();
-$sysUtils = new Utils\System();
 $fileSystem = new Filesystem();
 
-$tempDirBase = $sysUtils->getTempDir() . "/temptemplatestemp";
+$tempDirBase = sys_get_temp_dir() . "/temptemplatestemp";
 // Ensure no leftover from any previous invocation
 $fileSystem->remove($tempDirBase);
 
