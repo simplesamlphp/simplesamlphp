@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84234203e152601cc951e5e88af8ea48",
+    "content-hash": "f3a5609b5deded771651097e46ad72cb",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -6208,16 +6208,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "bea8239f6f262b35b8fe02f451929c63372d6642"
+                "reference": "29bc02792b36b940e5a3c27db4bf41d2da9001d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/bea8239f6f262b35b8fe02f451929c63372d6642",
-                "reference": "bea8239f6f262b35b8fe02f451929c63372d6642",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/29bc02792b36b940e5a3c27db4bf41d2da9001d3",
+                "reference": "29bc02792b36b940e5a3c27db4bf41d2da9001d3",
                 "shasum": ""
             },
             "require": {
@@ -6260,7 +6260,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2023-08-02T07:55:16+00:00"
+            "time": "2023-08-11T19:30:22+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",

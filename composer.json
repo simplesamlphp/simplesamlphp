@@ -110,5 +110,10 @@
             "muglug/package-versions-56": true
         }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.1.x-dev"
+        }
+    },
     "version": "2.1.0"
 }
