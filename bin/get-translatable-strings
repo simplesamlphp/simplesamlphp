@@ -15,7 +15,10 @@
 declare(strict_types=1);
 
 use Gettext\Scanner\PhpScanner;
+use Gettext\Generator\MoGenerator;
 use Gettext\Generator\PoGenerator;
+use Gettext\Loader\PoLoader;
+use Gettext\Merge;
 use Gettext\Translation;
 use Gettext\Translations;
 use SimpleSAML\Configuration;
@@ -47,12 +50,7 @@ if ($argv[1] === '--main') {
     $modules = [$argv[1]];
 }
 
-$transUtils = new Utils\Translate();
 $fileSystem = new Filesystem();
-
-$tempDirBase = sys_get_temp_dir() . "/temptemplatestemp";
-// Ensure no leftover from any previous invocation
-$fileSystem->remove($tempDirBase);
 
 $translationDomains = [];
 foreach ($modules as $module) {
@@ -78,9 +76,6 @@ $config = Configuration::getInstance();
 $twigTranslations = [];
 // Scan files in base
 foreach ($modules as $module) {
-    $tempDir = $tempDirBase . $module;
-    $transUtils->compileAllTemplates($module, $tempDir);
-
     // Set the proper domain
     $phpScanner->setDefaultDomain($module ?: 'messages');
 
@@ -136,23 +131,34 @@ foreach ($twigTranslations as $t) {
     }
 }
 
-$generator = new PoGenerator();
+$loader = new PoLoader();
+$poGenerator = new PoGenerator();
+$moGenerator = new MoGenerator();
 
-foreach ($phpScanner->getTranslations() as $domain => $translations) {
+foreach ($phpScanner->getTranslations() as $domain => $template) {
     // If we also have results from the Twig-templates, merge them
     if (array_key_exists($domain, $migrated)) {
         foreach ($migrated[$domain] as $migratedTranslations) {
-            $translations = $translations->mergeWith($migratedTranslations);
+            $template = $template->mergeWith($migratedTranslations);
         }
     }
 
     // If we have at least one translation, write it into a template file
-    if ($translations->getTranslations() !== []) {
+    if ($template->count() > 0) {
         $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
-        $outputDir = $moduleDir . '/locales/';
+        $moduleLocalesDir = $moduleDir . '/locales/';
         $domain = $domain ?: 'messages';
-        $generator->generateFile($translations, "{$outputDir}/{$domain}.pot");
+
+        $finder = new Finder();
+        foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
+            $current = $loader->loadFile($poFile->getPathName());
+            $merged = $template->mergeWith(
+                $current,
+                Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS,
+            );
+
+            $poGenerator->generateFile($merged, $poFile->getPathName());
+            $moGenerator->generateFile($merged, substr($poFile->getPathName(), 0, -3) . '.mo');
+        }
     }
 }
-
-$fileSystem->remove($tempDirBase);

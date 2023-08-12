@@ -1,9 +1,7 @@
 cert/.gitkeep export-ignore
 public/assets/.gitkeep export-ignore
 tools export-ignore
-locales/*.pot export-ignore
 locales/*/LC_MESSAGES/*.po export-ignore
-modules/*/locales/*.pot export-ignore
 modules/*/locales/*/LC_MESSAGES/*.po export-ignore
 tests/Utils export-ignore
 tests/modules export-ignore
