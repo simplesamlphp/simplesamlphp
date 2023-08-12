@@ -25,11 +25,12 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use SimpleSAML\TestUtils\ArrayLogger;
-use SimpleSAML\XHTML\Template;
+use SimpleSAML\XHTML\TemplateLoader;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\MessageCatalogue;
+use Twig\Environment;
 
 // This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(__FILE__, 2);
@@ -58,21 +59,9 @@ foreach ($modules as $module) {
     $translationDomains[] = Translations::create($domain);
 }
 
-// We need the modules to be enabled, otherwise the Template class will complain
-Configuration::setPreloadedConfig(
-    Configuration::loadFromArray([
-        'module.enable' => array_fill_keys($core_modules, true),
-        // Dirty hack to silence the unnecessary output of this script
-        'logging.handler' => ArrayLogger::class,
-    ]),
-    'config.php',
-    'simplesaml'
-);
-
 $phpScanner = new PhpScanner(...$translationDomains);
 $phpScanner->setFunctions(['trans' => 'gettext', 'noop' => 'gettext']);
 
-$config = Configuration::getInstance();
 $twigTranslations = [];
 // Scan files in base
 foreach ($modules as $module) {
@@ -92,11 +81,8 @@ foreach ($modules as $module) {
     // Scan Twig-templates
     $finder = new Finder();
     foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
-        $t = new Template(
-            $config,
-            ($module ? ($module . ':') : '') . str_replace($moduleTemplateDir, '', $file->getPathName()),
-        );
-        $env = $t->getTwig();
+        $loader = new \SimpleSAML\XHTML\TemplateLoader([$moduleTemplateDir]);
+        $env = new \Twig\Environment($loader);
 
         $catalogue = new MessageCatalogue('en', []);
         $extractor = new TwigExtractor($env);
