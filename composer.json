@@ -125,5 +125,15 @@
         "branch-alias": {
             "dev-master": "3.0.x-dev"
         }
+    },
+    "scripts": {
+        "translations:update:binary": "bin/console translations:update:binary",
+        "translations:update:translatable": "bin/console translations:update:translatable",
+        "post-install-cmd": [
+            "bin/console translations:update:binary all"
+        ],
+        "post-update-cmd": [
+            "bin/console translations:update:binary all"
+        ]
     }
 }

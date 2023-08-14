@@ -33,9 +33,7 @@ jobs:
       #- name: Lint PO(T) files
       #  run: |
       #    lint-po locales/*/LC_MESSAGES/*.po
-      #    lint-po locales/*.pot
       #    lint-po modules/*/locales/*/LC_MESSAGES/*.po
-      #    lint-po modules/*/locales/*.pot
 
   build:
     name: Build PO- and MO-files
@@ -60,8 +58,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Generate new updated PO- and MO-files
-        run: php bin/get-translatable-strings --main
+      - name: Generate new updated PO-files
+        run: php bin/console translations:update:translatable all
 
       - name: Diff the changes after building
         shell: pwsh
@@ -114,7 +112,7 @@ jobs:
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
-          add: "['**/*.mo', '**/*.po', '**/*.pot']"
+          add: "['**/*.mo', '**/*.po']"
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>

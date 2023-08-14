@@ -33,3 +33,7 @@ services:
       - '@controller_resolver'
       - '@request_stack'
       - '@argument_resolver'
+
+  SimpleSAML\Command\:
+    autoconfigure: true
+    resource: '../../src/SimpleSAML/Command'
