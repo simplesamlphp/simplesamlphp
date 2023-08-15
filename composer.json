@@ -130,10 +130,10 @@
         "translations:update:binary": "bin/console translations:update:binary",
         "translations:update:translatable": "bin/console translations:update:translatable",
         "post-install-cmd": [
-            "bin/console translations:update:binary all"
+            "bin/console translations:update:binary"
         ],
         "post-update-cmd": [
-            "bin/console translations:update:binary all"
+            "bin/console translations:update:binary"
         ]
     }
 }

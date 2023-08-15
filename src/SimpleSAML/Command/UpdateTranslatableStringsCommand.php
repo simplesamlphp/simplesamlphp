@@ -17,13 +17,17 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Twig\Environment;
 
+use function array_diff;
+use function array_intersect;
 use function array_merge;
 use function dirname;
+use function in_array;
+use function sprintf;
 use function substr;
 
 class UpdateTranslatableStringsCommand extends Command
@@ -39,7 +43,7 @@ class UpdateTranslatableStringsCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates fresh .po translation files based on the translatable strings from PHP and Twig files');
-        $this->addArgument('module', InputArgument::REQUIRED, 'Module');
+        $this->addOption('module', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Which modules to perform this action on');
     }
 
 
@@ -50,18 +54,26 @@ class UpdateTranslatableStringsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $inputModule = $input->getArgument('module');
+        $inputModules = $input->getOption('module');
+
         $registeredModules = Module::getModules();
-        if ($inputModule === 'all') {
-            $modules = Module::getModules();
-            $modules = array_merge([''], $modules);
-        } elseif ($inputModule === 'main') {
-            $modules = ['core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml'];
-        } elseif (!in_array($inputModule, $registeredModules)) {
-            $output->writeln(sprintf('Module "%s" was not found.', $inputModule));
-            return Command::FAILURE;
+        if (in_array('all', $inputModules) || $inputModules === []) {
+            $modules = array_merge([''], $registeredModules);
+        } elseif (in_array('main', $inputModules)) {
+            $modules = array_merge([''], ['core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml']);
         } else {
-            $modules = [$inputModule];
+            $known = array_intersect($registeredModules, $inputModules);
+            $unknown = array_diff($inputModules, $registeredModules);
+
+            if ($known === []) {
+                $output->writeln('None of the provided modules were recognized.');
+                return Command::FAILURE;
+            }
+
+            foreach ($unknown as $m) {
+                $output->writeln(sprintf('Skipping module "%s"; unknown module.', $m));
+            }
+            $modules = $known;
         }
 
         // This is the base directory of the SimpleSAMLphp installation
