@@ -43,6 +43,15 @@ class UpdateTranslatableStringsCommand extends Command
      */
     protected function configure(): void
     {
+        // We need the modules to be enabled, otherwise the Template class will complain
+        Configuration::setPreloadedConfig(
+            Configuration::loadFromArray([
+                'module.enable' => array_fill_keys(Module::getModules(), true),
+            ]),
+            'config.php',
+            'simplesaml'
+        );
+
         $this->setDescription('Generates fresh .po translation files based on the translatable strings from PHP and Twig files');
         $this->addOption('module', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Which modules to perform this action on');
     }
