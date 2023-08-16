@@ -106,7 +106,10 @@ class UnusedTranslatableStringsCommand extends Command
             // Scan Twig-templates
             $finder = new Finder();
             foreach ($finder->files()->in($moduleTemplateDir)->depth('== 0')->name('*.twig') as $file) {
-                $template = new Template(Configuration::getInstance(), $module . ':' . $file->getFileName());
+                $template = new Template(
+                    Configuration::getInstance(),
+                    ($module ? ($module . ':') : '') . $file->getFileName(),
+                );
                 $catalogue = new MessageCatalogue('en', []);
                 $extractor = new TwigExtractor($template->getTwig());
                 $extractor->extract($file, $catalogue);

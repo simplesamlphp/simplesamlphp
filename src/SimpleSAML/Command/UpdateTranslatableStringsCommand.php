@@ -110,7 +110,10 @@ class UpdateTranslatableStringsCommand extends Command
             // Scan Twig-templates
             $finder = new Finder();
             foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
-                $template = new Template($module . ':' . $file->getFileName());
+                $template = new Template(
+                    Configuration::getInstance(),
+                    ($module ? ($module . ':') : '') . $file->getFileName(),
+                );
                 $catalogue = new MessageCatalogue('en', []);
                 $extractor = new TwigExtractor($template->getTwig());
                 $extractor->extract($file, $catalogue);
