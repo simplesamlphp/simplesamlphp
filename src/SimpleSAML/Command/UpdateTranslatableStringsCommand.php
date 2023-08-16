@@ -12,6 +12,7 @@ use Gettext\Translation;
 use Gettext\Translations;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
+use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Filesystem\Filesystem;
@@ -47,6 +48,7 @@ class UpdateTranslatableStringsCommand extends Command
         Configuration::setPreloadedConfig(
             Configuration::loadFromArray([
                 'module.enable' => array_fill_keys(Module::getModules(), true),
+                'logging.handler' => ArrayLogger::class,
             ]),
             'config.php',
             'simplesaml'
