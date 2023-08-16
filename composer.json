@@ -127,6 +127,7 @@
         }
     },
     "scripts": {
+        "translations:unused": "bin/console translations:unused",
         "translations:update:binary": "bin/console translations:update:binary",
         "translations:update:translatable": "bin/console translations:update:translatable",
         "post-install-cmd": [
