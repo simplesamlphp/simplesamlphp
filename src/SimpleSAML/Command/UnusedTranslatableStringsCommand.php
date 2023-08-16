@@ -48,8 +48,13 @@ class UnusedTranslatableStringsCommand extends Command
             'simplesaml'
         );
 
-        $this->setDescription('Generates a list of translations from .po files that are translation files based on the translatable strings from PHP and Twig files');
-        $this->addOption('module', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Which modules to perform this action on');
+        $this->setDescription('Generates a list of translations that are no longer in used in PHP or Twig files');
+        $this->addOption(
+            'module',
+            null,
+            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+            'Which modules to perform this action on',
+        );
     }
 
 
@@ -177,8 +182,8 @@ class UnusedTranslatableStringsCommand extends Command
                             $output->writeln(sprintf(
                                 "Unused translation '%s' found in file %s",
                                 $t->getOriginal(),
-                                $poFile->getPathName()),
-                            );
+                                $poFile->getPathName(),
+                            ));
                             $result = Command::FAILURE;
                         }
                     }

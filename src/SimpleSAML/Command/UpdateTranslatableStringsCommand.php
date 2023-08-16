@@ -52,8 +52,15 @@ class UpdateTranslatableStringsCommand extends Command
             'simplesaml'
         );
 
-        $this->setDescription('Generates fresh .po translation files based on the translatable strings from PHP and Twig files');
-        $this->addOption('module', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Which modules to perform this action on');
+        $this->setDescription(
+            'Generates fresh .po translation files based on the translatable strings from PHP and Twig files',
+        );
+        $this->addOption(
+            'module',
+            null,
+            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+            'Which modules to perform this action on',
+        );
     }
 
 
