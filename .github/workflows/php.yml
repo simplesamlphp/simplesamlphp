@@ -107,6 +107,9 @@ jobs:
           --dry-run \
           --php-version=${{ steps.setup-php.outputs.php-version }}
 
+      - name: Check for unused translations
+        run: composer translations:unused
+
   security:
     name: Security checks
     runs-on: [ubuntu-latest]
