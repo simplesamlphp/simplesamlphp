@@ -10,8 +10,9 @@ use Gettext\Loader\PoLoader;
 use Gettext\Merge;
 use Gettext\Translation;
 use Gettext\Translations;
+use SimpleSAML\Configuration;
 use SimpleSAML\Module;
-use SimpleSAML\XHTML\TemplateLoader;
+use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
@@ -109,11 +110,9 @@ class UpdateTranslatableStringsCommand extends Command
             // Scan Twig-templates
             $finder = new Finder();
             foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
-                $loader = new TemplateLoader([$moduleTemplateDir]);
-                $env = new Environment($loader);
-
+                $template = new Template($module . ':' . $file->getFileName());
                 $catalogue = new MessageCatalogue('en', []);
-                $extractor = new TwigExtractor($env);
+                $extractor = new TwigExtractor($template->getTwig());
                 $extractor->extract($file, $catalogue);
 
                 $tmp = $catalogue->all();
