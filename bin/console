@@ -2,7 +2,7 @@
 <?php
 
 use SimpleSAML\Console\Application;
-use SimpleSAML\Kernel;
+use SimpleSAML\CommandLineKernel;
 use Symfony\Component\Console\Input\ArgvInput;
 
 umask(000);
@@ -12,7 +12,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $input = new ArgvInput();
 $module = $input->getParameterOption(['--modules', '-m'], 'core');
-$kernel = new Kernel($module);
+$kernel = new CommandLineKernel($module);
 
 $application = new Application($kernel);
 $application->run($input);
