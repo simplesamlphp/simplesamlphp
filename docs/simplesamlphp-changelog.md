@@ -9,6 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fixed a legacy endpoint causing to break iframe-logout (#1846)
 * Fixed an incorrect return-type in RunnableResponse
 * Fix for admin.protectmetadata=true - it would show a blank page
 
