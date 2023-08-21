@@ -17,4 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 $config = Configuration::getInstance();
 $controller = new Controller\WebBrowserSingleSignOn($config);
 $request = Request::createFromGlobals();
-$controller->singleSignOnService($request)->send();
+
+$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+
+$response = $controller->singleSignOnService($request)->send();
+foreach ($headers as $header => $value) {
+    // Some pages may have specific requirements that we must follow. Don't touch them.
+    if (!$response->has($header)) {
+        $response->headers->set($header, $value);
+    }
+}
+$response->send();

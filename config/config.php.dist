@@ -259,13 +259,26 @@ $config = [
     /*
      * Set the allowed clock skew between encrypting/decrypting assertions
      *
-     * If you have an server that is constantly out of sync, this option
+     * If you have a server that is constantly out of sync, this option
      * allows you to adjust the allowed clock-skew.
      *
      * Allowed range: 180 - 300
      * Defaults to 180.
      */
     'assertion.allowed_clock_skew' => 180,
+
+    /*
+     * Set custom security headers. The defaults can be found in \SimpleSAML\Configuration::DEFAULT_SECURITY_HEADERS
+     *
+     * NOTE: When a header is already set on the response we will NOT overrule it and leave it untouched.
+     *
+     * Whenever you change any of these headers, make sure to validate your config by running your
+     * hostname through a security-test like https://en.internet.nl
+    'headers.security' => [
+        'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+        'Referer-Policy' => 'origin-when-cross-origin',
+    ],
+     */
 
 
     /************************
