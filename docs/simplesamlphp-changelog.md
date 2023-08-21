@@ -14,6 +14,7 @@ Released TBD
 * Fix for admin.protectmetadata=true - it would show a blank page
 * Fix default for entity attributes NameFormat in XML metadata to be 'URI'.
 * Fix error message when invoking SSO endpoint without the required parameters.
+* Security header regression
 
 ## Version 2.0.5
 

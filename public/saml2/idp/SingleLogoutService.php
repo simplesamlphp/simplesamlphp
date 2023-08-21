@@ -17,4 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 $request = Request::createFromGlobals();
 $config = Configuration::getInstance();
 $controller = new Controller\SingleLogout($config);
-$controller->singleLogout($request)->send();
+
+$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+
+$response = $controller->singleLogout($request)->send();
+foreach ($headers as $header => $value) {
+    // Some pages may have specific requirements that we must follow. Don't touch them.
+    if (!$response->has($header)) {
+        $response->headers->set($header, $value);
+    }
+}
+$response->send();
