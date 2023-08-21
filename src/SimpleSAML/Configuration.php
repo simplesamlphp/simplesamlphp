@@ -49,6 +49,16 @@ class Configuration implements Utils\ClearableState
     public const REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
     /**
+     * The default security-headers to be sent on responses.
+     */
+    public const DEFAULT_SECURITY_HEADERS = [
+        'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+        'X-Frame-Options' => 'SAMEORIGIN',
+        'X-Content-Type' => 'nosniff',
+        'Referer-Policy' => 'origin-when-cross-origin',
+    ];
+
+    /**
      * Associative array with mappings from instance-names to configuration objects.
      *
      * @var array<string, \SimpleSAML\Configuration>
