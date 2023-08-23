@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\HTTP;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class modelling a response that consists on running some function.
@@ -12,29 +12,25 @@ use Symfony\Component\HttpFoundation\Response;
  * This is a helper class that allows us to have the new and the old architecture coexist. This way, classes and files
  * that aren't PSR-7-aware can still be plugged into a PSR-7-compatible environment.
  *
+ * @deprecated Will be removed in 3.0
  * @package SimpleSAML
  */
-class RunnableResponse extends Response
+class RunnableResponse extends StreamedResponse
 {
-    /** @var array */
-    protected array $arguments;
-
-    /** @var callable */
-    protected $callable;
-
-
     /**
      * RunnableResponse constructor.
      *
-     * @param callable $callable A callable that we should run as part of this response.
+     * @param callable $callback A callable that we should run as part of this response.
      * @param array $args An array of arguments to be passed to the callable. Note that each element of the array
      */
-    public function __construct(callable $callable, array $args = [])
-    {
-        $this->arguments = $args;
-        $this->callable = $callable;
-        $this->charset = 'UTF-8';
-        parent::__construct();
+    public function __construct(
+        callable $callback,
+        protected array $arguments = [],
+        int $status = 200,
+        array $headers = []
+    ) {
+        $this->setCharset('UTF-8');
+        parent::__construct($callback, $status, $headers);
     }
 
 
@@ -45,7 +41,7 @@ class RunnableResponse extends Response
      */
     public function getCallable(): callable
     {
-        return $this->callable;
+        return $this->callback;
     }
 
 
@@ -61,7 +57,9 @@ class RunnableResponse extends Response
 
 
     /**
-     * "Send" this response by actually running the callable.
+     * {@inheritdoc}
+     *
+     * This method only sends the content once.
      *
      * @return $this
      *
@@ -69,7 +67,18 @@ class RunnableResponse extends Response
      */
     public function sendContent()
     {
-        call_user_func_array($this->callable, $this->arguments);
+        if ($this->streamed) {
+            return $this;
+        }
+
+        $this->streamed = true;
+
+        if (null === $this->callback) {
+            throw new \LogicException('The Response callback must not be null.');
+        }
+
+        call_user_func_array($this->callback, $this->arguments);
+
         return $this;
     }
 }
