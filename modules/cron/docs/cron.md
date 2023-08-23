@@ -18,12 +18,18 @@ panel to trigger jobs manually.
 
 ## Preparations
 
-You need to enable the module and copy the `config-templates` files of the module into the global `config/` directory.
+You need to enable the module in `config.php` and copy the `config-templates` files of the module into the global `config/` directory.
 
 ```shell
-[root@simplesamlphp] cd /var/simplesamlphp
-[root@simplesamlphp simplesamlphp] touch modules/cron/enable
-[root@simplesamlphp simplesamlphp] cp modules/cron/config/module_cron.php.dist config/module_cron.php
+'module.enable' => [
+     'cron' => true,
+     …
+],
+```
+
+```shell
+[user@simplesamlphp] cd /var/simplesamlphp
+[user@simplesamlphp simplesamlphp] cp modules/cron/config/module_cron.php.dist config/module_cron.php
 ```
 
 ## Configuring the cron module
@@ -74,7 +80,7 @@ Now, copy the cron configuration suggested on that page:
 Finally, add it to your crontab by going back to the terminal, and editing with:
 
 ```shell
-[root@simplesamlphp config]# crontab -e
+[user@simplesamlphp config]# crontab -e
 ```
 
 This will open up your favourite editor. If an editor different than
@@ -82,7 +88,7 @@ the one you use normally appears, exit, and configure the `EDITOR`
 variable to tell the command line which editor it should use:
 
 ```shell
-[root@simplesamlphp config]# export EDITOR=emacs
+[user@simplesamlphp config]# export EDITOR=emacs
 ```
 
 If you want to trigger a job manually, you can do
