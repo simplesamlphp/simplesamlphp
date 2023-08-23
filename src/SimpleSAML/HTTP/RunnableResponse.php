@@ -37,7 +37,9 @@ class RunnableResponse extends Response
          * in the Symfony Reponse generated list as well will lead to a duplicate (comma-
          * separated) Date header in the final response.
          */
-        $this->headers->remove('Date');
+        if (isset($this->headers)) {
+            $this->headers->remove('Date');
+	}
         parent::__construct();
     }
 
