@@ -13,6 +13,7 @@ Released TBD
 * Resolved security vulnerability in Webpack dev-dependency (CVE-2023-28154)
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
+* Bumped dependencies
 
 `metarefresh`
 
