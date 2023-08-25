@@ -199,15 +199,13 @@ class SAMLBuilder
             foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
                 $a = new Attribute();
                 $a->setName($attributeName);
-                $a->setNameFormat(Constants::NAMEFORMAT_UNSPECIFIED);
+                $a->setNameFormat(Constants::NAMEFORMAT_URI);
 
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
                     $a->setName($matches[2]);
                     $nameFormat = $matches[1];
-                    if ($nameFormat !== Constants::NAMEFORMAT_UNSPECIFIED) {
-                        $a->setNameFormat($nameFormat);
-                    }
+                    $a->setNameFormat($nameFormat);
                 }
                 foreach ($attributeValues as $attributeValue) {
                     $a->addAttributeValue(new AttributeValue($attributeValue));
