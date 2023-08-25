@@ -186,7 +186,7 @@ class SAMLBuilder
                 } else {
                     $attr[] = new Attribute(
                         name: $attributeName,
-                        nameFormat: C::NAMEFORMAT_UNSPECIFIED,
+                        nameFormat: C::NAMEFORMAT_URI,
                         attributeValue: $attrValues,
                     );
                 }
