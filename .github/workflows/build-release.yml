@@ -25,7 +25,7 @@ jobs:
         with:
           # Should match the minimum required version for SimpleSAMLphp
           php-version: '8.0'
-          tools: composer:v2
+          tools: composer:v2, phive
           extensions: mbstring, xml
           coverage: none
 
@@ -65,6 +65,9 @@ jobs:
               composer require "$repository:$v" --update-no-dev --ignore-platform-reqs
             fi
           done
+
+      - name: Add composer.phar to the release
+        run: phive --no-progress install --trust-gpg-keys CBB3D576F2A0946F --copy --target ./bin composer
 
       - name: Clean release
         run: |
