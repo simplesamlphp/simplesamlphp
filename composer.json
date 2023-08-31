@@ -63,7 +63,6 @@
         "ext-zlib": "*",
 
         "beste/clock": "^3.0",
-        "composer/composer": "^2.5",
         "gettext/gettext": "^5.7",
         "gettext/translator": "^1.1",
         "phpmailer/phpmailer": "^6.8",
@@ -94,6 +93,7 @@
         "twig/twig": "^3.3.8"
     },
     "require-dev": {
+        "composer/composer": "^2.5",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.1",
         "simplesamlphp/xml-security": "^1.6.0"
