@@ -5,6 +5,19 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.1.0
+
+Released 2023-07-31
+
+* Functionality that before was provided by the sanitycheck-module is now implicit.
+  The module has been archived and should no longer be used. (#1843)
+* Add support for TLS configuration for Redis Store (#1828)
+* Add support for Metadata Deployment Profile for errorURL (#1841)
+* Raised minimum Symfony version to 6.0
+* Raise minimum PHP version to 8.0
+* Specified the allowed HTTP methods for each route
+* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file.
+
 ## Version 2.0.5
 
 * Never expose the cron-API if secret is not properly configured (#1831)
