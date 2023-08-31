@@ -53,9 +53,12 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-pcre": "*",
+        "ext-session": "*",
+        "ext-simplexml": "*",
+        "ext-sodium": "*",
         "ext-SPL": "*",
         "ext-zlib": "*",
-        "composer/composer": "^2.5",
+
         "gettext/gettext": "^5.7",
         "gettext/translator": "^1.1",
         "phpmailer/phpmailer": "^6.8",

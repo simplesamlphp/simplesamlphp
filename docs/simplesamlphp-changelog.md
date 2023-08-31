@@ -16,6 +16,7 @@ Released 2023-07-31
 * Raised minimum Symfony version to 6.0
 * Raise minimum PHP version to 8.0
 * Specified the allowed HTTP methods for each route
+* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file.
 
 ## Version 2.0.5
 
