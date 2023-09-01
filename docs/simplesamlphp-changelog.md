@@ -12,6 +12,8 @@ Released TBD
 * Fixed a legacy endpoint causing to break iframe-logout (#1846)
 * Fixed an incorrect return-type in RunnableResponse
 * Fix for admin.protectmetadata=true - it would show a blank page
+* Fix default for entity attributes NameFormat in XML metadata to be 'URI'.
+* Fix error message when invoking SSO endpoint without the required parameters.
 
 ## Version 2.0.5
 
