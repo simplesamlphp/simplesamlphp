@@ -26,7 +26,7 @@ jobs:
           # Should match the minimum required version for SimpleSAMLphp
           php-version: '8.0'
           tools: composer:v2, phive
-          extensions: mbstring, xml
+          extensions: mbstring, sodium, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
