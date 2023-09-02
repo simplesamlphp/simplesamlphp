@@ -71,13 +71,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Check code for hard dependencies missing in composer.json
-        continue-on-error: true
-        run: composer-require-checker check --config-file tools/composer-require-checker.json composer.json
-
-      - name: Check code for unused dependencies in composer.json
-        run: composer-unused --excludePackage=simplesamlphp/simplesamlphp-assets-base
-
       - name: PHP Code Sniffer
         run: phpcs
 

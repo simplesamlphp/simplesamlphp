@@ -16,7 +16,9 @@ Released 2023-07-31
 * Raised minimum Symfony version to 6.0
 * Raise minimum PHP version to 8.0
 * Specified the allowed HTTP methods for each route
-* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file.
+* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file (#1857).
+* The `bin/pwgen.php` script was improved to used stronger encryption (#1849). This adds a new
+  dependency on `ext-sodium`.
 
 ## Version 2.0.5
 
