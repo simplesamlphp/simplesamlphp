@@ -51,7 +51,16 @@ class Configuration implements Utils\ClearableState
      * The default security-headers to be sent on responses.
      */
     public const DEFAULT_SECURITY_HEADERS = [
-        'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+        'Content-Security-Policy' =>
+            "default-src 'none'; " .
+            "frame-ancestors 'self'; " .
+            "object-src 'none'; " .
+            "script-src 'self'; " .
+            "style-src 'self'; " .
+            "font-src 'self'; " .
+            "connect-src 'self'; " .
+            "img-src 'self' data:; " .
+            "base-uri 'none'",
         'Referer-Policy' => 'origin-when-cross-origin',
     ];
 
