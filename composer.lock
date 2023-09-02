@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59edc49d25fc8888c4019fd1d0f9fcbe",
+    "content-hash": "3521668a36752947955e1dfecd3adcc5",
     "packages": [
         {
             "name": "beste/clock",
@@ -5792,7 +5792,6 @@
         "ext-pcre": "*",
         "ext-session": "*",
         "ext-simplexml": "*",
-        "ext-sodium": "*",
         "ext-spl": "*",
         "ext-xml": "*",
         "ext-zlib": "*"
