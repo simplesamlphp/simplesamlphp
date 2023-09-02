@@ -17,7 +17,7 @@ repository](simplesamlphp-install-repo).
 * PHP version >= 8.0.0.
 * Support for the following PHP extensions:
   * Always required: `date`, `dom`, `fileinfo`, `filter`, `hash`, `intl`, `json`, `libxml`, `mbstring`, `openssl`,
-                     `pcre`, `session`, `simplexml`, `SPL` and `zlib`
+                     `pcre`, `session`, `simplexml`, `sodium`, `SPL` and `zlib`
   * When running on Linux: `posix`
   * When automatically checking for latest versions, and used by some modules: `cURL`
   * When authenticating against an LDAP server: `ldap`
