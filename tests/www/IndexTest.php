@@ -24,35 +24,35 @@ class IndexTest extends TestCase
     /**
      * @var \SimpleSAML\TestUtils\BuiltInServer
      */
-    protected BuiltInServer $server;
+    protected static BuiltInServer $server;
 
     /**
      * @var string
      */
-    protected string $server_addr;
+    protected static string $server_addr;
 
     /**
      * @var int
      */
-    protected int $server_pid;
+    protected static int $server_pid;
 
     /**
      * @var string
      */
-    protected string $shared_file;
+    protected static string $shared_file;
 
 
     /**
      * The setup method that is run before any tests in this class.
      */
-    protected function setup(): void
+    public static function setupBeforeClass(): void
     {
-        $this->server = new BuiltInServer('configLoader');
-        $this->server_addr = $this->server->start();
-        $this->server_pid = $this->server->getPid();
+        self::$server = new BuiltInServer('configLoader');
+        self::$server_addr = self::$server->start();
+        self::$server_pid = self::$server->getPid();
 
-        $this->shared_file = sys_get_temp_dir() . '/' . $this->server_pid . '.lock';
-        @unlink($this->shared_file); // remove it if it exists
+        self::$shared_file = sys_get_temp_dir() . '/' . self::$server_pid . '.lock';
+        @unlink(self::$shared_file); // remove it if it exists
     }
 
 
@@ -61,9 +61,9 @@ class IndexTest extends TestCase
      */
     protected function updateConfig(array $config): void
     {
-        @unlink($this->shared_file);
+        @unlink(self::$shared_file);
         $config = "<?php\n\$config = " . var_export($config, true) . ";\n";
-        file_put_contents($this->shared_file, $config);
+        file_put_contents(self::$shared_file, $config);
     }
 
 
@@ -76,7 +76,7 @@ class IndexTest extends TestCase
         $this->updateConfig([
             'baseurlpath' => 'http://example.org/simplesaml/'
         ]);
-        $resp = $this->server->get('/index.php', [], [
+        $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
@@ -89,7 +89,7 @@ class IndexTest extends TestCase
         $this->updateConfig([
             'baseurlpath' => 'https://example.org/'
         ]);
-        $resp = $this->server->get('/index.php', [], [
+        $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
@@ -102,12 +102,12 @@ class IndexTest extends TestCase
         $this->updateConfig([
             'baseurlpath' => '/simplesaml/'
         ]);
-        $resp = $this->server->get('/index.php', [], [
+        $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'http://' . $this->server_addr . '/simplesaml/module.php/core/welcome',
+            'http://' . self::$server_addr . '/simplesaml/module.php/core/welcome',
             $resp['headers']['Location']
         );
     }
@@ -120,7 +120,7 @@ class IndexTest extends TestCase
         $this->updateConfig([
             'frontpage.redirect' => 'https://www.example.edu/'
         ]);
-        $resp = $this->server->get('/index.php', [], [
+        $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
@@ -133,9 +133,9 @@ class IndexTest extends TestCase
     /**
      * The tear down method that is executed after all tests in this class.
      */
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
-        unlink($this->shared_file);
-        $this->server->stop();
+        unlink(self::$shared_file);
+        self::$server->stop();
     }
 }
