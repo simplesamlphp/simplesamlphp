@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ded8c3cd9685c2129e04ad7da71526b",
+    "content-hash": "34be1959fd4a4d2b32363b97465dcf90",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -5333,7 +5333,6 @@
         "ext-pcre": "*",
         "ext-session": "*",
         "ext-simplexml": "*",
-        "ext-sodium": "*",
         "ext-spl": "*",
         "ext-zlib": "*"
     },

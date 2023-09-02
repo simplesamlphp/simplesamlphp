@@ -55,7 +55,6 @@
         "ext-pcre": "*",
         "ext-session": "*",
         "ext-simplexml": "*",
-        "ext-sodium": "*",
         "ext-SPL": "*",
         "ext-zlib": "*",
 
