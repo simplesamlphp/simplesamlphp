@@ -17,7 +17,7 @@ $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_
 $response = Module::process();
 foreach ($headers as $header => $value) {
     // Some pages may have specific requirements that we must follow. Don't touch them.
-    if (!$response->has($header)) {
+    if (!$response->headers->has($header)) {
         $response->headers->set($header, $value);
     }
 }
