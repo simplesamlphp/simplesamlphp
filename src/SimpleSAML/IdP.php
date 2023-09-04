@@ -467,9 +467,7 @@ class IdP
     public function finishLogout(array &$state): Response
     {
         Assert::notNull($state['Responder']);
-
-        $idp = IdP::getByState($this->globalConfig, $state);
-        return call_user_func($state['Responder'], $idp, $state);
+        return call_user_func($state['Responder'], $state);
     }
 
 
@@ -548,10 +546,9 @@ class IdP
      *
      * This function never returns.
      *
-     * @param IdP      $idp Deprecated. Will be removed.
      * @param array    &$state The logout state from doLogoutRedirect().
      */
-    public static function finishLogoutRedirect(IdP $idp, array $state): RedirectResponse
+    public static function finishLogoutRedirect(array $state): RedirectResponse
     {
         Assert::notNull($state['core:Logout:URL']);
 
