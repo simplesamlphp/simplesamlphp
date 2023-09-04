@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+use SimpleSAML\Command\UnusedTranslatableStringsCommand;
+use SimpleSAML\Command\UpdateBinaryTranslationsCommand;
+use SimpleSAML\Command\UpdateTranslatableStringsCommand;
+use Symfony\Component\Console\Application;
+
+umask(000);
+set_time_limit(0);
+
+require __DIR__.'/../vendor/autoload.php';
+
+$application = new Application();
+$application->add(new UnusedTranslatableStringsCommand());
+$application->add(new UpdateBinaryTranslationsCommand());
+$application->add(new UpdateTranslatableStringsCommand());
+$application->run();

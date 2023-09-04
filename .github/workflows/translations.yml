@@ -59,7 +59,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Generate new updated PO-files
-        run: php bin/console translations:update:translatable --module main
+        run: php bin/translations translations:update:translatable --module main
 
       - name: Diff the changes after building
         shell: pwsh
