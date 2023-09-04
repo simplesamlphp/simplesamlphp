@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Command;
 
+use Exception;
 use Gettext\Scanner\PhpScanner;
 use Gettext\Generator\PoGenerator;
 use Gettext\Loader\PoLoader;
@@ -128,10 +129,15 @@ class UpdateTranslatableStringsCommand extends Command
             // Scan Twig-templates
             $finder = new Finder();
             foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
-                $template = new Template(
-                    Configuration::getInstance(),
-                    ($module ? ($module . ':') : '') . $file->getFileName(),
-                );
+                try {
+                    $template = new Template(
+                        Configuration::getInstance(),
+                        ($module ? ($module . ':') : '') . $file->getFileName(),
+                    );
+                } catch (Exception) {
+                    // Will fail for 'include' templates like the expander.twig
+                    continue;
+                }
                 $catalogue = new MessageCatalogue('en', []);
                 $extractor = new TwigExtractor($template->getTwig());
                 $extractor->extract($file, $catalogue);
