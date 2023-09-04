@@ -1,20 +1,303 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:31+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: lt\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: messages\n"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
+msgid "No SAML response provided"
+msgstr "Nepateiktas SAML atsakymas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
+msgid "No SAML message provided"
+msgstr "Nepateikta SAML žinutė"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
+msgid "Authentication source error"
+msgstr "Autentikacijos šaltinio klaida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
+msgid "Bad request received"
+msgstr "Gauta neteisinga užklausa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
+msgid "CAS Error"
+msgstr "CAS klaida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
+msgid "Configuration error"
+msgstr "Konfigūracijos klaida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
+msgid "Error creating request"
+msgstr "Klaida kuriant užklausą"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+msgid "Bad request to discovery service"
+msgstr "Neteisinga užklausa kreipiantis į \"discovery\" servisą"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
+msgid "Could not create authentication response"
+msgstr "Nepavyko sukurti autentikacijos atsakymo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
+msgid "Invalid certificate"
+msgstr "Neteisingas sertifikatas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
+msgid "LDAP Error"
+msgstr "LDAP klaida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
+msgid "Logout information lost"
+msgstr "Atsijungimo informacija prarasta"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
+msgid "Error processing the Logout Request"
+msgstr "Klaida vykdant atsijungimo užklausą"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
+msgid "Error loading metadata"
+msgstr "Klaida siunčiant metaduomenis"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
+msgid "Metadata not found"
+msgstr "Metaduomenys nerasti"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
+msgid "No access"
+msgstr "Prieigos nėra"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
+msgid "No certificate"
+msgstr "Nėra sertifikato"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+msgid "No RelayState"
+msgstr "Nėra perdavimo statuso"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
+msgid "State information lost"
+msgstr "Būsenos informacija prarasta"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
+msgid "Page not found"
+msgstr "Puslapis nerastas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
+msgid "Password not set"
+msgstr "Nepateiktas slaptažodis"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
+msgid "Error processing response from Identity Provider"
+msgstr "Klaida apdorojant užklausą iš tapatybių teikėjo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
+msgid "Error processing request from Service Provider"
+msgstr "Klaida siunčiant užklausą iš paslaugų teikėjo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
+msgid "Error received from Identity Provider"
+msgstr "Gautas klaidos pranešimas iš tapatybių teikėjo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
+msgid "Unhandled exception"
+msgstr "Nežinoma klaida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
+msgid "Unknown certificate"
+msgstr "Nežinomas sertifikatas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
+msgid "Authentication aborted"
+msgstr "Autentikacija nutraukta"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
+msgid "Incorrect username or password"
+msgstr "Neteisingas prisijungimo vardas arba slaptažodis"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML autentikacijos atsakymo."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Autentikacijos klaida %AUTHSOURCE% šaltinyje. Priežastis: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Užklausoje į šį puslapį rasta klaida. Priežastis buvo: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error when communicating with the CAS server."
+msgstr "Klaida bandant jungtis prie CAS serverio."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "SimpleSAMLphp tikriausiai klaidingai sukonfigūruotas."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Klaida kuriant SAML užklausą."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko klaida."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nevalidus arba negali būti perskaitytas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP yra naudotojų duomenų bazė. Jums jungiantis, mums reikalinga prie jos prisijungti. Bandant tai padaryti įvyko klaida."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Informacija apie atsijungimo operaciją prarasta. Jūs turėtumėte sugrįžti į tą paslaugą, iš kurios bandėte atsijungti ir pabandyti atlikti tai dar kartą. Ši klaida galėjo būti sukelta, nes baigėsi atsijungimo informacijos galiojimo laikas. Informacija apie atsijungimą yra saugoma ribotą laiko tarpą - dažniausiai kelias valandas. Tai yra daugiau nei bet kokia normali atsijungimo informacija gali užtrukti, taigi ši klaida gali būti sukelta kitos klaidos, kuri įvyko dėl konfigūracijos. Jei problema tęsiasi, susisiekite su savo paslaugos teikėju."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Klaida įvyko bandant įvykdyti atsijungimo užklausą."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Rastos Jūsų SimpleSAMLphp konfigūravimo klaidos. Jei Jūs esate šios sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti metaduomenys."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Nepavyko rasti objekto %ENTITYID% metaduomenų"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Baigties taškas neįjungtas. Patikrinkite savo SimpleSAMLphp konfigūraciją."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Autentikacija nepavyko: Jūsų naršyklė neišsiuntė jokio sertifikato"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris nusako kur toliau kreiptis."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
+msgid "State information lost, and no way to restart the request"
+msgstr "Būsenos informacija prarasta, nėra galimybių pakartoti užklausą"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "Šis puslapis nerastas. Puslapio adresas buvo: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "Šis puslapis nerastas. Priežastis buvo: %REASON% Puslapio adresas buvo: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš pradinės reikšmės. Prašome pakeisti konfigūracijos failą."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
+msgid "You did not present a valid certificate."
+msgstr "Jūs nepateikėte teisingo sertifikato."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Mes nepriimame užklausos, siųstos iš tapatybių teikėjo."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos teikėjo, tačiau apdorojant pranešimą įvyko klaida."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme buvo nesėkmingas)"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML LogoutRequest ar LogoutResponse užklausų."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
+msgid "An unhandled exception was thrown."
+msgstr "Nežinoma klaida."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nežinomas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
+msgid "The authentication was aborted by the user"
+msgstr "Autentikacija nutraukė naudotojas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte slaptažodį. Pasitikrinkite prisijungimo vardą ir bandykite dar kartą."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei kitus Jūsų sesijai priskirtus atributus."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
+
+msgid "Your attributes"
+msgstr "Jūsų atributai"
+
+msgid "Logout"
+msgstr "Atsijungti"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Jei pranešate apie šią klaidą, neužmirškite pateikti šios klaidos ID, kurio dėka sistemos administratorius galės surasti Jūsų sesijos metu atliktus veiksmus atliktų veiksmų istorijoje:"
+
+msgid "Debug information"
+msgstr "Detali informacija"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Ši detali informacija gali būti įdomi administratoriui:"
+
+msgid "Report errors"
+msgstr "Pranešti apie klaidas"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Jei pageidaujate, kad administratorius su Jumis susisiektų, įveskite savo el. pašto adresą:"
+
+msgid "E-mail address:"
+msgstr "El. pašto adresas:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Aprašykite kokius veiksmus atlikote, kuomet pasirodė ši klaida..."
+
+msgid "Send error report"
+msgstr "Siųsti pranešimą apie klaidą"
+
+msgid "How to get help"
+msgstr "Kaip pasiekti pagalbą"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Ši klaida tikriausiai susijusi dėl SimpleSAMLphp neteisingo sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir nusiųskite žemiau rodomą klaidos pranešimą."
+
+msgid "Select your identity provider"
+msgstr "Pasirinkite savo tapatybių tiekėją"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Prašome pasirinkite tapatybių tiekėją, kuriame norite autentikuotis:"
+
+msgid "Select"
+msgstr "Pasirinkite"
+
+msgid "Remember my choice"
+msgstr "Prisiminti pasirinkimą"
+
+msgid "Sending message"
+msgstr "Siunčiamas pranešimas"
+
+msgid "Yes, continue"
+msgstr "Taip, tęsti"
 
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"
@@ -31,25 +314,8 @@ msgstr "Mobiliojo numeris"
 msgid "Shib 1.3 Service Provider (Hosted)"
 msgstr "Shib 1.3 Paslaugos teikėjas (vietinis)"
 
-msgid ""
-"LDAP is the user database, and when you try to login, we need to contact "
-"an LDAP database. An error occurred when we tried it this time."
-msgstr ""
-"LDAP yra naudotojų duomenų bazė. Jums jungiantis, mums reikalinga prie "
-"jos prisijungti. Bandant tai padaryti įvyko klaida."
-
-msgid ""
-"Optionally enter your email address, for the administrators to be able "
-"contact you for further questions about your issue:"
-msgstr ""
-"Jei pageidaujate, kad administratorius su Jumis susisiektų, įveskite savo"
-" el. pašto adresą:"
-
 msgid "Display name"
 msgstr "Rodomas vardas"
-
-msgid "Remember my choice"
-msgstr "Prisiminti pasirinkimą"
 
 msgid "SAML 2.0 SP Metadata"
 msgstr "SAML 2.0 SP Metaduomenys"
@@ -60,50 +326,17 @@ msgstr "Pranešimai"
 msgid "Home telephone"
 msgstr "Namų telefo nr."
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
-"session is timed out, how long it lasts until it times out and all the "
-"attributes that are attached to your session."
-msgstr ""
-"Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar "
-"Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei "
-"kitus Jūsų sesijai priskirtus atributus."
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Aprašykite kokius veiksmus atlikote, kuomet pasirodė ši klaida..."
-
-msgid "An unhandled exception was thrown."
-msgstr "Nežinoma klaida."
-
-msgid "Invalid certificate"
-msgstr "Neteisingas sertifikatas"
-
 msgid "Service Provider"
 msgstr "Paslaugos teikėjas"
 
 msgid "Incorrect username or password."
 msgstr "Neteisingas prisijungimo vardas arba slaptažodis."
 
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Užklausoje į šį puslapį rasta klaida. Priežastis buvo: %REASON%"
-
-msgid "E-mail address:"
-msgstr "El. pašto adresas:"
-
 msgid "Submit message"
 msgstr "Patvirtinti pranešimą"
 
-msgid "No RelayState"
-msgstr "Nėra perdavimo statuso"
-
-msgid "Error creating request"
-msgstr "Klaida kuriant užklausą"
-
 msgid "Locality"
 msgstr "Vietovė"
-
-msgid "Unhandled exception"
-msgstr "Nežinoma klaida"
 
 msgid "The following required fields was not found"
 msgstr "Šie privalomi laukai nerasti"
@@ -111,39 +344,14 @@ msgstr "Šie privalomi laukai nerasti"
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Parsisiųsti X509 sertifikatus kaip PEM koduotės failus."
 
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Nepavyko rasti objekto %ENTITYID% metaduomenų"
-
 msgid "Organizational number"
 msgstr "Organizacijos numeris"
-
-msgid "Password not set"
-msgstr "Nepateiktas slaptažodis"
 
 msgid "Post office box"
 msgstr "Pašto dėžutės nr."
 
-msgid ""
-"A service has requested you to authenticate yourself. Please enter your "
-"username and password in the form below."
-msgstr ""
-"Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir"
-" slaptažodį."
-
-msgid "CAS Error"
-msgstr "CAS klaida"
-
-msgid ""
-"The debug information below may be of interest to the administrator / "
-"help desk:"
-msgstr "Ši detali informacija gali būti įdomi administratoriui:"
-
-msgid ""
-"Either no user with the given username could be found, or the password "
-"you gave was wrong. Please check the username and try again."
-msgstr ""
-"Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte"
-" slaptažodį. Pasitikrinkite prisijungimo vardą ir bandykite dar kartą."
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Paslauga prašo autentikacijos. Žemiau įveskite savo prisijungimo vardą ir slaptažodį."
 
 msgid "Error"
 msgstr "Klaida"
@@ -154,16 +362,6 @@ msgstr "Kitas"
 msgid "Distinguished name (DN) of the person's home organizational unit"
 msgstr "Asmens organizacijos skyriaus atpažinimo vardas"
 
-msgid "State information lost"
-msgstr "Būsenos informacija prarasta"
-
-msgid ""
-"The password in the configuration (auth.adminpassword) is not changed "
-"from the default value. Please edit the configuration file."
-msgstr ""
-"Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "
-"pradinės reikšmės. Prašome pakeisti konfigūracijos failą."
-
 msgid "Converted metadata"
 msgstr "Sukonvertuoti metaduomenys"
 
@@ -173,25 +371,14 @@ msgstr "El.paštas"
 msgid "No, cancel"
 msgstr "Ne"
 
-msgid ""
-"You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
-"wrong you may choose another one."
-msgstr ""
-"Jūs savo namų organizacija pasirinkote <b>%HOMEORG%</b>. Jei tai yra "
-"neteisingas pasirinkimas, galite pasirinkti kitą."
-
-msgid "Error processing request from Service Provider"
-msgstr "Klaida siunčiant užklausą iš paslaugų teikėjo"
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Jūs savo namų organizacija pasirinkote <b>%HOMEORG%</b>. Jei tai yra neteisingas pasirinkimas, galite pasirinkti kitą."
 
 msgid "Distinguished name (DN) of person's primary Organizational Unit"
 msgstr "Asmens pirminio organizacijos skyriaus atpažinimo vardas"
 
-msgid ""
-"To look at the details for an SAML entity, click on the SAML entity "
-"header."
-msgstr ""
-"Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML"
-" antraštės."
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML antraštės."
 
 msgid "Enter your username and password"
 msgstr "Įveskite savo prisijungimo vardą ir slaptažodį"
@@ -211,20 +398,8 @@ msgstr "WS-Fed SP Demonstracinės versijos Pavyzdys"
 msgid "SAML 2.0 Identity Provider (Remote)"
 msgstr "SAML 2.0 Tapatybių teikėjas (nutolęs)"
 
-msgid "Error processing the Logout Request"
-msgstr "Klaida vykdant atsijungimo užklausą"
-
 msgid "Do you want to logout from all the services above?"
 msgstr "Ar norite atsijungti nuo visų žemiau išvardintų paslaugų?"
-
-msgid "Select"
-msgstr "Pasirinkite"
-
-msgid "The authentication was aborted by the user"
-msgstr "Autentikacija nutraukė naudotojas"
-
-msgid "Your attributes"
-msgstr "Jūsų atributai"
 
 msgid "Given name"
 msgstr "Vardas"
@@ -235,21 +410,11 @@ msgstr "Tapatybės tikrumo profilis"
 msgid "SAML 2.0 SP Demo Example"
 msgstr "SAML 2.0 SP Demonstracinės versijos Pavyzdys"
 
-msgid "Logout information lost"
-msgstr "Atsijungimo informacija prarasta"
-
 msgid "Organization name"
 msgstr "Organizacijos pavadinimas"
 
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nežinomas"
-
-msgid ""
-"You are about to send a message. Hit the submit message button to "
-"continue."
-msgstr ""
-"Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "
-"patvirtinimo mygtuką."
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo patvirtinimo mygtuką."
 
 msgid "Home organization domain name"
 msgstr "Organizacijos domenas"
@@ -263,9 +428,6 @@ msgstr "Pranešimas apie klaidą išsiųstas"
 msgid "Common name"
 msgstr "Pilnas vardas"
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Prašome pasirinkite tapatybių tiekėją, kuriame norite autentikuotis:"
-
 msgid "Logout failed"
 msgstr "Atsijungimas nepavyko"
 
@@ -275,39 +437,11 @@ msgstr "Valstybės institucijų priskirtas tapatybės numeris"
 msgid "WS-Federation Identity Provider (Remote)"
 msgstr "WS-Federacijos Paslaugos teikėjas (nutolęs)"
 
-msgid "Error received from Identity Provider"
-msgstr "Gautas klaidos pranešimas iš tapatybių teikėjo"
-
-msgid "LDAP Error"
-msgstr "LDAP klaida"
-
-msgid ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amount of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
-msgstr ""
-"Informacija apie atsijungimo operaciją prarasta. Jūs turėtumėte sugrįžti "
-"į tą paslaugą, iš kurios bandėte atsijungti ir pabandyti atlikti tai dar "
-"kartą. Ši klaida galėjo būti sukelta, nes baigėsi atsijungimo "
-"informacijos galiojimo laikas. Informacija apie atsijungimą yra saugoma "
-"ribotą laiko tarpą - dažniausiai kelias valandas. Tai yra daugiau nei bet"
-" kokia normali atsijungimo informacija gali užtrukti, taigi ši klaida "
-"gali būti sukelta kitos klaidos, kuri įvyko dėl konfigūracijos. Jei "
-"problema tęsiasi, susisiekite su savo paslaugos teikėju."
-
 msgid "Some error occurred"
 msgstr "Įvyko tam tikra klaida"
 
 msgid "Organization"
 msgstr "Organizacija"
-
-msgid "No certificate"
-msgstr "Nėra sertifikato"
 
 msgid "Choose home organization"
 msgstr "Pasirinkite organizaciją"
@@ -315,38 +449,14 @@ msgstr "Pasirinkite organizaciją"
 msgid "Persistent pseudonymous ID"
 msgstr "Nuolatinio pseudonimo ID"
 
-msgid "No SAML response provided"
-msgstr "Nepateiktas SAML atsakymas"
-
 msgid "No errors found."
 msgstr "Klaidų nerasta."
 
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 Paslaugos teikėjas (vietinis)"
 
-msgid "The given page was not found. The URL was: %URL%"
-msgstr "Šis puslapis nerastas. Puslapio adresas buvo: %URL%"
-
-msgid "Configuration error"
-msgstr "Konfigūracijos klaida"
-
 msgid "Required fields"
 msgstr "Privalomi laukai"
-
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Klaida kuriant SAML užklausą."
-
-msgid ""
-"This error probably is due to some unexpected behaviour or to "
-"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
-"login service, and send them the error message above."
-msgstr ""
-"Ši klaida tikriausiai susijusi dėl SimpleSAMLphp neteisingo "
-"sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir "
-"nusiųskite žemiau rodomą klaidos pranešimą."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
 
 msgid "Domain component (DC)"
 msgstr "Domeno komponentas"
@@ -359,16 +469,6 @@ msgstr "Slaptažodis"
 
 msgid "Nickname"
 msgstr "Slapyvardis"
-
-msgid "Send error report"
-msgstr "Siųsti pranešimą apie klaidą"
-
-msgid ""
-"Authentication failed: the certificate your browser sent is invalid or "
-"cannot be read"
-msgstr ""
-"Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nevalidus"
-" arba negali būti perskaitytas"
 
 msgid "The error report has been sent to the administrators."
 msgstr "Pranešimas apie klaidą išsiųstas administratoriams."
@@ -384,9 +484,6 @@ msgstr "Jūs taip pat esate prisijungęs prie:"
 
 msgid "SimpleSAMLphp Diagnostics"
 msgstr "SimpleSAMLphp Diagnostika"
-
-msgid "Debug information"
-msgstr "Detali informacija"
 
 msgid "No, only %SP%"
 msgstr "Ne, tik %SP%"
@@ -412,15 +509,6 @@ msgstr "Jūs buvote atjungtas nuo sistemos."
 msgid "Return to service"
 msgstr "Grįžti į paslaugą"
 
-msgid "Logout"
-msgstr "Atsijungti"
-
-msgid "State information lost, and no way to restart the request"
-msgstr "Būsenos informacija prarasta, nėra galimybių pakartoti užklausą"
-
-msgid "Error processing response from Identity Provider"
-msgstr "Klaida apdorojant užklausą iš tapatybių teikėjo"
-
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federacijos Paslaugos teikėjas (vietinis)"
 
@@ -430,17 +518,8 @@ msgstr "Kalba"
 msgid "Surname"
 msgstr "Pavardė"
 
-msgid "No access"
-msgstr "Prieigos nėra"
-
 msgid "The following fields was not recognized"
 msgstr "Šie laukai neatpažinti"
-
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Autentikacijos klaida %AUTHSOURCE% šaltinyje. Priežastis: %REASON%"
-
-msgid "Bad request received"
-msgstr "Gauta neteisinga užklausa"
 
 msgid "User ID"
 msgstr "Naudotojo ID"
@@ -451,33 +530,14 @@ msgstr "JPEG nuotrauka"
 msgid "Postal address"
 msgstr "Adresas"
 
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Klaida įvyko bandant įvykdyti atsijungimo užklausą."
-
-msgid "Sending message"
-msgstr "Siunčiamas pranešimas"
-
 msgid "In SAML 2.0 Metadata XML format:"
 msgstr "SAML 2.0 Metaduomenys XML formatu:"
 
 msgid "Logging out of the following services:"
 msgstr "Vyksta atjungimas nuo šių paslaugų:"
 
-msgid ""
-"When this identity provider tried to create an authentication response, "
-"an error occurred."
-msgstr ""
-"Šiam tapatybių teikėjui bandant sukurti autentikacijos atsakymą įvyko "
-"klaida."
-
-msgid "Could not create authentication response"
-msgstr "Nepavyko sukurti autentikacijos atsakymo"
-
 msgid "Labeled URI"
 msgstr "Žymėtasis URI"
-
-msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "SimpleSAMLphp tikriausiai klaidingai sukonfigūruotas."
 
 msgid "Shib 1.3 Identity Provider (Hosted)"
 msgstr "Shib 1.3 Tapatybių teikėjas (vietinis)"
@@ -487,13 +547,6 @@ msgstr "Metaduomenys"
 
 msgid "Login"
 msgstr "Prisijungti"
-
-msgid ""
-"This Identity Provider received an Authentication Request from a Service "
-"Provider, but an error occurred when trying to process the request."
-msgstr ""
-"Šis tapatybių tiekėjas gavo autentikacijos prašymo užklausą iš paslaugos "
-"teikėjo, tačiau apdorojant pranešimą įvyko klaida."
 
 msgid "Yes, all services"
 msgstr "Taip, visų paslaugų"
@@ -507,47 +560,20 @@ msgstr "Pašto kodas"
 msgid "Logging out..."
 msgstr "Atjungiama..."
 
-msgid "Metadata not found"
-msgstr "Metaduomenys nerasti"
-
 msgid "SAML 2.0 Identity Provider (Hosted)"
 msgstr "SAML 2.0 Tapatybių teikėjas (vietinis)"
 
 msgid "Primary affiliation"
 msgstr "Pirminė sąsaja"
 
-msgid ""
-"If you report this error, please also report this tracking number which "
-"makes it possible to locate your session in the logs available to the "
-"system administrator:"
-msgstr ""
-"Jei pranešate apie šią klaidą, neužmirškite pateikti šios klaidos ID, "
-"kurio dėka sistemos administratorius galės surasti Jūsų sesijos metu "
-"atliktus veiksmus atliktų veiksmų istorijoje:"
-
 msgid "XML metadata"
 msgstr "XML metaduomenys"
-
-msgid ""
-"The parameters sent to the discovery service were not according to "
-"specifications."
-msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
 
 msgid "Telephone number"
 msgstr "Telefono nr."
 
-msgid ""
-"Unable to log out of one or more services. To ensure that all your "
-"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti"
-" sėkmingą darbo pabaigą, rekomenduojame <i>uždaryti naršyklę</i>."
-
-msgid "Bad request to discovery service"
-msgstr "Neteisinga užklausa kreipiantis į \"discovery\" servisą"
-
-msgid "Select your identity provider"
-msgstr "Pasirinkite savo tapatybių tiekėją"
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Nepavyksta atsijungti nuo vienos ar daugiau paslaugų. Siekiant užtikrinti sėkmingą darbo pabaigą, rekomenduojame <i>uždaryti naršyklę</i>."
 
 msgid "Entitlement regarding the service"
 msgstr "Teisės susiję su paslauga"
@@ -555,9 +581,7 @@ msgstr "Teisės susiję su paslauga"
 msgid "Shib 1.3 SP Metadata"
 msgstr "Shib 1.3 SP Metaduomenys"
 
-msgid ""
-"As you are in debug mode, you get to see the content of the message you "
-"are sending:"
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
 msgstr "Įjungtas detalus naršymas, todėl matote siunčiamos žinutės turinį:"
 
 msgid "Certificates"
@@ -570,24 +594,13 @@ msgid "Distinguished name (DN) of person's home organization"
 msgstr "Asmens organizacijos atpažinimo vardas"
 
 msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr ""
-"Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo "
-"patvirtinimo nuorodą."
+msgstr "Jūsų pranešimas siunčiamas. Norėdami tęsti, paspauskite pranešimo patvirtinimo nuorodą."
 
 msgid "Organizational unit"
 msgstr "Organizacijos skyrius"
 
-msgid "Authentication aborted"
-msgstr "Autentikacija nutraukta"
-
 msgid "Local identity number"
 msgstr "Vietinis tapatybės numeris"
-
-msgid "Report errors"
-msgstr "Pranešti apie klaidas"
-
-msgid "Page not found"
-msgstr "Puslapis nerastas"
 
 msgid "Shib 1.3 IdP Metadata"
 msgstr "Shib 1.3 IdP Metaduomenys"
@@ -598,28 +611,11 @@ msgstr "Pakeisti savo organizaciją"
 msgid "User's password hash"
 msgstr "Naudotojo slaptažodžio maiša"
 
-msgid ""
-"In SimpleSAMLphp flat file format - use this if you are using a "
-"SimpleSAMLphp entity on the other side:"
-msgstr ""
-"SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate "
-"SimpleSAMLphp kitoje esybėje:"
-
-msgid "Yes, continue"
-msgstr "Taip, tęsti"
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "SimpleSAMLphp paprasto failo formatas - naudokite jį, jei naudojate SimpleSAMLphp kitoje esybėje:"
 
 msgid "Completed"
 msgstr "Atlikta"
-
-msgid ""
-"The Identity Provider responded with an error. (The status code in the "
-"SAML Response was not success)"
-msgstr ""
-"Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme"
-" buvo nesėkmingas)"
-
-msgid "Error loading metadata"
-msgstr "Klaida siunčiant metaduomenis"
 
 msgid "Select configuration file to check:"
 msgstr "Tikrinti konfigūracijos failą:"
@@ -627,44 +623,17 @@ msgstr "Tikrinti konfigūracijos failą:"
 msgid "On hold"
 msgstr "Prašome palaukti"
 
-msgid "Error when communicating with the CAS server."
-msgstr "Klaida bandant jungtis prie CAS serverio."
-
-msgid "No SAML message provided"
-msgstr "Nepateikta SAML žinutė"
-
 msgid "Help! I don't remember my password."
 msgstr "Pagalbos! Nepamenu savo slaptažodžio."
 
-msgid ""
-"You can turn off debug mode in the global SimpleSAMLphp configuration "
-"file <tt>config/config.php</tt>."
-msgstr ""
-"Jūs galite išjungti detalųjį naršymą globaliame SimpleSAMLphp "
-"konfigūraciniame faile <tt>config/config.php</tt>."
-
-msgid "How to get help"
-msgstr "Kaip pasiekti pagalbą"
-
-msgid ""
-"You accessed the SingleLogoutService interface, but did not provide a "
-"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
-"not intended to be accessed directly."
-msgstr ""
-"Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
-"LogoutRequest ar LogoutResponse užklausų."
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Jūs galite išjungti detalųjį naršymą globaliame SimpleSAMLphp konfigūraciniame faile <tt>config/config.php</tt>."
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp klaida"
 
-msgid ""
-"One or more of the services you are logged into <i>do not support "
-"logout</i>. To ensure that all your sessions are closed, you are "
-"encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Viena ar daugiau paslaugų, prie kurių esate prisijungęs <i>nepalaiko "
-"atsijungimo</i>. Siekiant užtikrinti sėkmingą darbo pabaigą, "
-"rekomenduojame <i>uždaryti naršyklę</i>."
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Viena ar daugiau paslaugų, prie kurių esate prisijungęs <i>nepalaiko atsijungimo</i>. Siekiant užtikrinti sėkmingą darbo pabaigą, rekomenduojame <i>uždaryti naršyklę</i>."
 
 msgid "Organization's legal name"
 msgstr "Organizacijos juridinis pavadinimas"
@@ -675,31 +644,11 @@ msgstr "Trūkstami parametrai konfigūraciniame faile"
 msgid "The following optional fields was not found"
 msgstr "Šie neprivalomi laukai nerasti"
 
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Autentikacija nepavyko: Jūsų naršyklė neišsiuntė jokio sertifikato"
-
-msgid ""
-"This endpoint is not enabled. Check the enable options in your "
-"configuration of SimpleSAMLphp."
-msgstr "Baigties taškas neįjungtas. Patikrinkite savo SimpleSAMLphp konfigūraciją."
-
 msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
 msgstr "Jūs galite <a href=\"%METAURL%\">gauti metaduomenis XML formatu</a>:"
 
 msgid "Street"
 msgstr "Gatvė"
-
-msgid ""
-"There is some misconfiguration of your SimpleSAMLphp installation. If you"
-" are the administrator of this service, you should make sure your "
-"metadata configuration is correctly setup."
-msgstr ""
-"Rastos Jūsų SimpleSAMLphp konfigūravimo klaidos. Jei Jūs esate šios "
-"sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
-"metaduomenys."
-
-msgid "Incorrect username or password"
-msgstr "Neteisingas prisijungimo vardas arba slaptažodis"
 
 msgid "Message"
 msgstr "Pranešimas"
@@ -707,31 +656,17 @@ msgstr "Pranešimas"
 msgid "Contact information:"
 msgstr "Kontaktai:"
 
-msgid "Unknown certificate"
-msgstr "Nežinomas sertifikatas"
-
 msgid "Legal name"
 msgstr "Juridinis vardas"
 
 msgid "Optional fields"
 msgstr "Neprivalomi laukai"
 
-msgid ""
-"The initiator of this request did not provide a RelayState parameter "
-"indicating where to go next."
-msgstr ""
-"Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "
-"nusako kur toliau kreiptis."
-
 msgid "You have previously chosen to authenticate at"
 msgstr "Anksčiau pasirinkote autentikuotis"
 
-msgid ""
-"You sent something to the login page, but for some reason the password "
-"was not sent. Try again please."
-msgstr ""
-"Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių "
-"priežasčių slaptažodis nebuvo nusiųstas. Prašome bandyti dar kartą."
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Jūs kažką nusiuntėte į prisijungimo puslapį, tačiau dėl kažkokių priežasčių slaptažodis nebuvo nusiųstas. Prašome bandyti dar kartą."
 
 msgid "Fax number"
 msgstr "Fakso numeris"
@@ -748,14 +683,8 @@ msgstr "Sesijos trukmė: %SIZE%"
 msgid "Parse"
 msgstr "Nagrinėti"
 
-msgid ""
-"Without your username and password you cannot authenticate "
-"yourself for access to the service. There may be someone that can help "
-"you. Consult the help desk at your organization!"
-msgstr ""
-"Blogai - be prisijungimo vardo ir slaptažodžio negalėsite autentikuotis "
-"ir patekti į reikiamą paslaugą. Galbūt yra kas Jums galėtų padėti. "
-"Susisiekite su savo universiteto vartotojų aptarnavimo specialistais."
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Blogai - be prisijungimo vardo ir slaptažodžio negalėsite autentikuotis ir patekti į reikiamą paslaugą. Galbūt yra kas Jums galėtų padėti. Susisiekite su savo universiteto vartotojų aptarnavimo specialistais."
 
 msgid "Choose your home organization"
 msgstr "Pasirinkite savo organizaciją"
@@ -772,12 +701,6 @@ msgstr "Pavadinimas"
 msgid "Manager"
 msgstr "Vadovas"
 
-msgid "You did not present a valid certificate."
-msgstr "Jūs nepateikėte teisingo sertifikato."
-
-msgid "Authentication source error"
-msgstr "Autentikacijos šaltinio klaida"
-
 msgid "Affiliation at home organization"
 msgstr "Sąsaja su organizacija"
 
@@ -787,49 +710,14 @@ msgstr "Naudotojų aptarnavimo puslapis"
 msgid "Configuration check"
 msgstr "Konfigūracijos patikrinimas"
 
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Mes nepriimame užklausos, siųstos iš tapatybių teikėjo."
-
-msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr ""
-"Šis puslapis nerastas. Priežastis buvo: %REASON% Puslapio adresas buvo: "
-"%URL%"
-
 msgid "Shib 1.3 Identity Provider (Remote)"
 msgstr "Shib 1.3 Tapatybių teikėjas (nutolęs)"
 
-msgid ""
-"Here is the metadata that SimpleSAMLphp has generated for you. You may "
-"send this metadata document to trusted partners to setup a trusted "
-"federation."
-msgstr ""
-"Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti "
-"patikimą federaciją, galite patikimiems partneriams išsiųsti šiuos "
-"metaduomenis."
-
-msgid "[Preferred choice]"
-msgstr "[Rekomenduojame]"
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Metaduomenys, kuriuos Jums sugeneravo SimpleSAMLphp. Norint įsteigti patikimą federaciją, galite patikimiems partneriams išsiųsti šiuos metaduomenis."
 
 msgid "Organizational homepage"
 msgstr "Organizacijos svetainė"
 
-msgid ""
-"You accessed the Assertion Consumer Service interface, but did not "
-"provide a SAML Authentication Response. Please note that this endpoint is"
-" not intended to be accessed directly."
-msgstr ""
-"Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
-"autentikacijos atsakymo."
-
-
-msgid ""
-"You are now accessing a pre-production system. This authentication setup "
-"is for testing and pre-production verification only. If someone sent you "
-"a link that pointed you here, and you are not <i>a tester</i> you "
-"probably got the wrong link, and should <b>not be here</b>."
-msgstr ""
-"Šiuo metu Jūs kreipiatės į nebaigtą diegti sistemą. Šie autentiškumo "
-"patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo "
-"tikrinimui. Jei kažkas Jums atsiuntė nuorodą, vedančią čia, ir Jūs nesate"
-" <i>testuotojas</i>, Jūs greičiausiai gavote neteisingą nuorodą ir "
-"<b>neturėtumėte čia būti</b>."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Šiuo metu Jūs kreipiatės į nebaigtą diegti sistemą. Šie autentiškumo patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo tikrinimui. Jei kažkas Jums atsiuntė nuorodą, vedančią čia, ir Jūs nesate <i>testuotojas</i>, Jūs greičiausiai gavote neteisingą nuorodą ir <b>neturėtumėte čia būti</b>."

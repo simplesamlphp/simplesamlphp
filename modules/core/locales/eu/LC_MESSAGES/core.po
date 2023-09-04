@@ -1,29 +1,58 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: eu\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: core\n"
+
+msgid "Missing cookie"
+msgstr "Cookie-a falta da"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
+
+msgid "Retry"
+msgstr "Saiatu berriro"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean edota identitate hornitzailean. "
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile bat bazara,  guneko jabeari eman behar diozu errorearen berri."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Arazo hau konpontzeko iradokizunak:"
 
 msgid "Go back to the previous page and try again."
 msgstr "Itzul zaitez aurreko orrira eta saiatu berriro"
 
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr ""
-"Arazoak bere horretan badirau, sistemaren administratzaileei berri eman "
-"diezaiekezu."
+msgid "Close the web browser, and try again."
+msgstr "Nabigatzailea itxi eta saiatu berriro"
+
+msgid "This error may be caused by:"
+msgstr "Errore hau honek eragin dezake:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duzu."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Cookie-ak desgaituta egon litezke nabigatzailean."
+
+msgid "Too short interval between single sign on events."
+msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat dagoela hartuko dugu. "
 
 msgid "Welcome"
 msgstr "Ongi etorri"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Arazoak bere horretan badirau, sistemaren administratzaileei berri eman diezaiekezu."
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "SP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"
@@ -31,87 +60,17 @@ msgstr "SP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"
 msgid "Retry login"
 msgstr "Saiatu berriro kautotzen"
 
-msgid "Close the web browser, and try again."
-msgstr "Nabigatzailea itxi eta saiatu berriro"
-
 msgid "We were unable to locate the state information for the current request."
 msgstr "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat."
 
-msgid ""
-"This is most likely a configuration problem on either the service "
-"provider or identity provider."
-msgstr ""
-"Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean "
-"edota identitate hornitzailean. "
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
-
-msgid "Missing cookie"
-msgstr "Cookie-a falta da"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Cookie-ak desgaituta egon litezke nabigatzailean."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duzu."
-
-msgid ""
-"You appear to have disabled cookies in your browser. Please check the "
-"settings in your browser, and try again."
-msgstr ""
-"Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, "
-"berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
-
-msgid "This error may be caused by:"
-msgstr "Errore hau honek eragin dezake:"
-
-msgid "Retry"
-msgstr "Saiatu berriro"
-
-msgid ""
-"If you are an user who received this error after following a link on a "
-"site, you should report this error to the owner of that site."
-msgstr ""
-"Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile "
-"bat bazara,  guneko jabeari eman behar diozu errorearen berri."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Arazo hau konpontzeko iradokizunak:"
-
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr ""
-"SPren adibidea Shibboleth 1.3 erabiliz - saikera zure IdP Shibboleth "
-"erabiliz sartzen"
+msgstr "SPren adibidea Shibboleth 1.3 erabiliz - saikera zure IdP Shibboleth erabiliz sartzen"
 
 msgid "State information lost"
 msgstr "Egoeraren informazioa galdu da"
-
-msgid ""
-"We have detected that there is only a few seconds since you last "
-"authenticated with this service provider, and therefore assume that there"
-" is a problem with this SP."
-msgstr ""
-"Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu "
-"besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat "
-"dagoela hartuko dugu. "
-
-msgid ""
-"If you are a developer who is deploying a single sign-on solution, you "
-"have a problem with the metadata configuration. Verify that metadata is "
-"configured correctly on both the identity provider and service provider."
-msgstr ""
-"Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, "
-"arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu "
-"metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta "
-"zerbitzu hornitzailean."
-
-msgid "Too short interval between single sign on events."
-msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "IdP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"
 
 msgid "Report this error"
 msgstr "Errore honen berri eman"
-

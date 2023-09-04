@@ -1,27 +1,58 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: ja\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: core\n"
+
+msgid "Missing cookie"
+msgstr "クッキーが見つかりません"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "この問題を解決する為の提案:"
 
 msgid "Go back to the previous page and try again."
 msgstr "前のページに戻り、再度試してください。"
 
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"
+msgid "Close the web browser, and try again."
+msgstr "WEBブラウザを閉じて、再度試してください。"
+
+msgid "This error may be caused by:"
+msgstr "このエラーの原因:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "ブラウザに保存されたタブにより、以前のセッションが開かれました。"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "このWEBブラウザではクッキーが無効化されています。"
+
+msgid "Too short interval between single sign on events."
+msgstr "シングルサインオンイベントの間隔が短すぎます。"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
 
 msgid "Welcome"
 msgstr "ようこそ"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "ホスト Shibboleth 1.3 サービスプロバイダメタデータ(自動生成)"
@@ -29,47 +60,8 @@ msgstr "ホスト Shibboleth 1.3 サービスプロバイダメタデータ(自�
 msgid "Retry login"
 msgstr "ログインを再試行"
 
-msgid "Close the web browser, and try again."
-msgstr "WEBブラウザを閉じて、再度試してください。"
-
 msgid "We were unable to locate the state information for the current request."
 msgstr "現在のリクエストから状態情報を特定することが出来ませんでした。"
-
-msgid ""
-"This is most likely a configuration problem on either the service "
-"provider or identity provider."
-msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
-
-msgid "Missing cookie"
-msgstr "クッキーが見つかりません"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "このWEBブラウザではクッキーが無効化されています。"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "ブラウザに保存されたタブにより、以前のセッションが開かれました。"
-
-msgid ""
-"You appear to have disabled cookies in your browser. Please check the "
-"settings in your browser, and try again."
-msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
-
-msgid "This error may be caused by:"
-msgstr "このエラーの原因:"
-
-msgid "Retry"
-msgstr "再試行"
-
-msgid ""
-"If you are an user who received this error after following a link on a "
-"site, you should report this error to the owner of that site."
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "この問題を解決する為の提案:"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP example - Shib IdP経由でテストログイン"
@@ -77,24 +69,8 @@ msgstr "Shibboleth 1.3 SP example - Shib IdP経由でテストログイン"
 msgid "State information lost"
 msgstr "状態情報が無くなりました"
 
-msgid ""
-"We have detected that there is only a few seconds since you last "
-"authenticated with this service provider, and therefore assume that there"
-" is a problem with this SP."
-msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
-
-msgid ""
-"If you are a developer who is deploying a single sign-on solution, you "
-"have a problem with the metadata configuration. Verify that metadata is "
-"configured correctly on both the identity provider and service provider."
-msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
-
-msgid "Too short interval between single sign on events."
-msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "ホスト Shibboleth 1.3 アイデンティティプロバイダメタデータ (自動生成)"
 
 msgid "Report this error"
 msgstr "このエラーをレポート"
-
