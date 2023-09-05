@@ -14,10 +14,9 @@ use Gettext\Translations;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -109,48 +108,18 @@ class UpdateTranslatableStringsCommand extends Command
         $phpScanner = new PhpScanner(...$translationDomains);
         $phpScanner->setFunctions(['trans' => 'gettext', 'noop' => 'gettext']);
 
+        $translationUtils = new Utils\Translate(Configuration::getInstance());
         $twigTranslations = [];
         // Scan files in base
         foreach ($modules as $module) {
             // Set the proper domain
             $phpScanner->setDefaultDomain($module ?: 'messages');
 
-            $moduleDir = $baseDir . ($module === '' ? '' : '/modules/' . $module);
-            $moduleSrcDir = $moduleDir . '/src/';
-            $moduleTemplateDir = $moduleDir . '/templates/';
-
             // Scan PHP files
-            $finder = new Finder();
-            foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
-                $phpScanner->scanFile($file->getPathName());
-            }
+            $phpScanner = $translationUtils->getTranslationsFromPhp($module, $phpScanner);
 
             // Scan Twig-templates
-            $finder = new Finder();
-            foreach ($finder->files()->in($moduleTemplateDir)->depth('== 0')->name('*.twig') as $file) {
-                $template = new Template(
-                    Configuration::getInstance(),
-                    ($module ? ($module . ':') : '') . $file->getFileName(),
-                );
-
-                $catalogue = new MessageCatalogue('en', []);
-                $extractor = new TwigExtractor($template->getTwig());
-                $extractor->extract($file, $catalogue);
-
-                $tmp = $catalogue->all();
-                if ($tmp === []) {
-                    // This template has no translation strings
-                    continue;
-                }
-
-                // The catalogue always uses 'messages' for the domain and it's not configurable.
-                // Manually replace it with the module-name
-                if ($module !== '') {
-                    $tmp[$module] = $tmp['messages'];
-                    unset($tmp['messages']);
-                }
-                $twigTranslations[] = $tmp;
-            }
+            $twigTranslations = array_merge($twigTranslations, $translationUtils->getTranslationsFromTwig($module));
         }
 
         // The catalogue returns an array with strings, while the php-scanner returns Translations-objects.
