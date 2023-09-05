@@ -12,6 +12,7 @@ require_once('../../_include.php');
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 $config = Configuration::getInstance();
 $controller = new Controller\WebBrowserSingleSignOn($config);
