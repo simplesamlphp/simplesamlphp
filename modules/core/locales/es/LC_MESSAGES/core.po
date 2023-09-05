@@ -1,29 +1,58 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: es\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: core\n"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Esto es posiblemente un problema de configuración en el proveedor de servicios o en el proveedor de identidad."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo en un sitio, debe reportar el error al dueño del sitio."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Si usted es un desarrollador que está desplegando una solución de inicio único, tiene un problema con la configuración de sus metadatos. Verifique que los metadatos están configurados correctamente en el proveedor de identidad y en el proveedor de servicios"
+
+msgid "Too short interval between single sign on events."
+msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por última vez en este servicio, por lo que se asumirá que existe un problema con este SP."
+
+msgid "Missing cookie"
+msgstr "No se encuentra cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
+
+msgid "Retry"
+msgstr "Reintentar"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Sugerencias para resolver este problema"
 
 msgid "Go back to the previous page and try again."
 msgstr "Regrese a la página anterior y pruebe de nuevo"
 
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr ""
-"Si el problema persiste, puede reportarlo a los administradores del "
-"sistema"
+msgid "Close the web browser, and try again."
+msgstr "Cierre el navegador y pruebe de nuevo"
+
+msgid "This error may be caused by:"
+msgstr "Este error puede ser causado por"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Usando los botones atrás y adelante de su navegador web."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Las cookies pueden estar deshabilitadas en el navegador"
 
 msgid "Welcome"
 msgstr "Bienvenido"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Si el problema persiste, puede reportarlo a los administradores del sistema"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metadatos alojados del SP Shibooleth 1.3 (generados automáticamente)"
@@ -31,95 +60,20 @@ msgstr "Metadatos alojados del SP Shibooleth 1.3 (generados automáticamente)"
 msgid "Retry login"
 msgstr "Reintente autenticación"
 
-msgid "Close the web browser, and try again."
-msgstr "Cierre el navegador y pruebe de nuevo"
-
 msgid "We were unable to locate the state information for the current request."
 msgstr "No podemos encontrar la información de estado para la solicitud actual"
 
-msgid ""
-"This is most likely a configuration problem on either the service "
-"provider or identity provider."
-msgstr ""
-"Esto es posiblemente un problema de configuración en el proveedor de "
-"servicios o en el proveedor de identidad."
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Usando los botones atrás y adelante de su navegador web."
-
-msgid ""
-"You are running an outdated version of SimpleSAMLphp. Please update to <a"
-" href=\"https://simplesamlphp.org/download\">the latest version</a> as soon as possible."
-msgstr ""
-"Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por "
-"favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima "
-"versi&oacute;n</a> lo antes posible."
-
-msgid "Missing cookie"
-msgstr "No se encuentra cookie"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Las cookies pueden estar deshabilitadas en el navegador"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
-
-msgid ""
-"You appear to have disabled cookies in your browser. Please check the "
-"settings in your browser, and try again."
-msgstr ""
-"Al parecer ha deshabilitado las cookies de su navegador. Por favor revise"
-" las preferencias de su navegador y reintente."
-
-msgid "This error may be caused by:"
-msgstr "Este error puede ser causado por"
-
-msgid "Retry"
-msgstr "Reintentar"
-
-msgid ""
-"If you are an user who received this error after following a link on a "
-"site, you should report this error to the owner of that site."
-msgstr ""
-"Si usted es un usuario que recibe este error luego de seguir un vínculo "
-"en un sitio, debe reportar el error al dueño del sitio."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Sugerencias para resolver este problema"
+msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"https://simplesamlphp.org/download\">the latest version</a> as soon as possible."
+msgstr "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por favor, actualice a la <a href=\"https://simplesamlphp.org/download\">&uacute;ltima versi&oacute;n</a> lo antes posible."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr ""
-"Ejemplo de SP empleando Shibboleth 1.3 - Prueba a acceder empleando tu "
-"IdP Shibboleth"
+msgstr "Ejemplo de SP empleando Shibboleth 1.3 - Prueba a acceder empleando tu IdP Shibboleth"
 
 msgid "State information lost"
 msgstr "Información de estado perdida"
-
-msgid ""
-"We have detected that there is only a few seconds since you last "
-"authenticated with this service provider, and therefore assume that there"
-" is a problem with this SP."
-msgstr ""
-"Se ha detectado que han transcurrido solo unos segundos desde que fue "
-"autenticado por última vez en este servicio, por lo que se asumirá que "
-"existe un problema con este SP."
-
-msgid ""
-"If you are a developer who is deploying a single sign-on solution, you "
-"have a problem with the metadata configuration. Verify that metadata is "
-"configured correctly on both the identity provider and service provider."
-msgstr ""
-"Si usted es un desarrollador que está desplegando una solución de inicio "
-"único, tiene un problema con la configuración de sus metadatos. Verifique"
-" que los metadatos están configurados correctamente en el proveedor de "
-"identidad y en el proveedor de servicios"
-
-msgid "Too short interval between single sign on events."
-msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "Metadatos alojados del IdP Shibooleth 1.3 (generados automáticamente)"
 
 msgid "Report this error"
 msgstr "Informar de este error"
-

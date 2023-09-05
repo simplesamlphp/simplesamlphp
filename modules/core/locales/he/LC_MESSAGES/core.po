@@ -1,27 +1,58 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: he\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: core\n"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על השגיאה לבעלי האתר."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
+
+msgid "Too short interval between single sign on events."
+msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
+
+msgid "Missing cookie"
+msgstr "חסרה עוגייה"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
+
+msgid "Retry"
+msgstr "נסה שנית"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "הצעות לפתרון הבעייה הנוכחית:"
 
 msgid "Go back to the previous page and try again."
 msgstr "חזור לדף הקודם ונסה שוב."
 
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."
+msgid "Close the web browser, and try again."
+msgstr "סגור את הדפדפן, ונסה שוב."
+
+msgid "This error may be caused by:"
+msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
 
 msgid "Welcome"
 msgstr "ברוך-הבא"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "מטא-הנתונים של ספק השירותים מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
@@ -29,82 +60,17 @@ msgstr "מטא-הנתונים של ספק השירותים מסוג Shibboleth 1
 msgid "Retry login"
 msgstr "נסה שוב להתחבר"
 
-msgid "Close the web browser, and try again."
-msgstr "סגור את הדפדפן, ונסה שוב."
-
 msgid "We were unable to locate the state information for the current request."
 msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכחית."
 
-msgid ""
-"This is most likely a configuration problem on either the service "
-"provider or identity provider."
-msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
-
-msgid "Missing cookie"
-msgstr "חסרה עוגייה"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
-
-msgid ""
-"You appear to have disabled cookies in your browser. Please check the "
-"settings in your browser, and try again."
-msgstr ""
-"נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה "
-"שנית. "
-
-msgid "This error may be caused by:"
-msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
-
-msgid "Retry"
-msgstr "נסה שנית"
-
-msgid ""
-"If you are an user who received this error after following a link on a "
-"site, you should report this error to the owner of that site."
-msgstr ""
-"אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על "
-"השגיאה לבעלי האתר."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "הצעות לפתרון הבעייה הנוכחית:"
-
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr ""
-"דוגמא לס\"ש מסוג Shibboleth 1.3 - בוחן כניסה למערכת דרך ס\"ז מסוג - "
-"Shibboleth"
+msgstr "דוגמא לס\"ש מסוג Shibboleth 1.3 - בוחן כניסה למערכת דרך ס\"ז מסוג - Shibboleth"
 
 msgid "State information lost"
 msgstr "מידע המצב אבד"
-
-msgid ""
-"We have detected that there is only a few seconds since you last "
-"authenticated with this service provider, and therefore assume that there"
-" is a problem with this SP."
-msgstr ""
-"גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, "
-"ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
-
-msgid ""
-"If you are a developer who is deploying a single sign-on solution, you "
-"have a problem with the metadata configuration. Verify that metadata is "
-"configured correctly on both the identity provider and service provider."
-msgstr ""
-"אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. "
-"בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
-
-msgid "Too short interval between single sign on events."
-msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "מטא-הנתונים של ספק השזהויות מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
 
 msgid "Report this error"
 msgstr "דווח על השגיאה הנוכחית"
-

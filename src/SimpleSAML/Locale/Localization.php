@@ -12,12 +12,9 @@ namespace SimpleSAML\Locale;
 
 use Exception;
 use Gettext\Generator\ArrayGenerator;
-use Gettext\Loader\PoLoader;
-use Gettext\Translations;
-use Gettext\Translator;
-use Gettext\TranslatorFunctions;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
+use Gettext\Loader\MoLoader;
+use Gettext\{Translations, Translator, TranslatorFunctions};
+use SimpleSAML\{Configuration, Logger};
 use Symfony\Component\HttpFoundation\File\File;
 
 class Localization
@@ -235,9 +232,9 @@ class Localization
             }
         }
 
-        $file = new File($langPath . $domain . '.po', false);
+        $file = new File($langPath . $domain . '.mo', false);
         if ($file->getRealPath() !== false && $file->isReadable()) {
-            $translations = (new PoLoader())->loadFile($file->getRealPath());
+            $translations = (new MoLoader())->loadFile($file->getRealPath());
             $arrayGenerator = new ArrayGenerator();
             $this->translator->addTranslations(
                 $arrayGenerator->generateArray($translations)
