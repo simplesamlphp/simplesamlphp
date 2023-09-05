@@ -157,7 +157,7 @@ class UpdateTranslatableStringsCommand extends Command
                     $current = $loader->loadFile($poFile->getPathName());
                     $merged = $template->mergeWith(
                         $current,
-                        Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS,
+                        Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
                     );
 
                     $poGenerator->generateFile($merged, $poFile->getPathName());
