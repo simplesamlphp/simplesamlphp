@@ -4,299 +4,238 @@ msgstr ""
 "X-Domain: messages\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 msgid "No SAML response provided"
 msgstr "Inget SAML-svar tillhandahölls"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 msgid "No SAML message provided"
 msgstr "Inget SAML-meddelande tillhandahölls"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 msgid "Authentication source error"
 msgstr "Inloggningskällfel"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 msgid "Bad request received"
 msgstr "Felaktigt anrop"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 msgid "CAS Error"
 msgstr "CAS-error"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 msgid "Configuration error"
 msgstr "Konfigurationsfel"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 msgid "Error creating request"
 msgstr "Fel vid skapandet av förfrågan"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
 msgid "Bad request to discovery service"
 msgstr "Ogiltig förfrågan till lokaliseringstjänsten (Discovery Service)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 msgid "Could not create authentication response"
 msgstr "Kunde inte skapa inloggingssvaret"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 msgid "Invalid certificate"
 msgstr "Felaktigt certifikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 msgid "LDAP Error"
 msgstr "LDAP-fel"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 msgid "Logout information lost"
 msgstr "Utloggningsinformation är borta"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 msgid "Error processing the Logout Request"
 msgstr "Fel vid utloggningsförfrågan"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 msgid "Error loading metadata"
 msgstr "Fel vi laddandet av metadata"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 msgid "Metadata not found"
 msgstr "Metadata saknas"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 msgid "No access"
 msgstr "Ingen åtkomst"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 msgid "No certificate"
 msgstr "Inget certfikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
 msgid "No RelayState"
 msgstr "Ingen RelayState definierad"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 msgid "State information lost"
 msgstr "Sessionsinformationen är borttappad"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 msgid "Page not found"
 msgstr "Sidan finns inte"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 msgid "Password not set"
 msgstr "Lösenord är inte satt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 msgid "Error processing response from Identity Provider"
 msgstr "Fel vid bearbetning av svar från IdP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 msgid "Error processing request from Service Provider"
 msgstr "Fel vid bearbetning av förfrågan från en tjänsteleverantör (Service Provider)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 msgid "Error received from Identity Provider"
 msgstr "Fel mottaget från IdP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 msgid "Unhandled exception"
 msgstr "Ohanterat undantag"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 msgid "Unknown certificate"
 msgstr "Okänt certfikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
 msgid "Authentication aborted"
 msgstr "Inloggning avbruten"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
 msgid "Incorrect username or password"
 msgstr "Felaktig användaridentitet eller lösenord"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Du har anropat gränssnittet för Assertion Consumer Service utan att skicka med någon SAML Authentication Responce."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Fel i inloggningskällan %AUTHSOURCE%. Orsaken var:%REASON%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Det är ett fel i anropet till denna sida. Orsak: %REASON%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error when communicating with the CAS server."
 msgstr "Ett fel uppstod vid kommunikation med CAS-servern."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "Det förfaller som SimpleSAMLphp är felkonfigurerat."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Ett fel har inträffat vid försöket att skapa en SAML-förfrågan."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parametrarna som skickades till lokaliseringstjänsten följde inte specifikationen."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "When this identity provider tried to create an authentication response, an error occurred."
 msgstr "När identitetshanteraren (Identity Provider) försökte skapa inloggingssvaret uppstod ett fel."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
 msgstr "Inloggning mislyckades: Certfikatet som din webbläsare skickade var felaktigt eller kunde inte läsas"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "LDAP används som användardatabas och när du försöker logga måste LDAP-servern kontaktas. Vid försöket att kontakta LDAP-servern uppstod ett fel."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
 msgstr "Informationen om aktuell utloggning har försvunnit. Du bör återvända till tjänsten som du försökte logga ut från och försöka logga ut på nytt. Detta fel kan inträffa om informationen om utloggningen är för gammal. Utloggningsinformationen sparas en begränsad tid, oftas några timmar. Det är längre än vad utloggning bör ta så felet kan indikera något fel med konfigurationen. Om problemet kvarstår kontakta leverantören för den tjänst du försökte logga ut från."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Ett fel uppstod när utloggningsförfrågan skulle bearbetas."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
 msgstr "Det finns något fel i konfigurationen i installation av SimpleSAMLphp. Om du är adminstratör av tjänsten ska du kontrollera om konfigurationen av metadata är rätt konfigurerad."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Kan inte hitta metadata för %ENTITYID%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
 msgstr "Denna ändpunkt är inte aktiverad. Kontrollera aktiveringsinställningarna i konfigurationen av SimpleSAMLphp."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "Inloggning mislyckades: Din webbläsare skickade inget certifikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 msgstr "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket medför att nästa plats inte är definierad."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 msgid "State information lost, and no way to restart the request"
 msgstr "Sessionsinformationen är borttappad och det är inte möjligt att återstarta förfrågan"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "Den angivna sidan finns inte. URL: %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Den angivna sidan finns inte. Orsak: %REASON% URL: %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från standardvärdet. Uppdatera kongiruationen med ett nytt lösenord!"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 msgid "You did not present a valid certificate."
 msgstr "Du tillhandahöll inget godkänt certifikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Svaret från identitetshanteraren (Identity Provider) är inte accepterat."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Identitetshanteraren (Identity Provider) har tagit emot en inloggningsförfrågan från en tjänsteleverantör (Service Provider) men ett fel uppstod vid bearbetningen av förfrågan."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. (Statusmeddelandet i SAML-svaret var ett felmeddelande)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Du har anroppat tjänsten för Single Sing-Out utan att skicka med någon SAML LogoutRequest eller LogoutResponse."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 msgid "An unhandled exception was thrown."
 msgstr "Ett ohanterat undatag har inträffat. "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr "Inloggning mislyckades: Certifikatet som din webbläsare skickade är okänt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
 msgid "The authentication was aborted by the user"
 msgstr "Inloggning avbröts av användaren"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
-#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Antingen finns det ingen användare med angiven användaridentitet eller så har du angivit fel lösenord. Försök igen."
 
