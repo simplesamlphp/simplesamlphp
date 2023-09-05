@@ -3,238 +3,299 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:24
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 msgid "No SAML response provided"
 msgstr "Geen SAML versoek gevind nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:25
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 msgid "No SAML message provided"
 msgstr "Geen SAML boodskap gevind nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 msgid "Authentication source error"
 msgstr "Fout in verifikasie bron"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 msgid "Bad request received"
 msgstr "Foutiewe versoek ontvang"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 msgid "CAS Error"
 msgstr "CAS Fout"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 msgid "Configuration error"
 msgstr "Instellings fout"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 msgid "Error creating request"
 msgstr "Fout met skepping van nuwe versoek"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
 msgid "Bad request to discovery service"
 msgstr "Toegangsfout by die ontdekkings diens"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 msgid "Could not create authentication response"
 msgstr "Kon nie 'n verifikasie versoek skep nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 msgid "Invalid certificate"
 msgstr "Ongeldige sertifikaat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 msgid "LDAP Error"
 msgstr "LDAP Fout"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 msgid "Logout information lost"
 msgstr "Afmelding informasie verlore"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 msgid "Error processing the Logout Request"
 msgstr "Fout met die verwerking van die Afmeldings Versoek"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 msgid "Error loading metadata"
 msgstr "Fout met die laai van die metadata"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 msgid "Metadata not found"
 msgstr "Metadata nie gevind nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 msgid "No access"
 msgstr "Geen toegang"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 msgid "No certificate"
 msgstr "Geen sertifikaat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
 msgid "No RelayState"
 msgstr "Geen aflos staat('RelayState')"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 msgid "State information lost"
 msgstr "Toestandsinformasie verlore"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 msgid "Page not found"
 msgstr "Bladsy nie gevind nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 msgid "Password not set"
 msgstr "Wagwoord nie opgestel nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 msgid "Error processing response from Identity Provider"
 msgstr "Fout in die Identiteits Verskaffer(IdP) versoek"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 msgid "Error processing request from Service Provider"
 msgstr "Fout in Diens Verskaffer versoek proses"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 msgid "Error received from Identity Provider"
 msgstr "Foutmelding ontvang vanaf die Identiteits Verskaffer"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 msgid "Unhandled exception"
 msgstr "Onverwagte foutmelding"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:54
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 msgid "Unknown certificate"
 msgstr "Onbekende sertifikaat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
 msgid "Authentication aborted"
 msgstr "Verifikasie gestop"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
 msgid "Incorrect username or password"
 msgstr "Inkorrekte gebruikersnaam of wagwoord"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Daar is 'n fout in die versoek na die bladsy. Die rede is: %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error when communicating with the CAS server."
 msgstr "Fout tydens kommunikasie met die CAS bediener."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "SimpleSAMLphp is nie korrek ingestel nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Daar was 'n fout met die skepping van die SAML versoek."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Die gestuurde parameters na die ontdekkings diens was not volgens die korrekte spesifikasies nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "When this identity provider tried to create an authentication response, an error occurred."
 msgstr "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits Verskaffer."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
 msgstr "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte sertifikaat gestuur"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:105
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "LDAP is die gebruikers databasis en waneer jy probeer inteken moet ons die LDAP databasis kontak. Daar was 'n fout toe ons die slag probeer het."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:108
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
 msgstr "Die inligting vir die huidige uiteken sessie is verlore. Jy moet terugkeer na die diens waarvan jy probeer afmeld het en probeer om weer af te meld. Dié fout kan voorkom weens verstreke afmelding inligting. Die afmelding inligting word gestoor vir 'n beperkte tydperk - gewoonlik 'n paar ure. Dit is langer as wat 'n normale afmelding sessie moet vat, so die fout mag 'n indikasie wees van 'n probleem met die stellings. Kontak jou diens verskaffer sou die probleem voortduur."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:117
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Daar was 'n probleem tydens die verwerking van die Afmelding  Versoek"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:121
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
 msgstr "Daar is fout met jou SimplSAMLphp installasie. Indien jy die administrateur is van dié diens moet jy verseker dat jou metadata konfigurasie korrek is."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:125
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Kan geen metadata vind vir %ENTITYID%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:126
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
 msgstr "Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset van SimpleSAMLphp na."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:129
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "Verifikasie het misluk: Jou webblaaier het geen sertifikaat gestuur nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:130
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 msgstr "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') parameter wat aandui waarheen om volgende te gaan nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:133
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 msgid "State information lost, and no way to restart the request"
 msgstr "Toestandsinformasie verlore en daar is geen manier om die versoek weer te stuur nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:134
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "Die bladsy bestaan nie. Die URL was: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Die gegewe bladsy is nie gevind nie. Die rede was: %REASON%. Die URL was: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas nie. Redigeer asb die konfigurasie leër."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:140
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 msgid "You did not present a valid certificate."
 msgstr "Jy het nie 'n geldige sertifikaat gestuur nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:141
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Die antwoord vanaf die Indentiteits Verskaffer is nie aanvaar nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Die Identiteits Verskaffer het 'n Verifikasie Versoek ontvang vanaf 'n Diens Verskaffer maar 'n fout het voorgekom tydens die verwerking van die versoek."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:145
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die SAML reaksie was onsuksesvol)"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:148
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'), maar het geen SAML LogoutRequest of LogoutResponse gestuur nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:156
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 msgid "An unhandled exception was thrown."
 msgstr "'n Onverwagte foutmelding is aangetoon"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:157
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr "Verifikasie het misluk: die sertifikaat wat jou webblaaier gestuur het is onbekend"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
 msgid "The authentication was aborted by the user"
 msgstr "Die verifikasie is gestop deur die gebruiker"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Die gegewe gebruikersnaam bestaan nie, of die wagwoord wat jy verskaf het is verkeerd. Bevestig die gebruikersnaam en probeer weer."

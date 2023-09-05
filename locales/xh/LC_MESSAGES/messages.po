@@ -3,273 +3,327 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:24
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 msgid "No SAML response provided"
 msgstr "Akukho mpendulo ye-SAML inikelweyo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:25
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 msgid "No SAML message provided"
 msgstr "Akukho myalezo we-SAML unikelweyo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 msgid "Authentication source error"
 msgstr "Impazamo yomthombo wongqinisiso"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 msgid "Bad request received"
 msgstr "Kufunyenwe isicelo esibi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 msgid "CAS Error"
 msgstr "Impazamo ye-CAS"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 msgid "Configuration error"
 msgstr "Impazamo yolungiselelo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 msgid "Error creating request"
 msgstr "Impazamo nokuyila isicelo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
 msgid "Bad request to discovery service"
 msgstr "Isicelo esibi kwinkonzo yofumaniso"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukuyila impendulo yongqinisiso"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 msgid "Invalid certificate"
 msgstr "Isatifikethi esingasebenziyo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 msgid "LDAP Error"
 msgstr "Impazamo ye-LDAP"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 msgid "Logout information lost"
 msgstr "Inkcazelo yokuphuma ilahlekile"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 msgid "Error processing the Logout Request"
 msgstr "Impazamo iprosesa iSicelo Sokuphuma"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
 msgid "Cannot retrieve session data"
 msgstr "Ayikwazi ukubuyisela ingcombolo yeseshoni"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 msgid "Error loading metadata"
 msgstr "Impazamo ilayisha imetadata"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 msgid "Metadata not found"
 msgstr "Imetadata ayifunyenwanga"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 msgid "No access"
 msgstr "Akukho fikelelo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 msgid "No certificate"
 msgstr "Akukho satifikethi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
 msgid "No RelayState"
 msgstr "Akukho RelayState"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 msgid "State information lost"
 msgstr "Inkcazelo yobume ilahlekile"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 msgid "Page not found"
 msgstr "Ikhasi alifunyenwanga"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 msgid "Password not set"
 msgstr "Iphaswedi ayisetwanga"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 msgid "Error processing response from Identity Provider"
 msgstr "Impazamo iprosesa impendulo esuka kuMboneleli Wesazisi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 msgid "Error processing request from Service Provider"
 msgstr "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 msgid "Error received from Identity Provider"
 msgstr "Impazamo efunyenwe kuMboneleli Wesazisi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:54
 msgid "No SAML request provided"
 msgstr "Akukho sicelo se-SAML sinikelweyo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 msgid "Unhandled exception"
 msgstr "Isinxaxhi esingasingathwanga"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:54
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 msgid "Unknown certificate"
 msgstr "Isatifikethi esingaziwayo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
 msgid "Authentication aborted"
 msgstr "Ungqinisiso luyekiwe"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
 msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Ufikelele i-intafeyisi ye-Assertion Consumer Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
 msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Ufikelele i-intafeyisi ye-Artifact Resolution Service, kodwa awukhange unikrele umyalezo we-SAML ArtifactResolve. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Kukho impazamo kwisicelo kweli khasi. Isizathu sesi: %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error when communicating with the CAS server."
 msgstr "Impazamo xa kunxibelelwana neseva ye-CAS."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Iipharamitha ezithunyelwe kwinkonzo yofumaniso azihambelani neenkcukacha."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "When this identity provider tried to create an authentication response, an error occurred."
 msgstr "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke impazamo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
 msgstr "Ungqinisiso lusilele: isatifikethi esithunyelwe yibhrawuza yakho asisebenzi okanye asikwazi ukufundwa"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:105
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "I-LDAP ngumvimba wengcombolo yomsebenzisi, yaye xa uzame ukungena, kufuneka siqhagamshele uvimba wengcombolo we-LDAP. Kwenzeke impazamo xa besiyizama."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:108
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
 msgstr "Inkcazelo malunga nomsebenzi wokuphuma wangoku ilahlekile. Ufanele ubuyele kwinkonzo ubuzama ukuphuma kuyo uzame ukuphuma kwakhona. Le mpazamo inokubangelwa kukuphelelwa kwenkcazelo yokuphuma. Inkcazelo yokuphuma igcinwa ixesha elithile - ngokuqhelekileyo iiyure eziliqela. Oku kuthatha ixesha elide kunawo nawuphi na umsebenzi wokuphuma ofanele ulithathe, ngoko le mpazamo isenokubonisa enye impazamo ngolungiselelo. Ukuba ingxaki iyaqhubeka, qhagamshela umboneleli wenkonzo wakho."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:117
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:118
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:120
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
 msgstr "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:121
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
 msgstr "Kukho ulungiselelo olungachanekanga oluthile lofakelo lwakho lwe-SimpleSAMLphp. Ukuba ngaba ungumlawuli wale nkonzo, ufanele uqinisekise ulungiselelo lwakho  lweempawu-ngcaciso zefayile lusetwe ngokuchanekileyo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:125
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:126
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
 msgstr "Le ndawo yokuphela ayenziwanga yasebenza. Jonga ukhetho lokwenza isebenze kulungiselelo lwakho lwe-SimpleSAMLphp."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:129
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na isatifikethi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:130
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 msgstr "Umqalisi wesi sicelo akanikelanga ngepharamitha ye-RelayState apho kufanele kuyiwe khona."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:133
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 msgid "State information lost, and no way to restart the request"
 msgstr "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:134
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "Ikhasi elinikelweyo alifunyenwanga. I-URL ngu: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Iphaswedi ekulungiselelo (auth.adminpassword) ayitshintshwanga ukusuka kwixabiso lesiseko. Nceda uhlele ifayile yolungiselelo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:140
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 msgid "You did not present a valid certificate."
 msgstr "Awukhange uzise isatifikethi esisebenzayo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:141
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Lo Mboneleli Wesazisi ufumene Isicelo Songqinisiso esisuka kuMboneleli Wenkonzo, kodwa kwenzeke impazamo xa kuzanywa ukuprosesa isicelo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:145
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Umboneleli Wesazisi uphendule ngempazamo. (Ikhowudi yobume kwiMpendulo ye-SAML ayiphumelelanga)"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:148
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Ufikelele i-intafeyisi ye-SingleLogoutService, kodwa awukhange unikele i-SAML LogoutRequest okanye i-LogoutResponse. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:152
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:154
 msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Ufikelele i-intafeyisi ye-Single Sign On Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:156
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 msgid "An unhandled exception was thrown."
 msgstr "Isinxaxhi esingasingathwanga silahliwe."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:157
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr "Ungqinisiso lusilele: isatifikerthi esithunyelwe yibhrawuza yakho asaziwa"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
 msgid "The authentication was aborted by the user"
 msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge igama lomsebenzisi uzame kwakhona."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
-
-msgid "SAML Subject"
-msgstr "Umbandela we-SAML"
-
-msgid "not set"
-msgstr "ayikasetwa"
-
-msgid "Format"
-msgstr "Ufomatho"
 
 msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
@@ -297,6 +351,18 @@ msgstr "Indlela yokufumana uncedo"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
+
+msgid "SAML Subject"
+msgstr "Umbandela we-SAML"
+
+msgid "not set"
+msgstr "ayikasetwa"
+
+msgid "Format"
+msgstr "Ufomatho"
 
 msgid "Select your identity provider"
 msgstr "Khetha umboneleli wesazisi wakho"
