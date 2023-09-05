@@ -13,6 +13,7 @@ require_once('../../_include.php');
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 $request = Request::createFromGlobals();
 $config = Configuration::getInstance();
