@@ -62,6 +62,7 @@ class Configuration implements Utils\ClearableState
             "img-src 'self' data:; " .
             "base-uri 'none'",
         'Referrer-Policy' => 'origin-when-cross-origin',
+        'X-Content-Type-Options' => 'nosniff',
     ];
 
     /**
