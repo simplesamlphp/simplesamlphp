@@ -3,26 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Incorrect Attributes"
-msgstr "Nesprávne atribúty"
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Toto je najpravdepodobnejšie problém konfigurácie buď na strane poskytovateľa služby alebo identity."
 
-msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr "Jedna alebo viacero atribútov poskytnutých od poskytovateľa identity nespĺňa očakávané množstvo hodnôt."
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Ak ste dostali túto chybu po kliknutí na odkaz na nejakej stránky, mali by ste túto chybu nahlásiť vlastníkovi tejto stránky."
 
-msgid "The problematic attribute(s) are:"
-msgstr "Problémové atribúty sú:"
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Ak ste vývojár a nastavujete systém jednotného prihlásenia, máte problém s konfiguráciou metadát. Skontrolujte, či sú metadáta nakonfigurované správne na oboch stranách - poskytovateľa služby a poskytovateľa identity"
 
-msgid "got %got% values, want %want%"
-msgstr "dostané %got% hodnoty, očakávané %want%"
+msgid "SimpleSAMLphp"
+msgstr ""
 
-msgid "Logout"
-msgstr "Odhlásenie"
+msgid "Too short interval between single sign on events."
+msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."
 
-msgid "Error report sent"
-msgstr "Chybová správa odoslaná"
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Detekovali sme, že prebehlo iba pár sekúnd od poslednej autentifikácie s týmto poskytovateľom služby, a preto predpokladáme, že je s týmto poskytovateľom služby problém."
 
-msgid "The error report has been sent to the administrators."
-msgstr "Chybová správa bola odoslaná administrátorom."
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
 
 msgid "Enter your username and password"
 msgstr "Zadajte Vaše prihlasovacie meno a heslo"
@@ -63,6 +63,27 @@ msgstr ""
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre prístup do služby. Kontaktujte podporu Vašej organizácie."
 
+msgid "Incorrect Attributes"
+msgstr "Nesprávne atribúty"
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "Jedna alebo viacero atribútov poskytnutých od poskytovateľa identity nespĺňa očakávané množstvo hodnôt."
+
+msgid "The problematic attribute(s) are:"
+msgstr "Problémové atribúty sú:"
+
+msgid "got %got% values, want %want%"
+msgstr "dostané %got% hodnoty, očakávané %want%"
+
+msgid "Logout"
+msgstr "Odhlásenie"
+
+msgid "Error report sent"
+msgstr "Chybová správa odoslaná"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Chybová správa bola odoslaná administrátorom."
+
 msgid "Logging out..."
 msgstr "Odhlasuje sa..."
 
@@ -102,15 +123,6 @@ msgstr "Vyzerá to tak, že ste zablokovali súbory cookies vo Vašom prehliada�
 msgid "Retry"
 msgstr "Opakovať"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Toto je najpravdepodobnejšie problém konfigurácie buď na strane poskytovateľa služby alebo identity."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Ak ste dostali túto chybu po kliknutí na odkaz na nejakej stránky, mali by ste túto chybu nahlásiť vlastníkovi tejto stránky."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Ak ste vývojár a nastavujete systém jednotného prihlásenia, máte problém s konfiguráciou metadát. Skontrolujte, či sú metadáta nakonfigurované správne na oboch stranách - poskytovateľa služby a poskytovateľa identity"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Návrhy na vyriešenie tohto problému:"
 
@@ -137,18 +149,6 @@ msgstr "Otvorený prehliadač s kartami z predchádzajúcej relácie."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Súbory cookies môžu byť vypnuté v prehliadači."
-
-msgid "SimpleSAMLphp"
-msgstr ""
-
-msgid "Too short interval between single sign on events."
-msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Detekovali sme, že prebehlo iba pár sekúnd od poslednej autentifikácie s týmto poskytovateľom služby, a preto predpokladáme, že je s týmto poskytovateľom služby problém."
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
 
 msgid "Welcome"
 msgstr "Vitajte"

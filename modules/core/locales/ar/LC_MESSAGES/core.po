@@ -3,15 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
-
-msgid "Retry"
-msgstr "اعد المحاولة"
-
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
 
@@ -20,6 +11,21 @@ msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لراب�
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
+
+msgid "Too short interval between single sign on events."
+msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
+
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+
+msgid "Retry"
+msgstr "اعد المحاولة"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "اقتراحات لحل المشكلة "
@@ -41,12 +47,6 @@ msgstr "فتح متصفحك مستخدما معلومات محفوظة من ال
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "الكوكيز غير منشطة بمتصفحك"
-
-msgid "Too short interval between single sign on events."
-msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
 
 msgid "Welcome"
 msgstr "مرحباً"

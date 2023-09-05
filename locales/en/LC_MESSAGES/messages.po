@@ -295,9 +295,6 @@ msgstr ""
 msgid "Logout"
 msgstr "Logout"
 
-msgid "Language"
-msgstr ""
-
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 
@@ -348,6 +345,9 @@ msgstr "Select"
 
 msgid "Remember my choice"
 msgstr "Remember my choice"
+
+msgid "Language"
+msgstr ""
 
 msgid "Sending message"
 msgstr "Sending message"

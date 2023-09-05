@@ -3,15 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Missing cookie"
-msgstr "No se encuentra cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
-
-msgid "Retry"
-msgstr "Reintentar"
-
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Esto es posiblemente un problema de configuración en el proveedor de servicios o en el proveedor de identidad."
 
@@ -20,6 +11,21 @@ msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Si usted es un desarrollador que está desplegando una solución de inicio único, tiene un problema con la configuración de sus metadatos. Verifique que los metadatos están configurados correctamente en el proveedor de identidad y en el proveedor de servicios"
+
+msgid "Too short interval between single sign on events."
+msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por última vez en este servicio, por lo que se asumirá que existe un problema con este SP."
+
+msgid "Missing cookie"
+msgstr "No se encuentra cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
+
+msgid "Retry"
+msgstr "Reintentar"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Sugerencias para resolver este problema"
@@ -41,12 +47,6 @@ msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Las cookies pueden estar deshabilitadas en el navegador"
-
-msgid "Too short interval between single sign on events."
-msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por última vez en este servicio, por lo que se asumirá que existe un problema con este SP."
 
 msgid "Welcome"
 msgstr "Bienvenido"

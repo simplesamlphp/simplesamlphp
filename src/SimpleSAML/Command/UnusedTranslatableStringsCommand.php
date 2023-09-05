@@ -25,6 +25,7 @@ use function array_diff;
 use function array_fill_keys;
 use function array_intersect;
 use function array_key_exists;
+use function array_key_first;
 use function array_merge;
 use function dirname;
 use function in_array;
@@ -148,13 +149,13 @@ class UnusedTranslatableStringsCommand extends Command
         // Migrate the catalogue results to match the php-scanner results.
         $migrated = [];
         foreach ($twigTranslations as $t) {
-            foreach ($t as $domain => $translation) {
-                $trans = Translations::create($domain);
-                foreach ($translation as $s) {
-                    $trans->add(Translation::create(null, $s));
-                }
-                $migrated[$domain][] = $trans;
+            $domain = array_key_first($t);
+            $translation = $t[$domain];
+            $trans = Translations::create($domain);
+            foreach ($translation as $s) {
+                $trans->add(Translation::create(null, $s));
             }
+            $migrated[$domain][] = $trans;
         }
 
         $loader = new PoLoader();

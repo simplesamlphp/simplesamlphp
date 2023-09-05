@@ -295,9 +295,6 @@ msgstr "Debug informácie pre personál podpory"
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-msgid "Language"
-msgstr "Jazyk"
-
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
 
@@ -348,6 +345,9 @@ msgstr "Vybrať"
 
 msgid "Remember my choice"
 msgstr "Zapamätať moju voľbu"
+
+msgid "Language"
+msgstr "Jazyk"
 
 msgid "Sending message"
 msgstr "Odosiela sa správa"
