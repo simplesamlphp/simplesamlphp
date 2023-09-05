@@ -1,19 +1,320 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:31+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: el\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: messages\n"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
+msgid "No SAML response provided"
+msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή AssertionConsumerService"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
+msgid "No SAML message provided"
+msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή SingleLogoutService"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
+msgid "Authentication source error"
+msgstr "Σφάλμα με την πηγή ταυτοποίησης"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
+msgid "Bad request received"
+msgstr "Εσφαλμένο αίτημα"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
+msgid "CAS Error"
+msgstr "Σφάλμα CAS"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
+msgid "Configuration error"
+msgstr "Σφάλμα ρυθμίσεων"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
+msgid "Error creating request"
+msgstr "Σφάλμα κατά τη δημιουργία αιτήματος"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+msgid "Bad request to discovery service"
+msgstr "Εσφαλμένο αίτημα προς την υπηρεσία ανεύρεσης παρόχου ταυτότητας"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
+msgid "Could not create authentication response"
+msgstr "Δεν ήταν δυνατή η δημιουργία απόκρισης στο αίτημα ταυτοποίησης"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
+msgid "Invalid certificate"
+msgstr "Μη έγκυρο πιστοποιητικό"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
+msgid "LDAP Error"
+msgstr "Σφάλμα LDAP"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
+msgid "Logout information lost"
+msgstr "Σφάλμα αποσύνδεσης"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
+msgid "Error processing the Logout Request"
+msgstr "Σφάλμα κατά τη διαδικασία αποσύνδεσης"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
+msgid "Cannot retrieve session data"
+msgstr "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
+msgid "Error loading metadata"
+msgstr "Σφάλμα κατά τη φόρτωση μεταδεδομένων"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
+msgid "Metadata not found"
+msgstr "Δεν βρέθηκαν μεταδεδομένα"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
+msgid "No access"
+msgstr "Σφάλμα κατά την πρόσβαση"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
+msgid "No certificate"
+msgstr "Δεν υπάρχει πιστοποιητικό"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+msgid "No RelayState"
+msgstr "Σφάλμα παραμέτρου 'RelayState'"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
+msgid "State information lost"
+msgstr "Δεν βρέθηκαν πληροφορίες σχετικά με την κατάσταση του αιτήματος"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
+msgid "Page not found"
+msgstr "Η σελίδα δεν βρέθηκε"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
+msgid "Password not set"
+msgstr "Σφάλμα κωδικού πρόσβασης"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
+msgid "Error processing response from Identity Provider"
+msgstr "Εσφαλμένη απόκριση από τον πάροχο ταυτότητας"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
+msgid "Error processing request from Service Provider"
+msgstr "Εσφαλμένο αίτημα από τον πάροχο υπηρεσιών"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
+msgid "Error received from Identity Provider"
+msgstr "Λήψη κωδικού σφάλματος από τον πάροχο ταυτότητας"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
+msgid "Unhandled exception"
+msgstr "Ανεπίλυτη εξαίρεση"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
+msgid "Unknown certificate"
+msgstr "Άγνωστο πιστοποιητικό"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
+msgid "Authentication aborted"
+msgstr "Η ταυτοποίηση ματαιώθηκε"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
+msgid "Incorrect username or password"
+msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Κατά την πρόσβασή σας στη διεπαφή AssertionConsumerService  παραλείψατε να συμπεριλάβετε απάντηση σε αίτημα ταυτοποίησης του πρωτοκόλλου SAML. Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι άμεσα προσβάσιμο."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την πηγή ταυτοποίησης %AUTHSOURCE%: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error when communicating with the CAS server."
+msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με τον εξυπηρετητή CAS."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "Παρουσιάστηκε σφάλμα ρυθμίσεων του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή της υπηρεσίας."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του αιτήματος SAML."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Οι παράμετροι που στάλθηκαν στην υπηρεσία ανεύρεσης παρόχου ταυτότητας ήταν εσφαλμένες."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο ταυτότητας."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε δεν είναι έγκυρο ή δεν ήταν δυνατή η ανάγνωσή του."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την υπηρεσία καταλόγου χρηστών (LDAP)."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Οι πληροφορίες σχετικά με την αποσύνδεση έχουν χαθεί. Θα πρέπει να επιστρέψετε στην υπηρεσία από την οποία προσπαθείτε να αποσυνδεθείτε και να προσπαθήσετε εκ νέου. Αυτό το σφάλμα μπορεί να παρουσιαστεί αν η ισχύς των πληροφοριών σχετικά με την αποσύνδεση έχει λήξει. Οι πληροφορίες αυτές αποθηκεύεται για περιορισμένο χρονικό διάστημα - συνήθως μερικών ωρών. Αυτό συνήθως επαρκεί για μια κανονική λειτουργία αποσύνδεσης, συνεπώς στην προκειμένη περίπτωση το σφάλμα μπορεί να υποδεικνύει κάποιο άλλο θέμα με τις ρυθμίσεις. Εάν το πρόβλημα παραμένει, επικοινωνήστε με τον πάροχο υπηρεσιών."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Παρουσιαστήκε σφάλμα κατά την επεξεργασία του αιτήματος αποσύνδεσης."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:120
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. Παρακαλούμε δοκιμάστε ξανά αργότερα"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Υπάρχει κάποιο πρόβλημα στις ρυθμίσεις του SimpleSAMLphp. Εάν είστε ο διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα %ENTITYID%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Αυτό το τελικό σημείο σύνδεσης (endpoint) δεν είναι ενεργοποιημένο. Εάν είστε ο διαχειριστής της υπηρεσίας, ελέγξτε τις ρυθμίσεις του SimpleSAMLphp."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Η ταυτοποίηση απέτυχε: Το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε δεν έστειλε πιστοποιητικό."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι έγκυρη με αποτέλεσμα να μην είναι δυνατή η μετάβαση σε κάποιον πόρο του παρόχου υπηρεσιών0."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
+msgid "State information lost, and no way to restart the request"
+msgstr "Δεν ήταν δυνατό να εξυπηρετηθεί το αίτημά σας καθώς δεν βρέθηκαν πληροφορίες σχετικά με την κατάστασή του"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε επεξεργαστείτε το αρχείο ρυθμίσεων."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
+msgid "You did not present a valid certificate."
+msgstr "Παρουσιάστηκε σφάλμα λόγω μη έγκυρου πιστοποιητικού."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία της απάντησης από τον πάροχο ταυτότητας."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος ταυτοποίησης που έλαβε ο πάροχος ταυτότητας από τον πάροχο υπηρεσιών."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας υποδεικνύει σφάλμα."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Κατά την πρόσβασή σας στη διεπαφή SingleLogoutService παραλείψατε να συμπεριλάβετε μήνυμα LogoutRequest ή LogoutResponse του πρωτοκόλλου SAML. Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι άμεσα προσβάσιμο."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
+msgid "An unhandled exception was thrown."
+msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε δεν ήταν δυνατό να αναγνωριστεί."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
+msgid "The authentication was aborted by the user"
+msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστη."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Ο συνδυασμός ονόματος χρήστη και κωδικού πρόσβασης δεν είναι σωστός. Παρακαλώ ελέγξτε την ορθότητα των στοιχείων σας και προσπαθήστε ξανά."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Χαίρετε, αυτή είναι η σελίδα κατάστασης του SimpleSAMLphp. Εδώ μπορείτε να δείτε αν η συνεδρία σας (session) έχει λήξει, το χρονικό διάστημα που διαρκεί έως ότου λήξει, καθώς και όλες τις πληροφορίες που συνδέονται με τη συνεδρία σας."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+
+msgid "Your attributes"
+msgstr "Πληροφορίες"
+
+msgid "SAML Subject"
+msgstr "Υποκείμενο (subject) SAML"
+
+msgid "not set"
+msgstr "δεν έχει οριστεί"
+
+msgid "Format"
+msgstr "Μορφή (format)"
+
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Αν αναφέρετε αυτό το σφάλμα, παρακαλούμε να συμπεριλάβετε στην αναφορά σας αυτόν τον αριθμό προκειμένου να διευκολύνετε τη διαδικασία εντοπισμού και επίλυσης του προβλήματος:"
+
+msgid "Debug information"
+msgstr "Πληροφορίες εντοπισμού σφαλμάτων"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού και επίλυσης σφαλμάτων."
+
+msgid "Report errors"
+msgstr "Αναφορά σφάλματος"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Προαιρετικά, εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας ώστε να είμαστε σε θέση να έρθουμε σε επαφή μαζί σας για περαιτέρω ερωτήσεις σχετικά με το θέμα σας:"
+
+msgid "E-mail address:"
+msgstr "Email:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Περιγράψτε τις ενέργειές σας όταν συνέβη το σφάλμα..."
+
+msgid "Send error report"
+msgstr "Αποστολή αναφοράς"
+
+msgid "How to get help"
+msgstr "Πώς να λάβετε βοήθεια"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Αυτό το σφάλμα πιθανότατα οφείλεται σε κάποια απροσδόκητη συμπεριφορά ή εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
+
+msgid "Select your identity provider"
+msgstr "Επιλογή οικείου φορέα"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
+
+msgid "Select"
+msgstr "Επιλογή"
+
+msgid "Remember my choice"
+msgstr "Να θυμάσαι την επιλογή μού"
+
+msgid "Sending message"
+msgstr "Αποστολή αρχείου"
+
+msgid "Yes, continue"
+msgstr "Αποδοχή"
 
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"
@@ -30,29 +331,8 @@ msgstr "Κινητό τηλέφωνο"
 msgid "Shib 1.3 Service Provider (Hosted)"
 msgstr "Πάροχος Υπηρεσιών Shib 1.3 (Φιλοξενούμενος)"
 
-msgid ""
-"LDAP is the user database, and when you try to login, we need to contact "
-"an LDAP database. An error occurred when we tried it this time."
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την υπηρεσία καταλόγου "
-"χρηστών (LDAP)."
-
-msgid ""
-"Optionally enter your email address, for the administrators to be able "
-"contact you for further questions about your issue:"
-msgstr ""
-"Προαιρετικά, εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας ώστε να "
-"είμαστε σε θέση να έρθουμε σε επαφή μαζί σας για περαιτέρω ερωτήσεις "
-"σχετικά με το θέμα σας:"
-
 msgid "Display name"
 msgstr "Εμφανιζόμενο όνομα"
-
-msgid "Remember my choice"
-msgstr "Να θυμάσαι την επιλογή μού"
-
-msgid "Format"
-msgstr "Μορφή (format)"
 
 msgid "SAML 2.0 SP Metadata"
 msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών SAML 2.0"
@@ -66,51 +346,17 @@ msgstr "Ειδοποιήσεις"
 msgid "Home telephone"
 msgstr "Τηλέφωνο οικίας"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
-"session is timed out, how long it lasts until it times out and all the "
-"attributes that are attached to your session."
-msgstr ""
-"Χαίρετε, αυτή είναι η σελίδα κατάστασης του SimpleSAMLphp. Εδώ μπορείτε "
-"να δείτε αν η συνεδρία σας (session) έχει λήξει, το χρονικό διάστημα που "
-"διαρκεί έως ότου λήξει, καθώς και όλες τις πληροφορίες που συνδέονται με "
-"τη συνεδρία σας."
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Περιγράψτε τις ενέργειές σας όταν συνέβη το σφάλμα..."
-
-msgid "An unhandled exception was thrown."
-msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση"
-
-msgid "Invalid certificate"
-msgstr "Μη έγκυρο πιστοποιητικό"
-
 msgid "Service Provider"
 msgstr "Πάροχος υπηρεσίας"
 
 msgid "Incorrect username or password."
 msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος."
 
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος: %REASON%"
-
-msgid "E-mail address:"
-msgstr "Email:"
-
 msgid "Submit message"
 msgstr "Υποβολή μηνύματος"
 
-msgid "No RelayState"
-msgstr "Σφάλμα παραμέτρου 'RelayState'"
-
-msgid "Error creating request"
-msgstr "Σφάλμα κατά τη δημιουργία αιτήματος"
-
 msgid "Locality"
 msgstr "Τοποθεσία"
-
-msgid "Unhandled exception"
-msgstr "Ανεπίλυτη εξαίρεση"
 
 msgid "The following required fields was not found"
 msgstr "Τα παρακάτω υποχρεωτικά πεδία δε βρέθηκαν"
@@ -118,41 +364,14 @@ msgstr "Τα παρακάτω υποχρεωτικά πεδία δε βρέθη�
 msgid "Download the X509 certificates as PEM-encoded files."
 msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
 
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα %ENTITYID%"
-
 msgid "Organizational number"
 msgstr "Αριθμός οικείου οργανισμού"
-
-msgid "Password not set"
-msgstr "Σφάλμα κωδικού πρόσβασης"
 
 msgid "Post office box"
 msgstr "Ταχυδρομική θυρίδα"
 
-msgid ""
-"A service has requested you to authenticate yourself. Please enter your "
-"username and password in the form below."
-msgstr ""
-"Μια υπηρεσία έχει ζητήσει την ταυτοποίησή σας. Παρακαλώ εισάγετε το όνομα"
-" χρήστη και τον κωδικό πρόσβασής σας στην παρακάτω φόρμα."
-
-msgid "CAS Error"
-msgstr "Σφάλμα CAS"
-
-msgid ""
-"The debug information below may be of interest to the administrator / "
-"help desk:"
-msgstr ""
-"Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού "
-"και επίλυσης σφαλμάτων."
-
-msgid ""
-"Either no user with the given username could be found, or the password "
-"you gave was wrong. Please check the username and try again."
-msgstr ""
-"Ο συνδυασμός ονόματος χρήστη και κωδικού πρόσβασης δεν είναι σωστός. "
-"Παρακαλώ ελέγξτε την ορθότητα των στοιχείων σας και προσπαθήστε ξανά."
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Μια υπηρεσία έχει ζητήσει την ταυτοποίησή σας. Παρακαλώ εισάγετε το όνομα χρήστη και τον κωδικό πρόσβασής σας στην παρακάτω φόρμα."
 
 msgid "Error"
 msgstr "Σφάλμα"
@@ -163,16 +382,6 @@ msgstr "Επόμενο"
 msgid "Distinguished name (DN) of the person's home organizational unit"
 msgstr "Διακεκριμένο όνομα (DN) οικείας οργανωτικής μονάδας"
 
-msgid "State information lost"
-msgstr "Δεν βρέθηκαν πληροφορίες σχετικά με την κατάσταση του αιτήματος"
-
-msgid ""
-"The password in the configuration (auth.adminpassword) is not changed "
-"from the default value. Please edit the configuration file."
-msgstr ""
-"Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "
-"επεξεργαστείτε το αρχείο ρυθμίσεων."
-
 msgid "Converted metadata"
 msgstr "Μετατραπέντα μεταδεδομένα"
 
@@ -182,23 +391,14 @@ msgstr "Email"
 msgid "No, cancel"
 msgstr "Όχι"
 
-msgid ""
-"You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
-"wrong you may choose another one."
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
 msgstr "Επιλεγμένος οικείος φορέας: <b>%HOMEORG%</b>."
-
-msgid "Error processing request from Service Provider"
-msgstr "Εσφαλμένο αίτημα από τον πάροχο υπηρεσιών"
 
 msgid "Distinguished name (DN) of person's primary Organizational Unit"
 msgstr "Διακεκριμένο όνομα (DN) κύριας οργανωτικής μονάδας"
 
-msgid ""
-"To look at the details for an SAML entity, click on the SAML entity "
-"header."
-msgstr ""
-"Για να δείτε τις λεπτομέρειες για μια οντότητα SAML, κάντε κλικ στην "
-"επικεφαλίδα της οντότητας."
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Για να δείτε τις λεπτομέρειες για μια οντότητα SAML, κάντε κλικ στην επικεφαλίδα της οντότητας."
 
 msgid "Enter your username and password"
 msgstr "Εισάγετε όνομα χρήστη και κωδικό πρόσβασης"
@@ -218,20 +418,8 @@ msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών WS-Fed"
 msgid "SAML 2.0 Identity Provider (Remote)"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
 
-msgid "Error processing the Logout Request"
-msgstr "Σφάλμα κατά τη διαδικασία αποσύνδεσης"
-
 msgid "Do you want to logout from all the services above?"
 msgstr "Επιθυμείτε να αποσυνδεθείτε από όλες τις παραπάνω υπηρεσίες;"
-
-msgid "Select"
-msgstr "Επιλογή"
-
-msgid "The authentication was aborted by the user"
-msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστη."
-
-msgid "Your attributes"
-msgstr "Πληροφορίες"
 
 msgid "Given name"
 msgstr "Όνομα"
@@ -242,23 +430,11 @@ msgstr "Επίπεδο αξιοπιστίας ταυτοποίησης"
 msgid "SAML 2.0 SP Demo Example"
 msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών SAML 2.0"
 
-msgid "Logout information lost"
-msgstr "Σφάλμα αποσύνδεσης"
-
 msgid "Organization name"
 msgstr "Όνομα οργανισμού"
 
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr ""
-"Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα "
-"περιήγησης ιστού που χρησιμοποιείτε δεν ήταν δυνατό να αναγνωριστεί."
-
-msgid ""
-"You are about to send a message. Hit the submit message button to "
-"continue."
-msgstr ""
-"Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "
-"συνεχίσετε."
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να συνεχίσετε."
 
 msgid "Home organization domain name"
 msgstr "Όνομα περιοχής (domain) οικείου οργανισμού"
@@ -266,17 +442,11 @@ msgstr "Όνομα περιοχής (domain) οικείου οργανισμού
 msgid "Go back to the file list"
 msgstr "Επιστροφή στον κατάλογο αρχείων"
 
-msgid "SAML Subject"
-msgstr "Υποκείμενο (subject) SAML"
-
 msgid "Error report sent"
 msgstr "Η αναφορά σφάλματος στάλθηκε"
 
 msgid "Common name"
 msgstr "Κοινό όνομα (CN)"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
 
 msgid "Logout failed"
 msgstr "Η αποσύνδεση απέτυχε"
@@ -287,52 +457,17 @@ msgstr "Αριθμός ταυτότητας από δημόσια αρχή"
 msgid "WS-Federation Identity Provider (Remote)"
 msgstr "Πάροχος Ταυτότητας WS-Federation (Απομακρυσμένος)"
 
-msgid "Error received from Identity Provider"
-msgstr "Λήψη κωδικού σφάλματος από τον πάροχο ταυτότητας"
-
-msgid "LDAP Error"
-msgstr "Σφάλμα LDAP"
-
-msgid ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amount of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
-msgstr ""
-"Οι πληροφορίες σχετικά με την αποσύνδεση έχουν χαθεί. Θα πρέπει να "
-"επιστρέψετε στην υπηρεσία από την οποία προσπαθείτε να αποσυνδεθείτε και "
-"να προσπαθήσετε εκ νέου. Αυτό το σφάλμα μπορεί να παρουσιαστεί αν η ισχύς"
-" των πληροφοριών σχετικά με την αποσύνδεση έχει λήξει. Οι πληροφορίες "
-"αυτές αποθηκεύεται για περιορισμένο χρονικό διάστημα - συνήθως μερικών "
-"ωρών. Αυτό συνήθως επαρκεί για μια κανονική λειτουργία αποσύνδεσης, "
-"συνεπώς στην προκειμένη περίπτωση το σφάλμα μπορεί να υποδεικνύει κάποιο "
-"άλλο θέμα με τις ρυθμίσεις. Εάν το πρόβλημα παραμένει, επικοινωνήστε με "
-"τον πάροχο υπηρεσιών."
-
 msgid "Some error occurred"
 msgstr "Συνέβη σφάλμα"
 
 msgid "Organization"
 msgstr "Οργανισμός"
 
-msgid "No certificate"
-msgstr "Δεν υπάρχει πιστοποιητικό"
-
 msgid "Choose home organization"
 msgstr "Επιλογή οικείου φορέα"
 
-msgid "Cannot retrieve session data"
-msgstr "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας"
-
 msgid "Persistent pseudonymous ID"
 msgstr "Αδιαφανές αναγνωριστικό χρήστη μακράς διάρκειας"
-
-msgid "No SAML response provided"
-msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή AssertionConsumerService"
 
 msgid "No errors found."
 msgstr "Δεν εντοπίστηκαν λάθη."
@@ -340,29 +475,8 @@ msgstr "Δεν εντοπίστηκαν λάθη."
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Φιλοξενούμενος)"
 
-msgid "The given page was not found. The URL was: %URL%"
-msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε."
-
-msgid "Configuration error"
-msgstr "Σφάλμα ρυθμίσεων"
-
 msgid "Required fields"
 msgstr "Υποχρεωτικά πεδία"
-
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του αιτήματος SAML."
-
-msgid ""
-"This error probably is due to some unexpected behaviour or to "
-"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
-"login service, and send them the error message above."
-msgstr ""
-"Αυτό το σφάλμα πιθανότατα οφείλεται σε κάποια απροσδόκητη συμπεριφορά ή "
-"εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή "
-"αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
 
 msgid "Domain component (DC)"
 msgstr "Συστατικό Τομέα (DC)"
@@ -378,17 +492,6 @@ msgstr "Αναγνωριστικά ερευνητή ORCID"
 
 msgid "Nickname"
 msgstr "Ψευδώνυμο χρήστη"
-
-msgid "Send error report"
-msgstr "Αποστολή αναφοράς"
-
-msgid ""
-"Authentication failed: the certificate your browser sent is invalid or "
-"cannot be read"
-msgstr ""
-"Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα "
-"περιήγησης ιστού που χρησιμοποιείτε δεν είναι έγκυρο ή δεν ήταν δυνατή η "
-"ανάγνωσή του."
 
 msgid "The error report has been sent to the administrators."
 msgstr "Η αποστολή της αναφοράς σφάλματος στους διαχειριστές ολοκληρώθηκε."
@@ -408,9 +511,6 @@ msgstr "Είστε επίσης συνδεδεμένος σε αυτές τις 
 msgid "SimpleSAMLphp Diagnostics"
 msgstr "Διαγνωστικά SimpleSAMLphp"
 
-msgid "Debug information"
-msgstr "Πληροφορίες εντοπισμού σφαλμάτων"
-
 msgid "No, only %SP%"
 msgstr "Όχι, μόνο από την υπηρεσία %SP%"
 
@@ -421,9 +521,7 @@ msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Επιστροφή στην αρχική σελίδα"
 
 msgid "You have successfully logged out from all services listed above."
-msgstr ""
-"Έχετε αποσυνδεθεί με επιτυχία από όλες τις υπηρεσίες που αναφέρονται "
-"παραπάνω."
+msgstr "Έχετε αποσυνδεθεί με επιτυχία από όλες τις υπηρεσίες που αναφέρονται παραπάνω."
 
 msgid "You are now successfully logged out from %SP%."
 msgstr "Έχετε αποσυνδεθεί με επιτυχία από την υπηρεσία %SP%."
@@ -437,17 +535,6 @@ msgstr "Έχετε αποσυνδεθεί."
 msgid "Return to service"
 msgstr "Επιστροφή στην υπηρεσία"
 
-msgid "Logout"
-msgstr "Αποσύνδεση"
-
-msgid "State information lost, and no way to restart the request"
-msgstr ""
-"Δεν ήταν δυνατό να εξυπηρετηθεί το αίτημά σας καθώς δεν βρέθηκαν "
-"πληροφορίες σχετικά με την κατάστασή του"
-
-msgid "Error processing response from Identity Provider"
-msgstr "Εσφαλμένη απόκριση από τον πάροχο ταυτότητας"
-
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "Πάροχος Υπηρεσιών WS-Federation (Φιλοξενούμενος)"
 
@@ -460,19 +547,8 @@ msgstr "Προτιμώμενη γλώσσα"
 msgid "Surname"
 msgstr "Επώνυμο"
 
-msgid "No access"
-msgstr "Σφάλμα κατά την πρόσβαση"
-
 msgid "The following fields was not recognized"
 msgstr "Τα παρακάτω πεδία δεν αναγνωρίστηκαν"
-
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την πηγή ταυτοποίησης "
-"%AUTHSOURCE%: %REASON%"
-
-msgid "Bad request received"
-msgstr "Εσφαλμένο αίτημα"
 
 msgid "User ID"
 msgstr "Αναγνωριστικό χρήστη"
@@ -483,21 +559,8 @@ msgstr "Φωτογραφία σε μορφή JPEG"
 msgid "Postal address"
 msgstr "Ταχυδρομική διεύθυνση"
 
-msgid ""
-"Your session data cannot be retrieved right now due to technical "
-"difficulties. Please try again in a few minutes."
-msgstr ""
-"Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "
-"Παρακαλούμε δοκιμάστε ξανά αργότερα"
-
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Παρουσιαστήκε σφάλμα κατά την επεξεργασία του αιτήματος αποσύνδεσης."
-
 msgid "ADFS SP Metadata"
 msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών ADFS"
-
-msgid "Sending message"
-msgstr "Αποστολή αρχείου"
 
 msgid "In SAML 2.0 Metadata XML format:"
 msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"
@@ -505,23 +568,8 @@ msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"
 msgid "Logging out of the following services:"
 msgstr "Γίνεται αποσύνδεση από τις ακόλουθες υπηρεσίες:"
 
-msgid ""
-"When this identity provider tried to create an authentication response, "
-"an error occurred."
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο "
-"ταυτότητας."
-
-msgid "Could not create authentication response"
-msgstr "Δεν ήταν δυνατή η δημιουργία απόκρισης στο αίτημα ταυτοποίησης"
-
 msgid "Labeled URI"
 msgstr "Επισημασμένα URI"
-
-msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr ""
-"Παρουσιάστηκε σφάλμα ρυθμίσεων του SimpleSAMLphp. Επικοινωνήστε με τον "
-"διαχειριστή της υπηρεσίας."
 
 msgid "Shib 1.3 Identity Provider (Hosted)"
 msgstr "Πάροχος Ταυτότητας Shib 1.3 (Φιλοξενούμενος)"
@@ -531,13 +579,6 @@ msgstr "Μεταδεδομένα"
 
 msgid "Login"
 msgstr "Είσοδος"
-
-msgid ""
-"This Identity Provider received an Authentication Request from a Service "
-"Provider, but an error occurred when trying to process the request."
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος ταυτοποίησης που "
-"έλαβε ο πάροχος ταυτότητας από τον πάροχο υπηρεσιών."
 
 msgid "Yes, all services"
 msgstr "Ναι, όλες τις υπηρεσίες"
@@ -551,53 +592,20 @@ msgstr "Ταχυδρομικός κωδικός"
 msgid "Logging out..."
 msgstr "Γίνεται αποσύνδεση..."
 
-msgid "not set"
-msgstr "δεν έχει οριστεί"
-
-msgid "Metadata not found"
-msgstr "Δεν βρέθηκαν μεταδεδομένα"
-
 msgid "SAML 2.0 Identity Provider (Hosted)"
 msgstr "Πάροχος Ταυτότητας SAML 2.0 (Φιλοξενούμενος)"
 
 msgid "Primary affiliation"
 msgstr "Κύρια ιδιότητα"
 
-msgid ""
-"If you report this error, please also report this tracking number which "
-"makes it possible to locate your session in the logs available to the "
-"system administrator:"
-msgstr ""
-"Αν αναφέρετε αυτό το σφάλμα, παρακαλούμε να συμπεριλάβετε στην αναφορά "
-"σας αυτόν τον αριθμό προκειμένου να διευκολύνετε τη διαδικασία εντοπισμού"
-" και επίλυσης του προβλήματος:"
-
 msgid "XML metadata"
 msgstr "Αναλυτής μεταδεδομένων XML"
-
-msgid ""
-"The parameters sent to the discovery service were not according to "
-"specifications."
-msgstr ""
-"Οι παράμετροι που στάλθηκαν στην υπηρεσία ανεύρεσης παρόχου ταυτότητας "
-"ήταν εσφαλμένες."
 
 msgid "Telephone number"
 msgstr "Τηλέφωνο"
 
-msgid ""
-"Unable to log out of one or more services. To ensure that all your "
-"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "
-"κλείσιμο όλων των συνεδριών σας (sessions), σας συνιστούμε να "
-"<i>κλείσετε</i> το πρόγραμμα πλοήγησης (web browser)."
-
-msgid "Bad request to discovery service"
-msgstr "Εσφαλμένο αίτημα προς την υπηρεσία ανεύρεσης παρόχου ταυτότητας"
-
-msgid "Select your identity provider"
-msgstr "Επιλογή οικείου φορέα"
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το κλείσιμο όλων των συνεδριών σας (sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web browser)."
 
 msgid "Group membership"
 msgstr "Συμμετοχή σε ομάδες"
@@ -608,12 +616,8 @@ msgstr "Δικαιώματα πρόσβασης στην υπηρεσία"
 msgid "Shib 1.3 SP Metadata"
 msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών Shib 1.3"
 
-msgid ""
-"As you are in debug mode, you get to see the content of the message you "
-"are sending:"
-msgstr ""
-"Επειδή είστε σε κατάσταση εντοπισμού σφαλμάτων (debug), μπορείτε να δείτε"
-" το περιεχόμενο του μηνύματος που στέλνετε:"
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Επειδή είστε σε κατάσταση εντοπισμού σφαλμάτων (debug), μπορείτε να δείτε το περιεχόμενο του μηνύματος που στέλνετε:"
 
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
@@ -625,24 +629,13 @@ msgid "Distinguished name (DN) of person's home organization"
 msgstr "Διακεκριμένο όνομα (DN) οικείου οργανισμού"
 
 msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr ""
-"Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "
-"συνεχίσετε."
+msgstr "Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να συνεχίσετε."
 
 msgid "Organizational unit"
 msgstr "Οργανωτική μονάδα"
 
-msgid "Authentication aborted"
-msgstr "Η ταυτοποίηση ματαιώθηκε"
-
 msgid "Local identity number"
 msgstr "Αριθμός ταυτότητας"
-
-msgid "Report errors"
-msgstr "Αναφορά σφάλματος"
-
-msgid "Page not found"
-msgstr "Η σελίδα δεν βρέθηκε"
 
 msgid "Shib 1.3 IdP Metadata"
 msgstr "Μεταδεδομένα Παρόχου Ταυτότητας Shib 1.3"
@@ -653,29 +646,11 @@ msgstr "Αλλαγή οικείου φορέα"
 msgid "User's password hash"
 msgstr "Κρυπτογραφημένος κωδικός"
 
-msgid ""
-"In SimpleSAMLphp flat file format - use this if you are using a "
-"SimpleSAMLphp entity on the other side:"
-msgstr ""
-"Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα "
-"μεταδεδομένα σε αυτή τη μορφή αν υπάρχει οντότητα SimpleSAMLphp στην άλλη"
-" πλευρά:"
-
-msgid "Yes, continue"
-msgstr "Αποδοχή"
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα μεταδεδομένα σε αυτή τη μορφή αν υπάρχει οντότητα SimpleSAMLphp στην άλλη πλευρά:"
 
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
-
-msgid ""
-"The Identity Provider responded with an error. (The status code in the "
-"SAML Response was not success)"
-msgstr ""
-"Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
-"υποδεικνύει σφάλμα."
-
-msgid "Error loading metadata"
-msgstr "Σφάλμα κατά τη φόρτωση μεταδεδομένων"
 
 msgid "Select configuration file to check:"
 msgstr "Επιλογή αρχείου για έλεγχο: "
@@ -686,47 +661,17 @@ msgstr "Σε αναμονή"
 msgid "ADFS Identity Provider (Hosted)"
 msgstr "Πάροχος Ταυτότητας ADFS (Φιλοξενούμενος)"
 
-msgid "Error when communicating with the CAS server."
-msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με τον εξυπηρετητή CAS."
-
-msgid "No SAML message provided"
-msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή SingleLogoutService"
-
 msgid "Help! I don't remember my password."
 msgstr "Βοήθεια! Δε θυμάμαι τον κωδικό μου."
 
-msgid ""
-"You can turn off debug mode in the global SimpleSAMLphp configuration "
-"file <tt>config/config.php</tt>."
-msgstr ""
-"Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
-"στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
-
-msgid "How to get help"
-msgstr "Πώς να λάβετε βοήθεια"
-
-msgid ""
-"You accessed the SingleLogoutService interface, but did not provide a "
-"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
-"not intended to be accessed directly."
-msgstr ""
-"Κατά την πρόσβασή σας στη διεπαφή SingleLogoutService παραλείψατε να "
-"συμπεριλάβετε μήνυμα LogoutRequest ή LogoutResponse του πρωτοκόλλου SAML."
-" Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
-"άμεσα προσβάσιμο."
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
 
 msgid "SimpleSAMLphp error"
 msgstr "Σφάλμα του SimpleSAMLphp"
 
-msgid ""
-"One or more of the services you are logged into <i>do not support "
-"logout</i>. To ensure that all your sessions are closed, you are "
-"encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Μία ή περισσότερες υπηρεσίες με τις οποίες είστε συνδεδεμένος/η δεν "
-"υποστηρίζουν αποσύνδεση. Για το κλείσιμο όλων των συνεδριών σας "
-"(sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web"
-" browser)."
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Μία ή περισσότερες υπηρεσίες με τις οποίες είστε συνδεδεμένος/η δεν υποστηρίζουν αποσύνδεση. Για το κλείσιμο όλων των συνεδριών σας (sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web browser)."
 
 msgid "or select a file:"
 msgstr "ή επιλέξτε αρχείο"
@@ -743,36 +688,11 @@ msgstr "Επιλογές που λείπουν από το αρχείο ρυθμ
 msgid "The following optional fields was not found"
 msgstr "Τα παρακάτω προαιρετικά πεδία δεν βρέθηκαν"
 
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr ""
-"Η ταυτοποίηση απέτυχε: Το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε "
-"δεν έστειλε πιστοποιητικό."
-
-msgid ""
-"This endpoint is not enabled. Check the enable options in your "
-"configuration of SimpleSAMLphp."
-msgstr ""
-"Αυτό το τελικό σημείο σύνδεσης (endpoint) δεν είναι ενεργοποιημένο. Εάν "
-"είστε ο διαχειριστής της υπηρεσίας, ελέγξτε τις ρυθμίσεις του "
-"SimpleSAMLphp."
-
 msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
 msgstr "Διεύθυνση <a href=\"%METAURL%\">λήψης</a> μεταδεδομένων:"
 
 msgid "Street"
 msgstr "Οδός"
-
-msgid ""
-"There is some misconfiguration of your SimpleSAMLphp installation. If you"
-" are the administrator of this service, you should make sure your "
-"metadata configuration is correctly setup."
-msgstr ""
-"Υπάρχει κάποιο πρόβλημα στις ρυθμίσεις του SimpleSAMLphp. Εάν είστε ο "
-"διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
-"ρυθμιστεί σωστά."
-
-msgid "Incorrect username or password"
-msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος"
 
 msgid "Message"
 msgstr "Μήνυμα"
@@ -780,29 +700,16 @@ msgstr "Μήνυμα"
 msgid "Contact information:"
 msgstr "Στοιχεία επικοινωνίας:"
 
-msgid "Unknown certificate"
-msgstr "Άγνωστο πιστοποιητικό"
-
 msgid "Legal name"
 msgstr "Επίσημο όνομα"
 
 msgid "Optional fields"
 msgstr "Προαιρετικά πεδία"
 
-msgid ""
-"The initiator of this request did not provide a RelayState parameter "
-"indicating where to go next."
-msgstr ""
-"Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι "
-"έγκυρη με αποτέλεσμα να μην είναι δυνατή η μετάβαση σε κάποιον πόρο του "
-"παρόχου υπηρεσιών0."
-
 msgid "You have previously chosen to authenticate at"
 msgstr "Αποθηκευμένη προεπιλογή οικείου φορέα:"
 
-msgid ""
-"You sent something to the login page, but for some reason the password "
-"was not sent. Try again please."
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
 msgstr "Ο κωδικός πρόσβασης δεν εστάλη. Παρακαλώ, προσπαθήστε ξανά."
 
 msgid "Fax number"
@@ -820,14 +727,8 @@ msgstr "Μέγεθος συνεδρίας: %SIZE%"
 msgid "Parse"
 msgstr "Ανάλυση"
 
-msgid ""
-"Without your username and password you cannot authenticate "
-"yourself for access to the service. There may be someone that can help "
-"you. Consult the help desk at your organization!"
-msgstr ""
-"Λυπούμαστε. Χωρίς το όνομα χρήστη και τον κωδικό σας, δεν μπορείτε να "
-"ταυτοποιηθείτε ώστε να αποκτήσετε πρόσβαση στην υπηρεσία. Συμβουλευτείτε "
-"την υπηρεσία αρωγής χρηστών (help desk) του οργανισμού σας."
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Λυπούμαστε. Χωρίς το όνομα χρήστη και τον κωδικό σας, δεν μπορείτε να ταυτοποιηθείτε ώστε να αποκτήσετε πρόσβαση στην υπηρεσία. Συμβουλευτείτε την υπηρεσία αρωγής χρηστών (help desk) του οργανισμού σας."
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "Πάροχος Υπηρεσιών ADFS (Απομακρυσμένος)"
@@ -847,12 +748,6 @@ msgstr "Τίτλος"
 msgid "Manager"
 msgstr "Διακεκριμένο όνομα (DN) διαχειριστή"
 
-msgid "You did not present a valid certificate."
-msgstr "Παρουσιάστηκε σφάλμα λόγω μη έγκυρου πιστοποιητικού."
-
-msgid "Authentication source error"
-msgstr "Σφάλμα με την πηγή ταυτοποίησης"
-
 msgid "Affiliation at home organization"
 msgstr "Ιδιότητα ανά διαχειριστική περιοχή (administrative domain)"
 
@@ -862,47 +757,11 @@ msgstr "Σελίδα υπηρεσίας αρωγής χρηστών"
 msgid "Configuration check"
 msgstr "Έλεγχος ρυθμίσεων"
 
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr ""
-"Παρουσιάστηκε σφάλμα κατά την επεξεργασία της απάντησης από τον πάροχο "
-"ταυτότητας."
-
-msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε: %REASON%"
-
-msgid ""
-"Here is the metadata that SimpleSAMLphp has generated for you. You may "
-"send this metadata document to trusted partners to setup a trusted "
-"federation."
-msgstr ""
-"Αυτά είναι τα μεταδεδομένα που έχουν παραχθεί από το SimpleSAMLphp για "
-"εσάς. Μπορείτε να τα στείλετε σε οντότητες που εμπιστεύεστε προκειμένου "
-"να δημιουργήσετε ομοσπονδία."
-
-msgid "[Preferred choice]"
-msgstr "[Αποθηκευμένη προεπιλογή]"
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Αυτά είναι τα μεταδεδομένα που έχουν παραχθεί από το SimpleSAMLphp για εσάς. Μπορείτε να τα στείλετε σε οντότητες που εμπιστεύεστε προκειμένου να δημιουργήσετε ομοσπονδία."
 
 msgid "Organizational homepage"
 msgstr "Διεύθυνση αρχικής σελίδας οικείου οργανισμού"
 
-msgid ""
-"You accessed the Assertion Consumer Service interface, but did not "
-"provide a SAML Authentication Response. Please note that this endpoint is"
-" not intended to be accessed directly."
-msgstr ""
-"Κατά την πρόσβασή σας στη διεπαφή AssertionConsumerService  παραλείψατε "
-"να συμπεριλάβετε απάντηση σε αίτημα ταυτοποίησης του πρωτοκόλλου SAML. "
-"Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
-"άμεσα προσβάσιμο."
-
-
-msgid ""
-"You are now accessing a pre-production system. This authentication setup "
-"is for testing and pre-production verification only. If someone sent you "
-"a link that pointed you here, and you are not <i>a tester</i> you "
-"probably got the wrong link, and should <b>not be here</b>."
-msgstr ""
-"Εισέρχεστε σε περιβάλλον ταυτοποίησης χρηστών που εξυπηρετεί αποκλειστικά"
-" δοκιμαστικούς σκοπούς. Αν οδηγηθήκατε εδώ μέσω κάποιου συνδέσμου ενώ δεν"
-" είστε <i>δοκιμαστής (tester)</i>, τότε πρόκειται περί λάθους και <b>δεν "
-"πρέπει να βρίσκεστε εδώ</b>."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Εισέρχεστε σε περιβάλλον ταυτοποίησης χρηστών που εξυπηρετεί αποκλειστικά δοκιμαστικούς σκοπούς. Αν οδηγηθήκατε εδώ μέσω κάποιου συνδέσμου ενώ δεν είστε <i>δοκιμαστής (tester)</i>, τότε πρόκειται περί λάθους και <b>δεν πρέπει να βρίσκεστε εδώ</b>."

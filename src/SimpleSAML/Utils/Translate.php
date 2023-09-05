@@ -4,41 +4,75 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
+use Gettext\Scanner\PhpScanner;
 use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\Twig\Translation\TwigExtractor;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Translation\MessageCatalogue;
 
 /**
  * @package SimpleSAMLphp
  */
 class Translate
 {
-    /**
-     * Compile all Twig templates for the given $module into the given $outputDir.
-     * This is used by the translation extraction tool to find the translatable
-     * strings for this module in the compiled templates.
-     * $module can be '' for the main SimpleSAMLphp templates.
-     */
-    public function compileAllTemplates(string $module, string $outputDir): void
+    protected string $baseDir;
+
+
+    public function __construct(
+        protected Configuration $configuration
+    ) {
+        $this->baseDir = $configuration->getBaseDir();
+    }
+
+
+    public function getTranslationsFromPhp(string $module, PhpScanner $phpScanner): PhpScanner
     {
-        $config = Configuration::loadFromArray(['template.cache' => $outputDir, 'module.enable' => [$module => true]]);
-        $baseDir = $config->getBaseDir();
-        $tplSuffix = DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR;
+        $moduleDir = $this->baseDir . ($module === '' ? '' : 'modules/' . $module . '/');
+        $moduleSrcDir = $moduleDir . 'src/';
 
-        $tplDir = $baseDir . ($module === '' ? '' : 'modules' . DIRECTORY_SEPARATOR . $module) . $tplSuffix;
-        $templateprefix = ($module === '' ? '' : $module . ":");
-
-        foreach (
-            new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($tplDir),
-                RecursiveIteratorIterator::LEAVES_ONLY
-            ) as $file
-        ) {
-            if ($file->isFile()) {
-                $p = new Template($config, $templateprefix . str_replace($tplDir, '', $file->getPathname()));
-                $p->compile();
-            }
+        $finder = new Finder();
+        foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
+            $phpScanner->scanFile($file->getPathName());
         }
+
+        return $phpScanner;
+    }
+
+
+    public function getTranslationsFromTwig(string $module): array
+    {
+        $twigTranslations = [];
+        $moduleDir = $this->baseDir . ($module === '' ? '' : 'modules/' . $module . '/');
+        $moduleTemplateDir = $moduleDir . 'templates/';
+
+        // Scan Twig-templates
+        $finder = new Finder();
+        foreach ($finder->files()->in($moduleTemplateDir)->depth('== 0')->name('*.twig') as $file) {
+            $template = new Template(
+                $this->configuration,
+                ($module ? ($module . ':') : '') . $file->getFileName(),
+            );
+
+            $catalogue = new MessageCatalogue('en', []);
+            $extractor = new TwigExtractor($template->getTwig());
+            $extractor->extract($file, $catalogue);
+
+            $tmp = $catalogue->all();
+            if ($tmp === []) {
+                // This template has no translation strings
+                continue;
+            }
+
+            // The catalogue always uses 'messages' for the domain and it's not configurable.
+            // Manually replace it with the module-name
+            if ($module !== '') {
+                $tmp[$module] = $tmp['messages'];
+                unset($tmp['messages']);
+            }
+            $twigTranslations[] = $tmp;
+        }
+
+        return $twigTranslations;
     }
 }

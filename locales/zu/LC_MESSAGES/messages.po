@@ -1,71 +1,323 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2018-11-15 15:07+0200\n"
-"PO-Revision-Date: 2018-11-15 15:07+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"X-Domain: messages\n"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
+msgid "No SAML response provided"
+msgstr "Ayikho impendulo ye-SAML enikeziwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
+msgid "No SAML message provided"
+msgstr "Awukho umlayezo we-SAML onikeziwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
+msgid "Authentication source error"
+msgstr "Iphutha lomthombo wokuqinisekisa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
+msgid "Bad request received"
+msgstr "Kutholwe umlayezo ongalungile"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
+msgid "CAS Error"
+msgstr "Iphutha Le-CAS"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
+msgid "Configuration error"
+msgstr "Iphutha lomiso"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
+msgid "Error creating request"
+msgstr "Iphutha lokwakha isicelo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+msgid "Bad request to discovery service"
+msgstr "Isicelo esingalungile sesevisi yokuthola"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
+msgid "Could not create authentication response"
+msgstr "Ayikwazanga ukwakha impendulo yokuqinisekisa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
+msgid "Invalid certificate"
+msgstr "Isifiketi esingalungile"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
+msgid "LDAP Error"
+msgstr "Iphutha le-LDAP"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
+msgid "Logout information lost"
+msgstr "Ulwazi lokuphuma lulahlekile"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
+msgid "Error processing the Logout Request"
+msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
+msgid "Cannot retrieve session data"
+msgstr "Ayikwazi ukubuyisela idatha yeseshini"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
+msgid "Error loading metadata"
+msgstr "Iphutha lokulayisha imethadatha"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
+msgid "Metadata not found"
+msgstr "Imethadatha ayitholakalanga"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
+msgid "No access"
+msgstr "Akukho ukufinyelela"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
+msgid "No certificate"
+msgstr "Asikho isitifiketi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+msgid "No RelayState"
+msgstr "Ayikho I-RelayState"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
+msgid "State information lost"
+msgstr "Ulwazi lwesifunda lulahlekile"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
+msgid "Page not found"
+msgstr "Ikhasi alitholakali"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
+msgid "Password not set"
+msgstr "Iphasiwedi ayisethiwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
+msgid "Error processing response from Identity Provider"
+msgstr "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
+msgid "Error processing request from Service Provider"
+msgstr "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
+msgid "Error received from Identity Provider"
+msgstr "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:54
+msgid "No SAML request provided"
+msgstr "Asikho isicelo se-SAML esinikeziwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
+msgid "Unhandled exception"
+msgstr "Okuhlukile okungasingathiwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
+msgid "Unknown certificate"
+msgstr "Isitifiketi esingaziwa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
+msgid "Authentication aborted"
+msgstr "Ukuqinisekisa kuyekisiwe"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
+msgid "Incorrect username or password"
+msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ufinyelele ukusebenzisana Kwesevisi Yomthengi Yesimemezelo, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error when communicating with the CAS server."
+msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, kuvele iphutha."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asivumelekile noma asikwazi ukufundwa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Ulwazi olumayelana nomsebenzi wokuphuma wamanje lulahlekile. Kufanele ubuyele kusevisi obuzama ukuphuma kuyo futhi uzame ukuphuma futhi. Leli phutha lingabangelwa ukuphelelwa isikhathi kolwazi lokuphuma. Ulwazi lokuphuma lugcinwa isikhathi esilinganiselwe - ngokuvamile amahora ambalwa. Lokhu kude kunanoma yimuphi umsebenzi wokuphuma ovamile, ngakho leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga iphikelela, thinta umhlinzeki wakho wesevisi."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:120
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Kukhona umiso olungafanele kukufaka kwakho kwe-SimpleSAMLphp. Uma ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho lwemethadatha lumiswe ngendlela efanele."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-SimpleSAMLphp."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma yisiphi isitifiketi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState ebonisa ukuthi kufanele uye kuphi ngokulandelayo."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
+msgid "State information lost, and no way to restart the request"
+msgstr "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha isicelo"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "Ikhasi elinikeziwe alitholakalanga. I-URL ibithi: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL ibithi: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani elizenzakalelayo. Sicela uhlele ifayela lomiso."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
+msgid "You did not present a valid certificate."
+msgstr "Awuzange wethule isitifiketi esilungile."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-SAML ayizange iphumelele)"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ufinyelele ukusebenzisana kwe-SingleLogoutService, kodwa awuzange uhlinzeke nge-SAML LogoutRequest noma i-LogoutResponse. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:154
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
+msgid "An unhandled exception was thrown."
+msgstr "Okuhlukile okungasingathiwe kulahliwe."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asaziwa"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
+msgid "The authentication was aborted by the user"
+msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese uzame futhi."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho."
+
+msgid "SAML Subject"
+msgstr "Isihloko Se-SAML"
+
+msgid "not set"
+msgstr "akusethiwe"
+
+msgid "Format"
+msgstr "Ifomethi"
+
+msgid "Debug information"
+msgstr "Ulwazi lokususwa kwephutha"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:"
+
+msgid "Report errors"
+msgstr "Amaphutha ombiko"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
+
+msgid "E-mail address:"
+msgstr "Ikheli le-imeyili:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
+
+msgid "Send error report"
+msgstr "Thumela umbiko wephutha"
+
+msgid "How to get help"
+msgstr "Indlela yokuthola usizo"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
+
+msgid "Select your identity provider"
+msgstr "Khetha umhlinzeki wakho kamazisi"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
+
+msgid "Select"
+msgstr "Khetha"
+
+msgid "Remember my choice"
+msgstr "Khumbula ukukhetha kwami"
+
+msgid "Yes, continue"
+msgstr "Yebo, qhubeka"
 
 msgid "Next"
 msgstr "Okulandelayo"
 
-msgid "Metadata not found"
-msgstr "Imethadatha ayitholakalanga"
-
-msgid ""
-"When this identity provider tried to create an authentication response, "
-"an error occurred."
-msgstr ""
-"Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, "
-"kuvele iphutha."
-
-msgid ""
-"There is some misconfiguration of your SimpleSAMLphp installation. If you"
-" are the administrator of this service, you should make sure your "
-"metadata configuration is correctly setup."
-msgstr ""
-"Kukhona umiso olungafanele kukufaka kwakho kwe-SimpleSAMLphp. Uma "
-"ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho "
-"lwemethadatha lumiswe ngendlela efanele."
-
-msgid "State information lost, and no way to restart the request"
-msgstr ""
-"Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha "
-"isicelo"
-
-msgid "No SAML request provided"
-msgstr "Asikho isicelo se-SAML esinikeziwe"
-
-msgid "Error when communicating with the CAS server."
-msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
-
-msgid ""
-"You sent something to the login page, but for some reason the password "
-"was not sent. Try again please."
-msgstr ""
-"Uthumele okuthile ekhasini lokungena, kodwa ngasizathu simbe iphasiwedi "
-"ayizange ithunyelwe. Sicela uzame futhi."
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
-"session is timed out, how long it lasts until it times out and all the "
-"attributes that are attached to your session."
-msgstr ""
-"Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona "
-"ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi "
-"eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke "
-"izici ezihambisana neseshini yakho."
-
-msgid "Bad request received"
-msgstr "Kutholwe umlayezo ongalungile"
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Uthumele okuthile ekhasini lokungena, kodwa ngasizathu simbe iphasiwedi ayizange ithunyelwe. Sicela uzame futhi."
 
 msgid "Login"
 msgstr "Ngena"
@@ -76,139 +328,32 @@ msgstr "Idemo ye-Shibboleth"
 msgid "[Preferred choice]"
 msgstr "[Ukukhetha okuncanyelwayo]"
 
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%"
-
 msgid "Help! I don't remember my password."
 msgstr "Siza! Angiyikhumbuli iphasiwedi yami."
 
 msgid "Return to service"
 msgstr "Buyela kusevisi"
 
-msgid "Error loading metadata"
-msgstr "Iphutha lokulayisha imethadatha"
-
-msgid "Error processing the Logout Request"
-msgstr "Iphutha lokucubungula Isicelo Sokuphuma"
-
 msgid "On hold"
 msgstr "Imisiwe"
-
-msgid "LDAP Error"
-msgstr "Iphutha le-LDAP"
-
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr ""
-"Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: "
-"%REASON%"
 
 msgid "Yes, all services"
 msgstr "Yebo, wonke amasevisi"
 
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
-
 msgid "Help desk homepage"
 msgstr "Ikhasi lasekhaya ledeski losizo"
-
-msgid "Debug information"
-msgstr "Ulwazi lokususwa kwephutha"
-
-msgid "No access"
-msgstr "Akukho ukufinyelela"
-
-msgid "Invalid certificate"
-msgstr "Isifiketi esingalungile"
-
-msgid "Incorrect username or password"
-msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
-
-msgid "How to get help"
-msgstr "Indlela yokuthola usizo"
 
 msgid "Login at"
 msgstr "Ngena kokuthi"
 
-msgid "Select"
-msgstr "Khetha"
-
-msgid "Remember my choice"
-msgstr "Khumbula ukukhetha kwami"
-
 msgid "Remember"
 msgstr "Khumbula"
-
-msgid "Error processing response from Identity Provider"
-msgstr "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi"
-
-msgid "The given page was not found. The URL was: %URL%"
-msgstr "Ikhasi elinikeziwe alitholakalanga. I-URL ibithi: %URL%"
-
-msgid ""
-"This endpoint is not enabled. Check the enable options in your "
-"configuration of SimpleSAMLphp."
-msgstr ""
-"Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-"
-"SimpleSAMLphp."
-
-msgid ""
-"The initiator of this request did not provide a RelayState parameter "
-"indicating where to go next."
-msgstr ""
-"Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState "
-"ebonisa ukuthi kufanele uye kuphi ngokulandelayo."
-
-msgid "Format"
-msgstr "Ifomethi"
-
-msgid "You did not present a valid certificate."
-msgstr "Awuzange wethule isitifiketi esilungile."
-
-msgid "Page not found"
-msgstr "Ikhasi alitholakali"
 
 msgid "Completed"
 msgstr "Kuqedile"
 
-msgid "SAML Subject"
-msgstr "Isihloko Se-SAML"
-
-msgid ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amount of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
-msgstr ""
-"Ulwazi olumayelana nomsebenzi wokuphuma wamanje lulahlekile. Kufanele "
-"ubuyele kusevisi obuzama ukuphuma kuyo futhi uzame ukuphuma futhi. Leli "
-"phutha lingabangelwa ukuphelelwa isikhathi kolwazi lokuphuma. Ulwazi "
-"lokuphuma lugcinwa isikhathi esilinganiselwe - ngokuvamile amahora "
-"ambalwa. Lokhu kude kunanoma yimuphi umsebenzi wokuphuma ovamile, ngakho "
-"leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga "
-"iphikelela, thinta umhlinzeki wakho wesevisi."
-
-msgid "not set"
-msgstr "akusethiwe"
-
-msgid "Error received from Identity Provider"
-msgstr "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi"
-
-msgid "Select your identity provider"
-msgstr "Khetha umhlinzeki wakho kamazisi"
-
-msgid "Password not set"
-msgstr "Iphasiwedi ayisethiwe"
-
-msgid ""
-"A service has requested you to authenticate yourself. Please enter your "
-"username and password in the form below."
-msgstr ""
-"Isevisi icele ukuthi uziqinisekise. Sicela ufake igama lakho lomsebenzisi"
-" nephasiwedi ngohlobo olungezansi."
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Isevisi icele ukuthi uziqinisekise. Sicela ufake igama lakho lomsebenzisi nephasiwedi ngohlobo olungezansi."
 
 msgid "No, only %SP%"
 msgstr "Cha, ku-%SP% kuphela"
@@ -225,30 +370,11 @@ msgstr "Cha, khansela"
 msgid "SimpleSAMLphp Diagnostics"
 msgstr "Ukuhlonzwa Kwe-SimpleSAMLphp"
 
-msgid ""
-"You accessed the Single Sign On Service interface, but did not provide a "
-"SAML Authentication Request. Please note that this endpoint is not "
-"intended to be accessed directly."
-msgstr ""
-"Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange "
-"uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi "
-"isiphetho asihloselwe ukufinyelelwa ngokuqondile."
-
 msgid "Contact information:"
 msgstr "Ulwazi lokuxhumana:"
 
 msgid "Error report sent"
 msgstr "Umbiko wephutha uthunyelwe"
-
-msgid "Authentication aborted"
-msgstr "Ukuqinisekisa kuyekisiwe"
-
-msgid ""
-"This Identity Provider received an Authentication Request from a Service "
-"Provider, but an error occurred when trying to process the request."
-msgstr ""
-"Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki "
-"Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo."
 
 msgid "Remember me"
 msgstr "Ngikhumbule"
@@ -256,43 +382,14 @@ msgstr "Ngikhumbule"
 msgid "You have previously chosen to authenticate at"
 msgstr "Ngaphambilini ukhethe ukuqinisekisa kokuthi"
 
-msgid "Yes, continue"
-msgstr "Yebo, qhubeka"
-
 msgid "Remember my username"
 msgstr "Khumbula igama lami lomsebenzisi"
-
-msgid "No SAML response provided"
-msgstr "Ayikho impendulo ye-SAML enikeziwe"
 
 msgid "Enter your username and password"
 msgstr "Faka igama lakho lomsebenzisi nephasiwedi"
 
 msgid "Logging out of the following services:"
 msgstr "Iyaphuma kumasevisi alandelayo:"
-
-msgid "CAS Error"
-msgstr "Iphutha Le-CAS"
-
-msgid ""
-"LDAP is the user database, and when you try to login, we need to contact "
-"an LDAP database. An error occurred when we tried it this time."
-msgstr ""
-"I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga "
-"ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama "
-"ngalesi sikhathi."
-
-msgid ""
-"The debug information below may be of interest to the administrator / "
-"help desk:"
-msgstr ""
-"Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / "
-"ideski losizo:"
-
-msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr ""
-"Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL "
-"ibithi: %URL%"
 
 msgid "You have successfully logged out from all services listed above."
 msgstr "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla."
@@ -306,150 +403,29 @@ msgstr "Iphutha"
 msgid "You have been logged out."
 msgstr "Usuphumile."
 
-msgid "Could not create authentication response"
-msgstr "Ayikwazanga ukwakha impendulo yokuqinisekisa"
-
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr ""
-"Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho "
-"asaziwa"
-
-msgid ""
-"The Identity Provider responded with an error. (The status code in the "
-"SAML Response was not success)"
-msgstr ""
-"Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-"
-"SAML ayizange iphumelele)"
-
 msgid "Service Provider"
 msgstr "Umhlinzeki Wesevisi"
-
-msgid ""
-"The parameters sent to the discovery service were not according to "
-"specifications."
-msgstr "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
 
 msgid "SAML 2.0 SP Demo Example"
 msgstr "Isampula Ledemo Ye-SAML 2.0 SP"
 
-msgid ""
-"Authentication failed: the certificate your browser sent is invalid or "
-"cannot be read"
-msgstr ""
-"Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho "
-"asivumelekile noma asikwazi ukufundwa"
-
 msgid "Choose home organization"
 msgstr "Khetha inhlangano yasekhaya"
 
-msgid ""
-"The password in the configuration (auth.adminpassword) is not changed "
-"from the default value. Please edit the configuration file."
-msgstr ""
-"Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani "
-"elizenzakalelayo. Sicela uhlele ifayela lomiso."
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Isevisi eyodwa noma ngaphezulu ongene kuyo <i>ayikusekeli ukuphuma</i>. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>."
 
-msgid "Authentication source error"
-msgstr "Iphutha lomthombo wokuqinisekisa"
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>."
 
-msgid "Unhandled exception"
-msgstr "Okuhlukile okungasingathiwe"
-
-msgid "Report errors"
-msgstr "Amaphutha ombiko"
-
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma."
-
-msgid ""
-"Your session data cannot be retrieved right now due to technical "
-"difficulties. Please try again in a few minutes."
-msgstr ""
-"Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga "
-"zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa."
-
-msgid "Send error report"
-msgstr "Thumela umbiko wephutha"
-
-msgid ""
-"One or more of the services you are logged into <i>do not support "
-"logout</i>. To ensure that all your sessions are closed, you are "
-"encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Isevisi eyodwa noma ngaphezulu ongene kuyo <i>ayikusekeli ukuphuma</i>. "
-"Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa"
-" ukuthi <i>uvale isiphequluli sakho sewebhu</i>."
-
-msgid "Configuration error"
-msgstr "Iphutha lomiso"
-
-msgid "Unknown certificate"
-msgstr "Isitifiketi esingaziwa"
-
-msgid "No certificate"
-msgstr "Asikho isitifiketi"
-
-msgid "An unhandled exception was thrown."
-msgstr "Okuhlukile okungasingathiwe kulahliwe."
-
-msgid "Error creating request"
-msgstr "Iphutha lokwakha isicelo"
-
-msgid ""
-"You accessed the SingleLogoutService interface, but did not provide a "
-"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
-"not intended to be accessed directly."
-msgstr ""
-"Ufinyelele ukusebenzisana kwe-SingleLogoutService, kodwa awuzange "
-"uhlinzeke nge-SAML LogoutRequest noma i-LogoutResponse. Sicela uphawule "
-"ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
-
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
-
-msgid ""
-"Unable to log out of one or more services. To ensure that all your "
-"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze "
-"isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi "
-"<i>uvale isiphequluli sakho sewebhu</i>."
-
-msgid ""
-"You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
-"wrong you may choose another one."
-msgstr ""
-"Ukhethe okuthi <b>%HOMEORG%</b> njengenhlangano yakho yasekhaya. Uma "
-"lokhu kungalungile ungase ukhethe enye."
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Ukhethe okuthi <b>%HOMEORG%</b> njengenhlangano yakho yasekhaya. Uma lokhu kungalungile ungase ukhethe enye."
 
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
 
-msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
-
-msgid "Bad request to discovery service"
-msgstr "Isicelo esingalungile sesevisi yokuthola"
-
-msgid ""
-"Either no user with the given username could be found, or the password "
-"you gave was wrong. Please check the username and try again."
-msgstr ""
-"Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma "
-"iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese "
-"uzame futhi."
-
 msgid "Session size: %SIZE%"
 msgstr "Usayizi weseshini: %SIZE%"
-
-msgid "Logout information lost"
-msgstr "Ulwazi lokuphuma lulahlekile"
-
-msgid "No RelayState"
-msgstr "Ayikho I-RelayState"
 
 msgid "You are also logged in on these services:"
 msgstr "Ungenile futhi kulawa masevisi:"
@@ -460,40 +436,8 @@ msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
 msgid "You are now successfully logged out from %SP%."
 msgstr "Usuphume ngempumelelo kokuthi %SP%."
 
-msgid "The authentication was aborted by the user"
-msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
-
-msgid "E-mail address:"
-msgstr "Ikheli le-imeyili:"
-
 msgid "Organization"
 msgstr "Inhlangano"
-
-msgid ""
-"You accessed the Assertion Consumer Service interface, but did not "
-"provide a SAML Authentication Response. Please note that this endpoint is"
-" not intended to be accessed directly."
-msgstr ""
-"Ufinyelele ukusebenzisana Kwesevisi Yomthengi Yesimemezelo, kodwa "
-"awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule "
-"ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
-
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr ""
-"Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma "
-"yisiphi isitifiketi"
-
-msgid ""
-"You accessed the Artifact Resolution Service interface, but did not "
-"provide a SAML ArtifactResolve message. Please note that this endpoint is"
-" not intended to be accessed directly."
-msgstr ""
-"Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange "
-"uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi "
-"isiphetho asihloselwe ukufinyelelwa ngokuqondile."
-
-msgid "Cannot retrieve session data"
-msgstr "Ayikwazi ukubuyisela idatha yeseshini"
 
 msgid "Some error occurred"
 msgstr "Kuvele iphutha elithile"
@@ -501,26 +445,11 @@ msgstr "Kuvele iphutha elithile"
 msgid "The error report has been sent to the administrators."
 msgstr "Umbiko wephutha uthunyelwe kubalawuli."
 
-msgid "No SAML message provided"
-msgstr "Awukho umlayezo we-SAML onikeziwe"
-
 msgid "Send e-mail to help desk"
 msgstr "Thumela i-imeyili edeskini losizo"
 
-msgid "Error processing request from Service Provider"
-msgstr "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
-
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
-
-msgid "State information lost"
-msgstr "Ulwazi lwesifunda lulahlekile"
-
 msgid "Logged out"
 msgstr "Uphume ngemvume"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
 
 msgid "Logout failed"
 msgstr "Ukuphuma kuhlulekile"
@@ -528,37 +457,14 @@ msgstr "Ukuphuma kuhlulekile"
 msgid "Password"
 msgstr "Iphasiwedi"
 
-msgid ""
-"Without your username and password you cannot authenticate "
-"yourself for access to the service. There may be someone that can help "
-"you. Consult the help desk at your organization!"
-msgstr ""
-"Ngaphandle kwegama lakho lomsebenzisi nephasiwedi awukwazi "
-"ukuziqinisekisa ukuze ufinyelele isevisi. Kungase kube khona ozokusiza. "
-"Thinta ideski losizo enhlanganweni yakho!"
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Ngaphandle kwegama lakho lomsebenzisi nephasiwedi awukwazi ukuziqinisekisa ukuze ufinyelele isevisi. Kungase kube khona ozokusiza. Thinta ideski losizo enhlanganweni yakho!"
 
 msgid "No"
 msgstr "Cha"
-
-msgid ""
-"This error probably is due to some unexpected behaviour or to "
-"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
-"login service, and send them the error message above."
-msgstr ""
-"Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha "
-"engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli "
-"wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
-
-msgid ""
-"Optionally enter your email address, for the administrators to be able "
-"contact you for further questions about your issue:"
-msgstr ""
-"Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi "
-"ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
 
 msgid "Logging out..."
 msgstr "Iyaphuma..."
 
 msgid "Choose your home organization"
 msgstr "Khetha inhlangano yakho yasekhaya"
-

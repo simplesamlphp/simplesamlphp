@@ -1,19 +1,303 @@
-
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp 1.15\n"
-"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
-"POT-Creation-Date: 2016-10-12 09:31+0200\n"
-"PO-Revision-Date: 2016-10-14 12:14+0200\n"
-"Last-Translator: \n"
-"Language: pt_BR\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"X-Domain: messages\n"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
+msgid "No SAML response provided"
+msgstr "Não fornecida a resposta SAML"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
+msgid "No SAML message provided"
+msgstr "Não fornecida a mensagem SAML"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
+msgid "Authentication source error"
+msgstr "Erro na fonte de autenticação"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
+msgid "Bad request received"
+msgstr "A solicitação recebida é inválida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
+msgid "CAS Error"
+msgstr "Erro CAS"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
+msgid "Configuration error"
+msgstr "Erro na configuração"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
+msgid "Error creating request"
+msgstr "Erro ao criar o pedido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
+msgid "Bad request to discovery service"
+msgstr "Pedido incorreto para o serviço de descoberta"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
+msgid "Could not create authentication response"
+msgstr "Não foi possível criar a resposta da autenticação"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
+msgid "Invalid certificate"
+msgstr "Certificado inválido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
+msgid "LDAP Error"
+msgstr "Erro no LDAP"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
+msgid "Logout information lost"
+msgstr "Informações de desconexão perdidas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
+msgid "Error processing the Logout Request"
+msgstr "Erro ao processar a resposta da desconexão"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
+msgid "Error loading metadata"
+msgstr "Erro ao carregar a metadata."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
+msgid "Metadata not found"
+msgstr "Metadado não encontrado"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
+msgid "No access"
+msgstr "Acesso negado."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
+msgid "No certificate"
+msgstr "Sem Certificado"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
+msgid "No RelayState"
+msgstr "Sem RelayState"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
+msgid "State information lost"
+msgstr "Informações de estado perdidas"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
+msgid "Page not found"
+msgstr "Página não encontrada"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
+msgid "Password not set"
+msgstr "Senha não definida"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
+msgid "Error processing response from Identity Provider"
+msgstr "Erro processando a resposta do Provedor de Identidade."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
+msgid "Error processing request from Service Provider"
+msgstr "Erro processando o pedido do Provedor de Serviços."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
+msgid "Error received from Identity Provider"
+msgstr "Erro recebido do Provedor de Identidade"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
+msgid "Unhandled exception"
+msgstr "Exceção não tratada"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
+msgid "Unknown certificate"
+msgstr "Certificado Desconhecido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
+msgid "Authentication aborted"
+msgstr "Autenticação abortada"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
+msgid "Incorrect username or password"
+msgstr "Nome de usuário ou senha incorreto."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Você acessou a interface do Assertion Consumer Service, mas não forneceu uma SAML Authentication Response."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Erro de autenticação na origem %AUTHSOURCE%. O motivo foi:%REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Há um erro no pedido para esta página. O motivo foi: %REASON%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error when communicating with the CAS server."
+msgstr "Erro ao comunicar-se com o servidor CAS"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "SimpleSAMLphp parece estar mal configurado."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Um erro ocorreu ao tentar criar o pedido do SAML."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Os parâmetros enviados para o serviço de descoberta não estão de acordo com as especificações."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Ocorreu um erro quando este servidor de identidade tentou criar uma resposta de autenticação."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Falha na Autenticação: O certificado que seu navegador (browser) enviou é inválido ou não pode ser lido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "O banco de dados de usuários é LDAP e quando você tentar efetuar o login é preciso entrar em contato com um banco de dados LDAP. Ocorreu um erro durante a tentativa de conexão."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "As informações sobre a operação de desconexão atual foram perdidas. Você deve voltar para o serviço que estava antes de tentar sair e tente novamente. Esse erro pode ser causado pela expiração das informações da desconexão. As informações são armazenadas em cache por uma quantia limitada de tempo - geralmente um número de horas. Esta é mais longa do que qualquer desconexão em funcionamento normal deve ter, de modo que este erro pode indicar algum outro erro com a configuração. Se o problema persistir, contate o seu fornecedor de serviços."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Um erro ocorreu ao tentar processar a resposta da desconexão."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Há erros na sua instalação do SimpleSAMLphp. Se você é o administrador deste seriço, você deve certificar-se que a sua configuração de metadata está definida corretamente."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Não foi possível localizar os metadados de %ENTITYID%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Este parâmetro não está ativado. Marque a opção habilitar na configuração do SimpleSAMLphp."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Falha na Autenticação: Seu navegador (browser) não enviou nenhum certificado"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "O promotor deste pedido não fornecer um parâmetro RelayState indicando o local para onde seguir."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
+msgid "State information lost, and no way to restart the request"
+msgstr "Informações de estado perdidas, e não é possível reiniciar a requisição"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "A página determinada não foi encontrada. A URL foi: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "A página determinada não foi encontrada. A razão foi: %REASON% A URL foi: %URL%"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "A senha na configuração (auth.adminpassword) não foi alterada. Edite o arquivo de configuração."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
+msgid "You did not present a valid certificate."
+msgstr "Você não possui um certificado válido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Nós não aceitamos a resposta enviada pelo Provedor de Identidade."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "Este Provedor de Identidade recebeu um Pedido de Autenticação de um Provedor de Serviços, mas um erro ocorreu ao tentar processar o pedido."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "O Provedor de Identidade respondeu com um erro. (O código de resposta do SAML não teve sucesso."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Você acessou a interface do SingleLogoutService, mas não forneceu a SAML LogoutRequest ou LogoutResponse."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
+msgid "An unhandled exception was thrown."
+msgstr "Uma exceção não tratada foi descartada."
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Falha na Autenticação: O certificado que seu navegador (browser) enviou é desconhecido"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
+msgid "The authentication was aborted by the user"
+msgstr "A autenticação foi abortada pelo usuário"
+
+#: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha que você digitou está incorreta. Verifique o nome de usuário e tente novamente."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Olá, esta é a página de status SimpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
+
+msgid "Your attributes"
+msgstr "Seus atributos"
+
+msgid "Logout"
+msgstr "Desconectar"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Se informar sobre esse erro, por favor, também informe este ID do relatório de monitoramento que torna possível localizar a sua sessão nos registros disponíveis para o administrador do sistema:"
+
+msgid "Debug information"
+msgstr "Informação do Debug"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "A informação a seguir é importante para seu administrador / Central de Dúvidas"
+
+msgid "Report errors"
+msgstr "Reportar erros"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Opcionalmente digite o seu endereço de e-mail para que os administradores possam contatá-lo para mais perguntas sobre o seu problema:"
+
+msgid "E-mail address:"
+msgstr "Endereço de e-mail:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Explique o que você estava fazendo quando aconteceu o erro..."
+
+msgid "Send error report"
+msgstr "Enviar o relatório de erro"
+
+msgid "How to get help"
+msgstr "Como conseguir ajuda"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Esse erro é provavelmente devido a algum imprevisto no comportamento do SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe a mensagem de erro acima."
+
+msgid "Select your identity provider"
+msgstr "Selecione seu provedor de identidade"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "Remember my choice"
+msgstr "Lembrar minha escolha"
+
+msgid "Sending message"
+msgstr "Enviando a mensagem"
+
+msgid "Yes, continue"
+msgstr "Sim, Aceito"
 
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"
@@ -30,26 +314,8 @@ msgstr "Celular"
 msgid "Shib 1.3 Service Provider (Hosted)"
 msgstr "Shib 1.3 Service Provider (Local)"
 
-msgid ""
-"LDAP is the user database, and when you try to login, we need to contact "
-"an LDAP database. An error occurred when we tried it this time."
-msgstr ""
-"O banco de dados de usuários é LDAP e quando você tentar efetuar o login "
-"é preciso entrar em contato com um banco de dados LDAP. Ocorreu um erro "
-"durante a tentativa de conexão."
-
-msgid ""
-"Optionally enter your email address, for the administrators to be able "
-"contact you for further questions about your issue:"
-msgstr ""
-"Opcionalmente digite o seu endereço de e-mail para que os administradores"
-" possam contatá-lo para mais perguntas sobre o seu problema:"
-
 msgid "Display name"
 msgstr "Nome a ser mostrado"
-
-msgid "Remember my choice"
-msgstr "Lembrar minha escolha"
 
 msgid "SAML 2.0 SP Metadata"
 msgstr "SAML 2.0 SP Metadata"
@@ -60,90 +326,29 @@ msgstr "Avisos"
 msgid "Home telephone"
 msgstr "Telefone fixo"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
-"session is timed out, how long it lasts until it times out and all the "
-"attributes that are attached to your session."
-msgstr ""
-"Olá, esta é a página de status SimpleSAMLphp. Aqui você pode ver é se a "
-"sua sessão expirou, o tempo que dura até ele expirar e todos os atributos"
-" que estão anexados à sua sessão."
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Explique o que você estava fazendo quando aconteceu o erro..."
-
-msgid "An unhandled exception was thrown."
-msgstr "Uma exceção não tratada foi descartada."
-
-msgid "Invalid certificate"
-msgstr "Certificado inválido"
-
 msgid "Service Provider"
 msgstr "Provedor de Serviços"
 
 msgid "Incorrect username or password."
 msgstr "Nome de usuário ou senha incorretos."
 
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Há um erro no pedido para esta página. O motivo foi: %REASON%"
-
-msgid "E-mail address:"
-msgstr "Endereço de e-mail:"
-
 msgid "Submit message"
 msgstr "Enviar mensagem"
-
-msgid "No RelayState"
-msgstr "Sem RelayState"
-
-msgid "Error creating request"
-msgstr "Erro ao criar o pedido"
 
 msgid "Locality"
 msgstr "Localidade"
 
-msgid "Unhandled exception"
-msgstr "Exceção não tratada"
-
 msgid "The following required fields was not found"
 msgstr "Os seguintes campos requeridos não foram encontrados"
-
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Não foi possível localizar os metadados de %ENTITYID%"
 
 msgid "Organizational number"
 msgstr "Número Organizacional"
 
-msgid "Password not set"
-msgstr "Senha não definida"
-
 msgid "Post office box"
 msgstr "Caixa Postal"
 
-msgid ""
-"A service has requested you to authenticate yourself. Please enter your "
-"username and password in the form below."
-msgstr ""
-"Um serviço que você pediu necessita que você se autentique. Digite seu "
-"nome de usuário e senha no formulário abaixo."
-
-msgid "CAS Error"
-msgstr "Erro CAS"
-
-msgid ""
-"The debug information below may be of interest to the administrator / "
-"help desk:"
-msgstr ""
-"A informação a seguir é importante para seu administrador / Central de "
-"Dúvidas"
-
-msgid ""
-"Either no user with the given username could be found, or the password "
-"you gave was wrong. Please check the username and try again."
-msgstr ""
-"Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha "
-"que você digitou está incorreta. Verifique o nome de usuário e tente "
-"novamente."
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Um serviço que você pediu necessita que você se autentique. Digite seu nome de usuário e senha no formulário abaixo."
 
 msgid "Error"
 msgstr "Erro"
@@ -154,16 +359,6 @@ msgstr "Próximo"
 msgid "Distinguished name (DN) of the person's home organizational unit"
 msgstr "Nome distinto (DN) da sua unidade organizacional principal"
 
-msgid "State information lost"
-msgstr "Informações de estado perdidas"
-
-msgid ""
-"The password in the configuration (auth.adminpassword) is not changed "
-"from the default value. Please edit the configuration file."
-msgstr ""
-"A senha na configuração (auth.adminpassword) não foi alterada. Edite o "
-"arquivo de configuração."
-
 msgid "Converted metadata"
 msgstr "Metadata convetida"
 
@@ -173,19 +368,10 @@ msgstr "E-mail"
 msgid "No, cancel"
 msgstr "Não"
 
-msgid ""
-"You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
-"wrong you may choose another one."
-msgstr ""
-"Você escolheu <b>%HOMEORG%</b> como sua organização pessoal. Se isto "
-"estiver incorreto você pode escolher outra."
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Você escolheu <b>%HOMEORG%</b> como sua organização pessoal. Se isto estiver incorreto você pode escolher outra."
 
-msgid "Error processing request from Service Provider"
-msgstr "Erro processando o pedido do Provedor de Serviços."
-
-msgid ""
-"To look at the details for an SAML entity, click on the SAML entity "
-"header."
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Para ver os detalhes da entidade SAML, clique "
 
 msgid "Enter your username and password"
@@ -206,20 +392,8 @@ msgstr "WS-Fed SP Exemplo"
 msgid "SAML 2.0 Identity Provider (Remote)"
 msgstr "SAML 2.0 Identity Provider (Remoto)"
 
-msgid "Error processing the Logout Request"
-msgstr "Erro ao processar a resposta da desconexão"
-
 msgid "Do you want to logout from all the services above?"
 msgstr "Você quer sair de todos os serviços acima?"
-
-msgid "Select"
-msgstr "Selecione"
-
-msgid "The authentication was aborted by the user"
-msgstr "A autenticação foi abortada pelo usuário"
-
-msgid "Your attributes"
-msgstr "Seus atributos"
 
 msgid "Given name"
 msgstr "Nome"
@@ -227,23 +401,11 @@ msgstr "Nome"
 msgid "SAML 2.0 SP Demo Example"
 msgstr "SAML 2.0 SP Exemplo"
 
-msgid "Logout information lost"
-msgstr "Informações de desconexão perdidas"
-
 msgid "Organization name"
 msgstr "Nome da Organização (O)"
 
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr ""
-"Falha na Autenticação: O certificado que seu navegador (browser) enviou é"
-" desconhecido"
-
-msgid ""
-"You are about to send a message. Hit the submit message button to "
-"continue."
-msgstr ""
-"Você está prestes a enviar uma mensagem. Aperte o botão enviar mensagem "
-"para continuar."
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Você está prestes a enviar uma mensagem. Aperte o botão enviar mensagem para continuar."
 
 msgid "Home organization domain name"
 msgstr "Nome de domínio da organização principal"
@@ -257,9 +419,6 @@ msgstr "Relatório de erro enviado"
 msgid "Common name"
 msgstr "Nome Comum (CN)"
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
-
 msgid "Logout failed"
 msgstr "Falha ao sair do serviço"
 
@@ -269,39 +428,11 @@ msgstr "Número de identificação atribuído pelas autoridades públicas"
 msgid "WS-Federation Identity Provider (Remote)"
 msgstr "WS-Federation Identity Provider (Remoto)"
 
-msgid "Error received from Identity Provider"
-msgstr "Erro recebido do Provedor de Identidade"
-
-msgid "LDAP Error"
-msgstr "Erro no LDAP"
-
-msgid ""
-"The information about the current logout operation has been lost. You "
-"should return to the service you were trying to log out from and try to "
-"log out again. This error can be caused by the logout information "
-"expiring. The logout information is stored for a limited amount of time - "
-"usually a number of hours. This is longer than any normal logout "
-"operation should take, so this error may indicate some other error with "
-"the configuration. If the problem persists, contact your service "
-"provider."
-msgstr ""
-"As informações sobre a operação de desconexão atual foram perdidas. Você "
-"deve voltar para o serviço que estava antes de tentar sair e tente "
-"novamente. Esse erro pode ser causado pela expiração das informações da "
-"desconexão. As informações são armazenadas em cache por uma quantia "
-"limitada de tempo - geralmente um número de horas. Esta é mais longa do "
-"que qualquer desconexão em funcionamento normal deve ter, de modo que "
-"este erro pode indicar algum outro erro com a configuração. Se o problema"
-" persistir, contate o seu fornecedor de serviços."
-
 msgid "Some error occurred"
 msgstr "Ocorreu algum erro"
 
 msgid "Organization"
 msgstr "Organização"
-
-msgid "No certificate"
-msgstr "Sem Certificado"
 
 msgid "Choose home organization"
 msgstr "Escolher uma organização principal"
@@ -309,38 +440,14 @@ msgstr "Escolher uma organização principal"
 msgid "Persistent pseudonymous ID"
 msgstr "Apelido persistente ID"
 
-msgid "No SAML response provided"
-msgstr "Não fornecida a resposta SAML"
-
 msgid "No errors found."
 msgstr "Não foram encontrados erros."
 
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 Service Provider (Local)"
 
-msgid "The given page was not found. The URL was: %URL%"
-msgstr "A página determinada não foi encontrada. A URL foi: %URL%"
-
-msgid "Configuration error"
-msgstr "Erro na configuração"
-
 msgid "Required fields"
 msgstr "Campos requeridos"
-
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Um erro ocorreu ao tentar criar o pedido do SAML."
-
-msgid ""
-"This error probably is due to some unexpected behaviour or to "
-"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
-"login service, and send them the error message above."
-msgstr ""
-"Esse erro é provavelmente devido a algum imprevisto no comportamento do "
-"SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe"
-" a mensagem de erro acima."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
 
 msgid "Domain component (DC)"
 msgstr "Componente do Domínio (DC)"
@@ -354,16 +461,6 @@ msgstr "Senha"
 msgid "Nickname"
 msgstr "Apelido"
 
-msgid "Send error report"
-msgstr "Enviar o relatório de erro"
-
-msgid ""
-"Authentication failed: the certificate your browser sent is invalid or "
-"cannot be read"
-msgstr ""
-"Falha na Autenticação: O certificado que seu navegador (browser) enviou é"
-" inválido ou não pode ser lido"
-
 msgid "The error report has been sent to the administrators."
 msgstr "O relatório de erro foi enviado com sucesso para os administradores."
 
@@ -375,9 +472,6 @@ msgstr "Você também está logado nestes serviços:"
 
 msgid "SimpleSAMLphp Diagnostics"
 msgstr "Diagnósticos do SimpleSAMLphp"
-
-msgid "Debug information"
-msgstr "Informação do Debug"
 
 msgid "No, only %SP%"
 msgstr "Não, apenas de %SP%"
@@ -403,15 +497,6 @@ msgstr "Você foi desconectado."
 msgid "Return to service"
 msgstr "Retornar ao serviço"
 
-msgid "Logout"
-msgstr "Desconectar"
-
-msgid "State information lost, and no way to restart the request"
-msgstr "Informações de estado perdidas, e não é possível reiniciar a requisição"
-
-msgid "Error processing response from Identity Provider"
-msgstr "Erro processando a resposta do Provedor de Identidade."
-
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Service Provider (Local)"
 
@@ -424,17 +509,8 @@ msgstr "Linguagem preferida"
 msgid "Surname"
 msgstr "Sobrenome"
 
-msgid "No access"
-msgstr "Acesso negado."
-
 msgid "The following fields was not recognized"
 msgstr "Os seguintes campos não foram reconhecidos"
-
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Erro de autenticação na origem %AUTHSOURCE%. O motivo foi:%REASON%"
-
-msgid "Bad request received"
-msgstr "A solicitação recebida é inválida"
 
 msgid "User ID"
 msgstr "Identificação (UID)"
@@ -445,33 +521,14 @@ msgstr "Foto JPEG"
 msgid "Postal address"
 msgstr "Endereço"
 
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Um erro ocorreu ao tentar processar a resposta da desconexão."
-
-msgid "Sending message"
-msgstr "Enviando a mensagem"
-
 msgid "In SAML 2.0 Metadata XML format:"
 msgstr "Em formato SAML 2.0 Metadata XML"
 
 msgid "Logging out of the following services:"
 msgstr "Saindo dos seguintes serviços:"
 
-msgid ""
-"When this identity provider tried to create an authentication response, "
-"an error occurred."
-msgstr ""
-"Ocorreu um erro quando este servidor de identidade tentou criar uma "
-"resposta de autenticação."
-
-msgid "Could not create authentication response"
-msgstr "Não foi possível criar a resposta da autenticação"
-
 msgid "Labeled URI"
 msgstr "URI rotulado"
-
-msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "SimpleSAMLphp parece estar mal configurado."
 
 msgid "Shib 1.3 Identity Provider (Hosted)"
 msgstr "Shib 1.3 Identity Provider (Local)"
@@ -481,13 +538,6 @@ msgstr "Metadata"
 
 msgid "Login"
 msgstr "Acessar"
-
-msgid ""
-"This Identity Provider received an Authentication Request from a Service "
-"Provider, but an error occurred when trying to process the request."
-msgstr ""
-"Este Provedor de Identidade recebeu um Pedido de Autenticação de um "
-"Provedor de Serviços, mas um erro ocorreu ao tentar processar o pedido."
 
 msgid "Yes, all services"
 msgstr "Sim, todos os serviços"
@@ -501,49 +551,20 @@ msgstr "CEP"
 msgid "Logging out..."
 msgstr "Saindo do serviço..."
 
-msgid "Metadata not found"
-msgstr "Metadado não encontrado"
-
 msgid "SAML 2.0 Identity Provider (Hosted)"
 msgstr "SAML 2.0 Identity Provider (Local)"
 
 msgid "Primary affiliation"
 msgstr "Filiação Primária"
 
-msgid ""
-"If you report this error, please also report this tracking number which "
-"makes it possible to locate your session in the logs available to the "
-"system administrator:"
-msgstr ""
-"Se informar sobre esse erro, por favor, também informe este ID do "
-"relatório de monitoramento que torna possível localizar a sua sessão nos "
-"registros disponíveis para o administrador do sistema:"
-
 msgid "XML metadata"
 msgstr "Metadata XML"
-
-msgid ""
-"The parameters sent to the discovery service were not according to "
-"specifications."
-msgstr ""
-"Os parâmetros enviados para o serviço de descoberta não estão de acordo "
-"com as especificações."
 
 msgid "Telephone number"
 msgstr "Número de Telefone"
 
-msgid ""
-"Unable to log out of one or more services. To ensure that all your "
-"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Incapaz de sair de um ou mais serviços. Para garantir que todas as suas "
-"sessões serão fechadas, incentivamos você a <i>fechar seu navegador</i>."
-
-msgid "Bad request to discovery service"
-msgstr "Pedido incorreto para o serviço de descoberta"
-
-msgid "Select your identity provider"
-msgstr "Selecione seu provedor de identidade"
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Incapaz de sair de um ou mais serviços. Para garantir que todas as suas sessões serão fechadas, incentivamos você a <i>fechar seu navegador</i>."
 
 msgid "Entitlement regarding the service"
 msgstr "Titularidade sobre o serviço"
@@ -551,12 +572,8 @@ msgstr "Titularidade sobre o serviço"
 msgid "Shib 1.3 SP Metadata"
 msgstr "Shib 1.3 SP Metadata"
 
-msgid ""
-"As you are in debug mode, you get to see the content of the message you "
-"are sending:"
-msgstr ""
-"Como você está no modo de debug, você pode ver o conteúdo da mensagem que"
-" você está enviando:"
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Como você está no modo de debug, você pode ver o conteúdo da mensagem que você está enviando:"
 
 msgid "Remember"
 msgstr "Lembrar Consentimento"
@@ -565,24 +582,13 @@ msgid "Distinguished name (DN) of person's home organization"
 msgstr "Nome distinto (DN) da sua organização principal"
 
 msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr ""
-"Você está prestes a enviar uma mensagem. Clique no link enviar a mensagem"
-" para continuar."
+msgstr "Você está prestes a enviar uma mensagem. Clique no link enviar a mensagem para continuar."
 
 msgid "Organizational unit"
 msgstr "Unidade Organizacional (OU)"
 
-msgid "Authentication aborted"
-msgstr "Autenticação abortada"
-
 msgid "Local identity number"
 msgstr "Número de Identificação Local"
-
-msgid "Report errors"
-msgstr "Reportar erros"
-
-msgid "Page not found"
-msgstr "Página não encontrada"
 
 msgid "Shib 1.3 IdP Metadata"
 msgstr "Shib 1.3 IdP Metadata"
@@ -593,28 +599,11 @@ msgstr "Mudar a organização principal"
 msgid "User's password hash"
 msgstr "Hash da Senha do Usuário"
 
-msgid ""
-"In SimpleSAMLphp flat file format - use this if you are using a "
-"SimpleSAMLphp entity on the other side:"
-msgstr ""
-"Em formato de arquivo plano SimpleSAMLphp - use isso se você estiver "
-"usando uma entidade  SimpleSAMLphp do outro lado:"
-
-msgid "Yes, continue"
-msgstr "Sim, Aceito"
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "Em formato de arquivo plano SimpleSAMLphp - use isso se você estiver usando uma entidade  SimpleSAMLphp do outro lado:"
 
 msgid "Completed"
 msgstr "Completado"
-
-msgid ""
-"The Identity Provider responded with an error. (The status code in the "
-"SAML Response was not success)"
-msgstr ""
-"O Provedor de Identidade respondeu com um erro. (O código de resposta do "
-"SAML não teve sucesso."
-
-msgid "Error loading metadata"
-msgstr "Erro ao carregar a metadata."
 
 msgid "Select configuration file to check:"
 msgstr "Selecione o arquivo de configuração para verificar"
@@ -622,44 +611,17 @@ msgstr "Selecione o arquivo de configuração para verificar"
 msgid "On hold"
 msgstr "Aguardando"
 
-msgid "Error when communicating with the CAS server."
-msgstr "Erro ao comunicar-se com o servidor CAS"
-
-msgid "No SAML message provided"
-msgstr "Não fornecida a mensagem SAML"
-
 msgid "Help! I don't remember my password."
 msgstr "Ajude-me! Não lembro minha senha."
 
-msgid ""
-"You can turn off debug mode in the global SimpleSAMLphp configuration "
-"file <tt>config/config.php</tt>."
-msgstr ""
-"Você pode desligar o modo de debug no arquivo de configuração global do "
-"SimpleSAMLphp <tt>config/config.php</tt>."
-
-msgid "How to get help"
-msgstr "Como conseguir ajuda"
-
-msgid ""
-"You accessed the SingleLogoutService interface, but did not provide a "
-"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
-"not intended to be accessed directly."
-msgstr ""
-"Você acessou a interface do SingleLogoutService, mas não forneceu a SAML "
-"LogoutRequest ou LogoutResponse."
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Você pode desligar o modo de debug no arquivo de configuração global do SimpleSAMLphp <tt>config/config.php</tt>."
 
 msgid "SimpleSAMLphp error"
 msgstr "Erro do SimpleSAMLphp"
 
-msgid ""
-"One or more of the services you are logged into <i>do not support "
-"logout</i>. To ensure that all your sessions are closed, you are "
-"encouraged to <i>close your webbrowser</i>."
-msgstr ""
-"Um ou mais dos serviços que você está conectado <i>não suportam "
-"logout.</i> Para garantir que todas as suas sessões serão fechadas, "
-"incentivamos você a <i>fechar seu navegador</i>."
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Um ou mais dos serviços que você está conectado <i>não suportam logout.</i> Para garantir que todas as suas sessões serão fechadas, incentivamos você a <i>fechar seu navegador</i>."
 
 msgid "Remember me"
 msgstr "Lembre-me"
@@ -673,37 +635,11 @@ msgstr "Opções faltando no arquivo de configuração"
 msgid "The following optional fields was not found"
 msgstr "Os seguintes campos opcionais não foram encontrados"
 
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr ""
-"Falha na Autenticação: Seu navegador (browser) não enviou nenhum "
-"certificado"
-
-msgid ""
-"This endpoint is not enabled. Check the enable options in your "
-"configuration of SimpleSAMLphp."
-msgstr ""
-"Este parâmetro não está ativado. Marque a opção habilitar na configuração"
-" do SimpleSAMLphp."
-
 msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr ""
-"Você pode obter as metadatas xml <a href=\"%METAURL%\"> em uma URL "
-"dedicada</a>:"
+msgstr "Você pode obter as metadatas xml <a href=\"%METAURL%\"> em uma URL dedicada</a>:"
 
 msgid "Street"
 msgstr "Rua"
-
-msgid ""
-"There is some misconfiguration of your SimpleSAMLphp installation. If you"
-" are the administrator of this service, you should make sure your "
-"metadata configuration is correctly setup."
-msgstr ""
-"Há erros na sua instalação do SimpleSAMLphp. Se você é o administrador "
-"deste seriço, você deve certificar-se que a sua configuração de metadata "
-"está definida corretamente."
-
-msgid "Incorrect username or password"
-msgstr "Nome de usuário ou senha incorreto."
 
 msgid "Message"
 msgstr "Mensagem"
@@ -711,28 +647,14 @@ msgstr "Mensagem"
 msgid "Contact information:"
 msgstr "Informações de Contato"
 
-msgid "Unknown certificate"
-msgstr "Certificado Desconhecido"
-
 msgid "Optional fields"
 msgstr "Campos opcionais"
-
-msgid ""
-"The initiator of this request did not provide a RelayState parameter "
-"indicating where to go next."
-msgstr ""
-"O promotor deste pedido não fornecer um parâmetro RelayState indicando o "
-"local para onde seguir."
 
 msgid "You have previously chosen to authenticate at"
 msgstr "Você já escolheu para autenticar a"
 
-msgid ""
-"You sent something to the login page, but for some reason the password "
-"was not sent. Try again please."
-msgstr ""
-"Você enviou alguma coisa para a página de login, mas por alguma razão a "
-"senha não foi enviada. Por favor tente novamente."
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Você enviou alguma coisa para a página de login, mas por alguma razão a senha não foi enviada. Por favor tente novamente."
 
 msgid "Fax number"
 msgstr "Número do Fax"
@@ -749,14 +671,8 @@ msgstr "Tamanho da sessão: %SIZE%"
 msgid "Parse"
 msgstr "Parse"
 
-msgid ""
-"Without your username and password you cannot authenticate "
-"yourself for access to the service. There may be someone that can help "
-"you. Consult the help desk at your organization!"
-msgstr ""
-"Muito mal! - Sem o seu nome de usuário e a senha você não pode "
-"autenticar-se para acessar o serviço. Pode haver alguém que possa lhe "
-"ajudar. Consulte a central de dúvidas!"
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Muito mal! - Sem o seu nome de usuário e a senha você não pode autenticar-se para acessar o serviço. Pode haver alguém que possa lhe ajudar. Consulte a central de dúvidas!"
 
 msgid "Choose your home organization"
 msgstr "Escolha a sua organização principal"
@@ -773,12 +689,6 @@ msgstr "Título"
 msgid "Manager"
 msgstr "Administrador"
 
-msgid "You did not present a valid certificate."
-msgstr "Você não possui um certificado válido"
-
-msgid "Authentication source error"
-msgstr "Erro na fonte de autenticação"
-
 msgid "Affiliation at home organization"
 msgstr "Filiação na organização principal"
 
@@ -788,49 +698,14 @@ msgstr "Central de Ajuda"
 msgid "Configuration check"
 msgstr "Verificar configuração"
 
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Nós não aceitamos a resposta enviada pelo Provedor de Identidade."
-
-msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr ""
-"A página determinada não foi encontrada. A razão foi: %REASON% A URL foi:"
-" %URL%"
-
 msgid "Shib 1.3 Identity Provider (Remote)"
 msgstr "Shib 1.3 Identity Provider (Remoto)"
 
-msgid ""
-"Here is the metadata that SimpleSAMLphp has generated for you. You may "
-"send this metadata document to trusted partners to setup a trusted "
-"federation."
-msgstr ""
-"Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "
-"enviar este documento metadata para parceiros confiáveis para a "
-"configuração de uma federação confiável."
-
-msgid "[Preferred choice]"
-msgstr "[Opção preferida]"
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode enviar este documento metadata para parceiros confiáveis para a configuração de uma federação confiável."
 
 msgid "Organizational homepage"
 msgstr "Site da organização"
 
-msgid ""
-"You accessed the Assertion Consumer Service interface, but did not "
-"provide a SAML Authentication Response. Please note that this endpoint is"
-" not intended to be accessed directly."
-msgstr ""
-"Você acessou a interface do Assertion Consumer Service, mas não forneceu "
-"uma SAML Authentication Response."
-
-
-msgid ""
-"You are now accessing a pre-production system. This authentication setup "
-"is for testing and pre-production verification only. If someone sent you "
-"a link that pointed you here, and you are not <i>a tester</i> you "
-"probably got the wrong link, and should <b>not be here</b>."
-msgstr ""
-"Agora você está acessando um sistema de pré-produção. Esta configuração "
-"de autenticação é para testes e verificação de pré-produção apenas. Se "
-"alguém lhe enviou um link que apontava para aqui, e você não é <i>um "
-"testador</i>, você provavelmente tem o link errado, e <b>não deveria "
-"estar aqui</b>."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Agora você está acessando um sistema de pré-produção. Esta configuração de autenticação é para testes e verificação de pré-produção apenas. Se alguém lhe enviou um link que apontava para aqui, e você não é <i>um testador</i>, você provavelmente tem o link errado, e <b>não deveria estar aqui</b>."
