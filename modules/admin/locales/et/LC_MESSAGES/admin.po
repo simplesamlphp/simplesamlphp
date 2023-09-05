@@ -3,18 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Seadistamine"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Menu.php:37
 msgid "Test"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Menu.php:41
 msgid "Federation"
 msgstr "Federeerimine"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:182
@@ -23,185 +31,191 @@ msgstr "Federeerimine"
 msgid "Log out"
 msgstr ""
 
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:135
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Serverinime, pordi ja protokolli diagnostika"
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:139
-msgid "Information on your PHP installation"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:207
-#, php-format
-msgid "PHP %minimum% or newer is needed. You are running: %current%"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:224
-msgid "Date/Time Extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:230
-msgid "Hashing function"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:236
-msgid "ZLib"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:242
-msgid "OpenSSL"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:248
-msgid "XML DOM"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:254
-msgid "Regular expression support"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:266
-msgid "JSON support"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:272
-msgid "Standard PHP library (SPL)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:278
-msgid "Multibyte String extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:284
-msgid "cURL (might be required by some modules)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:287
-msgid "cURL (required if automatic version checks are used, also by some modules)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:295
-msgid "Session extension (required if PHP sessions are used)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:296
-msgid "Session extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:302
-msgid "PDO Extension (required if a database backend is used)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:303
-msgid "PDO extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:309
-msgid "LDAP extension (required if an LDAP backend is used)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:310
-msgid "LDAP extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:329
-msgid "predis/predis (required if the redis data store is used)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:330
-msgid "predis/predis library"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:337
-msgid "Memcache or Memcached extension (required if the memcache backend is used)"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:340
-msgid "Memcache or Memcached extension"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:362
-msgid "The <code>technicalcontact_email</code> configuration option should be set"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:368
-msgid "The auth.adminpassword configuration option must be set"
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:408
-msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr "<strong>Sa ei kasuta andmete vahetamiseks HTTPS krüpteeritud sidet</strong>. HTTP sobib testimiseks hästi, kuid toodangus peaksid kindlasti HTTPS-i kasutama. [ <a href=\"http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration\">Loe täpsemalt SimpleSAMLphp hooldamisest</a> ]"
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:418
-msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:433
-msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
-msgstr ""
-
-#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:458
-msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
-msgstr ""
-
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML-ist SimpleSAMLphp metaandmeteks teisendaja"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:167
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:168
 msgid "SAML 2.0 SP metadata"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:169
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:170
 msgid "SAML 2.0 IdP metadata"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:171
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:172
 msgid "ADFS SP metadata"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:173
 #: /apps/development/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 msgid "ADFS IdP metadata"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:135
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Serverinime, pordi ja protokolli diagnostika"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:139
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:139
+msgid "Information on your PHP installation"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:207
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:207
+#, php-format
+msgid "PHP %minimum% or newer is needed. You are running: %current%"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:224
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:224
+msgid "Date/Time Extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:230
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:230
+msgid "Hashing function"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:236
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:236
+msgid "ZLib"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:242
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:242
+msgid "OpenSSL"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:248
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:248
+msgid "XML DOM"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:254
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:254
+msgid "Regular expression support"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:266
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:266
+msgid "JSON support"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:272
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:272
+msgid "Standard PHP library (SPL)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:278
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:278
+msgid "Multibyte String extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:284
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:284
+msgid "cURL (might be required by some modules)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:287
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:287
+msgid "cURL (required if automatic version checks are used, also by some modules)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:295
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:295
+msgid "Session extension (required if PHP sessions are used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:296
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:296
+msgid "Session extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:302
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:302
+msgid "PDO Extension (required if a database backend is used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:303
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:303
+msgid "PDO extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:309
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:309
+msgid "LDAP extension (required if an LDAP backend is used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:310
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:310
+msgid "LDAP extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:329
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:329
+msgid "predis/predis (required if the redis data store is used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:330
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:330
+msgid "predis/predis library"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:337
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:337
+msgid "Memcache or Memcached extension (required if the memcache backend is used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:340
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:340
+msgid "Memcache or Memcached extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:362
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:362
+msgid "The <code>technicalcontact_email</code> configuration option should be set"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:368
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:368
+msgid "The auth.adminpassword configuration option must be set"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:408
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:408
+msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
+msgstr "<strong>Sa ei kasuta andmete vahetamiseks HTTPS krüpteeritud sidet</strong>. HTTP sobib testimiseks hästi, kuid toodangus peaksid kindlasti HTTPS-i kasutama. [ <a href=\"http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration\">Loe täpsemalt SimpleSAMLphp hooldamisest</a> ]"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:418
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:418
+msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:433
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:433
+msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:458
+#: /apps/development/simplesamlphp/modules/admin/src/Controller/Config.php:458
+msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
+msgstr ""
+
 msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metaandmed"
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata parser"
-msgstr "Metaandmete parsija"
-
-msgid "XML metadata"
-msgstr "XML-metaandmed"
-
-msgid "or select a file:"
-msgstr ""
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr "Parsi"
-
-msgid "Converted metadata"
-msgstr "Teisendatud metaandmed"
-
-msgid "An error occurred"
 msgstr ""
 
 msgid "SimpleSAMLphp installation page"
@@ -229,6 +243,9 @@ msgid "SAML Metadata"
 msgstr ""
 
 msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "Copy to clipboard"
 msgstr ""
 
 msgid "In SAML 2.0 Metadata XML format:"
@@ -301,6 +318,36 @@ msgstr ""
 
 msgid "Logout"
 msgstr "Logi välja"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metaandmed"
+
+msgid "Back"
+msgstr ""
+
+msgid "Metadata parser"
+msgstr "Metaandmete parsija"
+
+msgid "XML metadata"
+msgstr "XML-metaandmed"
+
+msgid "or select a file:"
+msgstr ""
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "Parsi"
+
+msgid "Converted metadata"
+msgstr "Teisendatud metaandmed"
+
+msgid "An error occurred"
+msgstr ""
 
 msgid "Checking your PHP installation"
 msgstr "PHP paigalduse kontrollimine"

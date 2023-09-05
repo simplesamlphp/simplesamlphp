@@ -3,12 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho aluqulethanga inani lamaxabiso alindelekileyo."
-
-msgid "Retry"
-msgstr "Zama kwakhona"
-
 msgid "This error may be caused by:"
 msgstr "Le mpazamo isenokuba ibangelwe:"
 
@@ -20,3 +14,9 @@ msgstr "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Iikhuki zisenokwenziwa zingasebenzi kwibhrawuza yewebhu."
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho aluqulethanga inani lamaxabiso alindelekileyo."
+
+msgid "Retry"
+msgstr "Zama kwakhona"

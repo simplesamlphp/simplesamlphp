@@ -3,253 +3,302 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
 msgid "No SAML response provided"
 msgstr "لا توجد استجابة SAML"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
 msgid "No SAML message provided"
 msgstr "لم يتم تقديم رسالة SAML"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
 msgid "Authentication source error"
 msgstr "خطا بمصدر التوثيق"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
 msgid "Bad request received"
 msgstr "استقبال طلب سيء"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
 msgid "CAS Error"
 msgstr "خطا CAS"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
 msgid "Configuration error"
 msgstr "خطا بالترتيب"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
 msgid "Error creating request"
 msgstr "خطا بطلب التكوين"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
 msgid "Bad request to discovery service"
 msgstr "طلب سيء لخدمة استكشافية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
 msgid "Could not create authentication response"
 msgstr "لا يمكننا اجراء التوثيق"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
 msgid "Invalid certificate"
 msgstr "شهادة غير صحيحة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
 msgid "LDAP Error"
 msgstr "خطا LDAP"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:37
 msgid "Logout information lost"
 msgstr "معلومات تسجيل الخروج مفقودة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
 msgid "Error processing the Logout Request"
 msgstr "خطا عند تسجيل الخروج"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
 msgid "Error loading metadata"
 msgstr "خطا بتحميل البيانات الوصفية/ الميتاداتا "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
 msgid "Metadata not found"
 msgstr "الميتاداتا مفقودة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
 msgid "No access"
 msgstr "ممنوع الدخول"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
 msgid "No certificate"
 msgstr "الشهادات مفقودة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
 msgid "No RelayState"
 msgstr "انعدام التقوية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
 msgid "State information lost"
 msgstr "فقدان معلومات الحالة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
 msgid "Page not found"
 msgstr "الصفحة غير موجودة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
 msgid "Password not set"
 msgstr "لم تقم بتحديد كلمة السر"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
 msgid "Error processing response from Identity Provider"
 msgstr "خطا بإجراءات معاملة إجابات مقدم الهوية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
 msgid "Error processing request from Service Provider"
 msgstr "خطا بمعاملة طلب مقدم الخدمة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:52
 msgid "Error received from Identity Provider"
 msgstr "خطا تم الحصول عليه من مقدم الهوية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
 msgid "Unhandled exception"
 msgstr "استثناء غير معالج"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
 msgid "Unknown certificate"
 msgstr "شهادة غير معلومة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:57
 msgid "Authentication aborted"
 msgstr "إيقاف التوثيق"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:58
 msgid "Incorrect username or password"
 msgstr "اسم مستخدم او كلمة سر خطا "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم توفر استجابة توثيق SAML"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "خطا بمصدر التوثيق %AUTHSOURCE% نتيجة ل %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "خطا بطلب هذه الصفحة. السبب %REASON%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error when communicating with the CAS server."
 msgstr "خطا عند محاولة الاتصال بمقدم خدمة CAS"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "يبدو ان ترتيب SimpleSAMLphp غير صحيح"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "An error occurred when trying to create the SAML request."
 msgstr "حدث خطا عند محاولة تكوين طلب SAML"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "When this identity provider tried to create an authentication response, an error occurred."
 msgstr " حدث خطا عند محاولة اجراء التوثيق"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:104
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
 msgstr "فشل التوثيق لان متصفحك ارسل شهادات غير صحيحة او لا يمكن قراءتها "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:107
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "LDAP هو سجل معلومات المستخدم. عندما تسجل دخولك ينبغي علينا الاتصال بسجل LDAP. حدث خطا ما عندما حاولنا ذلك هذه المرة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:110
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
 msgstr "معلومات تسجيل الخروج الحالي مفقودة. عد لصفحة مقدم الخدمة و حاول تسجيل الخروج مرة اخري. يحدث هذا الخطأ نتيجة لانتهاء صلاحية معلومات تسجيل الخروج التي تحفظ لفترة محددة- عدة ساعات عادة. فترة تسجيل الخروج هذه أطول من المعتاد مما يدل علي وجود أخطاء اخري بالترتيب. اذا واجهتك هذه المشكلة مرة اخري قم رجاءاً بالاتصال بمقدم الخدمة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:119
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "خطا عند محاولة تسجيل الخروج"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:123
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
 msgstr "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد رجاءاً من ان ترتيب الميتاداتا صحيح"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:127
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "لا يمكن تحديد موقع الميتاداتا ل %ENTITYID%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:128
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
 msgstr "هذه النقطة غير منشطة. راجع خيارات التنشيط بترتيب SimpleSAMLphp"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:131
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "فشل التوثيق لان متصفحك لم يرسل شهادات"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:132
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
 msgid "State information lost, and no way to restart the request"
 msgstr "فقدان معلومات الحالة و لا يمكن اعادة البدء للطلب"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:136
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "الصفحة غير موجودة. العنوان %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "الصفحة غير موجودة. السبب %REASON% و العنوان %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:139
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً قم بتحرير ملف الترتيب"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
 msgid "You did not present a valid certificate."
 msgstr "لم تقدم شهادة صحيحة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:143
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "لم نقبل إجابات مقدم الهوية"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:144
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:147
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "مقدم الهوية استجاب بخطأ. (رمز الحالة باستجابة SAML فاشل)"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:150
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او استجابة لطلب الخروج"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
 msgid "An unhandled exception was thrown."
 msgstr "تم التخلص من استثناء غير معالج"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr "فشل التوثيق لان متصفحك ارسل شهاده غير معلومة"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:160
 msgid "The authentication was aborted by the user"
 msgstr "تم إيقاف التوثيق بواسطة المستخدم"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
 #: /apps/development/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:161
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "اما انه لم  نتمكن من التعرف علي اسم المستخدم او ان كلمة السر خطا. راجع اسم الدخول و حاول مرة اخري"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك، فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
-
-msgid "Your attributes"
-msgstr "السمات"
-
-msgid "Logout"
-msgstr "تسجيل الخروج"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "اذا قمت برفع تقرير عن هذا الخطأ قم رجاءاً بإدراج رقم المتابعة أدناه كيما نستطيع تحديد فترة دخولك بملفات المشرف علي الموقع"
@@ -280,6 +329,18 @@ msgstr "للمساعدة"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "هذا الخطأ ناتج غالباً عن سلوك غير متوقع او عن خطا في ترتيب البرنامج. اتصل بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم أيضاً "
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك، فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
+
+msgid "Your attributes"
+msgstr "السمات"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
 
 msgid "Select your identity provider"
 msgstr "اختار موقع هويتك"
