@@ -13,7 +13,6 @@ use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Console\Command\Command;
@@ -93,8 +92,6 @@ class UnusedTranslatableStringsCommand extends Command
         // This is the base directory of the SimpleSAMLphp installation
         $baseDir = dirname(__FILE__, 4);
 
-        $fileSystem = new Filesystem();
-
         $translationDomains = [];
         foreach ($modules as $module) {
             $domain = $module ?: 'messages';
@@ -153,8 +150,8 @@ class UnusedTranslatableStringsCommand extends Command
         foreach ($twigTranslations as $t) {
             foreach ($t as $domain => $translation) {
                 $trans = Translations::create($domain);
-                foreach ($translation as $s => $t) {
-                    $trans->add(Translation::create(null, $s, $t));
+                foreach ($translation as $s) {
+                    $trans->add(Translation::create(null, $s));
                 }
                 $migrated[$domain][] = $trans;
             }
