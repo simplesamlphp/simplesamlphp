@@ -277,8 +277,8 @@ $config = [
     'headers.security' => [
         'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
         'X-Frame-Options' => 'SAMEORIGIN',
-        'X-Content-Type' => 'nosniff',
-        'Referer-Policy' => 'origin-when-cross-origin',
+        'X-Content-Type-Options' => 'nosniff',
+        'Referrer-Policy' => 'origin-when-cross-origin',
     ],
      */
 
