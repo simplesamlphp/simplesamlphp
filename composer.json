@@ -127,14 +127,14 @@
         }
     },
     "scripts": {
-        "translations:unused": "bin/translations translations:unused",
-        "translations:update:binary": "bin/translations translations:update:binary",
-        "translations:update:translatable": "bin/translations translations:update:translatable",
+        "translations:unused": "php bin/translations translations:unused",
+        "translations:update:binary": "php bin/translations translations:update:binary",
+        "translations:update:translatable": "php bin/translations translations:update:translatable",
         "post-install-cmd": [
-            "bin/translations translations:update:binary"
+            "php bin/translations translations:update:binary"
         ],
         "post-update-cmd": [
-            "bin/translations translations:update:binary"
+            "php bin/translations translations:update:binary"
         ]
     }
 }
