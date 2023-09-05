@@ -15,6 +15,7 @@ Released TBD
 * Fix default for entity attributes NameFormat in XML metadata to be 'URI'.
 * Fix error message when invoking SSO endpoint without the required parameters.
 * Security header regression
+* Fixed a regression that made it impossible to configure metadata-signing on individual hosted IdP's (#1792)
 
 ## Version 2.0.5
 
