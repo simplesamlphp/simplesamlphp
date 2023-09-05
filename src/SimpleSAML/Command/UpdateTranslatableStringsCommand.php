@@ -26,12 +26,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Twig\Environment;
 
 use function array_diff;
+use function array_fill_keys;
 use function array_intersect;
+use function array_key_exists;
 use function array_merge;
 use function dirname;
 use function in_array;
 use function sprintf;
-use function substr;
 
 class UpdateTranslatableStringsCommand extends Command
 {
