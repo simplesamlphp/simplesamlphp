@@ -61,7 +61,7 @@ class Configuration implements Utils\ClearableState
             "connect-src 'self'; " .
             "img-src 'self' data:; " .
             "base-uri 'none'",
-        'Referer-Policy' => 'origin-when-cross-origin',
+        'Referrer-Policy' => 'origin-when-cross-origin',
     ];
 
     /**

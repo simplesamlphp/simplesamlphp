@@ -276,7 +276,7 @@ $config = [
      * hostname through a security-test like https://en.internet.nl
     'headers.security' => [
         'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
-        'Referer-Policy' => 'origin-when-cross-origin',
+        'Referrer-Policy' => 'origin-when-cross-origin',
     ],
      */
 
