@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3521668a36752947955e1dfecd3adcc5",
+    "content-hash": "7f2fe6a73667b0bdebe1ea20b3194e7a",
     "packages": [
         {
             "name": "beste/clock",
@@ -956,16 +956,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0-alpha.11",
+            "version": "v5.0.0-alpha.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "5d4a32725cdc550e347c7fa70d49bd4dd28d5571"
+                "reference": "20c50b4e6d357c903530cec7ca02a50e1377a759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5d4a32725cdc550e347c7fa70d49bd4dd28d5571",
-                "reference": "5d4a32725cdc550e347c7fa70d49bd4dd28d5571",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/20c50b4e6d357c903530cec7ca02a50e1377a759",
+                "reference": "20c50b4e6d357c903530cec7ca02a50e1377a759",
                 "shasum": ""
             },
             "require": {
@@ -1016,9 +1016,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.11"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.10"
             },
-            "time": "2023-08-02T18:40:28+00:00"
+            "time": "2023-08-01T22:02:26+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -5772,7 +5772,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "simplesamlphp/saml2": 20,
+        "simplesamlphp/saml2": 15,
         "simplesamlphp/simplesamlphp-module-adfs": 20
     },
     "prefer-stable": false,

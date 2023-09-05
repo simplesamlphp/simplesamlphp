@@ -69,7 +69,7 @@
         "psr/log": "^3.0",
         "robrichards/xmlseclibs": "^3.1.1",
         "simplesamlphp/assert": "^1.0.0",
-        "simplesamlphp/saml2": "^v5.0.0@dev",
+        "simplesamlphp/saml2": "v5.0.0-alpha.10",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-release-2.1@dev",
         "simplesamlphp/xml-common": "^1.12",
