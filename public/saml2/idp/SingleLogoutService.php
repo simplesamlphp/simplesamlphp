@@ -12,12 +12,11 @@ require_once('../../_include.php');
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
-$request = Request::createFromGlobals();
 $config = Configuration::getInstance();
 $controller = new Controller\SingleLogout($config);
+$request = HttpRequest::createFromGlobals();
 
 $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
 
