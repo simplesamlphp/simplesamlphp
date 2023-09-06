@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  */
 class RunnableResponse extends StreamedResponse
 {
+    protected array $arguments = [];
+
     /**
      * RunnableResponse constructor.
      *
@@ -25,11 +27,13 @@ class RunnableResponse extends StreamedResponse
      */
     public function __construct(
         callable $callback,
-        protected array $arguments = [],
+        array $arguments = [],
         int $status = 200,
         array $headers = []
     ) {
         $this->setCharset('UTF-8');
+        $this->arguments = $arguments;
+
         parent::__construct($callback, $status, $headers);
     }
 
