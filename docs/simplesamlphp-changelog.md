@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.6
 
-Released TBD
+Released 2023-09-07
 
 * Fixed a legacy endpoint causing to break iframe-logout (#1846)
 * Fixed an incorrect return-type in RunnableResponse
