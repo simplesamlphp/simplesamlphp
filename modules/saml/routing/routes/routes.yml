@@ -1,5 +1,12 @@
 ---
 
+sp-debug:
+  path: /sp/debug
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Debug::debugsp'
+  }
+  methods: [GET, POST]
+
 saml-proxy-invalidSession:
   path: /proxy/invalidSession
   defaults: {
