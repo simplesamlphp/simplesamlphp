@@ -47,7 +47,7 @@ class LogoutStore
             _sessionIndex VARCHAR(50) NOT NULL,
             _expire ' . ($store->driver === 'pgsql' ? 'TIMESTAMP' : 'DATETIME') . ' NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
-            UNIQUE (_authSource' . ($store->driver === 'mysql' ? '(191)' : '') . ', _nameID, _sessionIndex)
+            PRIMARY KEY (_authSource' . ($store->driver === 'mysql' ? '(191)' : '') . ', _nameID, _sessionIndex)
         )';
         $store->pdo->exec($query);
 

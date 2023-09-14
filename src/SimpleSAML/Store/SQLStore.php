@@ -89,7 +89,7 @@ class SQLStore implements StoreInterface
         } catch (PDOException $e) {
             $this->pdo->exec(
                 'CREATE TABLE ' . $this->prefix .
-                '_tableVersion (_name VARCHAR(30) NOT NULL UNIQUE, _version INTEGER NOT NULL)'
+                '_tableVersion (_name VARCHAR(30) PRIMARY KEY NOT NULL, _version INTEGER NOT NULL)'
             );
             return;
         }
