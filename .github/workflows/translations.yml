@@ -3,13 +3,6 @@ name: Build translations
 
 on:  # yamllint disable-line rule:truthy
   push:
-    branches: ['simplesamlphp-*', 'master']
-    paths:
-      - '**.po'
-      - '**.php'
-      - '**.twig'
-  pull_request:
-    branches: ['*']
     paths:
       - '**.po'
       - '**.php'
@@ -98,7 +91,7 @@ jobs:
   commit:
     name: Commit changes to assets
     needs: build
-    if: needs.build.outputs.files_changed == 'true' && github.event_name == 'push'
+    if: needs.build.outputs.files_changed == 'true'
     runs-on: [ubuntu-latest]
 
     steps:
