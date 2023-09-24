@@ -11,6 +11,7 @@ Released 2023-07-31
 
 * Functionality that before was provided by the sanitycheck-module is now implicit.
   The module has been archived and should no longer be used. (#1843)
+* Add support for conditional authproc-filters (#1836)
 * Add support for TLS configuration for Redis Store (#1828)
 * Add support for Metadata Deployment Profile for errorURL (#1841)
 * Raised minimum Symfony version to 6.0
@@ -18,6 +19,18 @@ Released 2023-07-31
 * Specified the allowed HTTP methods for each route
 * Our dependency on `composer/composer` was dropped in favour of a packaged phar-file (#1857).
 * The `bin/pwgen.php` script was improved to used stronger encryption (#1849).
+
+## Version 2.0.6
+
+Released 2023-09-07
+
+* Fixed a legacy endpoint causing to break iframe-logout (#1846)
+* Fixed an incorrect return-type in RunnableResponse
+* Fix for admin.protectmetadata=true - it would show a blank page
+* Fix default for entity attributes NameFormat in XML metadata to be 'URI'.
+* Fix error message when invoking SSO endpoint without the required parameters.
+* Security header regression
+* Fixed a regression that made it impossible to configure metadata-signing on individual hosted IdP's (#1792)
 
 ## Version 2.0.5
 
