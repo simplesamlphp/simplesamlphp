@@ -21,7 +21,7 @@ class AttributeAlterTest extends TestCase
      *
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
-     * @return \SimpleSAML\Auth\ProcessFilter.
+     * @return \SimpleSAML\Auth\ProcessingFilter
      */
     private static function processFilter(array $config, array $request): AuthProcFilter
     {
