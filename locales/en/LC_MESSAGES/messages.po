@@ -259,35 +259,20 @@ msgstr "The authentication was aborted by the user"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgid "Select your identity provider"
+msgstr "Select your identity provider"
 
-msgid "Debug information"
-msgstr "Debug information"
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "The debug information below may be of interest to the administrator / help desk:"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Please select the identity provider where you want to authenticate:"
 
-msgid "Report errors"
-msgstr "Report errors"
+msgid "Select"
+msgstr "Select"
 
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-
-msgid "E-mail address:"
-msgstr "E-mail address:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Explain what you did when this error occurred..."
-
-msgid "Send error report"
-msgstr "Send error report"
-
-msgid "How to get help"
-msgstr "How to get help"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgid "Remember my choice"
+msgstr "Remember my choice"
 
 msgid "Tracking number"
 msgstr ""
@@ -325,23 +310,11 @@ msgstr ""
 msgid "Logout"
 msgstr "Logout"
 
-msgid "Language"
-msgstr ""
+msgid "Hello, Untranslated World!"
+msgstr "Hello, Translated World!"
 
-msgid "Select your identity provider"
-msgstr "Select your identity provider"
-
-msgid "No identity providers found. Cannot continue."
-msgstr ""
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Please select the identity provider where you want to authenticate:"
-
-msgid "Select"
-msgstr "Select"
-
-msgid "Remember my choice"
-msgstr "Remember my choice"
+msgid "World"
+msgstr "World"
 
 msgid "Sending message"
 msgstr "Sending message"
@@ -355,11 +328,38 @@ msgstr ""
 msgid "Yes, continue"
 msgstr "Yes, continue"
 
-msgid "Hello, Untranslated World!"
-msgstr "Hello, Translated World!"
+msgid "Language"
+msgstr ""
 
-msgid "World"
-msgstr "World"
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+
+msgid "Debug information"
+msgstr "Debug information"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "The debug information below may be of interest to the administrator / help desk:"
+
+msgid "Report errors"
+msgstr "Report errors"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+
+msgid "E-mail address:"
+msgstr "E-mail address:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Explain what you did when this error occurred..."
+
+msgid "Send error report"
+msgstr "Send error report"
+
+msgid "How to get help"
+msgstr "How to get help"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 
 msgid "Back"
 msgstr "Back"

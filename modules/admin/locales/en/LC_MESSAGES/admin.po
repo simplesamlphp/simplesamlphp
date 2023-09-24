@@ -3,26 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuration"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federation"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
-msgid "Log out"
-msgstr ""
-
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML to SimpleSAMLphp metadata converter"
@@ -45,6 +25,14 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
 msgid "ADFS IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
+msgid "Log out"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:132
@@ -172,40 +160,40 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuration"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federation"
+
 msgid "Test Authentication Sources"
 msgstr ""
 
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp installation page"
+msgid "Metadata parser"
+msgstr "Metadata parser"
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "XML metadata"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "or select a file:"
 msgstr ""
 
-msgid "Modules"
+msgid "No file selected."
 msgstr ""
 
-msgid "You have the following modules installed"
+msgid "Parse"
 msgstr ""
 
-msgid "disabled"
+msgid "Converted metadata"
 msgstr ""
 
-msgid "means the module is not enabled"
-msgstr ""
-
-msgid "enabled"
-msgstr ""
-
-msgid "Details"
-msgstr ""
-
-msgid "required"
-msgstr ""
-
-msgid "optional"
+msgid "An error occurred"
 msgstr ""
 
 msgid "Deprecated"
@@ -237,6 +225,9 @@ msgstr ""
 
 msgid "new"
 msgstr ""
+
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp installation page"
 
 msgid "Hosted entities"
 msgstr ""
@@ -294,6 +285,36 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "Modules"
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "means the module is not enabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
 msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
@@ -301,27 +322,6 @@ msgid "Metadata"
 msgstr "Metadata"
 
 msgid "Back"
-msgstr ""
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
-
-msgid "XML metadata"
-msgstr ""
-
-msgid "or select a file:"
-msgstr ""
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr ""
-
-msgid "Converted metadata"
-msgstr ""
-
-msgid "An error occurred"
 msgstr ""
 
 msgid "Checks"

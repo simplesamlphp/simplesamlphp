@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "cron実行結果ページ"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "cronジョブの実行結果:"
-
-msgid "Cron report"
-msgstr "cronレポート"
-
-msgid "Cron ran at"
-msgstr "cronを実行した時刻"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "cronはunixシステムで定期的に処理を実行します。"
 
@@ -26,3 +17,12 @@ msgstr "cronを実行"
 
 msgid "Click here to run the cron jobs:"
 msgstr "クリックしてcronジョブを実行:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "cronジョブの実行結果:"
+
+msgid "Cron report"
+msgstr "cronレポート"
+
+msgid "Cron ran at"
+msgstr "cronを実行した時刻"

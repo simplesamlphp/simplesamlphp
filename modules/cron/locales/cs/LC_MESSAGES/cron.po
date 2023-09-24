@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Stránka výsledků cronu"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "Zde je výsledek úkolů spuštěných z cronu:"
-
-msgid "Cron report"
-msgstr "Hlášení cronu"
-
-msgid "Cron ran at"
-msgstr "Cron proběhl v"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron je způsob spouštění pravidelných úkolů na unixových systémech."
 
@@ -26,3 +17,12 @@ msgstr "Spusit cron:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Klikněte zde pro spuštění úkolů z cronu:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Zde je výsledek úkolů spuštěných z cronu:"
+
+msgid "Cron report"
+msgstr "Hlášení cronu"
+
+msgid "Cron ran at"
+msgstr "Cron proběhl v"

@@ -5,15 +5,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Cron resultaatpagina"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "Hier is het resultaat van de crontaak-uitvoering:"
-
-msgid "Cron report"
-msgstr "Cronmelding"
-
-msgid "Cron ran at"
-msgstr "Cron gestart op"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron is een manier om periodiek taken uit te voeren op unix-systemen."
 
@@ -25,3 +16,12 @@ msgstr "Start cron:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Klik hier om de crontaken te starten:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Hier is het resultaat van de crontaak-uitvoering:"
+
+msgid "Cron report"
+msgstr "Cronmelding"
+
+msgid "Cron ran at"
+msgstr "Cron gestart op"
