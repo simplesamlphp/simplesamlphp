@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Cronen emaitza orria"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "Hona hemen cronen exekuzioan zereginen emaitzak: "
-
-msgid "Cron report"
-msgstr "Cronen txostena"
-
-msgid "Cron ran at"
-msgstr "Cron noiz exekutatua"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron UNIX sitemetan aldizkako zereginak exekutatzeko modu bat da.  "
 
@@ -26,3 +17,12 @@ msgstr "Cron exekutatu:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Klikatu hemen cron zereginak exekutatzeko:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Hona hemen cronen exekuzioan zereginen emaitzak: "
+
+msgid "Cron report"
+msgstr "Cronen txostena"
+
+msgid "Cron ran at"
+msgstr "Cron noiz exekutatua"

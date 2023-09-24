@@ -259,6 +259,45 @@ msgstr "De authenticatie is afgebroken door de gebruiker"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals."
 
+msgid "Select your identity provider"
+msgstr "Kies je Identity Provider"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
+
+msgid "Select"
+msgstr "Kies"
+
+msgid "Remember my choice"
+msgstr "Onthoud mijn keuze"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
+
+msgid "Your attributes"
+msgstr "Uw attributen"
+
+msgid "SAML Subject"
+msgstr "SAML Subject"
+
+msgid "not set"
+msgstr "niet aanwezig"
+
+msgid "Format"
+msgstr "Formaat"
+
+msgid "Logout"
+msgstr "Afmelden"
+
+msgid "Sending message"
+msgstr "Bericht"
+
+msgid "Yes, continue"
+msgstr "Ja, ik ga akkoord"
+
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Wanneer je deze fout rapporteert, geef dan AUB ook de volgende tracking ID door, waarmee het mogelijk is om jouw sessie in de logs terug te vinden:"
 
@@ -288,45 +327,6 @@ msgstr "Hoe kan ik hulp vragen"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van SimpleSAMLphp. Meld dit bij de beheerder van deze authenticatiedienst, en geef bovenstaande melding door."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
-
-msgid "Your attributes"
-msgstr "Uw attributen"
-
-msgid "SAML Subject"
-msgstr "SAML Subject"
-
-msgid "not set"
-msgstr "niet aanwezig"
-
-msgid "Format"
-msgstr "Formaat"
-
-msgid "Logout"
-msgstr "Afmelden"
-
-msgid "Select your identity provider"
-msgstr "Kies je Identity Provider"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
-
-msgid "Select"
-msgstr "Kies"
-
-msgid "Remember my choice"
-msgstr "Onthoud mijn keuze"
-
-msgid "Sending message"
-msgstr "Bericht"
-
-msgid "Yes, continue"
-msgstr "Ja, ik ga akkoord"
 
 msgid "Back"
 msgstr "Terug"

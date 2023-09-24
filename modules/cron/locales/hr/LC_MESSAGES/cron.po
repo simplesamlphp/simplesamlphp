@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Cron rezultati"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "U nastavku su navedeni rezultati izvršavanja cron zadataka:"
-
-msgid "Cron report"
-msgstr "Cron izvještaj"
-
-msgid "Cron ran at"
-msgstr "Cron je pokrenut u"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron je mehanizam za periodičko pokretanje procesa na Unix operacijskim sustavima."
 
@@ -26,3 +17,12 @@ msgstr "Pokreni cron:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Kliknite ovdje da biste pokrenuli izvršavanje cron zadataka:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "U nastavku su navedeni rezultati izvršavanja cron zadataka:"
+
+msgid "Cron report"
+msgstr "Cron izvještaj"
+
+msgid "Cron ran at"
+msgstr "Cron je pokrenut u"

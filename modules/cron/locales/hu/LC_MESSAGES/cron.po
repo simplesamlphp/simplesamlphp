@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Cron futási eredmények"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "A cron lefutásának eredményei:"
-
-msgid "Cron report"
-msgstr "Cron jelentés."
-
-msgid "Cron ran at"
-msgstr "A cron ekkor futott le:"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
 
@@ -26,3 +17,12 @@ msgstr "Cron futás:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Kattintson a cron futtatásához."
+
+msgid "Here are the result for the cron job execution:"
+msgstr "A cron lefutásának eredményei:"
+
+msgid "Cron report"
+msgstr "Cron jelentés."
+
+msgid "Cron ran at"
+msgstr "A cron ekkor futott le:"

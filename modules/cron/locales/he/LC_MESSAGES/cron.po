@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "דף תוצאות cron"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "הנה התוצאה של הרצת תהליך ה cron:"
-
-msgid "Cron report"
-msgstr "דוח cron"
-
-msgid "Cron ran at"
-msgstr "cron רץ ב"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "cron הוא הדרך להריץ עבודות בזמנים קבועים במערכות unix."
 
@@ -26,3 +17,12 @@ msgstr "הרץ cron:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "לחץ כאן כדי להריץ את עבודות ה cron"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "הנה התוצאה של הרצת תהליך ה cron:"
+
+msgid "Cron report"
+msgstr "דוח cron"
+
+msgid "Cron ran at"
+msgstr "cron רץ ב"

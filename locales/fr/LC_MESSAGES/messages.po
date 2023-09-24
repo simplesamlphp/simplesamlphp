@@ -239,6 +239,36 @@ msgstr "L'authentification a été abandonnée par l'usager"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Utilisateur inexistant, ou mot de passe incorrect. Vérifiez le nom d'utilisateur, et ré-essayez."
 
+msgid "Select your identity provider"
+msgstr "Sélectionnez votre fournisseur d'identité"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous authentifier :"
+
+msgid "Select"
+msgstr "Sélectionner"
+
+msgid "Remember my choice"
+msgstr "Retenir ce choix"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez consulter ici le temps restant sur votre session, ainsi que les attributs qui y sont attachés."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Votre session est encore valide pour %remaining% secondes."
+
+msgid "Your attributes"
+msgstr "Vos attributs"
+
+msgid "Logout"
+msgstr "Déconnexion"
+
+msgid "Sending message"
+msgstr "Envoi du message"
+
+msgid "Yes, continue"
+msgstr "Oui"
+
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Si vous signalez cette erreur, veuillez aussi signaler l'identifiant de suivi qui permet de trouver votre session dans les logs accessibles à l'administrateur système :"
 
@@ -268,36 +298,6 @@ msgstr "Envoyer le rapport d'erreur"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Cette erreur est probablement causée par un comportement imprévu ou une mauvaise configuration de SimpleSAMLphp.  Contactez l'administrateur de ce service d'identification et envoyez lui le message d'erreur."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez consulter ici le temps restant sur votre session, ainsi que les attributs qui y sont attachés."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Votre session est encore valide pour %remaining% secondes."
-
-msgid "Your attributes"
-msgstr "Vos attributs"
-
-msgid "Logout"
-msgstr "Déconnexion"
-
-msgid "Select your identity provider"
-msgstr "Sélectionnez votre fournisseur d'identité"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous authentifier :"
-
-msgid "Select"
-msgstr "Sélectionner"
-
-msgid "Remember my choice"
-msgstr "Retenir ce choix"
-
-msgid "Sending message"
-msgstr "Envoi du message"
-
-msgid "Yes, continue"
-msgstr "Oui"
 
 msgid "[Preferred choice]"
 msgstr "[Choix préféré]"

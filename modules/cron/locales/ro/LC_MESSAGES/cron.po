@@ -6,15 +6,6 @@ msgstr ""
 msgid "Cron result page"
 msgstr "Pagina cu rezultatele <i>cron</i>"
 
-msgid "Here are the result for the cron job execution:"
-msgstr "Reezultatele executării sarcinilor din <i>cron</i>"
-
-msgid "Cron report"
-msgstr "Raport <i>cron</i>"
-
-msgid "Cron ran at"
-msgstr "<i>Cron</i> a fost executat la"
-
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "<i>Cron</i> este o modalitate folosită pe sisteme UNIX pentru a executa diferite sarcini în mod periodic."
 
@@ -26,3 +17,12 @@ msgstr "Executați <i>cron/<i>:"
 
 msgid "Click here to run the cron jobs:"
 msgstr "Apăsați aici pentru a executa sarcinile din <i>cron/<i>:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Reezultatele executării sarcinilor din <i>cron</i>"
+
+msgid "Cron report"
+msgstr "Raport <i>cron</i>"
+
+msgid "Cron ran at"
+msgstr "<i>Cron</i> a fost executat la"
