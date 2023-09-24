@@ -17,6 +17,7 @@ use function call_user_func;
 use function count;
 use function is_array;
 use function is_string;
+use function sprintf;
 use function str_replace;
 use function var_export;
 
@@ -204,7 +205,9 @@ class ProcessingChain
         try {
             while (count($state[self::FILTERS_INDEX]) > 0) {
                 $filter = array_shift($state[self::FILTERS_INDEX]);
-                $filter->process($state);
+                if ($filter->checkPrecondition($state) === true) {
+                    $filter->process($state);
+                }
             }
         } catch (Error\Exception $e) {
             // No need to convert the exception
@@ -318,5 +321,41 @@ class ProcessingChain
     public static function fetchProcessedState(string $id): ?array
     {
         return State::loadState($id, self::COMPLETED_STAGE);
+    }
+
+
+    /**
+     * @param array $state
+     * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
+     * @param ProcessingFilter[] $authProcs
+     */
+    public static function insertFilters(array &$state, array $authProcs): void
+    {
+        if (count($authProcs) === 0) {
+            return;
+        }
+
+        Logger::debug(sprintf(
+            'ProcessingChainRuleInserter: Adding %d additional filters before remaining %d',
+            count($authProcs),
+            count($state[self::FILTERS_INDEX]),
+        ));
+
+        array_splice($state[self::FILTERS_INDEX], 0, 0, $authProcs);
+    }
+
+
+    /**
+     * @param array $state
+     * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
+     * @param array $authProcConfigs
+     * @return \SimpleSAML\Auth\ProcessingFilter[]
+     */
+    public static function createAndInsertFilters(array &$state, array $authProcConfigs): array
+    {
+        $filters = self::parseFilterList($authProcConfigs);
+        self::insertFilters($state, $filters);
+
+        return $filters;
     }
 }
