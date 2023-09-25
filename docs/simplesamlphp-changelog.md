@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.7
+
+Released TBD
+
+* Fixed a missing Accept-header for metadata queries (#1865)
+
 ## Version 2.0.6
 
 Released 2023-09-07
