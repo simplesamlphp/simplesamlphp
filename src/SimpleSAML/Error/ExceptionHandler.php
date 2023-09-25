@@ -26,13 +26,13 @@ class ExceptionHandler
     {
         Module::callHooks('exception_handler', $exception);
 
-        if ($exception instanceof Error\Error) {
+        if ($exception instanceof Error) {
             $exception->show();
         } elseif ($exception instanceof BuiltinException) {
-            $e = new Error\Error('UNHANDLEDEXCEPTION', $exception);
+            $e = new Error('UNHANDLEDEXCEPTION', $exception);
             $e->show();
         } elseif (class_exists('Error') && $exception instanceof BuiltinError) {
-            $e = new Error\Error('UNHANDLEDEXCEPTION', $exception);
+            $e = new Error('UNHANDLEDEXCEPTION', $exception);
             $e->show();
         }
     }
