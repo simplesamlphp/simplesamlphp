@@ -102,16 +102,88 @@ class SQLStore implements StoreInterface
         } catch (PDOException $e) {
             $this->pdo->exec(
                 'CREATE TABLE ' . $this->prefix .
-                '_tableVersion (_name VARCHAR(30) NOT NULL UNIQUE, _version INTEGER NOT NULL)'
+                '_tableVersion (_name VARCHAR(30) PRIMARY KEY NOT NULL, _version INTEGER NOT NULL)'
             );
+            $this->setTableVersion('tableVersion', 1);
             return;
         }
 
         while (($row = $fetchTableVersion->fetch(PDO::FETCH_ASSOC)) !== false) {
             $this->tableVersions[$row['_name']] = intval($row['_version']);
         }
-    }
 
+        $tableVer = $this->getTableVersion('tableVersion');
+        if ($tableVer === 1) {
+            return;
+        } else {
+            // The _name index is being changed from UNIQUE to PRIMARY KEY for table version 1.
+            switch ($this->driver) {
+                case 'pgsql':
+                    // Drop old index and add primary key
+                    $update = [
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion DROP CONSTRAINT IF EXISTS ' .
+                          $this->prefix . '_tableVersion__name_key',
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion ADD PRIMARY KEY (_name)'
+                    ];
+                    break;
+                case 'sqlsrv':
+                    /**
+                     * Drop old index and add primary key.
+                     * NOTE: Because the index has a default name, we need to look it up in the information
+                     *       schema.
+                     */
+                    $update = [
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion DROP INDEX IF EXISTS SELECT CONSTRAINT_NAME ' .
+                          'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $this_prefix . '_tableVersion',
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion ADD CONSTRAINT _name PRIMARY KEY CLUSTERED (_name)'
+                    ];
+                    break;
+                case 'sqlite':
+                    /**
+                     * Because SQLite does not support field alterations, the approach is to:
+                     *     Create a new table with the primary key
+                     *     Copy the current data to the new table
+                     *     Drop the old table
+                     *     Rename the new table correctly
+                     */
+                    $update = [
+                        'CREATE TABLE ' . $this->prefix .
+                          '_tableVersion (_name VARCHAR(30) PRIMARY KEY NOT NULL, _version INTEGER NOT NULL)',
+                        'INSERT INTO ' . $this->prefix . '_tableVersion_new SELECT * FROM ' .
+                          $this->prefix . '_tableVersion',
+                        'DROP TABLE ' . $this->prefix . '_tableVersion',
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion_new RENAME TO ' .
+                          $this->prefix . '_tableVersion'
+                    ];
+                    break;
+                case 'mysql':
+                    // Drop old index and add primary key
+                    $update = [
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion DROP INDEX _name',
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion ADD PRIMARY KEY (_name)'
+                    ];
+                    break;
+                default:
+                    // Drop old index and add primary key
+                    $update = [
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion DROP INDEX _name',
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion ADD PRIMARY KEY (_name)'
+                    ];
+                    break;
+            }
+
+            try {
+                foreach ($update as $query) {
+                    $this->pdo->exec($query);
+                }
+            } catch (Exception $e) {
+                Logger::warning('Database error: ' . var_export($this->pdo->errorInfo(), true));
+                return;
+            }
+            $this->setTableVersion('tableVersion', 1);
+            return;
+        }
+    }
 
     /**
      * Initialize key-value table.
