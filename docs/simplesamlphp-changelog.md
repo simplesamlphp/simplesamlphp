@@ -17,9 +17,16 @@ Released 2023-07-31
 * Raised minimum Symfony version to 6.0
 * Raise minimum PHP version to 8.0
 * Specified the allowed HTTP methods for each route
-* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file (#1857).
-* The `bin/pwgen.php` script was improved to used stronger encryption (#1849).
+* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file (#1857)
+* The `bin/pwgen.php` script was improved to used stronger encryption (#1849)
 * Fixed a missing Accept-header for metadata queries (#1865)
+* Changed the UNIQUE constraint for the SP LogoutStore database to PRIMARY KEY to
+  prevent confusing warnings in Drupal (#1862)
+* Add Accept HTTP headers to MDQ queries (#1865)
+
+### Chores
+
+* The custom error- and exception handlers were moved to their very own classes (#1858)
 
 ## Version 2.0.6
 
