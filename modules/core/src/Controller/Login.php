@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use Exception;
+use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
@@ -106,7 +106,7 @@ class Login
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = $this->authSource::getById($state[UserPassBase::AUTHID]);
         if ($source === null) {
-            throw new Exception(
+            throw new BuiltinException(
                 'Could not find authentication source with id ' . $state[UserPassBase::AUTHID]
             );
         }
@@ -324,7 +324,7 @@ class Login
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
         $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
         if ($source === null) {
-            throw new Exception(
+            throw new BuiltinException(
                 'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID]
             );
         }

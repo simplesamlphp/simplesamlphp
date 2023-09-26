@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use Exception;
+use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Stats, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
@@ -319,7 +319,7 @@ class Logout
                 $assocIdP = IdP::getByState($this->config, $sp);
                 $url = call_user_func([$sp['Handler'], 'getLogoutURL'], $assocIdP, $sp, null);
                 $sp['core:Logout-IFrame:URL'] = $url;
-            } catch (Exception $e) {
+            } catch (BuiltinException $e) {
                 $sp['core:Logout-IFrame:State'] = 'failed';
             }
         }
