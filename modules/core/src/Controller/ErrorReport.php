@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use Exception;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use Exception as BuiltinException;
+use FILTER_REQUIRE_SCALAR;
+use FILTER_VALIDATE_EMAIL;
+use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,7 +64,7 @@ class ErrorReport
 
         try {
             $data = $this->session->getData('core:errorreport', $reportId);
-        } catch (Exception $e) {
+        } catch (BuiltinException $e) {
             $data = null;
             Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
         }

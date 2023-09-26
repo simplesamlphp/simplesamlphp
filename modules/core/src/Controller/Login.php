@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use Exception;
+use Exception as BuiltinException;
+use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Module;
-use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Module\core\Auth\UserPassOrgBase;
-use SimpleSAML\Utils;
+use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -113,7 +108,7 @@ class Login
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = $this->authSource::getById($state[UserPassBase::AUTHID]);
         if ($source === null) {
-            throw new Exception(
+            throw new BuiltinException(
                 'Could not find authentication source with id ' . $state[UserPassBase::AUTHID]
             );
         }
@@ -325,7 +320,7 @@ class Login
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
         $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
         if ($source === null) {
-            throw new Exception(
+            throw new BuiltinException(
                 'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID]
             );
         }

@@ -18,7 +18,7 @@ function saml_hook_sanitycheck(array &$hookinfo): void
 
     // perform some sanity checks on the configured certificates
     if ($config->getOptionalBoolean('enable.saml20-idp', false) !== false) {
-        $handler = MetaDataStorageHandler::getMetadataHandler($config);
+        $handler = MetaDataStorageHandler::getMetadataHandler();
         try {
             $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
         } catch (Exception $e) {

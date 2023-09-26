@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use DATE_W3C;
+use DateTimeInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
@@ -66,7 +66,7 @@ class Exception
 
         if ($ts !== 'ERRORURL_TS') {
             Assert::integerish($ts);
-            $ts = date(DATE_W3C, intval($ts));
+            $ts = date(DateTimeInterface::W3C, intval($ts));
         } else {
             $ts = null;
         }

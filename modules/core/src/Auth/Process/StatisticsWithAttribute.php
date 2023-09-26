@@ -44,17 +44,17 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         if (array_key_exists('attributename', $config)) {
-            $this->attribute = $config['attributename'];
             if (!is_string($this->attribute)) {
                 throw new Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
             }
+            $this->attribute = $config['attributename'];
         }
 
         if (array_key_exists('type', $config)) {
-            $this->typeTag = $config['type'];
             if (!is_string($this->typeTag)) {
                 throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
             }
+            $this->typeTag = $config['type'];
         }
 
         if (array_key_exists('skipPassive', $config)) {
