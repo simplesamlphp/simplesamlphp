@@ -141,9 +141,9 @@ $metadata['https://www.google.com/a/g.feide.no'] => [
     'simplesaml.attributes' => false,
     'authproc' => [
         1 => [
-          'saml:AttributeNameID',
+          'class' => 'saml:AttributeNameID',
           'identifyingAttribute' => 'mail',
-          'format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+          'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ],
     ],
 ];
