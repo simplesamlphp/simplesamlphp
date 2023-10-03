@@ -3,6 +3,66 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Incorrect Attributes"
+msgstr "Nesprávne atribúty"
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "Jedna alebo viacero atribútov poskytnutých od poskytovateľa identity nespĺňa očakávané množstvo hodnôt."
+
+msgid "The problematic attribute(s) are:"
+msgstr "Problémové atribúty sú:"
+
+msgid "got %got% values, want %want%"
+msgstr "dostané %got% hodnoty, očakávané %want%"
+
+msgid "Logout"
+msgstr "Odhlásenie"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Návrhy na vyriešenie tohto problému:"
+
+msgid "Check that the link you used to access the web site is correct."
+msgstr "Skontrolujte, či je odkaz na prístup k webovej stránke správny."
+
+msgid "Go back to the previous page and try again."
+msgstr "Choďte späť na predchádzajúcu stránku a skúste to znovu."
+
+msgid "Close the web browser, and try again."
+msgstr "Zatvorte prehliadač a skúste to znovu."
+
+msgid "This error may be caused by:"
+msgstr "Možné dôvody tejto chyby:"
+
+msgid "The link used to get here was bad, perhaps a bookmark."
+msgstr "Odkaz smerujúci sem je zlý, napríklad zo záložky."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Použitie tlačidla späť a vpred v prehliadači."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otvorený prehliadač s kartami z predchádzajúcej relácie."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Súbory cookies môžu byť vypnuté v prehliadači."
+
+msgid "SimpleSAMLphp"
+msgstr ""
+
+msgid "Too short interval between single sign on events."
+msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Detekovali sme, že prebehlo iba pár sekúnd od poslednej autentifikácie s týmto poskytovateľom služby, a preto predpokladáme, že je s týmto poskytovateľom služby problém."
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
+
+msgid "Error report sent"
+msgstr "Chybová správa odoslaná"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Chybová správa bola odoslaná administrátorom."
+
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Toto je najpravdepodobnejšie problém konfigurácie buď na strane poskytovateľa služby alebo identity."
 
@@ -11,45 +71,6 @@ msgstr "Ak ste dostali túto chybu po kliknutí na odkaz na nejakej stránky, ma
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ak ste vývojár a nastavujete systém jednotného prihlásenia, máte problém s konfiguráciou metadát. Skontrolujte, či sú metadáta nakonfigurované správne na oboch stranách - poskytovateľa služby a poskytovateľa identity"
-
-msgid "Missing cookie"
-msgstr "Chýba cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vyzerá to tak, že ste zablokovali súbory cookies vo Vašom prehliadači. Prosím, skontrolujte nastavenia vo Vašom prehliadači a skúste to znovu."
-
-msgid "Retry"
-msgstr "Opakovať"
-
-msgid "Logging out..."
-msgstr "Odhlasuje sa..."
-
-msgid "You are now successfully logged out from %SP%."
-msgstr "Teraz ste úspešne odhlásený z %SP%."
-
-msgid "You are also logged in on these services:"
-msgstr "Ste tiež prihlásený na týchto službách:"
-
-msgid "logout is not supported"
-msgstr "Odhlásenie sa nie je podporované"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
-
-msgid "Continue"
-msgstr "Pokračovať"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
-
-msgid "Yes, all services"
-msgstr "Áno, všetky služby"
-
-msgid "No, only %SP%"
-msgstr "Nie, iba %SP%"
-
-msgid "No"
-msgstr "Nie"
 
 msgid "Enter your username and password"
 msgstr "Zadajte Vaše prihlasovacie meno a heslo"
@@ -90,68 +111,47 @@ msgstr ""
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre prístup do služby. Kontaktujte podporu Vašej organizácie."
 
-msgid "Incorrect Attributes"
-msgstr "Nesprávne atribúty"
+msgid "Logging out..."
+msgstr "Odhlasuje sa..."
 
-msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr "Jedna alebo viacero atribútov poskytnutých od poskytovateľa identity nespĺňa očakávané množstvo hodnôt."
+msgid "You are now successfully logged out from %SP%."
+msgstr "Teraz ste úspešne odhlásený z %SP%."
 
-msgid "The problematic attribute(s) are:"
-msgstr "Problémové atribúty sú:"
+msgid "You are also logged in on these services:"
+msgstr "Ste tiež prihlásený na týchto službách:"
 
-msgid "got %got% values, want %want%"
-msgstr "dostané %got% hodnoty, očakávané %want%"
+msgid "logout is not supported"
+msgstr "Odhlásenie sa nie je podporované"
 
-msgid "Logout"
-msgstr "Odhlásenie"
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+
+msgid "Continue"
+msgstr "Pokračovať"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
+
+msgid "Yes, all services"
+msgstr "Áno, všetky služby"
+
+msgid "No, only %SP%"
+msgstr "Nie, iba %SP%"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "Missing cookie"
+msgstr "Chýba cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vyzerá to tak, že ste zablokovali súbory cookies vo Vašom prehliadači. Prosím, skontrolujte nastavenia vo Vašom prehliadači a skúste to znovu."
+
+msgid "Retry"
+msgstr "Opakovať"
 
 msgid "Welcome"
 msgstr "Vitajte"
-
-msgid "Error report sent"
-msgstr "Chybová správa odoslaná"
-
-msgid "The error report has been sent to the administrators."
-msgstr "Chybová správa bola odoslaná administrátorom."
-
-msgid "SimpleSAMLphp"
-msgstr ""
-
-msgid "Too short interval between single sign on events."
-msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Detekovali sme, že prebehlo iba pár sekúnd od poslednej autentifikácie s týmto poskytovateľom služby, a preto predpokladáme, že je s týmto poskytovateľom služby problém."
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Návrhy na vyriešenie tohto problému:"
-
-msgid "Check that the link you used to access the web site is correct."
-msgstr "Skontrolujte, či je odkaz na prístup k webovej stránke správny."
-
-msgid "Go back to the previous page and try again."
-msgstr "Choďte späť na predchádzajúcu stránku a skúste to znovu."
-
-msgid "Close the web browser, and try again."
-msgstr "Zatvorte prehliadač a skúste to znovu."
-
-msgid "This error may be caused by:"
-msgstr "Možné dôvody tejto chyby:"
-
-msgid "The link used to get here was bad, perhaps a bookmark."
-msgstr "Odkaz smerujúci sem je zlý, napríklad zo záložky."
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Použitie tlačidla späť a vpred v prehliadači."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Otvorený prehliadač s kartami z predchádzajúcej relácie."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Súbory cookies môžu byť vypnuté v prehliadači."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ak tento problém pretrváva, môžete odoslať hlásenie systémovým administrátorom."

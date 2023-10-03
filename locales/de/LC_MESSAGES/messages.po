@@ -245,11 +245,11 @@ msgstr "Wählen Sie Ihren Identity Provider"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren möchten:"
 
-msgid "Select"
-msgstr "Auswahl"
-
 msgid "Remember my choice"
 msgstr "Meine Auswahl merken"
+
+msgid "Select"
+msgstr "Auswahl"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Hallo, das ist die Statusseite von SimpleSAMLphp. Hier können Sie sehen, ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist und alle Attribute Ihrer Sitzung."
@@ -262,12 +262,6 @@ msgstr "Ihre Attribute"
 
 msgid "Logout"
 msgstr "Abmelden"
-
-msgid "Sending message"
-msgstr "Sende Nachricht"
-
-msgid "Yes, continue"
-msgstr "Ja, ich stimme zu"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking-ID mit, wodurch es dem Administrator möglich ist, Ihre Sitzung in den Logs zu finden:"
@@ -298,6 +292,12 @@ msgstr "Wie man Hilfe bekommt"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von SimpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit."
+
+msgid "Sending message"
+msgstr "Sende Nachricht"
+
+msgid "Yes, continue"
+msgstr "Ja, ich stimme zu"
 
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"

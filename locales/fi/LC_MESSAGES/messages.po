@@ -192,11 +192,11 @@ msgstr "Valitse identiteettillähteesi"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
 
-msgid "Select"
-msgstr "Valitse"
-
 msgid "Remember my choice"
 msgstr "Muista valintani"
+
+msgid "Select"
+msgstr "Valitse"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
@@ -209,9 +209,6 @@ msgstr "Attribuuttisi"
 
 msgid "Logout"
 msgstr "Uloskirjautuminen"
-
-msgid "Yes, continue"
-msgstr "Kyllä"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Mikäli ilmoitat virheestä, ole hyvä ja sisällä tämä seurantanumero raporttiin. Seurantanumerolla ylläpitäjä löytää istuntosi lokeista helpommin."
@@ -242,6 +239,9 @@ msgstr "Miten saada apua"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä yllä oleva virheilmoitus."
+
+msgid "Yes, continue"
+msgstr "Kyllä"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"

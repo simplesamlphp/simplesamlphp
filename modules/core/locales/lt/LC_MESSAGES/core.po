@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių teikėjo pusėje."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuorodą tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią klaidą."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
-
-msgid "Missing cookie"
-msgstr "Slapukas nerastas"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
-
-msgid "Retry"
-msgstr "Bandyti dar kartą"
-
-msgid "Welcome"
-msgstr "Sveiki atvykę"
-
-msgid "Too short interval between single sign on events."
-msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Pasiūlymai spręsti šią problemą:"
 
@@ -50,6 +23,33 @@ msgstr "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstes
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Interneto naršyklėje gali būti išjungti slapukai (cookies)."
+
+msgid "Too short interval between single sign on events."
+msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių teikėjo pusėje."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuorodą tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią klaidą."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
+
+msgid "Missing cookie"
+msgstr "Slapukas nerastas"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
+
+msgid "Retry"
+msgstr "Bandyti dar kartą"
+
+msgid "Welcome"
+msgstr "Sveiki atvykę"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."

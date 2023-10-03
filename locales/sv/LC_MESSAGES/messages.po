@@ -245,11 +245,11 @@ msgstr "Välj din identitetsleverantör"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Välj vilken identitetsleverantör du vill logga in med:"
 
-msgid "Select"
-msgstr "Välj"
-
 msgid "Remember my choice"
 msgstr "Kom ihåg mitt val"
+
+msgid "Select"
+msgstr "Välj"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig har gått ut, hur länge det dröjer innan den går ut samt alla attribut som tillhör sessionen."
@@ -262,12 +262,6 @@ msgstr "Dina attribut"
 
 msgid "Logout"
 msgstr "Logga ut"
-
-msgid "Sending message"
-msgstr "Skickar meddelande"
-
-msgid "Yes, continue"
-msgstr "Ja"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Om du rapporterar felet bör du också skicka med detta spårnings-ID. Det gör det enklare för den som sköter systemet att felsöka problemet:"
@@ -298,6 +292,12 @@ msgstr "Hur får du hjälp"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Detta fel beror troligtvis på att oväntat beteende eller felkonfigurering av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att meddela dem ovanstående felmeddelande."
+
+msgid "Sending message"
+msgstr "Skickar meddelande"
+
+msgid "Yes, continue"
+msgstr "Ja"
 
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"

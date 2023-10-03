@@ -245,11 +245,11 @@ msgstr "Vel innloggingsteneste"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vel innloggingsteneste (IdP) der du ønskjer å logga inn."
 
-msgid "Select"
-msgstr "Vel"
-
 msgid "Remember my choice"
 msgstr "Hugs mitt val"
+
+msgid "Select"
+msgstr "Vel"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir brukte i sesjonen din."
@@ -262,18 +262,6 @@ msgstr "Dine attributtar"
 
 msgid "Logout"
 msgstr "Logg ut"
-
-msgid "Hello, Untranslated World!"
-msgstr "Hallo, oversette verd!"
-
-msgid "World"
-msgstr "Verd"
-
-msgid "Sending message"
-msgstr "Sender melding"
-
-msgid "Yes, continue"
-msgstr "Ja, fortsett"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Send med sporingsnummeret dersom du vil rapportera feilen. Sporingsnummeret gjer det enklare for systemadministratorane å finna ut kva som er problemet:"
@@ -304,6 +292,18 @@ msgstr "Send feilrapport"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen er truleg på grunn av feilkonfigurasjon av SimpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen."
+
+msgid "Sending message"
+msgstr "Sender melding"
+
+msgid "Yes, continue"
+msgstr "Ja, fortsett"
+
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversette verd!"
+
+msgid "World"
+msgstr "Verd"
 
 msgid "[Preferred choice]"
 msgstr "Beste val"

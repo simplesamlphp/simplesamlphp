@@ -245,11 +245,11 @@ msgstr "Hauta ezazu zure identitate hornitzailea"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Mesedez, non kautotu nahi duzun identifikazio hornitzailea hauta ezazu "
 
-msgid "Select"
-msgstr "Hautatu"
-
 msgid "Remember my choice"
 msgstr "Nire hautaketa gogoratu"
+
+msgid "Select"
+msgstr "Hautatu"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Kaixo, hau SimpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure saioan dauden atributu guztiak."
@@ -262,12 +262,6 @@ msgstr "Atributuak"
 
 msgid "Logout"
 msgstr "Irten"
-
-msgid "Sending message"
-msgstr "Mezua bidaltzen"
-
-msgid "Yes, continue"
-msgstr "Bai, jarraitu"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Mesedez, errore honen berri ematen baduzu, mantendu ezazu jarraipen zenbaki hau, honek sistemaren administratzaileak dituen erregistroetan zure saioa aurkitzea ahalbidetzen baitu:"
@@ -298,6 +292,12 @@ msgstr "Laguntza nola eskuratu"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Errore hau jazo izana SimpleSAMLphp-en ezusteko jokaera edo konfigurazio okerra izan da. Jar zaitez harremanetan identifikazio zerbitzu honen administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
+
+msgid "Sending message"
+msgstr "Mezua bidaltzen"
+
+msgid "Yes, continue"
+msgstr "Bai, jarraitu"
 
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"

@@ -133,9 +133,6 @@ msgstr "Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, m
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest oder LogoutResponse unginn."
 
-msgid "Yes, continue"
-msgstr "Jo"
-
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID mat. Dei ennerstëtzt den System Administrator aer Session an den Logs erëmzefannen:"
 
@@ -165,6 +162,9 @@ msgstr "Wéi een Hellëf kritt"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun dësem Login Service an schéckt him den Fehlerbericht"
+
+msgid "Yes, continue"
+msgstr "Jo"
 
 msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"

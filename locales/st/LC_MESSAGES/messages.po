@@ -265,11 +265,11 @@ msgstr "Kgetha mofani wa boitsebiso wa hao"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
 
-msgid "Select"
-msgstr "Kgetha"
-
 msgid "Remember my choice"
 msgstr "Hopola kgetho ya ka"
+
+msgid "Select"
+msgstr "Kgetha"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
@@ -288,9 +288,6 @@ msgstr "Fomata"
 
 msgid "Logout"
 msgstr "Ho tswa"
-
-msgid "Yes, continue"
-msgstr "E"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Haeba o tlaleha phoso ena, ka kopo tlaleha hape nomoro ena ya ho sala morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts efumanehang ho sistimi ya motsamaisi:"
@@ -321,6 +318,9 @@ msgstr "Ka moo o ka fumanang thuso"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona."
+
+msgid "Yes, continue"
+msgstr "E"
 
 msgid "Return to service"
 msgstr "E kgutlela tshebeletsong"

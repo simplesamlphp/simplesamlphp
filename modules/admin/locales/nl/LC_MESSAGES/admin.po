@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr "Test"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federatie"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML naar SimpleSAMLphp metadata vertaling"
@@ -29,9 +41,9 @@ msgstr "ADFS IdP metadata"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr "Log uit"
 
@@ -156,21 +168,6 @@ msgstr "De cURL-extensie mist in PHP. Kan niet controleren op updates."
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "U heeft een verouderde versie van SimpleSAMLphp. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%latest%\">de laatste versie</a>."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuratie"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr "Test"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federatie"
-
-msgid "Test Authentication Sources"
-msgstr "Test Authentication Sources"
-
 msgid "Metadata parser"
 msgstr "Metadata parser"
 
@@ -192,65 +189,11 @@ msgstr "Geconverteerde metadata"
 msgid "An error occurred"
 msgstr "Er trad een fout op"
 
-msgid "Deprecated"
-msgstr "Verouderd"
-
-msgid "Type:"
-msgstr "Type:"
-
-msgid "SAML Metadata"
-msgstr "SAML Metadata"
-
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr "U kunt de metadata-XML opvragen via deze URL:"
-
-msgid "Copy to clipboard"
-msgstr "Kopieer naar klembord"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "In SAML 2.0 Metadata XML-formaat:"
-
-msgid "SimpleSAMLphp Metadata"
-msgstr "SimpleSAMLphp Metadata"
-
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "Gebruik dit als de andere zijde ook SimpleSAMLphp gebruikt:"
-
-msgid "Certificates"
-msgstr "Certificaten"
-
-msgid "new"
-msgstr "nieuw"
+msgid "Content of jpegPhoto attribute"
+msgstr "Inhoud van het jpegPhoto-attribuut"
 
 msgid "SimpleSAMLphp installation page"
 msgstr "SimpleSAMLphp installatiepagina"
-
-msgid "Hosted entities"
-msgstr "Hosted entity's"
-
-msgid "Trusted entities"
-msgstr "Vertrouwde entity's"
-
-msgid "expired"
-msgstr "verlopen"
-
-msgid "expires"
-msgstr "verloopt"
-
-msgid "Tools"
-msgstr "Gereedschap"
-
-msgid "Look up metadata for entity:"
-msgstr "Zoek metadata op voor entity:"
-
-msgid "EntityID"
-msgstr "EntityID"
-
-msgid "Search"
-msgstr "Zoek"
-
-msgid "Content of jpegPhoto attribute"
-msgstr "Inhoud van het jpegPhoto-attribuut"
 
 msgid ""
 "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
@@ -278,8 +221,74 @@ msgstr "Formaat"
 msgid "Authentication data"
 msgstr "Authenticatiegegevens"
 
+msgid "Copy to clipboard"
+msgstr "Kopieer naar klembord"
+
 msgid "Logout"
 msgstr "Afmelden"
+
+msgid "Deprecated"
+msgstr "Verouderd"
+
+msgid "Type:"
+msgstr "Type:"
+
+msgid "SAML Metadata"
+msgstr "SAML Metadata"
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr "U kunt de metadata-XML opvragen via deze URL:"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "In SAML 2.0 Metadata XML-formaat:"
+
+msgid "SimpleSAMLphp Metadata"
+msgstr "SimpleSAMLphp Metadata"
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "Gebruik dit als de andere zijde ook SimpleSAMLphp gebruikt:"
+
+msgid "Certificates"
+msgstr "Certificaten"
+
+msgid "new"
+msgstr "nieuw"
+
+msgid "Hosted entities"
+msgstr "Hosted entity's"
+
+msgid "Trusted entities"
+msgstr "Vertrouwde entity's"
+
+msgid "expired"
+msgstr "verlopen"
+
+msgid "expires"
+msgstr "verloopt"
+
+msgid "Tools"
+msgstr "Gereedschap"
+
+msgid "Look up metadata for entity:"
+msgstr "Zoek metadata op voor entity:"
+
+msgid "EntityID"
+msgstr "EntityID"
+
+msgid "Search"
+msgstr "Zoek"
+
+msgid "Test Authentication Sources"
+msgstr "Test Authentication Sources"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Toon Metadata"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Back"
+msgstr "Terug"
 
 msgid "SimpleSAMLphp is installed in:"
 msgstr "SimpleSAMLphp is geïnstalleerd in:"
@@ -292,15 +301,6 @@ msgstr "vereist"
 
 msgid "optional"
 msgstr "optioneel"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Toon Metadata"
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "Back"
-msgstr "Terug"
 
 msgid "Checking your PHP installation"
 msgstr "Controle van de PHP-installatie"

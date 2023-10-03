@@ -245,11 +245,11 @@ msgstr "בחר את ספק הזהות שלך"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
 
-msgid "Select"
-msgstr "בחר"
-
 msgid "Remember my choice"
 msgstr "זכור את הבחירה שלי"
+
+msgid "Select"
+msgstr "בחר"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
@@ -262,12 +262,6 @@ msgstr "התכונות שלך"
 
 msgid "Logout"
 msgstr "התנתקות"
-
-msgid "Sending message"
-msgstr "שולח הודעה"
-
-msgid "Yes, continue"
-msgstr "כן, המשך"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "אם אתה מדווח על התקלה, אנא דווח גם את מספר המעקב המאפשר לאתר את השיחה שלך ביומנים העומדים לרשות מנהל המערכת: "
@@ -298,6 +292,12 @@ msgstr "איך לקבל עזרה"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
+
+msgid "Sending message"
+msgstr "שולח הודעה"
+
+msgid "Yes, continue"
+msgstr "כן, המשך"
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"

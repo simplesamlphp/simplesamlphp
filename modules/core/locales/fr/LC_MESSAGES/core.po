@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Cela ressemble à un problème de configuration soit du fournisseur de service ou du fournisseur d'identité."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Si vous êtes un usager qui reçoit cette erreur après avoir suivi un lien sur un site, vous devriez remonter cette erreur au propriétaire de ce site."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Si vous êtes un développeur qui déploie une solution de single sign-on, vous avez un problème avec la configuration des métadonnées. Vérifiez que ces métadonnées sont correctement configurées sur le fournisseur d'identité et le fournisseur de service "
-
-msgid "Missing cookie"
-msgstr "Cookie introuvable"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
-
-msgid "Retry"
-msgstr "Ré-essayer"
-
-msgid "Welcome"
-msgstr "Bienvenue"
-
-msgid "Too short interval between single sign on events."
-msgstr "Connexions uniques trop proches dans le temps."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Suggestions pour résoudre ce problème :"
 
@@ -50,6 +23,33 @@ msgstr "Ouvert le navigateur avec des onglets sauvegardés lors de la session pr
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Les cookies sont peut-être déactivés dans le navigateur."
+
+msgid "Too short interval between single sign on events."
+msgstr "Connexions uniques trop proches dans le temps."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Cela ressemble à un problème de configuration soit du fournisseur de service ou du fournisseur d'identité."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Si vous êtes un usager qui reçoit cette erreur après avoir suivi un lien sur un site, vous devriez remonter cette erreur au propriétaire de ce site."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Si vous êtes un développeur qui déploie une solution de single sign-on, vous avez un problème avec la configuration des métadonnées. Vérifiez que ces métadonnées sont correctement configurées sur le fournisseur d'identité et le fournisseur de service "
+
+msgid "Missing cookie"
+msgstr "Cookie introuvable"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
+
+msgid "Retry"
+msgstr "Ré-essayer"
+
+msgid "Welcome"
+msgstr "Bienvenue"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si ce problème persiste, vous pouvez le remonter vers l'administrateur système."

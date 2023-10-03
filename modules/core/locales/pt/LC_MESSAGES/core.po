@@ -3,6 +3,12 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Too short interval between single sign on events."
+msgstr "Intervalo entre eventos de single sign on demasiado curto."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Foi detectada uma repetição de autenticação neste serviço em poucos segundos. Este SP pode ter um problema."
+
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"
 
@@ -14,12 +20,6 @@ msgstr "Tentar de novo"
 
 msgid "Welcome"
 msgstr "Bem vindo"
-
-msgid "Too short interval between single sign on events."
-msgstr "Intervalo entre eventos de single sign on demasiado curto."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Foi detectada uma repetição de autenticação neste serviço em poucos segundos. Este SP pode ter um problema."
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)"

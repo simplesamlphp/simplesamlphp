@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لرابط بموقع ما, ينبغي عليك الابلاغ عن هذا الاشكال لمالك  الموقع المعني"
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
-
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
-
-msgid "Retry"
-msgstr "اعد المحاولة"
-
-msgid "Welcome"
-msgstr "مرحباً"
-
-msgid "Too short interval between single sign on events."
-msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
-
 msgid "Suggestions for resolving this problem:"
 msgstr "اقتراحات لحل المشكلة "
 
@@ -50,6 +23,33 @@ msgstr "فتح متصفحك مستخدما معلومات محفوظة من ال
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "الكوكيز غير منشطة بمتصفحك"
+
+msgid "Too short interval between single sign on events."
+msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لرابط بموقع ما, ينبغي عليك الابلاغ عن هذا الاشكال لمالك  الموقع المعني"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
+
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+
+msgid "Retry"
+msgstr "اعد المحاولة"
+
+msgid "Welcome"
+msgstr "مرحباً"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"

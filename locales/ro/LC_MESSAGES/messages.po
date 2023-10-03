@@ -245,11 +245,11 @@ msgstr "Alegeți furnizorul de identitate"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vă rugăm să alegeți furnizorul de identitate pe care doriți să-l folosiți pentru autentificarea dumneavoastră:"
 
-msgid "Select"
-msgstr "Selectați"
-
 msgid "Remember my choice"
 msgstr "Memorează alegerea făcută"
+
+msgid "Select"
+msgstr "Selectați"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Aceasta este pagina de stare pentru SimpleSAMLphp. Aici puteți verifica dacă sesiunea dumneavoastră a expirat, cât timp mai este până la expirarea sesiunii precum și toate atributele atașate sesiunii dumneavoastră."
@@ -262,12 +262,6 @@ msgstr "Atributele dumneavoastră"
 
 msgid "Logout"
 msgstr "Deautentificare"
-
-msgid "Sending message"
-msgstr "Se trimite mesajul"
-
-msgid "Yes, continue"
-msgstr "Da, continuă"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Dacă raportați această eroare, vă rugăm să includeți următorul număr de înregistrare care va permite localizarea sesiunii dumneavoastră în jurnalele de sistem:"
@@ -298,6 +292,12 @@ msgstr "Cum obțineți ajutor/asistență"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Această eroare a apărut probabil din cauza unui comportament neașteptat sau a erorilor de configurare a SimpleSAMLphp. Vă rugăm să contactați administratorul acestui serviciu și să-i furnizați mesajul de eroare de mai sus."
+
+msgid "Sending message"
+msgstr "Se trimite mesajul"
+
+msgid "Yes, continue"
+msgstr "Da, continuă"
 
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"

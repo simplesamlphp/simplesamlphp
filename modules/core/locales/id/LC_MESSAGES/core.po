@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider"
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
-
-msgid "Missing cookie"
-msgstr "Cookie hilang"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
-
-msgid "Retry"
-msgstr "Coba lagi"
-
-msgid "Welcome"
-msgstr "Selamat Datang"
-
-msgid "Too short interval between single sign on events."
-msgstr "Interval yang terlalu pendek antara event single sign on."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Saran untuk memperbaiki masalah ini:"
 
@@ -50,6 +23,33 @@ msgstr "Membuka web browser dengan tab-tab yang telah disimpan dari session sebe
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Cookie mungkin dinonaktifkan pada web browser ini."
+
+msgid "Too short interval between single sign on events."
+msgstr "Interval yang terlalu pendek antara event single sign on."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
+
+msgid "Missing cookie"
+msgstr "Cookie hilang"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
+
+msgid "Retry"
+msgstr "Coba lagi"
+
+msgid "Welcome"
+msgstr "Selamat Datang"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."

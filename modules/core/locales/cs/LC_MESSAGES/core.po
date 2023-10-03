@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele služby nebo poskytovatele identity."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Pokud jste uživatel, který obdržel chybu po následování odkazu na webové stránce, měli byste o této chybě informovat vlastníka této stránky. "
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována správně jak u poskytovatele identity tak u poskytovatele služby."
-
-msgid "Missing cookie"
-msgstr "Chybějící cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
-
-msgid "Retry"
-msgstr "Opakujte"
-
-msgid "Welcome"
-msgstr "Vítejte"
-
-msgid "Too short interval between single sign on events."
-msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Návrhy pro vyřešení tohoto problému:"
 
@@ -50,6 +23,33 @@ msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezen
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
+
+msgid "Too short interval between single sign on events."
+msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele služby nebo poskytovatele identity."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Pokud jste uživatel, který obdržel chybu po následování odkazu na webové stránce, měli byste o této chybě informovat vlastníka této stránky. "
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována správně jak u poskytovatele identity tak u poskytovatele služby."
+
+msgid "Missing cookie"
+msgstr "Chybějící cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
+
+msgid "Retry"
+msgstr "Opakujte"
+
+msgid "Welcome"
+msgstr "Vítejte"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."

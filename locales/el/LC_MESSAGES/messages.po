@@ -253,11 +253,11 @@ msgstr "Επιλογή οικείου φορέα"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
 
-msgid "Select"
-msgstr "Επιλογή"
-
 msgid "Remember my choice"
 msgstr "Να θυμάσαι την επιλογή μού"
+
+msgid "Select"
+msgstr "Επιλογή"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Χαίρετε, αυτή είναι η σελίδα κατάστασης του SimpleSAMLphp. Εδώ μπορείτε να δείτε αν η συνεδρία σας (session) έχει λήξει, το χρονικό διάστημα που διαρκεί έως ότου λήξει, καθώς και όλες τις πληροφορίες που συνδέονται με τη συνεδρία σας."
@@ -279,12 +279,6 @@ msgstr "Μορφή (format)"
 
 msgid "Logout"
 msgstr "Αποσύνδεση"
-
-msgid "Sending message"
-msgstr "Αποστολή αρχείου"
-
-msgid "Yes, continue"
-msgstr "Αποδοχή"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Αν αναφέρετε αυτό το σφάλμα, παρακαλούμε να συμπεριλάβετε στην αναφορά σας αυτόν τον αριθμό προκειμένου να διευκολύνετε τη διαδικασία εντοπισμού και επίλυσης του προβλήματος:"
@@ -315,6 +309,12 @@ msgstr "Πώς να λάβετε βοήθεια"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Αυτό το σφάλμα πιθανότατα οφείλεται σε κάποια απροσδόκητη συμπεριφορά ή εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
+
+msgid "Sending message"
+msgstr "Αποστολή αρχείου"
+
+msgid "Yes, continue"
+msgstr "Αποδοχή"
 
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"

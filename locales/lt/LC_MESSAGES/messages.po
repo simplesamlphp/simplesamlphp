@@ -245,11 +245,11 @@ msgstr "Pasirinkite savo tapatybių tiekėją"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Prašome pasirinkite tapatybių tiekėją, kuriame norite autentikuotis:"
 
-msgid "Select"
-msgstr "Pasirinkite"
-
 msgid "Remember my choice"
 msgstr "Prisiminti pasirinkimą"
+
+msgid "Select"
+msgstr "Pasirinkite"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei kitus Jūsų sesijai priskirtus atributus."
@@ -262,12 +262,6 @@ msgstr "Jūsų atributai"
 
 msgid "Logout"
 msgstr "Atsijungti"
-
-msgid "Sending message"
-msgstr "Siunčiamas pranešimas"
-
-msgid "Yes, continue"
-msgstr "Taip, tęsti"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Jei pranešate apie šią klaidą, neužmirškite pateikti šios klaidos ID, kurio dėka sistemos administratorius galės surasti Jūsų sesijos metu atliktus veiksmus atliktų veiksmų istorijoje:"
@@ -298,6 +292,12 @@ msgstr "Kaip pasiekti pagalbą"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ši klaida tikriausiai susijusi dėl SimpleSAMLphp neteisingo sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir nusiųskite žemiau rodomą klaidos pranešimą."
+
+msgid "Sending message"
+msgstr "Siunčiamas pranešimas"
+
+msgid "Yes, continue"
+msgstr "Taip, tęsti"
 
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"

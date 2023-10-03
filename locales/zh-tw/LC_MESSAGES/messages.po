@@ -245,11 +245,11 @@ msgstr "選擇你的識別提供者(idp)"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "請選擇您所要前往認證的驗證提供者："
 
-msgid "Select"
-msgstr "選擇"
-
 msgid "Remember my choice"
 msgstr "記住我的選擇"
+
+msgid "Select"
+msgstr "選擇"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "嘿，這是 SimpleSAMLphp 狀態頁，在這邊您可以看到您的連線是否逾時，以及還有多久才逾時，所有屬性值(attributes)都會附加在你的連線裡(session)。"
@@ -271,12 +271,6 @@ msgstr "格式"
 
 msgid "Logout"
 msgstr "登出"
-
-msgid "Sending message"
-msgstr "傳送訊息"
-
-msgid "Yes, continue"
-msgstr "是，繼續"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "如果您回報這個錯誤，請同時回報這個追蹤數字，讓系統管理員可以藉由它在記錄裡找到您的連線："
@@ -307,6 +301,12 @@ msgstr "如何取得協助"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
+
+msgid "Sending message"
+msgstr "傳送訊息"
+
+msgid "Yes, continue"
+msgstr "是，繼續"
 
 msgid "[Preferred choice]"
 msgstr "喜好選擇"

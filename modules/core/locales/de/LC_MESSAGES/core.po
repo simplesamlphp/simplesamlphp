@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service Providers oder des Identity Providers."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, sollten Sie diesen Fehler den Betreibern der Website melden."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den benutzten Metadaten etwas nicht. Überprüfen Sie die Metadaten des Identity Providers und des Service Providers."
-
-msgid "Missing cookie"
-msgstr "Cookie fehlt"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut."
-
-msgid "Retry"
-msgstr "Erneut versuchen"
-
-msgid "Welcome"
-msgstr "Willkommen"
-
-msgid "Too short interval between single sign on events."
-msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Empfehlungen um dieses Problem zu lösen:"
 
@@ -50,6 +23,33 @@ msgstr "Das Öffnen des Web-Browser mit gespeicherten Tabs aus der letzten Sitzu
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Cookies könnten im Web-Browser deaktiviert sein."
+
+msgid "Too short interval between single sign on events."
+msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service Providers oder des Identity Providers."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, sollten Sie diesen Fehler den Betreibern der Website melden."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den benutzten Metadaten etwas nicht. Überprüfen Sie die Metadaten des Identity Providers und des Service Providers."
+
+msgid "Missing cookie"
+msgstr "Cookie fehlt"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut."
+
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+msgid "Welcome"
+msgstr "Willkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Wenn das Problem weiter besteht, kannst du diesen Fehler den Systemadministratoren melden."

@@ -3,24 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Bona ke bothata bo ka kgonahalang ka ho fetisisa ho mofani wa tshebeletso kapa mofani wa tshebeletso."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
-
-msgid "Missing cookie"
-msgstr "Khukhi e siyo"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "O bonahala o kwetse dikhukhi sebading sa hao. Ka kopo hlahloba disetting sebading sa hao."
-
-msgid "Retry"
-msgstr "Khukhi e siyo"
-
 msgid "Incorrect Attributes"
 msgstr "Makgabane a Fosahetseng"
 
@@ -50,6 +32,24 @@ msgstr "O butse sebadi sa webe ka di-tab tse bolokilweng sesheneng e fetileng."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Bona ke bothata bo ka kgonahalang ka ho fetisisa ho mofani wa tshebeletso kapa mofani wa tshebeletso."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
+
+msgid "Missing cookie"
+msgstr "Khukhi e siyo"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "O bonahala o kwetse dikhukhi sebading sa hao. Ka kopo hlahloba disetting sebading sa hao."
+
+msgid "Retry"
+msgstr "Khukhi e siyo"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Ha re kgone ho fumana tlhahisoleseding ka provenseng bakeng sa kopo ya ha jwale."

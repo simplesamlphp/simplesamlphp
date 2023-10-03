@@ -192,11 +192,11 @@ msgstr "Kimlik sağlayıcınızı seçiniz."
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seçiniz: "
 
-msgid "Select"
-msgstr "Seç"
-
 msgid "Remember my choice"
 msgstr "Seçimimi hatırla"
+
+msgid "Select"
+msgstr "Seç"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Merhaba, bu SimpleSAMLphp durum sayfasıdır. Oturumunuzun süresinin dolup dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm bilgileri buradan görebilirsiniz."
@@ -209,12 +209,6 @@ msgstr "Bilgileriniz"
 
 msgid "Logout"
 msgstr "Çıkış"
-
-msgid "Sending message"
-msgstr "Mesaj gönderiliyor"
-
-msgid "Yes, continue"
-msgstr "Evet, devam et"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Bu hatayı bildirirseniz, lütfen, sistem yöneticisi tarafından incelebilen kayıtlardan oturumunuzun belirlenebilmesini sağlayan izleme ID'sini de bildirin."
@@ -245,6 +239,12 @@ msgstr "Nasıl yardım alınır"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile iletişim kurun ve yukarıdaki hata mesajını gönderin."
+
+msgid "Sending message"
+msgstr "Mesaj gönderiliyor"
+
+msgid "Yes, continue"
+msgstr "Evet, devam et"
 
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"

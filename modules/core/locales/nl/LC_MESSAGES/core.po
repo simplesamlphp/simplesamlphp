@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Dit is waarschijnlijk een configuratieprobleem bij ofwel de serviceprovider ofwel de identiteitsverstrekker."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Als u een eindgebruiker bent die deze foutmelding kreeg na het volgen van een link op een site, dan kunt u deze fout melden bij de eigenaar van die site."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Als u een ontwikkelaar bent die een single sign-on oplossing aan het implementeren is, heeft u een probleem met de metadataconfiguratie. Controleer of de metadata correct is geconfigureerd zowel bij de identiteitsverstrekker als bij de service provider."
-
-msgid "Missing cookie"
-msgstr "Cookie ontbreekt"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. Controleer de browserinstellingen en probeer het opnieuw."
-
-msgid "Retry"
-msgstr "Opnieuw"
-
-msgid "Welcome"
-msgstr "Welkom"
-
-msgid "Too short interval between single sign on events."
-msgstr "Te kort interval tussen single sign on pogingen"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "We hebben waargenomen dat u slechts een paar seconden geleden al aangemeld bent bij deze serviceprovider, daarom nemen we aan dat er een probleem is met deze SP."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Suggesties om dit probleem op te lossen:"
 
@@ -50,6 +23,33 @@ msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Cookies kunnen uitgeschakeld zijn in de web browser."
+
+msgid "Too short interval between single sign on events."
+msgstr "Te kort interval tussen single sign on pogingen"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "We hebben waargenomen dat u slechts een paar seconden geleden al aangemeld bent bij deze serviceprovider, daarom nemen we aan dat er een probleem is met deze SP."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Dit is waarschijnlijk een configuratieprobleem bij ofwel de serviceprovider ofwel de identiteitsverstrekker."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Als u een eindgebruiker bent die deze foutmelding kreeg na het volgen van een link op een site, dan kunt u deze fout melden bij de eigenaar van die site."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Als u een ontwikkelaar bent die een single sign-on oplossing aan het implementeren is, heeft u een probleem met de metadataconfiguratie. Controleer of de metadata correct is geconfigureerd zowel bij de identiteitsverstrekker als bij de service provider."
+
+msgid "Missing cookie"
+msgstr "Cookie ontbreekt"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. Controleer de browserinstellingen en probeer het opnieuw."
+
+msgid "Retry"
+msgstr "Opnieuw"
+
+msgid "Welcome"
+msgstr "Welkom"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."
