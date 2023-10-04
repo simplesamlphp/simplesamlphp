@@ -12,6 +12,8 @@ use function array_key_exists;
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
  * @package SimpleSAMLphp
+ *
+ * TODO Consider moving to constants for error code keys.
  */
 class ErrorCodes
 {
@@ -220,7 +222,7 @@ class ErrorCodes
      */
     public static function getErrorCodeDescription(string $errorCode): string
     {
-        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
+        if (array_key_exists($errorCode, self::getAllErrorCodeDescriptions())) {
             $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
             return $errorCodeDescriptions[$errorCode];
         } else {
