@@ -69,7 +69,7 @@ class Metadata
     public function metadata(Request $request): Response
     {
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
-            throw new Error\Error('NOACCESS', null, 403);
+            throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
         // check if valid local session exists
@@ -109,7 +109,7 @@ class Metadata
 
             return $response;
         } catch (Exception $exception) {
-            throw new Error\Error('METADATA', $exception);
+            throw new Error\Error(Error\ErrorCodes::METADATA, $exception);
         }
     }
 }

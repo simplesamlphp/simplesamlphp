@@ -19,6 +19,6 @@ class NoState extends Error
     public function __construct()
     {
         $this->includeTemplate = 'core:no_state.twig';
-        parent::__construct('NOSTATE');
+        parent::__construct(ErrorCodes::NOSTATE);
     }
 }

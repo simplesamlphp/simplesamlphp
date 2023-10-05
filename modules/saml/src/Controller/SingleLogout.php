@@ -76,7 +76,7 @@ class SingleLogout
         Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
-            throw new Error\Error('NOACCESS', null, 403);
+            throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
         $httpUtils = new Utils\HTTP();
@@ -96,7 +96,7 @@ class SingleLogout
         try {
             return Module\saml\IdP\SAML2::receiveLogoutMessage($request, $idp);
         } catch (UnsupportedBindingException $e) {
-            throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
+            throw new Error\Error(Error\ErrorCodes::SLOSERVICEPARAMS, $e, 400);
         }
     }
 
@@ -111,14 +111,14 @@ class SingleLogout
         Logger::info('SAML2.0 - IdP.initSLO: Accessing SAML 2.0 IdP endpoint init Single Logout');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
-            throw new Error\Error('NOACCESS', null, 403);
+            throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
         $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
         $idp = $this->idp::getById($this->config, 'saml2:' . $idpEntityId);
 
         if (!$request->query->has('RelayState')) {
-            throw new Error\Error('NORELAYSTATE');
+            throw new Error\Error(Error\ErrorCodes::NORELAYSTATE);
         }
 
         $httpUtils = new Utils\HTTP();

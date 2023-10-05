@@ -146,7 +146,7 @@ class TestTest extends TestCase
         });
 
         $this->expectException(Error\NoState::class);
-        $this->expectExceptionMessage('NOSTATE');
+        $this->expectExceptionMessage(Error\ErrorCodes::NOSTATE);
         $c->main($request, 'admin');
     }
 

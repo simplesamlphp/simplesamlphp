@@ -229,7 +229,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception/error. If the error was caused by the user entering the wrong
-     * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
+     * username or password, a \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS) should be thrown.
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
@@ -293,7 +293,7 @@ abstract class UserPassOrgBase extends Auth\Source
             } else {
                 if ($orgMethod === 'force') {
                     /* The organization should be a part of the username, but isn't. */
-                    throw new Error\Error('WRONGUSERPASS');
+                    throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
                 }
             }
         }

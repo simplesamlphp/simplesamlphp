@@ -21,6 +21,6 @@ class UserAborted extends Error
      */
     public function __construct(Throwable $cause = null)
     {
-        parent::__construct('USERABORTED', $cause);
+        parent::__construct(ErrorCodes::USERABORTED, $cause);
     }
 }

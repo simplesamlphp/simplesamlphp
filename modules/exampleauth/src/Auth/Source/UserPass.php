@@ -82,7 +82,7 @@ class UserPass extends UserPassBase
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception. If the error was caused by the user entering the wrong
-     * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
+     * username or password, a \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS) should be thrown.
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
@@ -94,7 +94,7 @@ class UserPass extends UserPassBase
     {
         $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {
-            throw new Error\Error('WRONGUSERPASS');
+            throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
 
         return $this->users[$userpass];

@@ -32,7 +32,7 @@ class AuthSource extends Error
         $this->reason = $reason;
         parent::__construct(
             [
-                'AUTHSOURCEERROR',
+                ErrorCodes::AUTHSOURCEERROR,
                 '%AUTHSOURCE%' => $this->authsource,
                 '%REASON%' => $this->reason,
             ],

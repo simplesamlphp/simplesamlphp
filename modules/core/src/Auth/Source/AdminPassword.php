@@ -37,7 +37,7 @@ class AdminPassword extends UserPassBase
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception. If the error was caused by the user entering the wrong
-     * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
+     * username or password, a \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS) should be thrown.
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
@@ -51,16 +51,16 @@ class AdminPassword extends UserPassBase
         $adminPassword = $config->getString('auth.adminpassword');
         if ($adminPassword === '123') {
             // We require that the user changes the password
-            throw new Error\Error('NOTSET');
+            throw new Error\Error(Error\ErrorCodes::NOTSET);
         }
 
         if ($username !== "admin") {
-            throw new Error\Error('WRONGUSERPASS');
+            throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
 
         $cryptoUtils = new Utils\Crypto();
         if (!$cryptoUtils->pwValid($adminPassword, $password)) {
-            throw new Error\Error('WRONGUSERPASS');
+            throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
         return ['user' => ['admin']];
     }

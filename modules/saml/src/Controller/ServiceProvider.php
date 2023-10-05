@@ -189,7 +189,7 @@ class ServiceProvider
         try {
             $b = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
-            throw new Error\Error('ACSPARAMS', $e, 400);
+            throw new Error\Error(Error\ErrorCodes::ACSPARAMS, $e, 400);
         }
 
         if ($b instanceof HTTPArtifact) {
@@ -466,7 +466,7 @@ class ServiceProvider
         try {
             $binding = Binding::getCurrentBinding($psrRequest);
         } catch (UnsupportedBindingException $e) {
-            throw new Error\Error('SLOSERVICEPARAMS', $e, 400);
+            throw new Error\Error(Error\ErrorCodes::SLOSERVICEPARAMS, $e, 400);
         }
         $message = $binding->receive($psrRequest);
 
