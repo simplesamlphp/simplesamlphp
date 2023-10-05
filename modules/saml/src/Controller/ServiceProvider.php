@@ -10,6 +10,8 @@ use SAML2\Binding;
 use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
+use SAML2\HTTPPost;
+use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
 use SAML2\Response as SAML2_Response;
