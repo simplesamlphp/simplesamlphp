@@ -60,7 +60,7 @@ class ErrorTest extends TestCase
     {
         $customErrorCode = 'CUSTOMCODE';
 
-        $customError = new class($customErrorCode) extends Error
+        $customError = new class ($customErrorCode) extends Error
         {
             protected function getErrorCodes(): ErrorCodes
             {

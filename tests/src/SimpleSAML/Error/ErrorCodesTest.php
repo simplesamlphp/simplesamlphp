@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorCodesTest extends TestCase
 {
-
     public function testCanGetFallbackValuesForNonExistentErrorCode(): void
     {
         $nonExistentCode = 'nonexistent';
