@@ -50,6 +50,9 @@ class ErrorCodes
     public const USERABORTED = 'USERABORTED';
     public const WRONGUSERPASS = 'WRONGUSERPASS';
 
+    public const KEY_TITLE = 'title';
+    public const KEY_DESCRIPTION = 'descr';
+
 
     /**
      * Fetch all default translation strings for error code titles.
@@ -95,17 +98,27 @@ class ErrorCodes
         ];
     }
 
+    /**
+     * Fetch all title translation strings for custom error codes.
+     *
+     * Extend this to define custom error codes and their title translations.
+     *
+     * @return array A map from custom error code to error code title
+     */
+    public static function getCustomErrorCodeTitles(): array
+    {
+        return [];
+    }
+
 
     /**
      * Fetch all translation strings for error code titles.
-     *
-     * Extend this to add error codes.
      *
      * @return array A map from error code to error code title
      */
     public static function getAllErrorCodeTitles(): array
     {
-        return self::defaultGetAllErrorCodeTitles();
+        return array_merge(self::defaultGetAllErrorCodeTitles(), static::getCustomErrorCodeTitles());
     }
 
 
@@ -201,15 +214,25 @@ class ErrorCodes
     }
 
     /**
-     * Fetch all translation strings for error code descriptions.
+     * Fetch all description translation strings for custom error codes.
      *
-     * Extend this to add error codes.
+     * Extend this to define custom error codes and their description translations.
+     *
+     * @return array A map from error code to error code description
+     */
+    public static function getCustomErrorCodeDescriptions(): array
+    {
+        return [];
+    }
+
+    /**
+     * Fetch all translation strings for error code descriptions.
      *
      * @return array A map from error code to error code description
      */
     public static function getAllErrorCodeDescriptions(): array
     {
-        return self::defaultGetAllErrorCodeDescriptions();
+        return array_merge(self::defaultGetAllErrorCodeDescriptions(), static::getCustomErrorCodeDescriptions());
     }
 
 
@@ -223,8 +246,8 @@ class ErrorCodes
     public static function getAllErrorCodeMessages(): array
     {
         return [
-            'title' => self::getAllErrorCodeTitles(),
-            'descr' => self::getAllErrorCodeDescriptions(),
+            self::KEY_TITLE => self::getAllErrorCodeTitles(),
+            self::KEY_DESCRIPTION => self::getAllErrorCodeDescriptions(),
         ];
     }
 
@@ -277,8 +300,8 @@ class ErrorCodes
     public static function getErrorCodeMessage(string $errorCode): array
     {
         return [
-            'title' => self::getErrorCodeTitle($errorCode),
-            'descr' => self::getErrorCodeDescription($errorCode),
+            self::KEY_TITLE => self::getErrorCodeTitle($errorCode),
+            self::KEY_DESCRIPTION => self::getErrorCodeDescription($errorCode),
         ];
     }
 }

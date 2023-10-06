@@ -87,9 +87,9 @@ class Error extends Exception
      * The error can either be given as a string, or as an array. If it is an array, the first element in the array
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
-     * @param string|array $errorCode One of the error codes defined in the errors dictionary.
-     * @param \Throwable   $cause The exception which caused this fatal error (if any). Optional.
-     * @param int|null     $httpCode The HTTP response code to use. Optional.
+     * @param string|array     $errorCode One of the error codes defined in the errors dictionary.
+     * @param Throwable|null   $cause The exception which caused this fatal error (if any). Optional.
+     * @param int|null         $httpCode The HTTP response code to use. Optional.
      */
     public function __construct(string|array $errorCode, Throwable $cause = null, ?int $httpCode = null)
     {
@@ -106,8 +106,9 @@ class Error extends Exception
             $this->httpCode = $httpCode;
         }
 
-        $this->dictTitle = ErrorCodes::getErrorCodeTitle($this->errorCode);
-        $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
+        $errorCodes = $this->getErrorCodes();
+        $this->dictTitle = $errorCodes::getErrorCodeTitle($this->errorCode);
+        $this->dictDescr = $errorCodes::getErrorCodeDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
             $msg = $this->errorCode . '(';
@@ -123,6 +124,18 @@ class Error extends Exception
             $msg = $this->errorCode;
         }
         parent::__construct($msg, -1, $cause);
+    }
+
+    /**
+     * Retrieve the ErrorCodes instance to use for resolving dictionary title and description tags.
+     *
+     * Extend this to use custom ErrorCodes instance (with custom error codes and their title / description tags).
+     *
+     * @return ErrorCodes
+     */
+    protected function getErrorCodes(): ErrorCodes
+    {
+        return new ErrorCodes();
     }
 
 
