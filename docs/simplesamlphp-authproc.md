@@ -31,15 +31,15 @@ The configuration of *Auth Proc Filters* is a list of filters with priority as *
 ```php
 'authproc.idp' => [
     10 => [
-        'class' => 'core:AttributeMap', 
+        'class' => 'core:AttributeMap',
         'addurnprefix'
     ],
     20 => 'core:TargetedID',
     50 => 'core:AttributeLimit',
     90 => [
-        'class' => 'consent:Consent', 
-        'store' => 'consent:Cookie', 
-        'focus' => 'yes', 
+        'class' => 'consent:Consent',
+        'store' => 'consent:Cookie',
+        'focus' => 'yes',
         'checked' => true
     ],
 ],
@@ -69,13 +69,13 @@ This is analogous to:
 ],
 ```
 
-Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
+Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alternatives above. Here is an example of provided parameters to the consent module:
 
 ```php
 90 => [
-    'class' => 'consent:Consent', 
-    'store' => 'consent:Cookie', 
-    'focus' => 'yes', 
+    'class' => 'consent:Consent',
+    'store' => 'consent:Cookie',
+    'focus' => 'yes',
     'checked' => true,
 ],
 ```

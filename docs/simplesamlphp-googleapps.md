@@ -37,7 +37,7 @@ Here is an example of typical user input when creating a certificate request:
 Country Name (2 letter code) [AU]:NO
 State or Province Name (full name) [Some-State]:Trondheim
 Locality Name (eg, city) []:Trondheim
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNINETT
+Organization Name (eg, company) [Internet Widgets Pty Ltd]:UNINETT
 Organizational Unit Name (eg, section) []:
 Common Name (eg, YOUR name) []:dev2.andreas.feide.no
 Email Address []:
