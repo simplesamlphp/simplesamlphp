@@ -58,6 +58,10 @@ class ErrorCodes
      * Fetch all default translation strings for error code titles.
      *
      * @return array A map from error code to error code title
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getDefaultTitles()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     final public static function defaultGetAllErrorCodeTitles(): array
     {
@@ -99,13 +103,40 @@ class ErrorCodes
     }
 
     /**
+     * Fetch all default translation strings for error code titles.
+     *
+     * @return array A map from error code to error code title
+     */
+    final public function getDefaultTitles(): array
+    {
+        // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeTitles() to this method.
+        return self::defaultGetAllErrorCodeTitles();
+    }
+
+    /**
+     * Fetch all title translation strings for custom error codes.
+     *
+     * Extend this to define custom error codes and their title translations.
+     *
+     * @return array A map from custom error code to error code title
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getCustomTitles()
+     * TODO NextMajorRelease Remove this method.
+     */
+    public static function getCustomErrorCodeTitles(): array
+    {
+        return [];
+    }
+
+    /**
      * Fetch all title translation strings for custom error codes.
      *
      * Extend this to define custom error codes and their title translations.
      *
      * @return array A map from custom error code to error code title
      */
-    public static function getCustomErrorCodeTitles(): array
+    public function getCustomTitles(): array
     {
         return [];
     }
@@ -115,10 +146,24 @@ class ErrorCodes
      * Fetch all translation strings for error code titles.
      *
      * @return array A map from error code to error code title
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getAllTitles()
+     * TODO NextMajorRelease Remove this method.
      */
     public static function getAllErrorCodeTitles(): array
     {
         return array_merge(self::defaultGetAllErrorCodeTitles(), static::getCustomErrorCodeTitles());
+    }
+
+    /**
+     * Fetch all translation strings for error code titles.
+     *
+     * @return array A map from error code to error code title
+     */
+    public function getAllTitles(): array
+    {
+        return array_merge($this->getDefaultTitles(), $this->getCustomTitles());
     }
 
 
@@ -126,6 +171,10 @@ class ErrorCodes
      * Fetch all default translation strings for error code descriptions.
      *
      * @return array A map from error code to error code description
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getDefaultDescriptions()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     final public static function defaultGetAllErrorCodeDescriptions(): array
     {
@@ -214,13 +263,40 @@ class ErrorCodes
     }
 
     /**
+     * Fetch all default translation strings for error code descriptions.
+     *
+     * @return array A map from error code to error code description
+     */
+    final public function getDefaultDescriptions(): array
+    {
+        // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeDescriptions() to this method.
+        return self::defaultGetAllErrorCodeDescriptions();
+    }
+
+    /**
+     * Fetch all description translation strings for custom error codes.
+     *
+     * Extend this to define custom error codes and their description translations.
+     *
+     * @return array A map from error code to error code description
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getCustomDescriptions()
+     * TODO NextMajorRelease Remove this method.
+     */
+    public static function getCustomErrorCodeDescriptions(): array
+    {
+        return [];
+    }
+
+    /**
      * Fetch all description translation strings for custom error codes.
      *
      * Extend this to define custom error codes and their description translations.
      *
      * @return array A map from error code to error code description
      */
-    public static function getCustomErrorCodeDescriptions(): array
+    public function getCustomDescriptions(): array
     {
         return [];
     }
@@ -229,10 +305,19 @@ class ErrorCodes
      * Fetch all translation strings for error code descriptions.
      *
      * @return array A map from error code to error code description
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getAllDescriptions()
+     * TODO NextMajorRelease Remove this method.
      */
     public static function getAllErrorCodeDescriptions(): array
     {
         return array_merge(self::defaultGetAllErrorCodeDescriptions(), static::getCustomErrorCodeDescriptions());
+    }
+
+    public function getAllDescriptions(): array
+    {
+        return array_merge($this->getDefaultDescriptions(), $this->getCustomDescriptions());
     }
 
 
@@ -242,12 +327,30 @@ class ErrorCodes
      * Convenience-method for template-callers
      *
      * @return array An array containing both errorcode maps.
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getAllMessages()
+     * TODO NextMajorRelease Remove this method.
      */
     public static function getAllErrorCodeMessages(): array
     {
         return [
             self::KEY_TITLE => self::getAllErrorCodeTitles(),
             self::KEY_DESCRIPTION => self::getAllErrorCodeDescriptions(),
+        ];
+    }
+
+    /**
+     * Get a map of both errorcode titles and descriptions
+     *
+     * Convenience-method for template-callers
+     *
+     * @return array An array containing both errorcode maps.
+     */
+    public function getAllMessages(): array
+    {
+        return [
+            self::KEY_TITLE => $this->getAllTitles(),
+            self::KEY_DESCRIPTION => $this->getAllDescriptions(),
         ];
     }
 
@@ -258,6 +361,10 @@ class ErrorCodes
      * @param string $errorCode The error code to look up
      *
      * @return string A string to translate
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getTitle()
+     * TODO NextMajorRelease Remove this method.
      */
     public static function getErrorCodeTitle(string $errorCode): string
     {
@@ -269,6 +376,17 @@ class ErrorCodes
         }
     }
 
+    /**
+     * Fetch a translation string for a title for a given error code.
+     *
+     * @param string $errorCode The error code to look up
+     *
+     * @return string A string to translate
+     */
+    public function getTitle(string $errorCode): string
+    {
+        return (string)($this->getAllTitles()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'title_'));
+    }
 
     /**
      * Fetch a translation string for a description for a given error code.
@@ -276,6 +394,10 @@ class ErrorCodes
      * @param string $errorCode The error code to look up
      *
      * @return string A string to translate
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getDescription()
+     * TODO NextMajorRelease Remove this method.
      */
     public static function getErrorCodeDescription(string $errorCode): string
     {
@@ -287,6 +409,38 @@ class ErrorCodes
         }
     }
 
+    /**
+     * Fetch a translation string for a description for a given error code.
+     *
+     * @param string $errorCode The error code to look up
+     *
+     * @return string A string to translate
+     */
+    public function getDescription(string $errorCode): string
+    {
+        return (string)($this->getAllDescriptions()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'descr_'));
+    }
+
+    /**
+     * Get both title and description for a specific error code
+     *
+     * Convenience-method for template-callers
+     *
+     * @param string $errorCode The error code to look up
+     *
+     * @return array An array containing both errorcode strings.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getMessage()
+     * TODO NextMajorRelease Remove this method.
+     */
+    public static function getErrorCodeMessage(string $errorCode): array
+    {
+        return [
+            self::KEY_TITLE => self::getErrorCodeTitle($errorCode),
+            self::KEY_DESCRIPTION => self::getErrorCodeDescription($errorCode),
+        ];
+    }
 
     /**
      * Get both title and description for a specific error code
@@ -297,11 +451,11 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode strings.
      */
-    public static function getErrorCodeMessage(string $errorCode): array
+    public function getMessage(string $errorCode): array
     {
         return [
-            self::KEY_TITLE => self::getErrorCodeTitle($errorCode),
-            self::KEY_DESCRIPTION => self::getErrorCodeDescription($errorCode),
+            self::KEY_TITLE => $this->getTitle($errorCode),
+            self::KEY_DESCRIPTION => $this->getDescription($errorCode),
         ];
     }
 }

@@ -91,8 +91,12 @@ class Error extends Exception
      * @param Throwable|null   $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null         $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct(string|array $errorCode, Throwable $cause = null, ?int $httpCode = null)
-    {
+    public function __construct(
+        string|array $errorCode,
+        Throwable $cause = null,
+        ?int $httpCode = null,
+        ErrorCodes $errorCodes = null
+    ) {
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
             unset($this->parameters[0]);
@@ -106,9 +110,9 @@ class Error extends Exception
             $this->httpCode = $httpCode;
         }
 
-        $errorCodes = $this->getErrorCodes();
-        $this->dictTitle = $errorCodes::getErrorCodeTitle($this->errorCode);
-        $this->dictDescr = $errorCodes::getErrorCodeDescription($this->errorCode);
+        $errorCodes = $errorCodes ?? $this->getErrorCodes();
+        $this->dictTitle = $errorCodes->getTitle($this->errorCode);
+        $this->dictDescr = $errorCodes->getDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
             $msg = $this->errorCode . '(';
