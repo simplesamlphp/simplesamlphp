@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Configuration, Error};
+use SimpleSAML\{Configuration, Error, Utils};
 
 use function chmod;
 use function dirname;
@@ -37,6 +37,8 @@ use function unlink;
 
 class System
 {
+    protected Utils $utils;
+
     public const WINDOWS = 1;
     public const LINUX = 2;
     public const OSX = 3;
@@ -46,6 +48,10 @@ class System
     public const IRIX = 7;
     public const SUNOS = 8;
 
+    public function __construct(Utils $utils = null)
+    {
+        $this->utils = $utils ?? new Utils();
+    }
 
     /**
      * This function returns the Operating System we are running on.
@@ -94,10 +100,8 @@ class System
      */
     public function getTempDir(): string
     {
-        $globalConfig = Configuration::getInstance();
-
         $tempDir = rtrim(
-            $globalConfig->getOptionalString(
+            $this->utils->globalConfig()->getOptionalString(
                 'tempdir',
                 sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'simplesaml'
             ),
@@ -146,8 +150,7 @@ class System
     public function resolvePath(string $path, string $base = null): string
     {
         if ($base === null) {
-            $config = Configuration::getInstance();
-            $base = $config->getBaseDir();
+            $base = $this->utils->globalConfig()->getBaseDir();
         }
 
         // normalise directory separator

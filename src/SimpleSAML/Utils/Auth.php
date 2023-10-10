@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Auth as Authentication, Error, Module, Session};
+use SimpleSAML\{Auth as Authentication, Error, Utils};
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -14,6 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Auth
 {
+    protected Utils $utils;
+
+    public function __construct(Utils $utils = null)
+    {
+        $this->utils = $utils ?? new Utils();
+    }
+
     /**
      * Retrieve an admin logout URL.
      *
@@ -24,6 +31,7 @@ class Auth
      */
     public function getAdminLogoutURL(?string $returnTo = null): string
     {
+        // TODO move to factory
         $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo);
     }
@@ -37,8 +45,8 @@ class Auth
      */
     public function isAdmin(): bool
     {
-        $session = Session::getSessionFromRequest();
-        return $session->isValid('admin') || $session->isValid('login-admin');
+        return $this->utils->session()->isValid('admin') ||
+            $this->utils->session()->isValid('login-admin');
     }
 
 
@@ -58,7 +66,8 @@ class Auth
         }
 
         // not authenticated as admin user, start authentication
-        if (Authentication\Source::getById('admin') !== null) {
+        if ($this->utils->authSource()->getById('admin') !== null) {
+            // TODO move to factory
             $as = new Authentication\Simple('admin');
             return $as->login();
         } else {

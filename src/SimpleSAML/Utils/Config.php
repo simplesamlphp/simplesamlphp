@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Configuration, Error};
+use SimpleSAML\{Error, Utils};
 
 use function dirname;
 use function getenv;
@@ -18,6 +18,13 @@ use function sprintf;
  */
 class Config
 {
+    protected Utils $utils;
+
+    public function __construct(Utils $utils = null)
+    {
+        $this->utils = $utils ?? new Utils();
+    }
+
     /**
      * Resolves a path that may be relative to the cert-directory.
      *
@@ -29,10 +36,8 @@ class Config
      */
     public function getCertPath(string $path): string
     {
-        $globalConfig = Configuration::getInstance();
-        $base = $globalConfig->getPathValue('certdir', 'cert/');
-        $sysUtils = new System();
-        return $sysUtils->resolvePath($path, $base);
+        $base = $this->utils->globalConfig()->getPathValue('certdir', 'cert/');
+        return $this->utils->system()->resolvePath($path, $base);
     }
 
 
@@ -52,7 +57,7 @@ class Config
      */
     public function getSecretSalt(): string
     {
-        $secretSalt = Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = $this->utils->globalConfig()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
             throw new Error\CriticalConfigurationError(
                 'The "secretsalt" configuration option must be set to a secret value.',

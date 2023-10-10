@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Exception;
 use InvalidArgumentException;
-use SimpleSAML\{Configuration, Error, Logger, Module, Session};
+use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -60,6 +61,16 @@ use function version_compare;
  */
 class HTTP
 {
+    protected Utils $utils;
+
+    /**
+     * @throws Exception
+     */
+    public function __construct(Utils $utils = null)
+    {
+        $this->utils = $utils ?? new Utils();
+    }
+
     /**
      * Determine if the user agent can support cookies being sent with SameSite equal to "None".
      * Browsers without support may drop the cookie and or treat it as stricter setting
@@ -117,20 +128,18 @@ class HTTP
      */
     private function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
-        $session = Session::getSessionFromRequest();
-        $id = $this->savePOSTData($session, $destination, $data);
+        $id = $this->savePOSTData($this->utils->session(), $destination, $data);
 
-        if ($session->isTransient()) {
+        if ($this->utils->session()->isTransient()) {
             // this is a transient session, it is pointless to continue
             throw new Error\Exception('Cannot save POST data to a transient session.');
         }
 
         /** @var string $session_id */
-        $session_id = $session->getSessionId();
+        $session_id = $this->utils->session()->getSessionId();
 
         // encrypt the session ID and the random ID
-        $cryptoUtils = new Crypto();
-        $info = base64_encode($cryptoUtils->aesEncrypt($session_id . ':' . $id));
+        $info = base64_encode($this->utils->crypto()->aesEncrypt($session_id . ':' . $id));
 
         $url = Module::getModuleURL('core/postredirect', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);

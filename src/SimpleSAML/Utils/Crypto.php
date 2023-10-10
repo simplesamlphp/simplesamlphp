@@ -7,7 +7,7 @@ namespace SimpleSAML\Utils;
 use Exception;
 use InvalidArgumentException;
 use PDO;
-use SimpleSAML\{Configuration, Database, Error, Logger};
+use SimpleSAML\{Configuration, Database, Error, Logger, Utils};
 
 use function base64_decode;
 use function base64_encode;
@@ -42,6 +42,16 @@ use function trim;
 
 class Crypto
 {
+    protected Utils $utils;
+
+    /**
+     * @throws Exception
+     */
+    public function __construct(Utils $utils = null)
+    {
+        $this->utils = $utils ?? new Utils();
+    }
+
     /**
      * Decrypt data using AES-256-CBC and the key provided as a parameter.
      *
@@ -108,8 +118,7 @@ class Crypto
     public function aesDecrypt(string $ciphertext, string $secret = null): string
     {
         if ($secret === null) {
-            $configUtils = new Config();
-            $secret = $configUtils->getSecretSalt();
+            $secret = $this->utils->config()->getSecretSalt();
         }
 
         return $this->aesDecryptInternal($ciphertext, $secret);
@@ -173,8 +182,7 @@ class Crypto
     public function aesEncrypt(string $data, string $secret = null): string
     {
         if ($secret === null) {
-            $configUtils = new Config();
-            $secret = $configUtils->getSecretSalt();
+            $secret = $this->utils->config()->getSecretSalt();
         }
 
         return $this->aesEncryptInternal($data, $secret);
@@ -417,7 +425,7 @@ class Crypto
 
             $location = substr($location, 6);
 
-            $globalConfig = Configuration::getInstance();
+            $globalConfig = $this->utils->globalConfig();
             $cert_table = $globalConfig->getOptionalString('cert.pdo.table', 'certificates');
             $key_table = $globalConfig->getOptionalString('cert.pdo.keytable', 'private_keys');
             $apply_prefix = $globalConfig->getOptionalBoolean('cert.pdo.apply_prefix', true);
@@ -425,7 +433,7 @@ class Crypto
             $data_column = $globalConfig->getOptionalString('cert.pdo.data_column', 'data');
 
             try {
-                $db = Database::getInstance();
+                $db = $this->database ?? Database::getInstance();
             } catch (Exception $e) {
                 Logger::error('failed to instantiate database: ' . $e->getMessage());
                 return null;
@@ -461,8 +469,7 @@ class Crypto
 
         // Attempt to load data from file
         if (!$full_path) {
-            $configUtils = new Config();
-            $location = $configUtils->getCertPath($location);
+            $location = $this->utils->config()->getCertPath($location);
         }
 
         $data = @file_get_contents($location);

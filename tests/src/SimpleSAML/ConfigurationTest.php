@@ -32,6 +32,8 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testLoadDefaultInstance(): void
     {
+        // Override config dir that we have set as env in phpunit.xml
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         $this->expectException(Error\CriticalConfigurationError::class);
         Configuration::loadFromArray(['key' => 'value'], '', 'dummy');
         Configuration::getInstance();
@@ -44,6 +46,8 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testCriticalConfigurationError(): void
     {
+        // Override config dir that we have set as env in phpunit.xml
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         try {
             Configuration::getInstance();
             $this->fail('Exception expected');

@@ -22,4 +22,7 @@
       <directory>./tests</directory>
     </exclude>
   </source>
+  <php>
+    <env name="REDIRECT_SIMPLESAMLPHP_CONFIG_DIR" value="tests/config" force="true"/>
+  </php>
 </phpunit>

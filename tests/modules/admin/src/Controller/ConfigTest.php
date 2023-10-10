@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\admin\Controller;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Session, Utils};
 use SimpleSAML\Module\admin\Controller;
@@ -20,11 +21,13 @@ class ConfigTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Utils\Auth */
-    protected Utils\Auth $authUtils;
+    protected MockObject $utilsMock;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;
+    private MockObject $requestMock;
+    private MockObject $responseMock;
+    private MockObject $utilAuthMock;
 
 
     /**
@@ -34,6 +37,7 @@ class ConfigTest extends TestCase
     {
         parent::setUp();
 
+        // TODO move to mocks
         $this->config = new class (
             [
                 'module.enable' => ['admin' => true],
@@ -56,21 +60,24 @@ class ConfigTest extends TestCase
             'simplesaml'
         );
 
-        $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): ?Response
-            {
-                // stub
-                return null;
-            }
-        };
+        $this->utilsMock = $this->createMock(Utils::class);
 
         $session = $this->createMock(Session::class);
         $session->method('getData')->willReturn(['tag_name' => 'v1.18.7', 'html_url' => 'https://example.org']);
 
         /** @var \SimpleSAML\Session $session */
         $this->session = $session;
+
+        $this->requestMock = $this->createMock(Request::class);
+        $this->responseMock = $this->createMock(Response::class);
+
+        $this->utilAuthMock = $this->createMock(Utils\Auth::class);
     }
 
+    protected function mocked(): Controller\Config
+    {
+        return new Controller\Config($this->config, $this->session, $this->utilsMock);
+    }
 
     /**
      */
@@ -82,12 +89,23 @@ class ConfigTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\Config($this->config, $this->session);
-        $c->setAuthUtils($this->authUtils);
+        $c = new Controller\Config($this->config, $this->session, $this->utilsMock);
         $response = $c->diagnostics($request);
 
         $this->assertTrue($response->isSuccessful());
     }
+
+    public function testDiagnosticsRequireAdmin(): void
+    {
+        $this->responseMock->method('isRedirection')->willReturn(true);
+        $this->utilAuthMock->method('requireAdmin')->willReturn($this->responseMock);
+        $this->utilsMock->method('auth')->willReturn($this->utilAuthMock);
+
+        $response = $this->mocked()->diagnostics($this->requestMock);
+
+        $this->assertTrue($response->isRedirection());
+    }
+
 
 
     /**
@@ -100,8 +118,7 @@ class ConfigTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\Config($this->config, $this->session);
-        $c->setAuthUtils($this->authUtils);
+        $c = new Controller\Config($this->config, $this->session, $this->utilsMock);
         $response = $c->main($request);
 
         $this->assertTrue($response->isSuccessful());
@@ -118,8 +135,7 @@ class ConfigTest extends TestCase
             'GET'
         );
 
-        $c = new Controller\Config($this->config, $this->session);
-        $c->setAuthUtils($this->authUtils);
+        $c = new Controller\Config($this->config, $this->session, $this->utilsMock);
         $response = $c->phpinfo($request);
 
         $this->assertTrue($response->isSuccessful());

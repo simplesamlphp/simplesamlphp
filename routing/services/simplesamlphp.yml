@@ -11,6 +11,12 @@ services:
   SimpleSAML\Session:
     factory: ['SimpleSAML\Session', 'getSessionFromRequest']
 
+  SimpleSAML\Utils:
+    class: SimpleSAML\Utils
+    arguments:
+      - '@SimpleSAML\Configuration'
+      - '@SimpleSAML\Session'
+
   SimpleSAML\Auth\AuthenticationFactory:
     class: SimpleSAML\Auth\AuthenticationFactory
     arguments:

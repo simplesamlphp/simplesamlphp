@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Auth;
 
+use Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use ReflectionClass;
-use SimpleSAML\{Auth, Configuration};
+use SimpleSAML\{Auth, Configuration, Error\AuthSource, Session, Utils};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
@@ -15,6 +17,77 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
  */
 class SimpleTest extends ClearStateTestCase
 {
+    private MockObject $sessionMock;
+    private string $authSourceSample;
+    private MockObject $appConfigMock;
+    private MockObject $utilsMock;
+    private MockObject $authSourceMock;
+    private MockObject $utilAuthSourceMock;
+
+    protected function setUp(): void
+    {
+        $this->sessionMock = $this->createMock(Session::class);
+
+        $this->authSourceSample = 'auth-source-sample';
+        $this->appConfigMock = $this->createMock(Configuration::class);
+
+        $this->authSourceMock = $this->createMock(Auth\Source::class);
+
+        $this->utilAuthSourceMock = $this->createMock(Utils\AuthSource::class);
+
+        $this->utilsMock = $this->createMock(Utils::class);
+        $this->utilsMock->method('authSource')->willReturn($this->utilAuthSourceMock);
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function mocked(): Auth\Simple
+    {
+        return new Auth\Simple(
+            $this->authSourceSample,
+            $this->appConfigMock,
+            $this->sessionMock,
+            $this->utilsMock
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testCanInstantiate(): void
+    {
+        $this->assertInstanceOf(Auth\Simple::class, $this->mocked());
+    }
+
+    /**
+     * @throws AuthSource
+     * @throws Exception
+     */
+    public function testCanGetAuthSource(): void
+    {
+        $this->authSourceMock->method('getAuthId')->willReturn($this->authSourceSample);
+        $this->utilAuthSourceMock->method('getById')->willReturn($this->authSourceMock);
+
+        $authSource = $this->mocked()->getAuthSource();
+
+        $this->assertSame($this->authSourceSample, $authSource->getAuthId());
+    }
+
+    public function testThrowsWhenCantGetAuthSource(): void
+    {
+        $this->utilAuthSourceMock->method('getById')->willThrowException(new Exception('test'));
+        $this->expectException(AuthSource::class);
+        $this->mocked()->getAuthSource();
+    }
+
+    public function testThrowsWhenAuthSourceNotFound(): void
+    {
+        $this->utilAuthSourceMock->method('getById')->willReturn(null);
+        $this->expectException(AuthSource::class);
+        $this->mocked()->getAuthSource();
+    }
+
     /**
      * @test
      */
