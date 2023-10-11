@@ -69,7 +69,7 @@ This is analogous to:
 ],
 ```
 
-Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
+Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alternatives above. Here is an example of provided parameters to the consent module:
 
 ```php
 90 => [

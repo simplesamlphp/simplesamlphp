@@ -32,7 +32,7 @@ jobs:
         with:
           path: '**/*.md'
           check_filenames: true
-          ignore_words_list: tekst
+          ignore_words_list: tekst,Widgits
 
   build:
     name: Build documentation
