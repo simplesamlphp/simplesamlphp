@@ -28,7 +28,7 @@ jobs:
           ignore_path: .markdownlintignore
 
       - name: Perform spell check
-        uses: codespell-project/actions-codespell@master
+        uses: codespell-project/actions-codespell@v2
         with:
           path: '**/*.md'
           check_filenames: true
