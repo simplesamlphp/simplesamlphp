@@ -1,3 +1,5 @@
 document.getElementById('file-input').addEventListener('change', function () {
-    document.getElementById('show-file').innerHTML = this.files.item(0).name;
+    var showFile = document.getElementById('show-file');
+    var replacement = document.createTextNode(this.files.item(0).name);
+    showFile.replaceChild(replacement, showFile.childNodes[0]);
 });
