@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Fixed a missing Accept-header for metadata queries (#1865)
+* Update vulnerable composer (SSP = not affected)
 
 ## Version 2.0.6
 
