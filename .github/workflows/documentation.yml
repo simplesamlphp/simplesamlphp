@@ -11,6 +11,7 @@ on:  # yamllint disable-line rule:truthy
     branches: [master, simplesamlphp-*]
     paths:
       - '**.md'
+  workflow_dispatch:
 
 jobs:
   quality:
@@ -31,7 +32,8 @@ jobs:
         with:
           path: '**/*.md'
           check_filenames: true
-          ignore_words_list: tekst,Widgits
+          # Words must be lowercase
+          ignore_words_list: tekst,widgits
 
   build:
     name: Build documentation
