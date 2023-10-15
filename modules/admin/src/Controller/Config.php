@@ -49,10 +49,11 @@ class Config
     public function __construct(
         protected Configuration $config,
         protected Session $session,
-        Utils $utils = null
+        Utils $utils = null,
+        Menu $menu = null
     ) {
-        $this->menu = new Menu();
-        $this->utils = $utils ?? new Utils();
+        $this->utils = $utils ?? new Utils($this->config, $this->session);
+        $this->menu = $menu ?? new Menu($utils);
     }
 
 
@@ -70,6 +71,7 @@ class Config
             return $response;
         }
 
+        // TODO Consider moving to Template factory.
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
             'remaining' => $this->session->getAuthData('admin', 'Expire') - time(),

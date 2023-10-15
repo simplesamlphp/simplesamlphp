@@ -12,6 +12,9 @@ use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Utils\AuthSource;
 use SimpleSAML\Utils\System;
 
+/**
+ * Provides various SimpleSAMLphp utilities.
+ */
 class Utils
 {
     protected ?Crypto $crypto = null;
@@ -20,6 +23,7 @@ class Utils
     protected ?Auth $auth = null;
     protected ?AuthSource $authSource = null;
     protected ?System $system = null;
+    protected ?Module $module = null;
 
     public function __construct(
         protected ?Configuration $globalConfig = null,
@@ -89,6 +93,11 @@ class Utils
     public function system(): System
     {
         return $this->system ??= new System($this);
+    }
+
+    public function module(): Module
+    {
+        return $this->module ??= new Module($this);
     }
 
     // TODO mivanci Add any other utility class to be used throughout the codebase
