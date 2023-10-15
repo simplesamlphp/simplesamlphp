@@ -31,7 +31,7 @@ class Auth
      */
     public function getAdminLogoutURL(?string $returnTo = null): string
     {
-        // TODO move to factory
+        // TODO mivanci Move to factory
         $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo);
     }
@@ -67,7 +67,7 @@ class Auth
 
         // not authenticated as admin user, start authentication
         if ($this->utils->authSource()->getById('admin') !== null) {
-            // TODO move to factory
+            // TODO mivanci Move to factory
             $as = new Authentication\Simple('admin');
             return $as->login();
         } else {

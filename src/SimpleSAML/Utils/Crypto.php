@@ -433,7 +433,8 @@ class Crypto
             $data_column = $globalConfig->getOptionalString('cert.pdo.data_column', 'data');
 
             try {
-                $db = $this->database ?? Database::getInstance();
+                // TODO mivanci Move to factory
+                $db = Database::getInstance();
             } catch (Exception $e) {
                 Logger::error('failed to instantiate database: ' . $e->getMessage());
                 return null;

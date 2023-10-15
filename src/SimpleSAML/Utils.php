@@ -19,6 +19,7 @@ class Utils
     protected ?HTTP $http = null;
     protected ?Auth $auth = null;
     protected ?AuthSource $authSource = null;
+    protected ?System $system = null;
 
     public function __construct(
         protected ?Configuration $globalConfig = null,
@@ -43,6 +44,9 @@ class Utils
         return $this->session ??= Session::getSessionFromRequest();
     }
 
+    /**
+     * @throws Exception
+     */
     public function authSourcesConfig(): Configuration
     {
         return $this->authSourcesConfig ??= Configuration::getConfig('authsources.php');
@@ -87,5 +91,5 @@ class Utils
         return $this->system ??= new System($this);
     }
 
-    // TODO Add any other utility class to be used throughout the codebase
+    // TODO mivanci Add any other utility class to be used throughout the codebase
 }

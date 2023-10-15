@@ -37,7 +37,7 @@ class ConfigTest extends TestCase
     {
         parent::setUp();
 
-        // TODO move to mocks
+        // TODO mivanci move to mocks
         $this->config = new class (
             [
                 'module.enable' => ['admin' => true],
