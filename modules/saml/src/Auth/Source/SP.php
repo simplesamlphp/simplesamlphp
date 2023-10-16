@@ -873,9 +873,9 @@ class SP extends \SimpleSAML\Auth\Source
         if (
             $this->passAuthnContextClassRef
             && isset($state['saml:RequestedAuthnContext'])
-            && $state['saml:RequestedAuthnContext']['Comparison'] == Constants::COMPARISON_EXACT
+            && $state['saml:RequestedAuthnContext']['Comparison'] === Constants::COMPARISON_EXACT
             && isset($data['saml:sp:AuthnContext'])
-            && $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0] != $data['saml:sp:AuthnContext']
+            && $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0] !== $data['saml:sp:AuthnContext']
         ) {
             Logger::warning(sprintf(
                 "Reauthentication requires change in AuthnContext from '%s' to '%s'.",
