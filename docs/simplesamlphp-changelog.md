@@ -12,6 +12,7 @@ Released TBD
 * Fixed a missing Accept-header for metadata queries (#1865)
 * Update vulnerable composer (CVE-2023-43655; not affected)
 * Fixed a potential XSS-through-DOM (3x; not affected)
+* Fixed a warning in the RequestedAuthnContextSelector
 
 ## Version 2.0.6
 
