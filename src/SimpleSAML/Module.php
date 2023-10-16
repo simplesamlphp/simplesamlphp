@@ -6,6 +6,7 @@ namespace SimpleSAML;
 
 use Exception;
 use SimpleSAML\{Kernel, Utils};
+use Psr\Log\LoggerInterface;
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Filesystem\{Filesystem, Path};
@@ -105,6 +106,19 @@ class Module
      * @var array
      */
     public static array $module_info = [];
+    protected Configuration $config;
+    protected Utils $utils;
+    protected LoggerInterface $logger;
+
+    public function __construct(
+        Configuration $config = null,
+        Utils $utils = null,
+        LoggerInterface $logger = null
+    ) {
+        $this->config = $config ?? Configuration::getInstance();
+        $this->utils = $utils ?? new Utils($this->config);
+        $this->logger = $logger ?? new \SimpleSAML\Compat\Logger();
+    }
 
 
     /**
@@ -115,13 +129,32 @@ class Module
      * @param string $module Name of the module
      *
      * @return string The base directory of a module.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getDir()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function getModuleDir(string $module): string
     {
         $baseDir = dirname(__FILE__, 3) . '/modules';
+        // TODO return here
         $moduleDir = $baseDir . '/' . $module;
 
         return $moduleDir;
+    }
+
+    /**
+     * Retrieve the base directory for a module.
+     *
+     * The returned path name will be an absolute path.
+     *
+     * @param string $module Name of the module
+     *
+     * @return string The base directory of a module.
+     */
+    public function getDir(string $module): string
+    {
+        return static::getModuleDir($module);
     }
 
 
@@ -135,11 +168,31 @@ class Module
      * @return bool True if the given module is enabled, false otherwise.
      *
      * @throws \Exception If module.enable is set and is not boolean.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::isEnabled()
+     * TODO NextMajorRelease Remove.
      */
     public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getOptionalArray('module.enable', self::$core_modules));
+    }
+
+    /**
+     * Determine whether a module is enabled.
+     *
+     * Will return false if the given module doesn't exist.
+     *
+     * @param string $module Name of the module
+     *
+     * @return bool True if the given module is enabled, false otherwise.
+     *
+     * @throws \Exception If module.enable is set and is not boolean.
+     */
+    public function isEnabled(string $module): bool
+    {
+        return $this->isEnabledWithConf($module, $this->config->getOptionalArray('module.enable', self::$core_modules));
     }
 
 
@@ -155,9 +208,14 @@ class Module
      * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
      * @throws Error\BadRequest In case the request URI is malformed.
      * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::processRequest()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function process(Request $request = null): Response
     {
+        // TODO simplify with ??
         if ($request === null) {
             $request = Request::createFromGlobals();
         }
@@ -184,6 +242,7 @@ class Module
             $url = substr($url, $modEnd + 1);
         }
 
+        // TODO Move to instance method isEnabled()
         if (!self::isModuleEnabled($module)) {
             throw new Error\NotFound(sprintf("The module '%s' was either not found, or wasn't enabled.", $module));
         }
@@ -198,6 +257,7 @@ class Module
             throw new Error\BadRequest('Requested URL contained \'./\'.');
         }
 
+        // TODO Use $this->config
         $config = Configuration::getInstance();
 
         // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to.
@@ -235,6 +295,7 @@ class Module
             // this module has been migrated, but the route wasn't found
         }
 
+        // TODO Move to instance method getDir()
         $moduleDir = self::getModuleDir($module) . '/public/';
 
         // check for '.php/' in the path, the presence of which indicates that another php-script should handle the
@@ -255,6 +316,7 @@ class Module
         }
 
         $path = $moduleDir . $url;
+        // TODO Move to $this->utils
         $fileSystem = new Filesystem();
 
         if ($path[strlen($path) - 1] === '/') {
@@ -276,6 +338,7 @@ class Module
 
         if (!$fileSystem->exists($path)) {
             // file not found
+            // TODO Move to $this->logger
             Logger::info('Could not find file \'' . $path . '\'.');
             throw new Error\NotFound("The URL wasn't found in the module.");
         }
@@ -316,6 +379,7 @@ class Module
                 $contentType = mime_content_type($path);
             } else {
                 // mime_content_type doesn't exist. Return a default MIME type
+                // TODO Move to $this->logger
                 Logger::warning('Unable to determine mime content type of file: ' . $path);
                 $contentType = 'application/octet-stream';
             }
@@ -342,11 +406,32 @@ class Module
         return $response;
     }
 
+    /**
+     * Handler for module requests.
+     *
+     * This controller receives requests for pages hosted by modules, and processes accordingly. Depending on the
+     * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
+     * by another controller or by a static file.
+     *
+     * @param Request|null $request The request to process. Defaults to the current one.
+     *
+     * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
+     * @throws Error\BadRequest In case the request URI is malformed.
+     * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     */
+    public function processRequest(Request $request = null): Response|BinaryFileResponse
+    {
+        return self::process($request);
+    }
 
     /**
      * @param string $module
      * @param array $mod_config
      * @return bool
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::isEnabledWithConf()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
@@ -358,6 +443,7 @@ class Module
             return false;
         }
 
+        // TODO NextMajorRelease Move to instance method.
         $moduleDir = self::getModuleDir($module);
 
         if (!is_dir($moduleDir)) {
@@ -374,10 +460,19 @@ class Module
             throw new Exception("Invalid module.enable value for the '$module' module.");
         }
 
+        // TODO This can be array_key_exists()
         $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
         return $core_module ? true : false;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function isEnabledWithConf(string $module, array $config): bool
+    {
+        return self::isModuleEnabledWithConf($module, $config);
     }
 
 
@@ -387,6 +482,10 @@ class Module
      * @return string[] One string for each module.
      *
      * @throws \Exception If we cannot open the module's directory.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getAll()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function getModules(): array
     {
@@ -394,8 +493,10 @@ class Module
             return self::$modules;
         }
 
+        // TODO Move to instance method getDir
         $path = self::getModuleDir('.');
 
+        // TODO Move to $this->utils
         $finder = new Finder();
         $finder->directories()->in($path)->depth(0);
 
@@ -404,6 +505,18 @@ class Module
         }
 
         return self::$modules;
+    }
+
+    /**
+     * Get available modules.
+     *
+     * @return string[] One string for each module.
+     *
+     * @throws \Exception If we cannot open the module's directory.
+     */
+    public function getAll(): array
+    {
+        return self::getModules();
     }
 
 
@@ -425,6 +538,10 @@ class Module
      * @return string The classname.
      *
      * @throws \Exception If the class cannot be resolved.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getClass()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function resolveClass(string $id, string $type, ?string $subclass = null): string
     {
@@ -435,9 +552,11 @@ class Module
             if (!class_exists($className)) {
                 throw new Exception("Could not resolve '$id': no class named '$className'.");
             }
+            // TODO Move to instance method getAll()
         } elseif (!in_array($tmp[0], self::getModules())) {
             // Module not installed
             throw new Exception('No module named \'' . $tmp[0] . '\' has been installed.');
+            // TODO Move to instance method isEnabled()
         } elseif (!self::isModuleEnabled($tmp[0])) {
             // Module installed, but not enabled
             throw new Exception('The module \'' . $tmp[0] . '\' is not enabled.');
@@ -459,6 +578,57 @@ class Module
         return $className;
     }
 
+    /**
+     * Resolve module class.
+     *
+     * This function takes a string on the form "<module>:<class>" and converts it to a class
+     * name. It can also check that the given class is a subclass of a specific class. The
+     * resolved classname will be "\SimleSAML\Module\<module>\<$type>\<class>.
+     *
+     * It is also possible to specify a full classname instead of <module>:<class>.
+     *
+     * An exception will be thrown if the class can't be resolved.
+     *
+     * @param string      $id The string we should resolve.
+     * @param string      $type The type of the class.
+     * @param class-string|null $subclass The class should be a subclass of this class. Optional.
+     *
+     * @return string The classname.
+     *
+     * @throws \Exception If the class cannot be resolved.
+     */
+    public function getClass(string $id, string $type, ?string $subclass = null): string
+    {
+        return self::resolveClass($id, $type, $subclass);
+    }
+
+
+    /**
+     * Get absolute URL to a specified module resource.
+     *
+     * This function creates an absolute URL to a resource stored under ".../modules/<module>/public/".
+     *
+     * @param string $resource Resource path, on the form "<module name>/<resource>"
+     * @param array  $parameters Extra parameters which should be added to the URL. Optional.
+     *
+     * @return string The absolute URL to the given resource.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getUrl()
+     * TODO NextMajorRelease Move content to substitute method and remove.
+     */
+    public static function getModuleURL(string $resource, array $parameters = []): string
+    {
+        Assert::notSame($resource[0], '/');
+
+        // TODO Move to $this->utils->http()
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getBaseURL() . 'module.php/' . $resource;
+        if (!empty($parameters)) {
+            $url = $httpUtils->addURLParameters($url, $parameters);
+        }
+        return $url;
+    }
 
     /**
      * Get absolute URL to a specified module resource.
@@ -470,16 +640,9 @@ class Module
      *
      * @return string The absolute URL to the given resource.
      */
-    public static function getModuleURL(string $resource, array $parameters = []): string
+    public function getUrl(string $resource, array $parameters = []): string
     {
-        Assert::notSame($resource[0], '/');
-
-        $httpUtils = new Utils\HTTP();
-        $url = $httpUtils->getBaseURL() . 'module.php/' . $resource;
-        if (!empty($parameters)) {
-            $url = $httpUtils->addURLParameters($url, $parameters);
-        }
-        return $url;
+        return self::getModuleURL($resource, $parameters);
     }
 
 
@@ -491,6 +654,10 @@ class Module
      * @return array An array with the hooks available for this module. Each element is an array with two keys: 'file'
      * points to the file that contains the hook, and 'func' contains the name of the function implementing that hook.
      * When there are no hooks defined, an empty array is returned.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::getHooks()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function getModuleHooks(string $module): array
     {
@@ -516,6 +683,20 @@ class Module
         return $hooks;
     }
 
+    /**
+     * Get the available hooks for a given module.
+     *
+     * @param string $module The module where we should look for hooks.
+     *
+     * @return array An array with the hooks available for this module. Each element is an array with two keys: 'file'
+     * points to the file that contains the hook, and 'func' contains the name of the function implementing that hook.
+     * When there are no hooks defined, an empty array is returned.
+     */
+    public function getHooks(string $module): array
+    {
+        return self::getModuleHooks($module);
+    }
+
 
     /**
      * Call a hook in all enabled modules.
@@ -526,6 +707,10 @@ class Module
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::processHooks()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function callHooks(string $hook, mixed &$data = null): void
     {
@@ -559,6 +744,40 @@ class Module
         }
     }
 
+    /**
+     * Call a hook in all enabled modules.
+     *
+     * This function iterates over all enabled modules and calls a hook in each module.
+     *
+     * @param string $hook The name of the hook.
+     * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
+     *
+     * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
+     */
+    public function processHooks(string $hook, mixed &$data = null): void
+    {
+        self::callHooks($hook, $data);
+    }
+
+
+    /**
+     * Handle a valid request for a module that lacks a trailing slash.
+     *
+     * This method add the trailing slash and redirects to the resulting URL.
+     *
+     * @param Request $request The request to process by this controller method.
+     *
+     * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::redirectWithTrailingSlash()
+     * TODO NextMajorRelease Move content to substitute method and remove.
+     */
+    public static function addTrailingSlash(Request $request): RedirectResponse
+    {
+        // Must be of form /{module} - append a slash
+        return new RedirectResponse($request->getRequestUri() . '/', 308);
+    }
 
     /**
      * Handle a valid request for a module that lacks a trailing slash.
@@ -569,12 +788,31 @@ class Module
      *
      * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
      */
-    public static function addTrailingSlash(Request $request): RedirectResponse
+    public function redirectWithTrailingSlash(Request $request): RedirectResponse
     {
-        // Must be of form /{module} - append a slash
-        return new RedirectResponse($request->getRequestUri() . '/', 308);
+        return self::addTrailingSlash($request);
     }
 
+    /**
+     * Handle a valid request that ends with a trailing slash.
+     *
+     * This method removes the trailing slash and redirects to the resulting URL.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *   A redirection to the URI specified in the request, but without the trailing slash.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see self::redirectWithoutTrailingSlash()
+     * TODO NextMajorRelease Move content to substitute method and remove.
+     */
+    public static function removeTrailingSlash(Request $request): RedirectResponse
+    {
+        $pathInfo = $request->server->get('PATH_INFO');
+        $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());
+        return new RedirectResponse($url, 308);
+    }
 
     /**
      * Handle a valid request that ends with a trailing slash.
@@ -586,10 +824,8 @@ class Module
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *   A redirection to the URI specified in the request, but without the trailing slash.
      */
-    public static function removeTrailingSlash(Request $request): RedirectResponse
+    public function redirectWithoutTrailingSlash(Request $request): RedirectResponse
     {
-        $pathInfo = $request->server->get('PATH_INFO');
-        $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());
-        return new RedirectResponse($url, 308);
+        return self::removeTrailingSlash($request);
     }
 }

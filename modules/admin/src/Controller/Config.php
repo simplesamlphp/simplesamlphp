@@ -53,7 +53,7 @@ class Config
         Menu $menu = null
     ) {
         $this->utils = $utils ?? new Utils($this->config, $this->session);
-        $this->menu = $menu ?? new Menu($utils);
+        $this->menu = $menu ?? new Menu();
     }
 
 

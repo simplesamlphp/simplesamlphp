@@ -19,17 +19,16 @@ final class Menu
 {
     /** @var array */
     private array $options;
-    private Utils $utils;
-
+    private Module $module;
 
     /**
      * Menu constructor.
      *
      * Initialize the menu with some default admin options, and call a hook for anyone willing to extend it.
      */
-    public function __construct(Utils $utils = null)
+    public function __construct(Module $module = null)
     {
-        $this->utils = $utils ?? new Utils();
+        $this->module = $module ?? new Module();
 
         $this->options = [
             'main' => [

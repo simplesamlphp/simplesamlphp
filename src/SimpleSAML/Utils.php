@@ -11,12 +11,15 @@ use SimpleSAML\Utils\Crypto;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Utils\AuthSource;
 use SimpleSAML\Utils\System;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Provides various SimpleSAMLphp utilities.
  */
 class Utils
 {
+    // SSP utils
     protected ?Crypto $crypto = null;
     protected ?Config $config = null;
     protected ?HTTP $http = null;
@@ -24,6 +27,10 @@ class Utils
     protected ?AuthSource $authSource = null;
     protected ?System $system = null;
     protected ?Module $module = null;
+
+    // Symfony utils
+    protected ?Filesystem $symfonyFilesystem = null;
+    protected ?Finder $symfonyFinder = null;
 
     public function __construct(
         protected ?Configuration $globalConfig = null,
@@ -95,9 +102,17 @@ class Utils
         return $this->system ??= new System($this);
     }
 
-    public function module(): Module
+    /**
+     * Symfony utils
+     */
+    public function symfonyFilesystem(): Filesystem
     {
-        return $this->module ??= new Module($this);
+        return $this->symfonyFilesystem ??= new Filesystem();
+    }
+
+    public function symfonyFinder(): Finder
+    {
+        return $this->symfonyFinder ??= new Finder();
     }
 
     // TODO mivanci Add any other utility class to be used throughout the codebase
