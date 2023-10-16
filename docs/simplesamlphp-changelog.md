@@ -13,6 +13,8 @@ Released TBD
 * Fix legacy endpoints to not send response twice
 * Fix exception when using iframe-logout (#1936)
 * Look for the schema files in the right place (#1929)
+* Fixed file logging handler to not fail on the first write after file-creation (#1877)
+* Fixed a warning in the RequestedAuthnContextSelector
 
 `core`
 
@@ -44,7 +46,6 @@ Released 2023-10-30
 * Update vulnerable composer (CVE-2023-43655; not affected)
 * Fixed a potential XSS-through-DOM (3x; not affected)
 * Fixed a warning in the RequestedAuthnContextSelector
-* Fixed file logging handler to not fail on the first write after file-creation (#1877)
 
 ## Version 2.0.6
 
