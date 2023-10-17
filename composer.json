@@ -71,7 +71,7 @@
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/saml2": "v5.0.0-alpha.10",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
-        "simplesamlphp/simplesamlphp-module-adfs": "dev-release-2.1@dev",
+        "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
         "simplesamlphp/xml-common": "^1.12",
         "symfony/cache": "^6.0",
         "symfony/config": "^6.0",

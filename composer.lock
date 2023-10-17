@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b99388057791be12347355244c21af5c",
+    "content-hash": "120831ebec07d32e762507beb33b4135",
     "packages": [
         {
             "name": "beste/clock",
@@ -1058,7 +1058,7 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "dev-release-2.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
@@ -5926,8 +5926,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "simplesamlphp/saml2": 15,
-        "simplesamlphp/simplesamlphp-module-adfs": 20
+        "simplesamlphp/saml2": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,
