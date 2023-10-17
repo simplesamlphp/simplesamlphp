@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על השגיאה לבעלי האתר."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
-
-msgid "Missing cookie"
-msgstr "חסרה עוגייה"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
-
-msgid "Retry"
-msgstr "נסה שנית"
-
-msgid "Welcome"
-msgstr "ברוך-הבא"
-
-msgid "Too short interval between single sign on events."
-msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "הצעות לפתרון הבעייה הנוכחית:"
 
@@ -50,6 +23,33 @@ msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש ה
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
+
+msgid "Too short interval between single sign on events."
+msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על השגיאה לבעלי האתר."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
+
+msgid "Missing cookie"
+msgstr "חסרה עוגייה"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
+
+msgid "Retry"
+msgstr "נסה שנית"
+
+msgid "Welcome"
+msgstr "ברוך-הבא"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."

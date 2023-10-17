@@ -245,11 +245,11 @@ msgstr "Vali oma identiteedipakkuja"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
 
-msgid "Select"
-msgstr "Vali"
-
 msgid "Remember my choice"
 msgstr "Jäta valik meelde"
+
+msgid "Select"
+msgstr "Vali"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Tere! See on SimpleSAMLphp olekuteave. Siit on võimalik näha, kas su sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga seotud atribuute."
@@ -262,12 +262,6 @@ msgstr "Sinu atribuudid"
 
 msgid "Logout"
 msgstr "Logi välja"
-
-msgid "Sending message"
-msgstr "Teate saatmine"
-
-msgid "Yes, continue"
-msgstr "Jah, jätka"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Kui rapoteerid sellest tõrkest, siis teata kindlasti ka jälgimisnumber, mis võimaldab süsteemiadministraatoril logifailidest sinu sessiooniga seotud infot leida:"
@@ -298,6 +292,12 @@ msgstr "Kuidas saada abi"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "See tõrge ilmnes tõenäoliselt SimpleSAMLphp ootamatu käitumise või valesti seadistamise tõttu. Võta ühendust selle sisselogimisteenuse administraatoriga ja saada talle ülalolev veateade."
+
+msgid "Sending message"
+msgstr "Teate saatmine"
+
+msgid "Yes, continue"
+msgstr "Jah, jätka"
 
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"

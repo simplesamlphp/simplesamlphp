@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "这可能是服务提供者或者身份提供者的配置问题"
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "如果你是点击一个网站上的链接后收到该错误的用户，你应该报告这个错误给站点所有人"
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
-
-msgid "Missing cookie"
-msgstr "cookie丢失"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
-
-msgid "Retry"
-msgstr "重试"
-
-msgid "Welcome"
-msgstr "欢迎"
-
-msgid "Too short interval between single sign on events."
-msgstr "单点登录事件之间间隔太短了"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "我们检测到从你上一次连接到该服务提供者到本次连接中间间隔仅仅数秒的时间，我们猜测该SP可能有问题"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "关于解决该问题的建议"
 
@@ -50,6 +23,33 @@ msgstr "从先前的session保存的选项卡打开Web浏览器"
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "该浏览器上的cookie可能遭禁止"
+
+msgid "Too short interval between single sign on events."
+msgstr "单点登录事件之间间隔太短了"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "我们检测到从你上一次连接到该服务提供者到本次连接中间间隔仅仅数秒的时间，我们猜测该SP可能有问题"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "这可能是服务提供者或者身份提供者的配置问题"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "如果你是点击一个网站上的链接后收到该错误的用户，你应该报告这个错误给站点所有人"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
+
+msgid "Missing cookie"
+msgstr "cookie丢失"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Welcome"
+msgstr "欢迎"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "如果这个错误再次出现，你可以向你的系统管理员报告"

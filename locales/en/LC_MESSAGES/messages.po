@@ -268,11 +268,11 @@ msgstr ""
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Please select the identity provider where you want to authenticate:"
 
-msgid "Select"
-msgstr "Select"
-
 msgid "Remember my choice"
 msgstr "Remember my choice"
+
+msgid "Select"
+msgstr "Select"
 
 msgid "Tracking number"
 msgstr ""
@@ -310,27 +310,6 @@ msgstr ""
 msgid "Logout"
 msgstr "Logout"
 
-msgid "Hello, Untranslated World!"
-msgstr "Hello, Translated World!"
-
-msgid "World"
-msgstr "World"
-
-msgid "Sending message"
-msgstr "Sending message"
-
-msgid "Warning"
-msgstr ""
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr ""
-
-msgid "Yes, continue"
-msgstr "Yes, continue"
-
-msgid "Language"
-msgstr ""
-
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 
@@ -360,6 +339,27 @@ msgstr "How to get help"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+
+msgid "Sending message"
+msgstr "Sending message"
+
+msgid "Warning"
+msgstr ""
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
+msgid "Yes, continue"
+msgstr "Yes, continue"
+
+msgid "Language"
+msgstr ""
+
+msgid "Hello, Untranslated World!"
+msgstr "Hello, Translated World!"
+
+msgid "World"
+msgstr "World"
 
 msgid "Back"
 msgstr "Back"

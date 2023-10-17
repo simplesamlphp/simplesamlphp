@@ -245,11 +245,11 @@ msgstr "اختار موقع هويتك"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "اختر موقع الهوية الذي ترغب بدخوله"
 
-msgid "Select"
-msgstr "اختار"
-
 msgid "Remember my choice"
 msgstr "تذكر خياراتي"
+
+msgid "Select"
+msgstr "اختار"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك، فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
@@ -262,12 +262,6 @@ msgstr "السمات"
 
 msgid "Logout"
 msgstr "تسجيل الخروج"
-
-msgid "Sending message"
-msgstr "ارسل رسالة"
-
-msgid "Yes, continue"
-msgstr "نعم، واصل"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "اذا قمت برفع تقرير عن هذا الخطأ قم رجاءاً بإدراج رقم المتابعة أدناه كيما نستطيع تحديد فترة دخولك بملفات المشرف علي الموقع"
@@ -298,6 +292,12 @@ msgstr "للمساعدة"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "هذا الخطأ ناتج غالباً عن سلوك غير متوقع او عن خطا في ترتيب البرنامج. اتصل بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم أيضاً "
+
+msgid "Sending message"
+msgstr "ارسل رسالة"
+
+msgid "Yes, continue"
+msgstr "نعم، واصل"
 
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"

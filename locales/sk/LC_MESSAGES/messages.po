@@ -268,11 +268,11 @@ msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
 
-msgid "Select"
-msgstr "Vybrať"
-
 msgid "Remember my choice"
 msgstr "Zapamätať moju voľbu"
+
+msgid "Select"
+msgstr "Vybrať"
 
 msgid "Tracking number"
 msgstr "Sledovacie číslo"
@@ -310,27 +310,6 @@ msgstr "Debug informácie pre personál podpory"
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
-
-msgid "Sending message"
-msgstr "Odosiela sa správa"
-
-msgid "Warning"
-msgstr "Upozornenie"
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
-
-msgid "Yes, continue"
-msgstr "Áno, pokračovať"
-
-msgid "Language"
-msgstr "Jazyk"
-
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
 
@@ -360,6 +339,27 @@ msgstr "Ako získať pomoc"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
+
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "World"
+msgstr "Svet"
 
 msgid "Back"
 msgstr "Späť"

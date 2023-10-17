@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federazione"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Convertitore di metadati dal formato XML al formato SimpleSAMLphp "
@@ -29,9 +41,9 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 msgid "Log out"
 msgstr ""
 
@@ -156,21 +168,6 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configurazione"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federazione"
-
-msgid "Test Authentication Sources"
-msgstr ""
-
 msgid "Metadata parser"
 msgstr "Parser dei metadati"
 
@@ -192,65 +189,11 @@ msgstr "Metadati convertiti"
 msgid "An error occurred"
 msgstr ""
 
-msgid "Deprecated"
-msgstr "Deprecato"
-
-msgid "Type:"
-msgstr ""
-
-msgid "SAML Metadata"
-msgstr ""
-
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr ""
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "Metadati SAML 2.0 in formato XML:"
-
-msgid "SimpleSAMLphp Metadata"
-msgstr ""
-
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr ""
-
-msgid "Certificates"
-msgstr "Certificati"
-
-msgid "new"
+msgid "Content of jpegPhoto attribute"
 msgstr ""
 
 msgid "SimpleSAMLphp installation page"
 msgstr "Pagina di installazione di SimpleSAMLphp"
-
-msgid "Hosted entities"
-msgstr ""
-
-msgid "Trusted entities"
-msgstr ""
-
-msgid "expired"
-msgstr ""
-
-msgid "expires"
-msgstr ""
-
-msgid "Tools"
-msgstr "Strumenti"
-
-msgid "Look up metadata for entity:"
-msgstr ""
-
-msgid "EntityID"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
 
 msgid ""
 "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
@@ -278,8 +221,74 @@ msgstr ""
 msgid "Authentication data"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "Logout"
 msgstr "Disconnessione"
+
+msgid "Deprecated"
+msgstr "Deprecato"
+
+msgid "Type:"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "Metadati SAML 2.0 in formato XML:"
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr ""
+
+msgid "Certificates"
+msgstr "Certificati"
+
+msgid "new"
+msgstr ""
+
+msgid "Hosted entities"
+msgstr ""
+
+msgid "Trusted entities"
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "expires"
+msgstr ""
+
+msgid "Tools"
+msgstr "Strumenti"
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "EntityID"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Test Authentication Sources"
+msgstr ""
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metadati"
+
+msgid "Back"
+msgstr ""
 
 msgid "SimpleSAMLphp is installed in:"
 msgstr ""
@@ -291,15 +300,6 @@ msgid "required"
 msgstr ""
 
 msgid "optional"
-msgstr ""
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadati"
-
-msgid "Back"
 msgstr ""
 
 msgid "Checking your PHP installation"

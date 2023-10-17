@@ -3,6 +3,12 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Too short interval between single sign on events."
+msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Ons het ontdek dat daar slegs 'n paar sekondes was sedert jy laas geverifieer het met die diensverskaffer en neem dus aan dat daar 'n probleem is met hierdie SP."
+
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Dié is waarskynlik 'n probleem met die konfigurasie by die diensverskaffer óf die identiteit verskaffer."
 
@@ -20,12 +26,6 @@ msgstr "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblie
 
 msgid "Retry"
 msgstr "Probeer weer"
-
-msgid "Too short interval between single sign on events."
-msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Ons het ontdek dat daar slegs 'n paar sekondes was sedert jy laas geverifieer het met die diensverskaffer en neem dus aan dat daar 'n probleem is met hierdie SP."
 
 msgid "Retry login"
 msgstr "Probeer weer aanmeld"

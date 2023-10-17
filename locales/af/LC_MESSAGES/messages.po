@@ -245,14 +245,11 @@ msgstr "Kies jou identiteits verskaffer"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Kies asb. jou identiteits verskaffer waar jy wil verifieer:"
 
-msgid "Select"
-msgstr "Kies"
-
 msgid "Remember my choice"
 msgstr "Onthou my keuse"
 
-msgid "Yes, continue"
-msgstr "Ja, voortgaan"
+msgid "Select"
+msgstr "Kies"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'/verwysings nommer wat dit moontlik maak vir die sisteem administrateur om jou sessie in die logs op te spoor:"
@@ -283,6 +280,9 @@ msgstr "Hoe om hulp te verkry"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die aanmeld diens en stuur die bostaande fout boodskap aan."
+
+msgid "Yes, continue"
+msgstr "Ja, voortgaan"
 
 msgid "[Preferred choice]"
 msgstr "[Verkies]"

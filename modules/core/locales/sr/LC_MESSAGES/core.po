@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca identiteta."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
-
-msgid "Missing cookie"
-msgstr "Nedostaje kolačić (cookie)"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
-
-msgid "Retry"
-msgstr "Pokušaj ponovo"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Preporuke za rešavanje ovog problema:"
 
@@ -50,6 +23,33 @@ msgstr "Otvaranjem web pretraživača sa stranicama sačuvanim iz prethodne sesi
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Moguće da je podrška za kolačiće (\"cookies\") isključena u web pretraživaču."
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratak interval između uzastopnih SSO prijava."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca identiteta."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
+
+msgid "Missing cookie"
+msgstr "Nedostaje kolačić (cookie)"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
+
+msgid "Retry"
+msgstr "Pokušaj ponovo"
+
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ako se ova greška bude i dalje pojavljivala, možete je prijaviti administratorima."

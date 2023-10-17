@@ -245,11 +245,11 @@ msgstr "Izvēlieties identitātes piegādātāju"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Lūdzu izvēlieties identitātes piegādātāju, pie kura vēlaties autentificēties:"
 
-msgid "Select"
-msgstr "Izvēlēties"
-
 msgid "Remember my choice"
 msgstr "Atcerēties manu izvēli"
+
+msgid "Select"
+msgstr "Izvēlēties"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir pārtraukta, cik ilgi tā bijusi aktīva un visus ar to saistītos atribūtus."
@@ -262,12 +262,6 @@ msgstr "Atribūti"
 
 msgid "Logout"
 msgstr "Atslēgties"
-
-msgid "Sending message"
-msgstr "Ziņas sūtīšana"
-
-msgid "Yes, continue"
-msgstr "Jā, turpināt"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Kad ziņojat par kļūdu, lūdzu norādiet šo atsekošanas numuru, kas administratoram palīdz atrast šo sesiju sistēmas ierakstos."
@@ -298,6 +292,12 @@ msgstr "Kā atrast palīdzību"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
+
+msgid "Sending message"
+msgstr "Ziņas sūtīšana"
+
+msgid "Yes, continue"
+msgstr "Jā, turpināt"
 
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"

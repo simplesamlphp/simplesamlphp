@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link på en nettside, så bør du rapportere denne feilen til eieren av den nettsiden."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Hvis du er en utvikler som setter opp en \"single sign-on\" løsning, så har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos både identitetsleverandøren og tjenesteleverandøren."
-
-msgid "Missing cookie"
-msgstr "Mangler informasjonskapsel"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."
-
-msgid "Retry"
-msgstr "Prøv igjen"
-
-msgid "Welcome"
-msgstr "Velkommen"
-
-msgid "Too short interval between single sign on events."
-msgstr "For kort intervall imellom innloggingsforespørsler"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Forslag for å løse dette problemet:"
 
@@ -50,6 +23,33 @@ msgstr "Starte nettleseren med faner lagret fra forrige gang."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "At informasjonskapsler ikke er aktivert i nettleseren."
+
+msgid "Too short interval between single sign on events."
+msgstr "For kort intervall imellom innloggingsforespørsler"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link på en nettside, så bør du rapportere denne feilen til eieren av den nettsiden."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hvis du er en utvikler som setter opp en \"single sign-on\" løsning, så har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos både identitetsleverandøren og tjenesteleverandøren."
+
+msgid "Missing cookie"
+msgstr "Mangler informasjonskapsel"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."
+
+msgid "Retry"
+msgstr "Prøv igjen"
+
+msgid "Welcome"
+msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."

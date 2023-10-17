@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
-
-msgid "Missing cookie"
-msgstr "Mangler cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
-
-msgid "Retry"
-msgstr "Forsøg igen"
-
-msgid "Welcome"
-msgstr "Velkommen"
-
-msgid "Too short interval between single sign on events."
-msgstr "For kort interval mellem single sign on hændelse."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Løsningsforslag til problemet:"
 
@@ -50,6 +23,33 @@ msgstr "Åben browseren med faner fra sidste session."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Cookies kan være deaktiveret i browseren."
+
+msgid "Too short interval between single sign on events."
+msgstr "For kort interval mellem single sign on hændelse."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
+
+msgid "Missing cookie"
+msgstr "Mangler cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
+
+msgid "Retry"
+msgstr "Forsøg igen"
+
+msgid "Welcome"
+msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."

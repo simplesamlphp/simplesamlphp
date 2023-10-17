@@ -245,11 +245,11 @@ msgstr "Zvol svého poskytovatele identity (IdP)"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
 
-msgid "Select"
-msgstr "Zvolit"
-
 msgid "Remember my choice"
 msgstr "Zapamatuj moji volbu"
+
+msgid "Select"
+msgstr "Zvolit"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
@@ -262,12 +262,6 @@ msgstr "Vaše atributy"
 
 msgid "Logout"
 msgstr "Odhlášení"
-
-msgid "Sending message"
-msgstr "Posílám zprávu"
-
-msgid "Yes, continue"
-msgstr "Ano, akceptuji"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Pokud budete reportovat tuto chybu, prosím zašlete také toto ID, toto umožní najít vaší session v logu, který je dostupný systmovým administrátorem：  "
@@ -298,6 +292,12 @@ msgstr "Jak získat pomoc"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tato chyba pravděpodobně vznikla neočekávanou událostí, nebo chybou v konfiguraci. Kontaktujte administrátora této přihlašovací služby a zašlete mu tuto zprávu."
+
+msgid "Sending message"
+msgstr "Posílám zprávu"
+
+msgid "Yes, continue"
+msgstr "Ano, akceptuji"
 
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"

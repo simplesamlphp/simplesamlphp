@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najvjerojatnije je problem u konfiguraciji na strani davatelja usluge ili u konfiguraciji autentifikacijskog servisa."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Ako se ova greška pojavila nakon što ste slijedili poveznicu na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Ako ste programer koji postavlja sustav jedinstvene autentifikacije (Single Sign-On sustav), tada imate problema s konfiguracijom metapodataka. Provjerite jesu li metapodaci ispravno uneseni i na strani davatelja usluge i u konfiguraciji autentifikacijskog servisa."
-
-msgid "Missing cookie"
-msgstr "Nedostaje kolačić (cookie)"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pregledniku. Molimo provjerite postavke vašeg web preglednika i pokušajte ponovo."
-
-msgid "Retry"
-msgstr "Pokušaj ponovo"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Sustav je utvrdio da je prošlo tek nekoliko sekundi otkad ste se zadnji put autentificirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Preporuke za rješavanje ovog problema:"
 
@@ -50,6 +23,33 @@ msgstr "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sjedni
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Moguće da je podrška za kolačiće (\"cookies\") isključena u web pregledniku."
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratak interval između uzastopnih SSO prijava."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Sustav je utvrdio da je prošlo tek nekoliko sekundi otkad ste se zadnji put autentificirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najvjerojatnije je problem u konfiguraciji na strani davatelja usluge ili u konfiguraciji autentifikacijskog servisa."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Ako se ova greška pojavila nakon što ste slijedili poveznicu na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Ako ste programer koji postavlja sustav jedinstvene autentifikacije (Single Sign-On sustav), tada imate problema s konfiguracijom metapodataka. Provjerite jesu li metapodaci ispravno uneseni i na strani davatelja usluge i u konfiguraciji autentifikacijskog servisa."
+
+msgid "Missing cookie"
+msgstr "Nedostaje kolačić (cookie)"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pregledniku. Molimo provjerite postavke vašeg web preglednika i pokušajte ponovo."
+
+msgid "Retry"
+msgstr "Pokušaj ponovo"
+
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ako se ova greška bude i dalje pojavljivala, možete ju prijaviti administratorima."

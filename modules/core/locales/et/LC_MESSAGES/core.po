@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates, siis peaksid sellest tõrkest veebilehe omanikku teavitama."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Kui sa oled arendaja, kes juurutab ühekordse sisselogimise lahendust, siis on probleemi põhjuseks metaandmete seadistused. Kontrolli, et metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui teenusepakkuja poolel."
-
-msgid "Missing cookie"
-msgstr "Küpsis puudub"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."
-
-msgid "Retry"
-msgstr "Proovi uuesti"
-
-msgid "Welcome"
-msgstr "Tere tulemast"
-
-msgid "Too short interval between single sign on events."
-msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Nõuanded selle probleemi lahendamiseks:"
 
@@ -50,6 +23,33 @@ msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "küpsiste keelamisest brauseris"
+
+msgid "Too short interval between single sign on events."
+msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates, siis peaksid sellest tõrkest veebilehe omanikku teavitama."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Kui sa oled arendaja, kes juurutab ühekordse sisselogimise lahendust, siis on probleemi põhjuseks metaandmete seadistused. Kontrolli, et metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui teenusepakkuja poolel."
+
+msgid "Missing cookie"
+msgstr "Küpsis puudub"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."
+
+msgid "Retry"
+msgstr "Proovi uuesti"
+
+msgid "Welcome"
+msgstr "Tere tulemast"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."

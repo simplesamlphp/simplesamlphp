@@ -245,11 +245,11 @@ msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol azonosítani kívánja magát:"
 
-msgid "Select"
-msgstr "Választ"
-
 msgid "Remember my choice"
 msgstr "Emlékezzen erre"
+
+msgid "Select"
+msgstr "Választ"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat."
@@ -262,12 +262,6 @@ msgstr "Az ön attribútumai"
 
 msgid "Logout"
 msgstr "Kilépés"
-
-msgid "Sending message"
-msgstr "Üzenet küldése"
-
-msgid "Yes, continue"
-msgstr "Igen, elfogadom"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Ha bejelentést küld a hibával kapcsolatban, kérjük, küldje el ezt az azonosítót, mert csak ennek segítségével tudja a rendszeradminisztrátor a naplóállományokból azokat az adatokat megtalálni, amelyek ehhez a munkamenethez tartoznak."
@@ -298,6 +292,12 @@ msgstr "Hogyan kaphat segítséget"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
+
+msgid "Sending message"
+msgstr "Üzenet küldése"
+
+msgid "Yes, continue"
+msgstr "Igen, elfogadom"
 
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"

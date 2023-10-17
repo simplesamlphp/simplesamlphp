@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
-
-msgid "Missing cookie"
-msgstr "Piškotek (\"cookie\") ne obstaja!"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
-
-msgid "Retry"
-msgstr "Poskusi ponovno"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratek interval med dogodki enotne prijave."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Predloga za razrešitev nastale težave:"
 
@@ -50,6 +23,33 @@ msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšn
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratek interval med dogodki enotne prijave."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
+
+msgid "Missing cookie"
+msgstr "Piškotek (\"cookie\") ne obstaja!"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
+
+msgid "Retry"
+msgstr "Poskusi ponovno"
+
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."

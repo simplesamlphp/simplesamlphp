@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Retry"
-msgstr "Zama kwakhona"
-
 msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
 msgstr "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho aluqulethanga inani lamaxabiso alindelekileyo."
 
@@ -20,3 +17,6 @@ msgstr "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo."
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Iikhuki zisenokwenziwa zingasebenzi kwibhrawuza yewebhu."
+
+msgid "Retry"
+msgstr "Zama kwakhona"

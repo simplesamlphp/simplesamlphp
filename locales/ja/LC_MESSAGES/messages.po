@@ -245,11 +245,11 @@ msgstr "アイデンティティプロバイダを選択してください"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "認証を行いたいアイデンティティプロバイダを選択してください:"
 
-msgid "Select"
-msgstr "選択"
-
 msgid "Remember my choice"
 msgstr "選択を記憶する"
+
+msgid "Select"
+msgstr "選択"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "ここはSimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
@@ -262,12 +262,6 @@ msgstr "属性"
 
 msgid "Logout"
 msgstr "ログアウト"
-
-msgid "Sending message"
-msgstr "メッセージを送信中"
-
-msgid "Yes, continue"
-msgstr "はい、続けます"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定するために、トラッキング番号を報告してください。"
@@ -298,6 +292,12 @@ msgstr "困ったときには"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
+
+msgid "Sending message"
+msgstr "メッセージを送信中"
+
+msgid "Yes, continue"
+msgstr "はい、続けます"
 
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"

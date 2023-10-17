@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Detta beror oftast på ett konfigurationsfel antingen i tjänsteleverantören eller identitetsutgivaren."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Om du är en användare och fick detta fel när du klickade på en länk bör du rapportera felet till den som hanterar webbplatsen med länken."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Om du är en utvecklare som driftsätter en lösning med single-on har du problem med metadatakonfigurationen. Kontrollera att metadata är korrekt konfigurerade både i identitetsutgivare och tjänsteleverantören."
-
-msgid "Missing cookie"
-msgstr "Saknar webbläsarkaka (cookie)"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det verkar som om du har stängt av möjligheten till kakor (cookies) i din webbläsare. Kontrollera inställningarna i webbläsaren och försök igen."
-
-msgid "Retry"
-msgstr "Försök igen"
-
-msgid "Welcome"
-msgstr "Välkommen"
-
-msgid "Too short interval between single sign on events."
-msgstr "För kort intervall mellan inloggningar."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har upptäckt att det bara vara några få sekunder sedan du senast loggade in mot denna tjänst (service provider) och därför antar vi att det är ett problem med denna tjänst."
-
 msgid "Suggestions for resolving this problem:"
 msgstr "Förslag för att åtgärda detta problem:"
 
@@ -50,6 +23,33 @@ msgstr "Öppnande av webbläsaren med sparade flikar från tidigare användning.
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Webbkakor (Cookies) är avstängt i webbläsaren."
+
+msgid "Too short interval between single sign on events."
+msgstr "För kort intervall mellan inloggningar."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har upptäckt att det bara vara några få sekunder sedan du senast loggade in mot denna tjänst (service provider) och därför antar vi att det är ett problem med denna tjänst."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Detta beror oftast på ett konfigurationsfel antingen i tjänsteleverantören eller identitetsutgivaren."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Om du är en användare och fick detta fel när du klickade på en länk bör du rapportera felet till den som hanterar webbplatsen med länken."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Om du är en utvecklare som driftsätter en lösning med single-on har du problem med metadatakonfigurationen. Kontrollera att metadata är korrekt konfigurerade både i identitetsutgivare och tjänsteleverantören."
+
+msgid "Missing cookie"
+msgstr "Saknar webbläsarkaka (cookie)"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det verkar som om du har stängt av möjligheten till kakor (cookies) i din webbläsare. Kontrollera inställningarna i webbläsaren och försök igen."
+
+msgid "Retry"
+msgstr "Försök igen"
+
+msgid "Welcome"
+msgstr "Välkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörerna."

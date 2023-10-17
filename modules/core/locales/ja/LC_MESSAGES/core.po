@@ -3,33 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
-
-msgid "Missing cookie"
-msgstr "クッキーが見つかりません"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
-
-msgid "Retry"
-msgstr "再試行"
-
-msgid "Welcome"
-msgstr "ようこそ"
-
-msgid "Too short interval between single sign on events."
-msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
-
 msgid "Suggestions for resolving this problem:"
 msgstr "この問題を解決する為の提案:"
 
@@ -50,6 +23,33 @@ msgstr "ブラウザに保存されたタブにより、以前のセッション
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "このWEBブラウザではクッキーが無効化されています。"
+
+msgid "Too short interval between single sign on events."
+msgstr "シングルサインオンイベントの間隔が短すぎます。"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
+
+msgid "Missing cookie"
+msgstr "クッキーが見つかりません"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Welcome"
+msgstr "ようこそ"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"

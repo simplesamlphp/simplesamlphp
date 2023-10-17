@@ -265,11 +265,11 @@ msgstr "Khetha umboneleli wesazisi wakho"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 
-msgid "Select"
-msgstr "Khetha"
-
 msgid "Remember my choice"
 msgstr "Khumbula ukhetho lwam"
+
+msgid "Select"
+msgstr "Khetha"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
@@ -282,9 +282,6 @@ msgstr "ayikasetwa"
 
 msgid "Format"
 msgstr "Ufomatho"
-
-msgid "Yes, continue"
-msgstr "Ewe, qhubeka"
 
 msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
@@ -312,6 +309,9 @@ msgstr "Indlela yokufumana uncedo"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
+
+msgid "Yes, continue"
+msgstr "Ewe, qhubeka"
 
 msgid "Next"
 msgstr "Okulandelayo"
