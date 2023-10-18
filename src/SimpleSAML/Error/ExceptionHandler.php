@@ -29,10 +29,10 @@ class ExceptionHandler
         if ($exception instanceof Error) {
             $exception->show();
         } elseif ($exception instanceof BuiltinException) {
-            $e = new Error('UNHANDLEDEXCEPTION', $exception);
+            $e = new Error(ErrorCodes::UNHANDLEDEXCEPTION, $exception);
             $e->show();
         } elseif (class_exists('Error') && $exception instanceof BuiltinError) {
-            $e = new Error('UNHANDLEDEXCEPTION', $exception);
+            $e = new Error(ErrorCodes::UNHANDLEDEXCEPTION, $exception);
             $e->show();
         }
     }

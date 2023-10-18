@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Module\core\Auth;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error\Error as SspError;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\SAML2\Constants as C;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +51,7 @@ class UserPassBaseTest extends TestCase
     public function testAuthenticateECPMissingUsername(): void
     {
         $this->expectException(SspError::class);
-        $this->expectExceptionMessage('WRONGUSERPASS');
+        $this->expectExceptionMessage(ErrorCodes::WRONGUSERPASS);
 
         $state = [
             'saml:Binding' => C::BINDING_PAOS,
@@ -74,7 +75,7 @@ class UserPassBaseTest extends TestCase
     public function testAuthenticateECPMissingPassword(): void
     {
         $this->expectException(SspError::class);
-        $this->expectExceptionMessage('WRONGUSERPASS');
+        $this->expectExceptionMessage(ErrorCodes::WRONGUSERPASS);
 
         $state = [
             'saml:Binding' => C::BINDING_PAOS,

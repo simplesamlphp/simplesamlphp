@@ -25,7 +25,7 @@ class BadRequest extends Error
     public function __construct(
         protected string $reason
     ) {
-        parent::__construct(['BADREQUEST', '%REASON%' => $reason], null, 400);
+        parent::__construct([ErrorCodes::BADREQUEST, '%REASON%' => $reason], null, 400);
     }
 
 

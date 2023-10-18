@@ -30,10 +30,10 @@ class NotFound extends Error
         $url = $httpUtils->getSelfURL();
 
         if ($reason === null) {
-            parent::__construct(['NOTFOUND', '%URL%' => $url], null, 404);
+            parent::__construct([ErrorCodes::NOTFOUND, '%URL%' => $url], null, 404);
             $this->message = "The requested page '$url' could not be found.";
         } else {
-            parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason], null, 404);
+            parent::__construct([ErrorCodes::NOTFOUNDREASON, '%URL%' => $url, '%REASON%' => $reason], null, 404);
             $this->message = "The requested page '$url' could not be found. " . $reason;
         }
     }

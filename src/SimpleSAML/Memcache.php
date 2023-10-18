@@ -6,6 +6,7 @@ namespace SimpleSAML;
 
 use Exception;
 use Memcached;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Utils;
 
 use function array_key_exists;
@@ -133,7 +134,7 @@ class Memcache
         if ($latestData === null) {
             if ($allDown) {
                 // all servers are down, panic!
-                $e = new Error\Error('MEMCACHEDOWN', null, 503);
+                $e = new Error\Error(ErrorCodes::MEMCACHEDOWN, null, 503);
                 throw new Error\Exception('All memcache servers are down', 503, $e);
             }
             // we didn't find any data matching the key
