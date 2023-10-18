@@ -3,6 +3,7 @@ name: Build translations
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches: [master, simplesamlphp-*]
     paths:
       - '**.po'
       - '**.php'
