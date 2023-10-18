@@ -5,9 +5,15 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.2.0
+
+Released TBD
+
+* Make error codes easier to extend (#1870)
+
 ## Version 2.1.0
 
-Released 2023-07-31
+Released TBD
 
 * Functionality that before was provided by the sanitycheck-module is now implicit.
   The module has been archived and should no longer be used. (#1843)

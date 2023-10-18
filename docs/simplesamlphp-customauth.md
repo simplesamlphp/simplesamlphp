@@ -44,7 +44,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
     protected function login($username, $password)
     {
         if ($username !== 'theusername' || $password !== 'thepassword') {
-            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS);
         }
 
         return [
@@ -206,7 +206,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
     protected function login($username, $password)
     {
         if ($username !== $this->username || $password !== $this->password) {
-            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS);
         }
 
         return [
@@ -357,14 +357,14 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
         if (!$row) {
             /* User not found. */
             SimpleSAML\Logger::warning('MyAuth: Could not find user ' . var_export($username, true) . '.');
-            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS);
         }
 
         /* Check the password. */
         if (!$this->checkPassword($row['password_hash'], $password)) {
             /* Invalid password. */
             SimpleSAML\Logger::warning('MyAuth: Wrong password for user ' . var_export($username, true) . '.');
-            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS);
         }
 
         /* Create the attribute array of the user. */

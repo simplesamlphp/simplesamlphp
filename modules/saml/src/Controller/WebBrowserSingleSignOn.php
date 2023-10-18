@@ -52,7 +52,7 @@ class WebBrowserSingleSignOn
     public function artifactResolutionService(): RunnableResponse
     {
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
-            throw new Error\Error('NOACCESS', null, 403);
+            throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
         $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -60,7 +60,7 @@ class WebBrowserSingleSignOn
         $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
         if (!$idpMetadata->getOptionalBoolean('saml20.sendartifact', false)) {
-            throw new Error\Error('NOACCESS');
+            throw new Error\Error(Error\ErrorCodes::NOACCESS);
         }
 
         $storeType = $this->config->getOptionalString('store.type', 'phpsession');
@@ -73,7 +73,7 @@ class WebBrowserSingleSignOn
         try {
             $request = $binding->receive();
         } catch (UnsupportedBindingException $e) {
-            throw new Error\Error('ARSPARAMS', $e, 400);
+            throw new Error\Error(Error\ErrorCodes::ARSPARAMS, $e, 400);
         }
 
         if (!($request instanceof ArtifactResolve)) {
@@ -120,7 +120,7 @@ class WebBrowserSingleSignOn
         Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
-            throw new Error\Error('NOACCESS', null, 403);
+            throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
         $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -130,7 +130,7 @@ class WebBrowserSingleSignOn
         try {
             return new RunnableResponse([Module\saml\IdP\SAML2::class, 'receiveAuthnRequest'], [$idp]);
         } catch (UnsupportedBindingException $e) {
-            throw new Error\Error('SSOPARAMS', $e, 400);
+            throw new Error\Error(Error\ErrorCodes::SSOPARAMS, $e, 400);
         }
     }
 }

@@ -206,8 +206,8 @@ class MetadataTest extends TestCase
 
         $c = new Controller\Metadata($config);
 
-        $this->expectException(\SimpleSAML\Error\Error::class);
-        $this->expectExceptionMessage('NOACCESS');
+        $this->expectException(Error\Error::class);
+        $this->expectExceptionMessage(Error\ErrorCodes::NOACCESS);
         $result = $c->metadata($request);
     }
 
@@ -224,8 +224,8 @@ class MetadataTest extends TestCase
         $c = new Controller\Metadata($this->config);
         $c->setMetadataStorageHandler($this->mdh);
 
-        $this->expectException(\SimpleSAML\Error\Error::class);
-        $this->expectExceptionMessage('METADATA');
+        $this->expectException(Error\Error::class);
+        $this->expectExceptionMessage(Error\ErrorCodes::METADATA);
         $result = $c->metadata($request);
     }
 

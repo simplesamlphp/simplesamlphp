@@ -221,7 +221,7 @@ abstract class UserPassBase extends Auth\Source
             if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
                 Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
                 // TODO Return a SOAP fault instead of using the current binding?
-                throw new Error\Error("WRONGUSERPASS");
+                throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
             }
 
             $username = $_SERVER['PHP_AUTH_USER'];
@@ -259,7 +259,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception/error. If the error was caused by the user entering the wrong
-     * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
+     * username or password, a \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS) should be thrown.
      *
      * Note that both the username and the password are UTF-8 encoded.
      *

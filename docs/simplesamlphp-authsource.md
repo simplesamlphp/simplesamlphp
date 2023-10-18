@@ -37,7 +37,7 @@ The only function you need to implement is the `login($username, $password)`-fun
 This function receives the username and password the user entered, and is expected to return the attributes of that user.
 If the username or password is incorrect, it should throw an error saying so:
 
-    throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+    throw new \SimpleSAML\Error\Error(\SimpleSAML\Error\ErrorCodes::WRONGUSERPASS);
 
 "[Implementing custom username/password authentication](./simplesamlphp-customauth)" describes how to implement username/password authentication using that base class.
 

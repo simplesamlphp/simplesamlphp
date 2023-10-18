@@ -38,7 +38,7 @@ class ConfigurationError extends Error
     {
         $file_str = '';
         $reason_str = '.';
-        $params = ['CONFIG'];
+        $params = [ErrorCodes::CONFIG];
         if ($file !== null) {
             $params['%FILE%'] = $file;
             $basepath = dirname(__FILE__, 4) . '/';

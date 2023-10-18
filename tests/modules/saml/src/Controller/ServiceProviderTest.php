@@ -312,7 +312,7 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Error::class);
-        $this->expectExceptionMessage('ACSPARAMS');
+        $this->expectExceptionMessage(Error\ErrorCodes::ACSPARAMS);
 
         $c->assertionConsumerService('phpunit');
     }
@@ -400,7 +400,7 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Error::class);
-        $this->expectExceptionMessage('SLOSERVICEPARAMS');
+        $this->expectExceptionMessage(Error\ErrorCodes::SLOSERVICEPARAMS);
 
         $c->singleLogoutService('phpunit');
     }
