@@ -118,9 +118,13 @@ class ServiceProvider
             'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
         ];
 
-        $as->requireAuth($options);
+        $response = $as->requireAuth($options);
+        if ($response === null) {
+            // We are already authenticated
+            return $httpUtils->redirectTrustedURL($returnTo);
+        }
 
-        return $httpUtils->redirectTrustedURL($returnTo);
+        return $response;
     }
 
 
