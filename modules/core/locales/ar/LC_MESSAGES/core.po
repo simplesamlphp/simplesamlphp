@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+
+msgid "Retry"
+msgstr "اعد المحاولة"
+
+msgid "Welcome"
+msgstr "مرحباً"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "اقتراحات لحل المشكلة "
 
@@ -38,18 +50,6 @@ msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لراب�
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
-
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
-
-msgid "Retry"
-msgstr "اعد المحاولة"
-
-msgid "Welcome"
-msgstr "مرحباً"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"

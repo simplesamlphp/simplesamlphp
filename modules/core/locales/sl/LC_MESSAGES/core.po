@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Piškotek (\"cookie\") ne obstaja!"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
+
+msgid "Retry"
+msgstr "Poskusi ponovno"
+
+msgid "Welcome"
+msgstr "Dobrodošli"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Predloga za razrešitev nastale težave:"
 
@@ -38,18 +50,6 @@ msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prij
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
-
-msgid "Missing cookie"
-msgstr "Piškotek (\"cookie\") ne obstaja!"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
-
-msgid "Retry"
-msgstr "Poskusi ponovno"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."

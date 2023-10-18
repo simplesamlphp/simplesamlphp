@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "No se encuentra cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
+
+msgid "Retry"
+msgstr "Reintentar"
+
+msgid "Welcome"
+msgstr "Bienvenido"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Sugerencias para resolver este problema"
 
@@ -38,18 +50,6 @@ msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Si usted es un desarrollador que está desplegando una solución de inicio único, tiene un problema con la configuración de sus metadatos. Verifique que los metadatos están configurados correctamente en el proveedor de identidad y en el proveedor de servicios"
-
-msgid "Missing cookie"
-msgstr "No se encuentra cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
-
-msgid "Retry"
-msgstr "Reintentar"
-
-msgid "Welcome"
-msgstr "Bienvenido"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si el problema persiste, puede reportarlo a los administradores del sistema"

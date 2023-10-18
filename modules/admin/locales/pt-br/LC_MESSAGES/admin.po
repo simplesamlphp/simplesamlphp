@@ -3,17 +3,13 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuração"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
+msgid "Log out"
 msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federação"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
@@ -37,14 +33,6 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 msgid "ADFS IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
-msgid "Log out"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
@@ -168,64 +156,44 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-msgid "Metadata parser"
-msgstr "Parser Metadata"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuração"
 
-msgid "XML metadata"
-msgstr "Metadata XML"
-
-msgid "or select a file:"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
 msgstr ""
 
-msgid "No file selected."
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federação"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
-msgid "Parse"
-msgstr "Parse"
+msgid "Metadata"
+msgstr "Metadata"
 
-msgid "Converted metadata"
-msgstr "Metadata convetida"
-
-msgid "An error occurred"
+msgid "Copy to clipboard"
 msgstr ""
 
-msgid "Content of jpegPhoto attribute"
+msgid "Back"
 msgstr ""
 
 msgid "SimpleSAMLphp installation page"
 msgstr "Página de Instalação do SimpleSAMLphp"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
+msgid "SimpleSAMLphp is installed in:"
 msgstr ""
 
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
-
-msgid "Your attributes"
-msgstr "Seus atributos"
-
-msgid "Technical information"
+msgid "You are running version <kbd>%version%</kbd>."
 msgstr ""
 
-msgid "SAML Subject"
+msgid "required"
 msgstr ""
 
-msgid "not set"
+msgid "optional"
 msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Logout"
-msgstr "Desconectar"
 
 msgid "Deprecated"
 msgstr "Descontinuado"
@@ -278,28 +246,60 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Metadata parser"
+msgstr "Parser Metadata"
+
+msgid "XML metadata"
+msgstr "Metadata XML"
+
+msgid "or select a file:"
+msgstr ""
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "Parse"
+
+msgid "Converted metadata"
+msgstr "Metadata convetida"
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
+
+msgid "Your attributes"
+msgstr "Seus atributos"
+
+msgid "Technical information"
+msgstr ""
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "not set"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Logout"
+msgstr "Desconectar"
+
 msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "Back"
-msgstr ""
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "required"
-msgstr ""
-
-msgid "optional"
 msgstr ""
 
 msgid "Checking your PHP installation"

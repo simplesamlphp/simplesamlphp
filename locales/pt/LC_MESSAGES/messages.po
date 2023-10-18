@@ -186,6 +186,12 @@ msgstr "Foi despoletada um excepção que não foi tratada."
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "O utilizador ou senha fornecidos são incorrectos. Por favor tente de novo."
 
+msgid "Sending message"
+msgstr "A enviar a mensagem"
+
+msgid "Yes, continue"
+msgstr "Sim, Aceito"
+
 msgid "Select your identity provider"
 msgstr "Escolha o seu fornecedor de identidade (IdP)"
 
@@ -239,12 +245,6 @@ msgstr "Como obter ajuda"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Este erro ocorreu provavelmente devido a um comportamento inesperado ou uma má configuração do SimpleSAMLphp. Contacte o administrador deste serviço de login, e comunique a mensagem de erro."
-
-msgid "Sending message"
-msgstr "A enviar a mensagem"
-
-msgid "Yes, continue"
-msgstr "Sim, Aceito"
 
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"

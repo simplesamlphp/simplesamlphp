@@ -239,6 +239,12 @@ msgstr "Autentificarea a fost întreruptă de utilizator"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Nu a fost găsit niciun utilizator cu numele de utilizator specificat, sau parola introdusă este greșită. Vă rugăm să încercați din nou."
 
+msgid "Sending message"
+msgstr "Se trimite mesajul"
+
+msgid "Yes, continue"
+msgstr "Da, continuă"
+
 msgid "Select your identity provider"
 msgstr "Alegeți furnizorul de identitate"
 
@@ -292,12 +298,6 @@ msgstr "Cum obțineți ajutor/asistență"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Această eroare a apărut probabil din cauza unui comportament neașteptat sau a erorilor de configurare a SimpleSAMLphp. Vă rugăm să contactați administratorul acestui serviciu și să-i furnizați mesajul de eroare de mai sus."
-
-msgid "Sending message"
-msgstr "Se trimite mesajul"
-
-msgid "Yes, continue"
-msgstr "Da, continuă"
 
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"

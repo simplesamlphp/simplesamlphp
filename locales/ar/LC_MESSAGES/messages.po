@@ -239,6 +239,12 @@ msgstr "تم إيقاف التوثيق بواسطة المستخدم"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "اما انه لم  نتمكن من التعرف علي اسم المستخدم او ان كلمة السر خطا. راجع اسم الدخول و حاول مرة اخري"
 
+msgid "Sending message"
+msgstr "ارسل رسالة"
+
+msgid "Yes, continue"
+msgstr "نعم، واصل"
+
 msgid "Select your identity provider"
 msgstr "اختار موقع هويتك"
 
@@ -292,12 +298,6 @@ msgstr "للمساعدة"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "هذا الخطأ ناتج غالباً عن سلوك غير متوقع او عن خطا في ترتيب البرنامج. اتصل بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم أيضاً "
-
-msgid "Sending message"
-msgstr "ارسل رسالة"
-
-msgid "Yes, continue"
-msgstr "نعم، واصل"
 
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"

@@ -186,6 +186,9 @@ msgstr "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML LogoutR
 msgid "An unhandled exception was thrown."
 msgstr "Käsittelemätön poikkeus heitetty"
 
+msgid "Yes, continue"
+msgstr "Kyllä"
+
 msgid "Select your identity provider"
 msgstr "Valitse identiteettillähteesi"
 
@@ -239,9 +242,6 @@ msgstr "Miten saada apua"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä yllä oleva virheilmoitus."
-
-msgid "Yes, continue"
-msgstr "Kyllä"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"

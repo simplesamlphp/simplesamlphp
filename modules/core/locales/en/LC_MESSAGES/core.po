@@ -3,6 +3,93 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Missing cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+
+msgid "Retry"
+msgstr "Retry"
+
+msgid "Logging out..."
+msgstr ""
+
+msgid "You are now successfully logged out from %SP%."
+msgstr ""
+
+msgid "You are also logged in on these services:"
+msgstr ""
+
+msgid "logout is not supported"
+msgstr ""
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Do you want to logout from all the services above?"
+msgstr ""
+
+msgid "Yes, all services"
+msgstr ""
+
+msgid "No, only %SP%"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Error report sent"
+msgstr ""
+
+msgid "The error report has been sent to the administrators."
+msgstr ""
+
+msgid "Enter your username and password"
+msgstr ""
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Remember my username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Remember my organization"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Processing..."
+msgstr ""
+
+msgid "Help! I don't remember my password."
+msgstr ""
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr ""
+
+msgid "Welcome"
+msgstr "Welcome"
+
 msgid "Incorrect Attributes"
 msgstr ""
 
@@ -57,12 +144,6 @@ msgstr "We have detected that there is only a few seconds since you last authent
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr ""
 
-msgid "Error report sent"
-msgstr ""
-
-msgid "The error report has been sent to the administrators."
-msgstr ""
-
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "This is most likely a configuration problem on either the service provider or identity provider."
 
@@ -71,87 +152,6 @@ msgstr "If you are an user who received this error after following a link on a s
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-
-msgid "Enter your username and password"
-msgstr ""
-
-msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr ""
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr ""
-
-msgid "Username"
-msgstr ""
-
-msgid "Remember my username"
-msgstr ""
-
-msgid "Password"
-msgstr ""
-
-msgid "Remember me"
-msgstr ""
-
-msgid "Organization"
-msgstr ""
-
-msgid "Remember my organization"
-msgstr ""
-
-msgid "Login"
-msgstr ""
-
-msgid "Processing..."
-msgstr ""
-
-msgid "Help! I don't remember my password."
-msgstr ""
-
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr ""
-
-msgid "Logging out..."
-msgstr ""
-
-msgid "You are now successfully logged out from %SP%."
-msgstr ""
-
-msgid "You are also logged in on these services:"
-msgstr ""
-
-msgid "logout is not supported"
-msgstr ""
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
-
-msgid "Continue"
-msgstr ""
-
-msgid "Do you want to logout from all the services above?"
-msgstr ""
-
-msgid "Yes, all services"
-msgstr ""
-
-msgid "No, only %SP%"
-msgstr ""
-
-msgid "No"
-msgstr ""
-
-msgid "Missing cookie"
-msgstr "Missing cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-
-msgid "Retry"
-msgstr "Retry"
-
-msgid "Welcome"
-msgstr "Welcome"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "If this problem persists, you can report it to the system administrators."

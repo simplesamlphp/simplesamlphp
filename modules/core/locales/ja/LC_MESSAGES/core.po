@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "クッキーが見つかりません"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Welcome"
+msgstr "ようこそ"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "この問題を解決する為の提案:"
 
@@ -38,18 +50,6 @@ msgstr "もしあなたがユーザーで以下のリンクのサイトでこの
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
-
-msgid "Missing cookie"
-msgstr "クッキーが見つかりません"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
-
-msgid "Retry"
-msgstr "再試行"
-
-msgid "Welcome"
-msgstr "ようこそ"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"

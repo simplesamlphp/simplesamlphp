@@ -239,6 +239,18 @@ msgstr "Innlogging blei avbroten av sluttbrukaren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var feil.  Sjekk brukarnamn og prøv igjen."
 
+msgid "Sending message"
+msgstr "Sender melding"
+
+msgid "Yes, continue"
+msgstr "Ja, fortsett"
+
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversette verd!"
+
+msgid "World"
+msgstr "Verd"
+
 msgid "Select your identity provider"
 msgstr "Vel innloggingsteneste"
 
@@ -292,18 +304,6 @@ msgstr "Send feilrapport"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen er truleg på grunn av feilkonfigurasjon av SimpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen."
-
-msgid "Sending message"
-msgstr "Sender melding"
-
-msgid "Yes, continue"
-msgstr "Ja, fortsett"
-
-msgid "Hello, Untranslated World!"
-msgstr "Hallo, oversette verd!"
-
-msgid "World"
-msgstr "Verd"
 
 msgid "[Preferred choice]"
 msgstr "Beste val"

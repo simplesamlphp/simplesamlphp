@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Slapukas nerastas"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
+
+msgid "Retry"
+msgstr "Bandyti dar kartą"
+
+msgid "Welcome"
+msgstr "Sveiki atvykę"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Pasiūlymai spręsti šią problemą:"
 
@@ -38,18 +50,6 @@ msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuo
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
-
-msgid "Missing cookie"
-msgstr "Slapukas nerastas"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
-
-msgid "Retry"
-msgstr "Bandyti dar kartą"
-
-msgid "Welcome"
-msgstr "Sveiki atvykę"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."
