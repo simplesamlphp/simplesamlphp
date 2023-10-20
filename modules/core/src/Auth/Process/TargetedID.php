@@ -76,7 +76,7 @@ class TargetedID extends Auth\ProcessingFilter
         $this->identifyingAttribute = $config['identifyingAttribute'];
 
         if (array_key_exists('nameId', $config)) {
-            if (!is_bool($this->generateNameId)) {
+            if (!is_bool($config['nameId'])) {
                 throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
             }
             $this->generateNameId = $config['nameId'];
