@@ -239,6 +239,12 @@ msgstr "Inloggning avbröts av användaren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Antingen finns det ingen användare med angiven användaridentitet eller så har du angivit fel lösenord. Försök igen."
 
+msgid "Sending message"
+msgstr "Skickar meddelande"
+
+msgid "Yes, continue"
+msgstr "Ja"
+
 msgid "Select your identity provider"
 msgstr "Välj din identitetsleverantör"
 
@@ -292,12 +298,6 @@ msgstr "Hur får du hjälp"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Detta fel beror troligtvis på att oväntat beteende eller felkonfigurering av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att meddela dem ovanstående felmeddelande."
-
-msgid "Sending message"
-msgstr "Skickar meddelande"
-
-msgid "Yes, continue"
-msgstr "Ja"
 
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"

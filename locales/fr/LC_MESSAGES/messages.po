@@ -239,6 +239,12 @@ msgstr "L'authentification a été abandonnée par l'usager"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Utilisateur inexistant, ou mot de passe incorrect. Vérifiez le nom d'utilisateur, et ré-essayez."
 
+msgid "Sending message"
+msgstr "Envoi du message"
+
+msgid "Yes, continue"
+msgstr "Oui"
+
 msgid "Select your identity provider"
 msgstr "Sélectionnez votre fournisseur d'identité"
 
@@ -292,12 +298,6 @@ msgstr "Envoyer le rapport d'erreur"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Cette erreur est probablement causée par un comportement imprévu ou une mauvaise configuration de SimpleSAMLphp.  Contactez l'administrateur de ce service d'identification et envoyez lui le message d'erreur."
-
-msgid "Sending message"
-msgstr "Envoi du message"
-
-msgid "Yes, continue"
-msgstr "Oui"
 
 msgid "[Preferred choice]"
 msgstr "[Choix préféré]"

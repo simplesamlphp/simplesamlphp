@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "חסרה עוגייה"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
+
+msgid "Retry"
+msgstr "נסה שנית"
+
+msgid "Welcome"
+msgstr "ברוך-הבא"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "הצעות לפתרון הבעייה הנוכחית:"
 
@@ -38,18 +50,6 @@ msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה ע
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
-
-msgid "Missing cookie"
-msgstr "חסרה עוגייה"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
-
-msgid "Retry"
-msgstr "נסה שנית"
-
-msgid "Welcome"
-msgstr "ברוך-הבא"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."

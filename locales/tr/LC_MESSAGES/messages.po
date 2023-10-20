@@ -186,6 +186,12 @@ msgstr "Bir beklenmeyen durum gönderildi."
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Ya bu kullanıcı adında bir kullanıcı bulunamadı, yada şifreniz yanlış. Lütfen kullanıcı adını kontrol edin ve yeniden deneyin."
 
+msgid "Sending message"
+msgstr "Mesaj gönderiliyor"
+
+msgid "Yes, continue"
+msgstr "Evet, devam et"
+
 msgid "Select your identity provider"
 msgstr "Kimlik sağlayıcınızı seçiniz."
 
@@ -239,12 +245,6 @@ msgstr "Nasıl yardım alınır"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile iletişim kurun ve yukarıdaki hata mesajını gönderin."
-
-msgid "Sending message"
-msgstr "Mesaj gönderiliyor"
-
-msgid "Yes, continue"
-msgstr "Evet, devam et"
 
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"

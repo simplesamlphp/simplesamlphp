@@ -239,6 +239,18 @@ msgstr "Godkjenningen ble avbrutt av brukeren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og prøv igjen."
 
+msgid "Sending message"
+msgstr "Sender melding"
+
+msgid "Yes, continue"
+msgstr "Ja, fortsett"
+
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversatte verden!"
+
+msgid "World"
+msgstr "Verden"
+
 msgid "Select your identity provider"
 msgstr "Velg din identitetsleverandør"
 
@@ -292,18 +304,6 @@ msgstr "Hvordan få hjelp"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp eller den er en følge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter så mye som mulig angående feilen."
-
-msgid "Sending message"
-msgstr "Sender melding"
-
-msgid "Yes, continue"
-msgstr "Ja, fortsett"
-
-msgid "Hello, Untranslated World!"
-msgstr "Hallo, oversatte verden!"
-
-msgid "World"
-msgstr "Verden"
 
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"

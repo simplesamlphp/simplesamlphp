@@ -239,6 +239,12 @@ msgstr "L'autenticazione è stata interrotta dall'utente"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "L'utente fornito non è stato trovato, oppure la password fornita era sbagliata. Si prega di verificare il nome utente e provare di nuovo"
 
+msgid "Sending message"
+msgstr "Invio del messaggio"
+
+msgid "Yes, continue"
+msgstr "Sì, continuare"
+
 msgid "Select your identity provider"
 msgstr "Selezionare il proprio identity provider"
 
@@ -292,12 +298,6 @@ msgstr "Come ottenere aiuto"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Questo errore è probabilmente dovuto a qualche comportamento inatteso di SimpleSAMLphp o ad un errore di configurazione. Contatta l'amministratore di questo servizio di login con una copia del messaggio di errore riportato qui sopra."
-
-msgid "Sending message"
-msgstr "Invio del messaggio"
-
-msgid "Yes, continue"
-msgstr "Sì, continuare"
 
 msgid "[Preferred choice]"
 msgstr "[Scelta preferita]"

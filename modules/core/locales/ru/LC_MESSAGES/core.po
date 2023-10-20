@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Отсутствует cookie-файл"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
+
+msgid "Retry"
+msgstr "Повторить"
+
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Варианты решения проблемы:"
 
@@ -38,18 +50,6 @@ msgstr "Если, перейдя по ссылке на сайт, вы увид�
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Если вы разработчик внедряющий Технологию единого вход (SSO), у вас есть проблемы с метаданными конфигурации. Убедитесь, что метаданные настроены правильно на Провайдере подлинности и Поставщике услуг."
-
-msgid "Missing cookie"
-msgstr "Отсутствует cookie-файл"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
-
-msgid "Retry"
-msgstr "Повторить"
-
-msgid "Welcome"
-msgstr "Добро пожаловать"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Если проблема остается, сообщить об этом администратору."

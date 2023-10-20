@@ -239,6 +239,12 @@ msgstr "Autentifikasi dibatalkan oleh user"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi."
 
+msgid "Sending message"
+msgstr "Mengirimpan pesan"
+
+msgid "Yes, continue"
+msgstr "Yam lanjutkan"
+
 msgid "Select your identity provider"
 msgstr "Pilih identity provider anda"
 
@@ -292,12 +298,6 @@ msgstr "Bagaimana mendapatkan pertolongan"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
-
-msgid "Sending message"
-msgstr "Mengirimpan pesan"
-
-msgid "Yes, continue"
-msgstr "Yam lanjutkan"
 
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"

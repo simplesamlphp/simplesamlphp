@@ -239,6 +239,12 @@ msgstr "ההיזדהות בוטלה על ידי המשתמש"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "או שלא נמצא משתמש בשם זה, או שהסיסמה לא הייתה נכונה. בדוק בבקשה את שם המשתמש ונסה שוב. "
 
+msgid "Sending message"
+msgstr "שולח הודעה"
+
+msgid "Yes, continue"
+msgstr "כן, המשך"
+
 msgid "Select your identity provider"
 msgstr "בחר את ספק הזהות שלך"
 
@@ -292,12 +298,6 @@ msgstr "איך לקבל עזרה"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
-
-msgid "Sending message"
-msgstr "שולח הודעה"
-
-msgid "Yes, continue"
-msgstr "כן, המשך"
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"

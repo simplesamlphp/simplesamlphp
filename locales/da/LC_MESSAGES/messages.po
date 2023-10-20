@@ -239,6 +239,12 @@ msgstr "Autentificering blev afbrudt af brugeren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Enten kunne brugeren ikke findes eller også var kodeordet forkert. Prøv igen."
 
+msgid "Sending message"
+msgstr "Sender besked"
+
+msgid "Yes, continue"
+msgstr "Ja, jeg accepterer"
+
 msgid "Select your identity provider"
 msgstr "Vælg institution (identitetsudbyder)"
 
@@ -301,12 +307,6 @@ msgstr "Hvordan kan jeg få hjælp"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne fejl skyldes formentlig en fejlkonfiguration af SimpleSAMLphp - alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og rapportér så mange detaljer som muligt om fejlen"
-
-msgid "Sending message"
-msgstr "Sender besked"
-
-msgid "Yes, continue"
-msgstr "Ja, jeg accepterer"
 
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"

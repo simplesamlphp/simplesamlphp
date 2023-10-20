@@ -259,6 +259,12 @@ msgstr "De authenticatie is afgebroken door de gebruiker"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals."
 
+msgid "Sending message"
+msgstr "Bericht"
+
+msgid "Yes, continue"
+msgstr "Ja, ik ga akkoord"
+
 msgid "Select your identity provider"
 msgstr "Kies je Identity Provider"
 
@@ -321,12 +327,6 @@ msgstr "Hoe kan ik hulp vragen"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van SimpleSAMLphp. Meld dit bij de beheerder van deze authenticatiedienst, en geef bovenstaande melding door."
-
-msgid "Sending message"
-msgstr "Bericht"
-
-msgid "Yes, continue"
-msgstr "Ja, ik ga akkoord"
 
 msgid "Back"
 msgstr "Terug"

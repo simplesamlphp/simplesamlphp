@@ -259,6 +259,24 @@ msgstr "Autentifikácia bola prerušená užívateľom"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Buď sa užívateľ s týmto prihlasovacím menom nenašiel, alebo je zadané heslo nesprávne. Skontrolujte prosím prihlasovacie meno a heslo a skúste to znovu."
 
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
+
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "World"
+msgstr "Svet"
+
 msgid "Select your identity provider"
 msgstr "Vyberte si poskytovateľa identity"
 
@@ -273,6 +291,9 @@ msgstr "Zapamätať moju voľbu"
 
 msgid "Select"
 msgstr "Vybrať"
+
+msgid "Language"
+msgstr "Jazyk"
 
 msgid "Tracking number"
 msgstr "Sledovacie číslo"
@@ -339,27 +360,6 @@ msgstr "Ako získať pomoc"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
-
-msgid "Sending message"
-msgstr "Odosiela sa správa"
-
-msgid "Warning"
-msgstr "Upozornenie"
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
-
-msgid "Yes, continue"
-msgstr "Áno, pokračovať"
-
-msgid "Language"
-msgstr "Jazyk"
-
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
 
 msgid "Back"
 msgstr "Späť"

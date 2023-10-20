@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Mangler cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
+
+msgid "Retry"
+msgstr "Forsøg igen"
+
+msgid "Welcome"
+msgstr "Velkommen"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Løsningsforslag til problemet:"
 
@@ -38,18 +50,6 @@ msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
-
-msgid "Missing cookie"
-msgstr "Mangler cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
-
-msgid "Retry"
-msgstr "Forsøg igen"
-
-msgid "Welcome"
-msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."

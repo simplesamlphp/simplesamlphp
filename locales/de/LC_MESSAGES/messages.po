@@ -239,6 +239,12 @@ msgstr "Die Authentifizierung wurde durch den Benutzer abgebrochen"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden werden oder das Passwort ist falsch. Überprüfen Sie die Zugangsdaten und probieren Sie es erneut."
 
+msgid "Sending message"
+msgstr "Sende Nachricht"
+
+msgid "Yes, continue"
+msgstr "Ja, ich stimme zu"
+
 msgid "Select your identity provider"
 msgstr "Wählen Sie Ihren Identity Provider"
 
@@ -292,12 +298,6 @@ msgstr "Wie man Hilfe bekommt"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von SimpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit."
-
-msgid "Sending message"
-msgstr "Sende Nachricht"
-
-msgid "Yes, continue"
-msgstr "Ja, ich stimme zu"
 
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"

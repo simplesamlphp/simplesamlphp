@@ -239,6 +239,18 @@ msgstr "La Autenticacion fue abortada por el usuario"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "No existe un usuario con el identificador indicado, o la contraseña indicada es incorrecta. Por favor revise el identificador de usuario e inténtelo de nuevo."
 
+msgid "Sending message"
+msgstr "Enviando mensaje"
+
+msgid "Yes, continue"
+msgstr "Sí"
+
+msgid "Hello, Untranslated World!"
+msgstr "Hola, mundo traducido!"
+
+msgid "World"
+msgstr "Mundo"
+
 msgid "Select your identity provider"
 msgstr "Seleccione su proveedor de identidad"
 
@@ -301,18 +313,6 @@ msgstr "Cómo obtener asistencia"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Este error se debe probablemente a un comportamiento inesperado o a una configuración incorrecta de SimpleSAMLphp. Póngase en contacto con el administrador de este servicio de conexión y envíele el mensaje de error anterior."
-
-msgid "Sending message"
-msgstr "Enviando mensaje"
-
-msgid "Yes, continue"
-msgstr "Sí"
-
-msgid "Hello, Untranslated World!"
-msgstr "Hola, mundo traducido!"
-
-msgid "World"
-msgstr "Mundo"
 
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"

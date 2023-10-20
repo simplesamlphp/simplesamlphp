@@ -239,6 +239,12 @@ msgstr "Autentikacija nutraukė naudotojas"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte slaptažodį. Pasitikrinkite prisijungimo vardą ir bandykite dar kartą."
 
+msgid "Sending message"
+msgstr "Siunčiamas pranešimas"
+
+msgid "Yes, continue"
+msgstr "Taip, tęsti"
+
 msgid "Select your identity provider"
 msgstr "Pasirinkite savo tapatybių tiekėją"
 
@@ -292,12 +298,6 @@ msgstr "Kaip pasiekti pagalbą"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ši klaida tikriausiai susijusi dėl SimpleSAMLphp neteisingo sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir nusiųskite žemiau rodomą klaidos pranešimą."
-
-msgid "Sending message"
-msgstr "Siunčiamas pranešimas"
-
-msgid "Yes, continue"
-msgstr "Taip, tęsti"
 
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"

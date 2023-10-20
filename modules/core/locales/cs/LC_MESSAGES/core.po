@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "Chybějící cookie"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
+
+msgid "Retry"
+msgstr "Opakujte"
+
+msgid "Welcome"
+msgstr "Vítejte"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Návrhy pro vyřešení tohoto problému:"
 
@@ -38,18 +50,6 @@ msgstr "Pokud jste uživatel, který obdržel chybu po následování odkazu na 
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována správně jak u poskytovatele identity tak u poskytovatele služby."
-
-msgid "Missing cookie"
-msgstr "Chybějící cookie"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
-
-msgid "Retry"
-msgstr "Opakujte"
-
-msgid "Welcome"
-msgstr "Vítejte"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."

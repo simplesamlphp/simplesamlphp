@@ -239,6 +239,12 @@ msgstr "认证被用户中止"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "如果不是给定的用户名没有找到就是给定的密码错误，请再次检查用户名和密码"
 
+msgid "Sending message"
+msgstr "正在发送消息"
+
+msgid "Yes, continue"
+msgstr "是的，继续"
+
 msgid "Select your identity provider"
 msgstr "选择你的身份提供者"
 
@@ -292,12 +298,6 @@ msgstr "如何获取帮助"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
-
-msgid "Sending message"
-msgstr "正在发送消息"
-
-msgid "Yes, continue"
-msgstr "是的，继续"
 
 msgid "[Preferred choice]"
 msgstr "首选选项"

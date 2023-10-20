@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Missing cookie"
+msgstr "<i>Cookie</i> lipsă"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
+
+msgid "Retry"
+msgstr "Încearcă din nou"
+
+msgid "Welcome"
+msgstr "Bine ați venit"
+
 msgid "Suggestions for resolving this problem:"
 msgstr "Sugestii pentru rezolvarea acestei probleme:"
 
@@ -38,18 +50,6 @@ msgstr "Dacă sunteți un utilizator care a primit acest mesaj de eroare în urm
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Dacă sunteți dezvoltator care implementează o soluție <i>single sign-on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să verificați configurarea corectă a metadatelor, atât la furnizorul de identitate cât și la furnizorul de servicii."
-
-msgid "Missing cookie"
-msgstr "<i>Cookie</i> lipsă"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
-
-msgid "Retry"
-msgstr "Încearcă din nou"
-
-msgid "Welcome"
-msgstr "Bine ați venit"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Dacă problema persistă, anunțați administratorii de sistem."

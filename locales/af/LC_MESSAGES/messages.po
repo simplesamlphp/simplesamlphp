@@ -239,6 +239,9 @@ msgstr "Die verifikasie is gestop deur die gebruiker"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Die gegewe gebruikersnaam bestaan nie, of die wagwoord wat jy verskaf het is verkeerd. Bevestig die gebruikersnaam en probeer weer."
 
+msgid "Yes, continue"
+msgstr "Ja, voortgaan"
+
 msgid "Select your identity provider"
 msgstr "Kies jou identiteits verskaffer"
 
@@ -280,9 +283,6 @@ msgstr "Hoe om hulp te verkry"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die aanmeld diens en stuur die bostaande fout boodskap aan."
-
-msgid "Yes, continue"
-msgstr "Ja, voortgaan"
 
 msgid "[Preferred choice]"
 msgstr "[Verkies]"
