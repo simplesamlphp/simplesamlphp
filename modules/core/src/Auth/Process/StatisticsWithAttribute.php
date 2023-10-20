@@ -9,6 +9,11 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 
+use function array_key_exists;
+use function boolval;
+use function is_null;
+use function is_string;
+
 /**
  * Log a line in the STAT log with one attribute.
  *
@@ -44,21 +49,21 @@ class StatisticsWithAttribute extends Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         if (array_key_exists('attributename', $config)) {
-            if (!is_string($this->attribute)) {
+            if (!is_string($config['attributename'])) {
                 throw new Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
             }
             $this->attribute = $config['attributename'];
         }
 
         if (array_key_exists('type', $config)) {
-            if (!is_string($this->typeTag)) {
+            if (!is_string($config['type'])) {
                 throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
             }
             $this->typeTag = $config['type'];
         }
 
         if (array_key_exists('skipPassive', $config)) {
-            $this->skipPassive = (bool) $config['skipPassive'];
+            $this->skipPassive = boolval($config['skipPassive']);
         }
     }
 
