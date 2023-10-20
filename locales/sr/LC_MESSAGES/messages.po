@@ -3,239 +3,239 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:24
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nije dostavljen SAML odgovor"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:25
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:51
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "No SAML message provided"
 msgstr "Nije dostavljena SAML poruka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:26
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
 msgstr "Greška u autentifikacionom modulu"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:27
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Dobijeni zahtev nije ispravan"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:28
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS greška"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:29
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
 msgstr "Greška u podešavanjima"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:30
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
 msgid "Error creating request"
 msgstr "Greška pri kreiranju zahteva"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:31
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
 msgid "Bad request to discovery service"
 msgstr "Servisu za lociranje poslat je neispravan zahtev"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:32
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Autentifikacioni odgovor nije mogao biti kreiran"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:33
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:47
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Neispravan sertifikat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:34
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "LDAP greška"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:35
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Informacija o odjavljivanju je izgubljena"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:36
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
 msgid "Error processing the Logout Request"
 msgstr "Greška pri obradi zahteva za odjavu"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:38
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "Error loading metadata"
 msgstr "Greška prilikom učitavanja metapodataka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:39
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metapodaci nisu pronađeni"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:40
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
 msgstr "Pristup nije dozvoljen"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:41
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Nema digitalnog sertifikata"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:42
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
 msgid "No RelayState"
 msgstr "Parametar RelayState nije zadan"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:43
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "State information lost"
 msgstr "Podaci o stanju su izgubljeni"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:44
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:45
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Stranica nije pronađena"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:46
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Lozinka nije postavljena"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:48
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "Error processing response from Identity Provider"
 msgstr "Greška pri obradi odgovora koji je poslao Davalac Identeteta"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:49
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error processing request from Service Provider"
 msgstr "Greška prilikom obrade zahteva koji je poslao Davalac Servisa"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:50
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "Error received from Identity Provider"
 msgstr "Davalac Identiteta je prijavio grešku"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:53
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"
 msgstr "Neobrađena greška"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:54
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
 msgid "Unknown certificate"
 msgstr "Nepoznat digitalni sertifikat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:55
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "Authentication aborted"
 msgstr "Proces autentifikacije je prekinut"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:56
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
 msgstr "Neispravno korisničko ime ili lozinka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Pristupili ste sistemu za obradu SAML potvrda, ali niste dostavili SAML autentikacioni odgovor."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr "Došlo je do greške u autentifikacionom modulu %AUTHSOURCE%. Razlog: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "Dogodila se greška prilikom dohvatanja ove stranice. Razlog: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
 msgid "Error when communicating with the CAS server."
 msgstr "Greška prilikom komunikacije sa CAS serverom."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "Izgleda da postoji greška u podešavanjima SimpleSAMLphp-a."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
 msgid "An error occurred when trying to create the SAML request."
 msgstr "Desila se greška prilikom pokušaja kreiranja SAML zahteva."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
 msgid "When this identity provider tried to create an authentication response, an error occurred."
 msgstr "Desila se greška prilikom kreiranja autentifikacionog odgovora od strane ovog davaoca identiteta."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
 msgstr "Neuspešna autentifikacija: digitalni sertifikat koji je poslao vaš web pretraživač nije ispravan ili se ne može pročitati"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:105
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "Podaci o korisničkim nalozima čuvaju se u LDAP bazi, a kada pokušate da se ulogujete vrši se provera da li Vaše korisničko ime i lozinka postoje u LDAP bazi. Prilikom pristupa LDAP bazi, došlo je do greške."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
 msgstr "Informacija o aktuelnom zahtevu za odjavljivanjem se izgubila. Preporučujemo da se vratite u aplikaciju iz koje ste se hteli odjaviti i pokušate da se odjavite ponovo. Ova greška može biti uzrokovana istekom validnosti zahteva za odjavom. Zahtev se skladišti određeno vreme - po pravilu nekoliko sati. Obzirom da je to duže nego što bi bilo koja operacija odjavljivanja trebala trajati, greška koja se pojavila može upućivati na grešku u podešavanjima. Ukoliko se problem nastavi, kontaktirajte administratora aplikacije."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:117
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
 msgid "An error occurred when trying to process the Logout Request."
 msgstr "Došlo je do greške prilikom pokušaja obrade zahteva za odjavom."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:121
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
 msgstr "Postoji greška u podešavanjima SimpleSAMLphp-a. Ukoliko ste administrator ovog servisa, trebalo bi da proverite da li su metapodaci ispravno podešeni."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:125
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Metapodaci za %ENTITYID% nisu pronađeni"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:126
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
 msgstr "Pristup ovoj odredišnoj adresa nije omogućen. Proverite podešavanja dozvola u SimpleSAMLphp-u."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:129
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
 msgid "Authentication failed: your browser did not send any certificate"
 msgstr "Neuspešna autentifikacija: vaš web pretraživač nije poslao digitalni sertifikat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:130
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 msgstr "Servis koji je inicirao ovaj zahtjev nije poslao RelayState parametar koji sadrži adresu na koju treba preusmeriti korisnikov web pretraživač nakon uspešne autentifikacije."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:133
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Podaci o stanju su izgubljeni i zahtev se ne može reprodukovati"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:134
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
 msgstr "Tražena stranica nije pronađena. Adresa stranice je: %URL%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:135
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:236
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Tražena stranica nije pronađena. Razlog: %REASON% Adresa stranice je: %URL%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:137
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Administratorska lozinka u podešavanjima(parametar <i>auth.adminpassword</i>) i dalje ima izvornu vrednost. Molimo Vas izmenite konfiguracioni fajl."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:140
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
 msgid "You did not present a valid certificate."
 msgstr "Niste dostavili validan setifikat."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:141
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Odgovor koji je poslao Davalac Identiteta nije prihvaćen."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:142
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Davalac Identiteta je primio zahtev za autentikacijom od strane Davaoca Servisa, ali se javila greška prilikom pokušaja obrade ovog zahteva."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:145
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Davalac Identiteta je poslao odgovor koji sadrži informaciju o pojavi greške(Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri uspešno obrađenog zahteva)."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:148
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Pristupili ste interfejsu za jedinstvenu odjavu sa sistema, ali niste poslali SAML <i>LogoutRequest</i> ili <i>LogoutResponse</i> poruku."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:156
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
 msgid "An unhandled exception was thrown."
 msgstr "Pojavila se greška koja ne može do kraja biti obrađena."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:157
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr "Neuspešna autentifikacija: digitalni sertifikat koji je poslao vaš web pretraživač je nepoznat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:158
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
 msgid "The authentication was aborted by the user"
 msgstr "Korisnik je prekinuo proces autentifikacie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Korisnik s navedenim korisničkim imenom ne može biti pronađen ili je lozinka koju ste uneli neispravna. Molimo proverite korisničko ime i pokušajte ponovo."
 
