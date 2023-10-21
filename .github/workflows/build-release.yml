@@ -81,16 +81,19 @@ jobs:
         run: |
           cd ..
           cp -R  simplesamlphp "simplesamlphp-$VERSION"
-          tar --owner 0 --group 0 -cvzf "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz" \
-          "simplesamlphp-$VERSION"
+          TARGET="/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz"
+          # remove -slim from the filename for our minimalistic build
+          TARGET=${TARGET/-slim/}
+          echo "VERSION=$TARGET" >> "$GITHUB_ENV"
+          tar --owner 0 --group 0 -cvzf "$TARGET" "simplesamlphp-$VERSION"
           rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
         uses: actions/upload-artifact@v3
         with:
           name: release-${{ matrix.version }}
-          path: "/tmp/simplesamlphp-${{ env.VERSION }}-${{ matrix.version }}.tar.gz"
+          path: "$TARGET"
           retention-days: 1
 
       - name: Calculate SHA checksum (${{ matrix.version }})
-        run: sha256sum "/tmp/simplesamlphp-$VERSION-${{ matrix.version }}.tar.gz"
+        run: sha256sum "$TARGET"
