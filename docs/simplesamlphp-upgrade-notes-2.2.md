@@ -1,4 +1,4 @@
-# Upgrade notes for SimpleSAMLphp 2.1
+# Upgrade notes for SimpleSAMLphp 2.2
 
 SimpleSAMLphp 2.2 is a minor new release which introduces a few new features.
 The following changes are relevant for installers and/or developers.
