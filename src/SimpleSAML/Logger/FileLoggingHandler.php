@@ -81,11 +81,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
                     sprintf("Could not write to logfile: %s", $this->logFile),
                 );
             }
-        } elseif (!$this->fileSystem->touch($this->logFile)) {
-            throw new CannotWriteFileException(sprintf(
-                "The logging directory is not writable for the web server user. Could not create logfile: %s",
-                $this->logFile,
-            ));
+        } else {
+            $this->fileSystem->touch($this->logFile);
         }
 
         $timeUtils = new Utils\Time();
