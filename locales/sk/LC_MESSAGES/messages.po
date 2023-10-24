@@ -271,12 +271,6 @@ msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tla�
 msgid "Yes, continue"
 msgstr "Áno, pokračovať"
 
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
-
 msgid "Select your identity provider"
 msgstr "Vyberte si poskytovateľa identity"
 
@@ -286,11 +280,47 @@ msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
 
+msgid "Select"
+msgstr "Vybrať"
+
 msgid "Remember my choice"
 msgstr "Zapamätať moju voľbu"
 
-msgid "Select"
-msgstr "Vybrať"
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
+
+msgid "Debug information"
+msgstr "Debug informácie"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo podporu nápomocné:"
+
+msgid "Report errors"
+msgstr "Nahlásiť chyby"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Dobrovoľne zadajte Vašu emailovú adresu, aby Vás administrátori mohli kontaktovať s ďalšími otázkami pre vyriešenie problému:"
+
+msgid "E-mail address:"
+msgstr "E-mailová adresa:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Vysvetlite, čo ste robili, keď nastala táto chyba..."
+
+msgid "Send error report"
+msgstr "Odoslať správu o chybe"
+
+msgid "How to get help"
+msgstr "Ako získať pomoc"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
+
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "World"
+msgstr "Svet"
 
 msgid "Language"
 msgstr "Jazyk"
@@ -330,36 +360,6 @@ msgstr "Debug informácie pre personál podpory"
 
 msgid "Logout"
 msgstr "Odhlásiť sa"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
-
-msgid "Debug information"
-msgstr "Debug informácie"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo podporu nápomocné:"
-
-msgid "Report errors"
-msgstr "Nahlásiť chyby"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Dobrovoľne zadajte Vašu emailovú adresu, aby Vás administrátori mohli kontaktovať s ďalšími otázkami pre vyriešenie problému:"
-
-msgid "E-mail address:"
-msgstr "E-mailová adresa:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Vysvetlite, čo ste robili, keď nastala táto chyba..."
-
-msgid "Send error report"
-msgstr "Odoslať správu o chybe"
-
-msgid "How to get help"
-msgstr "Ako získať pomoc"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
 
 msgid "Back"
 msgstr "Späť"

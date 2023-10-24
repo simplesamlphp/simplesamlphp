@@ -3,37 +3,13 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr "Log uit"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML naar SimpleSAMLphp metadata vertaling"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
-msgid "SAML 2.0 SP metadata"
-msgstr "SAML 2.0 SP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "SAML 2.0 IdP metadata"
-msgstr "SAML 2.0 IdP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
-msgid "ADFS SP metadata"
-msgstr "ADFS SP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
-msgid "ADFS IdP metadata"
-msgstr "ADFS IdP metadata"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:132
 msgid "Diagnostics on hostname, port and protocol"
@@ -156,6 +132,30 @@ msgstr "De cURL-extensie mist in PHP. Kan niet controleren op updates."
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "U heeft een verouderde versie van SimpleSAMLphp. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%latest%\">de laatste versie</a>."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML naar SimpleSAMLphp metadata vertaling"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+msgid "SAML 2.0 SP metadata"
+msgstr "SAML 2.0 SP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "SAML 2.0 IdP metadata"
+msgstr "SAML 2.0 IdP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+msgid "ADFS SP metadata"
+msgstr "ADFS SP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+msgid "ADFS IdP metadata"
+msgstr "ADFS IdP metadata"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Configuratie"
@@ -168,32 +168,26 @@ msgstr "Test"
 msgid "Federation"
 msgstr "Federatie"
 
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Toon Metadata"
+msgid "Metadata parser"
+msgstr "Metadata parser"
 
-msgid "Metadata"
-msgstr "Metadata"
+msgid "XML metadata"
+msgstr "XML-metadata"
 
-msgid "Copy to clipboard"
-msgstr "Kopieer naar klembord"
+msgid "or select a file:"
+msgstr "of kies een bestand:"
 
-msgid "Back"
-msgstr "Terug"
+msgid "No file selected."
+msgstr "Geen bestand geselecteerd."
 
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp installatiepagina"
+msgid "Parse"
+msgstr "Converteer"
 
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp is geïnstalleerd in:"
+msgid "Converted metadata"
+msgstr "Geconverteerde metadata"
 
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "U draait versie <kbd>%version%</kbd>."
-
-msgid "required"
-msgstr "vereist"
-
-msgid "optional"
-msgstr "optioneel"
+msgid "An error occurred"
+msgstr "Er trad een fout op"
 
 msgid "Deprecated"
 msgstr "Verouderd"
@@ -206,6 +200,9 @@ msgstr "SAML Metadata"
 
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "U kunt de metadata-XML opvragen via deze URL:"
+
+msgid "Copy to clipboard"
+msgstr "Kopieer naar klembord"
 
 msgid "In SAML 2.0 Metadata XML format:"
 msgstr "In SAML 2.0 Metadata XML-formaat:"
@@ -221,6 +218,9 @@ msgstr "Certificaten"
 
 msgid "new"
 msgstr "nieuw"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp installatiepagina"
 
 msgid "Hosted entities"
 msgstr "Hosted entity's"
@@ -246,26 +246,8 @@ msgstr "EntityID"
 msgid "Search"
 msgstr "Zoek"
 
-msgid "Metadata parser"
-msgstr "Metadata parser"
-
-msgid "XML metadata"
-msgstr "XML-metadata"
-
-msgid "or select a file:"
-msgstr "of kies een bestand:"
-
-msgid "No file selected."
-msgstr "Geen bestand geselecteerd."
-
-msgid "Parse"
-msgstr "Converteer"
-
-msgid "Converted metadata"
-msgstr "Geconverteerde metadata"
-
-msgid "An error occurred"
-msgstr "Er trad een fout op"
+msgid "Test Authentication Sources"
+msgstr "Test Authentication Sources"
 
 msgid "Content of jpegPhoto attribute"
 msgstr "Inhoud van het jpegPhoto-attribuut"
@@ -299,8 +281,26 @@ msgstr "Authenticatiegegevens"
 msgid "Logout"
 msgstr "Afmelden"
 
-msgid "Test Authentication Sources"
-msgstr "Test Authentication Sources"
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Toon Metadata"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp is geïnstalleerd in:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "U draait versie <kbd>%version%</kbd>."
+
+msgid "required"
+msgstr "vereist"
+
+msgid "optional"
+msgstr "optioneel"
 
 msgid "Checking your PHP installation"
 msgstr "Controle van de PHP-installatie"

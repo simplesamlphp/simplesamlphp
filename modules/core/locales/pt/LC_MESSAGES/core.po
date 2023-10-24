@@ -3,6 +3,9 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Welcome"
+msgstr "Bem vindo"
+
 msgid "Missing cookie"
 msgstr "Cookie não encontrado"
 
@@ -11,9 +14,6 @@ msgstr "Provavelmente desligou o suporte de cookies no seu browser. Por favor ve
 
 msgid "Retry"
 msgstr "Tentar de novo"
-
-msgid "Welcome"
-msgstr "Bem vindo"
 
 msgid "Too short interval between single sign on events."
 msgstr "Intervalo entre eventos de single sign on demasiado curto."

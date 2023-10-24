@@ -268,23 +268,11 @@ msgstr "Khetha umhlinzeki wakho kamazisi"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
 
-msgid "Remember my choice"
-msgstr "Khumbula ukukhetha kwami"
-
 msgid "Select"
 msgstr "Khetha"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho."
-
-msgid "SAML Subject"
-msgstr "Isihloko Se-SAML"
-
-msgid "not set"
-msgstr "akusethiwe"
-
-msgid "Format"
-msgstr "Ifomethi"
+msgid "Remember my choice"
+msgstr "Khumbula ukukhetha kwami"
 
 msgid "Debug information"
 msgstr "Ulwazi lokususwa kwephutha"
@@ -312,6 +300,18 @@ msgstr "Indlela yokuthola usizo"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho."
+
+msgid "SAML Subject"
+msgstr "Isihloko Se-SAML"
+
+msgid "not set"
+msgstr "akusethiwe"
+
+msgid "Format"
+msgstr "Ifomethi"
 
 msgid "Next"
 msgstr "Okulandelayo"

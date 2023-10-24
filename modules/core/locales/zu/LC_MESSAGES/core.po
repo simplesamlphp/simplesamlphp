@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Retry"
-msgstr "Zama futhi"
-
 msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
 msgstr "Isici esisodwa noma ngaphezulu esinikezwe umhlinzeki wakho kamazisi asizange siqukathe inani lezinombolo ezilindelwe."
+
+msgid "Retry"
+msgstr "Zama futhi"
 
 msgid "This error may be caused by:"
 msgstr "Leli phutha kungenzeka libangelwa ukuthi:"
