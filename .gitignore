@@ -7,6 +7,8 @@ metadata/*
 !/public/assets/.gitkeep
 /public/assets/*
 .phpunit.result.cache
+.phive
+**.mo
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io
