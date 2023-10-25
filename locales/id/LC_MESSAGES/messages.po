@@ -251,11 +251,23 @@ msgstr "Pilih identity provider anda"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
 
+msgid "Remember my choice"
+msgstr "Ingat pilihan saya"
+
 msgid "Select"
 msgstr "Pilih"
 
-msgid "Remember my choice"
-msgstr "Ingat pilihan saya"
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Session anda valid untuk %remaining% detik dari sekarang."
+
+msgid "Your attributes"
+msgstr "Attribut Anda"
+
+msgid "Logout"
+msgstr "Logout"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan sehingga memungkinkan untuk lokasi session anda pada log tersedia untuk system administrator:"
@@ -286,18 +298,6 @@ msgstr "Bagaimana mendapatkan pertolongan"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Session anda valid untuk %remaining% detik dari sekarang."
-
-msgid "Your attributes"
-msgstr "Attribut Anda"
-
-msgid "Logout"
-msgstr "Logout"
 
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"

@@ -3,18 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Καλώς ορίσατε"
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών είτε του παρόχου ταυτότητας."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο ταυτότητας όσο και στον πάροχο υπηρεσιών."
-
 msgid "Missing cookie"
 msgstr "Πρόβλημα λειτουργίας cookie"
 
@@ -24,11 +12,8 @@ msgstr "Ενδέχεται τα cookie του προγράμματος περι�
 msgid "Retry"
 msgstr "Δοκιμάστε ξανά"
 
-msgid "Too short interval between single sign on events."
-msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
+msgid "Welcome"
+msgstr "Καλώς ορίσατε"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
@@ -50,6 +35,21 @@ msgstr "Ανοίξατε το πρόγραμμα περιήγησης ιστού
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Η λειτουργία cookie είναι απενεργοποιημένη στο πρόγραμμα περιήγησης ιστού."
+
+msgid "Too short interval between single sign on events."
+msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών είτε του παρόχου ταυτότητας."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο ταυτότητας όσο και στον πάροχο υπηρεσιών."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Αν το πρόβλημα εξακολουθεί να υφίσταται, μπορείτε να το αναφέρετε στους διαχειριστές του συστήματος."

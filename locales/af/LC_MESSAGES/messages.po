@@ -248,11 +248,11 @@ msgstr "Kies jou identiteits verskaffer"
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Kies asb. jou identiteits verskaffer waar jy wil verifieer:"
 
-msgid "Select"
-msgstr "Kies"
-
 msgid "Remember my choice"
 msgstr "Onthou my keuse"
+
+msgid "Select"
+msgstr "Kies"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'/verwysings nommer wat dit moontlik maak vir die sisteem administrateur om jou sessie in die logs op te spoor:"
