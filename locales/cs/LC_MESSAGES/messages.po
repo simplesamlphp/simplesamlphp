@@ -245,9 +245,6 @@ msgstr "Posílám zprávu"
 msgid "Yes, continue"
 msgstr "Ano, akceptuji"
 
-msgid "Select your identity provider"
-msgstr "Zvol svého poskytovatele identity (IdP)"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
 
@@ -257,32 +254,11 @@ msgstr "Zapamatuj moji volbu"
 msgid "Select"
 msgstr "Zvolit"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaše sezení je platné ještě %remaining% sekund."
-
-msgid "Your attributes"
-msgstr "Vaše atributy"
-
-msgid "Logout"
-msgstr "Odhlášení"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Pokud budete reportovat tuto chybu, prosím zašlete také toto ID, toto umožní najít vaší session v logu, který je dostupný systmovým administrátorem：  "
+msgid "Select your identity provider"
+msgstr "Zvol svého poskytovatele identity (IdP)"
 
 msgid "Debug information"
 msgstr "Ladicí informace"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
-
-msgid "Report errors"
-msgstr "Oznámit chyby"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Můžete uvést svou emailovou adresu, aby vás mohl administrátor kontaktovat:"
 
 msgid "E-mail address:"
 msgstr "Email"
@@ -290,14 +266,38 @@ msgstr "Email"
 msgid "Explain what you did when this error occurred..."
 msgstr "Vysvětlete, jak došlo k této chybě ..."
 
-msgid "Send error report"
-msgstr "Zaslat chybový report"
-
 msgid "How to get help"
 msgstr "Jak získat pomoc"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Pokud budete reportovat tuto chybu, prosím zašlete také toto ID, toto umožní najít vaší session v logu, který je dostupný systmovým administrátorem：  "
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Můžete uvést svou emailovou adresu, aby vás mohl administrátor kontaktovat:"
+
+msgid "Report errors"
+msgstr "Oznámit chyby"
+
+msgid "Send error report"
+msgstr "Zaslat chybový report"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Následující ladicí informace může zajímat administrátora (helpdesk)"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tato chyba pravděpodobně vznikla neočekávanou událostí, nebo chybou v konfiguraci. Kontaktujte administrátora této přihlašovací služby a zašlete mu tuto zprávu."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
+
+msgid "Logout"
+msgstr "Odhlášení"
+
+msgid "Your attributes"
+msgstr "Vaše atributy"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaše sezení je platné ještě %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"

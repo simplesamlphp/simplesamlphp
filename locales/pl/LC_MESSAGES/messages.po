@@ -245,9 +245,6 @@ msgstr "Wysyłanie wiadomości"
 msgid "Yes, continue"
 msgstr "Tak, akceptuję"
 
-msgid "Select your identity provider"
-msgstr "wybierz swojego Dostawcę Tożsamości."
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się uwierzytelnić:"
 
@@ -257,32 +254,11 @@ msgstr "Zapamiętaj mój wybór"
 msgid "Select"
 msgstr "Wybierz"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia sesji i wszystkie atrybuty, które zostały załączone do sesji."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Twoja sesja jest jeszcze ważna przez %remaining% sekund"
-
-msgid "Your attributes"
-msgstr "Twoje atrybuty"
-
-msgid "Logout"
-msgstr "Wyloguj"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Jeśli zgłaszasz ten bląd, podaj także ID zdarzenia, który umożliwi administratorowi zlokalizować Twoją sesje w logach:"
+msgid "Select your identity provider"
+msgstr "wybierz swojego Dostawcę Tożsamości."
 
 msgid "Debug information"
 msgstr "Informacja debugger'a"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Poniższa informacja debugger'a  może być przydatna dla administara / helpdesk:"
-
-msgid "Report errors"
-msgstr "Raport błędów"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Możesz podać swój adres email, jeśli chcesz umożliwić administratorowi skontaktować się z Tobą w razie dalszych pytań związanych z Twoim problemem."
 
 msgid "E-mail address:"
 msgstr "Adres e-mail"
@@ -290,14 +266,38 @@ msgstr "Adres e-mail"
 msgid "Explain what you did when this error occurred..."
 msgstr "Opisz, co zrobiłeś kiedy wystąpił błąd..."
 
-msgid "Send error report"
-msgstr "Wyślij raport o błędzie"
-
 msgid "How to get help"
 msgstr "Jak otrzymać pomoc."
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Jeśli zgłaszasz ten bląd, podaj także ID zdarzenia, który umożliwi administratorowi zlokalizować Twoją sesje w logach:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Możesz podać swój adres email, jeśli chcesz umożliwić administratorowi skontaktować się z Tobą w razie dalszych pytań związanych z Twoim problemem."
+
+msgid "Report errors"
+msgstr "Raport błędów"
+
+msgid "Send error report"
+msgstr "Wyślij raport o błędzie"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Poniższa informacja debugger'a  może być przydatna dla administara / helpdesk:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną konfigurację SimpleSAMLphp. Skontaktuj się z administratorem tego serwisu i wyślij mu powyższy błąd."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia sesji i wszystkie atrybuty, które zostały załączone do sesji."
+
+msgid "Logout"
+msgstr "Wyloguj"
+
+msgid "Your attributes"
+msgstr "Twoje atrybuty"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Twoja sesja jest jeszcze ważna przez %remaining% sekund"
 
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"

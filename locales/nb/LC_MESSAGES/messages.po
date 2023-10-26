@@ -245,15 +245,6 @@ msgstr "Sender melding"
 msgid "Yes, continue"
 msgstr "Ja, fortsett"
 
-msgid "Hello, Untranslated World!"
-msgstr "Hallo, oversatte verden!"
-
-msgid "World"
-msgstr "Verden"
-
-msgid "Select your identity provider"
-msgstr "Velg din identitetsleverandør"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vennligst velg hvilken identitetsleverandør du vil bruke for å logge inn:"
 
@@ -263,32 +254,11 @@ msgstr "Husk mitt valg"
 msgid "Select"
 msgstr "Velg"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Din sesjon er gyldig i %remaining% sekunder fra nå."
-
-msgid "Your attributes"
-msgstr "Dine attributter"
-
-msgid "Logout"
-msgstr "Logg ut"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Hvis vil rapportere denne feilen, send også med dette sporingsnummeret. Det gjør det enklere for systemadministratorene å finne ut hva som gikk galt:"
+msgid "Select your identity provider"
+msgstr "Velg din identitetsleverandør"
 
 msgid "Debug information"
 msgstr "Detaljer for feilsøking"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Detaljene nedenfor kan være av interesse for administratoren / brukerstøtte:"
-
-msgid "Report errors"
-msgstr "Rapporter feil"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Hvis du ønsker at brukerstøtte skal kunne kontakte deg igjen i forbindelse med denne feilen, må du oppgi e-postadressen din nedenfor:"
 
 msgid "E-mail address:"
 msgstr "E-postadresse:"
@@ -296,14 +266,44 @@ msgstr "E-postadresse:"
 msgid "Explain what you did when this error occurred..."
 msgstr "Forklar hva du gjorde da feilen oppsto..."
 
-msgid "Send error report"
-msgstr "Send feilrapport"
-
 msgid "How to get help"
 msgstr "Hvordan få hjelp"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Hvis vil rapportere denne feilen, send også med dette sporingsnummeret. Det gjør det enklere for systemadministratorene å finne ut hva som gikk galt:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Hvis du ønsker at brukerstøtte skal kunne kontakte deg igjen i forbindelse med denne feilen, må du oppgi e-postadressen din nedenfor:"
+
+msgid "Report errors"
+msgstr "Rapporter feil"
+
+msgid "Send error report"
+msgstr "Send feilrapport"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Detaljene nedenfor kan være av interesse for administratoren / brukerstøtte:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp eller den er en følge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter så mye som mulig angående feilen."
+
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversatte verden!"
+
+msgid "World"
+msgstr "Verden"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon."
+
+msgid "Logout"
+msgstr "Logg ut"
+
+msgid "Your attributes"
+msgstr "Dine attributter"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din sesjon er gyldig i %remaining% sekunder fra nå."
 
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"

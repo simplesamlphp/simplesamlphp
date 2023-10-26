@@ -3,38 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Welcome"
+msgstr "Ongi etorri"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile bat bazara,  guneko jabeari eman behar diozu errorearen berri."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean edota identitate hornitzailean. "
+
 msgid "Missing cookie"
 msgstr "Cookie-a falta da"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
 
 msgid "Retry"
 msgstr "Saiatu berriro"
 
-msgid "Welcome"
-msgstr "Ongi etorri"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Arazo hau konpontzeko iradokizunak:"
-
-msgid "Go back to the previous page and try again."
-msgstr "Itzul zaitez aurreko orrira eta saiatu berriro"
-
-msgid "Close the web browser, and try again."
-msgstr "Nabigatzailea itxi eta saiatu berriro"
-
-msgid "This error may be caused by:"
-msgstr "Errore hau honek eragin dezake:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duzu."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Cookie-ak desgaituta egon litezke nabigatzailean."
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
 
 msgid "Too short interval between single sign on events."
 msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
@@ -42,14 +30,26 @@ msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat dagoela hartuko dugu. "
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean edota identitate hornitzailean. "
+msgid "Close the web browser, and try again."
+msgstr "Nabigatzailea itxi eta saiatu berriro"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile bat bazara,  guneko jabeari eman behar diozu errorearen berri."
+msgid "Cookies may be disabled in the web browser."
+msgstr "Cookie-ak desgaituta egon litezke nabigatzailean."
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean."
+msgid "Go back to the previous page and try again."
+msgstr "Itzul zaitez aurreko orrira eta saiatu berriro"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duzu."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Arazo hau konpontzeko iradokizunak:"
+
+msgid "This error may be caused by:"
+msgstr "Errore hau honek eragin dezake:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Arazoak bere horretan badirau, sistemaren administratzaileei berri eman diezaiekezu."

@@ -3,36 +3,12 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 msgid "Log out"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML-tik SimpleSAMLphp metadatuetara bihurgailua"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
-msgid "SAML 2.0 SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-msgid "ADFS IdP metadata"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
@@ -156,6 +132,30 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML-tik SimpleSAMLphp metadatuetara bihurgailua"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
+msgid "SAML 2.0 SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
+msgid "SAML 2.0 IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
+msgid "ADFS SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+msgid "ADFS IdP metadata"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Konfigurazioa"
@@ -168,64 +168,73 @@ msgstr ""
 msgid "Federation"
 msgstr "Federazioa"
 
-msgid "SimpleSAMLphp Show Metadata"
+msgid "An error occurred"
 msgstr ""
 
-msgid "Metadata"
-msgstr "Metadatuak"
+msgid "Converted metadata"
+msgstr "Bihurtutako metadatuak"
 
-msgid "Copy to clipboard"
+msgid "Metadata parser"
+msgstr "Metadatuak aztertu"
+
+msgid "No file selected."
 msgstr ""
 
-msgid "Back"
-msgstr ""
+msgid "Parse"
+msgstr "Aztertu"
 
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp instalatzeko orria"
+msgid "XML metadata"
+msgstr "XML metadatuak"
 
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "required"
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "Deprecated"
-msgstr "Zaharkitua"
-
-msgid "Type:"
-msgstr ""
-
-msgid "SAML Metadata"
-msgstr ""
-
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr ""
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "SAML 2.0 metadatuetako xml formatuan:"
-
-msgid "SimpleSAMLphp Metadata"
-msgstr ""
-
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgid "or select a file:"
 msgstr ""
 
 msgid "Certificates"
 msgstr "Ziurtagiriak"
 
-msgid "new"
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Deprecated"
+msgstr "Zaharkitua"
+
+msgid "EntityID"
 msgstr ""
 
 msgid "Hosted entities"
 msgstr ""
 
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "SAML 2.0 metadatuetako xml formatuan:"
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp instalatzeko orria"
+
+msgid "Tools"
+msgstr "Tresnak"
+
 msgid "Trusted entities"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr ""
+
+msgid "You can get the metadata XML on a dedicated URL:"
 msgstr ""
 
 msgid "expired"
@@ -234,40 +243,19 @@ msgstr ""
 msgid "expires"
 msgstr ""
 
-msgid "Tools"
-msgstr "Tresnak"
-
-msgid "Look up metadata for entity:"
+msgid "new"
 msgstr ""
 
-msgid "EntityID"
+msgid "Test Authentication Sources"
 msgstr ""
 
-msgid "Search"
-msgstr ""
-
-msgid "Metadata parser"
-msgstr "Metadatuak aztertu"
-
-msgid "XML metadata"
-msgstr "XML metadatuak"
-
-msgid "or select a file:"
-msgstr ""
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr "Aztertu"
-
-msgid "Converted metadata"
-msgstr "Bihurtutako metadatuak"
-
-msgid "An error occurred"
+msgid "Authentication data"
 msgstr ""
 
 msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid "Format"
 msgstr ""
 
 msgid ""
@@ -275,31 +263,43 @@ msgid ""
 "     it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Zure saioa %remaining% segundoz izango da baliagarri."
-
-msgid "Your attributes"
-msgstr "Atributuak"
-
-msgid "Technical information"
-msgstr ""
+msgid "Logout"
+msgstr "Irten"
 
 msgid "SAML Subject"
 msgstr ""
 
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Atributuak"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Zure saioa %remaining% segundoz izango da baliagarri."
+
 msgid "not set"
 msgstr ""
 
-msgid "Format"
+msgid "Back"
 msgstr ""
 
-msgid "Authentication data"
+msgid "Metadata"
+msgstr "Metadatuak"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
-msgid "Logout"
-msgstr "Irten"
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
 
-msgid "Test Authentication Sources"
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "Checking your PHP installation"

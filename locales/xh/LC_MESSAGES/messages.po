@@ -262,9 +262,6 @@ msgstr "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofuny
 msgid "Yes, continue"
 msgstr "Ewe, qhubeka"
 
-msgid "Select your identity provider"
-msgstr "Khetha umboneleli wesazisi wakho"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 
@@ -274,6 +271,39 @@ msgstr "Khumbula ukhetho lwam"
 msgid "Select"
 msgstr "Khetha"
 
+msgid "Select your identity provider"
+msgstr "Khetha umboneleli wesazisi wakho"
+
+msgid "Debug information"
+msgstr "Inkcazelo yokulungisa"
+
+msgid "E-mail address:"
+msgstr "Idilesi ye-imeyile:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo..."
+
+msgid "How to get help"
+msgstr "Indlela yokufumana uncedo"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:"
+
+msgid "Report errors"
+msgstr "Chaza iimpazamo"
+
+msgid "Send error report"
+msgstr "Thumela ingxelo yempazamo"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / idesika yoncedo:"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
+
+msgid "Format"
+msgstr "Ufomatho"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
 
@@ -282,36 +312,6 @@ msgstr "Umbandela we-SAML"
 
 msgid "not set"
 msgstr "ayikasetwa"
-
-msgid "Format"
-msgstr "Ufomatho"
-
-msgid "Debug information"
-msgstr "Inkcazelo yokulungisa"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / idesika yoncedo:"
-
-msgid "Report errors"
-msgstr "Chaza iimpazamo"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:"
-
-msgid "E-mail address:"
-msgstr "Idilesi ye-imeyile:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo..."
-
-msgid "Send error report"
-msgstr "Thumela ingxelo yempazamo"
-
-msgid "How to get help"
-msgstr "Indlela yokufumana uncedo"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
 
 msgid "Next"
 msgstr "Okulandelayo"
