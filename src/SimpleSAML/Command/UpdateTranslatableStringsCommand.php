@@ -31,6 +31,7 @@ use function array_key_first;
 use function array_merge;
 use function dirname;
 use function in_array;
+use function ksort;
 use function sprintf;
 
 class UpdateTranslatableStringsCommand extends Command
@@ -128,6 +129,7 @@ class UpdateTranslatableStringsCommand extends Command
         foreach ($twigTranslations as $t) {
             $domain = array_key_first($t);
             $translation = $t[$domain];
+            ksort($translation);
             $trans = Translations::create($domain);
             foreach ($translation as $s) {
                 $trans->add(Translation::create(null, $s));
