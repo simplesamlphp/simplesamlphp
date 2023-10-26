@@ -136,20 +136,8 @@ msgstr "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest
 msgid "Yes, continue"
 msgstr "Jo"
 
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID mat. Dei ennerstëtzt den System Administrator aer Session an den Logs erëmzefannen:"
-
 msgid "Debug information"
 msgstr "Debug Informatiounen"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Dei Debug Informatiounen hei drënner kinnten den Administrator interesséiren:"
-
-msgid "Report errors"
-msgstr "Fehler matdeelen"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontaktéieren kann:"
 
 msgid "E-mail address:"
 msgstr "E-mail Adress"
@@ -157,11 +145,23 @@ msgstr "E-mail Adress"
 msgid "Explain what you did when this error occurred..."
 msgstr "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen..."
 
+msgid "How to get help"
+msgstr "Wéi een Hellëf kritt"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID mat. Dei ennerstëtzt den System Administrator aer Session an den Logs erëmzefannen:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontaktéieren kann:"
+
+msgid "Report errors"
+msgstr "Fehler matdeelen"
+
 msgid "Send error report"
 msgstr "Fehlerbericht schécken"
 
-msgid "How to get help"
-msgstr "Wéi een Hellëf kritt"
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Dei Debug Informatiounen hei drënner kinnten den Administrator interesséiren:"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun dësem Login Service an schéckt him den Fehlerbericht"

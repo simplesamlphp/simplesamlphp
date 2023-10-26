@@ -245,9 +245,6 @@ msgstr "Отправка сообщения"
 msgid "Yes, continue"
 msgstr "Да, продолжить"
 
-msgid "Select your identity provider"
-msgstr "Выберите вашего identity provider"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Пожалуйста, выберите identity provider, с помощью которого вы хотите пройти аутентификацию:"
 
@@ -257,41 +254,11 @@ msgstr "Запомнить мой выбор"
 msgid "Select"
 msgstr "Выбрать"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
-
-msgid "Your attributes"
-msgstr "Ваши атрибуты"
-
-msgid "SAML Subject"
-msgstr "Тема SAML"
-
-msgid "not set"
-msgstr "не установлен"
-
-msgid "Format"
-msgstr "Формат"
-
-msgid "Logout"
-msgstr "Выйти"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "При отправке сообщения об ошибке, пожалуйста, сообщите этот трекинговый номер (он позволит администратору найти информацию о вашей сессии в системных логах):"
+msgid "Select your identity provider"
+msgstr "Выберите вашего identity provider"
 
 msgid "Debug information"
 msgstr "Отладочная информация"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Нижеприведенная информация может быть полезна администратору системы:"
-
-msgid "Report errors"
-msgstr "Сообщение об ошибках"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Введите адрес вашей электронной почты, чтобы администратор мог связаться с вами для прояснения данной ситуации (необязательно):"
 
 msgid "E-mail address:"
 msgstr "Адрес вашей электронной почты:"
@@ -299,14 +266,47 @@ msgstr "Адрес вашей электронной почты:"
 msgid "Explain what you did when this error occurred..."
 msgstr "Уточните ваши действия перед появлением ошибки... "
 
-msgid "Send error report"
-msgstr "Выслать сообщение об ошибке "
-
 msgid "How to get help"
 msgstr "Как получить помощь"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "При отправке сообщения об ошибке, пожалуйста, сообщите этот трекинговый номер (он позволит администратору найти информацию о вашей сессии в системных логах):"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Введите адрес вашей электронной почты, чтобы администратор мог связаться с вами для прояснения данной ситуации (необязательно):"
+
+msgid "Report errors"
+msgstr "Сообщение об ошибках"
+
+msgid "Send error report"
+msgstr "Выслать сообщение об ошибке "
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Нижеприведенная информация может быть полезна администратору системы:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Эта ошибка произошла, вероятно, из-за непредвиденной ситуации или неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "SAML Subject"
+msgstr "Тема SAML"
+
+msgid "Your attributes"
+msgstr "Ваши атрибуты"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
+
+msgid "not set"
+msgstr "не установлен"
 
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"

@@ -262,9 +262,6 @@ msgstr "Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma
 msgid "Yes, continue"
 msgstr "Yebo, qhubeka"
 
-msgid "Select your identity provider"
-msgstr "Khetha umhlinzeki wakho kamazisi"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
 
@@ -274,6 +271,39 @@ msgstr "Khumbula ukukhetha kwami"
 msgid "Select"
 msgstr "Khetha"
 
+msgid "Select your identity provider"
+msgstr "Khetha umhlinzeki wakho kamazisi"
+
+msgid "Debug information"
+msgstr "Ulwazi lokususwa kwephutha"
+
+msgid "E-mail address:"
+msgstr "Ikheli le-imeyili:"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
+
+msgid "How to get help"
+msgstr "Indlela yokuthola usizo"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
+
+msgid "Report errors"
+msgstr "Amaphutha ombiko"
+
+msgid "Send error report"
+msgstr "Thumela umbiko wephutha"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
+
+msgid "Format"
+msgstr "Ifomethi"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho."
 
@@ -282,36 +312,6 @@ msgstr "Isihloko Se-SAML"
 
 msgid "not set"
 msgstr "akusethiwe"
-
-msgid "Format"
-msgstr "Ifomethi"
-
-msgid "Debug information"
-msgstr "Ulwazi lokususwa kwephutha"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:"
-
-msgid "Report errors"
-msgstr "Amaphutha ombiko"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
-
-msgid "E-mail address:"
-msgstr "Ikheli le-imeyili:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
-
-msgid "Send error report"
-msgstr "Thumela umbiko wephutha"
-
-msgid "How to get help"
-msgstr "Indlela yokuthola usizo"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
 
 msgid "Next"
 msgstr "Okulandelayo"

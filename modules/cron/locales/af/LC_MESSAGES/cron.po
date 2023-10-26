@@ -3,11 +3,14 @@ msgid ""
 msgstr ""
 "X-Domain: cron\n"
 
-msgid "Cron result page"
-msgstr "Cron resultaat bladsy"
+msgid "Click here to run the cron jobs:"
+msgstr "Kliek hier om 'n cron proses the begin:"
 
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron is 'n manier om prosesse op 'n gereëlde basis te hardloop op unix sisteme."
+
+msgid "Cron result page"
+msgstr "Cron resultaat bladsy"
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Hier is 'n voorbeeld vir 'n crontab lêer:"
@@ -15,14 +18,11 @@ msgstr "Hier is 'n voorbeeld vir 'n crontab lêer:"
 msgid "Run cron:"
 msgstr "Begin cron:"
 
-msgid "Click here to run the cron jobs:"
-msgstr "Kliek hier om 'n cron proses the begin:"
-
-msgid "Here are the result for the cron job execution:"
-msgstr "Hier is die resultaat vir die cron uitvoeringsproses:"
+msgid "Cron ran at"
+msgstr "Cron was aktief om"
 
 msgid "Cron report"
 msgstr "Cron verslag"
 
-msgid "Cron ran at"
-msgstr "Cron was aktief om"
+msgid "Here are the result for the cron job execution:"
+msgstr "Hier is die resultaat vir die cron uitvoeringsproses:"

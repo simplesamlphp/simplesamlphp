@@ -245,9 +245,6 @@ msgstr "傳送訊息"
 msgid "Yes, continue"
 msgstr "是，繼續"
 
-msgid "Select your identity provider"
-msgstr "選擇你的識別提供者(idp)"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "請選擇您所要前往認證的驗證提供者："
 
@@ -257,41 +254,11 @@ msgstr "記住我的選擇"
 msgid "Select"
 msgstr "選擇"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "嘿，這是 SimpleSAMLphp 狀態頁，在這邊您可以看到您的連線是否逾時，以及還有多久才逾時，所有屬性值(attributes)都會附加在你的連線裡(session)。"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "您的 session 從現在起還有 %remaining% 有效。"
-
-msgid "Your attributes"
-msgstr "您的屬性值"
-
-msgid "SAML Subject"
-msgstr "SAML 主題"
-
-msgid "not set"
-msgstr "未設定"
-
-msgid "Format"
-msgstr "格式"
-
-msgid "Logout"
-msgstr "登出"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "如果您回報這個錯誤，請同時回報這個追蹤數字，讓系統管理員可以藉由它在記錄裡找到您的連線："
+msgid "Select your identity provider"
+msgstr "選擇你的識別提供者(idp)"
 
 msgid "Debug information"
 msgstr "除錯資訊"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "管理員/服務台可能對下列除錯資訊有興趣："
-
-msgid "Report errors"
-msgstr "錯誤報告"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "選擇性的輸入您的 email，讓管理者針對您的問題在有進一步需要時連絡您："
 
 msgid "E-mail address:"
 msgstr "電子郵件:"
@@ -299,14 +266,47 @@ msgstr "電子郵件:"
 msgid "Explain what you did when this error occurred..."
 msgstr "解釋當你發生錯誤時所做的事情..."
 
-msgid "Send error report"
-msgstr "傳送錯誤報告"
-
 msgid "How to get help"
 msgstr "如何取得協助"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "如果您回報這個錯誤，請同時回報這個追蹤數字，讓系統管理員可以藉由它在記錄裡找到您的連線："
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "選擇性的輸入您的 email，讓管理者針對您的問題在有進一步需要時連絡您："
+
+msgid "Report errors"
+msgstr "錯誤報告"
+
+msgid "Send error report"
+msgstr "傳送錯誤報告"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "管理員/服務台可能對下列除錯資訊有興趣："
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "嘿，這是 SimpleSAMLphp 狀態頁，在這邊您可以看到您的連線是否逾時，以及還有多久才逾時，所有屬性值(attributes)都會附加在你的連線裡(session)。"
+
+msgid "Logout"
+msgstr "登出"
+
+msgid "SAML Subject"
+msgstr "SAML 主題"
+
+msgid "Your attributes"
+msgstr "您的屬性值"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "您的 session 從現在起還有 %remaining% 有效。"
+
+msgid "not set"
+msgstr "未設定"
 
 msgid "[Preferred choice]"
 msgstr "喜好選擇"

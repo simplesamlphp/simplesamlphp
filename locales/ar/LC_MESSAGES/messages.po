@@ -245,9 +245,6 @@ msgstr "ارسل رسالة"
 msgid "Yes, continue"
 msgstr "نعم، واصل"
 
-msgid "Select your identity provider"
-msgstr "اختار موقع هويتك"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "اختر موقع الهوية الذي ترغب بدخوله"
 
@@ -257,32 +254,11 @@ msgstr "تذكر خياراتي"
 msgid "Select"
 msgstr "اختار"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك، فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
-
-msgid "Your attributes"
-msgstr "السمات"
-
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "اذا قمت برفع تقرير عن هذا الخطأ قم رجاءاً بإدراج رقم المتابعة أدناه كيما نستطيع تحديد فترة دخولك بملفات المشرف علي الموقع"
+msgid "Select your identity provider"
+msgstr "اختار موقع هويتك"
 
 msgid "Debug information"
 msgstr "معلومات التصحيح"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr " قد تكون معلومات التصحيح أدناه مفيدة لمشرف الموقع/ او موظف المساعدة"
-
-msgid "Report errors"
-msgstr "ارفع تقريراً عن الأخطاء "
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "ادرج عنوان ايميلك اختيارياً للمشرف ليستطيع التواصل معك لحل المشكلة"
 
 msgid "E-mail address:"
 msgstr "عنوان الأميل"
@@ -290,14 +266,38 @@ msgstr "عنوان الأميل"
 msgid "Explain what you did when this error occurred..."
 msgstr "اشرح ما فعلته عند حدوث الخطأ "
 
-msgid "Send error report"
-msgstr "ارسل تقريراً عن الخطأ "
-
 msgid "How to get help"
 msgstr "للمساعدة"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "اذا قمت برفع تقرير عن هذا الخطأ قم رجاءاً بإدراج رقم المتابعة أدناه كيما نستطيع تحديد فترة دخولك بملفات المشرف علي الموقع"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "ادرج عنوان ايميلك اختيارياً للمشرف ليستطيع التواصل معك لحل المشكلة"
+
+msgid "Report errors"
+msgstr "ارفع تقريراً عن الأخطاء "
+
+msgid "Send error report"
+msgstr "ارسل تقريراً عن الخطأ "
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr " قد تكون معلومات التصحيح أدناه مفيدة لمشرف الموقع/ او موظف المساعدة"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "هذا الخطأ ناتج غالباً عن سلوك غير متوقع او عن خطا في ترتيب البرنامج. اتصل بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم أيضاً "
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك، فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Your attributes"
+msgstr "السمات"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"

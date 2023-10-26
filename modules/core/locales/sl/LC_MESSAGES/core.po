@@ -3,38 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Welcome"
+msgstr "Dobrodošli"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
+
 msgid "Missing cookie"
 msgstr "Piškotek (\"cookie\") ne obstaja!"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
 
 msgid "Retry"
 msgstr "Poskusi ponovno"
 
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Predloga za razrešitev nastale težave:"
-
-msgid "Go back to the previous page and try again."
-msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
-
-msgid "Close the web browser, and try again."
-msgstr "Zaprite spletni brskalnik in poskusite znova."
-
-msgid "This error may be caused by:"
-msgstr "Vzrok za to napako je lahko:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
 
 msgid "Too short interval between single sign on events."
 msgstr "Prekratek interval med dogodki enotne prijave."
@@ -42,14 +30,26 @@ msgstr "Prekratek interval med dogodki enotne prijave."
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
+msgid "Close the web browser, and try again."
+msgstr "Zaprite spletni brskalnik in poskusite znova."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
+msgid "Cookies may be disabled in the web browser."
+msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
+msgid "Go back to the previous page and try again."
+msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Predloga za razrešitev nastale težave:"
+
+msgid "This error may be caused by:"
+msgstr "Vzrok za to napako je lahko:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
