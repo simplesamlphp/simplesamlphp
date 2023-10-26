@@ -50,3 +50,7 @@ dt {
 ul.modulelist {
   column-count: 3;
 }
+
+div.code-box-content {
+  padding: 0;
+}
