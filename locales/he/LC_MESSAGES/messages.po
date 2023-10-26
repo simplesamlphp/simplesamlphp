@@ -245,9 +245,6 @@ msgstr "שולח הודעה"
 msgid "Yes, continue"
 msgstr "כן, המשך"
 
-msgid "Select your identity provider"
-msgstr "בחר את ספק הזהות שלך"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
 
@@ -257,32 +254,11 @@ msgstr "זכור את הבחירה שלי"
 msgid "Select"
 msgstr "בחר"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכשיו."
-
-msgid "Your attributes"
-msgstr "התכונות שלך"
-
-msgid "Logout"
-msgstr "התנתקות"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "אם אתה מדווח על התקלה, אנא דווח גם את מספר המעקב המאפשר לאתר את השיחה שלך ביומנים העומדים לרשות מנהל המערכת: "
+msgid "Select your identity provider"
+msgstr "בחר את ספק הזהות שלך"
 
 msgid "Debug information"
 msgstr "מידע דבאג"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
-
-msgid "Report errors"
-msgstr "דווח טעויות"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "לחלופין הזין את כתובת הדוא\"ל שלך, כדי שמנהל המערכת יוכל ליצור איתך קשר ולשאול שאלות נוספות על הבעייה:"
 
 msgid "E-mail address:"
 msgstr "כתובת דואל:"
@@ -290,14 +266,38 @@ msgstr "כתובת דואל:"
 msgid "Explain what you did when this error occurred..."
 msgstr "הסבר מה עשית כשהתרחשה השגיאה..."
 
-msgid "Send error report"
-msgstr "שלך דוח שגיאות"
-
 msgid "How to get help"
 msgstr "איך לקבל עזרה"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "אם אתה מדווח על התקלה, אנא דווח גם את מספר המעקב המאפשר לאתר את השיחה שלך ביומנים העומדים לרשות מנהל המערכת: "
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "לחלופין הזין את כתובת הדוא\"ל שלך, כדי שמנהל המערכת יוכל ליצור איתך קשר ולשאול שאלות נוספות על הבעייה:"
+
+msgid "Report errors"
+msgstr "דווח טעויות"
+
+msgid "Send error report"
+msgstr "שלך דוח שגיאות"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "יכול להיות שמידע הדבאג למטה יעניין את מנהל המערכת / תמיכה טכנית:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
+
+msgid "Logout"
+msgstr "התנתקות"
+
+msgid "Your attributes"
+msgstr "התכונות שלך"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכשיו."
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"

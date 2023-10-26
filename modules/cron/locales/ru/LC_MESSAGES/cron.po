@@ -3,11 +3,14 @@ msgid ""
 msgstr ""
 "X-Domain: cron\n"
 
-msgid "Cron result page"
-msgstr "Страница результата Cron"
+msgid "Click here to run the cron jobs:"
+msgstr "Нажмите, чтобы выполнить задания Cron:"
 
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron это способ регулярно выполнять задания на системах UNIX."
+
+msgid "Cron result page"
+msgstr "Страница результата Cron"
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Указания для файла crontab:"
@@ -15,14 +18,11 @@ msgstr "Указания для файла crontab:"
 msgid "Run cron:"
 msgstr "Запустить Cron"
 
-msgid "Click here to run the cron jobs:"
-msgstr "Нажмите, чтобы выполнить задания Cron:"
-
-msgid "Here are the result for the cron job execution:"
-msgstr "Результат выполнения заданий Cron:"
+msgid "Cron ran at"
+msgstr "Cron запущен в "
 
 msgid "Cron report"
 msgstr "Отчёт Cron"
 
-msgid "Cron ran at"
-msgstr "Cron запущен в "
+msgid "Here are the result for the cron job execution:"
+msgstr "Результат выполнения заданий Cron:"

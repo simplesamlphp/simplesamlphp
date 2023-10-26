@@ -245,9 +245,6 @@ msgstr "Invio del messaggio"
 msgid "Yes, continue"
 msgstr "Sì, continuare"
 
-msgid "Select your identity provider"
-msgstr "Selezionare il proprio identity provider"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Si prega di selezionare l'identity provider con il quale autenticarsi:"
 
@@ -257,32 +254,11 @@ msgstr "Ricorda la mia scelta"
 msgid "Select"
 msgstr "Selezionare"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Salve, questa è la pagina di stato di SimpleSAMLphp. Qui è possiible vedere se la sessione è scaduta, quanto è durata prima di scadere e tutti gli attributi ad essa collegati."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "La tua sessione è valida per ulteriori %remaining% secondi."
-
-msgid "Your attributes"
-msgstr "I tuoi attributi"
-
-msgid "Logout"
-msgstr "Disconnessione"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Se inoltri questo errore, per favore riporta anche questo tracking ID, esso render&agrave; possibile all'amministratore del sistema il tracciamento della tua sessione nei log:"
+msgid "Select your identity provider"
+msgstr "Selezionare il proprio identity provider"
 
 msgid "Debug information"
 msgstr "Informazioni di debug"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Le seguenti informazioni di debug possono interessare l'amministratore di sistema o il supporto utenti:"
-
-msgid "Report errors"
-msgstr "Riporta gli errori"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Puoi inserire il tuo indirizzo di email, per consentire agli amministratori di contattarti per analizzare il problema:"
 
 msgid "E-mail address:"
 msgstr "Indirizzo di e-mail:"
@@ -290,14 +266,38 @@ msgstr "Indirizzo di e-mail:"
 msgid "Explain what you did when this error occurred..."
 msgstr "Descrivi cosa stavi facendo al momento dell'errore"
 
-msgid "Send error report"
-msgstr "Invia un rapporto di errore"
-
 msgid "How to get help"
 msgstr "Come ottenere aiuto"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Se inoltri questo errore, per favore riporta anche questo tracking ID, esso render&agrave; possibile all'amministratore del sistema il tracciamento della tua sessione nei log:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Puoi inserire il tuo indirizzo di email, per consentire agli amministratori di contattarti per analizzare il problema:"
+
+msgid "Report errors"
+msgstr "Riporta gli errori"
+
+msgid "Send error report"
+msgstr "Invia un rapporto di errore"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Le seguenti informazioni di debug possono interessare l'amministratore di sistema o il supporto utenti:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Questo errore è probabilmente dovuto a qualche comportamento inatteso di SimpleSAMLphp o ad un errore di configurazione. Contatta l'amministratore di questo servizio di login con una copia del messaggio di errore riportato qui sopra."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Salve, questa è la pagina di stato di SimpleSAMLphp. Qui è possiible vedere se la sessione è scaduta, quanto è durata prima di scadere e tutti gli attributi ad essa collegati."
+
+msgid "Logout"
+msgstr "Disconnessione"
+
+msgid "Your attributes"
+msgstr "I tuoi attributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "La tua sessione è valida per ulteriori %remaining% secondi."
 
 msgid "[Preferred choice]"
 msgstr "[Scelta preferita]"

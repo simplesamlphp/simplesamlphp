@@ -245,15 +245,6 @@ msgstr "Enviando mensaje"
 msgid "Yes, continue"
 msgstr "Sí"
 
-msgid "Hello, Untranslated World!"
-msgstr "Hola, mundo traducido!"
-
-msgid "World"
-msgstr "Mundo"
-
-msgid "Select your identity provider"
-msgstr "Seleccione su proveedor de identidad"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Por favor, seleccione el proveedor de identidad donde desea autenticarse"
 
@@ -263,41 +254,11 @@ msgstr "Recordar mi elección"
 msgid "Select"
 msgstr "Seleccione"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver si su sesión ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesión."
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Su sesión será valida durante %remaining% segundos."
-
-msgid "Your attributes"
-msgstr "Atributos"
-
-msgid "SAML Subject"
-msgstr "Identificador SAML"
-
-msgid "not set"
-msgstr "sin valor"
-
-msgid "Format"
-msgstr "Formato"
-
-msgid "Logout"
-msgstr "Salir"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Por favor, si informa de este error, mantenga el <em>tracking ID</em> que permite encontrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:"
+msgid "Select your identity provider"
+msgstr "Seleccione su proveedor de identidad"
 
 msgid "Debug information"
 msgstr "Información de depuración"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "La siguiente información de depuración puede ser de utilidad para el administrador del sistema o el centro de atención a usuarios:"
-
-msgid "Report errors"
-msgstr "Informar del error"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Si lo desea, indique su dirección electrónica, para que los administradores puedan ponerse en contacto con usted y obtener datos adicionales de su problema"
 
 msgid "E-mail address:"
 msgstr "Correo-e:"
@@ -305,14 +266,53 @@ msgstr "Correo-e:"
 msgid "Explain what you did when this error occurred..."
 msgstr "Explique lo que ha hecho para llegar a este error..."
 
-msgid "Send error report"
-msgstr "Envíe el informe de error"
-
 msgid "How to get help"
 msgstr "Cómo obtener asistencia"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Por favor, si informa de este error, mantenga el <em>tracking ID</em> que permite encontrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Si lo desea, indique su dirección electrónica, para que los administradores puedan ponerse en contacto con usted y obtener datos adicionales de su problema"
+
+msgid "Report errors"
+msgstr "Informar del error"
+
+msgid "Send error report"
+msgstr "Envíe el informe de error"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "La siguiente información de depuración puede ser de utilidad para el administrador del sistema o el centro de atención a usuarios:"
+
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Este error se debe probablemente a un comportamiento inesperado o a una configuración incorrecta de SimpleSAMLphp. Póngase en contacto con el administrador de este servicio de conexión y envíele el mensaje de error anterior."
+
+msgid "Hello, Untranslated World!"
+msgstr "Hola, mundo traducido!"
+
+msgid "World"
+msgstr "Mundo"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver si su sesión ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesión."
+
+msgid "Logout"
+msgstr "Salir"
+
+msgid "SAML Subject"
+msgstr "Identificador SAML"
+
+msgid "Your attributes"
+msgstr "Atributos"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Su sesión será valida durante %remaining% segundos."
+
+msgid "not set"
+msgstr "sin valor"
 
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"

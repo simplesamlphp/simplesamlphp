@@ -242,9 +242,6 @@ msgstr "Die gegewe gebruikersnaam bestaan nie, of die wagwoord wat jy verskaf he
 msgid "Yes, continue"
 msgstr "Ja, voortgaan"
 
-msgid "Select your identity provider"
-msgstr "Kies jou identiteits verskaffer"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Kies asb. jou identiteits verskaffer waar jy wil verifieer:"
 
@@ -254,20 +251,11 @@ msgstr "Onthou my keuse"
 msgid "Select"
 msgstr "Kies"
 
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'/verwysings nommer wat dit moontlik maak vir die sisteem administrateur om jou sessie in die logs op te spoor:"
+msgid "Select your identity provider"
+msgstr "Kies jou identiteits verskaffer"
 
 msgid "Debug information"
 msgstr "Ontleed informasie"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Die onderstaande informasie mag van hulp wees vir die stelsel administrateur / hulplyn."
-
-msgid "Report errors"
-msgstr "Rapporteer foute"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Voeg opsioneel jou epos adres in vir die administrateurs om jou te kontak vir meer inligting m.b.t jou probleem:"
 
 msgid "E-mail address:"
 msgstr "Epos adres:"
@@ -275,11 +263,23 @@ msgstr "Epos adres:"
 msgid "Explain what you did when this error occurred..."
 msgstr "Verduidelik wat jy gedoen het toe jy die probleem ervaar..."
 
+msgid "How to get help"
+msgstr "Hoe om hulp te verkry"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'/verwysings nommer wat dit moontlik maak vir die sisteem administrateur om jou sessie in die logs op te spoor:"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Voeg opsioneel jou epos adres in vir die administrateurs om jou te kontak vir meer inligting m.b.t jou probleem:"
+
+msgid "Report errors"
+msgstr "Rapporteer foute"
+
 msgid "Send error report"
 msgstr "Stuur die fout verslag"
 
-msgid "How to get help"
-msgstr "Hoe om hulp te verkry"
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Die onderstaande informasie mag van hulp wees vir die stelsel administrateur / hulplyn."
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die aanmeld diens en stuur die bostaande fout boodskap aan."

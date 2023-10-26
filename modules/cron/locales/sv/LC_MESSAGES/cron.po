@@ -3,11 +3,14 @@ msgid ""
 msgstr ""
 "X-Domain: cron\n"
 
-msgid "Cron result page"
-msgstr "Resultat sida för cron"
+msgid "Click here to run the cron jobs:"
+msgstr "Klicka här för att köra cronjobb:"
 
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron är ett sätt att regelbundet köra olika saker på unixsystem."
+
+msgid "Cron result page"
+msgstr "Resultat sida för cron"
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Här ett förslag gällande crontabfil:"
@@ -15,14 +18,11 @@ msgstr "Här ett förslag gällande crontabfil:"
 msgid "Run cron:"
 msgstr "Kör cron:"
 
-msgid "Click here to run the cron jobs:"
-msgstr "Klicka här för att köra cronjobb:"
-
-msgid "Here are the result for the cron job execution:"
-msgstr "Här är körningsresultatet av cronjobbet:"
+msgid "Cron ran at"
+msgstr "Cron körde"
 
 msgid "Cron report"
 msgstr "Cronrapport"
 
-msgid "Cron ran at"
-msgstr "Cron körde"
+msgid "Here are the result for the cron job execution:"
+msgstr "Här är körningsresultatet av cronjobbet:"
