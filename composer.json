@@ -117,7 +117,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1.x-dev"
+            "dev-master": "2.2.x-dev"
         }
     },
     "scripts": {
@@ -130,6 +130,5 @@
         "post-update-cmd": [
             "php bin/translations translations:update:binary"
         ]
-    },
-    "version": "2.1.0-rc1"
+    }
 }
