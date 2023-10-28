@@ -15,7 +15,7 @@ jobs:
     runs-on: ['ubuntu-latest']
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: actions/setup-python@v4
       #  with:
@@ -46,7 +46,7 @@ jobs:
           php-version: '8.2'
           coverage: none
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
