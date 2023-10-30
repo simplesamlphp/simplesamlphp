@@ -5,6 +5,7 @@ metadata/*
 !/config/*.dist
 !/metadata/*.dist
 !/public/assets/.gitkeep
+!/.github/build
 /public/assets/*
 .phpunit.result.cache
 .phive
