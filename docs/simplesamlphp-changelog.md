@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.7
 
-Released TBD
+Released 2023-10-30
 
 * Fixed a missing Accept-header for metadata queries (#1865)
 * Update vulnerable composer (CVE-2023-43655; not affected)
