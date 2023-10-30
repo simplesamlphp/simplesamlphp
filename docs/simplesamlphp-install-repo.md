@@ -3,6 +3,11 @@ Installing SimpleSAMLphp from the repository
 
 These are some notes about running SimpleSAMLphp from the repository.
 
+Prerequisites
+-------------
+
+Review the [prerequisites](../simplesamlphp-install) from the main installation guide.
+
 Installing from git
 -------------------
 
@@ -12,10 +17,13 @@ Go to the directory where you want to install SimpleSAMLphp:
 cd /var
 ```
 
+The `master` branch is not stable and targets the next major release.
+Pick a [tag](https://github.com/simplesamlphp/simplesamlphp/tags) to use.
+
 Then do a git clone:
 
 ```bash
-git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+git clone --branch <tag_name> https://github.com/simplesamlphp/simplesamlphp.git simplesamlphp
 ```
 
 Initialize configuration and metadata:
