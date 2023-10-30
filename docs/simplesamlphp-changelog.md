@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.1.0
 
-Released 2023-07-31
+Released 2023-10-30
 
 * Functionality that before was provided by the sanitycheck-module is now implicit.
   The module has been archived and should no longer be used. (#1843)
@@ -27,6 +27,16 @@ Released 2023-07-31
 ### Chores
 
 * The custom error- and exception handlers were moved to their very own classes (#1858)
+
+## Version 2.0.7
+
+Released 2023-10-30
+
+* Fixed a missing Accept-header for metadata queries (#1865)
+* Update vulnerable composer (CVE-2023-43655; not affected)
+* Fixed a potential XSS-through-DOM (3x; not affected)
+* Fixed a warning in the RequestedAuthnContextSelector
+* Fixed file logging handler to not fail on the first write after file-creation (#1877)
 
 ## Version 2.0.6
 
