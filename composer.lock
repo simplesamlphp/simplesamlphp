@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1704c9cb34c0a05b9b5cf46eea2dec70",
+    "content-hash": "211765e3ee5c89327e44da75700fc1ad",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -712,16 +712,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.1.5",
+            "version": "v2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "f462dacce8bdda4e87e02ed4f209f6dd73f8342b"
+                "reference": "ab7fdad861877ab439860ec5f77727ff2dc99327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/f462dacce8bdda4e87e02ed4f209f6dd73f8342b",
-                "reference": "f462dacce8bdda4e87e02ed4f209f6dd73f8342b",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/ab7fdad861877ab439860ec5f77727ff2dc99327",
+                "reference": "ab7fdad861877ab439860ec5f77727ff2dc99327",
                 "shasum": ""
             },
             "require": {
@@ -742,9 +742,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.1.5"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.1.6"
             },
-            "time": "2023-07-29T13:14:53+00:00"
+            "time": "2023-10-26T09:03:43+00:00"
         },
         {
             "name": "symfony/cache",
@@ -5494,5 +5494,5 @@
         "ext-curl": "*",
         "ext-pdo_sqlite": "*"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
