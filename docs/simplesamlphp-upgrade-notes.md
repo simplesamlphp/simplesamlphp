@@ -3,6 +3,7 @@
 See the following pages for important information for users upgrading
 from older versions of SimpleSAMLphp:
 
+* [Upgrade notes for version 2.1](simplesamlphp-upgrade-notes-2.1)
 * [Upgrade notes for version 2.0](simplesamlphp-upgrade-notes-2.0)
 * [Upgrade notes for version 1.19](simplesamlphp-upgrade-notes-1.19)
 * [Upgrade notes for version 1.18](simplesamlphp-upgrade-notes-1.18)
