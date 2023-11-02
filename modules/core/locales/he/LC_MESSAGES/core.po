@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "ברוך-הבא"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
 
@@ -50,6 +47,9 @@ msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
+
+msgid "Welcome"
+msgstr "ברוך-הבא"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."

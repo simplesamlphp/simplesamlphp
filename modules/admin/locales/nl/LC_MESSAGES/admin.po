@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 msgid "Log out"
 msgstr "Log uit"
 
@@ -189,11 +189,20 @@ msgstr "XML-metadata"
 msgid "or select a file:"
 msgstr "of kies een bestand:"
 
-msgid "Certificates"
-msgstr "Certificaten"
+msgid "Back"
+msgstr "Terug"
 
 msgid "Copy to clipboard"
 msgstr "Kopieer naar klembord"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Toon Metadata"
+
+msgid "Certificates"
+msgstr "Certificaten"
 
 msgid "Deprecated"
 msgstr "Verouderd"
@@ -246,8 +255,17 @@ msgstr "verloopt"
 msgid "new"
 msgstr "nieuw"
 
-msgid "Test Authentication Sources"
-msgstr "Test Authentication Sources"
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp is geïnstalleerd in:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "U draait versie <kbd>%version%</kbd>."
+
+msgid "optional"
+msgstr "optioneel"
+
+msgid "required"
+msgstr "vereist"
 
 msgid "Authentication data"
 msgstr "Authenticatiegegevens"
@@ -281,26 +299,8 @@ msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
 msgid "not set"
 msgstr "niet aanwezig"
 
-msgid "Back"
-msgstr "Terug"
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Toon Metadata"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp is geïnstalleerd in:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "U draait versie <kbd>%version%</kbd>."
-
-msgid "optional"
-msgstr "optioneel"
-
-msgid "required"
-msgstr "vereist"
+msgid "Test Authentication Sources"
+msgstr "Test Authentication Sources"
 
 msgid "Checking your PHP installation"
 msgstr "Controle van de PHP-installatie"

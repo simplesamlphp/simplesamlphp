@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Welkom"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Als u een ontwikkelaar bent die een single sign-on oplossing aan het implementeren is, heeft u een probleem met de metadataconfiguratie. Controleer of de metadata correct is geconfigureerd zowel bij de identiteitsverstrekker als bij de service provider."
 
@@ -50,6 +47,9 @@ msgstr "Deze error is waarschijnlijk veroorzaakt door:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
+
+msgid "Welcome"
+msgstr "Welkom"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."

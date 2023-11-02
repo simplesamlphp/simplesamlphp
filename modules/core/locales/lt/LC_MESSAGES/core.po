@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Sveiki atvykę"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
 
@@ -50,6 +47,9 @@ msgstr "Šią klaidą galėjo sukelti:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
+
+msgid "Welcome"
+msgstr "Sveiki atvykę"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."

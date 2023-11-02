@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Velkommen"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
 
@@ -50,6 +47,9 @@ msgstr "Fejlen kan være forårsaget af:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Brug frem- og tilbage-knappen i browseren."
+
+msgid "Welcome"
+msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."

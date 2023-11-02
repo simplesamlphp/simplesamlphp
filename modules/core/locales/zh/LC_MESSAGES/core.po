@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "欢迎"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
 
@@ -50,6 +47,9 @@ msgstr "该错误可能是以下原因导致的："
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "使用浏览器中的前进后退按钮"
+
+msgid "Welcome"
+msgstr "欢迎"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "如果这个错误再次出现，你可以向你的系统管理员报告"

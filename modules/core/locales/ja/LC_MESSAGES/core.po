@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "ようこそ"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
 
@@ -50,6 +47,9 @@ msgstr "このエラーの原因:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
+
+msgid "Welcome"
+msgstr "ようこそ"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"

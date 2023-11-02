@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
 msgid "Log out"
 msgstr ""
 
@@ -193,10 +193,19 @@ msgstr ""
 msgid "or select a file:"
 msgstr ""
 
-msgid "Certificates"
+msgid "Back"
 msgstr ""
 
 msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Certificates"
 msgstr ""
 
 msgid "Deprecated"
@@ -250,7 +259,37 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "Test Authentication Sources"
+msgid "Checks"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Modules"
+msgstr ""
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
+msgid "means the module is not enabled"
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "Authentication data"
@@ -285,46 +324,7 @@ msgstr ""
 msgid "not set"
 msgstr ""
 
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "Checks"
-msgstr ""
-
-msgid "Details"
-msgstr ""
-
-msgid "Modules"
-msgstr ""
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "You have the following modules installed"
-msgstr ""
-
-msgid "disabled"
-msgstr ""
-
-msgid "enabled"
-msgstr ""
-
-msgid "means the module is not enabled"
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "required"
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "Checking your PHP installation"
