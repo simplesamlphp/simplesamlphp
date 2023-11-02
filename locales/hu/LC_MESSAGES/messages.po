@@ -239,11 +239,17 @@ msgstr "Az azonosítást a felhasználó megszakította"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!"
 
-msgid "Sending message"
-msgstr "Üzenet küldése"
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat."
 
-msgid "Yes, continue"
-msgstr "Igen, elfogadom"
+msgid "Logout"
+msgstr "Kilépés"
+
+msgid "Your attributes"
+msgstr "Az ön attribútumai"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol azonosítani kívánja magát:"
@@ -256,6 +262,12 @@ msgstr "Választ"
 
 msgid "Select your identity provider"
 msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
+
+msgid "Sending message"
+msgstr "Üzenet küldése"
+
+msgid "Yes, continue"
+msgstr "Igen, elfogadom"
 
 msgid "Debug information"
 msgstr "Bővebb információ a hibáról"
@@ -286,18 +298,6 @@ msgstr "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdes
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat."
-
-msgid "Logout"
-msgstr "Kilépés"
-
-msgid "Your attributes"
-msgstr "Az ön attribútumai"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"

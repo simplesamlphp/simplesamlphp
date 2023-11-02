@@ -3,9 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Dobrodošli"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
 
@@ -50,6 +47,9 @@ msgstr "Vzrok za to napako je lahko:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
+
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
