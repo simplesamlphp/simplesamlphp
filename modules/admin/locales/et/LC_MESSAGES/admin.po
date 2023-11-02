@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr ""
 
@@ -189,11 +189,20 @@ msgstr "XML-metaandmed"
 msgid "or select a file:"
 msgstr ""
 
-msgid "Certificates"
-msgstr "Sertifikaadid"
+msgid "Back"
+msgstr ""
 
 msgid "Copy to clipboard"
 msgstr ""
+
+msgid "Metadata"
+msgstr "Metaandmed"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Certificates"
+msgstr "Sertifikaadid"
 
 msgid "Deprecated"
 msgstr "Vananenud"
@@ -246,7 +255,16 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "Test Authentication Sources"
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "Authentication data"
@@ -281,25 +299,7 @@ msgstr "Sinu sessioon kehtib veel %remaining% sekundit."
 msgid "not set"
 msgstr ""
 
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metaandmed"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "required"
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "Checking your PHP installation"

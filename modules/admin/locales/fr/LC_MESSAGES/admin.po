@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr "Déconnexion"
 
@@ -189,11 +189,20 @@ msgstr "Métadonnées XML"
 msgid "or select a file:"
 msgstr "ou sélectionner un fichier:"
 
-msgid "Certificates"
-msgstr "Certificats"
+msgid "Back"
+msgstr "Retour"
 
 msgid "Copy to clipboard"
 msgstr "Copier dans le presse-papiers"
+
+msgid "Metadata"
+msgstr "Métadonnées"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Afficher les métadonnées"
+
+msgid "Certificates"
+msgstr "Certificats"
 
 msgid "Deprecated"
 msgstr "Obsolète"
@@ -246,8 +255,17 @@ msgstr "expire"
 msgid "new"
 msgstr "nouveau"
 
-msgid "Test Authentication Sources"
-msgstr "Tester les sources d'authentification"
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp est installé dans le répertoire:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "Vous utilisez la version <kbd>%version%</kbd>\""
+
+msgid "optional"
+msgstr "optionnel"
+
+msgid "required"
+msgstr "requis"
 
 msgid "Authentication data"
 msgstr "Données d'authentification"
@@ -283,26 +301,8 @@ msgstr "Votre session est encore valide pour %remaining% secondes."
 msgid "not set"
 msgstr "non défini"
 
-msgid "Back"
-msgstr "Retour"
-
-msgid "Metadata"
-msgstr "Métadonnées"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Afficher les métadonnées"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp est installé dans le répertoire:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Vous utilisez la version <kbd>%version%</kbd>\""
-
-msgid "optional"
-msgstr "optionnel"
-
-msgid "required"
-msgstr "requis"
+msgid "Test Authentication Sources"
+msgstr "Tester les sources d'authentification"
 
 msgid "Checking your PHP installation"
 msgstr "Vérification de votre installation de PHP"

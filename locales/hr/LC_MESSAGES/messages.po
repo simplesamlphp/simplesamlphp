@@ -239,11 +239,17 @@ msgstr "Korisnik je prekinuo proces autentifikacie"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Korisnik s navedenom korisničkom oznakom ne može biti pronađen ili je zaporka koju ste unijeli neispravna. Molimo provjerite korisničku oznaku i pokušajte ponovo."
 
-msgid "Sending message"
-msgstr "Šaljem poruku"
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Ovo je stranica s prikazom aktualnog stanja Single Sign-On sjednice. Na ovoj stranici možete vidjeti je li vam istekla sjednica, koliko će još dugo vaša sjednica trajati te sve atribute koji su vezani uz vašu sjednicu."
 
-msgid "Yes, continue"
-msgstr "Da, nastavi"
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "Your attributes"
+msgstr "Vaši atributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sjednica bit će valjana još %remaining% sekundi."
 
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Molimo odaberite servis preko kojeg se želite autentificirati:"
@@ -256,6 +262,12 @@ msgstr "Odaberi"
 
 msgid "Select your identity provider"
 msgstr "Odaberite autentifikacijski servis"
+
+msgid "Sending message"
+msgstr "Šaljem poruku"
+
+msgid "Yes, continue"
+msgstr "Da, nastavi"
 
 msgid "Debug information"
 msgstr "Informacije o greški"
@@ -286,18 +298,6 @@ msgstr "Sljedeće informacije mogu biti zanimljive administratorima ili službi 
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili neispravne konfiguracije programskog alata SimpleSAMLphp. Kontaktirajte administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Ovo je stranica s prikazom aktualnog stanja Single Sign-On sjednice. Na ovoj stranici možete vidjeti je li vam istekla sjednica, koliko će još dugo vaša sjednica trajati te sve atribute koji su vezani uz vašu sjednicu."
-
-msgid "Logout"
-msgstr "Odjava"
-
-msgid "Your attributes"
-msgstr "Vaši atributi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša sjednica bit će valjana još %remaining% sekundi."
 
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"

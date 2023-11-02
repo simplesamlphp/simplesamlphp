@@ -239,11 +239,17 @@ msgstr "A autenticação foi abortada pelo usuário"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha que você digitou está incorreta. Verifique o nome de usuário e tente novamente."
 
-msgid "Sending message"
-msgstr "Enviando a mensagem"
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Olá, esta é a página de status SimpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão."
 
-msgid "Yes, continue"
-msgstr "Sim, Aceito"
+msgid "Logout"
+msgstr "Desconectar"
+
+msgid "Your attributes"
+msgstr "Seus atributos"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
 
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
@@ -256,6 +262,12 @@ msgstr "Selecione"
 
 msgid "Select your identity provider"
 msgstr "Selecione seu provedor de identidade"
+
+msgid "Sending message"
+msgstr "Enviando a mensagem"
+
+msgid "Yes, continue"
+msgstr "Sim, Aceito"
 
 msgid "Debug information"
 msgstr "Informação do Debug"
@@ -286,18 +298,6 @@ msgstr "A informação a seguir é importante para seu administrador / Central d
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Esse erro é provavelmente devido a algum imprevisto no comportamento do SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe a mensagem de erro acima."
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Olá, esta é a página de status SimpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão."
-
-msgid "Logout"
-msgstr "Desconectar"
-
-msgid "Your attributes"
-msgstr "Seus atributos"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sua sessão é válida por %remaining% segundos a partir de agora."
 
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"

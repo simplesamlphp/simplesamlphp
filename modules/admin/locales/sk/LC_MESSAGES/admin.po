@@ -3,11 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr "Odhlásiť sa"
 
@@ -193,11 +193,20 @@ msgstr "XML metadáta"
 msgid "or select a file:"
 msgstr "alebo vyberte súbor:"
 
-msgid "Certificates"
-msgstr "Certifikáty"
+msgid "Back"
+msgstr "Späť"
 
 msgid "Copy to clipboard"
 msgstr "Kopírovať do schránky"
+
+msgid "Metadata"
+msgstr "Metadáta"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Zobraziť metadáta"
+
+msgid "Certificates"
+msgstr "Certifikáty"
 
 msgid "Deprecated"
 msgstr "Zastaralé"
@@ -250,8 +259,35 @@ msgstr "expiruje"
 msgid "new"
 msgstr "nové"
 
-msgid "Test Authentication Sources"
-msgstr "Test zdrojov autentifikácie"
+msgid "Details"
+msgstr "Detaily"
+
+msgid "Modules"
+msgstr "Moduly"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp je nainštalovaný v:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "Vaša verzia: <kbd>%version%</kbd>."
+
+msgid "You have the following modules installed"
+msgstr "Nasledujúce moduly sú nainštalované"
+
+msgid "disabled"
+msgstr "vypnuté"
+
+msgid "enabled"
+msgstr "zapnuté"
+
+msgid "means the module is not enabled"
+msgstr "znamená, že modul nie je zapnutý"
+
+msgid "optional"
+msgstr "voliteľné"
+
+msgid "required"
+msgstr "vyžadované"
 
 msgid "Authentication data"
 msgstr "Autentifikačné dáta"
@@ -285,44 +321,8 @@ msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
 msgid "not set"
 msgstr "nenastavené"
 
-msgid "Back"
-msgstr "Späť"
-
-msgid "Metadata"
-msgstr "Metadáta"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Zobraziť metadáta"
-
-msgid "Details"
-msgstr "Detaily"
-
-msgid "Modules"
-msgstr "Moduly"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp je nainštalovaný v:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Vaša verzia: <kbd>%version%</kbd>."
-
-msgid "You have the following modules installed"
-msgstr "Nasledujúce moduly sú nainštalované"
-
-msgid "disabled"
-msgstr "vypnuté"
-
-msgid "enabled"
-msgstr "zapnuté"
-
-msgid "means the module is not enabled"
-msgstr "znamená, že modul nie je zapnutý"
-
-msgid "optional"
-msgstr "voliteľné"
-
-msgid "required"
-msgstr "vyžadované"
+msgid "Test Authentication Sources"
+msgstr "Test zdrojov autentifikácie"
 
 msgid "Checks"
 msgstr ""
