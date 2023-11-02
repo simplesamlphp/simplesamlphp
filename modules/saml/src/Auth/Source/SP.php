@@ -106,7 +106,7 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::notEq(
             $entityId,
             'https://myapp.example.org/',
-            'Please set a valid and unique entityID',
+            'Please set a valid and unique SP entityID',
         );
 
         $this->entityId = $entityId;
