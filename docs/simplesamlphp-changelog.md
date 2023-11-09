@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.8
+
+Released TBD
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+
 ## Version 2.0.7
 
 Released 2023-10-30
