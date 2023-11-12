@@ -554,10 +554,7 @@ $config = [
      */
 
     'module.enable' => [
-        'exampleauth' => false,
-        'core' => true,
         'admin' => true,
-        'saml' => true
     ],
 
 
