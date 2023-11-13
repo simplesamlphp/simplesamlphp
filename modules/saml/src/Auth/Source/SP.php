@@ -1039,7 +1039,12 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::keyExists($state, 'saml:logout:Type');
 
         $logoutType = $state['saml:logout:Type'];
-        Assert::oneOf($logoutType, ['saml2']);
+        Assert::oneOf($logoutType, ['saml1', 'saml2']);
+
+        // State variable saml:logout:Type is set to saml1 by us if we cannot properly logout the user
+        if ($logoutType === 'saml1') {
+            return;
+        }
 
         $this->startSLO2($state);
     }
