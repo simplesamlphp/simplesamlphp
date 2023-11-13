@@ -87,7 +87,7 @@
         "symfony/psr-http-message-bridge": "^2.3",
         "symfony/routing": "^6.0",
         "symfony/translation-contracts": "^3.0",
-        "symfony/twig-bridge": "^6.0",
+        "tvdijen/twig-bridge": "^6.0",
         "symfony/var-exporter": "^6.0",
         "symfony/yaml": "^6.0",
         "twig/intl-extra": "^3.3",
