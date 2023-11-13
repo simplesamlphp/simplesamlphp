@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
 
 ## Version 2.0.7
 
