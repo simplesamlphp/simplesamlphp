@@ -114,7 +114,7 @@ This is the configuration of the IdP itself. Here is some example config:
 
 ```php
 // The SAML entity ID is the index of this config.
-$metadata['https://example.org/saml-idp'] => [
+$metadata['https://example.org/saml-idp'] = [
     // The hostname of the server (VHOST) that this SAML entity will use.
     'host' => '__DEFAULT__',
 
@@ -137,7 +137,7 @@ In the `saml20-sp-remote.php` file we will configure an entry for Google Workspa
  * This example shows an example config that works with Google Workspace for education.
  * You send the email address that identifies the user from your IdP in the SAML Name ID.
  */
-$metadata['https://www.google.com/a/g.feide.no'] => [
+$metadata['https://www.google.com/a/g.feide.no'] = [
     'AssertionConsumerService' => 'https://www.google.com/a/g.feide.no/acs',
     'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     'simplesaml.attributes' => false,
