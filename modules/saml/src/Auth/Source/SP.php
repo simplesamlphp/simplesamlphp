@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Source;
 
 use Psr\Http\Message\RequestInterface;
+use SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoPassiveException, NoSupportedIDPException};
+use SimpleSAML\SAML2\Exception\Protocol\{
+    NoAvailableIDPException,
+    NoPassiveException,
+    NoSupportedIDPException,
+    ProxyCountExceededException,
+};
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\{AuthnContextClassRef};
@@ -279,6 +285,11 @@ class SP extends Auth\Source
             ];
         }
 
+        // add custom extensions
+        if ($this->metadata->hasValue('saml:Extensions')) {
+            $metadata['saml:Extensions'] = $this->metadata->getArray('saml:Extensions');
+        }
+
         // add EntityAttributes extension
         if ($this->metadata->hasValue('EntityAttributes')) {
             $metadata['EntityAttributes'] = $this->metadata->getArray('EntityAttributes');
@@ -449,12 +460,12 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(Configuration $idpMetadata, array $state): Response
+    private function startSSO2(Configuration $idpMetadata, array $state): void
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
                 $state,
-                new Module\saml\Error\ProxyCountExceeded(C::STATUS_RESPONDER)
+                new ProxyCountExceededException(C::STATUS_RESPONDER)
             );
         }
 
@@ -491,9 +502,8 @@ class SP extends Auth\Source
             ) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
-            $ar->setRequestedAuthnContext(
-                new RequestedAuthnContext($accr, $comp),
-            );
+
+            $ar->setRequestedAuthnContext($accr, $comp);
         } elseif (
             $this->passAuthnContextClassRef
             && isset($state['saml:RequestedAuthnContext'])
@@ -548,7 +558,13 @@ class SP extends Auth\Source
                 $nid = $nameId;
             }
 
-            $ar->setNameId($nid);
+            $tmp = new \SAML2\XML\saml\NameID();
+            $tmp->setFormat($nid->getFormat());
+            $tmp->setValue($nid->getContent());
+            $tmp->setSPProvidedID($nid->getSPProvidedID());
+            $tmp->setNameQualifier($nid->getNameQualifier());
+            $tmp->setSPNameQualifier($nid->getSPNameQualifier());
+            $ar->setNameId($tmp);
         }
 
         if (!empty($state['saml:NameIDPolicy'])) {
@@ -597,8 +613,7 @@ class SP extends Auth\Source
             Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), true));
         }
 
-        $scoping = new Scoping($proxyCount, $idpList, $requesterID);
-        $ar->setScoping($scoping);
+        $ar->setIDPList($idpList?->toArray() ?? []);
 
         // If the downstream SP has set extensions then use them.
         // Otherwise use extensions that might be defined in the local SP (only makes sense in a proxy scenario)
@@ -648,7 +663,7 @@ class SP extends Auth\Source
 
         $b = Binding::getBinding($dst['Binding']);
 
-        return $this->sendSAML2AuthnRequest($b, $ar);
+        $this->sendSAML2AuthnRequest($b, $ar);
     }
 
 
@@ -657,13 +672,14 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
-     * @param \SimpleSAML\SAML2\AuthnRequest $ar  The authentication request.
+     * @param \SAML2\Binding $binding  The binding.
+     * @param \SAML2\AuthnRequest $ar  The authentication request.
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
         $response = $binding->send($ar);
-        return (new HttpFoundationFactory())->createResponse($response);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return new RunnableResponse([$httpFoundationFactory, 'createResponse'], [$response]);
     }
 
 
@@ -672,14 +688,14 @@ class SP extends Auth\Source
      *
      * This function does not return.
      *
-     * @param \SimpleSAML\SAML2\Binding $binding  The binding.
-     * @param \SimpleSAML\SAML2\LogoutRequest  $ar  The logout request.
+     * @param \SAML2\Binding $binding  The binding.
+     * @param \SAML2\LogoutRequest  $ar  The logout request.
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
-        $psrResponse = $binding->send($lr);
+        $response = $binding->send($lr);
         $httpFoundationFactory = new HttpFoundationFactory();
-        return $httpFoundationFactory->createResponse($psrResponse);
+        return new RunnableResponse([$httpFoundationFactory, 'createResponse'], [$response]);
     }
 
 
@@ -690,7 +706,7 @@ class SP extends Auth\Source
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    public function startSSO(Configuration $config, string $idp, array $state): Response
+    public function startSSO(Configuration $config, string $idp, array $state): ?Response
     {
         $idpMetadata = $this->getIdPMetadata($config, $idp);
         $type = $idpMetadata->getString('metadata-set');
@@ -1010,15 +1026,23 @@ class SP extends Auth\Source
         }
 
         $lr = Module\saml\Message::buildLogoutRequest($this->metadata, $idpMetadata);
-        $lr->setNameId($nameId);
+
+        $tmp = new \SAML2\XML\saml\NameID();
+        $tmp->setValue($nameId->getContent());
+        $tmp->setFormat($nameId->getFormat());
+        $tmp->setNameQualifier($nameId->getNameQualifier());
+        $tmp->setSPNameQualifier($nameId->getSPNameQualifier());
+        $tmp->setSPProvidedID($nameId->getSPProvidedID());
+
+        $lr->setNameId($tmp);
         $lr->setSessionIndex($sessionIndex);
         $lr->setRelayState($id);
         $lr->setDestination($endpoint['Location']);
 
         if (isset($state['saml:logout:Extensions']) && count($state['saml:logout:Extensions']) > 0) {
-            $lr->setExtensions(new Extensions($state['saml:logout:Extensions']));
+            $lr->setExtensions([new Extensions($state['saml:logout:Extensions'])]);
         } elseif ($this->metadata->getOptionalArray('saml:logout:Extensions', null) !== null) {
-            $lr->setExtensions(new Extensions($this->metadata->getArray('saml:logout:Extensions')));
+            $lr->setExtensions([new Extensions($this->metadata->getArray('saml:logout:Extensions'))]);
         }
 
         $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', null);

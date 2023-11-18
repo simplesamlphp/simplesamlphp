@@ -940,7 +940,7 @@ class SAMLParser
             }
 
             // UIInfo elements are only allowed at RoleDescriptor level extensions
-            if ($element instanceof RoleDescriptor) {
+            if ($element instanceof AbstractRoleDescriptorType) {
                 if ($e instanceof UIInfo) {
                     $ret['UIInfo'] = $e->toArray();
                 }
@@ -1176,7 +1176,7 @@ class SAMLParser
             throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
-        return new EntityDescriptor($ed);
+        return EntityDescriptor::fromXML($ed);
     }
 
 

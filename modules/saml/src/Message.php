@@ -6,10 +6,10 @@ namespace SimpleSAML\Module\saml;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\{Assertion, EncryptedAssertion}; // Assertions
+use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
-use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
@@ -97,12 +97,12 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @param \SimpleSAML\SAML2\Message $message The message we should add the data to.
+     * @param \SAML2\Message $message The message we should add the data to.
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SimpleSAML\SAML2\Message $message
+        \SAML2\Message $message
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -502,7 +502,7 @@ class Message
         }
 
         $policy = Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
-        $ar->setNameIdPolicy($policy);
+        $ar->setNameIdPolicy($policy->toArray());
 
         $ar->setForceAuthn($spMetadata->getOptionalBoolean('ForceAuthn', false));
         $ar->setIsPassive($spMetadata->getOptionalBoolean('IsPassive', false));
@@ -516,7 +516,8 @@ class Message
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
-        $issuer = new Issuer($spMetadata->getString('entityID'));
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->setValue($spMetadata->getString('entityID'));
         $ar->setIssuer($issuer);
         $ar->setAssertionConsumerServiceIndex(
             $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
@@ -560,10 +561,9 @@ class Message
         Configuration $dstMetadata
     ): LogoutRequest {
         $lr = new LogoutRequest();
-        $issuer = new Issuer(
-            value: $srcMetadata->getString('entityid'),
-            Format: C::NAMEID_ENTITY,
-        );
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setFormat(C::NAMEID_ENTITY);
         $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);

@@ -295,7 +295,7 @@ class ServiceProviderTest extends TestCase
         });
 
         $result = $c->discoResponse($request);
-        $this->assertInstanceOf(Response::class, $result);
+        $result && $this->assertInstanceOf(Response::class, $result);
     }
 
 

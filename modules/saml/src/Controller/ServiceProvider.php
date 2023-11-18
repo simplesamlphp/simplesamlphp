@@ -12,7 +12,7 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
-use SimpleSAML\SAML2\Response as SAML2_Response;
+use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\XHTML\Template;
@@ -131,9 +131,9 @@ class ServiceProvider
     /**
      * Handler for response from IdP discovery service.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
      */
-    public function discoResponse(Request $request): Response
+    public function discoResponse(Request $request): ?Response
     {
         if (!$request->query->has('AuthID')) {
             throw new Error\BadRequest('Missing AuthID to discovery service response handler');

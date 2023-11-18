@@ -71,6 +71,7 @@
         "robrichards/xmlseclibs": "^3.1.1",
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/saml2": "v5.0.0-alpha.13",
+        "simplesamlphp/saml2-legacy": "^4.6",
         "simplesamlphp/simplesamlphp-assets-base": "^2.0.0",
         "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
         "simplesamlphp/xml-common": "^1.12",
