@@ -26,20 +26,20 @@ use function time;
 class ExceptionTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
-    protected Configuration $config;
+    protected static Configuration $config;
 
     /** @var \SimpleSAML\Session */
-    protected Session $session;
+    protected static Session $session;
 
 
     /**
-     * Set up for each test.
+     * Set up before running the test-suite.
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        parent::setUp();
+        parent::setUpBeforeClass();
 
-        $this->config = Configuration::loadFromArray(
+        self::$config = Configuration::loadFromArray(
             [
                 'logging.handler' => ArrayLogger::class,
                 'errorreporting' => false,
@@ -49,9 +49,9 @@ class ExceptionTest extends TestCase
             'simplesaml'
         );
 
-        Configuration::setPreLoadedConfig($this->config, 'config.php');
+        Configuration::setPreLoadedConfig(self::$config, 'config.php');
 
-        $this->session = Session::getSessionFromRequest();
+        self::$session = Session::getSessionFromRequest();
     }
 
 
@@ -76,7 +76,7 @@ class ExceptionTest extends TestCase
             'GET',
         );
 
-        $c = new Controller\Exception($this->config, $this->session);
+        $c = new Controller\Exception(self::$config, self::$session);
 
         Logger::setCaptureLog();
         $response = $c->error($request, $code);
@@ -147,7 +147,7 @@ class ExceptionTest extends TestCase
             '/error/doesNotExist',
         );
 
-        $c = new Controller\Exception($this->config, $this->session);
+        $c = new Controller\Exception(self::$config, self::$session);
 
         $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessage(
