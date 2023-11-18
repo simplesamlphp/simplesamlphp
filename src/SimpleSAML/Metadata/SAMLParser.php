@@ -13,15 +13,18 @@ use SAML2\XML\md\{EntitiesDescriptor, EntityDescriptor};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, IDPSSODescriptor};
-use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, ContactPerson, AbstractEndpointType, KeyDescriptor};
-use SimpleSAML\SAML2\XML\md\{Organization, RoleDescriptor, SPSSODescriptor, SSODescriptorType};
+use SimpleSAML\SAML2\XML\md\{AbstractRoleDescriptorType, AttributeAuthorityDescriptor};
+use SimpleSAML\SAML2\XML\md\{AbstractMetadataDocument, EntityDescriptor, EntitiesDescriptor};
+use SimpleSAML\SAML2\XML\md\{AbstractSSODescriptor, IDPSSODescriptor, SPSSODescriptor};
+use SimpleSAML\SAML2\XML\md\{AttributeConsumingService,  AbstractEndpointType, KeyDescriptor};
+use SimpleSAML\SAML2\XML\md\{ContactPerson, Organization};
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\{DiscoHints, UIInfo};
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data};
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -355,9 +358,9 @@ class SAMLParser
 
         $xmlUtils = new Utils\XML();
         if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntityDescriptor($element));
+            return self::processDescriptorsElement(EntityDescriptor::fromXML($element));
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
-            return self::processDescriptorsElement(new EntitiesDescriptor($element));
+            return self::processDescriptorsElement(EntitiesDescriptor::fromXML($element));
         } else {
             throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }
@@ -366,37 +369,38 @@ class SAMLParser
 
     /**
      *
+<<<<<<< HEAD
      * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element
+=======
+     * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $element
+>>>>>>> 965e6958a (Migrate metadata parsing and generation to new saml2-lib)
      *   The element we should process.
      * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
      *
-     * @return SAMLParser[] Array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
-        SignedElementHelper $element,
+        AbstractMetadataDocument $element,
         ?int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
     ): array {
-        if ($element instanceof EntityDescriptor) {
+        if ($element instanceof EntitiesDescriptor) {
+            $extensions = self::processExtensions($element, $parentExtensions);
+            $expTime = self::getExpireTime($element, $maxExpireTime);
+            $validators[] = $element;
+            $ret = [];
+            $descriptors = array_merge($element->getEntitiesDescriptors(), $element->getEntityDescriptors());
+            foreach ($descriptors as $child) {
+                $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
+            }
+        } elseif ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
-            /** @var SAMLParser[] $ret */
-            return $ret;
-        }
-
-        Assert::isInstanceOf($element, EntitiesDescriptor::class);
-
-        $extensions = self::processExtensions($element, $parentExtensions);
-        $expTime = self::getExpireTime($element, $maxExpireTime);
-
-        $validators[] = $element;
-
-        $ret = [];
-        foreach ($element->getChildren() as $child) {
-            $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
+        } else {
+            throw new InvalidDOMElementException(sprintf('Unexpected element %s', $element::class));
         }
 
         return $ret;
@@ -418,7 +422,7 @@ class SAMLParser
     private static function getExpireTime(mixed $element, ?int $maxExpireTime): ?int
     {
         // validUntil may be null
-        $expire = $element->getValidUntil();
+        $expire = $element->getValidUntil()?->getTimestamp();
 
         if ($maxExpireTime !== null && ($expire === null || $maxExpireTime < $expire)) {
             $expire = $maxExpireTime;
@@ -696,13 +700,12 @@ class SAMLParser
      * - 'expire': Timestamp for when this descriptor expires.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
      *
-     * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $element The element we should extract metadata from.
-     * @param int|null $expireTime The unix timestamp for when this element should expire, or
-     *                             NULL if unknown.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType $element The element we should extract metadata from.
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseRoleDescriptorType(RoleDescriptor $element, ?int $expireTime): array
+    private static function parseRoleDescriptorType(AbstractRoleDescriptorType $element, ?int $expireTime): array
     {
         $ret = [];
 
@@ -744,13 +747,12 @@ class SAMLParser
      * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
      *
-     * @param \SimpleSAML\SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
-     * @param int|null                       $expireTime The unix timestamp for when this element should expire, or
-     *                             NULL if unknown.
+     * @param \SimpleSAML\SAML2\XML\md\AbstractSSODescriptor $element The element we should extract metadata from.
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseSSODescriptor(SSODescriptorType $element, ?int $expireTime): array
+    private static function parseSSODescriptor(AbstractSSODescriptor $element, ?int $expireTime): array
     {
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
@@ -796,8 +798,8 @@ class SAMLParser
         }
 
         // check WantAssertionsSigned
-        if ($element->wantAssertionsSigned() !== null) {
-            $sp['WantAssertionsSigned'] = $element->wantAssertionsSigned();
+        if ($element->getWantAssertionsSigned() !== null) {
+            $sp['WantAssertionsSigned'] = $element->getWantAssertionsSigned();
         }
 
         $this->spDescriptors[] = $sp;
