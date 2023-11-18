@@ -27,11 +27,6 @@ use function var_export;
 class MetaDataStorageHandler implements ClearableState
 {
     /**
-     * The configuration
-     */
-    protected Configuration $globalConfig;
-
-    /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
      * we haven't instantiated a metadata handler yet.
@@ -71,18 +66,18 @@ class MetaDataStorageHandler implements ClearableState
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
      */
-    protected function __construct(Configuration $globalConfig)
-    {
-        $this->globalConfig = $globalConfig;
-
+    protected function __construct(
+        protected Configuration $globalConfig
+    ) {
         $sourcesConfig = $this->globalConfig->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
         } catch (Exception $e) {
-            throw new Exception(
-                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage()
-            );
+            throw new Exception(sprintf(
+                "Invalid configuration of the 'metadata.sources' configuration option: %s",
+                $e->getMessage(),
+            ));
         }
     }
 
@@ -198,12 +193,12 @@ class MetaDataStorageHandler implements ClearableState
      * It will throw an exception if it is unable to locate the entity id.
      *
      * @param string $set The set we look for the entity id in.
-     * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
+     * @param string $type Do you want to return the metaindex or the entityID. [entityID|metaindex]
      *
      * @return string The entity id which is associated with the current hostname/path combination.
      * @throws \Exception If no default metadata can be found in the set for the current host.
      */
-    public function getMetaDataCurrentEntityID(string $set, string $type = 'entityid'): string
+    public function getMetaDataCurrentEntityID(string $set, string $type = 'entityID'): string
     {
         // first we look for the hostname/path combination
         $httpUtils = new Utils\HTTP();
@@ -332,8 +327,9 @@ class MetaDataStorageHandler implements ClearableState
                 }
 
                 $metadata['metadata-index'] = $entityId;
+                $metadata['entityID'] = $entityId;
                 $metadata['metadata-set'] = $set;
-                Assert::keyExists($metadata, 'entityid');
+                Assert::keyExists($metadata, 'entityID');
                 return $metadata;
             }
         }
@@ -382,12 +378,12 @@ class MetaDataStorageHandler implements ClearableState
             $result = array_merge($srcList, $result);
         }
         foreach ($result as $remote_provider) {
-            if (sha1($remote_provider['entityid']) == $sha1) {
+            if (sha1($remote_provider['entityID']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 
                 return Configuration::loadFromArray(
                     $remote_provider,
-                    $set . '/' . var_export($remote_provider['entityid'], true)
+                    $set . '/' . var_export($remote_provider['entityID'], true)
                 );
             }
         }
