@@ -13,6 +13,10 @@ Released TBD
 * Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
 * Fix code error in docs (#1895)
 
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
 ## Version 2.1.0
 
 Released 2023-10-30
