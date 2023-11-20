@@ -3,15 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Incorrect Attributes"
-msgstr "Makgabane a Fosahetseng"
-
-msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa boitsebiso wa hao ha e na lenane le nepahetseng la dipalo."
-
-msgid "The problematic attribute(s) are:"
-msgstr "Makgabane a nang le mathata ke:"
-
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
 
@@ -20,6 +11,15 @@ msgstr "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Bona ke bothata bo ka kgonahalang ka ho fetisisa ho mofani wa tshebeletso kapa mofani wa tshebeletso."
+
+msgid "Incorrect Attributes"
+msgstr "Makgabane a Fosahetseng"
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa boitsebiso wa hao ha e na lenane le nepahetseng la dipalo."
+
+msgid "The problematic attribute(s) are:"
+msgstr "Makgabane a nang le mathata ke:"
 
 msgid "Missing cookie"
 msgstr "Khukhi e siyo"

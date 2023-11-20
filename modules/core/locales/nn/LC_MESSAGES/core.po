@@ -21,12 +21,6 @@ msgstr "Prøv på nytt"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Det ser ut til at informasjonskapslar er avslått i nettlesaren din. Vær vennleg og sjekk instillingane i nettlesaren din, og prøv på nytt."
 
-msgid "Too short interval between single sign on events."
-msgstr "For kort intervall mellom innloggingsforespørslar"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har merka at det kun er nokon få sekund sidan du sist vart logga inn på denne tenesta, og derfor trur vi at det er eit problem med oppsettet av denne tjenesta."
-
 msgid "Close the web browser, and try again."
 msgstr "Lukk nettlesaren, og prøv på nytt."
 
@@ -50,6 +44,12 @@ msgstr "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren."
 
 msgid "Welcome"
 msgstr "Velkomen"
+
+msgid "Too short interval between single sign on events."
+msgstr "For kort intervall mellom innloggingsforespørslar"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har merka at det kun er nokon få sekund sidan du sist vart logga inn på denne tenesta, og derfor trur vi at det er eit problem med oppsettet av denne tjenesta."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Om problemet vedvarar, kan du rapportere det til systemadministratorane."

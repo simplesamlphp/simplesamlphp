@@ -21,12 +21,6 @@ msgstr "Bandyti dar kartą"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
 
-msgid "Too short interval between single sign on events."
-msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
-
 msgid "Close the web browser, and try again."
 msgstr "Uždarykite interneto naršyklę ir pabandykite dar kartą."
 
@@ -50,6 +44,12 @@ msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršykl�
 
 msgid "Welcome"
 msgstr "Sveiki atvykę"
+
+msgid "Too short interval between single sign on events."
+msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."

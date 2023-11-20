@@ -4,12 +4,48 @@ msgstr ""
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 msgid "Log out"
 msgstr "Odhlásiť sa"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Konvertor metadát z XML na SimpleSAMLphp"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
+msgid "SAML 2.0 SP metadata"
+msgstr "SAML 2.0 SP metadáta"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
+msgid "SAML 2.0 IdP metadata"
+msgstr "SAML 2.0 IdP metadáta"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
+msgid "ADFS SP metadata"
+msgstr "ADFS SP metadáta"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+msgid "ADFS IdP metadata"
+msgstr "ADFS IdP metadáta"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Konfigurácia"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr "Test"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federácia"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
 msgid "Diagnostics on hostname, port and protocol"
@@ -136,77 +172,14 @@ msgstr "Chýba cURL PHP rozšírenie. Nie je možné skontrolovať aktualizácie
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "Máte zastaralú verziu SimpleSAMLphp. Aktualizujte prosím čo najskôr na <a href=\"%latest%\">najnovšiu verziu</a>."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Konvertor metadát z XML na SimpleSAMLphp"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
-msgid "SAML 2.0 SP metadata"
-msgstr "SAML 2.0 SP metadáta"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
-msgid "SAML 2.0 IdP metadata"
-msgstr "SAML 2.0 IdP metadáta"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
-msgid "ADFS SP metadata"
-msgstr "ADFS SP metadáta"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-msgid "ADFS IdP metadata"
-msgstr "ADFS IdP metadáta"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Konfigurácia"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr "Test"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federácia"
-
-msgid "An error occurred"
-msgstr "Nastala chyba"
-
-msgid "Converted metadata"
-msgstr "Konvertované metadáta"
-
-msgid "Metadata parser"
-msgstr "Parser metadát"
-
-msgid "No file selected."
-msgstr "Nevybraný žiadny súbor."
-
-msgid "Parse"
-msgstr "Parsovať"
-
-msgid "XML metadata"
-msgstr "XML metadáta"
-
-msgid "or select a file:"
-msgstr "alebo vyberte súbor:"
-
-msgid "Back"
-msgstr "Späť"
-
-msgid "Copy to clipboard"
-msgstr "Kopírovať do schránky"
-
-msgid "Metadata"
-msgstr "Metadáta"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Zobraziť metadáta"
+msgid "Test Authentication Sources"
+msgstr "Test zdrojov autentifikácie"
 
 msgid "Certificates"
 msgstr "Certifikáty"
+
+msgid "Copy to clipboard"
+msgstr "Kopírovať do schránky"
 
 msgid "Deprecated"
 msgstr "Zastaralé"
@@ -259,38 +232,14 @@ msgstr "expiruje"
 msgid "new"
 msgstr "nové"
 
-msgid "Checks"
-msgstr ""
+msgid "Back"
+msgstr "Späť"
 
-msgid "Details"
-msgstr "Detaily"
+msgid "Metadata"
+msgstr "Metadáta"
 
-msgid "Modules"
-msgstr "Moduly"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp je nainštalovaný v:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Vaša verzia: <kbd>%version%</kbd>."
-
-msgid "You have the following modules installed"
-msgstr "Nasledujúce moduly sú nainštalované"
-
-msgid "disabled"
-msgstr "vypnuté"
-
-msgid "enabled"
-msgstr "zapnuté"
-
-msgid "means the module is not enabled"
-msgstr "znamená, že modul nie je zapnutý"
-
-msgid "optional"
-msgstr "voliteľné"
-
-msgid "required"
-msgstr "vyžadované"
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Zobraziť metadáta"
 
 msgid "Authentication data"
 msgstr "Autentifikačné dáta"
@@ -324,8 +273,59 @@ msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
 msgid "not set"
 msgstr "nenastavené"
 
-msgid "Test Authentication Sources"
-msgstr "Test zdrojov autentifikácie"
+msgid "Checks"
+msgstr ""
+
+msgid "Details"
+msgstr "Detaily"
+
+msgid "Modules"
+msgstr "Moduly"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp je nainštalovaný v:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "Vaša verzia: <kbd>%version%</kbd>."
+
+msgid "You have the following modules installed"
+msgstr "Nasledujúce moduly sú nainštalované"
+
+msgid "disabled"
+msgstr "vypnuté"
+
+msgid "enabled"
+msgstr "zapnuté"
+
+msgid "means the module is not enabled"
+msgstr "znamená, že modul nie je zapnutý"
+
+msgid "optional"
+msgstr "voliteľné"
+
+msgid "required"
+msgstr "vyžadované"
+
+msgid "An error occurred"
+msgstr "Nastala chyba"
+
+msgid "Converted metadata"
+msgstr "Konvertované metadáta"
+
+msgid "Metadata parser"
+msgstr "Parser metadát"
+
+msgid "No file selected."
+msgstr "Nevybraný žiadny súbor."
+
+msgid "Parse"
+msgstr "Parsovať"
+
+msgid "XML metadata"
+msgstr "XML metadáta"
+
+msgid "or select a file:"
+msgstr "alebo vyberte súbor:"
 
 msgid "Checking your PHP installation"
 msgstr "Kontrola Vašej PHP inštalácie"

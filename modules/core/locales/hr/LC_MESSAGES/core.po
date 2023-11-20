@@ -21,12 +21,6 @@ msgstr "Pokušaj ponovo"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pregledniku. Molimo provjerite postavke vašeg web preglednika i pokušajte ponovo."
 
-msgid "Too short interval between single sign on events."
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Sustav je utvrdio da je prošlo tek nekoliko sekundi otkad ste se zadnji put autentificirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge."
-
 msgid "Close the web browser, and try again."
 msgstr "Zatvorite web preglednik i pokušajte ponovno."
 
@@ -50,6 +44,12 @@ msgstr "Korištenjem gumba za prethodnu (back) i sljedeću (forward) stranicu u 
 
 msgid "Welcome"
 msgstr "Dobrodošli"
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratak interval između uzastopnih SSO prijava."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Sustav je utvrdio da je prošlo tek nekoliko sekundi otkad ste se zadnji put autentificirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ako se ova greška bude i dalje pojavljivala, možete ju prijaviti administratorima."

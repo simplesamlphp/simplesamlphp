@@ -21,12 +21,6 @@ msgstr "Coba lagi"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
 
-msgid "Too short interval between single sign on events."
-msgstr "Interval yang terlalu pendek antara event single sign on."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
-
 msgid "Close the web browser, and try again."
 msgstr "Tutup browser, dan coba lagi."
 
@@ -50,6 +44,12 @@ msgstr "Menggunakan tombol back dan forward pada browser web."
 
 msgid "Welcome"
 msgstr "Selamat Datang"
+
+msgid "Too short interval between single sign on events."
+msgstr "Interval yang terlalu pendek antara event single sign on."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."

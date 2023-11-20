@@ -21,12 +21,6 @@ msgstr "Δοκιμάστε ξανά"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και δοκιμάστε ξανά."
 
-msgid "Too short interval between single sign on events."
-msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
-
 msgid "Close the web browser, and try again."
 msgstr "Κλείστε το πρόγραμμα περιήγησης ιστού (web browser) και προσπαθήστε ξανά"
 
@@ -50,6 +44,12 @@ msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικ�
 
 msgid "Welcome"
 msgstr "Καλώς ορίσατε"
+
+msgid "Too short interval between single sign on events."
+msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Αν το πρόβλημα εξακολουθεί να υφίσταται, μπορείτε να το αναφέρετε στους διαχειριστές του συστήματος."

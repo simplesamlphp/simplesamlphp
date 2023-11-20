@@ -4,12 +4,48 @@ msgstr ""
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
 msgid "Log out"
 msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Conversor de XML a metadatos de SimpleSAMLphp"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
+msgid "SAML 2.0 SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
+msgid "SAML 2.0 IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
+msgid "ADFS SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+msgid "ADFS IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuración"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federación"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
 msgid "Diagnostics on hostname, port and protocol"
@@ -132,77 +168,14 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por favor, actualice a la <a href=\"%latest%\">&uacute;ltima versi&oacute;n</a> lo antes posible."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Conversor de XML a metadatos de SimpleSAMLphp"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
-msgid "SAML 2.0 SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-msgid "ADFS IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuración"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federación"
-
-msgid "An error occurred"
-msgstr ""
-
-msgid "Converted metadata"
-msgstr "Metadatos convertidos"
-
-msgid "Metadata parser"
-msgstr "Analizar metadatos"
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr "Analizar"
-
-msgid "XML metadata"
-msgstr "Metadatos XML"
-
-msgid "or select a file:"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadatos"
-
-msgid "SimpleSAMLphp Show Metadata"
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "Certificates"
 msgstr "Certificados"
+
+msgid "Copy to clipboard"
+msgstr ""
 
 msgid "Deprecated"
 msgstr "Obsoleto"
@@ -255,16 +228,13 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "Back"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
+msgid "Metadata"
+msgstr "Metadatos"
 
-msgid "optional"
-msgstr ""
-
-msgid "required"
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "Authentication data"
@@ -299,7 +269,37 @@ msgstr "Su sesión será valida durante %remaining% segundos."
 msgid "not set"
 msgstr "sin valor"
 
-msgid "Test Authentication Sources"
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Converted metadata"
+msgstr "Metadatos convertidos"
+
+msgid "Metadata parser"
+msgstr "Analizar metadatos"
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "Analizar"
+
+msgid "XML metadata"
+msgstr "Metadatos XML"
+
+msgid "or select a file:"
 msgstr ""
 
 msgid "Checking your PHP installation"

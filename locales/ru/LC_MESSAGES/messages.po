@@ -239,45 +239,6 @@ msgstr "Аутентификация прервана пользователем
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Либо не существует пользователя с данным именем, либо неверный пароль.Пожалуйста, проверьте имя пользователя и пробуйте снова."
 
-msgid "Format"
-msgstr "Формат"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
-
-msgid "Logout"
-msgstr "Выйти"
-
-msgid "SAML Subject"
-msgstr "Тема SAML"
-
-msgid "Your attributes"
-msgstr "Ваши атрибуты"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
-
-msgid "not set"
-msgstr "не установлен"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Пожалуйста, выберите identity provider, с помощью которого вы хотите пройти аутентификацию:"
-
-msgid "Remember my choice"
-msgstr "Запомнить мой выбор"
-
-msgid "Select"
-msgstr "Выбрать"
-
-msgid "Select your identity provider"
-msgstr "Выберите вашего identity provider"
-
-msgid "Sending message"
-msgstr "Отправка сообщения"
-
-msgid "Yes, continue"
-msgstr "Да, продолжить"
-
 msgid "Debug information"
 msgstr "Отладочная информация"
 
@@ -307,6 +268,45 @@ msgstr "Нижеприведенная информация может быть 
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Эта ошибка произошла, вероятно, из-за непредвиденной ситуации или неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
+
+msgid "Sending message"
+msgstr "Отправка сообщения"
+
+msgid "Yes, continue"
+msgstr "Да, продолжить"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Пожалуйста, выберите identity provider, с помощью которого вы хотите пройти аутентификацию:"
+
+msgid "Remember my choice"
+msgstr "Запомнить мой выбор"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "Select your identity provider"
+msgstr "Выберите вашего identity provider"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "SAML Subject"
+msgstr "Тема SAML"
+
+msgid "Your attributes"
+msgstr "Ваши атрибуты"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
+
+msgid "not set"
+msgstr "не установлен"
 
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"

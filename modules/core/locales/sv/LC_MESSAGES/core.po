@@ -21,12 +21,6 @@ msgstr "Försök igen"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Det verkar som om du har stängt av möjligheten till kakor (cookies) i din webbläsare. Kontrollera inställningarna i webbläsaren och försök igen."
 
-msgid "Too short interval between single sign on events."
-msgstr "För kort intervall mellan inloggningar."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har upptäckt att det bara vara några få sekunder sedan du senast loggade in mot denna tjänst (service provider) och därför antar vi att det är ett problem med denna tjänst."
-
 msgid "Close the web browser, and try again."
 msgstr "Stäng din webbläsare och försök igen."
 
@@ -50,6 +44,12 @@ msgstr "Användning av framåt- och bakåtknappar i webbläsaren."
 
 msgid "Welcome"
 msgstr "Välkommen"
+
+msgid "Too short interval between single sign on events."
+msgstr "För kort intervall mellan inloggningar."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har upptäckt att det bara vara några få sekunder sedan du senast loggade in mot denna tjänst (service provider) och därför antar vi att det är ett problem med denna tjänst."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörerna."
