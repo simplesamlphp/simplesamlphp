@@ -111,10 +111,10 @@ class MultiAuth extends Auth\Source
         ) {
             $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);
             $new_sources = [];
-            foreach ($this->sources as $source) {
+            foreach ($this->sources as $key => $source) {
                 $config_refs = $arrayUtils->arrayize($source['AuthnContextClassRef']);
                 if (count(array_intersect($config_refs, $refs)) >= 1) {
-                    $new_sources[] = $source;
+                    $new_sources[$key] = $source;
                 }
             }
             $state[self::SOURCESID] = $new_sources;
