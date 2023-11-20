@@ -8,13 +8,11 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
-use SAML2\SignedElementHelper;
-use SAML2\XML\md\{EntitiesDescriptor, EntityDescriptor};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\md\{AbstractMetadataDocument, EntitiesDescriptor, EntityDescriptor};
 use SimpleSAML\SAML2\XML\md\{AbstractRoleDescriptorType, AttributeAuthorityDescriptor};
-use SimpleSAML\SAML2\XML\md\{AbstractMetadataDocument, EntityDescriptor, EntitiesDescriptor};
 use SimpleSAML\SAML2\XML\md\{AbstractSSODescriptor, IDPSSODescriptor, SPSSODescriptor};
 use SimpleSAML\SAML2\XML\md\{AttributeConsumingService,  AbstractEndpointType, KeyDescriptor};
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Organization};
@@ -369,11 +367,7 @@ class SAMLParser
 
     /**
      *
-<<<<<<< HEAD
-     * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element
-=======
      * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $element
->>>>>>> 965e6958a (Migrate metadata parsing and generation to new saml2-lib)
      *   The element we should process.
      * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
