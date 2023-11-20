@@ -21,12 +21,6 @@ msgstr "Riprovare"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare."
 
-msgid "Too short interval between single sign on events."
-msgstr "L'intervallo tra le autenticazioni è troppo breve."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima autenticazione con questo fornitore di servizio, quindi si può assumere che ci sia un problema con il Service Provider."
-
 msgid "Close the web browser, and try again."
 msgstr "Chiudere il browser web e quindi provare di nuovo."
 
@@ -50,6 +44,12 @@ msgstr "Utilizzo i pulsanti avanti ed indietro del browser web."
 
 msgid "Welcome"
 msgstr "Benvenuto"
+
+msgid "Too short interval between single sign on events."
+msgstr "L'intervallo tra le autenticazioni è troppo breve."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima autenticazione con questo fornitore di servizio, quindi si può assumere che ci sia un problema con il Service Provider."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Se questo problema persiste, è possibile segnalarlo agli amministratori di sistema."

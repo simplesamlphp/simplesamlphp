@@ -239,36 +239,6 @@ msgstr "Autentimine katkestati kasutaja poolt"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Kas sellise kasutajatunnusega kasutajat ei leitud või pole sinu poolt sisestatud parool õige. Palun kontrolli kasutajatunnust ja parooli uuesti."
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Tere! See on SimpleSAMLphp olekuteave. Siit on võimalik näha, kas su sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga seotud atribuute."
-
-msgid "Logout"
-msgstr "Logi välja"
-
-msgid "Your attributes"
-msgstr "Sinu atribuudid"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sinu sessioon kehtib veel %remaining% sekundit."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
-
-msgid "Remember my choice"
-msgstr "Jäta valik meelde"
-
-msgid "Select"
-msgstr "Vali"
-
-msgid "Select your identity provider"
-msgstr "Vali oma identiteedipakkuja"
-
-msgid "Sending message"
-msgstr "Teate saatmine"
-
-msgid "Yes, continue"
-msgstr "Jah, jätka"
-
 msgid "Debug information"
 msgstr "Silumisinfo"
 
@@ -298,6 +268,36 @@ msgstr "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "See tõrge ilmnes tõenäoliselt SimpleSAMLphp ootamatu käitumise või valesti seadistamise tõttu. Võta ühendust selle sisselogimisteenuse administraatoriga ja saada talle ülalolev veateade."
+
+msgid "Sending message"
+msgstr "Teate saatmine"
+
+msgid "Yes, continue"
+msgstr "Jah, jätka"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
+
+msgid "Remember my choice"
+msgstr "Jäta valik meelde"
+
+msgid "Select"
+msgstr "Vali"
+
+msgid "Select your identity provider"
+msgstr "Vali oma identiteedipakkuja"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Tere! See on SimpleSAMLphp olekuteave. Siit on võimalik näha, kas su sessioon on aegunud, kui kaua see veel kestab ja kõiki teisi sessiooniga seotud atribuute."
+
+msgid "Logout"
+msgstr "Logi välja"
+
+msgid "Your attributes"
+msgstr "Sinu atribuudid"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sinu sessioon kehtib veel %remaining% sekundit."
 
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"

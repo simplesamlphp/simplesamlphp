@@ -21,12 +21,6 @@ msgstr "Opakujte"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
 
-msgid "Too short interval between single sign on events."
-msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
-
 msgid "Close the web browser, and try again."
 msgstr "Zavřít webový prohlížeč a zkusit znovu."
 
@@ -50,6 +44,12 @@ msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 
 msgid "Welcome"
 msgstr "Vítejte"
+
+msgid "Too short interval between single sign on events."
+msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."

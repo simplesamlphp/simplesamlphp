@@ -21,12 +21,6 @@ msgstr "Повторить"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
 
-msgid "Too short interval between single sign on events."
-msgstr "Очень короткий промежуток времени между единым входом в событиях."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
-
 msgid "Close the web browser, and try again."
 msgstr "Закрыть веб браузер и попробовать снова."
 
@@ -50,6 +44,12 @@ msgstr "Используйте клавиши \"Вперед\" \"Назад\" в
 
 msgid "Welcome"
 msgstr "Добро пожаловать"
+
+msgid "Too short interval between single sign on events."
+msgstr "Очень короткий промежуток времени между единым входом в событиях."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Если проблема остается, сообщить об этом администратору."

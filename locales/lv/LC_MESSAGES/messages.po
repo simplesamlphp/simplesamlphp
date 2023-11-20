@@ -239,36 +239,6 @@ msgstr "Autentifikāciju pārtraucis lietotājs"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Vai nu nav lietotāja ar norādīto lietotāja vārdu, vai parole norādīta kļūdaini. Lūdzu mēģiniet vēlreiz."
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir pārtraukta, cik ilgi tā bijusi aktīva un visus ar to saistītos atribūtus."
-
-msgid "Logout"
-msgstr "Atslēgties"
-
-msgid "Your attributes"
-msgstr "Atribūti"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Lūdzu izvēlieties identitātes piegādātāju, pie kura vēlaties autentificēties:"
-
-msgid "Remember my choice"
-msgstr "Atcerēties manu izvēli"
-
-msgid "Select"
-msgstr "Izvēlēties"
-
-msgid "Select your identity provider"
-msgstr "Izvēlieties identitātes piegādātāju"
-
-msgid "Sending message"
-msgstr "Ziņas sūtīšana"
-
-msgid "Yes, continue"
-msgstr "Jā, turpināt"
-
 msgid "Debug information"
 msgstr "Atkļūdošanas infomācija"
 
@@ -298,6 +268,36 @@ msgstr "Zemāk esošā atkļūdošanas informācija var interesēt administrator
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
+
+msgid "Sending message"
+msgstr "Ziņas sūtīšana"
+
+msgid "Yes, continue"
+msgstr "Jā, turpināt"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Lūdzu izvēlieties identitātes piegādātāju, pie kura vēlaties autentificēties:"
+
+msgid "Remember my choice"
+msgstr "Atcerēties manu izvēli"
+
+msgid "Select"
+msgstr "Izvēlēties"
+
+msgid "Select your identity provider"
+msgstr "Izvēlieties identitātes piegādātāju"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Šī ir SimpleSAMLphp statusa lapa. Te Jūs varat redzēt vai Jūsu sesija ir pārtraukta, cik ilgi tā bijusi aktīva un visus ar to saistītos atribūtus."
+
+msgid "Logout"
+msgstr "Atslēgties"
+
+msgid "Your attributes"
+msgstr "Atribūti"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
 
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
