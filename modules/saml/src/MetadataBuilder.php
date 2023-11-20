@@ -18,7 +18,7 @@ use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\ArtifactResolutionService;
 use SimpleSAML\SAML2\XML\md\AssertionConsumerService;
 use SimpleSAML\SAML2\XML\md\AssertionIDRequestService;
-use SimpleSAML\SAML2\XML\md\AttributeAuthority;
+use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\AttributeService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
@@ -254,7 +254,7 @@ class MetadataBuilder
     /**
      * This method builds the AttributeAuthority element
      */
-    private function getAttributeAuthority(): AttributeAuthority
+    private function getAttributeAuthority(): AttributeAuthorityDescriptor
     {
         $extensions = $this->getExtensions();
         $keyDescriptor = $this->getKeyDescriptor();
