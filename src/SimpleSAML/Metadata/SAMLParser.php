@@ -8,8 +8,6 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\XML\md\EntitiesDescriptor;
-use SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
@@ -387,6 +385,7 @@ class SAMLParser
     /**
      *
      * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $element
+     *   The element we should process.
      * @param int|null              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
