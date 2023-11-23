@@ -168,7 +168,8 @@ class SAMLParser
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
-        $validators[] = $entityElement;
+        $this->validators = $validators;
+        $this->validators[] = $entityElement;
 
         // process Extensions element, if it exists
         $ext = self::processExtensions($entityElement, $parentExtensions);
