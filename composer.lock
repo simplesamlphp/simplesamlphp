@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df5bb4b51075657e530a92c4e2ac7b45",
+    "content-hash": "bb5ed856dff4871b83f08cc9bb864438",
     "packages": [
         {
             "name": "beste/clock",
@@ -956,16 +956,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0-alpha.10",
+            "version": "v5.0.0-alpha.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "20c50b4e6d357c903530cec7ca02a50e1377a759"
+                "reference": "8ab59be9148990386529d88ac3c1022b216eed0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/20c50b4e6d357c903530cec7ca02a50e1377a759",
-                "reference": "20c50b4e6d357c903530cec7ca02a50e1377a759",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/8ab59be9148990386529d88ac3c1022b216eed0b",
+                "reference": "8ab59be9148990386529d88ac3c1022b216eed0b",
                 "shasum": ""
             },
             "require": {
@@ -984,7 +984,7 @@
                 "robrichards/xmlseclibs": "^3.1.1",
                 "simplesamlphp/assert": "^1.0.4",
                 "simplesamlphp/xml-common": "^1.11.2",
-                "simplesamlphp/xml-security": "^1.6.5",
+                "simplesamlphp/xml-security": "^1.6.12",
                 "simplesamlphp/xml-soap": "^1.2.0"
             },
             "require-dev": {
@@ -1016,9 +1016,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.10"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0-alpha.13"
             },
-            "time": "2023-08-01T22:02:26+00:00"
+            "time": "2023-11-27T18:20:30+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
@@ -1173,16 +1173,16 @@
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.6.10",
+            "version": "v1.6.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "d5aa494ad3909029e7fe14735e344532e67ab7d6"
+                "reference": "f509e3083dd7870cce5880c804b5122317287581"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/d5aa494ad3909029e7fe14735e344532e67ab7d6",
-                "reference": "d5aa494ad3909029e7fe14735e344532e67ab7d6",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/f509e3083dd7870cce5880c804b5122317287581",
+                "reference": "f509e3083dd7870cce5880c804b5122317287581",
                 "shasum": ""
             },
             "require": {
@@ -1202,7 +1202,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SimpleSAML\\XMLSecurity\\": "src"
+                    "SimpleSAML\\XMLSecurity\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1231,9 +1231,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.10"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.6.12"
             },
-            "time": "2023-07-30T22:12:05+00:00"
+            "time": "2023-11-27T18:17:51+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
