@@ -14,6 +14,7 @@ Released TBD
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 * Bumped dependencies
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
 
 `metarefresh`
 
