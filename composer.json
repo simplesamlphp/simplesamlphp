@@ -48,7 +48,6 @@
         "ext-date": "*",
         "ext-dom": "*",
         "ext-hash": "*",
-        "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
@@ -73,6 +72,7 @@
         "symfony/http-foundation": "^5.4",
         "symfony/http-kernel": "^5.4",
         "symfony/intl": "^5.4",
+        "symfony/polyfill-intl-icu": "^1.28",
         "symfony/routing": "^5.4",
         "symfony/translation-contracts": "^2.5",
         "symfony/twig-bridge": "^5.4",
@@ -92,6 +92,7 @@
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
+        "ext-intl": "Needed if translations for non-English languages are required.",
         "ext-ldap": "Needed if an LDAP backend is used",
         "ext-memcache": "Needed if a Memcache server is used to store session information",
         "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",

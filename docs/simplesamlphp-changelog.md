@@ -17,6 +17,7 @@ Released 2023-11-28
 * Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
 * Fix code error in docs (#1895)
 * Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Drop ext-intl in favour of a polyfill (#1908)
 
 `multiauth`
 
