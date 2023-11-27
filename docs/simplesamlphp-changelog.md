@@ -15,6 +15,7 @@ Released TBD
 * Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
 * Fixed the precondition-functionality for more complex authproc-filters (#1905)
 * Reverted a case of 'constructor property promotion' in SAMLParser, causing the validators to be empty (#1904)
+* Drop ext-intl in favour of a polyfill (#1908)
 
 `multiauth`
 
