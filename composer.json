@@ -50,7 +50,6 @@
         "ext-fileinfo": "*",
         "ext-filter": "*",
         "ext-hash": "*",
-        "ext-intl": "*",
         "ext-json": "*",
         "ext-libxml": "*",
         "ext-mbstring": "*",
@@ -85,6 +84,7 @@
         "symfony/http-foundation": "^6.0",
         "symfony/http-kernel": "^6.0",
         "symfony/intl": "^6.0",
+        "symfony/polyfill-intl-icu": "^1.28",
         "symfony/psr-http-message-bridge": "^2.3",
         "symfony/routing": "^6.0",
         "symfony/translation-contracts": "^3.0",
@@ -107,6 +107,7 @@
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
         "ext-curl": "Needed in order to check for updates automatically",
+        "ext-intl": "Needed if translations for non-English languages are required.",
         "ext-memcached": "Needed if a Memcached server is used to store session information",
         "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",
         "ext-mysql": "Needed if a MySQL backend is used, either for authentication or to store session information",
