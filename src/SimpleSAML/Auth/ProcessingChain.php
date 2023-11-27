@@ -243,7 +243,9 @@ class ProcessingChain
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
-                $filter->process($state);
+                if ($filter->checkPrecondition($state) === true) {
+                    $filter->process($state);
+                }
             } catch (Error\Exception $e) {
                 State::throwException($state, $e);
             } catch (Exception $e) {
