@@ -21,12 +21,6 @@ msgstr "重試"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
 
-msgid "Too short interval between single sign on events."
-msgstr "單一簽入事件間隔過短。"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "我們偵測到距離您最後一次驗證於這個服務提供者只有短短幾秒，而這可能是 SP 有點問題。"
-
 msgid "Close the web browser, and try again."
 msgstr "關閉網頁瀏覽器，並再試一次。"
 
@@ -50,6 +44,12 @@ msgstr "於網頁瀏覽器使用上一頁及下一頁。"
 
 msgid "Welcome"
 msgstr "歡迎"
+
+msgid "Too short interval between single sign on events."
+msgstr "單一簽入事件間隔過短。"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "我們偵測到距離您最後一次驗證於這個服務提供者只有短短幾秒，而這可能是 SP 有點問題。"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。"

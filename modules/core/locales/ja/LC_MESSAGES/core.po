@@ -21,12 +21,6 @@ msgstr "再試行"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
 
-msgid "Too short interval between single sign on events."
-msgstr "シングルサインオンイベントの間隔が短すぎます。"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
-
 msgid "Close the web browser, and try again."
 msgstr "WEBブラウザを閉じて、再度試してください。"
 
@@ -50,6 +44,12 @@ msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 
 msgid "Welcome"
 msgstr "ようこそ"
+
+msgid "Too short interval between single sign on events."
+msgstr "シングルサインオンイベントの間隔が短すぎます。"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"

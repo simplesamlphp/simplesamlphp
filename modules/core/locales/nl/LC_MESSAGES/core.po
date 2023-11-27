@@ -21,12 +21,6 @@ msgstr "Opnieuw"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. Controleer de browserinstellingen en probeer het opnieuw."
 
-msgid "Too short interval between single sign on events."
-msgstr "Te kort interval tussen single sign on pogingen"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "We hebben waargenomen dat u slechts een paar seconden geleden al aangemeld bent bij deze serviceprovider, daarom nemen we aan dat er een probleem is met deze SP."
-
 msgid "Close the web browser, and try again."
 msgstr "Sluit de web browser, en probeer opnieuw."
 
@@ -50,6 +44,12 @@ msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 
 msgid "Welcome"
 msgstr "Welkom"
+
+msgid "Too short interval between single sign on events."
+msgstr "Te kort interval tussen single sign on pogingen"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "We hebben waargenomen dat u slechts een paar seconden geleden al aangemeld bent bij deze serviceprovider, daarom nemen we aan dat er een probleem is met deze SP."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."

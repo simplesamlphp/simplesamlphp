@@ -21,12 +21,6 @@ msgstr "Erneut versuchen"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut."
 
-msgid "Too short interval between single sign on events."
-msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
-
 msgid "Close the web browser, and try again."
 msgstr "Schließe den Web-Browser und versuche es erneut."
 
@@ -50,6 +44,12 @@ msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
 
 msgid "Welcome"
 msgstr "Willkommen"
+
+msgid "Too short interval between single sign on events."
+msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Wenn das Problem weiter besteht, kannst du diesen Fehler den Systemadministratoren melden."
