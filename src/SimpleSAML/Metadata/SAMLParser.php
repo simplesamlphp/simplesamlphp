@@ -8,11 +8,12 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
+use SAML2\SignedElementHelper;
+use SAML2\XML\md\{EntitiesDescriptor, EntityDescriptor};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\SignedElementHelper;
-use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, EntityDescriptor, EntitiesDescriptor, IDPSSODescriptor};
+use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, IDPSSODescriptor};
 use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, ContactPerson, AbstractEndpointType, KeyDescriptor};
 use SimpleSAML\SAML2\XML\md\{Organization, RoleDescriptor, SPSSODescriptor, SSODescriptorType};
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
@@ -144,7 +145,7 @@ class SAMLParser
     /**
      * This is an array of elements that may be used to validate this element.
      *
-     * @var \SimpleSAML\SAML2\SignedElementHelper[]
+     * @var \SAML2\SignedElementHelper[]
      */
     private array $validators = [];
 
@@ -366,7 +367,7 @@ class SAMLParser
 
     /**
      *
-     * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor|\SimpleSAML\SAML2\XML\md\EntitiesDescriptor $element
+     * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element
      *   The element we should process.
      * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
