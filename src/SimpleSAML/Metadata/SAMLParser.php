@@ -158,6 +158,13 @@ class SAMLParser
     private array $registrationInfo;
 
     /**
+     * This is an array of elements that may be used to validate this element.
+     *
+     * @var \SimpleSAML\SAML2\SignedElementHelper[]
+     */
+    private array $validators = [];
+
+    /**
      * @var \Symfony\Component\Filesystem\Filesystem
      */
     protected Filesystem $fileSystem;
@@ -175,7 +182,7 @@ class SAMLParser
     private function __construct(
         EntityDescriptor $entityElement,
         ?int $maxExpireTime,
-        private array $validators = [],
+        array $validators = [],
         array $parentExtensions = []
     ) {
         $this->fileSystem = new Filesystem();
@@ -184,7 +191,8 @@ class SAMLParser
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
-        $validators[] = $entityElement;
+        $this->validators = $validators;
+        $this->validators[] = $entityElement;
 
         // process Extensions element, if it exists
         $ext = self::processExtensions($entityElement, $parentExtensions);
