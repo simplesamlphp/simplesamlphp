@@ -250,9 +250,9 @@ class Config
                 ]
             ],
             'intl_get_error_code' => [
-                'required' => 'required',
+                'required' => 'optional',
                 'descr' => [
-                    'required' => Translate::noop('PHP intl extension'),
+                    'optional' => Translate::noop('PHP intl extension'),
                 ]
             ],
             'json_decode' => [
