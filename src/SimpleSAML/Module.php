@@ -162,7 +162,7 @@ class Module
             $request = Request::createFromGlobals();
         }
 
-        if ($request->server->get('PATH_INFO') === '/') {
+        if ($request->server->get('PATH_INFO') === '/' || $request->server->get('PATH_INFO') === null) {
             throw new Error\NotFound('No PATH_INFO to module.php');
         }
 
