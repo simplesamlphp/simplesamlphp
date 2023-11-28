@@ -44,6 +44,21 @@ Released 2023-10-30
 
 * The custom error- and exception handlers were moved to their very own classes (#1858)
 
+
+## Version 2.0.8
+
+Released 2023-11-28
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+* Fix code error in docs (#1895)
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Drop ext-intl in favour of a polyfill (#1908)
+
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
 ## Version 2.0.7
 
 Released 2023-10-30
