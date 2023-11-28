@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.8
+## Version 2.0.9
 
 Released TBD
+
+## Version 2.0.8
+
+Released 2023-11-28
 
 * Fix static call for non-static method in bin/initMDSPdo.php (#1892)
 * Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
