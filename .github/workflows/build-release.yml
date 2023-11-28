@@ -37,7 +37,7 @@ jobs:
       - name: Write release version
         run: |
           TAG="${{ github.ref_name }}"
-          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
+          echo "VERSION=${TAG}" >> "$GITHUB_ENV"
           echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
 
       - name: Validate composer.json and composer.lock
