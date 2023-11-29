@@ -5,6 +5,22 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.1.1
+
+Released 2023-11-28
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+* Fix code error in docs (#1895)
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Fixed the precondition-functionality for more complex authproc-filters (#1905)
+* Reverted a case of 'constructor property promotion' in SAMLParser, causing the validators to be empty (#1904)
+* Drop ext-intl in favour of a polyfill (#1908)
+
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
 ## Version 2.1.0
 
 Released 2023-07-31
@@ -17,6 +33,42 @@ Released 2023-07-31
 * Raise minimum PHP version to 8.0
 * Specified the allowed HTTP methods for each route
 * Our dependency on `composer/composer` was dropped in favour of a packaged phar-file.
+
+## Version 2.0.8
+
+Released 2023-11-28
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+* Fix code error in docs (#1895)
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Drop ext-intl in favour of a polyfill (#1908)
+
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
+## Version 2.0.7
+
+Released 2023-10-30
+
+* Fixed a missing Accept-header for metadata queries (#1865)
+* Update vulnerable composer (CVE-2023-43655; not affected)
+* Fixed a potential XSS-through-DOM (3x; not affected)
+* Fixed a warning in the RequestedAuthnContextSelector
+* Fixed file logging handler to not fail on the first write after file-creation (#1877)
+
+## Version 2.0.6
+
+Released 2023-09-07
+
+* Fixed a legacy endpoint causing to break iframe-logout (#1846)
+* Fixed an incorrect return-type in RunnableResponse
+* Fix for admin.protectmetadata=true - it would show a blank page
+* Fix default for entity attributes NameFormat in XML metadata to be 'URI'.
+* Fix error message when invoking SSO endpoint without the required parameters.
+* Security header regression
+* Fixed a regression that made it impossible to configure metadata-signing on individual hosted IdP's (#1792)
 
 ## Version 2.0.5
 
