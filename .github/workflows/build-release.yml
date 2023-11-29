@@ -38,14 +38,15 @@ jobs:
       - name: Write release version
         run: |
           TAG="${{ github.ref_name }}"
-          echo "VERSION=${TAG}" >> "$GITHUB_ENV"
+          echo "TAG=${TAG}" >> "$GITHUB_ENV"
+          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
           echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
 
       - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Make sure a version is set in composer.json that matches the tag
-        if: "${{ env.COMPOSER_VERSION != env.VERSION }}"
+        if: "${{ env.COMPOSER_VERSION != env.TAG }}"
         run: exit 1
 
       - name: Install Composer dependencies
