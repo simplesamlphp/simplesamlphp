@@ -36,10 +36,11 @@ jobs:
       # Store the version, stripping any v-prefix
       - name: Write release version
         run: |
-          TAG="${{ github.ref_name }}"
-          echo "TAG=${TAG}" >> "$GITHUB_ENV"
-          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
-          echo "COMPOSER_VERSION=$(composer config version)" >> "$GITHUB_ENV"
+          {
+            echo "TAG=${{ github.ref_name }}"
+            echo "VERSION=${TAG#v}"
+            echo "COMPOSER_VERSION=$(composer config version)"
+          } >> "$GITHUB_ENV"
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -97,3 +98,21 @@ jobs:
 
       - name: Calculate SHA checksum (${{ matrix.version }})
         run: sha256sum "${{ env.VERSION }}"
+
+      - name: Run website build
+        if: |
+          startsWith(github.ref, 'refs/tags/v') &&
+          contains(github.ref, 'alpha') != true &&
+          contains(github.ref, 'beta') != true
+        uses: actions/github-script@v6
+        with:
+          # Token has to be generated on a user account that controls the docs-repository.
+          # The _only_ scope to select is "Access public repositories", nothing more.
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'simplesamlphp',
+              repo: 'simplesamlphp.github.io',
+              workflow_id: 'github-pages.yml',
+              ref: 'release'
+            })
