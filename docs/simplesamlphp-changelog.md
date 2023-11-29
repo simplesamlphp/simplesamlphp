@@ -11,9 +11,29 @@ Released TBD
 
 * Make error codes easier to extend (#1870)
 
-## Version 2.1.0
+## Version 2.1.2
 
 Released TBD
+
+## Version 2.1.1
+
+Released 2023-11-28
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+* Fix code error in docs (#1895)
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Fixed the precondition-functionality for more complex authproc-filters (#1905)
+* Reverted a case of 'constructor property promotion' in SAMLParser, causing the validators to be empty (#1904)
+* Drop ext-intl in favour of a polyfill (#1908)
+
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
+## Version 2.1.0
+
+Released 2023-10-30
 
 * Functionality that before was provided by the sanitycheck-module is now implicit.
   The module has been archived and should no longer be used. (#1843)
@@ -33,6 +53,30 @@ Released TBD
 ### Chores
 
 * The custom error- and exception handlers were moved to their very own classes (#1858)
+
+## Version 2.0.8
+
+Released 2023-11-28
+
+* Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+* Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+* Fix code error in docs (#1895)
+* Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+* Drop ext-intl in favour of a polyfill (#1908)
+
+`multiauth`
+
+* Fix TypeError due to missing keys in source array (#1900)
+
+## Version 2.0.7
+
+Released 2023-10-30
+
+* Fixed a missing Accept-header for metadata queries (#1865)
+* Update vulnerable composer (CVE-2023-43655; not affected)
+* Fixed a potential XSS-through-DOM (3x; not affected)
+* Fixed a warning in the RequestedAuthnContextSelector
+* Fixed file logging handler to not fail on the first write after file-creation (#1877)
 
 ## Version 2.0.6
 
