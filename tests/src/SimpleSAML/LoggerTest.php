@@ -101,7 +101,7 @@ class LoggerTest extends TestCase
     /**
      * @return array
      */
-    public function provideLogLevels(): array
+    public static function provideLogLevels(): array
     {
         return [
            'emergency' => ['emergency', Logger::EMERG],

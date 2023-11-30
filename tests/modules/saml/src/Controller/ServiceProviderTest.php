@@ -505,7 +505,7 @@ XML;
         }
     }
 
-    public function provideMetadataAccess(): array
+    public static function provideMetadataAccess(): array
     {
         return [
            /* [authenticated, protected] */

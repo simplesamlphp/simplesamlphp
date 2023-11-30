@@ -178,7 +178,7 @@ class MetadataTest extends TestCase
         }
     }
 
-    public function provideMetadataAccess(): array
+    public static function provideMetadataAccess(): array
     {
         return [
            /* [authenticated, protected] */

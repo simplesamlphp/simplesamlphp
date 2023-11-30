@@ -226,7 +226,7 @@ class SourceIPSelectorTest extends TestCase
     /**
      * @return array
      */
-    public function provideClientIP(): array
+    public static function provideClientIP(): array
     {
         return [
             ['127.0.0.2', 'external'],

@@ -558,7 +558,7 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($supportsNone, $httpUtils->canSetSameSiteNone(), $userAgent ?? 'No user agent set');
     }
 
-    public function detectSameSiteProvider(): array
+    public static function detectSameSiteProvider(): array
     {
         // @codingStandardsIgnoreStart
         return [
