@@ -9,6 +9,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`ldap`
+
+* Restored 1.x functionality to be able to fetch operational attributes
+
 ## Version 2.1.1
 
 Released 2023-11-28
@@ -47,7 +51,6 @@ Released 2023-10-30
 ### Chores
 
 * The custom error- and exception handlers were moved to their very own classes (#1858)
-
 
 ## Version 2.0.8
 
