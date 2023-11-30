@@ -18,7 +18,7 @@
     },
     "ldap": {
       "repository": "simplesamlphp/simplesamlphp-module-ldap",
-      "version": "^2.2"
+      "version": "^2.3"
     },
     "metarefresh": {
       "repository": "simplesamlphp/simplesamlphp-module-metarefresh",

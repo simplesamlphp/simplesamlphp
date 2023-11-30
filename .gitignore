@@ -1,6 +1,7 @@
 cert/*
 config/*
 metadata/*
+!/.github/build/*.json
 !/cert/*.gitkeep
 !/config/*.dist
 !/metadata/*.dist
