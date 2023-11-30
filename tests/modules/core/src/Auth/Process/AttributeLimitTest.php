@@ -120,6 +120,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, $request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('cn', $attributes);
         $this->assertArrayNotHasKey('mail', $attributes);
@@ -131,6 +132,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, $request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(4, $attributes);
         $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
@@ -205,6 +207,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(2, $attributes);
         $this->assertArrayHasKey('cn', $attributes);
@@ -252,6 +255,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
@@ -262,6 +266,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
@@ -271,6 +276,7 @@ class AttributeLimitTest extends TestCase
             'eduPersonAffiliation' => ['student']
         ];
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
 
@@ -330,6 +336,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
@@ -340,6 +347,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, self::$request);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
@@ -384,6 +392,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, $state);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
@@ -403,6 +412,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, $state);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
@@ -422,6 +432,7 @@ class AttributeLimitTest extends TestCase
         ];
 
         $result = self::processFilter($config, $state);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
@@ -449,6 +460,7 @@ class AttributeLimitTest extends TestCase
             ]
         ];
         $result = self::processFilter($config, $state);
+        /** @psalm-var array $attributes */
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);

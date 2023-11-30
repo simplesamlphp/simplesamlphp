@@ -36,7 +36,7 @@ class UserPassOrgBaseTest extends TestCase
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $mockUserPassOrgBase */
         $mockUserPassOrgBase = $this->getMockBuilder(\SimpleSAML\Module\core\Auth\UserPassOrgBase::class)
             ->setConstructorArgs([['AuthId' => 'my-org'], &$config])
-            ->setMethods([])
+            ->onlyMethods([])
             ->getMockForAbstractClass();
         $this->assertTrue($mockUserPassOrgBase->getRememberOrganizationEnabled());
     }

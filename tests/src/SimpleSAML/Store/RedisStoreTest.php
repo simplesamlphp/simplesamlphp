@@ -39,7 +39,7 @@ class RedisStoreTest extends TestCase
         $this->config = [];
 
         $this->mocked_redis = $this->getMockBuilder(Client::class)
-                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
+                                   ->onlyMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
                                    ->disableOriginalConstructor()
                                    ->getMock();
 

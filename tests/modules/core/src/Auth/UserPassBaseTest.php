@@ -30,7 +30,7 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->setMethods(['login'])
+            ->onlyMethods(['login'])
             ->getMockForAbstractClass();
 
         $stub->expects($this->once())
@@ -110,7 +110,7 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->setMethods(['login'])
+            ->onlyMethods(['login'])
             ->getMockForAbstractClass();
 
         $stub->expects($this->once())
