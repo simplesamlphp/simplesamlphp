@@ -3,6 +3,11 @@
 SimpleSAMLphp 2.2 is a minor new release which introduces a few new features.
 The following changes are relevant for installers and/or developers.
 
+## Software requirements
+
+- The minimum PHP version required is now PHP 8.1.
+- Symfony was upgraded to 6.4 (LTS).
+
 ## Deprecations
 
 The following methods were marked `deprecated` and will be removed in a next major release.
