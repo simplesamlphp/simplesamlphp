@@ -47,7 +47,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the higest supported version, so we can use the newest tools
-          php-version: '8.2'
+          php-version: '8.3'
           tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
           extensions: ctype, date, dom, fileinfo, filter, hash, json, mbstring, mysql, \
@@ -124,7 +124,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the lowest supported version
-          php-version: '8.0'
+          php-version: '8.1'
           extensions: ctype, date, dom, hash, fileinfo, filter, json, mbstring, mysql, \
             openssl, pcre, pdo, pdo_sqlite, posix, soap, spl, xml
           tools: composer
@@ -165,7 +165,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['8.0', '8.1', '8.2']
+        php-versions: ['8.1', '8.2', '8.3']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -206,15 +206,15 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run unit tests with coverage
-        if: ${{ matrix.php-versions == '8.1' }}
+        if: ${{ matrix.php-versions == '8.3' }}
         run: vendor/bin/phpunit
 
       - name: Run unit tests (no coverage)
-        if: ${{ matrix.php-versions != '8.1' }}
+        if: ${{ matrix.php-versions != '8.3' }}
         run: vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
-        if: ${{ matrix.php-versions == '8.1' }}
+        if: ${{ matrix.php-versions == '8.3' }}
         uses: actions/upload-artifact@v3
         with:
           name: coverage-data
@@ -228,7 +228,7 @@ jobs:
       fail-fast: true
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['8.0', '8.1', '8.2']
+        php-versions: ['8.1', '8.2', '8.3']
 
     steps:
       - name: Setup PHP, with composer and extensions

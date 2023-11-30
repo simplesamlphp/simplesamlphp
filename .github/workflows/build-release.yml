@@ -24,7 +24,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should match the minimum required version for SimpleSAMLphp
-          php-version: '8.0'
+          php-version: '8.1'
           tools: composer:v2, phive
           extensions: mbstring, xml
           coverage: none
