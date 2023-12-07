@@ -525,7 +525,9 @@ $config = [
      'module.enable' => [
          'exampleauth' => false,
          'core' => true,
-         'saml' => true
+         'saml' => true,
+         'acorn' => true,
+         'higherlogic' => true
      ],
 
 
