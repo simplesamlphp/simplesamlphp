@@ -1,14 +1,4 @@
 {
   "symbol-whitelist": [
-    "Predis\\Client"
-  ],
-  "php-core-extensions": [
-    "Core",
-    "curl",
-    "memcached",
-    "pdo",
-    "random",
-    "standard",
-    "zend-opcache"
   ]
 }
