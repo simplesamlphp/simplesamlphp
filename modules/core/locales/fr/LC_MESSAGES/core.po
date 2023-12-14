@@ -12,14 +12,11 @@ msgstr "Si vous êtes un usager qui reçoit cette erreur après avoir suivi un l
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Cela ressemble à un problème de configuration soit du fournisseur de service ou du fournisseur d'identité."
 
-msgid "Missing cookie"
-msgstr "Cookie introuvable"
+msgid "Too short interval between single sign on events."
+msgstr "Connexions uniques trop proches dans le temps."
 
-msgid "Retry"
-msgstr "Ré-essayer"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
 
 msgid "Close the web browser, and try again."
 msgstr "Fermez le navigateur, essayez à nouveau."
@@ -45,11 +42,14 @@ msgstr "Utilisation des boutons avance et retour dans le navigateur."
 msgid "Welcome"
 msgstr "Bienvenue"
 
-msgid "Too short interval between single sign on events."
-msgstr "Connexions uniques trop proches dans le temps."
+msgid "Missing cookie"
+msgstr "Cookie introuvable"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
+msgid "Retry"
+msgstr "Ré-essayer"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si ce problème persiste, vous pouvez le remonter vers l'administrateur système."

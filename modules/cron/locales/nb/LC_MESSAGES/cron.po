@@ -3,29 +3,29 @@ msgid ""
 msgstr ""
 "X-Domain: cron\n"
 
-msgid "Cron ran at"
-msgstr "Cron kjørte"
-
-msgid "Cron report"
-msgstr "Cron rapport"
-
-msgid "Cron result page"
-msgstr "Cron resultatside"
-
-msgid "Here are the result for the cron job execution:"
-msgstr "Her er resultatene fra kjøring av cron-jobben:"
-
 msgid "Click here to run the cron jobs:"
 msgstr "Klikk her for å kjøre cron-jobbene:"
 
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron er en måte å kjøre regulære jobber på unix-systemer."
 
+msgid "Cron result page"
+msgstr "Cron resultatside"
+
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Her er et forslag til en crontab fil:"
 
 msgid "Run cron:"
 msgstr "Kjør cron:"
+
+msgid "Cron ran at"
+msgstr "Cron kjørte"
+
+msgid "Cron report"
+msgstr "Cron rapport"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Her er resultatene fra kjøring av cron-jobben:"
 
 msgid "Cron module information page"
 msgstr "Informasjon om cron"

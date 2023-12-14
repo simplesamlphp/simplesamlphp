@@ -12,14 +12,11 @@ msgstr "Amennyiben ön, mint felhasználó keveredett erre az oldalra, úgy kér
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Valószínűleg valamilyen konfigurációs probléma okozta hiba, amely lehet akár IdP-, akár SP-oldalon."
 
-msgid "Missing cookie"
-msgstr "Hiányzó süti (cookie)"
+msgid "Too short interval between single sign on events."
+msgstr "Túl kevés idő telt el a belépési kísérletek között."
 
-msgid "Retry"
-msgstr "Újra"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
 
 msgid "Close the web browser, and try again."
 msgstr "Zárja be böngészőjét, majd próbálja újra."
@@ -45,11 +42,14 @@ msgstr "Használja a böngésző előre, ill. vissza gombjait"
 msgid "Welcome"
 msgstr "Üdvözöljük"
 
-msgid "Too short interval between single sign on events."
-msgstr "Túl kevés idő telt el a belépési kísérletek között."
+msgid "Missing cookie"
+msgstr "Hiányzó süti (cookie)"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
+msgid "Retry"
+msgstr "Újra"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ha a probléma állandónak tűnik, kérjük, jelezze ezt az oldal adminisztrátorának."

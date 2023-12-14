@@ -239,6 +239,18 @@ msgstr "Autentificarea a fost întreruptă de utilizator"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Nu a fost găsit niciun utilizator cu numele de utilizator specificat, sau parola introdusă este greșită. Vă rugăm să încercați din nou."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Aceasta este pagina de stare pentru SimpleSAMLphp. Aici puteți verifica dacă sesiunea dumneavoastră a expirat, cât timp mai este până la expirarea sesiunii precum și toate atributele atașate sesiunii dumneavoastră."
+
+msgid "Logout"
+msgstr "Deautentificare"
+
+msgid "Your attributes"
+msgstr "Atributele dumneavoastră"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesiunea dumneavoastră mai este validă încă %remaining%."
+
 msgid "Debug information"
 msgstr "Informații de depanare"
 
@@ -269,12 +281,6 @@ msgstr "Informațiile de depanare de mai jos pot fi importante pentru administra
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Această eroare a apărut probabil din cauza unui comportament neașteptat sau a erorilor de configurare a SimpleSAMLphp. Vă rugăm să contactați administratorul acestui serviciu și să-i furnizați mesajul de eroare de mai sus."
 
-msgid "Sending message"
-msgstr "Se trimite mesajul"
-
-msgid "Yes, continue"
-msgstr "Da, continuă"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vă rugăm să alegeți furnizorul de identitate pe care doriți să-l folosiți pentru autentificarea dumneavoastră:"
 
@@ -287,17 +293,11 @@ msgstr "Selectați"
 msgid "Select your identity provider"
 msgstr "Alegeți furnizorul de identitate"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Aceasta este pagina de stare pentru SimpleSAMLphp. Aici puteți verifica dacă sesiunea dumneavoastră a expirat, cât timp mai este până la expirarea sesiunii precum și toate atributele atașate sesiunii dumneavoastră."
+msgid "Sending message"
+msgstr "Se trimite mesajul"
 
-msgid "Logout"
-msgstr "Deautentificare"
-
-msgid "Your attributes"
-msgstr "Atributele dumneavoastră"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sesiunea dumneavoastră mai este validă încă %remaining%."
+msgid "Yes, continue"
+msgstr "Da, continuă"
 
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"
