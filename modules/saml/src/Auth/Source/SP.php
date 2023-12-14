@@ -645,7 +645,15 @@ class SP extends Auth\Source
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
                 [
-                    C::BINDING_HOK_SSO
+                    C::BINDING_HOK_SSO,
+                ]
+            );
+        } elseif ($ar->getProtocolBinding() === C::BINDING_HTTP_ARTIFACT) {
+            /** @var array $dst */
+            $dst = $idpMetadata->getDefaultEndpoint(
+                'SingleSignOnService',
+                [
+                    C::BINDING_HTTP_ARTIFACT,
                 ]
             );
         } else {
@@ -653,7 +661,6 @@ class SP extends Auth\Source
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleSignOnService',
                 [
-                    C::BINDING_HTTP_ARTIFACT,
                     C::BINDING_HTTP_REDIRECT,
                     C::BINDING_HTTP_POST,
                 ]
