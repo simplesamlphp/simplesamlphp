@@ -9,9 +9,12 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+
 `ldap`
 
-* Restored 1.x functionality to be able to fetch operational attributes
+* Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
+* Fixed undesirable side-effect introduced in v2.3.0 (v2.3.1)
 
 ## Version 2.1.1
 
