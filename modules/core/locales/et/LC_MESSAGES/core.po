@@ -12,14 +12,11 @@ msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
 
-msgid "Missing cookie"
-msgstr "Küpsis puudub"
+msgid "Too short interval between single sign on events."
+msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
 
-msgid "Retry"
-msgstr "Proovi uuesti"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
 
 msgid "Close the web browser, and try again."
 msgstr "Sulge brauser ja proovi uuesti."
@@ -45,11 +42,14 @@ msgstr "brauseri edasi-tagasi nuppude kasutamisest"
 msgid "Welcome"
 msgstr "Tere tulemast"
 
-msgid "Too short interval between single sign on events."
-msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
+msgid "Missing cookie"
+msgstr "Küpsis puudub"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
+msgid "Retry"
+msgstr "Proovi uuesti"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."

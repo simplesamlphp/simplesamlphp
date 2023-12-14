@@ -12,14 +12,11 @@ msgstr "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p�
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
 
-msgid "Missing cookie"
-msgstr "Mangler informasjonskapsel"
+msgid "Too short interval between single sign on events."
+msgstr "For kort intervall imellom innloggingsforespørsler"
 
-msgid "Retry"
-msgstr "Prøv igjen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
 
 msgid "Close the web browser, and try again."
 msgstr "Lukk nettleseren, og prøv på nytt."
@@ -45,11 +42,14 @@ msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
 msgid "Welcome"
 msgstr "Velkommen"
 
-msgid "Too short interval between single sign on events."
-msgstr "For kort intervall imellom innloggingsforespørsler"
+msgid "Missing cookie"
+msgstr "Mangler informasjonskapsel"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
+msgid "Retry"
+msgstr "Prøv igjen"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."

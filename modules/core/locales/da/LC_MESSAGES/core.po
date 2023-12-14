@@ -12,14 +12,11 @@ msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
 
-msgid "Missing cookie"
-msgstr "Mangler cookie"
+msgid "Too short interval between single sign on events."
+msgstr "For kort interval mellem single sign on hændelse."
 
-msgid "Retry"
-msgstr "Forsøg igen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
 
 msgid "Close the web browser, and try again."
 msgstr "Luk din browser og prøv igen."
@@ -45,11 +42,14 @@ msgstr "Brug frem- og tilbage-knappen i browseren."
 msgid "Welcome"
 msgstr "Velkommen"
 
-msgid "Too short interval between single sign on events."
-msgstr "For kort interval mellem single sign on hændelse."
+msgid "Missing cookie"
+msgstr "Mangler cookie"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
+msgid "Retry"
+msgstr "Forsøg igen"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."

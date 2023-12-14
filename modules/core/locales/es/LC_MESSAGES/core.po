@@ -12,14 +12,11 @@ msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Esto es posiblemente un problema de configuración en el proveedor de servicios o en el proveedor de identidad."
 
-msgid "Missing cookie"
-msgstr "No se encuentra cookie"
+msgid "Too short interval between single sign on events."
+msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
 
-msgid "Retry"
-msgstr "Reintentar"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por última vez en este servicio, por lo que se asumirá que existe un problema con este SP."
 
 msgid "Close the web browser, and try again."
 msgstr "Cierre el navegador y pruebe de nuevo"
@@ -45,11 +42,14 @@ msgstr "Usando los botones atrás y adelante de su navegador web."
 msgid "Welcome"
 msgstr "Bienvenido"
 
-msgid "Too short interval between single sign on events."
-msgstr "Intervalo de tiempo muy corto entre eventos de sesión única."
+msgid "Missing cookie"
+msgstr "No se encuentra cookie"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por última vez en este servicio, por lo que se asumirá que existe un problema con este SP."
+msgid "Retry"
+msgstr "Reintentar"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si el problema persiste, puede reportarlo a los administradores del sistema"

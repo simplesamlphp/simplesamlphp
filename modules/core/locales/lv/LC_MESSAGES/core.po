@@ -12,14 +12,11 @@ msgstr "Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā i
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai identitātes piegādātāja."
 
-msgid "Missing cookie"
-msgstr "Trūkst sīkdatnes"
+msgid "Too short interval between single sign on events."
+msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
 
-msgid "Retry"
-msgstr "Mēģināt vēlreiz"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, iespējams, ir problēma ar servisa piegādātāju."
 
 msgid "Close the web browser, and try again."
 msgstr "Aizveriet interneta pārlūku un mēģiniet vēlreiz."
@@ -45,11 +42,14 @@ msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
 msgid "Welcome"
 msgstr "Laipni lūdzam"
 
-msgid "Too short interval between single sign on events."
-msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
+msgid "Missing cookie"
+msgstr "Trūkst sīkdatnes"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, iespējams, ir problēma ar servisa piegādātāju."
+msgid "Retry"
+msgstr "Mēģināt vēlreiz"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."

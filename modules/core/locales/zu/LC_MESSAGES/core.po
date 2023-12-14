@@ -3,12 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr "Isici esisodwa noma ngaphezulu esinikezwe umhlinzeki wakho kamazisi asizange siqukathe inani lezinombolo ezilindelwe."
-
-msgid "Retry"
-msgstr "Zama futhi"
-
 msgid "Cookies may be disabled in the web browser."
 msgstr "Amakhukhi kungenzeka ukuthi ayekisiwe kusiphequluli sewebhu."
 
@@ -20,3 +14,9 @@ msgstr "Leli phutha kungenzeka libangelwa ukuthi:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Ukusebenzisa izinkinobho ezithi emuva naphambili kusiphequluli sewebhu."
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "Isici esisodwa noma ngaphezulu esinikezwe umhlinzeki wakho kamazisi asizange siqukathe inani lezinombolo ezilindelwe."
+
+msgid "Retry"
+msgstr "Zama futhi"

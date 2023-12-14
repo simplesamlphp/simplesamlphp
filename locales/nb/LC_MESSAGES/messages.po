@@ -239,6 +239,18 @@ msgstr "Godkjenningen ble avbrutt av brukeren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og prøv igjen."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon."
+
+msgid "Logout"
+msgstr "Logg ut"
+
+msgid "Your attributes"
+msgstr "Dine attributter"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din sesjon er gyldig i %remaining% sekunder fra nå."
+
 msgid "Debug information"
 msgstr "Detaljer for feilsøking"
 
@@ -269,12 +281,6 @@ msgstr "Detaljene nedenfor kan være av interesse for administratoren / brukerst
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp eller den er en følge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter så mye som mulig angående feilen."
 
-msgid "Sending message"
-msgstr "Sender melding"
-
-msgid "Yes, continue"
-msgstr "Ja, fortsett"
-
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Vennligst velg hvilken identitetsleverandør du vil bruke for å logge inn:"
 
@@ -287,23 +293,17 @@ msgstr "Velg"
 msgid "Select your identity provider"
 msgstr "Velg din identitetsleverandør"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hei, dette er en statusside på SimpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon."
-
-msgid "Logout"
-msgstr "Logg ut"
-
-msgid "Your attributes"
-msgstr "Dine attributter"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Din sesjon er gyldig i %remaining% sekunder fra nå."
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
 
 msgid "World"
 msgstr "Verden"
+
+msgid "Sending message"
+msgstr "Sender melding"
+
+msgid "Yes, continue"
+msgstr "Ja, fortsett"
 
 msgid "[Preferred choice]"
 msgstr "[Foretrukket valg]"

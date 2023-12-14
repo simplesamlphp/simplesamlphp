@@ -12,14 +12,11 @@ msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لراب�
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
 
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
+msgid "Too short interval between single sign on events."
+msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
 
-msgid "Retry"
-msgstr "اعد المحاولة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
 
 msgid "Close the web browser, and try again."
 msgstr "اغلق الموقع ثم حاول مرة اخري"
@@ -45,11 +42,14 @@ msgstr "استخدام أزرار الرجوع للخلف و الامام بمت
 msgid "Welcome"
 msgstr "مرحباً"
 
-msgid "Too short interval between single sign on events."
-msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
 
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
+msgid "Retry"
+msgstr "اعد المحاولة"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"
