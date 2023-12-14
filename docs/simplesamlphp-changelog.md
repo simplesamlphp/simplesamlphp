@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+
 ## Version 2.0.8
 
 Released 2023-11-28
