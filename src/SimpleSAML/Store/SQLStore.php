@@ -134,7 +134,7 @@ class SQLStore implements StoreInterface
                      */
                     $update = [
                         'ALTER TABLE ' . $this->prefix . '_tableVersion DROP INDEX IF EXISTS SELECT CONSTRAINT_NAME ' .
-                          'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $this_prefix . '_tableVersion',
+                          'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $this->prefix . '_tableVersion',
                         'ALTER TABLE ' . $this->prefix . '_tableVersion ADD CONSTRAINT _name PRIMARY KEY CLUSTERED (_name)'
                     ];
                     break;
