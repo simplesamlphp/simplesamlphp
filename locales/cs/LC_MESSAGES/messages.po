@@ -239,6 +239,18 @@ msgstr "Přihlášení bylo přerušeno uživatelem"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Uživatel buď nebyl nalezen, nebo jste zadal špatné heslo. Prosím zkontrolujte login a zkuste se přihlásit znovu."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
+
+msgid "Logout"
+msgstr "Odhlášení"
+
+msgid "Your attributes"
+msgstr "Vaše atributy"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaše sezení je platné ještě %remaining% sekund."
+
 msgid "Debug information"
 msgstr "Ladicí informace"
 
@@ -286,18 +298,6 @@ msgstr "Zvolit"
 
 msgid "Select your identity provider"
 msgstr "Zvol svého poskytovatele identity (IdP)"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
-
-msgid "Logout"
-msgstr "Odhlášení"
-
-msgid "Your attributes"
-msgstr "Vaše atributy"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaše sezení je platné ještě %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"

@@ -239,6 +239,27 @@ msgstr "Autentificering blev afbrudt af brugeren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Enten kunne brugeren ikke findes eller også var kodeordet forkert. Prøv igen."
 
+msgid "Format"
+msgstr "Format"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Dette er statussiden for SimpleSAMLphp. Du kan se om din session er udløbet, hvor lang tid der er til at den udløber, samt alle øvrige oplysninger om din session."
+
+msgid "Logout"
+msgstr "Log ud"
+
+msgid "SAML Subject"
+msgstr "SAML emne"
+
+msgid "Your attributes"
+msgstr "Dine oplysninger"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Du har %remaining% tilbage af din session"
+
+msgid "not set"
+msgstr "ikke angivet"
+
 msgid "Debug information"
 msgstr "Detaljer til fejlsøgning"
 
@@ -286,27 +307,6 @@ msgstr "Vælg"
 
 msgid "Select your identity provider"
 msgstr "Vælg institution (identitetsudbyder)"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Dette er statussiden for SimpleSAMLphp. Du kan se om din session er udløbet, hvor lang tid der er til at den udløber, samt alle øvrige oplysninger om din session."
-
-msgid "Logout"
-msgstr "Log ud"
-
-msgid "SAML Subject"
-msgstr "SAML emne"
-
-msgid "Your attributes"
-msgstr "Dine oplysninger"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Du har %remaining% tilbage af din session"
-
-msgid "not set"
-msgstr "ikke angivet"
 
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"

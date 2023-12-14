@@ -3,14 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
-msgid "Log out"
-msgstr ""
-
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "ממיר XML למטא-מידע של SimpleSAMLphp"
@@ -35,17 +27,13 @@ msgstr ""
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "הגדרות"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
+msgid "Log out"
 msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "איחוד"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
 msgid "Diagnostics on hostname, port and protocol"
@@ -168,79 +156,40 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-msgid "Test Authentication Sources"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "הגדרות"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
 msgstr ""
 
-msgid "Certificates"
-msgstr "תעודות"
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Deprecated"
-msgstr "פג תוקף"
-
-msgid "EntityID"
-msgstr ""
-
-msgid "Hosted entities"
-msgstr ""
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "מטא-מידע עבור SAML 2.0 בתבנית XML:"
-
-msgid "Look up metadata for entity:"
-msgstr ""
-
-msgid "SAML Metadata"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "SimpleSAMLphp Metadata"
-msgstr ""
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "איחוד"
 
 msgid "SimpleSAMLphp installation page"
 msgstr "דף ההתקנה של SimpleSAMLphp"
 
-msgid "Tools"
-msgstr "כלים"
-
-msgid "Trusted entities"
+msgid "SimpleSAMLphp is installed in:"
 msgstr ""
 
-msgid "Type:"
+msgid "You are running version <kbd>%version%</kbd>."
 msgstr ""
 
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgid "optional"
 msgstr ""
 
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr ""
-
-msgid "expired"
-msgstr ""
-
-msgid "expires"
-msgstr ""
-
-msgid "new"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "מטא-מידע"
-
-msgid "SimpleSAMLphp Show Metadata"
+msgid "required"
 msgstr ""
 
 msgid "Authentication data"
 msgstr ""
 
 msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid "Copy to clipboard"
 msgstr ""
 
 msgid "Format"
@@ -269,16 +218,16 @@ msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכ
 msgid "not set"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "Test Authentication Sources"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "Back"
 msgstr ""
 
-msgid "optional"
-msgstr ""
+msgid "Metadata"
+msgstr "מטא-מידע"
 
-msgid "required"
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "An error occurred"
@@ -300,6 +249,57 @@ msgid "XML metadata"
 msgstr "מטא-מידע בתבנית XML"
 
 msgid "or select a file:"
+msgstr ""
+
+msgid "Certificates"
+msgstr "תעודות"
+
+msgid "Deprecated"
+msgstr "פג תוקף"
+
+msgid "EntityID"
+msgstr ""
+
+msgid "Hosted entities"
+msgstr ""
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "מטא-מידע עבור SAML 2.0 בתבנית XML:"
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "Tools"
+msgstr "כלים"
+
+msgid "Trusted entities"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr ""
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "expires"
+msgstr ""
+
+msgid "new"
 msgstr ""
 
 msgid "Checking your PHP installation"

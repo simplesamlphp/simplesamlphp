@@ -259,6 +259,24 @@ msgstr "Netefatso e kgaoditswe ke mosebedisi"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Ekaba mosebedisi wa lebitso la mosebedisi le fanweng ha a fumanwe, kapa phasewete eo o e fananeng e fosahetse. Ka kopo hlahloba lebitso la mosebedisi la hao, ebe o leka hape."
 
+msgid "Format"
+msgstr "Fomata"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
+
+msgid "Logout"
+msgstr "Ho tswa"
+
+msgid "SAML Subject"
+msgstr "Taba ya SAML"
+
+msgid "Your attributes"
+msgstr "Makgabane a hao"
+
+msgid "not set"
+msgstr "ha e a setwa"
+
 msgid "Debug information"
 msgstr "Tlhahisoleseding ya debug"
 
@@ -303,24 +321,6 @@ msgstr "Kgetha"
 
 msgid "Select your identity provider"
 msgstr "Kgetha mofani wa boitsebiso wa hao"
-
-msgid "Format"
-msgstr "Fomata"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
-
-msgid "Logout"
-msgstr "Ho tswa"
-
-msgid "SAML Subject"
-msgstr "Taba ya SAML"
-
-msgid "Your attributes"
-msgstr "Makgabane a hao"
-
-msgid "not set"
-msgstr "ha e a setwa"
 
 msgid "Return to service"
 msgstr "E kgutlela tshebeletsong"

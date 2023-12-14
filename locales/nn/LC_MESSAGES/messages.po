@@ -239,6 +239,18 @@ msgstr "Innlogging blei avbroten av sluttbrukaren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var feil.  Sjekk brukarnamn og prøv igjen."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir brukte i sesjonen din."
+
+msgid "Logout"
+msgstr "Logg ut"
+
+msgid "Your attributes"
+msgstr "Dine attributtar"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din sesjon er gyldig i %remaining% sekund frå no."
+
 msgid "Debug information"
 msgstr "Detaljar for feilsøking"
 
@@ -269,6 +281,12 @@ msgstr "Detaljane under kan vera av interesse for administrator eller hjelpetene
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen er truleg på grunn av feilkonfigurasjon av SimpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen."
 
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversette verd!"
+
+msgid "World"
+msgstr "Verd"
+
 msgid "Sending message"
 msgstr "Sender melding"
 
@@ -286,24 +304,6 @@ msgstr "Vel"
 
 msgid "Select your identity provider"
 msgstr "Vel innloggingsteneste"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir brukte i sesjonen din."
-
-msgid "Logout"
-msgstr "Logg ut"
-
-msgid "Your attributes"
-msgstr "Dine attributtar"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Din sesjon er gyldig i %remaining% sekund frå no."
-
-msgid "Hello, Untranslated World!"
-msgstr "Hallo, oversette verd!"
-
-msgid "World"
-msgstr "Verd"
 
 msgid "[Preferred choice]"
 msgstr "Beste val"

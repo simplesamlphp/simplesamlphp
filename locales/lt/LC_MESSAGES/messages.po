@@ -239,6 +239,18 @@ msgstr "Autentikacija nutraukė naudotojas"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai įvedėte slaptažodį. Pasitikrinkite prisijungimo vardą ir bandykite dar kartą."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei kitus Jūsų sesijai priskirtus atributus."
+
+msgid "Logout"
+msgstr "Atsijungti"
+
+msgid "Your attributes"
+msgstr "Jūsų atributai"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
+
 msgid "Debug information"
 msgstr "Detali informacija"
 
@@ -286,18 +298,6 @@ msgstr "Pasirinkite"
 
 msgid "Select your identity provider"
 msgstr "Pasirinkite savo tapatybių tiekėją"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei kitus Jūsų sesijai priskirtus atributus."
-
-msgid "Logout"
-msgstr "Atsijungti"
-
-msgid "Your attributes"
-msgstr "Jūsų atributai"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
 
 msgid "[Preferred choice]"
 msgstr "[Rekomenduojame]"

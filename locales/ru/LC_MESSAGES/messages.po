@@ -239,6 +239,27 @@ msgstr "Аутентификация прервана пользователем
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Либо не существует пользователя с данным именем, либо неверный пароль.Пожалуйста, проверьте имя пользователя и пробуйте снова."
 
+msgid "Format"
+msgstr "Формат"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "SAML Subject"
+msgstr "Тема SAML"
+
+msgid "Your attributes"
+msgstr "Ваши атрибуты"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
+
+msgid "not set"
+msgstr "не установлен"
+
 msgid "Debug information"
 msgstr "Отладочная информация"
 
@@ -286,27 +307,6 @@ msgstr "Выбрать"
 
 msgid "Select your identity provider"
 msgstr "Выберите вашего identity provider"
-
-msgid "Format"
-msgstr "Формат"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания сессии, продолжительность сессии до истечения срока действия и все атрибуты в данной сессии."
-
-msgid "Logout"
-msgstr "Выйти"
-
-msgid "SAML Subject"
-msgstr "Тема SAML"
-
-msgid "Your attributes"
-msgstr "Ваши атрибуты"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
-
-msgid "not set"
-msgstr "не установлен"
 
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"

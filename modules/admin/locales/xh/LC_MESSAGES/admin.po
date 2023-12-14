@@ -3,14 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
-msgid "Log out"
-msgstr ""
-
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr ""
@@ -35,16 +27,12 @@ msgstr ""
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:151
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:157
+msgid "Log out"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:135
@@ -168,79 +156,40 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-msgid "Test Authentication Sources"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
 msgstr ""
 
-msgid "Certificates"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
 msgstr ""
 
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Deprecated"
-msgstr "Deprecated"
-
-msgid "EntityID"
-msgstr ""
-
-msgid "Hosted entities"
-msgstr ""
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr ""
-
-msgid "Look up metadata for entity:"
-msgstr ""
-
-msgid "SAML Metadata"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "SimpleSAMLphp Metadata"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
 msgstr ""
 
 msgid "SimpleSAMLphp installation page"
 msgstr ""
 
-msgid "Tools"
+msgid "SimpleSAMLphp is installed in:"
 msgstr ""
 
-msgid "Trusted entities"
+msgid "You are running version <kbd>%version%</kbd>."
 msgstr ""
 
-msgid "Type:"
+msgid "optional"
 msgstr ""
 
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr ""
-
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr ""
-
-msgid "expired"
-msgstr ""
-
-msgid "expires"
-msgstr ""
-
-msgid "new"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr ""
-
-msgid "SimpleSAMLphp Show Metadata"
+msgid "required"
 msgstr ""
 
 msgid "Authentication data"
 msgstr ""
 
 msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid "Copy to clipboard"
 msgstr ""
 
 msgid "Format"
@@ -269,16 +218,16 @@ msgstr ""
 msgid "not set"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "Test Authentication Sources"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "Back"
 msgstr ""
 
-msgid "optional"
+msgid "Metadata"
 msgstr ""
 
-msgid "required"
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "An error occurred"
@@ -300,6 +249,57 @@ msgid "XML metadata"
 msgstr ""
 
 msgid "or select a file:"
+msgstr ""
+
+msgid "Certificates"
+msgstr ""
+
+msgid "Deprecated"
+msgstr "Deprecated"
+
+msgid "EntityID"
+msgstr ""
+
+msgid "Hosted entities"
+msgstr ""
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr ""
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Trusted entities"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr ""
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "expires"
+msgstr ""
+
+msgid "new"
 msgstr ""
 
 msgid "Checking your PHP installation"

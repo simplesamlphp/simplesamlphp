@@ -259,6 +259,27 @@ msgstr "De authenticatie is afgebroken door de gebruiker"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals."
 
+msgid "Format"
+msgstr "Formaat"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie."
+
+msgid "Logout"
+msgstr "Afmelden"
+
+msgid "SAML Subject"
+msgstr "SAML Subject"
+
+msgid "Your attributes"
+msgstr "Uw attributen"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
+
+msgid "not set"
+msgstr "niet aanwezig"
+
 msgid "Debug information"
 msgstr "Debuginformatie"
 
@@ -306,27 +327,6 @@ msgstr "Kies"
 
 msgid "Select your identity provider"
 msgstr "Kies je Identity Provider"
-
-msgid "Format"
-msgstr "Formaat"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Dit is de overzichtspagina van SimpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie."
-
-msgid "Logout"
-msgstr "Afmelden"
-
-msgid "SAML Subject"
-msgstr "SAML Subject"
-
-msgid "Your attributes"
-msgstr "Uw attributen"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
-
-msgid "not set"
-msgstr "niet aanwezig"
 
 msgid "Back"
 msgstr "Terug"

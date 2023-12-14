@@ -239,6 +239,18 @@ msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je vpisano geslo napačno. Preverite svoje uporabniško ime in poskusite znova."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "Your attributes"
+msgstr "Vaši atributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
+
 msgid "Debug information"
 msgstr "Pomoč pri odpravljanju napak (debug)"
 
@@ -286,18 +298,6 @@ msgstr "Izberite"
 
 msgid "Select your identity provider"
 msgstr "Izberite IdP domače organizacije"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
-
-msgid "Logout"
-msgstr "Odjava"
-
-msgid "Your attributes"
-msgstr "Vaši atributi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
