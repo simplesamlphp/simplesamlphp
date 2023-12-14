@@ -281,6 +281,12 @@ msgstr "יכול להיות שמידע הדבאג למטה יעניין את מ�
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
 
+msgid "Sending message"
+msgstr "שולח הודעה"
+
+msgid "Yes, continue"
+msgstr "כן, המשך"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
 
@@ -292,12 +298,6 @@ msgstr "בחר"
 
 msgid "Select your identity provider"
 msgstr "בחר את ספק הזהות שלך"
-
-msgid "Sending message"
-msgstr "שולח הודעה"
-
-msgid "Yes, continue"
-msgstr "כן, המשך"
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"

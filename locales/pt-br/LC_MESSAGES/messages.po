@@ -281,6 +281,12 @@ msgstr "A informação a seguir é importante para seu administrador / Central d
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Esse erro é provavelmente devido a algum imprevisto no comportamento do SimpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe a mensagem de erro acima."
 
+msgid "Sending message"
+msgstr "Enviando a mensagem"
+
+msgid "Yes, continue"
+msgstr "Sim, Aceito"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Por favor selecione o provedor de identidade ao qual deseja se autenticar"
 
@@ -292,12 +298,6 @@ msgstr "Selecione"
 
 msgid "Select your identity provider"
 msgstr "Selecione seu provedor de identidade"
-
-msgid "Sending message"
-msgstr "Enviando a mensagem"
-
-msgid "Yes, continue"
-msgstr "Sim, Aceito"
 
 msgid "[Preferred choice]"
 msgstr "[Opção preferida]"

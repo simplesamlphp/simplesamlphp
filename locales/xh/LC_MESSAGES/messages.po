@@ -298,6 +298,9 @@ msgstr "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / id
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
 
+msgid "Yes, continue"
+msgstr "Ewe, qhubeka"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 
@@ -309,9 +312,6 @@ msgstr "Khetha"
 
 msgid "Select your identity provider"
 msgstr "Khetha umboneleli wesazisi wakho"
-
-msgid "Yes, continue"
-msgstr "Ewe, qhubeka"
 
 msgid "Next"
 msgstr "Okulandelayo"

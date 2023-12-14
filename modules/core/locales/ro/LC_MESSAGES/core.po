@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Welcome"
+msgstr "Bine ați venit"
+
+msgid "Missing cookie"
+msgstr "<i>Cookie</i> lipsă"
+
+msgid "Retry"
+msgstr "Încearcă din nou"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
+
+msgid "Too short interval between single sign on events."
+msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "A fost detectat faptul că v-ați autentificat în urmă cu doar câteva secunde cu acest furnizor de servicii, se va considera că există o problemă cu acest furnizor de servicii."
+
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Dacă sunteți dezvoltator care implementează o soluție <i>single sign-on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să verificați configurarea corectă a metadatelor, atât la furnizorul de identitate cât și la furnizorul de servicii."
 
@@ -11,12 +29,6 @@ msgstr "Dacă sunteți un utilizator care a primit acest mesaj de eroare în urm
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Probabil există o problemă de configurare, fie la furnizorul de servicii fie la furnizorul de identitate."
-
-msgid "Too short interval between single sign on events."
-msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "A fost detectat faptul că v-ați autentificat în urmă cu doar câteva secunde cu acest furnizor de servicii, se va considera că există o problemă cu acest furnizor de servicii."
 
 msgid "Close the web browser, and try again."
 msgstr "Închideți browser-ul și încercați din nou."
@@ -38,18 +50,6 @@ msgstr "Această eroare poate fi cauzată de:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
-
-msgid "Welcome"
-msgstr "Bine ați venit"
-
-msgid "Missing cookie"
-msgstr "<i>Cookie</i> lipsă"
-
-msgid "Retry"
-msgstr "Încearcă din nou"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Dacă problema persistă, anunțați administratorii de sistem."

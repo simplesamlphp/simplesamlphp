@@ -281,6 +281,12 @@ msgstr "システム管理者やヘルプデスクは以下のデバッグ情報
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
+msgid "Sending message"
+msgstr "メッセージを送信中"
+
+msgid "Yes, continue"
+msgstr "はい、続けます"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "認証を行いたいアイデンティティプロバイダを選択してください:"
 
@@ -292,12 +298,6 @@ msgstr "選択"
 
 msgid "Select your identity provider"
 msgstr "アイデンティティプロバイダを選択してください"
-
-msgid "Sending message"
-msgstr "メッセージを送信中"
-
-msgid "Yes, continue"
-msgstr "はい、続けます"
 
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"

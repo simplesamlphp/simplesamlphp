@@ -281,18 +281,6 @@ msgstr "Detaljane under kan vera av interesse for administrator eller hjelpetene
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne feilen er truleg på grunn av feilkonfigurasjon av SimpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen."
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Vel innloggingsteneste (IdP) der du ønskjer å logga inn."
-
-msgid "Remember my choice"
-msgstr "Hugs mitt val"
-
-msgid "Select"
-msgstr "Vel"
-
-msgid "Select your identity provider"
-msgstr "Vel innloggingsteneste"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
 
@@ -304,6 +292,18 @@ msgstr "Sender melding"
 
 msgid "Yes, continue"
 msgstr "Ja, fortsett"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Vel innloggingsteneste (IdP) der du ønskjer å logga inn."
+
+msgid "Remember my choice"
+msgstr "Hugs mitt val"
+
+msgid "Select"
+msgstr "Vel"
+
+msgid "Select your identity provider"
+msgstr "Vel innloggingsteneste"
 
 msgid "[Preferred choice]"
 msgstr "Beste val"

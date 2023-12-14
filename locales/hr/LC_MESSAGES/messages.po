@@ -281,6 +281,12 @@ msgstr "Sljedeće informacije mogu biti zanimljive administratorima ili službi 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili neispravne konfiguracije programskog alata SimpleSAMLphp. Kontaktirajte administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
 
+msgid "Sending message"
+msgstr "Šaljem poruku"
+
+msgid "Yes, continue"
+msgstr "Da, nastavi"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Molimo odaberite servis preko kojeg se želite autentificirati:"
 
@@ -292,12 +298,6 @@ msgstr "Odaberi"
 
 msgid "Select your identity provider"
 msgstr "Odaberite autentifikacijski servis"
-
-msgid "Sending message"
-msgstr "Šaljem poruku"
-
-msgid "Yes, continue"
-msgstr "Da, nastavi"
 
 msgid "[Preferred choice]"
 msgstr "[Primarni odabir]"

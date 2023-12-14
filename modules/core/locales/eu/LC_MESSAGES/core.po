@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Welcome"
+msgstr "Ongi etorri"
+
+msgid "Missing cookie"
+msgstr "Cookie-a falta da"
+
+msgid "Retry"
+msgstr "Saiatu berriro"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
+
+msgid "Too short interval between single sign on events."
+msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat dagoela hartuko dugu. "
+
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean."
 
@@ -11,12 +29,6 @@ msgstr "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile b
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean edota identitate hornitzailean. "
-
-msgid "Too short interval between single sign on events."
-msgstr "Denbora tarte oso motza saio bakarreko gertaeren artean."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Azken aldiz zerbitzu honetan kautotu zinenetik segundu gutxi batzu besterik ez direla igaro antzeman dugu, beraz ZH honekin arazoren bat dagoela hartuko dugu. "
 
 msgid "Close the web browser, and try again."
 msgstr "Nabigatzailea itxi eta saiatu berriro"
@@ -38,18 +50,6 @@ msgstr "Errore hau honek eragin dezake:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen."
-
-msgid "Welcome"
-msgstr "Ongi etorri"
-
-msgid "Missing cookie"
-msgstr "Cookie-a falta da"
-
-msgid "Retry"
-msgstr "Saiatu berriro"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Arazoak bere horretan badirau, sistemaren administratzaileei berri eman diezaiekezu."

@@ -281,6 +281,12 @@ msgstr "Allpool olev silumisinfo võib olla administraatorile või kasutajatoele
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "See tõrge ilmnes tõenäoliselt SimpleSAMLphp ootamatu käitumise või valesti seadistamise tõttu. Võta ühendust selle sisselogimisteenuse administraatoriga ja saada talle ülalolev veateade."
 
+msgid "Sending message"
+msgstr "Teate saatmine"
+
+msgid "Yes, continue"
+msgstr "Jah, jätka"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Palun vali identiteedipakkuja, mille juures soovid autentida:"
 
@@ -292,12 +298,6 @@ msgstr "Vali"
 
 msgid "Select your identity provider"
 msgstr "Vali oma identiteedipakkuja"
-
-msgid "Sending message"
-msgstr "Teate saatmine"
-
-msgid "Yes, continue"
-msgstr "Jah, jätka"
 
 msgid "[Preferred choice]"
 msgstr "[Eelistatud valik]"

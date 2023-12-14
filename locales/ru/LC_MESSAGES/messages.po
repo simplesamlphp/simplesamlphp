@@ -290,6 +290,12 @@ msgstr "Нижеприведенная информация может быть 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Эта ошибка произошла, вероятно, из-за непредвиденной ситуации или неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
+msgid "Sending message"
+msgstr "Отправка сообщения"
+
+msgid "Yes, continue"
+msgstr "Да, продолжить"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Пожалуйста, выберите identity provider, с помощью которого вы хотите пройти аутентификацию:"
 
@@ -301,12 +307,6 @@ msgstr "Выбрать"
 
 msgid "Select your identity provider"
 msgstr "Выберите вашего identity provider"
-
-msgid "Sending message"
-msgstr "Отправка сообщения"
-
-msgid "Yes, continue"
-msgstr "Да, продолжить"
 
 msgid "[Preferred choice]"
 msgstr "[Предпочтительный выбор]"
