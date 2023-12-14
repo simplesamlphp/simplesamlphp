@@ -281,6 +281,12 @@ msgstr "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Detta fel beror troligtvis på att oväntat beteende eller felkonfigurering av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att meddela dem ovanstående felmeddelande."
 
+msgid "Sending message"
+msgstr "Skickar meddelande"
+
+msgid "Yes, continue"
+msgstr "Ja"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Välj vilken identitetsleverantör du vill logga in med:"
 
@@ -292,12 +298,6 @@ msgstr "Välj"
 
 msgid "Select your identity provider"
 msgstr "Välj din identitetsleverantör"
-
-msgid "Sending message"
-msgstr "Skickar meddelande"
-
-msgid "Yes, continue"
-msgstr "Ja"
 
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"

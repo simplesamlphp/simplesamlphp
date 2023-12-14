@@ -281,6 +281,12 @@ msgstr "管理员或者服务台可能对下面的调试信息很感兴趣"
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
+msgid "Sending message"
+msgstr "正在发送消息"
+
+msgid "Yes, continue"
+msgstr "是的，继续"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "选择你要认证的身份提供者"
 
@@ -292,12 +298,6 @@ msgstr "选择"
 
 msgid "Select your identity provider"
 msgstr "选择你的身份提供者"
-
-msgid "Sending message"
-msgstr "正在发送消息"
-
-msgid "Yes, continue"
-msgstr "是的，继续"
 
 msgid "[Preferred choice]"
 msgstr "首选选项"

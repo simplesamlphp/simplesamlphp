@@ -281,6 +281,12 @@ msgstr "Poniższa informacja debugger'a  może być przydatna dla administara / 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną konfigurację SimpleSAMLphp. Skontaktuj się z administratorem tego serwisu i wyślij mu powyższy błąd."
 
+msgid "Sending message"
+msgstr "Wysyłanie wiadomości"
+
+msgid "Yes, continue"
+msgstr "Tak, akceptuję"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się uwierzytelnić:"
 
@@ -292,12 +298,6 @@ msgstr "Wybierz"
 
 msgid "Select your identity provider"
 msgstr "wybierz swojego Dostawcę Tożsamości."
-
-msgid "Sending message"
-msgstr "Wysyłanie wiadomości"
-
-msgid "Yes, continue"
-msgstr "Tak, akceptuję"
 
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"

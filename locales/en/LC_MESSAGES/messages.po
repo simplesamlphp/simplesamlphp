@@ -259,9 +259,6 @@ msgstr "The authentication was aborted by the user"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 
-msgid "Language"
-msgstr ""
-
 msgid "Authentication status"
 msgstr ""
 
@@ -328,21 +325,6 @@ msgstr "The debug information below may be of interest to the administrator / he
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 
-msgid "No identity providers found. Cannot continue."
-msgstr ""
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Please select the identity provider where you want to authenticate:"
-
-msgid "Remember my choice"
-msgstr "Remember my choice"
-
-msgid "Select"
-msgstr "Select"
-
-msgid "Select your identity provider"
-msgstr "Select your identity provider"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
 
@@ -360,6 +342,24 @@ msgstr ""
 
 msgid "Yes, continue"
 msgstr "Yes, continue"
+
+msgid "Language"
+msgstr ""
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Please select the identity provider where you want to authenticate:"
+
+msgid "Remember my choice"
+msgstr "Remember my choice"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Select your identity provider"
+msgstr "Select your identity provider"
 
 msgid "Back"
 msgstr "Back"

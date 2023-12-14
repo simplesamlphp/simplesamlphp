@@ -290,18 +290,6 @@ msgstr "La siguiente información de depuración puede ser de utilidad para el a
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Este error se debe probablemente a un comportamiento inesperado o a una configuración incorrecta de SimpleSAMLphp. Póngase en contacto con el administrador de este servicio de conexión y envíele el mensaje de error anterior."
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Por favor, seleccione el proveedor de identidad donde desea autenticarse"
-
-msgid "Remember my choice"
-msgstr "Recordar mi elección"
-
-msgid "Select"
-msgstr "Seleccione"
-
-msgid "Select your identity provider"
-msgstr "Seleccione su proveedor de identidad"
-
 msgid "Hello, Untranslated World!"
 msgstr "Hola, mundo traducido!"
 
@@ -313,6 +301,18 @@ msgstr "Enviando mensaje"
 
 msgid "Yes, continue"
 msgstr "Sí"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Por favor, seleccione el proveedor de identidad donde desea autenticarse"
+
+msgid "Remember my choice"
+msgstr "Recordar mi elección"
+
+msgid "Select"
+msgstr "Seleccione"
+
+msgid "Select your identity provider"
+msgstr "Seleccione su proveedor de identidad"
 
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"

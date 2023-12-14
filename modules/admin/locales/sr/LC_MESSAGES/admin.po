@@ -3,22 +3,34 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Podešavanja"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Pretvaranje metapodataka iz XML formata u SimpleSAMLphp format"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+msgid "SAML 2.0 SP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federacija"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "SAML 2.0 IdP metadata"
+msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+msgid "ADFS SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+msgid "ADFS IdP metadata"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:108
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:148
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:155
 msgid "Log out"
 msgstr ""
@@ -144,29 +156,17 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Pretvaranje metapodataka iz XML formata u SimpleSAMLphp format"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Podešavanja"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
-msgid "SAML 2.0 SP metadata"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
-msgid "ADFS IdP metadata"
-msgstr ""
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federacija"
 
 msgid "SimpleSAMLphp installation page"
 msgstr "SimpleSAMLphp instalaciona stranica"
@@ -183,11 +183,76 @@ msgstr ""
 msgid "required"
 msgstr ""
 
-msgid "Certificates"
-msgstr "Sertifikati"
+msgid "Authentication data"
+msgstr ""
+
+msgid "Content of jpegPhoto attribute"
+msgstr ""
 
 msgid "Copy to clipboard"
 msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Vaši atributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sesija će biti validna još %remaining% sekundi."
+
+msgid "not set"
+msgstr ""
+
+msgid "Test Authentication Sources"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metapodaci"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Converted metadata"
+msgstr "Konvertovani metapodaci"
+
+msgid "Metadata parser"
+msgstr "Metadata analizator"
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "Analiziraj"
+
+msgid "XML metadata"
+msgstr "Metapodaci u XML formatu"
+
+msgid "or select a file:"
+msgstr ""
+
+msgid "Certificates"
+msgstr "Sertifikati"
 
 msgid "Deprecated"
 msgstr "Zastarelo"
@@ -235,71 +300,6 @@ msgid "expires"
 msgstr ""
 
 msgid "new"
-msgstr ""
-
-msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "An error occurred"
-msgstr ""
-
-msgid "Converted metadata"
-msgstr "Konvertovani metapodaci"
-
-msgid "Metadata parser"
-msgstr "Metadata analizator"
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr "Analiziraj"
-
-msgid "XML metadata"
-msgstr "Metapodaci u XML formatu"
-
-msgid "or select a file:"
-msgstr ""
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Odjava"
-
-msgid "SAML Subject"
-msgstr ""
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr "Vaši atributi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša sesija će biti validna još %remaining% sekundi."
-
-msgid "not set"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metapodaci"
-
-msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "Checking your PHP installation"

@@ -228,6 +228,12 @@ msgstr "Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilg
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Bu hata beklenmeyen bir durum ya da SimpleSAMLphp'nin yanlış düzenlenmesi ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile iletişim kurun ve yukarıdaki hata mesajını gönderin."
 
+msgid "Sending message"
+msgstr "Mesaj gönderiliyor"
+
+msgid "Yes, continue"
+msgstr "Evet, devam et"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seçiniz: "
 
@@ -239,12 +245,6 @@ msgstr "Seç"
 
 msgid "Select your identity provider"
 msgstr "Kimlik sağlayıcınızı seçiniz."
-
-msgid "Sending message"
-msgstr "Mesaj gönderiliyor"
-
-msgid "Yes, continue"
-msgstr "Evet, devam et"
 
 msgid "You have previously chosen to authenticate at"
 msgstr "Dosya listesine geri dön"
