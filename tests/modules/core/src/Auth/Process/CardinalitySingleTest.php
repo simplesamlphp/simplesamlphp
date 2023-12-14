@@ -45,13 +45,7 @@ class CardinalitySingleTest extends TestCase
     protected function setUp(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-<<<<<<< HEAD
-        $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class)
-                           ->setMethods(['redirectTrustedURL'])
-                           ->getMock();
-=======
         $this->httpUtils = $this->createStub(Utils\HTTP::class);
->>>>>>> d7b3e17e7 (Fix unit tests)
     }
 
 
