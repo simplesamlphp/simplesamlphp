@@ -11,6 +11,10 @@ Released TBD
 
 * Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 
+`core`
+
+* Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+
 ## Version 2.0.8
 
 Released 2023-11-28
