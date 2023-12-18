@@ -11,6 +11,6 @@
         <div class="trackidtext">
             <p>{{ 'If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:'|trans }}<span class="trackid">{{ trackId }}</span></p>
         </div>
-        <input type="submit" name="continue" id="contbutton" value="'Retry login'|trans|escape('html') }}" autofocus>
+        <input type="submit" name="continue" id="contbutton" value="{{ 'Retry login'|trans|escape('html') }}" autofocus>
     </form>
 {% endblock %}
