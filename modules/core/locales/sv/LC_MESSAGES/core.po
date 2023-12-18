@@ -15,6 +15,9 @@ msgstr "Försök igen"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Det verkar som om du har stängt av möjligheten till kakor (cookies) i din webbläsare. Kontrollera inställningarna i webbläsaren och försök igen."
 
+msgid "Retry login"
+msgstr "Försök med inloggningen igen"
+
 msgid "Too short interval between single sign on events."
 msgstr "För kort intervall mellan inloggningar."
 
@@ -56,9 +59,6 @@ msgstr "Om problemet kvarstår kan du rapportera det till systemadministratörer
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Lokala Shibboleth 1.3 Service Provider Metadata (automatiskt genererat)"
-
-msgid "Retry login"
-msgstr "Försök med inloggningen igen"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Hittar inte tillståndsinformationen för aktuell förfrågan."

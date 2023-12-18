@@ -12,6 +12,9 @@ msgstr "Probeer weer"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer."
 
+msgid "Retry login"
+msgstr "Probeer weer aanmeld"
+
 msgid "Too short interval between single sign on events."
 msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure."
 
@@ -26,6 +29,3 @@ msgstr "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf hier
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Dié is waarskynlik 'n probleem met die konfigurasie by die diensverskaffer óf die identiteit verskaffer."
-
-msgid "Retry login"
-msgstr "Probeer weer aanmeld"

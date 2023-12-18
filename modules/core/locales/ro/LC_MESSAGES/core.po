@@ -15,6 +15,9 @@ msgstr "Încearcă din nou"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
 
+msgid "Retry login"
+msgstr "Încercați din nou"
+
 msgid "Too short interval between single sign on events."
 msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
 
@@ -56,9 +59,6 @@ msgstr "Dacă problema persistă, anunțați administratorii de sistem."
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metadate pentru furnizorul de servicii Shibboleth 1.3 găzduit (generate automat)"
-
-msgid "Retry login"
-msgstr "Încercați din nou"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Nu a fost posibilă localizarea informațiilor de stare pentru cererea curentă."
