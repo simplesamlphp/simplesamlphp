@@ -15,6 +15,9 @@ msgstr "נסה שנית"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
 
+msgid "Retry login"
+msgstr "נסה שוב להתחבר"
+
 msgid "Too short interval between single sign on events."
 msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
 
@@ -56,9 +59,6 @@ msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למ
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "מטא-הנתונים של ספק השירותים מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
-
-msgid "Retry login"
-msgstr "נסה שוב להתחבר"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכחית."
