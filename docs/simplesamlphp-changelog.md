@@ -16,6 +16,10 @@ Released TBD
 * Bumped dependencies
 * Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
 
+`core`
+
+* Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+
 `metarefresh`
 
 * Added support for 'pdo' outputFormat (v0.11)
