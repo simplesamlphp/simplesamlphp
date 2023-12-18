@@ -12,6 +12,10 @@ Released TBD
 * Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
 
+`core`
+
+* Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+
 `ldap`
 
 * Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
