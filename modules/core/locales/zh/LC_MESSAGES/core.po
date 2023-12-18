@@ -15,6 +15,9 @@ msgstr "重试"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
 
+msgid "Retry login"
+msgstr "重新尝试登陆"
+
 msgid "Too short interval between single sign on events."
 msgstr "单点登录事件之间间隔太短了"
 
@@ -56,9 +59,6 @@ msgstr "如果这个错误再次出现，你可以向你的系统管理员报告
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "存储的 Shibboleth 1.3 Service Provider Metadata（自动生成）"
-
-msgid "Retry login"
-msgstr "重新尝试登陆"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "我们无法定位当前请求的状态信息"

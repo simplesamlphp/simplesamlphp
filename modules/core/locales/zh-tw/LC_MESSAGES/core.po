@@ -15,6 +15,9 @@ msgstr "重試"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
 
+msgid "Retry login"
+msgstr "重試登入"
+
 msgid "Too short interval between single sign on events."
 msgstr "單一簽入事件間隔過短。"
 
@@ -56,9 +59,6 @@ msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "託管 Shibboleth 1.3 服務提供者詮釋資料(自動產生)"
-
-msgid "Retry login"
-msgstr "重試登入"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "我們無法找到關於這個請求的狀態資訊。"

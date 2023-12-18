@@ -15,6 +15,9 @@ msgstr "Riprovare"
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare."
 
+msgid "Retry login"
+msgstr "Riprovare a connettersi"
+
 msgid "Too short interval between single sign on events."
 msgstr "L'intervallo tra le autenticazioni è troppo breve."
 
@@ -56,9 +59,6 @@ msgstr "Se questo problema persiste, è possibile segnalarlo agli amministratori
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metadati del Service Provider Shibboleth 1.3 Locale (generati automaticamente)"
-
-msgid "Retry login"
-msgstr "Riprovare a connettersi"
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Non è stato possibile localizzare le informazioni di stato per la richiesta corrente."
