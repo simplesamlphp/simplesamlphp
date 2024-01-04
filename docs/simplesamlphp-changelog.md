@@ -15,6 +15,7 @@ Released TBD
 `core`
 
 * Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+* Fixed the order of the routes so that the least specific error-controller is hit last (#1923)
 
 `ldap`
 
