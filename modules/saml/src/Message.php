@@ -201,7 +201,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
-     * @param \SimpleSAML\SAML2\Message $message The message we should check the signature on.
+     * @param \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message The message we should check the signature on.
      * @return bool Whether or not the message was validated.
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
@@ -209,7 +209,7 @@ class Message
     public static function validateMessage(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SimpleSAML\SAML2\Message $message
+        \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
