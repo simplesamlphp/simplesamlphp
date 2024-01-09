@@ -17,12 +17,12 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{Binding, HTTPRedirect, SOAP}; // Bindings
-use SimpleSAML\SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
 use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
+use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
 use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data, KeyInfo};
