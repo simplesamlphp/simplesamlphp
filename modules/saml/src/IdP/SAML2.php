@@ -1184,7 +1184,7 @@ class SAML2
             Format: C::NAMEID_ENTITY,
         );
 
-        $a = new Assertion($issuer, new \DateTimeImmutable());
+        $a = new Assertion($issuer, new \DateTimeImmutable('now', new \DateTimeZone('Z')));
         if ($signAssertion) {
             Message::addSign($idpMetadata, $spMetadata, $a);
         }
