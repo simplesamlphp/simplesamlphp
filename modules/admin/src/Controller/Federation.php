@@ -8,9 +8,10 @@ use Exception;
 use SimpleSAML\{Auth, Configuration, Logger, Module, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Metadata\{MetaDataStorageHandler, SAMLBuilder, SAMLParser, Signer};
+use SimpleSAML\Metadata\{MetaDataStorageHandler, SAMLParser};
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
+use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
@@ -232,18 +233,18 @@ class Federation
                         sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
-                    $builder = new SAMLBuilder($entity['entityid']);
-                    $builder->addMetadataIdP20($entity['metadata_array']);
-                    $builder->addOrganizationInfo($entity['metadata_array']);
-
-                    $entity['metadata'] = Signer::sign(
-                        $builder->getEntityDescriptorText(),
-                        $entity['metadata_array'],
-                        'SAML 2 IdP'
+                    $builder = new MetadataBuilder(
+                        $this->config,
+                        Configuration::loadFromArray($entity['metadata_array']),
                     );
+                    $document = $builder->buildDocument()->toXML();
+                    $document->ownerDocument->formatOutput = true;
+                    $document->ownerDocument->encoding = 'UTF-8';
+
+                    $entity['metadata'] = $document->ownerDocument?->saveXML();
                     $entities[$index] = $entity;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
             }
         }
@@ -278,29 +279,18 @@ class Federation
                         sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
                     );
 
-                    $builder = new SAMLBuilder($entity['entityid']);
-                    $builder->addSecurityTokenServiceType($entity['metadata_array']);
-                    $builder->addOrganizationInfo($entity['metadata_array']);
-                    if (isset($entity['metadata_array']['contacts'])) {
-                        foreach ($entity['metadata_array']['contacts'] as $c) {
-                            try {
-                                $contact = ContactPerson::fromArray($c);
-                            } catch (ArrayValidationException $e) {
-                                Logger::warning('Federation: invalid content found in contact: ' . $e->getMessage());
-                                continue;
-                            }
-                            $builder->addContact($contact);
-                        }
-                    }
-
-                    $entity['metadata'] = Signer::sign(
-                        $builder->getEntityDescriptorText(),
-                        $entity['metadata_array'],
-                        'ADFS IdP'
+                    $builder = new MetadataBuilder(
+                        $this->config,
+                        Configuration::loadFromArray($entity['metadata_array']),
                     );
+                    $document = $builder->buildDocument()->toXML();
+                    $document->ownerDocument->formatOutput = true;
+                    $document->ownerDocument->encoding = 'UTF-8';
+
+                    $entity['metadata'] = $document->ownerDocument->saveXML();
                     $entities[$index] = $entity;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
             }
         }
@@ -360,22 +350,17 @@ class Federation
                 )
             );
 
-            $builder = new SAMLBuilder($source->getEntityId());
-            $builder->addMetadataSP20($metadata, $source->getSupportedProtocols());
-            $builder->addOrganizationInfo($metadata);
-            $xml = $builder->getEntityDescriptorText(true);
-
-            // sanitize the resulting array
-            unset($metadata['metadata-set']);
-            unset($metadata['entityid']);
+            $builder = new MetadataBuilder(Configuration::getInstance(), Configuration::loadFromArray($metadata));
+            $entityDescriptor = $builder->buildDocument();
+            $document = $entityDescriptor->toXML();
+            $document->ownerDocument->formatOutput = true;
+            $document->ownerDocument->encoding = 'UTF-8';
+            $xml = $document->ownerDocument->saveXML();
 
             // sanitize the attributes array to remove friendly names
             if (isset($metadata['attributes']) && is_array($metadata['attributes'])) {
                 $metadata['attributes'] = array_values($metadata['attributes']);
             }
-
-            // sign the metadata if enabled
-            $xml = Signer::sign($xml, $source->getMetadata()->toArray(), 'SAML 2 SP');
 
             $entities[] = [
                 'authid' => $source->getAuthId(),
