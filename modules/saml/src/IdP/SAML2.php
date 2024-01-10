@@ -15,11 +15,11 @@ use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Stats, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
-use SimpleSAML\SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\{Binding, HTTPRedirect, SOAP}; // Bindings
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\saml\{Assertion, EncryptedAssertion}; // Assertions
 use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
 use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
 use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
@@ -1179,16 +1179,15 @@ class SAML2
 
         $config = Configuration::getInstance();
 
-        $a = new Assertion();
-        if ($signAssertion) {
-            Message::addSign($idpMetadata, $spMetadata, $a);
-        }
-
         $issuer = new Issuer(
             value: $idpMetadata->getString('entityid'),
             Format: C::NAMEID_ENTITY,
         );
-        $a->setIssuer($issuer);
+
+        $a = new Assertion($issuer, new \DateTimeImmutable());
+        if ($signAssertion) {
+            Message::addSign($idpMetadata, $spMetadata, $a);
+        }
 
         $audiences = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
         $audiences = array_map(fn($audience): Audience => new Audience($audience), $audiences);
@@ -1517,13 +1516,12 @@ class SAML2
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);
         }
 
-        $r = new SAML2_Response();
+        $status = new Status(new StatusCode(C::STATUS_SUCCESS));
         $issuer = new Issuer(
             value: $idpMetadata->getString('entityid'),
             Format: C::NAMEID_ENTITY,
         );
-        $r->setIssuer($issuer);
-        $r->setDestination($consumerURL);
+        $r = new SAML2_Response($status, new \DateTimeImmutable('now', new \DateTimeZone('Z')), $issuer, null, '2.0', null, $consumerURL);
 
         if ($signResponse) {
             Message::addSign($idpMetadata, $spMetadata, $r);
