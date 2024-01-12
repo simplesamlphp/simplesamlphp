@@ -14,12 +14,9 @@ use DOMNode;
 use DOMDocument;
 use Exception;
 use RobRichards\XMLSecLibs\{XMLSecEnc, XMLSecurityDSig};
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Logger;
 
 use function array_key_exists;
 use function in_array;
-use function is_array;
 use function is_string;
 
 class Validator

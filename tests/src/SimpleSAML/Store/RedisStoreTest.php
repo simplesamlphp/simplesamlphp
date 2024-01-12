@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\{MockObject\MockObject, TestCase};
 use Predis\Client;
 use SimpleSAML\{Configuration, Store};
-use SimpleSAML\Store\StoreFactory;
 
 use function array_key_exists;
 

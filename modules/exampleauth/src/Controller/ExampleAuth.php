@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 use function preg_match;
-use function session_id;
-use function session_start;
 use function urldecode;
 
 /**

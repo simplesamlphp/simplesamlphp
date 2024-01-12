@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use Throwable;
 
-use function get_class;
 use function strlen;
 use function substr;
 

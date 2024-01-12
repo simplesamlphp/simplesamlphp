@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth;
-
 /**
  * Hook to for use with unit tests
  *

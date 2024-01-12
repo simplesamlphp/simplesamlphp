@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use SimpleSAML\{Configuration, Error, IdP, Logger, Module, Utils};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use Symfony\Component\HttpFoundation\{Request, Response};

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
-use FILE_APPEND;
-use PHP_EOL;
 use SimpleSAML\{Configuration, Logger, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;

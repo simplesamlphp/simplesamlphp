@@ -17,8 +17,8 @@ use function is_null;
 use function is_writable;
 use function join;
 use function mkdir;
-use function time;
 use function serialize;
+use function time;
 use function unserialize;
 
 /**

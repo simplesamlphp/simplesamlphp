@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
 
 use function array_key_exists;

@@ -8,8 +8,6 @@ use Exception;
 use RobRichards\XMLSecLibs\{XMLSecurityKey, XMLSecurityDSig};
 use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\XML\DOMDocumentFactory;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;
 use function hash;

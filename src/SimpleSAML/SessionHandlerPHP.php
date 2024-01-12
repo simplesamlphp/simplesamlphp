@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use PHP_SESSION_ACTIVE;
 use SimpleSAML\{Error, Utils};
 use SimpleSAML\Assert\Assert;
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\IdP;
 
-use InvalidArgumentException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, IdP};
 use SimpleSAML\Error\Exception;

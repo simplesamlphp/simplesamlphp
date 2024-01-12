@@ -8,7 +8,6 @@ use Exception;
 use InvalidArgumentException;
 use PHPMailer\PHPMailer\PHPMailer;
 use SimpleSAML\{Configuration, Logger};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\XHTML\Template;
 
 use function array_map;

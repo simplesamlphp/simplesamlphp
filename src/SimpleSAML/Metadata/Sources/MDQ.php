@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata\Sources;
 
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\{Configuration, Error, Logger, Utils};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
 use Symfony\Component\HttpFoundation\File\File;

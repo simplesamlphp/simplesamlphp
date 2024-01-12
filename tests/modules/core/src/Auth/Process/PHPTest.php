@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\Process\PHP;
 
-use function strtoupper;
-
 /**
  * Test for the core:PHP filter.
  *

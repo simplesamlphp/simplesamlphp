@@ -4,21 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use E_DEPRECATED;
-use E_USER_DEPRECATED;
-use E_NOTICE;
-use E_USER_NOTICE;
-use E_STRICT;
-use E_WARNING;
-use E_USER_WARNING;
-use E_COMPILE_WARNING;
-use E_CORE_WARNING;
-use E_USER_ERROR;
-use E_RECOVERABLE_ERROR;
-use E_COMPILE_ERROR;
-use E_PARSE;
-use E_ERROR;
-use E_CORE_ERROR;
 use SimpleSAML\Logger;
 
 use function is_null;

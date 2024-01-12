@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use SAML2\{AuthnRequest, LogoutRequest};
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
@@ -13,7 +12,6 @@ use SimpleSAML\Error\Exception;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
 use SimpleSAML\SAML2\Utils\XPath;
-use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList};
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;

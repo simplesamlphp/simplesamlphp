@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\IdP;
 
 use SimpleSAML\{Auth, Configuration, Error, IdP, Module, Utils};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Response;
 

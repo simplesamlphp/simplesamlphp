@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\core\Auth\Source;
 
 use Exception;
 use SimpleSAML\{Auth, Configuration, Error, Session};
-use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function in_array;

@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Session, Utils};
 use SimpleSAML\Module\admin\Controller;
-use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**

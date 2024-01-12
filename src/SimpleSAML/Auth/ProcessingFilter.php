@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\Assert\Assert;
-
 use function array_key_exists;
 
 /**

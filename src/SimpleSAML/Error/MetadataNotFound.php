@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use SimpleSAML\Assert\Assert;
-
 /**
  * Error for missing metadata.
  *

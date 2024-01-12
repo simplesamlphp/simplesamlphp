@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\{Auth, Logger, Module, Utils};
-use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
 use function time;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Source;
 
-use Psr\Http\Message\RequestInterface;
 use SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};

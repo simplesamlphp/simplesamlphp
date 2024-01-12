@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use SimpleSAML\{Configuration, Logger, Utils};
-use SimpleSAML\Assert\Assert;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;

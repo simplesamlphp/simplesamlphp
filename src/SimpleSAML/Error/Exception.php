@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Error;
 
 use SimpleSAML\{Configuration, Logger};
-use SimpleSAML\Assert\Assert;
 use Throwable;
 
 use function array_key_exists;

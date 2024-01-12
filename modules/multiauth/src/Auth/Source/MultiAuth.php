@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Exception;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Auth, Configuration, Error, Module, Session, Utils};
 use Symfony\Component\HttpFoundation\{Request, Response};
 

@@ -8,13 +8,12 @@ use Exception;
 use PDO;
 use PDOException;
 use PDOStatement;
-use SimpleSAML\Logger;
 
 use function count;
 use function is_array;
 use function rand;
-use function sha1;
 use function serialize;
+use function sha1;
 
 /**
  * This file implements functions to read and write to a group of database servers.

@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\{Auth, Configuration, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response};
 

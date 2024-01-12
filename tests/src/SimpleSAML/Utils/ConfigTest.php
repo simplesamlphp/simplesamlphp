@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Error, Utils};
 

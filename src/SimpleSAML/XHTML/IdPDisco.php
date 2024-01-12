@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use Symfony\Component\HttpFoundation\{Request, Response};

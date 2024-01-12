@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace SimpleSAML\XML;
 
 use LibXMLError;
-use SimpleSAML\Assert\Assert;
 
 use function array_merge;
 use function array_pop;

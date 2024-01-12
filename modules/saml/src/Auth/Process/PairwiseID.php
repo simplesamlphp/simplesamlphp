@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\{Auth, Utils};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 
 use function hash_hmac;

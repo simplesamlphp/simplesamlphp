@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
-use PHPUnit\Framework\TestCase;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\{DOMDocumentFactory, Signer};

@@ -24,7 +24,6 @@ use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data};
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
 
 use function array_diff;
 use function array_intersect;

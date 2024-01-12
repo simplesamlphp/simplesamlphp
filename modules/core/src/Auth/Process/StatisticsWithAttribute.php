@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use Exception;
 use SimpleSAML\{Auth, Logger};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
 use function boolval;
 use function is_null;
-use function is_string;
 
 /**
  * Log a line in the STAT log with one attribute.

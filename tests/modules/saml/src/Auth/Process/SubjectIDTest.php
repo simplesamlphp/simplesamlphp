@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use SimpleSAML\{Configuration, Logger, Utils};
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Module\saml\Auth\Process\SubjectID;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;

@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
-use Exception;
-use ReflectionClass;
 use SimpleSAML\{Auth, Configuration, Error};
-use SimpleSAML\Locale\Localization;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\TestUtils\ClearStateTestCase;
