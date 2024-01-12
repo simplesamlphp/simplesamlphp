@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
+
 ## Version 2.2.1
 
 Released 2014-03-17
