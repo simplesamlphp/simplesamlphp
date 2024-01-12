@@ -8,8 +8,6 @@ use Exception;
 use PDO;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use ReflectionMethod;
-use ReflectionProperty;
 use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 

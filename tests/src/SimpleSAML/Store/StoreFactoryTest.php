@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use ReflectionClass;

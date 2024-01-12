@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
-use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Logger;
+use SimpleSAML\Module\saml\BaseNameIDGenerator;
 
 /**
  * Authentication processing filter to create a NameID from an attribute.

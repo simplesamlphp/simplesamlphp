@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Command;
 
-use Gettext\Scanner\PhpScanner;
 use Gettext\Loader\PoLoader;
+use Gettext\Scanner\PhpScanner;
 use Gettext\Translation;
 use Gettext\Translations;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\Utils;
-use SimpleSAML\XHTML\Template;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Twig\Environment;
+use Symfony\Component\Finder\Finder;
 
 use function array_diff;
 use function array_fill_keys;

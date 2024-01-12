@@ -7,7 +7,6 @@ namespace SimpleSAML\Utils\Config;
 use SAML2\Constants;
 use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.

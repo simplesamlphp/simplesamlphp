@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
-use SAML2\Constants;
-use SAML2\Exception\Protocol\NoAuthnContextException;
 use Exception;
+use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;

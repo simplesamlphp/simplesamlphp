@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -13,8 +12,8 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
 use function array_fill_keys;
-use function array_intersect_key;
 use function array_intersect;
+use function array_intersect_key;
 use function array_key_exists;
 use function array_keys;
 use function array_merge;

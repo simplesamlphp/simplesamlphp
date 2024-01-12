@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;

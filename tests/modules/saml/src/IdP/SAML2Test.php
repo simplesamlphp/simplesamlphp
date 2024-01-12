@@ -9,7 +9,6 @@ use SAML2\XML\Chunk;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\IdP;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;

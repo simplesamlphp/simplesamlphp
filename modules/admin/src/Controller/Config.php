@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;

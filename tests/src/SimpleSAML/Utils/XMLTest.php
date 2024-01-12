@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use DOMComment;
 use DOMDocument;
 use DOMElement;
 use DOMException;
@@ -12,8 +11,6 @@ use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\DOMDocumentFactory;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
 use SimpleSAML\Utils;
 
 /**

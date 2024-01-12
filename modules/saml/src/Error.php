@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml;
 
 use SAML2\Constants;
-use SimpleSAML\Assert\Assert;
 use Throwable;
 
 /**

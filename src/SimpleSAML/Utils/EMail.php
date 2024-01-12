@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Utils;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\XHTML\Template;
 
 /**

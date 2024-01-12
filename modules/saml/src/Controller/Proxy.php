@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use SAML2\Constants;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
 /**
  * @covers \SimpleSAML\Module\core\Auth\UserPassOrgBase

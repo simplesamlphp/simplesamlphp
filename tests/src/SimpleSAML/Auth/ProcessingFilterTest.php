@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Auth\ProcessingFilter;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth\ProcessingFilter as AuthProcFilter;
 use SimpleSAML\Module\core\Auth\Process\AttributeAlter;

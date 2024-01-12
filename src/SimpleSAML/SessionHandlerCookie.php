@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
 
 abstract class SessionHandlerCookie extends SessionHandler

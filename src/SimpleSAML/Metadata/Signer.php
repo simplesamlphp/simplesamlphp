@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityKey;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;
 use function hash;
