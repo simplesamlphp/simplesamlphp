@@ -20,7 +20,7 @@ $request = Request::createFromGlobals();
 
 $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
 
-$response = $controller->singleSignOnService($request)->send();
+$response = $controller->singleSignOnService($request);
 foreach ($headers as $header => $value) {
     // Some pages may have specific requirements that we must follow. Don't touch them.
     if (!$response->headers->has($header)) {
