@@ -20,7 +20,7 @@ $request = HttpRequest::createFromGlobals();
 
 $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
 
-$response = $controller->singleLogout($request)->send();
+$response = $controller->singleLogout($request);
 foreach ($headers as $header => $value) {
     // Some pages may have specific requirements that we must follow. Don't touch them.
     if (!$response->headers->has($header)) {
