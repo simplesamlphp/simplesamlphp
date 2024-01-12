@@ -90,8 +90,8 @@ metadata file:
 ```php
 <?php
 $metadata['https://example.org/saml-idp'] = [
-    'SingleSignOnService'  => 'https://example.org/simplesaml/saml2/idp/SSOService.php',
-    'SingleLogoutService'  => 'https://example.org/simplesaml/saml2/idp/SingleLogoutService.php',
+    'SingleSignOnService'  => 'https://example.org/simplesaml/module.php/saml/idp/singleSignOnService',
+    'SingleLogoutService'  => 'https://example.org/simplesaml/module.php/saml/idp/singleLogout',
     'certificate'          => 'example.pem',
 ];
 ```
