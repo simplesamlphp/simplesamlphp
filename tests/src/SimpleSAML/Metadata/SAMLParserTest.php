@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
-use PHPUnit\Framework\TestCase;
-use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SAML2\DOMDocumentFactory;
-use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\XML\Signer;
 
 /**
  * Test SAML parsing

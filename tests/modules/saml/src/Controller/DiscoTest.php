@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of tests for the controllers in the "saml" module.

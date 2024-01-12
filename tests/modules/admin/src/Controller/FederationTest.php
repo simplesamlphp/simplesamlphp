@@ -8,15 +8,10 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Controller;
-use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of tests for the controllers in the "admin" module.

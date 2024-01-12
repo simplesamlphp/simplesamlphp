@@ -12,10 +12,8 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;

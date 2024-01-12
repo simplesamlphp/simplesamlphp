@@ -5,23 +5,22 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
-use SAML2\XML\Chunk;
 use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
 use SAML2\Utils;
+use SAML2\XML\Chunk;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
-use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\ExitTestException;
 use SimpleSAML\Test\Utils\SpTester;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.

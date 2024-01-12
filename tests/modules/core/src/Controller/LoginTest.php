@@ -4,19 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
-use Exception;
-use ReflectionClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Locale\Localization;
-use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Module\core\Auth\UserPassOrgBase;
+use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

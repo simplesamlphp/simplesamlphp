@@ -6,12 +6,9 @@ namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

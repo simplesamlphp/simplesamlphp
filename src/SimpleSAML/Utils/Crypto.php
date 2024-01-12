@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\Assert\Assert;
 use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;

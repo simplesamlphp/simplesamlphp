@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Store;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
-use SimpleSAML\Store\StoreFactory;
 
 /**
  * Tests for the Redis store.

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils\Config;
 
-use DOMDocument;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SAML2\Constants;

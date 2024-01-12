@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use SAML2\Exception\Protocol\UnsupportedBindingException;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\IdP;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;

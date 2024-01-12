@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace SimpleSAML\XML;
 
 use LibXMLError;
-use SimpleSAML\Assert\Assert;
 
 class Errors
 {

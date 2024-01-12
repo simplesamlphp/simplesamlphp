@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XHTML;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 use Twig\Environment;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;

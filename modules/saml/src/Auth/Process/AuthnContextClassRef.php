@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
 

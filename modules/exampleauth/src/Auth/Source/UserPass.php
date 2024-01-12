@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Utils;

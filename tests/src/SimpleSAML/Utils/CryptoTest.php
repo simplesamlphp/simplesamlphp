@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
-use ReflectionMethod;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;

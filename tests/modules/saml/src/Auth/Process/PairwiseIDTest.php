@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use SAML2\Constants;
 use SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, Logger, Utils};
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
 

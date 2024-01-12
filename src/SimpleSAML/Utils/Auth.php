@@ -6,7 +6,6 @@ namespace SimpleSAML\Utils;
 
 use SimpleSAML\Auth as Authentication;
 use SimpleSAML\Error;
-use SimpleSAML\Module;
 use SimpleSAML\Session;
 
 /**

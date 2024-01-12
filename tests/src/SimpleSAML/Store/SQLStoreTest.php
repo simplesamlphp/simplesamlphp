@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
-use SimpleSAML\Store\StoreFactory;
 
 /**
  * Tests for the SQL store.

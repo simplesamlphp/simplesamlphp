@@ -15,10 +15,7 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
-use function array_key_exists;
 use function preg_match;
-use function session_id;
-use function session_start;
 use function urldecode;
 
 /**

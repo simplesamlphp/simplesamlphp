@@ -7,14 +7,9 @@ namespace SimpleSAML\Module\multiauth\Controller;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Session;
-use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

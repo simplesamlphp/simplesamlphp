@@ -6,8 +6,8 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Utils;
 use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
+use SimpleSAML\Utils;
 
 /**
  * Test for the core:CardinalitySingle filter.
