@@ -187,7 +187,7 @@ You will find in the metadata the XML tag `<md:SingleSignOnService>`
 which contains the right URL to input in the field, it will look something
 like this:
 
-`https://dev2.andreas.feide.no/simplesaml/module.php/saml/idp/singleSignOnService
+`https://dev2.andreas.feide.no/simplesaml/module.php/saml/idp/singleSignOnService`
 
 The Sign-out page or change password URL can be static pages on your server.
 (Google does not support SAML Single Log Out.)
