@@ -47,11 +47,11 @@ The `saml20-idp-remote` metadata for SimpleSAMLphp SPs should contain something 
     [
         'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-        'Location' => 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+        'Location' => 'https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',
     ],
     [
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-        'Location' => 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+        'Location' => 'https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',
     ],
 ],
 ```
