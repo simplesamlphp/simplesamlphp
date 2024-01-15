@@ -12,6 +12,9 @@
     </testsuite>
   </testsuites>
   <logging/>
+  <php>
+    <env name="REDIRECT_SIMPLESAMLPHP_CONFIG_DIR" value="tests/config" force="true"/>
+  </php>
   <source>
     <include>
       <directory suffix=".php">./modules</directory>
@@ -22,7 +25,4 @@
       <directory>./tests</directory>
     </exclude>
   </source>
-  <php>
-    <env name="REDIRECT_SIMPLESAMLPHP_CONFIG_DIR" value="tests/config" force="true"/>
-  </php>
 </phpunit>
