@@ -7,7 +7,9 @@ metadata/*
 !/public/assets/.gitkeep
 !/.github/build
 /public/assets/*
+.phpunit.cache/
 .phpunit.result.cache
+phpunit.xml.bak
 .phive
 **.mo
 
