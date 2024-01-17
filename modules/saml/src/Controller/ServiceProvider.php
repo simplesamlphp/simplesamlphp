@@ -653,10 +653,16 @@ class ServiceProvider
 
         $response = new Response();
         $response->setEtag(hash('sha256', $metaxml));
-        $response->setPublic();
+        $response->setCache([
+            'no_cache' => $protectedMetadata === true,
+            'public' => $protectedMetadata === false,
+            'private' => $protectedMetadata === true,
+        ]);
+
         if ($response->isNotModified($request)) {
             return $response;
         }
+
         $response->headers->set('Content-Type', 'application/samlmetadata+xml');
         $response->headers->set('Content-Disposition', 'attachment; filename="' . basename($sourceId) . '.xml"');
         $response->setContent($metaxml);
