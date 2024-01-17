@@ -16,6 +16,10 @@ Released TBD
 
 * Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
 
+`saml`
+
+* Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+
 ## Version 2.0.8
 
 Released 2023-11-28

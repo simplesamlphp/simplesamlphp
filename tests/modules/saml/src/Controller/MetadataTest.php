@@ -171,6 +171,12 @@ class MetadataTest extends TestCase
         } else {
             $this->assertInstanceOf(Response::class, $result);
         }
+
+        if ($protected === true) {
+            $this->assertEquals('no-cache, private', $result->headers->get('cache-control'));
+        } else {
+            $this->assertEquals('public', $result->headers->get('cache-control'));
+        }
     }
 
     public function provideMetadataAccess(): array
@@ -277,23 +283,5 @@ class MetadataTest extends TestCase
 
         $expect = '<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location=';
         $this->assertStringContainsString($expect, $content);
-    }
-
-    /**
-     * Check if caching headers are set
-     */
-    public function testMetadataCachingHeaders(): void
-    {
-        $request = Request::create(
-            '/idp/metadata',
-            'GET',
-        );
-
-        $c = new Controller\Metadata($this->config);
-        $c->setMetadataStorageHandler($this->mdh);
-
-        $result = $c->metadata($request);
-        $this->assertTrue($result->headers->has('ETag'));
-        $this->assertEquals('public', $result->headers->get('Cache-Control'));
     }
 }

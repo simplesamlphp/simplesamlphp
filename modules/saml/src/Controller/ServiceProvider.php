@@ -622,7 +622,8 @@ class ServiceProvider
      */
     public function metadata(Request $request, string $sourceId): Response
     {
-        if ($this->config->getOptionalBoolean('admin.protectmetadata', false) && !$this->authUtils->isAdmin()) {
+        $protectedMetadata = $this->config->getOptionalBoolean('admin.protectmetadata', false);
+        if ($protectedMetadata && !$this->authUtils->isAdmin()) {
             return new RunnableResponse([$this->authUtils, 'requireAdmin']);
         }
 
@@ -661,10 +662,16 @@ class ServiceProvider
 
         $response = new Response();
         $response->setEtag(hash('sha256', $metaxml));
-        $response->setPublic();
+        $response->setCache([
+            'no_cache' => $protectedMetadata === true,
+            'public' => $protectedMetadata === false,
+            'private' => $protectedMetadata === true,
+        ]);
+
         if ($response->isNotModified($request)) {
             return $response;
         }
+
         $response->headers->set('Content-Type', 'application/samlmetadata+xml');
         $response->headers->set('Content-Disposition', 'attachment; filename="' . basename($sourceId) . '.xml"');
         $response->setContent($metaxml);
