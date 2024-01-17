@@ -23,6 +23,10 @@ Released TBD
 * Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
 * Fixed undesirable side-effect introduced in v2.3.0 (v2.3.1)
 
+`saml`
+
+* Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+
 ## Version 2.1.1
 
 Released 2023-11-28
