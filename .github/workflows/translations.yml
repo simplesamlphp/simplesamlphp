@@ -82,7 +82,7 @@ jobs:
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         run: zip build.zip -r .
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         with:
           name: build
