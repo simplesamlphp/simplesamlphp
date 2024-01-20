@@ -9,7 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-* Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+* Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fix legacy endpoints to not send response twice
 
 `core`
