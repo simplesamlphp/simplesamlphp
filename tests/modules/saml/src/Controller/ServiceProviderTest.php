@@ -497,6 +497,12 @@ XML;
         } else {
             $this->assertInstanceOf(Response::class, $result);
         }
+
+        if ($protected === true) {
+            $this->assertEquals('no-cache, private', $result->headers->get('cache-control'));
+        } else {
+            $this->assertEquals('public', $result->headers->get('cache-control'));
+        }
     }
 
     public function provideMetadataAccess(): array
