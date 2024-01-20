@@ -89,10 +89,6 @@ class StoreFactoryTest extends TestCase
 
         /** @psalm-var \SimpleSAML\Store\RedisStore $store */
         $store = StoreFactory::getInstance($storeType);
-        $store->redis = $this->getMockBuilder(Client::class)
-                           ->onlyMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
-                           ->disableOriginalConstructor()
-                           ->getMock();
 
         $this->assertInstanceOf(Store\RedisStore::class, $store);
     }
