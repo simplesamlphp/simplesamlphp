@@ -70,7 +70,6 @@ class RedisStoreTest extends TestCase
             {
                 $this->unitTest->delMocked($str);
             }
-
         };
 
         $this->store = new Store\RedisStore($this->client);
