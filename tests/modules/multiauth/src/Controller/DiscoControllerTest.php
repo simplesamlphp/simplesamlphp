@@ -46,6 +46,7 @@ class DiscoControllerTest extends TestCase
             '[ARRAY]',
             'simplesaml'
         );
+        Configuration::setPreLoadedConfig($this->config, 'config.php', 'simplesaml');
 
         $this->session = Session::getSessionFromRequest();
 
