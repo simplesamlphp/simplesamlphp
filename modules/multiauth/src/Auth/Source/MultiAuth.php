@@ -105,7 +105,8 @@ class MultiAuth extends Auth\Source
         }
 
         if (
-            !is_null($state['saml:RequestedAuthnContext'])
+            array_key_exists('saml:RequestedAuthnContext', $state)
+            && !is_null($state['saml:RequestedAuthnContext'])
             && array_key_exists('AuthnContextClassRef', $state['saml:RequestedAuthnContext'])
         ) {
             $refs = array_values($state['saml:RequestedAuthnContext']['AuthnContextClassRef']);

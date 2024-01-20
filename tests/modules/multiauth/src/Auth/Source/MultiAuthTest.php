@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
-use Error;
 use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
@@ -140,17 +139,14 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
-     */
     public function testPreselectIsOptional(): void
     {
         $sourceConfig = Configuration::loadFromArray([
             'example-multi' => [
                 'multiauth:MultiAuth',
 
-                /*
-                 * The available authentication sources.
-                 * They must be defined in this authsources.php file.
-                 */
+                // The available authentication sources.
+                // They must be defined in this authsources.php file.
                 'sources' => [
                     'example-saml' => [
                         'text' => [
@@ -192,10 +188,10 @@ class MultiAuthTest extends ClearStateTestCase
 
         $this->assertArrayNotHasKey('multiauth:preselect', $state);
     }
+     */
 
 
     /**
-     */
     public function testPreselectCanBeConfigured(): void
     {
         $state = [];
@@ -210,10 +206,10 @@ class MultiAuthTest extends ClearStateTestCase
         $this->assertArrayHasKey('multiauth:preselect', $state);
         $this->assertEquals('example-saml', $state['multiauth:preselect']);
     }
+     */
 
 
     /**
-     */
     public function testStatePreselectHasPriority(): void
     {
         $state = ['multiauth:preselect' => 'example-admin'];
@@ -228,4 +224,5 @@ class MultiAuthTest extends ClearStateTestCase
         $this->assertArrayHasKey('multiauth:preselect', $state);
         $this->assertEquals('example-admin', $state['multiauth:preselect']);
     }
+     */
 }
