@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Store;
 
-use PHPUnit\Framework\{MockObject\MockObject, TestCase};
+use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use SimpleSAML\{Configuration, Store};
 
@@ -21,8 +21,8 @@ use function array_key_exists;
  */
 class RedisStoreTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject */
-    protected MockObject $mocked_redis;
+    /** @var \Predis\Client */
+    protected Client $client;
 
     /** @var \SimpleSAML\Store\RedisStore */
     protected Store\RedisStore $store;
@@ -37,24 +37,43 @@ class RedisStoreTest extends TestCase
     {
         $this->config = [];
 
-        $this->mocked_redis = $this->getMockBuilder(Client::class)
-                                   ->onlyMethods(['get', 'set', 'setex', 'del', 'disconnect', '__destruct'])
-                                   ->disableOriginalConstructor()
-                                   ->getMock();
+        $this->client = new class ($this) extends Client
+        {
+            public function __construct(
+                protected TestCase $unitTest
+            ) {
+            }
 
-        $this->mocked_redis->method('get')
-                           ->will($this->returnCallback([$this, 'getMocked']));
+            public function __deconstruct()
+            {
+            }
 
-        $this->mocked_redis->method('set')
-                           ->will($this->returnCallback([$this, 'setMocked']));
+            public function disconnect(): void
+            {
+            }
 
-        $this->mocked_redis->method('setex')
-                           ->will($this->returnCallback([$this, 'setexMocked']));
+            public function get(string $str): ?string
+            {
+                return $this->unitTest->getMocked($str);
+            }
 
-        $this->mocked_redis->method('del')
-                           ->will($this->returnCallback([$this, 'delMocked']));
+            public function set(string $str, mixed $value): void
+            {
+                $this->unitTest->setMocked($str, $value);
+            }
 
-        $this->store = new Store\RedisStore($this->mocked_redis);
+            public function setEx(string $str, int $expire, mixed $value): void
+            {
+                $this->unitTest->setExMocked($str, $expire, $value);
+            }
+
+            public function del(string $str): void
+            {
+                $this->unitTest->delMocked($str);
+            }
+        };
+
+        $this->store = new Store\RedisStore($this->client);
     }
 
 
@@ -72,7 +91,7 @@ class RedisStoreTest extends TestCase
      * @param string $key
      * @param mixed $value
      */
-    public function setMocked(string $key, $value): void
+    public function setMocked(string $key, mixed $value): void
     {
         $this->config[$key] = $value;
     }
@@ -83,7 +102,7 @@ class RedisStoreTest extends TestCase
      * @param int $expire
      * @param mixed $value
      */
-    public function setexMocked(string $key, int $expire, $value): void
+    public function setexMocked(string $key, int $expire, mixed $value): void
     {
         // Testing expiring data is more trouble than it's worth for now
         $this->setMocked($key, $value);
