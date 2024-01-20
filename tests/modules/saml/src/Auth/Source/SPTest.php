@@ -587,7 +587,7 @@ class SPTest extends ClearStateTestCase
         }
     }
 
-    public function getScopingOrders(): array
+    public static function getScopingOrders(): array
     {
         return [
             [
