@@ -58,17 +58,19 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
+     * - 'cachedir': Where SimpleSAMLphp can write its cache. 
      * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
      *                 handler other than `file`.
      * - 'datadir': Storage of general data.
      * - 'tempdir': Saving temporary files. SimpleSAMLphp will attempt to create
-     *   this directory if it doesn't exist.
+     *   this directory if it doesn't exist. DEPRECATED - replaced by cachedir.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
      */
+    'cachedir' => '/var/cache/simplesamlphp',
     //'loggingdir' => '/var/log/',
     //'datadir' => '/var/data/',
-    'tempdir' => '/tmp/simplesaml',
+    //'tempdir' => '/tmp/simplesamlphp',
 
     /*
      * Certificate and key material can be loaded from different possible
