@@ -58,7 +58,7 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
-     * - 'cachedir': Where Symfony can write it's cache. 
+     * - 'cachedir': Where SimpleSAMLphp can write its cache. 
      * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
      *                 handler other than `file`.
      * - 'datadir': Storage of general data.
