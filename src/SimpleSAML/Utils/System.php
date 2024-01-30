@@ -187,7 +187,7 @@ class System
      */
     public function writeFile(string $filename, string $data, int $mode = 0600): void
     {
-        $tmpFile = $this->getTempDir() . DIRECTORY_SEPARATOR . rand();
+        $tmpFile = $filename . '.' . bin2hex(random_bytes(4));
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
