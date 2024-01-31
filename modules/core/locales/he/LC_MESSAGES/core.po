@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "ברוך-הבא"
+msgid "Close the web browser, and try again."
+msgstr "סגור את הדפדפן, ונסה שוב."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
+
+msgid "Go back to the previous page and try again."
+msgstr "חזור לדף הקודם ונסה שוב."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "הצעות לפתרון הבעייה הנוכחית:"
+
+msgid "This error may be caused by:"
+msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
 
 msgid "Missing cookie"
 msgstr "חסרה עוגייה"
@@ -33,26 +51,8 @@ msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה ע
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
 
-msgid "Close the web browser, and try again."
-msgstr "סגור את הדפדפן, ונסה שוב."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
-
-msgid "Go back to the previous page and try again."
-msgstr "חזור לדף הקודם ונסה שוב."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "הצעות לפתרון הבעייה הנוכחית:"
-
-msgid "This error may be caused by:"
-msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
+msgid "Welcome"
+msgstr "ברוך-הבא"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."

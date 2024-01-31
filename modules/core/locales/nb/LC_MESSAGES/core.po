@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Velkommen"
+msgid "Close the web browser, and try again."
+msgstr "Lukk nettleseren, og prøv på nytt."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "At informasjonskapsler ikke er aktivert i nettleseren."
+
+msgid "Go back to the previous page and try again."
+msgstr "Gå tilbake til forrige side og prøv på nytt."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Starte nettleseren med faner lagret fra forrige gang."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Forslag for å løse dette problemet:"
+
+msgid "This error may be caused by:"
+msgstr "Denne feilen kan være forårsaket av:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
 
 msgid "Missing cookie"
 msgstr "Mangler informasjonskapsel"
@@ -33,26 +51,8 @@ msgstr "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p�
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
 
-msgid "Close the web browser, and try again."
-msgstr "Lukk nettleseren, og prøv på nytt."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "At informasjonskapsler ikke er aktivert i nettleseren."
-
-msgid "Go back to the previous page and try again."
-msgstr "Gå tilbake til forrige side og prøv på nytt."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Starte nettleseren med faner lagret fra forrige gang."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Forslag for å løse dette problemet:"
-
-msgid "This error may be caused by:"
-msgstr "Denne feilen kan være forårsaket av:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
+msgid "Welcome"
+msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."

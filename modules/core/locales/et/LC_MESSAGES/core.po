@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Tere tulemast"
+msgid "Close the web browser, and try again."
+msgstr "Sulge brauser ja proovi uuesti."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "küpsiste keelamisest brauseris"
+
+msgid "Go back to the previous page and try again."
+msgstr "Mine tagasi eelmisele leheküljele ja proovi uuesti."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Nõuanded selle probleemi lahendamiseks:"
+
+msgid "This error may be caused by:"
+msgstr "See tõrge võib olla põhjustatud:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "brauseri edasi-tagasi nuppude kasutamisest"
 
 msgid "Missing cookie"
 msgstr "Küpsis puudub"
@@ -33,26 +51,8 @@ msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
 
-msgid "Close the web browser, and try again."
-msgstr "Sulge brauser ja proovi uuesti."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "küpsiste keelamisest brauseris"
-
-msgid "Go back to the previous page and try again."
-msgstr "Mine tagasi eelmisele leheküljele ja proovi uuesti."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Nõuanded selle probleemi lahendamiseks:"
-
-msgid "This error may be caused by:"
-msgstr "See tõrge võib olla põhjustatud:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "brauseri edasi-tagasi nuppude kasutamisest"
+msgid "Welcome"
+msgstr "Tere tulemast"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."

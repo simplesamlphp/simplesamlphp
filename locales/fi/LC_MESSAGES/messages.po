@@ -186,6 +186,18 @@ msgstr "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML LogoutR
 msgid "An unhandled exception was thrown."
 msgstr "Käsittelemätön poikkeus heitetty"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
+
+msgid "Remember my choice"
+msgstr "Muista valintani"
+
+msgid "Select"
+msgstr "Valitse"
+
+msgid "Select your identity provider"
+msgstr "Valitse identiteettillähteesi"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
 
@@ -230,18 +242,6 @@ msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä a
 
 msgid "Yes, continue"
 msgstr "Kyllä"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
-
-msgid "Remember my choice"
-msgstr "Muista valintani"
-
-msgid "Select"
-msgstr "Valitse"
-
-msgid "Select your identity provider"
-msgstr "Valitse identiteettillähteesi"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"

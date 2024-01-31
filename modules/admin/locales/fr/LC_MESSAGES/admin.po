@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuration"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr "Test"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Fédération"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Convertisseur de métadonnées XML vers SimpleSAMLphp"
@@ -29,9 +41,9 @@ msgstr "ADFS IdP métadonnées"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
 msgstr "Déconnexion"
 
@@ -156,41 +168,101 @@ msgstr "L'extension PHP cURL est manquante. Impossible de vérifier les mises à
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "Vous utilisez une version obsolète de SimpleSAMLphp. Veuillez mettre à jour vers <a href=\"%latest%\">la dernière version</a> dès que possible."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuration"
+msgid "Test Authentication Sources"
+msgstr "Tester les sources d'authentification"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr "Test"
+msgid "An error occurred"
+msgstr "Une erreur s'est produite"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Fédération"
+msgid "Converted metadata"
+msgstr "Métadonnées converties"
+
+msgid "Metadata parser"
+msgstr "Analyseur de métadonnées"
+
+msgid "No file selected."
+msgstr "Aucun fichier sélectionné."
+
+msgid "Parse"
+msgstr "Analyser"
+
+msgid "XML metadata"
+msgstr "Métadonnées XML"
+
+msgid "or select a file:"
+msgstr "ou sélectionner un fichier:"
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Copy to clipboard"
+msgstr "Copier dans le presse-papiers"
+
+msgid "Metadata"
+msgstr "Métadonnées"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Afficher les métadonnées"
+
+msgid "Certificates"
+msgstr "Certificats"
+
+msgid "Deprecated"
+msgstr "Obsolète"
+
+msgid "EntityID"
+msgstr "Entité ID"
+
+msgid "Hosted entities"
+msgstr "Entités hébergées"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "Au format XML de métadonnées SAML 2.0:"
+
+msgid "Look up metadata for entity:"
+msgstr "Rechercher les métadonnées de l'entité:"
+
+msgid "SAML Metadata"
+msgstr "Métadonnées SAML"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "SimpleSAMLphp Metadata"
+msgstr "Métadonnées SimpleSAMLphp"
 
 msgid "SimpleSAMLphp installation page"
 msgstr "Page d'installation de SimpleSAMLphp"
 
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp est installé dans le répertoire:"
+msgid "Tools"
+msgstr "Outils"
 
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Vous utilisez la version <kbd>%version%</kbd>\""
+msgid "Trusted entities"
+msgstr "Entités de confiance"
 
-msgid "optional"
-msgstr "optionnel"
+msgid "Type:"
+msgstr "Type:"
 
-msgid "required"
-msgstr "requis"
+msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "Utilisez cette option si vous utilisez une entité SimpleSAMLphp de l'autre côté:"
+
+msgid "You can get the metadata XML on a dedicated URL:"
+msgstr "Vous pouvez obtenir les métadonnées XML sur une URL dédiée:"
+
+msgid "expired"
+msgstr "expiré"
+
+msgid "expires"
+msgstr "expire"
+
+msgid "new"
+msgstr "nouveau"
 
 msgid "Authentication data"
 msgstr "Données d'authentification"
 
 msgid "Content of jpegPhoto attribute"
 msgstr "Contenu de l'attribut jpegPhoto"
-
-msgid "Copy to clipboard"
-msgstr "Copier dans le presse-papiers"
 
 msgid "Format"
 msgstr "Format"
@@ -220,89 +292,17 @@ msgstr "Votre session est encore valide pour %remaining% secondes."
 msgid "not set"
 msgstr "non défini"
 
-msgid "Test Authentication Sources"
-msgstr "Tester les sources d'authentification"
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp est installé dans le répertoire:"
 
-msgid "Back"
-msgstr "Retour"
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "Vous utilisez la version <kbd>%version%</kbd>\""
 
-msgid "Metadata"
-msgstr "Métadonnées"
+msgid "optional"
+msgstr "optionnel"
 
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Afficher les métadonnées"
-
-msgid "An error occurred"
-msgstr "Une erreur s'est produite"
-
-msgid "Converted metadata"
-msgstr "Métadonnées converties"
-
-msgid "Metadata parser"
-msgstr "Analyseur de métadonnées"
-
-msgid "No file selected."
-msgstr "Aucun fichier sélectionné."
-
-msgid "Parse"
-msgstr "Analyser"
-
-msgid "XML metadata"
-msgstr "Métadonnées XML"
-
-msgid "or select a file:"
-msgstr "ou sélectionner un fichier:"
-
-msgid "Certificates"
-msgstr "Certificats"
-
-msgid "Deprecated"
-msgstr "Obsolète"
-
-msgid "EntityID"
-msgstr "Entité ID"
-
-msgid "Hosted entities"
-msgstr "Entités hébergées"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "Au format XML de métadonnées SAML 2.0:"
-
-msgid "Look up metadata for entity:"
-msgstr "Rechercher les métadonnées de l'entité:"
-
-msgid "SAML Metadata"
-msgstr "Métadonnées SAML"
-
-msgid "Search"
-msgstr "Rechercher"
-
-msgid "SimpleSAMLphp Metadata"
-msgstr "Métadonnées SimpleSAMLphp"
-
-msgid "Tools"
-msgstr "Outils"
-
-msgid "Trusted entities"
-msgstr "Entités de confiance"
-
-msgid "Type:"
-msgstr "Type:"
-
-msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "Utilisez cette option si vous utilisez une entité SimpleSAMLphp de l'autre côté:"
-
-msgid "You can get the metadata XML on a dedicated URL:"
-msgstr "Vous pouvez obtenir les métadonnées XML sur une URL dédiée:"
-
-msgid "expired"
-msgstr "expiré"
-
-msgid "expires"
-msgstr "expire"
-
-msgid "new"
-msgstr "nouveau"
+msgid "required"
+msgstr "requis"
 
 msgid "Checking your PHP installation"
 msgstr "Vérification de votre installation de PHP"

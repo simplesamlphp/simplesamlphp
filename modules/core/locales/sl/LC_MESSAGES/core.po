@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Dobrodošli"
+msgid "Close the web browser, and try again."
+msgstr "Zaprite spletni brskalnik in poskusite znova."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
+
+msgid "Go back to the previous page and try again."
+msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Predloga za razrešitev nastale težave:"
+
+msgid "This error may be caused by:"
+msgstr "Vzrok za to napako je lahko:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
 
 msgid "Missing cookie"
 msgstr "Piškotek (\"cookie\") ne obstaja!"
@@ -33,26 +51,8 @@ msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prij
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
 
-msgid "Close the web browser, and try again."
-msgstr "Zaprite spletni brskalnik in poskusite znova."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
-
-msgid "Go back to the previous page and try again."
-msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Predloga za razrešitev nastale težave:"
-
-msgid "This error may be caused by:"
-msgstr "Vzrok za to napako je lahko:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."

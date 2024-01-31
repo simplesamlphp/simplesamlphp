@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Konfigurácia"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr "Test"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federácia"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Konvertor metadát z XML na SimpleSAMLphp"
@@ -29,9 +41,9 @@ msgstr "ADFS IdP metadáta"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
 msgstr "Odhlásiť sa"
 
@@ -160,100 +172,8 @@ msgstr "Chýba cURL PHP rozšírenie. Nie je možné skontrolovať aktualizácie
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "Máte zastaralú verziu SimpleSAMLphp. Aktualizujte prosím čo najskôr na <a href=\"%latest%\">najnovšiu verziu</a>."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Konfigurácia"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr "Test"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federácia"
-
-msgid "Checks"
-msgstr ""
-
-msgid "Details"
-msgstr "Detaily"
-
-msgid "Modules"
-msgstr "Moduly"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "Inštalačná stránka SimpleSAMLphp"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp je nainštalovaný v:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Vaša verzia: <kbd>%version%</kbd>."
-
-msgid "You have the following modules installed"
-msgstr "Nasledujúce moduly sú nainštalované"
-
-msgid "disabled"
-msgstr "vypnuté"
-
-msgid "enabled"
-msgstr "zapnuté"
-
-msgid "means the module is not enabled"
-msgstr "znamená, že modul nie je zapnutý"
-
-msgid "optional"
-msgstr "voliteľné"
-
-msgid "required"
-msgstr "vyžadované"
-
-msgid "Authentication data"
-msgstr "Autentifikačné dáta"
-
-msgid "Content of jpegPhoto attribute"
-msgstr "Obsah atribútu jpegPhoto"
-
-msgid "Copy to clipboard"
-msgstr "Kopírovať do schránky"
-
-msgid "Format"
-msgstr "Formát"
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Odhlásenie"
-
-msgid "SAML Subject"
-msgstr "SAML Subjekt"
-
-msgid "Technical information"
-msgstr "Technické informácie"
-
-msgid "Your attributes"
-msgstr "Vaše atribúty"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
-
-msgid "not set"
-msgstr "nenastavené"
-
 msgid "Test Authentication Sources"
 msgstr "Test zdrojov autentifikácie"
-
-msgid "Back"
-msgstr "Späť"
-
-msgid "Metadata"
-msgstr "Metadáta"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Zobraziť metadáta"
 
 msgid "An error occurred"
 msgstr "Nastala chyba"
@@ -275,6 +195,18 @@ msgstr "XML metadáta"
 
 msgid "or select a file:"
 msgstr "alebo vyberte súbor:"
+
+msgid "Back"
+msgstr "Späť"
+
+msgid "Copy to clipboard"
+msgstr "Kopírovať do schránky"
+
+msgid "Metadata"
+msgstr "Metadáta"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Zobraziť metadáta"
 
 msgid "Certificates"
 msgstr "Certifikáty"
@@ -303,6 +235,9 @@ msgstr "Vyhľadávanie"
 msgid "SimpleSAMLphp Metadata"
 msgstr "SimpleSAMLphp metadáta"
 
+msgid "SimpleSAMLphp installation page"
+msgstr "Inštalačná stránka SimpleSAMLphp"
+
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -326,6 +261,71 @@ msgstr "expiruje"
 
 msgid "new"
 msgstr "nové"
+
+msgid "Authentication data"
+msgstr "Autentifikačné dáta"
+
+msgid "Content of jpegPhoto attribute"
+msgstr "Obsah atribútu jpegPhoto"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "Odhlásenie"
+
+msgid "SAML Subject"
+msgstr "SAML Subjekt"
+
+msgid "Technical information"
+msgstr "Technické informácie"
+
+msgid "Your attributes"
+msgstr "Vaše atribúty"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
+
+msgid "not set"
+msgstr "nenastavené"
+
+msgid "Checks"
+msgstr ""
+
+msgid "Details"
+msgstr "Detaily"
+
+msgid "Modules"
+msgstr "Moduly"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp je nainštalovaný v:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "Vaša verzia: <kbd>%version%</kbd>."
+
+msgid "You have the following modules installed"
+msgstr "Nasledujúce moduly sú nainštalované"
+
+msgid "disabled"
+msgstr "vypnuté"
+
+msgid "enabled"
+msgstr "zapnuté"
+
+msgid "means the module is not enabled"
+msgstr "znamená, že modul nie je zapnutý"
+
+msgid "optional"
+msgstr "voliteľné"
+
+msgid "required"
+msgstr "vyžadované"
 
 msgid "Checking your PHP installation"
 msgstr "Kontrola Vašej PHP inštalácie"

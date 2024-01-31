@@ -3,6 +3,18 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Configuração"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federação"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Conversor de metadados de XML para SimpleSAMLphp"
@@ -29,9 +41,9 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
 msgstr ""
 
@@ -156,78 +168,7 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Configuração"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federação"
-
-msgid "SimpleSAMLphp installation page"
-msgstr ""
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "required"
-msgstr ""
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Sair"
-
-msgid "SAML Subject"
-msgstr ""
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr "Os seus atributos"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "A sua sessão é válida por %remaining% segundos."
-
-msgid "not set"
-msgstr ""
-
 msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadados"
-
-msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "An error occurred"
@@ -249,6 +190,18 @@ msgid "XML metadata"
 msgstr "Metadados em XML"
 
 msgid "or select a file:"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metadados"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
 msgid "Certificates"
@@ -278,6 +231,9 @@ msgstr ""
 msgid "SimpleSAMLphp Metadata"
 msgstr ""
 
+msgid "SimpleSAMLphp installation page"
+msgstr ""
+
 msgid "Tools"
 msgstr "Ferramentas"
 
@@ -300,6 +256,50 @@ msgid "expires"
 msgstr ""
 
 msgid "new"
+msgstr ""
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Os seus atributos"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "A sua sessão é válida por %remaining% segundos."
+
+msgid "not set"
+msgstr ""
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "Checking your PHP installation"

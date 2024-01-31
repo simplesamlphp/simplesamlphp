@@ -239,6 +239,18 @@ msgstr "使用者中斷認證"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "找不到您所提供的使用者名稱之使用者，或您給了錯誤密碼。請檢查使用者並再試一次。"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "請選擇您所要前往認證的驗證提供者："
+
+msgid "Remember my choice"
+msgstr "記住我的選擇"
+
+msgid "Select"
+msgstr "選擇"
+
+msgid "Select your identity provider"
+msgstr "選擇你的識別提供者(idp)"
+
 msgid "Format"
 msgstr "格式"
 
@@ -295,18 +307,6 @@ msgstr "傳送訊息"
 
 msgid "Yes, continue"
 msgstr "是，繼續"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "請選擇您所要前往認證的驗證提供者："
-
-msgid "Remember my choice"
-msgstr "記住我的選擇"
-
-msgid "Select"
-msgstr "選擇"
-
-msgid "Select your identity provider"
-msgstr "選擇你的識別提供者(idp)"
 
 msgid "[Preferred choice]"
 msgstr "喜好選擇"

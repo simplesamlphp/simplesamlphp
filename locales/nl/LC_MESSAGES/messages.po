@@ -259,6 +259,18 @@ msgstr "De authenticatie is afgebroken door de gebruiker"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
+
+msgid "Remember my choice"
+msgstr "Onthoud mijn keuze"
+
+msgid "Select"
+msgstr "Kies"
+
+msgid "Select your identity provider"
+msgstr "Kies je Identity Provider"
+
 msgid "Format"
 msgstr "Formaat"
 
@@ -315,18 +327,6 @@ msgstr "Bericht"
 
 msgid "Yes, continue"
 msgstr "Ja, ik ga akkoord"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Selecteer de Identity Provider waar je wil authenticeren:"
-
-msgid "Remember my choice"
-msgstr "Onthoud mijn keuze"
-
-msgid "Select"
-msgstr "Kies"
-
-msgid "Select your identity provider"
-msgstr "Kies je Identity Provider"
 
 msgid "Back"
 msgstr "Terug"

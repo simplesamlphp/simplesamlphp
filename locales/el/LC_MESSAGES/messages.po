@@ -247,6 +247,18 @@ msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστ�
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Ο συνδυασμός ονόματος χρήστη και κωδικού πρόσβασης δεν είναι σωστός. Παρακαλώ ελέγξτε την ορθότητα των στοιχείων σας και προσπαθήστε ξανά."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
+
+msgid "Remember my choice"
+msgstr "Να θυμάσαι την επιλογή μού"
+
+msgid "Select"
+msgstr "Επιλογή"
+
+msgid "Select your identity provider"
+msgstr "Επιλογή οικείου φορέα"
+
 msgid "Format"
 msgstr "Μορφή (format)"
 
@@ -303,18 +315,6 @@ msgstr "Αποστολή αρχείου"
 
 msgid "Yes, continue"
 msgstr "Αποδοχή"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
-
-msgid "Remember my choice"
-msgstr "Να θυμάσαι την επιλογή μού"
-
-msgid "Select"
-msgstr "Επιλογή"
-
-msgid "Select your identity provider"
-msgstr "Επιλογή οικείου φορέα"
 
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"

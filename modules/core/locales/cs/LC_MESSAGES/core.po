@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Vítejte"
+msgid "Close the web browser, and try again."
+msgstr "Zavřít webový prohlížeč a zkusit znovu."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
+
+msgid "Go back to the previous page and try again."
+msgstr "Jít zpět na předchozí stránku a zkusit znovu."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Návrhy pro vyřešení tohoto problému:"
+
+msgid "This error may be caused by:"
+msgstr "Tato chyba může být způsobená:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 
 msgid "Missing cookie"
 msgstr "Chybějící cookie"
@@ -33,26 +51,8 @@ msgstr "Pokud jste uživatel, který obdržel chybu po následování odkazu na 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele služby nebo poskytovatele identity."
 
-msgid "Close the web browser, and try again."
-msgstr "Zavřít webový prohlížeč a zkusit znovu."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
-
-msgid "Go back to the previous page and try again."
-msgstr "Jít zpět na předchozí stránku a zkusit znovu."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Návrhy pro vyřešení tohoto problému:"
-
-msgid "This error may be caused by:"
-msgstr "Tato chyba může být způsobená:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
+msgid "Welcome"
+msgstr "Vítejte"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."

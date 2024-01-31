@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Bine ați venit"
+msgid "Close the web browser, and try again."
+msgstr "Închideți browser-ul și încercați din nou."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Browser-ul are deactivate <i>cookies</i>."
+
+msgid "Go back to the previous page and try again."
+msgstr "Accesați pagina anterioară și încercați din nou."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Sugestii pentru rezolvarea acestei probleme:"
+
+msgid "This error may be caused by:"
+msgstr "Această eroare poate fi cauzată de:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
 
 msgid "Missing cookie"
 msgstr "<i>Cookie</i> lipsă"
@@ -33,26 +51,8 @@ msgstr "Dacă sunteți un utilizator care a primit acest mesaj de eroare în urm
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Probabil există o problemă de configurare, fie la furnizorul de servicii fie la furnizorul de identitate."
 
-msgid "Close the web browser, and try again."
-msgstr "Închideți browser-ul și încercați din nou."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Browser-ul are deactivate <i>cookies</i>."
-
-msgid "Go back to the previous page and try again."
-msgstr "Accesați pagina anterioară și încercați din nou."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Sugestii pentru rezolvarea acestei probleme:"
-
-msgid "This error may be caused by:"
-msgstr "Această eroare poate fi cauzată de:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
+msgid "Welcome"
+msgstr "Bine ați venit"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Dacă problema persistă, anunțați administratorii de sistem."

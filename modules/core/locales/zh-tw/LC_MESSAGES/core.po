@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "歡迎"
+msgid "Close the web browser, and try again."
+msgstr "關閉網頁瀏覽器，並再試一次。"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "網頁瀏覽器的 Cookies 可能被關閉。"
+
+msgid "Go back to the previous page and try again."
+msgstr "回到上一頁並再試一次。"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "您使用網頁瀏覽器儲存標籤開啟了上一次的連線。"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "建議解決這個問題："
+
+msgid "This error may be caused by:"
+msgstr "這個錯誤可能是因為："
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "於網頁瀏覽器使用上一頁及下一頁。"
 
 msgid "Missing cookie"
 msgstr "遺失 cookie"
@@ -33,26 +51,8 @@ msgstr "若您是個使用者，而您於此網站收到下列連結，請反映
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "服務提供者或驗證提供者之設定檔可能有問題。"
 
-msgid "Close the web browser, and try again."
-msgstr "關閉網頁瀏覽器，並再試一次。"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "網頁瀏覽器的 Cookies 可能被關閉。"
-
-msgid "Go back to the previous page and try again."
-msgstr "回到上一頁並再試一次。"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "您使用網頁瀏覽器儲存標籤開啟了上一次的連線。"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "建議解決這個問題："
-
-msgid "This error may be caused by:"
-msgstr "這個錯誤可能是因為："
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "於網頁瀏覽器使用上一頁及下一頁。"
+msgid "Welcome"
+msgstr "歡迎"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。"

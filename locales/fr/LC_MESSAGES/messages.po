@@ -239,6 +239,18 @@ msgstr "L'authentification a été abandonnée par l'usager"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Utilisateur inexistant, ou mot de passe incorrect. Vérifiez le nom d'utilisateur, et ré-essayez."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous authentifier :"
+
+msgid "Remember my choice"
+msgstr "Retenir ce choix"
+
+msgid "Select"
+msgstr "Sélectionner"
+
+msgid "Select your identity provider"
+msgstr "Sélectionnez votre fournisseur d'identité"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez consulter ici le temps restant sur votre session, ainsi que les attributs qui y sont attachés."
 
@@ -286,18 +298,6 @@ msgstr "Envoi du message"
 
 msgid "Yes, continue"
 msgstr "Oui"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Sélectionnez le fournisseur d'identité auprès duquel vous souhaitez vous authentifier :"
-
-msgid "Remember my choice"
-msgstr "Retenir ce choix"
-
-msgid "Select"
-msgstr "Sélectionner"
-
-msgid "Select your identity provider"
-msgstr "Sélectionnez votre fournisseur d'identité"
 
 msgid "[Preferred choice]"
 msgstr "[Choix préféré]"

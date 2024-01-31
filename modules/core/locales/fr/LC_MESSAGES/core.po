@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Bienvenue"
+msgid "Close the web browser, and try again."
+msgstr "Fermez le navigateur, essayez à nouveau."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Les cookies sont peut-être déactivés dans le navigateur."
+
+msgid "Go back to the previous page and try again."
+msgstr "Retournez à la page précédente et réessayez."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Ouvert le navigateur avec des onglets sauvegardés lors de la session précédente."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Suggestions pour résoudre ce problème :"
+
+msgid "This error may be caused by:"
+msgstr "Cette erreur peut être causée par :"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Utilisation des boutons avance et retour dans le navigateur."
 
 msgid "Missing cookie"
 msgstr "Cookie introuvable"
@@ -33,26 +51,8 @@ msgstr "Si vous êtes un usager qui reçoit cette erreur après avoir suivi un l
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Cela ressemble à un problème de configuration soit du fournisseur de service ou du fournisseur d'identité."
 
-msgid "Close the web browser, and try again."
-msgstr "Fermez le navigateur, essayez à nouveau."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Les cookies sont peut-être déactivés dans le navigateur."
-
-msgid "Go back to the previous page and try again."
-msgstr "Retournez à la page précédente et réessayez."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Ouvert le navigateur avec des onglets sauvegardés lors de la session précédente."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Suggestions pour résoudre ce problème :"
-
-msgid "This error may be caused by:"
-msgstr "Cette erreur peut être causée par :"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Utilisation des boutons avance et retour dans le navigateur."
+msgid "Welcome"
+msgstr "Bienvenue"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si ce problème persiste, vous pouvez le remonter vers l'administrateur système."

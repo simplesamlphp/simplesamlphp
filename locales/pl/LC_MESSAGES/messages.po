@@ -239,6 +239,18 @@ msgstr "Uwierzytelnienie zostało przerwane przez użytkownika"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Nie istnieje użytkownik o tej nazwie, lub podano złe hasło. Sprawdź nazwę użytkownika i ponów próbę."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się uwierzytelnić:"
+
+msgid "Remember my choice"
+msgstr "Zapamiętaj mój wybór"
+
+msgid "Select"
+msgstr "Wybierz"
+
+msgid "Select your identity provider"
+msgstr "wybierz swojego Dostawcę Tożsamości."
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia sesji i wszystkie atrybuty, które zostały załączone do sesji."
 
@@ -286,18 +298,6 @@ msgstr "Wysyłanie wiadomości"
 
 msgid "Yes, continue"
 msgstr "Tak, akceptuję"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się uwierzytelnić:"
-
-msgid "Remember my choice"
-msgstr "Zapamiętaj mój wybór"
-
-msgid "Select"
-msgstr "Wybierz"
-
-msgid "Select your identity provider"
-msgstr "wybierz swojego Dostawcę Tożsamości."
 
 msgid "[Preferred choice]"
 msgstr "Preferowany wybór"

@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Sveiki atvykę"
+msgid "Close the web browser, and try again."
+msgstr "Uždarykite interneto naršyklę ir pabandykite dar kartą."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Interneto naršyklėje gali būti išjungti slapukai (cookies)."
+
+msgid "Go back to the previous page and try again."
+msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstesnės sesijos."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Pasiūlymai spręsti šią problemą:"
+
+msgid "This error may be caused by:"
+msgstr "Šią klaidą galėjo sukelti:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
 
 msgid "Missing cookie"
 msgstr "Slapukas nerastas"
@@ -33,26 +51,8 @@ msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuo
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių teikėjo pusėje."
 
-msgid "Close the web browser, and try again."
-msgstr "Uždarykite interneto naršyklę ir pabandykite dar kartą."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Interneto naršyklėje gali būti išjungti slapukai (cookies)."
-
-msgid "Go back to the previous page and try again."
-msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstesnės sesijos."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Pasiūlymai spręsti šią problemą:"
-
-msgid "This error may be caused by:"
-msgstr "Šią klaidą galėjo sukelti:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
+msgid "Welcome"
+msgstr "Sveiki atvykę"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."

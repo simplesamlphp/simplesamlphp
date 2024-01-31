@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Üdvözöljük"
+msgid "Close the web browser, and try again."
+msgstr "Zárja be böngészőjét, majd próbálja újra."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Talán a böngészőben nincsenek engedélyezve a sütik (cookie)."
+
+msgid "Go back to the previous page and try again."
+msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Javaslat a probléma elhárítására:"
+
+msgid "This error may be caused by:"
+msgstr "Az alábbi hibát okozhatta:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Használja a böngésző előre, ill. vissza gombjait"
 
 msgid "Missing cookie"
 msgstr "Hiányzó süti (cookie)"
@@ -33,26 +51,8 @@ msgstr "Amennyiben ön, mint felhasználó keveredett erre az oldalra, úgy kér
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Valószínűleg valamilyen konfigurációs probléma okozta hiba, amely lehet akár IdP-, akár SP-oldalon."
 
-msgid "Close the web browser, and try again."
-msgstr "Zárja be böngészőjét, majd próbálja újra."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Talán a böngészőben nincsenek engedélyezve a sütik (cookie)."
-
-msgid "Go back to the previous page and try again."
-msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Javaslat a probléma elhárítására:"
-
-msgid "This error may be caused by:"
-msgstr "Az alábbi hibát okozhatta:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Használja a böngésző előre, ill. vissza gombjait"
+msgid "Welcome"
+msgstr "Üdvözöljük"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ha a probléma állandónak tűnik, kérjük, jelezze ezt az oldal adminisztrátorának."

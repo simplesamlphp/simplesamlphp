@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Bienvenido"
+msgid "Close the web browser, and try again."
+msgstr "Cierre el navegador y pruebe de nuevo"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Las cookies pueden estar deshabilitadas en el navegador"
+
+msgid "Go back to the previous page and try again."
+msgstr "Regrese a la página anterior y pruebe de nuevo"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Sugerencias para resolver este problema"
+
+msgid "This error may be caused by:"
+msgstr "Este error puede ser causado por"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Usando los botones atrás y adelante de su navegador web."
 
 msgid "Missing cookie"
 msgstr "No se encuentra cookie"
@@ -33,26 +51,8 @@ msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Esto es posiblemente un problema de configuración en el proveedor de servicios o en el proveedor de identidad."
 
-msgid "Close the web browser, and try again."
-msgstr "Cierre el navegador y pruebe de nuevo"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Las cookies pueden estar deshabilitadas en el navegador"
-
-msgid "Go back to the previous page and try again."
-msgstr "Regrese a la página anterior y pruebe de nuevo"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Abrió su navegador web con pestañas guardadas de la sesión previa."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Sugerencias para resolver este problema"
-
-msgid "This error may be caused by:"
-msgstr "Este error puede ser causado por"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Usando los botones atrás y adelante de su navegador web."
+msgid "Welcome"
+msgstr "Bienvenido"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Si el problema persiste, puede reportarlo a los administradores del sistema"

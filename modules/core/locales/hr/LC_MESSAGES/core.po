@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Dobrodošli"
+msgid "Close the web browser, and try again."
+msgstr "Zatvorite web preglednik i pokušajte ponovno."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Moguće da je podrška za kolačiće (\"cookies\") isključena u web pregledniku."
+
+msgid "Go back to the previous page and try again."
+msgstr "Vratite se na prethodnu stranicu i pokušajte ponovno."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sjednice."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Preporuke za rješavanje ovog problema:"
+
+msgid "This error may be caused by:"
+msgstr "Ova greška može biti uzrokovana:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Korištenjem gumba za prethodnu (back) i sljedeću (forward) stranicu u web pregledniku."
 
 msgid "Missing cookie"
 msgstr "Nedostaje kolačić (cookie)"
@@ -33,26 +51,8 @@ msgstr "Ako se ova greška pojavila nakon što ste slijedili poveznicu na nekoj 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Najvjerojatnije je problem u konfiguraciji na strani davatelja usluge ili u konfiguraciji autentifikacijskog servisa."
 
-msgid "Close the web browser, and try again."
-msgstr "Zatvorite web preglednik i pokušajte ponovno."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Moguće da je podrška za kolačiće (\"cookies\") isključena u web pregledniku."
-
-msgid "Go back to the previous page and try again."
-msgstr "Vratite se na prethodnu stranicu i pokušajte ponovno."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sjednice."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Preporuke za rješavanje ovog problema:"
-
-msgid "This error may be caused by:"
-msgstr "Ova greška može biti uzrokovana:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Korištenjem gumba za prethodnu (back) i sljedeću (forward) stranicu u web pregledniku."
+msgid "Welcome"
+msgstr "Dobrodošli"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ako se ova greška bude i dalje pojavljivala, možete ju prijaviti administratorima."

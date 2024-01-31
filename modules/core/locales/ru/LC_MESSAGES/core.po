@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Добро пожаловать"
+msgid "Close the web browser, and try again."
+msgstr "Закрыть веб браузер и попробовать снова."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Возможно, в браузере отключены Cookies."
+
+msgid "Go back to the previous page and try again."
+msgstr "Вернуться к предыдущей странице и попробовать снова."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Открыт браузер с сохраненными закладками от предыдущей сессии."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Варианты решения проблемы:"
+
+msgid "This error may be caused by:"
+msgstr "Эта ошибка может быть вызвана:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."
 
 msgid "Missing cookie"
 msgstr "Отсутствует cookie-файл"
@@ -33,26 +51,8 @@ msgstr "Если, перейдя по ссылке на сайт, вы увид�
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Скорее всего, это проблема конфигурации поставщика услуг или провайдера подлинности."
 
-msgid "Close the web browser, and try again."
-msgstr "Закрыть веб браузер и попробовать снова."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Возможно, в браузере отключены Cookies."
-
-msgid "Go back to the previous page and try again."
-msgstr "Вернуться к предыдущей странице и попробовать снова."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Открыт браузер с сохраненными закладками от предыдущей сессии."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Варианты решения проблемы:"
-
-msgid "This error may be caused by:"
-msgstr "Эта ошибка может быть вызвана:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."
+msgid "Welcome"
+msgstr "Добро пожаловать"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Если проблема остается, сообщить об этом администратору."

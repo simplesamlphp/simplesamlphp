@@ -239,6 +239,18 @@ msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je vpisano geslo napačno. Preverite svoje uporabniško ime in poskusite znova."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Izberite IdP, na katerem se boste avtenticirali:"
+
+msgid "Remember my choice"
+msgstr "Shrani kot privzeto izbiro"
+
+msgid "Select"
+msgstr "Izberite"
+
+msgid "Select your identity provider"
+msgstr "Izberite IdP domače organizacije"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
 
@@ -286,18 +298,6 @@ msgstr "Pošiljanje sporočila"
 
 msgid "Yes, continue"
 msgstr "Da, nadaljuj"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Izberite IdP, na katerem se boste avtenticirali:"
-
-msgid "Remember my choice"
-msgstr "Shrani kot privzeto izbiro"
-
-msgid "Select"
-msgstr "Izberite"
-
-msgid "Select your identity provider"
-msgstr "Izberite IdP domače organizacije"
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"

@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Welkom"
+msgid "Close the web browser, and try again."
+msgstr "Sluit de web browser, en probeer opnieuw."
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Cookies kunnen uitgeschakeld zijn in de web browser."
+
+msgid "Go back to the previous page and try again."
+msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Suggesties om dit probleem op te lossen:"
+
+msgid "This error may be caused by:"
+msgstr "Deze error is waarschijnlijk veroorzaakt door:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 
 msgid "Missing cookie"
 msgstr "Cookie ontbreekt"
@@ -33,26 +51,8 @@ msgstr "Als u een eindgebruiker bent die deze foutmelding kreeg na het volgen va
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Dit is waarschijnlijk een configuratieprobleem bij ofwel de serviceprovider ofwel de identiteitsverstrekker."
 
-msgid "Close the web browser, and try again."
-msgstr "Sluit de web browser, en probeer opnieuw."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Cookies kunnen uitgeschakeld zijn in de web browser."
-
-msgid "Go back to the previous page and try again."
-msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Suggesties om dit probleem op te lossen:"
-
-msgid "This error may be caused by:"
-msgstr "Deze error is waarschijnlijk veroorzaakt door:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
+msgid "Welcome"
+msgstr "Welkom"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."

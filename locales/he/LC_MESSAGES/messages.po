@@ -239,6 +239,18 @@ msgstr "ההיזדהות בוטלה על ידי המשתמש"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "או שלא נמצא משתמש בשם זה, או שהסיסמה לא הייתה נכונה. בדוק בבקשה את שם המשתמש ונסה שוב. "
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
+
+msgid "Remember my choice"
+msgstr "זכור את הבחירה שלי"
+
+msgid "Select"
+msgstr "בחר"
+
+msgid "Select your identity provider"
+msgstr "בחר את ספק הזהות שלך"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "שלום, זהו דף המצב של SimpleSAMLphp. כאן אפשר לראות אם השיחה הופסקה, כמה זמן היא תמשיך עד להפסקתה וכל התכונות המצורפות לשיחה."
 
@@ -286,18 +298,6 @@ msgstr "שולח הודעה"
 
 msgid "Yes, continue"
 msgstr "כן, המשך"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "בחר את ספק הזיהות אליו אתה רוצה להיזדהות:"
-
-msgid "Remember my choice"
-msgstr "זכור את הבחירה שלי"
-
-msgid "Select"
-msgstr "בחר"
-
-msgid "Select your identity provider"
-msgstr "בחר את ספק הזהות שלך"
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"

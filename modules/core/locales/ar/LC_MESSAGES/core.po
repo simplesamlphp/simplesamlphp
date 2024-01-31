@@ -3,8 +3,26 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "مرحباً"
+msgid "Close the web browser, and try again."
+msgstr "اغلق الموقع ثم حاول مرة اخري"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "الكوكيز غير منشطة بمتصفحك"
+
+msgid "Go back to the previous page and try again."
+msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "اقتراحات لحل المشكلة "
+
+msgid "This error may be caused by:"
+msgstr "سبب حدوث هذا الخطأ قد يكون:"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
 
 msgid "Missing cookie"
 msgstr "ألكوكيز المفقودة"
@@ -33,26 +51,8 @@ msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لراب�
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
 
-msgid "Close the web browser, and try again."
-msgstr "اغلق الموقع ثم حاول مرة اخري"
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "الكوكيز غير منشطة بمتصفحك"
-
-msgid "Go back to the previous page and try again."
-msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
-
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "اقتراحات لحل المشكلة "
-
-msgid "This error may be caused by:"
-msgstr "سبب حدوث هذا الخطأ قد يكون:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
+msgid "Welcome"
+msgstr "مرحباً"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"

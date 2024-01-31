@@ -239,6 +239,18 @@ msgstr "Kautotzea bertan behera utzi du erabiltzaileak"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Ez dago erabiltzailerik adierazitako identifikadorearekin, edo adierazitako pasahitza okerra da.  Mesedez, berrikusi ezazu erabiltzaile-identifikadorea eta saia zaiztez berriro."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Mesedez, non kautotu nahi duzun identifikazio hornitzailea hauta ezazu "
+
+msgid "Remember my choice"
+msgstr "Nire hautaketa gogoratu"
+
+msgid "Select"
+msgstr "Hautatu"
+
+msgid "Select your identity provider"
+msgstr "Hauta ezazu zure identitate hornitzailea"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Kaixo, hau SimpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure saioan dauden atributu guztiak."
 
@@ -286,18 +298,6 @@ msgstr "Mezua bidaltzen"
 
 msgid "Yes, continue"
 msgstr "Bai, jarraitu"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Mesedez, non kautotu nahi duzun identifikazio hornitzailea hauta ezazu "
-
-msgid "Remember my choice"
-msgstr "Nire hautaketa gogoratu"
-
-msgid "Select"
-msgstr "Hautatu"
-
-msgid "Select your identity provider"
-msgstr "Hauta ezazu zure identitate hornitzailea"
 
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"

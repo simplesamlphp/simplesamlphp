@@ -239,6 +239,18 @@ msgstr "Die Authentifizierung wurde durch den Benutzer abgebrochen"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden werden oder das Passwort ist falsch. Überprüfen Sie die Zugangsdaten und probieren Sie es erneut."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren möchten:"
+
+msgid "Remember my choice"
+msgstr "Meine Auswahl merken"
+
+msgid "Select"
+msgstr "Auswahl"
+
+msgid "Select your identity provider"
+msgstr "Wählen Sie Ihren Identity Provider"
+
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Hallo, das ist die Statusseite von SimpleSAMLphp. Hier können Sie sehen, ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist und alle Attribute Ihrer Sitzung."
 
@@ -286,18 +298,6 @@ msgstr "Sende Nachricht"
 
 msgid "Yes, continue"
 msgstr "Ja, ich stimme zu"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren möchten:"
-
-msgid "Remember my choice"
-msgstr "Meine Auswahl merken"
-
-msgid "Select"
-msgstr "Auswahl"
-
-msgid "Select your identity provider"
-msgstr "Wählen Sie Ihren Identity Provider"
 
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"

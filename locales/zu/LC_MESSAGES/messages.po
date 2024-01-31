@@ -259,6 +259,18 @@ msgstr "Ukuqinisekisa kuyekiswe umsebenzisi"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese uzame futhi."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
+
+msgid "Remember my choice"
+msgstr "Khumbula ukukhetha kwami"
+
+msgid "Select"
+msgstr "Khetha"
+
+msgid "Select your identity provider"
+msgstr "Khetha umhlinzeki wakho kamazisi"
+
 msgid "Format"
 msgstr "Ifomethi"
 
@@ -300,18 +312,6 @@ msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindel
 
 msgid "Yes, continue"
 msgstr "Yebo, qhubeka"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:"
-
-msgid "Remember my choice"
-msgstr "Khumbula ukukhetha kwami"
-
-msgid "Select"
-msgstr "Khetha"
-
-msgid "Select your identity provider"
-msgstr "Khetha umhlinzeki wakho kamazisi"
 
 msgid "Next"
 msgstr "Okulandelayo"
