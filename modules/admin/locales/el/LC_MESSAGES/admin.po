@@ -3,47 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Ρυθμίσεις"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Ομοσπονδία"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Μετατροπή μεταδεδομένων από XML σε ρυθμίσεις SimpleSAMLphp"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
-msgid "SAML 2.0 SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-msgid "ADFS IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
 msgid "Log out"
 msgstr ""
 
@@ -168,41 +132,79 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
-msgid "Test Authentication Sources"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Μετατροπή μεταδεδομένων από XML σε ρυθμίσεις SimpleSAMLphp"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:168
+msgid "SAML 2.0 SP metadata"
 msgstr ""
 
-msgid "An error occurred"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
+msgid "SAML 2.0 IdP metadata"
 msgstr ""
 
-msgid "Converted metadata"
-msgstr "Μετατραπέντα μεταδεδομένα"
-
-msgid "Metadata parser"
-msgstr "Αναλυτής (parser) μεταδεδομένων"
-
-msgid "No file selected."
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
+msgid "ADFS SP metadata"
 msgstr ""
 
-msgid "Parse"
-msgstr "Ανάλυση"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+msgid "ADFS IdP metadata"
+msgstr ""
 
-msgid "XML metadata"
-msgstr "Αναλυτής μεταδεδομένων XML"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Ρυθμίσεις"
 
-msgid "or select a file:"
-msgstr "ή επιλέξτε αρχείο"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
 
-msgid "Back"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Ομοσπονδία"
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Content of jpegPhoto attribute"
 msgstr ""
 
 msgid "Copy to clipboard"
 msgstr ""
 
-msgid "Metadata"
-msgstr "Μεταδεδομένα"
+msgid "Format"
+msgstr "Μορφή (format)"
 
-msgid "SimpleSAMLphp Show Metadata"
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
+
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "SAML Subject"
+msgstr "Υποκείμενο (subject) SAML"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "Σελίδα εγκατάστασης SimpleSAMLphp"
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Πληροφορίες"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+
+msgid "not set"
+msgstr "δεν έχει οριστεί"
 
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
@@ -231,9 +233,6 @@ msgstr ""
 msgid "SimpleSAMLphp Metadata"
 msgstr ""
 
-msgid "SimpleSAMLphp installation page"
-msgstr "Σελίδα εγκατάστασης SimpleSAMLphp"
-
 msgid "Tools"
 msgstr "Εργαλεία"
 
@@ -258,37 +257,35 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "Authentication data"
+msgid "Back"
 msgstr ""
 
-msgid "Content of jpegPhoto attribute"
+msgid "Metadata"
+msgstr "Μεταδεδομένα"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
-msgid "Format"
-msgstr "Μορφή (format)"
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
+msgid "An error occurred"
 msgstr ""
 
-msgid "Logout"
-msgstr "Αποσύνδεση"
+msgid "Converted metadata"
+msgstr "Μετατραπέντα μεταδεδομένα"
 
-msgid "SAML Subject"
-msgstr "Υποκείμενο (subject) SAML"
+msgid "Metadata parser"
+msgstr "Αναλυτής (parser) μεταδεδομένων"
 
-msgid "Technical information"
+msgid "No file selected."
 msgstr ""
 
-msgid "Your attributes"
-msgstr "Πληροφορίες"
+msgid "Parse"
+msgstr "Ανάλυση"
 
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+msgid "XML metadata"
+msgstr "Αναλυτής μεταδεδομένων XML"
 
-msgid "not set"
-msgstr "δεν έχει οριστεί"
+msgid "or select a file:"
+msgstr "ή επιλέξτε αρχείο"
 
 msgid "SimpleSAMLphp is installed in:"
 msgstr ""
@@ -300,6 +297,9 @@ msgid "optional"
 msgstr ""
 
 msgid "required"
+msgstr ""
+
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "Checking your PHP installation"

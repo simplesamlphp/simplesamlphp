@@ -239,6 +239,18 @@ msgstr "Autentifikasi dibatalkan oleh user"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi."
 
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Your attributes"
+msgstr "Attribut Anda"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Session anda valid untuk %remaining% detik dari sekarang."
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
 
@@ -251,17 +263,11 @@ msgstr "Pilih"
 msgid "Select your identity provider"
 msgstr "Pilih identity provider anda"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
+msgid "Sending message"
+msgstr "Mengirimpan pesan"
 
-msgid "Logout"
-msgstr "Logout"
-
-msgid "Your attributes"
-msgstr "Attribut Anda"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Session anda valid untuk %remaining% detik dari sekarang."
+msgid "Yes, continue"
+msgstr "Yam lanjutkan"
 
 msgid "Debug information"
 msgstr "Informasi debug"
@@ -292,12 +298,6 @@ msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
-
-msgid "Sending message"
-msgstr "Mengirimpan pesan"
-
-msgid "Yes, continue"
-msgstr "Yam lanjutkan"
 
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"

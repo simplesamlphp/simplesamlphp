@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Retry login"
+msgstr "Újbóli belépés"
+
+msgid "Too short interval between single sign on events."
+msgstr "Túl kevés idő telt el a belépési kísérletek között."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
+
+msgid "Missing cookie"
+msgstr "Hiányzó süti (cookie)"
+
+msgid "Retry"
+msgstr "Újra"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
+
 msgid "Close the web browser, and try again."
 msgstr "Zárja be böngészőjét, majd próbálja újra."
 
@@ -23,24 +41,6 @@ msgstr "Az alábbi hibát okozhatta:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Használja a böngésző előre, ill. vissza gombjait"
-
-msgid "Missing cookie"
-msgstr "Hiányzó süti (cookie)"
-
-msgid "Retry"
-msgstr "Újra"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
-
-msgid "Retry login"
-msgstr "Újbóli belépés"
-
-msgid "Too short interval between single sign on events."
-msgstr "Túl kevés idő telt el a belépési kísérletek között."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ha ön az oldal üzemeltetője, úgy javasoljuk, ellenőrizze a metaadat beállításokat mint IdP-, mind SP oldalon."

@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Retry login"
+msgstr "اعد تسجيل الدخول"
+
+msgid "Too short interval between single sign on events."
+msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
+
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
+
+msgid "Retry"
+msgstr "اعد المحاولة"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+
 msgid "Close the web browser, and try again."
 msgstr "اغلق الموقع ثم حاول مرة اخري"
 
@@ -23,24 +41,6 @@ msgstr "سبب حدوث هذا الخطأ قد يكون:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
-
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
-
-msgid "Retry"
-msgstr "اعد المحاولة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
-
-msgid "Retry login"
-msgstr "اعد تسجيل الدخول"
-
-msgid "Too short interval between single sign on events."
-msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "

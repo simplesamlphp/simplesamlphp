@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Retry login"
+msgstr "Повторить попытку входа"
+
+msgid "Too short interval between single sign on events."
+msgstr "Очень короткий промежуток времени между единым входом в событиях."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
+
+msgid "Missing cookie"
+msgstr "Отсутствует cookie-файл"
+
+msgid "Retry"
+msgstr "Повторить"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
+
 msgid "Close the web browser, and try again."
 msgstr "Закрыть веб браузер и попробовать снова."
 
@@ -23,24 +41,6 @@ msgstr "Эта ошибка может быть вызвана:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."
-
-msgid "Missing cookie"
-msgstr "Отсутствует cookie-файл"
-
-msgid "Retry"
-msgstr "Повторить"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
-
-msgid "Retry login"
-msgstr "Повторить попытку входа"
-
-msgid "Too short interval between single sign on events."
-msgstr "Очень короткий промежуток времени между единым входом в событиях."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Если вы разработчик внедряющий Технологию единого вход (SSO), у вас есть проблемы с метаданными конфигурации. Убедитесь, что метаданные настроены правильно на Провайдере подлинности и Поставщике услуг."

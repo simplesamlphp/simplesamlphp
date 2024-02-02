@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Retry login"
+msgstr "Ponovna prijava"
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratek interval med dogodki enotne prijave."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
+
+msgid "Missing cookie"
+msgstr "Piškotek (\"cookie\") ne obstaja!"
+
+msgid "Retry"
+msgstr "Poskusi ponovno"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
+
 msgid "Close the web browser, and try again."
 msgstr "Zaprite spletni brskalnik in poskusite znova."
 
@@ -23,24 +41,6 @@ msgstr "Vzrok za to napako je lahko:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
-
-msgid "Missing cookie"
-msgstr "Piškotek (\"cookie\") ne obstaja!"
-
-msgid "Retry"
-msgstr "Poskusi ponovno"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
-
-msgid "Retry login"
-msgstr "Ponovna prijava"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratek interval med dogodki enotne prijave."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."

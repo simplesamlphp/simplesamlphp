@@ -259,6 +259,18 @@ msgstr "Ungqinisiso luyekiswe ngumsebenzisi"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge igama lomsebenzisi uzame kwakhona."
 
+msgid "Format"
+msgstr "Ufomatho"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
+
+msgid "SAML Subject"
+msgstr "Umbandela we-SAML"
+
+msgid "not set"
+msgstr "ayikasetwa"
+
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 
@@ -271,17 +283,8 @@ msgstr "Khetha"
 msgid "Select your identity provider"
 msgstr "Khetha umboneleli wesazisi wakho"
 
-msgid "Format"
-msgstr "Ufomatho"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
-
-msgid "SAML Subject"
-msgstr "Umbandela we-SAML"
-
-msgid "not set"
-msgstr "ayikasetwa"
+msgid "Yes, continue"
+msgstr "Ewe, qhubeka"
 
 msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
@@ -309,9 +312,6 @@ msgstr "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / id
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
-
-msgid "Yes, continue"
-msgstr "Ewe, qhubeka"
 
 msgid "Next"
 msgstr "Okulandelayo"

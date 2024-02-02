@@ -3,6 +3,24 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Retry login"
+msgstr "Ré-essayez de vous connecter"
+
+msgid "Too short interval between single sign on events."
+msgstr "Connexions uniques trop proches dans le temps."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
+
+msgid "Missing cookie"
+msgstr "Cookie introuvable"
+
+msgid "Retry"
+msgstr "Ré-essayer"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
+
 msgid "Close the web browser, and try again."
 msgstr "Fermez le navigateur, essayez à nouveau."
 
@@ -23,24 +41,6 @@ msgstr "Cette erreur peut être causée par :"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Utilisation des boutons avance et retour dans le navigateur."
-
-msgid "Missing cookie"
-msgstr "Cookie introuvable"
-
-msgid "Retry"
-msgstr "Ré-essayer"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Il semble que votre navigateur refuse les cookies. Merci de vérifier les réglages de votre navigateur, puis de ré-essayer."
-
-msgid "Retry login"
-msgstr "Ré-essayez de vous connecter"
-
-msgid "Too short interval between single sign on events."
-msgstr "Connexions uniques trop proches dans le temps."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Il ne s'est écoulé que quelques secondes depuis votre authentification précédente, ce qui est la marque d'un dysfonctionnement de ce SP."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Si vous êtes un développeur qui déploie une solution de single sign-on, vous avez un problème avec la configuration des métadonnées. Vérifiez que ces métadonnées sont correctement configurées sur le fournisseur d'identité et le fournisseur de service "
