@@ -886,6 +886,30 @@ class SP extends Auth\Source
             $response = self::askForIdPChange($state);
             $response->send();
         }
+
+        /*
+         * When proxying AuthnContextClassRef, we also need to check if the
+         * original IdP used a compatible AuthnContext. If not, we may need
+         * need to do step-up authentication (e.g. for requesting MFA). At
+         * the moment this only handles exact comparisons, since handling
+         * better/minimum/maximum would require a prioritised list.
+         */
+        if (
+            $this->passAuthnContextClassRef
+            && isset($state['saml:RequestedAuthnContext'])
+            && $state['saml:RequestedAuthnContext']['Comparison'] === Constants::COMPARISON_EXACT
+            && isset($data['saml:sp:AuthnContext'])
+            && $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0] !== $data['saml:sp:AuthnContext']
+        ) {
+            Logger::warning(sprintf(
+                "Reauthentication requires change in AuthnContext from '%s' to '%s'.",
+                $data['saml:sp:AuthnContext'],
+                $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0]
+            ));
+            $state['saml:idp'] = $data['saml:sp:IdP'];
+            $state['saml:sp:AuthId'] = $this->authId;
+            self::tryStepUpAuth($state);
+        }
     }
 
 
@@ -928,6 +952,37 @@ class SP extends Auth\Source
 
         $httpUtils = new Utils\HTTP();
         return $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
+    }
+
+
+    /**
+     * Attempt to re-authenticate using the same identity provider, perhaps
+     * with different requirements (e.g. AuthnContext). Note that this method
+     * is intended for instances of SimpleSAMLphp running as a SAML proxy,
+     * and therefore acting as both an SP and an IdP at the same time.
+     *
+     * @param array The state array
+     * The following keys must be defined:
+     * - 'saml:idp': the IdP to re-authenticate with
+     * - 'saml:sp:AuthId': the identifier of the current authentication source.
+     * @throws \SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
+     */
+    public static function tryStepUpAuth(array &$state): void
+    {
+        Assert::keyExists($state, 'saml:idp');
+        Assert::keyExists($state, 'saml:sp:AuthId');
+
+        if (isset($state['isPassive']) && (bool) $state['isPassive']) {
+            // passive request, we cannot authenticate the user
+            throw new NoPassiveException(
+                Constants::STATUS_REQUESTER . ':  Reauthentication required'
+            );
+        }
+
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
+        $as = new Auth\Simple($state['saml:sp:AuthId']);
+        $as->login($state);
+        Assert::true(false);
     }
 
 
