@@ -87,7 +87,7 @@ jobs:
           rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-${{ matrix.version }}
           path: "/tmp/simplesamlphp-${{ env.VERSION }}-${{ matrix.version }}.tar.gz"
