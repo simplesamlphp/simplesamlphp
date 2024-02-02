@@ -12,6 +12,7 @@ Released TBD
 * Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fix legacy endpoints to not send response twice
 * Fix exception when using iframe-logout (#1936)
+* Look for the schema files in the right place (#1929)
 
 `core`
 
