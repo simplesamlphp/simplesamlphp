@@ -22,3 +22,5 @@ The following methods were marked `deprecated` and will be removed in a next maj
 - SimpleSAML\Error\Errorcodes::getErrorCodeTitle - Use getTitle instead
 - SimpleSAML\Error\Errorcodes::getErrorCodeDescription - Use getDescription instead
 - SimpleSAML\Error\Errorcodes::getErrorCodeMessage - Use getMessage instead
+
+The `tempdir` configuration setting was marked `deprecated`. Use `cachedir` instead.
