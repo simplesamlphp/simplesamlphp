@@ -3,15 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Missing cookie"
-msgstr "Verlore cookie"
-
-msgid "Retry"
-msgstr "Probeer weer"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer."
-
 msgid "Retry login"
 msgstr "Probeer weer aanmeld"
 
@@ -20,6 +11,15 @@ msgstr "Te kort interval tussen enkel aanmeldings(single sign on) op die gebeure
 
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Ons het ontdek dat daar slegs 'n paar sekondes was sedert jy laas geverifieer het met die diensverskaffer en neem dus aan dat daar 'n probleem is met hierdie SP."
+
+msgid "Missing cookie"
+msgstr "Verlore cookie"
+
+msgid "Retry"
+msgstr "Probeer weer"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "As jy 'n programmeerder is wat die 'single sign-on' oplossing implementeer, het jy 'n probleem met die metadata opset. Bevestig dat die metadata korrek ingestel is op beide die identiteit verskaffer en diensverskaffer."

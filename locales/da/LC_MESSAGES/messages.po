@@ -260,6 +260,24 @@ msgstr "Du har %remaining% tilbage af din session"
 msgid "not set"
 msgstr "ikke angivet"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Vælg institutionen (identitetsudbyderen) hvor du vil logge ind"
+
+msgid "Remember my choice"
+msgstr "Husk valget"
+
+msgid "Select"
+msgstr "Vælg"
+
+msgid "Select your identity provider"
+msgstr "Vælg institution (identitetsudbyder)"
+
+msgid "Sending message"
+msgstr "Sender besked"
+
+msgid "Yes, continue"
+msgstr "Ja, jeg accepterer"
+
 msgid "Debug information"
 msgstr "Detaljer til fejlsøgning"
 
@@ -289,24 +307,6 @@ msgstr "Detaljerne herunder kan være af interesse for teknikerne / help-desken"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Denne fejl skyldes formentlig en fejlkonfiguration af SimpleSAMLphp - alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og rapportér så mange detaljer som muligt om fejlen"
-
-msgid "Sending message"
-msgstr "Sender besked"
-
-msgid "Yes, continue"
-msgstr "Ja, jeg accepterer"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Vælg institutionen (identitetsudbyderen) hvor du vil logge ind"
-
-msgid "Remember my choice"
-msgstr "Husk valget"
-
-msgid "Select"
-msgstr "Vælg"
-
-msgid "Select your identity provider"
-msgstr "Vælg institution (identitetsudbyder)"
 
 msgid "[Preferred choice]"
 msgstr "Foretrukket valg"

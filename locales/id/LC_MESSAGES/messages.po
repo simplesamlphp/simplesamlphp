@@ -251,6 +251,24 @@ msgstr "Attribut Anda"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Session anda valid untuk %remaining% detik dari sekarang."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
+
+msgid "Remember my choice"
+msgstr "Ingat pilihan saya"
+
+msgid "Select"
+msgstr "Pilih"
+
+msgid "Select your identity provider"
+msgstr "Pilih identity provider anda"
+
+msgid "Sending message"
+msgstr "Mengirimpan pesan"
+
+msgid "Yes, continue"
+msgstr "Yam lanjutkan"
+
 msgid "Debug information"
 msgstr "Informasi debug"
 
@@ -280,24 +298,6 @@ msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
-
-msgid "Sending message"
-msgstr "Mengirimpan pesan"
-
-msgid "Yes, continue"
-msgstr "Yam lanjutkan"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
-
-msgid "Remember my choice"
-msgstr "Ingat pilihan saya"
-
-msgid "Select"
-msgstr "Pilih"
-
-msgid "Select your identity provider"
-msgstr "Pilih identity provider anda"
 
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"

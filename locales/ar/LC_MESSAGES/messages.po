@@ -251,6 +251,24 @@ msgstr "السمات"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "اختر موقع الهوية الذي ترغب بدخوله"
+
+msgid "Remember my choice"
+msgstr "تذكر خياراتي"
+
+msgid "Select"
+msgstr "اختار"
+
+msgid "Select your identity provider"
+msgstr "اختار موقع هويتك"
+
+msgid "Sending message"
+msgstr "ارسل رسالة"
+
+msgid "Yes, continue"
+msgstr "نعم، واصل"
+
 msgid "Debug information"
 msgstr "معلومات التصحيح"
 
@@ -280,24 +298,6 @@ msgstr " قد تكون معلومات التصحيح أدناه مفيدة لم�
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "هذا الخطأ ناتج غالباً عن سلوك غير متوقع او عن خطا في ترتيب البرنامج. اتصل بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم أيضاً "
-
-msgid "Sending message"
-msgstr "ارسل رسالة"
-
-msgid "Yes, continue"
-msgstr "نعم، واصل"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "اختر موقع الهوية الذي ترغب بدخوله"
-
-msgid "Remember my choice"
-msgstr "تذكر خياراتي"
-
-msgid "Select"
-msgstr "اختار"
-
-msgid "Select your identity provider"
-msgstr "اختار موقع هويتك"
 
 msgid "[Preferred choice]"
 msgstr "اختياري المفضل"

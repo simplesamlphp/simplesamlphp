@@ -251,6 +251,24 @@ msgstr "Vaši atributi"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša sesija će biti validna još %remaining% sekundi."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Molimo vas odaberite davaoca identiteta kod koga se želite autentifikovati:"
+
+msgid "Remember my choice"
+msgstr "Zapamti moj izbor"
+
+msgid "Select"
+msgstr "Odaberi"
+
+msgid "Select your identity provider"
+msgstr "Odaberite vašeg davaoca identiteta"
+
+msgid "Sending message"
+msgstr "Šaljem poruku"
+
+msgid "Yes, continue"
+msgstr "Da, nastavi"
+
 msgid "Debug information"
 msgstr "Informacije o greški"
 
@@ -280,24 +298,6 @@ msgstr "Informacije o grešci koje se nalaze ispod mogu biti od interesa adminis
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ova greška se verovatno desila zbog neočekivanog ponašanja, ili pogrešnih podešavanja SimpleSAMLphp-a. Kontaktirajte administratora ovog servisa i pošaljite mu poruku o grešci prikazanu iznad."
-
-msgid "Sending message"
-msgstr "Šaljem poruku"
-
-msgid "Yes, continue"
-msgstr "Da, nastavi"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Molimo vas odaberite davaoca identiteta kod koga se želite autentifikovati:"
-
-msgid "Remember my choice"
-msgstr "Zapamti moj izbor"
-
-msgid "Select"
-msgstr "Odaberi"
-
-msgid "Select your identity provider"
-msgstr "Odaberite vašeg davaoca identiteta"
 
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"

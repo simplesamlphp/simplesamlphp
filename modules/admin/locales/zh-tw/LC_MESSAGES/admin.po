@@ -3,35 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML 至 SimpleSAMLphp 詮釋資料翻譯器"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
-msgid "SAML 2.0 SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
-msgid "ADFS IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 msgid "Log out"
 msgstr ""
 
@@ -156,6 +132,30 @@ msgstr ""
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML 至 SimpleSAMLphp 詮釋資料翻譯器"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+msgid "SAML 2.0 SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "SAML 2.0 IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+msgid "ADFS SP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+msgid "ADFS IdP metadata"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "設定"
@@ -167,21 +167,6 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
 msgid "Federation"
 msgstr "聯盟"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp 安裝頁面"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "required"
-msgstr ""
 
 msgid "Authentication data"
 msgstr ""
@@ -206,6 +191,9 @@ msgstr "登出"
 msgid "SAML Subject"
 msgstr "SAML 主題"
 
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp 安裝頁面"
+
 msgid "Technical information"
 msgstr ""
 
@@ -217,39 +205,6 @@ msgstr "您的 session 從現在起還有 %remaining% 有效。"
 
 msgid "not set"
 msgstr "未設定"
-
-msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr ""
-
-msgid "An error occurred"
-msgstr ""
-
-msgid "Converted metadata"
-msgstr "已轉換之 Metadata"
-
-msgid "Metadata parser"
-msgstr "Metadata 解析"
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr "解析"
-
-msgid "XML metadata"
-msgstr "XML Metadata"
-
-msgid "or select a file:"
-msgstr ""
 
 msgid "Certificates"
 msgstr "憑證"
@@ -300,6 +255,51 @@ msgid "expires"
 msgstr ""
 
 msgid "new"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Converted metadata"
+msgstr "已轉換之 Metadata"
+
+msgid "Metadata parser"
+msgstr "Metadata 解析"
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Parse"
+msgstr "解析"
+
+msgid "XML metadata"
+msgstr "XML Metadata"
+
+msgid "or select a file:"
+msgstr ""
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "Checking your PHP installation"

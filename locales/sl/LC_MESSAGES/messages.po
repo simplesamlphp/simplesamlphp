@@ -251,6 +251,24 @@ msgstr "Vaši atributi"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Izberite IdP, na katerem se boste avtenticirali:"
+
+msgid "Remember my choice"
+msgstr "Shrani kot privzeto izbiro"
+
+msgid "Select"
+msgstr "Izberite"
+
+msgid "Select your identity provider"
+msgstr "Izberite IdP domače organizacije"
+
+msgid "Sending message"
+msgstr "Pošiljanje sporočila"
+
+msgid "Yes, continue"
+msgstr "Da, nadaljuj"
+
 msgid "Debug information"
 msgstr "Pomoč pri odpravljanju napak (debug)"
 
@@ -280,24 +298,6 @@ msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako."
-
-msgid "Sending message"
-msgstr "Pošiljanje sporočila"
-
-msgid "Yes, continue"
-msgstr "Da, nadaljuj"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Izberite IdP, na katerem se boste avtenticirali:"
-
-msgid "Remember my choice"
-msgstr "Shrani kot privzeto izbiro"
-
-msgid "Select"
-msgstr "Izberite"
-
-msgid "Select your identity provider"
-msgstr "Izberite IdP domače organizacije"
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"

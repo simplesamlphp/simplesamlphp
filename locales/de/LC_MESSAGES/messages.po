@@ -251,6 +251,24 @@ msgstr "Ihre Attribute"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Ihre Sitzung ist noch für %remaining% Sekunden gültig."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren möchten:"
+
+msgid "Remember my choice"
+msgstr "Meine Auswahl merken"
+
+msgid "Select"
+msgstr "Auswahl"
+
+msgid "Select your identity provider"
+msgstr "Wählen Sie Ihren Identity Provider"
+
+msgid "Sending message"
+msgstr "Sende Nachricht"
+
+msgid "Yes, continue"
+msgstr "Ja, ich stimme zu"
+
 msgid "Debug information"
 msgstr "Debug-Information"
 
@@ -280,24 +298,6 @@ msgstr "Die unten angegebene Debug-Information kann für den Administrator oder 
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von SimpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit."
-
-msgid "Sending message"
-msgstr "Sende Nachricht"
-
-msgid "Yes, continue"
-msgstr "Ja, ich stimme zu"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Bitte wählen Sie den Identity Provider, bei dem Sie sich authentifizieren möchten:"
-
-msgid "Remember my choice"
-msgstr "Meine Auswahl merken"
-
-msgid "Select"
-msgstr "Auswahl"
-
-msgid "Select your identity provider"
-msgstr "Wählen Sie Ihren Identity Provider"
 
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"
