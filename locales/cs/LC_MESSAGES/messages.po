@@ -251,6 +251,24 @@ msgstr "Vaše atributy"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaše sezení je platné ještě %remaining% sekund."
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
+
+msgid "Remember my choice"
+msgstr "Zapamatuj moji volbu"
+
+msgid "Select"
+msgstr "Zvolit"
+
+msgid "Select your identity provider"
+msgstr "Zvol svého poskytovatele identity (IdP)"
+
+msgid "Sending message"
+msgstr "Posílám zprávu"
+
+msgid "Yes, continue"
+msgstr "Ano, akceptuji"
+
 msgid "Debug information"
 msgstr "Ladicí informace"
 
@@ -280,24 +298,6 @@ msgstr "Následující ladicí informace může zajímat administrátora (helpde
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tato chyba pravděpodobně vznikla neočekávanou událostí, nebo chybou v konfiguraci. Kontaktujte administrátora této přihlašovací služby a zašlete mu tuto zprávu."
-
-msgid "Sending message"
-msgstr "Posílám zprávu"
-
-msgid "Yes, continue"
-msgstr "Ano, akceptuji"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
-
-msgid "Remember my choice"
-msgstr "Zapamatuj moji volbu"
-
-msgid "Select"
-msgstr "Zvolit"
-
-msgid "Select your identity provider"
-msgstr "Zvol svého poskytovatele identity (IdP)"
 
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"

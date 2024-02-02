@@ -277,6 +277,21 @@ msgstr "Makgabane a hao"
 msgid "not set"
 msgstr "ha e a setwa"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
+
+msgid "Remember my choice"
+msgstr "Hopola kgetho ya ka"
+
+msgid "Select"
+msgstr "Kgetha"
+
+msgid "Select your identity provider"
+msgstr "Kgetha mofani wa boitsebiso wa hao"
+
+msgid "Yes, continue"
+msgstr "E"
+
 msgid "Debug information"
 msgstr "Tlhahisoleseding ya debug"
 
@@ -306,21 +321,6 @@ msgstr "Tlhahisoleseding ya debug e ka tlase mona e  ka nna ya kgahla motsamaisi
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona."
-
-msgid "Yes, continue"
-msgstr "E"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
-
-msgid "Remember my choice"
-msgstr "Hopola kgetho ya ka"
-
-msgid "Select"
-msgstr "Kgetha"
-
-msgid "Select your identity provider"
-msgstr "Kgetha mofani wa boitsebiso wa hao"
 
 msgid "Return to service"
 msgstr "E kgutlela tshebeletsong"

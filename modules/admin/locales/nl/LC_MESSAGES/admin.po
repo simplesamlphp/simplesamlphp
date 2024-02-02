@@ -3,35 +3,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML naar SimpleSAMLphp metadata vertaling"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
-msgid "SAML 2.0 SP metadata"
-msgstr "SAML 2.0 SP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "SAML 2.0 IdP metadata"
-msgstr "SAML 2.0 IdP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
-msgid "ADFS SP metadata"
-msgstr "ADFS SP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
-msgid "ADFS IdP metadata"
-msgstr "ADFS IdP metadata"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 msgid "Log out"
 msgstr "Log uit"
 
@@ -156,6 +132,30 @@ msgstr "De cURL-extensie mist in PHP. Kan niet controleren op updates."
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "U heeft een verouderde versie van SimpleSAMLphp. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%latest%\">de laatste versie</a>."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML naar SimpleSAMLphp metadata vertaling"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+msgid "SAML 2.0 SP metadata"
+msgstr "SAML 2.0 SP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "SAML 2.0 IdP metadata"
+msgstr "SAML 2.0 IdP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+msgid "ADFS SP metadata"
+msgstr "ADFS SP metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+msgid "ADFS IdP metadata"
+msgstr "ADFS IdP metadata"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Configuratie"
@@ -167,21 +167,6 @@ msgstr "Test"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
 msgid "Federation"
 msgstr "Federatie"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp installatiepagina"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp is geïnstalleerd in:"
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr "U draait versie <kbd>%version%</kbd>."
-
-msgid "optional"
-msgstr "optioneel"
-
-msgid "required"
-msgstr "vereist"
 
 msgid "Authentication data"
 msgstr "Authenticatiegegevens"
@@ -206,6 +191,9 @@ msgstr "Afmelden"
 msgid "SAML Subject"
 msgstr "SAML Subject"
 
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp installatiepagina"
+
 msgid "Technical information"
 msgstr "Technische informatie"
 
@@ -217,39 +205,6 @@ msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
 
 msgid "not set"
 msgstr "niet aanwezig"
-
-msgid "Test Authentication Sources"
-msgstr "Test Authentication Sources"
-
-msgid "Back"
-msgstr "Terug"
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Toon Metadata"
-
-msgid "An error occurred"
-msgstr "Er trad een fout op"
-
-msgid "Converted metadata"
-msgstr "Geconverteerde metadata"
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
-
-msgid "No file selected."
-msgstr "Geen bestand geselecteerd."
-
-msgid "Parse"
-msgstr "Converteer"
-
-msgid "XML metadata"
-msgstr "XML-metadata"
-
-msgid "or select a file:"
-msgstr "of kies een bestand:"
 
 msgid "Certificates"
 msgstr "Certificaten"
@@ -301,6 +256,51 @@ msgstr "verloopt"
 
 msgid "new"
 msgstr "nieuw"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr "SimpleSAMLphp Toon Metadata"
+
+msgid "An error occurred"
+msgstr "Er trad een fout op"
+
+msgid "Converted metadata"
+msgstr "Geconverteerde metadata"
+
+msgid "Metadata parser"
+msgstr "Metadata parser"
+
+msgid "No file selected."
+msgstr "Geen bestand geselecteerd."
+
+msgid "Parse"
+msgstr "Converteer"
+
+msgid "XML metadata"
+msgstr "XML-metadata"
+
+msgid "or select a file:"
+msgstr "of kies een bestand:"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr "SimpleSAMLphp is geïnstalleerd in:"
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr "U draait versie <kbd>%version%</kbd>."
+
+msgid "optional"
+msgstr "optioneel"
+
+msgid "required"
+msgstr "vereist"
+
+msgid "Test Authentication Sources"
+msgstr "Test Authentication Sources"
 
 msgid "Checking your PHP installation"
 msgstr "Controle van de PHP-installatie"

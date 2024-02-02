@@ -3,18 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Welcome"
-msgstr "Velkommen"
-
-msgid "Missing cookie"
-msgstr "Mangler cookie"
-
-msgid "Retry"
-msgstr "Forsøg igen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
-
 msgid "Retry login"
 msgstr "Login igen"
 
@@ -24,14 +12,14 @@ msgstr "For kort interval mellem single sign on hændelse."
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
+msgid "Missing cookie"
+msgstr "Mangler cookie"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
+msgid "Retry"
+msgstr "Forsøg igen"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
 
 msgid "Close the web browser, and try again."
 msgstr "Luk din browser og prøv igen."
@@ -53,6 +41,18 @@ msgstr "Fejlen kan være forårsaget af:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Brug frem- og tilbage-knappen i browseren."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
+
+msgid "Welcome"
+msgstr "Velkommen"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."

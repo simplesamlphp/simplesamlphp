@@ -268,6 +268,24 @@ msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη 
 msgid "not set"
 msgstr "δεν έχει οριστεί"
 
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
+
+msgid "Remember my choice"
+msgstr "Να θυμάσαι την επιλογή μού"
+
+msgid "Select"
+msgstr "Επιλογή"
+
+msgid "Select your identity provider"
+msgstr "Επιλογή οικείου φορέα"
+
+msgid "Sending message"
+msgstr "Αποστολή αρχείου"
+
+msgid "Yes, continue"
+msgstr "Αποδοχή"
+
 msgid "Debug information"
 msgstr "Πληροφορίες εντοπισμού σφαλμάτων"
 
@@ -297,24 +315,6 @@ msgstr "Οι παρακάτω πληροφορίες μπορεί να διευ�
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Αυτό το σφάλμα πιθανότατα οφείλεται σε κάποια απροσδόκητη συμπεριφορά ή εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
-
-msgid "Sending message"
-msgstr "Αποστολή αρχείου"
-
-msgid "Yes, continue"
-msgstr "Αποδοχή"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
-
-msgid "Remember my choice"
-msgstr "Να θυμάσαι την επιλογή μού"
-
-msgid "Select"
-msgstr "Επιλογή"
-
-msgid "Select your identity provider"
-msgstr "Επιλογή οικείου φορέα"
 
 msgid "[Preferred choice]"
 msgstr "[Αποθηκευμένη προεπιλογή]"

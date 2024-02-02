@@ -295,6 +295,42 @@ msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
 msgid "not set"
 msgstr "nenastavené"
 
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "World"
+msgstr "Svet"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "No identity providers found. Cannot continue."
+msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
+
+msgid "Remember my choice"
+msgstr "Zapamätať moju voľbu"
+
+msgid "Select"
+msgstr "Vybrať"
+
+msgid "Select your identity provider"
+msgstr "Vyberte si poskytovateľa identity"
+
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
+
 msgid "Debug information"
 msgstr "Debug informácie"
 
@@ -324,42 +360,6 @@ msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo pod
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
-
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
-
-msgid "Sending message"
-msgstr "Odosiela sa správa"
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
-
-msgid "Warning"
-msgstr "Upozornenie"
-
-msgid "Yes, continue"
-msgstr "Áno, pokračovať"
-
-msgid "Language"
-msgstr "Jazyk"
-
-msgid "No identity providers found. Cannot continue."
-msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
-
-msgid "Remember my choice"
-msgstr "Zapamätať moju voľbu"
-
-msgid "Select"
-msgstr "Vybrať"
-
-msgid "Select your identity provider"
-msgstr "Vyberte si poskytovateľa identity"
 
 msgid "Back"
 msgstr "Späť"
