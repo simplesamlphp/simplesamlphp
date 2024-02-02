@@ -40,7 +40,7 @@ class RedisStoreTest extends TestCase
         $this->client = new class ($this) extends Client
         {
             public function __construct(
-                protected TestCase $unitTest
+                protected RedisStoreTest $unitTest
             ) {
             }
 
