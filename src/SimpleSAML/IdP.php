@@ -515,8 +515,6 @@ class IdP
 
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);
-
-        Assert::true(false);
     }
 
 
