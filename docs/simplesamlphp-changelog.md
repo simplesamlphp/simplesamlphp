@@ -76,7 +76,6 @@ Released 2023-10-30
 * Update vulnerable composer (CVE-2023-43655; not affected)
 * Fixed a potential XSS-through-DOM (3x; not affected)
 * Fixed a warning in the RequestedAuthnContextSelector
-* Fixed file logging handler to not fail on the first write after file-creation (#1877)
 
 ## Version 2.0.6
 
