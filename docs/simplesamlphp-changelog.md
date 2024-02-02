@@ -13,6 +13,7 @@ Released TBD
 * Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
 * Fix legacy-endpoints to not send responses twice
 * Fix exception when using iframe-logout (#1936)
+* Look for the schema files in the right place (#1929)
 
 `core`
 

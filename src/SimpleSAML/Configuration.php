@@ -15,6 +15,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use function array_key_exists;
 use function array_keys;
 use function dirname;
+use function file_exists;
 use function interface_exists;
 use function is_array;
 use function is_int;
@@ -557,6 +558,25 @@ class Configuration implements Utils\ClearableState
         }
 
         return $path . '/';
+    }
+
+
+    /**
+     * Retrieve the location of the vendor directory
+     *
+     * This function checks whether SimpleSAMLphp is installed as a stand-alone application or as a library
+     * and determines the location of the vendor directory.
+     *
+     * @return string The absolute path to the vendor directory. This path will always end with a slash.
+     */
+    public function getVendorDir(): string
+    {
+        if (file_exists(dirname(__FILE__, 3) . '/vendor')) {
+            return dirname(__FILE__, 3) . '/vendor/';
+        } else {
+            // SSP is loaded as a library.
+            return dirname(__FILE__, 6) . '/vendor/';
+        }
     }
 
 
