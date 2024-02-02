@@ -335,8 +335,9 @@ class XML
 
         if ($res === true) {
             $config = Configuration::getInstance();
-            $schemaFile = $config->getVendorDir() . 'simplesamlphp/saml2/schemas/' . $schema;
-            var_dump($schemaFile);
+            $sysUtils = new System();
+            $schemaFile = $sysUtils->resolvePath($config->getVendorDir() . 'simplesamlphp/saml2/schemas/' . $schema);
+
             libxml_set_external_entity_loader(
                 /**
                  * @param string|null $public
