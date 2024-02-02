@@ -12,6 +12,7 @@ Released TBD
 * Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
 * Fix legacy-endpoints to not send responses twice
+* Fix exception when using iframe-logout (#1936)
 
 `core`
 
