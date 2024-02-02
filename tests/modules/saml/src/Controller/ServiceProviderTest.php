@@ -526,6 +526,12 @@ XML;
 
         $result = $c->metadata($request, 'phpunit');
         $this->assertInstanceOf(Response::class, $result);
+
+        if ($protected === true) {
+            $this->assertEquals('no-cache, private', $result->headers->get('cache-control'));
+        } else {
+            $this->assertEquals('public', $result->headers->get('cache-control'));
+        }
     }
 
     public static function provideMetadataAccess(): array
