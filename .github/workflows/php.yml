@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter/slim@v5
+        uses: github/super-linter/slim@v6
         env:
           LOG_LEVEL: NOTICE
           VALIDATE_ALL_CODEBASE: true
@@ -59,7 +59,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: $COMPOSER_CACHE
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -124,7 +124,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: $COMPOSER_CACHE
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -180,7 +180,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: $COMPOSER_CACHE
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -242,7 +242,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: $COMPOSER_CACHE
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -265,7 +265,7 @@ jobs:
           path: ${{ github.workspace }}/build
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
