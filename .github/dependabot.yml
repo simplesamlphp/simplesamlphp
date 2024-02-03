@@ -15,7 +15,7 @@ updates:
       all-actions:
         patterns: ["*"]
 
-  - package-ecosystem: "compposer"  # See documentation for possible values
+  - package-ecosystem: "composer"  # See documentation for possible values
     directory: "/"  # Location of package manifests
     schedule:
       interval: "daily"
