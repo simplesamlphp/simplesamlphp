@@ -4,7 +4,7 @@
 Filter that adds attributes to the user.
 
 If the attribute already exists, the values added will be merged into a multi-valued attribute.
-If you instead want to replace the existing attribute, you may add the `'%replace'` option.
+If you instead want to replace the existing attribute, you may add the `%replace` option.
 
 Examples
 --------

@@ -8,7 +8,7 @@ Parameters
 
 `class`
 :   This is the name of the filter.
-    It must be `'core:PHP'`.
+    It must be `core:PHP`.
 
 `code`
 :   The PHP code that should be run. This code will have two variables available:
