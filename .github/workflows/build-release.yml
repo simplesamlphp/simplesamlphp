@@ -30,7 +30,7 @@ jobs:
           TAG="${{ github.ref_name }}"
           echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -57,7 +57,7 @@ jobs:
           "simplesamlphp-$VERSION"
 
       - name: Save tarball
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release
           path: "/tmp/simplesamlphp-${{ env.VERSION }}.tar.gz"
