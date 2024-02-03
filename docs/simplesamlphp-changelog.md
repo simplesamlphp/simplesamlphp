@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.9
+## Version 2.0.10
 
 Released TBD
+
+## Version 2.0.9
+
+Released 2024-02-03
 
 * Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fix legacy endpoints to not send response twice
@@ -23,6 +27,11 @@ Released TBD
 `saml`
 
 * Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+
+`saml2 library`
+
+* Fix serialization for the NameID element
+* Fix inheritance - There is no relation between BaseID and NameID
 
 ## Version 2.0.8
 
