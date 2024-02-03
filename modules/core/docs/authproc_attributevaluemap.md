@@ -11,10 +11,10 @@ Besides the mapping of source values to target values, the filter has the follow
 
 ## Add student affiliation based on LDAP groupmembership
 
-Will add eduPersonAffiliation containing value "`student`" if the `memberOf` attribute contains
-either '`cn=student,o=some,o=organization,dc=org`' or '`cn=student,o=other,o=organization,dc=org`'.
-The '`memberOf`' attribute will be removed (use `%keep`, to keep it) and existing values in
-'`eduPersonAffiliation`' will be merged (use `%replace` to replace them).
+Will add eduPersonAffiliation containing value `student` if the `memberOf` attribute contains
+either `cn=student,o=some,o=organization,dc=org` or `cn=student,o=other,o=organization,dc=org`.
+The `memberOf` attribute will be removed (use `%keep`, to keep it) and existing values in
+`eduPersonAffiliation` will be merged (use `%replace` to replace them).
 
     'authproc' => [
         50 => [
@@ -62,7 +62,7 @@ Add `student`, `employee` and `both` affiliation based on LDAP groupmembership i
 
 ## Replace and Keep
 
-Replace any existing '`affiliation`' attribute values and keep the '`groups`' attribute.
+Replace any existing `affiliation` attribute values and keep the `groups` attribute.
 
     'authproc' => [
         50 => [
