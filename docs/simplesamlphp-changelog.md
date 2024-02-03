@@ -17,6 +17,10 @@ Released TBD
 * Fixed file logging handler to not fail on the first write after file-creation (#1877)
 * Fixed a warning in the RequestedAuthnContextSelector
 
+`adfs`
+
+* Fixed incorrect use of StreamedResponse (v2.1.3)
+
 `core`
 
 * Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
@@ -26,10 +30,16 @@ Released TBD
 
 * Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
 * Fixed undesirable side-effect introduced in v2.3.0 (v2.3.1)
+* Restore the ability to read attributes using a privileged account (v2.3.2)
 
 `saml`
 
 * Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+
+`saml2 library`
+
+* Fix serialization for the NameID element
+* Fix inheritance - There is no relation between BaseID and NameID
 
 ## Version 2.1.1
 
