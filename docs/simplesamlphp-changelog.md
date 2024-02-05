@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.1.2
+## Version 2.1.3
 
 Released TBD
+
+## Version 2.1.2
+
+Released 2024-02-05
 
 * Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
 * Fixed undefined variable exception when using MS SQL store (#1917 + #1918)

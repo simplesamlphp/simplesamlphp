@@ -133,5 +133,5 @@
             "php bin/translations translations:update:binary"
         ]
     },
-    "version": "v2.1.1"
+    "version": "v2.1.2"
 }
