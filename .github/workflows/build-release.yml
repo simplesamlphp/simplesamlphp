@@ -36,10 +36,11 @@ jobs:
       # Store the version, stripping any v-prefix
       - name: Write release version
         run: |
+          TAG=${{ github.ref_name }}
           {
-            echo "TAG=${{ github.ref_name }}"
-            echo "VERSION=${TAG#v}"
+            echo "TAG=$TAG"
             echo "COMPOSER_VERSION=$(composer config version)"
+            echo "VERSION=${TAG#v}"
           } >> "$GITHUB_ENV"
 
       - name: Validate composer.json and composer.lock
