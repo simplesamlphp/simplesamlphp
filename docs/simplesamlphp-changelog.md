@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Make error codes easier to extend (#1870)
+* Updated eduPerson attributes in attribute maps (#1948)
 
 ## Version 2.1.2
 
