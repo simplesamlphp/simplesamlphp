@@ -239,36 +239,6 @@ msgstr "Inloggning avbröts av användaren"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Antingen finns det ingen användare med angiven användaridentitet eller så har du angivit fel lösenord. Försök igen."
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig har gått ut, hur länge det dröjer innan den går ut samt alla attribut som tillhör sessionen."
-
-msgid "Logout"
-msgstr "Logga ut"
-
-msgid "Your attributes"
-msgstr "Dina attribut"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Din session är giltig för %remaining% sekunder från nu."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Välj vilken identitetsleverantör du vill logga in med:"
-
-msgid "Remember my choice"
-msgstr "Kom ihåg mitt val"
-
-msgid "Select"
-msgstr "Välj"
-
-msgid "Select your identity provider"
-msgstr "Välj din identitetsleverantör"
-
-msgid "Sending message"
-msgstr "Skickar meddelande"
-
-msgid "Yes, continue"
-msgstr "Ja"
-
 msgid "Debug information"
 msgstr "Detaljer för felsökning"
 
@@ -298,6 +268,36 @@ msgstr "Detaljerna nedan kan vara av intresse för helpdesk eller de som sköter
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Detta fel beror troligtvis på att oväntat beteende eller felkonfigurering av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att meddela dem ovanstående felmeddelande."
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Välj vilken identitetsleverantör du vill logga in med:"
+
+msgid "Remember my choice"
+msgstr "Kom ihåg mitt val"
+
+msgid "Select"
+msgstr "Välj"
+
+msgid "Select your identity provider"
+msgstr "Välj din identitetsleverantör"
+
+msgid "Sending message"
+msgstr "Skickar meddelande"
+
+msgid "Yes, continue"
+msgstr "Ja"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig har gått ut, hur länge det dröjer innan den går ut samt alla attribut som tillhör sessionen."
+
+msgid "Logout"
+msgstr "Logga ut"
+
+msgid "Your attributes"
+msgstr "Dina attribut"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din session är giltig för %remaining% sekunder från nu."
 
 msgid "[Preferred choice]"
 msgstr "Prioriterat val"

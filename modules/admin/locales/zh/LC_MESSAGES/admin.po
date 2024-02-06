@@ -3,9 +3,21 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "配置"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "联盟"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
 msgid "Log out"
@@ -156,58 +168,11 @@ msgstr ""
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "配置"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "联盟"
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
+msgid "Certificates"
+msgstr "证书"
 
 msgid "Copy to clipboard"
 msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "退出"
-
-msgid "SAML Subject"
-msgstr ""
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp安装页面"
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr "你的属性"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "你的会话在%remaining%秒内有效"
-
-msgid "not set"
-msgstr ""
-
-msgid "Certificates"
-msgstr "证书"
 
 msgid "Deprecated"
 msgstr "已经超时"
@@ -233,6 +198,9 @@ msgstr ""
 msgid "SimpleSAMLphp Metadata"
 msgstr ""
 
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp安装页面"
+
 msgid "Tools"
 msgstr "工具"
 
@@ -257,13 +225,19 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "Back"
+msgid "SimpleSAMLphp is installed in:"
 msgstr ""
 
-msgid "Metadata"
-msgstr "元信息"
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
 
-msgid "SimpleSAMLphp Show Metadata"
+msgid "optional"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "An error occurred"
@@ -287,19 +261,45 @@ msgstr "XML元信息"
 msgid "or select a file:"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "Back"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "Metadata"
+msgstr "元信息"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
-msgid "optional"
+msgid "Authentication data"
 msgstr ""
 
-msgid "required"
+msgid "Content of jpegPhoto attribute"
 msgstr ""
 
-msgid "Test Authentication Sources"
+msgid "Format"
+msgstr ""
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "退出"
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "你的属性"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "你的会话在%remaining%秒内有效"
+
+msgid "not set"
 msgstr ""
 
 msgid "Checking your PHP installation"

@@ -12,14 +12,17 @@ msgstr "Interval yang terlalu pendek antara event single sign on."
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
 
-msgid "Missing cookie"
-msgstr "Cookie hilang"
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
 
-msgid "Retry"
-msgstr "Coba lagi"
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
 
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider"
+
+msgid "Welcome"
+msgstr "Selamat Datang"
 
 msgid "Close the web browser, and try again."
 msgstr "Tutup browser, dan coba lagi."
@@ -42,17 +45,14 @@ msgstr "Error ini mungkin disebabkan oleh:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Menggunakan tombol back dan forward pada browser web."
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
+msgid "Missing cookie"
+msgstr "Cookie hilang"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
+msgid "Retry"
+msgstr "Coba lagi"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider"
-
-msgid "Welcome"
-msgstr "Selamat Datang"
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."

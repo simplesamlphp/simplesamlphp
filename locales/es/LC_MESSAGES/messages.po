@@ -239,51 +239,6 @@ msgstr "La Autenticacion fue abortada por el usuario"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "No existe un usuario con el identificador indicado, o la contraseña indicada es incorrecta. Por favor revise el identificador de usuario e inténtelo de nuevo."
 
-msgid "Format"
-msgstr "Formato"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver si su sesión ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesión."
-
-msgid "Logout"
-msgstr "Salir"
-
-msgid "SAML Subject"
-msgstr "Identificador SAML"
-
-msgid "Your attributes"
-msgstr "Atributos"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Su sesión será valida durante %remaining% segundos."
-
-msgid "not set"
-msgstr "sin valor"
-
-msgid "Hello, Untranslated World!"
-msgstr "Hola, mundo traducido!"
-
-msgid "World"
-msgstr "Mundo"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Por favor, seleccione el proveedor de identidad donde desea autenticarse"
-
-msgid "Remember my choice"
-msgstr "Recordar mi elección"
-
-msgid "Select"
-msgstr "Seleccione"
-
-msgid "Select your identity provider"
-msgstr "Seleccione su proveedor de identidad"
-
-msgid "Sending message"
-msgstr "Enviando mensaje"
-
-msgid "Yes, continue"
-msgstr "Sí"
-
 msgid "Debug information"
 msgstr "Información de depuración"
 
@@ -313,6 +268,51 @@ msgstr "La siguiente información de depuración puede ser de utilidad para el a
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Este error se debe probablemente a un comportamiento inesperado o a una configuración incorrecta de SimpleSAMLphp. Póngase en contacto con el administrador de este servicio de conexión y envíele el mensaje de error anterior."
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Por favor, seleccione el proveedor de identidad donde desea autenticarse"
+
+msgid "Remember my choice"
+msgstr "Recordar mi elección"
+
+msgid "Select"
+msgstr "Seleccione"
+
+msgid "Select your identity provider"
+msgstr "Seleccione su proveedor de identidad"
+
+msgid "Sending message"
+msgstr "Enviando mensaje"
+
+msgid "Yes, continue"
+msgstr "Sí"
+
+msgid "Hello, Untranslated World!"
+msgstr "Hola, mundo traducido!"
+
+msgid "World"
+msgstr "Mundo"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hola, esta es la página de estado de SimpleSAMLphp. Desde aquí puede ver si su sesión ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesión."
+
+msgid "Logout"
+msgstr "Salir"
+
+msgid "SAML Subject"
+msgstr "Identificador SAML"
+
+msgid "Your attributes"
+msgstr "Atributos"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Su sesión será valida durante %remaining% segundos."
+
+msgid "not set"
+msgstr "sin valor"
 
 msgid "[Preferred choice]"
 msgstr "[Opción preference]"

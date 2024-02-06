@@ -6,9 +6,6 @@ msgstr ""
 msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
 msgstr "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho aluqulethanga inani lamaxabiso alindelekileyo."
 
-msgid "Retry"
-msgstr "Zama kwakhona"
-
 msgid "Cookies may be disabled in the web browser."
 msgstr "Iikhuki zisenokwenziwa zingasebenzi kwibhrawuza yewebhu."
 
@@ -20,3 +17,6 @@ msgstr "Le mpazamo isenokuba ibangelwe:"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Ukusebenzisa amaqhosha okuya emva naphambili kwibhrawuza yewebhu."
+
+msgid "Retry"
+msgstr "Zama kwakhona"
