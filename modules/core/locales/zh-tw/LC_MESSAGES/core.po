@@ -12,17 +12,14 @@ msgstr "單一簽入事件間隔過短。"
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "我們偵測到距離您最後一次驗證於這個服務提供者只有短短幾秒，而這可能是 SP 有點問題。"
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "若您是單一簽入程式開發人員，您的詮釋資料設定可能有問題。請確認服務提供者或驗證提供者之詮釋資料設定檔是否正確。"
+msgid "Missing cookie"
+msgstr "遺失 cookie"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "若您是個使用者，而您於此網站收到下列連結，請反映此錯誤給此站管理員。"
+msgid "Retry"
+msgstr "重試"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "服務提供者或驗證提供者之設定檔可能有問題。"
-
-msgid "Welcome"
-msgstr "歡迎"
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
 
 msgid "Close the web browser, and try again."
 msgstr "關閉網頁瀏覽器，並再試一次。"
@@ -45,14 +42,17 @@ msgstr "這個錯誤可能是因為："
 msgid "Using the back and forward buttons in the web browser."
 msgstr "於網頁瀏覽器使用上一頁及下一頁。"
 
-msgid "Missing cookie"
-msgstr "遺失 cookie"
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "若您是單一簽入程式開發人員，您的詮釋資料設定可能有問題。請確認服務提供者或驗證提供者之詮釋資料設定檔是否正確。"
 
-msgid "Retry"
-msgstr "重試"
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "若您是個使用者，而您於此網站收到下列連結，請反映此錯誤給此站管理員。"
 
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "服務提供者或驗證提供者之設定檔可能有問題。"
+
+msgid "Welcome"
+msgstr "歡迎"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。"

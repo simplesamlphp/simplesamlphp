@@ -12,17 +12,14 @@ msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, iespējams, ir problēma ar servisa piegādātāju."
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, gan pie servisa piegādātāja."
+msgid "Missing cookie"
+msgstr "Trūkst sīkdatnes"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā interneta lapā, Jums jāziņo par šo kļūdu lapas īpašniekam."
+msgid "Retry"
+msgstr "Mēģināt vēlreiz"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai identitātes piegādātāja."
-
-msgid "Welcome"
-msgstr "Laipni lūdzam"
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
 
 msgid "Close the web browser, and try again."
 msgstr "Aizveriet interneta pārlūku un mēģiniet vēlreiz."
@@ -45,14 +42,17 @@ msgstr "Kļūdu radījis:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
 
-msgid "Missing cookie"
-msgstr "Trūkst sīkdatnes"
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, gan pie servisa piegādātāja."
 
-msgid "Retry"
-msgstr "Mēģināt vēlreiz"
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā interneta lapā, Jums jāziņo par šo kļūdu lapas īpašniekam."
 
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai identitātes piegādātāja."
+
+msgid "Welcome"
+msgstr "Laipni lūdzam"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
