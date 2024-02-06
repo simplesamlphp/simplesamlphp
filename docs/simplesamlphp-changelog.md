@@ -9,6 +9,11 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`core`
+
+* Deprecated the core:StatisticsWithAttribute authproc-filter. It is now available in
+  the statistics-module and will be removed from SimpleSAMLphp in a future release.
+
 ## Version 2.1.2
 
 Released 2024-02-05

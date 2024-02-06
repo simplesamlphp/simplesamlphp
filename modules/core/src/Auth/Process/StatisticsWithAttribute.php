@@ -16,6 +16,8 @@ use function is_null;
  * Log a line in the STAT log with one attribute.
  *
  * @package SimpleSAMLphp
+ *
+ * @deprecated Use the filter from simplesamlphp/simplesamlphp-module-statistics v2.1+ instead
  */
 class StatisticsWithAttribute extends Auth\ProcessingFilter
 {
