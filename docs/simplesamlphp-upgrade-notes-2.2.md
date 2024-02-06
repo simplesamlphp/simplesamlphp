@@ -24,3 +24,6 @@ The following methods were marked `deprecated` and will be removed in a next maj
 - SimpleSAML\Error\Errorcodes::getErrorCodeMessage - Use getMessage instead
 
 The `tempdir` configuration setting was marked `deprecated`. Use `cachedir` instead.
+
+The core:StatisticsWithAttribute authproc-filter was removed from SimpleSAMLphp.
+It is now available in the statistics-module from v2.1 and up.
