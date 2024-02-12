@@ -26,11 +26,11 @@
     },
     "statistics": {
       "repository": "simplesamlphp/simplesamlphp-module-statistics",
-      "version": "^1.1"
+      "version": "^1.2"
     },
     "sqlauth": {
       "repository": "simplesamlphp/simplesamlphp-module-sqlauth",
-      "version": "^1.0"
+      "version": "^1.1"
     }
   }
 }
