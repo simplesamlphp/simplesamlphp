@@ -54,8 +54,8 @@ class Kernel extends BaseKernel
     {
         $configuration = Configuration::getInstance();
 
-        $temp = $configuration->getOptionalString('tempdir');
-        $cache = $configuration->getOptionalString('cachedir');
+        $temp = $configuration->getOptionalString('tempdir', null);
+        $cache = $configuration->getOptionalString('cachedir', null);
         $cacheDir = $cache ?? $temp;
 
         Assert::notNull($cacheDir, "Missing cachedir parameter in config.php");
