@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix backwards compatibility for mandatory cachedir-setting introduced in 2.0.9
+
 ## Version 2.0.9
 
 Released 2024-02-03
