@@ -186,33 +186,6 @@ msgstr "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML LogoutR
 msgid "An unhandled exception was thrown."
 msgstr "Käsittelemätön poikkeus heitetty"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
-
-msgid "Logout"
-msgstr "Uloskirjautuminen"
-
-msgid "Your attributes"
-msgstr "Attribuuttisi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
-
-msgid "Remember my choice"
-msgstr "Muista valintani"
-
-msgid "Select"
-msgstr "Valitse"
-
-msgid "Select your identity provider"
-msgstr "Valitse identiteettillähteesi"
-
-msgid "Yes, continue"
-msgstr "Kyllä"
-
 msgid "Debug information"
 msgstr "Virheenetsintätietoja"
 
@@ -242,6 +215,33 @@ msgstr "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää ta
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä yllä oleva virheilmoitus."
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Valitse identiteettilähteesi jossa haluat kirjautua"
+
+msgid "Remember my choice"
+msgstr "Muista valintani"
+
+msgid "Select"
+msgstr "Valitse"
+
+msgid "Select your identity provider"
+msgstr "Valitse identiteettillähteesi"
+
+msgid "Yes, continue"
+msgstr "Kyllä"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
+
+msgid "Logout"
+msgstr "Uloskirjautuminen"
+
+msgid "Your attributes"
+msgstr "Attribuuttisi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"

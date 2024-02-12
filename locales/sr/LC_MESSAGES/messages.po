@@ -239,36 +239,6 @@ msgstr "Korisnik je prekinuo proces autentifikacie"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Korisnik s navedenim korisničkim imenom ne može biti pronađen ili je lozinka koju ste uneli neispravna. Molimo proverite korisničko ime i pokušajte ponovo."
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Ovo je stranica s prikazom aktuelnog stanja vaše sesije. Na ovoj stranici možete videti je li vam je istekla sesija, koliko će još dugo vaša sesija trajati i sve atribute koji su vezani uz vašu sesiju."
-
-msgid "Logout"
-msgstr "Odjava"
-
-msgid "Your attributes"
-msgstr "Vaši atributi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša sesija će biti validna još %remaining% sekundi."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Molimo vas odaberite davaoca identiteta kod koga se želite autentifikovati:"
-
-msgid "Remember my choice"
-msgstr "Zapamti moj izbor"
-
-msgid "Select"
-msgstr "Odaberi"
-
-msgid "Select your identity provider"
-msgstr "Odaberite vašeg davaoca identiteta"
-
-msgid "Sending message"
-msgstr "Šaljem poruku"
-
-msgid "Yes, continue"
-msgstr "Da, nastavi"
-
 msgid "Debug information"
 msgstr "Informacije o greški"
 
@@ -298,6 +268,36 @@ msgstr "Informacije o grešci koje se nalaze ispod mogu biti od interesa adminis
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ova greška se verovatno desila zbog neočekivanog ponašanja, ili pogrešnih podešavanja SimpleSAMLphp-a. Kontaktirajte administratora ovog servisa i pošaljite mu poruku o grešci prikazanu iznad."
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Molimo vas odaberite davaoca identiteta kod koga se želite autentifikovati:"
+
+msgid "Remember my choice"
+msgstr "Zapamti moj izbor"
+
+msgid "Select"
+msgstr "Odaberi"
+
+msgid "Select your identity provider"
+msgstr "Odaberite vašeg davaoca identiteta"
+
+msgid "Sending message"
+msgstr "Šaljem poruku"
+
+msgid "Yes, continue"
+msgstr "Da, nastavi"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Ovo je stranica s prikazom aktuelnog stanja vaše sesije. Na ovoj stranici možete videti je li vam je istekla sesija, koliko će još dugo vaša sesija trajati i sve atribute koji su vezani uz vašu sesiju."
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "Your attributes"
+msgstr "Vaši atributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sesija će biti validna još %remaining% sekundi."
 
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"

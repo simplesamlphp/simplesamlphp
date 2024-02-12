@@ -12,14 +12,17 @@ msgstr "シングルサインオンイベントの間隔が短すぎます。"
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
 msgstr "このサービスプロバイダで最後に認証されてから数秒しか経過していないことが検出されたため、このSPに問題があると思われます。"
 
-msgid "Missing cookie"
-msgstr "クッキーが見つかりません"
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
 
-msgid "Retry"
-msgstr "再試行"
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
 
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
+
+msgid "Welcome"
+msgstr "ようこそ"
 
 msgid "Close the web browser, and try again."
 msgstr "WEBブラウザを閉じて、再度試してください。"
@@ -42,17 +45,14 @@ msgstr "このエラーの原因:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "WEBブラウザの戻るや次へのボタンを使用します。"
 
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "もしあなたが開発者でシングルサインオンシステムの構築者である場合、メタデータの設定に問題があります。アイデンティティプロバイダとサービスプロバイダの両方にメタデータが正しく設定されているか確認してください。"
+msgid "Missing cookie"
+msgstr "クッキーが見つかりません"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "もしあなたがユーザーで以下のリンクのサイトでこのエラーを受け取ったのであれば、このエラーをサイトの管理者に報告してください。"
+msgid "Retry"
+msgstr "再試行"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "これは恐らくサービスプロバイダかアイデンティティプロバイダの設定の問題です。"
-
-msgid "Welcome"
-msgstr "ようこそ"
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "ブラウザのクッキーが無効化されている可能性があります。ブラウザの設定を確認し、再度試してください。"
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "この問題が継続して起こる場合、システム管理者に報告してください。"

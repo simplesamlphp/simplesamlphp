@@ -3,9 +3,21 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Podešavanja"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federacija"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
 msgid "Log out"
@@ -156,58 +168,11 @@ msgstr ""
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Podešavanja"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federacija"
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
+msgid "Certificates"
+msgstr "Sertifikati"
 
 msgid "Copy to clipboard"
 msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Odjava"
-
-msgid "SAML Subject"
-msgstr ""
-
-msgid "SimpleSAMLphp installation page"
-msgstr "SimpleSAMLphp instalaciona stranica"
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr "Vaši atributi"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša sesija će biti validna još %remaining% sekundi."
-
-msgid "not set"
-msgstr ""
-
-msgid "Certificates"
-msgstr "Sertifikati"
 
 msgid "Deprecated"
 msgstr "Zastarelo"
@@ -233,6 +198,9 @@ msgstr ""
 msgid "SimpleSAMLphp Metadata"
 msgstr ""
 
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp instalaciona stranica"
+
 msgid "Tools"
 msgstr "Alati"
 
@@ -257,13 +225,19 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "Back"
+msgid "SimpleSAMLphp is installed in:"
 msgstr ""
 
-msgid "Metadata"
-msgstr "Metapodaci"
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
 
-msgid "SimpleSAMLphp Show Metadata"
+msgid "optional"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "Test Authentication Sources"
 msgstr ""
 
 msgid "An error occurred"
@@ -287,19 +261,45 @@ msgstr "Metapodaci u XML formatu"
 msgid "or select a file:"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
+msgid "Back"
 msgstr ""
 
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "Metadata"
+msgstr "Metapodaci"
+
+msgid "SimpleSAMLphp Show Metadata"
 msgstr ""
 
-msgid "optional"
+msgid "Authentication data"
 msgstr ""
 
-msgid "required"
+msgid "Content of jpegPhoto attribute"
 msgstr ""
 
-msgid "Test Authentication Sources"
+msgid "Format"
+msgstr ""
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Vaši atributi"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sesija će biti validna još %remaining% sekundi."
+
+msgid "not set"
 msgstr ""
 
 msgid "Checking your PHP installation"
