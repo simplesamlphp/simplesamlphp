@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix backwards compatibility for mandatory cachedir-setting introduced in 2.1.2
+
 `core`
 
 * Deprecated the core:StatisticsWithAttribute authproc-filter. It is now available in
