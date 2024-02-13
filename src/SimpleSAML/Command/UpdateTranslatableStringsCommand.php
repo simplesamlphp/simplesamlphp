@@ -34,7 +34,7 @@ use function sprintf;
 
 function cloneIteratorToTranslations( $ret, $iterator )
 {
-    while($iterator->valid()) {
+    while ($iterator->valid()) {
         $ret->addOrMerge(
             $iterator->current(),
             Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
@@ -181,8 +181,9 @@ class UpdateTranslatableStringsCommand extends Command
                     $iter = $merged->getIterator();
                     $iter->ksort();
                     $merged = cloneIteratorToTranslations(
-                        Translations::create( $merged->getDomain(), $merged->getLanguage() ),
-                        $iter );
+                        Translations::create($merged->getDomain(), $merged->getLanguage()),
+                        $iter,
+                    );
                     
                     $poGenerator->generateFile($merged, $poFile->getPathName());
                 }
