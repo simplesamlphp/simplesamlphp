@@ -7,7 +7,10 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.19.9
 
-Released TBD
+Released 2024-02-23
+
+### Final release ###
+This is the last release in the 1.19.x version branch. Extended security support ends today!
 
 * Fixed several deprecation warnings (#1790)
 * Resolved security vulnerability in Webpack dev-dependency (CVE-2023-28154)
