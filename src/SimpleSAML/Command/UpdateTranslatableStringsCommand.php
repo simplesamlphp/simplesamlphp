@@ -31,7 +31,6 @@ use function in_array;
 use function ksort;
 use function sprintf;
 
-
 function cloneIteratorToTranslations($ret, $iterator)
 {
     while ($iterator->valid()) {
@@ -39,7 +38,7 @@ function cloneIteratorToTranslations($ret, $iterator)
             $iterator->current(),
             Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
         );
-        
+
         $iterator->next();
     }
 
@@ -184,7 +183,7 @@ class UpdateTranslatableStringsCommand extends Command
                         Translations::create($merged->getDomain(), $merged->getLanguage()),
                         $iter,
                     );
-                    
+
                     $poGenerator->generateFile($merged, $poFile->getPathName());
                 }
             }
