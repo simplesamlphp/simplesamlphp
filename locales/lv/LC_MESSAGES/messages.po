@@ -263,12 +263,6 @@ msgstr "Izvēlēties"
 msgid "Select your identity provider"
 msgstr "Izvēlieties identitātes piegādātāju"
 
-msgid "Sending message"
-msgstr "Ziņas sūtīšana"
-
-msgid "Yes, continue"
-msgstr "Jā, turpināt"
-
 msgid "Debug information"
 msgstr "Atkļūdošanas infomācija"
 
@@ -298,6 +292,12 @@ msgstr "Zemāk esošā atkļūdošanas informācija var interesēt administrator
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Iespējams, kļūda radusies no neparedzētas darbības vai nepareizas SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
+
+msgid "Sending message"
+msgstr "Ziņas sūtīšana"
+
+msgid "Yes, continue"
+msgstr "Jā, turpināt"
 
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"

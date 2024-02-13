@@ -251,9 +251,6 @@ msgstr "Kies"
 msgid "Select your identity provider"
 msgstr "Kies jou identiteits verskaffer"
 
-msgid "Yes, continue"
-msgstr "Ja, voortgaan"
-
 msgid "Debug information"
 msgstr "Ontleed informasie"
 
@@ -283,6 +280,9 @@ msgstr "Die onderstaande informasie mag van hulp wees vir die stelsel administra
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die aanmeld diens en stuur die bostaande fout boodskap aan."
+
+msgid "Yes, continue"
+msgstr "Ja, voortgaan"
 
 msgid "[Preferred choice]"
 msgstr "[Verkies]"

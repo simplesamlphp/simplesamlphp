@@ -263,12 +263,6 @@ msgstr "Választ"
 msgid "Select your identity provider"
 msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
 
-msgid "Sending message"
-msgstr "Üzenet küldése"
-
-msgid "Yes, continue"
-msgstr "Igen, elfogadom"
-
 msgid "Debug information"
 msgstr "Bővebb információ a hibáról"
 
@@ -298,6 +292,12 @@ msgstr "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdes
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
+
+msgid "Sending message"
+msgstr "Üzenet küldése"
+
+msgid "Yes, continue"
+msgstr "Igen, elfogadom"
 
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"

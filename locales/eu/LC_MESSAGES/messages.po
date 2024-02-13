@@ -263,12 +263,6 @@ msgstr "Hautatu"
 msgid "Select your identity provider"
 msgstr "Hauta ezazu zure identitate hornitzailea"
 
-msgid "Sending message"
-msgstr "Mezua bidaltzen"
-
-msgid "Yes, continue"
-msgstr "Bai, jarraitu"
-
 msgid "Debug information"
 msgstr "Arazketa informazioa"
 
@@ -298,6 +292,12 @@ msgstr "Arazketa informazio hau erabilgarria izan daiteke sistemaren administrat
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Errore hau jazo izana SimpleSAMLphp-en ezusteko jokaera edo konfigurazio okerra izan da. Jar zaitez harremanetan identifikazio zerbitzu honen administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
+
+msgid "Sending message"
+msgstr "Mezua bidaltzen"
+
+msgid "Yes, continue"
+msgstr "Bai, jarraitu"
 
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"

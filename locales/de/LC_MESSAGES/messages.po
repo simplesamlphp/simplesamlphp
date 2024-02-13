@@ -263,12 +263,6 @@ msgstr "Auswahl"
 msgid "Select your identity provider"
 msgstr "Wählen Sie Ihren Identity Provider"
 
-msgid "Sending message"
-msgstr "Sende Nachricht"
-
-msgid "Yes, continue"
-msgstr "Ja, ich stimme zu"
-
 msgid "Debug information"
 msgstr "Debug-Information"
 
@@ -298,6 +292,12 @@ msgstr "Die unten angegebene Debug-Information kann für den Administrator oder 
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von SimpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit."
+
+msgid "Sending message"
+msgstr "Sende Nachricht"
+
+msgid "Yes, continue"
+msgstr "Ja, ich stimme zu"
 
 msgid "[Preferred choice]"
 msgstr "[Bevorzugte Auswahl]"

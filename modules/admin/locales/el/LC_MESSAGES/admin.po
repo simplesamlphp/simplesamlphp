@@ -3,11 +3,23 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Ρυθμίσεις"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Ομοσπονδία"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 msgid "Log out"
 msgstr ""
 
@@ -156,58 +168,11 @@ msgstr ""
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Ρυθμίσεις"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Ομοσπονδία"
-
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
+msgid "Certificates"
+msgstr "Πιστοποιητικά"
 
 msgid "Copy to clipboard"
 msgstr ""
-
-msgid "Format"
-msgstr "Μορφή (format)"
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Αποσύνδεση"
-
-msgid "SAML Subject"
-msgstr "Υποκείμενο (subject) SAML"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "Σελίδα εγκατάστασης SimpleSAMLphp"
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr "Πληροφορίες"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
-
-msgid "not set"
-msgstr "δεν έχει οριστεί"
-
-msgid "Certificates"
-msgstr "Πιστοποιητικά"
 
 msgid "Deprecated"
 msgstr "Υπό απόσυρση"
@@ -233,6 +198,9 @@ msgstr ""
 msgid "SimpleSAMLphp Metadata"
 msgstr ""
 
+msgid "SimpleSAMLphp installation page"
+msgstr "Σελίδα εγκατάστασης SimpleSAMLphp"
+
 msgid "Tools"
 msgstr "Εργαλεία"
 
@@ -257,6 +225,9 @@ msgstr ""
 msgid "new"
 msgstr ""
 
+msgid "Test Authentication Sources"
+msgstr ""
+
 msgid "Back"
 msgstr ""
 
@@ -264,6 +235,50 @@ msgid "Metadata"
 msgstr "Μεταδεδομένα"
 
 msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Content of jpegPhoto attribute"
+msgstr ""
+
+msgid "Format"
+msgstr "Μορφή (format)"
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
+
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "SAML Subject"
+msgstr "Υποκείμενο (subject) SAML"
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Your attributes"
+msgstr "Πληροφορίες"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+
+msgid "not set"
+msgstr "δεν έχει οριστεί"
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
+msgid "optional"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "An error occurred"
@@ -286,21 +301,6 @@ msgstr "Αναλυτής μεταδεδομένων XML"
 
 msgid "or select a file:"
 msgstr "ή επιλέξτε αρχείο"
-
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
-msgstr ""
-
-msgid "optional"
-msgstr ""
-
-msgid "required"
-msgstr ""
-
-msgid "Test Authentication Sources"
-msgstr ""
 
 msgid "Checking your PHP installation"
 msgstr "Έλεγχος εγκατάστασης PHP"

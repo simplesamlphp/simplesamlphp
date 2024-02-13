@@ -263,12 +263,6 @@ msgstr "Selectați"
 msgid "Select your identity provider"
 msgstr "Alegeți furnizorul de identitate"
 
-msgid "Sending message"
-msgstr "Se trimite mesajul"
-
-msgid "Yes, continue"
-msgstr "Da, continuă"
-
 msgid "Debug information"
 msgstr "Informații de depanare"
 
@@ -298,6 +292,12 @@ msgstr "Informațiile de depanare de mai jos pot fi importante pentru administra
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Această eroare a apărut probabil din cauza unui comportament neașteptat sau a erorilor de configurare a SimpleSAMLphp. Vă rugăm să contactați administratorul acestui serviciu și să-i furnizați mesajul de eroare de mai sus."
+
+msgid "Sending message"
+msgstr "Se trimite mesajul"
+
+msgid "Yes, continue"
+msgstr "Da, continuă"
 
 msgid "[Preferred choice]"
 msgstr "[Varianta preferată]"

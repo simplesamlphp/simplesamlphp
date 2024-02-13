@@ -272,12 +272,6 @@ msgstr "選擇"
 msgid "Select your identity provider"
 msgstr "選擇你的識別提供者(idp)"
 
-msgid "Sending message"
-msgstr "傳送訊息"
-
-msgid "Yes, continue"
-msgstr "是，繼續"
-
 msgid "Debug information"
 msgstr "除錯資訊"
 
@@ -307,6 +301,12 @@ msgstr "管理員/服務台可能對下列除錯資訊有興趣："
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
+
+msgid "Sending message"
+msgstr "傳送訊息"
+
+msgid "Yes, continue"
+msgstr "是，繼續"
 
 msgid "[Preferred choice]"
 msgstr "喜好選擇"

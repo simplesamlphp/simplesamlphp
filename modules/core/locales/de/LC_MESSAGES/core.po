@@ -3,24 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Retry login"
-msgstr "Versuche Anmeldung erneut"
-
-msgid "Too short interval between single sign on events."
-msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
-
-msgid "Missing cookie"
-msgstr "Cookie fehlt"
-
-msgid "Retry"
-msgstr "Erneut versuchen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut."
-
 msgid "Close the web browser, and try again."
 msgstr "Schließe den Web-Browser und versuche es erneut."
 
@@ -42,6 +24,15 @@ msgstr "Dieser Fehler könnte durch folgendes verursacht werden:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Das Benutzen der Zurück- und Vorwärts-Schaltflächen im Web-Browser."
 
+msgid "Missing cookie"
+msgstr "Cookie fehlt"
+
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte überprüfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut."
+
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den benutzten Metadaten etwas nicht. Überprüfen Sie die Metadaten des Identity Providers und des Service Providers."
 
@@ -53,6 +44,15 @@ msgstr "Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service
 
 msgid "Welcome"
 msgstr "Willkommen"
+
+msgid "Retry login"
+msgstr "Versuche Anmeldung erneut"
+
+msgid "Too short interval between single sign on events."
+msgstr "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Wenn das Problem weiter besteht, kannst du diesen Fehler den Systemadministratoren melden."

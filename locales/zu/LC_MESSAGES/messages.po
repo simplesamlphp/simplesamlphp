@@ -283,9 +283,6 @@ msgstr "Khetha"
 msgid "Select your identity provider"
 msgstr "Khetha umhlinzeki wakho kamazisi"
 
-msgid "Yes, continue"
-msgstr "Yebo, qhubeka"
-
 msgid "Debug information"
 msgstr "Ulwazi lokususwa kwephutha"
 
@@ -312,6 +309,9 @@ msgstr "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ides
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
+
+msgid "Yes, continue"
+msgstr "Yebo, qhubeka"
 
 msgid "Next"
 msgstr "Okulandelayo"

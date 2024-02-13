@@ -3,24 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Retry login"
-msgstr "Přihlašte se znovu."
-
-msgid "Too short interval between single sign on events."
-msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
-
-msgid "Missing cookie"
-msgstr "Chybějící cookie"
-
-msgid "Retry"
-msgstr "Opakujte"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
-
 msgid "Close the web browser, and try again."
 msgstr "Zavřít webový prohlížeč a zkusit znovu."
 
@@ -42,6 +24,15 @@ msgstr "Tato chyba může být způsobená:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
 
+msgid "Missing cookie"
+msgstr "Chybějící cookie"
+
+msgid "Retry"
+msgstr "Opakujte"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
+
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována správně jak u poskytovatele identity tak u poskytovatele služby."
 
@@ -53,6 +44,15 @@ msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele
 
 msgid "Welcome"
 msgstr "Vítejte"
+
+msgid "Retry login"
+msgstr "Přihlašte se znovu."
+
+msgid "Too short interval between single sign on events."
+msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."

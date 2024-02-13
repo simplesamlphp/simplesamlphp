@@ -3,24 +3,6 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
-msgid "Retry login"
-msgstr "Pokušaj se prijaviti ponovo"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
-
-msgid "Missing cookie"
-msgstr "Nedostaje kolačić (cookie)"
-
-msgid "Retry"
-msgstr "Pokušaj ponovo"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
-
 msgid "Close the web browser, and try again."
 msgstr "Zatvorite web pretraživač i pokušajte ponovo."
 
@@ -42,6 +24,15 @@ msgstr "Ova greška može biti uzrokovana:"
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u web pretraživaču."
 
+msgid "Missing cookie"
+msgstr "Nedostaje kolačić (cookie)"
+
+msgid "Retry"
+msgstr "Pokušaj ponovo"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
+
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
 
@@ -53,6 +44,15 @@ msgstr "Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca i
 
 msgid "Welcome"
 msgstr "Dobrodošli"
+
+msgid "Retry login"
+msgstr "Pokušaj se prijaviti ponovo"
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratak interval između uzastopnih SSO prijava."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Ako se ova greška bude i dalje pojavljivala, možete je prijaviti administratorima."

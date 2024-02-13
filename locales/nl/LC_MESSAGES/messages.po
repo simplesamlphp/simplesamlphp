@@ -292,12 +292,6 @@ msgstr "Kies"
 msgid "Select your identity provider"
 msgstr "Kies je Identity Provider"
 
-msgid "Sending message"
-msgstr "Bericht"
-
-msgid "Yes, continue"
-msgstr "Ja, ik ga akkoord"
-
 msgid "Debug information"
 msgstr "Debuginformatie"
 
@@ -327,6 +321,12 @@ msgstr "Onderstaande debuginformatie kan van belang zijn voor de beheerder / hel
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van SimpleSAMLphp. Meld dit bij de beheerder van deze authenticatiedienst, en geef bovenstaande melding door."
+
+msgid "Sending message"
+msgstr "Bericht"
+
+msgid "Yes, continue"
+msgstr "Ja, ik ga akkoord"
 
 msgid "Back"
 msgstr "Terug"

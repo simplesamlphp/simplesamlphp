@@ -263,12 +263,6 @@ msgstr "Izberite"
 msgid "Select your identity provider"
 msgstr "Izberite IdP domače organizacije"
 
-msgid "Sending message"
-msgstr "Pošiljanje sporočila"
-
-msgid "Yes, continue"
-msgstr "Da, nadaljuj"
-
 msgid "Debug information"
 msgstr "Pomoč pri odpravljanju napak (debug)"
 
@@ -298,6 +292,12 @@ msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako."
+
+msgid "Sending message"
+msgstr "Pošiljanje sporočila"
+
+msgid "Yes, continue"
+msgstr "Da, nadaljuj"
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"

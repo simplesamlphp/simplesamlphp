@@ -210,9 +210,6 @@ msgstr "Valitse"
 msgid "Select your identity provider"
 msgstr "Valitse identiteettillähteesi"
 
-msgid "Yes, continue"
-msgstr "Kyllä"
-
 msgid "Debug information"
 msgstr "Virheenetsintätietoja"
 
@@ -242,6 +239,9 @@ msgstr "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää ta
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä yllä oleva virheilmoitus."
+
+msgid "Yes, continue"
+msgstr "Kyllä"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"

@@ -3,11 +3,23 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
+msgid "Configuration"
+msgstr "Konfigurácia"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr "Test"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr "Federácia"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
 msgid "Log out"
 msgstr "Odhlásiť sa"
 
@@ -160,58 +172,11 @@ msgstr "ADFS SP metadáta"
 msgid "ADFS IdP metadata"
 msgstr "ADFS IdP metadáta"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
-msgid "Configuration"
-msgstr "Konfigurácia"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
-msgstr "Test"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
-msgstr "Federácia"
-
-msgid "Authentication data"
-msgstr "Autentifikačné dáta"
-
-msgid "Content of jpegPhoto attribute"
-msgstr "Obsah atribútu jpegPhoto"
+msgid "Certificates"
+msgstr "Certifikáty"
 
 msgid "Copy to clipboard"
 msgstr "Kopírovať do schránky"
-
-msgid "Format"
-msgstr "Formát"
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr "Odhlásenie"
-
-msgid "SAML Subject"
-msgstr "SAML Subjekt"
-
-msgid "SimpleSAMLphp installation page"
-msgstr "Inštalačná stránka SimpleSAMLphp"
-
-msgid "Technical information"
-msgstr "Technické informácie"
-
-msgid "Your attributes"
-msgstr "Vaše atribúty"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
-
-msgid "not set"
-msgstr "nenastavené"
-
-msgid "Certificates"
-msgstr "Certifikáty"
 
 msgid "Deprecated"
 msgstr "Zastaralé"
@@ -237,6 +202,9 @@ msgstr "Vyhľadávanie"
 msgid "SimpleSAMLphp Metadata"
 msgstr "SimpleSAMLphp metadáta"
 
+msgid "SimpleSAMLphp installation page"
+msgstr "Inštalačná stránka SimpleSAMLphp"
+
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -261,6 +229,9 @@ msgstr "expiruje"
 msgid "new"
 msgstr "nové"
 
+msgid "Test Authentication Sources"
+msgstr "Test zdrojov autentifikácie"
+
 msgid "Back"
 msgstr "Späť"
 
@@ -270,26 +241,37 @@ msgstr "Metadáta"
 msgid "SimpleSAMLphp Show Metadata"
 msgstr "SimpleSAMLphp Zobraziť metadáta"
 
-msgid "An error occurred"
-msgstr "Nastala chyba"
+msgid "Authentication data"
+msgstr "Autentifikačné dáta"
 
-msgid "Converted metadata"
-msgstr "Konvertované metadáta"
+msgid "Content of jpegPhoto attribute"
+msgstr "Obsah atribútu jpegPhoto"
 
-msgid "Metadata parser"
-msgstr "Parser metadát"
+msgid "Format"
+msgstr "Formát"
 
-msgid "No file selected."
-msgstr "Nevybraný žiadny súbor."
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
 
-msgid "Parse"
-msgstr "Parsovať"
+msgid "Logout"
+msgstr "Odhlásenie"
 
-msgid "XML metadata"
-msgstr "XML metadáta"
+msgid "SAML Subject"
+msgstr "SAML Subjekt"
 
-msgid "or select a file:"
-msgstr "alebo vyberte súbor:"
+msgid "Technical information"
+msgstr "Technické informácie"
+
+msgid "Your attributes"
+msgstr "Vaše atribúty"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
+
+msgid "not set"
+msgstr "nenastavené"
 
 msgid "Details"
 msgstr "Detaily"
@@ -321,8 +303,26 @@ msgstr "voliteľné"
 msgid "required"
 msgstr "vyžadované"
 
-msgid "Test Authentication Sources"
-msgstr "Test zdrojov autentifikácie"
+msgid "An error occurred"
+msgstr "Nastala chyba"
+
+msgid "Converted metadata"
+msgstr "Konvertované metadáta"
+
+msgid "Metadata parser"
+msgstr "Parser metadát"
+
+msgid "No file selected."
+msgstr "Nevybraný žiadny súbor."
+
+msgid "Parse"
+msgstr "Parsovať"
+
+msgid "XML metadata"
+msgstr "XML metadáta"
+
+msgid "or select a file:"
+msgstr "alebo vyberte súbor:"
 
 msgid "Checks"
 msgstr ""

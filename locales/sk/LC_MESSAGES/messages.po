@@ -259,6 +259,12 @@ msgstr "Autentifikácia bola prerušená užívateľom"
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
 msgstr "Buď sa užívateľ s týmto prihlasovacím menom nenašiel, alebo je zadané heslo nesprávne. Skontrolujte prosím prihlasovacie meno a heslo a skúste to znovu."
 
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "World"
+msgstr "Svet"
+
 msgid "Authentication status"
 msgstr "Stav autentifikácie"
 
@@ -295,15 +301,6 @@ msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
 msgid "not set"
 msgstr "nenastavené"
 
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
-
-msgid "Language"
-msgstr "Jazyk"
-
 msgid "No identity providers found. Cannot continue."
 msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
 
@@ -319,17 +316,8 @@ msgstr "Vybrať"
 msgid "Select your identity provider"
 msgstr "Vyberte si poskytovateľa identity"
 
-msgid "Sending message"
-msgstr "Odosiela sa správa"
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
-
-msgid "Warning"
-msgstr "Upozornenie"
-
-msgid "Yes, continue"
-msgstr "Áno, pokračovať"
+msgid "Language"
+msgstr "Jazyk"
 
 msgid "Debug information"
 msgstr "Debug informácie"
@@ -360,6 +348,18 @@ msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo pod
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
+
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
 
 msgid "Back"
 msgstr "Späť"
