@@ -31,6 +31,22 @@ use function in_array;
 use function ksort;
 use function sprintf;
 
+
+function cloneIteratorToTranslations( $ret, $iterator )
+{
+    while($iterator->valid()) {
+        $ret->addOrMerge(
+            $iterator->current(),
+            Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
+        );
+        
+        $iterator->next();
+    }
+
+    return $ret;
+}
+
+
 class UpdateTranslatableStringsCommand extends Command
 {
     /**
@@ -159,6 +175,15 @@ class UpdateTranslatableStringsCommand extends Command
                         Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
                     );
 
+                    //
+                    // Sort the translations in a predictable way
+                    //
+                    $iter = $merged->getIterator();
+                    $iter->ksort();
+                    $merged = cloneIteratorToTranslations(
+                        Translations::create( $merged->getDomain(), $merged->getLanguage() ),
+                        $iter );
+                    
                     $poGenerator->generateFile($merged, $poFile->getPathName());
                 }
             }
