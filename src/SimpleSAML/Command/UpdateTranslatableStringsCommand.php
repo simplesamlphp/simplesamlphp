@@ -31,19 +31,6 @@ use function in_array;
 use function ksort;
 use function sprintf;
 
-function cloneIteratorToTranslations($ret, $iterator)
-{
-    while ($iterator->valid()) {
-        $ret->addOrMerge(
-            $iterator->current(),
-            Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
-        );
-
-        $iterator->next();
-    }
-
-    return $ret;
-}
 
 
 class UpdateTranslatableStringsCommand extends Command
@@ -79,6 +66,29 @@ class UpdateTranslatableStringsCommand extends Command
         );
     }
 
+    /**
+     * Clone the entries from $iterator into the passed Translations object.
+     * It is expected that $iterator was made by getIterator() on Translations.
+     * This can be useful as the entries are cloned in the iterator order.
+     * 
+     * @param Gettext\Translations $ret
+     * @param iterable $iterator
+     * @return $ret
+    */
+    protected function cloneIteratorToTranslations( Translations $ret, iterable $iterator): Translations
+    {
+        while ($iterator->valid()) {
+            $ret->addOrMerge(
+                $iterator->current(),
+                Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
+            );
+            
+            $iterator->next();
+        }
+        
+        return $ret;
+    }
+    
 
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
@@ -179,7 +189,7 @@ class UpdateTranslatableStringsCommand extends Command
                     //
                     $iter = $merged->getIterator();
                     $iter->ksort();
-                    $merged = cloneIteratorToTranslations(
+                    $merged = $this->cloneIteratorToTranslations(
                         Translations::create($merged->getDomain(), $merged->getLanguage()),
                         $iter,
                     );
