@@ -32,7 +32,7 @@ use function ksort;
 use function sprintf;
 
 
-function cloneIteratorToTranslations( $ret, $iterator )
+function cloneIteratorToTranslations($ret, $iterator)
 {
     while ($iterator->valid()) {
         $ret->addOrMerge(
