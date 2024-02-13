@@ -5,11 +5,16 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.10
+## Version 2.0.11
 
 Released TBD
 
+## Version 2.0.10
+
+Released 2024-02-13
+
 * Fix backwards compatibility for mandatory cachedir-setting introduced in 2.0.9
+* Bump the `composer` dependency (CVE-2024-24821)
 
 ## Version 2.0.9
 
