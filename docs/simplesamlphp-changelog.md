@@ -40,6 +40,8 @@ Released 2024-02-03
 * Fix serialization for the NameID element
 * Fix inheritance - There is no relation between BaseID and NameID
 
+** Clear your session store after updating, because old serialized sessions can no longer be unserialized **
+
 ## Version 2.0.8
 
 Released 2023-11-28
