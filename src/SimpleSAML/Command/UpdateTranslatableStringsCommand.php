@@ -73,7 +73,7 @@ class UpdateTranslatableStringsCommand extends Command
      * @param iterable $iterator
      * @return $ret
      */
-    protected function cloneIteratorToTranslations(Translations $ret,iterable $iterator): Translations
+    protected function cloneIteratorToTranslations(Translations $ret, iterable $iterator): Translations
     {
         while ($iterator->valid()) {
             $ret->addOrMerge(
