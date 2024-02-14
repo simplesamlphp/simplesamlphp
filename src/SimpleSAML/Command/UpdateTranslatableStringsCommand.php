@@ -31,8 +31,6 @@ use function in_array;
 use function ksort;
 use function sprintf;
 
-
-
 class UpdateTranslatableStringsCommand extends Command
 {
     /**
@@ -70,25 +68,22 @@ class UpdateTranslatableStringsCommand extends Command
      * Clone the entries from $iterator into the passed Translations object.
      * It is expected that $iterator was made by getIterator() on Translations.
      * This can be useful as the entries are cloned in the iterator order.
-     * 
+     *
      * @param Gettext\Translations $ret
      * @param iterable $iterator
      * @return $ret
-    */
-    protected function cloneIteratorToTranslations( Translations $ret, iterable $iterator): Translations
+     */
+    protected function cloneIteratorToTranslations(Translations $ret,iterable $iterator): Translations
     {
         while ($iterator->valid()) {
             $ret->addOrMerge(
                 $iterator->current(),
                 Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
             );
-            
             $iterator->next();
         }
-        
         return $ret;
     }
-    
 
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
