@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
@@ -12,26 +11,14 @@ msgstr "Talán a böngészőben nincsenek engedélyezve a sütik (cookie)."
 msgid "Go back to the previous page and try again."
 msgstr "Menjen vissza az előző oldalra, majd próbálja ismét."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "Javaslat a probléma elhárítására:"
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Ezen a gépen futó (hosted) Shibboleth 1.3 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)"
 
-msgid "This error may be caused by:"
-msgstr "Az alábbi hibát okozhatta:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Használja a böngésző előre, ill. vissza gombjait"
-
-msgid "Missing cookie"
-msgstr "Hiányzó süti (cookie)"
-
-msgid "Retry"
-msgstr "Újra"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Ha a probléma állandónak tűnik, kérjük, jelezze ezt az oldal adminisztrátorának."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ha ön az oldal üzemeltetője, úgy javasoljuk, ellenőrizze a metaadat beállításokat mint IdP-, mind SP oldalon."
@@ -39,29 +26,20 @@ msgstr "Ha ön az oldal üzemeltetője, úgy javasoljuk, ellenőrizze a metaadat
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Amennyiben ön, mint felhasználó keveredett erre az oldalra, úgy kérjük, a hibával keresse az oldal adminisztrátorát."
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Valószínűleg valamilyen konfigurációs probléma okozta hiba, amely lehet akár IdP-, akár SP-oldalon."
+msgid "Missing cookie"
+msgstr "Hiányzó süti (cookie)"
 
-msgid "Welcome"
-msgstr "Üdvözöljük"
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "A böngésző a legutóbb bezárt füleket újranyitva indult."
+
+msgid "Report this error"
+msgstr "A hiba jelentése"
+
+msgid "Retry"
+msgstr "Újra"
 
 msgid "Retry login"
 msgstr "Újbóli belépés"
-
-msgid "Too short interval between single sign on events."
-msgstr "Túl kevés idő telt el a belépési kísérletek között."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Ha a probléma állandónak tűnik, kérjük, jelezze ezt az oldal adminisztrátorának."
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Ezen a gépen futó (hosted) Shibboleth 1.3 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)"
-
-msgid "We were unable to locate the state information for the current request."
-msgstr "Nem lehet beazonosítani a kéréshez tartozó állapotinformációt."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP példa - teszt bejelentkezés saját Shibboleth 1.3 IdP keresztül"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP példa - teszt bejelentkezés saját Shibboleth 1.3 Id
 msgid "State information lost"
 msgstr "Elvezett az állapotinformácó"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Javaslat a probléma elhárítására:"
 
-msgid "Report this error"
-msgstr "A hiba jelentése"
+msgid "This error may be caused by:"
+msgstr "Az alábbi hibát okozhatta:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Valószínűleg valamilyen konfigurációs probléma okozta hiba, amely lehet akár IdP-, akár SP-oldalon."
+
+msgid "Too short interval between single sign on events."
+msgstr "Túl kevés idő telt el a belépési kísérletek között."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Használja a böngésző előre, ill. vissza gombjait"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mindössze néhány másodperc telt el az SP-hez történő, legutóbbi azonosítás óta. Ez nem normális működés, úgy tűnik, valami probléma lépett fel az SP-nél."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nem lehet beazonosítani a kéréshez tartozó állapotinformációt."
+
+msgid "Welcome"
+msgstr "Üdvözöljük"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Úgy tűnik, az ön böngészőjében nincsenek engedélyezve a sütik (cookie) használata. Kérjük ellenőrizze beállításait, majd próbálja újra."

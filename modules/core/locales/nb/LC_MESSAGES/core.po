@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
@@ -12,26 +11,14 @@ msgstr "At informasjonskapsler ikke er aktivert i nettleseren."
 msgid "Go back to the previous page and try again."
 msgstr "Gå tilbake til forrige side og prøv på nytt."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Starte nettleseren med faner lagret fra forrige gang."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "Forslag for å løse dette problemet:"
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)"
 
-msgid "This error may be caused by:"
-msgstr "Denne feilen kan være forårsaket av:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
-
-msgid "Missing cookie"
-msgstr "Mangler informasjonskapsel"
-
-msgid "Retry"
-msgstr "Prøv igjen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Hvis du er en utvikler som setter opp en \"single sign-on\" løsning, så har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos både identitetsleverandøren og tjenesteleverandøren."
@@ -39,29 +26,20 @@ msgstr "Hvis du er en utvikler som setter opp en \"single sign-on\" løsning, s�
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link på en nettside, så bør du rapportere denne feilen til eieren av den nettsiden."
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
+msgid "Missing cookie"
+msgstr "Mangler informasjonskapsel"
 
-msgid "Welcome"
-msgstr "Velkommen"
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Starte nettleseren med faner lagret fra forrige gang."
+
+msgid "Report this error"
+msgstr "Rapporter denne feilen"
+
+msgid "Retry"
+msgstr "Prøv igjen"
 
 msgid "Retry login"
 msgstr "Forsøk å logge inn på nytt"
-
-msgid "Too short interval between single sign on events."
-msgstr "For kort intervall imellom innloggingsforespørsler"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene."
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)"
-
-msgid "We were unable to locate the state information for the current request."
-msgstr "Vi kunne ikke finne tilstandsinformasjonen for denne forespørselen."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din 
 msgid "State information lost"
 msgstr "Tilstandsinformasjon tapt"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Forslag for å løse dette problemet:"
 
-msgid "Report this error"
-msgstr "Rapporter denne feilen"
+msgid "This error may be caused by:"
+msgstr "Denne feilen kan være forårsaket av:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverandøren eller identitetsleverandøren."
+
+msgid "Too short interval between single sign on events."
+msgstr "For kort intervall imellom innloggingsforespørsler"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har detektert at det er bare noen få sekunder siden du sist ble autentisert på denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Vi kunne ikke finne tilstandsinformasjonen for denne forespørselen."
+
+msgid "Welcome"
+msgstr "Velkommen"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Du ser ut til å ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og prøv igjen."

@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
@@ -12,26 +11,14 @@ msgstr "الكوكيز غير منشطة بمتصفحك"
 msgid "Go back to the previous page and try again."
 msgstr "ارجع للصفحة السابقة و حاول مرة اخري"
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "البيانات الوصفية/الميتاداتا لهوية مقدم Shibboleth 1.3 الضيف (تم تجهيزها اتوماتيكياً)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "اقتراحات لحل المشكلة "
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "البيانات الوصفية/الميتاداتا لمقدم Shibboleth 1.3 الضيف (تم تجهيزها اتوماتيكياً)"
 
-msgid "This error may be caused by:"
-msgstr "سبب حدوث هذا الخطأ قد يكون:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
-
-msgid "Missing cookie"
-msgstr "ألكوكيز المفقودة"
-
-msgid "Retry"
-msgstr "اعد المحاولة"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
@@ -39,32 +26,23 @@ msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لرابط بموقع ما, ينبغي عليك الابلاغ عن هذا الاشكال لمالك  الموقع المعني"
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
+msgid "Metadata"
+msgstr "البيانات الوصفية/الميتاداتا "
 
-msgid "Welcome"
-msgstr "مرحباً"
+msgid "Missing cookie"
+msgstr "ألكوكيز المفقودة"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "فتح متصفحك مستخدما معلومات محفوظة من المرة السابقة"
+
+msgid "Report this error"
+msgstr "بلغ عن هذا الخطأ "
+
+msgid "Retry"
+msgstr "اعد المحاولة"
 
 msgid "Retry login"
 msgstr "اعد تسجيل الدخول"
-
-msgid "Too short interval between single sign on events."
-msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا بلغ إدارة الموقع"
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "البيانات الوصفية/الميتاداتا لمقدم Shibboleth 1.3 الضيف (تم تجهيزها اتوماتيكياً)"
-
-msgid "We were unable to locate the state information for the current request."
-msgstr "لم نستطع تحديد المعلومات المفقودة للطلب الحالي"
-
-msgid "Metadata"
-msgstr "البيانات الوصفية/الميتاداتا "
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "مثال Shibboleth 1.3 SP- اختبر تسجيل الدخول مستخدماً هوية Shib IdP"
@@ -72,8 +50,29 @@ msgstr "مثال Shibboleth 1.3 SP- اختبر تسجيل الدخول مستخ�
 msgid "State information lost"
 msgstr "حدد المعلومات المفقودة"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "البيانات الوصفية/الميتاداتا لهوية مقدم Shibboleth 1.3 الضيف (تم تجهيزها اتوماتيكياً)"
+msgid "Suggestions for resolving this problem:"
+msgstr "اقتراحات لحل المشكلة "
 
-msgid "Report this error"
-msgstr "بلغ عن هذا الخطأ "
+msgid "This error may be caused by:"
+msgstr "سبب حدوث هذا الخطأ قد يكون:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "من الارجح ان هذا الاشكال نابع اما من  مشكلة بالمخدم أو مشكلة بمحدد الهوية"
+
+msgid "Too short interval between single sign on events."
+msgstr "فترات قصيرة جداً بين محاولات تسجيل الدخول الموحد "
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "استخدام أزرار الرجوع للخلف و الامام بمتصفحك"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "يبدو انك قد قمت بتصديق الدخول عدة مرات لمقدم هذه الخدمة خلال الثواني القليلة الماضية مما يقودنا للاعتقاد بوجود مشكلة ما بهذا ال SP "
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "لم نستطع تحديد المعلومات المفقودة للطلب الحالي"
+
+msgid "Welcome"
+msgstr "مرحباً"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "يبدو انك قد عطلت الكوكيز بمتصفحك. قم رجاءا بمراجعة إعدادات متصفحك ثم حاول مرة اخري"

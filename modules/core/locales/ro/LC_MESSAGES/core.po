@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
@@ -12,26 +11,14 @@ msgstr "Browser-ul are deactivate <i>cookies</i>."
 msgid "Go back to the previous page and try again."
 msgstr "Accesați pagina anterioară și încercați din nou."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metadate pentru furnizorul de identitate Shibboleth 1.3 găzduit (generate automat)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "Sugestii pentru rezolvarea acestei probleme:"
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Metadate pentru furnizorul de servicii Shibboleth 1.3 găzduit (generate automat)"
 
-msgid "This error may be caused by:"
-msgstr "Această eroare poate fi cauzată de:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
-
-msgid "Missing cookie"
-msgstr "<i>Cookie</i> lipsă"
-
-msgid "Retry"
-msgstr "Încearcă din nou"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Dacă problema persistă, anunțați administratorii de sistem."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Dacă sunteți dezvoltator care implementează o soluție <i>single sign-on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să verificați configurarea corectă a metadatelor, atât la furnizorul de identitate cât și la furnizorul de servicii."
@@ -39,29 +26,20 @@ msgstr "Dacă sunteți dezvoltator care implementează o soluție <i>single sign
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Dacă sunteți un utilizator care a primit acest mesaj de eroare în urma utilizării unui link din alt sit, vă rugăm să anunțați această eroare deținătorului sitului respectiv."
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Probabil există o problemă de configurare, fie la furnizorul de servicii fie la furnizorul de identitate."
+msgid "Missing cookie"
+msgstr "<i>Cookie</i> lipsă"
 
-msgid "Welcome"
-msgstr "Bine ați venit"
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
+
+msgid "Report this error"
+msgstr "Vă rugăm să anunțați această eroare"
+
+msgid "Retry"
+msgstr "Încearcă din nou"
 
 msgid "Retry login"
 msgstr "Încercați din nou"
-
-msgid "Too short interval between single sign on events."
-msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "A fost detectat faptul că v-ați autentificat în urmă cu doar câteva secunde cu acest furnizor de servicii, se va considera că există o problemă cu acest furnizor de servicii."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Dacă problema persistă, anunțați administratorii de sistem."
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Metadate pentru furnizorul de servicii Shibboleth 1.3 găzduit (generate automat)"
-
-msgid "We were unable to locate the state information for the current request."
-msgstr "Nu a fost posibilă localizarea informațiilor de stare pentru cererea curentă."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentificării prin furnizorul dumneavoastră de identitate Shib"
@@ -69,8 +47,29 @@ msgstr "Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentificării p
 msgid "State information lost"
 msgstr "Informațiile de stare au fost pierdute"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metadate pentru furnizorul de identitate Shibboleth 1.3 găzduit (generate automat)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Sugestii pentru rezolvarea acestei probleme:"
 
-msgid "Report this error"
-msgstr "Vă rugăm să anunțați această eroare"
+msgid "This error may be caused by:"
+msgstr "Această eroare poate fi cauzată de:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Probabil există o problemă de configurare, fie la furnizorul de servicii fie la furnizorul de identitate."
+
+msgid "Too short interval between single sign on events."
+msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "A fost detectat faptul că v-ați autentificat în urmă cu doar câteva secunde cu acest furnizor de servicii, se va considera că există o problemă cu acest furnizor de servicii."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nu a fost posibilă localizarea informațiilor de stare pentru cererea curentă."
+
+msgid "Welcome"
+msgstr "Bine ați venit"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm să verificați configurarea browser-ului după care încercați din nou."

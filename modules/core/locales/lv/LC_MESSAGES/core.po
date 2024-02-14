@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
@@ -12,26 +11,14 @@ msgstr "Iespējams, interneta pārlūkā ir aizliegtas sīkdatnes."
 msgid "Go back to the previous page and try again."
 msgstr "Ejiet atpakaļ uz iepriekšējo lapu un mēģiniet vēlreiz."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Interneta pārlūka atvēršana ar saglabātām cilnēm no iepriekšējās sesijas."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Hostēta Shibboleth 1.3 identitātes piegādātāja metadati (ģenerēti automātiski)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "Ieteikumi problēmas atrisināšanai:"
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Hostēta Shibboleth 1.3 servisa piegādātāja metadati (ģenerēti automātiski)"
 
-msgid "This error may be caused by:"
-msgstr "Kļūdu radījis:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
-
-msgid "Missing cookie"
-msgstr "Trūkst sīkdatnes"
-
-msgid "Retry"
-msgstr "Mēģināt vēlreiz"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, gan pie servisa piegādātāja."
@@ -39,29 +26,20 @@ msgstr "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā interneta lapā, Jums jāziņo par šo kļūdu lapas īpašniekam."
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai identitātes piegādātāja."
+msgid "Missing cookie"
+msgstr "Trūkst sīkdatnes"
 
-msgid "Welcome"
-msgstr "Laipni lūdzam"
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Interneta pārlūka atvēršana ar saglabātām cilnēm no iepriekšējās sesijas."
+
+msgid "Report this error"
+msgstr "Ziņojiet par šo kļūdu"
+
+msgid "Retry"
+msgstr "Mēģināt vēlreiz"
 
 msgid "Retry login"
 msgstr "Mēģināt pieslēgties vēlreiz"
-
-msgid "Too short interval between single sign on events."
-msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, iespējams, ir problēma ar servisa piegādātāju."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Hostēta Shibboleth 1.3 servisa piegādātāja metadati (ģenerēti automātiski)"
-
-msgid "We were unable to locate the state information for the current request."
-msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP piemērs - testa pieslēgšanās caur Jūsu Shib IDP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP piemērs - testa pieslēgšanās caur Jūsu Shib IDP"
 msgid "State information lost"
 msgstr "Stāvokļa informācija ir pazaudēta"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Hostēta Shibboleth 1.3 identitātes piegādātāja metadati (ģenerēti automātiski)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Ieteikumi problēmas atrisināšanai:"
 
-msgid "Report this error"
-msgstr "Ziņojiet par šo kļūdu"
+msgid "This error may be caused by:"
+msgstr "Kļūdu radījis:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Visticamāk šī ir konfigurācijas problēma pie servisa piegādātāja vai identitātes piegādātāja."
+
+msgid "Too short interval between single sign on events."
+msgstr "Pārāk mazs intervāls starp pieslēgšanās notikumiem."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Interneta pārlūka pogu Uz priekšu un Atpakaļ lietošana."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Pēc pēdējās autentifikācijas ir pagājušas tikai dažas sekundes, tādēļ, iespējams, ir problēma ar servisa piegādātāju."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nav iespējams atrast stāvokļa informāciju šim pieprasījumam."
+
+msgid "Welcome"
+msgstr "Laipni lūdzam"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izskatās, ka Jūsu interneta pārlūkā ir aizliegtas sīkdatnes. Lūdzu pārbaudiet sava pārlūka uzstādījumus un mēģiniet vēlreiz."
