@@ -15,10 +15,11 @@ Released 2024-02-12
 
 * Fix backwards compatibility for mandatory cachedir-setting introduced in 2.1.2
 
-`core`
+Deprecations:
 
-* Deprecated the core:StatisticsWithAttribute authproc-filter. It is now available in
-  the statistics-module and will be removed from SimpleSAMLphp in a future release.
+* The core:StatisticsWithAttribute authproc-filter has been deprecated. It is now available
+  in the 'statistics' module (v1.2+) as 'statistics:StatisticsWithAttribute', while only the
+  'core:StatisticsWithAttribute' filter will be removed from SimpleSAMLphp in a future release.
 
 ## Version 2.1.2
 
@@ -56,7 +57,7 @@ Released 2024-02-05
 * Fix serialization for the NameID element
 * Fix inheritance - There is no relation between BaseID and NameID
 
-** Clear your session store after updating, because old serialized sessions can no longer be unserialized **
+NOTE: Clear your session store after updating, because old serialized sessions can no longer be unserialized
 
 ## Version 2.1.1
 
