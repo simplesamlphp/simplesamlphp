@@ -1,16 +1,44 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
-msgid "No SAML response provided"
-msgstr "Ha ho karabelo ya SAML e fanweng"
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Tshebeletso  e kopile hore o inetefatse. Ka kopo kenya lebitso la mosebedisi le phasewete ya hao foromong e ka tlase mona."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-msgid "No SAML message provided"
-msgstr "Ha ho molaetsa wa SAML o fanweng"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Phoso e hlahile ha o leka ho theha kopo ya SAML."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Kgeloho e sa rarollwang e lahlilwe."
+
+msgid "AuthData"
+msgstr "AuthData"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Netefatso e kgaoditswe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Netefatso e hlolehile: setifikeiti seo sebadi sa hao se se rometseng ha se a nepahala kapa ha se balehe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se tsejwe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
@@ -20,25 +48,124 @@ msgstr "Phoso ya netefatso ya mohlodi"
 msgid "Bad request received"
 msgstr "Kopo e mpe e amohetswe"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "Kopo e mpe bakeng sa tshebeletso ya tshibollo"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "Phoso ya CAS"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr "Ha e a kgona ho fumana datha ya seshene"
+
+msgid "Change your home organization"
+msgstr "Fetola khampani ya lehae ya heno"
+
+msgid "Choose home organization"
+msgstr "Kgetha khampani ya lehae"
+
+msgid "Choose your home organization"
+msgstr "Kgetha khampani ya lehae ya hao"
+
+msgid "Click to view AuthData"
+msgstr "Tlelika ho sheba AuthData"
+
+msgid "Completed"
+msgstr "E phethilwe"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
 msgstr "Phoso ya Netefatso"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
-msgid "Error creating request"
-msgstr "Phoso ho thehweng ha kopo"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
-msgid "Bad request to discovery service"
-msgstr "Kopo e mpe bakeng sa tshebeletso ya tshibollo"
+msgid "Contact information:"
+msgstr "Tlhahisoleseding ya boikopanyo:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Ha e a kgona ho theha karabelo ya ntefatso"
+
+msgid "Debug information"
+msgstr "Tlhahisoleseding ya debug"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
+
+msgid "E-mail address:"
+msgstr "Aterese ya imeile:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Ekaba mosebedisi wa lebitso la mosebedisi le fanweng ha a fumanwe, kapa phasewete eo o e fananeng e fosahetse. Ka kopo hlahloba lebitso la mosebedisi la hao, ebe o leka hape."
+
+msgid "Enter your username and password"
+msgstr "Kenya lebitso la mosebedisi le phasewete"
+
+msgid "Error"
+msgstr "Phoso"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Phoso ho thehweng ha kopo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Phoso ya ho louta metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Phoso ho sebetseng kopo ho tswa ho Mofani wa Tshebeletso"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Phoso ho sebetseng Kopo ya Ho Tswa"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
+
+msgid "Error report sent"
+msgstr "Tlaleho ya phoso e rometswe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Phoso e bile teng ka seva ya CAS."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Hlalosa seo o se entseng ha phoso ena e ne e hlaha..."
+
+msgid "Format"
+msgstr "Fomata"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
+
+msgid "Help desk homepage"
+msgstr "Leqephe la lapeng la ba deske ya thuso"
+
+msgid "Help! I don't remember my password."
+msgstr "Thuso! Ha ke hopole phasewete ya ka."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
+
+msgid "How to get help"
+msgstr "Ka moo o ka fumanang thuso"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Haeba o tlaleha phoso ena, ka kopo tlaleha hape nomoro ena ya ho sala morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts efumanehang ho sistimi ya motsamaisi:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
+
+msgid "Incorrect username or password."
+msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
@@ -49,25 +176,61 @@ msgstr "Setifikeiti se sa nepahalang"
 msgid "LDAP Error"
 msgstr "Phoso ya LDAP"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong lena."
+
+msgid "Logged out"
+msgstr "O ntshitswe"
+
+msgid "Logging out of the following services:"
+msgstr "E tswa ditshebeletsong tse latelang:"
+
+msgid "Logging out..."
+msgstr "E a tswa..."
+
+msgid "Login"
+msgstr "Ho kena"
+
+msgid "Login at"
+msgstr "Kena ho"
+
+msgid "Logout"
+msgstr "Ho tswa"
+
+msgid "Logout failed"
+msgstr "Ho tswa ho hlolehile"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Tlhahisoleseding ya ho tswa e lahlehile"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
-msgid "Error processing the Logout Request"
-msgstr "Phoso ho sebetseng Kopo ya Ho Tswa"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
-msgid "Cannot retrieve session data"
-msgstr "Ha e a kgona ho fumana datha ya seshene"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-msgid "Error loading metadata"
-msgstr "Phoso ya ho louta metadata"
-
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metadata ha e a fumanwa"
+
+msgid "Next"
+msgstr "E latelang"
+
+msgid "No"
+msgstr "Tjhe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "Ha ho RelayState"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "Ha ho molaetsa wa SAML o fanweng"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr "Ha ho kopo ya SAML e fanweng"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Ha ho karabelo ya SAML e fanweng"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -77,135 +240,121 @@ msgstr "Ha ho phihlello"
 msgid "No certificate"
 msgstr "Ha ho setifikeiti"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
-msgid "No RelayState"
-msgstr "Ha ho RelayState"
+msgid "No, cancel"
+msgstr "Tjhe"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
-msgid "State information lost"
-msgstr "Tlhahisoleseding ya provense e lahlehile"
+msgid "No, only %SP%"
+msgstr "Tjhe, %SP% feela"
+
+msgid "On hold"
+msgstr "Tshwarisitswe"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "E le nngwe kapa ho feta ya ditshebeletso tseo o keneng ho tsona <i>ha e tshehetse ho tswa</i>. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Ka boikgethelo o ka kenya aterse ya imeile ya hao, bakeng sa batsamaisi hore ba kgone ho ikopanya le wena mabapi le dipotso tse ding ka ditaba tsa hao:"
+
+msgid "Organization"
+msgstr "Khampani"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Leqephe ha le a fumanwa"
 
+msgid "Password"
+msgstr "Phasewete"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Phasewete ha e a setwa"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-msgid "Error processing response from Identity Provider"
-msgstr "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-msgid "Error processing request from Service Provider"
-msgstr "Phoso ho sebetseng kopo ho tswa ho Mofani wa Tshebeletso"
+msgid "Processing..."
+msgstr "E a sebetsa..."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-msgid "Error received from Identity Provider"
-msgstr "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso"
+msgid "Remember"
+msgstr "Hopola"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
-msgid "No SAML request provided"
-msgstr "Ha ho kopo ya SAML e fanweng"
+msgid "Remember me"
+msgstr "Nkgopole"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
-msgid "Unhandled exception"
-msgstr "Mokgelo o sa rarollwang"
+msgid "Remember my choice"
+msgstr "Hopola kgetho ya ka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
-msgid "Unknown certificate"
-msgstr "Setifikeiti se sa tsejweng"
+msgid "Remember my username"
+msgstr "Hopola lebitso la ka la mosebedisi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-msgid "Authentication aborted"
-msgstr "Netefatso e kgaoditswe"
+msgid "Report errors"
+msgstr "Tlaleha diphoso"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
-msgid "Incorrect username or password"
-msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
+msgid "Return to service"
+msgstr "E kgutlela tshebeletsong"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
-msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "O fihletse kopano ya Tiiso ya Tshebeletso ya Bareki, empa ha o a fana ka Karabelo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
+msgid "SAML 2.0 SP Demo Example"
+msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
-msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
-msgstr "O fihletse kopano ya Tshebeletso ya Tlhakiso ya Athifekte, empa ha o a fana ka molaetsa wa SAML ArtifactResolve. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
+msgid "SAML Subject"
+msgstr "Taba ya SAML"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%"
+msgid "Select"
+msgstr "Kgetha"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
+msgid "Select your identity provider"
+msgstr "Kgetha mofani wa boitsebiso wa hao"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
-msgid "Error when communicating with the CAS server."
-msgstr "Phoso e bile teng ka seva ya CAS."
+msgid "Send e-mail to help desk"
+msgstr "Romela imeile ho ba deske ya thuso"
+
+msgid "Send error report"
+msgstr "Romela tlaleho ya phoso"
+
+msgid "Service Provider"
+msgstr "Mofani wa Tshebeletso"
+
+msgid "Session size: %SIZE%"
+msgstr "Saese ya seshene: %SIZE%"
+
+msgid "Shibboleth demo"
+msgstr "Pontsho ya Shibboleth"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "Dimanollo tsa SimpleSAMLphp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "SimpleSAMLphp e bonahala e hlophisitswe hampe."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Phoso e hlahile ha o leka ho theha kopo ya SAML."
+msgid "SimpleSAMLphp error"
+msgstr "Phoso ya SimpleSAMLphp"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
-msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "Dipharamitha tse rometsweng tshebeltsong ya tshibollo di ne di se ho latela ditekanyetso."
+msgid "Some error occurred"
+msgstr "Ho na le phoso e etsahetseng"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
-msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso e bile teng."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
-msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Netefatso e hlolehile: setifikeiti seo sebadi sa hao se se rometseng ha se a nepahala kapa ha se balehe"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
-msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong lena."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
-msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "Tlhahisoleseding e mabapi le tshebetos ya ho tswa ya hajwale e lahlehile. O tlameha ho kgutlela tshebeletsong eo o neng o leka ho tswa ho yona le ho leka ho tswa hape. Phoso ena e ka bakwa ke phelo nako ya tlhahisoleseding ya ho tswa. Tlhahisoleseding ya ho tswa e bolokwa nako e lekantsweng - ka tlwaelo ke palo ya dihora. Sena se setelele ho feta nako eo tshebetso efe kapa efe ya tlwaelo ya ho tswa e tlamehang ho e nka, ka hona phoso ena e ka nna ya bontsha phoso e nngwe ka tlhophiso esele. Haeba bothata bo phehella, ikopanye le mofani wa tshebeletso wa hao."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
-msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
-msgstr "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
-msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "Ho na le tlhophiso e fosahetseng ya kenyo ya ho instola SimpleSAMLphp ya hao. Haeba o motsamaisi wa tshebeletso ena, o tlameha ho etsa bonnete ba hore tlhophiso ya metadata ya hao e setilwe ka nepo."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
-#, php-format
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
-msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao ya SimpleSAMLphp."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
-msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Moqadi wa kopo ena ha a fana pharamitha ya RelayState e bontshang hore ho uwe kae ho tloha mona."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Tlhahisoleseding ya provense e lahlehile"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Tlhahisoleeding ya porofensi e lahlehile, mmeha ho tsela ya ho qala kopo botjha"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya SAML ha e a atleha)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Netefatso e kgaoditswe ke mosebedisi"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Tlhahisoleseding ya debug e ka tlase mona e  ka nna ya kgahla motsamaisi / deske ya thuso:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -215,280 +364,130 @@ msgstr "Leqephe le fanweng ha le a fumanwa. URL e bile: %URL%"
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Leqephe le fanweng ha le a fumanwa. Lebaka e bile: %LEBAKA%  URL e bile: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Tlhahisoleseding e mabapi le tshebetos ya ho tswa ya hajwale e lahlehile. O tlameha ho kgutlela tshebeletsong eo o neng o leka ho tswa ho yona le ho leka ho tswa hape. Phoso ena e ka bakwa ke phelo nako ya tlhahisoleseding ya ho tswa. Tlhahisoleseding ya ho tswa e bolokwa nako e lekantsweng - ka tlwaelo ke palo ya dihora. Sena se setelele ho feta nako eo tshebetso efe kapa efe ya tlwaelo ya ho tswa e tlamehang ho e nka, ka hona phoso ena e ka nna ya bontsha phoso e nngwe ka tlhophiso esele. Haeba bothata bo phehella, ikopanye le mofani wa tshebeletso wa hao."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Moqadi wa kopo ena ha a fana pharamitha ya RelayState e bontshang hore ho uwe kae ho tloha mona."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Dipharamitha tse rometsweng tshebeltsong ya tshibollo di ne di se ho latela ditekanyetso."
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Phasewete ya tlhophiso (auth.adminpassword) ha e a fetolwa ho tswa palong ya tlwaelo. Ka kopo edita faele ya tlhophiso."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
-msgid "You did not present a valid certificate."
-msgstr "Ha o a fana ka setifikeiti se nepahetseng."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Ho na le tlhophiso e fosahetseng ya kenyo ya ho instola SimpleSAMLphp ya hao. Haeba o motsamaisi wa tshebeletso ena, o tlameha ho etsa bonnete ba hore tlhophiso ya metadata ya hao e setilwe ka nepo."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Mofani enwa wa Boitsebiso o fumane Kopo ya Netefatso ho tswa ho Mofani wa Tshebeletso, empa ho bile le phoso ha ho leka ho fihlellwa kopo."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
-msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya SAML ha e a atleha)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao ya SimpleSAMLphp."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
-msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
-msgstr "O fihletse tshebeletsano ya SingleLogoutService, empa ha o a fana ka SAML LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Ha e kgone ho tswa tshebeletsong e le nngwe kapa ho feta. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Mokgelo o sa rarollwang"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Setifikeiti se sa tsejweng"
+
+msgid "Username"
+msgstr "Lebitso la mosebedisi"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso e bile teng."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Ntle le lebitso l ahao la mosebedisi le phasewete o ke ke wa inetefatsa bakeng sa phihlello ho tshebeletso. Ho ka nna ha ba le motho ya ka o thusang. Ikopanye le ba deske ya thuso khampaning ya heno!"
+
+msgid "Yes, all services"
+msgstr "E, ditshebeletso tsohle"
+
+msgid "Yes, continue"
+msgstr "E"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr "O fihletse kopano ya Tshebeletso ya Tlhakiso ya Athifekte, empa ha o a fana ka molaetsa wa SAML ArtifactResolve. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "O fihletse kopano ya Tiiso ya Tshebeletso ya Bareki, empa ha o a fana ka Karabelo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
 msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
 msgstr "O fihletse tshebeletsano ya Tshaeno ya Hang, empa ha o a fan aka Kopo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
-msgid "An unhandled exception was thrown."
-msgstr "Kgeloho e sa rarollwang e lahlilwe."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se tsejwe"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
-msgid "The authentication was aborted by the user"
-msgstr "Netefatso e kgaoditswe ke mosebedisi"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
-msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Ekaba mosebedisi wa lebitso la mosebedisi le fanweng ha a fumanwe, kapa phasewete eo o e fananeng e fosahetse. Ka kopo hlahloba lebitso la mosebedisi la hao, ebe o leka hape."
-
-msgid "Format"
-msgstr "Fomata"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao."
-
-msgid "Logout"
-msgstr "Ho tswa"
-
-msgid "SAML Subject"
-msgstr "Taba ya SAML"
-
-msgid "Your attributes"
-msgstr "Makgabane a hao"
-
-msgid "not set"
-msgstr "ha e a setwa"
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Ka kopo kgetha mofani wa boitsebiso moo o batlang ho netefatsa:"
-
-msgid "Remember my choice"
-msgstr "Hopola kgetho ya ka"
-
-msgid "Select"
-msgstr "Kgetha"
-
-msgid "Select your identity provider"
-msgstr "Kgetha mofani wa boitsebiso wa hao"
-
-msgid "Yes, continue"
-msgstr "E"
-
-msgid "Debug information"
-msgstr "Tlhahisoleseding ya debug"
-
-msgid "E-mail address:"
-msgstr "Aterese ya imeile:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Hlalosa seo o se entseng ha phoso ena e ne e hlaha..."
-
-msgid "How to get help"
-msgstr "Ka moo o ka fumanang thuso"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Haeba o tlaleha phoso ena, ka kopo tlaleha hape nomoro ena ya ho sala morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts efumanehang ho sistimi ya motsamaisi:"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Ka boikgethelo o ka kenya aterse ya imeile ya hao, bakeng sa batsamaisi hore ba kgone ho ikopanya le wena mabapi le dipotso tse ding ka ditaba tsa hao:"
-
-msgid "Report errors"
-msgstr "Tlaleha diphoso"
-
-msgid "Send error report"
-msgstr "Romela tlaleho ya phoso"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Tlhahisoleseding ya debug e ka tlase mona e  ka nna ya kgahla motsamaisi / deske ya thuso:"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona."
-
-msgid "Return to service"
-msgstr "E kgutlela tshebeletsong"
-
-msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "E le nngwe kapa ho feta ya ditshebeletso tseo o keneng ho tsona <i>ha e tshehetse ho tswa</i>. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
-
-msgid "Help! I don't remember my password."
-msgstr "Thuso! Ha ke hopole phasewete ya ka."
-
-msgid "Organization"
-msgstr "Khampani"
-
-msgid "Remember"
-msgstr "Hopola"
-
-msgid "You have successfully logged out from all services listed above."
-msgstr "O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo mona."
-
-msgid "The error report has been sent to the administrators."
-msgstr "Tlaleho ya phoso e rometswe ho batsamaisi."
-
-msgid "Contact information:"
-msgstr "Tlhahisoleseding ya boikopanyo:"
-
-msgid "Password"
-msgstr "Phasewete"
-
-msgid "Completed"
-msgstr "E phethilwe"
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Tshebeletso  e kopile hore o inetefatse. Ka kopo kenya lebitso la mosebedisi le phasewete ya hao foromong e ka tlase mona."
-
-msgid "Change your home organization"
-msgstr "Fetola khampani ya lehae ya heno"
-
-msgid "Processing..."
-msgstr "E a sebetsa..."
-
-msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "o Rometse se seng leqepheng la ho kena, empa ka lebaka le sa tsejweng phaewete ha e a romelwa. Ka kopo leka hape."
-
-msgid "Remember my username"
-msgstr "Hopola lebitso la ka la mosebedisi"
-
-msgid "Yes, all services"
-msgstr "E, ditshebeletso tsohle"
-
-msgid "Login"
-msgstr "Ho kena"
-
-msgid "On hold"
-msgstr "Tshwarisitswe"
-
-msgid "AuthData"
-msgstr "AuthData"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Ha e kgone ho tswa tshebeletsong e le nngwe kapa ho feta. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
-
-msgid "No"
-msgstr "Tjhe"
-
-msgid "Logging out of the following services:"
-msgstr "E tswa ditshebeletsong tse latelang:"
-
-msgid "Session size: %SIZE%"
-msgstr "Saese ya seshene: %SIZE%"
-
-msgid "You are now successfully logged out from %SP%."
-msgstr "Jwale o ntshitswe ka katleho ho %SP%."
-
-msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "O kgethile <b>%HOMEORG%</b> jwalo ka khampani ya lehae ya heno. Haeba sena se fosahetse o ka kgetha e nngwe hape."
-
-msgid "SimpleSAMLphp Diagnostics"
-msgstr "Dimanollo tsa SimpleSAMLphp"
-
-msgid "Incorrect username or password."
-msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
-
-msgid "Shibboleth demo"
-msgstr "Pontsho ya Shibboleth"
-
-msgid "Some error occurred"
-msgstr "Ho na le phoso e etsahetseng"
-
-msgid "SimpleSAMLphp error"
-msgstr "Phoso ya SimpleSAMLphp"
-
-msgid "Service Provider"
-msgstr "Mofani wa Tshebeletso"
-
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Ntle le lebitso l ahao la mosebedisi le phasewete o ke ke wa inetefatsa bakeng sa phihlello ho tshebeletso. Ho ka nna ha ba le motho ya ka o thusang. Ikopanye le ba deske ya thuso khampaning ya heno!"
-
-msgid "Next"
-msgstr "E latelang"
-
-msgid "Logout failed"
-msgstr "Ho tswa ho hlolehile"
-
-msgid "You have been logged out."
-msgstr "O ntshitswe."
-
-msgid "Send e-mail to help desk"
-msgstr "Romela imeile ho ba deske ya thuso"
-
-msgid "Choose your home organization"
-msgstr "Kgetha khampani ya lehae ya hao"
-
-msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
-
-msgid "[Preferred choice]"
-msgstr "[Kgetho e kgethwang]"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
-
-msgid "SAML 2.0 SP Demo Example"
-msgstr "Mohlala wa Pontsho wa SAML 2.0 SP"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "O fihletse tshebeletsano ya SingleLogoutService, empa ha o a fana ka SAML LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho."
 
 msgid "You are also logged in on these services:"
 msgstr "Hape o kene ditshebeletsong tsena:"
 
-msgid "Logged out"
-msgstr "O ntshitswe"
+msgid "You are now successfully logged out from %SP%."
+msgstr "Jwale o ntshitswe ka katleho ho %SP%."
 
-msgid "Enter your username and password"
-msgstr "Kenya lebitso la mosebedisi le phasewete"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Ha o a fana ka setifikeiti se nepahetseng."
 
-msgid "Help desk homepage"
-msgstr "Leqephe la lapeng la ba deske ya thuso"
+msgid "You have been logged out."
+msgstr "O ntshitswe."
 
-msgid "Login at"
-msgstr "Kena ho"
-
-msgid "No, only %SP%"
-msgstr "Tjhe, %SP% feela"
-
-msgid "Logging out..."
-msgstr "E a tswa..."
-
-msgid "Remember me"
-msgstr "Nkgopole"
-
-msgid "Error report sent"
-msgstr "Tlaleho ya phoso e rometswe"
-
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho tloha hona jwale."
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "O kgethile <b>%HOMEORG%</b> jwalo ka khampani ya lehae ya heno. Haeba sena se fosahetse o ka kgetha e nngwe hape."
 
 msgid "You have previously chosen to authenticate at"
 msgstr "O qadile ka ho kgetha netefatso ho"
 
-msgid "Choose home organization"
-msgstr "Kgetha khampani ya lehae"
+msgid "You have successfully logged out from all services listed above."
+msgstr "O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo mona."
 
-msgid "Error"
-msgstr "Phoso"
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "o Rometse se seng leqepheng la ho kena, empa ka lebaka le sa tsejweng phaewete ha e a romelwa. Ka kopo leka hape."
 
-msgid "Click to view AuthData"
-msgstr "Tlelika ho sheba AuthData"
+msgid "Your attributes"
+msgstr "Makgabane a hao"
 
-msgid "Username"
-msgstr "Lebitso la mosebedisi"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa."
 
-msgid "No, cancel"
-msgstr "Tjhe"
+msgid "Your session is valid for %SECONDS% seconds from now."
+msgstr "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho tloha hona jwale."
+
+msgid "[Preferred choice]"
+msgstr "[Kgetho e kgethwang]"
+
+msgid "not set"
+msgstr "ha e a setwa"

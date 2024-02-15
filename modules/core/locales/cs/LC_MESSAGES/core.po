@@ -1,25 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Retry login"
-msgstr "Přihlašte se znovu."
-
-msgid "Too short interval between single sign on events."
-msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
-
-msgid "Missing cookie"
-msgstr "Chybějící cookie"
-
-msgid "Retry"
-msgstr "Opakujte"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
 
 msgid "Close the web browser, and try again."
 msgstr "Zavřít webový prohlížeč a zkusit znovu."
@@ -30,17 +11,14 @@ msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
 msgid "Go back to the previous page and try again."
 msgstr "Jít zpět na předchozí stránku a zkusit znovu."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (IdP) (automaticky generované)"
 
-msgid "Suggestions for resolving this problem:"
-msgstr "Návrhy pro vyřešení tohoto problému:"
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (SP) (automaticky generované)"
 
-msgid "This error may be caused by:"
-msgstr "Tato chyba může být způsobená:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašování, máte problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována správně jak u poskytovatele identity tak u poskytovatele služby."
@@ -48,20 +26,20 @@ msgstr "Pokud jste vývojář nasazující řešení jednotného přihlašován�
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Pokud jste uživatel, který obdržel chybu po následování odkazu na webové stránce, měli byste o této chybě informovat vlastníka této stránky. "
 
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele služby nebo poskytovatele identity."
+msgid "Missing cookie"
+msgstr "Chybějící cookie"
 
-msgid "Welcome"
-msgstr "Vítejte"
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
 
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."
+msgid "Report this error"
+msgstr "Nahlásit tuto chybu"
 
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (SP) (automaticky generované)"
+msgid "Retry"
+msgstr "Opakujte"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
+msgid "Retry login"
+msgstr "Přihlašte se znovu."
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP ukázka - testovací přihlášení pomocí vaší Shib IdP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP ukázka - testovací přihlášení pomocí vaší Shi
 msgid "State information lost"
 msgstr "Stavová informace ztracena"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (IdP) (automaticky generované)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Návrhy pro vyřešení tohoto problému:"
 
-msgid "Report this error"
-msgstr "Nahlásit tuto chybu"
+msgid "This error may be caused by:"
+msgstr "Tato chyba může být způsobená:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Toto je pravděpodobně konfigurační problém na straně poskytovatele služby nebo poskytovatele identity."
+
+msgid "Too short interval between single sign on events."
+msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení pomocí service providera a proto předpokládáme, že nastala chyba v tom SP."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
+
+msgid "Welcome"
+msgstr "Vítejte"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."

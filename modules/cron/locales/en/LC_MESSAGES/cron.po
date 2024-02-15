@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: cron\n"
@@ -9,14 +8,8 @@ msgstr "Click here to run the cron jobs:"
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron is a way to run things regularly on unix systems."
 
-msgid "Cron result page"
-msgstr "Cron result page"
-
-msgid "Here is a suggestion for a crontab file:"
-msgstr "Here is a suggestion for a crontab file:"
-
-msgid "Run cron:"
-msgstr "Run cron:"
+msgid "Cron module information page"
+msgstr "Cron module information page"
 
 msgid "Cron ran at"
 msgstr "Cron ran at"
@@ -24,8 +17,14 @@ msgstr "Cron ran at"
 msgid "Cron report"
 msgstr "Cron report"
 
+msgid "Cron result page"
+msgstr "Cron result page"
+
 msgid "Here are the result for the cron job execution:"
 msgstr "Here are the result for the cron job execution:"
 
-msgid "Cron module information page"
-msgstr "Cron module information page"
+msgid "Here is a suggestion for a crontab file:"
+msgstr "Here is a suggestion for a crontab file:"
+
+msgid "Run cron:"
+msgstr "Run cron:"

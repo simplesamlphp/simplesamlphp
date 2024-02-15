@@ -1,7 +1,12 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)"
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Se você é um desenvolvedor que está implantando uma solução SSO, você tem um problema com a configuração de metadados. Verifique se os metadados estão configurados corretamente no provedor de identidade e no provedor de serviços."
@@ -9,17 +14,11 @@ msgstr "Se você é um desenvolvedor que está implantando uma solução SSO, vo
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Se você é um usuário que recebeu esse erro depois de seguir um link em um site, você deve relatar esse erro para o proprietário do site."
 
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP"
+
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Isso é possivelmente um problema de configuração do provedor de serviços ou do provedor de identidade."
 
 msgid "Welcome"
 msgstr "Seja bem-vindo(a)"
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)"
-
-msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr "Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP"
-
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)"

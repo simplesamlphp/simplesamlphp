@@ -1,16 +1,50 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
-msgid "No SAML response provided"
-msgstr "Tidak ada response SAML yang disediakan"
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-msgid "No SAML message provided"
-msgstr "Tidak pesan SAML yang disediakan"
+msgid "Affiliation"
+msgstr "Afiliasi"
+
+msgid "Affiliation at home organization"
+msgstr "Afiliasi di organisasi asal"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Sebuah error telah terjadi ketika membuat request SAML."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Sebuah error telah terjadi ketika memproses Request Logout."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Exception yang tidak tertangani telah di-thrown"
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Karena anda berada pada mode debug, anda dapat melihat isi pesan yang anda kirim:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Autentifikasi dibatalkan"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Autentifikasi gagal: Browser anada tidak mengirim sertifikat"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
@@ -20,50 +54,283 @@ msgstr "Error sumber autentifikasi"
 msgid "Bad request received"
 msgstr "Request buruk diterima"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "Request yang buruk ke layanan penemuan"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "Error CAS"
+
+msgid "Certificates"
+msgstr "Sertifikat"
+
+msgid "Change your home organization"
+msgstr "Ubah basis organisasi anda"
+
+msgid "Choose home organization"
+msgstr "Pilih basis organisasi"
+
+msgid "Choose your home organization"
+msgstr "Pilih Basis Organisasi Anda"
+
+msgid "Common name"
+msgstr "Common Name"
+
+msgid "Completed"
+msgstr "Selesai"
+
+msgid "Configuration check"
+msgstr "Pemeriksaan konfigurasi"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
 msgstr "Error konfigurasi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
-msgid "Error creating request"
-msgstr "Error membuat request."
+msgid "Contact information:"
+msgstr "Informasi Kontak"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
-msgid "Bad request to discovery service"
-msgstr "Request yang buruk ke layanan penemuan"
+msgid "Converted metadata"
+msgstr "Metadata yang telah dikonvesi"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Tidak dapat membuat respon autentifikasi"
+
+msgid "Date of birth"
+msgstr "Tanggal lahir"
+
+msgid "Debug information"
+msgstr "Informasi debug"
+
+msgid "Display name"
+msgstr "Nama yang ditampilkan"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Distinguished name (DN) of person's home organization"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Distinguished name (DN) of person's primary Organizational Unit"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Distinguished name (DN) of the person's home organizational unit"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Apakah anda ingin logout dari semua layanan diatas ?"
+
+msgid "Domain component (DC)"
+msgstr "Domain component(DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
+
+msgid "E-mail address:"
+msgstr "Alamat E-mail:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi."
+
+msgid "Enter your username and password"
+msgstr "Masukkan username dan password Anda"
+
+msgid "Entitlement regarding the service"
+msgstr "Hak mengenai layanan ini"
+
+msgid "Error"
+msgstr "Error"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Error membuat request."
+
+msgid "Error in this metadata entry"
+msgstr "Error pada entri metadata ini"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Error meload metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Error memproses request dari Service Provider"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "Error memproses response dari Identity Provider."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Error memproses Request Logout"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Error diterima dari Identity Provider"
+
+msgid "Error report sent"
+msgstr "Laporan error dikirimkan"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Error ketika berkomunikasi dengans server CAS."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Jelaskan apa yang Anda lakukan ketika error ini terjadi..."
+
+msgid "Fax number"
+msgstr "No Fax"
+
+msgid "Given name"
+msgstr "Nama"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
+
+msgid "Go back to the file list"
+msgstr "Kembali ke daftar file"
+
+msgid "Help desk homepage"
+msgstr "Homepage Help desk"
+
+msgid "Help! I don't remember my password."
+msgstr "Tolong! Saya tidak ingat password saya"
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang dipercayai untuk mensetup federasi terpercaya."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
+
+msgid "Home organization domain name"
+msgstr "Home organization domain name"
+
+msgid "Home postal address"
+msgstr "Alamat pos rumah"
+
+msgid "Home telephone"
+msgstr "Telepon rumah"
+
+msgid "How to get help"
+msgstr "Bagaimana mendapatkan pertolongan"
+
+msgid "Identity assurance profile"
+msgstr "Profil penjamin identitas"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Identity number assigned by public authorities"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan sehingga memungkinkan untuk lokasi session anda pada log tersedia untuk system administrator:"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "Dalam format XML Metadata SAML 2.0"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan entiti SimpleSAMLphp pada sisi lain:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Username atau password salah"
+
+msgid "Incorrect username or password."
+msgstr "Username atau password salah"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Sertifikat invalid"
 
+msgid "JPEG Photo"
+msgstr "Foto JPEG"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "Error LDAP"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu menghubungi database LDAP. Sebuah error terjadi ketika Kami mencobanya saat ini. "
+
+msgid "Labeled URI"
+msgstr "Berlabel URL"
+
+msgid "Legal name"
+msgstr "Nama legal"
+
+msgid "Local identity number"
+msgstr "Nomor identitas lokal"
+
+msgid "Locality"
+msgstr "Lokalitas"
+
+msgid "Logged out"
+msgstr "Log out"
+
+msgid "Logging out of the following services:"
+msgstr "Log out dari layanan-layanan berikut:"
+
+msgid "Logging out..."
+msgstr "Log out..."
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Login at"
+msgstr "Login di"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Logout failed"
+msgstr "Log out gagal"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Informasi logout hilang"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
-msgid "Error processing the Logout Request"
-msgstr "Error memproses Request Logout"
+msgid "Mail"
+msgstr "Mail"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-msgid "Error loading metadata"
-msgstr "Error meload metadata"
+msgid "Manager"
+msgstr "Manager"
+
+msgid "Message"
+msgstr "Pesan"
+
+msgid "Metadata"
+msgstr "Metadata"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metadata tidak ditemukan"
+
+msgid "Metadata overview"
+msgstr "Ikhtisar Metadata"
+
+msgid "Mobile"
+msgstr "Handphone"
+
+msgid "Next"
+msgstr "Selanjutnya"
+
+msgid "Nickname"
+msgstr "Nama panggilan"
+
+msgid "No"
+msgstr "Tidak"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "Tidak ada RelayState"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "Tidak pesan SAML yang disediakan"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Tidak ada response SAML yang disediakan"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -73,123 +340,226 @@ msgstr "Tiaak ada akses"
 msgid "No certificate"
 msgstr "Tidak ada sertifikat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
-msgid "No RelayState"
-msgstr "Tidak ada RelayState"
+msgid "No errors found."
+msgstr "Tidak ada error yang ditemukan"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
-msgid "State information lost"
-msgstr "Informasi state hilang"
+msgid "No, cancel"
+msgstr "Tidak"
+
+msgid "No, only %SP%"
+msgstr "Tidak, hanya %SP%"
+
+msgid "Notices"
+msgstr "Pemberitahuan"
+
+msgid "On hold"
+msgstr "Ditahan"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Satu atau beberapa layanan yang anda telah login  <i>tidak mendukung logout</i>.Untuk meyakinkan semua session anda ditutup, anda disarankan untuk <i>menutup web browser anda</i>."
+
+msgid "Optional fields"
+msgstr "Field-field opsional"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Opsional, masukkan alamat email Anda, agar administrator dapat menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:"
+
+msgid "Options missing from config file"
+msgstr "Opsi-opsi uang hilang dari file konfigurasi"
+
+msgid "Organization"
+msgstr "Organisasi"
+
+msgid "Organization name"
+msgstr "Nama organisasi"
+
+msgid "Organization's legal name"
+msgstr "Nama legal Organisasi"
+
+msgid "Organizational homepage"
+msgstr "Homepage organisasi"
+
+msgid "Organizational number"
+msgstr "Nomor Organisasi"
+
+msgid "Organizational unit"
+msgstr "Organizational unit"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Halaman tidak ditemukan"
 
+msgid "Parse"
+msgstr "Parse"
+
+msgid "Password"
+msgstr "Password"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Password tidak diset"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-msgid "Error processing response from Identity Provider"
-msgstr "Error memproses response dari Identity Provider."
+msgid "Persistent pseudonymous ID"
+msgstr "Persistent pseudonymous ID"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-msgid "Error processing request from Service Provider"
-msgstr "Error memproses request dari Service Provider"
+msgid "Person's principal name at home organization"
+msgstr "Nama kepala pada organisasi asal"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-msgid "Error received from Identity Provider"
-msgstr "Error diterima dari Identity Provider"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
-msgid "Unhandled exception"
-msgstr "Exception yang tidak tertangani"
+msgid "Post office box"
+msgstr "PO Box"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
-msgid "Unknown certificate"
-msgstr "Sertifikat tidak dikenal"
+msgid "Postal address"
+msgstr "Alamat pos"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-msgid "Authentication aborted"
-msgstr "Autentifikasi dibatalkan"
+msgid "Postal code"
+msgstr "Kode pos"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
-msgid "Incorrect username or password"
-msgstr "Username atau password salah"
+msgid "Preferred language"
+msgstr "Pilihan Bahasa"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
-msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak menyediakan Response Autentifikasi SAML. "
+msgid "Primary affiliation"
+msgstr "Afiliasi utama"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
+msgid "Private information elements"
+msgstr "Elemen-elemen informasi personal"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Terjadi error pada request ke halaman ini. Alasannya adalah: %REASON%"
+msgid "Remember"
+msgstr "Ingat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
-msgid "Error when communicating with the CAS server."
-msgstr "Error ketika berkomunikasi dengans server CAS."
+msgid "Remember my choice"
+msgstr "Ingat pilihan saya"
+
+msgid "Report errors"
+msgstr "Laporakan error"
+
+msgid "Required fields"
+msgstr "Field-field yang wajib diisi"
+
+msgid "Return to service"
+msgstr "Kembali ke layanan"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "Identity Provider SAML 2.0 (Hosted)"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "Identity Provider SAML 2.0 (Remote)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "Contoh Demo SAML 2.0 SP"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "Metadata SAML 2.0 SP"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "Service Provider SAML 2.0 (Hosted)"
+
+msgid "Select"
+msgstr "Pilih"
+
+msgid "Select configuration file to check:"
+msgstr "Pilih file konfigurasi untuk diperiksa"
+
+msgid "Select your identity provider"
+msgstr "Pilih identity provider anda"
+
+msgid "Send e-mail to help desk"
+msgstr "Kirim e-mail ke help dek"
+
+msgid "Send error report"
+msgstr "Kirim laporan error"
+
+msgid "Sending message"
+msgstr "Mengirimpan pesan"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "Session size: %SIZE%"
+msgstr "Ukuran session: %SIZE%"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Metadata Shib 1.3 IdP"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Identity Provider Shib 1.3 (Hosted)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Identity Provider Shib 1.3 (Remote)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Metadata Shib 1.3 SP"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Service Provider Shib 1.3 (Hosted)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Service Provider Shib 1.3 (Remote)"
+
+msgid "Shibboleth demo"
+msgstr "Demo Shibboleth"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "Diagnostik SimpleSAMLphp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "SimpleSAMLphp sepertinya telah salah dikonfigurasi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Sebuah error telah terjadi ketika membuat request SAML."
+msgid "SimpleSAMLphp error"
+msgstr "Error simpelSAMLphp"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
-msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai dengan spesifikasi"
+msgid "Some error occurred"
+msgstr "Beberapa error telah terjadi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
-msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Ketika identity provider ini mencoba untuk membuat response autentifikasi, error terjadi."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
-msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
-msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu menghubungi database LDAP. Sebuah error terjadi ketika Kami mencobanya saat ini. "
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
-msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "Informasi tentang operasi logout saat ini telah hilang. Anda harus kembali ke layanan tempat Anda mencoba logout dan mencoba melakukan proses logout kembali. Error ini dapat disebabakan oleh informasi logout yang telah kadaluarsa. Informasi logout disimpan untuk waktu yang terbatas - biasanya dalam bilangan jam. Waktu ini lebih lama dari operasi logout normal umumnya, jadi error ini mungkin mengindikasikan beberapa erro lain pada konfigurasi. Jika masalah tetap terjadi, hubungi service provider Anda."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Sebuah error telah terjadi ketika memproses Request Logout."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
-msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "Ada beberapa kesalahan konfigurasi pada instalasi SimpleSAMLphp Anda. Jika Anda adalah administrator dari layanan ini, Anda harus memastikan konfigurasi metdata Anda telah disetup dengan benar. "
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
-#, php-format
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Tidak dapat menemukan metadata untuk %ENTITYID%"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
-msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi SimpleSAMLphp Anda."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Autentifikasi gagal: Browser anada tidak mengirim sertifikat"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
-msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Inisiator dari request ini tidak menyediakan parameter RelayState yang mengindikasikan kemana selanjutnya pergi."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Informasi state hilang"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Informasi state hilang, dan tidak ada cara untuk me-restat request"
+
+msgid "Street"
+msgstr "Jalan"
+
+msgid "Submit message"
+msgstr "Submit pesan"
+
+msgid "Superfluous options in config file"
+msgstr "Pilihan tak beguna di file konfigurasi"
+
+msgid "Surname"
+msgstr "Nama Keluaga"
+
+msgid "Telephone number"
+msgstr "No Telepon"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Autentifikasi dibatalkan oleh user"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Laporan error telah dikirimkan ke administrator"
+
+msgid "The following fields was not recognized"
+msgstr "Field-field berikut ini tidak dapat dikenali"
+
+msgid "The following optional fields was not found"
+msgstr "Field-field opsional berikut tidak dapat ditemukan"
+
+msgid "The following required fields was not found"
+msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -199,51 +569,148 @@ msgstr "Halaman yang diminta tidak dapat ditemukan. URL nya adalah %URL%"
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Halaman yang diminta tidak ditemykan, Error-nya adalah: %REASON% URL-nya adalah: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Informasi tentang operasi logout saat ini telah hilang. Anda harus kembali ke layanan tempat Anda mencoba logout dan mencoba melakukan proses logout kembali. Error ini dapat disebabakan oleh informasi logout yang telah kadaluarsa. Informasi logout disimpan untuk waktu yang terbatas - biasanya dalam bilangan jam. Waktu ini lebih lama dari operasi logout normal umumnya, jadi error ini mungkin mengindikasikan beberapa erro lain pada konfigurasi. Jika masalah tetap terjadi, hubungi service provider Anda."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Inisiator dari request ini tidak menyediakan parameter RelayState yang mengindikasikan kemana selanjutnya pergi."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai dengan spesifikasi"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai default. Silahkan edit file konfigurasi."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
-msgid "You did not present a valid certificate."
-msgstr "Anda tidak menyediakan sertifikat yang valid."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Terjadi error pada request ke halaman ini. Alasannya adalah: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Kami tidak menerima response yang dikirimlan dari Identity Provider."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Ada beberapa kesalahan konfigurasi pada instalasi SimpleSAMLphp Anda. Jika Anda adalah administrator dari layanan ini, Anda harus memastikan konfigurasi metdata Anda telah disetup dengan benar. "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Identity Provider ini menerima Request Autentifikasi dari sebuah Service Provider, tetapi error terjadi ketika memproses request."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
-msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi SimpleSAMLphp Anda."
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
+
+msgid "Title"
+msgstr "Gelar"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Tidak dapat menemukan metadata untuk %ENTITYID%"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan semua session anda ditutup, anda disaranakan untuk <i>menutup web browser anda</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Exception yang tidak tertangani"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Sertifikat tidak dikenal"
+
+msgid "User ID"
+msgstr "User ID"
+
+msgid "User's password hash"
+msgstr "Hash password user"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "Contoh Demo WS-Fed SP"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "Identity Provider WS-Federation (Remote)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "Servide Provider WS-Federation (Hosted)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Kami tidak menerima response yang dikirimlan dari Identity Provider."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Ketika identity provider ini mencoba untuk membuat response autentifikasi, error terjadi."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang dapat menolong Anda. Hubungi help desk pada universitas Anda."
+
+msgid "XML metadata"
+msgstr "metadata XML"
+
+msgid "Yes, all services"
+msgstr "Ya, semua layanan"
+
+msgid "Yes, continue"
+msgstr "Yam lanjutkan"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak menyediakan Response Autentifikasi SAML. "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan LogoutRequest SAML atau LogoutResponse."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
-msgid "An unhandled exception was thrown."
-msgstr "Exception yang tidak tertangani telah di-thrown"
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan untuk melanjutkan."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal"
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan link submit pesan untuk melanjutkan."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
-msgid "The authentication was aborted by the user"
-msgstr "Autentifikasi dibatalkan oleh user"
+msgid "You are also logged in on these services:"
+msgstr "Anda juga telah log out dari layanan berikut: "
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
-msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi"
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
+msgid "You are now successfully logged out from %SP%."
+msgstr "Sekarang anda telah sukses log out dari %SP%."
 
-msgid "Logout"
-msgstr "Logout"
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "Anda dapat <a href=\"%METAURL%\">mendapatkan xml metadata pada URL tersendiri</a>:"
+
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Anda dapat menonaktifkan mode debuh pada file konfigurasi global simpleSAMLhphp  <tt>config/config.php</tt>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Anda tidak menyediakan sertifikat yang valid."
+
+msgid "You have been logged out."
+msgstr "Anda telah log out."
+
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Anda telah memilih  <b>%HOMEORG%</b> sebagai basis organisasi anda. Jika ini salah anda dapat memilih yang lain."
+
+msgid "You have previously chosen to authenticate at"
+msgstr "Sebelumnya anda telah memilih untuk melakukan autentifikasi di "
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "Anda telah berhasil log out dari semua layanan yang tercantuh diatas."
+
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan tertentu password tidak terkirimkan, Silahkan coba lagi."
 
 msgid "Your attributes"
 msgstr "Attribut Anda"
@@ -251,473 +718,5 @@ msgstr "Attribut Anda"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Session anda valid untuk %remaining% detik dari sekarang."
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
-
-msgid "Remember my choice"
-msgstr "Ingat pilihan saya"
-
-msgid "Select"
-msgstr "Pilih"
-
-msgid "Select your identity provider"
-msgstr "Pilih identity provider anda"
-
-msgid "Sending message"
-msgstr "Mengirimpan pesan"
-
-msgid "Yes, continue"
-msgstr "Yam lanjutkan"
-
-msgid "Debug information"
-msgstr "Informasi debug"
-
-msgid "E-mail address:"
-msgstr "Alamat E-mail:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Jelaskan apa yang Anda lakukan ketika error ini terjadi..."
-
-msgid "How to get help"
-msgstr "Bagaimana mendapatkan pertolongan"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan sehingga memungkinkan untuk lokasi session anda pada log tersedia untuk system administrator:"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Opsional, masukkan alamat email Anda, agar administrator dapat menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:"
-
-msgid "Report errors"
-msgstr "Laporakan error"
-
-msgid "Send error report"
-msgstr "Kirim laporan error"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
-
 msgid "[Preferred choice]"
 msgstr "Pilihan yang disukai"
-
-msgid "Person's principal name at home organization"
-msgstr "Nama kepala pada organisasi asal"
-
-msgid "Superfluous options in config file"
-msgstr "Pilihan tak beguna di file konfigurasi"
-
-msgid "Mobile"
-msgstr "Handphone"
-
-msgid "Shib 1.3 Service Provider (Hosted)"
-msgstr "Service Provider Shib 1.3 (Hosted)"
-
-msgid "Display name"
-msgstr "Nama yang ditampilkan"
-
-msgid "SAML 2.0 SP Metadata"
-msgstr "Metadata SAML 2.0 SP"
-
-msgid "Notices"
-msgstr "Pemberitahuan"
-
-msgid "Home telephone"
-msgstr "Telepon rumah"
-
-msgid "Service Provider"
-msgstr "Service Provider"
-
-msgid "Incorrect username or password."
-msgstr "Username atau password salah"
-
-msgid "Submit message"
-msgstr "Submit pesan"
-
-msgid "Locality"
-msgstr "Lokalitas"
-
-msgid "The following required fields was not found"
-msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
-
-msgid "Download the X509 certificates as PEM-encoded files."
-msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
-
-msgid "Organizational number"
-msgstr "Nomor Organisasi"
-
-msgid "Post office box"
-msgstr "PO Box"
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah"
-
-msgid "Error"
-msgstr "Error"
-
-msgid "Next"
-msgstr "Selanjutnya"
-
-msgid "Distinguished name (DN) of the person's home organizational unit"
-msgstr "Distinguished name (DN) of the person's home organizational unit"
-
-msgid "Converted metadata"
-msgstr "Metadata yang telah dikonvesi"
-
-msgid "Mail"
-msgstr "Mail"
-
-msgid "No, cancel"
-msgstr "Tidak"
-
-msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "Anda telah memilih  <b>%HOMEORG%</b> sebagai basis organisasi anda. Jika ini salah anda dapat memilih yang lain."
-
-msgid "Distinguished name (DN) of person's primary Organizational Unit"
-msgstr "Distinguished name (DN) of person's primary Organizational Unit"
-
-msgid "To look at the details for an SAML entity, click on the SAML entity header."
-msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML"
-
-msgid "Enter your username and password"
-msgstr "Masukkan username dan password Anda"
-
-msgid "Login at"
-msgstr "Login di"
-
-msgid "No"
-msgstr "Tidak"
-
-msgid "Home postal address"
-msgstr "Alamat pos rumah"
-
-msgid "WS-Fed SP Demo Example"
-msgstr "Contoh Demo WS-Fed SP"
-
-msgid "SAML 2.0 Identity Provider (Remote)"
-msgstr "Identity Provider SAML 2.0 (Remote)"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Apakah anda ingin logout dari semua layanan diatas ?"
-
-msgid "Given name"
-msgstr "Nama"
-
-msgid "Identity assurance profile"
-msgstr "Profil penjamin identitas"
-
-msgid "SAML 2.0 SP Demo Example"
-msgstr "Contoh Demo SAML 2.0 SP"
-
-msgid "Organization name"
-msgstr "Nama organisasi"
-
-msgid "You are about to send a message. Hit the submit message button to continue."
-msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan untuk melanjutkan."
-
-msgid "Home organization domain name"
-msgstr "Home organization domain name"
-
-msgid "Go back to the file list"
-msgstr "Kembali ke daftar file"
-
-msgid "Error report sent"
-msgstr "Laporan error dikirimkan"
-
-msgid "Common name"
-msgstr "Common Name"
-
-msgid "Logout failed"
-msgstr "Log out gagal"
-
-msgid "Identity number assigned by public authorities"
-msgstr "Identity number assigned by public authorities"
-
-msgid "WS-Federation Identity Provider (Remote)"
-msgstr "Identity Provider WS-Federation (Remote)"
-
-msgid "Some error occurred"
-msgstr "Beberapa error telah terjadi"
-
-msgid "Organization"
-msgstr "Organisasi"
-
-msgid "Choose home organization"
-msgstr "Pilih basis organisasi"
-
-msgid "Persistent pseudonymous ID"
-msgstr "Persistent pseudonymous ID"
-
-msgid "No errors found."
-msgstr "Tidak ada error yang ditemukan"
-
-msgid "SAML 2.0 Service Provider (Hosted)"
-msgstr "Service Provider SAML 2.0 (Hosted)"
-
-msgid "Required fields"
-msgstr "Field-field yang wajib diisi"
-
-msgid "Domain component (DC)"
-msgstr "Domain component(DC)"
-
-msgid "Shib 1.3 Service Provider (Remote)"
-msgstr "Service Provider Shib 1.3 (Remote)"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "Nickname"
-msgstr "Nama panggilan"
-
-msgid "The error report has been sent to the administrators."
-msgstr "Laporan error telah dikirimkan ke administrator"
-
-msgid "Date of birth"
-msgstr "Tanggal lahir"
-
-msgid "Private information elements"
-msgstr "Elemen-elemen informasi personal"
-
-msgid "You are also logged in on these services:"
-msgstr "Anda juga telah log out dari layanan berikut: "
-
-msgid "SimpleSAMLphp Diagnostics"
-msgstr "Diagnostik SimpleSAMLphp"
-
-msgid "No, only %SP%"
-msgstr "Tidak, hanya %SP%"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
-
-msgid "You have successfully logged out from all services listed above."
-msgstr "Anda telah berhasil log out dari semua layanan yang tercantuh diatas."
-
-msgid "You are now successfully logged out from %SP%."
-msgstr "Sekarang anda telah sukses log out dari %SP%."
-
-msgid "Affiliation"
-msgstr "Afiliasi"
-
-msgid "You have been logged out."
-msgstr "Anda telah log out."
-
-msgid "Return to service"
-msgstr "Kembali ke layanan"
-
-msgid "WS-Federation Service Provider (Hosted)"
-msgstr "Servide Provider WS-Federation (Hosted)"
-
-msgid "Preferred language"
-msgstr "Pilihan Bahasa"
-
-msgid "Surname"
-msgstr "Nama Keluaga"
-
-msgid "The following fields was not recognized"
-msgstr "Field-field berikut ini tidak dapat dikenali"
-
-msgid "User ID"
-msgstr "User ID"
-
-msgid "JPEG Photo"
-msgstr "Foto JPEG"
-
-msgid "Postal address"
-msgstr "Alamat pos"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "Dalam format XML Metadata SAML 2.0"
-
-msgid "Logging out of the following services:"
-msgstr "Log out dari layanan-layanan berikut:"
-
-msgid "Labeled URI"
-msgstr "Berlabel URL"
-
-msgid "Shib 1.3 Identity Provider (Hosted)"
-msgstr "Identity Provider Shib 1.3 (Hosted)"
-
-msgid "Metadata"
-msgstr "Metadata"
-
-msgid "Login"
-msgstr "Login"
-
-msgid "Yes, all services"
-msgstr "Ya, semua layanan"
-
-msgid "Logged out"
-msgstr "Log out"
-
-msgid "Postal code"
-msgstr "Kode pos"
-
-msgid "Logging out..."
-msgstr "Log out..."
-
-msgid "SAML 2.0 Identity Provider (Hosted)"
-msgstr "Identity Provider SAML 2.0 (Hosted)"
-
-msgid "Primary affiliation"
-msgstr "Afiliasi utama"
-
-msgid "XML metadata"
-msgstr "metadata XML"
-
-msgid "Telephone number"
-msgstr "No Telepon"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan semua session anda ditutup, anda disaranakan untuk <i>menutup web browser anda</i>."
-
-msgid "Entitlement regarding the service"
-msgstr "Hak mengenai layanan ini"
-
-msgid "Shib 1.3 SP Metadata"
-msgstr "Metadata Shib 1.3 SP"
-
-msgid "As you are in debug mode, you get to see the content of the message you are sending:"
-msgstr "Karena anda berada pada mode debug, anda dapat melihat isi pesan yang anda kirim:"
-
-msgid "Certificates"
-msgstr "Sertifikat"
-
-msgid "Remember"
-msgstr "Ingat"
-
-msgid "Distinguished name (DN) of person's home organization"
-msgstr "Distinguished name (DN) of person's home organization"
-
-msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan link submit pesan untuk melanjutkan."
-
-msgid "Organizational unit"
-msgstr "Organizational unit"
-
-msgid "Local identity number"
-msgstr "Nomor identitas lokal"
-
-msgid "Shib 1.3 IdP Metadata"
-msgstr "Metadata Shib 1.3 IdP"
-
-msgid "Change your home organization"
-msgstr "Ubah basis organisasi anda"
-
-msgid "User's password hash"
-msgstr "Hash password user"
-
-msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan entiti SimpleSAMLphp pada sisi lain:"
-
-msgid "Completed"
-msgstr "Selesai"
-
-msgid "Select configuration file to check:"
-msgstr "Pilih file konfigurasi untuk diperiksa"
-
-msgid "On hold"
-msgstr "Ditahan"
-
-msgid "Help! I don't remember my password."
-msgstr "Tolong! Saya tidak ingat password saya"
-
-msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
-msgstr "Anda dapat menonaktifkan mode debuh pada file konfigurasi global simpleSAMLhphp  <tt>config/config.php</tt>."
-
-msgid "SimpleSAMLphp error"
-msgstr "Error simpelSAMLphp"
-
-msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Satu atau beberapa layanan yang anda telah login  <i>tidak mendukung logout</i>.Untuk meyakinkan semua session anda ditutup, anda disarankan untuk <i>menutup web browser anda</i>."
-
-msgid "Organization's legal name"
-msgstr "Nama legal Organisasi"
-
-msgid "Options missing from config file"
-msgstr "Opsi-opsi uang hilang dari file konfigurasi"
-
-msgid "The following optional fields was not found"
-msgstr "Field-field opsional berikut tidak dapat ditemukan"
-
-msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr "Anda dapat <a href=\"%METAURL%\">mendapatkan xml metadata pada URL tersendiri</a>:"
-
-msgid "Street"
-msgstr "Jalan"
-
-msgid "Message"
-msgstr "Pesan"
-
-msgid "Contact information:"
-msgstr "Informasi Kontak"
-
-msgid "Legal name"
-msgstr "Nama legal"
-
-msgid "Optional fields"
-msgstr "Field-field opsional"
-
-msgid "You have previously chosen to authenticate at"
-msgstr "Sebelumnya anda telah memilih untuk melakukan autentifikasi di "
-
-msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan tertentu password tidak terkirimkan, Silahkan coba lagi."
-
-msgid "Fax number"
-msgstr "No Fax"
-
-msgid "Shibboleth demo"
-msgstr "Demo Shibboleth"
-
-msgid "Error in this metadata entry"
-msgstr "Error pada entri metadata ini"
-
-msgid "Session size: %SIZE%"
-msgstr "Ukuran session: %SIZE%"
-
-msgid "Parse"
-msgstr "Parse"
-
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang dapat menolong Anda. Hubungi help desk pada universitas Anda."
-
-msgid "Choose your home organization"
-msgstr "Pilih Basis Organisasi Anda"
-
-msgid "Send e-mail to help desk"
-msgstr "Kirim e-mail ke help dek"
-
-msgid "Metadata overview"
-msgstr "Ikhtisar Metadata"
-
-msgid "Title"
-msgstr "Gelar"
-
-msgid "Manager"
-msgstr "Manager"
-
-msgid "Affiliation at home organization"
-msgstr "Afiliasi di organisasi asal"
-
-msgid "Help desk homepage"
-msgstr "Homepage Help desk"
-
-msgid "Configuration check"
-msgstr "Pemeriksaan konfigurasi"
-
-msgid "Shib 1.3 Identity Provider (Remote)"
-msgstr "Identity Provider Shib 1.3 (Remote)"
-
-msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
-msgstr "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang dipercayai untuk mensetup federasi terpercaya."
-
-msgid "Organizational homepage"
-msgstr "Homepage organisasi"
-
-msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi"

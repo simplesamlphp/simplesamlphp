@@ -1,7 +1,12 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Isännöidyn Shibboleth 1.3 identiteetintarjoajan Metadata (automaattisesti luotu)"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Isännöidyn Shibboleth 1.3 palveluntarjoajan Metadata (automaattisesti luotu)"
 
 msgid "Missing cookie"
 msgstr "Puuttuva eväste"
@@ -9,17 +14,11 @@ msgstr "Puuttuva eväste"
 msgid "Retry"
 msgstr "Uudestaan"
 
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Näyttää, että olet kieltänyt evästeiden käytön selaimessasi. Ole hyvä ja salli evästeet selaimestasi ja yritä uudelleen."
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP esimerkki - testikirjautuminen Shib IdP:si kautta"
 
 msgid "Welcome"
 msgstr "Tervetuloa"
 
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Isännöidyn Shibboleth 1.3 palveluntarjoajan Metadata (automaattisesti luotu)"
-
-msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr "Shibboleth 1.3 SP esimerkki - testikirjautuminen Shib IdP:si kautta"
-
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Isännöidyn Shibboleth 1.3 identiteetintarjoajan Metadata (automaattisesti luotu)"
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Näyttää, että olet kieltänyt evästeiden käytön selaimessasi. Ole hyvä ja salli evästeet selaimestasi ja yritä uudelleen."

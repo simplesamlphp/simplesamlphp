@@ -1,16 +1,50 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
-msgid "No SAML response provided"
-msgstr "Nincs SAML válasz"
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg felhasználónevét és jelszavát az alábbi űrlapon."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-msgid "No SAML message provided"
-msgstr "Hiányzó SAML üzenet"
+msgid "Affiliation"
+msgstr "Viszony"
+
+msgid "Affiliation at home organization"
+msgstr "Saját intézményhez való viszony"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Hiba történt a SAML kérés létrehozása közben."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "A kijelentkezési kérés (logout request) feldolgozása során hiba történt."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Kezeletlen kivétel (exception) keletkezett."
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalmát"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Azonosítás megszakítva"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "A(z)  %AUTHSOURCE% azonosítási forrásban hiba van. A ok: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Azonosítási hiba: a böngésző által küldött tanúsítványt ismeretlen típusú."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Azonosítási hiba: a böngésző nem küldött tanúsítványt."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
@@ -20,50 +54,280 @@ msgstr "Azonosítási forrás hiba"
 msgid "Bad request received"
 msgstr "Hibás kérés"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "Érvénytelen kérés érkezett a felfedező szolgáltatáshoz (discovery service)"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS hiba"
+
+msgid "Certificates"
+msgstr "Tanúsítványok."
+
+msgid "Change your home organization"
+msgstr "Válasszon másik szervezetet"
+
+msgid "Choose home organization"
+msgstr "Válassza ki a szervezetét"
+
+msgid "Choose your home organization"
+msgstr "Válassza ki az ön szervezetét"
+
+msgid "Common name"
+msgstr "Teljes név"
+
+msgid "Completed"
+msgstr "Befejezve"
+
+msgid "Configuration check"
+msgstr "Beállítások ellenőrzése"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
 msgstr "Beállítási hiba"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
-msgid "Error creating request"
-msgstr "Hiba történt"
+msgid "Contact information:"
+msgstr "Elérési információk"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
-msgid "Bad request to discovery service"
-msgstr "Érvénytelen kérés érkezett a felfedező szolgáltatáshoz (discovery service)"
+msgid "Converted metadata"
+msgstr "Konvertált metaadatok"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Nem lehet az azonosítást végrehajtani"
+
+msgid "Date of birth"
+msgstr "Születési dátum"
+
+msgid "Debug information"
+msgstr "Bővebb információ a hibáról"
+
+msgid "Display name"
+msgstr "Megjeleníthető név"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "A felhasználó munkahelyének azonosító neve (DN-je)"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "A személy elsődleges szervezeti egységének azonosító neve (DN-je)"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "A felhasználó szervezeti egység azonosító neve (DN-je)"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Ki akar jelentkezni az összes fenti alkalmazásból?"
+
+msgid "Domain component (DC)"
+msgstr "Domain összetevő (DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "PEM formátumú X509 tanúsítvány letöltése."
+
+msgid "E-mail address:"
+msgstr "E-mail címek:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!"
+
+msgid "Enter your username and password"
+msgstr "Felhasználónév és jelszó"
+
+msgid "Entitlement regarding the service"
+msgstr "Ezekre a szolgáltatásokra jogosult"
+
+msgid "Error"
+msgstr "Hiba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Hiba történt"
+
+msgid "Error in this metadata entry"
+msgstr "Hiba ebben a metaadat bejegyzésben"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Metaadat betöltési hiba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Hibás SP üzenet"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "IdP válasz feldolgozási hiba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Feldolgozhatatlan kijelentkezési kérés"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Hiba történt az azonosító szervezet (IdP) oldalán"
+
+msgid "Error report sent"
+msgstr "Elküldött hibabejelentés"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történt..."
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Given name"
+msgstr "Keresztnév"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
+
+msgid "Go back to the file list"
+msgstr "Vissza az fájlok listájához"
+
+msgid "Help desk homepage"
+msgstr "Ügyfélszolgálat weboldala"
+
+msgid "Help! I don't remember my password."
+msgstr "Segítség! Elfelejtettem a jelszavam."
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot küldheti el föderációs partnerei számára."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat."
+
+msgid "Home organization domain name"
+msgstr "Saját intézmény domain neve"
+
+msgid "Home postal address"
+msgstr "Otthoni levelezési cím"
+
+msgid "Home telephone"
+msgstr "Otthoni telefon"
+
+msgid "How to get help"
+msgstr "Hogyan kaphat segítséget"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Társadalombiztosítási azonosító szám"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Ha bejelentést küld a hibával kapcsolatban, kérjük, küldje el ezt az azonosítót, mert csak ennek segítségével tudja a rendszeradminisztrátor a naplóállományokból azokat az adatokat megtalálni, amelyek ehhez a munkamenethez tartoznak."
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "SAML 2.0 XML formátumban:"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon SimpleSAMLphp van:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Hibás felhasználónév vagy jelszó"
+
+msgid "Incorrect username or password."
+msgstr "Hibás felhasználói név vagy jelszó!"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Érvénytelen tanúsítvány"
 
+msgid "JPEG Photo"
+msgstr "Fotó JPEG formátumban"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "LDAP hiba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "A felhasználói adatbázis LDAP alapú, ezért bejelentkezéshez szükség van egy LDAP adatbázisra. Ezúttal hiba történt az LDAP-hoz kapcsolódás során."
+
+msgid "Labeled URI"
+msgstr "Honlap cím"
+
+msgid "Legal name"
+msgstr "Hivatalos név (noreduperson)"
+
+msgid "Local identity number"
+msgstr "Helyi azonosító szám"
+
+msgid "Locality"
+msgstr "Település"
+
+msgid "Logged out"
+msgstr "Sikeres kilépés"
+
+msgid "Logging out of the following services:"
+msgstr "Kilépés az alábbi szolgáltatásokból:"
+
+msgid "Logging out..."
+msgstr "Kijelentkezés..."
+
+msgid "Login"
+msgstr "Bejelentkezés"
+
+msgid "Login at"
+msgstr "Belépés ide:"
+
+msgid "Logout"
+msgstr "Kilépés"
+
+msgid "Logout failed"
+msgstr "Kijelentkezés nem sikerült"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Elveszett kijelentkezési információk"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
-msgid "Error processing the Logout Request"
-msgstr "Feldolgozhatatlan kijelentkezési kérés"
+msgid "Mail"
+msgstr "E-mail"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-msgid "Error loading metadata"
-msgstr "Metaadat betöltési hiba"
+msgid "Manager"
+msgstr "Manager"
+
+msgid "Message"
+msgstr "Üzenet"
+
+msgid "Metadata"
+msgstr "Metaadatok"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metadata nem található"
+
+msgid "Metadata overview"
+msgstr "Metaadat áttekintés"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Next"
+msgstr "Következő"
+
+msgid "Nickname"
+msgstr "Becenév"
+
+msgid "No"
+msgstr "Nem"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "Nincs RelayState paraméter"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "Hiányzó SAML üzenet"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Nincs SAML válasz"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -73,123 +337,232 @@ msgstr "Hozzáférés megtagadva"
 msgid "No certificate"
 msgstr "Hiányzó tanúsítvány."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
-msgid "No RelayState"
-msgstr "Nincs RelayState paraméter"
+msgid "No errors found."
+msgstr "Nincs hiba."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
-msgid "State information lost"
-msgstr "Elveszett az állapotinformáció"
+msgid "No, cancel"
+msgstr "Nem"
+
+msgid "No, only %SP%"
+msgstr "Nem, csak innen: %SP%"
+
+msgid "Notices"
+msgstr "Megjegyzések"
+
+msgid "On hold"
+msgstr "Felfüggesztve"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Egy vagy több alkalmazás <i>nem támogatja a kijelenkezést</i>. Hogy biztosítani lehessen, hogy nem maradt bejelentkezve, kérjük, <i>lépjen ki a böngészőből!</i>"
+
+msgid "Optional fields"
+msgstr "Opcionális mező"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Opcionálisan megadhatja az e-mail címét, így az adminisztrátorok a hibával kapcsolatban esetleg további kérdéseket tehetnek fel:"
+
+msgid "Options missing from config file"
+msgstr "Hiányzó opciók a konfigurációs állományban"
+
+msgid "Organization"
+msgstr "Szervezet"
+
+msgid "Organization name"
+msgstr "Szervezet neve"
+
+msgid "Organization's legal name"
+msgstr "Szervezet hivatalos neve"
+
+msgid "Organizational homepage"
+msgstr "Szervezet weboldala"
+
+msgid "Organizational number"
+msgstr "Szervezeti szám"
+
+msgid "Organizational unit"
+msgstr "Szervezeti egység"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Oldal nem található"
 
+msgid "Parse"
+msgstr "Értelmez"
+
+msgid "Password"
+msgstr "Jelszó"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Jelszó nincs beállítva"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-msgid "Error processing response from Identity Provider"
-msgstr "IdP válasz feldolgozási hiba"
+msgid "Persistent pseudonymous ID"
+msgstr "Állandó anonim azonosító"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-msgid "Error processing request from Service Provider"
-msgstr "Hibás SP üzenet"
+msgid "Person's principal name at home organization"
+msgstr "Állandó azonosító a saját intézményben"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-msgid "Error received from Identity Provider"
-msgstr "Hiba történt az azonosító szervezet (IdP) oldalán"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol azonosítani kívánja magát:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
-msgid "Unhandled exception"
-msgstr "Kezeletlen kivétel"
+msgid "Post office box"
+msgstr "Postafiók"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
-msgid "Unknown certificate"
-msgstr "Ismeretlen tanúsítvány"
+msgid "Postal address"
+msgstr "Levelezési cím"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-msgid "Authentication aborted"
-msgstr "Azonosítás megszakítva"
+msgid "Postal code"
+msgstr "Irányítószám"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
-msgid "Incorrect username or password"
-msgstr "Hibás felhasználónév vagy jelszó"
+msgid "Preferred language"
+msgstr "Elsődleges nyelv"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
-msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Az Assertion Consumer Service interfészen SAML Authentication Response üzenetet kell megadni."
+msgid "Primary affiliation"
+msgstr "Elsődleges viszony"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "A(z)  %AUTHSOURCE% azonosítási forrásban hiba van. A ok: %REASON%"
+msgid "Private information elements"
+msgstr "Védett adatokat tartalmazó attribútumok"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%"
+msgid "Remember"
+msgstr "Emlékezzen a hozzájárulásra"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
-msgid "Error when communicating with the CAS server."
-msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
+msgid "Remember me"
+msgstr "Emlékezzen rám"
+
+msgid "Remember my choice"
+msgstr "Emlékezzen erre"
+
+msgid "Remember my username"
+msgstr "Emlékezzen a felhasználónevemre"
+
+msgid "Report errors"
+msgstr "Mutassa a hibaüzeneteket"
+
+msgid "Required fields"
+msgstr "Kötelező mezők"
+
+msgid "Return to service"
+msgstr "Vissza a szolgáltatáshoz"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "SAML 2.0 személyazonosság-szolgáltató (helyi)"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "SAML 2.0 SP próba példa"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "SAML 2.0 SP Metaadatok"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "SAML 2.0 alkalmazásszolgáltató (helyi)"
+
+msgid "Select"
+msgstr "Választ"
+
+msgid "Select configuration file to check:"
+msgstr "Válassza ki az ellenőrizendő konfigurációs állományt"
+
+msgid "Select your identity provider"
+msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
+
+msgid "Send e-mail to help desk"
+msgstr "Küldjön e-mailt az ügyfélszolgálatnak"
+
+msgid "Send error report"
+msgstr "Hibabejelentés küldése"
+
+msgid "Sending message"
+msgstr "Üzenet küldése"
+
+msgid "Service Provider"
+msgstr "Alkalmazásszolgáltató"
+
+msgid "Session size: %SIZE%"
+msgstr "Munkamenet mérete: %SIZE%"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Shib 1.3 IdP Metaadatok"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3 személyazonosság-szolgáltató (helyi)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3 személyazonosság-szolgáltató (távoli)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SP Metaadatok"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3 alkalmazásszolgálató (helyi)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3 alkalmazásszolgáltató (távoli)"
+
+msgid "Shibboleth demo"
+msgstr "Shibboleth próba"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "SimpleSAMLphp hibakeresés"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "Valószínűleg helytelenül lett konfigurálva a SimpleSAMLphp"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Hiba történt a SAML kérés létrehozása közben."
+msgid "SimpleSAMLphp error"
+msgstr "SimpleSAMLphp hiba"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
-msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, amelyek nem felelnek meg a specifikációnak."
+msgid "Some error occurred"
+msgstr "Hiba történt"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
-msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
-msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
-msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "A felhasználói adatbázis LDAP alapú, ezért bejelentkezéshez szükség van egy LDAP adatbázisra. Ezúttal hiba történt az LDAP-hoz kapcsolódás során."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
-msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. Kérjük, térjen vissza ahhoz a szolgáltatáshoz, ahonnan ki akart jelentkezni, és próbálja újra! Lehetséges, hogy a hibát az okozza, hogy a kijelentkezéshez szükséges információ elévült. A kijelentkezési információ csak korlátozott ideig érvényes - általában néhány óráig. Ez hosszabb, mint amennyi normális esetben a kijelentkezéshez szükséges, ezért ez a hibaüzenet konfigurációs hibát jelenthet. Ha a probléma továbbra is fennáll, kérjük, forduljon az alkalmazásszolgáltatóhoz (SP)!"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "A kijelentkezési kérés (logout request) feldolgozása során hiba történt."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
-msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "SimpleSAMLphp konfigurációs hiba. Ha Ön ennek a szolgáltatásnak az adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen vannak beállítva!"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
-#, php-format
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "%ENTITYID% entitáshoz nem található metadataA"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
-msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a SimpleSAMLphp beállításai között."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Azonosítási hiba: a böngésző nem küldött tanúsítványt."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
-msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt határozza meg, hogy hová irányítsuk tovább."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Elveszett az állapotinformáció"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Állapotinformáció elveszett, a kérést nem lehet újraindítani"
+
+msgid "Street"
+msgstr "Utca"
+
+msgid "Submit message"
+msgstr "Üzenet küldése"
+
+msgid "Superfluous options in config file"
+msgstr "Felesleges opciók a konfigurációs állományban"
+
+msgid "Surname"
+msgstr "Vezetéknév"
+
+msgid "Telephone number"
+msgstr "Telefonszám"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Hiba történt az azonosító szervezet (IdP) oldalán. Ismeretlen állapotkód."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Az azonosítást a felhasználó megszakította"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk számára:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
+
+msgid "The following fields was not recognized"
+msgstr "A következő mezők nem értelmezhetők"
+
+msgid "The following optional fields was not found"
+msgstr "A következő opcionális mezők nem találhatók"
+
+msgid "The following required fields was not found"
+msgstr "A következő kötelező mezők hiányoznak"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -199,51 +572,148 @@ msgstr "Az alábbi oldal nem található: %URL%"
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "%URL% oldal nem található, a következő ok miatt: %REASON% "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. Kérjük, térjen vissza ahhoz a szolgáltatáshoz, ahonnan ki akart jelentkezni, és próbálja újra! Lehetséges, hogy a hibát az okozza, hogy a kijelentkezéshez szükséges információ elévült. A kijelentkezési információ csak korlátozott ideig érvényes - általában néhány óráig. Ez hosszabb, mint amennyi normális esetben a kijelentkezéshez szükséges, ezért ez a hibaüzenet konfigurációs hibát jelenthet. Ha a probléma továbbra is fennáll, kérjük, forduljon az alkalmazásszolgáltatóhoz (SP)!"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt határozza meg, hogy hová irányítsuk tovább."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, amelyek nem felelnek meg a specifikációnak."
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a konfigurációs fájlban, kérjük, változtassa meg most! "
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
-msgid "You did not present a valid certificate."
-msgstr "Nem található hiteles tanúsítvány"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Nem fogadtuk el a személyazonosság-szolgáltató (IdP) által küldött válaszüzenetet."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "SimpleSAMLphp konfigurációs hiba. Ha Ön ennek a szolgáltatásnak az adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen vannak beállítva!"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során hiba történt."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
-msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Hiba történt az azonosító szervezet (IdP) oldalán. Ismeretlen állapotkód."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a SimpleSAMLphp beállításai között."
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
+
+msgid "Title"
+msgstr "Cím"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "%ENTITYID% entitáshoz nem található metadataA"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan lezárja a megkezdett munkamenetet, kérjük, <i>zárja be böngészőjét</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Kezeletlen kivétel"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Ismeretlen tanúsítvány"
+
+msgid "User ID"
+msgstr "Felhasználói azonosító"
+
+msgid "User's password hash"
+msgstr "A felhasználó jelszava (kódolva)"
+
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "WS-Fed SP próba példa"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "WS-Federation alkalmazásszolgáltató (távoli)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "WS-Federation alkalmazásszolgáltató (helyi)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Nem fogadtuk el a személyazonosság-szolgáltató (IdP) által küldött válaszüzenetet."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát, így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!"
+
+msgid "XML metadata"
+msgstr "XML metaadat"
+
+msgid "Yes, all services"
+msgstr "Igen, minden alkalmazásból"
+
+msgid "Yes, continue"
+msgstr "Igen, elfogadom"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Az Assertion Consumer Service interfészen SAML Authentication Response üzenetet kell megadni."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse üzenetet kell megadni."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
-msgid "An unhandled exception was thrown."
-msgstr "Kezeletlen kivétel (exception) keletkezett."
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Azonosítási hiba: a böngésző által küldött tanúsítványt ismeretlen típusú."
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése linkre a folytatáshoz."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
-msgid "The authentication was aborted by the user"
-msgstr "Az azonosítást a felhasználó megszakította"
+msgid "You are also logged in on these services:"
+msgstr "Ezen alkalmazásokban van még bejelentkezve:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
-msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!"
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Egy teszt, vagy fejlesztői oldalra jutottál. Az azonosítás csak próba miatt történik. Ha valaki olyan linket küldött, amire kattintva ide jutottál, és nem vagy <i>tesztelő</i>, valószínűleg elrontott valamit, és amit keresel, azt <b>itt nem találod</b>."
 
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat."
+msgid "You are now successfully logged out from %SP%."
+msgstr "Sikeresen kilépett a(z) %SP% szolgáltatásból"
 
-msgid "Logout"
-msgstr "Kilépés"
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "A következő címről <a href=\"%METAURL%\">töltheti le a metaadatokat</a>:"
+
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a hibakereső módot."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Nem található hiteles tanúsítvány"
+
+msgid "You have been logged out."
+msgstr "Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatást."
+
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "A <b>%HOMEORG%</b> szervezetet választotta ki. Ha a választás nem volt helyes, kérem válasszon másikat."
+
+msgid "You have previously chosen to authenticate at"
+msgstr "Korábban ezt a személyazonosság-szolgáltatót (IdP) választotta: "
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból."
+
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
 
 msgid "Your attributes"
 msgstr "Az ön attribútumai"
@@ -251,476 +721,5 @@ msgstr "Az ön attribútumai"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol azonosítani kívánja magát:"
-
-msgid "Remember my choice"
-msgstr "Emlékezzen erre"
-
-msgid "Select"
-msgstr "Választ"
-
-msgid "Select your identity provider"
-msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
-
-msgid "Sending message"
-msgstr "Üzenet küldése"
-
-msgid "Yes, continue"
-msgstr "Igen, elfogadom"
-
-msgid "Debug information"
-msgstr "Bővebb információ a hibáról"
-
-msgid "E-mail address:"
-msgstr "E-mail címek:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történt..."
-
-msgid "How to get help"
-msgstr "Hogyan kaphat segítséget"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Ha bejelentést küld a hibával kapcsolatban, kérjük, küldje el ezt az azonosítót, mert csak ennek segítségével tudja a rendszeradminisztrátor a naplóállományokból azokat az adatokat megtalálni, amelyek ehhez a munkamenethez tartoznak."
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Opcionálisan megadhatja az e-mail címét, így az adminisztrátorok a hibával kapcsolatban esetleg további kérdéseket tehetnek fel:"
-
-msgid "Report errors"
-msgstr "Mutassa a hibaüzeneteket"
-
-msgid "Send error report"
-msgstr "Hibabejelentés küldése"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk számára:"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Ez a hiba valószínűleg a SimpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
-
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
-
-msgid "Person's principal name at home organization"
-msgstr "Állandó azonosító a saját intézményben"
-
-msgid "Superfluous options in config file"
-msgstr "Felesleges opciók a konfigurációs állományban"
-
-msgid "Mobile"
-msgstr "Mobil"
-
-msgid "Shib 1.3 Service Provider (Hosted)"
-msgstr "Shib 1.3 alkalmazásszolgálató (helyi)"
-
-msgid "Display name"
-msgstr "Megjeleníthető név"
-
-msgid "SAML 2.0 SP Metadata"
-msgstr "SAML 2.0 SP Metaadatok"
-
-msgid "Notices"
-msgstr "Megjegyzések"
-
-msgid "Home telephone"
-msgstr "Otthoni telefon"
-
-msgid "Service Provider"
-msgstr "Alkalmazásszolgáltató"
-
-msgid "Incorrect username or password."
-msgstr "Hibás felhasználói név vagy jelszó!"
-
-msgid "Submit message"
-msgstr "Üzenet küldése"
-
-msgid "Locality"
-msgstr "Település"
-
-msgid "The following required fields was not found"
-msgstr "A következő kötelező mezők hiányoznak"
-
-msgid "Download the X509 certificates as PEM-encoded files."
-msgstr "PEM formátumú X509 tanúsítvány letöltése."
-
-msgid "Organizational number"
-msgstr "Szervezeti szám"
-
-msgid "Post office box"
-msgstr "Postafiók"
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg felhasználónevét és jelszavát az alábbi űrlapon."
-
-msgid "Error"
-msgstr "Hiba"
-
-msgid "Next"
-msgstr "Következő"
-
-msgid "Distinguished name (DN) of the person's home organizational unit"
-msgstr "A felhasználó szervezeti egység azonosító neve (DN-je)"
-
-msgid "Converted metadata"
-msgstr "Konvertált metaadatok"
-
-msgid "Mail"
-msgstr "E-mail"
-
-msgid "No, cancel"
-msgstr "Nem"
-
-msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "A <b>%HOMEORG%</b> szervezetet választotta ki. Ha a választás nem volt helyes, kérem válasszon másikat."
-
-msgid "Distinguished name (DN) of person's primary Organizational Unit"
-msgstr "A személy elsődleges szervezeti egységének azonosító neve (DN-je)"
-
-msgid "To look at the details for an SAML entity, click on the SAML entity header."
-msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
-
-msgid "Enter your username and password"
-msgstr "Felhasználónév és jelszó"
-
-msgid "Login at"
-msgstr "Belépés ide:"
-
-msgid "No"
-msgstr "Nem"
-
-msgid "Home postal address"
-msgstr "Otthoni levelezési cím"
-
-msgid "WS-Fed SP Demo Example"
-msgstr "WS-Fed SP próba példa"
-
-msgid "SAML 2.0 Identity Provider (Remote)"
-msgstr "SAML 2.0  személyazonosság-szolgáltató (távoli)"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Ki akar jelentkezni az összes fenti alkalmazásból?"
-
-msgid "Given name"
-msgstr "Keresztnév"
-
-msgid "SAML 2.0 SP Demo Example"
-msgstr "SAML 2.0 SP próba példa"
-
-msgid "Organization name"
-msgstr "Szervezet neve"
-
-msgid "You are about to send a message. Hit the submit message button to continue."
-msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz."
-
-msgid "Home organization domain name"
-msgstr "Saját intézmény domain neve"
-
-msgid "Go back to the file list"
-msgstr "Vissza az fájlok listájához"
-
-msgid "Error report sent"
-msgstr "Elküldött hibabejelentés"
-
-msgid "Common name"
-msgstr "Teljes név"
-
-msgid "Logout failed"
-msgstr "Kijelentkezés nem sikerült"
-
-msgid "Identity number assigned by public authorities"
-msgstr "Társadalombiztosítási azonosító szám"
-
-msgid "WS-Federation Identity Provider (Remote)"
-msgstr "WS-Federation alkalmazásszolgáltató (távoli)"
-
-msgid "Some error occurred"
-msgstr "Hiba történt"
-
-msgid "Organization"
-msgstr "Szervezet"
-
-msgid "Choose home organization"
-msgstr "Válassza ki a szervezetét"
-
-msgid "Persistent pseudonymous ID"
-msgstr "Állandó anonim azonosító"
-
-msgid "No errors found."
-msgstr "Nincs hiba."
-
-msgid "SAML 2.0 Service Provider (Hosted)"
-msgstr "SAML 2.0 alkalmazásszolgáltató (helyi)"
-
-msgid "Required fields"
-msgstr "Kötelező mezők"
-
-msgid "Domain component (DC)"
-msgstr "Domain összetevő (DC)"
-
-msgid "Shib 1.3 Service Provider (Remote)"
-msgstr "Shib 1.3 alkalmazásszolgáltató (távoli)"
-
-msgid "Password"
-msgstr "Jelszó"
-
-msgid "Nickname"
-msgstr "Becenév"
-
-msgid "The error report has been sent to the administrators."
-msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
-
-msgid "Date of birth"
-msgstr "Születési dátum"
-
-msgid "Private information elements"
-msgstr "Védett adatokat tartalmazó attribútumok"
-
-msgid "You are also logged in on these services:"
-msgstr "Ezen alkalmazásokban van még bejelentkezve:"
-
-msgid "SimpleSAMLphp Diagnostics"
-msgstr "SimpleSAMLphp hibakeresés"
-
-msgid "No, only %SP%"
-msgstr "Nem, csak innen: %SP%"
-
-msgid "Username"
-msgstr "Felhasználónév"
-
-msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
-
-msgid "You have successfully logged out from all services listed above."
-msgstr "Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból."
-
-msgid "You are now successfully logged out from %SP%."
-msgstr "Sikeresen kilépett a(z) %SP% szolgáltatásból"
-
-msgid "Affiliation"
-msgstr "Viszony"
-
-msgid "You have been logged out."
-msgstr "Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatást."
-
-msgid "Return to service"
-msgstr "Vissza a szolgáltatáshoz"
-
-msgid "WS-Federation Service Provider (Hosted)"
-msgstr "WS-Federation alkalmazásszolgáltató (helyi)"
-
-msgid "Remember my username"
-msgstr "Emlékezzen a felhasználónevemre"
-
-msgid "Preferred language"
-msgstr "Elsődleges nyelv"
-
-msgid "Surname"
-msgstr "Vezetéknév"
-
-msgid "The following fields was not recognized"
-msgstr "A következő mezők nem értelmezhetők"
-
-msgid "User ID"
-msgstr "Felhasználói azonosító"
-
-msgid "JPEG Photo"
-msgstr "Fotó JPEG formátumban"
-
-msgid "Postal address"
-msgstr "Levelezési cím"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "SAML 2.0 XML formátumban:"
-
-msgid "Logging out of the following services:"
-msgstr "Kilépés az alábbi szolgáltatásokból:"
-
-msgid "Labeled URI"
-msgstr "Honlap cím"
-
-msgid "Shib 1.3 Identity Provider (Hosted)"
-msgstr "Shib 1.3 személyazonosság-szolgáltató (helyi)"
-
-msgid "Metadata"
-msgstr "Metaadatok"
-
-msgid "Login"
-msgstr "Bejelentkezés"
-
-msgid "Yes, all services"
-msgstr "Igen, minden alkalmazásból"
-
-msgid "Logged out"
-msgstr "Sikeres kilépés"
-
-msgid "Postal code"
-msgstr "Irányítószám"
-
-msgid "Logging out..."
-msgstr "Kijelentkezés..."
-
-msgid "SAML 2.0 Identity Provider (Hosted)"
-msgstr "SAML 2.0 személyazonosság-szolgáltató (helyi)"
-
-msgid "Primary affiliation"
-msgstr "Elsődleges viszony"
-
-msgid "XML metadata"
-msgstr "XML metaadat"
-
-msgid "Telephone number"
-msgstr "Telefonszám"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan lezárja a megkezdett munkamenetet, kérjük, <i>zárja be böngészőjét</i>."
-
-msgid "Entitlement regarding the service"
-msgstr "Ezekre a szolgáltatásokra jogosult"
-
-msgid "Shib 1.3 SP Metadata"
-msgstr "Shib 1.3 SP Metaadatok"
-
-msgid "As you are in debug mode, you get to see the content of the message you are sending:"
-msgstr "Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalmát"
-
-msgid "Certificates"
-msgstr "Tanúsítványok."
-
-msgid "Remember"
-msgstr "Emlékezzen a hozzájárulásra"
-
-msgid "Distinguished name (DN) of person's home organization"
-msgstr "A felhasználó munkahelyének azonosító neve (DN-je)"
-
-msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr "Üzenetet küldhet. Kattintson az Üzenet küldése linkre a folytatáshoz."
-
-msgid "Organizational unit"
-msgstr "Szervezeti egység"
-
-msgid "Local identity number"
-msgstr "Helyi azonosító szám"
-
-msgid "Shib 1.3 IdP Metadata"
-msgstr "Shib 1.3 IdP Metaadatok"
-
-msgid "Change your home organization"
-msgstr "Válasszon másik szervezetet"
-
-msgid "User's password hash"
-msgstr "A felhasználó jelszava (kódolva)"
-
-msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon SimpleSAMLphp van:"
-
-msgid "Completed"
-msgstr "Befejezve"
-
-msgid "Select configuration file to check:"
-msgstr "Válassza ki az ellenőrizendő konfigurációs állományt"
-
-msgid "On hold"
-msgstr "Felfüggesztve"
-
-msgid "Help! I don't remember my password."
-msgstr "Segítség! Elfelejtettem a jelszavam."
-
-msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
-msgstr "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a hibakereső módot."
-
-msgid "SimpleSAMLphp error"
-msgstr "SimpleSAMLphp hiba"
-
-msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Egy vagy több alkalmazás <i>nem támogatja a kijelenkezést</i>. Hogy biztosítani lehessen, hogy nem maradt bejelentkezve, kérjük, <i>lépjen ki a böngészőből!</i>"
-
-msgid "Remember me"
-msgstr "Emlékezzen rám"
-
-msgid "Organization's legal name"
-msgstr "Szervezet hivatalos neve"
-
-msgid "Options missing from config file"
-msgstr "Hiányzó opciók a konfigurációs állományban"
-
-msgid "The following optional fields was not found"
-msgstr "A következő opcionális mezők nem találhatók"
-
-msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr "A következő címről <a href=\"%METAURL%\">töltheti le a metaadatokat</a>:"
-
-msgid "Street"
-msgstr "Utca"
-
-msgid "Message"
-msgstr "Üzenet"
-
-msgid "Contact information:"
-msgstr "Elérési információk"
-
-msgid "Legal name"
-msgstr "Hivatalos név (noreduperson)"
-
-msgid "Optional fields"
-msgstr "Opcionális mező"
-
-msgid "You have previously chosen to authenticate at"
-msgstr "Korábban ezt a személyazonosság-szolgáltatót (IdP) választotta: "
-
-msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!"
-
-msgid "Fax number"
-msgstr "Fax"
-
-msgid "Shibboleth demo"
-msgstr "Shibboleth próba"
-
-msgid "Error in this metadata entry"
-msgstr "Hiba ebben a metaadat bejegyzésben"
-
-msgid "Session size: %SIZE%"
-msgstr "Munkamenet mérete: %SIZE%"
-
-msgid "Parse"
-msgstr "Értelmez"
-
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát, így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!"
-
-msgid "Choose your home organization"
-msgstr "Válassza ki az ön szervezetét"
-
-msgid "Send e-mail to help desk"
-msgstr "Küldjön e-mailt az ügyfélszolgálatnak"
-
-msgid "Metadata overview"
-msgstr "Metaadat áttekintés"
-
-msgid "Title"
-msgstr "Cím"
-
-msgid "Manager"
-msgstr "Manager"
-
-msgid "Affiliation at home organization"
-msgstr "Saját intézményhez való viszony"
-
-msgid "Help desk homepage"
-msgstr "Ügyfélszolgálat weboldala"
-
-msgid "Configuration check"
-msgstr "Beállítások ellenőrzése"
-
-msgid "Shib 1.3 Identity Provider (Remote)"
-msgstr "Shib 1.3 személyazonosság-szolgáltató (távoli)"
-
-msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
-msgstr "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot küldheti el föderációs partnerei számára."
-
-msgid "Organizational homepage"
-msgstr "Szervezet weboldala"
-
-msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr "Egy teszt, vagy fejlesztői oldalra jutottál. Az azonosítás csak próba miatt történik. Ha valaki olyan linket küldött, amire kattintva ide jutottál, és nem vagy <i>tesztelő</i>, valószínűleg elrontott valamit, és amit keresel, azt <b>itt nem találod</b>."

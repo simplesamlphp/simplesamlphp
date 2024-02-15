@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: cron\n"
@@ -9,20 +8,20 @@ msgstr "Κάντε κλικ εδώ για να εκτελέσετε τις ερ�
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Το cron επιτρέπει την εκτέλεση εργασιών ανά τακτά διαστήματα σε συστήματα UNIX."
 
-msgid "Cron result page"
-msgstr "Πληροφορίες περιοδικών εργασιών cron"
-
-msgid "Here is a suggestion for a crontab file:"
-msgstr "Προτεινόμενο αρχείο crontab:"
-
-msgid "Run cron:"
-msgstr "Εκτέλεση cron"
-
 msgid "Cron ran at"
 msgstr "Ημερομηνία και ώρα εκτέλεσης cron:"
 
 msgid "Cron report"
 msgstr "Αναφορά cron"
 
+msgid "Cron result page"
+msgstr "Πληροφορίες περιοδικών εργασιών cron"
+
 msgid "Here are the result for the cron job execution:"
 msgstr "Αποτέλεσμα εκτέλεσης εργασίας cron:"
+
+msgid "Here is a suggestion for a crontab file:"
+msgstr "Προτεινόμενο αρχείο crontab:"
+
+msgid "Run cron:"
+msgstr "Εκτέλεση cron"
